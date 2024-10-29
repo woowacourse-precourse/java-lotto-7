@@ -26,7 +26,7 @@
   - [ ] 보너스 번호 입력 받기
     - [ ] 예외: 정수가 아닌 경우
       - `IllegalArgumentException("[ERROR] 보너스 번호는 정수로 입력해 주세요.")`
-    - [ ] 예외: 1과 45 사이 밖의 정수가 입력된 경우
+    - [x] 예외: 1과 45 사이 밖의 정수가 입력된 경우
       - `IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이여야 합니다.")`
     - [ ] 예외: 당첨 번호와 중복되는 경우
       - `IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.")`
