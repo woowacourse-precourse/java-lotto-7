@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Application {
     public static void main(String[] args) {
@@ -23,6 +25,20 @@ public class Application {
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());
+        }
+
+        // 당첨 번호 입력 받기
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input2 = Console.readLine();
+        String[] inputs = input.split(",");
+        Set<Integer> winningNumbers = new HashSet<>(); // 중복 없게 하려고 Set 사용
+        for (String number : inputs) {
+            int num = Integer.parseInt(number.trim());
+            if (num < 1 || num > 45) {
+                // 예외 던지자
+            }
+            winningNumbers.add(num);
         }
     }
 }
