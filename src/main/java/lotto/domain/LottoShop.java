@@ -1,8 +1,22 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class LottoShop {
-    /* TODO: 로또 상점의 역할
-     * 1. 손님이 준 돈에 맞게, 로또 생성을 요청한다
-     * 2. 로또 리스트를 반환한다.
-     */
+
+    public Lottos buyLottos(int amount) {
+        List<Lotto> lottos = new ArrayList<>();
+        while (amount-- > 0) {
+            lottos.add(generateLotto());
+        }
+
+        return new Lottos(lottos);
+    }
+
+    private Lotto generateLotto() {
+        List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(pickedNumbers);
+    }
 }
