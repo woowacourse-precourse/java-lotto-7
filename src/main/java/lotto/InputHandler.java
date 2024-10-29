@@ -8,6 +8,7 @@ public final class InputHandler {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             final int purchaseAmount = InputConverter.convertToPurchaseAmount(Console.readLine());
+            InputValidator.validatePurchaseAmountIsZero(purchaseAmount);
             InputValidator.validatePurchaseAmountUnit(purchaseAmount);
             return purchaseAmount;
         } catch (IllegalArgumentException exception) {
