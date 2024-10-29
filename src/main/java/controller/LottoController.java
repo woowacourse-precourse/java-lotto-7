@@ -1,6 +1,5 @@
 package controller;
 
-import java.math.BigInteger;
 import model.Amount;
 import validation.Validation;
 import view.InputView;
@@ -14,6 +13,7 @@ public class LottoController {
         String str = inputView.purchaseAmount();
         Validation.blankInput(str);
         Validation.numberInput(str);
-        Amount purchaseAmount = new Amount(new BigInteger(str));
+        Validation.overInput(Integer.parseInt(str));
+        Amount purchaseAmount = new Amount(Integer.parseInt(str));
     }
 }

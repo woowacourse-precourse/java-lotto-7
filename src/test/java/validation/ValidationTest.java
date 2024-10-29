@@ -1,11 +1,7 @@
 package validation;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.math.BigInteger;
-import java.util.List;
-import lotto.Lotto;
 import org.junit.jupiter.api.Test;
 
 public class ValidationTest {
@@ -24,8 +20,14 @@ public class ValidationTest {
     }
 
     @Test
-    void 음수_입력_테스트(){
+    void 음수_입력_에러_테스트(){
         assertThatThrownBy(()->Validation.numberInput("-1"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 최대금액_에러_테스트(){
+        assertThatThrownBy(()->Validation.overInput(100001))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

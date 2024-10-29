@@ -1,7 +1,6 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import model.Amount;
 
 public class InputView {
     public InputView(){
