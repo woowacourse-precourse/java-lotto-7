@@ -22,6 +22,9 @@ public class LottoController {
         outputView.showWinningNumbersInputMessage();
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
 
+        outputView.showBonusNumberInputMessage();
+        int bonusNumber = inputView.inputBonusNumber();
+
 
     }
 
