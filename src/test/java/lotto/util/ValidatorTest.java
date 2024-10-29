@@ -26,7 +26,7 @@ public class ValidatorTest {
         // when
         boolean result = validator.validatePrice(price);
 
-        // when & then
+        // then
         assertThat(result).isFalse();
     }
 

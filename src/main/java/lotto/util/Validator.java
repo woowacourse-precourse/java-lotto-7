@@ -8,7 +8,6 @@ public class Validator {
         try{
             checkNumberType(price);
         } catch (IllegalArgumentException e) {
-            System.out.println(PRICE_TYPE_ERROR.getMessage());
             return false;
         }
         return true;
@@ -17,7 +16,8 @@ public class Validator {
     private void checkNumberType(String price) {
         try{
             Integer.parseInt(price);
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
+            System.out.println(PRICE_TYPE_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
     }
