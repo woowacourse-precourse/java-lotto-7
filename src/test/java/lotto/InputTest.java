@@ -37,6 +37,12 @@ class InputTest {
     	input.입력값("999999");  
     	assertThrows(IllegalArgumentException.class, () -> input.amountInput());
     }
+    
+    @Test
+    void 예외처리_1000단위가_아닌_경우() {
+    	input.입력값("1111");  
+    	assertThrows(IllegalArgumentException.class, () -> input.amountInput());
+    }
 
     static class TestInput extends Input {
         private String testInput;
