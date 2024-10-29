@@ -1,11 +1,16 @@
 package lotto.buyer.infrastructure;
 
 import lotto.buyer.domain.InsertMoneyService;
+import lotto.buyer.domain.Money;
+import lotto.view.input.hanlder.domain.InputHandlerService;
 
-public class InsertMoneyProcess implements InsertMoneyService {
-
+public class InsertMoney implements InsertMoneyService {
+    private final InputHandlerService inputHandlerService;
+    public InsertMoney(InputHandlerService inputHandlerService) {
+        this.inputHandlerService = inputHandlerService;
+    }
     @Override
-    public void insert() {
-
+    public Money insert() {
+        return inputHandlerService.retrieveReceive(Won::new);
     }
 }
