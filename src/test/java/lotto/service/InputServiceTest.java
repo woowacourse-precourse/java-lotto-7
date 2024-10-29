@@ -13,7 +13,7 @@ import java.io.ByteArrayInputStream;
 
 class InputServiceTest {
 
-    private final InputService inputService = new InputService(new InputView(), new OutputView());
+    private final InputService InputService = new InputService(new InputView());
 
     @AfterEach
     void closeConsole() {
@@ -24,7 +24,7 @@ class InputServiceTest {
     @ValueSource(strings = {"1000", "10000"})
     void 구입_금액_입력_성공(String input) {
         setInput(input);
-        PurchasePrice purchasePrice = inputService.parsePurchasePrice();
+        PurchasePrice purchasePrice = InputService.readPurchasePrice();
         Assertions.assertThat(purchasePrice.getPurchasePrice()).isEqualTo(Integer.parseInt(input));
     }
 
