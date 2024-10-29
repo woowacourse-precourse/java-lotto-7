@@ -44,7 +44,13 @@ public class Application {
             Collections.sort(purchasedLottoNumber);
             purchasedLottoNumbers.add(purchasedLottoNumber);
         }
+        printLottoNumbers(purchasedLottoNumbers);
         return purchasedLottoNumbers;
+    }
+    public void printLottoNumbers(ArrayList<List<Integer>> purchasedLottoNumbers){
+        for (List<Integer> purchasedLottoNumber : purchasedLottoNumbers) {
+            System.out.println(purchasedLottoNumber);
+        }
     }
     public static void main(String[] args) {
         Application application = new Application();
