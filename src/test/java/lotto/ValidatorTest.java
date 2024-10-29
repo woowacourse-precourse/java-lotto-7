@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 public class ValidatorTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
     Validator validator = new Validator();
 
     @ParameterizedTest
@@ -25,4 +26,17 @@ public class ValidatorTest {
         assertThatIllegalArgumentException().isThrownBy(() -> validator.checkLottoNumbers(input));
     }
 
+    @ParameterizedTest
+    @DisplayName("구입 금액은 1,000원 단위로 입력할 수 있다")
+    @ValueSource(strings = {"1000", "2000", "8000", "12000", "24000", "127000"})
+    void 구입_금액_정상_테스트(String input) {
+        assertThatNoException().isThrownBy(() -> validator.checkPurchaseMoney(input));
+    }
+
+    @ParameterizedTest
+    @DisplayName("구입 금액이 1,000원 단위로 나누어 떨어지지 않으면 예외이다")
+    @ValueSource(strings = {"0000", "000", "200", "500", "1100", "2200"})
+    void 구입_금액_예외_테스트(String input) {
+        assertThatIllegalArgumentException().isThrownBy(() -> validator.checkPurchaseMoney(input));
+    }
 }
