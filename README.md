@@ -24,10 +24,10 @@
 
 ## 기능 구현 TODO
 ### 입력
-- [ ] 유저 로또 구입금액 입력
-  - [ ] 1,000 원 단위 아닐 시 `IllegalArgumentException` 발생
-- [ ] 로또 당첨 번호 입력
-  - [ ] 1-45까지 번호 6개가 쉽표로 구분되지 않을 시 `IllegalArgumentException` 발생
+- [X] 유저 로또 구입금액 입력
+  - [X] 1,000 원 단위 아닐 시 `IllegalArgumentException` 발생
+- [X] 로또 당첨 번호 입력
+  - [X] 1-45까지 번호 6개가 쉽표로 구분되지 않을 시 `IllegalArgumentException` 발생
 - [ ] 보너스 번호 입력
   - [ ] 1-45까지 번호 아닐 시 `IllegalArgumentException` 발생
 ### 주요 기능
