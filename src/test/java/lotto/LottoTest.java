@@ -1,7 +1,13 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumberGenerator;
 import lotto.domain.PurchaseLotto;
+import lotto.domain.dto.LottoDto;
+import lotto.utils.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +15,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class LottoTest {
     @Test
@@ -44,5 +51,35 @@ class LottoTest {
     void 로또_구매_금액_1000원_단위가_아닐때_예외_테스트() {
         assertThatThrownBy(() -> new PurchaseLotto(1100))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또를 발행하고 1~45 사이의 중복없는 6개의 숫자로 발행되는지 확인한다.")
+    @Test
+    void 로또_발행_테스트() {
+        NumberGenerator numberGenerator = new LottoNumberGenerator();
+
+        Lotto lotto = new Lotto(numberGenerator.generate());
+        LottoDto lottoDto = lotto.toDto();
+
+        assertThat(lottoDto.getNumbers()).hasSize(6);
+        assertThat(lottoDto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
+        assertThat(lottoDto.getNumbers()).doesNotHaveDuplicates();
+    }
+
+    @DisplayName("로또를 여러 개 발행하고 1~45 사이의 중복없는 6개의 숫자로 발행되는지 확인한다.")
+    @Test
+    void 로또_여러개_발행_테스트() {
+        NumberGenerator numberGenerator = new LottoNumberGenerator();
+        int numberOfLottos = 5;
+
+        List<LottoDto> lottoDtos = IntStream.range(0, numberOfLottos)
+                .mapToObj(i -> new Lotto(numberGenerator.generate()).toDto())
+                .toList();
+
+        lottoDtos.forEach(lottoDto -> {
+            assertThat(lottoDto.getNumbers()).hasSize(6);
+            assertThat(lottoDto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
+            assertThat(lottoDto.getNumbers()).doesNotHaveDuplicates();
+        });
     }
 }
