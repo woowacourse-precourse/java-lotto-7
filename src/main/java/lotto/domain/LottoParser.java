@@ -20,10 +20,14 @@ public abstract class LottoParser {
             throw new IllegalArgumentException();
         }
 
-        return parseInt(collect);
+        return parseIntList(collect);
     }
 
-    private static List<Integer> parseInt(Set<String> collect) {
+    public static Integer parseBonusBall(String input) {
+        return Integer.parseInt(input.trim());
+    }
+
+    private static List<Integer> parseIntList(final Set<String> collect) {
         for (String s : collect) {
             if (!isNumeric(s)) {
                 throw new IllegalArgumentException();
