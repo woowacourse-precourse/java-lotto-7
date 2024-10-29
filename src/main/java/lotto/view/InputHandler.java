@@ -11,14 +11,26 @@ public class InputHandler {
     }
 
     public String getInputForPurchaseMoney() {
-        String input = Console.readLine();
-        validator.checkPurchaseMoney(input);
-        return input;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validator.checkPurchaseMoney(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 
     public String getInputForWinnerNumber() {
-        String input = Console.readLine();
-        validator.checkLottoNumbers(input);
-        return input;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validator.checkLottoNumbers(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 }
