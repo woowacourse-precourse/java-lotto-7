@@ -12,5 +12,6 @@ public class Application {
         committee.checkLottos(user);
 
         user.printPrizes();
+        user.printReturnRate();
     }
 }

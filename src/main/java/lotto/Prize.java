@@ -18,6 +18,10 @@ public enum Prize {
         this.prizeAmount = prizeAmount;
     }
 
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
     public static Prize getPrize(int matchCount, int bonusMatch) {
         for (Prize prize : values()) {
             if (prize.matchCount == matchCount && prize.bonusMatch <= bonusMatch) {

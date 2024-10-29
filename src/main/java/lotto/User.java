@@ -75,4 +75,14 @@ public class User {
             }
         }
     }
+
+    public void printReturnRate() {
+        int totalPrizeAmount = 0;
+        for (Prize prize : Prize.values()) {
+            totalPrizeAmount += prize.getPrizeAmount() * prizes.get(prize);
+        }
+
+        double returnRate = (double) totalPrizeAmount / (lottoCount * 1000) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
+    }
 }
