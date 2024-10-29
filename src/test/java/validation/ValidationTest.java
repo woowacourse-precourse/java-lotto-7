@@ -1,0 +1,31 @@
+package validation;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.math.BigInteger;
+import java.util.List;
+import lotto.Lotto;
+import org.junit.jupiter.api.Test;
+
+public class ValidationTest {
+    @Test
+    void 비어있는_문자열_테스트(){
+        assertThatThrownBy(() -> Validation.blankInput(null))
+            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validation.blankInput(""))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 문자열_숫자_전환_에러_테스트(){
+        assertThatThrownBy(()->Validation.numberInput("abx"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 음수_입력_테스트(){
+        assertThatThrownBy(()->Validation.numberInput("-1"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+}

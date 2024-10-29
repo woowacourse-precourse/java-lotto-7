@@ -1,7 +1,6 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.math.BigInteger;
 
 public class InputView {
     public InputView(){
