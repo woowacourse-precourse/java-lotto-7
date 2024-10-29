@@ -2,7 +2,7 @@ package lotto.application;
 
 import lotto.config.AppConfig;
 import lotto.domain.LottoQuantity;
-import lotto.domain.Price;
+import lotto.domain.PurchasePrice;
 import lotto.domain.WinNumbers;
 
 public class ScenarioApplication {
@@ -17,8 +17,8 @@ public class ScenarioApplication {
 
     public void run() {
         String originPrice = reader.read();
-        Price price = Price.validatePrice(originPrice);
-        LottoQuantity.findQuantity(price);
+        PurchasePrice purchasePrice = PurchasePrice.validatePrice(originPrice);
+        LottoQuantity.findQuantity(purchasePrice);
 
         String originWinNumbers = reader.read();
         WinNumbers winNumbersWithOutBonusNumber = WinNumbers.winNumbersFrom(originWinNumbers);

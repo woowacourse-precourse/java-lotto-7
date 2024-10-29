@@ -5,26 +5,26 @@ import java.util.Arrays;
 import java.util.List;
 
 public record WinNumbers(
-        List<Integer> winNumbers,
+        List<Integer> primaryWinNumbers,
         Integer bonusWinNumber
 ) {
 
     public static WinNumbers winNumbersFrom(String originWinNumbers) { //이거 어떻게 예쁘게하나
         List<String> numbers = Arrays.stream(originWinNumbers.split(",")).toList();
-        List<Integer> winNumbers = new ArrayList<>();
+        List<Integer> extractWinNumbers = new ArrayList<>();
         for (String number : numbers) {
             try {
-                winNumbers.add(Integer.parseInt(number));
+                extractWinNumbers.add(Integer.parseInt(number));
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
             }
         }
-        return new WinNumbers(winNumbers, null);
+        return new WinNumbers(extractWinNumbers, null);
     }
 
     public WinNumbers bonusNumberFrom(String bonusNumber) {
         try {
-            return new WinNumbers(winNumbers, Integer.parseInt(bonusNumber));
+            return new WinNumbers(primaryWinNumbers, Integer.parseInt(bonusNumber));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }

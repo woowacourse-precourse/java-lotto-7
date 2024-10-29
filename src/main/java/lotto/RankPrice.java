@@ -12,4 +12,8 @@ public enum RankPrice {
     RankPrice(int price) {
         this.price = price;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
