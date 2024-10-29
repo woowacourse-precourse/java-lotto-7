@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.utils.Constants.INITIALIZE_VALUE;
+
 import java.util.List;
 import lotto.model.enums.LottoResult;
 
@@ -23,7 +25,7 @@ public class LottoResultManager {
 
 
     private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
-        int count = 0;
+        int count = INITIALIZE_VALUE;
         List<Integer> winningNumbers = winningLotto.getNumbers();
         for (Integer number : lotto.getNumbers()) {
             if (winningNumbers.contains(number)) {

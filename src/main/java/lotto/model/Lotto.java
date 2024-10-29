@@ -1,7 +1,10 @@
 package lotto.model;
 
+import static lotto.utils.Constants.*;
+
 import java.util.HashSet;
 import java.util.List;
+import lotto.utils.Constants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,7 +25,7 @@ public class Lotto {
     }
 
     private void checkLottoNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MAX_LOTTO_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -34,7 +37,7 @@ public class Lotto {
 
     private void checkLottoNumberRange(List<Integer> numbers){
         for (Integer num : numbers){
-            if (num < 1 || num > 45)
+            if (num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이여야 합니다.");
         }
     }

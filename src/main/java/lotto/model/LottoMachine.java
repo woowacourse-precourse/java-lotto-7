@@ -1,9 +1,12 @@
 package lotto.model;
 
+import static lotto.utils.Constants.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.utils.Constants;
 
 public class LottoMachine {
 
@@ -30,7 +33,7 @@ public class LottoMachine {
     }
 
     private void validateLottoPrice(Integer price){
-        if (price % 1000 != 0)
+        if (price % LOTTO_PRICE_VALIDATE_VALUE != 0)
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해 주세요.");
     }
 
