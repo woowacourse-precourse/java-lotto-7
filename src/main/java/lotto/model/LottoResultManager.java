@@ -5,6 +5,7 @@ import static lotto.utils.Constants.PERCENTAGE_MULTIPLIER;
 
 import java.util.List;
 import lotto.model.enums.LottoResult;
+import lotto.utils.LottoConstants;
 
 public class LottoResultManager {
 
@@ -18,18 +19,24 @@ public class LottoResultManager {
         this.price = price;
     }
 
-    public void checkLottos(List<Lotto> lottos){
+    public void checkLottos(List<Lotto> lottos) {
         LottoResult.initializeCount();
-        for(Lotto lotto : lottos){
-            int countMatchingNumbers = countMatchingNumbers(lotto, winningNumbers);
-            LottoResult.updatePrizeCount(countMatchingNumbers, checkSecondPrizeMatch(lotto));
+
+        for (Lotto lotto : lottos) {
+            int matchCount = countMatchingNumbers(lotto, winningNumbers);
+
+            boolean isSecondPrize = (matchCount == LottoConstants.SECOND_PRIZE_MATCH_COUNT)
+                    && checkSecondPrizeMatch(lotto);
+
+            LottoResult.updatePrizeCount(matchCount, isSecondPrize);
         }
     }
 
-    public double calculateProfit() {
-        return ((double) LottoResult.getTotalPrize() / price) * PERCENTAGE_MULTIPLIER;
-    }
 
+    public double calculateProfit() {
+        double profit = ((double) LottoResult.getTotalPrize() / price) * PERCENTAGE_MULTIPLIER;
+        return Math.round(profit * 100) / 100.0;
+    }
 
 
     private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
