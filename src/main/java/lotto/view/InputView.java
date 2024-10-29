@@ -31,6 +31,7 @@ public class InputView {
         String input = readLine();
 
         List<String> winningNumbers = parseWinningNumbers(input);
+        validateWinningNumberCount(winningNumbers);
     }
 
     private void validateNumber(String input, String fieldName) {
@@ -49,5 +50,11 @@ public class InputView {
 
     private List<String> parseWinningNumbers(String input) {
         return Arrays.stream(input.split(WINNING_NUMBER_DELIMITER)).toList();
+    }
+
+    private void validateWinningNumberCount(List<String> winningNumbers) {
+        if(winningNumbers.size() != WINNING_NUMBER_COUNT) {
+            throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", WINNING_NUMBER_COUNT));
+        }
     }
 }
