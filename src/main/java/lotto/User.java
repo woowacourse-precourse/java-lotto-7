@@ -49,4 +49,8 @@ public class User {
             System.out.println(lotto.toString());
         }
     }
+
+    public ArrayList<Lotto> getLottos() {
+        return lottos;
+    }
 }
