@@ -17,9 +17,10 @@ public class InputView {
 
 
     public int readPurchaseAmount() {
+        String fieldName = "구입금액";
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String input = readLine();
-        validateNumber(input, "구입금액");
+        validateNumber(input, fieldName);
 
         int amount = Integer.parseInt(input);
         validateDivisible(amount);
@@ -27,13 +28,15 @@ public class InputView {
     }
 
     public void readWinningNumbers() {
+        String fieldName = "당첨번호";
         System.out.println(WINNING_NUMBERS_MESSAGE);
         String input = readLine();
 
-        List<String> winningNumbers = splitWinningNumbers(input);
-        validateWinningNumberCount(winningNumbers);
-        winningNumbers.forEach(i -> validateNumber(i, "당첨번호"));
+        List<String> numberTokens = splitWinningNumbers(input);
+        validateWinningNumberCount(numberTokens);
+        numberTokens.forEach(i -> validateNumber(i, fieldName));
 
+        List<Integer> winningNumbers = parseToNumbers(numberTokens);
     }
 
     private void validateNumber(String input, String fieldName) {
@@ -58,5 +61,11 @@ public class InputView {
         if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", WINNING_NUMBER_COUNT));
         }
+    }
+
+    private List<Integer> parseToNumbers(List<String> numbers) {
+        return numbers.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 }
