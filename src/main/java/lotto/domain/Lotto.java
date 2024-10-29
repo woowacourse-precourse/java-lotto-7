@@ -1,14 +1,13 @@
 package lotto.domain;
 
-import lotto.message.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.message.ErrorMessage.*;
 
 public class Lotto {
 
     private static final int LOTTO_SIZE = 6;
-    private static final int RANGE_MIN = 1, RANGE_MAX = 45;
 
     private final List<Integer> numbers;
 
@@ -29,23 +28,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_LOTTO.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(this::excludeRange)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
+        if (numbers.stream().anyMatch(LottoNumberRange::excludeRange)) {
+            throw new IllegalArgumentException(EXCLUDE_LOTTO_RANGE.getMessage());
         }
-    }
-
-    private boolean excludeRange(Integer number) {
-        return RANGE_MIN > number || number > RANGE_MAX;
     }
 }

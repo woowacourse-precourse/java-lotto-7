@@ -25,9 +25,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 로또_번호의_값이_1에서_45_범위_내에_없으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+    @ParameterizedTest
+    @MethodSource("범위_내에_없는_로또_번호")
+    void 로또_번호의_값이_1에서_45_범위_내에_없으면_예외가_발생한다(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,6 +48,13 @@ class LottoTest {
                 Arguments.of(List.of(11, 12, 13, 14, 15, 16)),
                 Arguments.of(List.of(21, 22, 23, 24, 25, 26)),
                 Arguments.of(List.of(31, 32, 33, 34, 35, 36))
+        );
+    }
+
+    static Stream<Arguments> 범위_내에_없는_로또_번호() {
+        return Stream.of(
+                Arguments.of(List.of(LottoNumberRange.MIN.getValue() - 1, 1, 2, 3, 4, 5)),
+                Arguments.of(List.of(LottoNumberRange.MAX.getValue() + 1, 45, 44, 43, 42, 41))
         );
     }
 }
