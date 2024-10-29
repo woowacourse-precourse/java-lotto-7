@@ -1,8 +1,7 @@
 package lotto;
 
-import java.util.Collections;
 import java.util.stream.IntStream;
-import lotto.domain.Lotteries;
+import lotto.domain.LottoTickets;
 import lotto.domain.Lotto;
 import lotto.generator.Generator;
 
@@ -13,17 +12,17 @@ public class LottoMachine {
         this.generator = generator;
     }
 
-    public Lotteries getLotteries(int purchaseAmount) {
+    public LottoTickets getLottoTickets(int purchaseAmount) {
         int quantity = getQuantity(purchaseAmount);
-        return generateLotteries(quantity);
+        return generateLottoTickets(quantity);
     }
 
     private int getQuantity(int purchaseAmount) {
         return purchaseAmount / 1000;
     }
 
-    private Lotteries generateLotteries(int quantity) {
-        return Lotteries.of(IntStream.range(0, quantity)
+    private LottoTickets generateLottoTickets(int quantity) {
+        return LottoTickets.of(IntStream.range(0, quantity)
                 .mapToObj(index -> new Lotto(
                         generator.generateNumbers().stream().sorted().toList()
                 ))

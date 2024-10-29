@@ -1,17 +1,19 @@
 package lotto.view;
 
-import lotto.domain.Lotteries;
+import java.util.List;
+import lotto.domain.LottoTickets;
 
 public class OutputView {
     private static final String PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 
-    public void showPurchaseInputMessage() {
+    public void showPurchaseAmountInputMessage() {
         System.out.println(PURCHASE_INPUT_MESSAGE);
     }
 
 
-    public void showLottoCountAndNumbers(Lotteries lotteries) {
+    public void showLottoCountAndNumbers(LottoTickets lotteries) {
         showLottoCount(lotteries.getCount());
         showLottoNumbers(lotteries.getLottoNumbers());
     }
@@ -20,7 +22,11 @@ public class OutputView {
         System.out.println(count + PURCHASE_COUNT_MESSAGE);
     }
 
-    private void showLottoNumbers(String lottoNumbers) {
-        System.out.println(lottoNumbers);
+    private void showLottoNumbers(List<String> lottoNumbers) {
+        lottoNumbers.forEach(System.out::println);
+    }
+
+    public void showWinningNumbersInputMessage() {
+        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
     }
 }
