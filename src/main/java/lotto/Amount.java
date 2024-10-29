@@ -28,4 +28,9 @@ public class Amount {
 			throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해주세요.");
 		}
 	}
+
+	public int getAmount() {
+		return amount;
+	}
+
 }

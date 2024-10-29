@@ -57,11 +57,12 @@ class InputTest {
         }
         
         @Override
-        public void amountInput() {
+        public int amountInput() {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String amount = readLine();
                 Amount amountCheck = new Amount(amount);
+                return amountCheck.getAmount();
             } catch (IllegalArgumentException e) {
             	System.err.println(e);
                 //테스트 코드에서 무한 반복을 막기위해 재귀 호출 코드 제거
