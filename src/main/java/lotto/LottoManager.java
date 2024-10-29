@@ -11,19 +11,19 @@ public class LottoManager {
     private final LottoRequestReader lottoRequestReader;
     private final LottoResponseWriter lottoResponseWriter;
     private final LottoMachine lottoMachine;
-    private final LottoPrice lottoPrice;
+    private final LottoPricePolicy lottoPricePolicy;
 
-    public LottoManager(LottoRequestReader lottoRequestReader, LottoResponseWriter lottoResponseWriter, LottoMachine lottoMachine, LottoPrice lottoPrice) {
+    public LottoManager(LottoRequestReader lottoRequestReader, LottoResponseWriter lottoResponseWriter, LottoMachine lottoMachine, LottoPricePolicy lottoPricePolicy) {
         this.lottoRequestReader = lottoRequestReader;
         this.lottoResponseWriter = lottoResponseWriter;
         this.lottoMachine = lottoMachine;
-        this.lottoPrice = lottoPrice;
+        this.lottoPricePolicy = lottoPricePolicy;
     }
 
     public void run() {
         int purchaseMoney = lottoRequestReader.getPurchaseMoney();
 
-        int lottoCount = purchaseMoney / lottoPrice.getPrice();
+        int lottoCount = purchaseMoney / lottoPricePolicy.getPrice();
         for (int i = 0; i < lottoCount; i++) {
             lottoMachine.buyLotto();
         }
