@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum LottoPrize {
     THREE_MATCH(3, false, 5_000),
@@ -19,11 +20,10 @@ public enum LottoPrize {
         this.money = money;
     }
 
-    public static LottoPrize of(int matchCount, boolean bonusMatch) {
+    public static Optional<LottoPrize> findByMatch(int matchCount, boolean bonusMatch) {
         return Arrays.stream(LottoPrize.values())
             .filter(prize -> prize.matchCount == matchCount && prize.bonusMatch == bonusMatch)
-            .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 당첨 결과가 존재하지 않습니다."));
+            .findAny();
     }
 
     public int getMoney() {

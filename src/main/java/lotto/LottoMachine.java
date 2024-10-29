@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoMachine {
     private final List<Lotto> buyingLottos;
@@ -30,8 +27,8 @@ public class LottoMachine {
     public Map<LottoPrize, Integer> calculatePrize(Lotto winningLotto, int bonusNumber) {
         Map<LottoPrize, Integer> prizeResult = new HashMap<>();
         for (Lotto lotto : buyingLottos) {
-            LottoPrize lottoPrize = lottoWinningEvaluator.calculatePrize(lotto, winningLotto, bonusNumber);
-            prizeResult.put(lottoPrize, prizeResult.getOrDefault(lottoPrize, 0) + 1);
+            Optional<LottoPrize> lottoPrize = lottoWinningEvaluator.calculatePrize(lotto, winningLotto, bonusNumber);
+            lottoPrize.ifPresent(prize -> prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1));
         }
 
         buyingLottos.clear();
