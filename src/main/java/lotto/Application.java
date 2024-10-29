@@ -25,10 +25,15 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 1000원 단위의 금액을 입력해 주세요.");
         }
     }
+    public String requestPurchaseAmountInput(){
+        System.out.println("구입 금액을 입력해 주세요.");
+        return Console.readLine();
+    }
+
 
 
     public static void main(String[] args) {
         Application application = new Application();
-        application.divideByThousand(Console.readLine());
+        application.divideByThousand(application.requestPurchaseAmountInput());
     }
 }
