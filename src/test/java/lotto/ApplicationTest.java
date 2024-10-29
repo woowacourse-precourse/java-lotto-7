@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -44,6 +46,31 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
+    }
+    @Test
+    void 기능_테스트_2() {
+        Application application = new Application();
+        assertEquals(8, application.divideByThousand("8000"));
+    }
+    @Test
+    void divideByThousand_예외_메시지_테스트() {
+        Application application = new Application();
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            application.isNumeric("abc");
+        });
+
+        Assertions.assertEquals("[ERROR] 숫자만 입력해 주세요.", exception.getMessage());
+    }
+    @Test
+    void divideByThousand_예외_메시지_테스트_2() {
+        Application application = new Application();
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            application.checkAmountWithinRange("1001");
+        });
+
+        Assertions.assertEquals("[ERROR] 1000원 단위로 입력해 주세요.", exception.getMessage());
     }
 
     @Test
