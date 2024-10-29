@@ -104,6 +104,13 @@ public class Application {
 
         double rateOfReturn = Math.round((totalPrice / price * 100) * 10) / 10;
 
-        
+        // 당첨 통계 출력
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개일치 (5,000원) - " + winningCount[0] +"개");
+        System.out.println("4개일치 (50,000원) - " + winningCount[1] +"개");
+        System.out.println("5개일치 (1,500,000원) - " + winningCount[2] +"개");
+        System.out.println("5개일치, 보너스 볼 일치 (30,000,000원) - " + winningCount[3] +"개");
+        System.out.println("6개일치 (2,000,000,000원) - " + winningCount[4] +"개");
     }
 }
