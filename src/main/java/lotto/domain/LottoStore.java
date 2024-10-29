@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 //- 역할
@@ -9,12 +10,14 @@ import java.util.List;
 //  - 로또 기계에서 보너스 번호를 뽑는다
 //  - 로또 결과에서 발행된 로또들과 당첨 번호를 비교한다
 public class LottoStore {
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
     private LottoMachine lottoMachine;
     private LottoResult lottoResult;
 
+    private static final int LOTTO_PRICE = 1000;
+
     public void buyLotto(int price) {
-        for (int i = 0; i < price; i++) {
+        for (int i = 0; i < price/LOTTO_PRICE; i++) {
             lottos.add(new Lotto(generateRandomNumbers()));
         }
     }
@@ -33,6 +36,10 @@ public class LottoStore {
 
     public void showLottoResult() {
 
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
     }
 
 
