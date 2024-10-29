@@ -13,6 +13,7 @@ public class PurchaseAmountController {
             PurchaseAmountDto dto = PurchaseAmountValidator.validate(input);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
+            getPurchaseAmount();
         }
     }
 }
