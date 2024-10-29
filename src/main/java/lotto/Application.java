@@ -78,6 +78,17 @@ public class Application {
         return lotto;
     }
 
+    public String requestBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    private void isNumberBetween1And45(int bonusNumber){
+        if(bonusNumber < 1 || bonusNumber > 45){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
 
     public static void main(String[] args) {
         Application application = new Application();
