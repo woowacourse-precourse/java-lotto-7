@@ -32,7 +32,7 @@ public class LottoResultManagerTest {
     void 당첨_여부_확인(){
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
 
-        LottoResult lottoResult = lottoResultManager.checkLottos(userLottoList);
+        lottoResultManager.checkLottos(userLottoList);
         Assertions.assertEquals(LottoResult.SECOND.getCount(), 1);
         Assertions.assertEquals(LottoResult.THIRD.getCount(), 1);
         Assertions.assertEquals(LottoResult.FIFTH.getCount(), 1);
