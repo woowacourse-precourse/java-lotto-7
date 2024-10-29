@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Application {
     public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
@@ -16,15 +17,15 @@ public class Application {
 
     }
 
-    public static Integer checkPurchaseAmount(String input) {
-        Integer purchaseAmount = 0;
+    public static Integer parseInt(String input) {
+        Integer result;
         try{
-            purchaseAmount = Integer.parseInt(input);
+            result = Integer.parseInt(input);
         }
         catch(Exception e){
-            throw new IllegalArgumentException("잘못된 구입 금액을 입력하셨습니다.");
+            throw new IllegalArgumentException("잘못된 숫자를 입력하셨습니다.");
         }
-        return purchaseAmount;
+        return result;
     }
 
     public static Integer countLotto(Integer input){
@@ -38,5 +39,6 @@ public class Application {
         if(input >= 1 && input <= 45) return true;
         return false;
     }
+
 
 }
