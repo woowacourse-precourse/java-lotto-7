@@ -8,7 +8,9 @@ public class Application {
     }
 
     public void isNumeric(String input){
-
+        if(!input.matches("[0-9]+$")){
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
     }
     public void checkAmountWithinRange(String input){
 
