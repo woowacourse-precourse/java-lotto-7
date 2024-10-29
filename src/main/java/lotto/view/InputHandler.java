@@ -9,8 +9,13 @@ public class InputHandler {
         return Console.readLine();
     }
 
-    public String getInputNum() {
-        System.out.println("시도할 횟수는 몇 회인가요?");
+    public String getInputNums() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public String getInputBonusNums() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
 }

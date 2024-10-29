@@ -1,6 +1,6 @@
 package lotto.view;
 
-
+import java.util.*;
 import lotto.Lotto;
 
 public class OutputHandler {
@@ -19,5 +19,11 @@ public class OutputHandler {
         }
         sb.append("]");
         System.out.println(sb);
+    }
+
+    public void printLottoS(List<Lotto> lottos) {
+        for (Lotto lotto: lottos) {
+            printLotto(lotto);
+        }
     }
 }
