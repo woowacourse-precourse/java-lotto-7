@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.UserLottoInfo;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -10,10 +11,11 @@ public class LottoController {
     }
 
     public void run() {
-        readPurchaseAmount();
+        UserLottoInfo userLottoInfo = new UserLottoInfo(readPurchaseAmount());
+
     }
 
-    private int readPurchaseAmount() {
+    private long readPurchaseAmount() {
         return inputView.readPurchaseAmount();
     }
 }
