@@ -1,7 +1,7 @@
-package lotto.view.input.hanlder;
+package lotto.view.input.hanlder.domain;
 
 import java.util.function.Function;
 
 public interface InputHandlerService {
-    <R> R retrieveReceive(String input, Function<String, R> function);
+    <R> R retrieveReceive(Function<String, R> function);
 }
