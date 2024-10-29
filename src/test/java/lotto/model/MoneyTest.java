@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.LinkedHashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,5 +18,19 @@ class MoneyTest {
 
         //then
         Assertions.assertEquals(ticketCount, 2);
+    }
+
+    @Test
+    void 수익률_구하기_테스트() {
+        //given
+        Money money = new Money(8000);
+        LinkedHashMap<Rank, Integer> result = new LinkedHashMap<>();
+        result.put(Rank.FIFTH, 1);
+
+        //when
+        String rateOfReturn = money.getRateOfReturn(result);
+
+        //then
+        assertEquals(rateOfReturn, "62.5");
     }
 }
