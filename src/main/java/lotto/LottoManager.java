@@ -25,10 +25,25 @@ public class LottoManager {
         this.lottoPricePolicy = lottoPricePolicy;
     }
 
+    /**
+     * 1. 로또 구매 가격 입력
+     * 2. 로또 구매
+     * 3. 당첨 번호 입력
+     * 4. 당첨 결과 출력
+     */
     public void run() {
         int lottoPrice = lottoPricePolicy.getPrice();
 
         int purchaseMoney = getPurchaseMoney(lottoPrice);
+        buyLotto(purchaseMoney);
+
+        WinningLotto winningLotto = getWinningLotto();
+
+        responseLottoResult(winningLotto, purchaseMoney);
+    }
+
+
+    private void buyLotto(int purchaseMoney) {
         int buyCount = purchaseMoney / lottoPricePolicy.getPrice();
 
         for (int i = 0; i < buyCount; i++) {
@@ -37,14 +52,6 @@ public class LottoManager {
 
         List<Lotto> buyingLottos = lottoMachine.getBuyingLottos();
         lottoResponseWriter.responseLottoPurchase(buyingLottos);
-
-        WinningLotto winningLotto = getWinningLotto();
-
-        Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
-
-        LottoResult lottoResult = new LottoResult(lottoPrizeResult, purchaseMoney);
-
-        lottoResponseWriter.responseLottoPrize(lottoResult);
     }
 
     private int getPurchaseMoney(int lottoPrice) {
@@ -65,6 +72,14 @@ public class LottoManager {
         if (money % lottoPrice != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
+    }
+
+    private void responseLottoResult(WinningLotto winningLotto, int purchaseMoney) {
+        Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
+
+        LottoResult lottoResult = new LottoResult(lottoPrizeResult, purchaseMoney);
+
+        lottoResponseWriter.responseLottoPrize(lottoResult);
     }
 
     private WinningLotto getWinningLotto() {
