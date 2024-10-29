@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.application.ScenarioApplication;
+import lotto.config.AppConfig;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        AppConfig appConfig = new AppConfig();
+        ScenarioApplication scenarioApplication = new ScenarioApplication(appConfig);
+        scenarioApplication.run();
     }
 }

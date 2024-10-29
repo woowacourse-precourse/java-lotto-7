@@ -18,13 +18,7 @@ public class LottoApplication {
         this.calculator = calculator;
     }
 
-    public PrizeNumber run(LottoQuantity lottoQuantity, WinNumbers winNumbers) {
-        List<Lotto> lottosTemp = new ArrayList<>();
-        for (int i = 0; i < lottoQuantity.value(); i++) {
-            List<Integer> numbers = makeNumbersStrategy.makeNumbers();
-            lottosTemp.add(new Lotto(numbers));
-        }
-        Lottos lottos = Lottos.of(lottosTemp);
+    public PrizeNumber run(LottoQuantity lottoQuantity, WinNumbers winNumbers,Lottos lottos) {
         return findWinningLottos(winNumbers, lottos);
     }
 
