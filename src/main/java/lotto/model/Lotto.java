@@ -19,6 +19,10 @@ public class Lotto {
         return numbers;
     }
 
+    public String getFormattedNumbers() {
+        return numbers.toString();
+    }
+
     private void validate(List<Integer> numbers) {
         checkLottoNumbersSize(numbers);
         checkLottoNumberIsDuplicate(numbers);

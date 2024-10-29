@@ -29,6 +29,10 @@ public class LottoMachine {
         return this.lottos;
     }
 
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
+
     public Integer getCount(){
         return count;
     }
