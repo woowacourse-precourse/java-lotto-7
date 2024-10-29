@@ -28,11 +28,15 @@ public class Application {
         }
         try {
             int amount = Integer.parseInt(money);
-            if (amount < 1000) {
-                throw new IllegalArgumentException("구입금액은 1,000원 이상이어야 합니다.");
+            if (amount < 1000 || !checkUnitMoney(amount)) {
+                throw new IllegalArgumentException("구입금액은 1,000원 단위이며, 1,000원 이상이어야 합니다.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("구입금액은 숫자로 입력해 주세요.");
         }
+    }
+
+    private static boolean checkUnitMoney(int money) {
+        return money % 1000 == 0;
     }
 }
