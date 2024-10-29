@@ -74,6 +74,28 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void divideByThousand_예외_메시지_테스트_3() {
+        Application application = new Application();
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            application.isNumberBetween1And45(46);
+        });
+
+        Assertions.assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+    }
+
+    @Test
+    void divideByThousand_예외_메시지_테스트_4() {
+        Application application = new Application();
+
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            application.isNumeric("a");
+        });
+
+        Assertions.assertEquals("[ERROR] 숫자만 입력해 주세요.", exception.getMessage());
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
