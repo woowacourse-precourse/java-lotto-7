@@ -6,11 +6,14 @@ import java.util.List;
 
 public class Application {
     public static final int one_ticket = 1000;
-    public static final String inputMsg = "구입금액을 입력해 주세요.";
-    public static final String checkMasg = "개를 구매했습니다.";
-    public static final String winning_num = "당첨 번호를 입력해 주세요.";
-    public static final String bonus_num = "보너스 번호를 입력해 주세요.";
-    public static final String statistic = "당첨 통계";
+    public class print_msg{
+        static final String inputMsg = "구입금액을 입력해 주세요.";
+        static final String checkMsg = "개를 구매했습니다.";
+        static final String winning_num = "당첨 번호를 입력해 주세요.";
+        static final String bonus_num = "보너스 번호를 입력해 주세요.";
+        static final String statistic = "당첨 통계";
+    }
+
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -21,7 +24,7 @@ public class Application {
     }
 
     public void purchase_history(int num){
-        System.out.println(num+checkMasg);
+        System.out.println(num+print_msg.checkMsg);
         Lotto lotto[] = initialLottoArray(num);
         for(int i = 0; i < num; i++){
             List<Integer> list = new ArrayList<>();
@@ -37,7 +40,7 @@ public class Application {
         return lotto;
     }
     public int purchase_amount(){
-        System.out.println(inputMsg);
+        System.out.println(print_msg.inputMsg);
         int num = Integer.parseInt(Console.readLine());
         return validate_division(num);
     }
