@@ -67,6 +67,7 @@ public class Application {
         try{
             for(String i : splitNumbers(input)){
                 isNumeric(i);
+                isNumberBetween1And45(Integer.parseInt(i));
                 numbers.add(Integer.parseInt(i));
             }
             lotto = new Lotto(numbers);
@@ -83,11 +84,18 @@ public class Application {
         return Console.readLine();
     }
 
-    private void isNumberBetween1And45(int bonusNumber){
+    public void isNumberBetween1And45(int bonusNumber){
         if(bonusNumber < 1 || bonusNumber > 45){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+    public void checkForDuplicates(List<Integer> numbers, int bonusNumber){
+        if(numbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되어선 안됩니다.");
+        }
+    }
+
+    
 
 
     public static void main(String[] args) {
