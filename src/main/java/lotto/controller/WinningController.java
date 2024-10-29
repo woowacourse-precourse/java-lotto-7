@@ -21,6 +21,6 @@ public class WinningController {
 			.mapToInt(Integer::parseInt)
 			.boxed().collect(Collectors.toList());
 
-		winningLotto = new WinningLotto(numbers);
+		winningLotto = new WinningLotto(numbers, inputView.readBonusNumber());
 	}
 }
