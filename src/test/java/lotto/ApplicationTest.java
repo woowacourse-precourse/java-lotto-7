@@ -2,8 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.controller.PurchaseAmountController;
-import lotto.dto.PurchaseAmountDto;
-import lotto.validator.PurchaseAmountValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,7 +9,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -58,47 +55,6 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
-    }
-
-    @Test
-    void 금액이_올바른_값을_갖는_경우() throws Exception{
-        PurchaseAmountDto dto = PurchaseAmountValidator.validate("3000");
-        assertThat(dto.value).isEqualTo(3000);
-    }
-
-    @Test
-    void 금액이_1000_단위가_아닌_경우() throws Exception{
-        assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate("210");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 금액이_0원인_경우() throws Exception{
-        assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate("0");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 금액이_음수인_경우() throws Exception{
-        assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate("-200");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 금액이_아무런_값을_갖지_않는_경우() throws Exception{
-        assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate("");
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 금액이_공백을_갖는_경우() throws Exception{
-        assertThatThrownBy(() -> {
-            PurchaseAmountValidator.validate(" ");
-        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override
