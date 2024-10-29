@@ -7,7 +7,7 @@ public class Validator {
      * 3. 각 숫자는 쉼표(,)로 구분되어야 하며, 구분자 양 옆의 띄어쓰기는 허용한다.
      */
     private static final String LOTTO_NUMBERS_REGEX = "^(0?[1-9]|[1-3][0-9]|4[0-5])(\\s?,\\s?(0?[1-9]|[1-3][0-9]|4[0-5])){5}$";
-    private static final String PURCHASE_MONEY_REGEX = "^\\d+000$"; // 무슨 숫자가 오든 맨 뒷자리는 무조건 000으로 끝나야 함
+    private static final String PURCHASE_MONEY_REGEX = "^[1-9]\\d*000$"; // 맨 앞은 무조건 0이 아니고, 맨 뒷자리는 무조건 000으로 끝나야 함
 
     public void checkLottoNumbers(String input) {
         if (!input.matches(LOTTO_NUMBERS_REGEX)) {
