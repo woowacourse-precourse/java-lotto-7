@@ -4,6 +4,7 @@ import lotto.model.LottoModel;
 import lotto.view.LottoView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -25,10 +26,39 @@ public class LottoController {
         int bonusNumber = getBonusNumber(inputBonusNumber);
 
         //당첨 로직 구현
+        int[] ans = new int[5];
+        for (int i = 0; i < lottoCount; i++) {
+            System.out.println("당첨 로직");
+            System.out.println(lottoModel.getLottoNumbers(i));
+            int total = 0;
+            for (Integer winVal : winningNumber) {
+                if (lottoModel.getLottoNumbers(i).contains(winVal)) {
+                    total++;
+                }
+            }
+            if (total == 3) {
+                ans[0]++;
+            }
+            if (total == 4) {
+                ans[1]++;
+            }
+            if (total == 5) {
+                if (lottoModel.getLottoNumbers(i).contains(bonusNumber)) {
+                    ans[3]++;
+                    continue;
+                }
+                ans[2]++;
+            }
+            if (total == 6) {
+                ans[4]++;
+            }
+            System.out.println(Arrays.toString(ans));
+            System.out.println("total = " + total + " bonus = " + bonusNumber);
+        }
 
         //수익률 로직 구현
 
-        lottoView.output.winningResult();
+        lottoView.output.winningResult(ans);
     }
 
     private int getLottoCount(String inputPrice) {

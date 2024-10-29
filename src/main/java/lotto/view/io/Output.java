@@ -12,17 +12,16 @@ public class Output {
         System.out.println(lottoNumber);
     }
 
-    public void winningResult() {
-        int ans = 0;
+    public void winningResult(int[] ans) {
         double rate = 0;
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + ans + "개");
-        System.out.println("4개 일치 (50,000원) - " + ans + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + ans + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + ans + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + ans + "개");
+        System.out.println("3개 일치 (5,000원) - " + ans[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + ans[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + ans[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + ans[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + ans[4] + "개");
         System.out.println("총 수익률은 " + rate + "% 입니다");
     }
 }
