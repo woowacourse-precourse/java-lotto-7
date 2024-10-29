@@ -24,4 +24,10 @@ public class Lotto {
     private List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }
