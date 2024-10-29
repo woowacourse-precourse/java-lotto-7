@@ -1,5 +1,6 @@
 package lotto.view.io;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Output {
@@ -12,8 +13,7 @@ public class Output {
         System.out.println(lottoNumber);
     }
 
-    public void winningResult(int[] ans) {
-        double rate = 0;
+    public void winningResult(int[] ans, double rate) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -22,6 +22,9 @@ public class Output {
         System.out.println("5개 일치 (1,500,000원) - " + ans[2] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + ans[3] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + ans[4] + "개");
-        System.out.println("총 수익률은 " + rate + "% 입니다");
+
+        String value = Double.toString(Math.round(rate * 10) / 10.0);
+        BigDecimal bigDecimal = new BigDecimal(value);
+        System.out.println("총 수익률은 " + bigDecimal.toString() + "% 입니다");
     }
 }

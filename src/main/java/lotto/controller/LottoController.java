@@ -57,8 +57,15 @@ public class LottoController {
         }
 
         //수익률 로직 구현
+        int price = lottoCount * 1000;
+        long sum = 0;
+        sum = ans[0] * 5000L + ans[1] * 50000L + ans[2] * 1500000L
+                + ans[3] * 30000000L + ans[4] * 2000000000L;
+        double rate = ((double)sum / price) * 100;
+        System.out.println(rate);
 
-        lottoView.output.winningResult(ans);
+
+        lottoView.output.winningResult(ans,rate);
     }
 
     private int getLottoCount(String inputPrice) {
