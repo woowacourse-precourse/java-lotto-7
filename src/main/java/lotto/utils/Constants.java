@@ -10,6 +10,7 @@ public class Constants {
     public static final Integer MAX_LOTTO_COUNT = 6;
     public static final Integer LOTTO_PRICE_VALIDATE_VALUE = 1000;
 
+    public static final Double PERCENTAGE_MULTIPLIER = 100.0;
 
 }
 

@@ -17,6 +17,7 @@ public class LottoResultManagerTest {
     private List<Lotto> userLottoList;
     private Lotto winingLotto;
     private BonusNumber bonusNumber;
+    private Integer price;
     @BeforeEach
     void setUp() {
         userLottoList = Arrays.asList(
@@ -28,33 +29,35 @@ public class LottoResultManagerTest {
 
         winingLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = new BonusNumber(10);
+        price = 4_000;
     }
 
     @Test
     void 당첨_여부_확인(){
-        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
+        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
         lottoResultManager.checkLottos(userLottoList);
-        assertEquals(LottoResult.SECOND.getCount(), 1);
-        assertEquals(LottoResult.THIRD.getCount(), 1);
-        assertEquals(LottoResult.FIFTH.getCount(), 1);
-        assertEquals(LottoResult.FIRST.getCount(), 0);
+        assertEquals(1, LottoResult.SECOND.getCount());
+        assertEquals(1, LottoResult.THIRD.getCount());
+        assertEquals(1, LottoResult.FIFTH.getCount());
+        assertEquals(0, LottoResult.FIRST.getCount());
     }
 
     @Test
     void 당첨_금액_확인(){
-        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
+        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
         lottoResultManager.checkLottos(userLottoList);
-        assertEquals(LottoResult.getTotalPrize(), 31_505_000);
+        assertEquals(31_505_000, LottoResult.getTotalPrize());
     }
 
     @Test
     void 수익률_계산(){
-        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
+        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
+        lottoResultManager.checkLottos(userLottoList);
         Double profit = lottoResultManager.calculateProfit();
-        assertEquals(profit, 787625);
+        assertEquals(787625.00, profit);
     }
 
 
