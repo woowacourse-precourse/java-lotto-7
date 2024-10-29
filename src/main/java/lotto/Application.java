@@ -7,5 +7,7 @@ public class Application {
         System.out.println();
         user.showLottoCount();
         user.showLottos();
+
+        Committee committee = new Committee();
     }
 }
