@@ -95,7 +95,18 @@ public class Application {
         }
     }
 
-    
+    public int generateBonusNumber(Lotto lotto, String bonusNumber){
+        try {
+            isNumeric(bonusNumber);
+            isNumberBetween1And45(Integer.parseInt(bonusNumber));
+            checkForDuplicates(lotto.getNumbers(), Integer.parseInt(bonusNumber));
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            System.out.println("다시 입력해 주세요.");
+            return generateBonusNumber(lotto, Console.readLine());
+        }
+        return Integer.parseInt(bonusNumber);
+    }
 
 
     public static void main(String[] args) {
