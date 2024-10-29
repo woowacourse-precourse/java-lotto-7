@@ -17,6 +17,15 @@ public class InputViewTest extends NsTest{
         });
     }
 
+    @Test
+    void 공백제거테스트(){
+        InputView inputView = new InputView();
+        assertSimpleTest(()->{
+            run(" 1234");
+            assertThat(inputView.purchaseAmount()).isEqualTo("1234");
+        });
+    }
+
     @Override
     protected void runMain() {
 
