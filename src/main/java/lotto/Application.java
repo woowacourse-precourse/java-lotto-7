@@ -10,14 +10,25 @@ import java.util.stream.Collectors;
 public class Application {
     public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
     public static final String LOTTO_COUNT_PHRASE = "개를 구매했습니다.";
-    public static final String LOTTO_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
+    public static final String LOTTO_WINNING_INPUT = "당첨 번호를 입력해 주세요.";
     public static final String LOTTO_BONUS_INPUT = "보너스 번호를 입력해 주세요.";
     public static final String WIN_STATICS = "당첨 통계\n---";
     public static final String COMMA = ",";
-    public static final Integer LOTTO_AMOUNT = 6;
+    public static final String BLANK = "";
 
     public static void main(String[] args) {
-
+        System.out.println(LOTTO_AMOUNT_PHRASE);
+        String rawPurchasePrice = Console.readLine();
+        Integer purchasePrice = parseInt(rawPurchasePrice);
+        Integer lottoCount = countLotto(purchasePrice);
+        System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
+        //로또들 출력...
+        System.out.println(LOTTO_WINNING_INPUT);
+        String rawWinningInput = Console.readLine();
+        System.out.println(LOTTO_BONUS_INPUT);
+        String rawBonus  = Console.readLine();
+        checkLottoRange(parseInt(rawBonus));
+        System.out.println(WIN_STATICS);
     }
 
     public static Integer parseInt(String input) {
@@ -42,7 +53,6 @@ public class Application {
                 .collect(Collectors.toList());
         lottoNum.stream()
                 .forEach(number -> checkLottoRange(number));
-
         return lottoNum;
     }
 
