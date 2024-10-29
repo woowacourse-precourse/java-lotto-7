@@ -24,4 +24,11 @@ public class Application {
         return purchaseAmount;
     }
 
+    public static Integer countLotto(Integer input){
+        if(input % 1000 != 0){
+            throw new IllegalArgumentException("1000원으로 나누어 떨어지는 금액을 입력해주세요.");
+        }
+        return input/1000;
+    }
+
 }
