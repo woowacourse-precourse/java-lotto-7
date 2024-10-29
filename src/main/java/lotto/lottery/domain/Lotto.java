@@ -1,11 +1,9 @@
 package lotto.lottery.domain;
 
-import static lotto.global.util.ErrorMessage.*;
+import static lotto.global.util.ErrorMessage.INVALID_LOTTO_COUNT;
+import static lotto.global.util.LottoConst.LOTTO_NUMBERS;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import lotto.global.util.ErrorMessage;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,10 +15,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS) {
             throw new IllegalArgumentException(INVALID_LOTTO_COUNT.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

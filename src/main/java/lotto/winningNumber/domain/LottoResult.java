@@ -1,4 +1,4 @@
-package lotto.lottery.domain;
+package lotto.winningNumber.domain;
 
 public enum LottoResult {
     SIX(6,2_000_000_000,"6개 일치 (2,000,000,000원) - "),
