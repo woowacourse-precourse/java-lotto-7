@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static java.lang.Math.round;
+
 public class Application {
     public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
     public static final String LOTTO_COUNT_PHRASE = "개를 구매했습니다.";
@@ -25,6 +27,7 @@ public class Application {
         //로또들 출력...
         System.out.println(LOTTO_WINNING_INPUT);
         String rawWinningInput = Console.readLine();
+        Lotto answer = new Lotto(checkWinNumber(rawWinningInput));
         System.out.println(LOTTO_BONUS_INPUT);
         String rawBonus  = Console.readLine();
         checkLottoRange(parseInt(rawBonus));
@@ -54,6 +57,10 @@ public class Application {
         lottoNum.stream()
                 .forEach(number -> checkLottoRange(number));
         return lottoNum;
+    }
+
+    public static double getReturn(Integer purchasePrice, Integer winnings){
+        return Math.round((double)(winnings - purchasePrice)/100);
     }
 
 }
