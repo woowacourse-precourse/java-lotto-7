@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Application {
     public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
@@ -12,20 +14,14 @@ public class Application {
     public static final String LOTTO_BONUS_INPUT = "보너스 번호를 입력해 주세요.";
     public static final String WIN_STATICS = "당첨 통계\n---";
     public static final String COMMA = ",";
+    public static final Integer LOTTO_AMOUNT = 6;
 
     public static void main(String[] args) {
 
     }
 
     public static Integer parseInt(String input) {
-        Integer result;
-        try{
-            result = Integer.parseInt(input);
-        }
-        catch(Exception e){
-            throw new IllegalArgumentException("잘못된 숫자를 입력하셨습니다.");
-        }
-        return result;
+        return Integer.parseInt(input);
     }
 
     public static Integer countLotto(Integer input){
@@ -40,5 +36,11 @@ public class Application {
         return false;
     }
 
+    public static List<Integer> checkWinNumber(String input){
+        List<Integer>lottoNum = Arrays.asList(input.split(COMMA)).stream()
+                .map(Application::parseInt)
+                .collect(Collectors.toList());
+        return lottoNum;
+    }
 
 }
