@@ -32,6 +32,8 @@ public class InputView {
 
         List<String> winningNumbers = parseWinningNumbers(input);
         validateWinningNumberCount(winningNumbers);
+        winningNumbers.forEach(i -> validateNumber(i, "당첨번호"));
+
     }
 
     private void validateNumber(String input, String fieldName) {
@@ -57,4 +59,6 @@ public class InputView {
             throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", WINNING_NUMBER_COUNT));
         }
     }
+
+
 }
