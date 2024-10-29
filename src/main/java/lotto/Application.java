@@ -81,5 +81,16 @@ public class Application {
             }
         }
 
+        // 수익률 계산
+        long totalPrice;
+        long fiveRank = winningCount[0] * 5000;
+        long fourRank = winningCount[1] * 50000;
+        long threeRank = winningCount[2] * 1500000;
+        long twoRank = winningCount[3] * 30000000;
+        long oneRank = winningCount[4] * 2000000000;
+
+        totalPrice = fiveRank + fourRank + threeRank + twoRank + oneRank;
+
+        double rateOfReturn = Math.round((totalPrice / price * 100) * 10) / 10;
     }
 }
