@@ -7,7 +7,7 @@ public abstract class Parser {
         try{
             return Integer.valueOf(value.trim());
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_FORMAT.getMessage());
         }
     }
 }
