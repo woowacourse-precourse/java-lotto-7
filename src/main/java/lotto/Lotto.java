@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +18,17 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public String getLottoNumbers() {
+        return formatLottoNumber() + "\n";
+    }
+
+    private String formatLottoNumber() {
+        sortLottoNumbers();
+        return String.join(", ", Arrays.toString(numbers.toArray()));
+    }
+
+    private void sortLottoNumbers() {
+        numbers.sort(Comparator.naturalOrder());
+    }
+
 }

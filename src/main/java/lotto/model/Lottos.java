@@ -2,23 +2,31 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.dto.CreateLottoInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    private List<Lotto> lottos;
+    private List<Lotto> userLottos;
 
     public Lottos(long lottoNum) {
-        lottos = new ArrayList<>();
+        userLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoNum; i++) {
-            lottos.add(new Lotto(createRandomLotto()));
+            userLottos.add(new Lotto(createRandomLotto()));
         }
     }
 
+    public CreateLottoInfo getUserLottos() {
+        StringBuilder userLottoNumbers = new StringBuilder();
+        userLottos.forEach(lotto -> userLottoNumbers.append(lotto.getLottoNumbers()));
+
+        return new CreateLottoInfo(getUserLottoCount(), userLottoNumbers.toString());
+    }
+
     public long getUserLottoCount() {
-        return lottos.size();
+        return userLottos.size();
     }
 
     private List<Integer> createRandomLotto() {
