@@ -8,6 +8,8 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
 
     private static final int LOTTO_AMOUNT = 1000;
     private static final String WINNING_NUMBER_DELIMITER = ",";
@@ -43,6 +45,19 @@ public class InputView {
         winningNumbers.forEach(i -> validateNumberInRange(i, fieldName));
 
         return winningNumbers;
+    }
+
+    public Integer readBonusNumber() {
+        String fieldName = "보너스번호";
+        System.out.println(BONUS_NUMBER_MESSAGE);
+        String input = readLine();
+
+        validateNumber(input, fieldName);
+
+        int bonusNumber = Integer.parseInt(input);
+        validateNumberInRange(bonusNumber, fieldName);
+
+        return bonusNumber;
     }
 
     private void validateNumber(String input, String fieldName) {
