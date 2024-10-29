@@ -29,16 +29,24 @@ public class User {
         try {
             return purchaseAmount / 1000;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자만 입력 가능합니다.");
-            return getLottoCount();
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로 입력해야 합니다.");
         }
     }
 
     private static boolean validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
-            System.out.println("[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
-            return false;
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
         return true;
+    }
+
+    public void showLottoCount() {
+        System.out.println(this.lottoCount + "개를 구매했습니다.");
+    }
+
+    public void showLottos() {
+        for (Lotto lotto : this.lottos) {
+            System.out.println(lotto.toString());
+        }
     }
 }
