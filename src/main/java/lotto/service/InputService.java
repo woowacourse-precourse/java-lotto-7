@@ -1,8 +1,12 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
+import lotto.util.InputParsingUtil;
 import lotto.util.RetryUtil;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class InputService {
 
@@ -16,6 +20,14 @@ public class InputService {
         return RetryUtil.executeWithRetry(() -> {
             int purchasePrice = inputView.readPurchasePrice();
             return new PurchasePrice(purchasePrice);
+        });
+    }
+
+    public Lotto readWinningLotto() {
+        return RetryUtil.executeWithRetry(() -> {
+            String input = inputView.readWinningNumbers();
+            List<Integer> numbers = InputParsingUtil.parseWinningLottoNumbers(input);
+            return new Lotto(numbers);
         });
     }
 
