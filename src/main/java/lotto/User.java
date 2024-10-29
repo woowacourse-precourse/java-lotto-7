@@ -11,19 +11,19 @@ public class User {
     private ArrayList<Lotto> lottos = new ArrayList<>();
 
     public User() {
-        this.lottoCount = getLottoCount();
+        this.lottoCount = inputLottoCount();
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
     }
 
-    private static int getLottoCount() {
+    private static int inputLottoCount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int purchaseAmount = Integer.parseInt(input);
 
         if (!validatePurchaseAmount(purchaseAmount)) {
-            return getLottoCount();
+            return inputLottoCount();
         }
 
         try {
