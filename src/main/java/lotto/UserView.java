@@ -14,9 +14,9 @@ public class UserView {
 
     public List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
-        String winningNumbersStr = Console.readLine();
-        List<Integer> winningNumbers = stringWinningNumbersToInteger(winningNumbersStr);
-        return winningNumbers;
+        String winningNumbersInput = Console.readLine();
+        List<Integer> winningNumbersOutput = convertInputWinningNumbersToOutput(winningNumbersInput);
+        return winningNumbersOutput;
     }
 
     public int inputBonusNumber() {
@@ -28,11 +28,11 @@ public class UserView {
         System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
-    private List<Integer> stringWinningNumbersToInteger(String winningNumbers) {
-        String [] stringWinningNumbers = winningNumbers.split(",");
+    private List<Integer> convertInputWinningNumbersToOutput(String winningNumbers) {
+        String [] inputWinningNumbers = winningNumbers.split(",");
         List<Integer> winningNumbersList = new ArrayList<>();
 
-        for (String stringWinningNumber : stringWinningNumbers) {
+        for (String stringWinningNumber : inputWinningNumbers) {
             winningNumbersList.add(Integer.parseInt(stringWinningNumber));
         }
 
