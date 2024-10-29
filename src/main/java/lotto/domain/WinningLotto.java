@@ -5,12 +5,12 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto lotto, int bonusNumber) {
-        validateDupliactedBonusNumber(lotto, bonusNumber);
+        validateDuplicatedBonusNumber(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDupliactedBonusNumber(Lotto lotto, int bonusNumber) {
+    private void validateDuplicatedBonusNumber(Lotto lotto, int bonusNumber) {
         if (lotto.isContainNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복됩니다.");
         }
