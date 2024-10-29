@@ -19,6 +19,20 @@ public enum LottoResult {
         this.count = count;
     }
 
+    public static void initializeCount(){
+        for (LottoResult lottoResult : LottoResult.values()){
+            lottoResult.count = 0;
+        }
+    }
+
+    public static Integer getTotalPrize(){
+        int totalPrize = 0;
+        for (LottoResult lottoResult : LottoResult.values()){
+            totalPrize += lottoResult.prizeMoney * lottoResult.count;
+        }
+        return totalPrize;
+    }
+
     public Integer getCount(){
         return count;
     }
