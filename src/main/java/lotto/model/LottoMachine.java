@@ -18,6 +18,17 @@ public class LottoMachine {
         this.lottos = new ArrayList<>();
     }
 
+    public List<Lotto> generateLotto(Integer count){
+        for (int i = 0; i < count; i++){
+            lottos.add(createRandomLotto());
+        }
+        return this.lottos;
+    }
+
+    public Integer getCount(){
+        return this.count;
+    }
+
     private void validateLottoPrice(Integer price){
         if (price % 1000 != 0)
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해 주세요.");
@@ -25,13 +36,6 @@ public class LottoMachine {
 
     private Integer countLotto(Integer price){
         return price / 1000;
-    }
-
-    private List<Lotto> generateLotto(Integer count){
-        for (int i = 0; i < count; i++){
-            lottos.add(createRandomLotto());
-        }
-        return this.lottos;
     }
 
     private Lotto createRandomLotto() {
