@@ -20,6 +20,6 @@ public class Money {
         for (Rank rank : result.keySet()) {
             income += rank.getPrice() * result.get(rank);
         }
-        return String.format("%.1f" ,income / money);
+        return String.format("%.1f" ,(income / money) * 100);
     }
 }
