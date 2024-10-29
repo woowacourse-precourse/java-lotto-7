@@ -44,7 +44,7 @@ public class InputView {
         List<Integer> winningNumbers = parseToNumbers(numberTokens);
         winningNumbers.forEach(i -> validateNumberInRange(i, fieldName));
 
-        return winningNumbers;
+        return sortAscending(winningNumbers);
     }
 
     public int readBonusNumber() {
@@ -95,5 +95,11 @@ public class InputView {
             throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이상이어야 합니다.", fieldName, MIN_WINNING_NUMBER));
         if (number > MAX_WINNING_NUMBER)
             throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이하이어야 합니다.", fieldName, MAX_WINNING_NUMBER));
+    }
+
+    private List<Integer> sortAscending(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }
