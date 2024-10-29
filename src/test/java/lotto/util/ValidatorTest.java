@@ -23,9 +23,11 @@ public class ValidatorTest {
         // given
         String price = "aaa";
 
+        // when
+        boolean result = validator.validatePrice(price);
+
         // when & then
-        assertThatThrownBy(() -> validator.validatePrice(price))
-                .hasMessage(PRICE_TYPE_ERROR.getMessage());
+        assertThat(result).isFalse();
     }
 
 
