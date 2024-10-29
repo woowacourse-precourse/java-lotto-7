@@ -33,13 +33,16 @@ public class Application {
 
     public static boolean checkLottoRange(Integer input){
         if(input >= 1 && input <= 45) return true;
-        return false;
+        throw new IllegalArgumentException("로또 정답은 1이상 45이하의 숫자여야합니다.");
     }
 
     public static List<Integer> checkWinNumber(String input){
         List<Integer>lottoNum = Arrays.asList(input.split(COMMA)).stream()
                 .map(Application::parseInt)
                 .collect(Collectors.toList());
+        lottoNum.stream()
+                .forEach(number -> checkLottoRange(number));
+
         return lottoNum;
     }
 
