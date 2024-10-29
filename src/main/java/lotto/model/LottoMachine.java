@@ -51,7 +51,9 @@ public class LottoMachine {
     }
 
     private Lotto createRandomLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        lotto.sortNumbers();
+        return lotto;
     }
 
 }

@@ -23,6 +23,10 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public void sortNumbers(){
+        numbers.sort(Integer::compareTo);
+    }
+
     private void validate(List<Integer> numbers) {
         checkLottoNumbersSize(numbers);
         checkLottoNumberIsDuplicate(numbers);
