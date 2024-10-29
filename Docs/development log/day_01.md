@@ -12,11 +12,18 @@
     * [Enum을 활용한 Switch 문](./day_01.md#enum을-활용한-switch-문)
     * [Enum과 인터페이스 구현](./day_01.md#enum과-인터페이스-구현)
 
+* [기능 개발](./day_01.md#기능-개발)
+    * [로또 발행 개수 확인 기능](./day_01.md#로또-발행-개수-확인-기능)
+
+* [To do List](./day_01.md#to-do-list)
+
+<br>
 
 ## [기능 정의](./day_01.md#목차)
 요구사항에 따라 필요한 기능들을 정리해보았다.
 
 * 로또 발행하기
+    * 로또 발급 개수 확인하기
     * 중복되지 않는 6개의 숫자 뽑기
 * 사용자 입력 받기
     * 로또 구입 금액 입력받기
@@ -24,6 +31,7 @@
     * 로또 보너스 번호 입력받기
 * 로또 당첨 기준 적용하기
 * 로또 당첨 여부 체크하기
+* 커스텀 Exception 생성하기
 * 에러 메시지 출력하기
 * Enum 정의하기
 * 수익률 계산하기
@@ -163,3 +171,81 @@ public enum Day implements Displayable {
 }
 ```
 
+## [기능 개발](./day_01.md#목차)
+
+### [로또 발행 개수 확인 기능](./day_01.md#목차)
+
+#### Test Code
+```java
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+public class LottoServiceTest {
+
+    private static LottoService lottoService;
+
+    @Test
+    void 로또_발행_개수_테스트() {
+        int cost = 8000;
+        int expectedCount = cost / lottoService.getLottoCost();
+        assertEquals(expectedCount, lottoService.issueRottoCount(cost));
+    }
+
+
+    @Test
+    void 로또_발행_개수_예외_테스트() {
+        int cost = 1799;
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoService.issueRottoCount(cost);
+        });
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        lottoService = new LottoService();
+    }
+}
+```
+
+<br>
+
+
+#### Production Code
+
+```java
+public class LottoService {
+    private final int lottoCost = 1_000;
+
+    public int getLottoCost() {
+        return lottoCost;
+    }
+
+    public int issueRottoCount(int cost) throws IllegalArgumentException {
+        if (cost % lottoCost > 0) {
+            throw new IllegalArgumentException("[Error] 구입 금액은 " + lottoCost + "원 단위이어야 합니다.");
+        }
+
+        return cost / lottoCost;
+    }
+}
+```
+
+#### 이후 해야할 것들
+* Custom Exception 생성 및 적용하기
+
+
+<br>
+
+## [To do List](./day_01.md#목차)
+
+- [ ] 로또 발행하기
+    - [x] 로또 발급 개수 확인하기
+    - [ ] 중복되지 않는 6개의 숫자 뽑기
+- [ ] 사용자 입력 받기
+    - [ ] 로또 구입 금액 입력받기
+    - [ ] 로또 당첨 번호 입력받기
+    - [ ] 로또 보너스 번호 입력받기
+- [ ] 로또 당첨 기준 적용하기
+- [ ] 로또 당첨 여부 체크하기
+- [ ] 커스텀 Exception 생성하기
+- [ ] 에러 메시지 출력하기
+- [ ] Enum 정의하기
+- [ ] 수익률 계산하기
