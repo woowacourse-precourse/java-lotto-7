@@ -26,6 +26,9 @@ Config
     4등: 4개 번호 일치 / 50,000원
     5등: 3개 번호 일치 / 5,000원
 - [ x ] 로또 1장의 가격은 1,000원이다.
+- [ x ] 랜덤 시작 숫자 고정
+- [ x ] 랜던 끝 숫자 고정
+- [ x ] 뽑는 개수 고정
 
 Exception
 - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
