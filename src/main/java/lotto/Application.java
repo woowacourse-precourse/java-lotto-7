@@ -108,9 +108,41 @@ public class Application {
         return Integer.parseInt(bonusNumber);
     }
 
+    public int[] calculateLottoRank(ArrayList<List<Integer>> purchasedLottoNumbers){
+        Lotto lotto = generateLotto(requestLotto());
+        int bounsNumber = generateBonusNumber(lotto, requestBonusNumber());
+        int [] rank = {0,0,0,0,0};
+        for (int i = 0; i < purchasedLottoNumbers.size(); i++) {
+            int count = 0;
+            for (int j = 0; j < 6; j++) {
+                if(lotto.getNumbers().contains(purchasedLottoNumbers.get(i).get(j))){
+                    count++;
+                }
+            }
+            if(count == 3){
+                rank[0] += 1;
+            }
+            if (count == 4){
+                rank[1] += 1;
+            }
+            if (count == 5){
+                if(purchasedLottoNumbers.get(i).contains(bounsNumber)){
+                    rank[3] += 1;
+                }
+                else{
+                    rank[2] += 1;
+                }
+            }
+            if (count ==6){
+                rank[4] += 1;
+            }
+        }return rank;
+
+    }
+
 
     public static void main(String[] args) {
         Application application = new Application();
-        application.generateLottoNumbers(application.divideByThousand(application.requestPurchaseAmountInput()));
+        application.calculateLottoRank(application.generateLottoNumbers(application.divideByThousand(application.requestPurchaseAmountInput())));
     }
 }
