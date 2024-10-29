@@ -12,9 +12,9 @@ public class LottoWinningEvaluator {
      */
     public Optional<LottoPrize> calculatePrize(Lotto lotto, WinningLotto winningLotto) {
         int matchLottoCount = (int) lotto.getNumbers().stream()
-            .filter(winningLotto.getLotto().getNumbers()::contains)
+            .filter(winningLotto.lotto().getNumbers()::contains)
             .count();
-        boolean matchBonus = lotto.getNumbers().contains(winningLotto.getBonusNumber());
+        boolean matchBonus = lotto.getNumbers().contains(winningLotto.bonusNumber());
 
         return LottoPrize.findByMatch(matchLottoCount, matchBonus);
     }
