@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public abstract class LottoParser {
 
-    private final static String NUMBER_DELIMITER = ",";
-    private final static int NUMBERS_LENGTH = 6;
+    public final static String NUMBER_DELIMITER = ",";
+    public final static int NUMBERS_LENGTH = 6;
 
     public static List<Integer> parseBallNumbers(String input) {
         Set<String> collect = Arrays.stream(input.split(NUMBER_DELIMITER))
