@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import model.Amount;
 
 public class InputView {
     public InputView(){
@@ -10,4 +11,5 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine().strip();
     }
+
 }
