@@ -50,4 +50,19 @@ class InputValidatorTest {
         //when & then
         assertDoesNotThrow(() -> InputValidator.validateWinningNumbers(input));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "삼", "46"})
+    void 보너스_번호_입력_검사_예외_테스트(String input) {
+        //when & then
+        assertThrows(IllegalArgumentException.class,
+            () -> InputValidator.validateBonusNumber(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "45", "11", "22", "33"})
+    void 보너스_번호_입력_검사_테스트(String input) {
+        //when & then
+        assertDoesNotThrow(() -> InputValidator.validateBonusNumber(input));
+    }
 }
