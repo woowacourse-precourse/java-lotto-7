@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -38,8 +39,8 @@ public class LottoOutput {
 	}
 
 	private void lottoNumberOutput() {
+		Collections.sort(randoms);
 		System.out.println(randoms.toString());
-		System.out.println();
 	}
 
 }
