@@ -1,7 +1,7 @@
 package lotto.model;
 
-public class DrawingMachine {
-    /* TODO: 뽑기 머신의 역할
+public class LottoCompany {
+    /* TODO: 로또 회사의 역할
      * 1. 당첨 번호를 갖고 있다. (실세계에서는 직접 당첨 번호를 뽑지만, 여기선 외부에서 주입받는다고 가정)
      * 2. 번호가 주어지면 그 번호의 당첨 여부를 반환한다.
      * 3. 당첨이 되었다면, 당첨 등수와 금액을 반환한다.

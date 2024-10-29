@@ -1,12 +1,22 @@
 package lotto.controller;
 
+import lotto.model.LottoCompany;
+import lotto.model.LottoGenerator;
+import lotto.model.LottoShop;
 import lotto.view.InputHandler;
 
 public class LottoController {
     private final InputHandler inputHandler;
+    private final LottoShop lottoShop;
+    private final LottoGenerator lottoGenerator;
+    private final LottoCompany lottoCompany;
 
-    public LottoController (InputHandler inputHandler) {
+    public LottoController(InputHandler inputHandler, LottoShop lottoShop, LottoGenerator lottoGenerator,
+                           LottoCompany lottoCompany) {
         this.inputHandler = inputHandler;
+        this.lottoShop = lottoShop;
+        this.lottoGenerator = lottoGenerator;
+        this.lottoCompany = lottoCompany;
     }
 
     public void run() {
