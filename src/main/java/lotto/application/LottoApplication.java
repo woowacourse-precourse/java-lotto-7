@@ -1,6 +1,9 @@
 package lotto.application;
 
 import lotto.config.AppConfig;
+import lotto.domain.LottoQuantity;
+import lotto.domain.Price;
+import lotto.domain.WinNumbers;
 
 public class LottoApplication {
 
@@ -13,6 +16,13 @@ public class LottoApplication {
     }
 
     public void run() {
-        String price = reader.read();
+        String originPrice = reader.read();
+        Price price = Price.validatePrice(originPrice);
+        LottoQuantity.findQuantity(price);
+
+        String originWinNumbers = reader.read();
+        WinNumbers winNumbersWithOutBonusNumber = WinNumbers.winNumbersFrom(originWinNumbers);
+        String bonusNumber = reader.read();
+        WinNumbers winNumbers = winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);
     }
 }
