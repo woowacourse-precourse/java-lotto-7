@@ -12,6 +12,8 @@ public class Controller {
         Lottos lottos = new Lottos(lottoCount);
         lottos.printLottos();
 
+        String selectedNumbers = inputHandler.getSelectedNumbers();
+        String[] split = selectedNumbers.split(",");
     }
 
 }
