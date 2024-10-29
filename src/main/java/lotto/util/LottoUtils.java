@@ -10,11 +10,19 @@ public class LottoUtils {
     private static final String DELIMITER = ","; 
     private static final int NUMBERS_COUNT = 6; 
 
-    public static Lotto createLotto(){
+    public static Lotto createLotto() {
         int[] lotto = new int[NUMBERS_COUNT];
-        for (int i = 0; i < NUMBERS_COUNT; i++) {
-            lotto[i] = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+        boolean[] isPicked = new boolean[MAX_NUMBER + 1]; 
+        int count = 0;
+    
+        while (count < NUMBERS_COUNT) {
+            int temp = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+            if (!isPicked[temp]) {
+                isPicked[temp] = true; 
+                lotto[count++] = temp; 
+            }
         }
+    
         return new Lotto(lotto);
     }
 
