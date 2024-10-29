@@ -13,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         int lottoTickets = inputPayment();
         List<Lotto> lottos = drawLottos(lottoTickets);
+        printLottos(lottoTickets, lottos);
     }
 
     public static int inputPayment(){
@@ -36,5 +37,13 @@ public class Application {
                     .collect(Collectors.toList())));
         }
         return lottos;
+    }
+
+    public static void printLottos(int tickets, List<Lotto> lottos) {
+        System.out.println();
+        System.out.println(tickets + TICKETS_PRINT);
+        for(Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }
