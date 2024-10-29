@@ -1,11 +1,12 @@
 package lotto.view;
 
+import lotto.model.Money;
 import lotto.util.InputUtil;
 
 public class InputView {
 
-    public int getPurchaseAmountFromUser() {
-        return InputUtil.readInt();
+    public Money getPurchaseAmountFromUser() {
+        return Money.of(InputUtil.readInt());
     }
 
 }
