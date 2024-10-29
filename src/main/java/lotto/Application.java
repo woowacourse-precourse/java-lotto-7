@@ -4,7 +4,9 @@ public class Application {
 	public static void main(String[] args) {
 
 		Input input = new Input();
-		input.amountInput();
+		int amount = input.amountInput();
+
+		LottoOutput output = new LottoOutput(amount);
 
 	}
 }
