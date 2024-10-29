@@ -5,6 +5,7 @@ import lotto.exception.LottoGameException;
 import lotto.model.LottoMachine;
 import lotto.model.Lottos;
 import lotto.model.Money;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,10 +22,15 @@ public class LottoGameController {
     }
 
     public void control() {
+        outputView.commentsForPurchaseAmount();
         Money userAmount = getPurchaseAmountFromUser();
 
         int lottoCount = outputView.commentForBuyLotto(userAmount);
-        Lottos lottos = LOTTO_MACHINE.generateLotto(lottoCount);
+        Lottos lottos = LOTTO_MACHINE.generateLottos(lottoCount);
+        outputView.commentForLottoList(lottos);
+
+        outputView.getCommentForWinningNumber();
+        WinningNumbers winningNumbers = getWinningNumberFromUser();
     }
 
     private Money getPurchaseAmountFromUser() {
@@ -33,6 +39,15 @@ public class LottoGameController {
         } catch (LottoGameException e) {
             outputView.commentErrorMessage(e);
             return getPurchaseAmountFromUser();
+        }
+    }
+
+    private WinningNumbers getWinningNumberFromUser() {
+        try {
+            return inputView.getWinningNumberFromUser();
+        } catch (LottoGameException e) {
+            outputView.commentErrorMessage(e);
+            return getWinningNumberFromUser();
         }
     }
 

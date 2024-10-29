@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 
 public class InputUtil {
 
-//    private static final String SPLIT_REGEX = "\\s*" + LottoGameConfig.LOTTO_NUMBER_INPUT_DELIMITER + "\\s*";
-    private static final String SPLIT_REGEX = "";
 
     private InputUtil() {
     }
@@ -37,20 +35,22 @@ public class InputUtil {
         }
     }
 
-    private static void validatePositiveNumber(int convertedInput) {
+    private static boolean validatePositiveNumber(int convertedInput) {
         if (isPositiveNumber(convertedInput)) {
             throw new LottoGameException(InputException.INVALID_INTEGER);
         }
+        return true;
     }
 
     private static boolean isPositiveNumber(int convertedInput) {
         return convertedInput <= 0;
     }
 
-    private static void validateUnit(int convertedInput) {
+    private static boolean validateUnit(int convertedInput) {
         if (isDevidedUnit(convertedInput)) {
             throw new LottoGameException(InputException.INVALID_UNIT);
         }
+        return true;
     }
 
     private static boolean isDevidedUnit(int convertedInput) {
@@ -58,20 +58,30 @@ public class InputUtil {
     }
 
     private static void validateDelimiter(String input) {
-        if (!input.contains(SPLIT_REGEX)) {
+        if (!input.contains(LottoGameConfig.DELIMITER_FOR_WINNING_NUMBER)) {
             throw new LottoGameException(InputException.INVALID_DELIMITER);
         }
     }
 
     private static List<Integer> stringToIntegerList(String input) {
         try {
-            return Stream.of(input.split(SPLIT_REGEX))
+            return Stream.of(input.split(LottoGameConfig.DELIMITER_FOR_WINNING_NUMBER))
+                    .map(String::trim)
+                    .filter(InputUtil::validateAnotherDelimiter)
                     .filter(InputUtil::validateHasInput)
                     .map(Integer::valueOf)
+                    .filter(InputUtil::validatePositiveNumber)
                     .toList();
         } catch (NumberFormatException e) {
             throw new LottoGameException(InputException.INVALID_INTEGER);
         }
+    }
+
+    private static boolean validateAnotherDelimiter(String input) {
+        if (!input.matches("[0-9,]+")) {
+            throw new LottoGameException(InputException.ANOTHER_DELIMITER);
+        }
+        return true;
     }
 
     private static boolean validateHasInput(String input) {
