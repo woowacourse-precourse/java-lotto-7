@@ -54,4 +54,20 @@ public class Committee {
             throw new IllegalArgumentException("[ERROR] 보너스 볼은 숫자로 입력해야 합니다.");
         }
     }
+
+    public void checkLottos(User user) {
+        for (Lotto lotto : user.getLottos()) {
+            int matchCount = 0;
+            int bonusMatch = 0;
+            for (int number : lotto.getNumbers()) {
+                if (this.winningNumbers.contains(number)) {
+                    matchCount++;
+                }
+                if (number == this.bonusNumber) {
+                    bonusMatch++;
+                }
+            }
+            user.setPrize(matchCount, bonusMatch);
+        }
+    }
 }

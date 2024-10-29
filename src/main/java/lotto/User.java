@@ -4,16 +4,22 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class User {
 
     private int lottoCount;
     private ArrayList<Lotto> lottos = new ArrayList<>();
+    private Map<Prize, Integer> prizes = new LinkedHashMap<>();
 
     public User() {
         this.lottoCount = inputLottoCount();
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        for (Prize prize : Prize.values()) {
+            prizes.put(prize, 0);
         }
     }
 
@@ -52,5 +58,10 @@ public class User {
 
     public ArrayList<Lotto> getLottos() {
         return lottos;
+    }
+
+    public void setPrize(int matchCount, int bonusMatch) {
+        Prize prize = Prize.getPrize(matchCount, bonusMatch);
+        prizes.put(prize, prizes.get(prize) + 1);
     }
 }

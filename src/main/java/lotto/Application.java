@@ -9,5 +9,8 @@ public class Application {
         user.showLottos();
 
         Committee committee = new Committee();
+        committee.checkLottos(user);
+
+        user.printPrizes();
     }
 }
