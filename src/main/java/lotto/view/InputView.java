@@ -47,7 +47,7 @@ public class InputView {
         return winningNumbers;
     }
 
-    public Integer readBonusNumber() {
+    public int readBonusNumber() {
         String fieldName = "보너스번호";
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = readLine();
