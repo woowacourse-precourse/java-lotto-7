@@ -8,7 +8,7 @@ public class Money {
         this.money = Integer.parseInt(moneyBeforeValid);
     }
 
-    public int getMoney() {
+    public int getMoneyValue() {
         return money;
     }
 
