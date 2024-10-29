@@ -13,5 +13,15 @@ public class Application {
 
     }
 
+    public static Integer validatePurchaseAmount(String input) {
+        Integer purchaseAmount = 0;
+        try{
+            purchaseAmount = Integer.parseInt(input);
+        }
+        catch(Exception e){
+            throw new IllegalArgumentException("잘못된 구입 금액을 입력하셨습니다.");
+        }
+        return purchaseAmount;
+    }
 
 }
