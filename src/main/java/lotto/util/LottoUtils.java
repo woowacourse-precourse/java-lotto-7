@@ -1,11 +1,22 @@
 package lotto.util;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
+
 public class LottoUtils {
 
     private static final int MIN_NUMBER = 1; 
     private static final int MAX_NUMBER = 45; 
     private static final String DELIMITER = ","; 
     private static final int NUMBERS_COUNT = 6; 
+
+    public static Lotto createLotto(){
+        int[] lotto = new int[NUMBERS_COUNT];
+        for (int i = 0; i < NUMBERS_COUNT; i++) {
+            lotto[i] = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+        }
+        return new Lotto(lotto);
+    }
 
     public static String[] splitInput(String input) {
         return input.split(DELIMITER);
