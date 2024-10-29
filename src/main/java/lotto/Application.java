@@ -4,7 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public int divideByThousand(String input) {
-        return Integer.parseInt(input) / 1000; // 유효한 입력일 경우
+        try{
+            isNumeric(input);
+            checkAmountWithinRange(input);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            System.out.println("다시 입력해 주세요.");
+            divideByThousand(Console.readLine());
+        }
+        return Integer.parseInt(input) / 1000;
     }
 
     public void isNumeric(String input){
