@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -20,6 +23,12 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return getSortedNumbers();
+    }
+
+    private String getSortedNumbers() {
+        List<Integer> copyNumbers = new ArrayList<>(numbers);
+        Collections.sort(copyNumbers);
+        return copyNumbers.toString();
     }
 }
