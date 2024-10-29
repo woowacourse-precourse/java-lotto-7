@@ -93,16 +93,16 @@ public class Application {
         }
 
         // 수익률 계산
-        long totalPrice;
-        long fiveRank = winningCount[0] * 5000;
-        long fourRank = winningCount[1] * 50000;
-        long threeRank = winningCount[2] * 1500000;
-        long twoRank = winningCount[3] * 30000000;
-        long oneRank = winningCount[4] * 2000000000;
+        double totalPrice;
+        double fiveRank = winningCount[0] * 5000;
+        double fourRank = winningCount[1] * 50000;
+        double threeRank = winningCount[2] * 1500000;
+        double twoRank = winningCount[3] * 30000000;
+        double oneRank = winningCount[4] * 2000000000;
 
         totalPrice = fiveRank + fourRank + threeRank + twoRank + oneRank;
 
-        double rateOfReturn = Math.round((totalPrice / price * 100) * 10) / 10;
+        double rateOfReturn = Math.round((totalPrice / price * 100) * 100) / 100;
 
         // 당첨 통계 출력
         System.out.println("당첨 통계");
@@ -112,5 +112,8 @@ public class Application {
         System.out.println("5개일치 (1,500,000원) - " + winningCount[2] +"개");
         System.out.println("5개일치, 보너스 볼 일치 (30,000,000원) - " + winningCount[3] +"개");
         System.out.println("6개일치 (2,000,000,000원) - " + winningCount[4] +"개");
+
+        //수익률 출력
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }
