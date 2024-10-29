@@ -49,6 +49,14 @@ public class LottoResultManagerTest {
         assertEquals(LottoResult.getTotalPrize(), 31_505_000);
     }
 
+    @Test
+    void 수익률_계산(){
+        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
+
+        Double profit = lottoResultManager.calculateProfit();
+        assertEquals(profit, 787625);
+    }
+
 
 
 
