@@ -52,6 +52,12 @@ public class Application {
             System.out.println(purchasedLottoNumber);
         }
     }
+    public String requestLotto(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+    
+
     public static void main(String[] args) {
         Application application = new Application();
         application.generateLottoNumbers(application.divideByThousand(application.requestPurchaseAmountInput()));
