@@ -30,7 +30,7 @@ public class LottoController {
     private LottoMachine initializeLottoMachine() {
         while (true) {
             try {
-                return lottoService.generateLottoNumbers(InputView.inputPrice());
+                return lottoService.createLottoMachineWithLottos(InputView.inputPrice());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -40,7 +40,7 @@ public class LottoController {
     private Lotto initializeWinningLotto() {
         while (true) {
             try {
-                return lottoService.initializeWinningLotto(InputView.inputWinningNumbers());
+                return lottoService.createWinningLotto(InputView.inputWinningNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,7 +50,7 @@ public class LottoController {
     private BonusNumber initializeBonusNumber() {
         while (true) {
             try {
-                return lottoService.initializeBonusNumber(InputView.inputBonusNumber());
+                return lottoService.createBonusNumber(InputView.inputBonusNumber());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
