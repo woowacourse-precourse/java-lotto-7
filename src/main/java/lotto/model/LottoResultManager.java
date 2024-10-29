@@ -9,4 +9,6 @@ public class LottoResultManager {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
+
 }
