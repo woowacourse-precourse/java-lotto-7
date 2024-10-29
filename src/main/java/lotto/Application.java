@@ -20,8 +20,9 @@ public class Application {
         System.out.println();
         System.out.println(count + "개를 구매했습니다.");
 
+        List<Integer> numbers = null;
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             System.out.println(lotto.getNumbers());
@@ -46,5 +47,15 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input3 = Console.readLine();
         int bonusNumber = Integer.parseInt(input.trim());
+
+        // 당첨, 보너스 번호와 구입한 로또 번호 비교 (당첨 여부 확인)
+        int count2 = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count2++;
+            }
+        }
+        System.out.println(count2);
+
     }
 }
