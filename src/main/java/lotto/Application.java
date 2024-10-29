@@ -9,7 +9,8 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottoController = new LottoController(new InputService(new InputView()), new OutputView(), new LottoService(new RandomUniqueLottoNumGenerator()));
+        LottoController lottoController = new LottoController(new InputService(new InputView()), new OutputView(),
+                new LottoService(new RandomUniqueLottoNumGenerator()));
         lottoController.start();
     }
 }
