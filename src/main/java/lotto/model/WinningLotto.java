@@ -16,6 +16,10 @@ public class WinningLotto extends Lotto {
 		this.bonusNumber = validateRange(number);
 	}
 
+	public int getBonusNumber() {
+		return bonusNumber;
+	}
+
 	private int validateNumber(String str) {
 		try {
 			return Integer.parseInt(str);
@@ -25,7 +29,7 @@ public class WinningLotto extends Lotto {
 	}
 
 	private int validateRange(int bonusNumber) {
-		if(bonusNumber < 1 || bonusNumber > 45) {
+		if (bonusNumber < 1 || bonusNumber > 45) {
 			throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
 		}
 
