@@ -27,6 +27,20 @@ public class ValidatorTest {
     }
 
     @ParameterizedTest
+    @DisplayName("보너스 번호는 1과 45사이의 값이여야 한다")
+    @ValueSource(strings = {"1", "10", "20", "30", "40", "45"})
+    void 보너스_번호_정상_테스트(String input) {
+        assertThatNoException().isThrownBy(() -> validator.checkBonusNumber(input));
+    }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호가 1과 45사이의 값이 아니면 예외이다")
+    @ValueSource(strings = {"0", "46", "-1"})
+    void 보너스_번호_예외_테스트(String input) {
+        assertThatIllegalArgumentException().isThrownBy(() -> validator.checkBonusNumber(input));
+    }
+
+    @ParameterizedTest
     @DisplayName("구입 금액은 1,000원 단위로 입력할 수 있다")
     @ValueSource(strings = {"1000", "2000", "8000", "12000", "24000", "127000"})
     void 구입_금액_정상_테스트(String input) {
