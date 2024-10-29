@@ -8,5 +8,7 @@ public class Application {
         String buyAmountInput = Console.readLine();
 
         int buyAmount = Integer.parseInt(buyAmountInput);
+
+        int lottoCount = buyAmount / 1000;
     }
 }
