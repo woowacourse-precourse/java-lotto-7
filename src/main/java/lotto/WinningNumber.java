@@ -8,4 +8,11 @@ public class WinningNumber {
 		this.winning = winning;
 	}
 
+	public void winningCheck() {
+		String[] winningArr = winningSplit();
+	}
+
+	private String[] winningSplit() {
+		return winning.split(",");
+	}
 }

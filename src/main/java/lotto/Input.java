@@ -26,7 +26,7 @@ public class Input {
 		System.out.println("당첨 번호를 입력해 주세요.");
 		String winning = readLine();
 		WinningNumber numberCheck = new WinningNumber(winning);
-
+		numberCheck.winningCheck();
 	}
 
 }
