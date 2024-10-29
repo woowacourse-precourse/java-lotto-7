@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.config.LottoGameConfig;
 import lotto.exception.LottoGameException;
 import lotto.exception.custom.MoneyException;
 
@@ -18,10 +19,8 @@ public class Money {
         return new Money(amount);
     }
 
-    private void validateAmount(int amount) {
-        if (amount < 0) {
-            throw new LottoGameException(MoneyException.INVALID_AMOUNT);
-        }
+    public int getPossibleLottoCount() {
+        return amount / LottoGameConfig.LOTTO_PRICE_UNIT;
     }
 
     @Override
@@ -36,4 +35,11 @@ public class Money {
     public int hashCode() {
         return Objects.hash(amount);
     }
+
+    private void validateAmount(int amount) {
+        if (amount < 0) {
+            throw new LottoGameException(MoneyException.INVALID_AMOUNT);
+        }
+    }
+
 }
