@@ -10,7 +10,7 @@ class MoneyTest {
     @Test
     @DisplayName("정상적인 값 입력")
     void 정상값테스트() {
-        assertThat(new Money("10000").getMoney())
+        assertThat(new Money("10000").getMoneyValue())
                 .isEqualTo(10000);
     }
 
