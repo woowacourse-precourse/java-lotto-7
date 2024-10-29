@@ -1,8 +1,8 @@
-package lotto.application;
+package lotto.config;
 
-import lotto.ConsoleReader;
-import lotto.MakeNumbersStrategy;
-import lotto.Reader;
+import lotto.reader.ConsoleReader;
+import lotto.application.MakeNumbersStrategy;
+import lotto.application.Reader;
 import lotto.numberstrategy.MakeRandomNumbers;
 
 public class AppConfig {

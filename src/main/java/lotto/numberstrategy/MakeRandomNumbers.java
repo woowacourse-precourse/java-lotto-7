@@ -2,7 +2,7 @@ package lotto.numberstrategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.MakeNumbersStrategy;
+import lotto.application.MakeNumbersStrategy;
 
 public class MakeRandomNumbers implements MakeNumbersStrategy {
     @Override

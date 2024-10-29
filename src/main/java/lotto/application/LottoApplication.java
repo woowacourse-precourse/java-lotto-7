@@ -1,7 +1,6 @@
 package lotto.application;
 
-import lotto.MakeNumbersStrategy;
-import lotto.Reader;
+import lotto.config.AppConfig;
 
 public class LottoApplication {
 
@@ -11,5 +10,9 @@ public class LottoApplication {
     public LottoApplication(AppConfig appConfig) {
         this.makeNumbersStrategy = appConfig.makeNumbersStrategy();
         this.reader = appConfig.reader();
+    }
+
+    public void run() {
+        String price = reader.read();
     }
 }

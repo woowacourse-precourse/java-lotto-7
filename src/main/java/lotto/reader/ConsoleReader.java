@@ -1,11 +1,12 @@
-package lotto;
+package lotto.reader;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.application.Reader;
 
 public class ConsoleReader implements Reader {
 
     @Override
-    public void read() {
-        Console.readLine();
+    public String read() {
+        return Console.readLine();
     }
 }
