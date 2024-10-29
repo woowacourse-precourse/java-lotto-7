@@ -2,22 +2,29 @@ package lotto.service;
 
 import static lotto.utils.ErrorMessages.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.ErrorMessages;
 
 public class LottoService {
 
-    public List<String> parseInputToList(String inputLottoNumbers) {
+
+
+
+
+
+    private List<Integer> parseInputToList(String inputLottoNumbers) {
         String[] splitLottoNumbers = inputLottoNumbers.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
         for (String number : splitLottoNumbers) {
-            if (!isInteger(number.trim())) {
-                throw new IllegalArgumentException(INPUT_MUST_INTEGER);
-            }
+            numbers.add(parseToInteger(number));
         }
-        return List.of(splitLottoNumbers);
+
+        return numbers;
     }
 
-    public Integer parseToInteger(String input) {
+    private Integer parseToInteger(String input) {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
@@ -25,15 +32,6 @@ public class LottoService {
         }
     }
 
-    // 정수인지 확인하는 보조 메서드
-    private boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str.trim());
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
 
 }
