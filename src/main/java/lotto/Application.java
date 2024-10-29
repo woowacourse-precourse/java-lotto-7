@@ -49,7 +49,7 @@ public class Application {
     }
     public void winning_history(){
         for(int i = 3; i < 7; i++){
-            System.out.printf(print_msg.matchMsg,i,amount[i-3],3);
+            System.out.printf(print_msg.matchMsg,i,amount[i-3]);
         }
     }
 
