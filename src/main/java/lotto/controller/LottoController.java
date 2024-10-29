@@ -13,7 +13,7 @@ public class LottoController {
         readPurchaseAmount();
     }
 
-    private String readPurchaseAmount() {
+    private int readPurchaseAmount() {
         return inputView.readPurchaseAmount();
     }
 }
