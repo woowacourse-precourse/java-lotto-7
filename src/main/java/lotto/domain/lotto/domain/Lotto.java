@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain.lotto.domain;
 
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
