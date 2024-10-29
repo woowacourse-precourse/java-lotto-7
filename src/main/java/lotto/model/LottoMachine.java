@@ -30,7 +30,11 @@ public class LottoMachine {
     }
 
     public Integer getCount(){
-        return this.count;
+        return count;
+    }
+
+    public Integer getPrice(){
+        return price;
     }
 
     private void validateLottoPrice(Integer price){
