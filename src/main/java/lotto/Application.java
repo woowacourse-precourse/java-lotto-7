@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
+    private String input;
     public int divideByThousand(String input) {
         try{
             isNumeric(input);
@@ -16,6 +17,7 @@ public class Application {
             System.out.println("다시 입력해 주세요.");
             return divideByThousand(Console.readLine());
         }
+        this.input = input;
         return Integer.parseInt(input) / 1000;
     }
 
@@ -140,9 +142,23 @@ public class Application {
 
     }
 
+    public void printResult(int [] rank){
+        System.out.println("3개 일치 (5,000원) - " + rank[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + rank[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rank[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rank[4] + "개");
+
+        int total = rank[0] * 5000 + rank[1] * 50000 + rank[2] * 1500000 + rank[3] * 30000000 + rank[4] * 2000000000;
+        double totalRate = (double) total / Integer.parseInt(input) * 100;
+        totalRate = Math.round(totalRate * 10) / 10.0;
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", totalRate);
+    }
+
 
     public static void main(String[] args) {
         Application application = new Application();
-        application.calculateLottoRank(application.generateLottoNumbers(application.divideByThousand(application.requestPurchaseAmountInput())));
+        application.printResult(application.calculateLottoRank(application.generateLottoNumbers(application.divideByThousand(application.requestPurchaseAmountInput()))));
     }
 }
