@@ -1,13 +1,20 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 
 public class User {
 
-    private final int lottoCount;
+    private int lottoCount;
+    private ArrayList<Lotto> lottos = new ArrayList<>();
 
     public User() {
         this.lottoCount = getLottoCount();
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
     }
 
     private static int getLottoCount() {
