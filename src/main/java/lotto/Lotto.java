@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -17,6 +18,7 @@ public class Lotto {
     }
 
     public String toString() {
+        numbers.sort(Comparator.naturalOrder());
         return numbers.toString();
     }
 
