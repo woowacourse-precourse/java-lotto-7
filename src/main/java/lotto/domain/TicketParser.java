@@ -3,7 +3,7 @@ package lotto.domain;
 public abstract class TicketParser {
 
     private final static String DECIMAL_COMMA = ",";
-    private final static int TICKET_PRICE = 1_000;
+    public final static int TICKET_PRICE = 1_000;
 
     private TicketParser() {}
 
