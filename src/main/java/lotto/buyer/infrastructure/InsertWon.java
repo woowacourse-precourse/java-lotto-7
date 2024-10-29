@@ -4,9 +4,9 @@ import lotto.buyer.domain.InsertMoneyService;
 import lotto.buyer.domain.Money;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 
-public class InsertMoney implements InsertMoneyService {
+public class InsertWon implements InsertMoneyService {
     private final InputHandlerService inputHandlerService;
-    public InsertMoney(InputHandlerService inputHandlerService) {
+    public InsertWon(InputHandlerService inputHandlerService) {
         this.inputHandlerService = inputHandlerService;
     }
     @Override
