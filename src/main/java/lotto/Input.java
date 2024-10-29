@@ -4,6 +4,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 
+	public String readLine() {
+		return Console.readLine();
+	}
+
 	public int amountInput() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
@@ -17,8 +21,12 @@ public class Input {
 		return 0;
 	}
 
-	public String readLine() {
-		return Console.readLine();
+	public void winningNumber() {
+		System.out.println();
+		System.out.println("당첨 번호를 입력해 주세요.");
+		String winning = readLine();
+		WinningNumber numberCheck = new WinningNumber(winning);
+
 	}
 
 }

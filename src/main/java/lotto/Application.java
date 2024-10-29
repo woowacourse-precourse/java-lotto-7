@@ -8,5 +8,7 @@ public class Application {
 
 		LottoOutput output = new LottoOutput(amount);
 
+		input.winningNumber();
+
 	}
 }
