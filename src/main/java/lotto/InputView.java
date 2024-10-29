@@ -15,4 +15,15 @@ public class InputView {
             return inputPurchaseAmount();
         }
     }
+
+    public static WinningNumber inputWinningNumber(){
+        System.out.println("당첨번호를 입력해 주세요.");
+        try{
+            String inputWinningNumber = readLine();
+            return new WinningNumber(inputWinningNumber);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR]" + e.getMessage());
+            return inputWinningNumber();
+        }
+    }
 }
