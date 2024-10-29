@@ -33,3 +33,9 @@ out/
 
 ### Mac OS ###
 .DS_Store
+
+### ignore ###
+gradlew
+gradlew.bat
+settings.gradle
+build
