@@ -2,6 +2,16 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        while (true) {
+            try {
+                new LottoGame().start();
+                break;
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
     }
 }
+
+
+
