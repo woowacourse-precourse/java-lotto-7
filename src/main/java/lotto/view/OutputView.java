@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+import lotto.model.Rank;
 
 public class OutputView {
 
@@ -11,5 +13,24 @@ public class OutputView {
     public static void printLottoNumbers(List<String> convertedNumbers) {
         convertedNumbers.stream()
             .forEach(System.out::println);
+    }
+
+    public static void printResult(Map<Rank, Integer> result) {
+        for (Map.Entry<Rank, Integer> entry : result.entrySet()) {
+            Rank rank = entry.getKey();
+            Integer count = entry.getValue();
+            if (rank == Rank.NONE) continue;
+            if (rank.getCountNumber() == 5 && rank.isNeedBonusNumber()) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
+                    rank.getCountNumber(), format(rank.getPrice()), count);
+                continue;
+            }
+            System.out.printf("%d개 일치 (%s원) - %d개%n",
+                rank.getCountNumber(), format(rank.getPrice()), count);
+        }
+    }
+
+    private static String format(int price) {
+        return String.format("%,d", price);
     }
 }
