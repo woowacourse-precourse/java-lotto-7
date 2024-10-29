@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.LottoTickets;
 
 public class OutputView {
@@ -33,5 +34,13 @@ public class OutputView {
 
     public void showBonusNumberInputMessage() {
         System.out.println(BONUS_NUMBERS_INPUT_MESSAGE);
+    }
+
+    public void showResult(Map<Integer, Integer> rankMap) {
+        System.out.println("3개 일치 (5,000)원 - " + rankMap.get(5) + "개");
+        System.out.println("4개 일치 (50,000)원 - " + rankMap.get(4) + "개");
+        System.out.println("5개 일치 (1,500,000)원 - " + rankMap.get(3) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000)원 - " + rankMap.get(2) + "개");
+        System.out.println("6개 일치 (2,000,000,000)원 - " + rankMap.get(1) + "개");
     }
 }
