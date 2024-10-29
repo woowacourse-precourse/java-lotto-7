@@ -40,5 +40,11 @@ public class Application {
             }
             winningNumbers.add(num);
         }
+
+        // 보너스 번호 입력 받기
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input3 = Console.readLine();
+        int bonusNumber = Integer.parseInt(input.trim());
     }
 }
