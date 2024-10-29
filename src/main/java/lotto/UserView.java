@@ -28,6 +28,12 @@ public class UserView {
         System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
+    public void displayLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
+        }
+    }
+
     private List<Integer> convertInputWinningNumbersToOutput(String winningNumbers) {
         String [] inputWinningNumbers = winningNumbers.split(",");
         List<Integer> winningNumbersList = new ArrayList<>();
