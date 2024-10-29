@@ -70,7 +70,7 @@ class ApplicationTest extends NsTest {
             application.checkAmountWithinRange("1001");
         });
 
-        Assertions.assertEquals("[ERROR] 1000원 단위로 입력해 주세요.", exception.getMessage());
+        Assertions.assertEquals("[ERROR] 1000원 단위의 금액을 입력해 주세요.", exception.getMessage());
     }
 
     @Test
