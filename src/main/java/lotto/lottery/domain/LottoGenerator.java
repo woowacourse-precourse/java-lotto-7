@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.lottery.domain;
 
 public class LottoGenerator {
 }
