@@ -1,12 +1,17 @@
 package lotto.common.exception;
 
-import lotto.common.constant.LottoConst;
+import static lotto.common.constant.LottoConst.*;
 
 public enum ErrorCode {
 
-    // input
-    NOT_NUMBER(LottoConst.NOT_NUMBER_MSG),
-    CANT_DIVIDE(LottoConst.CANT_DIVIDE_MSG);
+    // amount input
+    NOT_NUMBER(NOT_NUMBER_MSG),
+    CANT_DIVIDE(CANT_DIVIDE_MSG),
+    LOTTO_INVALID_QUANTITY(LOTTO_INVALID_QUANTITY_MSG),
+    LOTTO_NOT_DISTINCT_NUMBERS(LOTTO_NOT_DISTINCT_NUMBERS_MSG),
+
+    // winning number input
+    INCORRECT_WINNING_NUMBER(INVALID_WINNING_NUMBER_FORMAT_MSG);
 
     private final String message;
 
@@ -15,6 +20,6 @@ public enum ErrorCode {
     }
 
     public String getMessage() {
-        return LottoConst.ERROR_PREFIX + message;
+        return ERROR_PREFIX + message;
     }
 }
