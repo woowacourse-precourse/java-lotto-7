@@ -6,18 +6,12 @@ import java.util.HashSet;
 public class InputValidator {
 
     private final static String MONEY_REGEX = "[1-9][0-9]*000";
-    private final static String WINNING_NUMBERS_REGEX
-        = "\\d+(,\\d+){5}";
+    private final static String WINNING_NUMBERS_REGEX = "\\d+(,\\d+){5}";
+    private final static String BONUS_NUMBER_REGEX = "\\d+";
 
     public static void validateMoney(String money) {
         checkNull(money);
         checkMoneyForm(money);
-    }
-
-    private static void checkNull(String money) {
-        if (money == null || money.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 값을 입력해주세요");
-        }
     }
 
     private static void checkMoneyForm(String money) {
@@ -49,11 +43,29 @@ public class InputValidator {
         }
     }
 
+    public static void validateBonusNumber(String bonusNumber) {
+        checkNull(bonusNumber);
+        checkNumber(bonusNumber);
+        checkNumberRange(bonusNumber);
+    }
+
+    private static void checkNumber(String bonusNumber) {
+        if (!bonusNumber.matches(BONUS_NUMBER_REGEX)) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+        }
+    }
+
+    private static void checkNull(String money) {
+        if (money == null || money.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 값을 입력해주세요");
+        }
+    }
+
     private static void checkNumberRange(String winningNumbers) {
         boolean rangeResult = Arrays.stream(winningNumbers.split(","))
             .anyMatch(num -> Integer.parseInt(num) < 1 || Integer.parseInt(num) > 45);
         if (rangeResult) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 번호는 1~45 사이여야 합니다.");
         }
     }
 }
