@@ -11,6 +11,6 @@ public class InsertWon implements InsertMoneyService {
     }
     @Override
     public Money insert() {
-        return inputHandlerService.retrieveReceive(Won::new);
+        return inputHandlerService.retrieveReceive(Won::of);
     }
 }
