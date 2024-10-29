@@ -20,7 +20,7 @@ __간단한 로또 발매기를 구현한다.__
   - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## ✍️ 구현 기능 목록
-- [ ] 로또 구입 금액 입력을 위한 메시지를 출력한다. 
+- [x] 로또 구입 금액 입력을 위한 메시지를 출력한다. 
 
 
     구입금액을 입력해 주세요.
