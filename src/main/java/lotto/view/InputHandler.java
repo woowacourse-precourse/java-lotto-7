@@ -22,7 +22,7 @@ public class InputHandler {
         }
     }
 
-    public String getInputForWinnerNumber() {
+    public String getInputForWinningNumber() {
         while (true) {
             try {
                 String input = Console.readLine();
