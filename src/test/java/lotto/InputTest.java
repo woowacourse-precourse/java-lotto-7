@@ -25,6 +25,18 @@ class InputTest {
         input.입력값("abc");  
         assertThrows(IllegalArgumentException.class, () -> input.amountInput());
     }
+    
+    @Test
+    void 예외처리_1000원_미만_입력() {
+    	input.입력값("900");  
+    	assertThrows(IllegalArgumentException.class, () -> input.amountInput());
+    }
+    
+    @Test
+    void 예외처리_100000원_초과_입력() {
+    	input.입력값("999999");  
+    	assertThrows(IllegalArgumentException.class, () -> input.amountInput());
+    }
 
     static class TestInput extends Input {
         private String testInput;
@@ -45,7 +57,7 @@ class InputTest {
                 String amount = readLine();
                 Amount amountCheck = new Amount(amount);
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 숫자만 입력해주세요.");
+            	System.err.println(e);
                 //테스트 코드에서 무한 반복을 막기위해 재귀 호출 코드 제거
                 throw e;
             }
