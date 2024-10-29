@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.ArrayList;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 
@@ -11,15 +13,12 @@ public class LottoUtils {
     private static final int NUMBERS_COUNT = 6; 
 
     public static Lotto createLotto() {
-        int[] lotto = new int[NUMBERS_COUNT];
-        boolean[] isPicked = new boolean[MAX_NUMBER + 1]; 
-        int count = 0;
-    
-        while (count < NUMBERS_COUNT) {
+        ArrayList<Integer> lotto = new ArrayList<>();
+
+        while (lotto.size() < NUMBERS_COUNT) {
             int temp = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
-            if (!isPicked[temp]) {
-                isPicked[temp] = true; 
-                lotto[count++] = temp; 
+            if (!lotto.contains(lotto)) {
+                lotto.add(temp);
             }
         }
     
