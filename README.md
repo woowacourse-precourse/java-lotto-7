@@ -60,7 +60,8 @@
 
 
 ### 도메인 모델과 메시지
-![도메인모델with메시지](https://github.com/user-attachments/assets/9682b857-78a4-4900-97db-9b71d9dbc699)
+![도메인모델with메시지](https://github.com/user-attachments/assets/c424c097-ca7a-43c5-aba0-0e45eeef716b)
+
 
 
 
