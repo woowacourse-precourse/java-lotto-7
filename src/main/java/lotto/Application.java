@@ -25,19 +25,19 @@ public class Application {
 
     public void purchase_history(int num){
         System.out.println(num+print_msg.checkMsg);
-        Lotto lotto[] = initialLottoArray(num);
+        List<Integer> lotto_list [] = initialLottoArray(num);
         for(int i = 0; i < num; i++){
             List<Integer> list = new ArrayList<>();
-            lotto[i] = new Lotto(list);
+            Lotto lotto = new Lotto(list);
+            lotto_list[i] = lotto.random_range();
         }
     }
-    public Lotto[] initialLottoArray(int num){
-        Lotto lotto[] = new Lotto[num];
-        List<Integer> list = new ArrayList<>();
-        for(int i = 0; i < lotto.length; i++){
-            lotto[i] = new Lotto(list);
+    public List[] initialLottoArray(int num){
+        List<Integer> list[] = new ArrayList[num];
+        for(int i = 0; i < num; i++){
+            list[i] = new ArrayList<>();
         }
-        return lotto;
+        return list;
     }
     public int purchase_amount(){
         System.out.println(print_msg.inputMsg);
