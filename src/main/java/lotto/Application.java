@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Application {
     public int divideByThousand(String input) {
@@ -20,20 +24,30 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
     }
+
     public void checkAmountWithinRange(String input){
         if (Integer.parseInt(input) % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] 1000원 단위의 금액을 입력해 주세요.");
         }
     }
+
     public String requestPurchaseAmountInput(){
         System.out.println("구입 금액을 입력해 주세요.");
         return Console.readLine();
     }
 
-
-
+    public ArrayList<List<Integer>> generateLottoNumbers(int times){
+        System.out.println(times + "개를 구매했습니다.");
+        ArrayList<List<Integer>> purchasedLottoNumbers = new ArrayList<>();
+        for (int i = 0; i < times; i++) {
+            List<Integer> purchasedLottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+            Collections.sort(purchasedLottoNumber);
+            purchasedLottoNumbers.add(purchasedLottoNumber);
+        }
+        return purchasedLottoNumbers;
+    }
     public static void main(String[] args) {
         Application application = new Application();
-        application.divideByThousand(application.requestPurchaseAmountInput());
+        application.generateLottoNumbers(application.divideByThousand(application.requestPurchaseAmountInput()));
     }
 }
