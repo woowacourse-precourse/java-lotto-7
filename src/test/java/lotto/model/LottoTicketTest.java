@@ -3,6 +3,7 @@ package lotto.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +38,25 @@ class LottoTicketTest {
         for (String printFormNumber : printFormNumbers) {
             assertEquals(printFormNumber, "[1, 2, 3, 4, 5, 6]");
         }
+    }
 
+    @Test
+    void 당첨_결과_반환_테스트() {
+        //given
+        List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
+        LottoTicket lottoTicket = new LottoTicket(1, () -> nums);
+
+        Lotto winningNumber = new Lotto(List.of(1, 2, 3, 4, 5, 20));
+        int bonusNumber = 6;
+
+        //when
+        Map<Rank, Integer> result = lottoTicket.getResult(winningNumber, bonusNumber);
+
+        //then
+        assertEquals(result.get(Rank.FIRST), 0);
+        assertEquals(result.get(Rank.SECOND), 1);
+        assertEquals(result.get(Rank.THIRD), 0);
+        assertEquals(result.get(Rank.FOURTH), 0);
+        assertEquals(result.get(Rank.FIFTH), 0);
     }
 }

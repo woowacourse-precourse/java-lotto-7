@@ -2,7 +2,9 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -44,5 +46,30 @@ class LottoTest {
         //then
         assertThrows(IllegalArgumentException.class,
             () ->lotto.checkBonusNumberDuplication(bonusNumber));
+    }
+
+    @Test
+    void 같은_로또_번호_카운트_테스트() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+
+        //when
+        int count = lotto.countContainNumber(winningLotto);
+
+        //then
+        assertEquals(count, 5);
+    }
+
+    @Test
+    void 테스트_번호_확인_테스트() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber1 = 1;
+        int bonusNumber2 = 45;
+
+        //when & then
+        assertTrue(lotto.hasBonusNumber(bonusNumber1));
+        assertFalse(lotto.hasBonusNumber(bonusNumber2));
     }
 }
