@@ -6,14 +6,8 @@ import lotto.domain.PrizeNumber;
 
 public class PrizeCalculator implements Calculator {
 
-    private final PrizeNumber prizeNumber;
-
-    public PrizeCalculator(PrizeNumber prizeNumber) {
-        this.prizeNumber = prizeNumber;
-    }
-
     @Override
-    public int calculateTotalPrize() {
+    public int calculateTotalPrize(PrizeNumber prizeNumber) {
         int first = multiple(prizeNumber.getFirstPrizeLottoNumber(), RankPrice.FIRST.getPrice());
         int second = multiple(prizeNumber.getSecondPrizeLottoNumber(), RankPrice.SECOND.getPrice());
         int third = multiple(prizeNumber.getThirdPrizeLottoNumber(), RankPrice.THIRD.getPrice());

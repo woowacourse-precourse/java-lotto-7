@@ -1,9 +1,12 @@
 package lotto.config;
 
-import lotto.reader.ConsoleReader;
+import lotto.application.Calculator;
 import lotto.application.MakeNumbersStrategy;
 import lotto.application.Reader;
+import lotto.calculator.PrizeCalculator;
+import lotto.domain.PrizeNumber;
 import lotto.numberstrategy.MakeRandomNumbers;
+import lotto.reader.ConsoleReader;
 
 public class AppConfig {
 
@@ -15,4 +18,7 @@ public class AppConfig {
         return new MakeRandomNumbers();
     }
 
+    public Calculator calculator() {
+        return new PrizeCalculator();
+    }
 }

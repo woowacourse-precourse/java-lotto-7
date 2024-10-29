@@ -9,26 +9,6 @@ public class PrizeNumber {
     private int fourthPrizeLottoNumber;
     private int fifthPrizeLottoNumber;
 
-    public int getFirstPrizeLottoNumber() {
-        return firstPrizeLottoNumber;
-    }
-
-    public int getSecondPrizeLottoNumber() {
-        return secondPrizeLottoNumber;
-    }
-
-    public int getThirdPrizeLottoNumber() {
-        return thirdPrizeLottoNumber;
-    }
-
-    public int getFourthPrizeLottoNumber() {
-        return fourthPrizeLottoNumber;
-    }
-
-    public int getFifthPrizeLottoNumber() {
-        return fifthPrizeLottoNumber;
-    }
-
     public void countMatchNumber(List<Integer> numbers, WinNumbers winNumbers) {
         List<Integer> compareNumbers = winNumbers.primaryWinNumbers();
         int count = 0;
@@ -60,5 +40,25 @@ public class PrizeNumber {
 
     private boolean decideSecondThird(int bonusNumber, List<Integer> numbers) {
         return (numbers.contains(bonusNumber));
+    }
+
+    public int getFirstPrizeLottoNumber() {
+        return firstPrizeLottoNumber;
+    }
+
+    public int getSecondPrizeLottoNumber() {
+        return secondPrizeLottoNumber;
+    }
+
+    public int getThirdPrizeLottoNumber() {
+        return thirdPrizeLottoNumber;
+    }
+
+    public int getFourthPrizeLottoNumber() {
+        return fourthPrizeLottoNumber;
+    }
+
+    public int getFifthPrizeLottoNumber() {
+        return fifthPrizeLottoNumber;
     }
 }
