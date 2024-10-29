@@ -30,5 +30,18 @@ public class ValidatorTest {
         assertThat(result).isFalse();
     }
 
+    @Test
+    @DisplayName("1000원 보다 작은 입력이 들어온 경우 예외를 발생시킨다")
+    void 금액_입력_예외_테스트_2() throws Exception {
+        // given
+        String price = "100";
+
+        // when
+        boolean result = validator.validatePrice(price);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
 
 }
