@@ -1,17 +1,17 @@
 # 프리코스 3주차 - 로또
 ---
 ## 디렉토리 구조
-├── Application.java
-├── Controller
-│    └── Play.java
-├── Model
-│    ├── Lotto.java
-│    ├── Random.java
-│    ├── Statistics.java
-│    └── Rate.java
-└── View
-     ├── Input.java
-     └── Output.java
+├── Application.java <br> 
+├── Controller <br>
+│    └── Play.java <br>
+├── Model <br>
+│    ├── Lotto.java <br>
+│    ├── Random.java <br>
+│    ├── Statistics.java <br>
+│    └── Rate.java <br>
+└── View <br>
+     ├── Input.java <br>
+     └── Output.java <br>
      
 ---
 ## 구현 기능 목록
