@@ -12,10 +12,6 @@ public class UserView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public void displayCountOfLotto(int count) {
-        System.out.println("\n"+count + "개를 구매했습니다.");
-    }
-
     public List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String winningNumbersStr = Console.readLine();
@@ -26,6 +22,10 @@ public class UserView {
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
+    }
+
+    public void displayCountOfLottos(int count) {
+        System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
     private List<Integer> stringWinningNumbersToInteger(String winningNumbers) {
