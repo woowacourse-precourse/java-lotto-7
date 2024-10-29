@@ -11,12 +11,7 @@ public class Application {
         // 입력기능
         System.out.println("구입 가격을 입력해주세요.");
         int price = Integer.parseInt(Console.readLine());
-
-        System.out.println("당첨번호를 입력해주세요.");
-        String winningNumber = Console.readLine();
-
-        System.out.println("보너스 번호를 입력해주세요.");
-        String bonusNumber = Console.readLine();
+        System.out.println((price / 1000) + "개를 구매했습니다.");
 
         // 로또 번호 리스트 저장
         int[][] lottoNumberList = new int[price / 1000][6];
@@ -32,9 +27,26 @@ public class Application {
             }
         }
 
+        // 리스트 출력
         for(int i=0; i<lottoNumberList.length; i++){
             Arrays.sort(lottoNumberList[i]);
         }
+
+        for(int i=0; i<lottoNumberList.length; i++){
+            System.out.print("[");
+            for(int j=0; j<lottoNumberList[0].length; j++){
+                System.out.print(lottoNumberList[i][j] + ", ");
+            }
+            System.out.print("]");
+            System.out.println();
+        }
+
+        System.out.println("당첨번호를 입력해주세요.");
+        String winningNumber = Console.readLine();
+
+        System.out.println("보너스 번호를 입력해주세요.");
+        String bonusNumber = Console.readLine();
+
 
         // 당첨 여부 체크
         int[] winningCount = {0, 0, 0, 0, 0};
@@ -76,8 +88,7 @@ public class Application {
                 case 4 : winningCount[1]++;
                          break;
                 case 3 : winningCount[0]++;
-                default : System.out.println("꽝");
-                          break;
+                default : break;
             }
         }
 
@@ -92,5 +103,7 @@ public class Application {
         totalPrice = fiveRank + fourRank + threeRank + twoRank + oneRank;
 
         double rateOfReturn = Math.round((totalPrice / price * 100) * 10) / 10;
+
+        
     }
 }
