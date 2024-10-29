@@ -8,4 +8,10 @@ public class CommonValidator {
         }
         return Integer.parseInt(input);
     }
+
+    public static void validateNullAndBlank(String input) {
+        if (input==null || input.isBlank()){
+            throw new IllegalArgumentException(ErrorMessage.BLANK_OR_NULL_INPUT);
+        }
+    }
 }
