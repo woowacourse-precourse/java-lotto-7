@@ -36,7 +36,7 @@ public class SetTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3})
-    @DisplayName("contains_메소드를_활용해_값이_존재하는지_확인")
+    @DisplayName("contains_메소드와 ParameterizedTest와_ValueSource를_활용해_값이_존재하는지_확인")
     void contains_메소드를_활용해_값이_존재하는지_확인(int input) {
         // when
         boolean isNumberExist = numbers.contains(input);
@@ -47,7 +47,8 @@ public class SetTest {
 
     @ParameterizedTest
     @CsvSource(value = {"1:true", "3:true", "4:false"}, delimiter = ':')
-    void contains_메소드를_활용해_값이_존재하는지_확인2(int input, boolean isContain) {
+    @DisplayName("contains_메소드와_ParameterizedTest와_CsvSource를_활용해_값이_존재하는지_확인")
+    void contains_메소드와_ParameterizedTest와_CsvSource를_활용해_값이_존재하는지_확인(int input, boolean isContain) {
         // when
         boolean isNumberExit = numbers.contains(input);
 
