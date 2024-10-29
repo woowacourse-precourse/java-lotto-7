@@ -42,3 +42,4 @@ Exception
 - [ x ] InputException 생성
   - [ x ] 숫자가 아닌 경우 예외를 발생시킨다.
   - [ x ] 음수일 경우 예외를 발생시킨다.
+- [ x ] MoneyException 생성
