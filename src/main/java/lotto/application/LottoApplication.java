@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoQuantity;
 import lotto.domain.Lottos;
-import lotto.domain.Rank;
+import lotto.domain.PrizeNumber;
 import lotto.domain.WinNumbers;
 
 public class LottoApplication {
@@ -26,10 +26,10 @@ public class LottoApplication {
     }
 
     private void findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
-        Rank rank = new Rank();
+        PrizeNumber prizeNumber = new PrizeNumber();
         List<Lotto> allLotto = lottos.value();
         for (Lotto lotto : allLotto) {
-            rank.countMatchNumber(lotto.getNumbers(), winNumbers);
+            prizeNumber.countMatchNumber(lotto.getNumbers(), winNumbers);
         }
     }
 }

@@ -2,12 +2,32 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Rank {
+public class PrizeNumber {
     private int firstPrizeLottoNumber;
     private int secondPrizeLottoNumber;
     private int thirdPrizeLottoNumber;
     private int fourthPrizeLottoNumber;
     private int fifthPrizeLottoNumber;
+
+    public int getFirstPrizeLottoNumber() {
+        return firstPrizeLottoNumber;
+    }
+
+    public int getSecondPrizeLottoNumber() {
+        return secondPrizeLottoNumber;
+    }
+
+    public int getThirdPrizeLottoNumber() {
+        return thirdPrizeLottoNumber;
+    }
+
+    public int getFourthPrizeLottoNumber() {
+        return fourthPrizeLottoNumber;
+    }
+
+    public int getFifthPrizeLottoNumber() {
+        return fifthPrizeLottoNumber;
+    }
 
     public void countMatchNumber(List<Integer> numbers, WinNumbers winNumbers) {
         List<Integer> compareNumbers = winNumbers.primaryWinNumbers();
@@ -20,7 +40,7 @@ public class Rank {
         decideRankNumber(count, numbers, winNumbers);
     }
 
-    private void decideRankNumber(int count, List<Integer> numbers, WinNumbers winNumbers) {
+    private void decideRankNumber(int count, List<Integer> numbers, WinNumbers winNumbers) { //return 하는 식으로 개선해야하나봄
         if (count == 6) {
             firstPrizeLottoNumber++;
         }
