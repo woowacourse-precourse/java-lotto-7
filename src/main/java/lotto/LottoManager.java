@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.dto.LottoResult;
 import lotto.io.ErrorLogger;
 import lotto.io.LottoRequestReader;
 import lotto.io.LottoResponseWriter;
@@ -41,7 +42,9 @@ public class LottoManager {
 
         Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
 
-        lottoResponseWriter.responseLottoPrize(purchaseMoney, lottoPrizeResult);
+        LottoResult lottoResult = new LottoResult(lottoPrizeResult, purchaseMoney);
+
+        lottoResponseWriter.responseLottoPrize(lottoResult);
     }
 
     private int getPurchaseMoney(int lottoPrice) {

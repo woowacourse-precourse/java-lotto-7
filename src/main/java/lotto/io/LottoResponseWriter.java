@@ -2,6 +2,7 @@ package lotto.io;
 
 import lotto.Lotto;
 import lotto.LottoPrize;
+import lotto.dto.LottoResult;
 
 import java.util.List;
 import java.util.Map;
@@ -20,18 +21,18 @@ public class LottoResponseWriter {
         System.out.println();
     }
 
-    public void responseLottoPrize(int phraseMoney, Map<LottoPrize, Integer> prizeResult) {
+    public void responseLottoPrize(LottoResult lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
         long totalPrize = 0;
 
         for (LottoPrize lottoPrize : LottoPrize.values()) {
-            int prizeCount = prizeResult.getOrDefault(lottoPrize, 0);
+            int prizeCount = lottoResult.prizeResult().getOrDefault(lottoPrize, 0);
             totalPrize += (long) lottoPrize.getMoney() * prizeCount;
             System.out.printf("%s - %d개%n", lottoPrizeKorean(lottoPrize), prizeCount);
         }
 
-        double profitRate = (double) totalPrize / phraseMoney * 100;
+        double profitRate = (double) totalPrize / lottoResult.userBuyMoney() * 100;
 
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
