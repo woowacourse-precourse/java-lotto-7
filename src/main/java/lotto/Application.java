@@ -14,7 +14,7 @@ public class Application {
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             System.out.println("다시 입력해 주세요.");
-            divideByThousand(Console.readLine());
+            return divideByThousand(Console.readLine());
         }
         return Integer.parseInt(input) / 1000;
     }
@@ -57,11 +57,27 @@ public class Application {
         return Console.readLine();
     }
 
-    public String [] Lotto(String input){
+    public String [] splitNumbers(String input){
         return input.split(",");
     }
 
-    
+    public Lotto generateLotto(String input){
+        Lotto lotto;
+        List<Integer> numbers = new ArrayList<>();
+        try{
+            for(String i : splitNumbers(input)){
+                isNumeric(i);
+                numbers.add(Integer.parseInt(i));
+            }
+            lotto = new Lotto(numbers);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            System.out.println("다시 입력해 주세요.");
+            return generateLotto(Console.readLine());
+        }
+        return lotto;
+    }
+
 
     public static void main(String[] args) {
         Application application = new Application();
