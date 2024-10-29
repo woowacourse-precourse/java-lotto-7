@@ -2,16 +2,13 @@ package lotto.view.input;
 
 import lotto.buyer.domain.InsertMoneyService;
 import lotto.buyer.domain.Money;
-import lotto.buyer.infrastructure.InsertMoney;
+import lotto.buyer.infrastructure.InsertWon;
 import lotto.lotto.domain.LottoMachine;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.NumberGenerator;
-import lotto.lotto.infrastructure.RandomNumberGenerate;
 import lotto.lotto.infrastructure.WonCalculator;
 import lotto.view.input.domain.InputService;
 import lotto.view.input.hanlder.infrastructure.MoneyHandler;
-import lotto.view.output.domain.ViewService;
-import lotto.view.output.infra.MoneyOutput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +24,7 @@ public class InputViewTest {
 
     @BeforeEach
     void init() {
-        InsertMoneyService insertMoneyService = new InsertMoney(new MoneyHandler(new MoneyInputTest()));
+        InsertMoneyService insertMoneyService = new InsertWon(new MoneyHandler(new MoneyInputTest()));
         money = insertMoneyService.insert();
 
     }
