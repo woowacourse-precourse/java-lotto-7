@@ -7,4 +7,6 @@ public class ErrorMessages {
     public static final String INVALID_LOTTO_COUNT = "[ERROR] 로또 번호는 6개여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBERS = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
     public static final String OUT_OF_BOUNDS_LOTTO_NUMBER = "[ERROR] 당첨 번호는 1과 45 사이여야 합니다.";
+
+    public static final String INPUT_MUST_INTEGER = "[ERROR] 입력값은 모두 정수여야 합니다.";
 }

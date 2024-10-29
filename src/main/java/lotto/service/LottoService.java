@@ -1,6 +1,9 @@
 package lotto.service;
 
+import static lotto.utils.ErrorMessages.*;
+
 import java.util.List;
+import lotto.utils.ErrorMessages;
 
 public class LottoService {
 
@@ -8,7 +11,7 @@ public class LottoService {
         String[] splitLottoNumbers = inputLottoNumbers.split(",");
         for (String number : splitLottoNumbers) {
             if (!isInteger(number.trim())) {
-                throw new IllegalArgumentException("[ERROR] 입력값은 모두 정수여야 합니다.");
+                throw new IllegalArgumentException(INPUT_MUST_INTEGER);
             }
         }
         return List.of(splitLottoNumbers);
@@ -18,7 +21,7 @@ public class LottoService {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 정수여야 합니다.");
+            throw new IllegalArgumentException(INPUT_MUST_INTEGER);
         }
     }
 
