@@ -15,15 +15,20 @@ public class Committee {
     }
 
     private void inputWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        String[] numbers = input.split(",");
+        try {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            String[] numbers = input.split(",");
 
-        validateWinningNumbers(numbers);
+            validateWinningNumbers(numbers);
 
-        for (String number : numbers) {
-            int validatedNumber = validateWinningNumber(number.trim());
-            this.winningNumbers.add(validatedNumber);
+            for (String number : numbers) {
+                int validatedNumber = validateWinningNumber(number.trim());
+                this.winningNumbers.add(validatedNumber);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            inputWinningNumbers();
         }
     }
 
@@ -31,13 +36,16 @@ public class Committee {
         try {
             int intNumber = Integer.parseInt(number);
             if (intNumber < 1 || intNumber > 45) {
+                this.winningNumbers.clear();
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이여야 합니다.");
             }
             if (this.winningNumbers.contains(intNumber)) {
+                this.winningNumbers.clear();
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
             }
             return intNumber;
         } catch (NumberFormatException e) {
+            this.winningNumbers.clear();
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
         }
     }
@@ -49,9 +57,14 @@ public class Committee {
     }
 
     private void inputBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        this.bonusNumber = validateBonusNumber(input);
+        try {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            this.bonusNumber = validateBonusNumber(input);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            inputBonusNumber();
+        }
     }
 
     private int validateBonusNumber(String number) {
