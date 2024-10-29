@@ -13,7 +13,7 @@ public class Application {
 
     }
 
-    public static Integer validatePurchaseAmount(String input) {
+    public static Integer checkPurchaseAmount(String input) {
         Integer purchaseAmount = 0;
         try{
             purchaseAmount = Integer.parseInt(input);
