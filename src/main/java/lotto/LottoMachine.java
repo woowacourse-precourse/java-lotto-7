@@ -8,16 +8,22 @@ import java.util.Map;
 public class LottoMachine {
     private final List<Lotto> buyingLottos;
     private final LottoWinningEvaluator lottoWinningEvaluator;
+    private final LottoFactory LottoFactory;
 
 
-    public LottoMachine(LottoWinningEvaluator lottoWinningEvaluator) {
+    public LottoMachine(LottoWinningEvaluator lottoWinningEvaluator, LottoFactory LottoFactory) {
         this.buyingLottos = new ArrayList<>();
         this.lottoWinningEvaluator = lottoWinningEvaluator;
+        this.LottoFactory = LottoFactory;
     }
 
-    public void buyLotto(List<Integer> numbers) {
-        Lotto lotto = new Lotto(numbers);
+    public void buyLotto() {
+        Lotto lotto = LottoFactory.createRandomLotto();
         buyingLottos.add(lotto);
+    }
+
+    public List<Lotto> getBuyingLottos() {
+        return buyingLottos;
     }
 
 
