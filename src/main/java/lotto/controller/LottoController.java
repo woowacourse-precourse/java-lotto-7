@@ -10,6 +10,6 @@ public class LottoController {
     }
 
     public void play() {
-        int purchasePrice = inputView.purchasePrice();
+        int lottoCount = inputView.lottoCount();
     }
 }

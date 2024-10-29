@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public int purchasePrice() {
+    public int lottoCount() {
         String purchasePrice = Console.readLine();
         int priceValue = Integer.parseInt(purchasePrice);
         validatePurchasePrice(priceValue);
 
-        return priceValue;
+        return (priceValue / LottoValue.AMOUNT_UNIT);
     }
 
     public List<Integer> winningNumbers() {
