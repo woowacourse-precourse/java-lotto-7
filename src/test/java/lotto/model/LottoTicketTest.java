@@ -26,7 +26,7 @@ class LottoTicketTest {
     void 출력_형태_변환_테스트() {
         //given
         int ticketCount  = 3;
-        List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> nums = List.of(6, 5, 4, 3, 2, 1);
         LottoTicket lottoTicket = new LottoTicket(ticketCount, () -> nums);
 
         //when
