@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +23,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @Test
+    @DisplayName("로또 번호를 출력 포멧으로 변환한다.")
+    void toStringForFormatting() {
+        // given
+        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        String result = lotto.toString();
+
+        // then
+        assertThat(result).isEqualTo("[1,2,3,4,5,6]");
+    }
 }
