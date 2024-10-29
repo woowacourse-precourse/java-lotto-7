@@ -1,5 +1,7 @@
 package lotto;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.BonusNumber;
@@ -33,11 +35,21 @@ public class LottoResultManagerTest {
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
 
         lottoResultManager.checkLottos(userLottoList);
-        Assertions.assertEquals(LottoResult.SECOND.getCount(), 1);
-        Assertions.assertEquals(LottoResult.THIRD.getCount(), 1);
-        Assertions.assertEquals(LottoResult.FIFTH.getCount(), 1);
-        Assertions.assertEquals(LottoResult.FIRST.getCount(), 0);
+        assertEquals(LottoResult.SECOND.getCount(), 1);
+        assertEquals(LottoResult.THIRD.getCount(), 1);
+        assertEquals(LottoResult.FIFTH.getCount(), 1);
+        assertEquals(LottoResult.FIRST.getCount(), 0);
     }
+
+    @Test
+    void 당첨_금액_확인(){
+        LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber);
+
+        lottoResultManager.checkLottos(userLottoList);
+        assertEquals(LottoResult.getTotalPrize(), 31_505_000);
+    }
+
+
 
 
 
