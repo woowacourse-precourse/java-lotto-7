@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.Controller.BuyingController;
+import lotto.controller.BuyingController;
 
 public class Application {
 	public static void main(String[] args) {

@@ -1,8 +1,8 @@
-package lotto.Controller;
+package lotto.controller;
 
-import lotto.Model.Lottos;
-import lotto.View.InputView;
-import lotto.View.OutputView;
+import lotto.model.Lottos;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class BuyingController {
 

@@ -1,8 +1,8 @@
-package lotto.View;
+package lotto.view;
 
 import java.util.List;
 
-import lotto.Model.Lotto;
+import lotto.model.Lotto;
 
 public class OutputView {
 

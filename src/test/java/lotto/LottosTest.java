@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import lotto.Model.Lottos;
+import lotto.model.Lottos;
 
 public class LottosTest {
 
