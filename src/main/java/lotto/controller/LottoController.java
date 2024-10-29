@@ -12,52 +12,57 @@ public class LottoController {
 
     private final LottoService lottoService;
 
-    public LottoController(LottoService lottoService){
+    public LottoController(LottoService lottoService) {
         this.lottoService = lottoService;
     }
 
-    public void startLottoGame(){
-
-        LottoMachine lottoMachine = getLottoMachine();
+    public void startLottoGame() {
+        LottoMachine lottoMachine = initializeLottoMachine();
         OutputView.printBoughtLotto(lottoMachine);
 
-        Lotto winningLotto = getLotto();
+        Lotto winningLotto = initializeWinningLotto();
+        BonusNumber bonusNumber = initializeBonusNumber();
 
-        BonusNumber bonusNumber = getNumber();
+        LottoResultManager lottoResultManager = calculateLottoResults(winningLotto, bonusNumber, lottoMachine);
+        displayResults(lottoResultManager);
+    }
 
-        LottoResultManager lottoResultManager = lottoService.checkLottoResult(winningLotto, bonusNumber, lottoMachine);
+    private LottoMachine initializeLottoMachine() {
+        while (true) {
+            try {
+                return lottoService.generateLottoNumbers(InputView.inputPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto initializeWinningLotto() {
+        while (true) {
+            try {
+                return lottoService.initializeWinningLotto(InputView.inputWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber initializeBonusNumber() {
+        while (true) {
+            try {
+                return lottoService.initializeBonusNumber(InputView.inputBonusNumber());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private LottoResultManager calculateLottoResults(Lotto winningLotto, BonusNumber bonusNumber, LottoMachine lottoMachine) {
+        return lottoService.checkLottoResult(winningLotto, bonusNumber, lottoMachine);
+    }
+
+    private void displayResults(LottoResultManager lottoResultManager) {
         OutputView.printLottoResult();
-
         OutputView.printLottoProfit(lottoResultManager);
-
     }
-
-    private BonusNumber getNumber() {
-        try {
-            return lottoService.initializeBonusNumber(InputView.inputBonusNumber());
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return getNumber();
-        }
-    }
-
-    private Lotto getLotto() {
-        try {
-            return lottoService.initializeWinningLotto(InputView.inputWinningNumbers());
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return getLotto();
-        }
-    }
-
-    private LottoMachine getLottoMachine() {
-        try {
-            return lottoService.generateLottoNumbers(InputView.inputPrice());
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return getLottoMachine();
-        }
-    }
-
-
 }
