@@ -1,8 +1,6 @@
 package lotto;
 
-import lotto.lottery.controller.LottoController;
-import lotto.util.Validator;
-import lotto.view.InputHandler;
+import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {

@@ -8,16 +8,23 @@ public class Validator {
      */
     private static final String LOTTO_NUMBERS_REGEX = "^(0?[1-9]|[1-3][0-9]|4[0-5])(\\s?,\\s?(0?[1-9]|[1-3][0-9]|4[0-5])){5}$";
     private static final String PURCHASE_MONEY_REGEX = "^[1-9]\\d*000$"; // 맨 앞은 무조건 0이 아니고, 맨 뒷자리는 무조건 000으로 끝나야 함
+    private static final String BONUS_NUMBER_REGEX = "^(0?[1-9]|[1-3][0-9]|4[0-5])$";
 
     public void checkLottoNumbers(String input) {
         if (!input.matches(LOTTO_NUMBERS_REGEX)) {
-            throw new IllegalArgumentException("로또 번호 형식이 올바르지 않습니다.");
+            throw new IllegalArgumentException("로또 번호의 형식이 올바르지 않습니다.");
         }
     }
 
     public void checkPurchaseMoney(String input) {
         if (!input.matches(PURCHASE_MONEY_REGEX)) {
             throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
+    }
+
+    public void checkBonusNumber(String input) {
+        if (!input.matches(BONUS_NUMBER_REGEX)) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

@@ -1,4 +1,4 @@
-package lotto.lottery.domain;
+package lotto.domain;
 
 public class LottoCompany {
     /* TODO: 로또 회사의 역할
