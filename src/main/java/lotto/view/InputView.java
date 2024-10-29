@@ -20,23 +20,29 @@ public class InputView {
         String fieldName = "구입금액";
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
         String input = readLine();
+
         validateNumber(input, fieldName);
 
         int amount = Integer.parseInt(input);
         validateDivisible(amount);
+
         return amount;
     }
 
-    public void readWinningNumbers() {
+    public List<Integer> readWinningNumbers() {
         String fieldName = "당첨번호";
         System.out.println(WINNING_NUMBERS_MESSAGE);
         String input = readLine();
 
         List<String> numberTokens = splitWinningNumbers(input);
         validateWinningNumberCount(numberTokens);
+
         numberTokens.forEach(i -> validateNumber(i, fieldName));
 
         List<Integer> winningNumbers = parseToNumbers(numberTokens);
+        winningNumbers.forEach(i -> validateNumberInRange(i, fieldName));
+
+        return winningNumbers;
     }
 
     private void validateNumber(String input, String fieldName) {
@@ -67,5 +73,12 @@ public class InputView {
         return numbers.stream()
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private void validateNumberInRange(Integer number, String fieldName) {
+        if (number < MIN_WINNING_NUMBER)
+            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이상이어야 합니다.", fieldName, MIN_WINNING_NUMBER));
+        if (number > MAX_WINNING_NUMBER)
+            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이하이어야 합니다.", fieldName, MAX_WINNING_NUMBER));
     }
 }
