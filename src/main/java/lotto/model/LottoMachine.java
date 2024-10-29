@@ -22,7 +22,7 @@ public class LottoMachine {
         this.lottos = new ArrayList<>();
     }
 
-    public List<Lotto> generateLotto(Integer count){
+    public List<Lotto> generateLotto(){
         for (int i = 0; i < count; i++){
             lottos.add(createRandomLotto());
         }

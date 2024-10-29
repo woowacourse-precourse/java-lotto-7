@@ -14,7 +14,7 @@ public class LottoMachineTest {
     void 정상_케이스(){
         LottoMachine lottoMachine = new LottoMachine(10000);
         Integer count = lottoMachine.getCount();
-        assertEquals(lottoMachine.generateLotto(count).size(), 10);
+        assertEquals(lottoMachine.generateLotto().size(), 10);
         assertEquals(count, 10);
     }
 
