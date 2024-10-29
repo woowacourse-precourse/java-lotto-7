@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.io.OutputHandler;
+
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +19,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void printLotto() {
+        OutputHandler.printLottos(numbers);
+    }
+
+    // 각 번호가 당첨 번호랑 몇 개 맞는지 확인
 }
