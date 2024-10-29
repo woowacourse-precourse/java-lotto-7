@@ -20,7 +20,7 @@ public class LottoService {
         return resultManager;
     }
 
-    public LottoMachine createLottoMachineWithLottos(String inputPrice){
+    public LottoMachine createLottoMachine(String inputPrice){
         LottoMachine lottoMachine = new LottoMachine(parseStringToInteger(inputPrice));
         lottoMachine.generateLotto();
         return lottoMachine;

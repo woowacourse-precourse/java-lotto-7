@@ -30,7 +30,7 @@ public class LottoController {
     private LottoMachine initializeLottoMachine() {
         while (true) {
             try {
-                return lottoService.createLottoMachineWithLottos(InputView.inputPrice());
+                return lottoService.createLottoMachine(InputView.inputPrice());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
