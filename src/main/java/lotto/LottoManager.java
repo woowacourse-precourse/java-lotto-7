@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.io.LottoRequestReader;
 import lotto.io.LottoResponseWriter;
+import lotto.dto.WinningLotto;
 
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,9 @@ public class LottoManager {
         int bonusNumber = lottoRequestReader.getBonusNumber();
 
         Lotto lotto = new Lotto(winningLottoNumbers);
-        Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(lotto, bonusNumber);
+
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
 
         lottoResponseWriter.responseLottoPrize(purchaseMoney, lottoPrizeResult);
     }

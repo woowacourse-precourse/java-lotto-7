@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.dto.WinningLotto;
+
 import java.util.*;
 
 public class LottoMachine {
@@ -8,7 +10,7 @@ public class LottoMachine {
     private final LottoFactory lottoFactory;
 
 
-    public LottoMachine(UserLottoRepository userLottoRepository, LottoWinningEvaluator  lottoWinningEvaluator, LottoFactory LottoFactory) {
+    public LottoMachine(UserLottoRepository userLottoRepository, LottoWinningEvaluator lottoWinningEvaluator, LottoFactory LottoFactory) {
         this.userLottoRepository = userLottoRepository;
         this.lottoWinningEvaluator = lottoWinningEvaluator;
         this.lottoFactory = LottoFactory;
@@ -24,13 +26,16 @@ public class LottoMachine {
     }
 
 
-    public Map<LottoPrize, Integer> calculatePrize(Lotto winningLotto, int bonusNumber) {
+    public Map<LottoPrize, Integer> calculatePrize(WinningLotto winningLotto) {
         Map<LottoPrize, Integer> prizeResult = new HashMap<>();
 
         List<Lotto> userLottos = userLottoRepository.getAll();
         for (Lotto lotto : userLottos) {
-            Optional<LottoPrize> lottoPrize = lottoWinningEvaluator.calculatePrize(lotto, winningLotto, bonusNumber);
-            lottoPrize.ifPresent(prize -> prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1));
+            Optional<LottoPrize> lottoPrize = lottoWinningEvaluator.calculatePrize(lotto, winningLotto);
+
+            lottoPrize.ifPresent(prize ->
+                prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1)
+            );
         }
 
         userLottoRepository.clear();
