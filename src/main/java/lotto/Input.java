@@ -10,14 +10,13 @@ public class Input {
 			String amount = readLine();
 			Amount amountCheck = new Amount(amount);
 		} catch (IllegalArgumentException e) {
-			System.err.println("[ERROR] 숫자만 입력해주세요.");
+			System.err.println(e);
 			amountInput();
 		}
 	}
-	
+
 	public String readLine() {
 		return Console.readLine();
 	}
-	
-	
+
 }
