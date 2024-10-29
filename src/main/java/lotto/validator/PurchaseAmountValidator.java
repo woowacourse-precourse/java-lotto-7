@@ -5,13 +5,13 @@ import lotto.exception.PurchaseAmount.*;
 
 public class PurchaseAmountValidator {
     private static final int AMOUNT_UNIT = 1000;
+    private static final String REGEX_NUMBER = "^[0-9]+$";
 
     public static PurchaseAmountDto validate(final String input) {
         validateBlank(input);
         validateNumber(input);
         int convertNumber =  convert(input);
         validateNonZero(convertNumber);
-        validateNonNegative(convertNumber);
         validateMultipleOfThousand(convertNumber);
         return new PurchaseAmountDto(convertNumber);
     }
@@ -23,14 +23,8 @@ public class PurchaseAmountValidator {
     }
 
     private static void validateNumber(final String input) {
-        if(!Character.isDigit(input.charAt(0))) {
-            throw new NotNumberException();
-        }
-    }
-
-    private static void validateNonNegative(final int amount) {
-        if(amount < 0) {
-            throw new NegativeAmountException();
+        if(!input.matches(REGEX_NUMBER)) {
+            throw new NotPositiveNumberException();
         }
     }
 
