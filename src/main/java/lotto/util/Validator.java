@@ -42,4 +42,7 @@ public class Validator {
         }
     }
 
+    public boolean validateWinningNumber(String input) {
+        return true;
+    }
 }
