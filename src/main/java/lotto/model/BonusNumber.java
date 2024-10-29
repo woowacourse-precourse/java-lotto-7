@@ -22,7 +22,7 @@ public class BonusNumber {
     }
 
     private void checkBonusNumberRange(Integer bonusNumber){
-        if (bonusNumber <= MIN_LOTTO_NUMBER || bonusNumber >= MAX_LOTTO_NUMBER)
-            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_DUPLICATION);
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER)
+            throw new IllegalArgumentException(ErrorMessages.OUT_OF_BOUNDS_LOTTO_NUMBER);
     }
 }
