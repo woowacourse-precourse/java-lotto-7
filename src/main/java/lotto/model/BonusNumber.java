@@ -8,6 +8,9 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public Integer getBonusNumber(){
+        return bonusNumber;
+    }
     private void validate(Integer bonusNumber) {
         checkBonusNumberRange(bonusNumber);
     }
