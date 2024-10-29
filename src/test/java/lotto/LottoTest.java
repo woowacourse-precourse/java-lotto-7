@@ -1,10 +1,13 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.PurchaseLottoCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +24,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("구매한 로또 게임 장수를 확인한다.")
+    @Test
+    void 로또_구매_장수_테스트() {
+        PurchaseLottoCount purchaseLottoCount = new PurchaseLottoCount(8000);
+
+        assertThat(purchaseLottoCount.calculateLottoGameCount()).isEqualTo(8);
+    }
+
+    @DisplayName("구매할 금액이 1000원 미만이면 예외가 발생한다.")
+    @Test
+    void 로또_구매_금액_1000원_미만_예외_테스트() {
+        assertThatThrownBy(() -> new PurchaseLottoCount(100))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구매할 금액이 1000원 단위가 아니면 예외가 발생한다.")
+    @Test
+    void 로또_구매_금액_1000원_단위가_아닐때_예외_테스트() {
+        assertThatThrownBy(() -> new PurchaseLottoCount(1100))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
