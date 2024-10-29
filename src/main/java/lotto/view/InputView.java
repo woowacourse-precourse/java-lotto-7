@@ -30,7 +30,7 @@ public class InputView {
         System.out.println(WINNING_NUMBERS_MESSAGE);
         String input = readLine();
 
-        List<String> winningNumbers = parseWinningNumbers(input);
+        List<String> winningNumbers = splitWinningNumbers(input);
         validateWinningNumberCount(winningNumbers);
         winningNumbers.forEach(i -> validateNumber(i, "당첨번호"));
 
@@ -50,15 +50,13 @@ public class InputView {
         }
     }
 
-    private List<String> parseWinningNumbers(String input) {
+    private List<String> splitWinningNumbers(String input) {
         return Arrays.stream(input.split(WINNING_NUMBER_DELIMITER)).toList();
     }
 
     private void validateWinningNumberCount(List<String> winningNumbers) {
-        if(winningNumbers.size() != WINNING_NUMBER_COUNT) {
+        if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", WINNING_NUMBER_COUNT));
         }
     }
-
-
 }
