@@ -36,4 +36,15 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될 수 없습니다");
         }
     }
+
+    public int countContainNumber(Lotto winningNumbers) {
+        return (int) winningNumbers.numbers.stream()
+            .filter(winningNumber -> numbers.contains(winningNumber))
+            .count();
+    }
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.stream()
+            .anyMatch(number -> number == bonusNumber);
+    }
 }
