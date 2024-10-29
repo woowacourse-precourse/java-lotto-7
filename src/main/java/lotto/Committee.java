@@ -8,6 +8,8 @@ public class Committee {
 
     private ArrayList<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
+    private int winningNumberIllegalArgumentExceptionCount = 0;
+    private int bonusNumberIllegalArgumentExceptionCount = 0;
 
     public Committee() {
         inputWinningNumbers();
@@ -27,8 +29,11 @@ public class Committee {
                 this.winningNumbers.add(validatedNumber);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            inputWinningNumbers();
+            if (winningNumberIllegalArgumentExceptionCount++ < 5) {
+                System.out.println(e.getMessage());
+                inputWinningNumbers();
+            }
+            throw e;
         }
     }
 
@@ -62,8 +67,11 @@ public class Committee {
             String input = Console.readLine();
             this.bonusNumber = validateBonusNumber(input);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            inputBonusNumber();
+            if (bonusNumberIllegalArgumentExceptionCount++ < 5) {
+                System.out.println(e.getMessage());
+                inputBonusNumber();
+            }
+            throw e;
         }
     }
 

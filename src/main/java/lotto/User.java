@@ -12,6 +12,7 @@ public class User {
     private int lottoCount;
     private ArrayList<Lotto> lottos = new ArrayList<>();
     private Map<Prize, Integer> prizes = new LinkedHashMap<>();
+    private int illegalArgumentExceptionCount = 0;
 
     public User() {
         this.lottoCount = inputLottoCount();
@@ -23,19 +24,22 @@ public class User {
         }
     }
 
-    private static int inputLottoCount() {
+    private int inputLottoCount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
             int purchaseAmount = validatePurchaseAmount(input);
             return purchaseAmount / 1000;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return inputLottoCount();
+            if (illegalArgumentExceptionCount++ < 5) {
+                System.out.println(e.getMessage());
+                return inputLottoCount();
+            }
+            throw e;
         }
     }
 
-    private static int validatePurchaseAmount(String input) {
+    private int validatePurchaseAmount(String input) {
         int purchaseAmount;
 
         try {
