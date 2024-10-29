@@ -1,15 +1,23 @@
 package lotto.view;
 
+import lotto.Lotto;
+import lotto.domain.PurchasedLotto;
+
+import java.util.List;
+
 public class OutputView {
 
-    private static final String ERROR = "[Error] ";
     private static final String PURCHASE_QUANTITY = "개를 구매했습니다.";
-
-    public void printErrorMessage(final String errorMessage) {
-        System.out.println(ERROR + errorMessage);
-    }
 
     public void printPurchaseAmount(final int amount) {
         System.out.println(amount + PURCHASE_QUANTITY);
+    }
+
+    public void printPurchasedLottos(final List<Lotto> lottos) {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            sb.append(lotto).append('\n');
+        }
+        System.out.println(sb);
     }
 }
