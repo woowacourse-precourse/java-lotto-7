@@ -3,35 +3,37 @@ package lotto;
 import java.util.*;
 
 public class LottoMachine {
-    private final List<Lotto> buyingLottos;
+    private final UserLottoRepository userLottoRepository;
     private final LottoWinningEvaluator lottoWinningEvaluator;
-    private final LottoFactory LottoFactory;
+    private final LottoFactory lottoFactory;
 
 
-    public LottoMachine(LottoWinningEvaluator lottoWinningEvaluator, LottoFactory LottoFactory) {
-        this.buyingLottos = new ArrayList<>();
+    public LottoMachine(UserLottoRepository userLottoRepository, LottoWinningEvaluator  lottoWinningEvaluator, LottoFactory LottoFactory) {
+        this.userLottoRepository = userLottoRepository;
         this.lottoWinningEvaluator = lottoWinningEvaluator;
-        this.LottoFactory = LottoFactory;
+        this.lottoFactory = LottoFactory;
     }
 
     public void buyLotto() {
-        Lotto lotto = LottoFactory.createRandomLotto();
-        buyingLottos.add(lotto);
+        Lotto lotto = lottoFactory.createRandomLotto();
+        userLottoRepository.save(lotto);
     }
 
     public List<Lotto> getBuyingLottos() {
-        return buyingLottos;
+        return userLottoRepository.getAll();
     }
 
 
     public Map<LottoPrize, Integer> calculatePrize(Lotto winningLotto, int bonusNumber) {
         Map<LottoPrize, Integer> prizeResult = new HashMap<>();
-        for (Lotto lotto : buyingLottos) {
+
+        List<Lotto> userLottos = userLottoRepository.getAll();
+        for (Lotto lotto : userLottos) {
             Optional<LottoPrize> lottoPrize = lottoWinningEvaluator.calculatePrize(lotto, winningLotto, bonusNumber);
             lottoPrize.ifPresent(prize -> prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1));
         }
 
-        buyingLottos.clear();
+        userLottoRepository.clear();
         return prizeResult;
     }
 
