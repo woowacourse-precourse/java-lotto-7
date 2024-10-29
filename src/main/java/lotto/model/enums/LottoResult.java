@@ -7,11 +7,15 @@ import static lotto.utils.LottoConstants.*;
 
 public enum LottoResult {
 
-    FIRST("6개 일치 (2,000,000,000원) - %d개", FIRST_PRIZE_MONEY, 0, FIRST_PRIZE_MATCH_COUNT, false),
-    SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", SECOND_PRIZE_MONEY, 0, SECOND_PRIZE_MATCH_COUNT,true),
-    THIRD("5개 일치 (1,500,000원) - %d개", THIRD_PRIZE_MONEY, 0, THIRD_PRIZE_MATCH_COUNT,false),
+
+    FIFTH("3개 일치 (5,000원) - %d개", FIFTH_PRIZE_MONEY, 0,FIFTH_PRIZE_MATCH_COUNT,false),
+
     FOURTH("4개 일치 (50,000원) - %d개", FOURTH_PRIZE_MONEY, 0, FOURTH_PRIZE_MATCH_COUNT,false),
-    FIFTH("3개 일치 (5,000원) - %d개", FIFTH_PRIZE_MONEY, 0,FIFTH_PRIZE_MATCH_COUNT,false);
+
+    THIRD("5개 일치 (1,500,000원) - %d개", THIRD_PRIZE_MONEY, 0, THIRD_PRIZE_MATCH_COUNT,false),
+
+    SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", SECOND_PRIZE_MONEY, 0, SECOND_PRIZE_MATCH_COUNT,true),
+    FIRST("6개 일치 (2,000,000,000원) - %d개", FIRST_PRIZE_MONEY, 0, FIRST_PRIZE_MATCH_COUNT, false);
 
 
     private final String message;
