@@ -1,7 +1,6 @@
 package lotto.util;
 
-import static lotto.constant.ErrorMessage.PRICE_TOO_LOW_ERROR;
-import static lotto.constant.ErrorMessage.PRICE_TYPE_ERROR;
+import static lotto.constant.ErrorMessage.*;
 
 public class Validator {
 
@@ -11,6 +10,7 @@ public class Validator {
         try{
             checkNumberType(price);
             checkPriceThreshold(price);
+            checkPriceDivisible(price);
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -34,6 +34,12 @@ public class Validator {
         }
     }
 
-
+    private void checkPriceDivisible(String input) {
+        int price = Integer.parseInt(input);
+        if (price % THRESHOLD_PRICE != 0) {
+            System.out.println(PRICE_NOT_DIVISIBLE_ERROR.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
 
 }

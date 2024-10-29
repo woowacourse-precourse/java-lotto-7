@@ -9,5 +9,4 @@ public class InputView {
         return Integer.parseInt(price);
     }
 
-
 }
