@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public Long inputPurchaseAmount() {
+    public int inputPurchaseAmount() {
         String userInput = Console.readLine();
-        return Long.parseLong(userInput);
+        return Integer.parseInt(userInput);
     }
 }
