@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.io.ErrorLogger;
 import lotto.io.LottoRequestReader;
 import lotto.io.LottoResponseWriter;
 
@@ -14,8 +15,9 @@ public class Application {
         LottoPricePolicy lottoPricePolicy = new LottoPricePolicy();
         LottoRequestReader lottoRequestReader = new LottoRequestReader();
         LottoResponseWriter lottoResponseWriter = new LottoResponseWriter();
+        ErrorLogger errorLogger = new ErrorLogger();
 
-        LottoManager lottoManager = new LottoManager(lottoRequestReader, lottoResponseWriter, lottoMachine, lottoPricePolicy);
+        LottoManager lottoManager = new LottoManager(lottoRequestReader, lottoResponseWriter, errorLogger, lottoMachine, lottoPricePolicy);
 
         // 1. 로또 구매 및 당첨 확인
         lottoManager.run();
