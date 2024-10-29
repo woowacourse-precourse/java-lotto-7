@@ -24,5 +24,8 @@ public class Amount {
 		if (amount > 100000) {
 			throw new IllegalArgumentException("[ERROR] 구매 금액은 100000원 이하로 입력해주세요.");
 		}
+		if (amount % 1000 != 0) {
+			throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해주세요.");
+		}
 	}
 }
