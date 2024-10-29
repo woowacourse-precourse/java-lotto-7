@@ -27,13 +27,17 @@ public enum Rank {
     public static Rank fromMatchCount(int matchCount, boolean hasBonus) {
         if (matchCount == FIRST.matchCount) {
             return FIRST;
-        } else if (matchCount == SECOND.matchCount && hasBonus) {
+        }
+        if (matchCount == SECOND.matchCount && hasBonus) {
             return SECOND;
-        } else if (matchCount == THIRD.matchCount) {
+        }
+        if (matchCount == THIRD.matchCount) {
             return THIRD;
-        } else if (matchCount == FOURTH.matchCount) {
+        }
+        if (matchCount == FOURTH.matchCount) {
             return FOURTH;
-        } else if (matchCount == FIFTH.matchCount) {
+        }
+        if (matchCount == FIFTH.matchCount) {
             return FIFTH;
         }
         return NONE;
