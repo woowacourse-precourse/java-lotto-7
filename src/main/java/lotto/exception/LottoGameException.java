@@ -1,6 +1,7 @@
 package lotto.exception;
 
 import lotto.config.LottoGameConfig;
+import lotto.exception.custom.CustomException;
 
 public class LottoGameException extends IllegalArgumentException {
 

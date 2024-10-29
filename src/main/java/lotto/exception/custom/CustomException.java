@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.custom;
 
 public interface CustomException {
 
