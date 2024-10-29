@@ -5,12 +5,12 @@ import lotto.domain.LottoQuantity;
 import lotto.domain.Price;
 import lotto.domain.WinNumbers;
 
-public class LottoApplication {
+public class ScenarioApplication {
 
     private final MakeNumbersStrategy makeNumbersStrategy;
     private final Reader reader;
 
-    public LottoApplication(AppConfig appConfig) {
+    public ScenarioApplication(AppConfig appConfig) {
         this.makeNumbersStrategy = appConfig.makeNumbersStrategy();
         this.reader = appConfig.reader();
     }
