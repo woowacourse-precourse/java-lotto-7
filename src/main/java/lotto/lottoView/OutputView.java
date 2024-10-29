@@ -1,4 +1,4 @@
-package lottoView;
+package lotto.lottoView;
 
 public class OutputView {
 }
