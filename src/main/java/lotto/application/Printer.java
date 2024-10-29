@@ -9,5 +9,5 @@ public interface Printer {
 
     void printPurchaseResult(int quantity, Lottos lottos);
 
-//    void printPrizeResult(PrizeNumber prizeNumber);
+    void printPrizeResult(PrizeNumber prizeNumber,double profit);
 }

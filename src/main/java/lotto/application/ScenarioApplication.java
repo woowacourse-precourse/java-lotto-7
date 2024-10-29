@@ -23,28 +23,29 @@ public class ScenarioApplication {
 
     public void run() {
         LottoApplication lottoApplication = new LottoApplication(makeNumbersStrategy, calculator);
+        printer.print("구입금액을 입력해 주세요.");
         String originPrice = reader.read();
         PurchasePrice purchasePrice = PurchasePrice.validatePrice(originPrice);
         LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice);
+        Lottos lottos = Lottos.of(lottoQuantity, makeNumbersStrategy);
+        printer.printPurchaseResult(lottoQuantity.value(), lottos);
 
+        printer.print("\n당첨 번호를 입력해 주세요.");
         String originWinNumbers = reader.read();
         WinNumbers winNumbersWithOutBonusNumber = WinNumbers.winNumbersFrom(originWinNumbers);
+
+        printer.print("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = reader.read();
         WinNumbers winNumbers = winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);
 
-        Lottos lottos = Lottos.of(lottoQuantity, makeNumbersStrategy);
         PrizeNumber prizeNumber = lottoApplication.run(lottoQuantity, winNumbers, lottos);
         calculateResult(purchasePrice, prizeNumber);
-
-        printResult(lottoQuantity, lottos);
     }
 
     private void calculateResult(PurchasePrice purchasePrice, PrizeNumber prizeNumber) {
         int totalPrize = calculator.calculateTotalPrize(prizeNumber);
-        calculator.calculateProfit(totalPrize, purchasePrice.value());
-    }
+        double profit = calculator.calculateProfit(totalPrize, purchasePrice.value());
 
-    private void printResult(LottoQuantity lottoQuantity, Lottos lottos) {
-        printer.printPurchaseResult(lottoQuantity.value(), lottos);
+        printer.printPrizeResult(prizeNumber, profit);
     }
 }
