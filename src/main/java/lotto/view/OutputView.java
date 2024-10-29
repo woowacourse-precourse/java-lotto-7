@@ -14,7 +14,7 @@ public class OutputView {
     public static void printBoughtLotto(LottoMachine lottoMachine){
         System.out.println(lottoMachine.getCount() + BOUGHT_LOTTO);
         for (Lotto lotto : lottoMachine.getLottos())
-            System.out.println(OPEN_BRACKET + lotto.getFormattedNumbers() + CLOSE_BRACKET);
+            System.out.println(lotto.getFormattedNumbers());
     }
 
     public static void printLottoResult(){
