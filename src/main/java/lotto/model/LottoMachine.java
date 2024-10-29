@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.utils.Constants;
+import lotto.utils.ErrorMessages;
 
 public class LottoMachine {
 
@@ -34,7 +35,7 @@ public class LottoMachine {
 
     private void validateLottoPrice(Integer price){
         if (price % LOTTO_PRICE_VALIDATE_VALUE != 0)
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_PRICE);
     }
 
     private Integer countLotto(Integer price){

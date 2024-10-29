@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.utils.Constants.MAX_LOTTO_NUMBER;
 import static lotto.utils.Constants.MIN_LOTTO_NUMBER;
 
+import lotto.utils.ErrorMessages;
+
 
 public class BonusNumber {
     private final Integer bonusNumber;
@@ -21,6 +23,6 @@ public class BonusNumber {
 
     private void checkBonusNumberRange(Integer bonusNumber){
         if (bonusNumber <= MIN_LOTTO_NUMBER || bonusNumber >= MAX_LOTTO_NUMBER)
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_DUPLICATION);
     }
 }
