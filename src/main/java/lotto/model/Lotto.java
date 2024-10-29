@@ -30,7 +30,7 @@ public class Lotto {
 
     private void checkLottoNumberRange(List<Integer> numbers){
         for (Integer num : numbers){
-            if (num <= 1 || num >= 45)
+            if (num < 1 || num > 45)
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이여야 합니다.");
         }
     }
