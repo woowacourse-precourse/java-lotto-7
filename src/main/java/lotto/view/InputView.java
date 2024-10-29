@@ -42,6 +42,8 @@ public class InputView {
         numberTokens.forEach(i -> validateNumber(i, fieldName));
 
         List<Integer> winningNumbers = parseToNumbers(numberTokens);
+        validateDuplicates(winningNumbers);
+
         winningNumbers.forEach(i -> validateNumberInRange(i, fieldName));
 
         return sortAscending(winningNumbers);
@@ -95,6 +97,12 @@ public class InputView {
             throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이상이어야 합니다.", fieldName, MIN_WINNING_NUMBER));
         if (number > MAX_WINNING_NUMBER)
             throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이하이어야 합니다.", fieldName, MAX_WINNING_NUMBER));
+    }
+
+    private void validateDuplicates(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 중복될 수 없습니다.");
+        }
     }
 
     private List<Integer> sortAscending(List<Integer> numbers) {
