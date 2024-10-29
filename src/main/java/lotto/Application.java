@@ -1,7 +1,14 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.converter.PurchaseCountConverter;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        String inputPurchaseAmount = Console.readLine();
+
+        PurchaseCountConverter purchaseCountConverter = new PurchaseCountConverter();
+        int purchaseCount = purchaseCountConverter.getPurchaseCount(inputPurchaseAmount);
     }
 }
