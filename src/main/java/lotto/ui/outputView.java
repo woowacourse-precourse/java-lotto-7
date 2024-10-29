@@ -1,6 +1,8 @@
 package lotto.ui;
 
 import java.util.List;
+import java.util.Map;
+import lotto.Prize;
 
 public class outputView {
     public static void showPurchasedNumbers(List<String> lottery){
@@ -11,14 +13,14 @@ public class outputView {
         }
     }
 
-    public static void summaryWinning(List<Integer> winnings){
+    public static void summaryWinning(Map<Prize, Integer> winnings, double ratio){
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(int i = 3; i<winnings.size(); i++){
-            System.out.println();
+        for(Prize prize : winnings.keySet()){
+            System.out.println(prize.toString() + "-" + winnings.get(prize) + "개");
         }
 
-        System.out.println("총 수익률은 ?? 입니다" );
+        System.out.printf("총 수익률은 %.1f 입니다", ratio);
     }
 }
