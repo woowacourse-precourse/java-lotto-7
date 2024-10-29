@@ -18,12 +18,12 @@ public class LottoController {
 
     public void startLottoGame(){
 
-        LottoMachine lottoMachine = lottoService.generateLottoNumbers(getPrice());
+        LottoMachine lottoMachine = getLottoMachine();
         OutputView.printBoughtLotto(lottoMachine);
 
-        Lotto winningLotto = lottoService.initializeWinningLotto(getWinningLotto());
+        Lotto winningLotto = getLotto();
 
-        BonusNumber bonusNumber = lottoService.initializeBonusNumber(getBonusNumber());
+        BonusNumber bonusNumber = getNumber();
 
         LottoResultManager lottoResultManager = lottoService.checkLottoResult(winningLotto, bonusNumber, lottoMachine);
         OutputView.printLottoResult();
@@ -32,32 +32,32 @@ public class LottoController {
 
     }
 
-
-    private static String getWinningLotto() {
+    private BonusNumber getNumber() {
         try {
-            return InputView.inputWinningNumbers();
-        }catch (IllegalArgumentException e){
+            return lottoService.initializeBonusNumber(InputView.inputBonusNumber());
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return getWinningLotto();
+            return getNumber();
         }
     }
 
-    private static String getBonusNumber() {
+    private Lotto getLotto() {
         try {
-            return InputView.inputBonusNumber();
-        }catch (IllegalArgumentException e){
+            return lottoService.initializeWinningLotto(InputView.inputWinningNumbers());
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getLotto();
         }
     }
 
-    private static String getPrice() {
+    private LottoMachine getLottoMachine() {
         try {
-            return InputView.inputPrice();
-        }catch (IllegalArgumentException e) {
+            return lottoService.generateLottoNumbers(InputView.inputPrice());
+        } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            return getPrice();
+            return getLottoMachine();
         }
     }
+
 
 }
