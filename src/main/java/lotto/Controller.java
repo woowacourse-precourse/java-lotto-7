@@ -14,6 +14,8 @@ public class Controller {
 
         String selectedNumbers = inputHandler.getSelectedNumbers();
         String[] split = selectedNumbers.split(",");
+
+        int bonusNumber = inputHandler.getBonusNumber();
     }
 
 }
