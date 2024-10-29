@@ -17,7 +17,7 @@ public class LottoController {
         int purchaseQuantity = inputView.inputPurchaseAmount();
         LottoMachine lottoMachine = new LottoMachine(generator);
         Lotteries lotteries = lottoMachine.getLotteries(purchaseQuantity);
-
+        outputView.showLottoCountAndNumbers(lotteries);
 
     }
 }

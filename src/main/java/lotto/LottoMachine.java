@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.stream.IntStream;
 import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
@@ -23,7 +24,9 @@ public class LottoMachine {
 
     private Lotteries generateLotteries(int quantity) {
         return Lotteries.of(IntStream.range(0, quantity)
-                .mapToObj(index -> new Lotto(generator.generateNumbers()))
+                .mapToObj(index -> new Lotto(
+                        generator.generateNumbers().stream().sorted().toList()
+                ))
                 .toList());
     }
 }
