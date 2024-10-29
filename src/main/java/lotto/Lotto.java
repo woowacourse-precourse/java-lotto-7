@@ -14,7 +14,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         checkLottoNumbersSize(numbers);
         checkLottoNumberIsDuplicate(numbers);
-
+        checkLottoNumberRange(numbers);
     }
 
     private void checkLottoNumbersSize(List<Integer> numbers) {
@@ -28,6 +28,10 @@ public class Lotto {
         }
     }
 
-
-    // TODO: 추가 기능 구현
+    private void checkLottoNumberRange(List<Integer> numbers){
+        for (Integer num : numbers){
+            if (num <= 1 || num >= 45)
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이여야 합니다.");
+        }
+    }
 }
