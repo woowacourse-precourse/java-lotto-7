@@ -17,13 +17,15 @@ public class Source {
         return winningNumber.split(",");
     }
 
-    public static List<Integer> parseNumbers(String[] winningNumber){
-        try{
-            return Stream.of(winningNumber)
+    public static Lotto parseNumbers(String[] winningNumber) {
+        List<Integer> parsing;
+        try {
+            parsing = Stream.of(winningNumber)
                     .map(Integer::parseInt)
                     .toList();
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
+        return new Lotto(parsing);
     }
 }
