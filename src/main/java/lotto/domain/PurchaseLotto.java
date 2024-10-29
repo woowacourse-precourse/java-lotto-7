@@ -1,11 +1,11 @@
 package lotto.domain;
 
-public class PurchaseLottoCount {
+public class PurchaseLotto {
     private static final int LOTTO_PRICE = 1000;
 
     private final int money;
 
-    public PurchaseLottoCount(int money) {
+    public PurchaseLotto(int money) {
         validateLeastMoney(money);
         validateMoneyInThousandUnit(money);
         this.money = money;
@@ -26,4 +26,6 @@ public class PurchaseLottoCount {
     public int calculateLottoGameCount() {
         return money / LOTTO_PRICE;
     }
+
+    
 }
