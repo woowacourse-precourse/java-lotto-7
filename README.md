@@ -5,23 +5,29 @@
 ## 입력
 
 입력1) 로또 구입 금액을 입력 받고, 1000으로 나누어 발행할 로또 수량을 구한다  
-✔️입력1 예외사항
-- 양의 정수를 입력하지 않으면 IllegalArgumentException을 발생시킨다
-- 1000으로 나누어떨어지지 않으면 IllegalArgumentException을 발생시킨다
+✔️입력1 예외사항: IllegalArgumentException을 발생시키고 입력을 다시 받는다
+- 양의 정수를 입력하지 않는 경우 ex) "-1","0","1.5","!","a","3a"
+- 1000으로 나누어떨어지지 않는 경우 ex)150, 400, 1100
+- 아무것도 입력하지 않는 경우
+
+
 
 입력2) 당첨 번호를 입력받는다.  
-✔️입력2 예외사항
-- 로또 번호 중 하나라도 1부터 45 사이에 존재하지 않으면 IllegalArgumentException을 발생시킨다
-- 중복된 번호가 있으면 IllegalArgumentException을 발생시킨다
-- 6개를 입력하지 않으면 IllegalArgumentException을 발생시킨다
-- 문자열에 숫자 또는 쉼표가 아닌 것이 존재하면 IllegalArgumentException을 발생시킨다
+✔️입력2 예외사항:  IllegalArgumentException을 발생시키고 입력을 다시 받는다
+- 로또 번호 중 하나라도 1부터 45 사이에 존재하지 않는 경우
+- 중복된 번호가 존재하는 경우
+- 입력 개수가 6개가 아닌 경우
+- 숫자,쉼표가 아닌 문자를 입력한 경우
+- 아무것도 입력하지 않은 경우
+- 양의 정수를 입력하지 않은 경우
 
 입력3) 보너스 번호를 입력 받는다  
-✔️입력3 예외사항  
-- 양의 정수를 입력하지 않으면 IllegalArgumentException을 발생시킨다
-- 보너스 번호가 당첨 번호 중 하나와 같다면 IllegalArgumentException을 발생시킨다
-- 1부터 45 사이에 존재하지 않으면 IllegalArgumentException을 발생시킨다
-- 문자열에 숫자가 아닌 것이 존재하면 IllegalArgumentException을 발생시킨다
+✔️입력3 예외사항: IllegalArgumentException을 발생시키고 입력을 다시 받는다
+- 양의 정수를 입력하지 않은 경우
+- 보너스 번호가 당첨 번호 중 하나와 같은 경우
+- 1부터 45 사이에 존재하지 않는 경우
+- 숫자가 아닌 문자를 입력한 경우
+- 아무것도 입력하지 않은 경우
 
 ## 로또 발행하기
 로또 수량만큼 1부터 45 사이 서로 다른 여섯개 숫자를 뽑는다.  
