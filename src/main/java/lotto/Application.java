@@ -1,7 +1,19 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+
+        String INPUT_MONEY = Console.readLine();
+
+        if (validateMoney(INPUT_MONEY)) {
+        }
+
+    }
+
+    private static boolean validateMoney(String inputMoney) {
+        return inputMoney.Integer.parseInt(inputMoney);
     }
 }
