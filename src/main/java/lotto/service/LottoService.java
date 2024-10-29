@@ -13,24 +13,29 @@ import lotto.utils.ErrorMessages;
 
 public class LottoService {
 
-    public LottoResultManager initializeLottoGame(String inputPrice, String inputWinningLotto, String inputBonusNumber){
 
-        Lotto winningLotto = initializeWinningLotto(inputWinningLotto);
-        BonusNumber bonusNumber = initializeBonusNumber(inputBonusNumber);
-        LottoMachine lottoMachine = initializeLottoMachine(inputPrice);
+    public LottoResultManager checkLottoResult(Lotto winningLotto, BonusNumber bonusNumber, LottoMachine lottoMachine){
+        LottoResultManager lottoResultManager = new LottoResultManager(winningLotto, bonusNumber, lottoMachine.getPrice());
 
-        return new LottoResultManager(winningLotto, bonusNumber, lottoMachine.getPrice());
+        List<Lotto> lottos = lottoMachine.getLottos();
+
+        lottoResultManager.checkLottos(lottos);
+
+        return lottoResultManager;
     }
 
-    private LottoMachine initializeLottoMachine(String inputPrice){
-        return new LottoMachine(parseToInteger(inputPrice));
+
+    public LottoMachine generateLottoNumbers(String inputPrice){
+        LottoMachine lottoMachine =  new LottoMachine(parseToInteger(inputPrice));
+        lottoMachine.generateLotto();
+        return lottoMachine;
     }
 
-    private Lotto initializeWinningLotto(String inputWinningLotto){
+    public Lotto initializeWinningLotto(String inputWinningLotto){
         return new Lotto(parseInputToList(inputWinningLotto));
     }
 
-    private BonusNumber initializeBonusNumber(String inputBonusNumber){
+    public BonusNumber initializeBonusNumber(String inputBonusNumber){
         return new BonusNumber(parseToInteger(inputBonusNumber));
     }
 
