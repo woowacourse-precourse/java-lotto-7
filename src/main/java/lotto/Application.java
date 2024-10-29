@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +26,13 @@ public class Application {
         Integer purchasePrice = parseInt(rawPurchasePrice);
         Integer lottoCount = countLotto(purchasePrice);
         System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
+        List<Lotto> lottoList = new ArrayList<>();
         //로또들 출력...
+        for(int i = 0; i < lottoCount; i++){
+            Lotto newLotto = Lotto.sortLotto(Lotto.getLotto());
+            lottoList.add(newLotto);
+            Lotto.printLotto(newLotto);
+        }
         System.out.println(LOTTO_WINNING_INPUT);
         String rawWinningInput = Console.readLine();
         Lotto answer = new Lotto(checkWinNumber(rawWinningInput));
