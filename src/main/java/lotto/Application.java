@@ -2,6 +2,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -17,6 +18,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        Application ap = new Application();
+        ap.purchase_history(5);
 
     }
     public void logic(){
@@ -27,11 +30,14 @@ public class Application {
         System.out.println(num+print_msg.checkMsg);
         List<Integer> lotto_list [] = initialLottoArray(num);
         for(int i = 0; i < num; i++){
-            List<Integer> list = new ArrayList<>();
-            Lotto lotto = new Lotto(list);
+            Lotto lotto = new Lotto(new ArrayList<>());
             lotto_list[i] = lotto.random_range();
+            lotto.validate(lotto_list[i]);
+            lotto_list[i].sort(Integer::compare);
+            System.out.println(lotto_list[i]);
         }
     }
+
     public List[] initialLottoArray(int num){
         List<Integer> list[] = new ArrayList[num];
         for(int i = 0; i < num; i++){
@@ -47,16 +53,14 @@ public class Application {
     public int validate_division(int amount){
         if(amount % one_ticket != 0){
             throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지지 않습니다. ");
-        }else{
-            return amount / one_ticket;
         }
+        return amount / one_ticket;
     }
 
     public class Lotto {
         private final List<Integer> numbers;
 
         public Lotto(List<Integer> numbers) {
-            validate(numbers);
             this.numbers = numbers;
         }
 
@@ -71,7 +75,7 @@ public class Application {
         }
 
         public List<Integer> random_range(){
-            numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            numbers.addAll(new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
             return numbers;
         }
     }
