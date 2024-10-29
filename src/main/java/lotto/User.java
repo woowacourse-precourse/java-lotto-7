@@ -27,15 +27,7 @@ public class User {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
-            int purchaseAmount;
-
-            try {
-                purchaseAmount = Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로 입력해야 합니다.");
-            }
-
-            validatePurchaseAmount(purchaseAmount);
+            int purchaseAmount = validatePurchaseAmount(input);
             return purchaseAmount / 1000;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -43,10 +35,20 @@ public class User {
         }
     }
 
-    private static void validatePurchaseAmount(int purchaseAmount) {
+    private static int validatePurchaseAmount(String input) {
+        int purchaseAmount;
+
+        try {
+            purchaseAmount = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 숫자로 입력해야 합니다.");
+        }
+
         if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
+
+        return purchaseAmount;
     }
 
     public void showLottoCount() {
