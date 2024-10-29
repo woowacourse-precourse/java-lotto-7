@@ -2,7 +2,7 @@ package lotto.ui;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Prize;
+import lotto.domain.Prize;
 
 public class outputView {
     public static void showPurchasedNumbers(List<String> lottery){

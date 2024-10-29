@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum Prize {
     FIRST(2_000_000_000, "6개 일치"),
