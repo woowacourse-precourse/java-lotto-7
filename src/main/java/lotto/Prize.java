@@ -18,10 +18,6 @@ public enum Prize {
         this.prizeAmount = prizeAmount;
     }
 
-    public int getPrizeAmount() {
-        return prizeAmount;
-    }
-
     public static Prize getPrize(int matchCount, int bonusMatch) {
         for (Prize prize : values()) {
             if (prize.matchCount == matchCount && prize.bonusMatch <= bonusMatch) {
@@ -29,5 +25,19 @@ public enum Prize {
             }
         }
         return FAIL;
+    }
+
+    public String getDescription() {
+        if (matchCount == 0) {
+            return null;
+        }
+
+        String description = matchCount + "개 일치";
+
+        if (this == SECOND) {
+            description += ", 보너스 볼 일치";
+        }
+
+        return description + " (" + String.format("%,d", prizeAmount) + "원)";
     }
 }

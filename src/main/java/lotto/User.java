@@ -64,4 +64,15 @@ public class User {
         Prize prize = Prize.getPrize(matchCount, bonusMatch);
         prizes.put(prize, prizes.get(prize) + 1);
     }
+
+    public void printPrizes() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (int i = Prize.values().length - 1; i >= 0; i--) {
+            Prize prize = Prize.values()[i];
+            if (prize != Prize.FAIL) {
+                System.out.println(prize.getDescription() + " - " + prizes.get(prize) + "개");
+            }
+        }
+    }
 }
