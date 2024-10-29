@@ -1,9 +1,9 @@
-package lotto.service;
+package lotto.lottery.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.service.port.RandomHolder;
+import lotto.lottery.domain.Lotto;
+import lotto.lottery.service.port.RandomHolder;
 
 public class LottoService {
     private List<Lotto> lottos = new ArrayList<>();

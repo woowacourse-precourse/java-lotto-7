@@ -2,7 +2,7 @@ package lotto.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.service.port.RandomHolder;
+import lotto.lottery.service.port.RandomHolder;
 
 public class FakeRandomHolder implements RandomHolder {
     private List<Integer> numbers = new ArrayList<>();

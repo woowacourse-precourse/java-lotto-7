@@ -1,8 +1,8 @@
-package lotto.infrastructure;
+package lotto.lottery.infrastructure;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.service.port.RandomHolder;
+import lotto.lottery.service.port.RandomHolder;
 
 public class LottoRandomHolder implements RandomHolder {
 

@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.lottery.domain;
 
-public enum Lottery {
+public enum LottoResult {
     SIX(6,2_000_000_000,"6개 일치 (2,000,000,000원) - "),
     FIVE_BONUS(5,30_000_000,"5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIVE(5,1_500_000,"5개 일치 (1,500,000원) - "),
@@ -12,20 +12,20 @@ public enum Lottery {
     private int price;
     private String description;
 
-    Lottery(int matchedCount, int price, String description) {
+    LottoResult(int matchedCount, int price, String description) {
         this.matchedCount = matchedCount;
         this.price = price;
         this.description = description;
     }
 
-    public static Lottery getLotteryResult(int matchedCount, boolean bonus) {
+    public static LottoResult getLotteryResult(int matchedCount, boolean bonus) {
         if(matchedCount < 3) return NONE;
 
         if (FIVE_BONUS.getMatchedCount() == matchedCount && bonus) {
             return FIVE_BONUS;
         }
 
-        for (Lottery value : Lottery.values()) {
+        for (LottoResult value : LottoResult.values()) {
             if (value != FIVE_BONUS && value.matchedCount == matchedCount) {
                 return value;
             }

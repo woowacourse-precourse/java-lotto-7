@@ -1,10 +1,10 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.lottery.domain.Lotto;
+import lotto.lottery.service.LottoService;
 import lotto.mock.FakeRandomHolder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package lotto.service.port;
+package lotto.lottery.service.port;
 
 import java.util.List;
 
