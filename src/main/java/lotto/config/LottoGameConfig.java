@@ -17,6 +17,8 @@ public class LottoGameConfig {
     public static final int END_NUMBER = 45;
     public static final int COUNT = 6;
 
+    public static final String ERROR_PREFIX = "[ERROR] ";
+
     private final InputView inputView;
     private final OutputView outputView;
 
