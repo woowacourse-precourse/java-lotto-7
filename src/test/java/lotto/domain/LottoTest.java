@@ -1,11 +1,14 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.Lotto;
+import camp.nextstep.edu.missionutils.test.Assertions;
+import lotto.service.RandomUniqueLottoNumGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,5 +25,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호_오름차순_정렬() {
+        String sortedLotto = "[1, 2, 3, 4, 5, 6]";
+        Assertions.assertRandomUniqueNumbersInRangeTest(() -> {
+                    Lotto lotto = new Lotto(new RandomUniqueLottoNumGenerator());
+                    assertThat(lotto.toString()).isEqualTo(sortedLotto);
+                },
+                new ArrayList<>(List.of(6, 2, 1, 3, 5, 4))  // List.of는 ImmutableCollections라 리스트 메서드 지원 X
+        );
+    }
+
 }
