@@ -23,10 +23,17 @@ public class InputView {
         return convertToWinningNumbers(splitWinningNumbers);
     }
 
+    public int bonusNumber() {
+        String bonusNumber = Console.readLine();
+        validateLottoNumber(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
+    }
+
     public List<Integer> convertToWinningNumbers(String[] splitWinningNumbers) {
         List<Integer> winningNumberValues = new ArrayList<>();
         for (String str : splitWinningNumbers) {
-            validateWinningNumber(str);
+            validateLottoNumber(str);
             winningNumberValues.add(Integer.parseInt(str));
         }
 
@@ -39,7 +46,7 @@ public class InputView {
         }
     }
 
-    public void validateWinningNumber(String str) {
+    public void validateLottoNumber(String str) {
         if (str.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.SPILT_EMPTY);
         }
