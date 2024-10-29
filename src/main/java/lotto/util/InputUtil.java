@@ -1,7 +1,8 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.InputException;
+import lotto.config.LottoGameConfig;
+import lotto.exception.custom.InputException;
 import lotto.exception.LottoGameException;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public class InputUtil {
         try {
             int convertedInput = Integer.parseInt(input);
             validatePositiveNumber(convertedInput);
+            if (convertedInput % LottoGameConfig.LOTTO_PRICE_UNIT != 0) {
+                throw new LottoGameException(InputException.INVALID_UNIT);
+            }
             return convertedInput;
         } catch (NumberFormatException e) {
             throw new LottoGameException(InputException.INVALID_INTEGER);

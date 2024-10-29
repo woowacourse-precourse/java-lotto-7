@@ -11,7 +11,7 @@ public class LottoGameConfig {
     public static int FOURTH_PLACE_AMOUNT = 50_000;
     public static int FIFTH_PLACE_AMOUNT = 5_000;
 
-    public static int LOTTO_PRICE = 1_000;
+    public static int LOTTO_PRICE_UNIT = 1_000;
 
     public static final int START_NUMBER = 1;
     public static final int END_NUMBER = 45;
