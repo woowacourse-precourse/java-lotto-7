@@ -24,10 +24,12 @@ public class LottoApplication {
         }
         Lottos lottos = Lottos.of(lottosTemp);
     }
-//
-//    private Rank findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
-//        List<Lotto> allLotto = lottos.value();
-//        for (Lotto lotto : allLotto) {
-//        }
-//    }
+
+    private void findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
+        Rank rank = new Rank();
+        List<Lotto> allLotto = lottos.value();
+        for (Lotto lotto : allLotto) {
+            rank.countMatchNumber(lotto.getNumbers(), winNumbers);
+        }
+    }
 }

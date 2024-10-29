@@ -6,7 +6,6 @@ public class FirstPrizeLotto implements PrizeLotto {
 
     private int count;
 
-
     @Override
     public void of() {
         count++;
