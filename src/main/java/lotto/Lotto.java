@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,8 +23,9 @@ public class Lotto {
     }
 
     public String toString() {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers.toString();
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 
     public List<Integer> getNumbers() {
