@@ -13,7 +13,8 @@ public class LottoService {
     public List<Lotto> initLotto(int payCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < payCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> rawLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNumbers = new ArrayList<>(rawLottoNumbers);
             lottoNumbers.sort(Integer::compareTo);
             lottos.add(new Lotto(lottoNumbers));
         }

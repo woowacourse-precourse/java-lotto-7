@@ -19,7 +19,7 @@ public class InputView {
     }
 
     public String readBonus() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         return input;

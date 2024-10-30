@@ -10,7 +10,8 @@ public class OutputView {
         System.out.printf("\n%d개를 구매했습니다.\n", lottoCount);
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
-            System.out.printf("[%d, %d, %d, %d, %d, %d]\n", numbers.get(0), numbers.get(1), numbers.get(2), numbers.get(3), numbers.get(4), numbers.get(5));
+            System.out.printf("[%d, %d, %d, %d, %d, %d]\n", numbers.get(0), numbers.get(1), numbers.get(2),
+                    numbers.get(3), numbers.get(4), numbers.get(5));
         }
     }
 
@@ -22,6 +23,6 @@ public class OutputView {
         System.out.printf("5개 일치 (1,500,000원) - 0개\n", winnings.getOrDefault(Winning.FIVE, 0));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n", winnings.getOrDefault(Winning.FIVE_BONUS, 0));
         System.out.printf("6개 일치 (2,000,000,000원) - 0개\n", winnings.getOrDefault(Winning.SIX, 0));
-        System.out.println("총 수익률은" + yield + "%입니다.");
+        System.out.println("총 수익률은 " + yield + "%입니다.");
     }
 }
