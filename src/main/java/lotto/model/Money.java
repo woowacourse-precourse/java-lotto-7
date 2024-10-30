@@ -1,10 +1,10 @@
 package lotto.model;
 
 import java.util.Map;
+import lotto.constant.LottoConst;
 
 public class Money {
 
-    public static final int LOTTO_PRICE = 1000;
     private int money;
 
     public Money(int money) {
@@ -12,7 +12,7 @@ public class Money {
     }
 
     public int getTicketCount() {
-        return money / LOTTO_PRICE;
+        return money / LottoConst.LOTTO_PRICE;
     }
 
     public String getRateOfReturn(Map<Rank, Integer> result) {
@@ -20,6 +20,6 @@ public class Money {
         for (Rank rank : result.keySet()) {
             income += rank.getPrice() * result.get(rank);
         }
-        return String.format("%.1f" ,(income / money) * 100);
+        return String.format("%.1f" ,(income / money) * LottoConst.PERCENTAGE);
     }
 }

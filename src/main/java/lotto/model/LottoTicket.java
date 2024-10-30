@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.LottoConst;
 import lotto.util.NumGenerator;
 
 public class LottoTicket {
 
-    public static final int INCREMENT_BY_ONE = 1;
     private final List<Lotto> lottoTicket;
 
     public LottoTicket(int ticketCount, NumGenerator generator) {
@@ -32,12 +32,17 @@ public class LottoTicket {
     public Map<Rank, Integer> getResult(Lotto winningNumber, int bonusNumber) {
         Map<Rank, Integer> result = Rank.makeRankResult();
         for (Lotto lotto : lottoTicket) {
-            int countNumber = lotto.countContainNumber(winningNumber);
-            boolean needBonusNumber = lotto.needBonusNumber(countNumber, bonusNumber);
-            Rank rank = Rank.getRank(countNumber, needBonusNumber);
-            result.put(rank, result.get(rank) + INCREMENT_BY_ONE);
+            Rank rank = findRank(winningNumber, bonusNumber, lotto);
+            result.put(rank, result.get(rank) + LottoConst.INCREMENT_BY_ONE);
         }
         return result;
+    }
+
+    private static Rank findRank(Lotto winningNumber, int bonusNumber, Lotto lotto) {
+        int countNumber = lotto.countContainNumber(winningNumber);
+        boolean needBonusNumber = lotto.needBonusNumber(countNumber, bonusNumber);
+        Rank rank = Rank.getRank(countNumber, needBonusNumber);
+        return rank;
     }
 
     public List<Lotto> getLottoTicket() {

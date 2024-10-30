@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
+import lotto.constant.LottoConst;
 import lotto.model.Rank;
 
 public class OutputView {
@@ -20,7 +21,8 @@ public class OutputView {
             Rank rank = entry.getKey();
             Integer count = entry.getValue();
             if (rank == Rank.NONE) continue;
-            if (rank.getCountNumber() == 5 && rank.isNeedBonusNumber()) {
+            if (rank.getCountNumber() == LottoConst.BONUS_NUMBER_THRESHOLD
+                && rank.isNeedBonusNumber()) {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
                     rank.getCountNumber(), format(rank.getPrice()), count);
                 continue;

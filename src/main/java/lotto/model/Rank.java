@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import lotto.constant.LottoConst;
 
 public enum Rank {
 
@@ -27,7 +28,7 @@ public enum Rank {
         Map<Rank, Integer> result = new LinkedHashMap<>();
         Rank[] ranks = values();
         Arrays.stream(ranks)
-            .forEach(rank -> result.put(rank, 0));
+            .forEach(rank -> result.put(rank, LottoConst.INITIAL_COUNT));
         return result;
     }
 

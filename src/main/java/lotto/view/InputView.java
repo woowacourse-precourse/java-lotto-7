@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.LottoConst;
 import lotto.util.validator.InputValidator;
 
 public class InputView {
@@ -19,7 +20,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbers = Console.readLine();
         InputValidator.validateWinningNumbers(winningNumbers);
-        String[] nums = winningNumbers.split(",");
+        String[] nums = winningNumbers.split(LottoConst.COMMA);
         return Arrays.stream(nums)
             .mapToInt(Integer::parseInt)
             .boxed()

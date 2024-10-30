@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import lotto.constant.LottoConst;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConst.LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         HashSet<Integer> set = new HashSet<>();
@@ -46,7 +47,7 @@ public class Lotto {
     }
 
     public boolean needBonusNumber(int countNumber, int bonusNumber) {
-        if (countNumber == 5) {
+        if (countNumber == LottoConst.BONUS_NUMBER_THRESHOLD) {
             return numbers.stream()
                 .anyMatch(number -> number == bonusNumber);
         }
