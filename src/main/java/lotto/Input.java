@@ -22,11 +22,17 @@ public class Input {
 	}
 
 	public void winningNumber() {
-		System.out.println();
-		System.out.println("당첨 번호를 입력해 주세요.");
-		String winning = readLine();
-		WinningNumber numberCheck = new WinningNumber(winning);
-		numberCheck.winningCheck();
+		try {
+			System.out.println();
+			System.out.println("당첨 번호를 입력해 주세요.");
+			String winning = readLine();
+			WinningNumber numberCheck = new WinningNumber(winning);
+			numberCheck.winningCheck();
+
+		} catch (IllegalArgumentException e) {
+			System.err.println(e);
+			winningNumber();
+		}
 	}
 
 }

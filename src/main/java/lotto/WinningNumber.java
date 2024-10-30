@@ -10,9 +10,42 @@ public class WinningNumber {
 
 	public void winningCheck() {
 		String[] winningArr = winningSplit();
+		valueCheck(winningArr);
 	}
 
 	private String[] winningSplit() {
 		return winning.split(",");
 	}
+
+	private void valueCheck(String[] winningArr) {
+		lengthCheck(winningArr.length);
+		for (String s : winningArr) {
+			int num = numberCheck(s);
+			numberScope(num);
+		}
+	}
+
+	private void lengthCheck(int length) {
+		if (length != 6) {
+			throw new NumberFormatException("[ERROR] 로또 번호는 6개를 입력해주세요.");
+		}
+	}
+
+	private int numberCheck(String number) {
+		try {
+			return Integer.parseInt(number);
+		} catch (NumberFormatException ne) {
+			throw new NumberFormatException("[ERROR] 숫자만 입력해주세요.");
+		}
+	}
+
+	private void numberScope(int num) {
+		if (num < 1) {
+			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이로 입력해주세요.");
+		}
+		if (num > 45) {
+			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이로 입력해주세요.");
+		}
+	}
+
 }
