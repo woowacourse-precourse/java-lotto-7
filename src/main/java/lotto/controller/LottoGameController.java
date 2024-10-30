@@ -9,6 +9,7 @@ import lotto.Result;
 import lotto.WinningNumbers;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.io.input.GameInput;
 import lotto.io.output.GameOutput;
 
@@ -22,23 +23,23 @@ public class LottoGameController {
     }
 
     public void start() {
-        int purchaseAmount = gameInput.getPurchaseAmount();
-        LottoTicket lottoTicket = generateLottoTickets(purchaseAmount);
+        PurchaseAmount purchaseAmount = new PurchaseAmount(gameInput.getPurchaseAmount());
+        LottoTicket lottoTicket = generateLottoTickets(purchaseAmount.getTicketCount());
 
         gameOutput.printPurchasedTickets(lottoTicket);
 
         WinningNumbers winningNumbers = getWinningNumbers();
         Result result = calculateResults(lottoTicket, winningNumbers);
 
-        gameOutput.printResults(result, purchaseAmount);
+        double yield = purchaseAmount.calculateYield(result.getTotalPrize());
+        gameOutput.printResults(result, yield);
     }
 
-    private LottoTicket generateLottoTickets(int purchaseAmount) {
-        int ticketCount = purchaseAmount / 1000;
+    private LottoTicket generateLottoTickets(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            tickets.add(new Lotto(lottoNumbers)); // List<Integer>로 전달
+            tickets.add(new Lotto(lottoNumbers));
         }
         return new LottoTicket(tickets);
     }
