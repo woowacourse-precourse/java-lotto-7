@@ -1,4 +1,4 @@
-package lotto.printer;
+package lotto.application.printer;
 
 import static java.util.Collections.sort;
 

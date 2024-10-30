@@ -1,4 +1,4 @@
-package lotto.calculator;
+package lotto.application.calculator;
 
 import lotto.application.Calculator;
 

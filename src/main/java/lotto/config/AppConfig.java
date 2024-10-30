@@ -5,17 +5,17 @@ import lotto.application.Calculator;
 import lotto.application.MakeNumbersStrategy;
 import lotto.application.Printer;
 import lotto.application.Reader;
-import lotto.calculator.ProfitCalculator;
+import lotto.application.calculator.ProfitCalculator;
 import lotto.domain.PrizeNumber;
-import lotto.numberstrategy.MakeRandomNumbers;
-import lotto.printer.LottoResultPrinter;
+import lotto.application.numberstrategy.MakeRandomNumbers;
+import lotto.application.printer.LottoResultPrinter;
 import lotto.prizelotto.FifthPrizeLotto;
 import lotto.prizelotto.FirstPrizeLotto;
 import lotto.prizelotto.FourthPrizeLotto;
 import lotto.prizelotto.PrizeLotto;
 import lotto.prizelotto.SecondPrizeLotto;
 import lotto.prizelotto.ThirdPrizeLotto;
-import lotto.reader.ConsoleReader;
+import lotto.application.reader.ConsoleReader;
 
 public class AppConfig {
 
