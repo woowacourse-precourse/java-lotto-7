@@ -11,6 +11,8 @@ public class Validator {
     private static final String ERROR_INVALID_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_INVALID_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개의 숫자여야 합니다.";
     private static final String ERROR_INVALID_LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 번호는 중복되면 안 됩니다.";
+    private static final String ERROR_INVALID_LOTTO_FORMAT = "[ERROR] 숫자와 콤마만 입력 가능합니다.";
+
 
     public static int validateLottoAmount(String inputAmount) {
         int amount = validateNumeric(inputAmount);
@@ -20,9 +22,12 @@ public class Validator {
 
     public static List<Integer> validateWinningLotto(String inputWinningLotto) {
         List<Integer> winningLotto = new ArrayList<>();
+        validateInputWinningLottoFormat(inputWinningLotto);
         List<String> numbers = List.of(inputWinningLotto.split(","));
         for (String number : numbers) {
-            winningLotto.add(validateNumeric(number));
+            int winningLottoNumber = validateNumeric(number);
+            validateLottoNumberRange(winningLottoNumber);
+            winningLotto.add(winningLottoNumber);
         }
         validateNumberCount(winningLotto);
         validateLottoDuplicate(winningLotto);
@@ -65,6 +70,13 @@ public class Validator {
         Set<Integer> checkDuplicate = new HashSet<>(winningLotto);
         if(checkDuplicate.size()!= winningLotto.size()){
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_NUMBER_DUPLICATE);
+        }
+    }
+
+    public static void validateInputWinningLottoFormat(String input){
+        String regex = "[^0-9,]";
+        if(input.contains(regex)){
+            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_FORMAT);
         }
     }
 }
