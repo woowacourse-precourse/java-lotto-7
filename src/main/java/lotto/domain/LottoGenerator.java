@@ -16,7 +16,7 @@ public class LottoGenerator {
             lotto = new Lotto(numbers);
         }catch (IllegalArgumentException e){
             System.out.println(e.toString());
-            generate();
+            return generate();
         }
 
         return lotto;

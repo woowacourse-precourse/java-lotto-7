@@ -19,4 +19,16 @@ public class LottoGeneratorTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
+
+    @Test
+    void 잘못된_번호가_생성되면_재시도() {
+        assertRandomUniqueNumbersInRangeTest(
+                ()->{
+                    Lotto lotto = lottoGenerator.generate();
+                    assertThat(lotto.toString()).isEqualTo("[1, 3, 5, 14, 22, 45]");
+                },
+                List.of(1, 3, 5, 14, 22, 22),
+                List.of(1, 3, 5, 14, 22, 45)
+        );
+    }
 }
