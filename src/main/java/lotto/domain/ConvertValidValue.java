@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.Constant.LOTTO_PRICE;
+import static lotto.domain.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.Constant.MINIMUM_LOTTO_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +13,6 @@ import java.util.List;
 * 보너스 번호
 * */
 public class ConvertValidValue {
-    private static final int LOTTO_PRICE = 1000;
-
     public int purchaseAmount(String input) throws IllegalArgumentException {
         int budget;
         int amount;
@@ -63,7 +65,7 @@ public class ConvertValidValue {
     }
 
     private void validLottoNumber(int input){
-        if(input < 1 || input > 45)
+        if(input < MINIMUM_LOTTO_NUMBER || input > MAXIMUM_LOTTO_NUMBER)
             throw new IllegalArgumentException("[Error] 로또 번호는 1에서 45 사이 숫자만 가능합니다.");
     }
 }
