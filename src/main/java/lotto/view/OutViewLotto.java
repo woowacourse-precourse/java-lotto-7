@@ -1,7 +1,9 @@
-package lotto;
+package lotto.view;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.model.BuyLotto;
+import lotto.domain.Money;
 
 public class OutViewLotto {
     public void viewLottoList(Money money, BuyLotto buyLotto) {

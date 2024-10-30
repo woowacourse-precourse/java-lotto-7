@@ -1,8 +1,9 @@
-package lotto;
+package lotto.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import lotto.domain.AdditionalNumber;
+import lotto.domain.Lotto;
 
 public class MatchLotto {
     private HashMap<Integer, Integer> initializeMatchLotto() {

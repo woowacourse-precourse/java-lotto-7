@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.HashMap;
+import lotto.domain.Money;
 
 public class CalculateResult {
     public float Calculate(HashMap<Integer, Integer> result, Money money){
