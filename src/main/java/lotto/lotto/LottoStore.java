@@ -8,7 +8,6 @@ public class LottoStore {
     private static final int LOTTO_PRICE = 1000;
     private int lottoNumberOfPurchases;
 
-
     public void calculateNumberOfPurchases(int money) {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_INPUT_ERROR_MESSAGE);
@@ -16,11 +15,9 @@ public class LottoStore {
         lottoNumberOfPurchases = money / LOTTO_PRICE;
     }
 
-    public List<Integer> createLottoNumbers () {
-        List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return integers;
+    public List<Integer> createLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
-
 
     public int getLottoNumberOfPurchases() {
         return lottoNumberOfPurchases;
