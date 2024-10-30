@@ -52,12 +52,4 @@ public class LottoValidator {
         int maxNumberRange = LottoConstant.MAX_LOTTO_NUMBER_RANGE.getValue();
         return number < minNumberRange || number > maxNumberRange;
     }
-
-
-/*
-  - [ ] 1 ~ 45까지 범위의 중복되지 않은 랜덤한 번호 6개를 생성한다.
-  - [ ] 중복된 수가 있을 경우
-  - [x] 6개의 수로 이뤄지지 않았을 경우
-
- */
 }
