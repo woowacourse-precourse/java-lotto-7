@@ -18,7 +18,7 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (LottoRank rank : LottoRank.values()) {
-            if (!rank.equals(LottoRank.NONE)) {
+            if (!rank.equals(LottoRank.NONE) && statistics.containsKey(rank)) {
                 System.out.println(
                         rank.getMatchingCount() + "개 일치 " + "(" + PrizeFormatter.formatPrize(rank.getPrize()) + "원)"
                                 + " - " + statistics.get(rank)
