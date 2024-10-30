@@ -10,19 +10,23 @@ public class PurchasePrice {
     private final int quantity;
 
     public PurchasePrice(int purchasePrice) {
+        validatePurchasePrice(purchasePrice);
         this.purchasePrice = purchasePrice;
-        validateAvailableNum();
-        validatePriceUnit();
         quantity = calculateQuantity();
     }
 
-    private void validateAvailableNum() {
+    private void validatePurchasePrice(final int purchasePrice) {
+        validateAvailableNum(purchasePrice);
+        validatePriceUnit(purchasePrice);
+    }
+
+    private void validateAvailableNum(final int purchasePrice) {
         if (purchasePrice <= ZERO) {
             throw new IllegalArgumentException(PRICE_MUST_BIGGER_THAN_ZERO);
         }
     }
 
-    private void validatePriceUnit() {
+    private void validatePriceUnit(final int purchasePrice) {
         if (purchasePrice % UNIT != ZERO) {
             throw new IllegalArgumentException(PRICE_MUST_1000_UNIT);
         }
