@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Result {
@@ -14,7 +18,6 @@ public class Result {
         }
     }
 
-    // 모든 티켓의 결과를 계산하고 저장
     public void calculateResults(LottoTicket lottoTicket, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Lotto lotto : lottoTicket.getTickets()) {
             int matchCount = lotto.matchCount(winningNumbers.getWinningNumbers());
@@ -31,12 +34,26 @@ public class Result {
         totalPrize += rank.getPrize();
     }
 
-    public Map<LottoRank, Integer> getMatchResults() {
-        return matchResults;
-    }
-
     public int getTotalPrize() {
         return totalPrize;
+    }
+
+    public List<String> getFormattedResults() {
+        NumberFormat currencyFormat = NumberFormat.getInstance(Locale.US);
+        List<LottoRank> ranks = List.of(LottoRank.FIFTH, LottoRank.FOURTH, LottoRank.THIRD, LottoRank.SECOND,
+                LottoRank.FIRST);
+        List<String> formattedResults = new ArrayList<>();
+
+        for (LottoRank rank : ranks) {
+            int count = matchResults.getOrDefault(rank, 0);
+            String formattedPrize = currencyFormat.format(rank.getPrize());
+            formattedResults.add(String.format("%d개 일치%s (%s원) - %d개",
+                    rank.getMatchCount(),
+                    rank == LottoRank.SECOND ? ", 보너스 볼 일치" : "",
+                    formattedPrize,
+                    count));
+        }
+        return formattedResults;
     }
 }
 
