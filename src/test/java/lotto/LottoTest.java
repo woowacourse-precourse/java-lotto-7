@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -111,7 +112,7 @@ class LottoTest {
         assertThat(result).isEqualTo(expectedRank);
     }
 
-    private static Stream<Arguments> createLottoAndExpectedRank() {
+    static Stream<Arguments> createLottoAndExpectedRank() {
         return Stream.of(
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), Rank.FIRST),
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 7), Rank.SECOND),
@@ -121,4 +122,38 @@ class LottoTest {
                 Arguments.of(Arrays.asList(1, 2, 14, 15, 16, 17), Rank.NONE)
         );
     }
+
+    @DisplayName("로또 당첨금 합계와 구매한 금액에 대해 수익률을 계산한다.")
+    @ParameterizedTest
+    @MethodSource("createLottoListAndExpectedEarningRate")
+    void 로또_수익률_계산_테스트(List<Lotto> issuedLottos, double expectedEarningRate) {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+        int money = 5000;
+
+        LottoGameResult lottoGameResult = new LottoGameResult();
+        issuedLottos.stream()
+                .map(winningLotto::getLottoRank)
+                .forEach(lottoGameResult::updateResult);
+
+        double earningRate = lottoGameResult.calculateEarningRate(money);
+
+        assertThat(earningRate).isEqualTo(expectedEarningRate);
+    }
+
+    static Stream<Arguments> createLottoListAndExpectedEarningRate() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)), //1등
+                                new Lotto(List.of(1, 2, 3, 4, 5, 7)), //2등
+                                new Lotto(List.of(1, 2, 3, 4, 5, 8)), //3등
+                                new Lotto(List.of(1, 2, 3, 4, 8, 9)), //4등
+                                new Lotto(List.of(10, 11, 12, 13, 14, 15)) //당첨 없음
+                        ), 40631000 //수익률, (2,000,000,000 + 50,000,000 + 1,500,000 + 50,000) / 5000 * 100
+                )
+        );
+    }
+
 }
