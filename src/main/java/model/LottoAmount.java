@@ -7,7 +7,7 @@ public class LottoAmount {
         lottoAmountCount = money / LOTTO_VALUE;
     }
 
-    public int getLottoAmountCount() {
+    public int getCount() {
         return lottoAmountCount;
     }
 }

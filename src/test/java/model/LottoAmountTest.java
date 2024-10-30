@@ -7,6 +7,6 @@ public class LottoAmountTest {
     @Test
     void LottoAmount_생성_테스트(){
         LottoAmount lottoAmount = new LottoAmount(8234);
-        Assertions.assertThat(lottoAmount.getLottoAmountCount()).isEqualTo(8);
+        Assertions.assertThat(lottoAmount.getCount()).isEqualTo(8);
     }
 }
