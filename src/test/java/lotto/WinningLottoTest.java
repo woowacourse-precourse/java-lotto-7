@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
@@ -63,6 +64,34 @@ public class WinningLottoTest {
         assertThatThrownBy(() -> {
             WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
             winningLotto.setBonusNumber(60);
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 1등 테스트")
+    @Test
+    void winningLottoMatchSuccessTest() {
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), Optional.of(7));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(winningLotto.match(lotto)).isEqualTo(LottoResult.FIRST);
+    }
+
+    @DisplayName("로또 1등 테스트")
+    @Test
+    void winningLottoMatchSuccessTest2() {
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), Optional.of(7));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        assertThat(winningLotto.match(lotto)).isEqualTo(LottoResult.SECOND);
+    }
+
+
+    @DisplayName("로또 보너스 번호가 입력되지 않은 경우")
+    @Test
+    void winningLottoMatchFailTest1() {
+        assertThatThrownBy(() -> {
+            WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            winningLotto.match(lotto);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
