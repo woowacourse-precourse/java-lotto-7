@@ -1,41 +1,36 @@
 package lotto.view;
 
+import static lotto.util.message.InputMessage.INPUT_BONUS_NUMBER;
+import static lotto.util.message.InputMessage.INPUT_TOTAL_COST;
+import static lotto.util.message.InputMessage.INPUT_WINNING_LOTTO_NUMBER;
+import static lotto.util.validator.InputValidator.validateBlank;
+import static lotto.util.validator.LottoNumberValidator.validateInputString;
+import static lotto.util.validator.LottoNumberValidator.validateNumberInRange;
+import static lotto.util.validator.TotalCostValidator.validateDividedByLottoPrice;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
-public class InputView {
+public class InputView extends AbstractInputView {
 
-    private static long totalCost;
-    private static List<Integer> winningNumber;
-    private static int bonusNumber;
-
-    public long inputTotalCost() {
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] ");
-        }
+    public Integer inputTotalCost() throws IllegalArgumentException {
+        System.out.println(INPUT_TOTAL_COST);
+        String input = validateBlank(Console.readLine());
+        return validateDividedByLottoPrice(input);
     }
 
     public List<Integer> inputWinningNumbers() {
-        try {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
-            return Arrays.stream(Console.readLine().split(","))
-                    .map(s -> Integer.parseInt(s.trim()))
-                    .toList();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] ");
-        }
+        System.out.println(INPUT_WINNING_LOTTO_NUMBER);
+        String input = validateInputString(Console.readLine());
+        return Arrays.stream(input.split(","))
+                .map(s -> validateNumberInRange(s.trim()))
+                .toList();
     }
 
-    public int inputBonusNumber() {
-        try {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
-            return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] ");
-        }
+    public Integer inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        String input = validateBlank(Console.readLine());
+        return validateNumberInRange(input);
     }
 }
