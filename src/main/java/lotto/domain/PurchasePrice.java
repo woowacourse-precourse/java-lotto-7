@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.ExceptionMessage;
+
 public record PurchasePrice(
         int value
 ) {
@@ -7,7 +9,7 @@ public record PurchasePrice(
     public static PurchasePrice validatePrice(String originPrice) {
         int price = validatePriceInteger(originPrice);
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 가격은 1000으로 나뉘어 떨어져야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.PRICE_DIVIDE_EXCEPTION.getMessage());
         }
         return new PurchasePrice(price);
     }
@@ -16,7 +18,7 @@ public record PurchasePrice(
         try {
             return Integer.parseInt(originPrice);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 가격은 숫자가 입력되어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.PRICE_NUMBER_EXCEPTION.getMessage());
         }
     }
 }

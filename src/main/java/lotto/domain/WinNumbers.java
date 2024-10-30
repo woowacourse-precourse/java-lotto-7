@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.ExceptionMessage;
 import lotto.Validator;
 
 public record WinNumbers(
@@ -10,14 +11,14 @@ public record WinNumbers(
         Integer bonusWinNumber
 ) {
 
-    public static WinNumbers winNumbersFrom(String originWinNumbers) { //이거 어떻게 예쁘게하나
+    public static WinNumbers winNumbersFrom(String originWinNumbers) {
         List<String> numbers = Arrays.stream(originWinNumbers.split(",")).toList();
         List<Integer> extractWinNumbers = new ArrayList<>();
         for (String number : numbers) {
             try {
                 extractWinNumbers.add(Integer.parseInt(number));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+                throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXCEPTION.getMessage());
             }
         }
         Validator.validatedNumberCount(extractWinNumbers);
@@ -30,10 +31,10 @@ public record WinNumbers(
         try {
             convertBonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXCEPTION.getMessage());
         }
         if (primaryWinNumbers.contains(convertBonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 이미 존재하는 로또 번호 입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXIST_EXCEPTION.getMessage());
         }
         return new WinNumbers(primaryWinNumbers, convertBonusNumber);
     }
