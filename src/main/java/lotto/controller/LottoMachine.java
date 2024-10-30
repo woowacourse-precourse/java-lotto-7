@@ -6,16 +6,21 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoMachine {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoMachine(InputView inputView) {
+    public LottoMachine(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
         List<Lotto> lottoList = buyLottoByPrice(1000);
+        outputView.printBoughtLottoList(lottoList);
+
         WinningLotto winningLotto = generateWinningLotto();
     }
 
