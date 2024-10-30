@@ -291,6 +291,129 @@ class InputViewTest extends NsTest {
     assertTrue(output.contains("[ERROR] 당첨 번호는 숫자여야 합니다."));
   }
 
+  @Test
+  @DisplayName("보너스 번호 입력 안내 메시지 출력 테스트")
+  public void 보너스_번호_안내_메시지_출력_테스트() {
+    String input = "7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    int bonusNumber = inputView.readBonusNumber(winningNumbers);
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("보너스 번호를 입력해 주세요."));
+  }
+
+  @Test
+  @DisplayName("정상적인 보너스 번호 입력 및 검증 테스트")
+  public void 정상적인_보너스_번호_입력_테스트() {
+    String input = "7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    int bonusNumber = inputView.readBonusNumber(winningNumbers);
+
+    assertEquals(7, bonusNumber);
+  }
+
+  @Test
+  @DisplayName("범위 내의 유효한 보너스 번호 입력 테스트")
+  public void 범위_내_유효한_보너스_번호_입력_테스트() {
+    String input = "45\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    int bonusNumber = inputView.readBonusNumber(winningNumbers);
+
+    assertEquals(45, bonusNumber);
+  }
+
+  @Test
+  @DisplayName("보너스 번호 입력값이 비어있는 경우 예외 발생 테스트")
+  public void 보너스_번호_빈_입력값_예외_테스트() {
+    String input = "\n7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    inputView.readBonusNumber(winningNumbers);
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 보너스 번호를 입력해야 합니다."));
+  }
+
+  @Test
+  @DisplayName("범위를 벗어난 보너스 번호 입력 시 예외 발생 테스트")
+  public void 보너스_번호_범위_벗어남_예외_테스트() {
+    String input = "46\n7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    inputView.readBonusNumber(winningNumbers);
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("보너스 번호가 숫자가 아닌 문자 포함 시 예외 발생 테스트")
+  public void 보너스_번호_숫자가_아닌_문자_포함_예외_테스트() {
+    String input = "a\n7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    inputView.readBonusNumber(winningNumbers);
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 보너스 번호는 숫자여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("보너스 번호 숫자가 아닌 특수문자 포함 시 예외 발생 테스트")
+  public void 보너스_번호_특수문자_포함_예외_테스트() {
+    String input = "@\n7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    inputView.readBonusNumber(winningNumbers);
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 보너스 번호는 숫자여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("보너스 번호 공백 포함된 입력 정상 처리 테스트")
+  public void 보너스_번호_공백_포함된_입력_정상_처리_테스트() {
+    String input = " 7 \n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    int bonusNumber = inputView.readBonusNumber(winningNumbers);
+
+    assertEquals(7, bonusNumber);
+  }
+
+  @Test
+  @DisplayName("당첨 번호와 중복된 보너스 번호 입력 시 예외 발생 테스트")
+  public void 당첨_번호_중복_보너스_번호_예외_테스트() {
+    String input = "3\n7\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+    inputView.readBonusNumber(winningNumbers);
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."));
+  }
+
   private void provideInput(String data) {
     System.setIn(new ByteArrayInputStream(data.getBytes()));
   }

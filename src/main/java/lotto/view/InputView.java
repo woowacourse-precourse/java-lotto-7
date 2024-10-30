@@ -91,4 +91,43 @@ public class InputView {
 
     return winningNumbers;
   }
+
+  public int readBonusNumber(List<Integer> winningNumbers) {
+    while (true) {
+      try {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        int bonusNumber = validateBonusNumber(input, winningNumbers);
+        return bonusNumber;
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
+  private int validateBonusNumber(String input, List<Integer> winningNumbers) {
+    if (input == null || input.trim().isEmpty()) {
+      throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해야 합니다.");
+    }
+
+    String trimmedInput = input.trim();
+
+    int bonusNumber;
+    try {
+      bonusNumber = Integer.parseInt(trimmedInput);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    }
+
+    if (bonusNumber < 1 || bonusNumber > 45) {
+      throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    if (winningNumbers.contains(bonusNumber)) {
+      throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+    return bonusNumber;
+  }
+
 }
