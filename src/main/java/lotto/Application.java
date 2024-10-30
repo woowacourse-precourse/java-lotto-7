@@ -17,7 +17,16 @@ public class Application {
         String input_pay = readLine();
         Integer number_of_times = Integer.getInteger(input_pay) / 1000;
         System.out.println("\n" + number_of_times + "개를 구매했습니다.");
-
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < number_of_times; i++) {
+            List<Integer> marked_numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            marked_numbers.sort(Comparator.naturalOrder());
+            lottos.add(new Lotto(marked_numbers));
+            String output_one = marked_numbers.stream()
+                                              .map(String::valueOf)
+                                              .collect(Collectors.joining(","));
+            System.out.println("[" + output_one + "]");
+        }
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input_numbers = readLine();
         List<Integer> golden_numbers = Arrays.stream(input_numbers.split(","))
