@@ -5,8 +5,9 @@ import lotto.buyer.validator.MoneyValidator;
 import lotto.util.Convertor;
 
 public class Won implements Money {
-    private final Long money;
-    private Won(Long money) {
+    private long money = 0L;
+    public Won() {}
+    private Won(long money) {
         this.money = money;
     }
     public static Won of(String input) {
@@ -14,13 +15,23 @@ public class Won implements Money {
         MoneyValidator.validate(money);
         return new Won(money);
     }
+    public static Won of(Long money) {
+        return new Won(money);
+    }
+
 
     @Override
     public Long getMoney() {
         return money;
     }
+
+    @Override
+    public void updateMoney(Money money) {
+        this.money += money.getMoney();
+    }
+
     @Override
     public String toString() {
-        return money.toString();
+        return String.valueOf(money);
     }
 }
