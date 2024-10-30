@@ -4,9 +4,9 @@
  
 ### 입력 기능
 - [x] 로또 구입 금액을 입력 받는다.
-  - [ ] 구입 금액을 1,000원 단위로 나눈다.
-    - [ ] 1,000원으로 나누어 떨어지지 않는 경우 'IllegalArgumentException' 예외 처리한다.
-  - [ ] 숫자가 아닐 시 'IllegalArgumentException' 예외 처리한다.
+  - [x] 구입 금액을 1,000원 단위로 나눈다.
+    - [x] 1,000원으로 나누어 떨어지지 않는 경우 'IllegalArgumentException' 예외 처리한다.
+  - [x] 숫자가 아닐 시 'IllegalArgumentException' 예외 처리한다.
   - [ ] 1장당 1~45사이 중복되지 않은 6개의 임의의 수를 생성한다.
     - [ ] 중복된 숫자가 있을 시 'IllegalArgumentException' 예외 처리한다.
     - [ ] 로또 번호를 오름차순으로 정렬한다.
