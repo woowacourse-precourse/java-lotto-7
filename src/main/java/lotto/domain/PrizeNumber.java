@@ -51,4 +51,12 @@ public class PrizeNumber {
         });
         return sortedPrizeLottos;
     }
+
+    public PrizeNumber findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
+        List<Lotto> allLotto = lottos.value();
+        for (Lotto lotto : allLotto) {
+            countMatchNumber(lotto.getNumbers(), winNumbers);
+        }
+        return new PrizeNumber(prizeLottos);
+    }
 }

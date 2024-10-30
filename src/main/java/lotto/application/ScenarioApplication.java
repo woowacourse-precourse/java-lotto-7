@@ -13,20 +13,24 @@ public class ScenarioApplication {
     private final Reader reader;
     private final Calculator calculator;
     private final Printer printer;
+    private final PrizeNumber prizeNumber;
+    private final LottoApplication lottoApplication;
 
     public ScenarioApplication(AppConfig appConfig) {
         this.makeNumbersStrategy = appConfig.makeNumbersStrategy();
         this.reader = appConfig.reader();
         this.calculator = appConfig.calculator();
         this.printer = appConfig.printer();
+        this.prizeNumber = appConfig.prizeNumber();
+        this.lottoApplication = appConfig.lottoApplication();
     }
 
     public void run() {
         PurchasePrice purchasePrice = doPurchase();
         LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice.value());
-        Lottos lottos = LottoApplication.buyLottos(lottoQuantity, makeNumbersStrategy, printer);
-        WinNumbers winNumbers = LottoApplication.readAllWinNumbers(printer, reader);
-        PrizeNumber prizeNumber = LottoApplication.findWinningLottos(winNumbers, lottos);
+        Lottos lottos = lottoApplication.buyLottos(lottoQuantity);
+        WinNumbers winNumbers = lottoApplication.readAllWinNumbers();
+        prizeNumber.findWinningLottos(winNumbers, lottos);
         calculateResult(purchasePrice, prizeNumber);
     }
 
@@ -35,7 +39,7 @@ public class ScenarioApplication {
         PurchasePrice purchasePrice;
         String originPrice = reader.read();
         try {
-            purchasePrice = PurchasePrice.validatePrice(originPrice); //가격 관련 throw해주는 부분
+            purchasePrice = PurchasePrice.validatePrice(originPrice);
         } catch (IllegalArgumentException e) {
             printer.print(e.getMessage());
             return doPurchase();

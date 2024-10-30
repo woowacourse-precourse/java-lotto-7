@@ -1,61 +1,51 @@
 package lotto.application;
 
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoQuantity;
 import lotto.domain.Lottos;
-import lotto.domain.PrizeNumber;
 import lotto.domain.WinNumbers;
-import lotto.prizelotto.FifthPrizeLotto;
-import lotto.prizelotto.FirstPrizeLotto;
-import lotto.prizelotto.FourthPrizeLotto;
-import lotto.prizelotto.SecondPrizeLotto;
-import lotto.prizelotto.ThirdPrizeLotto;
 
 public class LottoApplication {
 
-    public static Lottos buyLottos(LottoQuantity lottoQuantity, MakeNumbersStrategy makeNumbersStrategy,
-                                   Printer printer) {
+    private final MakeNumbersStrategy makeNumbersStrategy;
+    private final Reader reader;
+    private final Printer printer;
+
+    public LottoApplication(MakeNumbersStrategy makeNumbersStrategy, Reader reader, Printer printer) {
+        this.makeNumbersStrategy = makeNumbersStrategy;
+        this.reader = reader;
+        this.printer = printer;
+    }
+
+    public Lottos buyLottos(LottoQuantity lottoQuantity) {
         Lottos lottos = Lottos.from(lottoQuantity, makeNumbersStrategy);
         printer.printPurchaseResult(lottoQuantity.value(), lottos);
         return lottos;
     }
 
-    public static WinNumbers readAllWinNumbers(Printer printer, Reader reader) {
-        WinNumbers winNumbersWithoutBonusNumber = readWinNumbers(printer, reader);
-        return readBonusNumber(winNumbersWithoutBonusNumber, printer, reader);
+    public WinNumbers readAllWinNumbers() {
+        WinNumbers winNumbersWithoutBonusNumber = readWinNumbers();
+        return readBonusNumber(winNumbersWithoutBonusNumber);
     }
 
-    private static WinNumbers readWinNumbers(Printer printer, Reader reader) {
+    private WinNumbers readWinNumbers() {
         printer.print("\n당첨 번호를 입력해 주세요.");
         String originWinNumbers = reader.read();
         try {
             return WinNumbers.winNumbersFrom(originWinNumbers);
         } catch (IllegalArgumentException e) {
             printer.print(e.getMessage());
-            return readWinNumbers(printer, reader);
+            return readWinNumbers();
         }
     }
 
-    private static WinNumbers readBonusNumber(WinNumbers winNumbersWithOutBonusNumber, Printer printer, Reader reader) {
+    private WinNumbers readBonusNumber(WinNumbers winNumbersWithOutBonusNumber) {
         printer.print("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = reader.read();
         try {
             return winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);
         } catch (IllegalArgumentException e) {
             printer.print(e.getMessage());
-            return readBonusNumber(winNumbersWithOutBonusNumber, printer, reader);
+            return readBonusNumber(winNumbersWithOutBonusNumber);
         }
-    }
-
-    public static PrizeNumber findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
-        PrizeNumber prizeNumber = new PrizeNumber(
-                List.of(new FirstPrizeLotto(), new SecondPrizeLotto(), new ThirdPrizeLotto(), new FourthPrizeLotto(),
-                        new FifthPrizeLotto()));
-        List<Lotto> allLotto = lottos.value();
-        for (Lotto lotto : allLotto) {
-            prizeNumber.countMatchNumber(lotto.getNumbers(), winNumbers);
-        }
-        return prizeNumber;
     }
 }
