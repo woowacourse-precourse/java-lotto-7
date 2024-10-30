@@ -1,7 +1,10 @@
 package lotto.controller;
 
 import lotto.dto.CreateLottoInfo;
+import lotto.dto.LottoRateInfo;
+import lotto.dto.WinningLottoInfo;
 import lotto.model.UserLottoInfo;
+import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,15 +26,18 @@ public class LottoController {
 
         outputView.printCreateLottoInfo(createLottoInfo);
 
-        String winningNumber = readWinningNumber();
-        int bonusNumber = readBonusNumber();
-
+        WinningLotto winningLotto = new WinningLotto(readWinningLottoInfo());
+        LottoRateInfo lottoRateInfo = lottoService.getLottoRateInfo(winningLotto, userLottoInfo);
     }
 
     private long readPurchaseAmount() {
         return inputView.readPurchaseAmount();
     }
-    
+
+    private WinningLottoInfo readWinningLottoInfo() {
+        return new WinningLottoInfo(readWinningNumber(), readBonusNumber());
+    }
+
     private String readWinningNumber() {
         return inputView.readWinningNumber();
     }

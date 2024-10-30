@@ -14,6 +14,12 @@ public class Lotto {
         return formatLottoNumber() + "\n";
     }
 
+    public void checkBonusNumberDuple(int bonusNumber) {
+        if (numbers.contains(Integer.valueOf(bonusNumber))) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복되면 안됩니다.");
+        }
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
