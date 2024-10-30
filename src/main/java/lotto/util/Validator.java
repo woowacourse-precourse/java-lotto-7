@@ -46,6 +46,7 @@ public class Validator {
     public boolean validateWinningNumber(String input) {
         try {
             checkWinningNumberLength(input);
+            checkWinningNumbers(input);
         } catch (IllegalArgumentException e) {
             return false;
         }
@@ -57,6 +58,13 @@ public class Validator {
         if (numbers.length != WINNING_NUMBER_COUNT) {
             System.out.println(WINNING_NUMBER_COUNT_ERROR.getMessage());
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkWinningNumbers(String input) {
+        String[] numbers = input.split(",");
+        for (String number : numbers) {
+            checkNumberType(number);
         }
     }
 }
