@@ -4,12 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 public class LottoService {
     public List<Lotto> createLottos(int purchaseAmount) {

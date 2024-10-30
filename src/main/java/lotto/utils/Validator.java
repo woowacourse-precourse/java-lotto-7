@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import java.util.List;
+
 public class Validator {
 
     public void validateInputPurchaseAmount(String inputPurchaseAmount) {

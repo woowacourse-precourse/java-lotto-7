@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 import lotto.utils.Validator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
