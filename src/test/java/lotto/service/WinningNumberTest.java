@@ -56,7 +56,7 @@ class WinningNumberTest {
     @DisplayName("당첨 번호가 46 이상인 경우 예외 발생")
     @Test
     void 당첨번호가_46이상인_경우_검증() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 47);
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 46);
         assertThatThrownBy(() -> new WinningNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호가 범위를 벗어납니다.");

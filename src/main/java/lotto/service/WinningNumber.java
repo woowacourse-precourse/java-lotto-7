@@ -30,7 +30,7 @@ public class WinningNumber {
 
     private void validateWinningNumbersRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (1 > number || number > 46) {
+            if (1 > number || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호가 범위를 벗어납니다.");
             }
         }
