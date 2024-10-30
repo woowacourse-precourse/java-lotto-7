@@ -65,11 +65,12 @@ class LottoTest {
     void 테스트_번호_확인_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int countNumber = 5;
         int bonusNumber1 = 1;
         int bonusNumber2 = 45;
 
         //when & then
-        assertTrue(lotto.hasBonusNumber(bonusNumber1));
-        assertFalse(lotto.hasBonusNumber(bonusNumber2));
+        assertTrue(lotto.needBonusNumber(countNumber, bonusNumber1));
+        assertFalse(lotto.needBonusNumber(countNumber, bonusNumber2));
     }
 }
