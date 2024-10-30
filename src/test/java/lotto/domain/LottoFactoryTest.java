@@ -30,4 +30,12 @@ class LottoFactoryTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 공백_입력값_예외_처리(){
+        String input = "1,,3,4,5,6";
+
+        assertThatThrownBy(() -> lottoFactory.make(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
