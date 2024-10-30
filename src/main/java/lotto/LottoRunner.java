@@ -43,6 +43,21 @@ public class LottoRunner {
             }
             break;
         }
+
+        Bonus bonus = new Bonus(targetLotto);
+        while (true) {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            try {
+                int num = Integer.parseInt(Console.readLine());
+                bonus.setNum(num);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
+        System.out.println(targetLotto);
+        System.out.println(bonus);
     }
 
     private static void validate(int money) throws IllegalArgumentException {
