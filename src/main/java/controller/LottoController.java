@@ -14,5 +14,7 @@ public class LottoController {
     public void run(){
         outputHandler.promptForAmountInput();
         System.out.println(inputHandler.getAmountInput());
+        outputHandler.promptForLottoNumber();
+        System.out.println(inputHandler.getLottoNumber().toString());
     }
 }
