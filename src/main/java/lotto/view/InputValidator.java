@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.exception.InputValidationError;
+
 public class InputValidator {
 
     private InputValidator() {
@@ -7,7 +9,7 @@ public class InputValidator {
 
     public static void validateIsEmpty(final String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력은 빈 값일 수 없습니다.");
+            InputValidationError.EMPTY_INPUT.throwException();
         }
     }
 
@@ -15,7 +17,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자 형식이 아닙니다.");
+            InputValidationError.INVALID_NUMERIC_FORMAT.throwException();
         }
     }
 }
