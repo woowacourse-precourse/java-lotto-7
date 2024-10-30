@@ -17,4 +17,8 @@ public class Lotto {
     public int getMatchingCount(Lotto winningNumbers) {
         return (int) numbers.stream().filter(winningNumbers.getNumbers()::contains).count();
     }
+
+    public boolean isBonusNumberMatched(Lotto bonusNumber) {
+        return numbers.contains(bonusNumber.getNumbers().getFirst());
+    }
 }
