@@ -6,7 +6,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     private static final String ASK_PurchaseAmount="구입금액을 입력해 주세요.";
-    private static final String ERROR_PurchaseAmount="[ERROR] 구입 금액은 1000원 단위로 입력해주세요.";
+    private static final String ERROR_PurchaseAmount="[ERROR] 구입 금액은 양수인 1000원 단위로 입력해주세요.";
 
     public static int input_purchaseAmount(){
         boolean validInput=false;
@@ -25,7 +25,8 @@ public class InputView {
     }
 
     private static boolean check_invalidAmount(String purchase_amount){
-        if(Integer.parseInt(purchase_amount)%1000==0) return true;
+        int amount=Integer.parseInt(purchase_amount);
+        if(amount%1000==0&&amount>0) return true;
         return false;
     }
 }
