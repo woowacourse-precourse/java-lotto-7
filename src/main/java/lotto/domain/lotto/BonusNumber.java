@@ -2,18 +2,17 @@ package lotto.domain.lotto;
 
 public class BonusNumber {
 
-    private final int number;
+    private int number;
 
     public BonusNumber() {
         this.number = 0;
     }
 
     public int getNumber() {
-        return 0;
+        return number;
     }
 
-
-    public void updateNumber(int number) {
-
+    public void updateNumber(int bonusNumber) {
+        this.number = bonusNumber;
     }
 }

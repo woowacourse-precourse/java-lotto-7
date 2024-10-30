@@ -20,6 +20,6 @@ public class LottoService {
     }
 
     public void updateBonusNumber(int number) {
-
+        bonusNumber.updateNumber(number);
     }
 }

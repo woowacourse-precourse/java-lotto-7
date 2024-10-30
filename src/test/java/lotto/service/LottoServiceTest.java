@@ -47,6 +47,6 @@ public class LottoServiceTest {
         lottoService.updateBonusNumber(number);
 
         // then
-        assertThat(lotto.getNumbers()).isEqualTo(number);
+        assertThat(bonusNumber.getNumber()).isEqualTo(number);
     }
 }
