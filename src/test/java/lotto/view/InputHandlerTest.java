@@ -45,7 +45,7 @@ public class InputHandlerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"abcdef", "a,b,c,d,e,f", "123456"})
+    @ValueSource(strings = {"abcdef", "a,b,c,d,e,f", ","})
     void 당첨_번호가_정수가_아니면_예외_발생(String winningNumbers) {
         assertThatThrownBy(() -> InputHandler.validateWinningNumbersAreInteger(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -24,6 +24,22 @@ public class InputHandler {
         }
     }
 
+    public static List<Integer> validateWinningNumbersAreInteger(String input) {
+        List<String> inputConvertedBySplit = List.of(input.split(","));
+        if (inputConvertedBySplit.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호들은 정수여야 합니다.");
+        }
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String el : inputConvertedBySplit) {
+            try{
+                winningNumbers.add(Integer.parseInt(el));
+            } catch (Exception e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호들은 정수여야 합니다.");
+            }
+        }
+        return winningNumbers;
+    }
+
     public static void validateWinningNumbersRange(List<Integer> winningNumbers) {
         for (Integer num : winningNumbers) {
             if (num < 1 || 45 < num) {
