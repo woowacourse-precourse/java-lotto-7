@@ -7,9 +7,15 @@ import java.util.List;
 
 public class PrintTicketCount {
     private final int lottoTicketCount;
+    private final List<List<Integer>> userTicketNumbers;
 
     public PrintTicketCount(int lottoTicketCount) {
         this.lottoTicketCount = lottoTicketCount;
+        this.userTicketNumbers = new ArrayList<>();
+    }
+
+    public List<List<Integer>> getTicketNumbers() {
+        return userTicketNumbers;
     }
 
     public void printCount() {
@@ -25,6 +31,7 @@ public class PrintTicketCount {
     private void makeLottoNumber() {
         List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumbers);
+        userTicketNumbers.add(lottoNumbers);
         System.out.println(lottoNumbers);
     }
 }

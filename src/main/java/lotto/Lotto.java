@@ -14,6 +14,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public void bonusNumberCheck(int bonusNumber) {
         Set<Integer> bonusCheck = new HashSet<>(numbers);
         if (!bonusCheck.add(bonusNumber)) {

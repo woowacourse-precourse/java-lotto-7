@@ -1,12 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class UserBonusNumberInput {
     private final int bonusNumber;
 
     public UserBonusNumberInput() {
         this.bonusNumber = validateAndParseBonusNumber();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private int validateAndParseBonusNumber() {
