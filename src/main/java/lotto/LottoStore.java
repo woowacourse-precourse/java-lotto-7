@@ -11,7 +11,7 @@ public class LottoStore {
     private static final int TOTAL_LOTTO_COUNT = 6;
 
     public List<Lotto> purchase(int price) {
-        int numOfLotto = price % Lotto.PRICE;
+        int numOfLotto = price / Lotto.PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numOfLotto; i++) {
