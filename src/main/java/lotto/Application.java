@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
 
         InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
         String lottoPurchaseMoney = inputView.inputLottoPurchaseMoney();
 
         int lottoCount = Integer.parseInt(lottoPurchaseMoney) / 1000;
@@ -18,6 +20,6 @@ public class Application {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
         }
-        
+        outputView.printPurchaseCount(lottoCount);
     }
 }
