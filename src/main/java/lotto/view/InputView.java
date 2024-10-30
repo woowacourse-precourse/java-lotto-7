@@ -10,4 +10,9 @@ public class InputView {
         printInputPurchaseAmount();
         return Console.readLine();
     }
+
+    public static String inputWinningNumbers() {
+        printInputWinningNumbers();
+        return Console.readLine();
+    }
 }
