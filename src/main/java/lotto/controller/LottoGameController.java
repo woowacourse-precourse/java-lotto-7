@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 
 public class LottoGameController {
@@ -8,6 +9,7 @@ public class LottoGameController {
     }
 
     private static int getPurchaseAmount() {
-        return Integer.parseInt(InputView.inputPurchaseAmount());
+        String input = InputView.inputPurchaseAmount();
+        return PurchaseAmountValidator.validate(input);
     }
 }
