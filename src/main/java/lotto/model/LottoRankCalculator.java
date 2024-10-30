@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.LottoRank;
 
-public class LottoUtil {
+public class LottoRankCalculator {
     public LottoRank getLottoPrizeRank(List<Integer> numbers, List<Integer> winningNumbers, int bonusNumber) {
         int matchingCount = countMatchingNumbers(numbers, winningNumbers);
         return LottoRank.getRankByMatchingCountAndBonus(matchingCount, containsBonusNumber(numbers, bonusNumber));
