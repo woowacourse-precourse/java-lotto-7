@@ -2,14 +2,15 @@ package lotto.ui;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
 import lotto.domain.Prize;
 
 public class OutputView {
-    public static void showPurchasedNumbers(List<String> lottery){
-        System.out.println(lottery.size() + "개를 구매했습니다.");
+    public static void showPurchasedNumbers(List<Lotto> lottos){
+        System.out.println(lottos.size() + "개를 구매했습니다.");
 
-        for(String numbers : lottery){
-            System.out.println("[" + numbers + "]");
+        for(Lotto lotto : lottos){
+            System.out.println(lotto.toString());
         }
     }
 
