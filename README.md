@@ -45,3 +45,26 @@
   - 구매 금액 대비 수익률 계산
   - 수익률 = 당첨 금액 / 구매 금액 x 100
   - 소수점 둘째 자리에서 반올림
+
+---
+## 프로그래밍 요구 사항
+### 로직 작성
+- 열 제한: 12
+- 들여쓰기 2까지
+- 3항 연산자 사용x
+- else 예약어 사용x
+- Enum을 적용하여 프로그램을 구현
+### 메서드
+- 한 가지 일만 할 수 있도록 최대한 작게 구현
+- 길이가 15라인이 넘어가지 않도록 구현
+### 테스트
+- `JUnit5`, `AssertJ` 사용하여 기능 목록이 정상적으로 작동하는지 테스트로 확인
+- 구현한 기능에 대한 단위 테스트 작성
+### 라이브러리
+- 랜덤 값 추출: `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 사용
+- 사용자 입력: `camp.nextstep.edu.missionutils.Console`의 `readLine()` 사용
+### Lotto 클래스
+- 제공된 Lotto 클래스 사용
+- numbers 이외의 필드 추가 불가
+- numbers의 접근 제어자 변경 불가
+- 패키지 변경 불가
