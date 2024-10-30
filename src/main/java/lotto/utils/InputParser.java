@@ -27,7 +27,7 @@ public class InputParser {
     public int parsePurchaseAmount(String userInput) {
         purchaseAmountValidator.validate(userInput);
 
-        int purchaseAmount = Integer.parseInt(userInput);
+        int purchaseAmount = parseNumber(userInput);
         purchaseAmountValidator.validateDivisibleByThousand(purchaseAmount);
 
         return purchaseAmount;
@@ -37,7 +37,7 @@ public class InputParser {
         winningNumberValidator.validate(userInput);
 
         List<String> separatedInput = separateInput(userInput);
-        List<Integer> winningNumbers = parseNumbers(separatedInput);
+        List<Integer> winningNumbers = parseWinningNumbers(separatedInput);
 
         winningNumberValidator.validateNumbersCount(winningNumbers);
         winningNumberValidator.validateNumbersInRange(winningNumbers);
@@ -49,23 +49,29 @@ public class InputParser {
     public int parseBonusNumber(String userInput, List<Integer> winningNumbers) {
         bonusNumberValidator.validate(userInput);
 
-        int bonusNumber = Integer.parseInt(userInput);
+        int bonusNumber = parseNumber(userInput);
         bonusNumberValidator.validateNumberInRange(bonusNumber);
         bonusNumberValidator.validateDuplicateBonusNumber(bonusNumber, winningNumbers);
 
         return bonusNumber;
     }
 
+    private int parseNumber(String userInput) {
+        return Integer.parseInt(userInput);
+    }
+
     private List<String> separateInput(String userInput) {
         return List.of(userInput.split(WINNING_NUMBER_INPUT_DELIMITER));
     }
 
-    private List<Integer> parseNumbers(List<String> separatedInput) {
+    private List<Integer> parseWinningNumbers(List<String> separatedInput) {
         return separatedInput.stream()
-                .map(input -> {
-                    winningNumberValidator.validateNumber(input, WINNING_NUMBER_ERROR_MESSAGE.toString());
-                    return Integer.parseInt(input);
-                })
+                .map(this::parseAndValidateWinningNumber)
                 .collect(Collectors.toList());
+    }
+
+    private Integer parseAndValidateWinningNumber(String input) {
+        winningNumberValidator.validateNumber(input, WINNING_NUMBER_ERROR_MESSAGE.toString());
+        return Integer.parseInt(input);
     }
 }
