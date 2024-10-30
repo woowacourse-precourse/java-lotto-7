@@ -35,7 +35,7 @@ public class BasicWinLottoNumbers {
     }
     
     public Set<Integer> get() {
-        return Collections.unmodifiableSet(numbers);
+        return numbers;
     }
     
 }
