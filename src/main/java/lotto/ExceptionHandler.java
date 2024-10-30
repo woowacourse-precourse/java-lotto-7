@@ -5,7 +5,8 @@ enum ExceptionMessage {
     NOT_ONLY_NUMBER("[ERROR] 기타 문자나 단위 없이 양의 숫자만 입력하세요."),
     OUT_OF_RANGE_NUMBER(String.format("[ERROR] 입력 가능한 숫자는 0에서 %d 사이 입니다.", Integer.MAX_VALUE)),
     NOT_POSITIVE_NUMBER("[ERROR] 0보다 큰 양수를 입력하세요."),
-    NOT_THOUSAND_DIVISIBLE("[ERROR] 1,000원 단위로 입력하세요");
+    NOT_THOUSAND_DIVISIBLE("[ERROR] 1,000원 단위로 입력하세요"),
+    NOT_LOTTO_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 값입니다.");
 
     private final String message;
 
@@ -19,6 +20,9 @@ enum ExceptionMessage {
 }
 
 public class ExceptionHandler {
+    private static final int LOTTO_MIN = 1;
+    private static final int LOTTO_MAX = 45;
+
     public static void isEmpty(String input) {
         ExceptionMessage exception = ExceptionMessage.EMPTY_INPUT;
         if (input == null || input.isEmpty()) {
@@ -58,6 +62,13 @@ public class ExceptionHandler {
     public static void isThousandDivisible(int input) {
         ExceptionMessage exception = ExceptionMessage.NOT_THOUSAND_DIVISIBLE;
         if (input % 1000 != 0) {
+            throw new IllegalArgumentException(exception.getMessage());
+        }
+    }
+
+    public static void isLottoNumber(int input) {
+        ExceptionMessage exception = ExceptionMessage.NOT_LOTTO_NUMBER;
+        if (input < LOTTO_MIN || input > LOTTO_MAX) {
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
