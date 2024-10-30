@@ -20,13 +20,14 @@ public class Controller {
     }
 
     public void run() {
-        printHandler.PrintBuyMoneyAmount();
+        printHandler.printBuyMoneyAmount();
         inputHandler.setInputMoney();
         int money = inputHandler.getInputMoney();
         lottoStore.calculateNumberOfPurchases(money);
         int lottoNumberOfPurchases = lottoStore.getLottoNumberOfPurchases();
-        printHandler.PrintBuyLottoNumbersOfPurchases(lottoNumberOfPurchases);
+        printHandler.printBuyLottoNumbersOfPurchases(lottoNumberOfPurchases);
         createLotto(lottoNumberOfPurchases);
+        printHandler.printWinningNumbersPrompt();
     }
 
     private void createLotto(int lottoNumberOfPurchases) {
