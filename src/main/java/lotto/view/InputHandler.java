@@ -24,6 +24,11 @@ public class InputHandler {
         }
     }
 
+    public static void validateWinningNumers(String input) {
+        List<Integer> winningNumbers = validateWinningNumbersAreInteger(input);
+        validateWinningNumbersRange(winningNumbers);
+    }
+
     public static List<Integer> validateWinningNumbersAreInteger(String input) {
         List<String> inputConvertedBySplit = List.of(input.split(","));
         if (inputConvertedBySplit.isEmpty()) {
