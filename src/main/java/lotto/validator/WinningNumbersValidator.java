@@ -14,7 +14,7 @@ public class WinningNumbersValidator {
     private static final Integer MININUM_NUMBER = 1;
     private static final Integer MAXIM1UM_NUMBER = 45;
 
-    public static void validateWinningNumbers(String input){
+    public static List<Integer> validateWinningNumbers(String input){
         CommonValidator.validateNullAndBlank(input);
         validateOnyIntegerAndComma(input);
 
@@ -24,6 +24,8 @@ public class WinningNumbersValidator {
                         .collect(Collectors.toList());
 
         validateEachLotto(winningNumbers);
+
+        return winningNumbers;
 
     }
 
