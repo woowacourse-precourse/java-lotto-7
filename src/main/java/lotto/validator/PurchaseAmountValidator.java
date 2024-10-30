@@ -13,7 +13,7 @@ public class PurchaseAmountValidator {
         int convertNumber =  convert(input);
         validateNonZero(convertNumber);
         validateMultipleOfThousand(convertNumber);
-        return new PurchaseAmountDto(convertNumber);
+        return new PurchaseAmountDto(convertNumber / AMOUNT_UNIT);
     }
 
     private static void validateBlank (final String input) {
