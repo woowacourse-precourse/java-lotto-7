@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.view.InputHandler.validatePurchaseAmount;
+
 public class InputHandlerTest {
 
     @ParameterizedTest
