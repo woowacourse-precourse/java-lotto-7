@@ -2,6 +2,10 @@ package lotto.domain.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.exception.BusinessException;
+import lotto.domain.model.Lotto;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static lotto.common.constant.LottoConst.*;
 import static lotto.common.exception.ErrorCode.*;
@@ -13,8 +17,9 @@ public class InputView {
         return readValidAmount();
     }
 
+
     private void printRequestAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(LOTTO_AMOUNT_REQUEST);
     }
 
     private int readValidAmount() {
@@ -47,4 +52,49 @@ public class InputView {
             throw new BusinessException(CANT_DIVIDE);
         }
     }
+
+    public Lotto getWinningNumber() {
+        printRequestWinningNumber();
+        return readValidWinningNumber();
+    }
+
+    private void printRequestWinningNumber() {
+        System.out.println(LOTTO_WINNING_NUMBER_REQUEST);
+    }
+
+    private Lotto readValidWinningNumber() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                return validWinningNumber(input);
+            } catch (BusinessException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto validWinningNumber(String input) {
+        List<Integer> winningNumber = parseWinningNumber(input);
+        isSixNumbers(winningNumber);
+        return Lotto.create(winningNumber);
+    }
+
+    private List<Integer> parseWinningNumber(String input) {
+        try {
+            String[] numbers = input.split(DELIMITER);
+            return Arrays.stream(numbers)
+                    .map(Integer::parseInt)
+                    .filter(integer -> integer >= START_NUM && integer <= END_NUM)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new BusinessException(INCORRECT_WINNING_NUMBER);
+        }
+    }
+
+    private void isSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new BusinessException(LOTTO_INVALID_QUANTITY);
+        }
+    }
+
 }
