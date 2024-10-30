@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 
 public class LottoMachine {
@@ -15,6 +16,7 @@ public class LottoMachine {
 
     public void run() {
         List<Lotto> lottoList = buyLottoByPrice(1000);
+        WinningLotto winningLotto = generateWinningLotto();
     }
 
     private List<Lotto> buyLottoByPrice(int price) {
@@ -28,5 +30,12 @@ public class LottoMachine {
         }
 
         return lottoList;
+    }
+
+    private WinningLotto generateWinningLotto() {
+        List<Integer> winningNumber = inputView.inputWinningNumber();
+        int winningBonusNumber = inputView.inputWinningBonusNumber();
+
+        return new WinningLotto(winningNumber, winningBonusNumber);
     }
 }
