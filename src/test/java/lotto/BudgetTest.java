@@ -14,7 +14,7 @@ class BudgetTest {
 
         Budget testBudget = new Budget("2000");
 
-        assertThat(testBudget.getAccount()).isEqualTo(2000);
+        assertThat(testBudget.getAmount()).isEqualTo(2000);
     }
 
     @Test
