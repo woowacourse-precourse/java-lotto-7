@@ -14,9 +14,17 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printPurchaseAmountMessage();
-        int purchaseAmount = inputView.inputPurchaseAmount();
+        int tryPurchaseAmount = tryPurchaseAmount();
+    }
 
-        
+    private int tryPurchaseAmount() {
+        while (true) {
+            try {
+                outputView.printPurchaseAmountMessage();
+                return inputView.inputPurchaseAmount();
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
     }
 }
