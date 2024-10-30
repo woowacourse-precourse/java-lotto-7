@@ -32,7 +32,7 @@ public class Lotto {
     }
 
     private List<Integer> generateLottoNumbers(LottoNumGenerator lottoNumGenerator) {
-        return lottoNumGenerator.generateSortedNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
+        return lottoNumGenerator.generateNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
     }
 
     private void validate(List<Integer> numbers) {
@@ -63,4 +63,8 @@ public class Lotto {
         return numbers;
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
