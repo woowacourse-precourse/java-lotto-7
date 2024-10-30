@@ -1,7 +1,15 @@
 package lotto.model;
 
-import static lotto.ExceptionMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000_EXCEPTION;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 
 public class Lottos {
+    public Lotto createLotto() {
+        List<Integer> randomNumbers = getRandomNumbers();
+        return new Lotto(randomNumbers);
+    }
 
+    private List<Integer> getRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 }
