@@ -1,15 +1,20 @@
 package lotto.viewHandler.api;
 
 public class ApiMessageImpl implements ApiMessage {
+    private final String message;
+    private final Integer code;
 
-
+    public ApiMessageImpl(String message, Integer code) {
+        this.message = message;
+        this.code = code;
+    }
     @Override
     public String getMessage() {
-        return "";
+        return message;
     }
 
     @Override
     public Integer getCode() {
-        return 0;
+        return code;
     }
 }

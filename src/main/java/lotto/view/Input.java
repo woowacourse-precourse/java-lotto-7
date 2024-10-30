@@ -1,21 +1,36 @@
 package lotto.view;
 
-import lotto.viewHandler.Api;
-
 import static camp.nextstep.edu.missionutils.Console.close;
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.view.ViewUtil.GET_BONUS_NUMBER;
+import static lotto.view.ViewUtil.GET_PURCHASE_MONEY;
+import static lotto.view.ViewUtil.GET_WIN_LOTTO_NUMBER;
+
 
 public class Input {
-    public Api<String> getPurchaseMoney() {
+    public String getPurchaseMoney() {
+        System.out.println(GET_PURCHASE_MONEY);
 
-        return new Api<String>();
+        return getInput();
+    }
+
+    public String getWinningLottoNumbers() {
+        System.out.println(GET_WIN_LOTTO_NUMBER);
+
+        return getInput();
+    }
+
+    public String getBonusNumber() {
+        System.out.println(GET_BONUS_NUMBER);
+
+        return getInput();
+    }
+
+    public void closeInput() {
+        close();
     }
 
     private String getInput() {
         return readLine();
-    }
-
-    private void closeInput() {
-        close();
     }
 }
