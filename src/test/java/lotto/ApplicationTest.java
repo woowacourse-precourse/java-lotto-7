@@ -13,7 +13,6 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    @SuppressWarnings("unchecked")
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {

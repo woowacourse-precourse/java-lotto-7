@@ -15,10 +15,10 @@ public class LottoUtils {
     private static final int NUMBERS_COUNT = 6; 
 
     public static Lotto createLotto() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER,NUMBERS_COUNT);
-
-        Collections.sort(lotto);
+        List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_COUNT));
     
+        Collections.sort(lotto);
+        
         return new Lotto(lotto);
     }
 
