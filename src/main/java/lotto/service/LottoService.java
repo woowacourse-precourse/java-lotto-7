@@ -36,7 +36,16 @@ public class LottoService {
         return false;
     }
 
-    public double calculateProfitMargin(int totalPrize,int purchaseAmount){
+    public double calculateProfitMargin(HashMap<Integer,Integer> winningRecord,int purchaseAmount){
+        int totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) {
+                continue; 
+            }
+    
+            int count = winningRecord.getOrDefault(rank.getRankOrder(), 0);
+            totalPrize += rank.getPrize() * count; 
+        }
         return (totalPrize/(double)purchaseAmount)*100;
     }
 
