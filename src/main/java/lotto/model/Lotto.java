@@ -16,8 +16,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (isTooMany(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.TOO_MANY_NUMBERS.getMessage());
+        if (hasTooManyNumbers(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.HAS_TOO_MANY_NUMBERS.getMessage());
         }
         if (hasDuplicatedNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
@@ -27,7 +27,7 @@ public class Lotto {
         }
     }
 
-    private boolean isTooMany(List<Integer> numbers) {
+    private boolean hasTooManyNumbers(List<Integer> numbers) {
         return numbers.size() != NUMBERS_SIZE;
     }
 
@@ -46,6 +46,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    // TODO: 추가 기능 구현
 }

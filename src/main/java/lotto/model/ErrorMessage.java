@@ -2,7 +2,7 @@ package lotto.model;
 
 public enum ErrorMessage {
 
-    TOO_MANY_NUMBERS("로또 번호는 6개여야 합니다."),
+    HAS_TOO_MANY_NUMBERS("로또 번호는 6개여야 합니다."),
     HAS_DUPLICATED_NUMBER("로또 번호는 중복될 수 없습니다."),
     HAS_OUT_OF_RANGE_NUMBER("로또 번호는 1 ~ 45 사이 숫자만 가능합니다.");
 
