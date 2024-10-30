@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 public class LottoSystem {
     private static LottoCustomer customer = new LottoCustomer();
     private List<Integer> winningNumbers;
+    private int bonusNumber;
     private int printLottoCount;
 
 
@@ -46,6 +47,10 @@ public class LottoSystem {
             winningNumbers.add(luckyNumber);
         }
         this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getWinningNumbers() {

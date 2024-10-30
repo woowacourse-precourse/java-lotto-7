@@ -5,13 +5,20 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        LottoSystem system = new LottoSystem();
+        LottoSystem lottoMachine = new LottoSystem();
         System.out.println(StringPool.INSERT_MONEY);
-        List<Lotto> boughtLottos = system.buyLotto(Integer.parseInt(Console.readLine()));
-        system.printSoldLottos(boughtLottos);
+        List<Lotto> boughtLottos = lottoMachine.buyLotto(Integer.parseInt(Console.readLine()));
+
+        lottoMachine.printSoldLottos(boughtLottos);
+
         System.out.print(System.lineSeparator());
         System.out.println(StringPool.INSERT_WINNING_NUMBERS);
-        system.setWinningNumbers(Console.readLine());
+        lottoMachine.setWinningNumbers(Console.readLine());
+
+        System.out.println(StringPool.INSERT_BONUS_NUMBER);
+        lottoMachine.setBonusNumber(Integer.parseInt(Console.readLine()));
+
+
     }
 }
 
