@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import static lotto.utils.Constant.WINNING_NUMBER_INPUT_DELIMITER;
+import static lotto.utils.ErrorMessage.BONUS_NUMBER_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class InputParser {
 
     public void parseBonusNumber(String userInput) {
         inputValidator.validateEmpty(userInput);
+        inputValidator.validateNumber(userInput, BONUS_NUMBER_ERROR_MESSAGE.toString());
     }
 
     private List<String> separateInput(String userInput) {
