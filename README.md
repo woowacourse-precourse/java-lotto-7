@@ -32,7 +32,18 @@
 ### 2-4. 총 수익률 출력
 - 소수점 둘째 자리에서 반올림한다.
 ## 3. 예외 처리
+*잘못된 값 입력시 `IllegalArgumentException` 발생*
+
+*Exception이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리*
+
+*또한 [ERROR]로 시작하는 에러메세지 출력*
+
+### 3-1-1. 구입 금액 입력
+- 숫자가 아닌 값 입력시 예외 처리
 - 로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외 처리
-- 잘못된 값 입력시 `IllegalArgumentException` 발생 
-    - Exception이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리
-- 또한 [ERROR]로 시작하는 에러메세지 출력
+### 3-1-2. 당첨 번호 입력
+- '쉼표'와 숫자가 아닌 값 입력시 예외 처리
+- 입력 값이 6개가 아닐 시 예외 처리
+### 3-1-3. 보너스 번호 입력
+- 숫자가 아닌 값 입력시 예외 처리
+- 숫자는 하나만 입력
