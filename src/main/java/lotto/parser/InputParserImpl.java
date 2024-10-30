@@ -1,6 +1,7 @@
 package lotto.parser;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.parser.InputParser;
@@ -9,13 +10,13 @@ public class InputParserImpl implements InputParser {
 
     @Override
     public int parseMoney(String money) {
-        int intinput;
+        int intmoney;
         try {
-            intinput = Integer.parseInt(money);
+            intmoney = Integer.parseInt(money);
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_INPUT.getMessage());
         }
-        return intinput;
+        return intmoney;
     }
 
     @Override
@@ -29,6 +30,7 @@ public class InputParserImpl implements InputParser {
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PARAM_INPUT.getMessage());
         }
+        numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
 
