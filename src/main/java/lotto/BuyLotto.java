@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BuyLotto {
@@ -21,6 +22,7 @@ public class BuyLotto {
 
     public void printLottoList() {
         for (List<Integer> integers : lottoList) {
+            Collections.sort(integers);
             System.out.println(integers);
         }
     }
