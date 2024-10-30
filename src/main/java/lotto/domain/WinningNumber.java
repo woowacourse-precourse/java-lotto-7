@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.util.ValidatorUtils;
 
 import java.util.Arrays;
-import java.util.TreeSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumber {
@@ -20,18 +20,12 @@ public class WinningNumber {
         return this.bonusNumber;
     }
 
-    private TreeSet<Integer> extractWinningNumbers(String inputWinningNumbers){
+    private List<Integer> extractWinningNumbers(String inputWinningNumbers){
         return Arrays.asList(inputWinningNumbers.split(",")).stream()
                 .map(ValidatorUtils::isNotEmpty)
                 .map(ValidatorUtils::canParseToInt)
                 .map(ValidatorUtils::isInRange)
-                .collect(Collectors.toCollection(TreeSet::new));
-    }
-
-    private void isSixDifferentNumbers(TreeSet<Integer> numbers){
-        if(numbers.size() != 6){
-            throw new IllegalArgumentException("6개의 서로 다른 수를 입력하셔야 합니다.");
-        }
+                .collect(Collectors.toList());
     }
 
     private int extractBonusNumber(String inputBonusNumber) {

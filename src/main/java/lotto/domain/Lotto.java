@@ -1,22 +1,37 @@
 package lotto.domain;
 
-import java.util.TreeSet;
+import java.util.List;
 
 public class Lotto {
-    private final TreeSet<Integer> numbers;
+    private final List<Integer> numbers;
 
-    public Lotto(TreeSet<Integer> numbers) {
-        isSixDifferentNumbers(numbers);
+    public Lotto(List<Integer> numbers) {
+        isSixNumbers(numbers);
+        isDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
-    private void isSixDifferentNumbers(TreeSet<Integer> numbers){
-        if(numbers.size() != 6){
-            throw new IllegalArgumentException("6개의 서로 다른 수를 입력하셔야 합니다.");
+    private void isSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("6개의 수를 입력하셔야 합니다.");
         }
     }
 
-    public boolean contains(int number){
+    private void isDuplicatedNumber(List<Integer> numbers) {
+        boolean hasDuplicates = numbers.stream()
+                .distinct()
+                .count() != numbers.size();
+
+        if (hasDuplicates) {
+            throw new IllegalArgumentException("중복된 숫자는 입력할 수 없습니다.");
+        }
+    }
+
+    public boolean contains(int number) {
         return this.numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
     }
 }
