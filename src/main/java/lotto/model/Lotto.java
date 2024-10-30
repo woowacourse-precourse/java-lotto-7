@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.GameException;
+
 import java.util.List;
 
 public class Lotto {
@@ -22,13 +24,13 @@ public class Lotto {
 
     private void checkSize(List<Integer> numbers) {
         if (numbers.size() != TOTAL_ELEMENT_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 %s개여야 합니다.".formatted(TOTAL_ELEMENT_COUNT));
+            throw new GameException("로또 번호는 %s개여야 합니다.".formatted(TOTAL_ELEMENT_COUNT));
         }
     }
 
     private void checkDuplicate(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+            throw new GameException("중복된 번호가 있습니다.");
         }
     }
 
@@ -38,7 +40,7 @@ public class Lotto {
 
     private void checkInRange(List<Integer> numbers) {
         if (isOutOfRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 %s부터 %s사이여야 합니다.".formatted(MIN_NUMBER_OF_RANGE, MAX_NUMBER_OF_RANGE));
+            throw new GameException("로또 번호는 %s부터 %s사이여야 합니다.".formatted(MIN_NUMBER_OF_RANGE, MAX_NUMBER_OF_RANGE));
         }
     }
 
