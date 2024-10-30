@@ -37,6 +37,15 @@ public class InputHandler {
             throw new IllegalArgumentException();
         }
     }
+    public List<Lotto> initializeLotto(int num){
+
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i=0;i<num;i++){
+
+            lottos.add(new Lotto(generateLottoNumbers()));
+        }
+        return lottos;
+    }
 
     public List<Integer> generateLottoNumbers(){
         return Randoms.pickUniqueNumbersInRange(1,45,6);

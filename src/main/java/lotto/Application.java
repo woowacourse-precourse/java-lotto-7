@@ -15,6 +15,16 @@ public class Application {
         System.out.println(num/1000+"개를 구매했습니다.");
 
 
+        List<Lotto> lottos = inputHandler.initializeLotto(num/1000);
+
+
+        for(int i=0;i<num/1000;i++){
+            for(int j=0;j<6;j++){
+                System.out.print(lottos.get(i).getNumbers().get(j)+",");
+            }
+            System.out.println(" ");
+        }
+
 
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> v = inputHandler.getLottoNumber();
