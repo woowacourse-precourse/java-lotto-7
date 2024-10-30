@@ -1,6 +1,4 @@
-package lotto.domain;
-
-import java.util.List;
+package lotto.domain.lotto;
 
 public interface LottoFactory {
 
