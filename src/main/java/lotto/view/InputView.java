@@ -22,8 +22,8 @@ public class InputView {
         EmptyInputValidator.validate(input);
         // 숫자 형식인지 검증
         NumberFormatValidator.validate(input);
-        // 양수인지 검증
         int purchaseAmount = Integer.parseInt(input);
+        // 양수인지 or 0보다 큰지 검증
         PositiveNumberValidator.validate(purchaseAmount);
         // 1000원 단위로 입력 받았는지 검증
         validatePurchaseAmount(purchaseAmount);
