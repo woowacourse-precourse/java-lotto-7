@@ -12,13 +12,13 @@ class IntegersGeneratorTest {
     private static final int END_INCLUSIVE = 45;
     private static final int COUNT = 6;
 
-    private NumbersGenerator<Integer> numbersGenerator;
+    private IntegersGenerator integersGenerator;
     private List<Integer> randomPickNumbers;
 
     @BeforeEach
     void setUp() {
-        numbersGenerator = new IntegersGenerator();
-        randomPickNumbers = numbersGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+        integersGenerator = new IntegersGenerator();
+        randomPickNumbers = integersGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
     }
 
     @Test
