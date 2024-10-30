@@ -90,7 +90,7 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-10, -1000, -28439})
+    @ValueSource(ints = {0, -10, -1000, -28439})
     @DisplayName("음수인 값 예외 처리 테스트")
     void validatePositiveNumber(int input) {
         assertThatThrownBy(() -> {
