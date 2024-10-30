@@ -10,44 +10,12 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class InputHandlerTest {
-
-    @ParameterizedTest
-    @ValueSource(strings = {"a", ","})
-    void 구입_금액이_정수가_아니면_예외_발생(String purchaseAmount) {
-        assertThatThrownBy(() -> InputHandler.validatePurchaseAmountIsInteger(purchaseAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 정수여야 합니다.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"-1", "0", "1", "2", "1000"})
-    void 구입_금액이_정수이면_예외_없음(String purchaseAmount) {
-        assertDoesNotThrow(() -> {
-            InputHandler.validatePurchaseAmountIsInteger(purchaseAmount);
-        });
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {-1000, -1, 0, 1, 100, 1001})
-    void 구입_금액이_1000의_배수가_아니면_예외_발생(int purchaseAmount) {
-        assertThatThrownBy(() -> InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {1000, 2000, 1000000})
-    void 구입_금액이_1000의_배수이면_예외_없음(int purchaseAmount) {
-        assertDoesNotThrow(() ->
-                InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount)
-        );
-    }
+public class WinningNumbersInputHandlerTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"abcdef", "a,b,c,d,e,f", ","})
     void 당첨_번호가_정수가_아니면_예외_발생(String winningNumbers) {
-        assertThatThrownBy(() -> InputHandler.validateWinningNumbersAreInteger(winningNumbers))
+        assertThatThrownBy(() -> WinningNumbersInputHandler.validateWinningNumbersAreInteger(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호들은 정수여야 합니다.");
     }
@@ -56,14 +24,14 @@ public class InputHandlerTest {
     @ValueSource(strings = {"1,2,3", "-1,-2,-3,-4,-5,-6", "1000"})
     void 당첨_번호가_정수이면_예외_없음(String winningNumbers) {
         assertDoesNotThrow(() ->
-                InputHandler.validateWinningNumbersAreInteger(winningNumbers)
+                WinningNumbersInputHandler.validateWinningNumbersAreInteger(winningNumbers)
         );
     }
 
     @ParameterizedTest
     @MethodSource("provideInvalidWinningNumbers")
     void 당첨_번호가_1에서_45_사이의_값이_아니면_예외_발생(List<Integer> winningNumbers) {
-        assertThatThrownBy(() -> InputHandler.validateWinningNumbersRange(winningNumbers))
+        assertThatThrownBy(() -> WinningNumbersInputHandler.validateWinningNumbersRange(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당청 번호는 1에서 45 사이의 정수 값이어야 합니다.");
     }
@@ -79,7 +47,7 @@ public class InputHandlerTest {
     @MethodSource("provideValidWinningNumbers")
     void 당첨_번호가_1에서_45_사이의_값이면_예외_없음(List<Integer> winningNumbers) {
         assertDoesNotThrow(() ->
-                InputHandler.validateWinningNumbersRange(winningNumbers)
+                WinningNumbersInputHandler.validateWinningNumbersRange(winningNumbers)
         );
     }
 
