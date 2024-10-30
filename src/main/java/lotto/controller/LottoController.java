@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.lang.ModuleLayer.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.ConvertValidValue;
@@ -19,10 +18,10 @@ public class LottoController {
     }
 
     public void run(){
-        purchaseLotto();
+        lottoAmount();
     }
 
-    private void purchaseLotto() {
+    private void lottoAmount() {
         String purchaseAmount = InputView.purchase();
         int ticket = 0;
 
@@ -30,11 +29,9 @@ public class LottoController {
             ticket = convertValidValue.purchaseAmount(purchaseAmount);
         }catch (IllegalArgumentException e){
             System.out.println(e.toString());
-            purchaseLotto();
+            lottoAmount();
         }
 
         ticketCount = ticket;
     }
-
-    
 }
