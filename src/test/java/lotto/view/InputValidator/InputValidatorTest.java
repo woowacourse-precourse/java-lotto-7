@@ -42,4 +42,11 @@ public class InputValidatorTest {
                 () -> new InputValidator().validateCommaFormat(",1,2,4,8,6,5,"));
         assertEquals("[ERROR] 숫자 사이에 쉼표(,)를 사용해서 입력해주세요.", exception.getMessage());
     }
+
+    @Test
+    void 로또_구입_금액이_양수가_아니면_예외가_발생한다() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new InputValidator().validatePositiveNumber("-10000"));
+        assertEquals("[ERROR] 양수 정수만 입력해주세요.", exception.getMessage());
+    }
 }
