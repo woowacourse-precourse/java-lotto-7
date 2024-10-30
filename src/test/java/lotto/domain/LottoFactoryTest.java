@@ -1,10 +1,8 @@
 package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.in;
-import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.domain.user.UserLotto;
+import lotto.domain.factory.LottoFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
