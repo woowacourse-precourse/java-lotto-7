@@ -22,4 +22,17 @@ class LottoNumbersStrategyTest {
         HashSet<Integer> numberSet = new HashSet<>(numbers);
         assertThat(numberSet.size()).isEqualTo(numbers.size()).isBetween(1, 45);
     }
+
+    @DisplayName("생성된 랜덤 번호는 오름차순으로 정렬된다.")
+    @Test
+    void sortedRandomNumber() {
+        //given
+        RandomNumbersStrategy lottoNumbersStrategy = new LottoNumbersStrategy();
+
+        //when
+        List<Integer> numbers = lottoNumbersStrategy.generateNumbers();
+
+        //then
+        assertThat(numbers).isSorted();
+    }
 }
