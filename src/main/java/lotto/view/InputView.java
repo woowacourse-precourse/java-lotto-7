@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.WinningNumbersValidator;
 
@@ -11,6 +12,7 @@ public class InputView {
 
     private final PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
     private final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
+    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
 
     public int inputPurchaseAmount() {
         String userInput;
@@ -38,7 +40,7 @@ public class InputView {
         do {
             userInput = Console.readLine();
         }
-        while (winningNumbersValidator.isNotValidWinningNumbers(userInput));
+        while (bonusNumberValidator.isNotValidBonusNumber(userInput, winningNumbers));
         return Integer.parseInt(userInput);
 
     }
