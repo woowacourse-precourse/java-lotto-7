@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoRunner {
@@ -24,9 +25,23 @@ public class LottoRunner {
                     Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
 
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
+        }
+
+        Lotto targetLotto = null;
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String nums = Console.readLine();
+            try {
+                List<Integer> lottoNums = Arrays.stream(nums.split(",")).mapToInt(Integer::parseInt).boxed().toList();
+                targetLotto = new Lotto(lottoNums);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
         }
     }
 
