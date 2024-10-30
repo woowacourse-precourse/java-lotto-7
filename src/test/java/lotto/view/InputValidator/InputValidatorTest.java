@@ -17,4 +17,11 @@ public class InputValidatorTest {
                 () -> new InputValidator().validateNull("  \n"));
         assertEquals("[ERROR] 공백은 입력할 수 없습니다.", exception.getMessage());
     }
+
+    @Test
+    void 숫자가_아닌_값이_입력되면_예외_발생_테스트() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> new InputValidator().validateInteger("two hundred"));
+        assertEquals("[ERROR] 숫자만 입력 가능합니다.", exception.getMessage());
+    }
 }
