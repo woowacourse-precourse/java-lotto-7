@@ -13,10 +13,16 @@ public class LottoController {
     }
 
     public void run() {
-        getPrice();
+        purchaseLotto();
     }
 
-    public void getPrice() {
-        int price = inputView.readPrice();
+    private void purchaseLotto() {
+        while (true) {
+            try {
+                int price = inputView.readPrice();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
