@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Prize;
 
-public class outputView {
+public class OutputView {
     public static void showPurchasedNumbers(List<String> lottery){
         System.out.println(lottery.size() + "개를 구매했습니다.");
 
