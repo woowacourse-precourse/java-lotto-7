@@ -13,11 +13,17 @@ public class Wallet {
         this.money = money;
     }
 
-    private void setRateOfReturn(int rateOfReturn) {
-        this.rateOfReturn = rateOfReturn;
+    public int getRateOfReturn() {
+        return rateOfReturn;
     }
 
+    public int getNumberOfLottoPurchases(int ticketPrice){
+        return money / ticketPrice;
+    }
 
+    public void setRateOfReturn(int totalPrizeMoney){
+        rateOfReturn = totalPrizeMoney / money * 100;
+    }
 
 
 
