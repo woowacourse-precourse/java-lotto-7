@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.dto.LottoDto;
 import lotto.service.InputService;
 import lotto.service.LottoService;
 import lotto.service.WinningResult;
@@ -38,7 +39,7 @@ public class LottoController {
 
     private void printPurchaseAmountAndLotto(int quantity, List<Lotto> purchasedLotto) {
         outputView.printPurchaseAmount(quantity);
-        outputView.printPurchasedLottos(purchasedLotto);
+        outputView.printPurchasedLottos(purchasedLotto.stream().map(LottoDto::new).toList());
     }
 
     private void printResult(Map<WinningResult, Integer> results, double rate) {

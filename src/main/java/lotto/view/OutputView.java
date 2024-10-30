@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
+import lotto.dto.LottoDto;
 import lotto.service.WinningResult;
 
 import java.util.List;
@@ -17,9 +17,9 @@ public class OutputView {
         System.out.println(amount + PURCHASE_QUANTITY);
     }
 
-    public void printPurchasedLottos(final List<Lotto> lottos) {
+    public void printPurchasedLottos(final List<LottoDto> lottos) {
         StringBuilder sb = new StringBuilder();
-        for (Lotto lotto : lottos) {
+        for (LottoDto lotto : lottos) {
             sb.append(lotto).append('\n');
         }
         System.out.println(sb);
