@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -11,6 +12,11 @@ public class Application {
         int lottoPurchaseQuantity = calculateLottoQuantity(lottoPurchasePrice);
         print(lottoPurchaseQuantity);
         List<Integer> numbers = createLottoNumbers();
+        sort(numbers);
+    }
+
+    private static void sort(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     private static List<Integer> createLottoNumbers() {
