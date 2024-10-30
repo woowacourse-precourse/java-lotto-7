@@ -15,8 +15,9 @@ public class UserController {
         return instance;
     }
 
-    public void getPurchasePrice() {
-        while (true) {
+    public void getPurchasePrice(int accessCount) {
+        int count = accessCount;
+        while (count > 0) {
             try {
                 int purchasePrice = userService.inputPurchasePrice();
                 userService.save(purchasePrice);
@@ -24,7 +25,11 @@ public class UserController {
 
             } catch (IllegalArgumentException e) {
                 ErrorOutputView.printErrorMessage(e.getMessage());
+                count--;
             }
+        }
+        if (count == 0) {
+            userService.exit(accessCount);
         }
     }
 }

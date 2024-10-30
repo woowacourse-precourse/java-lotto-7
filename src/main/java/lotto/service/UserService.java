@@ -6,6 +6,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import static lotto.view.OutputView.ENTER_PURCHASE_PRICE;
+import static lotto.view.OutputView.EXIT_APPLICATION;
 
 public class UserService {
     // 싱글톤 패턴
@@ -29,6 +30,10 @@ public class UserService {
 
     public void save(int purchasePrice) {
         User user = new User(purchasePrice);
+    }
+
+    public void exit(int accessCount) {
+        throw new IllegalStateException(accessCount + EXIT_APPLICATION.getMessage());
     }
 
     private void isValidPurchasePrice(String purchasePrice) {
