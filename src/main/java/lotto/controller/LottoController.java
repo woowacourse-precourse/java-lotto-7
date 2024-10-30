@@ -32,7 +32,7 @@ public class LottoController {
     }
 
     private List<Integer> getWinnerNumbers() {
-        outputView.printWinnerNumbersMessage();
+        outputView.printWinnerNumbersInputMessage();
         return inputView.getWinnerNumbersInput();
     }
 }
