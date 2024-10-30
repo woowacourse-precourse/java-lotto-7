@@ -1,6 +1,9 @@
 package lotto.view;
 
+import java.io.PrintStream;
+import java.text.DecimalFormat;
 import java.util.*;
+import lotto.enums.PrizeAmount;
 import lotto.model.Lotto;
 
 public class OutputHandler {
@@ -25,5 +28,32 @@ public class OutputHandler {
         for (Lotto lotto: lottos) {
             printLotto(lotto);
         }
+    }
+
+    public void printWinning(Set<PrizeAmount> prizeAmounts) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (PrizeAmount pr: prizeAmounts) {
+            printWinningAmounts(pr);
+        }
+    }
+
+    public void printWinningAmounts(PrizeAmount pr) {
+        DecimalFormat formatter = new DecimalFormat();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(pr.getMatchCount()).append("개 일치");
+        if (pr.getIsBonus().getIsBonus()) {
+            sb.append(", 보너스 볼 일치");
+        }
+        String format = formatter.format(Long.valueOf(pr.getAmount()));
+        sb.append(" (").append(format).append("원)");
+        sb.append(" - ").append(pr.getCount()).append("개");
+        System.out.println(sb);
+    }
+
+    public void printRateOfReturn(Double rate) {
+
     }
 }
