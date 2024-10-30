@@ -28,7 +28,7 @@ public class LottoService {
 
     private int getQuantity(String amountInput) {
         int amount = Parser.parseToInt(amountInput);
-        LottoValidator.validateAmount(amount);
+        LottoValidator.validate(amount);
         return amount / LOTTO_PRICE;
     }
 }
