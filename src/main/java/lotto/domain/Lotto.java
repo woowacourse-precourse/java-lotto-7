@@ -21,11 +21,11 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public long findHits(List<Integer> winningNumbers, int bonusNumber) {
+    public int findHits(List<Integer> winningNumbers, int bonusNumber) {
         long hits = numbers.stream().filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))
                 .count();
 
-        return hits;
+        return (int)hits;
     }
 
     public BonusExistence findBonus(int hits, int bonusNumber){
