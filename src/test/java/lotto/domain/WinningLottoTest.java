@@ -26,6 +26,25 @@ class WinningLottoTest {
     }
 
     @Test
+    void 당첨된_로또_번호_개수_확인() {
+        // given
+        List<Integer> lottoNumbers = List.of(4, 5, 6, 7, 8, 9);
+        List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusLottoNumber = 7;
+
+        Lotto lotto = new Lotto(lottoNumbers);
+        Lotto winningLotto = new Lotto(winningLottoNumbers);
+        LottoNumber bonusNumber = new LottoNumber(bonusLottoNumber);
+
+        // when
+        WinningLotto winningLottoResult = new WinningLotto(winningLotto, bonusNumber);
+        Integer matchedNumbersCount = winningLottoResult.matchCount(lotto);
+
+        // then
+        assertThat(matchedNumbersCount).isEqualTo(3);
+    }
+
+    @Test
     void 예외_당첨_로또_번호와_보너스_번호가_중복되는_경우() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
