@@ -1,18 +1,14 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 import lotto.Lotto;
 import lotto.common.Winning;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoServiceTest {
@@ -51,5 +47,20 @@ class LottoServiceTest {
         assertThat(countWinnings).isEqualTo(Map.of(
                 Winning.THREE, 1
         ));
+    }
+
+    @Test
+    void getYield() {
+        //given
+        int payment = 5000;
+        Map<Winning, Integer> winnings = Map.of(
+            Winning.THREE, 1
+        );
+
+        // when
+        double yield = lottoService.getYield(payment, winnings);
+
+        // then
+        assertThat(yield).isEqualTo(100.0);
     }
 }

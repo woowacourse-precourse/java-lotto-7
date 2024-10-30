@@ -30,4 +30,17 @@ public class LottoService {
 
         return countWinnings;
     }
+
+    public double getYield(int payment, Map<Winning, Integer> winnings) {
+        Set<Winning> winningSet = winnings.keySet();
+        int totalWinnings = 0;
+        for (Winning winning : winningSet) {
+            int count = winnings.get(winning);
+            totalWinnings += count * winning.getWinnings();
+        }
+
+        double yield = payment / (double) totalWinnings;
+
+        return Math.round(yield * 100.0);
+    }
 }

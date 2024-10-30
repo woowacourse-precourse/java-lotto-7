@@ -34,5 +34,6 @@ public class LottoController {
         int bonus = Integer.parseInt(inputBonus);
 
         Map<Winning, Integer> winnings = lottoService.getWinnings(lottos, winningNumbers, bonus);
+        double yield = lottoService.getYield(payment, winnings);
     }
 }
