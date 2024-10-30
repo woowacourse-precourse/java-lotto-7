@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
@@ -21,21 +23,22 @@ public class Input {
 		return 0;
 	}
 
-	public void winningNumber() {
+	public List<Integer> winningNumber() {
 		try {
 			System.out.println();
 			System.out.println("당첨 번호를 입력해 주세요.");
 			String winning = readLine();
 			WinningNumber numberCheck = new WinningNumber(winning);
-			numberCheck.winningCheck();
+			return numberCheck.winningCheck();
 
 		} catch (IllegalArgumentException e) {
 			System.err.println(e);
 			winningNumber();
 		}
+		return null;
 	}
 
-	public void bonusInput() {
+	public void bonusInput(List<Integer> winningList) {
 		System.out.println();
 		System.out.println("보너스 번호를 입력해 주세요.");
 		String bonus = readLine();

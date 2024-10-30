@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
+
 class InputTest {
 
 	private TestInput input;
@@ -95,13 +97,13 @@ class InputTest {
 		}
 
 		@Override
-		public void winningNumber() {
+		public List<Integer> winningNumber() {
 			try {
 				System.out.println();
 				System.out.println("당첨 번호를 입력해 주세요.");
 				String winning = readLine();
 				WinningNumber numberCheck = new WinningNumber(winning);
-				numberCheck.winningCheck();
+				return numberCheck.winningCheck();
 
 			} catch (IllegalArgumentException e) {
 				System.err.println(e);

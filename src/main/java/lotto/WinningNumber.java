@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class WinningNumber {
@@ -12,10 +13,11 @@ public class WinningNumber {
 		this.winning = winning;
 	}
 
-	public void winningCheck() {
+	public List<Integer> winningCheck() {
 		String[] winningArr = winningSplit();
 		valueCheck(winningArr);
 		duplicationCheck(winningArr.length);
+		return List.copyOf(set);
 	}
 
 	private String[] winningSplit() {
