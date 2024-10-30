@@ -9,9 +9,11 @@ public class Application {
     public static final int numSize = 6;
     public static int bonus;
     public static int bonusCount = 0;
+    public static int[] amoutAry;
     public static List<Integer> winning_number;
     public static List<Integer>[] lotto_list;
-    public static final String amount[] = {"5,000","50,000","1,500,000",
+    public static final int amount[] = {5000,50000,1500000,2000000000};
+    public static final String amountPrint[] = {"5,000","50,000","1,500,000",
             "30,000,000","2,000,000,000","30,000,000"};
     public enum PrintMsg {
         INPUT_MSG("구입금액을 입력해 주세요."),
@@ -22,7 +24,8 @@ public class Application {
         ERROR_MSG("[ERROR] 정수 값으로 입력을 해야합니다."),
         REVENUE_MSG("총 수익률은 %d%%입니다."),
         MATCH_MSG("%d개 일치 (%s원) - %d개\n"),
-        BONUS_MSG("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n");
+        BONUS_MSG("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
+        REVENUE("총 수익률은 %.2f%%입니다.");
 
         private final String message;
 
@@ -44,7 +47,7 @@ public class Application {
         lotto_list = purchase_history(num);
         winning_number = inputWinningNumber().getNumbers();
         inputBonus();
-        // 당첨 통계
+        matchCount();
         winning_history();
 
     }
@@ -53,12 +56,7 @@ public class Application {
         System.out.println("\n"+PrintMsg.WINNING_NUM_MSG.getMessage());
         String winning[] = Console.readLine().split(",");
         for(int i = 0; i < numSize; i++){
-            try{
-                lotto.numbers.add(Integer.parseInt(winning[i]));
-            }catch (IllegalArgumentException e){
-                System.out.println(PrintMsg.ERROR_MSG.getMessage());
-                throw e;
-            }
+            lotto.numbers.add(validate_parsInt(winning[i]));
         }
         lotto.validate(lotto.numbers);
         lotto.numbers.sort(Integer::compareTo);
@@ -89,27 +87,25 @@ public class Application {
     }
     public void inputBonus(){
         System.out.println("\n"+PrintMsg.BONUS_NUM_MSG.getMessage());
-        bonus = Integer.parseInt(Console.readLine());
+        bonus = validate_parsInt(Console.readLine());
     }
-    public int[] matchCount(){
-        int[] ary = new int[numSize+1];
+    public void matchCount(){
+        amoutAry = new int[numSize+1];
         for(int i = 0; i < lotto_list.length; i++){
             int num = numberMatch(i,0,0,0);
             if(num == 5){
                 bonusCheck(i);
             }
-            ary[num]++;
+            amoutAry[num]++;
         }
-        return ary;
     }
     public void winning_history(){
-        int [] ary = matchCount();
         System.out.println("\n"+PrintMsg.STATISTIC_MSG.getMessage());
         System.out.println("---");
         for(int i = 3; i < 7; i++){
-            System.out.printf(PrintMsg.MATCH_MSG.getMessage(),i,amount[i-3],ary[i]);
+            System.out.printf(PrintMsg.MATCH_MSG.getMessage(),i,amountPrint[i-3],amoutAry[i]);
             if(i == 5){
-                System.out.printf(PrintMsg.BONUS_MSG.getMessage(),i,amount[5],bonusCount);
+                System.out.printf(PrintMsg.BONUS_MSG.getMessage(),i,amountPrint[5],bonusCount);
             }
         }
     }
@@ -134,17 +130,24 @@ public class Application {
     }
     public int purchase_amount(){
         System.out.println(PrintMsg.INPUT_MSG.getMessage());
-        int num = Integer.parseInt(Console.readLine());
+        int num = validate_parsInt(Console.readLine());
         return validate_division(num);
+    }
+    public int validate_parsInt(String str) {
+        int num = 0;
+        try {
+            num = Integer.parseInt(str);
+        }catch(IllegalArgumentException e) {
+            System.out.println(PrintMsg.ERROR_MSG.getMessage());
+            throw e;
+        }
+        return num;
     }
     public int validate_division(int amount){
         if(amount % one_ticket != 0){
             throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지지 않습니다. ");
         }
         return amount / one_ticket;
-    }
-    public void revenue(){
-
     }
     public class Lotto {
         private final List<Integer> numbers;
