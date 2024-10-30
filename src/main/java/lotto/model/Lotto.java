@@ -27,13 +27,18 @@ public class Lotto {
         return set.size() < list.size();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder("당첨 번호: ");
-        for (int i = 0; i < numbers.size(); i++) {
-            result.append(numbers.get(i));
-            if (i < numbers.size() - 1) {result.append(", ");}
-        }
-        return result.toString();
+    public List<Integer> getNumbers(){
+        return this.numbers;
     }
+
+//    @Override
+//    public String toString() {
+//        StringBuilder result = new StringBuilder("당첨 번호: ");
+//        for (int i = 0; i < numbers.size(); i++) {
+//            result.append(numbers.get(i));
+//            if (i < numbers.size() - 1) {result.append(", ");}
+//        }
+//        return result.toString();
+//    }
+
 }

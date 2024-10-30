@@ -4,8 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    public String inputPurchasePrice(){
+    public String inputValue(){
         return readLine();
     }
-    public String inputWinnigNumbers(){return readLine();}
 }

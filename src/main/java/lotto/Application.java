@@ -8,7 +8,7 @@ public class Application {
         LottoController lottoController = new LottoController();
         lottoController.getPurchasePrice();
         lottoController.getWinningNumbers();
-
+        lottoController.getBonusNumber();
 
     }
 }

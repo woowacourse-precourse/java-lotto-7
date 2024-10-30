@@ -12,7 +12,10 @@ public enum ErrorMessage {
 
     //당첨 번호 에러 메시지
     NOT_COMMA_PARSE("[ERROR] 당첨 번호는 쉼표(,)로만 구분해야 합니다."),
-    DUPLICATE_NUMBER("[ERROR] 중복 되는 당첨 번호가 존재합니다.");
+    DUPLICATE_NUMBER("[ERROR] 중복 되는 당첨 번호가 존재합니다."),
+
+    //보너스 번호 에러 메시지
+    BONUS_DUPLICATE_WINNING_NUM("[ERROR] 입력하신 보너스 번호와 중복되는 당첨 번호가 존재합니다.");
 
 
     private final String message;

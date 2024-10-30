@@ -4,34 +4,29 @@ import lotto.constant.ErrorMessage;
 
 public class LottoManager {
 
-    private final Integer purchaseQuantity; //판매 수량
+    private PurchaseQuantity purchaseQuantity; //구매 수량
 
     private Lotto winnigLotto; //당첨 로또
 
-    private static final Integer DIVISOR = 1000;
+    private BonusNumber bonusNumber;
 
-    public LottoManager(String price){
-        validate(price);
-        this.purchaseQuantity = Integer.parseInt(price)/DIVISOR;
-    }
+    public LottoManager(){}
 
-    private void validate(String price){
-        validatePrice(price);
-    }
-
-    private void validatePrice(String price){
-        if(price.isEmpty()) throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
-        if(!price.matches("^-?\\d+$")) throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
-        if(Integer.parseInt(price)<=0) throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
-        if(Integer.parseInt(price)%1000!=0) throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_PRICE.getMessage());
+    public void setPurchaseQuantity(PurchaseQuantity purchaseQuantity){
+        this.purchaseQuantity = purchaseQuantity;
     }
 
     public void setWinningLotto(Lotto winnigLotto){
         this.winnigLotto = winnigLotto;
     }
 
-    @Override
-    public String toString() {
-        return "구매 수량 = " + purchaseQuantity + "개\n" + winnigLotto.toString();
+    public void setBonusNumber(BonusNumber bonusNumber){
+        validateBonus(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
+
+    public void validateBonus(BonusNumber bonusNumber){
+        if(winnigLotto.getNumbers().contains(bonusNumber.getBonus())) throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WINNING_NUM.getMessage());
+    }
+
 }
