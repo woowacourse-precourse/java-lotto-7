@@ -18,6 +18,7 @@ public class UserMainLottoFactory {
         String[] separatedInputValues = input.split(",");
 
         List<Integer> lottoNumber = convertToNumbers(separatedInputValues);
+        validateSize(lottoNumber);
         return new Lotto(lottoNumber);
     }
 
@@ -29,7 +30,7 @@ public class UserMainLottoFactory {
 
             int num;
             try{
-                num = Integer.parseInt(str);
+                num = Integer.parseInt(str.trim());
             }
             catch(NumberFormatException e){
                 throw new IllegalArgumentException("로또 번호를 숫자로 입력해 주세요");
@@ -46,6 +47,12 @@ public class UserMainLottoFactory {
         Matcher matcher = Pattern.compile("[!@#$%^&*().?\":{}|<>]").matcher(value);
         if (matcher.find()) {
             throw new IllegalArgumentException("잘못된 구분자를 입력했습니다.");
+        }
+    }
+
+    private void validateSize(List<Integer> lottoNumber){
+        if(lottoNumber.size() != 6){
+            throw new IllegalArgumentException("6개의 로또를 입력해주세요.");
         }
     }
 
