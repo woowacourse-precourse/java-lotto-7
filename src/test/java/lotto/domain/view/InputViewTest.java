@@ -1,26 +1,40 @@
 package lotto.domain.view;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.common.config.Factory;
+import lotto.domain.model.Lotto;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
 
-    InputView inputView = new InputView();
+    Factory factory = new Factory();
+    InputView inputView;
+
+    @BeforeEach
+    void setUp() {
+        inputView = factory.inputView();
+    }
+
+    @AfterEach
+    void tearDown() {
+        Console.close();
+    }
 
     @Nested
-    @DisplayName("사용자에게 입력을 받으면")
-    class WhenInputFromUser {
-
+    @DisplayName("사용자가 가격을 입력하면")
+    class AmountTest {
         @ParameterizedTest
-        @ValueSource(strings = {"8000"})
+        @ValueSource(strings = {"1000", "2000"})
         @DisplayName("숫자일 시 해당 금액을 반환해야 한다.")
-        void getUserPurchaseAmount(String input) {
+        void getUserWinningNumber(String input) {
             //given
             setUserInput(input);
 
@@ -30,10 +44,32 @@ class InputViewTest {
             //then
             assertEquals(Integer.parseInt(input), amount);
         }
-
     }
 
-    private static void setUserInput(String testInput) {
-        System.setIn(new ByteArrayInputStream((testInput + "\n").getBytes()));
+
+    @Nested
+    @DisplayName("사용자가 당첨 로또를 입력하면")
+    class WinningNumberTest {
+        @ParameterizedTest
+        @ValueSource(strings = {"1,2,3,4,5,6"})
+        @DisplayName("정상적으로 파싱하여야 한다.")
+        void getUserPurchaseAmount(String input) {
+            //given
+            setUserInput(input);
+
+            //when
+            Lotto winningNumber = inputView.getWinningNumber();
+            List<Integer> numbers = winningNumber.getNumbers();
+
+            //then
+            assertThat(numbers)
+                    .containsOnly(1, 2, 3, 4, 5, 6);
+        }
+    }
+
+
+    private static void setUserInput(String userInput) {
+        ByteArrayInputStream in = new ByteArrayInputStream((userInput + "\n").getBytes());
+        System.setIn(in);
     }
 }
