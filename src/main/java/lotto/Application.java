@@ -9,5 +9,7 @@ public class Application {
 
         PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
         purchaseAmountValidator.validate(purchaseInput);
+
+        String lottoNumbers = inputView.getLottoNumbers();
     }
 }
