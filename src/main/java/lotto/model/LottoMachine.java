@@ -8,7 +8,7 @@ public class LottoMachine {
 
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public void buyLotto(int purchaseAmount) {
+    public List<Lotto> buyLotto(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("로또 구매 금액이 로또 금액으로 나누어 떨어지지 않습니다.");
         }
@@ -18,9 +18,7 @@ public class LottoMachine {
         for (int i = 0; i < numberOfLotto; i++) {
             lottos.add(new Lotto(LottoGenerator.generate()));
         }
-    }
 
-    public List<Lotto> getLottos() {
         return lottos;
     }
 }
