@@ -19,8 +19,11 @@ public class LottoController {
 
     public void run() {
         Integer lottoCount = getLottoCount();
-        getRandomLottosAndPrint(lottoCount);
+        List<Lotto> lottos = getRandomLottosAndPrint(lottoCount);
+        List<Integer> winningNumbers = getWinningNumbers();
+        Integer bonusNumbers = getBonusNumber();
     }
+
 
     private Integer getLottoCount() {
         outputView.printMessage("구입금액을 입력해 주세요.");
@@ -38,5 +41,15 @@ public class LottoController {
         return Stream.generate(lottoService::createLotto)
                 .limit(lottoCount)
                 .toList();
+    }
+
+    private List<Integer> getWinningNumbers() {
+        outputView.printMessage("당첨 번호를 입력해 주세요.");
+        return inputView.inputWinningNumbers();
+    }
+
+    private Integer getBonusNumber() {
+        outputView.printMessage("보너스 번호를 입력해 주세요.");
+        return inputView.inputBonusNumber();
     }
 }
