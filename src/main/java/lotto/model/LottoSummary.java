@@ -26,7 +26,7 @@ public class LottoSummary {
     }
 
     public Long calculateTotalRewards() {
-        return LottoRank.getLottoRanks().stream()
+        return LottoRank.getWinningRanks().stream()
                 .map(rank -> rank.getReward()*countResult.getOrDefault(rank, 0))
                 .reduce(0L, Long::sum);
     }
