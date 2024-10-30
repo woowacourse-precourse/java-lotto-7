@@ -2,6 +2,7 @@ package lotto.printer;
 
 import static java.util.Collections.sort;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.RankPrice;
 import lotto.application.Printer;
@@ -36,7 +37,8 @@ public class LottoResultPrinter implements Printer {
     }
 
     private String makeSortLotto(List<Integer> lotto) {
-        sort(lotto);
-        return lotto.toString();
+        List<Integer> sortableList = new ArrayList<>(lotto);
+        sort(sortableList);
+        return sortableList.toString();
     }
 }
