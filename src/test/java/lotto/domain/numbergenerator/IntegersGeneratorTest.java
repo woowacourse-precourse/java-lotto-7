@@ -1,4 +1,4 @@
-package lotto.domain.number;
+package lotto.domain.numbergenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -2,8 +2,8 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.number.IntegersGenerator;
-import lotto.domain.number.NumbersGenerator;
+import lotto.domain.numbergenerator.IntegersGenerator;
+import lotto.domain.numbergenerator.NumbersGenerator;
 
 public class LottoGenerator {
 
