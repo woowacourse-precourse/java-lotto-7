@@ -7,7 +7,7 @@ public abstract class MessageFormatter {
 
     public static String getLotteryResults(Map<LottoResult, Integer> matchResults) {
         StringBuilder sb = new StringBuilder();
-        for (int i = LottoResult.values().length - 1; i > 0; i--) {
+        for (int i = LottoResult.values().length - 2; i >= 0; i--) {
             LottoResult lottoResult = LottoResult.values()[i];
             sb.append(lottoResult.getDescription())
                     .append(matchResults.get(lottoResult))
@@ -18,9 +18,9 @@ public abstract class MessageFormatter {
     }
 
     public static String getReturnRate(Map<LottoResult, Integer> matchResults, int amount) {
-        int sum = matchResults.entrySet().stream().mapToInt(m -> m.getKey().getPrice() * m.getValue()).sum();
+        long sum = matchResults.entrySet().stream().mapToInt(m -> m.getKey().getPrice() * m.getValue()).sum();
 
         double earning = (double) (sum - amount) / amount * 100;
-        return String.format("총 수익률은 %.2f%% 입니다.", earning);
+        return String.format("%.1f%%",Math.round(earning * 100.0) / 100.0);
     }
 }
