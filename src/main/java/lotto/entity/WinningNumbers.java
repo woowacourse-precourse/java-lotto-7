@@ -7,11 +7,11 @@ import java.util.List;
 import lotto.config.LottoConfig;
 import lotto.exception.LottoValidationException;
 
-public class WinnerNumbers {
+public class WinningNumbers {
     private final Lotto mainNumbers;
     private final int bonusNumber;
 
-    public WinnerNumbers(List<Integer> mainNumbers, int bonusNumber) {
+    public WinningNumbers(List<Integer> mainNumbers, int bonusNumber) {
         validate(mainNumbers, bonusNumber);
         this.mainNumbers = new Lotto(mainNumbers);
         this.bonusNumber = bonusNumber;

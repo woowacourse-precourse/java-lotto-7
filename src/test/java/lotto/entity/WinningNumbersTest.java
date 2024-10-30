@@ -9,7 +9,7 @@ import java.util.List;
 import lotto.exception.LottoExceptionMessage;
 import org.junit.jupiter.api.Test;
 
-public class WinnerNumbersTest {
+public class WinningNumbersTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         // given
@@ -18,7 +18,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(LottoExceptionMessage.INVALID_NUMBER_COUNT.getMessage(), illegalArgumentException.getMessage());
@@ -32,7 +32,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(LottoExceptionMessage.DUPLICATE_NUMBERS.getMessage(), illegalArgumentException.getMessage());
@@ -46,7 +46,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(LottoExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
@@ -60,7 +60,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(LottoExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
@@ -74,7 +74,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(BONUS_NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
@@ -88,7 +88,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(BONUS_NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
@@ -102,7 +102,7 @@ public class WinnerNumbersTest {
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
-                () -> new WinnerNumbers(integers, bonusNumber));
+                () -> new WinningNumbers(integers, bonusNumber));
 
         // then
         assertEquals(BONUS_NUMBER_DUPLICATE.getMessage(), illegalArgumentException.getMessage());
