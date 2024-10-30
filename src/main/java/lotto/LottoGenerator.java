@@ -4,6 +4,7 @@ import constants.Constants;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGenerator {
     public List<Lotto> generateLottos(int amount) {
@@ -18,13 +19,7 @@ public class LottoGenerator {
     }
 
     private Lotto generateRandomLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < Constants.LOTTO_MAIN_COUNT) {
-            int number = (int) (Math.random() * Constants.LOTTO_MAX_NUMBER) + Constants.LOTTO_MIN_NUMBER;
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.LOTTO_MAIN_COUNT);
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
