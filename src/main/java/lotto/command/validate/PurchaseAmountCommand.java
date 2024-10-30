@@ -1,6 +1,8 @@
 package lotto.command.validate;
 
 import lotto.common.exception.ExceptionEnum;
+import lotto.dto.PurchaseAmountUserInput;
+import lotto.dto.UserInput;
 import lotto.view.exception.InputException;
 
 /**
@@ -13,13 +15,14 @@ public class PurchaseAmountCommand implements ValidateCommand {
   private static final String ASK = "로또 구입 금액을 입력 해주세요.";
 
   @Override
-  public void execute(String input) {
+  public UserInput execute(String input) {
     validateBlank(input);
     validateWhiteSpace(input);
     int value = validateIntegerRange(input,
         AMOUNT_UNIT,
         AMOUNT_MAXIMUM);
     validateUnit(value);
+    return PurchaseAmountUserInput.from(value);
   }
 
   @Override

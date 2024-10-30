@@ -1,18 +1,18 @@
 package lotto.command.validate;
 
-
 import lotto.common.exception.ExceptionEnum;
 import lotto.command.Command;
+import lotto.dto.UserInput;
 import lotto.view.exception.InputException;
 
 /**
  * @author : jiffyin7@gmail.com
  * @since : 24. 10. 31.
  */
-public abstract interface ValidateCommand extends Command<String> {
+public abstract interface ValidateCommand extends Command<UserInput, String> {
 
   @Override
-  void execute(String input);
+  UserInput execute(String input);
 
   String ask();
 
