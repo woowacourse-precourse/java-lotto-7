@@ -2,7 +2,7 @@ package views;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class inputView {
+public class InputView {
 
     public enum promptForInput {
         Purchase("구입금액을 입력해 주세요."),
