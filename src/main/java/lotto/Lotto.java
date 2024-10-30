@@ -5,11 +5,10 @@ import static lotto.exception.Exception.INVALID_LOTTO_NUMBERS_COUNT;
 import static lotto.exception.Exception.LOTTO_NUMBERS_OUT_OF_RANGE;
 
 import java.util.List;
+import lotto.utils.LottoNumberValidator;
 
 public class Lotto {
 
-    public static final int MIN_BOUND = 1;
-    public static final int MAX_BOUND = 45;
     public static final int LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;
@@ -52,6 +51,6 @@ public class Lotto {
     }
 
     private boolean isWithinRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> number >= MIN_BOUND && number <= MAX_BOUND);
+        return numbers.stream().allMatch(LottoNumberValidator::isWithinRange);
     }
 }
