@@ -29,9 +29,14 @@ public class LottoResultPrinter implements Printer {
     public void printPrizeResult(List<PrizeLotto> prizeLottos, double profit) {
         print("\n당첨 통계\n" + "---");
         for (PrizeLotto prizeLotto : prizeLottos) {
-            print(prizeLotto.getMatchCount() + "개 일치 (" + chunkByThree(prizeLotto.getPrice()) + "원) - "
-                    + prizeLotto.getCount()
-                    + "개");
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(prizeLotto.getMatchCount()).append("개 일치");
+            if (prizeLotto.getRank() == 2) {
+                stringBuilder.append(", 보너스 볼 일치");
+            }
+            stringBuilder.append(" (").append(chunkByThree(prizeLotto.getPrice())).append("원) - ")
+                    .append(prizeLotto.getCount()).append("개");
+            print(stringBuilder.toString());
         }
         print("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
