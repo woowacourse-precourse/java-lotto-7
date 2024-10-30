@@ -14,18 +14,20 @@ public class OutputView {
 
     public void printPurchaseLottos(List<Lotto> lottos) {
         lottos.forEach(this::printLotto);
+        printEmptyLine();
     }
 
     private void printLotto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         Collections.sort(numbers);
+
         String outputNumbers = numbers.stream()
                 .map(String::valueOf) // 각 숫자를 문자열로 변환
                 .collect(Collectors.joining(", "));
         System.out.printf("[%s]\n", outputNumbers);
     }
 
-    private void printEmptyLine() {
+    public void printEmptyLine() {
         System.out.println();
     }
 

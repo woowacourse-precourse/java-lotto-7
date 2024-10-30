@@ -22,5 +22,14 @@ public class Application {
         }
         outputView.printPurchaseCount(lottoCount);
         outputView.printPurchaseLottos(lottos);
+
+        String winningNumber = inputView.inputWinningNumber();
+        List<String> winningNumbers = List.of(winningNumber.split(","));
+
+        outputView.printEmptyLine();
+
+        String inputBonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+
     }
 }
