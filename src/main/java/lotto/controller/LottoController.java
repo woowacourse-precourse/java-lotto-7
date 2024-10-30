@@ -4,8 +4,10 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.service.LottoService;
 import lotto.service.Validate;
-import lotto.view.*;
-
+import lotto.view.InputView;
+import lotto.view.OutputView;
+import lotto.view.RequestMessage;
+import lotto.view.ResultMessage;
 import java.util.List;
 
 public class LottoController {
@@ -17,19 +19,44 @@ public class LottoController {
     private LottoWinningNumbers lottoWinningNumbers;
 
     public void setPurchaseLottoNumbers () {
-        outputView.printMessage(RequestMessage.ENTER_PURCHASE_AMOUNT.getMessage());
-        String purchaseAmount = inputView.readLine();
-        purchaseLottoNumbers = lottoService.purchaseLotto(
-                validate.validatePurchaseAmount(purchaseAmount));
+        while (true) {
+            try {
+                outputView.printMessage(RequestMessage.ENTER_PURCHASE_AMOUNT.getMessage());
+                String purchaseAmount = inputView.readLine();
+                purchaseLottoNumbers = lottoService.purchaseLotto(
+                        validate.validatePurchaseAmount(purchaseAmount));
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     public void setWinningNumbers () {
-        outputView.printMessage(RequestMessage.ENTER_WINNING_NUMBERS.getMessage());
-        String winningNumbersInput = inputView.readLine();
-        outputView.printMessage(RequestMessage.ENTER_BONUS_NUMBER.getMessage());
-        String bonusNumberInput = inputView.readLine();
         lottoWinningNumbers = new LottoWinningNumbers(
-                validate.validateWinningNumbers(winningNumbersInput),
-                validate.validateBonusNumber(bonusNumberInput));
+                initializeWinningNumbers(),
+                initializeBonusNumber());
+    }
+    private List<Integer> initializeWinningNumbers () {
+        while (true) {
+            try {
+                outputView.printMessage(RequestMessage.ENTER_WINNING_NUMBERS.getMessage());
+                String winningNumbersInput = inputView.readLine();
+                return validate.validateWinningNumbers(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
+    }
+    private int initializeBonusNumber () {
+        while (true) {
+            try {
+                outputView.printMessage(RequestMessage.ENTER_BONUS_NUMBER.getMessage());
+                String bonusNumberInput = inputView.readLine();
+                return validate.validateBonusNumber(bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
     }
 }
