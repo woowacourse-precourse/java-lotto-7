@@ -12,13 +12,17 @@ public class InputView {
         this.inputValidator = inputValidator;
     }
 
-    public String inputPurchaseAmount() {
+    public int inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
 
-        String userInput = Console.readLine();
+        while (true) {
+            String userInput = Console.readLine();
 
-        inputValidator.validatePurchaseAmount(userInput);
-
-        return userInput;
+            try {
+                return inputValidator.validatePurchaseAmount(userInput);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }

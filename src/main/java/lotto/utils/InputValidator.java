@@ -6,11 +6,13 @@ import static lotto.utils.ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
 
 public class InputValidator {
 
-    public void validatePurchaseAmount(String userInput) {
+    public int validatePurchaseAmount(String userInput) {
         validateEmpty(userInput);
 
         int purchaseAmount = validateNumber(userInput);
         validateDivisibleByThousand(purchaseAmount);
+
+        return purchaseAmount;
     }
 
     private void validateEmpty(String userInput) {
