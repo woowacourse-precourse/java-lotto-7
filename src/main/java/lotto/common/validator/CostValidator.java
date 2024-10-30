@@ -1,14 +1,11 @@
 package lotto.common.validator;
 
 import lotto.error.CostErrorMessage;
-import java.util.regex.Pattern;
 
 public class CostValidator {
-    private static final String NUMBER_CHECK_REGEX = "^[0-9]+$";
-
-    public static void validate(String strCost) {
-        checkNumber(strCost);
-        int cost = Integer.parseInt(strCost);
+    public static void validate(String costCandidate) {
+        NumberValidator.checkNumber(costCandidate);
+        int cost = Integer.parseInt(costCandidate);
         checkMinimumPrice(cost);
         checkMaximumPrice(cost);
         checkCanDivided(cost);
@@ -33,16 +30,5 @@ public class CostValidator {
             throw new IllegalArgumentException(CostErrorMessage.TOO_MANY_MONEY
                     .getMessage());
         }
-    }
-
-    private static void checkNumber(String cost) {
-        if (!isNumber(cost)) {
-            throw new IllegalArgumentException(CostErrorMessage.IS_NOT_NUMBER
-                    .getMessage());
-        }
-    }
-
-    private static boolean isNumber(String cost) {
-        return Pattern.matches(NUMBER_CHECK_REGEX, cost);
     }
 }
