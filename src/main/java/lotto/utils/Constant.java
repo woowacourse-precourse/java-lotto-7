@@ -7,6 +7,7 @@ public class Constant {
 
     public static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     public static final String INTEGER_REGEX = "[0-9]+";
+    public static final String WINNING_NUMBER_INPUT_DELIMITER = ",";
 
     public static final int MIN_PURCHASE_AMOUNT = 1000;
     public static final int MIN_LOTTO_NUMBER = 1;
