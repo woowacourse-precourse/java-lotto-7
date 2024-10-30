@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -28,5 +29,12 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 100)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 로또_번호는_정렬된_상태로_저장되어야_한다(){
+        Lotto lotto = new Lotto(List.of(19, 41, 3, 45, 10, 8));
+        Assertions.assertEquals("[3, 8, 10, 19, 41, 45]" ,lotto.getFormattedNumbers());
+    }
+
 
 }

@@ -14,6 +14,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = new ArrayList<>(numbers);
+        sortNumbers();
     }
 
     public List<Integer> getNumbers(){
@@ -24,7 +25,7 @@ public class Lotto {
         return numbers.toString();
     }
 
-    public void sortNumbers(){
+    private void sortNumbers(){
         numbers.sort(Integer::compareTo);
     }
 
