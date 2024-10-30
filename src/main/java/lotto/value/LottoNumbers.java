@@ -22,6 +22,13 @@ public record LottoNumbers(List<LottoNumber> lottoNumbers) {
                 .toList());
     }
 
+    public static LottoNumbers of(List<Integer> numbers) {
+        return new LottoNumbers(numbers.stream()
+                .sorted()
+                .map(LottoNumber::new)
+                .toList());
+    }
+
     private static boolean isNumbersDuplicated(List<LottoNumber> lottoNumbers) {
         return lottoNumbers.size() != lottoNumbers.stream()
                 .map(LottoNumber::number)
