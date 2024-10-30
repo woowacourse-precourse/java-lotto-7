@@ -11,15 +11,16 @@ import lotto.utils.Messages;
 
 public class OutputView {
 
-    public static void printBoughtLotto(LottoMachine lottoMachine){
+    public static void printBoughtLotto(LottoMachine lottoMachine) {
         System.out.println(lottoMachine.getCount() + BOUGHT_LOTTO);
-        for (Lotto lotto : lottoMachine.getLottos())
+        for (Lotto lotto : lottoMachine.getLottos()) {
             System.out.println(lotto.getFormattedNumbers());
+        }
     }
 
-    public static void printLottoResult(){
+    public static void printLottoResult() {
         printResultHeader();
-        for (LottoResult lottoResult : LottoResult.values()){
+        for (LottoResult lottoResult : LottoResult.values()) {
             System.out.printf((lottoResult.getMessage()) + "%n", lottoResult.getCount());
         }
     }

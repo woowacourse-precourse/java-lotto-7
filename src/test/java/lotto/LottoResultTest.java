@@ -18,7 +18,7 @@ public class LottoResultTest {
 
     @Test
     @DisplayName("당첨 내역이 성공적으로 조회 되는지 확인합니다.")
-    void 당첨_내역_조회(){
+    void 당첨_내역_조회() {
         Assertions.assertEquals(0, LottoResult.FIRST.getCount());
         Assertions.assertEquals(1, LottoResult.SECOND.getCount());
         Assertions.assertEquals(1, LottoResult.THIRD.getCount());
@@ -29,7 +29,7 @@ public class LottoResultTest {
 
     @Test
     @DisplayName("당첨 내역이 성공적으로 초기화 되는지 확인합니다.")
-    void 초기화_메서드_작동_확인(){
+    void 초기화_메서드_작동_확인() {
         LottoResult.initializeCount();
 
         Assertions.assertEquals(0, LottoResult.FIRST.getCount());

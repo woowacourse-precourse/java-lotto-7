@@ -11,7 +11,7 @@ import lotto.model.LottoResultManager;
 
 public class LottoService {
 
-    public LottoResultManager checkLottoResult(Lotto winningLotto, BonusNumber bonusNumber, LottoMachine lottoMachine){
+    public LottoResultManager checkLottoResult(Lotto winningLotto, BonusNumber bonusNumber, LottoMachine lottoMachine) {
         LottoResultManager resultManager = new LottoResultManager(winningLotto, bonusNumber, lottoMachine.getPrice());
 
         List<Lotto> lottos = lottoMachine.getLottos();
@@ -20,24 +20,24 @@ public class LottoService {
         return resultManager;
     }
 
-    public LottoMachine createLottoMachine(String inputPrice){
+    public LottoMachine createLottoMachine(String inputPrice) {
         LottoMachine lottoMachine = new LottoMachine(parseStringToInteger(inputPrice));
         lottoMachine.generateLotto();
         return lottoMachine;
     }
 
-    public Lotto createWinningLotto(String inputWinningLottoNumbers){
+    public Lotto createWinningLotto(String inputWinningLottoNumbers) {
         return new Lotto(convertInputToNumberList(inputWinningLottoNumbers));
     }
 
-    public BonusNumber createBonusNumber(String inputBonusNumber){
+    public BonusNumber createBonusNumber(String inputBonusNumber) {
         return new BonusNumber(parseStringToInteger(inputBonusNumber));
     }
 
-    public void isBonusNumberDuplicateWithWinningLotto(Lotto winningLotto, BonusNumber bonusNumber){
+    public void isBonusNumberDuplicateWithWinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
         List<Integer> numbers = winningLotto.getNumbers();
-        for (Integer number : numbers){
-            if (number.equals(bonusNumber.getBonusNumber())){
+        for (Integer number : numbers) {
+            if (number.equals(bonusNumber.getBonusNumber())) {
                 throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
             }
         }

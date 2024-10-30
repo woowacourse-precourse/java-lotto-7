@@ -59,7 +59,8 @@ public class LottoController {
         }
     }
 
-    private LottoResultManager calculateLottoResults(Lotto winningLotto, BonusNumber bonusNumber, LottoMachine lottoMachine) {
+    private LottoResultManager calculateLottoResults(Lotto winningLotto, BonusNumber bonusNumber,
+                                                     LottoMachine lottoMachine) {
         return lottoService.checkLottoResult(winningLotto, bonusNumber, lottoMachine);
     }
 

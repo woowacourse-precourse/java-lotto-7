@@ -19,6 +19,7 @@ public class LottoResultManagerTest {
     private Lotto winingLotto;
     private BonusNumber bonusNumber;
     private Integer price;
+
     @BeforeEach
     void setUp() {
         userLottoList = Arrays.asList(
@@ -26,7 +27,7 @@ public class LottoResultManagerTest {
                 new Lotto(List.of(7, 8, 9, 10, 11, 12)), // 0개 일치 -> 탈락
                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),    // 5개 일치 -> 3등
                 new Lotto(List.of(1, 2, 3, 4, 6, 10)     // 보너스 번호 + 5개 일치 -> 2등
-        ));
+                ));
 
         winingLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = new BonusNumber(10);
@@ -35,7 +36,7 @@ public class LottoResultManagerTest {
 
     @Test
     @DisplayName("로또 당첨 여부를 확인합니다.")
-    void 당첨_여부_확인(){
+    void 당첨_여부_확인() {
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
         lottoResultManager.checkLottos(userLottoList);
@@ -47,7 +48,7 @@ public class LottoResultManagerTest {
 
     @Test
     @DisplayName("로또 당첨 금액을 확인합니다.")
-    void 당첨_금액_확인(){
+    void 당첨_금액_확인() {
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
         lottoResultManager.checkLottos(userLottoList);
@@ -56,16 +57,13 @@ public class LottoResultManagerTest {
 
     @Test
     @DisplayName("로또 수익률을 계산합니다.")
-    void 수익률_계산(){
+    void 수익률_계산() {
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
         lottoResultManager.checkLottos(userLottoList);
         Double profit = lottoResultManager.calculateProfit();
         assertEquals(787625.00, profit);
     }
-
-
-
 
 
 }

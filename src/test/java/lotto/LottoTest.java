@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LottoTest {
 
     @Test
-    void 정상_케이스(){
+    void 정상_케이스() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         Assertions.assertNotNull(lotto);
@@ -43,9 +43,9 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 번호는 정렬된 상태로 저장되어야 한다.")
-    void 로또_번호는_정렬된_상태로_저장되어야_한다(){
+    void 로또_번호는_정렬된_상태로_저장되어야_한다() {
         Lotto lotto = new Lotto(List.of(19, 41, 3, 45, 10, 8));
-        Assertions.assertEquals("[3, 8, 10, 19, 41, 45]" ,lotto.getFormattedNumbers());
+        Assertions.assertEquals("[3, 8, 10, 19, 41, 45]", lotto.getFormattedNumbers());
     }
 
 

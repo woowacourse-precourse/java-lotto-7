@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class LottoMachineTest {
 
     @Test
-    void 정상_케이스(){
+    void 정상_케이스() {
         LottoMachine lottoMachine = new LottoMachine(10000);
         Integer count = lottoMachine.getCount();
         assertEquals(lottoMachine.generateLotto().size(), 10);
@@ -29,7 +29,7 @@ public class LottoMachineTest {
 
     @Test
     @DisplayName("로또 구입 금액은 항상 양수여야 한다.")
-    void 구입_금액은_항상_양수여야_한다(){
+    void 구입_금액은_항상_양수여야_한다() {
         assertThatThrownBy(() -> new LottoMachine(-1000))
                 .isInstanceOf(IllegalArgumentException.class);
     }

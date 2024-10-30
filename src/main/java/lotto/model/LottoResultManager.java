@@ -13,7 +13,7 @@ public class LottoResultManager {
     private final BonusNumber bonusNumber;
     private final Integer price;
 
-    public LottoResultManager(Lotto winningNumbers, BonusNumber bonusNumber, Integer price){
+    public LottoResultManager(Lotto winningNumbers, BonusNumber bonusNumber, Integer price) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.price = price;
@@ -50,7 +50,7 @@ public class LottoResultManager {
         return count;
     }
 
-    private boolean checkSecondPrizeMatch(Lotto lotto){
+    private boolean checkSecondPrizeMatch(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber.getBonusNumber());
     }
 
