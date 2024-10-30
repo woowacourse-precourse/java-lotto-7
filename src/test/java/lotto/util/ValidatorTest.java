@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static lotto.constant.ErrorMessage.PRICE_TYPE_ERROR;
 import static org.assertj.core.api.Assertions.*;
 
@@ -129,6 +131,48 @@ public class ValidatorTest {
 
         // when
         boolean result = validator.validateWinningNumber(input);
+
+        // then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 숫자 형식이 아닌 경우 예외를 발생시킨다.")
+    void 보너스_번호_입력_예외_테스트_1() throws Exception {
+        // given
+        List<Integer> winningNumbers = List.of(1,2,3,4,5);
+        String input = "aaaa";
+
+        // when
+        boolean result = validator.validateBonusNumber(input, winningNumbers);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외를 발생시킨다.")
+    void 보너스_번호_입력_예외_테스트_2() throws Exception {
+        // given
+        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        String input = "5";
+
+        // when
+        boolean result = validator.validateBonusNumber(input, winningNumbers);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("정상적인 보너스 번호가 입력된 경우 발생시킨다.")
+    void 정상_보너스_번호_입력_테스트() throws Exception {
+        // given
+        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        String input = "7";
+
+        // when
+        boolean result = validator.validateBonusNumber(input, winningNumbers);
 
         // then
         assertThat(result).isTrue();
