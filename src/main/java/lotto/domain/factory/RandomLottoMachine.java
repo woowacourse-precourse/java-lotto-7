@@ -12,7 +12,6 @@ import lotto.domain.number.NumbersMaker;
  * 리스트 로또 반환
  */
 public class RandomLottoMachine {
-    private final static int PRICE_PER_LOTTO_TICKET = 1000;
     private final NumbersMaker numbersMaker;
     private final Wallet wallet;
 
@@ -24,7 +23,7 @@ public class RandomLottoMachine {
     public List<Lotto> makeLottos() {
         List<Lotto> resultRandomLottos = new ArrayList<>();
 
-        int count = wallet.getNumberOfLottoPurchases(PRICE_PER_LOTTO_TICKET);
+        int count = wallet.getTicket();
 
         for (int i = 0; i < count; i++) {
             resultRandomLottos.add(makeLotto());
