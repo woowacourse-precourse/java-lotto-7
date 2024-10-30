@@ -12,6 +12,12 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Integer matchCount(final Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(number -> winningLotto.getNumbers().contains(number))
+                .count();
+    }
+
     private void validateBonusNumber(final Lotto winningLotto, final LottoNumber bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber.getNumber())) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 존재합니다.");
