@@ -36,4 +36,8 @@ public class LottoService {
     public void addWinningRecord(Rank rank){
         winningRecord.add(rank);
     }
+
+    public ArrayList<Rank> getWinningRecord(){
+        return winningRecord;
+    }
 }
