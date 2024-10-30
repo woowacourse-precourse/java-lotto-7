@@ -1,7 +1,5 @@
 package lotto.util.validator;
 
-import lotto.util.Convertor;
-
 public class PurchasePriceValidator {
 
     private static final String INVALID_PRICE_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위로 입력해주세요.";
