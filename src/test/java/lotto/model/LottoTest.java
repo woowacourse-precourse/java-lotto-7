@@ -1,11 +1,11 @@
-package lotto;
+package lotto.model;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -22,4 +22,15 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1 부터 45 사이가 아니라면 예외를 발생한다.")
+    @Test
+    void outOfRangeLottoNumbers() {
+        //given
+        List<Integer> numbers = List.of(0, 1, 2, 3, 4, 46);
+
+        //when //then
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            new Lotto(numbers);
+        });
+    }
 }
