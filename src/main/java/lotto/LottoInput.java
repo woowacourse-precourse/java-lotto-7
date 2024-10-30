@@ -33,21 +33,21 @@ public class LottoInput {
 
         try {
             String input = Console.readLine();
-            List<Integer> winningNumbers = Arrays.stream(input.split(","))
+            List<Integer> mainNumbers = Arrays.stream(input.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
 
-            if (winningNumbers.size() != Constants.LOTTO_MAIN_COUNT) {
+            if (mainNumbers.size() != Constants.LOTTO_MAIN_COUNT) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + Constants.LOTTO_MAIN_COUNT + "개여야 합니다.");
             }
-            for (int number : winningNumbers) {
+            for (int number : mainNumbers) {
                 if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
                     throw new IllegalArgumentException("[ERROR] 유효한 범위 내의 로또 번호를 입력하여야 합니다.");
                 }
             }
 
-            return new Lotto(winningNumbers);
+            return new Lotto(mainNumbers);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자만 입력해 주세요.");
             return mainNumbersInput();
