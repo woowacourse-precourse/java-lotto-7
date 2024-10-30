@@ -31,4 +31,8 @@ public class InputService {
         });
     }
 
+    public int readBonusNum() {
+        return RetryUtil.executeWithRetry(inputView::readBonusNumber);
+    }
+
 }

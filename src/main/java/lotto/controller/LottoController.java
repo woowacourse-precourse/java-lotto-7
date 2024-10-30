@@ -25,6 +25,7 @@ public class LottoController {
         outputView.printPurchaseAmount(purchasePrice.getQuantity());
         outputView.printPurchasedLottos(purchasedLotto.getPurchasedLottos());
         Lotto winningLotto = inputService.readWinningLotto();
+        int bonusNum = inputService.readBonusNum();
     }
 
 }

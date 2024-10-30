@@ -18,6 +18,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNums();
     }
 
     public Lotto(LottoNumGenerator lottoNumGenerator) {
@@ -55,6 +56,10 @@ public class Lotto {
 
     private void sortNums() {
         numbers.sort(Comparator.naturalOrder());
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class InputView {
     public int readPurchasePrice() {
         System.out.println(INPUT_PURCHASE_PRICE);
         String input = Console.readLine();
-        return parsePurchasePrice(input);
+        return parseInput(input);
     }
 
     public String readWinningNumbers() {
@@ -23,7 +23,13 @@ public class InputView {
         return input;
     }
 
-    private int parsePurchasePrice(final String input) {
+    public int readBonusNumber() {
+        System.out.println(INPUT_BONUS_NUM);
+        String input = Console.readLine();
+        return parseInput(input);
+    }
+
+    private int parseInput(final String input) {
         validateNullOrEmpty(input);
         return parseInputToNum(input);
     }
