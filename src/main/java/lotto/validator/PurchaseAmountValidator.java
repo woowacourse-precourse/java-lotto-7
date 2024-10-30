@@ -31,7 +31,7 @@ public class PurchaseAmountValidator {
     }
 
     private static void validateDivisibility(final int purchaseAmount) {
-        if (isDivisible(purchaseAmount)) {
+        if (isNotDivisible(purchaseAmount)) {
             throw new LottoException(format(PURCHASE_AMOUNT_NOT_DIVISIBLE.getMessage(), LOTTO_COST.getValue()));
         }
     }
@@ -42,8 +42,8 @@ public class PurchaseAmountValidator {
         }
     }
 
-    private static boolean isDivisible(final int purchaseAmount) {
-        return purchaseAmount % LOTTO_COST.getValue() == 0;
+    private static boolean isNotDivisible(final int purchaseAmount) {
+        return purchaseAmount % LOTTO_COST.getValue() != 0;
     }
 
     private static boolean isInValidRange(final int purchaseAmount) {
