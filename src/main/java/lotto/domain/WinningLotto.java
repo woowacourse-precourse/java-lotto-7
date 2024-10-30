@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class WinningLotto {
@@ -33,6 +34,10 @@ public class WinningLotto {
         if (bonusNum < LOTTO_MIN_NUM || bonusNum > LOTTO_MAX_NUM) {
             throw new IllegalArgumentException(LOTTO_BONUS_NUM_RANGE_ERROR);
         }
+    }
+
+    public boolean containsBonusNum(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNum);
     }
 
     public Set<Integer> getWinningLottoNumbers() {
