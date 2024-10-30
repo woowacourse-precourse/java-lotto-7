@@ -48,12 +48,11 @@ public class ScenarioApplication {
         PurchasePrice purchasePrice;
         String originPrice = reader.read();
         try {
-            purchasePrice = PurchasePrice.validatePrice(originPrice);
+            return PurchasePrice.validatePrice(originPrice);
         } catch (IllegalArgumentException e) {
             printer.print(e.getMessage());
             return doPurchase();
         }
-        return purchasePrice;
     }
 
     private void calculateResult(PurchasePrice purchasePrice, PrizeNumber prizeNumber) {
