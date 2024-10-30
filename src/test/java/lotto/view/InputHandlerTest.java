@@ -21,6 +21,14 @@ public class InputHandlerTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "1", "2", "1000"})
+    void 구입_금액이_정수이면_예외_없음(String purchaseAmount) {
+        assertDoesNotThrow(() -> {
+            InputHandler.validatePurchaseAmountIsInteger(purchaseAmount);
+        });
+    }
+
+    @ParameterizedTest
     @ValueSource(ints = {-1000, -1, 0, 1, 100, 1001})
     void 구입_금액이_1000의_배수가_아니면_예외_발생(int purchaseAmount) {
         assertThatThrownBy(() -> InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount))
@@ -61,8 +69,8 @@ public class InputHandlerTest {
 
     static Stream<List<Integer>> provideValidWinningNumbers() {
         return Stream.of(
-                List.of(1,2,3,4,5,6),
-                List.of(1,2,3,4,5,45)
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 45)
         );
     }
 }
