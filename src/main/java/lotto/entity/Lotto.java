@@ -1,5 +1,10 @@
 package lotto.entity;
 
+import static lotto.exception.ExceptionUtils.ThrowIllegalArgumentException;
+import static lotto.exception.LottoExceptionMessage.DUPLICATE_NUMBERS;
+import static lotto.exception.LottoExceptionMessage.INVALID_NUMBER_COUNT;
+import static lotto.exception.LottoExceptionMessage.NUMBER_OUT_OF_RANGE;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,13 +17,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            ThrowIllegalArgumentException(INVALID_NUMBER_COUNT);
         }
         if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            ThrowIllegalArgumentException(DUPLICATE_NUMBERS);
         }
         if (numbers.stream().anyMatch(number -> !(1 <= number && number <= 45))) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45까지의 숫자여야 합니다.");
+            ThrowIllegalArgumentException(NUMBER_OUT_OF_RANGE);
         }
     }
 
