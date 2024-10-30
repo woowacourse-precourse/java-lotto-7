@@ -1,9 +1,12 @@
 package lotto.entity;
 
+import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_DUPLICATE;
+import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.exception.LottoExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 public class WinnerNumbersTest {
@@ -18,7 +21,7 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("로또 번호는 6개여야 합니다.", illegalArgumentException.getMessage());
+        assertEquals(LottoExceptionMessage.INVALID_NUMBER_COUNT.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
@@ -32,7 +35,7 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("로또 번호는 중복될 수 없습니다.", illegalArgumentException.getMessage());
+        assertEquals(LottoExceptionMessage.DUPLICATE_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
@@ -46,7 +49,7 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("로또 번호는 1부터 45까지의 숫자여야 합니다.", illegalArgumentException.getMessage());
+        assertEquals(LottoExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
@@ -60,7 +63,7 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("로또 번호는 1부터 45까지의 숫자여야 합니다.", illegalArgumentException.getMessage());
+        assertEquals(LottoExceptionMessage.NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
@@ -74,7 +77,7 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("로또 번호는 1부터 45까지의 숫자여야 합니다.", illegalArgumentException.getMessage());
+        assertEquals(BONUS_NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
@@ -88,7 +91,7 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("로또 번호는 1부터 45까지의 숫자여야 합니다.", illegalArgumentException.getMessage());
+        assertEquals(BONUS_NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
@@ -102,6 +105,6 @@ public class WinnerNumbersTest {
                 () -> new WinnerNumbers(integers, bonusNumber));
 
         // then
-        assertEquals("보너스 번호는 당첨 번호와 중복될 수 없습니다.", illegalArgumentException.getMessage());
+        assertEquals(BONUS_NUMBER_DUPLICATE.getMessage(), illegalArgumentException.getMessage());
     }
 }

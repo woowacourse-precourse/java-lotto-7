@@ -1,5 +1,9 @@
 package lotto.entity;
 
+import static lotto.exception.ExceptionUtils.ThrowIllegalArgumentException;
+import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_DUPLICATE;
+import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
+
 import java.util.List;
 
 public class WinnerNumbers {
@@ -14,10 +18,10 @@ public class WinnerNumbers {
 
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
         if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45까지의 숫자여야 합니다.");
+            ThrowIllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE);
         }
         if (mainNumbers.stream().anyMatch(number -> number == bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            ThrowIllegalArgumentException(BONUS_NUMBER_DUPLICATE);
         }
     }
 }
