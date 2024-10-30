@@ -6,7 +6,10 @@ import static lotto.global.util.ErrorMessage.OUT_OF_RANGE_NUMBER;
 import static lotto.global.util.LottoConst.MAX_LOTTO_NUMBER;
 import static lotto.global.util.LottoConst.MIN_LOTTO_NUMBER;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import lotto.global.util.LottoConst;
 
 public class WinningNumber {
@@ -19,12 +22,14 @@ public class WinningNumber {
         this.bonus = bonus;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public int calculateMatchCount(List<Integer> lottoNumbers) {
+        return (int) lottoNumbers.stream()
+                .filter(l -> this.numbers.contains(l))
+                .count();
     }
 
-    public int getBonus() {
-        return bonus;
+    public boolean isBonusMatched(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(this.bonus);
     }
 
     private void validate(List<Integer> numbers, int bonus) {
@@ -57,6 +62,15 @@ public class WinningNumber {
         if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER || n > MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER.getMessage());
         }
+    }
+
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonus() {
+        return bonus;
     }
 
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.global.util.ErrorMessage;
+import lotto.lottery.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -101,6 +102,50 @@ class WinningNumberTest {
         return Stream.of(
                 Arguments.arguments(List.of(1, 2, 44, 3, 5, 7), 44),
                 Arguments.arguments(List.of(2, 3, 4, 5, 6, 1), 5)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또와 당첨번호를 받아 로또의 당첨개수를 센다")
+    @MethodSource("providedMatchCount")
+    void calculateMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers,
+                             int bonus, int count) throws Exception {
+        // given
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonus);
+
+        // when
+        int result = winningNumber.calculateMatchCount(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(count);
+    }
+
+    private static Stream<Arguments> providedMatchCount() {
+        return Stream.of(
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6), 7, 6),
+                Arguments.arguments(List.of(42, 32, 12, 22, 45, 2), List.of(13, 24, 25, 22, 32, 1), 2, 2)
+        );
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또와 당첨번호를 받아 보너스가 맞았는지 확인한다")
+    @MethodSource("providedMatchedBonus")
+    void isBonusMatched(List<Integer> lottoNumbers, List<Integer> winningNumbers,
+                        int bonus, boolean matchedBonus) throws Exception {
+        // given
+        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonus);
+
+        // when
+        boolean result = winningNumber.isBonusMatched(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(matchedBonus);
+    }
+
+    private static Stream<Arguments> providedMatchedBonus() {
+        return Stream.of(
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6), 7, false),
+                Arguments.arguments(List.of(42, 32, 12, 22, 45, 2), List.of(13, 24, 25, 22, 32, 1), 2, true)
         );
     }
 
