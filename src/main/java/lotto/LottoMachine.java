@@ -12,10 +12,11 @@ public class LottoMachine {
         this.tickets = tickets;
     }
 
-    public void generateLottoNumbers() {
+    private void generateLottoNumbers() {
         this.lottoNumbers = new ArrayList<>();
         for (int i = 0; i < tickets; i++) {
-            lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream().sorted().toList());
         }
     }
 
