@@ -5,12 +5,54 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String PURCHASE_AMOUNT = (Randoms.pickUniqueNumbersInRange(1, 50, 1).getFirst() * 1000 + "");
+
+    // MARK: - read purchase amount test
+    // 정상 금액을 입력했을 경우
+    @Test
+    void readPurchaseAmountSuccessTest() {
+        assertSimpleTest(() -> {
+            run(PURCHASE_AMOUNT);
+            assertThat(output()).doesNotContain(ERROR_MESSAGE);
+        });
+    }
+
+    // 1000원보다 작은 금액을 입력했을 경우
+    @Test
+    void readPurchaseAmountFailTest1() {
+        assertSimpleTest(() -> {
+            run("100", PURCHASE_AMOUNT);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    // 1000원보다 작은 금액을 입력했을 경우
+    @Test
+    void readPurchaseAmountFailTest2() {
+        assertSimpleTest(() -> {
+            run("1000j", PURCHASE_AMOUNT);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    // 1000원 단위가 아닌 경우
+    @Test
+    void readPurchaseAmountFailTest3() {
+        assertSimpleTest(() -> {
+            run("1200", PURCHASE_AMOUNT);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    // ---
 
     @Test
     void 기능_테스트() {
