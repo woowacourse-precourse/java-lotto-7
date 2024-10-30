@@ -31,4 +31,9 @@ public class Lotto {
         }
         return matchingNumberCount;
     }
+
+    public boolean contains(int bonusNumber) {
+        boolean iscontainBonusNumber = numbers.contains(bonusNumber);
+        return iscontainBonusNumber;
+    }
 }
