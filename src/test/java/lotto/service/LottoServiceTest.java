@@ -7,12 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LottoServiceTest {
 
+    private final LottoService lottoService = new LottoService();
+
     @Test
     public void 로또구매개수세기() {
         int purchaseAmount = 8000;
         int expectedCount = 8;
 
-        int actualCount = LottoService.countLottoNumber(purchaseAmount);
+        int actualCount = lottoService.countLotto(purchaseAmount);
 
         assertEquals(expectedCount, actualCount);
     }
@@ -29,7 +31,7 @@ public class LottoServiceTest {
         purchasedNumbers.add(10);
 
         int expectedMatchCount = 2; 
-        int actualMatchCount = LottoService.countMatchNumber(winningNumbers, purchasedNumbers);
+        int actualMatchCount = lottoService.countMatchNumber(winningNumbers, purchasedNumbers);
 
         assertEquals(expectedMatchCount, actualMatchCount);
     }
@@ -45,7 +47,7 @@ public class LottoServiceTest {
         purchasedNumbers.add(5);
         purchasedNumbers.add(6);
 
-        boolean hasBonusMatch = LottoService.checkBonusNumber(bonusNumber, purchasedNumbers);
+        boolean hasBonusMatch = lottoService.checkBonusNumber(bonusNumber, purchasedNumbers);
 
         assertTrue(!hasBonusMatch); // 보너스 번호가 일치하지 않으므로 false
     }
@@ -56,7 +58,7 @@ public class LottoServiceTest {
         int purchaseAmount = 8000;
         double expectedProfitMargin = (totalPrize / (double) purchaseAmount) * 100;
 
-        double actualProfitMargin = LottoService.calculateProfitMargin(totalPrize, purchaseAmount);
+        double actualProfitMargin = lottoService.calculateProfitMargin(totalPrize, purchaseAmount);
 
         assertEquals(expectedProfitMargin, actualProfitMargin);
     }
