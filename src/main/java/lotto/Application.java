@@ -10,6 +10,9 @@ public class Application {
         final int lottoCount = purchaseAmount / LottoConstants.LOTTO_PRICE.getValue();
 
         System.out.println(lottoCount+"개를 구매했습니다.");
+
+        Lotto lotto = Lotto.generateLottoNumber();
+
     }
 
     private static int getPurchaseAmount() {
@@ -17,8 +20,10 @@ public class Application {
 
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
+            String input = Console.readLine();
+
             try {
-                amount = validateAmount(Console.readLine());
+                amount = validateAmount(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
