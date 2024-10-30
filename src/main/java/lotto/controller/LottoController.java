@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
 import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 import lotto.service.InputService;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
@@ -24,8 +25,9 @@ public class LottoController {
         PurchasedLotto purchasedLotto = lottoService.issueLottoNumAsPurchaseQuantity(purchasePrice.getQuantity());
         outputView.printPurchaseAmount(purchasePrice.getQuantity());
         outputView.printPurchasedLottos(purchasedLotto.getPurchasedLottos());
-        Lotto winningLotto = inputService.readWinningLotto();
+        Lotto winningLottoNumbers = inputService.readWinningLotto();
         int bonusNum = inputService.readBonusNum();
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNum);
     }
 
 }
