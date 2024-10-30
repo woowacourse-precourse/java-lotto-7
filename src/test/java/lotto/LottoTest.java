@@ -5,9 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @Test
@@ -27,9 +26,7 @@ class LottoTest {
     @DisplayName("로또 생성")
     @Test
     void createLotto() {
-        assertSimpleTest(() -> {
-            Lotto lotto = Lotto.create();
-            assertThat(lotto).isNotNull();
-        });
+        assertThatCode(Lotto::create)
+                .doesNotThrowAnyException();
     }
 }
