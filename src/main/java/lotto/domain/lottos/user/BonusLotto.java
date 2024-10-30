@@ -13,4 +13,9 @@ public class BonusLotto {
         return lotto.isContainNumber(bonus);
     }
 
+    @Override
+    public String toString() {
+        return bonus+"";
+    }
+
 }

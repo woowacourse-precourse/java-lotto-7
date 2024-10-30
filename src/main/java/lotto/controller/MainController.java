@@ -3,8 +3,11 @@ package lotto.controller;
 import lotto.domain.Wallet;
 import lotto.domain.factory.RandomLottoFactory;
 import lotto.domain.factory.RandomLottoMachine;
+import lotto.domain.factory.UserMainLottoFactory;
 import lotto.domain.lottos.Lotto;
 import lotto.domain.lottos.RandomLottos;
+import lotto.domain.lottos.user.BonusLotto;
+import lotto.domain.lottos.user.UserLotto;
 import lotto.domain.number.NumbersMaker;
 import lotto.domain.number.RandomLottoNumberMaker;
 import lotto.view.Input;
@@ -20,6 +23,30 @@ public class MainController {
         RandomLottos randomLottos = createRandomLottos(wallet);
 
         Output.printPurchasedLottoList(wallet, randomLottos);
+
+        UserLotto userLotto = createUserLotto();
+
+        System.out.println(userLotto);
+    }
+
+
+    private UserLotto createUserLotto(){
+        while (true){
+            try{
+                return new UserLotto(createUserSixMainLotto(),createBonusLotto());
+            }catch (IllegalArgumentException e){
+                Output.printError(e.getMessage());
+            }
+        }
+    }
+
+    private BonusLotto createBonusLotto() {
+        return new BonusLotto(Input.inputBonusLotto());
+    }
+
+    private Lotto createUserSixMainLotto(){
+        UserMainLottoFactory factory = new UserMainLottoFactory();
+        return factory.make(Input.inputMainSixLotto());
     }
 
     private RandomLottos createRandomLottos(Wallet wallet) {

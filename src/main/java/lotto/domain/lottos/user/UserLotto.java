@@ -32,4 +32,12 @@ public class UserLotto {
         }
 
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(mainLotto);
+        builder.append(bonusLotto);
+        return builder.toString();
+    }
 }
