@@ -1,5 +1,6 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.LottoRank;
@@ -18,5 +19,9 @@ public class LottoUtil {
 
     private boolean containsBonusNumber(List<Integer> numbers, int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> getRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
