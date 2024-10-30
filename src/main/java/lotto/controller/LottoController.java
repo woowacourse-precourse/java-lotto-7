@@ -24,6 +24,8 @@ public class LottoController {
         outputView.printCreateLottoInfo(createLottoInfo);
 
         String winningNumber = readWinningNumber();
+        int bonusNumber = readBonusNumber();
+
     }
 
     private long readPurchaseAmount() {
@@ -32,5 +34,9 @@ public class LottoController {
     
     private String readWinningNumber() {
         return inputView.readWinningNumber();
+    }
+
+    private int readBonusNumber() {
+        return inputView.readBonusNumber();
     }
 }
