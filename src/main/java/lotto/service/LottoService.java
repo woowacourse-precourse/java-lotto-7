@@ -6,13 +6,13 @@ import lotto.util.Rank;
 
 public class LottoService {
 
-    private static ArrayList<Rank> winningRecord = new ArrayList<>();
+    private ArrayList<Rank> winningRecord = new ArrayList<>();
 
-    public static int countLotto(int purchaseAmount){
+    public int countLotto(int purchaseAmount){
         return purchaseAmount/1000;
     }
 
-    public static int countMatchNumber(int[] winningNums,ArrayList<Integer> lottoNums){
+    public int countMatchNumber(int[] winningNums,ArrayList<Integer> lottoNums){
         int count=0;
         for (int winningNum : winningNums) {
             if (lottoNums.contains(winningNum)) {
@@ -22,18 +22,18 @@ public class LottoService {
         return count;
     }
 
-    public static boolean checkBonusNumber(int bonusNumber,ArrayList<Integer> lottoNums){
+    public boolean checkBonusNumber(int bonusNumber,ArrayList<Integer> lottoNums){
         if(lottoNums.contains(bonusNumber)){
             return true;
         }
         return false;
     }
 
-    public static double calculateProfitMargin(int totalPrize,int purchaseAmount){
+    public double calculateProfitMargin(int totalPrize,int purchaseAmount){
         return (totalPrize/(double)purchaseAmount)*100;
     }
 
-    public static void addWinningRecord(Rank rank){
+    public void addWinningRecord(Rank rank){
         winningRecord.add(rank);
     }
 }
