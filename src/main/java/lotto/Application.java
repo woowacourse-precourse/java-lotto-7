@@ -23,5 +23,7 @@ public class Application {
 
         String issuedLottoResult = issuer.getResult();
         System.out.print(issuedLottoResult);
+
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }
