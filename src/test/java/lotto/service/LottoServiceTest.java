@@ -17,7 +17,7 @@ public class LottoServiceTest {
     void 로또_발행_개수_테스트() {
         int cost = 8000;
         int expectedCount = cost / lottoService.getLottoCost();
-        assertEquals(expectedCount, lottoService.issueRottoCount(cost));
+        assertEquals(expectedCount, lottoService.issueLottoCount(cost));
     }
 
 
@@ -25,7 +25,7 @@ public class LottoServiceTest {
     void 로또_발행_개수_예외_테스트() {
         int cost = 1799;
         assertThrows(IllegalArgumentException.class, () -> {
-            lottoService.issueRottoCount(cost);
+            lottoService.issueLottoCount(cost);
         });
     }
 

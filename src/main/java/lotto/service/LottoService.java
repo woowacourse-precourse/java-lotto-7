@@ -15,7 +15,7 @@ public class LottoService {
         return LOTTO_COST;
     }
 
-    public int issueRottoCount(int cost) throws IllegalArgumentException {
+    public int issueLottoCount(int cost) throws IllegalArgumentException {
         if (cost % LOTTO_COST > 0) {
             throw new IllegalArgumentException("[Error] 구입 금액은 " + LOTTO_COST + "원 단위이어야 합니다.");
         }
@@ -25,7 +25,7 @@ public class LottoService {
 
 
     public List<Lotto> issueLotto(int cost) {
-        int lottoCount = issueRottoCount(cost);
+        int lottoCount = issueLottoCount(cost);
         List<Lotto> issueLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
