@@ -10,6 +10,7 @@ import lotto.model.LottoResultManager;
 import lotto.model.enums.LottoResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoResultManagerTest {
@@ -33,6 +34,7 @@ public class LottoResultManagerTest {
     }
 
     @Test
+    @DisplayName("로또 당첨 여부를 확인합니다.")
     void 당첨_여부_확인(){
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
@@ -44,6 +46,7 @@ public class LottoResultManagerTest {
     }
 
     @Test
+    @DisplayName("로또 당첨 금액을 확인합니다.")
     void 당첨_금액_확인(){
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 
@@ -52,6 +55,7 @@ public class LottoResultManagerTest {
     }
 
     @Test
+    @DisplayName("로또 수익률을 계산합니다.")
     void 수익률_계산(){
         LottoResultManager lottoResultManager = new LottoResultManager(winingLotto, bonusNumber, price);
 

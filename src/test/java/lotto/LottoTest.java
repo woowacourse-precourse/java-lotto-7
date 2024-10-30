@@ -21,7 +21,8 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
+    @DisplayName("로또 번호의 갯수가 6개가 넘어가면 예외가 발생한다.")
+    void 로또_번호의_갯수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -41,6 +42,7 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또 번호는 정렬된 상태로 저장되어야 한다.")
     void 로또_번호는_정렬된_상태로_저장되어야_한다(){
         Lotto lotto = new Lotto(List.of(19, 41, 3, 45, 10, 8));
         Assertions.assertEquals("[3, 8, 10, 19, 41, 45]" ,lotto.getFormattedNumbers());
