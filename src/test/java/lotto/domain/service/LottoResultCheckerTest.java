@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.domain.service;
 
 
+import lotto.domain.entity.Lotto;
+import lotto.domain.type.LottoRank;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

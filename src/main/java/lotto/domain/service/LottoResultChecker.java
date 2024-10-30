@@ -1,16 +1,18 @@
-package lotto.domain;
+package lotto.domain.service;
 
-import java.util.ArrayList;
+import lotto.domain.entity.Lotto;
+import lotto.domain.type.LottoRank;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoResultChecker {
 
-    public static final int MATCH_SIX = 6;
-    public static final int MATCH_FIVE = 5;
-    public static final int MATCH_FOUR = 4;
     public static final int MATCH_THREE = 3;
+    public static final int MATCH_FOUR = 4;
+    public static final int MATCH_FIVE = 5;
+    public static final int MATCH_SIX = 6;
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
