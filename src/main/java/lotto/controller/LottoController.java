@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.LottoService;
 import lotto.model.Rank;
-import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,42 +12,56 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     public void run() {
-        lottoService.createMoney(readBudget());
+        buyLottoTicket();
+        calculateReturnRate(checkLottoResult());
+    }
+
+    private void buyLottoTicket() {
+        readBudget();
         OutputView.printLottoCount(lottoService.getLottoCount());
         List<String> lottoTicket = lottoService.createLottoTicket();
         OutputView.printLottoNumbers(lottoTicket);
-        List<Integer> winningNumbers = readWinningNumber();
-        readBonusNumber(winningNumbers);
+    }
+
+    private Map<Rank, Integer> checkLottoResult() {
+        readWinningNumber();
+        readBonusNumber();
         Map<Rank, Integer> result = lottoService.getResult();
         OutputView.printResult(result);
+        return result;
+    }
+
+    private void calculateReturnRate(Map<Rank, Integer> result) {
         OutputView.printRateOfReturn(lottoService.getRateOfReturn(result));
     }
 
-    private List<Integer> readWinningNumber() {
+    private void readBudget() {
         try {
-            return InputView.readWinningNumbers();
+            int budget = InputView.readMoney();
+            lottoService.createMoney(budget);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readWinningNumber();
+            readBudget();
         }
     }
 
-    private int readBudget() {
+    private void readWinningNumber() {
         try {
-            return InputView.readMoney();
+            List<Integer> winningNumbers = InputView.readWinningNumbers();
+            lottoService.createWinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return readBudget();
+            readWinningNumber();
         }
     }
 
-    private void readBonusNumber(List<Integer> winningNumbers) {
+    private void readBonusNumber() {
         try {
             int bonusNumber = InputView.readBonusNumber();
-            lottoService.createWinningNumbers(winningNumbers, bonusNumber);
+            lottoService.setBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            readBonusNumber(winningNumbers);
+            readBonusNumber();
         }
     }
 }
