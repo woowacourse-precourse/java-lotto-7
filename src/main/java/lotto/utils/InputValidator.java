@@ -6,6 +6,7 @@ import static lotto.utils.ErrorMessage.DELIMITER_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputValidator {
@@ -23,6 +24,11 @@ public class InputValidator {
         validateEmpty(userInput);
 
         List<String> separatedInput = validateDelimiter(userInput);
+
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String input : separatedInput) {
+            winningNumbers.add(validateNumber(input));
+        }
     }
 
     private void validateEmpty(String userInput) {
