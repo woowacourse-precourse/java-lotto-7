@@ -30,6 +30,7 @@ public class Lotto {
     private List<LottoNumber> convertToLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::new)
+                .sorted()
                 .toList();
     }
 
