@@ -21,13 +21,6 @@ public class Result {
         totalPrize += rank.getPrize();
     }
 
-    public double calculateYield(int totalPrice) {
-        if (totalPrice == 0) {
-            return 0;
-        }
-        return ((double) totalPrize / totalPrice) * 100;
-    }
-
     public Map<LottoRank, Integer> getMatchResults() {
         return matchResults;
     }
