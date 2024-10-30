@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.util.Sorter;
 
 public class RandomNumber {
 
@@ -10,6 +11,6 @@ public class RandomNumber {
     private static final int GENERATE_COUNT = 6;
 
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, GENERATE_COUNT);
+        return Sorter.sort(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, GENERATE_COUNT));
     }
 }
