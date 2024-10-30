@@ -6,14 +6,7 @@ import static lotto.constants.Purchase.LOTTO_PRICE_PER_UNIT;
 
 public class PurchaseValidation {
 
-    public static int getThousandUnitCount(String inputPurchaseAmount) {
-        int purchaseAmount = validateNumericAmount(inputPurchaseAmount);
-        validateDivisibleThousand(purchaseAmount);
-        return purchaseAmount / LOTTO_PRICE_PER_UNIT;
-    }
-
-
-    private static int validateNumericAmount(String inputPurchaseAmount) {
+    public static int validateNumericAmount(String inputPurchaseAmount) {
         try {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException e) {
@@ -21,7 +14,7 @@ public class PurchaseValidation {
         }
     }
 
-    private static void validateDivisibleThousand(int purchaseAmount) {
+    public static void validateDivisibleThousand(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE_PER_UNIT > 0) {
             throw new IllegalArgumentException(PURCHASE_MONEY_ONLY_CAN_THOUSAND_UNIT.getErrorMessage());
         }
