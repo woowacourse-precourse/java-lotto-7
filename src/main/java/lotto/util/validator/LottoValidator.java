@@ -40,7 +40,7 @@ public final class LottoValidator {
 
     private static void validateNumbersSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_SIZE) {
-            throw new LottoException(LottoError.NUMBERS_SIZE_OVER);
+            throw new LottoException(LottoError.NUMBERS_WRONG_SIZE);
         }
     }
 
