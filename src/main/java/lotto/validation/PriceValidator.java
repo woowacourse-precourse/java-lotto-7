@@ -9,6 +9,8 @@ public class PriceValidator {
 
     public static void validatePrice(String input) {
         validateNull(input);
+        long convertInput = convertToLong(input);
+        validateZero(convertInput);
     }
 
     private static void validateNull(String price) {
@@ -17,7 +19,17 @@ public class PriceValidator {
         }
     }
 
+    private static void validateZero(long price) {
+        if (price == 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_ZERO.getErrorMessage());
+        }
+    }
+
     private static boolean isNullOrEmpty(String input) {
         return input == null || input.trim().isEmpty();
+    }
+
+    private static long convertToLong(String input) {
+        return Long.parseLong(input.trim());
     }
 }

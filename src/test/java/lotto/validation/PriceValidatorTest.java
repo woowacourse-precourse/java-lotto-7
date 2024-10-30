@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import enums.ErrorMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -23,5 +24,15 @@ class PriceValidatorTest {
 
     private long parseAndValidateInput(String input) {
         return Long.parseLong(input.trim());
+    }
+
+    @DisplayName("0을 입력한 경우 예외가 발생한다.")
+    @Test
+    void validateZero() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            PriceValidator.validatePrice("0");
+        });
+
+        assertEquals(ErrorMessage.INPUT_ZERO.getErrorMessage(), exception.getMessage());
     }
 }
