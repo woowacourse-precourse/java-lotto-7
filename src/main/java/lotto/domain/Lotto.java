@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashSet;
 import java.util.List;
 import lotto.constant.LottoConstant;
 
@@ -18,10 +18,15 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         boolean allInRange = numbers.stream()
-                .allMatch(n -> n >= 1 && n <= 45);
+                .allMatch(n -> n >= LottoConstant.LOTTO_NUMBER_MIN && n <= LottoConstant.LOTTO_NUMBER_MAX);
         if (!allInRange){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
         }
+        HashSet<Integer> checkNumbersCount = new HashSet<>(numbers);
+        if (checkNumbersCount.size() != numbers.size()){
+            throw new IllegalArgumentException("[ERROR] 중복값 입력은 불가능합니다.");
+        }
+
     }
 
 

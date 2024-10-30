@@ -1,12 +1,20 @@
 package lotto;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.Test;
 
 public class LottoServiceTest {
+    LottoService lottoService = new LottoService();
+
     @Test
     void 로또_생성_테스트(){
-        LottoService lottoService = new LottoService();
         Lotto lotto = lottoService.createLotto();
         assertNotNull(lotto);
     }

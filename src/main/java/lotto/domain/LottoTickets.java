@@ -1,8 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.LottoConstant;
 
 public class LottoTickets {
     List<Lotto> tickets;

@@ -1,15 +1,16 @@
-package lotto;
+package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.constant.LottoConstant;
+import lotto.domain.LottoTickets;
 
 public class LottoMachineService {
     LottoService lottoService = new LottoService();
 
-    public int calculateLottoCount(int purchaseAmount) {
+    private int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount/ LottoConstant.LOTTO_PRICE;
     }
-
 
     public LottoTickets createLottoTickets(int purchaseAmount) {
         int lottoTicketAmount = calculateLottoCount(purchaseAmount);
