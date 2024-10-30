@@ -1,8 +1,8 @@
 package lotto.view.output.infra;
 
-import lotto.view.output.domain.ViewService;
+import lotto.view.output.domain.InfoViewService;
 
-public class MoneyOutput implements ViewService {
+public class MoneyOutput implements InfoViewService {
 
     @Override
     public void view() {

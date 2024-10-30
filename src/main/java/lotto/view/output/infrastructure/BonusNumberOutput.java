@@ -2,7 +2,7 @@ package lotto.view.output.infra;
 
 import lotto.view.output.domain.InfoViewService;
 
-public class BonusLottoOutput implements InfoViewService {
+public class BonusNumberOutput implements InfoViewService {
 
     @Override
     public void view() {

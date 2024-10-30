@@ -4,7 +4,7 @@ import lotto.lotto.winning.domain.BonusNumber;
 import lotto.lotto.winning.domain.WinningLotto;
 import lotto.lotto.validator.LottoValidator;
 import lotto.view.input.hanlder.domain.InputHandlerService;
-import lotto.view.output.infra.ErrorOutput;
+import lotto.view.output.infrastructure.ErrorOutput;
 
 public class BonusNumberCreator {
     private final InputHandlerService inputHandlerService;
