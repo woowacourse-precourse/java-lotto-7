@@ -33,7 +33,7 @@ public class WinningNumber {
 
 	private void lengthCheck(int length) {
 		if (length != 6) {
-			throw new NumberFormatException("[ERROR] 로또 번호는 6개를 입력해주세요.");
+			throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력해주세요.");
 		}
 	}
 
@@ -60,7 +60,7 @@ public class WinningNumber {
 
 	private void duplicationCheck(int length) {
 		if (length != set.size()) {
-			throw new NumberFormatException("[ERROR] 중복값은 입력할 수 없습니다.");
+			throw new IllegalArgumentException("[ERROR] 중복값은 입력할 수 없습니다.");
 		}
 	}
 }
