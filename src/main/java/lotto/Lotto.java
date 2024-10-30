@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +18,17 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    public int countMatchingNumbers(Lotto winningLotto) {
+        int matchingNumberCount = 0;
+        for (Integer number : numbers) {
+            if (winningLotto.getNumbers().contains(number)) {
+                matchingNumberCount++;
+            }
+        }
+        return matchingNumberCount;
+    }
 }
