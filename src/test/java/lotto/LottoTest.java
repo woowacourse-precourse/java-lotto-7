@@ -6,6 +6,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTest {
     @Test
@@ -31,5 +33,15 @@ class LottoTest {
 
         Assertions.assertThat(matchCount).isEqualTo(5);
 
+    }
+
+    @DisplayName("보너스 번호 일치 여부 기능 테스트")
+    @ParameterizedTest
+    @CsvSource({"10, true", "11,false", "13,false"})
+    void 보너스_번호_일치_여부_기능_테스트(int bonusNumber, boolean expected) {
+        Lotto lotto  = new Lotto(List.of(1,2,3,4,5,10));
+        boolean isContainBonusNumber = lotto.contains(bonusNumber);
+
+        Assertions.assertThat(isContainBonusNumber).isEqualTo(expected);
     }
 }
