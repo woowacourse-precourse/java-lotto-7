@@ -12,12 +12,11 @@ public class Input {
             System.out.println(ENTER_PURCHASE_AMOUNT.getPrompt());
 
             try {
-                Purchase purchase = new Purchase(Integer.parseInt(Console.readLine()));
-                return purchase;
+                return new Purchase(Integer.parseInt(Console.readLine()));
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
+                throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
         }
     }
