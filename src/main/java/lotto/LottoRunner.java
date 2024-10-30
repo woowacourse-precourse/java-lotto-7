@@ -23,6 +23,11 @@ public class LottoRunner {
             lottos.add(new Lotto(
                     Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
+
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     private static void validate(int money) throws IllegalArgumentException {
