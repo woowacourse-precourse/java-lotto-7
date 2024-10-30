@@ -19,11 +19,11 @@ public class WinningNumbersValidator {
             throw new IllegalArgumentException(ErrorConstant.ERROR_MARK + ErrorConstant.NOT_CORRECT_NUMBER_COUNT);
     }
 
-    private static boolean isEntered(String s) {
+    private boolean isEntered(String s) {
         return !s.isEmpty();
     }
 
-    private static boolean hasRightDelimiter(String s) {
+    private boolean hasRightDelimiter(String s) {
         s = eraseBlank(s);
         String[] numbers = s.split(DELIMITER);
         for (String number : numbers) {
@@ -34,7 +34,7 @@ public class WinningNumbersValidator {
         return true;
     }
 
-    private static boolean isWithinValidRange(String s) {
+    private boolean isWithinValidRange(String s) {
         String[] numbers = s.split(DELIMITER);
         for (String number : numbers) {
             if (Integer.parseInt(number) < MIN_NUMBER || Integer.parseInt(number) > MAX_NUMBER)
@@ -43,12 +43,12 @@ public class WinningNumbersValidator {
         return true;
     }
 
-    private static boolean isCorrectNumberCount(String s) {
+    private boolean isCorrectNumberCount(String s) {
         String[] numbers = s.split(DELIMITER);
         return numbers.length == NUMBER_OF_WINNING_NUMBERS;
     }
 
-    private static String eraseBlank(String s) {
+    private String eraseBlank(String s) {
         return s.replace(" ", "");
     }
 }
