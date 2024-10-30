@@ -27,4 +27,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("1,000원으로 나눠질 수 있는 금액을 입력하셔야 합니다.");
         }
     }
+
+    public int findLottoCounts(){
+        return this.purchaseAmount/1000;
+    }
 }
