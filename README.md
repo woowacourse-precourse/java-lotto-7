@@ -64,6 +64,7 @@
 ### Model
 - [x] Lotto 
 - [x] LottoMachine
+- [x] LottoManager
 ### View
 - [ ] InputView
 - [ ] OutputView
