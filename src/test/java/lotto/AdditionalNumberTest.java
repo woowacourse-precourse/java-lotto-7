@@ -10,8 +10,8 @@ public class AdditionalNumberTest {
     @Test
     @DisplayName("정상적인 값 입력")
     void 정상값테스트() {
-        assertThat(new AdditionalNumber("10000").getNumber())
-                .isEqualTo(10000);
+        assertThat(new AdditionalNumber("45").getNumber())
+                .isEqualTo(45);
     }
 
     @Test
@@ -25,6 +25,13 @@ public class AdditionalNumberTest {
     @Test
     void 숫자를_입력하지_않으면_예외가_발생한다() {
         assertThatThrownBy(() -> new AdditionalNumber("1100k"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("범위 외의 값을 입력하면 예외가 발생한다.")
+    @Test
+    void 범위_외의_값을_입력하면_예외가_발생한다() {
+        assertThatThrownBy(() -> new AdditionalNumber("46"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
