@@ -39,12 +39,14 @@ public class Application {
         lotto.numbers.sort(Integer::compareTo);
         return lotto;
     }
-    public int maxNumber(List<Integer>[] lotto_list){
+    public int maxNumber(){
+        int maxNum = 0;
         for(int i = 0; i < lotto_list.length; i++){
-
+            maxNum = Math.max(maxNum,numberMatch(i));
         }
+        return maxNum;
     }
-    public int NumberMatch(int i){
+    public int numberMatch(int i){
         int p1 = 0;
         int p2 = 0;
         int count = 0;
