@@ -2,10 +2,13 @@ package lotto.entity;
 
 import static lotto.exception.LottoExceptionMessage.DUPLICATE_NUMBERS;
 import static lotto.exception.LottoExceptionMessage.INVALID_NUMBER_COUNT;
+import static lotto.exception.LottoExceptionMessage.NULL_OR_EMPTY_NUMBERS;
 import static lotto.exception.LottoExceptionMessage.NUMBER_OUT_OF_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +27,19 @@ class LottoTest {
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         // given
         List<Integer> integers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(integers));
+
+        // then
+        assertEquals(INVALID_NUMBER_COUNT.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호의_개수가_부족할떄() {
+        // given
+        List<Integer> integers = List.of(1, 2, 3, 4);
 
         // when
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
@@ -70,5 +86,57 @@ class LottoTest {
 
         // then
         assertEquals(NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호에_음수가_들어갔을때() {
+        // given
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, -10);
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(integers));
+
+        // then
+        assertEquals(NUMBER_OUT_OF_RANGE.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호_객체가_널이_들어갔을떄() {
+        // given
+        List<Integer> integers = null;
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(integers));
+
+        // then
+        assertEquals(NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호_객체가_비어있을때() {
+        // given
+        List<Integer> integers = List.of();
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(integers));
+
+        // then
+        assertEquals(NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호중_NULL이_있을때() {
+        // given
+        List<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, null));
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new Lotto(integers));
+
+        // then
+        assertEquals(NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 }
