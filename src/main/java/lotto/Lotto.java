@@ -32,4 +32,8 @@ public class Lotto {
 
         return Winning.of(count);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
