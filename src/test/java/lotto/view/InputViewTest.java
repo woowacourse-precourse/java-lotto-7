@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import lotto.view.validate.NumberFormatValidator;
 import lotto.view.validate.PositiveNumberValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class InputViewTest {
     @Test
@@ -62,5 +65,49 @@ class InputViewTest {
         LottoNumberRangeValidator.validate(intInput);
 
         assertThat(intInput).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("빈 값 예외 처리 테스트")
+    void validateEmptyInput() {
+        String Input = "";
+        assertThatThrownBy(() -> {
+            EmptyInputValidator.validate(Input);
+        })
+                .hasMessageContaining("[ERROR] 입력값이 없습니다.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "test", "안녕하세요"})
+    @DisplayName("숫자 형식이 아닌 값 예외 처리 테스트")
+    void validateNumberFormat(String input) {
+        assertThatThrownBy(() -> {
+            NumberFormatValidator.validate(input);
+        })
+                .hasMessageContaining("[ERROR] 입력 값은 숫자 형식이어야 합니다.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-10, -1000, -28439})
+    @DisplayName("음수인 값 예외 처리 테스트")
+    void validatePositiveNumber(int input) {
+        assertThatThrownBy(() -> {
+            PositiveNumberValidator.validate(input);
+        })
+                .hasMessageContaining("[ERROR] 입력 값은 양수여야 합니다.")
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {100, 49378, 2500, 13938713})
+    @DisplayName("로또 구입 금액 단위 예외 테스트")
+    void validatePurchaseAmountException(int input) {
+        assertThatThrownBy(() -> {
+            InputView.validatePurchaseAmount(input);
+        })
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.")
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
