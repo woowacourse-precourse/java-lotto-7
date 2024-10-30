@@ -63,6 +63,7 @@
 - [ ] Application
 ### Model
 - [x] Lotto 
+- [x] LottoMachine
 ### View
 - [ ] InputView
 - [ ] OutputView
