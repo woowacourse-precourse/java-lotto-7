@@ -53,7 +53,7 @@ class ApplicationTest extends NsTest {
         assertEquals(8, application.divideByThousand("8000"));
     }
     @Test
-    void divideByThousand_예외_메시지_테스트() {
+    void divideByThousand_예외_메시지_테스트_숫자만_입력() {
         Application application = new Application();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -63,7 +63,7 @@ class ApplicationTest extends NsTest {
         Assertions.assertEquals("[ERROR] 숫자만 입력해 주세요.", exception.getMessage());
     }
     @Test
-    void divideByThousand_예외_메시지_테스트_2() {
+    void divideByThousand_예외_메시지_테스트_1000원_단위로_입력() {
         Application application = new Application();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -74,7 +74,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void divideByThousand_예외_메시지_테스트_3() {
+    void 예외_메시지_테스트_1부터_45까지_숫자만_입력() {
         Application application = new Application();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -85,7 +85,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void divideByThousand_예외_메시지_테스트_4() {
+    void 예외_메시지_테스트_숫자만_입력() {
         Application application = new Application();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
