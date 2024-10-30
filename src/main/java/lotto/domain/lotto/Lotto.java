@@ -9,12 +9,12 @@ public class Lotto {
 
     public static final int LOTTO_COMBINATION_LENGTH = 6;
 
-    private final List<LottoNumber> numbers;
+    private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers.stream()
-                .map(LottoNumber::new)
+                .map(Number::new)
                 .collect(Collectors.toList());
     }
 
