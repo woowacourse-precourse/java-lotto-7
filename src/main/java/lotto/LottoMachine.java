@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.Result;
 
 public class LottoMachine {
   private static final int LOTTO_PRICE = 1000;
@@ -35,5 +37,30 @@ public class LottoMachine {
     }
 
     return lottoTickets;
+  }
+
+  public Result evaluateLottoTickets(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    Result result = new Result();
+    Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);
+
+    for (Lotto lotto : lottos) {
+      List<Integer> ticketNumbers = lotto.getNumbers();
+      int matchCount = countMatchingNumbers(ticketNumbers, winningNumberSet);
+      boolean matchBonus = ticketNumbers.contains(bonusNumber);
+      Rank rank = Rank.valueOf(matchCount, matchBonus);
+      result.addRank(rank);
+    }
+
+    return result;
+  }
+
+  private int countMatchingNumbers(List<Integer> ticketNumbers, Set<Integer> winningNumberSet) {
+    int matchCount = 0;
+    for (int number : ticketNumbers) {
+      if (winningNumberSet.contains(number)) {
+        matchCount++;
+      }
+    }
+    return matchCount;
   }
 }
