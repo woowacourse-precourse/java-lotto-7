@@ -13,6 +13,8 @@ public class Application {
         int total = price / 1000;
 
         LottoList lottoList = new LottoList(total);
+
+        System.out.println(lottoList.getLottoList().size());
         for (Lotto lotto : lottoList.getLottoList()) {
             System.out.println(lotto.getNumbers());
         }
