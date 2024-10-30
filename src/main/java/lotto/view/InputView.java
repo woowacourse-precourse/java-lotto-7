@@ -45,5 +45,7 @@ public class InputView {
 
     public void inputBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+
+        String userInput = Console.readLine();
     }
 }
