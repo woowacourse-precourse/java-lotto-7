@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.LottoMachine;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoStore;
@@ -25,8 +24,6 @@ public class LottoController {
 
         List<Integer> winNumbers = Arrays.stream(InputView.inputWinNumbers().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         int bonusNumber = Integer.parseInt(InputView.inputBonusNumber());
-
-        LottoMachine lottoMachine = new LottoMachine(winNumbers, bonusNumber);
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateLottoResult(lottoStore.getLottos(), winNumbers, bonusNumber);
