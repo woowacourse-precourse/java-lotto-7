@@ -37,6 +37,10 @@ public class InputParser {
         return winningNumbers;
     }
 
+    public void parseBonusNumber(String userInput) {
+        inputValidator.validateEmpty(userInput);
+    }
+
     private List<String> separateInput(String userInput) {
         return List.of(userInput.split(WINNING_NUMBER_INPUT_DELIMITER));
     }
