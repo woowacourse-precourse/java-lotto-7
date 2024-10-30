@@ -22,6 +22,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 null인 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호가_null인_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("1장의 로또는 6개의 번호를 가진다.")
     @Test
     void 한장의_로또는_6개의_번호를_가진다() {
