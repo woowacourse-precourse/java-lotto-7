@@ -1,2 +1,4 @@
-package lotto.view.output;public enum OutputMessage {
+package lotto.view.output;
+
+public enum OutputMessage {
 }
