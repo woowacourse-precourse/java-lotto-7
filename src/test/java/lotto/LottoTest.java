@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -31,7 +32,7 @@ class LottoTest {
 
         int matchCount = lotto.countMatchingNumbers(winningLotto);
 
-        Assertions.assertThat(matchCount).isEqualTo(5);
+        assertThat(matchCount).isEqualTo(5);
 
     }
 
@@ -42,6 +43,21 @@ class LottoTest {
         Lotto lotto  = new Lotto(List.of(1,2,3,4,5,10));
         boolean isContainBonusNumber = lotto.contains(bonusNumber);
 
-        Assertions.assertThat(isContainBonusNumber).isEqualTo(expected);
+        assertThat(isContainBonusNumber).isEqualTo(expected);
     }
+    @DisplayName("입력된 금액 만큼 로또를 구매한다.")
+    @Test
+    void 입력된_금액_만큼_로또를_구매한다() {
+
+        List<Lotto> boughtLotto = Lotto.buyAsMoney(3000);
+        assertThat(boughtLotto.size()).isEqualTo(3);
+    }
+
+    @DisplayName("입력된 금액이 1000원 단위로 떨어지지 않으면 예외가 발생한다. ")
+    @Test
+    void 금액이_1000원_단위로_떨어지지_않으면_예외가_발생한다() {
+        assertThatThrownBy(()->Lotto.buyAsMoney(4500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
