@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.constant.LottoConst;
+import lotto.constant.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,13 +16,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNumberSize(numbers);
+        validateDuplication(numbers);
+    }
+
+    private static void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LottoConst.LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_SIZE_ERROR);
         }
+    }
+
+    private static void validateDuplication(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않은 숫자여야 합니다.");
+                throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATION_ERROR);
             }
         }
     }
@@ -36,7 +45,7 @@ public class Lotto {
 
     public void checkBonusNumberDuplication(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복 될 수 없습니다");
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_DUPLICATION_ERROR);
         }
     }
 

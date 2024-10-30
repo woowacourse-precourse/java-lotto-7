@@ -20,7 +20,5 @@ public class WinningNumbers {
         return winningNumbers;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
+    public int getBonusNumber() { return bonusNumber; }
 }
