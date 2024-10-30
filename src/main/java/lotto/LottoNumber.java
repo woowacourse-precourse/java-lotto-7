@@ -10,4 +10,12 @@ public class LottoNumber {
     public LottoNumber(int number) {
         this.number = number;
     }
+
+    private void checkLottoNumberRange(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException(REQUEST_1_TO_45_NUMBER);
+        }
+    }
+
+    
 }
