@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullSource;
@@ -6,14 +6,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-public class PurchaseAmountValidatorTest {
+public class PurchaseAmountTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     @NullSource
     void 빈_값이_입력되었다면_예외가_발생한다(String input){
         assertThatIllegalArgumentException()
                 .isThrownBy(()->{
-                    PurchaseAmountValidator.isInvalidPurchaseAmount(input);
+                    new PurchaseAmount(input);
                 }).withMessageContaining("빈 값은 입력하실 수 없습니다.");
     }
 
@@ -22,7 +22,7 @@ public class PurchaseAmountValidatorTest {
     void 숫자로_변환되지_않는다면_예외가_발생한다(String input){
         assertThatIllegalArgumentException()
                 .isThrownBy(()->{
-                    PurchaseAmountValidator.isInvalidPurchaseAmount(input);
+                    new PurchaseAmount(input);
                 }).withMessageContaining("숫자를 입력하셔야 합니다.");
     }
 
@@ -31,7 +31,7 @@ public class PurchaseAmountValidatorTest {
     void 양수가_아니라면_예외가_발생한다(String input){
         assertThatIllegalArgumentException()
                 .isThrownBy(()->{
-                    PurchaseAmountValidator.isInvalidPurchaseAmount(input);
+                    new PurchaseAmount(input);
                 }).withMessageContaining("양수를 입력하셔야 합니다.");
     }
 
@@ -40,7 +40,7 @@ public class PurchaseAmountValidatorTest {
     void 천으로_나눠질_수_없다면_예외가_발생한다(String input){
         assertThatIllegalArgumentException()
                 .isThrownBy(()->{
-                    PurchaseAmountValidator.isInvalidPurchaseAmount(input);
+                    new PurchaseAmount(input);
                 }).withMessageContaining("1,000원으로 나눠질 수 있는 금액을 입력하셔야 합니다.");
     }
 }

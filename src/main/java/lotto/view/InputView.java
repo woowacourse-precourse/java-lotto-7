@@ -1,15 +1,17 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumber;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    public static int inputPurchaseAmount(){
+    public static PurchaseAmount inputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
         try{
             String inputPurchaseAmount = readLine();
-            int purchaseAmount = PurchaseAmountValidator.isInvalidPurchaseAmount(inputPurchaseAmount);
-            return purchaseAmount;
+            return new PurchaseAmount(inputPurchaseAmount);
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR]" + e.getMessage());
             return inputPurchaseAmount();
