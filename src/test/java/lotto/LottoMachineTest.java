@@ -26,9 +26,7 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
         int purchaseAmount = 5000;
 
-        lottoMachine.buyLotto(purchaseAmount);
-
-        List<Lotto> lottos = lottoMachine.getLottos();
+        List<Lotto> lottos = lottoMachine.buyLotto(purchaseAmount);
         assertEquals(5, lottos.size());
     }
 }
