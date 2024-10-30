@@ -13,6 +13,7 @@ public class InputView {
         String input = Console.readLine();
         InputValidator.validateNull(input);
         InputValidator.validateInteger(input);
+        InputValidator.validatePositiveNumber(input);
         return input;
     }
 
