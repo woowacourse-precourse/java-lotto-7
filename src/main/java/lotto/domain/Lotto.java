@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorCode.INVALID_LOTTO_LENGTH;
-import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBER_PATTERN;
+import static lotto.exception.LottoErrorCode.*;
 
 import java.util.List;
 import lotto.exception.LottoException;

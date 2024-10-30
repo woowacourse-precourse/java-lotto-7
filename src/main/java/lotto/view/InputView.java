@@ -1,14 +1,14 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.exception.ErrorCode.BONUS_NUMBER_OUT_OF_RANGE;
-import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBER_PATTERN;
-import static lotto.exception.ErrorCode.LOTTO_PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000;
+import static lotto.exception.InputErrorCode.INVALID_LOTTO_NUMBER_PATTERN;
+import static lotto.exception.InputErrorCode.LOTTO_PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 
 public class InputView {
@@ -30,14 +30,14 @@ public class InputView {
         }
     }
 
-    public static String inputWonLottoNumbers() {
+    public static Lotto wonLottoNumbers() {
         String userInput = readLine();
         validateWonLottoNumbers(userInput);
 
-        return userInput;
+        return new Lotto(parseWonLottoNumbers(userInput));
     }
 
-    public static List<Integer> parseWonLottoNumbers(String userInput) {
+    private static List<Integer> parseWonLottoNumbers(String userInput) {
         return Arrays.stream(userInput.split(",")).map(Integer::parseInt).toList();
     }
 

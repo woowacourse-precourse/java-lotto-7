@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.regex.Pattern;
-import lotto.exception.ErrorCode;
+import lotto.exception.InputErrorCode;
 import lotto.exception.LottoException;
 
 public class BonusNumber {
@@ -17,7 +17,7 @@ public class BonusNumber {
 
     private void validate(String stringNumber) {
         if (!VALID_BONUS_LOTTO_NUMBER_RANGE_PATTERN.matcher(stringNumber).matches()) {
-            throw new LottoException(ErrorCode.BONUS_NUMBER_OUT_OF_RANGE);
+            throw new LottoException(InputErrorCode.BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 }
