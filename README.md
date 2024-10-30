@@ -57,17 +57,16 @@ NullPointerException()
 
 LottoNumber 번호 자체에 대한 클래스
 
-LottoNumber 번호 자체에 대한 클래스
-
 - [x]  1-45 범위 제한
 
 Lotto factory 만들어야 할듯
 
+- [x]  인터페이스로 구현
+
 Lotto 1급 컬렉션
 
 - [ ]  생성에 대한 부분을 Random 매서드에서 찿음
-- [ ]  제한 상수화
-- [x]  validation에 길이 뿐만 아니라 그 중복 검사
+- [x]  오름차순 정렬
 
 Lottos 만들 것
 
@@ -78,3 +77,17 @@ enum을 통한 에러 코드 관리
 - [x]  에러를 인터페이스화
 - [x]  로또 번호가 범위를 벗어난 경우 → RangeError
 - [x]  로또 길이가 범위를 벗어난 경우 → RangeError
+- [x]  전체 constant를 관리하자
+
+NumberCombination 구현
+
+- [x]  abstract 클래스로 숫자 조합을 의미함
+- [x]  사용자 답 guess가 상속
+- [x]  lotto . 가상속
+- [x]  validation 기능 protected로 구현
+
+✅
+
+입력의 그 부분부터 다시 시작 조심하세요
+
+같은 숫자의 로또가 뽑히면 손해잖아..
