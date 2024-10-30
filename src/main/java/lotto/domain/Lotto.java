@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.domain.LottoNumber.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.LottoNumber.MINIMUM_LOTTO_NUMBER;
+
 public class Lotto {
 
     private static final int LOTTO_COMBINATION_LENGTH = 6;
@@ -14,10 +17,6 @@ public class Lotto {
         this.numbers = numbers.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
-    }
-
-    public Lotto(LottoFactory lottoFactory) {
-        this.numbers = lottoFactory.create();
     }
 
     private <T> void validate(List<T> numbers) {
