@@ -1,11 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.service.LottoConverter;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class WinningNumberChecker {
     private final List<Integer> winningSet;

@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.service.LottoConverter;
+
 import java.math.BigInteger;
 import java.util.*;
 

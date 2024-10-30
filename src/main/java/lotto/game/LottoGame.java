@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoPool;
+import lotto.service.LottoConverter;
+import lotto.service.WinningNumberChecker;
+import lotto.service.WinningStatisticsManager;
+import lotto.ui.OutputManager;
 
 import java.math.BigInteger;
 import java.util.Arrays;
