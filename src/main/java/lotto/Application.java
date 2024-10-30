@@ -2,11 +2,12 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.enums.LottoRank;
+import lotto.domain.generator.RandomNumbers;
 import lotto.util.converter.PurchaseCountConverter;
 import lotto.util.converter.WinningNumberConverter;
-import lotto.domain.generator.RandomNumbers;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 
 public class Application {
@@ -28,7 +29,6 @@ public class Application {
         int bonusNumber = winningNumberConverter.convertBonusNumber(inputBonusNumber);
 
         Lotto lotto = new Lotto(winningNumbers);
-        HashMap<Integer, Integer> winningCount = new HashMap<>();
-        lotto.checkWinning(winningCount, randomNumbers);
+        EnumMap<LottoRank, Integer> rankCount = lotto.checkWinning(randomNumbers, bonusNumber);
     }
 }

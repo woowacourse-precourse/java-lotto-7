@@ -34,7 +34,7 @@ class LottoTest {
         randomNumbers.addRandomNumber(2);
 
         //when
-        lotto.checkWinning(winningCount, randomNumbers);
+        lotto.checkWinning(randomNumbers, 7);
 
         //then
         assertThat(winningCount).satisfiesAnyOf(
@@ -42,5 +42,4 @@ class LottoTest {
                 map -> assertThat(map.values()).allMatch(value -> value == 2)
         );
     }
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }

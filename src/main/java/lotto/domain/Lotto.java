@@ -1,11 +1,10 @@
 package lotto.domain;
 
+import lotto.domain.enums.LottoRank;
 import lotto.domain.generator.RandomNumber;
 import lotto.domain.generator.RandomNumbers;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -37,14 +36,25 @@ public class Lotto {
         return numberSet.size() != numbers.size();
     }
 
-    public void checkWinning(HashMap<Integer, Integer> winningCount, RandomNumbers randomNumbers) {
+    public EnumMap<LottoRank, Integer> checkWinning(RandomNumbers randomNumbers, int bonusNumber) {
+
+        EnumMap<LottoRank, Integer> rankCount = new EnumMap<>(LottoRank.class);
         List<RandomNumber> totalRandomNumberList = randomNumbers.randomNumbers();
 
         for (RandomNumber randomNumberList : totalRandomNumberList) {
             List<Integer> randomNumber = randomNumberList.randomNumber();
-            int count = calculateMatchCount(randomNumber);
-            winningCount.put(count, winningCount.getOrDefault(count, 0) + 1);
+
+            LottoRank lottoRank = getLottoRank(randomNumber, bonusNumber);
+            rankCount.put(lottoRank, rankCount.getOrDefault(lottoRank, 0) + 1);
         }
+        return rankCount;
+    }
+
+    private LottoRank getLottoRank(List<Integer> randomNumber, int bonusNumber) {
+        int count = calculateMatchCount(randomNumber);
+        boolean isBonusNumberMatched = randomNumber.contains(bonusNumber);
+
+        return LottoRank.findLottoRank(count, isBonusNumberMatched);
     }
 
     private int calculateMatchCount(List<Integer> randomNumber) {
@@ -54,6 +64,4 @@ public class Lotto {
                 .count()
         );
     }
-
-    // TODO: 추가 기능 구현
 }
