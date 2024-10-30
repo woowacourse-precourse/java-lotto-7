@@ -26,7 +26,6 @@ public class MainController {
 
         UserLotto userLotto = createUserLotto();
 
-        System.out.println(userLotto);
     }
 
 

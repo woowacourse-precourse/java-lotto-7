@@ -13,6 +13,7 @@ public class Input {
     }
 
     public static String inputMainSixLotto(){
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         try{
             return Console.readLine();
@@ -22,6 +23,7 @@ public class Input {
     }
 
     public static int inputBonusLotto(){
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         try{
             return Integer.parseInt(Console.readLine());
