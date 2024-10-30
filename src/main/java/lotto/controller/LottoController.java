@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.ConvertValidValue;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.ui.InputView;
 
 public class LottoController {
     private ConvertValidValue convertValidValue;
+    private LottoGenerator lottoGenerator;
     private List<Lotto> lottos;
     private int ticketCount;
 
     public LottoController(){
-        lottos = new ArrayList<Lotto>();
         convertValidValue = new ConvertValidValue();
+        lottoGenerator = new LottoGenerator();
+        lottos = new ArrayList<Lotto>();
         ticketCount = 0;
     }
 
@@ -33,5 +36,11 @@ public class LottoController {
         }
 
         ticketCount = ticket;
+    }
+
+    private void purchaseLotto() {
+        for(int i = 0; i< ticketCount; i++){
+            lottos.add(lottoGenerator.generate());
+        }
     }
 }
