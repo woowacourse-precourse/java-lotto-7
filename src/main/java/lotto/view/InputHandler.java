@@ -23,7 +23,7 @@ public class InputHandler {
         }
     }
 
-    public static void validateWinningNumbers(List<Integer> winningNumbers) {
+    public static void validateWinningNumbersRange(List<Integer> winningNumbers) {
         for (Integer num : winningNumbers) {
             if (num < 1 || 45 < num) {
                 throw new IllegalArgumentException("[ERROR] 당청 번호는 1에서 45 사이의 정수 값이어야 합니다.");

@@ -45,9 +45,17 @@ public class InputHandlerTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"abcdef", "a,b,c,d,e,f", "123456"})
+    void 당첨_번호가_정수가_아니면_예외_발생(String winningNumbers) {
+        assertThatThrownBy(() -> InputHandler.validateWinningNumbersAreInteger(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호들은 정수여야 합니다.");
+    }
+
+    @ParameterizedTest
     @MethodSource("provideInvalidWinningNumbers")
     void 당첨_번호가_1에서_45_사이의_값이_아니면_예외_발생(List<Integer> winningNumbers) {
-        assertThatThrownBy(() -> InputHandler.validateWinningNumbers(winningNumbers))
+        assertThatThrownBy(() -> InputHandler.validateWinningNumbersRange(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당청 번호는 1에서 45 사이의 정수 값이어야 합니다.");
     }
@@ -63,7 +71,7 @@ public class InputHandlerTest {
     @MethodSource("provideValidWinningNumbers")
     void 당첨_번호가_1에서_45_사이의_값이면_예외_없음(List<Integer> winningNumbers) {
         assertDoesNotThrow(() -> {
-            InputHandler.validateWinningNumbers(winningNumbers);
+            InputHandler.validateWinningNumbersRange(winningNumbers);
         });
     }
 
