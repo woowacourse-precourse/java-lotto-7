@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.utils.Messages.*;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
@@ -31,6 +32,9 @@ public class OutputView {
     }
 
     public static void printLottoProfit(LottoResultManager lottoResultManager) {
-        System.out.println(PROFIT + lottoResultManager.calculateProfit() + PERCENT);
+        DecimalFormat df = new DecimalFormat("#,##0.0"); // 항상 소수 첫째 자리까지 표시
+
+        String formattedProfit = df.format(lottoResultManager.calculateProfit());
+        System.out.println(PROFIT + formattedProfit + PERCENT);
     }
 }
