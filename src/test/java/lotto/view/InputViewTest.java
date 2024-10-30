@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -145,6 +146,149 @@ class InputViewTest extends NsTest {
 
     assertTrue(output.contains("[ERROR] 구입 금액은 1000원 이상이어야 합니다."));
     assertEquals(new BigDecimal("1000"), purchaseAmount);
+  }
+
+  @Test
+  @DisplayName("당첨 번호 입력 안내 메시지 출력 테스트")
+  public void 당첨_번호_안내_메시지_출력_테스트() {
+    String input = "1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("당첨 번호를 입력해 주세요."));
+  }
+
+  @Test
+  @DisplayName("정상적인 당첨 번호 입력 및 검증 테스트")
+  public void 정상적인_당첨_번호_입력_테스트() {
+    String input = "1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = inputView.readWinningNumbers();
+
+    assertEquals(6, winningNumbers.size());
+    assertEquals(List.of(1, 2, 3, 4, 5, 6), winningNumbers);
+  }
+
+  @Test
+  @DisplayName("범위 내의 유효한 번호 입력 테스트")
+  public void 범위_내_유효한_번호_입력_테스트() {
+    String input = "7,14,22,33,39,45\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = inputView.readWinningNumbers();
+
+    assertEquals(6, winningNumbers.size());
+    assertEquals(List.of(7, 14, 22, 33, 39, 45), winningNumbers);
+  }
+
+  @Test
+  @DisplayName("입력값이 비어있는 경우 예외 발생 테스트")
+  public void 빈_입력값_예외_테스트() {
+    String input = "\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 당첨 번호는 6개여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("6개 미만의 번호 입력 시 예외 발생 테스트")
+  public void 번호_개수_부족_예외_테스트() {
+    String input = "1,2,3\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 당첨 번호는 6개여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("6개 초과의 번호 입력 시 예외 발생 테스트")
+  public void 번호_개수_초과_예외_테스트() {
+    String input = "1,2,3,4,5,6,7\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 당첨 번호는 6개여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("범위를 벗어난 번호 입력 시 예외 발생 테스트")
+  public void 번호_범위_벗어남_예외_테스트() {
+    String input = "0,46,5,10,15,20\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("중복된 번호 입력 시 예외 발생 테스트")
+  public void 중복된_번호_예외_테스트() {
+    String input = "1,1,2,3,4,5\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 중복된 당첨 번호가 있습니다."));
+  }
+
+  @Test
+  @DisplayName("숫자가 아닌 문자 포함 시 예외 발생 테스트")
+  public void 숫자가_아닌_문자_포함_예외_테스트() {
+    String input = "a,2,3,b,4,5\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 당첨 번호는 숫자여야 합니다."));
+  }
+
+  @Test
+  @DisplayName("공백 포함된 입력 정상 처리 테스트")
+  public void 공백_포함된_입력_정상_처리_테스트() {
+    String input = "1, 2, 3 ,4 , 5 ,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    List<Integer> winningNumbers = inputView.readWinningNumbers();
+
+    assertEquals(6, winningNumbers.size());
+    assertEquals(List.of(1, 2, 3, 4, 5, 6), winningNumbers);
+  }
+
+  @Test
+  @DisplayName("숫자가 아닌 특수문자 포함 시 예외 발생 테스트")
+  public void 특수문자_포함_예외_테스트() {
+    String input = "1,2,3,4,@,6\n1,2,3,4,5,6\n";
+    provideInput(input);
+
+    InputView inputView = new InputView();
+    inputView.readWinningNumbers();
+
+    String output = outputStreamCaptor.toString();
+    assertTrue(output.contains("[ERROR] 당첨 번호는 숫자여야 합니다."));
   }
 
   private void provideInput(String data) {

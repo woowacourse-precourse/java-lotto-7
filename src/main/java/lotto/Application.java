@@ -15,6 +15,6 @@ public class Application {
         List<Lotto> lottos = lottoMachine.generateLottoTickets(lottoCount);
         OutputView outputView = new OutputView();
         outputView.printLottoTickets(lottos);
-        
+        List<Integer> winningNumbers = inputView.readWinningNumbers();
     }
 }

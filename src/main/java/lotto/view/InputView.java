@@ -2,6 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class InputView {
 
@@ -36,5 +40,55 @@ public class InputView {
     }
 
     return amount;
+  }
+
+  public List<Integer> readWinningNumbers() {
+    while (true) {
+      try {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        List<Integer> winningNumbers = validateWinningNumbers(input);
+        return winningNumbers;
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
+  private List<Integer> validateWinningNumbers(String input) {
+    if (input == null || input.trim().isEmpty()) {
+      throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
+
+    String[] tokens = input.split(",");
+    if (tokens.length != 6) {
+      throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
+
+    Set<Integer> numberSet = new HashSet<>();
+    List<Integer> winningNumbers = new ArrayList<>();
+
+    for (String token : tokens) {
+      String trimmedToken = token.trim();
+
+      int number;
+      try {
+        number = Integer.parseInt(trimmedToken);
+      } catch (NumberFormatException e) {
+        throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+      }
+
+      if (number < 1 || number > 45) {
+        throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+      }
+
+      if (!numberSet.add(number)) {
+        throw new IllegalArgumentException("[ERROR] 중복된 당첨 번호가 있습니다.");
+      }
+
+      winningNumbers.add(number);
+    }
+
+    return winningNumbers;
   }
 }
