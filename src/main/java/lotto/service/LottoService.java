@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.view.OutputView;
 
 public class LottoService {
 
@@ -17,8 +18,11 @@ public class LottoService {
     public void purchaseLotto(int money) {
         for (int i = 0; i < money / MONEY_UNIT; i++) {
             purchasedLotto.add(purchaseOneLotto());
-
         }
+    }
+
+    public void printPurchasedLottoNumbers() {
+        OutputView.printPurchasedLotto(purchasedLotto);
     }
 
     private Lotto purchaseOneLotto() {

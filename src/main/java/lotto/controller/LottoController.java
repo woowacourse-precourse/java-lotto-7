@@ -20,6 +20,8 @@ public class LottoController {
         int moneyInput = getMoneyInput();
         lottoService.purchaseLotto(moneyInput);
 
+        lottoService.printPurchasedLottoNumbers();
+
     }
 
     private int getMoneyInput() {
