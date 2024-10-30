@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import org.junit.jupiter.api.Test;
 
@@ -17,5 +19,16 @@ public class LottoMachineTest {
         assertThrows(IllegalArgumentException.class, () -> {
             lottoMachine.buyLotto(invalidAmount);
         });
+    }
+
+    @Test
+    void 구매_금액에_맞게_정상적으로_로또가_구매되는지_확인() {
+        LottoMachine lottoMachine = new LottoMachine();
+        int purchaseAmount = 5000;
+
+        lottoMachine.buyLotto(purchaseAmount);
+
+        List<Lotto> lottos = lottoMachine.getLottos();
+        assertEquals(5, lottos.size());
     }
 }
