@@ -2,11 +2,10 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -61,5 +60,18 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> bonus.setNum(bonusNum))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void test() {
+        // given
+        List<Integer> list = List.of(1, 3, 4, 5);
+        List<Integer> temp = new ArrayList<>(list);
+        temp.addAll(List.of(1));
+        System.out.println(temp.stream().distinct().count());
+        // when
+
+        // then
+
     }
 }

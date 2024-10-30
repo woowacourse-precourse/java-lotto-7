@@ -23,4 +23,8 @@ public class Bonus {
     public boolean isCorrectNum(int bonusNum) {
         return this.num == bonusNum;
     }
+
+    public int getNum() {
+        return this.num;
+    }
 }

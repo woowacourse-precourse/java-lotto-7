@@ -14,11 +14,18 @@ public class Lotto {
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 번호 6개여야 합니다.");
         }
-        // 범위 체크
     }
 
     public boolean contains(int num) {
         return numbers.contains(num);
+    }
+
+    public boolean contains(Bonus bonus) {
+        return contains(bonus.getNum());
+    }
+
+    public int getCnt(Lotto lotto) {
+        return (int) numbers.stream().filter(lotto::contains).count();
     }
 
     @Override

@@ -46,7 +46,7 @@ public class LottoRunner {
             break;
         }
 
-        Bonus bonus = new Bonus(targetLotto);
+        final Bonus bonus = new Bonus(targetLotto);
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             try {
@@ -60,6 +60,8 @@ public class LottoRunner {
             break;
         }
 
+        Calculator calculator = new Calculator(lottos, targetLotto, bonus);
+        System.out.println(calculator.getResult());
     }
 
     private void validate(int money) throws IllegalArgumentException {
