@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottosTest {
     Lottos lottos;
+
     @BeforeEach
     void init() {
         lottos = new Lottos();
@@ -22,7 +23,7 @@ public class LottosTest {
     @Test
     void 로또를_저장한다() {
         Lotto lotto = new Lotto(
-                List.of(1,2,3,4,5,6)
+                List.of(1, 2, 3, 4, 5, 6)
         );
 
         lottos.saveLotto(lotto);
@@ -30,6 +31,6 @@ public class LottosTest {
         assertThat(lottos.getLottos()
                 .get(0)
                 .getLottoNumbers())
-                .isEqualTo(List.of(1,2,3,4,5,6));
+                .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 }
