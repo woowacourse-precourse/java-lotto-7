@@ -14,13 +14,13 @@ public abstract class MessageFormatter {
                     .append("개").append("\n");
         }
         return sb.toString();
-
     }
 
     public static String getReturnRate(Map<LottoResult, Integer> matchResults, int amount) {
         long sum = matchResults.entrySet().stream().mapToInt(m -> m.getKey().getPrice() * m.getValue()).sum();
 
-        double earning = (double) (sum - amount) / amount * 100;
-        return String.format("%.1f%%",Math.round(earning * 100.0) / 100.0);
+        double earning = (double) sum / amount * 100;
+        return String.format("%.1f%%", Math.round(earning * 100.0) / 100.0);
     }
+
 }

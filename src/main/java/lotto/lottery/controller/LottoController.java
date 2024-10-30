@@ -1,12 +1,11 @@
 package lotto.lottery.controller;
 
-import static lotto.global.util.LottoConst.*;
+import static lotto.global.util.LottoConst.LOTTO_PRICE;
 
 import java.util.List;
 import java.util.Map;
 import lotto.global.io.InputView;
 import lotto.global.io.OutputView;
-import lotto.global.util.LottoConst;
 import lotto.global.util.MessageFormatter;
 import lotto.lottery.domain.Lotto;
 import lotto.lottery.service.LottoService;
@@ -29,19 +28,20 @@ public class LottoController {
         this.matchService = matchService;
     }
 
-    public void start(){
-        String amountInput = InputView.printPurchaseLotto();
+    public void start() {
 
-        List<Lotto> lottos = purchaseLottos(amountInput);
+        try {
+            String amountInput = InputView.printPurchaseLotto();
+            List<Lotto> lottos = purchaseLottos(amountInput);
 
-        WinningNumber winningNumber = getWinningNumber();
+            WinningNumber winningNumber = getWinningNumber();
+            Map<LottoResult, Integer> matchResults = matchService.calculateMatchResults(lottos, winningNumber);
 
-        Map<LottoResult, Integer> matchResults = matchService.calculateMatchResults(lottos, winningNumber);
-
-        printWinningResult(matchResults);
-
-        printReturnRate(matchResults, lottos);
-
+            printWinningResult(matchResults);
+            printReturnRate(matchResults, lottos);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private List<Lotto> purchaseLottos(String amountInput) {
@@ -54,8 +54,10 @@ public class LottoController {
     private WinningNumber getWinningNumber() {
         OutputView.printEmpty();
         String winningNumbers = InputView.printWinningNumbers();
+
         OutputView.printEmpty();
         String bonusNumber = InputView.printBonusNumber();
+
         return winningNumberService.create(winningNumbers, bonusNumber);
     }
 

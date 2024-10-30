@@ -57,5 +57,4 @@ class MatchServiceTest {
         return new WinningNumber(numbers, bonus);
     }
 
-
 }

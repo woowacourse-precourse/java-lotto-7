@@ -13,4 +13,5 @@ public class LottoRandomHolder implements RandomHolder {
     public List<Integer> getNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS);
     }
+
 }

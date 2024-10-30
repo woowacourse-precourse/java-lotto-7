@@ -31,4 +31,5 @@ public class LottoService {
         LottoValidator.validate(amount);
         return amount / LOTTO_PRICE;
     }
+
 }

@@ -17,4 +17,5 @@ public class WinningNumberService {
         return Arrays.stream(number.split(",")).filter(s -> !s.trim().isEmpty())
                 .map(Parser::parseToInt).toList();
     }
+
 }

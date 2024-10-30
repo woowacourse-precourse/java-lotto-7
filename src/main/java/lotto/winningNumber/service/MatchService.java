@@ -17,15 +17,6 @@ public class MatchService {
         return resultCount;
     }
 
-    private void determineMatchResult(WinningNumber winningNumber, List<Integer> lottoNumbers, Map<LottoResult, Integer> resultCount) {
-        int matchCount = winningNumber.calculateMatchCount(lottoNumbers);
-        boolean bonusMatched = winningNumber.isBonusMatched(lottoNumbers);
-
-        LottoResult lotteryResult = LottoResult.getLotteryResult(matchCount, bonusMatched);
-
-        resultCount.put(lotteryResult, resultCount.getOrDefault(lotteryResult, 0) + 1);
-    }
-
     private Map<LottoResult, Integer> initialize(){
         Map<LottoResult, Integer> initialLottoResults = new HashMap<>();
         for (LottoResult value : LottoResult.values()) {
@@ -34,5 +25,13 @@ public class MatchService {
         return initialLottoResults;
     }
 
+    private void determineMatchResult(WinningNumber winningNumber, List<Integer> lottoNumbers, Map<LottoResult, Integer> resultCount) {
+        int matchCount = winningNumber.calculateMatchCount(lottoNumbers);
+        boolean bonusMatched = winningNumber.isBonusMatched(lottoNumbers);
+
+        LottoResult lotteryResult = LottoResult.getLotteryResult(matchCount, bonusMatched);
+
+        resultCount.put(lotteryResult, resultCount.getOrDefault(lotteryResult, 0) + 1);
+    }
 
 }

@@ -8,6 +8,7 @@ import lotto.winningNumber.service.MatchService;
 import lotto.winningNumber.service.WinningNumberService;
 
 public class AppConfig {
+
     public LottoController lottoController() {
         return new LottoController(lottoService(), winningNumberService(), matchService());
     }
@@ -27,4 +28,5 @@ public class AppConfig {
     public MatchService matchService() {
         return new MatchService();
     }
+
 }

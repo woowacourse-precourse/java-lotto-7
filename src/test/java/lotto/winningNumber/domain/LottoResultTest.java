@@ -1,9 +1,8 @@
-package lotto.domain;
+package lotto.winningNumber.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
-import lotto.winningNumber.domain.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

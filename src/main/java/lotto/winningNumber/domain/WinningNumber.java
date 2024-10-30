@@ -13,6 +13,7 @@ import java.util.Set;
 import lotto.global.util.LottoConst;
 
 public class WinningNumber {
+
     private List<Integer> numbers = new ArrayList<>();
     private int bonus;
 
@@ -62,15 +63,6 @@ public class WinningNumber {
         if (numbers.stream().anyMatch(n -> n < MIN_LOTTO_NUMBER || n > MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER.getMessage());
         }
-    }
-
-
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    public int getBonus() {
-        return bonus;
     }
 
 }

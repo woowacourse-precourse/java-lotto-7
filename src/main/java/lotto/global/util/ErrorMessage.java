@@ -1,6 +1,7 @@
 package lotto.global.util;
 
 public enum ErrorMessage {
+
     INVALID_AMOUNT_RANGE("[ERROR] 로또는 최소 %s원 최대 %s원 까지 구매할 수 있습니다."),
     INVALID_AMOUNT("[ERROR] 로또는 1,000원 단위로 구매해야 됩니다."),
     OUT_OF_RANGE_NUMBER("[ERROR] 당첨 번호와 보너스 번호는 1~45사이 숫자로 입력해주세요"),
@@ -17,4 +18,5 @@ public enum ErrorMessage {
     public String getMessage() {
         return message;
     }
+
 }

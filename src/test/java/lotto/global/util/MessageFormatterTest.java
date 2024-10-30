@@ -1,7 +1,6 @@
 package lotto.global.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.contentOf;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +38,7 @@ class MessageFormatterTest {
         String returnRate = MessageFormatter.getReturnRate(lottoResult, amount);
 
         // then
-        assertThat(returnRate).isEqualTo("203155400.0%");
+        assertThat(returnRate).isEqualTo("203155500.0%");
 
     }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.lottery.service.port.RandomHolder;
 
 public class FakeRandomHolder implements RandomHolder {
+
     private List<Integer> numbers = new ArrayList<>();
 
     public FakeRandomHolder(List<Integer> numbers) {
@@ -15,4 +16,5 @@ public class FakeRandomHolder implements RandomHolder {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
 }

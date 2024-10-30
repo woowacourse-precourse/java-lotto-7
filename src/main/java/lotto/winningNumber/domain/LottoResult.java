@@ -1,6 +1,7 @@
 package lotto.winningNumber.domain;
 
 public enum LottoResult {
+
     SIX(6,2_000_000_000,"6개 일치 (2,000,000,000원) - "),
     FIVE_BONUS(5,30_000_000,"5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIVE(5,1_500_000,"5개 일치 (1,500,000원) - "),
@@ -19,6 +20,7 @@ public enum LottoResult {
     }
 
     public static LottoResult getLotteryResult(int matchedCount, boolean bonus) {
+
         if(matchedCount < 3) return NONE;
 
         if (FIVE_BONUS.getMatchedCount() == matchedCount && bonus) {

@@ -12,6 +12,7 @@ public abstract class LottoValidator {
         validateAmount(amount);
         validateAmountRange(amount);
     }
+
     private static void validateAmount(int amount) {
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT.getMessage());
@@ -23,4 +24,5 @@ public abstract class LottoValidator {
             throw new IllegalArgumentException(String.format(INVALID_AMOUNT_RANGE.getMessage(), MIN_PRICE, MAX_PRICE));
         }
     }
+
 }
