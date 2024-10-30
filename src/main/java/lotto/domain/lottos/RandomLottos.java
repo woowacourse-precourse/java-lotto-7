@@ -13,5 +13,4 @@ public class RandomLottos {
         return lottos;
     }
 
-
 }

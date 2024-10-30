@@ -1,6 +1,12 @@
 package lotto.controller;
 
 import lotto.domain.Wallet;
+import lotto.domain.factory.RandomLottoFactory;
+import lotto.domain.factory.RandomLottoMachine;
+import lotto.domain.lottos.Lotto;
+import lotto.domain.lottos.RandomLottos;
+import lotto.domain.number.NumbersMaker;
+import lotto.domain.number.RandomLottoNumberMaker;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -11,6 +17,17 @@ import lotto.view.Output;
 public class MainController {
     public void run(){
         Wallet wallet = createWallet();
+        RandomLottos randomLottos = createRandomLottos(wallet);
+
+        Output.printPurchasedLottoList(wallet, randomLottos);
+    }
+
+    private RandomLottos createRandomLottos(Wallet wallet) {
+        NumbersMaker numbersMaker = new RandomLottoNumberMaker(); //6자리 숫자를 만듦
+        RandomLottoMachine randomLottoMachine = new RandomLottoMachine(numbersMaker,wallet); //List<Lotto>만듦
+        RandomLottoFactory randomLottoFactory = new RandomLottoFactory(randomLottoMachine); //RandomLotto 객체를 만듦
+
+        return randomLottoFactory.make();
     }
 
     private Wallet createWallet() {
@@ -22,5 +39,6 @@ public class MainController {
             }
         }
     }
+
 
 }
