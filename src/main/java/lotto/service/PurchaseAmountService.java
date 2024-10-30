@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.dto.PurchaseAmountDto;
 import lotto.repository.LottoRepository;
 import lotto.utils.LottoUtils;
