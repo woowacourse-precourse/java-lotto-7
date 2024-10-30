@@ -20,6 +20,15 @@ public class Lotto {
         }
 
         checkNumberDuple(numbers);
+        checkValidArrange(numbers);
+    }
+
+    private void checkValidArrange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 1~45 사이의 수만 가능합니다.");
+            }
+        }
     }
 
     private void checkNumberDuple(List<Integer> numbers) {
