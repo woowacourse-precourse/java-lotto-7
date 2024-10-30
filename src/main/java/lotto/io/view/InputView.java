@@ -91,6 +91,7 @@ public class InputView {
         String[] numbers = input.split(INPUT_DELIM);
         return Arrays.stream(numbers)
                 .map(number -> Integer.parseInt(number.strip()))
+                .sorted(Comparator.naturalOrder())
                 .toList();
     }
 }
