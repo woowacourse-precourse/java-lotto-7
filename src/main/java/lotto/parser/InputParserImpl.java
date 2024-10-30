@@ -1,9 +1,9 @@
-package lotto.impl;
+package lotto.parser;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.enums.ErrorMessage;
-import lotto.model.InputParser;
+import lotto.parser.InputParser;
 
 public class InputParserImpl implements InputParser {
 
