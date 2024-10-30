@@ -83,10 +83,23 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("숫자 형식이 아닌 경우 예외를 발생시킨다.")
+    @DisplayName("당첨 번호가 숫자 형식이 아닌 경우 예외를 발생시킨다.")
     void 당첨_번호_입력_예외_테스트_2() throws Exception {
         // given
         String input = "1,2,3,4,5,a";
+
+        // when
+        boolean result = validator.validateWinningNumber(input);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 1 ~ 45 범위 내에 있지 않으면 예외를 발생시킨다.")
+    void 당첨_번호_입력_예외_테스트_3() throws Exception {
+        // given
+        String input = "1,2,3,4,5,46";
 
         // when
         boolean result = validator.validateWinningNumber(input);
