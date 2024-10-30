@@ -1,4 +1,4 @@
-package lotto.view.output.infra;
+package lotto.view.output.infrastructure;
 
 import lotto.buyer.domain.Money;
 import lotto.lotto.winning.domain.Benefit;
@@ -9,25 +9,29 @@ import lotto.lotto.winning.domain.WinningPlace;
 import lotto.view.output.domain.ResultViewService;
 
 public class CommonResultOutput implements ResultViewService {
+    @Override
     public void viewByInsertMoney(Money money) {
         System.out.println(money);
         nextLine();
     }
-
+    @Override
     public void viewByLottoTickets(LottoTickets lottoTickets) {
         System.out.println(lottoTickets);
     }
 
+    @Override
     public void viewByWinningLotto(WinningLotto winningLotto) {
         System.out.println(winningLotto);
         nextLine();
     }
 
-    public void viewByBonusLotto(BonusNumber bonusLotto) {
-        System.out.println(bonusLotto);
+    @Override
+    public void viewByBonusNumber(BonusNumber bonusNumber) {
+        System.out.println(bonusNumber);
         nextLine();
     }
 
+    @Override
     public void viewByWinningStatistic(Benefit benefit, Money purchaseMoney) {
         System.out.println("당첨 통계\n" + "---");
         System.out.print(WinningPlace.print());
