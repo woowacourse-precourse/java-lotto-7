@@ -1,11 +1,13 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
+import lotto.domain.generator.RandomNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,5 +24,23 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("로또 당첨 확인 - 랜덤 번호와 당첨 번호 일치 갯수를 Map 에 저장")
+    void randomNumberMatchingWinningNumber_saveMatchCount() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        HashMap<Integer, Integer> winningCount = new HashMap<>();
+        RandomNumbers randomNumbers = new RandomNumbers();
+        randomNumbers.addRandomNumber(2);
+
+        //when
+        lotto.checkWinning(winningCount, randomNumbers);
+
+        //then
+        assertThat(winningCount).satisfiesAnyOf(
+                map -> assertThat(map).hasSize(2),
+                map -> assertThat(map.values()).allMatch(value -> value == 2)
+        );
+    }
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }

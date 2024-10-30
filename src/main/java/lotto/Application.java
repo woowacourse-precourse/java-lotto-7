@@ -6,6 +6,7 @@ import lotto.util.converter.PurchaseCountConverter;
 import lotto.util.converter.WinningNumberConverter;
 import lotto.domain.generator.RandomNumbers;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Application {
@@ -25,5 +26,9 @@ public class Application {
         WinningNumberConverter winningNumberConverter = new WinningNumberConverter(inputWinningNumber);
         List<Integer> winningNumbers = winningNumberConverter.convertWinningNumber();
         int bonusNumber = winningNumberConverter.convertBonusNumber(inputBonusNumber);
+
+        Lotto lotto = new Lotto(winningNumbers);
+        HashMap<Integer, Integer> winningCount = new HashMap<>();
+        lotto.checkWinning(winningCount, randomNumbers);
     }
 }
