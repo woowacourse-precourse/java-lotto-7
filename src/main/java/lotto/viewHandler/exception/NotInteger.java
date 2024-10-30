@@ -1,6 +1,6 @@
 package lotto.viewHandler.exception;
 
-public class NotInteger extends RuntimeException {
+public class NotInteger extends MyException {
     public NotInteger() {
         super();
     }
@@ -17,7 +17,7 @@ public class NotInteger extends RuntimeException {
         super(cause);
     }
 
-    protected NotInteger(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public NotInteger(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

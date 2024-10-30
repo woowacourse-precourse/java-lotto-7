@@ -1,4 +1,4 @@
-package lotto.viewHandler.api;
+package lotto.viewHandler.api.message;
 
 public class ApiMessageImpl implements ApiMessage {
     private final String message;

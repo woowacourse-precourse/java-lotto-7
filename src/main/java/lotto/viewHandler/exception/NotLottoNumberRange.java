@@ -1,6 +1,6 @@
 package lotto.viewHandler.exception;
 
-public class NotLottoNumberRange extends RuntimeException {
+public class NotLottoNumberRange extends MyException {
   public NotLottoNumberRange() {
     super();
   }
@@ -17,7 +17,7 @@ public class NotLottoNumberRange extends RuntimeException {
     super(cause);
   }
 
-  protected NotLottoNumberRange(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+  public NotLottoNumberRange(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
   }
 }

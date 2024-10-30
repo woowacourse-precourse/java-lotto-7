@@ -1,5 +1,7 @@
 package lotto.viewHandler.api;
 
+import lotto.viewHandler.api.message.ApiMessage;
+
 public class Api<T> {
     private final ApiMessage apiMessage;
     private final T data;

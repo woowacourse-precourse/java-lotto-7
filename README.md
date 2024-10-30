@@ -169,8 +169,14 @@
 ## Controller
 - LottoController
 
-## ViewHandler
+## handler
 - ViewHandler
+  - inputHandler : 입력 부분 검증 및 재입력 시도
+  - outputHandler : 결과 출력
+- ApiHandler
+  - transformMoneyDto : 입력된 돈 API로 변환
+  - transformLottoNumbers : 입력된 로또 당첨 번호 API로 변환
+  - transformLottoBonusNumber : 입력된 보너스 번호 API로 변환
 
 ## Validation
 - ValidatorImpl
@@ -181,5 +187,9 @@
 
 ## View
 - Input
+  - getPurchaseMoney : 로또 구입 돈 입력 받기
+  - getWinningLottoNumbers : 당첨 번호 입력 받기
+  - getBonusNumber : 보너스 번호 입력 받기
+  - closeInput : 입력 콘솔 닫기
 - Output
 

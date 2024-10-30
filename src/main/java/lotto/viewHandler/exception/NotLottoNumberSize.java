@@ -1,6 +1,6 @@
 package lotto.viewHandler.exception;
 
-public class NotLottoNumberSize extends RuntimeException {
+public class NotLottoNumberSize extends MyException {
     public NotLottoNumberSize() {
         super();
     }

@@ -1,6 +1,6 @@
 package lotto.viewHandler.exception;
 
-public class NotUnitPurchaseMoney extends RuntimeException {
+public class NotUnitPurchaseMoney extends MyException {
     public NotUnitPurchaseMoney() {
         super();
     }

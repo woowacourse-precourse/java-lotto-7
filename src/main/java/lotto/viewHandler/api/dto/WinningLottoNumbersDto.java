@@ -10,6 +10,6 @@ public class WinningLottoNumbersDto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return numbers.stream().toList();
     }
 }
