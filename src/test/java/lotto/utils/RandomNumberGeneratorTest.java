@@ -1,4 +1,4 @@
-package lotto;
+package lotto.utils;
 
 import lotto.utils.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
