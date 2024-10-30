@@ -3,6 +3,10 @@ package lotto.model;
 import java.util.List;
 
 public class Lotto {
+    public static final int MIN_NUMBER_OF_RANGE = 1;
+    public static final int MAX_NUMBER_OF_RANGE = 45;
+    public static final int TOTAL_ELEMENT_COUNT = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,10 +15,35 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        checkSize(numbers);
+        checkDuplicate(numbers);
+        checkInRange(numbers);
+    }
+
+    private void checkSize(List<Integer> numbers) {
+        if (numbers.size() != TOTAL_ELEMENT_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 %s개여야 합니다.".formatted(TOTAL_ELEMENT_COUNT));
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void checkDuplicate(List<Integer> numbers) {
+        if (isDuplicated(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
+    }
+
+    private boolean isDuplicated(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private void checkInRange(List<Integer> numbers) {
+        if (isOutOfRange(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 %s부터 %s사이여야 합니다.".formatted(MIN_NUMBER_OF_RANGE, MAX_NUMBER_OF_RANGE));
+        }
+    }
+
+    private boolean isOutOfRange(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> number < MIN_NUMBER_OF_RANGE || number > MAX_NUMBER_OF_RANGE);
+    }
+
 }
