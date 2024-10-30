@@ -3,7 +3,7 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 
-public class DuplicateValidator {
+public class Validator {
 
     public static void validateDuplicate(List<Integer> numbers) {
         for (Integer number : numbers) {

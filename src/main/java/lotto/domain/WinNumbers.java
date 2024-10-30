@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.DuplicateValidator;
+import lotto.Validator;
 
 public record WinNumbers(
         List<Integer> primaryWinNumbers,
@@ -20,8 +20,8 @@ public record WinNumbers(
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
             }
         }
-        DuplicateValidator.validatedNumberCount(extractWinNumbers);
-        DuplicateValidator.validateDuplicate(extractWinNumbers);
+        Validator.validatedNumberCount(extractWinNumbers);
+        Validator.validateDuplicate(extractWinNumbers);
         return new WinNumbers(extractWinNumbers, null);
     }
 
