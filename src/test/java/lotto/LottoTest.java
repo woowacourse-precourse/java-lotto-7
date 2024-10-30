@@ -33,4 +33,13 @@ class LottoTest {
         assertThat(lotto.getNumbers()).contains(1, 2, 3, 4, 5, 6);
     }
 
+    @Test
+    @DisplayName("로또 번호와 당첨 번호를 비교하여 당첨 개수 올바르게 반환하는지 확인")
+    void 당첨_개수_확인_테스트() {
+        lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int result = lotto.getMatchingCount(winningNumbers);
+
+        assertThat(result).isEqualTo(6);
+    }
 }
