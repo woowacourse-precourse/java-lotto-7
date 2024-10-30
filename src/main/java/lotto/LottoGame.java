@@ -14,6 +14,7 @@ public class LottoGame {
 
     public void run() {
         List<Lotto> lottos = purchaseLotto();
+        printPurchaseBreakdown(lottos);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -22,5 +23,14 @@ public class LottoGame {
 
         int money = Integer.parseInt(rawMoney);
         return lottoStore.purchase(money);
+    }
+
+    private void printPurchaseBreakdown(List<Lotto> lottos) {
+        System.out.println();
+        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
+
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 }
