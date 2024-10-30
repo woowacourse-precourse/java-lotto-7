@@ -8,12 +8,12 @@ public class PrizeCalculator implements Calculator {
 
     @Override
     public int calculateTotalPrize(PrizeNumber prizeNumber) {
-        int first = multiple(prizeNumber.getFirstPrizeLottoNumber(), RankPrice.FIRST.getPrice());
-        int second = multiple(prizeNumber.getSecondPrizeLottoNumber(), RankPrice.SECOND.getPrice());
-        int third = multiple(prizeNumber.getThirdPrizeLottoNumber(), RankPrice.THIRD.getPrice());
-        int fourth = multiple(prizeNumber.getFourthPrizeLottoNumber(), RankPrice.FOURTH.getPrice());
-        int fifth = multiple(prizeNumber.getFifthPrizeLottoNumber(), RankPrice.FIFTH.getPrice());
-        return first + second + third + fourth + fifth;
+        int firstPrize = calculatePrize(prizeNumber.getFirstPrizeLottoNumber(), RankPrice.FIRST.getPrice());
+        int secondPrize = calculatePrize(prizeNumber.getSecondPrizeLottoNumber(), RankPrice.SECOND.getPrice());
+        int thirdPrize = calculatePrize(prizeNumber.getThirdPrizeLottoNumber(), RankPrice.THIRD.getPrice());
+        int fourthPrize = calculatePrize(prizeNumber.getFourthPrizeLottoNumber(), RankPrice.FOURTH.getPrice());
+        int fifthPrize = calculatePrize(prizeNumber.getFifthPrizeLottoNumber(), RankPrice.FIFTH.getPrice());
+        return firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class PrizeCalculator implements Calculator {
         return result;
     }
 
-    private int multiple(int number, int money) {
+    private int calculatePrize(int number, int money) {
         return number * money;
     }
 }
