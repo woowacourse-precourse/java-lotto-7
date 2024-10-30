@@ -63,7 +63,7 @@ public class LottoController {
 
         }
         outputHandler.displayPrizes(prizes);
-
+        outputHandler.displayWinningRate(calculateWinningRate(prizes, amountInput));
 
 
 

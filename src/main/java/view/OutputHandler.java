@@ -26,6 +26,8 @@ public class OutputHandler {
         System.out.println("6개 일치 (2000000000원) - " + prizes.get(6) + "개");
     }
 
-
+    public void displayWinningRate(double winningRate) {
+        System.out.println("총 수익률은 " + winningRate + "%입니다.");
+    }
 
 }
