@@ -2,7 +2,7 @@ package lotto.generator;
 
 import static lotto.config.LottoRule.LOTTO_MAX_NUMBER;
 import static lotto.config.LottoRule.LOTTO_MIN_NUMBER;
-import static lotto.config.LottoRule.LOTTO_PRICE;
+import static lotto.config.LottoRule.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -15,7 +15,7 @@ public class SortedLottoNumberGenerator implements NumberGenerator<List<Integer>
                 Randoms.pickUniqueNumbersInRange(
                         LOTTO_MIN_NUMBER.getValue(),
                         LOTTO_MAX_NUMBER.getValue(),
-                        LOTTO_PRICE.getValue()
+                        LOTTO_SIZE.getValue()
                 )
         );
     }
