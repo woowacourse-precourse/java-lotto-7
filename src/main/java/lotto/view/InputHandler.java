@@ -4,6 +4,11 @@ import java.util.List;
 
 public class InputHandler {
 
+    public static void validatePurchaseAmount(String input) {
+        int purchaseAmount = validatePurchaseAmountIsInteger(input);
+        validatePurchaseAmountIsThousandUnit(purchaseAmount);
+    }
+
     public static int validatePurchaseAmountIsInteger(String purchaseAmount) {
         try {
             return Integer.parseInt(purchaseAmount);
