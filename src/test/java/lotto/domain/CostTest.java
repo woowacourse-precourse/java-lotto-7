@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.error.CostErrorMessage;
+import lotto.error.NumberErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -15,7 +16,7 @@ class CostTest {
         //when & then
         assertThatThrownBy(() -> new Cost(cost))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CostErrorMessage.IS_NOT_NUMBER.getMessage());
+                .hasMessageContaining(NumberErrorMessage.IS_NOT_NUMBER.getMessage());
     }
 
     @Test
