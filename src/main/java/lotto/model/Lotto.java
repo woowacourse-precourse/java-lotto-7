@@ -20,8 +20,8 @@ public class Lotto {
         if (hasTooManyNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.HAS_TOO_MANY_NUMBERS.getMessage());
         }
-        if (hasDuplicatedNumbers(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATED_NUMBER.getMessage());
+        if (hasDuplicateNumbers(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.HAS_DUPLICATE_NUMBER.getMessage());
         }
         if (hasOutOfRangeNumber(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.HAS_OUT_OF_RANGE_NUMBER.getMessage());
@@ -32,7 +32,7 @@ public class Lotto {
         return numbers.size() != NUMBERS_SIZE;
     }
 
-    private boolean hasDuplicatedNumbers(List<Integer> numbers) {
+    private boolean hasDuplicateNumbers(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
     }
 
@@ -42,6 +42,11 @@ public class Lotto {
 
     private boolean isOutOfRange(int number) {
         return number < NUMBER_RANGE_MINIMUM || number > NUMBER_RANGE_MAXIMUM;
+    }
+
+    public boolean contains(BonusNumber bonusNumber) {
+        int number = bonusNumber.getNumber();
+        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
