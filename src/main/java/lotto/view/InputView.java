@@ -32,4 +32,12 @@ public class InputView {
         return integerParser.stringToIntegerList(input);
     }
 
+    public int readBonusNumberInput(List<Integer> winningNumbers){
+        String input = Console.readLine();
+        while (!validator.validateBonusNumber(input, winningNumbers)){
+            input = Console.readLine();
+        }
+        return Integer.parseInt(input);
+    }
+
 }

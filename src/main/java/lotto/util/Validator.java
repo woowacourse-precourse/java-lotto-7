@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static lotto.constant.ErrorMessage.*;
@@ -87,5 +88,9 @@ public class Validator {
             System.out.println(WINNING_NUMBER_SIZE_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean validateBonusNumber(String input, List<Integer> winningNumbers) {
+        return true;
     }
 }
