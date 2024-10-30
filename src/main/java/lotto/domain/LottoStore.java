@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.utils.NumbersGenerator;
+import lotto.validator.LottoStoreValidator;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,6 +16,7 @@ public class LottoStore {
     }
 
     public LottoTicket buyLottoTicket(int price) {
+        LottoStoreValidator.validatePurchaseAmount(price);
         return new LottoTicket(IntStream.range(0, price / LOTTO_PRICE.getValue())
                 .mapToObj(i -> Lotto.from(numbersGenerator.createNumbers()))
                 .collect(Collectors.toList()));
