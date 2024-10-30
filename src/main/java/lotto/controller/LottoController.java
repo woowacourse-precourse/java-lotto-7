@@ -20,6 +20,7 @@ public class LottoController {
         while (true) {
             try {
                 int price = inputView.readPrice();
+                lottoService.createLottoList(price);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

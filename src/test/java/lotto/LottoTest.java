@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.exception.ErrorMessage;
+import lotto.validator.LottoValidator;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -21,5 +26,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @ValueSource(ints = {5001, 45010, 6100, 1100})
+    void 구입금액이_나누어_떨어지는지_확인한다(int input) {
+        AssertionsForClassTypes.assertThatThrownBy(() -> LottoValidator.validateLottoPurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {100, 500, 900, 999})
+    void 부족한_금액으로_로또구매가_가능한지_확인한다(int input) {
+        AssertionsForClassTypes.assertThatThrownBy(() -> LottoValidator.validateLottoPurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
+    }
 }
