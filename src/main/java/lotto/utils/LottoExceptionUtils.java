@@ -1,14 +1,15 @@
 package lotto.utils;
 
 import java.util.function.Supplier;
+import lotto.exception.LottoException;
 
-public class ExceptionUtils {
+public class LottoExceptionUtils {
 
-    public static <T> T runUntilNoneIllegalArgumentException(Supplier<T> task) {
+    public static <T> T runUntilNoneLottoException(Supplier<T> task) {
         while (true) {
             try {
                 return task.get();
-            } catch (Exception exception) {
+            } catch (LottoException exception) {
                 System.err.println(exception.getMessage());
             }
         }

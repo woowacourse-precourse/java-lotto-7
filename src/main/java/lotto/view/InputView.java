@@ -1,10 +1,12 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.exception.ErrorCode.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.exception.LottoException;
 
 public class InputView {
 
@@ -22,7 +24,7 @@ public class InputView {
 
     private static void validateLottoPurchaseAmount(String userInput) {
         if (!validLottoPurchaseAmountPattern.matcher(userInput).matches()) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력 해야합니다.");
+            throw new LottoException(LOTTO_PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000);
         }
     }
 
@@ -39,7 +41,7 @@ public class InputView {
 
     private static void validateWonLottoNumbers(String userInput) {
         if (!validWonLottoNumbersPattern.matcher(userInput).matches()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1-45까지 숫자 6개가 쉼표(,)로 구분되어야 합니다.");
+            throw new LottoException(INVALID_LOTTO_NUMBER_PATTERN);
         }
     }
 
@@ -52,7 +54,7 @@ public class InputView {
 
     private static void validateBonusNumber(String userInput) {
         if (!validBonusLottoNumberPattern.matcher(userInput).matches()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1-45까지의 숫자 중 하나여야 합니다.");
+            throw new LottoException(BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 }

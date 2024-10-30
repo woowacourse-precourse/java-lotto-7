@@ -1,17 +1,17 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.utils.ExceptionUtils;
+import lotto.utils.LottoExceptionUtils;
 import lotto.view.InputView;
 
 public class LottoController {
 
     public void runLotto() {
-        int lottoPurchaseAmount = ExceptionUtils.runUntilNoneIllegalArgumentException(
+        int lottoPurchaseAmount = LottoExceptionUtils.runUntilNoneLottoException(
                 InputView::inputLottoPurchaseAmount);
-        String wonLottoNumbersString = ExceptionUtils.runUntilNoneIllegalArgumentException(
+        String wonLottoNumbersString = LottoExceptionUtils.runUntilNoneLottoException(
                 InputView::inputWonLottoNumbers);
         List<Integer> parsedWonLottoNumbers = InputView.parseWonLottoNumbers(wonLottoNumbersString);
-        int bonusNumber = ExceptionUtils.runUntilNoneIllegalArgumentException(InputView::inputBonusNumber);
+        int bonusNumber = LottoExceptionUtils.runUntilNoneLottoException(InputView::inputBonusNumber);
     }
 }
