@@ -21,12 +21,13 @@ public class Application {
         int count = amount / 1000;
         System.out.println();
         System.out.println(count + "개를 구매했습니다.");
+        List<Lotto> lottos = new ArrayList<>();
 
-        List<Integer> numbers = null;
         for (int i = 0; i < count; i++) {
-            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
 
@@ -58,6 +59,50 @@ public class Application {
         results.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
         results.put("6개 일치 (2,000,000,000원)", 0);
 
+        for (Lotto lotto : lottos) {
+            int matchCount = 0;
+            for (int number : lotto.getNumbers()) {
+                if (winningNumbers.contains(number)) {
+                    matchCount += 1;
+                }
+            }
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            if (matchCount == 6) {
+                results.put("6개 일치 (2,000,000,000원)", results.get("6개 일치 (2,000,000,000원)") + 1);
+                continue;
+            }
+            if (matchCount == 5 && bonusMatch) {
+                results.put("5개 일치, 보너스 볼 일치 (30,000,000원)", results.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + 1);
+                continue;
+            }
+            if (matchCount == 5) {
+                results.put("5개 일치 (1,500,000원)", results.get("5개 일치 (1,500,000원)") + 1);
+                continue;
+            }
+            if (matchCount == 4) {
+                results.put("4개 일치 (50,000원)", results.get("4개 일치 (50,000원)") + 1);
+                continue;
+            }
+            if (matchCount == 3) {
+                results.put("3개 일치 (5,000원)", results.get("3개 일치 (5,000원)") + 1);
+                continue;
+            }
+            // 2개 이하 일치 시 아무 처리하지 않음
+        }
+
+        // 당첨 통계 출력
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int totalPrize = 0;
+        for (Map.Entry<String, Integer> entry : results.entrySet()) {
+            String key = entry.getKey();
+            int count3 = entry.getValue();
+            System.out.println(key + " - " + count3 + "개");
+            int prize = Integer.parseInt(key.replaceAll("[^0-9]", ""));
+            totalPrize += prize * count3;
+        }
 
     }
 }
