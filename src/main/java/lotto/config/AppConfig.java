@@ -2,7 +2,6 @@ package lotto.config;
 
 import java.util.List;
 import lotto.application.Calculator;
-import lotto.application.LottoApplication;
 import lotto.application.MakeNumbersStrategy;
 import lotto.application.Printer;
 import lotto.application.Reader;
@@ -41,9 +40,5 @@ public class AppConfig {
                 new FourthPrizeLotto(),
                 new FifthPrizeLotto());
         return new PrizeNumber(prizeLottos);
-    }
-
-    public LottoApplication lottoApplication() {
-        return new LottoApplication(makeNumbersStrategy(), reader(), printer());
     }
 }
