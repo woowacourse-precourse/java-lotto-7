@@ -8,6 +8,7 @@ public class Purchase {
     private final int purchase;
 
     public Purchase(int purchase) {
+        isPositiveAmount(purchase);
         isDivisibleByThousand(purchase);
         this.purchase = purchase;
     }
