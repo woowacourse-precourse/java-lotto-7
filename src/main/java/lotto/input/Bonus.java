@@ -15,12 +15,15 @@ public class Bonus {
         this.bonus = bonus;
     }
 
+    public int getBonus() {
+        return bonus;
+    }
+
     private void validateBonusNumber(int bonus) {
         if (bonus < MIN_NUMBER || bonus > MAX_NUMBER) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
-
 
     private void validate(Lotto lotto, int bonus) {
         if (lotto.getNumbers().contains(bonus)) {

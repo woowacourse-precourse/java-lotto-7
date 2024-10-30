@@ -4,9 +4,7 @@ import static lotto.constants.ErrorMessage.INPUT_MUST_BE_NUMBER;
 import static lotto.constants.ErrorMessage.PURCHASE_AMOUNT_UNIT_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class PurchaseTest {
