@@ -18,6 +18,10 @@ public class Purchase {
         return purchaseAmount;
     }
 
+    public int numberOfLotto() {
+        return purchaseAmount / 1000;
+    }
+
     private void validateInput(String input) {
         try {
             Integer.parseInt(input);
