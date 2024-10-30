@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MoneyTest {
+class MoneyTest {
 
     @DisplayName("올바르지 않은 금액이면 예외를 발생시킨다.")
     @ParameterizedTest

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class BonusNumberTest {
+class BonusNumberTest {
 
     @DisplayName("범위 외 번호를 입력하면 예외를 발생시킨다.")
     @ParameterizedTest

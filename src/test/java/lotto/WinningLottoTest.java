@@ -8,7 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningLottoTest {
+class WinningLottoTest {
 
     @DisplayName("로또 내 번호와 보너스 번호가 겹치면 에러를 발생시킨다.")
     @Test
