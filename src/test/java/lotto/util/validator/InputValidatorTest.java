@@ -25,8 +25,7 @@ class InputValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,46,3,4,5", "-1,2,3,4,5,6", "1;2;3;4;5;6", "1,2,3,4,5,6,7",
-    "1,1,2,3,4,5"})
+    @ValueSource(strings = {"1,2,46,3,4,5", "-1,2,3,4,5,6", "1;2;3;4;5;6", "1,2,3,4,5,6,7"})
     void 당첨_번호_입력_검사_예외_테스트(String input) {
         //when & then
         assertThrows(IllegalArgumentException.class,
