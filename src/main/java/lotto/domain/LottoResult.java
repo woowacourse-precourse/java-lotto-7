@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,18 +10,11 @@ import java.util.Optional;
 // 로또 결과 비교하기
 // 수익률 계산하기
 public class LottoResult {
-    private final LottoStore lottoStore;
-    private final LottoMachine lottoMachine;
-
-    private Map<LottoRank, Integer> lottoResult;
+    private Map<LottoRank, Integer> lottoResult = new HashMap<>();
     private int profitRate;
 
-    public LottoResult(LottoStore lottoStore, LottoMachine lottoMachine) {
-        this.lottoStore = lottoStore;
-        this.lottoMachine = lottoMachine;
+    public LottoResult() {
         lottoResultInitialize();
-        calculateLottoResult();
-        calculateProfitRate();
     }
 
     private void lottoResultInitialize() {
@@ -29,11 +23,7 @@ public class LottoResult {
         }
     }
 
-    private void calculateLottoResult() {
-        List<Lotto> purchasedLottos = lottoStore.getLottos();
-        List<Integer> winNumbers = lottoMachine.getWinNumbers();
-        int bonusNumber = lottoMachine.getBonusNumber();
-
+    public void calculateLottoResult(List<Lotto> purchasedLottos, List<Integer> winNumbers, int bonusNumber) {
         for (Lotto lotto : purchasedLottos) {
             boolean hasBonus = false;
             int lottoScore = 0;
@@ -55,7 +45,7 @@ public class LottoResult {
         }
     }
 
-    private void calculateProfitRate() {
+    public void calculateProfitRate() {
 
     }
 
