@@ -7,7 +7,7 @@ import java.util.*;
 
 public class BoughtLottos implements Iterable<Lotto> {
     
-    private final long LOTTO_PRICE = 1000;
+    private static final long LOTTO_PRICE = 1000;
     
     private final List<Lotto> lottos;
     
