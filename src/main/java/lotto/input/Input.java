@@ -15,8 +15,8 @@ public class Input {
                 return new Purchase(Integer.parseInt(Console.readLine()));
             } catch (NumberFormatException e) {
                 System.out.println(INPUT_MUST_BE_NUMBER.getMessage());
-                throw new IllegalArgumentException();
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
