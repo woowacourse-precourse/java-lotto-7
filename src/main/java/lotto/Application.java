@@ -27,6 +27,10 @@ public class Application {
 
 		} catch (IllegalStateException e) {
 			throw new IllegalStateException("[ERROR] 프로그램이 종료되었습니다. 다시 시작해주세요.");
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(e);
+		} catch (IllegalArgumentException e) {
+			throw new IllegalArgumentException(e);
 		}
 
 	}
