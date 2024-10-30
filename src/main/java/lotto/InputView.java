@@ -1,10 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.HashSet;
 import java.util.Set;
 
 public class InputView {
+
+    private Set<Integer> winningNumbers;
+    private int bonusNumber;
 
     public void inputPurchaseAmount() {
         while (true) {
@@ -25,7 +27,6 @@ public class InputView {
     }
 
     public void inputWinningNumbers() {
-        Set<Integer> winningNumbers = new HashSet<>();
         while (true) {
             try {
                 System.out.println();
@@ -51,6 +52,28 @@ public class InputView {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 winningNumbers.clear(); // 잘못된 입력 시 집합 초기화
+            }
+        }
+    }
+
+    public void inputBonusNumber() {
+        while (true) {
+            try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputBonusNumber = Console.readLine();
+                bonusNumber = Integer.parseInt(inputBonusNumber.trim());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                if (winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                }
+                break; // 유효한 보너스 번호가 입력되면 루프 종료
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
