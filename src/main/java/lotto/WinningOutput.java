@@ -4,7 +4,7 @@ import java.util.List;
 
 public class WinningOutput {
 
-	private int totalAmount;
+	private long totalAmount;
 	private int amount;
 	private int[] winningCounts = new int[Winning.values().length];
 
@@ -52,4 +52,16 @@ public class WinningOutput {
 		totalAmount += winning.getWinningAmount();
 	}
 
+	public void winningPrint() {
+		for (Winning w : Winning.values()) {
+			System.out.println(w.getMessage() + winningCounts[w.ordinal()] + "개");
+		}
+		System.out.println("총 수익률은 " + rateOfReturn() + "%입니다.");
+	}
+
+	private String rateOfReturn() {
+		double re = (double) totalAmount / amount;
+		String.format("%.1f", re);
+		return String.format("%.1f", re);
+	}
 }

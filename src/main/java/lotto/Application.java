@@ -18,6 +18,7 @@ public class Application {
 		WinningOutput wop = new WinningOutput();
 		wop.winningOutput();
 		wop.winningOutput(amount, randoms, winningList, bouns);
+		wop.winningPrint();
 		
 	}
 }
