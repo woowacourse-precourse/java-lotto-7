@@ -4,13 +4,13 @@ import static lotto.utils.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
 import static lotto.utils.Constant.WINNING_NUMBER_INPUT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.utils.InputValidator;
+import lotto.utils.InputParser;
 
 public class InputView {
-    private final InputValidator inputValidator;
+    private final InputParser inputParser;
 
-    public InputView(InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
+    public InputView(InputParser inputParser) {
+        this.inputParser = inputParser;
     }
 
     public int inputPurchaseAmount() {
@@ -20,7 +20,7 @@ public class InputView {
             String userInput = Console.readLine();
 
             try {
-                return inputValidator.validatePurchaseAmount(userInput);
+                return inputParser.parsePurchaseAmount(userInput);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -31,6 +31,6 @@ public class InputView {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
 
         String userInput = Console.readLine();
-        inputValidator.validateWinningNumbers(userInput);
+        inputParser.parseWinningNumbers(userInput);
     }
 }
