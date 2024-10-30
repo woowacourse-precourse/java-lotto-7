@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,15 +9,19 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 public class LottoServiceTest {
 
     private LottoService lottoService;
     private Lotto lotto;
+    private BonusNumber bonusNumber;
 
     @BeforeEach
     public void setUp() {
-        lotto = new Lotto();
-        this.lottoService = new LottoService(lotto);
+        this.lotto = new Lotto();
+        this.bonusNumber = new BonusNumber();
+        this.lottoService = new LottoService(lotto, bonusNumber);
     }
 
     @Test
@@ -29,6 +34,19 @@ public class LottoServiceTest {
         lottoService.addWinningNumbers(winningNumbers);
 
         // then
-        Assertions.assertThat(lotto.getNumbers()).isEqualTo(winningNumbers);
+        assertThat(lotto.getNumbers()).isEqualTo(winningNumbers);
+    }
+
+    @Test
+    @DisplayName("로또의 보너스 번호를 입력할 수 있다.")
+    void 보너스_번호_입력_테스트() throws Exception {
+        // given
+        int number = 7;
+
+        // when
+        lottoService.updateBonusNumber(number);
+
+        // then
+        assertThat(lotto.getNumbers()).isEqualTo(number);
     }
 }
