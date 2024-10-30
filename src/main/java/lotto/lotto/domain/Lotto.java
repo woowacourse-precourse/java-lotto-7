@@ -13,19 +13,24 @@ public class Lotto {
         LottoValidator.lottoValidate(numbers);
         this.numbers = sort(numbers);
     }
+
     // TODO: 추가 기능 구현
     public List<Integer> sort(List<Integer> numbers) {
         return numbers.stream().sorted().toList();
     }
+
     public List<Integer> info() {
         return numbers;
     }
+
     public boolean isContains(int number) {
         return numbers.contains(number);
     }
+
     public int getMatchWinningCount(WinningLotto winningLotto) {
         return (int) numbers.stream().filter(winningLotto::isContain).count();
     }
+
     public int getMatchWinningCountAndBonusNumber(WinningLotto winningLotto, BonusNumber bonusNumber) {
         int matchCount = getMatchWinningCount(winningLotto);
         if (isContains(bonusNumber.getNumber())) matchCount++;
@@ -33,6 +38,7 @@ public class Lotto {
 
 
     }
+
     @Override
     public String toString() {
         return numbers.toString();
