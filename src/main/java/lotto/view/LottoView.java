@@ -35,6 +35,7 @@ public class LottoView {
 
     private String getLottoNumbers(Lotto lotto) {
         return lotto.getNumbers().stream()
+                .sorted()
                 .map(number -> String.valueOf(number))
                 .collect(Collectors.joining(GENERATED_LOTTO_NUMBERS_DELIMITER));
     }
