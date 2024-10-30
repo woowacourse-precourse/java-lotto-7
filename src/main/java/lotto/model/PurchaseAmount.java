@@ -1,7 +1,7 @@
 package lotto.model;
 
 public class PurchaseAmount{
-    private static final Integer LOTTE_PRICE=1000;
+    public static final Integer LOTTE_PRICE=1000;
     private final int money;
 
     public PurchaseAmount(int money) {
