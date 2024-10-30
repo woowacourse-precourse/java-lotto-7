@@ -1,11 +1,11 @@
 package lotto.domain.entity;
 
+import lotto.exception.LottoException;
+import lotto.exception.LottoNumberExceptionMessage;
 import lotto.util.ValidLottoNumber;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto implements Iterable<Integer> {
 
@@ -22,15 +22,15 @@ public class Lotto implements Iterable<Integer> {
 
     private void validate(List<Integer> numbers) {
         if (ValidLottoNumber.isBoundedNumbers(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 정수입니다.");
+            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
         }
 
         if (ValidLottoNumber.isSixNumbers(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoException(LottoNumberExceptionMessage.NUMBERS_LENGTH_EXCEPTION);
         }
 
         if (ValidLottoNumber.isDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 불가능 합니다.");
+            throw new LottoException(LottoNumberExceptionMessage.DUPLICATE_EXCEPTION);
         }
     }
 

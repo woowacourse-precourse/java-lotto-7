@@ -26,24 +26,6 @@ public class LottoResultChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumber(final List<Integer> winningNumbers, final int bonusNumber) {
-        if (ValidLottoNumber.isBoundedNumbers(winningNumbers)) {
-            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
-        }
-
-        if (ValidLottoNumber.isBoundedNumber(bonusNumber)) {
-            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
-        }
-
-        if (ValidLottoNumber.isSixNumbers(winningNumbers)) {
-            throw new LottoException(LottoNumberExceptionMessage.NUMBERS_LENGTH_EXCEPTION);
-        }
-
-        if (ValidLottoNumber.isDuplicate(winningNumbers)) {
-            throw new LottoException(LottoNumberExceptionMessage.DUPLICATE_EXCEPTION);
-        }
-    }
-
     public LottoRank checkRank(final Lotto lotto) {
 
         final Set<Integer> winningNumbers = new HashSet<>(this.winningNumbers);
@@ -76,5 +58,23 @@ public class LottoResultChecker {
         }
 
         return LottoRank.NO_MATCH;
+    }
+
+    private void validateNumber(final List<Integer> winningNumbers, final int bonusNumber) {
+        if (ValidLottoNumber.isBoundedNumbers(winningNumbers)) {
+            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
+        }
+
+        if (ValidLottoNumber.isBoundedNumber(bonusNumber)) {
+            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
+        }
+
+        if (ValidLottoNumber.isSixNumbers(winningNumbers)) {
+            throw new LottoException(LottoNumberExceptionMessage.NUMBERS_LENGTH_EXCEPTION);
+        }
+
+        if (ValidLottoNumber.isDuplicate(winningNumbers)) {
+            throw new LottoException(LottoNumberExceptionMessage.DUPLICATE_EXCEPTION);
+        }
     }
 }

@@ -34,8 +34,7 @@
 ## 객체 정리
 - Lotto : Integer 컬렉션으로 이루어져 있으며, 로또 번호를 가진다.
 - LottoTicket : 컬렉션으로 Lotto를 가진다. 구매한 로또를 가지고 당첨 번호와 값 비교를 통해 수익률을 계산한다.
-- PrizeTier : 당첨이 된 금액의 가격을 알려주는 Enum객체
+- LottoRank : 당첨이 된 금액의 가격을 알려주는 Enum객체
 - LottoNumber : 로또 번호 하나하나를 감싸는 객체 vo
 - LottoStore : 로또를 판매하는 스토어, 유저가 내는 돈을 받아서 그만큼 로또를 발급해준다. LottoTicket 생성
 - LottoResult : 정답을 가지는 객체 equals로 비교해서 내부 값이 같은 로또들을 확인함
-- 
