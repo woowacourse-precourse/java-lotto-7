@@ -18,6 +18,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s", numbers.toString(), bonusNumber.map(String::valueOf).orElse(""));
+    }
+
     public void setBonusNumber(Integer bonusNumber) {
         validateWinningNumbers(bonusNumber);
         this.bonusNumber = Optional.of(bonusNumber);

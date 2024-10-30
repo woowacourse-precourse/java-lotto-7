@@ -10,18 +10,20 @@ import java.util.stream.Stream;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int purchaseAmount = repeatUntilValidInput(Application::readPurchaseAmount);
+        int purchaseAmount = repeatUntilValid(Application::readPurchaseAmount);
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> lottoList = buyLottos(lottoCount);
-        WinningLotto winningLotto = repeatUntilValidInput(Application::readWinningNumbers);
+        WinningLotto tempWinningLotto = repeatUntilValid(Application::readWinningNumbers);
+        WinningLotto winningLotto = repeatUntilValid(() -> readBonusNumber(tempWinningLotto));
+        System.out.println(winningLotto);
     }
 
-    private static <R> R repeatUntilValidInput(Supplier<R> function) {
+    private static <R> R repeatUntilValid(Supplier<R> function) {
         try {
             return function.get();
         } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.printf("%s\n\n", e.getMessage());
-            return repeatUntilValidInput(function);
+            return repeatUntilValid(function);
         }
     }
 
@@ -48,16 +50,27 @@ public class Application {
                 .mapToObj(i -> Lotto.create())
                 .toList();
         lottoList.forEach(System.out::println);
+        System.out.println();
         return lottoList;
     }
 
     private static WinningLotto readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbersString = Console.readLine();
+        System.out.println();
         String[] winningNumberStringArray = winningNumbersString.replaceAll(" ", "").split(",");
         List<Integer> winningNumbers = Stream.of(winningNumberStringArray)
                 .map(number -> parseIntWithIllegalArgumentException(number, "[ERROR] 당첨 번호는 숫자여야 합니다."))
                 .toList();
         return new WinningLotto(winningNumbers);
+    }
+
+    private static WinningLotto readBonusNumber(WinningLotto winningLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumberString = Console.readLine();
+        System.out.println();
+        int bonusNumber = parseIntWithIllegalArgumentException(bonusNumberString, "[ERROR] 보너스 번호는 숫자여야 합니다.");
+        winningLotto.setBonusNumber(bonusNumber);
+        return winningLotto;
     }
 }
