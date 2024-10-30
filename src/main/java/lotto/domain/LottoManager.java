@@ -21,10 +21,14 @@ public class LottoManager {
     }
 
     private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 MIN_LOTTO_NUMBER,
                 MAX_LOTTO_NUMBER,
                 MAX_LOTTO_NUMBER_COUNT
         );
+
+        return randomNumbers.stream()
+                .sorted()
+                .toList();
     }
 }
