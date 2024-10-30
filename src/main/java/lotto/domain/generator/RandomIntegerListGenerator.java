@@ -1,9 +1,9 @@
-package lotto.domain.numbergenerator;
+package lotto.domain.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-public class IntegersGenerator implements NumbersGenerator<Integer> {
+public class RandomIntegerListGenerator implements RandomNumberListGenerator<Integer> {
     @Override
     public List<Integer> pickUniqueNumbersInRange(int startInclusive, int endInclusive, int count) {
 

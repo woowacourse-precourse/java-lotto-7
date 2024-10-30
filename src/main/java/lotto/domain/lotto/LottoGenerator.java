@@ -2,8 +2,8 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.numbergenerator.IntegersGenerator;
-import lotto.domain.numbergenerator.NumbersGenerator;
+import lotto.domain.generator.RandomIntegerListGenerator;
+import lotto.domain.generator.RandomNumberListGenerator;
 
 public class LottoGenerator {
 
@@ -11,15 +11,16 @@ public class LottoGenerator {
     private static final int END_INCLUSIVE = 45;
     private static final int COUNT = 6;
 
-    private final NumbersGenerator numbersGenerator;
+    private final RandomNumberListGenerator randomNumberListGenerator;
 
     public LottoGenerator() {
-        this.numbersGenerator = new IntegersGenerator();
+        this.randomNumberListGenerator = new RandomIntegerListGenerator();
     }
 
     public Lotto generate() {
 
-        List<Integer> lottoNumbers = numbersGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+        List<Integer> lottoNumbers = randomNumberListGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
+                COUNT);
         List<LottoNumber> lotto = new ArrayList<>();
 
         for (Integer number : lottoNumbers) {

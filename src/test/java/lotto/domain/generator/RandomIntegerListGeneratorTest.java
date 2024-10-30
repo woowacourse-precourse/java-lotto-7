@@ -1,4 +1,4 @@
-package lotto.domain.numbergenerator;
+package lotto.domain.generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,19 +6,19 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class IntegersGeneratorTest {
+class RandomIntegerListGeneratorTest {
 
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
     private static final int COUNT = 6;
 
-    private IntegersGenerator integersGenerator;
+    private RandomIntegerListGenerator randomIntegerListGenerator;
     private List<Integer> randomPickNumbers;
 
     @BeforeEach
     void setUp() {
-        integersGenerator = new IntegersGenerator();
-        randomPickNumbers = integersGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+        randomIntegerListGenerator = new RandomIntegerListGenerator();
+        randomPickNumbers = randomIntegerListGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
     }
 
     @Test

@@ -1,8 +1,8 @@
-package lotto.domain.numbergenerator;
+package lotto.domain.generator;
 
 import java.util.List;
 
-public interface NumbersGenerator<T extends Number> {
+public interface RandomNumberListGenerator<T extends Number> {
 
     List<T> pickUniqueNumbersInRange(int startInclusive, int endInclusive, int count);
 
