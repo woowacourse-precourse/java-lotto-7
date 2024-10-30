@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.service.LottoNumGenerator;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -18,16 +17,14 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        sortNums();
     }
 
     public Lotto(LottoNumGenerator lottoNumGenerator) {
         numbers = generateLottoNumbers(lottoNumGenerator);
-        sortNums();
     }
 
     private List<Integer> generateLottoNumbers(LottoNumGenerator lottoNumGenerator) {
-        return lottoNumGenerator.generateNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
+        return lottoNumGenerator.generateSortedNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
     }
 
     private void validate(List<Integer> numbers) {
@@ -52,10 +49,6 @@ public class Lotto {
         if (numbers.stream().anyMatch(num -> num < LOTTO_MIN_NUM || num > LOTTO_MAX_NUM)) {
             throw new IllegalArgumentException(LOTTO_NUM_RANGE_ERROR);
         }
-    }
-
-    private void sortNums() {
-        numbers.sort(Comparator.naturalOrder());
     }
 
     public List<Integer> getNumbers() {
