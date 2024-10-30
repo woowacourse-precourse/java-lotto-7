@@ -22,11 +22,11 @@ public class LottoService {
 
     public LottoWinResult calLottoResult(Lottos lottos, LottoRequest lottoRequest) {
         List<LottoWinResult> lottoWinResultList = lottos.getWinResult(lottoRequest.winningNumbers(), lottoRequest.bonusNumber());
-        LottoCalculator.getStatisticResult(lottoWinResultList,lottoRequest.buyMoney());
-
+        double lottoWinMoneyRate = LottoCalculator.getStatisticResult(lottoWinResultList,lottoRequest.buyMoney());
+        
     }
 
-    public Lotto buyLotto(){
+    private Lotto buyLotto(){
         List<Integer> lottoRandomNumbers = LottoNumberUtility.lottoRandomNumber();
         Lotto lotto = new Lotto(lottoRandomNumbers);
         return lotto;

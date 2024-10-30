@@ -32,7 +32,6 @@ public class LottoCalculator {
         int winMoneySum = lottoWinResultList.stream()
                 .mapToInt((winResult) -> winResult.winMoney())
                 .sum();
-
         return winMoneySum / buyMoney;
     }
 }
