@@ -5,12 +5,14 @@ import lotto.lotto.Lotto;
 import lotto.handler.InputHandler;
 import lotto.handler.PrintHandler;
 import lotto.lotto.LottoStore;
+import lotto.lotto.LottoWinningNumbers;
 
 public class Controller {
     InputHandler inputHandler;
     PrintHandler printHandler;
     Lotto lotto;
     LottoStore lottoStore;
+    LottoWinningNumbers lottoWinningNumbers;
     int index = 0;
 
     public Controller() {
@@ -29,6 +31,7 @@ public class Controller {
         createLotto(lottoNumberOfPurchases);
         printHandler.printWinningNumbersPrompt();
         List<Integer> lottoNumbers = inputHandler.setInputLottoNumbers();
+        lottoWinningNumbers = new LottoWinningNumbers(lottoNumbers);
     }
 
     private void createLotto(int lottoNumberOfPurchases) {
