@@ -12,7 +12,7 @@ public class MethodTest {
     void test() {
         int expected = 12;
         int given = 12000;
-        
+
         int result = Application.calculateLottoQuantity(given);
 
         assertEquals(expected, result);
