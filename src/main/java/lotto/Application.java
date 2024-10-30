@@ -14,6 +14,9 @@ public class Application {
 		List<Integer> winningList = input.winningNumber();
 
 		int bouns = input.bonusInput(winningList);
-
+		
+		WinningOutput wop = new WinningOutput();
+		wop.winningOutput();
+		
 	}
 }
