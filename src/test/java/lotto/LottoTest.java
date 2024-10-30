@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +21,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("당첨된 로또 번호 갯수를 세는 기능 테스트")
+    @Test
+    void 당첨된_로또_번호_갯수를_세는_기능_테스트() {
+        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto  = new Lotto(List.of(1,2,3,4,5,10));
+
+        int matchCount = lotto.countMatchingNumbers(winningLotto);
+
+        Assertions.assertThat(matchCount).isEqualTo(5);
+
+    }
 }
