@@ -21,5 +21,6 @@ public class Application {
             lottos.add(new Lotto(numbers));
         }
         outputView.printPurchaseCount(lottoCount);
+        outputView.printPurchaseLottos(lottos);
     }
 }
