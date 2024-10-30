@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LottoGenerator {
     public List<Lotto> generateLottos(int amount) {
-        int count = amount / Constants.LOTTO_PRICE; // 구입 가능한 로또 장수
+        int count = amount / Constants.LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -20,7 +20,7 @@ public class LottoGenerator {
     private Lotto generateRandomLotto() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() < Constants.LOTTO_MAIN_COUNT) {
-            int number = (int) (Math.random() * Constants.LOTTO_MAX_NUMBER) + Constants.LOTTO_MIN_NUMBER; // 1~45 범위의 랜덤 숫자
+            int number = (int) (Math.random() * Constants.LOTTO_MAX_NUMBER) + Constants.LOTTO_MIN_NUMBER;
             if (!numbers.contains(number)) {
                 numbers.add(number);
             }
