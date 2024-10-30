@@ -16,6 +16,6 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-
+        LottoIssuer issuer = new LottoIssuer(price.getValue());
     }
 }
