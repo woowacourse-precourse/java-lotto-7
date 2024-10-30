@@ -18,9 +18,8 @@ public class InputView {
             System.out.println(INPUT_PRICE);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            errorPrint("");
+            errorPrint("inputPrice");
             return inputPrice();
         }
     }
-
 }
