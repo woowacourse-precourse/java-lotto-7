@@ -1,7 +1,8 @@
 package lotto.service;
 
 import java.text.NumberFormat;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum WinningResult {
 
@@ -15,7 +16,14 @@ public enum WinningResult {
     private static final String UNIT = "원";
     private static final String SAME = " 일치";
     private static final String TEMPLATE = "%s" + SAME + " (%s" + UNIT + ") - %d개";
-    private static final String PLACE_ERROR = "지정되지 않은 등수가 있습니다: ";
+    private static final String MATCH_ERROR = "지정되지 않은 등수가 있습니다: ";
+    private static final Map<String, WinningResult> MATCH_WINNING_RESULT = new HashMap<>();
+
+    static {
+        for (WinningResult winningResult : WinningResult.values()) {
+            MATCH_WINNING_RESULT.put(winningResult.match, winningResult);
+        }
+    }
 
     private final String match;
     private final String placeMessage;
@@ -28,10 +36,11 @@ public enum WinningResult {
     }
 
     public static WinningResult fromMatchCount(String matchCount) {
-        return Arrays.stream(WinningResult.values())
-                .filter(result -> result.match.equals(matchCount))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(PLACE_ERROR + matchCount));
+        WinningResult winningResult = MATCH_WINNING_RESULT.get(matchCount);
+        if (winningResult == null) {
+            throw new IllegalArgumentException(MATCH_ERROR);
+        }
+        return winningResult;
     }
 
     public String makeSentence(int num) {
