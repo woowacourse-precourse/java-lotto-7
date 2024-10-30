@@ -1,10 +1,12 @@
 package lotto.model;
 
+import static lotto.utils.Constants.*;
 import static lotto.utils.Constants.INITIALIZE_VALUE;
 import static lotto.utils.Constants.PERCENTAGE_MULTIPLIER;
 
 import java.util.List;
 import lotto.model.enums.LottoResult;
+import lotto.utils.Constants;
 import lotto.utils.LottoConstants;
 
 public class LottoResultManager {
@@ -35,7 +37,7 @@ public class LottoResultManager {
 
     public double calculateProfit() {
         double profit = ((double) LottoResult.getTotalPrize() / price) * PERCENTAGE_MULTIPLIER;
-        return Math.round(profit * 100) / 100.0;
+        return (double) Math.round(profit * ROUND_VALUE) / ROUND_VALUE;
     }
 
 

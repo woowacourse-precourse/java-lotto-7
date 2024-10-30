@@ -3,6 +3,7 @@ package lotto.utils;
 public class Constants {
 
     public static final Integer INITIALIZE_VALUE = 0;
+    public final static Integer ROUND_VALUE = 100;
 
     public static final Integer MIN_LOTTO_NUMBER = 1;
     public static final Integer MAX_LOTTO_NUMBER = 45;
