@@ -5,20 +5,15 @@ import lotto.validator.exception.LottoException;
 
 public class PurchaseValidator {
 
-    public void validateProcess(String purchaseAmount) {
-        validateIsNumber(purchaseAmount);
+    private final static int THOUSAND = 1000;
+    private final static int REMAIN = 0;
+
+    public static void validateProcess(int purchaseAmount) {
         validateThousandUnit(purchaseAmount);
     }
 
-    private void validateIsNumber(String purchaseAmount) {
-        try {
-            Integer.parseInt(purchaseAmount);
-        } catch (NumberFormatException e) {
-            throw LottoException.from(ErrorMessage.LOTTO_PURCHASE_IS_NOT_NUMBER);
-        }
-    }
-    private void validateThousandUnit(String convertedPurchaseAmount) {
-        if(Integer.parseInt(convertedPurchaseAmount) % 1000 != 0) {
+    private static void validateThousandUnit(int convertedPurchaseAmount) {
+        if(convertedPurchaseAmount % THOUSAND != REMAIN) {
             throw LottoException.from(ErrorMessage.LOTTO_PURCHASE_IS_NOT_THOUSAND_UNIT);
         }
     }
