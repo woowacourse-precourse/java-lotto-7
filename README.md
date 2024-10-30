@@ -7,7 +7,8 @@
 ---
 
 ### 1. User
-- 로또를 구입할 수  있다.
+
+- 로또를 구입할 수 있다.
 - 구매한 로또가 모두 일치하지 않을 수 있다.
 - 총 세 번의 입력을 할 수 있다.(잘못 입력한 경우 댜시 입력을 할 수 있다.)<!-- {"fold":true} -->
     - 금액을 입력할 수 있다.
@@ -31,6 +32,7 @@
 <br>
 
 ### 2. System
+
 - 로또 한 장의 가격은 1000원이다.
 - 로또 발행 규칙은 다음과 같다.
     - 로또 숫자의 범위는 1~45다.
@@ -59,16 +61,16 @@
 <br>
 
 ### 3. Policy
+
 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다. 그 외는 등수, 상금이 없다.
 
-| Rank  | Matching Count | Bonus Number | Reward        |
-|-------|----------------|--------------|---------------|
-| 1     | 6              | false        | 2,000,000,000 |
-| 2     | 5              | **true**     | 30,000,000    |
-| 3     | 5              | false        | 1,500,000     |
-| 4     | 4              | false        | 50,000        |
-| 5     | 3              | false        | 5,000         |
-
+| Rank | Matching Count | Bonus Number | Reward        |
+|------|----------------|--------------|---------------|
+| 1    | 6              | false        | 2,000,000,000 |
+| 2    | 5              | **true**     | 30,000,000    |
+| 3    | 5              | false        | 1,500,000     |
+| 4    | 4              | false        | 50,000        |
+| 5    | 3              | false        | 5,000         |
 
 <br>
 <br>
@@ -78,6 +80,7 @@
 ---
 
 ### 구입 금액
+
 - 문자열
     - [ ] 숫자 이외의 문자를 입력한 경우
     - [ ] 입력하지 않는 경우
@@ -90,6 +93,7 @@
 <br>
 
 ### 당첨 번호 (배열)
+
 - 문자열
     - [ ] 숫자 이외의 문자를 입력한 경우
     - [ ] 하나도 입력하지 않은 경우
@@ -107,6 +111,7 @@
 <br>
 
 ### 보너스 번호
+
 - 문자열
     - [ ] 숫자 이외의 문자를 입력한 경우
     - [ ] 하나도 입력하지 않은 경우
@@ -127,6 +132,7 @@
 ---
 
 ### Money
+
 | Type | Field |
 |------|-------|
 | long | value |
@@ -134,6 +140,7 @@
 <br>
 
 ### EarningRate
+
 | Type       | Field |
 |------------|-------|
 | BigDecimal | value |
@@ -141,6 +148,7 @@
 <br>
 
 ### Lotto
+
 | Type          | Field   |
 |---------------|---------|
 | List<Integer> | numbers |
@@ -148,6 +156,7 @@
 <br>
 
 ### Lottos
+
 | Type        | Field  |
 |-------------|--------|
 | List<Lotto> | lottos |
@@ -167,10 +176,10 @@
 <br>
 
 ### LottoDrawRankTable
+
 | Type                   | Field   |
 |------------------------|---------|
 | EnumMap<Rank, Integer> | results |
-
 
 <br>
 <br>
@@ -180,6 +189,7 @@
 ---
 
 ### Lotto
+
 | Method              | Parameter | Return Type |
 |---------------------|-----------|-------------|
 | matchingNumbersFrom | Lotto     | int         |
@@ -188,10 +198,11 @@
 <br>
 
 ### [Enum] RankTable
-| Method                   | Parameter        | Return Type |
-|--------------------------|------------------|-------------|
-| getRankBy                | Integer, Boolean | Rank        |
-| <TBD> 보너스 번호를 검색할  조건인가? | int              | boolean     |
+
+| Method    | Parameter        | Return Type |
+|-----------|------------------|-------------|
+| getRankBy | Integer, Boolean | Rank        |
+| <TBD>     | int              | boolean     |
 
 <br>
 <br>
@@ -201,16 +212,18 @@
 ---
 
 ### LottoService
-| Access  | Method         | Parameter                      | Return Type        |
-|---------|----------------|--------------------------------|--------------------|
-| public  | offerLottos    | Money                          | Lottos             |
-| private | generateLotto  | long                           | Lottos             |
-| public  | offerRankTable | xxxDTO(Lottos, Lotto, Integer) | LottoDrawRankTable |
-| private | rankMyLotto    | xxxDTO(Lottos, Lotto, Integer) | Rank               |
+
+| Access  | Method         | Parameter                      | Return Type        | Implementation |
+|---------|----------------|--------------------------------|--------------------|----------------|
+| public  | offerLottos    | Money                          | Lottos             |                |
+| private | generateLotto  | long                           | Lottos             |                |
+| public  | offerRankTable | xxxDTO(Lottos, Lotto, Integer) | LottoDrawRankTable |                |
+| private | rankMyLotto    | xxxDTO(Lottos, Lotto, Integer) | Rank               |                |
 
 <br>
 
 ### StatisticService
-| Access | Method         | Parameter | Return Type  |
-|--------|----------------|-----------|--------------|
-| public | myRateOfReturn | xxxDTO    | EarningRate  |
+
+| Access | Method         | Parameter | Return Type |
+|--------|----------------|-----------|-------------|
+| public | myRateOfReturn | xxxDTO    | EarningRate |
