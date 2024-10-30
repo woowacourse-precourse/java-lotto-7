@@ -16,9 +16,9 @@ public class UserAmountInput {
                 setLottoTicketCount();
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 입력이 잘못되었습니다. 정수를 입력해 주세요.");
+                throw new IllegalArgumentException("[ERROR] 입력이 잘못되었습니다. 로또 구입 금액은 숫자여야 합니다.");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage()); // 예외 메시지 출력 후 다시 입력 요청
+                System.out.println(e.getMessage());
             }
         }
     }
