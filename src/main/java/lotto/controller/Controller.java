@@ -28,8 +28,7 @@ public class Controller {
         printHandler.printBuyLottoNumbersOfPurchases(lottoNumberOfPurchases);
         createLotto(lottoNumberOfPurchases);
         printHandler.printWinningNumbersPrompt();
-        String [] lottoNumbers = inputHandler.setInputLottoNumbers();
-
+        List<Integer> lottoNumbers = inputHandler.setInputLottoNumbers();
     }
 
     private void createLotto(int lottoNumberOfPurchases) {

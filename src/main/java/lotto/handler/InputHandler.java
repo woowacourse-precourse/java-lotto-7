@@ -1,6 +1,8 @@
 package lotto.handler;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InputHandler {
     private int inputMoney;
@@ -13,15 +15,15 @@ public class InputHandler {
         return inputMoney;
     }
 
-    public String[] setInputLottoNumbers() {
+    public List<Integer> setInputLottoNumbers() {
         String inputString = Console.readLine();
-
+        List<Integer> lottoWinnerNumbers = new ArrayList<>();
         String[] lottoNumbers = inputString.split(",");
 
-        for (int i = 0; i < lottoNumbers.length; i++) {
-            lottoNumbers[i] = lottoNumbers[i].trim();
+        for (String number : lottoNumbers) {
+            lottoWinnerNumbers.add(Integer.parseInt(number.trim()));
         }
-
-        return lottoNumbers;
+        return lottoWinnerNumbers;
     }
+
 }
