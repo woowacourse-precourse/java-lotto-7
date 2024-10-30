@@ -1,6 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
+import lotto.service.BonusNumberService;
 import lotto.service.LottoGeneratorService;
 import lotto.service.LottoService;
 import lotto.service.ProfitCalculatorService;
@@ -25,7 +26,7 @@ public class AppConfig {
     }
 
     private LottoService lottoService() {
-        return new LottoService(purchaseService(), lottoGeneratorService(), statisticsService(), profitCalculatorService(), winningLottoService());
+        return new LottoService(purchaseService(), lottoGeneratorService(), statisticsService(), profitCalculatorService(), winningLottoService(), bonusNumberService());
     }
 
     private PurchaseService purchaseService() {
@@ -34,6 +35,9 @@ public class AppConfig {
 
     private LottoGeneratorService lottoGeneratorService() {
         return new LottoGeneratorService();
+    }
+    private BonusNumberService bonusNumberService() {
+        return new BonusNumberService();
     }
 
     private StatisticsService statisticsService() {

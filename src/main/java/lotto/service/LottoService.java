@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -12,12 +13,17 @@ public class LottoService {
     private final StatisticsService statisticsService;
     private final ProfitCalculatorService profitCalculatorService;
     private final WinningLottoService winningLottoService;
-    public LottoService(PurchaseService purchaseService, LottoGeneratorService lottoGeneratorService, StatisticsService statisticsService, ProfitCalculatorService profitCalculatorService, WinningLottoService winningLottoService) {
+    private final BonusNumberService bonusNumberService;
+
+    private Lotto winningLotto;
+    private BonusNumber bonusNumber;
+    public LottoService(PurchaseService purchaseService, LottoGeneratorService lottoGeneratorService, StatisticsService statisticsService, ProfitCalculatorService profitCalculatorService, WinningLottoService winningLottoService, BonusNumberService bonusNumberService) {
         this.purchaseService = purchaseService;
         this.lottoGeneratorService = lottoGeneratorService;
         this.statisticsService = statisticsService;
         this.profitCalculatorService = profitCalculatorService;
         this.winningLottoService = winningLottoService;
+        this.bonusNumberService = bonusNumberService;
     }
 
     public User purchaseLotto(String purchaseAmount) {
@@ -27,8 +33,11 @@ public class LottoService {
         return new User(money, lottos);
     }
 
-    public Lotto winningLotto(String winningNumbers) {
-        return winningLottoService.generateWinningLotto(winningNumbers);
+    public void winningLotto(String winningNumbers) {
+        this.winningLotto =  winningLottoService.generateWinningLotto(winningNumbers);
     }
 
+    public void bonusNumber(String bonusNumber) {
+        this.bonusNumber = bonusNumberService.generateBonusNumber(bonusNumber, winningLotto);
+    }
 }
