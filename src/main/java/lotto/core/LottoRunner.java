@@ -21,6 +21,10 @@ public class LottoRunner {
             try {
                 payment = Integer.parseInt(this.inputPayment());
 
+                if (payment % MINIMUM_UNIT > 0) {
+                    throw new IllegalArgumentException("구매 금액은 1,000원 단위로 입력해야 합니다.");
+                }
+
                 int amount = payment / MINIMUM_UNIT;
                 System.out.printf("%d개를 구매했습니다.\n", amount);
                 return amount;
