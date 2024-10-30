@@ -1,11 +1,11 @@
 package lotto.entity;
 
-import static lotto.exception.ExceptionUtils.throwIllegalArgument;
 import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
 
 import java.util.List;
 import lotto.config.LottoConfig;
+import lotto.exception.LottoValidationException;
 
 public class WinnerNumbers {
     private final Lotto mainNumbers;
@@ -20,10 +20,10 @@ public class WinnerNumbers {
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
         if (!(LottoConfig.LOTTO_MIN_NUMBER.getValue() <= bonusNumber
                 && bonusNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue())) {
-            throwIllegalArgument(BONUS_NUMBER_OUT_OF_RANGE);
+            throw new LottoValidationException(BONUS_NUMBER_OUT_OF_RANGE);
         }
         if (mainNumbers.stream().anyMatch(number -> number == bonusNumber)) {
-            throwIllegalArgument(BONUS_NUMBER_DUPLICATE);
+            throw new LottoValidationException(BONUS_NUMBER_DUPLICATE);
         }
     }
 }
