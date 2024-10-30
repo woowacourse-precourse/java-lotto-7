@@ -6,6 +6,7 @@ import lotto.service.LottoService;
 import lotto.service.ProfitCalculatorService;
 import lotto.service.PurchaseService;
 import lotto.service.StatisticsService;
+import lotto.validator.PurchaseValidator;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -28,7 +29,7 @@ public class AppConfig {
     }
 
     private PurchaseService purchaseService() {
-        return new PurchaseService();
+        return new PurchaseService(purchaseValidator());
     }
 
     private LottoGeneratorService lottoGeneratorService() {
@@ -41,6 +42,10 @@ public class AppConfig {
 
     private ProfitCalculatorService profitCalculatorService() {
         return new ProfitCalculatorService();
+    }
+
+    private PurchaseValidator purchaseValidator() {
+        return new PurchaseValidator();
     }
 
 }
