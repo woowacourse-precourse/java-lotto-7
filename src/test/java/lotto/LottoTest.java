@@ -61,6 +61,15 @@ class LottoTest {
     }
 
     @Test
+    void 구입금액이_1000원_단위로_떨어지지_않을_때_예외발생() {
+        String input = "1500";
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateInputPurchaseAmount(input);
+        });
+        assertEquals("구입 금액은 1000원 단위로 입력해야 합니다.", exception.getMessage());
+    }
+
+    @Test
     void 로또_번호가_6개가_아니면_예외발생() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {

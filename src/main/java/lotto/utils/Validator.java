@@ -11,6 +11,9 @@ public class Validator {
         if(Integer.parseInt(inputPurchaseAmount) < 1000) {
             throw new IllegalArgumentException("1000 이상의 금액을 입력해야 합니다.");
         }
+        if (Integer.parseInt(inputPurchaseAmount) % 1000 != 0) {
+            throw new IllegalArgumentException("구입 금액은 1000원 단위로 입력해야 합니다.");
+        }
     }
 
     private boolean isValidNumber(String inputPurChaseAmount) {
