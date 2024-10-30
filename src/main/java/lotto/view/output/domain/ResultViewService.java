@@ -13,7 +13,7 @@ public interface ResultViewService {
 
     void viewByWinningLotto(WinningLotto winningLotto);
 
-    void viewByBonusLotto(BonusNumber bonusLotto);
+    void viewByBonusNumber(BonusNumber bonusNumber);
 
     void viewByWinningStatistic(Benefit benefit, Money purchaseMoney);
 }
