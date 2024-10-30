@@ -21,10 +21,19 @@ public class PurchaseController {
 
     private int getUserAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
 
+        int amount = parseAmount(input);
         validateAmount(amount);
         return amount;
+    }
+
+    private int parseAmount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+        }
     }
 
     private void validateAmount(int amount) {
