@@ -2,7 +2,7 @@ package lotto.view.input.hanlder.infrastructure;
 
 import lotto.view.input.domain.InputService;
 import lotto.view.input.hanlder.domain.InputHandlerService;
-import lotto.view.output.infra.ErrorOutput;
+import lotto.view.output.infrastructure.ErrorOutput;
 
 import java.util.function.Function;
 
