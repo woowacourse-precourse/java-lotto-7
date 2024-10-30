@@ -5,12 +5,11 @@ import enums.ErrorMessage;
 
 public class PriceValidator {
 
-    private static final String ERROR_DELIMITER = Delimiter.ERROR.getDelimiter();
-
     public static void validatePrice(String input) {
         validateNull(input);
         long convertInput = convertToLong(input);
         validateZero(convertInput);
+        validateUnderThousand(convertInput);
     }
 
     private static void validateNull(String price) {
@@ -22,6 +21,12 @@ public class PriceValidator {
     private static void validateZero(long price) {
         if (price == 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_ZERO.getErrorMessage());
+        }
+    }
+
+    private static void validateUnderThousand(long price) {
+        if (price < 1000) {
+            throw new IllegalArgumentException(ErrorMessage.PRICE_UNDER_THOUSAND.getErrorMessage());
         }
     }
 

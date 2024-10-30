@@ -35,4 +35,15 @@ class PriceValidatorTest {
 
         assertEquals(ErrorMessage.INPUT_ZERO.getErrorMessage(), exception.getMessage());
     }
+
+    @DisplayName("1000 미만의 값을 입력한 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"944", "100"})
+    void validateUnderThousand(String input) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            PriceValidator.validatePrice(input);
+        });
+
+        assertEquals(ErrorMessage.PRICE_UNDER_THOUSAND.getErrorMessage(), exception.getMessage());
+    }
 }
