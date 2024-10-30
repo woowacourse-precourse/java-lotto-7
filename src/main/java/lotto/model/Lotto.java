@@ -1,8 +1,12 @@
 package lotto.model;
 
+import static lotto.util.validator.LottoNumberValidator.validateDuplicated;
+import static lotto.util.validator.LottoNumberValidator.validateNumberCount;
+
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,15 +15,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-        if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 달라야 합니다.");
-        }
+        validateNumberCount(numbers);
+        validateDuplicated(numbers);
     }
 
-    public List<Integer> getLottoNumbers() {
+    public List<Integer> getNumbers() {
         return numbers.stream().sorted().toList();
+    }
+
+    public Integer countSameNumber(final List<Integer> winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+    }
+
+    public boolean contains(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public boolean isSecondRank(Integer sameNumberCount, Integer bonusNumber) {
+        return sameNumberCount == 5 && contains(bonusNumber);
     }
 }
