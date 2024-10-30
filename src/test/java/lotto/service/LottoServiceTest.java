@@ -2,6 +2,8 @@ package lotto.service;
 
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,17 +51,19 @@ public class LottoServiceTest {
 
         boolean hasBonusMatch = lottoService.checkBonusNumber(bonusNumber, purchasedNumbers);
 
-        assertTrue(!hasBonusMatch); // 보너스 번호가 일치하지 않으므로 false
+        assertTrue(!hasBonusMatch); 
     }
 
     @Test
     public void 수익률계산() {
-        int totalPrize = 5000;
-        int purchaseAmount = 8000;
-        double expectedProfitMargin = (totalPrize / (double) purchaseAmount) * 100;
+    HashMap<Integer, Integer> winningRecord = new HashMap<>();
+    winningRecord.put(5, 1); 
 
-        double actualProfitMargin = lottoService.calculateProfitMargin(totalPrize, purchaseAmount);
+    int purchaseAmount = 8000;
+    double expectedProfitMargin = (5000 / (double) purchaseAmount) * 100;
 
-        assertEquals(expectedProfitMargin, actualProfitMargin);
+    double actualProfitMargin = lottoService.calculateProfitMargin(winningRecord, purchaseAmount);
+
+    assertEquals(expectedProfitMargin, actualProfitMargin);
     }
 }
