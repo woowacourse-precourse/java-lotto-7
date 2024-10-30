@@ -26,7 +26,7 @@ public class LottoService {
 
     }
 
-    public LottoRank compareLottoNumber(Set<Integer> userNumbers, Set<Integer> winningNumbers, int bonusNumber) {
+    public LottoRank compareLottoNumber(List<Integer> userNumbers, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = (int) userNumbers.stream().filter(winningNumbers::contains).count();
         boolean bonusMatch = userNumbers.contains(bonusNumber);
         return determineRank(matchCount, bonusMatch);
