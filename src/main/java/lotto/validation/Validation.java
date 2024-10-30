@@ -14,4 +14,26 @@ public class Validation {
         }
     }
 
+    public void checkLottoDuplicate(List<Integer> numbers, Integer bonusNumber) {
+
+        HashSet<Integer> checkNumber = new HashSet<>();
+
+        numbers.stream()
+                .filter(num -> !checkNumber.add(num))
+                .findFirst()
+                .ifPresent(duplicate -> {
+                    throw new IllegalArgumentException(LOTTO_ERROR_WRONG_LOTTO_DUPLICATE.getMessage());
+                });
+
+        checkDuplicateBonusNumber(bonusNumber, checkNumber);
+    }
+
+    private void checkDuplicateBonusNumber(Integer bonusNumber, HashSet<Integer> checkNumber) {
+        if (bonusNumber != null) {
+            if (checkNumber.contains(bonusNumber)) {
+                throw new IllegalArgumentException(LOTTO_ERROR_WRONG_LOTTO_DUPLICATE.getMessage());
+            }
+        }
+    }
+
 }
