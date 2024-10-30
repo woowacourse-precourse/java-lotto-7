@@ -14,4 +14,8 @@ public abstract class PrizeLotto {
     abstract public int calculatePrize();
 
     abstract public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers);
+
+    abstract public int getRank();
+
+    abstract public int getCount();
 }

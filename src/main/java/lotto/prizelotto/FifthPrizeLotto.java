@@ -14,4 +14,14 @@ public class FifthPrizeLotto extends PrizeLotto {
     public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
         return count == 3;
     }
+
+    @Override
+    public int getRank() {
+        return 5;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
+    }
 }

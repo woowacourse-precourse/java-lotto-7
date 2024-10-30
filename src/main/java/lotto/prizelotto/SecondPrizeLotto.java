@@ -14,4 +14,14 @@ public class SecondPrizeLotto extends PrizeLotto {
     public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
         return (count == 5) && (lottoNumbers.contains(winNumbers.bonusWinNumber()));
     }
+
+    @Override
+    public int getRank() {
+        return 2;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
+    }
 }

@@ -15,4 +15,14 @@ public class FirstPrizeLotto extends PrizeLotto {
     public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
         return count == 6;
     }
+
+    @Override
+    public int getRank() {
+        return 1;
+    }
+
+    @Override
+    public int getCount() {
+        return count;
+    }
 }

@@ -1,7 +1,8 @@
 package lotto.application;
 
+import java.util.List;
 import lotto.domain.Lottos;
-import lotto.domain.PrizeNumber;
+import lotto.prizelotto.PrizeLotto;
 
 public interface Printer {
 
@@ -9,5 +10,5 @@ public interface Printer {
 
     void printPurchaseResult(int quantity, Lottos lottos);
 
-    void printPrizeResult(PrizeNumber prizeNumber,double profit);
+    void printPrizeResult(List<PrizeLotto> prizeLottos, double profit);
 }

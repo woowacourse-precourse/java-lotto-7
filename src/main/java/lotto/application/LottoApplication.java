@@ -6,6 +6,11 @@ import lotto.domain.LottoQuantity;
 import lotto.domain.Lottos;
 import lotto.domain.PrizeNumber;
 import lotto.domain.WinNumbers;
+import lotto.prizelotto.FifthPrizeLotto;
+import lotto.prizelotto.FirstPrizeLotto;
+import lotto.prizelotto.FourthPrizeLotto;
+import lotto.prizelotto.SecondPrizeLotto;
+import lotto.prizelotto.ThirdPrizeLotto;
 
 public class LottoApplication {
 
@@ -44,7 +49,9 @@ public class LottoApplication {
     }
 
     public static PrizeNumber findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
-        PrizeNumber prizeNumber = new PrizeNumber();
+        PrizeNumber prizeNumber = new PrizeNumber(
+                List.of(new FirstPrizeLotto(), new SecondPrizeLotto(), new ThirdPrizeLotto(), new FourthPrizeLotto(),
+                        new FifthPrizeLotto()));
         List<Lotto> allLotto = lottos.value();
         for (Lotto lotto : allLotto) {
             prizeNumber.countMatchNumber(lotto.getNumbers(), winNumbers);
