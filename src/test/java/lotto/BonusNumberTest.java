@@ -33,4 +33,12 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> new BonusNumber(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("보너스 번호는 1과 45 사이의 값이어야 한다. - 1보다 작은 경우 - 2")
+    void 보너스_번호는_1과_45_사이의_값을_가져야_한다_3() {
+        assertThatThrownBy(() -> new BonusNumber(-1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
