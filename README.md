@@ -35,7 +35,6 @@
   - [ ] 수익률은 "(당첨금액)/(구입금액)*100" 이다.
   - [ ] 수익률은 소수점 둘째 자리에서 반올림한다.
 
-<br/>
 ### 예외 처리
 - [ ] 로또 구입 금액 입력 상황
   - [ ] 1,000원 단위가 아닌 경우
@@ -52,7 +51,6 @@
   - [ ] 1~45 사이의 숫자를 입력하지 않은 경우
   - [ ] 입력한 당첨 번호의 숫자들과 중복되는 경우
 
-<br/>
 ### 요구 사항
 * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
   * Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
@@ -72,7 +70,6 @@
   * Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
   * 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
 
-<br/>
 ### 제공 클래스
 #### Lotto 클래스
 * 제공된 Lotto 클래스를 사용하여 구현해야 한다.
