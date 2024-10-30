@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public class PurchaseAmount{
     private static final Integer LOTTE_PRICE=1000;
