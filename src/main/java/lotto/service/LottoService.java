@@ -1,12 +1,19 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lotto.util.Rank;
 
 public class LottoService {
 
-    private ArrayList<Rank> winningRecord = new ArrayList<>();
+    private HashMap<Integer,Integer> winningRecord = new HashMap<>();
+
+    public LottoService() {
+        for (int i = 1; i <= 5; i++) {
+            winningRecord.put(i, 0);
+        }
+    }
 
     public int countLotto(int purchaseAmount){
         return purchaseAmount/1000;
@@ -34,10 +41,11 @@ public class LottoService {
     }
 
     public void addWinningRecord(Rank rank){
-        winningRecord.add(rank);
+        int rankOrder = rank.getRankOrder();
+        winningRecord.put(rankOrder, winningRecord.get(rankOrder)+1);
     }
 
-    public ArrayList<Rank> getWinningRecord(){
+    public HashMap<Integer,Integer> getWinningRecord(){
         return winningRecord;
     }
 }
