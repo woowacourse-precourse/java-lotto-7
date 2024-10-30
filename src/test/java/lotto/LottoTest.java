@@ -23,4 +23,9 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호_번위_초과_예외_테스트() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 0, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
