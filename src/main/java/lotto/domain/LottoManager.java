@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManager {
-    private final List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottoNumbers = new ArrayList<>();
 
     public void generateLottoNumbers(int purchaseAmount) {
         int lottoCount = purchaseAmount / MIN_PURCHASE_AMOUNT;
 
         for (int count = 0; count < lottoCount; count++) {
-            lottos.add(new Lotto(generateRandomNumbers()));
+            lottoNumbers.add(new Lotto(generateRandomNumbers()));
         }
     }
 
@@ -30,5 +30,9 @@ public class LottoManager {
         return randomNumbers.stream()
                 .sorted()
                 .toList();
+    }
+
+    public List<Lotto> getLottoNumbers() {
+        return lottoNumbers;
     }
 }
