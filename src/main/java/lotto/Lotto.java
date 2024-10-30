@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +11,22 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static List<Lotto> buyAsMoney(int money) {
+        List<Lotto> boughtLottos = new ArrayList<>();
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("[Error] 구매금액은 1,000원단위로 입력주세요");
+        }
+        for (int i = 0; i < money / 1000; i++) {
+            boughtLottos.add(createLotto());
+        }
+        return boughtLottos;
+    }
+
+    private static Lotto createLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
