@@ -10,11 +10,12 @@ import java.util.List;
 public class LottoStore {
 
     public static final int LOTTO_PRICE = 1000;
+    public static final int ZERO = 0;
 
-    public List<Lotto> issuanceLottos(final int pay) {
+    public List<Lotto> issueLottos(final int pay) {
         validatePayment(pay);
 
-        final int lottoCount = pay % LOTTO_PRICE;
+        final int lottoCount = pay / LOTTO_PRICE;
 
         final List<Lotto> lottos = new ArrayList<>();
 
@@ -33,9 +34,17 @@ public class LottoStore {
         if (isPaymentValid(pay)) {
             throw new PayException(PayExceptionMessage.PAY_BOUNDED_EXCEPTION);
         }
+
+        if (isDivisibleByPayment(pay)) {
+            throw new PayException(PayExceptionMessage.PAY_DIVISIBLE_EXCEPTION);
+        }
     }
 
     private boolean isPaymentValid(final int pay) {
-        return pay < LOTTO_PRICE;
+        return pay <= LOTTO_PRICE;
+    }
+
+    private boolean isDivisibleByPayment(final int pay) {
+        return pay % LOTTO_PRICE != ZERO;
     }
 }

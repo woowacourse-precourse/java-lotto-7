@@ -21,7 +21,7 @@ public class Lotto implements Iterable<Integer> {
     }
 
     private void validate(List<Integer> numbers) {
-        if (ValidLottoNumber.isBoundedNumbers(numbers)) {
+        if (!ValidLottoNumber.isBoundedNumbers(numbers)) {
             throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
         }
 

@@ -8,11 +8,11 @@ public class ValidLottoNumber {
 
     public static boolean isBoundedNumbers(final List<Integer> numbers) {
         return numbers.stream()
-                .allMatch(number -> number < 1 && number > 45);
+                .allMatch(number -> number >= 1 && number <= 45);
     }
 
     public static boolean isBoundedNumber(final int number) {
-        return number < 1 && number > 45;
+        return number >= 1 && number <= 45;
     }
 
     public static boolean isSixNumbers(final List<Integer> numbers) {

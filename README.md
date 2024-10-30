@@ -33,8 +33,19 @@
 
 ## 객체 정리
 - Lotto : Integer 컬렉션으로 이루어져 있으며, 로또 번호를 가진다.
-- LottoTicket : 컬렉션으로 Lotto를 가진다. 구매한 로또를 가지고 당첨 번호와 값 비교를 통해 수익률을 계산한다.
+- Lottos : 컬렉션으로 Lotto를 가진다. 구매한 로또를 가지고 당첨 번호와 값 비교를 통해 수익률을 계산한다.
 - LottoRank : 당첨이 된 금액의 가격을 알려주는 Enum객체
 - LottoNumber : 로또 번호 하나하나를 감싸는 객체 vo
 - LottoStore : 로또를 판매하는 스토어, 유저가 내는 돈을 받아서 그만큼 로또를 발급해준다. LottoTicket 생성
 - LottoResult : 정답을 가지는 객체 equals로 비교해서 내부 값이 같은 로또들을 확인함
+
+## 프로그램 흐름
+
+1. 구입 금액을 입력 받는다.
+2. 당첨 번호를 직접 입력 받는다.
+3. 보너스 번호를 입력 받는다.
+4. 1 을 토대로 구입금액을 입력 받는 만큼 issuanceLottos 메서드로 로또 리스트를 생성한다.
+5. 2,3을 토대로 LottoResultChecker 객체를 생성한다.
+6. Lotto를 리스트로 가지는 Lottos 객체를 issuanceLottos 메서드로 생성해서 가져온다.
+7. Lottos 내부의 Lotto 리스트를 LottoResultChecker.checkRank() 를 통해 등수를 파악한다.
+8. 파악한 등수를 토대로 금액을 표출시키고 수익률을 계산한다.
