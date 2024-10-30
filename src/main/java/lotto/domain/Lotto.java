@@ -10,6 +10,7 @@ public class Lotto {
 
     public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
+        validateDuplicatedNumber(numbers);
 
         this.numbers = convertToLottoNumbers(numbers);
     }
@@ -20,10 +21,22 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicatedNumber(final List<Integer> numbers) {
+        if (isDuplicatedNumber(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 번호가 존재합니다.");
+        }
+    }
+
     private List<LottoNumber> convertToLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
                 .map(LottoNumber::new)
                 .toList();
+    }
+
+    private boolean isDuplicatedNumber(final List<Integer> numbers) {
+        return numbers.size() != numbers.stream()
+                .distinct()
+                .count();
     }
 
     public List<LottoNumber> getNumbers() {
