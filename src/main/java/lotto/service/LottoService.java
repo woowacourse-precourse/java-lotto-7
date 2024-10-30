@@ -1,2 +1,5 @@
-package lotto.service;public interface LottoService {
+package lotto.service;
+
+public interface LottoService {
+    int calculateLottoCount(int purchaseAmount);
 }
