@@ -43,10 +43,17 @@ public class InputView {
         }
     }
 
-    public void inputBonusNumber(List<Integer> winningNumbers) {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
 
-        String userInput = Console.readLine();
-        inputParser.parseBonusNumber(userInput, winningNumbers);
+        while (true) {
+            String userInput = Console.readLine();
+
+            try {
+                return inputParser.parseBonusNumber(userInput, winningNumbers);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }
