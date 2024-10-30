@@ -29,6 +29,8 @@ public class InputParser {
 
         List<String> separatedInput = separateInput(userInput);
         List<Integer> winningNumbers = parseNumbers(separatedInput);
+
+        inputValidator.validateNumberCount(winningNumbers);
     }
 
     private List<String> separateInput(String userInput) {
