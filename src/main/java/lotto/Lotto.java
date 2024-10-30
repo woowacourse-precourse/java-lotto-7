@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import constants.Constants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +12,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != Constants.LOTTO_MAIN_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 "+Constants.LOTTO_MAIN_COUNT+"개여야 합니다.");
         }
     }
 
