@@ -1,22 +1,28 @@
 package lotto.generator;
 
-import static lotto.config.LottoRule.LOTTO_COUNT;
-import static lotto.config.LottoRule.LOTTO_END_NUMBER;
-import static lotto.config.LottoRule.LOTTO_START_NUMBER;
+import static lotto.config.LottoRule.LOTTO_MAX_NUMBER;
+import static lotto.config.LottoRule.LOTTO_MIN_NUMBER;
+import static lotto.config.LottoRule.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class SortedLottoNumberGenerator implements NumberGenerator<List<Integer>> {
 
-
     @Override
     public List<Integer> generate() {
-        return sortAscending(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_COUNT));
+        return sortAscending(
+                Randoms.pickUniqueNumbersInRange(
+                        LOTTO_MIN_NUMBER.getValue(),
+                        LOTTO_MAX_NUMBER.getValue(),
+                        LOTTO_PRICE.getValue()
+                )
+        );
     }
 
     private List<Integer> sortAscending(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
-        return numbers;
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }

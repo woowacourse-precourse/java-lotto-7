@@ -17,7 +17,7 @@ public class LottoService {
 
     public List<Lotto> purchase(int money) {
         List<Lotto> lottos = new ArrayList<>();
-        int quantity = money / LOTTO_PRICE;
+        int quantity = money / LOTTO_PRICE.getValue();
         for (int i = 0; i < quantity; i++) {
             lottos.add(new Lotto(sortedLottoNumberGenerator.generate()));
         }

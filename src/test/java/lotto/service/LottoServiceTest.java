@@ -22,6 +22,6 @@ class LottoServiceTest {
         List<Lotto> purchasedLotto = lottoService.purchase(money);
 
         //then
-        assertThat(purchasedLotto.size()).isEqualTo(money / LOTTO_PRICE);
+        assertThat(purchasedLotto.size()).isEqualTo(money / LOTTO_PRICE.getValue());
     }
 }
