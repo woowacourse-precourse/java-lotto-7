@@ -36,8 +36,8 @@ public class Application {
         System.out.println();
 
         lottos.keySet().forEach(lotto -> {
-            lotto.confirmWinning(splitWinningNumbers);
-            lotto.confirmBonus(bonusNumber);
+            lottos.get(lotto)
+                    .updateWinning(lotto.confirmWinning(splitWinningNumbers), lotto.confirmBonus(bonusNumber));
         });
     }
 }
