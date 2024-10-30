@@ -18,4 +18,10 @@ public class InputView {
 
         return Arrays.stream(splitInput).map(Integer::parseInt).toList();
     }
+
+    public int inputWinningBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        return Integer.parseInt(Console.readLine());
+    }
 }
