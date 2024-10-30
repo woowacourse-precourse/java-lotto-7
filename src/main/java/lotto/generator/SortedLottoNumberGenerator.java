@@ -1,12 +1,14 @@
 package lotto.generator;
 
+import static lotto.config.LottoRule.LOTTO_COUNT;
+import static lotto.config.LottoRule.LOTTO_END_NUMBER;
+import static lotto.config.LottoRule.LOTTO_START_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class SortedLottoNumberGenerator implements NumberGenerator<List<Integer>> {
-    public static final int LOTTO_START_NUMBER = 1;
-    public static final int LOTTO_END_NUMBER = 45;
-    public static final int LOTTO_COUNT = 6;
+
 
     @Override
     public List<Integer> generate() {
