@@ -20,7 +20,10 @@ public enum LottoResult {
         this.description = description;
     }
 
-    public static LottoResult of(int matchCount, boolean matchBonus) {
+    public static LottoResult of(
+            final int matchCount,
+            final boolean matchBonus
+    ) {
         if (matchCount == 5 && matchBonus) {
             return SECOND;
         }

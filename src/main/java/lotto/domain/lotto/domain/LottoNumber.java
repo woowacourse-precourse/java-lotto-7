@@ -8,7 +8,9 @@ public class LottoNumber {
         this.lottoNumber = lottoNumber;
     }
 
-    public static LottoNumber from(int number) {
+    public static LottoNumber from(
+            final int number
+    ) {
         return new LottoNumber(number);
     }
 
