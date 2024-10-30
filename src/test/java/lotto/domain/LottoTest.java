@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -19,5 +20,18 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 정상적으로_로또_클래스_생성() {
+        // given
+        List<Integer> numbers = List.of(6, 5, 4, 3, 2, 1);
+
+        // when
+        Lotto lotto = new Lotto(numbers);
+
+        // then
+        assertThat(lotto.getNumbers()).hasSize(6)
+                .isSorted();
     }
 }
