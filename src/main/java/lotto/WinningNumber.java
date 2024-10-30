@@ -1,8 +1,12 @@
 package lotto;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class WinningNumber {
 
 	private String winning;
+	private Set<Integer> set = new LinkedHashSet<>();
 
 	public WinningNumber(String winning) {
 		this.winning = winning;
@@ -11,6 +15,7 @@ public class WinningNumber {
 	public void winningCheck() {
 		String[] winningArr = winningSplit();
 		valueCheck(winningArr);
+		duplicationCheck(winningArr.length);
 	}
 
 	private String[] winningSplit() {
@@ -22,6 +27,7 @@ public class WinningNumber {
 		for (String s : winningArr) {
 			int num = numberCheck(s);
 			numberScope(num);
+			duplication(num);
 		}
 	}
 
@@ -48,4 +54,13 @@ public class WinningNumber {
 		}
 	}
 
+	private void duplication(int num) {
+		set.add(num);
+	}
+
+	private void duplicationCheck(int length) {
+		if (length != set.size()) {
+			throw new NumberFormatException("[ERROR] 중복값은 입력할 수 없습니다.");
+		}
+	}
 }
