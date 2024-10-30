@@ -20,5 +20,10 @@ public class Application {
         String bonusNumber = inputView.getBonusNumber();
         BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
         bonusNumberValidator.validate(bonusNumber + ":" + lottoNumbers);
+
+        int purchaseAmount = Integer.parseInt(purchaseInput);
+        Lottos lottos = new Lottos();
+        lottos.generateLottos(purchaseAmount);
+
     }
 }
