@@ -15,6 +15,7 @@ import lotto.domain.lottos.user.WinningLottos;
 import lotto.domain.number.NumbersMaker;
 import lotto.domain.number.RandomLottoNumberMaker;
 import lotto.service.LottoMatchService;
+import lotto.service.YieldCalculateService;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -24,6 +25,7 @@ import lotto.view.Output;
  */
 public class MainController {
     private LottoMatchService lottoMatchService;
+    private YieldCalculateService yieldCalculateService;
 
     public void run(){
         Wallet wallet = createWallet();
@@ -36,10 +38,12 @@ public class MainController {
 
         lottoMatchService = new LottoMatchService(randomLottos,userLotto,winningLottos);
         lottoMatchService.matchLottos();
-
+        yieldCalculateService = new YieldCalculateService(wallet,winningLottos);
+        yieldCalculateService.calculateYield();
 
 
         Output.printLottoWinningStatistics(winningLottos);
+        Output.printRateOfReturn(wallet);
 
     }
 

@@ -3,6 +3,7 @@ package lotto.domain.lottos.user;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Rank;
 
 /**
@@ -21,11 +22,17 @@ public class WinningLottos {
         ranks.merge(rank,1,Integer::sum);
     }
 
-    public int getTotalWinningPrizeMoney(){
-        int result = 0;
+    public long getTotalWinningPrizeMoney(){
+        long result = 0;
 
-        for (Rank rank : ranks.keySet()) {
-            result += rank.getPrizeMoney();
+        for (Map.Entry<Rank, Integer> entry : ranks.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            long prizeMoney = rank.getPrizeMoney();
+
+            if (count > 0) {
+                result += prizeMoney * count;
+            }
         }
         return result;
     }

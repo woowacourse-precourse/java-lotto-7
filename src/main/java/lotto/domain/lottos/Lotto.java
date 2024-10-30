@@ -1,9 +1,12 @@
 package lotto.domain.lottos;
 
+import static java.util.Arrays.stream;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -62,7 +65,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        Collections.sort(numbers);
+        numbers.stream().sorted().collect(Collectors.toList());
         return numbers.toString();
     }
 }
