@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,7 +17,7 @@ class ApplicationTest extends NsTest {
     private static final String PURCHASE_AMOUNT = (Randoms.pickUniqueNumbersInRange(1, 50, 1).getFirst() * 1000 + "");
 
     // MARK: - read purchase amount test
-    // 정상 금액을 입력했을 경우
+    @DisplayName("구매 금액에 정상 금액을 입력했을 경우")
     @Test
     void readPurchaseAmountSuccessTest() {
         assertSimpleTest(() -> {
@@ -25,7 +26,7 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    // 1000원보다 작은 금액을 입력했을 경우
+    @DisplayName("구매 금액에 1000원보다 작은 금액을 입력했을 경우")
     @Test
     void readPurchaseAmountFailTest1() {
         assertSimpleTest(() -> {
@@ -34,7 +35,7 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    // 1000원보다 작은 금액을 입력했을 경우
+    @DisplayName("구매 금액에 문자를 입력했을 경우")
     @Test
     void readPurchaseAmountFailTest2() {
         assertSimpleTest(() -> {
@@ -43,12 +44,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    // 1000원 단위가 아닌 경우
+    @DisplayName("구매 금액에 1000원 단위가 아닌 값을 입력했을 경우")
     @Test
     void readPurchaseAmountFailTest3() {
         assertSimpleTest(() -> {
             run("1200", PURCHASE_AMOUNT);
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    // MARK: - buy lottos test
+    @DisplayName("로또를 정상적으로 구매했을 경우")
+    @Test
+    void buyLottosSuccessTest() {
+        assertSimpleTest(() -> {
+            run(PURCHASE_AMOUNT);
+            assertThat(output()).contains("개를 구매했습니다.");
         });
     }
 

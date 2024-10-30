@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 
 class LottoTest {
     @Test
@@ -22,4 +24,12 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 생성")
+    @Test
+    void createLotto() {
+        assertSimpleTest(() -> {
+            Lotto lotto = Lotto.create();
+            assertThat(lotto).isNotNull();
+        });
+    }
 }
