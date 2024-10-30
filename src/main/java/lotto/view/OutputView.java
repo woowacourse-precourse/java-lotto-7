@@ -7,7 +7,7 @@ import lotto.model.Rank;
 public class OutputView {
 
     public static void printLottoCount(int count) {
-        System.out.printf("%d개를 구매했습니다.", count);
+        System.out.printf("%d개를 구매했습니다.%n", count);
     }
 
     public static void printLottoNumbers(List<String> convertedNumbers) {
@@ -32,5 +32,9 @@ public class OutputView {
 
     private static String format(int price) {
         return String.format("%,d", price);
+    }
+
+    public static void printRateOfReturn(String rateOfReturn) {
+        System.out.printf("총 수익률은 %s%%입니다.", rateOfReturn);
     }
 }
