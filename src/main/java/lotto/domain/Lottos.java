@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -11,6 +12,10 @@ public class Lottos {
 
     public Lottos(CreateRandomNumbers lottoNumberGenerator, int lottoCount) {
         this.lottos = createLottos(lottoNumberGenerator, lottoCount);
+    }
+
+    public List<Lotto> displayLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     private List<Lotto> createLottos(CreateRandomNumbers lottoNumberGenerator, int lottoCount) {
