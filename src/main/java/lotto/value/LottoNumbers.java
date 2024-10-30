@@ -29,9 +29,13 @@ public record LottoNumbers(List<LottoNumber> lottoNumbers) {
                 .toList());
     }
 
+    public boolean contains(LottoNumber number) {
+        return lottoNumbers.contains(number);
+    }
+
     private static boolean isNumbersDuplicated(List<LottoNumber> lottoNumbers) {
         return lottoNumbers.size() != lottoNumbers.stream()
-                .map(LottoNumber::number)
+                .map(LottoNumber::getNumber)
                 .distinct()
                 .count();
     }
