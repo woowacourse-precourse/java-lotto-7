@@ -11,7 +11,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int calculateMatchingCount(Lotto lotto) {
+    public int countMatchingNumbers(Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::contains)
                 .count();

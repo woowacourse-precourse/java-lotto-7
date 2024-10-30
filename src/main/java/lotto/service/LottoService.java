@@ -12,17 +12,17 @@ public class LottoService {
         LottoRanks lottoRanks = new LottoRanks();
 
         for (Lotto lotto : lottos) {
-            int matchingCount = getMatchingCount(winninglotto, lotto);
+            int matchingNumberCount = getMatchingNumberCount(winninglotto, lotto);
             boolean bonusMatched = isBonusNumberMatched(lotto, bonusNumber);
-            LottoRank.findBy(matchingCount, bonusMatched)
+            LottoRank.findBy(matchingNumberCount, bonusMatched)
                     .ifPresent(lottoRanks::add);
         }
 
         return lottoRanks.getRanks();
     }
 
-    private int getMatchingCount(Lotto winninglotto, Lotto lotto) {
-        return winninglotto.calculateMatchingCount(lotto);
+    private int getMatchingNumberCount(Lotto winninglotto, Lotto lotto) {
+        return winninglotto.countMatchingNumbers(lotto);
     }
 
     private boolean isBonusNumberMatched(Lotto lotto, int bonusNumber) {

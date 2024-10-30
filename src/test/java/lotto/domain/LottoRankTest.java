@@ -2,7 +2,9 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -27,6 +29,22 @@ class LottoRankTest {
         // then
         assertThat(rank).isPresent()
                 .containsSame(expectedRank);
+    }
+
+    @Test
+    void 당첨금_오름차순으로_정렬된_순위를_가져올_수_있다() {
+        // when
+        List<LottoRank> ranks = LottoRank.getRanksOrderByReward();
+
+        // then
+        assertThat(ranks)
+                .containsExactly(
+                        LottoRank.FIFTH,
+                        LottoRank.FOURTH,
+                        LottoRank.THIRD,
+                        LottoRank.SECOND,
+                        LottoRank.FIRST
+                );
     }
 
 }

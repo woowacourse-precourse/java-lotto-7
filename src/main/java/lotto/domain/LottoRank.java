@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -14,25 +16,43 @@ public enum LottoRank {
     ;
 
     private final int rewardAmount;
-    private final int matchingCount;
+    private final int neededCount;
     private final BonusCondition bonusCondition;
 
-    LottoRank(int rewardAmount, int matchingCount, BonusCondition bonusCondition) {
+    LottoRank(int rewardAmount, int neededCount, BonusCondition bonusCondition) {
         this.rewardAmount = rewardAmount;
-        this.matchingCount = matchingCount;
+        this.neededCount = neededCount;
         this.bonusCondition = bonusCondition;
     }
 
-    public static Optional<LottoRank> findBy(int matchingCount, boolean bonusMatched) {
+    public static Optional<LottoRank> findBy(int matchingNumberCount, boolean bonusMatched) {
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.matchingCount == matchingCount)
+                .filter(rank -> rank.neededCount == matchingNumberCount)
                 .filter(rank -> rank.bonusCondition.isSatisfiedBy(bonusMatched))
                 .findAny();
     }
 
-    private enum BonusCondition {
+    public static List<LottoRank> getRanksOrderByReward() {
+        return Arrays.stream(LottoRank.values())
+                .sorted(Comparator.comparingInt(rank -> rank.rewardAmount))
+                .toList();
+    }
 
-        NOT_APPLICABLE(isBonusMatched -> true),
+    public int getRewardAmount() {
+        return rewardAmount;
+    }
+
+    public int getNeededCount() {
+        return neededCount;
+    }
+
+    public BonusCondition getBonusCondition() {
+        return bonusCondition;
+    }
+
+    public enum BonusCondition {
+
+        NOT_APPLICABLE(bonusMatched -> true),
         MATCHED(bonusMatched -> bonusMatched),
         NOT_MATCHED(bonusMatched -> !bonusMatched),
         ;

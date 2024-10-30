@@ -27,13 +27,13 @@ class LottoTest {
     }
 
     @Test
-    void 두_로또_번호를_비교하여_몇_개가_일치하는지_알_수_있다() {
+    void 몇_개의_숫자가_일치하는지_알_수_있다() {
         // given
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 11, 12));
 
         // when
-        int matchingCount = lotto1.calculateMatchingCount(lotto2);
+        int matchingCount = lotto1.countMatchingNumbers(lotto2);
 
         // then
         assertThat(matchingCount).isEqualTo(4);
