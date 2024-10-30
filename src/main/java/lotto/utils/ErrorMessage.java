@@ -5,7 +5,8 @@ public enum ErrorMessage {
     PURCHASE_AMOUNT_ERROR_MESSAGE("1000원 단위의 금액을 입력해주세요."),
     DELIMITER_ERROR_MESSAGE("쉼표(,)를 기준으로 구분해서 입력해주세요."),
     WINNING_NUMBER_COUNT_ERROR_MESSAGE("당첨 번호는 6개여야 합니다."),
-    WINNING_NUMBER_RANGE_ERROR_MESSAGE("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+    WINNING_NUMBER_RANGE_ERROR_MESSAGE("당첨 번호는 1부터 45 사이의 숫자여야 합니다."),
+    WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE("당첨 번호는 중복되지 않은 숫자여야 합니다.");
 
     private final String message;
 

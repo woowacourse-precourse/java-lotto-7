@@ -32,6 +32,7 @@ public class InputParser {
 
         inputValidator.validateNumberCount(winningNumbers);
         inputValidator.validateNumberRange(winningNumbers);
+        inputValidator.validateDuplicateNumber(winningNumbers);
     }
 
     private List<String> separateInput(String userInput) {

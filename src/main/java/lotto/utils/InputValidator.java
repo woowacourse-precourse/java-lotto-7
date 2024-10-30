@@ -9,10 +9,13 @@ import static lotto.utils.ErrorMessage.DELIMITER_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.WINNING_NUMBER_COUNT_ERROR_MESSAGE;
+import static lotto.utils.ErrorMessage.WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.WINNING_NUMBER_RANGE_ERROR_MESSAGE;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputValidator {
 
@@ -49,6 +52,14 @@ public class InputValidator {
     public void validateNumberRange(List<Integer> winningNumbers) {
         if (Collections.min(winningNumbers) < MIN_LOTTO_NUMBER || Collections.max(winningNumbers) > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_ERROR_MESSAGE.toString());
+        }
+    }
+
+    public void validateDuplicateNumber(List<Integer> winningNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+
+        if (uniqueNumbers.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE.toString());
         }
     }
 }
