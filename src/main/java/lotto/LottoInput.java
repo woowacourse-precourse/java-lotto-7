@@ -56,4 +56,27 @@ public class LottoInput {
             return mainNumbersInput();
         }
     }
+
+    public int bonusNumberInput(List<Integer> mainNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요:");
+
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+
+            if (bonusNumber < Constants.LOTTO_MIN_NUMBER || bonusNumber > Constants.LOTTO_MAX_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 유효한 범위 내의 로또 번호를 입력하여야 합니다.");
+            }
+            if (mainNumbers.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자만 입력해 주세요.");
+            return bonusNumberInput(mainNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return bonusNumberInput(mainNumbers);
+        }
+    }
 }
