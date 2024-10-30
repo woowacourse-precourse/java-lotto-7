@@ -62,7 +62,7 @@
 ### Main
 - [ ] Application
 ### Model
-- [ ] 
+- [x] Lotto 
 ### View
 - [ ] InputView
 - [ ] OutputView
@@ -72,8 +72,8 @@
 - [x] LottoGrade
 - [x] LottoNumberRange
 ### Util
-- [ ] LottoNumberGenerator
-- [ ] RandomNumberGenerator
+- [x] LottoNumberGenerator
+- [x] RandomNumberGenerator
 - [x] Validator
   - [x] LottoPriceValidator
   - [x] LottoNumberValidator
