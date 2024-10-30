@@ -32,7 +32,6 @@ public class LottoResultChecker {
     }
 
     public LottoRank checkRank(final Lotto lotto) {
-
         final Set<Integer> winningNumbers = new HashSet<>(this.winningNumbers);
 
         final long matchingCount = lotto.getNumbers().stream().filter(winningNumbers::contains).count();

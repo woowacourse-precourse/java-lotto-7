@@ -38,6 +38,7 @@
 - LottoNumber : 로또 번호 하나하나를 감싸는 객체 vo
 - LottoStore : 로또를 판매하는 스토어, 유저가 내는 돈을 받아서 그만큼 로또를 발급해준다. LottoTicket 생성
 - LottoResult : 정답을 가지는 객체 equals로 비교해서 내부 값이 같은 로또들을 확인함
+- LottoTotalPayout : 모든 로또가 몇등인지 가지고 있는 컬렉션을 가지고 금액을 표출함.
 
 ## 프로그램 흐름
 
