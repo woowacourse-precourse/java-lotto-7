@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import lotto.prizelotto.PrizeLotto;
+import lotto.domain.prizelotto.PrizeLotto;
 
 public class PrizeNumber {
 

@@ -1,4 +1,4 @@
-package lotto.prizelotto;
+package lotto.domain.prizelotto;
 
 import java.util.List;
 import lotto.domain.WinNumbers;

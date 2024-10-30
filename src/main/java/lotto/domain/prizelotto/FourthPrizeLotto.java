@@ -1,23 +1,23 @@
-package lotto.prizelotto;
+package lotto.domain.prizelotto;
 
 import java.util.List;
 import lotto.RankPrice;
 import lotto.domain.WinNumbers;
 
-public class ThirdPrizeLotto extends PrizeLotto {
+public class FourthPrizeLotto extends PrizeLotto {
     @Override
     public int calculatePrize() {
-        return RankPrice.THIRD.getPrice() * count;
+        return RankPrice.FOURTH.getPrice() * count;
     }
 
     @Override
     public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
-        return (count == 5) && (!lottoNumbers.contains(winNumbers.bonusWinNumber()));
+        return count == 4;
     }
 
     @Override
     public int getRank() {
-        return 3;
+        return 4;
     }
 
     @Override

@@ -8,7 +8,7 @@ import lotto.RankPrice;
 import lotto.application.Printer;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.prizelotto.PrizeLotto;
+import lotto.domain.prizelotto.PrizeLotto;
 
 public class LottoResultPrinter implements Printer {
     @Override

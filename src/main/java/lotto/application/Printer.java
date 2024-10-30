@@ -2,7 +2,7 @@ package lotto.application;
 
 import java.util.List;
 import lotto.domain.Lottos;
-import lotto.prizelotto.PrizeLotto;
+import lotto.domain.prizelotto.PrizeLotto;
 
 public interface Printer {
 

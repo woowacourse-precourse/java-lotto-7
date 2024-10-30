@@ -9,12 +9,12 @@ import lotto.application.calculator.ProfitCalculator;
 import lotto.domain.PrizeNumber;
 import lotto.application.numberstrategy.MakeRandomNumbers;
 import lotto.application.printer.LottoResultPrinter;
-import lotto.prizelotto.FifthPrizeLotto;
-import lotto.prizelotto.FirstPrizeLotto;
-import lotto.prizelotto.FourthPrizeLotto;
-import lotto.prizelotto.PrizeLotto;
-import lotto.prizelotto.SecondPrizeLotto;
-import lotto.prizelotto.ThirdPrizeLotto;
+import lotto.domain.prizelotto.FifthPrizeLotto;
+import lotto.domain.prizelotto.FirstPrizeLotto;
+import lotto.domain.prizelotto.FourthPrizeLotto;
+import lotto.domain.prizelotto.PrizeLotto;
+import lotto.domain.prizelotto.SecondPrizeLotto;
+import lotto.domain.prizelotto.ThirdPrizeLotto;
 import lotto.application.reader.ConsoleReader;
 
 public class AppConfig {
