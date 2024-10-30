@@ -7,4 +7,5 @@ public class InputView {
     public String inputPurchasePrice(){
         return readLine();
     }
+    public String inputWinnigNumbers(){return readLine();}
 }

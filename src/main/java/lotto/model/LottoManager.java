@@ -6,6 +6,8 @@ public class LottoManager {
 
     private final Integer purchaseQuantity; //판매 수량
 
+    private Lotto winnigLotto; //당첨 로또
+
     private static final Integer DIVISOR = 1000;
 
     public LottoManager(String price){
@@ -24,8 +26,12 @@ public class LottoManager {
         if(Integer.parseInt(price)%1000!=0) throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_PRICE.getMessage());
     }
 
+    public void setWinningLotto(Lotto winnigLotto){
+        this.winnigLotto = winnigLotto;
+    }
+
     @Override
     public String toString() {
-        return "구매 수량 = " + purchaseQuantity + "개";
+        return "구매 수량 = " + purchaseQuantity + "개\n" + winnigLotto.toString();
     }
 }
