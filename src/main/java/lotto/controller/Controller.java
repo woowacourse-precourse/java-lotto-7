@@ -33,6 +33,7 @@ public class Controller {
         lottoWinningNumbers = new LottoWinningNumbers(lottoNumbers);
         printHandler.printBonusNumberPrompt();
         int bonusNumber = inputHandler.setBonusNumber();
+        lottoWinningNumbers.validateLottoWinningNumbersCon(lottoNumbers, bonusNumber);
     }
 
     private void createLotto(int lottoNumberOfPurchases) {

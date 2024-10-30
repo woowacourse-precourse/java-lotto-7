@@ -12,4 +12,10 @@ public class LottoWinningNumbers {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
+    public void validateLottoWinningNumbersCon(List<Integer> lottoNumbers, int bonusNumber) {
+        if (lottoNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호에 중복이 있습니다.");
+        }
+    }
 }
