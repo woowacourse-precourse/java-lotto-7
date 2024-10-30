@@ -3,7 +3,9 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
@@ -14,13 +16,12 @@ public class LottoService {
         int numberOfLottos = purchaseAmount / 1000;
         List<Lotto> lottos = new ArrayList<>();
 
-        return IntStream.range(0, numberOfLottos)
-                .mapToObj(i -> {
-                    List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                    Collections.sort(lottoNumbers);
-                    return new Lotto(lottoNumbers);
-                })
-                .collect(Collectors.toList());
+        for (int i = 0; i < numberOfLottos; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(lottoNumbers);
+            lottos.add(new Lotto(lottoNumbers));
+        }
+        return lottos;
 
     }
 
@@ -38,6 +39,19 @@ public class LottoService {
         if (matchCount == 3) return LottoRank.FIFTH;
         return LottoRank.NONE;
     }
+
+    public Map<LottoRank, Integer> calculateWinningStats(List<Lotto> userLottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> winningStats = new HashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            winningStats.put(rank, 0);
+        }
+        for (Lotto userLotto : userLottos) {
+            LottoRank rank = compareLottoNumber(userLotto.getNumbers(), winningNumbers, bonusNumber);
+            winningStats.put(rank, winningStats.get(rank) + 1);
+        }
+        return winningStats;
+    }
+
 
 
 
