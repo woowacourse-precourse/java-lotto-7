@@ -1,9 +1,8 @@
-package lotto;
+package lotto.domain.lotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.domain.LottoNumber;
 
 public class Lotto {
     private final List<LottoNumber> numbers;

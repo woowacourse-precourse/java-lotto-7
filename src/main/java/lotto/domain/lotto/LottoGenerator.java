@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.LottoNumber;
-import lotto.number.IntegersGenerator;
-import lotto.number.NumbersGenerator;
+import lotto.domain.number.IntegersGenerator;
+import lotto.domain.number.NumbersGenerator;
 
 public class LottoGenerator {
 
@@ -26,7 +25,7 @@ public class LottoGenerator {
         for (Integer number : lottoNumbers) {
             lotto.add(new LottoNumber(number));
         }
-        
+
         return new Lotto(lotto);
     }
 }
