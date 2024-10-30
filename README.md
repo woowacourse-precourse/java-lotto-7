@@ -30,6 +30,10 @@
   - [X] 1-45까지 번호 6개가 쉽표로 구분되지 않을 시 `IllegalArgumentException` 발생
 - [ ] 보너스 번호 입력
   - [ ] 1-45까지 번호 아닐 시 `IllegalArgumentException` 발생
+- [ ] 각 입력, `IllegalArgumentException`발생 시 에러 메시지 출력 후 재입력 실행
+  - [X] case 1. 유저 로또 구입금액 입력
+  - [X] case 2. 로또 당첨 번호 입력
+  - [ ] case 3. 보너스 번호 입력
 ### 주요 기능
 - [X] 유저 로또 구입금액 / 1000 만큼 로또 생성
 - [ ] 각 로또 마다 등수 확인
