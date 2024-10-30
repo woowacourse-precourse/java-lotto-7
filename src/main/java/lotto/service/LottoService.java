@@ -51,6 +51,13 @@ public class LottoService {
         }
         return winningStats;
     }
+    public double calculateYield(Map<LottoRank, Integer> winningStats, int purchaseAmount) {
+        int totalPrize = 0;
+        for (Map.Entry<LottoRank, Integer> entry : winningStats.entrySet()) {
+            totalPrize += entry.getKey().getPrizeMoney() * entry.getValue();
+        }
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 
 
 
