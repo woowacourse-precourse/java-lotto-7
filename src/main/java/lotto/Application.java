@@ -11,7 +11,7 @@ public class Application {
 
         int price = Integer.parseInt(Console.readLine());
         if (price % 1000 != 0)
-            System.out.println("천원단위만 입력하세요");
+            System.out.println("[ERROR] 로또 금액은 천원 단위로 입력할 수 있습니다.");
 
         int total = price / 1000;
 
@@ -23,17 +23,10 @@ public class Application {
         }
 
         String input = Console.readLine();
-        List<Integer> WinningNumber = getLottoWinningNumber(input);
-        int bonusNumber = getBonusNumber();
-    }
+        List<Integer> WinningNumber = InputHandler.getLottoWinningNumber(input);
+        String input2 = Console.readLine();
 
-    private static int getBonusNumber() {
-        return Integer.parseInt(Console.readLine());
-    }
+        int bonusNumber = InputHandler.getBonusNumber(input2,WinningNumber);
 
-    private static List<Integer> getLottoWinningNumber(String input) {
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .toList();
     }
 }
