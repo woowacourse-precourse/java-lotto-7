@@ -2,10 +2,10 @@ package lotto;
 
 public class Amount {
 
-	private int amount;
+	private static int amount;
 
 	public Amount(String amount) {
-		this.amount = amountNumberformat(amount);
+		Amount.amount = amountNumberformat(amount);
 		amountCheck();
 	}
 
@@ -13,7 +13,7 @@ public class Amount {
 		try {
 			return Integer.parseInt(amount);
 		} catch (NumberFormatException ne) {
-			throw new NumberFormatException("[ERROR] 숫자만 입력해주세요.");
+			throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
 		}
 	}
 
@@ -29,7 +29,7 @@ public class Amount {
 		}
 	}
 
-	public int getAmount() {
+	public static int getAmount() {
 		return amount;
 	}
 

@@ -5,51 +5,57 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
-
+	
+	private static List<Integer> numbers;
+	
 	public String readLine() {
 		return Console.readLine();
 	}
 
-	public int amountInput() {
+	public void amountInput() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
 			String amount = readLine();
 			Amount amountCheck = new Amount(amount);
-			return amountCheck.getAmount();
 		} catch (IllegalArgumentException e) {
 			System.err.println(e);
 			amountInput();
 		}
-		return 0;
 	}
 
-	public List<Integer> winningNumber() {
+	public void winningNumber() {
 		try {
 			System.out.println();
 			System.out.println("당첨 번호를 입력해 주세요.");
 			String winning = readLine();
 			WinningNumber winningNumber = new WinningNumber(winning);
 			Lotto lotto = new Lotto(winningNumber.winningCheck());
-			return lotto.listValueCheck();
+			Input.setNumbers(lotto.listValueCheck());
 		} catch (IllegalArgumentException e) {
 			System.err.println(e);
 			winningNumber();
 		}
-		return null;
 	}
 
-	public int bonusInput(List<Integer> winningList) {
+	public void bonusInput() {
 		try {
 			System.out.println();
 			System.out.println("보너스 번호를 입력해 주세요.");
 			String bonus = readLine();
-			BonusNumber bonusList = new BonusNumber(bonus, winningList);
-			return bonusList.bounsCheck();
+			BonusNumber bonusList = new BonusNumber(bonus, numbers);
+			bonusList.bounsCheck();
 		} catch(IllegalArgumentException e) {
 			System.err.println(e);
-			bonusInput(winningList);
+			bonusInput();
 		}
-		return 0;
+	}
+
+	public static List<Integer> getNumbers() {
+		return numbers;
+	}
+
+	public static void setNumbers(List<Integer> numbers) {
+		Input.numbers = numbers;
 	}
 
 }

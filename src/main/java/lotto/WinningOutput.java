@@ -28,21 +28,11 @@ public class WinningOutput {
 	}
 
 	private Winning determineWinning(int matchCount, boolean matchBonus) {
-		if (matchCount == 6) {
-			return Winning.FIRST;
-		}
-		if (matchCount == 5 && matchBonus) {
-			return Winning.SECOND;
-		}
-		if (matchCount == 5) {
-			return Winning.THIRD;
-		}
-		if (matchCount == 4) {
-			return Winning.FOURTH;
-		}
-		if (matchCount == 3) {
-			return Winning.FIFTH;
-		}
+		if (matchCount == 6) return Winning.FIRST;
+		if (matchCount == 5 && matchBonus) return Winning.SECOND;
+		if (matchCount == 5) return Winning.THIRD;
+		if (matchCount == 4) return Winning.FOURTH;
+		if (matchCount == 3) return Winning.FIFTH;
 		return Winning.NONE;
 	}
 
