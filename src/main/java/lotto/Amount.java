@@ -17,6 +17,10 @@ public class Amount {
         }
     }
 
+    public int getAmountDivide(int amount) {
+        return this.amount / amount;
+    }
+
     public void decrease(int amount) {
         this.amount -= amount;
     }
@@ -28,5 +32,4 @@ public class Amount {
     public int getOriginalAmount() {
         return originalAmount;
     }
-
 }
