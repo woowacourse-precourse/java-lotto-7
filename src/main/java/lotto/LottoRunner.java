@@ -62,6 +62,7 @@ public class LottoRunner {
 
         Calculator calculator = new Calculator(lottos, targetLotto, bonus);
         System.out.println(calculator.getResult());
+        System.out.println(calculator.getRateOfReturn());
     }
 
     private void validate(int money) throws IllegalArgumentException {

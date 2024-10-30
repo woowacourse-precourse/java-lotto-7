@@ -17,10 +17,12 @@ public class Calculator {
         PRIZE_MONEY.put(5, 5_000L);
     }
 
+    private final int userLottoCnt;
     private int[] matchCnts;
     private final Bonus bonus;
 
     public Calculator(List<Lotto> userLottos, Lotto targetLotto, Bonus bonus) {
+        this.userLottoCnt = userLottos.size();
         this.bonus = bonus;
         initMatchCntList(userLottos, targetLotto);
     }
@@ -39,6 +41,18 @@ public class Calculator {
             }
             matchCnts[rank]++;
         }
+    }
+
+    private double calcRateOfReturn() {
+        double sum = 0;
+        for (int i = 3; i < matchCnts.length; i++) {
+            sum += (matchCnts[i] * PRIZE_MONEY.get(i));
+        }
+        return sum / (userLottoCnt * 1000) * 100;
+    }
+
+    public String getRateOfReturn() {
+        return "총 수익률은 " + calcRateOfReturn() + "%입니다.";
     }
 
     public String getResult() {
