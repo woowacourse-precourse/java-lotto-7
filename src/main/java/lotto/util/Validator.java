@@ -1,11 +1,15 @@
 package lotto.util;
 
+import java.util.ArrayList;
+
 import static lotto.constant.ErrorMessage.*;
 
 public class Validator {
 
     private static int THRESHOLD_PRICE = 1000;
     private static int WINNING_NUMBER_COUNT = 6;
+    private static int MIN_WINNING_NUMBER = 1;
+    private static int MAX_WINNING_NUMBER = 45;
 
     public boolean validatePrice(String price) {
         try{
@@ -65,6 +69,15 @@ public class Validator {
         String[] numbers = input.split(",");
         for (String number : numbers) {
             checkNumberType(number);
+            checkWinningNumberSize(number);
+        }
+    }
+
+    private void checkWinningNumberSize(String input) {
+        int number = Integer.parseInt(input);
+        if ( number < MIN_WINNING_NUMBER || number > MAX_WINNING_NUMBER) {
+            System.out.println(WINNING_NUMBER_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException();
         }
     }
 }
