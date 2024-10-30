@@ -3,7 +3,7 @@ package lotto.constant;
 public enum LottoGameRule {
     LOTTO_COST(1000);
 
-    private int value;
+    private final int value;
 
     LottoGameRule(int value) {
         this.value = value;
