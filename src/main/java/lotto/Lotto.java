@@ -17,4 +17,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    private void validNumberRange(int number){
+        if(1 > number && number < 45){
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 1~45 사이의 숫자이어야 합니다.");
+        }
+    }
 }
