@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import lotto.LottoMachine;
 import lotto.domain.LottoTickets;
+import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
 import lotto.generator.Generator;
 import lotto.generator.RandomGenerator;
@@ -27,11 +28,11 @@ public class LottoController {
         outputView.showResult(winningStatistics);
 
         Long total = 0L;
-        total += winningStatistics.getRankCount(1) * 2000000000;
-        total += winningStatistics.getRankCount(2) * 30000000;
-        total += winningStatistics.getRankCount(3) * 1500000;
-        total += winningStatistics.getRankCount(4) * 50000;
-        total += winningStatistics.getRankCount(5) * 5000;
+        total += winningStatistics.getRankCount(Rank.FIRST) * 2000000000;
+        total += winningStatistics.getRankCount(Rank.SECOND) * 30000000;
+        total += winningStatistics.getRankCount(Rank.THIRD) * 1500000;
+        total += winningStatistics.getRankCount(Rank.FOURTH) * 50000;
+        total += winningStatistics.getRankCount(Rank.FIFTH) * 5000;
 
         outputView.showRateOfReturn(total, purchaseAmount);
     }

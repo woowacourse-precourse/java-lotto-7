@@ -1,10 +1,11 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,26 +21,17 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public int getRank(Set<Integer> winningNumbers, int bonusNumber) {
-        List<Integer> list = numbers.stream()
+    public Rank getResult(Set<Integer> winningNumbers, int bonusNumber) {
+        boolean isBonusMatched = false;
+
+        List<Integer> missedNumbers = numbers.stream()
                 .filter(number -> !winningNumbers.contains(number))
                 .toList();
-        if (list.size() == 0) {
-            return 1;
+        int matchedNumberCount = LOTTO_SIZE - missedNumbers.size();
+        if (matchedNumberCount == 5 && missedNumbers.getFirst() == bonusNumber) {
+            isBonusMatched = true;
         }
-        if (list.size() == 1) {
-            if (list.get(0) == bonusNumber) {
-                return 2;
-            }
-            return 3;
-        }
-        if (list.size() == 2) {
-            return 4;
-        }
-        if (list.size() == 3) {
-            return 5;
-        }
-        return 0;
+        return Rank.getRank(matchedNumberCount, isBonusMatched);
     }
 
     @Override
@@ -48,7 +40,7 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
         }
     }

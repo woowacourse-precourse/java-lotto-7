@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class LottoTickets {
@@ -29,10 +27,8 @@ public class LottoTickets {
     public WinningStatistics getWinningStatistics(Set<Integer> winningNumbers, int bonusNumber) {
         WinningStatistics winningStatistics = WinningStatistics.init();
         tickets.forEach(lotto -> {
-            int rank = lotto.getRank(winningNumbers, bonusNumber);
-            if (rank != 0) {
-                winningStatistics.saveWinningResult(rank);
-            }
+            Rank rank = lotto.getResult(winningNumbers, bonusNumber);
+            winningStatistics.saveWinningResult(rank);
         });
         return winningStatistics;
     }
