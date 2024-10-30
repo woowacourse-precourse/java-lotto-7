@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.constants;
 
 public class LottoConfig {
 

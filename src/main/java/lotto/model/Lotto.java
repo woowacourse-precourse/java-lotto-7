@@ -1,10 +1,11 @@
 package lotto.model;
 
-import static lotto.model.LottoConfig.NUMBERS_SIZE;
-import static lotto.model.LottoConfig.NUMBER_RANGE_MAXIMUM;
-import static lotto.model.LottoConfig.NUMBER_RANGE_MINIMUM;
+import static lotto.constants.LottoConfig.NUMBERS_SIZE;
+import static lotto.constants.LottoConfig.NUMBER_RANGE_MAXIMUM;
+import static lotto.constants.LottoConfig.NUMBER_RANGE_MINIMUM;
 
 import java.util.List;
+import lotto.constants.ErrorMessage;
 
 public class Lotto {
 
