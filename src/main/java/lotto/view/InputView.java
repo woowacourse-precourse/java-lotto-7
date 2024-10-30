@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.LottoConstant;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,13 +11,6 @@ public class InputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-
-
-    private static final int LOTTO_AMOUNT = 1000;
-    private static final String WINNING_NUMBER_DELIMITER = ",";
-    private static final int WINNING_NUMBER_COUNT = 6;
-    private static final int MIN_WINNING_NUMBER = 1;
-    private static final int MAX_WINNING_NUMBER = 45;
 
 
     public int readPurchaseAmount() {
@@ -70,18 +65,21 @@ public class InputView {
     }
 
     private void validateDivisible(int amount) {
-        if (amount % LOTTO_AMOUNT != 0) {
-            throw new IllegalArgumentException(String.format("[ERROR] 구입금액은 %d원 단위여야 합니다.", LOTTO_AMOUNT));
+        int lottoAmount = LottoConstant.LOTTO_PURCHASE_AMOUNT.getIntValue();
+        if (amount % lottoAmount != 0) {
+            throw new IllegalArgumentException(String.format("[ERROR] 구입금액은 %d원 단위여야 합니다.", lottoAmount));
         }
     }
 
     private List<String> splitWinningNumbers(String input) {
-        return Arrays.stream(input.split(WINNING_NUMBER_DELIMITER)).toList();
+        String lottoDelimiter = LottoConstant.DELIMITER.getValue();
+        return Arrays.stream(input.split(lottoDelimiter)).toList();
     }
 
     private void validateWinningNumberCount(List<String> winningNumbers) {
-        if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", WINNING_NUMBER_COUNT));
+        int lottoSize = LottoConstant.LOTTO_SIZE.getIntValue();
+        if (winningNumbers.size() != lottoSize) {
+            throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", lottoSize));
         }
     }
 
@@ -92,10 +90,13 @@ public class InputView {
     }
 
     private void validateNumberInRange(Integer number, String fieldName) {
-        if (number < MIN_WINNING_NUMBER)
-            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이상이어야 합니다.", fieldName, MIN_WINNING_NUMBER));
-        if (number > MAX_WINNING_NUMBER)
-            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이하이어야 합니다.", fieldName, MAX_WINNING_NUMBER));
+        int minNumber = LottoConstant.MIN_NUMBER.getIntValue();
+        int maxNumber = LottoConstant.MAX_NUMBER.getIntValue();
+
+        if (number < minNumber)
+            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이상이어야 합니다.", fieldName, minNumber));
+        if (number > maxNumber)
+            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이하이어야 합니다.", fieldName, maxNumber));
     }
 
     private void validateDuplicates(List<Integer> numbers) {
