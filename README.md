@@ -66,13 +66,14 @@
 
 ##### 구현 클래스 목록
 - View
-  - PurchaseInput 클래스: 구매할 금액을 입력받는 클래스
-  - WinningInput 클래스: 당첨 번호를 입력받는 클래스
-  - StatisticsOutput 클래스: 당첨 통계를 출력하는 클래스
+  - PurchaseView 클래스: 구매할 금액을 입력받고 구매한 개수를 출력하는 클래스
+  - WinningView 클래스: 당첨 번호를 입력받는 클래스
+  - BonusView 클래스: 보너스 번호를 입력받는 클래스
+  - StatisticsView 클래스: 당첨 통계를 출력하는 클래스
 - Controller
   - LottoController 클래스: 전체적인 흐름을 제어하는 클래스
   - PurchaseController 클래스: 입력받은 금액을 PurchaseService클래스에 업데이트 해주는 클래스
-  - WinningController 클래스: 입력받은 당첨 번호를 WinningService클래스에 업데이트 해주고 각 로또의 당첨 순위를 StastisticsOutput클래스에 업데이트 해주는 클래스
+  - WinningController 클래스: 입력받은 당첨 번호 및 보너스 번호를 WinningService클래스에 업데이트 해주고 각 로또의 당첨 순위를 StastisticsOutput클래스에 업데이트 해주는 클래스
 - Service
   - PurchaseService 클래스: 로또를 구매하고 예외처리하는 클래스
   - WinningService 클래스: 입력받은 당첨 번호를 통해 총 당첨 통계를 내주는 클래스
