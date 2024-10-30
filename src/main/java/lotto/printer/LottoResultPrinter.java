@@ -28,11 +28,11 @@ public class LottoResultPrinter implements Printer {
     @Override
     public void printPrizeResult(PrizeNumber prizeNumber, double profit) {
         print("\n당첨 통계\n" + "---");
-        print(RankPrice.FIFTH.getViewName() + " - " + prizeNumber.getFifthPrizeLottoNumber() + "개");
-        print(RankPrice.FOURTH.getViewName() + " - " + prizeNumber.getFourthPrizeLottoNumber() + "개");
-        print(RankPrice.THIRD.getViewName() + " - " + prizeNumber.getThirdPrizeLottoNumber() + "개");
-        print(RankPrice.SECOND.getViewName() + " - " + prizeNumber.getSecondPrizeLottoNumber() + "개");
-        print(RankPrice.FIRST.getViewName() + " - " + prizeNumber.getFirstPrizeLottoNumber() + "개");
+        print(RankPrice.FIFTH.getMessage() + " - " + prizeNumber.getFifthPrizeLottoNumber() + "개");
+        print(RankPrice.FOURTH.getMessage() + " - " + prizeNumber.getFourthPrizeLottoNumber() + "개");
+        print(RankPrice.THIRD.getMessage() + " - " + prizeNumber.getThirdPrizeLottoNumber() + "개");
+        print(RankPrice.SECOND.getMessage() + " - " + prizeNumber.getSecondPrizeLottoNumber() + "개");
+        print(RankPrice.FIRST.getMessage() + " - " + prizeNumber.getFirstPrizeLottoNumber() + "개");
         print("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
 
