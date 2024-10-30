@@ -17,6 +17,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = new ArrayList<>(numbers);
+        sort();
     }
 
     private void validate(List<Integer> numbers) {
@@ -52,5 +53,13 @@ public class Lotto {
     private boolean isValidRange(List<Integer> numbers) {
         return numbers.stream()
                 .allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER);
+    }
+
+    private void sort() {
+        Collections.sort(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }
