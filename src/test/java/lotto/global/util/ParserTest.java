@@ -2,7 +2,6 @@ package lotto.global.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +19,7 @@ class ParserTest {
         String value = "3";
 
         // when
-        Integer result = Parser.toIntWinningNumber(value);
+        Integer result = Parser.parseToInt(value);
 
         // then
         assertThat(result).isEqualTo(3);
@@ -31,7 +30,7 @@ class ParserTest {
     @MethodSource("providedParseError")
     void parseError(String value) throws Exception {
         // then
-        assertThatThrownBy(() -> Parser.toIntWinningNumber(value))
+        assertThatThrownBy(() -> Parser.parseToInt(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_FORMAT.getMessage());
     }
