@@ -20,22 +20,14 @@ public class LottoResultChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<LottoRank> checkRank(final List<Lotto> lottos) {
-
-        final List<LottoRank> ranks = new ArrayList<>();
+    public LottoRank checkRank(final Lotto lotto) {
 
         final Set<Integer> winningNumbers = new HashSet<>(this.winningNumbers);
 
-        lottos.forEach(lotto -> {
-            long matchingCount = lotto.getNumbers().stream().filter(winningNumbers::contains).count();
-            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+        final long matchingCount = lotto.getNumbers().stream().filter(winningNumbers::contains).count();
+        final boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
-            final LottoRank rank = validRank(matchingCount, hasBonus);
-
-            ranks.add(rank);
-        });
-
-        return ranks;
+        return validRank(matchingCount, hasBonus);
     }
 
     private LottoRank validRank(final long matchingCount, final boolean hasBonus) {
