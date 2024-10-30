@@ -7,4 +7,14 @@ public enum LottoRank {
     FOURTH(4, 50_000, "4개 일치"),
     FIFTH(3, 5_000, "3개 일치"),
     NONE(0, 0, "꽝");
+
+    private final int matchcnt;
+    private final int amount;
+    private final String description;
+
+    LottoRank(int matchcnt, int amount, String description) {
+        this.matchcnt = matchcnt;
+        this.amount = amount;
+        this.description = description;
+    }
 }
