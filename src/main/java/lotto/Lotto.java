@@ -11,6 +11,7 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
+        countMatchingNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -35,5 +36,16 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    // 두 로또 번호 간의 일치하는 숫자 개수를 세는 메서드
+    private int countMatchingNumbers(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 }
