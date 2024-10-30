@@ -5,7 +5,6 @@ import lotto.model.PurchaseAmount;
 import lotto.utils.RandomNumberGenerator;
 
 import java.util.List;
-import java.util.random.RandomGenerator;
 
 public class LottoMachine {
     private final PurchaseAmount purchaseAmount;

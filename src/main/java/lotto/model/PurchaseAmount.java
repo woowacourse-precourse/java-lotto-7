@@ -2,9 +2,9 @@ package lotto.model;
 
 public class PurchaseAmount{
     public static final Integer LOTTE_PRICE=1000;
-    private final int money;
+    private final Integer money;
 
-    public PurchaseAmount(int money) {
+    public PurchaseAmount(Integer money) {
         validateMoney(money);
         this.money = money;
     }
