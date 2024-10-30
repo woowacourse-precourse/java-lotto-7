@@ -22,8 +22,19 @@ public class Application {
         System.out.println(lottoCount + "개를 구매했습니다.");
 
         String issuedLottoResult = issuer.getResult();
-        System.out.print(issuedLottoResult);
+        System.out.println(issuedLottoResult);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        WinningNumber winningNumber = null;
+        while (winningNumber == null) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            System.out.println();
+            try {
+                winningNumber = WinningNumber.from(input);
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
