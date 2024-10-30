@@ -1,4 +1,4 @@
-package lotto.lotodto;
+package lotto.dto;
 
 import java.util.List;
 
@@ -8,6 +8,8 @@ public class InputDTO {
     private int bonusNumber;
 
     private List<Integer> AllNumbers;
+
+    private int money;
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
@@ -31,5 +33,13 @@ public class InputDTO {
 
     public void setAllNumbers(List<Integer> allNumbers) {
         AllNumbers = allNumbers;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 }
