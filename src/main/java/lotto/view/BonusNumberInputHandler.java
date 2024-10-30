@@ -1,6 +1,12 @@
 package lotto.view;
 
 public class BonusNumberInputHandler {
+
+    public static void validateBonusNumber(String input) {
+        int bonusNumber = validateBonusNumberIsInteger(input);
+        validateBonusNumberRange(bonusNumber);
+    }
+
     public static int validateBonusNumberIsInteger(String input) {
         if (input.contains(".")) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 정수여야 합니다.");
