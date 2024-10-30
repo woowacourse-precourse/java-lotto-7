@@ -7,11 +7,12 @@ import java.util.List;
 public class Application {
     public static final int one_ticket = 1000;
     public static final int numSize = 6;
-    public static int Bonus;
+    public static int bonus;
+    public static int bonusCount = 0;
     public static List<Integer> winning_number;
     public static List<Integer>[] lotto_list;
     public static final String amount[] = {"5,000","50,000","1,500,000",
-            "30,000,000","2,000,000,000"};
+            "30,000,000","2,000,000,000","30,000,000"};
     public class print_msg{
         static final String inputMsg = "구입금액을 입력해 주세요.";
         static final String checkMsg = "개를 구매했습니다.";
@@ -19,6 +20,7 @@ public class Application {
         static final String bonus_numMsg = "보너스 번호를 입력해 주세요.";
         static final String statisticMsg = "당첨 통계";
         static String matchMsg = "%d개 일치 (%s원) - %d개\n";
+        static String bonusMsg = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
         static String errorMsg = "[ERROR] 정수 값으로 입력을 해야합니다.";
     }
 
@@ -69,11 +71,19 @@ public class Application {
             p2++;
             count++;
         }
+        if(count == 5){
+            bonusCheck(i);
+        }
         return count;
+    }
+    public void bonusCheck(int i){
+        if(lotto_list[i].contains(bonus)){
+            bonusCount++;
+        }
     }
     public void inputBonus(){
         System.out.println("\n"+print_msg.bonus_numMsg);
-        Bonus = Integer.parseInt(Console.readLine());
+        bonus = Integer.parseInt(Console.readLine());
     }
     public int[] matchCount(){
         int[] ary = new int[numSize+1];
