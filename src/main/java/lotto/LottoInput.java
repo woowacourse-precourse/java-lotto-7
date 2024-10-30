@@ -3,7 +3,9 @@ package lotto;
 import constants.Constants;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoInput {
@@ -40,6 +42,10 @@ public class LottoInput {
 
             if (mainNumbers.size() != Constants.LOTTO_MAIN_COUNT) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + Constants.LOTTO_MAIN_COUNT + "개여야 합니다.");
+            }
+            Set<Integer> uniqueNumbers = new HashSet<>(mainNumbers);
+            if (uniqueNumbers.size() != mainNumbers.size()) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
             }
             for (int number : mainNumbers) {
                 if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
