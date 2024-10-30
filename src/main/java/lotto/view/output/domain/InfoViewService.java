@@ -1,5 +1,5 @@
 package lotto.view.output.domain;
 
-public interface ViewService {
+public interface InfoViewService {
     void view();
 }
