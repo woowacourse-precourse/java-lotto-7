@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +26,18 @@ public class LottoResult {
     public Integer calculateTotalPrize() {
         return result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue().intValue())
+                .sum();
+    }
+
+    public Double calculateYield() {
+        double totalPrize = calculateTotalPrize();
+        int totalCost = getTotalTickets() * LOTTO_PRICE.getValue();
+        return totalPrize / totalCost * 100;
+    }
+
+    private Integer getTotalTickets() {
+        return result.values().stream()
+                .mapToInt(Long::intValue)
                 .sum();
     }
 }
