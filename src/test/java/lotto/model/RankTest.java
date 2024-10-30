@@ -25,16 +25,19 @@ class RankTest {
     @Test
     void 등수_찾기_테스트() {
         //given
-        int countNumber =  5;
+        int countNumber1 =  5;
+        int countNumber2 = 2;
         boolean needBonusNumber = true;
         boolean noNeedBonusNumber = false;
 
         //when
-        Rank rank1 = Rank.getRank(countNumber, needBonusNumber);
-        Rank rank2 = Rank.getRank(countNumber, noNeedBonusNumber);
+        Rank rank1 = Rank.getRank(countNumber1, needBonusNumber);
+        Rank rank2 = Rank.getRank(countNumber1, noNeedBonusNumber);
+        Rank rank3 = Rank.getRank(countNumber2, noNeedBonusNumber);
 
         //then
         assertEquals(rank1, Rank.SECOND);
         assertEquals(rank2, Rank.THIRD);
+        assertEquals(rank3, Rank.NONE);
     }
 }
