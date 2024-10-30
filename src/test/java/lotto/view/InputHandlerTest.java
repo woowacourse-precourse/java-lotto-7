@@ -39,9 +39,9 @@ public class InputHandlerTest {
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 1000000})
     void 구입_금액이_1000의_배수이면_예외_없음(int purchaseAmount) {
-        assertDoesNotThrow(() -> {
-            InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount);
-        });
+        assertDoesNotThrow(() ->
+                InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount)
+        );
     }
 
     @ParameterizedTest
@@ -50,6 +50,14 @@ public class InputHandlerTest {
         assertThatThrownBy(() -> InputHandler.validateWinningNumbersAreInteger(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호들은 정수여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3", "-1,-2,-3,-4,-5,-6", "1000"})
+    void 당첨_번호가_정수이면_예외_없음(String winningNumbers) {
+        assertDoesNotThrow(() ->
+                InputHandler.validateWinningNumbersAreInteger(winningNumbers)
+        );
     }
 
     @ParameterizedTest
@@ -70,9 +78,9 @@ public class InputHandlerTest {
     @ParameterizedTest
     @MethodSource("provideValidWinningNumbers")
     void 당첨_번호가_1에서_45_사이의_값이면_예외_없음(List<Integer> winningNumbers) {
-        assertDoesNotThrow(() -> {
-            InputHandler.validateWinningNumbersRange(winningNumbers);
-        });
+        assertDoesNotThrow(() ->
+                InputHandler.validateWinningNumbersRange(winningNumbers)
+        );
     }
 
     static Stream<List<Integer>> provideValidWinningNumbers() {
