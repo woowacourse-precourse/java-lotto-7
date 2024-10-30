@@ -16,4 +16,8 @@ public class RandomNumbers {
             randomNumbers.add(RandomNumber.generate());
         }
     }
+
+    public List<RandomNumber> randomNumbers() {
+        return randomNumbers;
+    }
 }

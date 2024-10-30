@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.util.converter.PurchaseCountConverter;
 import lotto.util.converter.WinningNumberConverter;
 import lotto.domain.generator.RandomNumbers;
@@ -19,7 +20,10 @@ public class Application {
         randomNumbers.addRandomNumber(purchaseCount);
 
         String inputWinningNumber = Console.readLine();
+        String inputBonusNumber = Console.readLine();
+
         WinningNumberConverter winningNumberConverter = new WinningNumberConverter(inputWinningNumber);
-        List<Integer> winningNumbers = winningNumberConverter.convert(); // 로또의 당첨 번호를 외부에서 가공해서 Lotto 클래스에 전달하는게 적절한가?
+        List<Integer> winningNumbers = winningNumberConverter.convertWinningNumber();
+        int bonusNumber = winningNumberConverter.convertBonusNumber(inputBonusNumber);
     }
 }
