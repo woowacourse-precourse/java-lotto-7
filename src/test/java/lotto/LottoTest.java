@@ -29,4 +29,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1,000원으로 나누어 떨어지게 입력하세요");
     }
+
+    @DisplayName("로또 구입 금액이 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 입력_금액이_숫자가_아닐경우_예외발생() {
+        assertThatThrownBy(() -> Money.validate("ㄱㄴㄷㄹ"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효한 숫자를 입력하세요");
+    }
 }
