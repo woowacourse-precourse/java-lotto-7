@@ -15,19 +15,21 @@ class PrizeTest {
     }
 
     private String expected(Prize prize) {
-        if (prize.getExplain().equals("1등")) {
+        //why can't I use switch/case?
+        //how to handle "no return statement" without "else"
+        if (prize == Prize.FIRST) {
             return "1등: 6개 번호 일치 / 2,000,000,000원";
         }
-        if (prize.getExplain().equals("2등")) {
+        if (prize == Prize.SECOND) {
             return "2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원";
         }
-        if (prize.getExplain().equals("3등")) {
+        if (prize == Prize.THIRD) {
             return "3등: 5개 번호 일치 / 1,500,000원";
         }
-        if (prize.getExplain().equals("4등")) {
+        if (prize == Prize.FOURTH) {
             return "4등: 4개 번호 일치 / 50,000원";
         }
-        if (prize.getExplain().equals("5등")) {
+        if (prize == Prize.FIFTH) {
             return "5등: 3개 번호 일치 / 5,000원";
         }
         return "";
