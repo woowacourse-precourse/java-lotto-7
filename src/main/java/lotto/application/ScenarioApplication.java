@@ -22,14 +22,28 @@ public class ScenarioApplication {
     }
 
     public void run() {
-        printer.print("구입금액을 입력해 주세요.");
-        String originPrice = reader.read();
-        PurchasePrice purchasePrice = PurchasePrice.validatePrice(originPrice);
-        LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice);
+//        printer.print("구입금액을 입력해 주세요.");
+//        String originPrice = reader.read();
+//        PurchasePrice purchasePrice = PurchasePrice.validatePrice(originPrice); //가격 관련 throw해주는 부분
+        PurchasePrice purchasePrice = doPurchase();
+        LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice.value());
         Lottos lottos = LottoApplication.buyLottos(lottoQuantity, makeNumbersStrategy, printer);
-        WinNumbers winNumbers = LottoApplication.readWinNumbers(printer, reader);
+        WinNumbers winNumbers = LottoApplication.readAllWinNumbers(printer, reader);
         PrizeNumber prizeNumber = LottoApplication.findWinningLottos(winNumbers, lottos);
         calculateResult(purchasePrice, prizeNumber);
+    }
+
+    private PurchasePrice doPurchase() {
+        printer.print("구입금액을 입력해 주세요.");
+        PurchasePrice purchasePrice;
+        String originPrice = reader.read();
+        try {
+            purchasePrice = PurchasePrice.validatePrice(originPrice); //가격 관련 throw해주는 부분
+        } catch (IllegalArgumentException e) {
+            printer.print(e.getMessage());
+            return doPurchase();
+        }
+        return purchasePrice;
     }
 
     private void calculateResult(PurchasePrice purchasePrice, PrizeNumber prizeNumber) {

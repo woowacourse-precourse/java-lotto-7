@@ -16,14 +16,31 @@ public class LottoApplication {
         return lottos;
     }
 
-    public static WinNumbers readWinNumbers(Printer printer, Reader reader) {
+    public static WinNumbers readAllWinNumbers(Printer printer, Reader reader) {
+        WinNumbers winNumbersWithoutBonusNumber = readWinNumbers(printer, reader);
+        return readBonusNumber(winNumbersWithoutBonusNumber, printer, reader);
+    }
+
+    private static WinNumbers readWinNumbers(Printer printer, Reader reader) {
         printer.print("\n당첨 번호를 입력해 주세요.");
         String originWinNumbers = reader.read();
-        WinNumbers winNumbersWithOutBonusNumber = WinNumbers.winNumbersFrom(originWinNumbers);
+        try {
+            return WinNumbers.winNumbersFrom(originWinNumbers);
+        } catch (IllegalArgumentException e) {
+            printer.print(e.getMessage());
+            return readWinNumbers(printer, reader);
+        }
+    }
 
+    private static WinNumbers readBonusNumber(WinNumbers winNumbersWithOutBonusNumber, Printer printer, Reader reader) {
         printer.print("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = reader.read();
-        return winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);
+        try {
+            return winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            printer.print(e.getMessage());
+            return readBonusNumber(winNumbersWithOutBonusNumber, printer, reader);
+        }
     }
 
     public static PrizeNumber findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
