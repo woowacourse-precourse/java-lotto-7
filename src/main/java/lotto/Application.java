@@ -39,13 +39,7 @@ public class Application {
         lotto.numbers.sort(Integer::compareTo);
         return lotto;
     }
-    public int maxNumber(){
-        int maxNum = 0;
-        for(int i = 0; i < lotto_list.length; i++){
-            maxNum = Math.max(maxNum,numberMatch(i));
-        }
-        return maxNum;
-    }
+
     public int numberMatch(int i){
         int p1 = 0;
         int p2 = 0;
@@ -67,7 +61,9 @@ public class Application {
     }
 
     public void winning_history(){
+
         for(int i = 3; i < 7; i++){
+
             System.out.printf(print_msg.matchMsg,i,amount[i-3],3);
         }
     }
