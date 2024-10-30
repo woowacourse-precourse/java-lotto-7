@@ -17,6 +17,7 @@ public class LottoMachine {
         Budget budget = inputBudget();
         int lottoQuantity = budget.getAmount() / LOTTO_PRICE;
         purchaseLotto(lottoQuantity);
+        OutputView.displayPurchasedLottoNumbers(purchasedLotto);
     }
 
     private Budget inputBudget() {
