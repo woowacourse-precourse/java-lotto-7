@@ -3,7 +3,16 @@ package lotto;
 public class LottoMachine {
 
     public void run() {
-        String inputBudget = InputView.readBudget();
+        Budget budget = inputBudget();
+    }
 
+    private Budget inputBudget() {
+        while (true) {
+            try {
+                return new Budget(InputView.readBudget());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
