@@ -11,15 +11,15 @@ class NumberTest {
     @ValueSource(ints = {-1, 0, 46})
     void 주어진_숫자가_1에서_45가_아닐_경우_예외를_던진다(int number) {
         assertThrows(IllegalArgumentException.class, () -> {
-            new Number(number);
+            new LottoNumber(number);
         });
     }
 
     @Test
     void 동등성_비교() {
-        Number number1 = new Number(1);
-        Number number2 = new Number(1);
+        LottoNumber lottoNumber1 = new LottoNumber(1);
+        LottoNumber lottoNumber2 = new LottoNumber(1);
 
-        assertEquals(number1, number2);
+        assertEquals(lottoNumber1, lottoNumber2);
     }
 }

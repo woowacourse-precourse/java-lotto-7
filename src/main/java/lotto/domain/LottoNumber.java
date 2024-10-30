@@ -2,12 +2,12 @@ package lotto.domain;
 
 import java.util.Objects;
 
-public class Number {
+public class LottoNumber {
     static final int MIN = 1;
     static final int MAX = 45;
     private final int number;
 
-    Number(int number) {
+    LottoNumber(int number) {
         validate(number);
         this.number = number;
     }
@@ -31,8 +31,8 @@ public class Number {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Number number1 = (Number) o;
-        return number == number1.number;
+        LottoNumber lottoNumber1 = (LottoNumber) o;
+        return number == lottoNumber1.number;
     }
 
     @Override
