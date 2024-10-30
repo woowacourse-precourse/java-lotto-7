@@ -19,5 +19,7 @@ public class Application {
                 .forEach(i -> lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))));
 
         lottos.forEach(Lotto::ascNumbers);
+
+        lottos.forEach(System.out::println);
     }
 }
