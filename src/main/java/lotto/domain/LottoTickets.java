@@ -20,4 +20,10 @@ public class LottoTickets {
         }
     }
 
+    public void LottoTicketsOutcome(){
+        for (Lotto lotto : this.tickets){
+            lotto.lottoNumbersPrint();
+        }
+    }
+
 }

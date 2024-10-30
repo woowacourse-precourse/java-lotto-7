@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.LottoConstant;
 
 public class Lotto {
@@ -26,5 +27,14 @@ public class Lotto {
         if (checkNumbersCount.size() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 중복값 입력은 불가능합니다.");
         }
+    }
+
+    public void lottoNumbersPrint(){
+        String result = "[" +
+                this.numbers.stream().
+                        map(String::valueOf).
+                        collect(Collectors.joining(", "))
+                + "]";
+        System.out.println(result);
     }
 }

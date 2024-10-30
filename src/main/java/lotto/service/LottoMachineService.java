@@ -1,8 +1,6 @@
 package lotto.service;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import lotto.constant.InputConstant;
 import lotto.constant.PurchaseException;
 import lotto.domain.Lotto;
 import lotto.constant.LottoConstant;
@@ -19,7 +17,6 @@ public class LottoMachineService {
         }
         return new LottoTickets(lottos);
     }
-
 
     private int calculateLottoCount(int purchaseAmount) {
         if (purchaseAmount%LottoConstant.LOTTO_PRICE != 0){
