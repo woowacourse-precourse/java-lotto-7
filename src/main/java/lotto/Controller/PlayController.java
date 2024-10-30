@@ -7,7 +7,6 @@ import lotto.Model.LottoNumbers;
 
 public class PlayController {
     private final InputController inputController;
-    private  int gameNumber;
 
 
     public PlayController() {
@@ -15,9 +14,10 @@ public class PlayController {
     }
 
     public void set() {
-        gameNumber = setGameNumber();
+        int gameNumber = setGameNumber();
         ArrayList<Integer> winningNumbers = setWinningNumbers();
         int bonusNumber = setBonusNumber();
+        List<Lotto> lottoNumberList = LottoNumbers.makeLottoList(gameNumber);
     }
 
     public int setGameNumber() {
