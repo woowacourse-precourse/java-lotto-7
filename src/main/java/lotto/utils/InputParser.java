@@ -23,7 +23,7 @@ public class InputParser {
         return purchaseAmount;
     }
 
-    public void parseWinningNumbers(String userInput) {
+    public List<Integer> parseWinningNumbers(String userInput) {
         inputValidator.validateEmpty(userInput);
         inputValidator.validateDelimiter(userInput);
 
@@ -33,6 +33,8 @@ public class InputParser {
         inputValidator.validateNumberCount(winningNumbers);
         inputValidator.validateNumberRange(winningNumbers);
         inputValidator.validateDuplicateNumber(winningNumbers);
+
+        return winningNumbers;
     }
 
     private List<String> separateInput(String userInput) {

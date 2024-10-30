@@ -24,6 +24,6 @@ public class LottoController {
         List<Lotto> lottoNumbers = lottoManager.getLottoNumbers();
         outputView.printLottoNumbers(lottoNumbers.size(), lottoManager.getLottoNumbers());
 
-        inputView.inputWinningNumber();
+        List<Integer> winningNumbers = inputView.inputWinningNumber();
     }
 }
