@@ -1,7 +1,7 @@
 package lotto.io.output;
 
-import lotto.Result;
 import lotto.domain.LottoTicket;
+import lotto.domain.Result;
 
 public interface GameOutput {
     void printPurchasedTickets(LottoTicket lottoTicket);

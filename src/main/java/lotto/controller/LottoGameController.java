@@ -3,12 +3,11 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoRank;
-import lotto.Result;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import lotto.io.input.GameInput;
 import lotto.io.output.GameOutput;
@@ -33,7 +32,8 @@ public class LottoGameController {
         WinningNumbers winningNumbers = new WinningNumbers(gameInput.getWinningNumbersInput());
         BonusNumber bonusNumber = new BonusNumber(gameInput.getBonusNumberInput(), winningNumbers.getWinningNumbers());
 
-        Result result = calculateResults(lottoTicket, winningNumbers, bonusNumber);
+        Result result = new Result();
+        result.calculateResults(lottoTicket, winningNumbers, bonusNumber); // 결과 계산 및 저장
         double yield = purchaseAmount.calculateYield(result.getTotalPrize());
         gameOutput.printResults(result, yield);
     }
@@ -46,15 +46,5 @@ public class LottoGameController {
         }
         return new LottoTicket(tickets);
     }
-
-    private Result calculateResults(LottoTicket lottoTicket, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        Result result = new Result();
-        for (Lotto lotto : lottoTicket.getTickets()) {
-            int matchCount = lotto.matchCount(winningNumbers.getWinningNumbers());
-            boolean matchBonus = lotto.containsBonus(bonusNumber);
-            LottoRank rank = LottoRank.findByMatchCountAndBonus(matchCount, matchBonus);
-            result.addMatchResult(rank);
-        }
-        return result;
-    }
 }
+

@@ -1,9 +1,9 @@
 package lotto.io.output.impl;
 
 import java.util.List;
-import lotto.LottoRank;
-import lotto.Result;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoTicket;
+import lotto.domain.Result;
 import lotto.io.output.GameOutput;
 
 public class OutputConsole implements GameOutput {
