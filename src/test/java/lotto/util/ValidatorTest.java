@@ -121,5 +121,18 @@ public class ValidatorTest {
         assertThat(result).isFalse();
     }
 
+    @Test
+    @DisplayName("정상적인 당첨 번호 입력이 주어진 경우 True를 반환한다.")
+    void 정상_당첨_번호_입력_테스트() throws Exception {
+        // given
+        String input = "1,2,3,4,5,6";
+
+        // when
+        boolean result = validator.validateWinningNumber(input);
+
+        // then
+        assertThat(result).isTrue();
+    }
+
 
 }
