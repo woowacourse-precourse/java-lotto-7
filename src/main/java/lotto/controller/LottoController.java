@@ -1,12 +1,11 @@
 package lotto.controller;
 
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.LottoMachine;
-import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningStatistics;
 import lotto.generator.Generator;
 import lotto.generator.RandomGenerator;
 import lotto.view.InputView;
@@ -19,26 +18,34 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-
         LottoTickets lottoTickets = issueLottoTickets(purchaseAmount);
 
-        outputView.showWinningNumbersInputMessage();
-        Set<Integer> winningNumbers = inputView.inputWinningNumbers();
+        Set<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
-        outputView.showBonusNumberInputMessage();
-        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
-
-        Map<Integer, Integer> rankMap = lottoTickets.matchNumbers(winningNumbers, bonusNumber);
-        outputView.showResult(rankMap);
+        WinningStatistics winningStatistics = lottoTickets.getWinningStatistics(winningNumbers, bonusNumber);
+        outputView.showResult(winningStatistics);
 
         Long total = 0L;
-        total += rankMap.get(1) * 2000000000;
-        total += rankMap.get(2) * 30000000;
-        total += rankMap.get(3) * 1500000;
-        total += rankMap.get(4) * 50000;
-        total += rankMap.get(5) * 5000;
+        total += winningStatistics.getRankCount(1) * 2000000000;
+        total += winningStatistics.getRankCount(2) * 30000000;
+        total += winningStatistics.getRankCount(3) * 1500000;
+        total += winningStatistics.getRankCount(4) * 50000;
+        total += winningStatistics.getRankCount(5) * 5000;
 
         outputView.showRateOfReturn(total, purchaseAmount);
+    }
+
+    private int getBonusNumber(Set<Integer> winningNumbers) {
+        outputView.showBonusNumberInputMessage();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+        return bonusNumber;
+    }
+
+    private Set<Integer> getWinningNumbers() {
+        outputView.showWinningNumbersInputMessage();
+        Set<Integer> winningNumbers = inputView.inputWinningNumbers();
+        return winningNumbers;
     }
 
     private LottoTickets issueLottoTickets(int purchaseAmount) {
