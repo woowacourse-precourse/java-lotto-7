@@ -11,6 +11,7 @@ public class Application {
 		LottoOutput output = new LottoOutput(amount);
 
 		List<Integer> winningList = input.winningNumber();
+		input.bonusInput(winningList);
 		
 		
 

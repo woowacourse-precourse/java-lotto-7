@@ -38,10 +38,18 @@ public class Input {
 		return null;
 	}
 
-	public void bonusInput(List<Integer> winningList) {
-		System.out.println();
-		System.out.println("보너스 번호를 입력해 주세요.");
-		String bonus = readLine();
+	public int bonusInput(List<Integer> winningList) {
+		try {
+			System.out.println();
+			System.out.println("보너스 번호를 입력해 주세요.");
+			String bonus = readLine();
+			BonusNumber bonusList = new BonusNumber(bonus, winningList);
+			return bonusList.bounsCheck();
+		} catch(IllegalArgumentException e) {
+			System.err.println(e);
+			bonusInput(winningList);
+		}
+		return 0;
 	}
 
 }
