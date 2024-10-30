@@ -1,5 +1,7 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,7 @@ public final class Lottos {
 
     public Map<String, Integer> getLottoResult(Lotto winningLotto, int bonusNumber) {
         Map<String, Integer> lottosResult = new HashMap<>(Map.of(
-                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0));
+                "1등",0,"2등",0,"3등",0,"4등",0,"5등",0 ,"꽝",0));
 
         for (Lotto lotto : lottos) {
             int matchCount = lotto.countMatchingNumbers(winningLotto);
@@ -49,4 +51,20 @@ public final class Lottos {
         return "꽝";
     }
 
+
+    public double calculateReturns(Map<String, Integer> lottoResult, int usingMoney) {
+        double value = getTotalPrizeMoney(lottoResult) / usingMoney * 100;
+
+        return Math.round(value*10)/10.0;
+    }
+    public double getTotalPrizeMoney(Map<String, Integer> lottoResult) {
+        double totalPrize = 0.0;
+        totalPrize += lottoResult.get("1등") * 2000000000;
+        totalPrize += lottoResult.get("2등") * 30000000;
+        totalPrize += lottoResult.get("3등") * 1500000;
+        totalPrize += lottoResult.get("4등") * 50000;
+        totalPrize += lottoResult.get("5등") * 5000;
+
+        return totalPrize;
+    }
 }
