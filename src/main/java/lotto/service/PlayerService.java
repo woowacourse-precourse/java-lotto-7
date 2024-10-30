@@ -10,7 +10,7 @@ public class PlayerService {
 
     private static int LOTTO_PRICE = 1000;
 
-    private Player player;
+    private final Player player;
     private final RandomNumberGenerator numberGenerator;
 
     public PlayerService(Player player) {
