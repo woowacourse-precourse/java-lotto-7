@@ -33,8 +33,8 @@ public class InputConverterTest {
     }
 
     @Test
-    void 구매액이_음수인경우_예외발생(){
+    void 구매액이_로또보다_부족한경우_예외발생(){
         assertThatThrownBy(()->inputConverter.purchaseAmount("-1000"))
-                .isInstanceOf(IllegalArgumentException.class);g
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

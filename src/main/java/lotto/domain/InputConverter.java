@@ -14,6 +14,7 @@ public class InputConverter {
 
         try{
             budget = Integer.parseInt(input);
+            isAvailableBuyLotto(budget);
             amount = divide(budget);
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 올바른 형태의 구매액을 입력해주세요.");
@@ -30,6 +31,12 @@ public class InputConverter {
         }
 
         return budget/LOTTO_PRICE;
+    }
+
+    private void isAvailableBuyLotto(int budget) throws IllegalArgumentException{
+        if(budget < LOTTO_PRICE){
+            throw new IllegalArgumentException("[ERROR] 로또구매 금액은 최소 1,000원 이상이어야 합니다.");
+        }
     }
 
     public List<Integer> winningNumbers(String input){
