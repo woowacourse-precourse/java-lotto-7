@@ -4,7 +4,7 @@ import static lotto.constants.ErrorMessage.PURCHASE_MONEY_ONLY_CAN_NUMBER;
 import static lotto.constants.ErrorMessage.PURCHASE_MONEY_ONLY_CAN_THOUSAND_UNIT;
 import static lotto.constants.Purchase.LOTTO_PRICE_PER_UNIT;
 
-public class Purchase {
+public class PurchaseValidation {
 
     public static int getThousandUnitCount(String inputPurchaseAmount) {
         int purchaseAmount = validateNumericAmount(inputPurchaseAmount);
