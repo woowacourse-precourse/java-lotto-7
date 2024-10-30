@@ -34,6 +34,15 @@ public class LottoService {
         return new BonusNumber(parseStringToInteger(inputBonusNumber));
     }
 
+    public void isBonusNumberDuplicateWithWinningLotto(Lotto winningLotto, BonusNumber bonusNumber){
+        List<Integer> numbers = winningLotto.getNumbers();
+        for (Integer number : numbers){
+            if (number.equals(bonusNumber.getBonusNumber())){
+                throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
+            }
+        }
+    }
+
     private List<Integer> convertInputToNumberList(String inputLottoNumbers) {
         String[] splitLottoNumbers = inputLottoNumbers.split(",");
         List<Integer> numbers = new ArrayList<>();

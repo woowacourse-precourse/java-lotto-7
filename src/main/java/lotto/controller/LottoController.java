@@ -21,7 +21,7 @@ public class LottoController {
         OutputView.printBoughtLotto(lottoMachine);
 
         Lotto winningLotto = initializeWinningLotto();
-        BonusNumber bonusNumber = initializeBonusNumber();
+        BonusNumber bonusNumber = initializeBonusNumber(winningLotto);
 
         LottoResultManager lottoResultManager = calculateLottoResults(winningLotto, bonusNumber, lottoMachine);
         displayResults(lottoResultManager);
@@ -47,10 +47,12 @@ public class LottoController {
         }
     }
 
-    private BonusNumber initializeBonusNumber() {
+    private BonusNumber initializeBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
-                return lottoService.createBonusNumber(InputView.inputBonusNumber());
+                BonusNumber bonusNumber = lottoService.createBonusNumber(InputView.inputBonusNumber());
+                lottoService.isBonusNumberDuplicateWithWinningLotto(winningLotto, bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
