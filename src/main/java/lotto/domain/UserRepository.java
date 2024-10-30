@@ -22,7 +22,7 @@ public class UserRepository {
     }
 
     public List<User> findAll() {
-        return users;
+        return new ArrayList<>(users);
     }
 
     public void deleteAll() {
