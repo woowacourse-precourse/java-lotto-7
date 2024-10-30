@@ -7,6 +7,7 @@ import java.util.List;
 public class Application {
     public static final int one_ticket = 1000;
     public static final int numSize = 6;
+    public static int Bonus;
     public static List<Integer> winning_number;
     public static List<Integer>[] lotto_list;
     public static final String amount[] = {"5,000","50,000","1,500,000",
@@ -30,6 +31,7 @@ public class Application {
         int num = purchase_amount();
         lotto_list = purchase_history(num);
         winning_number = inputWinningNumber().getNumbers();
+        inputBonus();
         winning_history();
 
     }
@@ -68,6 +70,10 @@ public class Application {
             count++;
         }
         return count;
+    }
+    public void inputBonus(){
+        System.out.println("\n"+print_msg.bonus_numMsg);
+        Bonus = Integer.parseInt(Console.readLine());
     }
     public int[] matchCount(){
         int[] ary = new int[numSize+1];
