@@ -38,7 +38,6 @@ public class InputView {
 
         List<String> numberTokens = splitWinningNumbers(input);
         validateWinningNumberCount(numberTokens);
-
         numberTokens.forEach(i -> validateNumber(i, fieldName));
 
         List<Integer> winningNumbers = parseToNumbers(numberTokens);
