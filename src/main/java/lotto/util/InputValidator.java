@@ -14,6 +14,7 @@ public class InputValidator {
         ValidatorException.throwIfPurchasePriceIsBlank(value);
         ValidatorException.throwIfPurchasePriceIsNotNumber(value);
         ValidatorException.throwIfPurchasePriceNotMatchToUnit(value, LOTTO_PRICE);
+        ValidatorException.throwIfPurchasePriceIsZeroOrNegative(value);
     }
 
 

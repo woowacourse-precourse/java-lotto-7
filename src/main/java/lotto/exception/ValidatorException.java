@@ -29,7 +29,7 @@ public class ValidatorException {
 
     public static void throwIfPurchasePriceIsZeroOrNegative(String value) {
         int purchaseAmount = Integer.parseInt(value);
-        if (purchaseAmount == 0) {
+        if (purchaseAmount <= 0) {
             throw new IllegalArgumentException(
                     ErrorCause.PURCHASE_PRICE_CANNOT_BE_ZERO_OR_NEGATIVE.getMessage());
         }
