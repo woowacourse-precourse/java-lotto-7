@@ -1,6 +1,6 @@
 package lotto.view;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 
 import lotto.model.Lotto;
@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printLottos(int countLotto, ArrayList<Lotto> lottos) {
+    public void printLottos(int countLotto, List<Lotto> lottos) {
         System.out.println();
         System.out.println(countLotto + "개를 구매했습니다.");
         
@@ -30,7 +30,7 @@ public class OutputView {
         }
     }
     
-    private void printLottoNumbers(ArrayList<Integer> numbers) {
+    private void printLottoNumbers(List<Integer> numbers) {
         StringBuilder lottoNumbers = new StringBuilder("[");
         
         for (int i = 0; i < numbers.size(); i++) {

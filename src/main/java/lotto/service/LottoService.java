@@ -1,7 +1,7 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import lotto.util.Rank;
 
@@ -19,7 +19,7 @@ public class LottoService {
         return purchaseAmount/1000;
     }
 
-    public int countMatchNumber(int[] winningNums,ArrayList<Integer> lottoNums){
+    public int countMatchNumber(int[] winningNums,List<Integer> lottoNums){
         int count=0;
         for (int winningNum : winningNums) {
             if (lottoNums.contains(winningNum)) {
@@ -29,7 +29,7 @@ public class LottoService {
         return count;
     }
 
-    public boolean checkBonusNumber(int bonusNumber,ArrayList<Integer> lottoNums){
+    public boolean checkBonusNumber(int bonusNumber,List<Integer> lottoNums){
         if(lottoNums.contains(bonusNumber)){
             return true;
         }

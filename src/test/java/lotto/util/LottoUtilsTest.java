@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +53,7 @@ public class LottoUtilsTest {
     @Test
     void 로또가_잘_생성되는지(){
         Lotto lotto = LottoUtils.createLotto();
-        ArrayList<Integer> numbers = lotto.getLotto();
+        List<Integer> numbers = lotto.getLotto();
         
         assertEquals(6, lotto.getLotto().size());
                 for (int number : numbers) {

@@ -1,16 +1,16 @@
 package lotto.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Lotto {
 
-    private ArrayList<Integer> lotto;
+    private List<Integer> lotto;
 
-    public Lotto(ArrayList<Integer> lotto) {
+    public Lotto(List<Integer> lotto) {
         this.lotto = lotto;
     }
 
-    public ArrayList<Integer> getLotto() {
+    public List<Integer> getLotto() {
         return lotto;
     }
 }

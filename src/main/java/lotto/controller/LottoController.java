@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import lotto.model.Lotto;
 import lotto.service.LottoService;
@@ -25,7 +26,7 @@ public class LottoController {
     public void run() {
         int puchaseAmount = getPuchaseAmount();
         int countLotto = getCountLotto(puchaseAmount);
-        ArrayList<Lotto> lottos = getLottos(countLotto);
+        List<Lotto> lottos = getLottos(countLotto);
         outputView.printLottos(countLotto,lottos);
 
         int[] winningNums = getWinningNums();
@@ -35,8 +36,8 @@ public class LottoController {
         outputResult(puchaseAmount);
     }
 
-    private ArrayList<Lotto> getLottos(int countLotto) {
-        ArrayList<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> getLottos(int countLotto) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < countLotto; i++) {
             lottos.add(LottoUtils.createLotto());
         }
@@ -69,9 +70,9 @@ public class LottoController {
         return inputView.inputBonusNumber();
     }
 
-    public void processLotto(ArrayList<Lotto> lottos, int[] winningNums, int bonusNumber){
+    public void processLotto(List<Lotto> lottos, int[] winningNums, int bonusNumber){
         for (Lotto lotto : lottos) {
-            ArrayList<Integer> lottoNums = lotto.getLotto();
+            List<Integer> lottoNums = lotto.getLotto();
             int count = lottoService.countMatchNumber(winningNums, lottoNums);
             boolean checkBonus = lottoService.checkBonusNumber(bonusNumber, lottoNums);
             Rank rank = Rank.fromMatchCount(count, checkBonus);

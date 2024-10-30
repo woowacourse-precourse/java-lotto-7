@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
@@ -14,14 +15,7 @@ public class LottoUtils {
     private static final int NUMBERS_COUNT = 6; 
 
     public static Lotto createLotto() {
-        ArrayList<Integer> lotto = new ArrayList<>();
-
-        while (lotto.size() < NUMBERS_COUNT) {
-            int temp = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
-            if (!lotto.contains(temp)) {
-                lotto.add(temp);
-            }
-        }
+        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER,NUMBERS_COUNT);
 
         Collections.sort(lotto);
     
