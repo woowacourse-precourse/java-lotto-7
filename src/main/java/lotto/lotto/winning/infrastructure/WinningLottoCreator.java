@@ -1,6 +1,6 @@
-package lotto.lotto.domain.winning.infrastructure;
+package lotto.lotto.winning.infrastructure;
 
-import lotto.lotto.domain.winning.domain.WinningLotto;
+import lotto.lotto.winning.domain.WinningLotto;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 
 public class WinningLottoCreator {
