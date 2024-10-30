@@ -14,44 +14,100 @@ public class Application {
     public static void main(String[] args) {
         // 구입 금액 입력 받기
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        int purchaseAmount = Integer.parseInt(input);
+        String inputAmount = Console.readLine();
+        int purchaseAmount;
+        try {
+            purchaseAmount = Integer.parseInt(inputAmount);
+            if (purchaseAmount % 1000 != 0) {
+                // 예외 발생: 구입 금액은 1,000원 단위여야 합니다.
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            // 예외 발생: 구입 금액은 숫자여야 합니다.
+            System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
-        // 구입 횟수 만큼 로또 구매
-        int count = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / 1000;
+
+        // 로또 번호 생성 및 출력
         System.out.println();
-        System.out.println(count + "개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
-            System.out.println(lotto.getNumbers());
+            try {
+                Lotto lotto = new Lotto(numbers);
+                lottos.add(lotto);
+                System.out.println(lotto.getNumbers());
+            } catch (IllegalArgumentException e) {
+                // 예외 발생: 로또 번호 유효성 검사 실패
+                System.out.println(e.getMessage());
+                return;
+            }
         }
 
         // 당첨 번호 입력 받기
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input2 = Console.readLine();
-        String[] inputs = input.split(",");
-        Set<Integer> winningNumbers = new HashSet<>(); // 중복 없게 하려고 Set 사용
-        for (String number : inputs) {
-            int num = Integer.parseInt(number.trim());
-            if (num < 1 || num > 45) {
-                // 예외 던지자
+        String inputWinningNumbers = Console.readLine();
+        String[] splitWinningNumbers = inputWinningNumbers.split(",");
+        if (splitWinningNumbers.length != 6) {
+            // 예외 발생: 당첨 번호는 6개여야 합니다.
+            System.out.println("[ERROR] 당첨 번호는 6개여야 합니다.");
+            return;
+        }
+        Set<Integer> winningNumbers = new HashSet<>();
+        try {
+            for (String numStr : splitWinningNumbers) {
+                int num = Integer.parseInt(numStr.trim());
+                if (num < 1 || num > 45) {
+                    // 예외 발생: 당첨 번호는 1부터 45 사이의 숫자여야 합니다.
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                if (!winningNumbers.add(num)) {
+                    // 예외 발생: 당첨 번호는 중복되지 않아야 합니다.
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
+                }
             }
-            winningNumbers.add(num);
+        } catch (NumberFormatException e) {
+            // 예외 발생: 당첨 번호는 숫자여야 합니다.
+            System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
         }
 
         // 보너스 번호 입력 받기
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        String input3 = Console.readLine();
-        int bonusNumber = Integer.parseInt(input.trim());
+        String inputBonusNumber = Console.readLine();
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(inputBonusNumber.trim());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                // 예외 발생: 보너스 번호는 1부터 45 사이의 숫자여야 합니다.
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            if (winningNumbers.contains(bonusNumber)) {
+                // 예외 발생: 보너스 번호는 당첨 번호와 중복될 수 없습니다.
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+        } catch (NumberFormatException e) {
+            // 예외 발생: 보너스 번호는 숫자여야 합니다.
+            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
-        // 당첨, 보너스 번호와 구입한 로또 번호 비교 (당첨 여부 확인)
+        // 당첨 결과 계산
         Map<String, Integer> results = new LinkedHashMap<>();
         results.put("3개 일치 (5,000원)", 0);
         results.put("4개 일치 (50,000원)", 0);
@@ -88,7 +144,6 @@ public class Application {
                 results.put("3개 일치 (5,000원)", results.get("3개 일치 (5,000원)") + 1);
                 continue;
             }
-            // 2개 이하 일치 시 아무 처리하지 않음
         }
 
         // 당첨 통계 출력
@@ -98,15 +153,14 @@ public class Application {
         long totalPrize = 0;
         for (Map.Entry<String, Integer> entry : results.entrySet()) {
             String key = entry.getKey();
-            int count3 = entry.getValue();
-            System.out.println(key + " - " + count3 + "개");
+            int count = entry.getValue();
+            System.out.println(key + " - " + count + "개");
             long prize = Long.parseLong(key.replaceAll("[^0-9]", ""));
-            totalPrize += prize * count3;
+            totalPrize += prize * count;
         }
 
         // 수익률 계산 및 출력
         double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
         System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
-
     }
 }
