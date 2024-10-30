@@ -18,6 +18,10 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean isContainNumber(int number) {
+        return numbers.contains(number);
+    }
+
 
 
 
