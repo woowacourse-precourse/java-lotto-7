@@ -40,8 +40,13 @@ public enum Rank {
      * @return
      */
     public static Rank findRank(int matchCount, boolean hasBonus){
+        if(SECOND.matchCount == matchCount){
+            if(SECOND.hasBonus == hasBonus){
+                return SECOND;
+            }
+        }
         for(Rank rank : values()){
-            if(rank.matchCount == matchCount && rank.hasBonus == hasBonus){
+            if (rank.matchCount == matchCount) {
                 return rank;
             }
         }
