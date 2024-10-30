@@ -4,6 +4,8 @@ import static lotto.model.LottoConstants.LOTTO_PRICE;
 import static lotto.model.LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT;
 import static lotto.model.LottoConstants.MIN_LOTTO_PURCHASE_AMOUNT;
 
+import lotto.exception.LottoValidationError;
+
 public class PurchaseAmount {
 
     private final int amount;
@@ -25,19 +27,19 @@ public class PurchaseAmount {
 
     private void checkDivisibilityByUnit(final int amount) {
         if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            LottoValidationError.INVALID_PURCHASE_AMOUNT_UNIT.throwException(LOTTO_PRICE);
         }
     }
 
     private void checkMinimumOfAmount(final int amount) {
         if (amount < MIN_LOTTO_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 최소 1,000원 이상이여야 합니다.");
+            LottoValidationError.PURCHASE_AMOUNT_BELOW_MINIMUM.throwException(MIN_LOTTO_PURCHASE_AMOUNT);
         }
     }
 
     private void checkMaximumOfAmount(final int amount) {
         if (amount > MAX_LOTTO_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 최대 100,000원 이하여야 합니다.");
+            LottoValidationError.PURCHASE_AMOUNT_ABOVE_MAXIMUM.throwException(MAX_LOTTO_PURCHASE_AMOUNT);
         }
     }
 }
