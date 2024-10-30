@@ -42,4 +42,14 @@ public class WinningLotto {
         if (bonusNumber < 1 || bonusNumber > 45) throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
         if (numbers.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
+
+    public LottoResult match(Lotto lotto) {
+        int bonusNumber = this.bonusNumber.orElseThrow(() -> new IllegalStateException("[ERROR] 보너스 번호가 입력되지 않았습니다."));
+        int matchCount = lotto.getNumbers().stream()
+                .filter(numbers::contains)
+                .toList()
+                .size();
+        boolean isMatchBonus = lotto.getNumbers().contains(bonusNumber);
+        return LottoResult.of(matchCount, isMatchBonus);
+    }
 }

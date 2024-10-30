@@ -16,6 +16,7 @@ public class Application {
         WinningLotto tempWinningLotto = repeatUntilValid(Application::readWinningNumbers);
         WinningLotto winningLotto = repeatUntilValid(() -> readBonusNumber(tempWinningLotto));
         System.out.println(winningLotto);
+        List<LottoResult> lottoResults = getLottoResults(winningLotto, lottoList);
     }
 
     private static <R> R repeatUntilValid(Supplier<R> function) {
@@ -72,5 +73,11 @@ public class Application {
         int bonusNumber = parseIntWithIllegalArgumentException(bonusNumberString, "[ERROR] 보너스 번호는 숫자여야 합니다.");
         winningLotto.setBonusNumber(bonusNumber);
         return winningLotto;
+    }
+
+    private static List<LottoResult> getLottoResults(WinningLotto winningLotto, List<Lotto> lottoList) {
+        return lottoList.stream()
+                .map(winningLotto::match)
+                .toList();
     }
 }

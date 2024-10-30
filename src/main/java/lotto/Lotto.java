@@ -25,6 +25,10 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static Lotto create() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
                 .stream()
