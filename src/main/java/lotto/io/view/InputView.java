@@ -67,9 +67,24 @@ public class InputView {
 
     public BonusNumber getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_GUIDE_MESSAGE);
-        String input = Console.readLine();
+        BonusNumber bonusNumber;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validateBonusNumber(input);
+                int number = Integer.parseInt(input);
+                bonusNumber = new BonusNumber(number);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
 
-        return new BonusNumber(input);
+    private void validateBonusNumber(String input) {
+        validator.validateWhiteSpace(input);
+        validator.validateNonDigitInput(input);
     }
 
     private List<Integer> convertStringToList(String input) {
