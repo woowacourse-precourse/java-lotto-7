@@ -17,7 +17,7 @@ public class Application {
         static final String winning_numMsg = "당첨 번호를 입력해 주세요.";
         static final String bonus_numMsg = "보너스 번호를 입력해 주세요.";
         static final String statisticMsg = "당첨 통계";
-        static String matchMsg = "%d개 일치 (%s원) - %d개";
+        static String matchMsg = "%d개 일치 (%s원) - %d개\n";
         static String errorMsg = "[ERROR] 정수 값으로 입력을 해야합니다.";
     }
 
@@ -28,8 +28,8 @@ public class Application {
     }
     public void logic(){
         int num = purchase_amount();
-        purchase_history(num);
-        inputWinningNumber();
+        lotto_list = purchase_history(num);
+        winning_number = inputWinningNumber().getNumbers();
         winning_history();
 
     }
@@ -42,6 +42,7 @@ public class Application {
                 lotto.numbers.add(Integer.parseInt(winning[i]));
             }catch (IllegalArgumentException e){
                 System.out.println(print_msg.errorMsg);
+                throw e;
             }
         }
         lotto.validate(lotto.numbers);
