@@ -14,19 +14,19 @@ public class LottoPurchaseAmountValidator {
             throw new IllegalArgumentException(ErrorConstant.ERROR_MARK + ErrorConstant.NOT_MULTIPLE_OF_THOUSAND);
     }
 
-    private static boolean isEntered(String s) {
+    private boolean isEntered(String s) {
         return !s.isEmpty();
     }
 
-    private static boolean isNumber(String s) {
+    private boolean isNumber(String s) {
         return s.matches("^[0-9]+$");
     }
 
-    private static boolean isPositive(String s) {
+    private boolean isPositive(String s) {
         return Integer.parseInt(s) > 0;
     }
 
-    private static boolean isMultipleOfThousand(String s) {
+    private boolean isMultipleOfThousand(String s) {
         return Integer.parseInt(s) % 1000 == 0;
     }
 }
