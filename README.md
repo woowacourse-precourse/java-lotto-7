@@ -57,16 +57,17 @@ NullPointerException()
 
 LottoNumber 번호 자체에 대한 클래스
 
-- [ ]  1-45 범위 제한
+LottoNumber 번호 자체에 대한 클래스
+
+- [x]  1-45 범위 제한
 
 Lotto factory 만들어야 할듯
 
 Lotto 1급 컬렉션
 
-- [ ]  번호를 뽑아서 list를 만드는 로직. > 정적 펙토리? 외부 펙토리?
-- [ ]  중복 체크 로직 set 구현
-- [ ]  순서대로 출력 로직?
+- [ ]  생성에 대한 부분을 Random 매서드에서 찿음
 - [ ]  제한 상수화
+- [x]  validation에 길이 뿐만 아니라 그 중복 검사
 
 Lottos 만들 것
 
@@ -74,4 +75,6 @@ Lottos 만들 것
 
 enum을 통한 에러 코드 관리
 
-- [ ]  로또 번호가 범위를 벗어난 경우
+- [x]  에러를 인터페이스화
+- [x]  로또 번호가 범위를 벗어난 경우 → RangeError
+- [x]  로또 길이가 범위를 벗어난 경우 → RangeError
