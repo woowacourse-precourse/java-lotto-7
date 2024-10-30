@@ -2,6 +2,7 @@ package lotto;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoGame {
@@ -15,6 +16,8 @@ public class LottoGame {
     public void run() {
         List<Lotto> lottos = purchaseLotto();
         printPurchaseBreakdown(lottos);
+
+        List<Integer> winnerNumbers = inputWinnerNumbers();
     }
 
     private List<Lotto> purchaseLotto() {
@@ -32,5 +35,17 @@ public class LottoGame {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+    }
+
+    private List<Integer> inputWinnerNumbers() {
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String numberMass = Console.readLine();
+        String[] rawNumbers = numberMass.split(",");
+
+        return Arrays.stream(rawNumbers)
+                .map(String::strip)
+                .map(Integer::parseInt)
+                .toList();
     }
 }
