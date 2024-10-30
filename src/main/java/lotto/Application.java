@@ -15,5 +15,7 @@ public class Application {
 
         LottoOutput lottoOutput = new LottoOutput();
         lottoOutput.printLottos(lottos, count);
+
+        Lotto winningLotto = lottoInput.mainNumbersInput();
     }
 }

@@ -2,6 +2,9 @@ package lotto;
 
 import constants.Constants;
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoInput {
     public int purchaseInput() {
@@ -22,6 +25,35 @@ public class LottoInput {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return purchaseInput();
+        }
+    }
+
+    public Lotto mainNumbersInput() {
+        System.out.println("당첨 번호를 입력해 주세요 (예: 1,2,3,4,5,6):");
+
+        try {
+            String input = Console.readLine();
+            List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+
+            if (winningNumbers.size() != Constants.LOTTO_MAIN_COUNT) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + Constants.LOTTO_MAIN_COUNT + "개여야 합니다.");
+            }
+            for (int number : winningNumbers) {
+                if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
+                    throw new IllegalArgumentException("[ERROR] 유효한 범위 내의 로또 번호를 입력하여야 합니다.");
+                }
+            }
+
+            return new Lotto(winningNumbers);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자만 입력해 주세요.");
+            return mainNumbersInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return mainNumbersInput();
         }
     }
 }
