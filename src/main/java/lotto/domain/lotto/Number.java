@@ -1,11 +1,11 @@
 package lotto.domain.lotto;
 
+import lotto.domain.constants.LottoRule;
 import lotto.domain.errors.RangeError;
 
-public class Number {
+import static lotto.domain.constants.LottoRule.MAXIMUM_NUMBER_RANGE;
 
-    public static final int MAXIMUM_NUMBER_RANGE = 45;
-    public static final int MINIMUM_NUMBER_RANGE = 1;
+public class Number {
 
     private final int number;
 
@@ -15,7 +15,7 @@ public class Number {
     }
 
     private static void validate(int lottoNumber) {
-        if (lottoNumber < MINIMUM_NUMBER_RANGE || lottoNumber > MAXIMUM_NUMBER_RANGE) {
+        if (lottoNumber < LottoRule.MINIMUM_NUMBER_RANGE.getValue() || lottoNumber > MAXIMUM_NUMBER_RANGE.getValue()) {
             System.out.println(RangeError.NUMBER.getMessage());
             throw new IllegalArgumentException(RangeError.NUMBER.getMessage());
         }

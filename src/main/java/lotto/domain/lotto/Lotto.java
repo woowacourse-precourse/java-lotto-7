@@ -1,13 +1,12 @@
 package lotto.domain.lotto;
 
+import lotto.domain.constants.LottoRule;
 import lotto.domain.errors.RangeError;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-
-    public static final int LOTTO_COMBINATION_LENGTH = 6;
 
     private final List<Number> numbers;
 
@@ -20,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_COMBINATION_LENGTH) {
+        if (numbers.size() != LottoRule.COMBINATION_LENGTH.getValue()) {
             System.out.println(RangeError.LOTTO.getMessage());
             throw new IllegalArgumentException();
         }
