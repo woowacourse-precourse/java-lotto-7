@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.factory.RandomLottoMachine;
+import lotto.domain.lottos.Lotto;
 import lotto.domain.number.NumbersMaker;
 import lotto.domain.number.RandomLottoNumberMaker;
 import org.junit.jupiter.api.Test;

@@ -4,7 +4,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.lottos.Lotto;
+import lotto.domain.lottos.user.BonusLotto;
+import lotto.domain.lottos.user.UserLotto;
 import org.junit.jupiter.api.Test;
 
 class UserLottoTest {

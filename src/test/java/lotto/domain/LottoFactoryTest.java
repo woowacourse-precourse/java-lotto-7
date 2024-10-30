@@ -2,16 +2,16 @@ package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-import lotto.domain.factory.LottoFactory;
+import lotto.domain.factory.UserMainLottoFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoFactoryTest {
-    private LottoFactory lottoFactory;
+    private UserMainLottoFactory lottoFactory;
 
     @BeforeEach
     void setUp() {
-        lottoFactory = new LottoFactory();
+        lottoFactory = new UserMainLottoFactory();
     }
 
     @Test

@@ -1,10 +1,10 @@
 package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.lottos.Lotto;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lotto.domain.Lotto;
+import lotto.domain.lottos.Lotto;
 
 /**
  * parse
@@ -12,7 +12,7 @@ import lotto.domain.Lotto;
  *  - ,콤마 이외에 다른 특수문자가 존재하는가?
  *   - 숫자인가?
  */
-public class LottoFactory {
+public class UserMainLottoFactory {
 
     public Lotto make(String input){
         String[] separatedInputValues = input.split(",");

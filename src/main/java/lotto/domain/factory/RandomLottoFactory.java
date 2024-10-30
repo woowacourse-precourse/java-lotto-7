@@ -1,6 +1,6 @@
 package lotto.domain.factory;
 
-import lotto.domain.RandomLottos;
+import lotto.domain.lottos.RandomLottos;
 
 public class RandomLottoFactory {
     private final RandomLottoMachine lottoMachine;
