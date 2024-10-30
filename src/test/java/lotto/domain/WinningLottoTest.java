@@ -45,6 +45,44 @@ class WinningLottoTest {
     }
 
     @Test
+    void 로또_번호에_보너스_번호가_포함_되어있는_경우() {
+        // given
+        List<Integer> lottoNumbers = List.of(4, 5, 6, 7, 8, 9);
+        List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusLottoNumber = 7;
+
+        Lotto lotto = new Lotto(lottoNumbers);
+        Lotto winningLotto = new Lotto(winningLottoNumbers);
+        LottoNumber bonusNumber = new LottoNumber(bonusLottoNumber);
+
+        // when
+        WinningLotto winningLottoResult = new WinningLotto(winningLotto, bonusNumber);
+        Boolean isBonusMatch = winningLottoResult.isBonusMatch(lotto);
+
+        // then
+        assertThat(isBonusMatch).isTrue();
+    }
+
+    @Test
+    void 로또_번호에_보너스_번호가_포함_되어있지_않는_경우() {
+        // given
+        List<Integer> lottoNumbers = List.of(4, 5, 6, 7, 8, 9);
+        List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusLottoNumber = 10;
+
+        Lotto lotto = new Lotto(lottoNumbers);
+        Lotto winningLotto = new Lotto(winningLottoNumbers);
+        LottoNumber bonusNumber = new LottoNumber(bonusLottoNumber);
+
+        // when
+        WinningLotto winningLottoResult = new WinningLotto(winningLotto, bonusNumber);
+        Boolean isBonusMatch = winningLottoResult.isBonusMatch(lotto);
+
+        // then
+        assertThat(isBonusMatch).isFalse();
+    }
+
+    @Test
     void 예외_당첨_로또_번호와_보너스_번호가_중복되는_경우() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
