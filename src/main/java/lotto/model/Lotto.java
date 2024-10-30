@@ -26,13 +26,8 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-
     @Override
     public String toString() {
-        return getSortedNumbers();
-    }
-
-    private String getSortedNumbers() {
         List<Integer> copyNumbers = new ArrayList<>(numbers);
         Collections.sort(copyNumbers);
         return copyNumbers.toString();
@@ -50,8 +45,11 @@ public class Lotto {
             .count();
     }
 
-    public boolean hasBonusNumber(int bonusNumber) {
-        return numbers.stream()
-            .anyMatch(number -> number == bonusNumber);
+    public boolean needBonusNumber(int countNumber, int bonusNumber) {
+        if (countNumber == 5) {
+            return numbers.stream()
+                .anyMatch(number -> number == bonusNumber);
+        }
+        return false;
     }
 }
