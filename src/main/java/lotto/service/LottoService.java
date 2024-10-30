@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Bonus;
 import lotto.domain.lotto.Lotto;
 
 import java.util.List;
@@ -8,11 +8,11 @@ import java.util.List;
 public class LottoService {
 
     private final Lotto lotto;
-    private final BonusNumber bonusNumber;
+    private final Bonus bonus;
 
-    public LottoService(Lotto lotto, BonusNumber bonusNumber) {
+    public LottoService(Lotto lotto, Bonus bonus) {
         this.lotto = lotto;
-        this.bonusNumber = bonusNumber;
+        this.bonus = bonus;
     }
 
     public void addWinningNumbers(List<Integer> winningNumbers) {
@@ -20,6 +20,6 @@ public class LottoService {
     }
 
     public void updateBonusNumber(int number) {
-        bonusNumber.updateNumber(number);
+        bonus.updateNumber(number);
     }
 }

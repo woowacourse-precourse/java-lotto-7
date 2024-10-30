@@ -6,13 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BonusNumberTest {
+public class BonusTest {
 
-    private BonusNumber bonusNumber;
+    private Bonus bonus;
 
     @BeforeEach
     public void setUp() {
-        bonusNumber = new BonusNumber();
+        bonus = new Bonus();
     }
 
     @Test
@@ -22,9 +22,9 @@ public class BonusNumberTest {
         int number = 7;
 
         // when
-        bonusNumber.updateNumber(number);
+        bonus.updateNumber(number);
 
         // then
-        assertThat(bonusNumber.getNumber()).isEqualTo(number);
+        assertThat(bonus.getNumber()).isEqualTo(number);
     }
 }

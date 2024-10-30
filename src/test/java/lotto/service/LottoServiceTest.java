@@ -1,8 +1,7 @@
 package lotto.service;
 
-import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Bonus;
 import lotto.domain.lotto.Lotto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,13 +14,13 @@ public class LottoServiceTest {
 
     private LottoService lottoService;
     private Lotto lotto;
-    private BonusNumber bonusNumber;
+    private Bonus bonus;
 
     @BeforeEach
     public void setUp() {
         this.lotto = new Lotto();
-        this.bonusNumber = new BonusNumber();
-        this.lottoService = new LottoService(lotto, bonusNumber);
+        this.bonus = new Bonus();
+        this.lottoService = new LottoService(lotto, bonus);
     }
 
     @Test
@@ -47,6 +46,6 @@ public class LottoServiceTest {
         lottoService.updateBonusNumber(number);
 
         // then
-        assertThat(bonusNumber.getNumber()).isEqualTo(number);
+        assertThat(bonus.getNumber()).isEqualTo(number);
     }
 }
