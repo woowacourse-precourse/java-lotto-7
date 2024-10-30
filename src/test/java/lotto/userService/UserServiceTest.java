@@ -47,6 +47,27 @@ public class UserServiceTest extends NsTest {
         assertThat(user.getPurchasePrice()).isEqualTo(purchasePrice);
     }
 
+    @Test
+    void 사용자_조회_테스트() {
+        // given
+        int purchasePrice = 1000;
+        int firstUserId = userService.save(purchasePrice);
+        int secondUserId = userService.save(purchasePrice);
+
+        // when
+        User findFirstUser = userService.findById(firstUserId);
+        User firstUser = userRepository.findAll().get(firstUserId);
+
+        User secondFirstUser = userService.findById(secondUserId);
+        User secondUser = userRepository.findAll().get(secondUserId);
+
+
+
+        // then
+        assertThat(findFirstUser).isEqualTo(firstUser);
+        assertThat(secondFirstUser).isEqualTo(secondUser);
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

@@ -23,9 +23,15 @@ public class UserService {
         return instance;
     }
 
-    public void save(int purchasePrice) {
+    public int save(int purchasePrice) {
         User user = new User(purchasePrice);
         userRepository.save(user);
+
+        return user.getId();
+    }
+
+    public User findById(int id) {
+        return userRepository.findById(id);
     }
 
     public int getPurchasePrice(int accessCount) {

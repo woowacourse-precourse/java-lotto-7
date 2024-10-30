@@ -25,6 +25,10 @@ public class UserRepository {
         return new ArrayList<>(users);
     }
 
+    public User findById(int id) {
+        return users.get(id);
+    }
+
     public void deleteAll() {
         users.clear();
     }

@@ -14,8 +14,8 @@ public class UserController {
         return instance;
     }
 
-    public void getPurchasePrice(int accessCount) {
+    public int getPurchasePrice(int accessCount) {
         int purchasePrice = userService.getPurchasePrice(accessCount);
-        userService.save(purchasePrice);
+        return userService.save(purchasePrice);
     }
 }
