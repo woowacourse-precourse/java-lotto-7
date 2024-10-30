@@ -17,11 +17,12 @@ public class Controller {
         lottoStore = new LottoStore();
     }
 
-    public void run () {
+    public void run() {
         printHandler.PrintBuyMoneyAmount();
         inputHandler.setInputMoney();
         int money = inputHandler.getInputMoney();
         lottoStore.calculateNumberOfPurchases(money);
-
+        int lottoNumberOfPurchases = lottoStore.getLottoNumberOfPurchases();
+        printHandler.PrintBuyLottoNumbersOfPurchases(lottoNumberOfPurchases);
     }
 }
