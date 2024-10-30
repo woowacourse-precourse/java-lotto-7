@@ -43,7 +43,8 @@ public class Application {
     }
     public void logic(){
         int num = purchase_amount();
-        lotto_list = purchase_history(num);
+        initialLottoList(num);
+        purchase_history(num);
         winning_number = inputWinningNumber().getNumbers();
         inputBonus();
         matchCount();
@@ -51,6 +52,7 @@ public class Application {
         revenuePrint(num);
 
     }
+
     public Lotto inputWinningNumber(){
         Lotto lotto = new Lotto(new ArrayList<>());
         System.out.println("\n"+PrintMsg.WINNING_NUM_MSG.getMessage());
@@ -62,6 +64,7 @@ public class Application {
         lotto.numbers.sort(Integer::compareTo);
         return lotto;
     }
+
     public int numberMatch(int i,int p1,int p2,int count){
         while(p1 < numSize && p2 < numSize){
             int result = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
@@ -85,10 +88,12 @@ public class Application {
             bonusCount++;
         }
     }
+
     public void inputBonus(){
         System.out.println("\n"+PrintMsg.BONUS_NUM_MSG.getMessage());
         bonus = validate_parsInt(Console.readLine());
     }
+
     public void matchCount(){
         amoutAry = new int[numSize+1];
         for(int i = 0; i < lotto_list.length; i++){
@@ -99,6 +104,7 @@ public class Application {
             amoutAry[num]++;
         }
     }
+
     public void winning_history(){
         System.out.println("\n"+PrintMsg.STATISTIC_MSG.getMessage());
         System.out.println("---");
@@ -109,9 +115,12 @@ public class Application {
             }
         }
     }
-    public List<Integer>[] purchase_history(int num){
+    public void initialLottoList(int num) {
+        lotto_list = initialLottoArray(num);
+    }
+
+    public void purchase_history(int num){
         System.out.println("\n"+num+PrintMsg.CHECK_MSG.getMessage());
-        List<Integer> lotto_list [] = initialLottoArray(num);
         for(int i = 0; i < num; i++){
             Lotto lotto = new Lotto(new ArrayList<>());
             lotto_list[i] = lotto.random_range();
@@ -119,8 +128,8 @@ public class Application {
             lotto_list[i].sort(Integer::compare);
             System.out.println(lotto_list[i]);
         }
-        return lotto_list;
     }
+
     public List[] initialLottoArray(int num){
         List<Integer> list[] = new ArrayList[num];
         for(int i = 0; i < num; i++){
@@ -128,11 +137,13 @@ public class Application {
         }
         return list;
     }
+
     public int purchase_amount(){
         System.out.println(PrintMsg.INPUT_MSG.getMessage());
         int num = validate_parsInt(Console.readLine());
         return validate_division(num);
     }
+
     public int validate_parsInt(String str) {
         int num = 0;
         try {
@@ -143,9 +154,11 @@ public class Application {
         }
         return num;
     }
+
     public void revenuePrint(int num) {
         System.out.printf(PrintMsg.REVENUE.getMessage(),revenue_rate(num));
     }
+
     public double revenue_rate(int num){
         double result = 0;
         for(int i = 3; i <= numSize; i++) {
@@ -161,6 +174,7 @@ public class Application {
         }
         return amount / one_ticket;
     }
+
     public class Lotto {
         private final List<Integer> numbers;
 
