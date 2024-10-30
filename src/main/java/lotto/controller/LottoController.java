@@ -1,5 +1,7 @@
 package lotto.controller;
 
+
+import java.util.function.Supplier;
 import lotto.util.LottoParser;
 import lotto.validator.LottoPurchasePriceValidator;
 import lotto.view.LottoView;
@@ -15,8 +17,8 @@ public class LottoController {
     }
 
     public void run(){
-        int lottoPurchasePrice = requestLottoPurchasePrice();
-
+        int lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
+        System.out.println(lottoPurchasePrice);
     }
 
 
@@ -24,5 +26,20 @@ public class LottoController {
         String lottoPurchasePrice = lottoView.requestLottoPurchasePrice();
         lottoPurchasePriceValidator.validateLottoPurchasePrice(lottoPurchasePrice);
         return LottoParser.parseInt(lottoPurchasePrice);
+    }
+
+    private <T> T retry(Supplier<T> logic){
+        boolean runFlag = true;
+        T result = null;
+        while (runFlag){
+            try {
+                result = logic.get();
+                runFlag = false;
+            }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return result;
     }
 }
