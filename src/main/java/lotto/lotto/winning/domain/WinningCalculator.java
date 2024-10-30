@@ -1,4 +1,4 @@
-package lotto.lotto.domain.winning.domain;
+package lotto.lotto.winning.domain;
 
 import lotto.buyer.domain.Money;
 import lotto.buyer.infrastructure.Won;
