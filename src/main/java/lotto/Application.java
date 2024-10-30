@@ -9,7 +9,9 @@ public class Application {
         System.out.println(StringPool.INSERT_MONEY);
         List<Lotto> boughtLottos = system.buyLotto(Integer.parseInt(Console.readLine()));
         system.printSoldLottos(boughtLottos);
-
+        System.out.print(System.lineSeparator());
+        System.out.println(StringPool.INSERT_WINNING_NUMBERS);
+        system.setWinningNumbers(Console.readLine());
     }
 }
 
