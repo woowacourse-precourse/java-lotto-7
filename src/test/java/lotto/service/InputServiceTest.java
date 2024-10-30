@@ -3,7 +3,6 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.PurchasePrice;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.params.ParameterizedTest;

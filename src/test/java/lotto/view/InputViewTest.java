@@ -57,6 +57,33 @@ class InputViewTest {
                 .hasMessageContaining(INT_ERROR);
     }
 
+    @ParameterizedTest
+    @ValueSource(bytes = {' ', '\n'})
+    void 당첨_번호_빈값_실패(byte input) {
+        setByte(input);
+        assertThatThrownBy(inputView::readWinningNumbers)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(EMPTY_ERROR);
+    }
+
+    @ParameterizedTest
+    @ValueSource(bytes = {' ', '\n'})
+    void 보너스_숫자_빈값_실패_(byte input) {
+        setByte(input);
+        assertThatThrownBy(inputView::readBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(EMPTY_ERROR);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a", " 1000 "})
+    void 보너스_숫자_int로_변환_실패_문자(String input) {
+        setInput(input);
+        assertThatThrownBy(inputView::readBonusNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INT_ERROR);
+    }
+
     private void setInput(final String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
