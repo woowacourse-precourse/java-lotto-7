@@ -16,4 +16,8 @@ public class LottoService {
         int lottoCount = price / LOTTO_PRICE;
         player.updateLottoCount(lottoCount);
     }
+
+    public void createLottos(int lottoCount) {
+
+    }
 }

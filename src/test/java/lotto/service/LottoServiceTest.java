@@ -30,4 +30,17 @@ public class LottoServiceTest {
         // then
         assertThat(player.getLottoCount()).isEqualTo(10);
     }
+
+    @Test
+    @DisplayName("구매할 수 있는 로또의 개수만큼 로또를 생성하고 저장할 수 있다.")
+    void 로또_생성_테스트() throws Exception {
+        // given
+        int lottoCount = 10;
+
+        // when
+        lottoService.createLottos(lottoCount);
+
+        // then
+        assertThat(player.getLottos().size()).isEqualTo(lottoCount);
+    }
 }
