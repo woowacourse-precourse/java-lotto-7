@@ -35,7 +35,7 @@ public class LottoService {
         );
     }
 
-    public String getRateOfReturn() {
-        return money.getRateOfReturn(getResult());
+    public String getRateOfReturn(Map<Rank, Integer> result) {
+        return money.getRateOfReturn(result);
     }
 }

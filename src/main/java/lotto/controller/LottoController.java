@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.LottoService;
+import lotto.model.Rank;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,8 +19,9 @@ public class LottoController {
         OutputView.printLottoNumbers(lottoTicket);
         List<Integer> winningNumbers = readWinningNumber();
         readBonusNumber(winningNumbers);
-        OutputView.printResult(lottoService.getResult());
-        OutputView.printRateOfReturn(lottoService.getRateOfReturn());
+        Map<Rank, Integer> result = lottoService.getResult();
+        OutputView.printResult(result);
+        OutputView.printRateOfReturn(lottoService.getRateOfReturn(result));
     }
 
     private List<Integer> readWinningNumber() {
