@@ -1,20 +1,22 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.TreeSet;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final TreeSet<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
+    public Lotto(TreeSet<Integer> numbers) {
+        isSixDifferentNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private void isSixDifferentNumbers(TreeSet<Integer> numbers){
+        if(numbers.size() != 6){
+            throw new IllegalArgumentException("6개의 서로 다른 수를 입력하셔야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contains(int number){
+        return this.numbers.contains(number);
+    }
 }

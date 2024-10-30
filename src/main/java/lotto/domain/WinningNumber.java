@@ -7,12 +7,12 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class WinningNumber {
-    private final TreeSet<Integer> winningNumbers;
+    private final Lotto winningNumbers;
     private int bonusNumber;
 
     public WinningNumber(String inputWinningNumbers){
         ValidatorUtils.isNotEmpty(inputWinningNumbers);
-        winningNumbers = extractWinningNumbers(inputWinningNumbers);
+        winningNumbers = new Lotto(extractWinningNumbers(inputWinningNumbers));
     }
 
     public int makeBonusNumber(String inputBonusNumber){
@@ -21,14 +21,11 @@ public class WinningNumber {
     }
 
     private TreeSet<Integer> extractWinningNumbers(String inputWinningNumbers){
-        TreeSet<Integer> numbers = Arrays.asList(inputWinningNumbers.split(",")).stream()
+        return Arrays.asList(inputWinningNumbers.split(",")).stream()
                 .map(ValidatorUtils::isNotEmpty)
                 .map(ValidatorUtils::canParseToInt)
                 .map(ValidatorUtils::isInRange)
                 .collect(Collectors.toCollection(TreeSet::new));
-
-        isSixDifferentNumbers(numbers);
-        return numbers;
     }
 
     private void isSixDifferentNumbers(TreeSet<Integer> numbers){
