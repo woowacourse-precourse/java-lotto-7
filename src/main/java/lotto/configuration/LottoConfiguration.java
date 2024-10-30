@@ -2,7 +2,7 @@ package lotto.configuration;
 
 public enum LottoConfiguration {
     LOTTO_MAX_NUMBER(45),
-    LOTTO_MIN_NUMBER(-1),
+    LOTTO_MIN_NUMBER(1),
     LOTTO_NUMBER_COUNT(6),
     ;
 
