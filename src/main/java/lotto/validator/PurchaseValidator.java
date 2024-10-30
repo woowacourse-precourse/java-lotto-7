@@ -9,7 +9,14 @@ public class PurchaseValidator {
     private final static int REMAIN = 0;
 
     public static void validateProcess(int purchaseAmount) {
+        validateIsZero(purchaseAmount);
         validateThousandUnit(purchaseAmount);
+    }
+
+    private static void validateIsZero(int convertedPurchaseAmount) {
+        if(convertedPurchaseAmount == 0) {
+            throw LottoException.from(ErrorMessage.LOTTO_PURCHASE_IS_ZERO);
+        }
     }
 
     private static void validateThousandUnit(int convertedPurchaseAmount) {
