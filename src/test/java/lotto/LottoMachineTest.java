@@ -23,4 +23,12 @@ public class LottoMachineTest {
         assertThatThrownBy(() -> new LottoMachine(1110))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    @Test
+    void 구입_금액은_항상_양수여야_한다(){
+        assertThatThrownBy(() -> new LottoMachine(-1000))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

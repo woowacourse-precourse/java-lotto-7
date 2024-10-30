@@ -42,8 +42,18 @@ public class LottoMachine {
     }
 
     private void validateLottoPrice(Integer price){
+        validateLottoPriceIsValid(price);
+        validateLottoPriceIsPositive(price);
+    }
+
+    private void validateLottoPriceIsValid(Integer price){
         if (price % LOTTO_PRICE_VALIDATE_VALUE != 0)
             throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_PRICE);
+    }
+
+    private void validateLottoPriceIsPositive(Integer price){
+        if (price <= 0)
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_PRICE_IS_POSITIVE);
     }
 
     private Integer countLotto(Integer price){
