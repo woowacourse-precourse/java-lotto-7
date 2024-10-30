@@ -11,6 +11,8 @@ import lotto.domain.lottos.Lotto;
  * Lotto 객체 반환
  *  - ,콤마 이외에 다른 특수문자가 존재하는가?
  *   - 숫자인가?
+ *
+ *   1,2,,3,4,5,6 -> ?????
  */
 public class UserMainLottoFactory {
 

@@ -12,7 +12,7 @@ public enum Rank {
     THIRD(3,5,false,1500000L,"백오십만"),
     SECOND(2,5,true,30000000L,"삼천만"),
     FIRST(1,6,false,2000000000L,"이십억"),
-    NOTHING(-1,-1,false,0L,"영");
+    NOTHING(-1,0,false,0L,"영");
 
     private final int rank;
     private final int matchCount;
@@ -27,6 +27,10 @@ public enum Rank {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
         this.prizeMoneyKorean = prizeMoneyKorean;
+    }
+
+    public int getMatchCount(){
+        return matchCount;
     }
 
     public Long getPrizeMoney() {

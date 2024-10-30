@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.EnumMap;
+import java.util.Map;
+import lotto.domain.Rank;
 import lotto.domain.Wallet;
 import lotto.domain.factory.RandomLottoFactory;
 import lotto.domain.factory.RandomLottoMachine;
@@ -8,8 +11,10 @@ import lotto.domain.lottos.Lotto;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.BonusLotto;
 import lotto.domain.lottos.user.UserLotto;
+import lotto.domain.lottos.user.WinningLottos;
 import lotto.domain.number.NumbersMaker;
 import lotto.domain.number.RandomLottoNumberMaker;
+import lotto.service.LottoMatchService;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -18,6 +23,8 @@ import lotto.view.Output;
  *
  */
 public class MainController {
+    private LottoMatchService lottoMatchService;
+
     public void run(){
         Wallet wallet = createWallet();
         RandomLottos randomLottos = createRandomLottos(wallet);
@@ -25,8 +32,17 @@ public class MainController {
         Output.printPurchasedLottoList(wallet, randomLottos);
 
         UserLotto userLotto = createUserLotto();
+        WinningLottos winningLottos = new WinningLottos();
+
+        lottoMatchService = new LottoMatchService(randomLottos,userLotto,winningLottos);
+        lottoMatchService.matchLottos();
+
+
+
+        Output.printLottoWinningStatistics(winningLottos);
 
     }
+
 
 
     private UserLotto createUserLotto(){
