@@ -12,5 +12,6 @@ public class LottoController {
         String wonLottoNumbersString = ExceptionUtils.runUntilNoneIllegalArgumentException(
                 InputView::inputWonLottoNumbers);
         List<Integer> parsedWonLottoNumbers = InputView.parseWonLottoNumbers(wonLottoNumbersString);
+        int bonusNumber = ExceptionUtils.runUntilNoneIllegalArgumentException(InputView::inputBonusNumber);
     }
 }
