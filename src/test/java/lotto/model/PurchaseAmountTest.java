@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,5 +50,18 @@ class PurchaseAmountTest {
     void should_createPurchaseAmount_When_ValidValue(int amount) {
         // when & then
         assertDoesNotThrow(() -> new PurchaseAmount(amount));
+    }
+
+    @Test
+    @DisplayName("구입 금액으로부터 필요한 로또 개수를 반환한다.")
+    void should_returnCountOfLottoByAmount() {
+        // given
+        PurchaseAmount amount = new PurchaseAmount(10000);
+
+        // when
+        int countOfLottos = amount.calculateLottoCount();
+
+        // then
+        assertEquals(countOfLottos, 10);
     }
 }
