@@ -11,7 +11,7 @@ public class OutputView {
     private static final String PURCHASE_QUANTITY = "개를 구매했습니다.";
     private static final String WINNING_RESULT = "\n당첨 통계\n---\n";
     private static final String TOTAL_RATE = "총 수익률은 %.1f";
-    private static final String PERCENTAGE = "% 입니다";
+    private static final String PERCENTAGE = "%입니다.";
 
     public void printPurchaseAmount(final int amount) {
         System.out.println(amount + PURCHASE_QUANTITY);

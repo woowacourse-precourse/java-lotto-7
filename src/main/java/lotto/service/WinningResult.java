@@ -13,7 +13,7 @@ public enum WinningResult {
 
     private static final NumberFormat numberFormat = NumberFormat.getNumberInstance();
     private static final String UNIT = "원";
-    private static final String SAME = " 일치 ";
+    private static final String SAME = " 일치";
     private static final String TEMPLATE = "%s" + SAME + " (%s" + UNIT + ") - %d개";
     private static final String PLACE_ERROR = "지정되지 않은 등수가 있습니다: ";
 
