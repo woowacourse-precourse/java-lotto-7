@@ -22,9 +22,6 @@ public class ScenarioApplication {
     }
 
     public void run() {
-//        printer.print("구입금액을 입력해 주세요.");
-//        String originPrice = reader.read();
-//        PurchasePrice purchasePrice = PurchasePrice.validatePrice(originPrice); //가격 관련 throw해주는 부분
         PurchasePrice purchasePrice = doPurchase();
         LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice.value());
         Lottos lottos = LottoApplication.buyLottos(lottoQuantity, makeNumbersStrategy, printer);

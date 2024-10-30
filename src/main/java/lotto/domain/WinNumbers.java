@@ -20,7 +20,8 @@ public record WinNumbers(
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
             }
         }
-        DuplicateValidator.validate(extractWinNumbers);
+        DuplicateValidator.validatedNumberCount(extractWinNumbers);
+        DuplicateValidator.validateDuplicate(extractWinNumbers);
         return new WinNumbers(extractWinNumbers, null);
     }
 

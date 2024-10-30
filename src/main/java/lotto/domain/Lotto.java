@@ -8,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        DuplicateValidator.validate(numbers);
+        DuplicateValidator.validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
