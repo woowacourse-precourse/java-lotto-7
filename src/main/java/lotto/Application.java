@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.Winning.FIVE;
+import static lotto.Winning.FIVE_BONUS;
+import static lotto.Winning.NONE;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -20,7 +24,7 @@ public class Application {
 
         Map<Lotto, Winning> lottos = new LinkedHashMap<>();
         IntStream.range(0, lottoCount)
-                .forEach(i -> lottos.put(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)), new Winning()));
+                .forEach(i -> lottos.put(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)), NONE));
 
         lottos.keySet().forEach(Lotto::ascNumbers);
 
@@ -36,8 +40,10 @@ public class Application {
         System.out.println();
 
         lottos.keySet().forEach(lotto -> {
-            lottos.get(lotto)
-                    .updateWinning(lotto.confirmWinning(splitWinningNumbers), lotto.confirmBonus(bonusNumber));
+            lottos.put(lotto, Winning.fromCount(lotto.confirmWinning(splitWinningNumbers)));
+            if (lotto.confirmBonus(bonusNumber) && lottos.get(lotto) == FIVE) {
+                lottos.put(lotto, FIVE_BONUS);
+            }
         });
     }
 }
