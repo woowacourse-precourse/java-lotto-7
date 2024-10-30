@@ -1,4 +1,4 @@
-package lotto.lotto.domain.winning.domain;
+package lotto.lotto.winning.domain;
 
 import lotto.constant.Separator;
 import lotto.lotto.domain.Lotto;
@@ -19,7 +19,7 @@ public class WinningLotto {
     @Override
     public String toString() {
         return lotto.info().stream().map(String::valueOf)
-                .collect(Collectors.joining(Separator.COMMA));
+                .collect(Collectors.joining(Separator.COMMA.getSeparator()));
     }
     public boolean isContain(int number) {
         return lotto.isContains(number);
