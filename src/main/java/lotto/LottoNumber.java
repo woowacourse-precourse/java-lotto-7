@@ -17,5 +17,7 @@ public class LottoNumber {
         }
     }
 
-    
+    private int getNumber() {
+        return number;
+    }
 }
