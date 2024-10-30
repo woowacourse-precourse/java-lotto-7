@@ -22,8 +22,10 @@ public class Application {
         bonusNumberValidator.validate(bonusNumber + ":" + lottoNumbers);
 
         int purchaseAmount = Integer.parseInt(purchaseInput);
-        Lottos lottos = new Lottos();
-        lottos.generateLottos(purchaseAmount);
-
+        Lottos lottos = new Lottos(purchaseAmount);
+        OutputView outputView = new OutputView();
+        lottos.registerObserver(outputView);
+        lottos.notifyObserver();
+        lottos.generateLottos();
     }
 }
