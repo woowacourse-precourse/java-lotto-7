@@ -18,6 +18,25 @@ public enum LottoRank {
         this.description = description;
     }
 
+    public static LottoRank valueOf(int matchcnt, boolean matchBonus) {
+        if (matchcnt == 6) {
+            return FIFTH;
+        }
+        if (matchcnt == 5 && matchBonus) {
+            return SECOND;
+        }
+        if (matchcnt == 5) {
+            return THIRD;
+        }
+        if (matchcnt == 4) {
+            return FOURTH;
+        }
+        if (matchcnt == 3) {
+            return FIFTH;
+        }
+        return NONE;
+    }
+
     public int getAmount() {
         return amount;
     }
