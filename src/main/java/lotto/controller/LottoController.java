@@ -3,9 +3,7 @@ package lotto.controller;
 import lotto.model.LottoModel;
 import lotto.view.LottoView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LottoController {
     private final LottoModel lottoModel = new LottoModel();
@@ -84,8 +82,11 @@ public class LottoController {
         return price / 1000;
     }
 
-    private List<Integer> getWinningNumber(String[] inputWinningNumber) {
+    List<Integer> getWinningNumber(String[] inputWinningNumber) {
         List<Integer> winningNumber = new ArrayList<>();
+        if (inputWinningNumber.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개를 입력해야 합니다.");
+        }
         for (String strNumber : inputWinningNumber) {
             int number;
             try {
@@ -98,7 +99,9 @@ public class LottoController {
             }
             winningNumber.add(number);
         }
-
+        if (new HashSet<>(winningNumber).size() != 6) {
+            throw new IllegalArgumentException("숫자가 중복되면 안 됩니다.");
+        }
         return winningNumber;
     }
 
