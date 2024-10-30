@@ -21,10 +21,14 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    private void validNumberRange(int number){
-        if(LOW_NUMBER > number && number < HIGH_NUMBER){
+    private void validRange(int number){
+        if(validNumberRange(number)){
             throw new IllegalArgumentException("[ERROR] 로또 숫자는 " + LOW_NUMBER + "~" + HIGH_NUMBER + "사이의 숫자이어야 합니다.");
         }
+    }
+
+    private static boolean validNumberRange(int number) {
+        return !(LOW_NUMBER <= number && number >= HIGH_NUMBER);
     }
 
     private void pickNumber(String regax) {
