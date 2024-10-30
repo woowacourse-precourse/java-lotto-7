@@ -1,10 +1,11 @@
 package lotto.view;
 
+import static lotto.utils.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.InputValidator;
 
 public class InputView {
-    private final static String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private final InputValidator inputValidator;
 
     public InputView(InputValidator inputValidator) {
