@@ -1,19 +1,26 @@
 package lotto.controller;
 
+import lotto.service.LottoService;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final OutputView outputView;
+    private final InputView inputView;
+    private LottoService lottoService;
 
-    public LottoController(OutputView outputView) {
+    public LottoController(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
+        this.inputView = inputView;
     }
 
     public void start() {
-        readPurchaseAmount();
+        double purchaseAmount = readPurchaseAmount();
+        this.lottoService = new LottoService(purchaseAmount);
     }
 
-    private void readPurchaseAmount() {
+    private double readPurchaseAmount() {
         outputView.printReadPurchaseAmount();
+        return inputView.readPurchaseAmount();
     }
 }
