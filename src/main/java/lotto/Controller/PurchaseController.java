@@ -5,7 +5,10 @@ import lotto.View.PurchaseView;
 import org.assertj.core.groups.Tuple;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
+
+import static java.lang.Character.isDigit;
 
 public class PurchaseController {
     private PurchaseView purchaseView;
@@ -32,13 +35,22 @@ public class PurchaseController {
 
     private Pair purchaseFlow() {
         Pair result = new Pair();
-        int count = purchaseService.buy(purchaseView.input());
+        String inputed = purchaseView.input();
+        if(!isInteger(inputed))
+            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+        if(!isDigit(Integer.parseInt(inputed)))
+            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+        int count = purchaseService.buy(Integer.parseInt(inputed));
         if (count > 0) {
             result.set(true, count);
             return result;
         }
         result.set(false, 0);
         return result;
+    }
+
+    private boolean isInteger(String s) {
+        return s.matches(".?\\d+");
     }
 }
 
