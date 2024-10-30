@@ -38,4 +38,17 @@ public class StringTest {
         assertThat(result)
                 .containsExactly("1");
     }
+
+    @Test
+    public void substringBracket() {
+        // given
+        String src = "(1,2)";
+
+        // when
+        String result = src.substring(1, 4);
+
+        // then
+        assertThat(result)
+                .isEqualTo("1,2");
+    }
 }
