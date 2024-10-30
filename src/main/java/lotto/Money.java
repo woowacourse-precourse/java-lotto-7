@@ -21,7 +21,7 @@ public class Money {
             if (money % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지게 입력하세요");
             }
-            return inputNumber;
+            return money;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력하세요");
         }
