@@ -20,13 +20,13 @@
 - [x]  로또 구입 금액
     - [x]  1,000원으로 나누어 떨어지지 않는 경우
     - [x]  숫자가 아닌 경우
-- [ ]  당첨 번호 (controller에서 처리)
-    - [ ]  숫자가 아닌경우
-    - [ ]  숫자 범위 1~45 넘는 경우
-    - [ ]  중복되는 숫자인 경우
-    - [ ]  6개 입력 안 함
-    - [ ]  ,로 구분하지 않은 경우
-        - [ ]  공백포함하면 에러
+- [x]  당첨 번호 (controller에서 처리)
+    - [x]  숫자가 아닌경우
+    - [x]  숫자 범위 1~45 넘는 경우
+    - [x]  중복되는 숫자인 경우
+    - [x]  6개 입력 안 함
+    - [x]  ,로 구분하지 않은 경우
+        - [x]  공백포함하면 에러
 - [ ]  보너스 번호
     - [x]  숫자가 아닌 경우
     - [x]  숫자 범위 1~45 넘는 경우
@@ -60,8 +60,8 @@
 lotto
 ├── Application.java
 ├── Lotto.java
-├── LottoMachine.java
 ├── controller
+│   └── LottoMachineController.java
 ├── model
 │   └── Result.java
 ├── util (유저의 인풋 다루는 클래스)
@@ -69,6 +69,6 @@ lotto
 │   └── Validator.java
 └── view
     └── InputView.java
-
+    └── OutputView.java
 
 ```
