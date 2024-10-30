@@ -40,7 +40,10 @@ public class Lotto {
                 .count();
     }
 
-    public List<LottoNumber> getNumbers() {
-        return numbers;
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .mapToInt(LottoNumber::getNumber)
+                .boxed()
+                .toList();
     }
 }
