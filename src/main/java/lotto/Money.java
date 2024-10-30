@@ -15,7 +15,7 @@ public class Money {
         }
     }
 
-    private static int validate(String inputNumber) {
+    static int validate(String inputNumber) {
         try {
             int money = Integer.parseInt(inputNumber);
             if (money % 1000 != 0) {
