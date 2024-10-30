@@ -1,23 +1,36 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Lotto;
+import lotto.LottoNumber;
+import lotto.LottoRank;
+import lotto.LottoTicket;
+import lotto.Result;
+import lotto.WinningNumbers;
+import lotto.io.input.GameInput;
+import lotto.io.output.GameOutput;
 
-public class LottoGame {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+public class LottoGameController {
+    private final GameInput gameInput;
+    private final GameOutput gameOutput;
+
+    public LottoGameController(GameInput gameInput, GameOutput gameOutput) {
+        this.gameInput = gameInput;
+        this.gameOutput = gameOutput;
+    }
 
     public void start() {
-        int purchaseAmount = inputView.getPurchaseAmount();
+        int purchaseAmount = gameInput.getPurchaseAmount();
         LottoTicket lottoTicket = generateLottoTickets(purchaseAmount);
 
-        outputView.printPurchasedTickets(lottoTicket);
+        gameOutput.printPurchasedTickets(lottoTicket);
 
         WinningNumbers winningNumbers = getWinningNumbers();
         Result result = calculateResults(lottoTicket, winningNumbers);
 
-        outputView.printResults(result, purchaseAmount);
+        gameOutput.printResults(result, purchaseAmount);
     }
 
     private LottoTicket generateLottoTickets(int purchaseAmount) {
@@ -31,8 +44,8 @@ public class LottoGame {
     }
 
     private WinningNumbers getWinningNumbers() {
-        List<LottoNumber> winningNumbers = inputView.getWinningNumbers();
-        LottoNumber bonusNumber = inputView.getBonusNumber();
+        List<LottoNumber> winningNumbers = gameInput.getWinningNumbers();
+        LottoNumber bonusNumber = gameInput.getBonusNumber();
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
