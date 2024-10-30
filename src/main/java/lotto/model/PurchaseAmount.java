@@ -13,6 +13,10 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
+    public int calculateLottoCount() {
+        return amount / LOTTO_PRICE;
+    }
+
     private void validate(final int amount) {
         checkDivisibilityByUnit(amount);
         checkMinimumOfAmount(amount);
