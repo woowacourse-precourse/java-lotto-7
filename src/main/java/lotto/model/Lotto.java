@@ -5,17 +5,29 @@ import lotto.utils.Constants;
 import java.util.*;
 
 public class Lotto {
+    
+    private static final String EXCEPTION_MESSAGE_DUPLICATE =
+            Constants.EXCEPTION_MESSAGE_PREFIX + " 로또 번호는 중복되지 않아야 합니다.";
+    
     private final TreeSet<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateCount(numbers);
+        validateDuplicate(numbers);
         this.numbers = new TreeSet<>(numbers);
     }
-
-    private void validate(List<Integer> numbers) {
+    
+    private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(Constants.EXCEPTION_MESSAGE_PREFIX +
                     " 로또 번호는 6개여야 합니다.");
+        }
+    }
+    
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> numbersRemovedDuplicate = new HashSet<>(numbers);
+        if (numbersRemovedDuplicate.size() != numbers.size()) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_DUPLICATE);
         }
     }
     
