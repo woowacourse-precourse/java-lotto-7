@@ -6,6 +6,7 @@ public class InputValidator {
         validateEmpty(userInput);
 
         int purchaseAmount = validateNumber(userInput);
+        validateDivisibleByThousand(purchaseAmount);
     }
 
     private void validateEmpty(String userInput) {
@@ -20,5 +21,11 @@ public class InputValidator {
         }
 
         throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE.toString());
+    }
+
+    private void validateDivisibleByThousand(int purchaseAmount) {
+        if (purchaseAmount < Constant.MIN_PURCHASE_AMOUNT || (purchaseAmount % Constant.MIN_PURCHASE_AMOUNT != 0)) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE.toString());
+        }
     }
 }
