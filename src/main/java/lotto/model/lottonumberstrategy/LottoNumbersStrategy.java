@@ -1,6 +1,8 @@
 package lotto.model.lottonumberstrategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoNumbersStrategy implements RandomNumbersStrategy {
@@ -11,6 +13,17 @@ public class LottoNumbersStrategy implements RandomNumbersStrategy {
 
     @Override
     public List<Integer> generateNumbers() {
+        List<Integer> numbers = pickUniqueRandomNumbers();
+        return sortNumbers(numbers);
+    }
+
+    private List<Integer> pickUniqueRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sortNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 }
