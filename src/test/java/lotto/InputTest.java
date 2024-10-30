@@ -53,12 +53,6 @@ class InputTest {
 	}
 
 	@Test
-	void 예외처리_입력받은_로또번호가_6개가_아닌_경우() {
-		input.입력값("1,2,3,4");
-		assertThrows(IllegalArgumentException.class, () -> input.winningNumber());
-	}
-
-	@Test
 	void 예외처리_입력받은_로또번호가_숫자가_아닌_경우() {
 		input.입력값("1,2,a,3,4,5");
 		assertThrows(IllegalArgumentException.class, () -> input.winningNumber());
@@ -131,8 +125,9 @@ class InputTest {
 				System.out.println();
 				System.out.println("당첨 번호를 입력해 주세요.");
 				String winning = readLine();
-				WinningNumber numberCheck = new WinningNumber(winning);
-				return numberCheck.winningCheck();
+				WinningNumber winningNumber = new WinningNumber(winning);
+				Lotto lotto = new Lotto(winningNumber.winningCheck());
+				return lotto.listValueCheck();
 			} catch (IllegalArgumentException e) {
 				System.err.println(e);
 				// 테스트 코드에서 무한 반복을 막기위해 재귀 호출 코드 제거
