@@ -2,19 +2,19 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.ConvertValidValue;
+import lotto.domain.InputConverter;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.ui.InputView;
 
 public class LottoController {
-    private ConvertValidValue convertValidValue;
+    private InputConverter convertValidValue;
     private LottoGenerator lottoGenerator;
     private List<Lotto> lottos;
     private int ticketCount;
 
     public LottoController(){
-        convertValidValue = new ConvertValidValue();
+        convertValidValue = new InputConverter();
         lottoGenerator = new LottoGenerator();
         lottos = new ArrayList<Lotto>();
         ticketCount = 0;

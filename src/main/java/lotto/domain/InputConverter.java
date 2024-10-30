@@ -7,12 +7,7 @@ import static lotto.domain.Constant.MINIMUM_LOTTO_NUMBER;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-* 구입금액
-* 당첨 번호
-* 보너스 번호
-* */
-public class ConvertValidValue {
+public class InputConverter {
     public int purchaseAmount(String input) throws IllegalArgumentException {
         int budget;
         int amount;
