@@ -8,13 +8,14 @@ public class BuyPrice {
     private Integer price;
 
     public BuyPrice(String inputPrice) {
-        containStrValidation(inputPrice);
-        devideThousandValidation(inputPrice);
-        this.price = Integer.parseInt(inputPrice.replaceAll("\\s+", ""));
+        String trimPrice = inputPrice.replaceAll("\\s+", "");
+        containStrValidation(trimPrice);
+        devideThousandValidation(trimPrice);
+        this.price = Integer.parseInt(trimPrice);
     }
 
     private void containStrValidation(String inputPrice) {
-        if (!inputPrice.replaceAll("\\s+", "").matches("^\\d+$")) {
+        if (!inputPrice.matches("^\\d+$")) {
             throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력해주세요.");
         }
     }
