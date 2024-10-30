@@ -1,5 +1,7 @@
 package lotto.domain.rank.vo;
 
+import java.util.Arrays;
+
 public enum Rank {
     FIRST(6, 0, 2_000_000_000),
     SECOND(5, 1, 30_000_000),
@@ -18,11 +20,20 @@ public enum Rank {
     }
 
     public static Rank of(int match, int bonus) {
-        return null;
+        return Arrays.stream(values())
+                .filter(rank -> rank.match == match && rank.bonus == bonus)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public String toString() {
-        return "";
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format("%d개 일치", match));
+        if (bonus > 0) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+        stringBuilder.append(String.format(" (%,d원)", prize));
+        return stringBuilder.toString();
     }
 }
