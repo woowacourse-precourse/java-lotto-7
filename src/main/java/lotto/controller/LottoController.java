@@ -10,6 +10,7 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
+    private int moneyInput;
 
     public LottoController() {
         this.inputView = new InputView();
@@ -18,23 +19,55 @@ public class LottoController {
     }
 
     public void run() {
-        int moneyInput = processInput();
+        processInput();
         lottoService.checkLottoResult();
         outputView.printLottoResult(moneyInput);
     }
 
-    private int processInput() {
-        int moneyInput = getMoneyInput();
-        lottoService.purchaseLotto(moneyInput);
-        lottoService.printPurchasedLottoNumbers();
+    private void processInput() {
+        processMoneyInput();
+        processWinnerNumbersInput();
+        processBonusNumberInput();
+    }
 
-        List<Integer> winnerNumbersInput = getWinnerNumbers();
-        lottoService.setWinnerLotto(winnerNumbersInput);
+    private void processMoneyInput() {
+        while (true) {
+            try {
+                this.moneyInput = getMoneyInput();
+                lottoService.purchaseLotto(moneyInput);
+                lottoService.printPurchasedLottoNumbers();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                continue;
+            }
+        }
+    }
 
-        int bonusNumber = getBonusNumber();
-        lottoService.setBonusNumber(bonusNumber);
+    private void processWinnerNumbersInput() {
+        while (true) {
+            try {
+                List<Integer> winnerNumbersInput = getWinnerNumbers();
+                lottoService.setWinnerLotto(winnerNumbersInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                continue;
+            }
+        }
+    }
 
-        return moneyInput;
+    private void processBonusNumberInput() {
+        while (true) {
+            try {
+                int bonusNumber = getBonusNumber();
+                lottoService.setBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                continue;
+            }
+        }
     }
 
     private int getMoneyInput() {
