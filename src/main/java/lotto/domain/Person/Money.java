@@ -8,7 +8,6 @@ public class Money {
 
     public Money(BigInteger amount) {
         this.amount = amount;
-        validateDivisibleByThousand();
         validGreaterThanZero();
     }
 
@@ -17,7 +16,7 @@ public class Money {
         return Math.round(rate * 10) / 10.0;
     }
 
-    private void validateDivisibleByThousand() {
+    public void validateDivisibleByThousand() {
         if (amount.mod(BigInteger.valueOf(1000)).compareTo(BigInteger.ZERO) != 0) {
             throw new IllegalArgumentException("금액은 1000으로 나누어 떨어져야 합니다.");
         }
