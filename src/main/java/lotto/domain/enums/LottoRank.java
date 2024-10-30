@@ -32,4 +32,16 @@ public enum LottoRank {
                 .findFirst()
                 .orElse(UN_RANK);
     }
+
+    public int matchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusMatched() {
+        return isBonusMatched;
+    }
+
+    public int lotteryPrize() {
+        return lotteryPrize;
+    }
 }

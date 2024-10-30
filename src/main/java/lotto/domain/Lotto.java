@@ -39,6 +39,7 @@ public class Lotto {
     public EnumMap<LottoRank, Integer> checkWinning(RandomNumbers randomNumbers, int bonusNumber) {
 
         EnumMap<LottoRank, Integer> rankCount = new EnumMap<>(LottoRank.class);
+        initRankCount(rankCount);
         List<RandomNumber> totalRandomNumberList = randomNumbers.randomNumbers();
 
         for (RandomNumber randomNumberList : totalRandomNumberList) {
@@ -48,6 +49,12 @@ public class Lotto {
             rankCount.put(lottoRank, rankCount.getOrDefault(lottoRank, 0) + 1);
         }
         return rankCount;
+    }
+
+    private void initRankCount(EnumMap<LottoRank, Integer> rankCount) {
+        for (LottoRank lottoRank : LottoRank.values()) {
+            rankCount.put(lottoRank, 0);
+        }
     }
 
     private LottoRank getLottoRank(List<Integer> randomNumber, int bonusNumber) {
