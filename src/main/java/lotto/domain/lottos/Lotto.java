@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lottos;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +12,18 @@ public class Lotto {
         validateLottoRange(numbers);
         validateLottoDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    //todo 우와 다른 객ㄱ체여도 바로 otrhernLotto.nnumers가 되구나
+    public int getNumberOfMatches(final Lotto randomLotto){
+        int result = 0;
+
+        for (Integer userLottoNumber : numbers) {
+            if (randomLotto.numbers.contains(userLottoNumber)){
+                result += 1;
+            }
+        }
+        return result;
     }
 
     public List<Integer> getNumbers() {

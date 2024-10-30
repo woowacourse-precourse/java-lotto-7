@@ -1,6 +1,6 @@
-package lotto.domain.user;
+package lotto.domain.lottos.user;
 
-import lotto.domain.Lotto;
+import lotto.domain.lottos.Lotto;
 
 public class BonusLotto {
     private final int bonus;
@@ -9,7 +9,7 @@ public class BonusLotto {
         this.bonus = bonus;
     }
 
-    public boolean isDuplicateMainLotto(Lotto lotto) {
+    public boolean isContainMainLotto(Lotto lotto) {
         return lotto.isContainNumber(bonus);
     }
 
