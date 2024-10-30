@@ -21,6 +21,7 @@ public class LottoController {
     public void startLottoSimulation() {
         purchaseLotto();
         inputWinningNumbers();
+        inputBonusNumber();
     }
 
     private void purchaseLotto() {
@@ -40,7 +41,19 @@ public class LottoController {
         while(true) {
             try {
                 String winningNumbers = inputView.inputWinningNumbers();
-                Lotto winningLotto = lottoService.winningLotto(winningNumbers);
+                lottoService.winningLotto(winningNumbers);
+                break;
+            } catch (LottoException e) {
+                outputView.displayErrorMessage(e);
+            }
+        }
+    }
+
+    private void inputBonusNumber() {
+        while(true) {
+            try {
+                String bonusNumber = inputView.inputBonusNumber();
+                lottoService.bonusNumber(bonusNumber);
                 break;
             } catch (LottoException e) {
                 outputView.displayErrorMessage(e);
