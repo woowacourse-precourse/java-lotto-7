@@ -1,64 +1,36 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.prizelotto.PrizeLotto;
 
 public class PrizeNumber {
-    private int firstPrizeLottoNumber;
-    private int secondPrizeLottoNumber;
-    private int thirdPrizeLottoNumber;
-    private int fourthPrizeLottoNumber;
-    private int fifthPrizeLottoNumber;
 
-    public void countMatchNumber(List<Integer> numbers, WinNumbers winNumbers) {
+    private List<PrizeLotto> prizeLottos;
+
+    public void countMatchNumber(List<Integer> lottoNumbers, WinNumbers winNumbers) {
         List<Integer> compareNumbers = winNumbers.primaryWinNumbers();
         int count = 0;
-        for (Integer number : numbers) {
+        for (Integer number : lottoNumbers) {
             if (compareNumbers.contains(number)) {
                 count++;
             }
         }
-        decideRankNumber(count, numbers, winNumbers);
+        decideRankNumber(count, lottoNumbers, winNumbers);
     }
 
-    private void decideRankNumber(int count, List<Integer> numbers, WinNumbers winNumbers) { //return 하는 식으로 개선해야하나봄
-        if (count == 6) {
-            firstPrizeLottoNumber++;
-        }
-        if (count == 5 && decideSecondThird(winNumbers.bonusWinNumber(), numbers)) {
-            secondPrizeLottoNumber++;
-        }
-        if (count == 5 && !decideSecondThird(winNumbers.bonusWinNumber(), numbers)) {
-            thirdPrizeLottoNumber++;
-        }
-        if (count == 4) {
-            fourthPrizeLottoNumber++;
-        }
-        if (count == 3) {
-            fifthPrizeLottoNumber++;
+    private void decideRankNumber(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
+        for (PrizeLotto prizeLotto : prizeLottos) {
+            if (prizeLotto.isSatisfyRule(count, lottoNumbers, winNumbers)) {
+                prizeLotto.upCount();
+            }
         }
     }
 
-    private boolean decideSecondThird(int bonusNumber, List<Integer> numbers) {
-        return (numbers.contains(bonusNumber));
-    }
-
-    public int getFirstPrizeLottoNumber() {
-        return firstPrizeLottoNumber;
-    }
-
-    public int getSecondPrizeLottoNumber() {
-        return secondPrizeLottoNumber;
-    }
-
-    public int getThirdPrizeLottoNumber() {
-        return thirdPrizeLottoNumber;
-    }
-
-    public int getFourthPrizeLottoNumber() {
-        return fourthPrizeLottoNumber;
-    }
-
-    public int getFifthPrizeLottoNumber() {
-        return fifthPrizeLottoNumber;
+    public int calculateTotalPrize() {
+        int total = 0;
+        for (PrizeLotto prizeLotto : prizeLottos) {
+            total += prizeLotto.calculatePrize();
+        }
+        return total;
     }
 }

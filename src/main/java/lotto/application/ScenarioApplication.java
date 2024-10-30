@@ -44,7 +44,7 @@ public class ScenarioApplication {
     }
 
     private void calculateResult(PurchasePrice purchasePrice, PrizeNumber prizeNumber) {
-        int totalPrize = calculator.calculateTotalPrize(prizeNumber);
+        int totalPrize = prizeNumber.calculateTotalPrize();
         double profit = calculator.calculateProfit(totalPrize, purchasePrice.value());
         printer.printPrizeResult(prizeNumber, profit);
     }
