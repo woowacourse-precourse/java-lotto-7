@@ -1,4 +1,4 @@
-package lotto.converter;
+package lotto.util.converter;
 
 import lotto.exception.ErrorCode;
 

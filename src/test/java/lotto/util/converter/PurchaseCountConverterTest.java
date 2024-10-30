@@ -1,5 +1,6 @@
-package lotto.converter;
+package lotto.util.converter;
 
+import lotto.util.converter.PurchaseCountConverter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
