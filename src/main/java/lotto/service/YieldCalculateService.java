@@ -20,7 +20,7 @@ public class YieldCalculateService {
     }
 
     public void calculateYield() {
-        int totalPrizeMoney = winningLottos.getTotalWinningPrizeMoney();
+        long totalPrizeMoney = winningLottos.getTotalWinningPrizeMoney();
         wallet.calculateRateOfReturn(totalPrizeMoney);
     }
 

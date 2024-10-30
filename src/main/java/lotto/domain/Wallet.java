@@ -5,7 +5,7 @@ public class Wallet {
 
     private final int money;
     private final int ticket;
-    private int rateOfReturn = 0;
+    private float rateOfReturn = 0;
 
     public Wallet(int money) {
         validateMinAmount(money);
@@ -15,7 +15,7 @@ public class Wallet {
         this.ticket = calculateNumberOfLottoPurchases(money);
     }
 
-    public int getRateOfReturn() {
+    public float getRateOfReturn() {
         return rateOfReturn;
     }
 
@@ -25,8 +25,10 @@ public class Wallet {
 
 
 
-    public void calculateRateOfReturn(int totalPrizeMoney){
-        rateOfReturn = totalPrizeMoney / money * 100;
+    public void calculateRateOfReturn(long totalPrizeMoney){
+        System.out.println(totalPrizeMoney);
+        System.out.println(money);
+        rateOfReturn = (float) totalPrizeMoney / money * 100;
     }
 
 
