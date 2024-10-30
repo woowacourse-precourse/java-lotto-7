@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public enum Rank {
@@ -10,7 +12,8 @@ public enum Rank {
     FOURTH(4,50_000, false),
     THIRD(5, 1_500_000, false),
     SECOND(5, 30_000_000, true),
-    FIRST(6, 2_000_000_000, false);
+    FIRST(6, 2_000_000_000, false),
+    NONE(0, 0, false);
 
     private final int countNumber;
     private final int price;
@@ -23,7 +26,7 @@ public enum Rank {
     }
 
     public static Map<Rank, Integer> makeRankResult() {
-        HashMap<Rank, Integer> result = new HashMap<>();
+        Map<Rank, Integer> result = new LinkedHashMap<>();
         Rank[] ranks = values();
         Arrays.stream(ranks)
             .forEach(rank -> result.put(rank, 0));
@@ -35,7 +38,18 @@ public enum Rank {
             .filter(rank -> rank.countNumber == countNumber
                 && rank.needBonusNumber == needBonusNumber)
             .findFirst()
-            .get();
+            .orElse(Rank.NONE);
     }
 
+    public int getCountNumber() {
+        return countNumber;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public boolean isNeedBonusNumber() {
+        return needBonusNumber;
+    }
 }
