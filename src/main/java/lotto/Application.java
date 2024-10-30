@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class Application {
@@ -16,13 +18,13 @@ public class Application {
         int lottoCount = lottoPrice / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
 
-        List<Lotto> lottos = new ArrayList<>();
+        Map<Lotto, Winning> lottos = new LinkedHashMap<>();
         IntStream.range(0, lottoCount)
-                .forEach(i -> lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))));
+                .forEach(i -> lottos.put(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)), new Winning()));
 
-        lottos.forEach(Lotto::ascNumbers);
+        lottos.keySet().forEach(Lotto::ascNumbers);
 
-        lottos.forEach(System.out::println);
+        lottos.keySet().forEach(System.out::println);
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbers = Console.readLine();
@@ -33,7 +35,7 @@ public class Application {
         int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println();
 
-        lottos.forEach(lotto -> {
+        lottos.keySet().forEach(lotto -> {
             lotto.confirmWinning(splitWinningNumbers);
             lotto.confirmBonus(bonusNumber);
         });
