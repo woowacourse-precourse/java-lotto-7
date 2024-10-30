@@ -14,27 +14,27 @@
 ![로또__다이어그램 drawio](https://github.com/user-attachments/assets/a9dfe309-314f-4798-98f9-243f31490669)
 
 ### 클래스 구조
-> ### lotto
+> ### `lotto`
 > 
 > ── Controller
 > 
-> └── LottoController   // 전체 흐름 제어
+> └── `LottoController`   // 전체 흐름 제어
 > 
 > ── Model
 > 
-> └── Lotto           // 발행된 로또 번호 관리, 유효성 검사
+> └── `Lotto`           // 발행된 로또 번호 관리, 유효성 검사
 > 
-> └── LottoGenerator      // 로또 수량 계산, 로또 번호 발행
+> └── `LottoGenerator`      // 로또 수량 계산, 로또 번호 발행
 > 
-> └── LottoResult     // 당첨 결과 계산, 수익률 계산
+> └── `LottoResult`     // 당첨 결과 계산, 수익률 계산
 > 
-> └── WinningLotto      // 발행 번호와 당첨 번호 비교
+> └── `WinningLotto`      // 발행 번호와 당첨 번호 비교
 > 
 > ── View
 > 
-> └── InputView.java        // 구입 금액 입력, 당첨 번호 입력
+> └── `InputView`        // 구입 금액 입력, 당첨 번호 입력
 > 
-> └── OutputView.java       // 발행 로또 번호 출력, 당첨 결과 출력(당첨 내역, 수익률)
+> └── `OutputView`       // 발행 로또 번호 출력, 당첨 결과 출력(당첨 내역, 수익률)
 > 
 > ── Application
 ### 📝 구현할 기능 목록
