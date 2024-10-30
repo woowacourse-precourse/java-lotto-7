@@ -20,6 +20,10 @@ public class Lotto {
         return List.copyOf(numbers);
     }
 
+    public boolean contains(final int value) {
+        return numbers.contains(value);
+    }
+
     private void validate(final List<Integer> numbers) {
         checkCountOfLottoNumbers(numbers.size());
         checkMinimumOfLottoNumber(numbers);
