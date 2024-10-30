@@ -8,15 +8,17 @@ import java.util.List;
 public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
-    private List<Lotto> lottos;
+
 
     public List<Lotto> creatLotto(int amount) {
         int count = amountToCount(amount);
 
-        lottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
         }
 
         return lottos;
@@ -29,5 +31,4 @@ public class LottoMachine {
         }
         return count;
     }
-
 }
