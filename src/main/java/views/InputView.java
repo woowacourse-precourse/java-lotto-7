@@ -10,19 +10,19 @@ public class InputView {
         BonusNumber("보너스 번호를 입력해 주세요.")
         ;
 
-        private final String prompt;
+        private final String inputPrompt;
 
-        promptForInput(String prompt) {
-            this.prompt = prompt;
+        promptForInput(String inputPrompt) {
+            this.inputPrompt = inputPrompt;
         }
 
-        public String getPrompt() {
-            return prompt;
+        public String getInputPrompt() {
+            return inputPrompt;
         }
     }
 
     public String requestUserInput(promptForInput prompt) {
-        System.out.println(prompt.getPrompt());
+        System.out.println(prompt.getInputPrompt());
         return Console.readLine();
     }
 }
