@@ -1,12 +1,11 @@
 package lotto.validator;
 
-import lotto.exception.WinningNumbers.BlankWinningNumbersException;
-import lotto.exception.WinningNumbers.InvalidNumberCountException;
-import lotto.exception.WinningNumbers.InvalidRangeException;
-import lotto.exception.WinningNumbers.InvalidRuleException;
+import lotto.exception.WinningNumbers.*;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumbersValidator {
@@ -23,6 +22,7 @@ public class WinningNumbersValidator {
         List<Integer> numbers = convert(input);
         validateNumberSize(numbers);
         validateNumberRange(numbers);
+        validateDuplicate(numbers);
     }
 
     private static void validateBlank(final String input) {
@@ -40,6 +40,17 @@ public class WinningNumbersValidator {
     private static void validateNumberRange(final List<Integer> numbers) {
         for(int number: numbers) {
             checkRange(number);
+        }
+    }
+
+    private static void validateDuplicate(final List<Integer> numbers) {
+        Set<Integer> removeDuplicate = new HashSet<>();
+        for(int number: numbers) {
+            removeDuplicate.add(number);
+        }
+
+        if(removeDuplicate.size() != numbers.size()) {
+            throw new DuplicatedNumberException();
         }
     }
 
