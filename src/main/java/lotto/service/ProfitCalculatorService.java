@@ -1,2 +1,4 @@
-package lotto.service;public class ProfitCalculatorService {
+package lotto.service;
+
+public class ProfitCalculatorService {
 }
