@@ -13,17 +13,27 @@ public class Application {
     public static List<Integer>[] lotto_list;
     public static final String amount[] = {"5,000","50,000","1,500,000",
             "30,000,000","2,000,000,000","30,000,000"};
-    public class print_msg{
-        static final String inputMsg = "구입금액을 입력해 주세요.";
-        static final String checkMsg = "개를 구매했습니다.";
-        static final String winning_numMsg = "당첨 번호를 입력해 주세요.";
-        static final String bonus_numMsg = "보너스 번호를 입력해 주세요.";
-        static final String statisticMsg = "당첨 통계";
-        static String matchMsg = "%d개 일치 (%s원) - %d개\n";
-        static String bonusMsg = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
-        static String errorMsg = "[ERROR] 정수 값으로 입력을 해야합니다.";
-    }
+    public enum PrintMsg {
+        INPUT_MSG("구입금액을 입력해 주세요."),
+        CHECK_MSG("개를 구매했습니다."),
+        WINNING_NUM_MSG("당첨 번호를 입력해 주세요."),
+        BONUS_NUM_MSG("보너스 번호를 입력해 주세요."),
+        STATISTIC_MSG("당첨 통계"),
+        ERROR_MSG("[ERROR] 정수 값으로 입력을 해야합니다."),
+        REVENUE_MSG("총 수익률은 %d%%입니다."),
+        MATCH_MSG("%d개 일치 (%s원) - %d개\n"),
+        BONUS_MSG("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n");
 
+        private final String message;
+
+        PrintMsg(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Application ap = new Application();
@@ -40,13 +50,13 @@ public class Application {
     }
     public Lotto inputWinningNumber(){
         Lotto lotto = new Lotto(new ArrayList<>());
-        System.out.println("\n"+print_msg.winning_numMsg);
+        System.out.println("\n"+PrintMsg.WINNING_NUM_MSG.getMessage());
         String winning[] = Console.readLine().split(",");
         for(int i = 0; i < numSize; i++){
             try{
                 lotto.numbers.add(Integer.parseInt(winning[i]));
             }catch (IllegalArgumentException e){
-                System.out.println(print_msg.errorMsg);
+                System.out.println(PrintMsg.ERROR_MSG.getMessage());
                 throw e;
             }
         }
@@ -54,16 +64,14 @@ public class Application {
         lotto.numbers.sort(Integer::compareTo);
         return lotto;
     }
-    public int numberMatch(int i){
-        int p1 = 0;
-        int p2 = 0;
-        int count = 0;
+    public int numberMatch(int i,int p1,int p2,int count){
         while(p1 < numSize && p2 < numSize){
-            if(lotto_list[i].get(p1) > winning_number.get(p2)){
+            int result = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
+            if(result > 0){
                 p2++;
                 continue;
             }
-            if(lotto_list[i].get(p1) < winning_number.get(p2)){
+            if(result < 0){
                 p1++;
                 continue;
             }
@@ -71,37 +79,42 @@ public class Application {
             p2++;
             count++;
         }
-        if(count == 5){
-            bonusCheck(i);
-        }
         return count;
     }
+
     public void bonusCheck(int i){
         if(lotto_list[i].contains(bonus)){
             bonusCount++;
         }
     }
     public void inputBonus(){
-        System.out.println("\n"+print_msg.bonus_numMsg);
+        System.out.println("\n"+PrintMsg.BONUS_NUM_MSG.getMessage());
         bonus = Integer.parseInt(Console.readLine());
     }
     public int[] matchCount(){
         int[] ary = new int[numSize+1];
         for(int i = 0; i < lotto_list.length; i++){
-            ary[numberMatch(i)]++;
+            int num = numberMatch(i,0,0,0);
+            if(num == 5){
+                bonusCheck(i);
+            }
+            ary[num]++;
         }
         return ary;
     }
     public void winning_history(){
         int [] ary = matchCount();
-        System.out.println("\n"+print_msg.statisticMsg);
+        System.out.println("\n"+PrintMsg.STATISTIC_MSG.getMessage());
         System.out.println("---");
         for(int i = 3; i < 7; i++){
-            System.out.printf(print_msg.matchMsg,i,amount[i-3],ary[i]);
+            System.out.printf(PrintMsg.MATCH_MSG.getMessage(),i,amount[i-3],ary[i]);
+            if(i == 5){
+                System.out.printf(PrintMsg.BONUS_MSG.getMessage(),i,amount[5],bonusCount);
+            }
         }
     }
     public List<Integer>[] purchase_history(int num){
-        System.out.println("\n"+num+print_msg.checkMsg);
+        System.out.println("\n"+num+PrintMsg.CHECK_MSG.getMessage());
         List<Integer> lotto_list [] = initialLottoArray(num);
         for(int i = 0; i < num; i++){
             Lotto lotto = new Lotto(new ArrayList<>());
@@ -120,7 +133,7 @@ public class Application {
         return list;
     }
     public int purchase_amount(){
-        System.out.println(print_msg.inputMsg);
+        System.out.println(PrintMsg.INPUT_MSG.getMessage());
         int num = Integer.parseInt(Console.readLine());
         return validate_division(num);
     }
@@ -130,7 +143,9 @@ public class Application {
         }
         return amount / one_ticket;
     }
+    public void revenue(){
 
+    }
     public class Lotto {
         private final List<Integer> numbers;
 
