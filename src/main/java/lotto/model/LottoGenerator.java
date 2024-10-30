@@ -26,6 +26,6 @@ public class LottoGenerator {
 
     private Lotto issue() {
         List<Integer> numbers = randomNumbersStrategy.generateNumbers();
-        return new Lotto(numbers);
+        return Lotto.of(numbers);
     }
 }
