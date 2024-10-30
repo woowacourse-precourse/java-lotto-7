@@ -22,9 +22,15 @@ public class LottoController {
         CreateLottoInfo createLottoInfo = lottoService.getCreateLottoInfo(userLottoInfo);
 
         outputView.printCreateLottoInfo(createLottoInfo);
+
+        String winningNumber = readWinningNumber();
     }
 
     private long readPurchaseAmount() {
         return inputView.readPurchaseAmount();
+    }
+    
+    private String readWinningNumber() {
+        return inputView.readWinningNumber();
     }
 }

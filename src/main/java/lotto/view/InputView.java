@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public long readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
@@ -11,6 +12,14 @@ public class InputView {
         checkUserInputIsNull(userPurchaseAmount);
 
         return checkPurchaseAmountIsNum(userPurchaseAmount);
+    }
+
+    public String readWinningNumber() {
+        System.out.println(WINNING_NUMBER_MESSAGE);
+        String winningNumber = Console.readLine();
+        checkUserInputIsNull(winningNumber);
+
+        return winningNumber;
     }
 
     private void checkUserInputIsNull(String userInput) {
