@@ -1,6 +1,5 @@
 package lotto.viewHandler;
 
-import lotto.dto.InputDto;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -15,17 +14,16 @@ public class ViewHandler {
         this.output = output;
     }
 
-    public Api<InputDto> inputHandler() {
-        try {
+//    public Api<InputDto> inputHandler() {
+//        try {
+//
+//        } catch() {
+//
+//        }
+//    }
 
-        } catch() {
-
-        }
-    }
-
-    private Api<Integer> purchaseMoney() {
-        String money = input.getPurchaseMoney();
-        String moneyData = money.getData();
-
-    }
+//    private MoneyDto purchaseMoney() {
+//        String money = input.getPurchaseMoney();
+//
+//    }
 }

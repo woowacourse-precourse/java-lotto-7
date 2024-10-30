@@ -173,7 +173,11 @@
 - ViewHandler
 
 ## Validation
-- Validator
+- ValidatorImpl
+  - LottoNumberRangeValidator : 1 ~ 45 사이의 숫자인지 확인하는 코드
+  - LottoNumberSplit : ","로 구분하여 6개의 문자가 입력되었는지 확인하는 코드
+  - LottoPurchaseUnitValidator : 1,000원 단위로 구입할 돈이 입력되었는지 확인하는 코드
+  - ParseInt : 숫자로 입력되었는지 확인하는 코드
 
 ## View
 - Input
