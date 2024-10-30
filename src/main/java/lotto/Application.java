@@ -9,11 +9,11 @@ public class Application {
 		int amount = input.amountInput();
 
 		LottoOutput output = new LottoOutput(amount);
+		List<List<Integer>> randoms = output.getRandoms();
 
 		List<Integer> winningList = input.winningNumber();
-		input.bonusInput(winningList);
-		
-		
+
+		int bouns = input.bonusInput(winningList);
 
 	}
 }
