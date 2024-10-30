@@ -8,28 +8,27 @@ import lotto.service.PrintTicketCount;
 
 public class LotteryProcess {
     private final List<Integer> numbers;
-    private final int bonusNumber;
+    private final int bonusBallNumber;
     private final List<List<Integer>> userTicketNumbers;
-    private int matchNumberCount;
 
-    private final int RANKING_NUMBER = 5;
-    private final List<Integer> rankingCount = new ArrayList<>(Collections.nCopies(RANKING_NUMBER, 0));
+    private final int RANKINGS_NUMBER = 5;
+    private final List<Integer> rankingCount = new ArrayList<>(Collections.nCopies(RANKINGS_NUMBER, 0));
 
 
     public LotteryProcess(Lotto lotto, UserBonusNumberInput userBonusNumberInput,
                           PrintTicketCount printTicketCount) {
         this.numbers = lotto.getNumbers();
-        this.bonusNumber = userBonusNumberInput.getBonusNumber();
+        this.bonusBallNumber = userBonusNumberInput.getBonusNumber();
         this.userTicketNumbers = printTicketCount.getTicketNumbers();
     }
 
     public void countMatchNumbers() {
         for (List<Integer> ticket : userTicketNumbers) {
-            matchNumberCount = 0;
-            searchMatchNumbers(ticket);
 
-            boolean bonusMatch = ticket.contains(bonusNumber);
-            LottoRank rank = LottoRank.calculateRank(matchNumberCount, bonusMatch);
+            int matchNumberCount = searchMatchNumbers(ticket);
+            boolean bonusBallMatch = ticket.contains(bonusBallNumber);
+
+            LottoRank rank = LottoRank.calculateRank(matchNumberCount, bonusBallMatch);
 
             if (rank != null) {
                 int rankIndex = rank.ordinal();  // Enum 순서에 따른 인덱스 활용
@@ -42,11 +41,17 @@ public class LotteryProcess {
         return rankingCount;
     }
 
-    private void searchMatchNumbers(List<Integer> ticket) {
+    private int searchMatchNumbers(List<Integer> ticket) {
+
+        int matchCount = 0;
+
         for (int lottoNumber : numbers) {
+
             if (ticket.contains(lottoNumber)) {
-                matchNumberCount++;
+                matchCount++;
             }
         }
+
+        return matchCount;
     }
 }
