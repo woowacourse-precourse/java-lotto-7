@@ -29,6 +29,7 @@ public class LottoController {
         int lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
         List<Lotto> lottos = lottoGenerator.generateLottos(lottoPurchasePrice);
         lottoView.printLottos(lottos);
+        List<Integer> lottoWinningNumbers = retry(this::requestLottoWinningNumbers);
     }
 
 
@@ -38,13 +39,18 @@ public class LottoController {
         return LottoParser.parseInt(lottoPurchasePrice);
     }
 
+    private List<Integer> requestLottoWinningNumbers(){
+        String lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
+        return null;
+    }
+
     private <T> T retry(Supplier<T> logic) {
-        boolean runFlag = true;
+        boolean retryFlag = true;
         T result = null;
-        while (runFlag) {
+        while (retryFlag) {
             try {
                 result = logic.get();
-                runFlag = false;
+                retryFlag = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
