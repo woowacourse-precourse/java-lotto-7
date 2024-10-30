@@ -17,8 +17,12 @@ public class LottoController {
     public void run(){
         outputHandler.promptForAmountInput();
         int amountInput = inputHandler.getAmountInput();
+        int count = amountInput / 1000;
+        outputHandler.displayPurchasedLottoCount(count);
+        for(int i = 0; i < count; i++){
+            System.out.println(Randoms.pickUniqueNumbersInRange(1,45,6).toString());
+        }
 
-        System.out.println(Randoms.pickUniqueNumbersInRange(1,45,6).toString());
 
 
         outputHandler.promptForLottoNumber();
