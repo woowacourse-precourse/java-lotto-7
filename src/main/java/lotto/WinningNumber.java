@@ -1,13 +1,12 @@
 package lotto;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class WinningNumber {
 
 	private String winning;
-	private Set<Integer> set = new LinkedHashSet<>();
+	private List<Integer> winningList = new ArrayList<>();
 
 	public WinningNumber(String winning) {
 		this.winning = winning;
@@ -15,27 +14,18 @@ public class WinningNumber {
 
 	public List<Integer> winningCheck() {
 		String[] winningArr = winningSplit();
-		valueCheck(winningArr);
-		duplicationCheck(winningArr.length);
-		return List.copyOf(set);
+		winningList(winningArr);
+		return winningList;
 	}
 
 	private String[] winningSplit() {
 		return winning.split(",");
 	}
 
-	private void valueCheck(String[] winningArr) {
-		lengthCheck(winningArr.length);
-		for (String s : winningArr) {
-			int num = numberCheck(s);
-			numberScope(num);
-			duplication(num);
-		}
-	}
-
-	private void lengthCheck(int length) {
-		if (length != 6) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력해주세요.");
+	private void winningList(String[] winningArr) {
+		for (int i = 0; i < winningArr.length; i++) {
+			int num = numberCheck(winningArr[i]);
+			winningList.add(num);
 		}
 	}
 
@@ -47,22 +37,4 @@ public class WinningNumber {
 		}
 	}
 
-	private void numberScope(int num) {
-		if (num < 1) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이로 입력해주세요.");
-		}
-		if (num > 45) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이로 입력해주세요.");
-		}
-	}
-
-	private void duplication(int num) {
-		set.add(num);
-	}
-
-	private void duplicationCheck(int length) {
-		if (length != set.size()) {
-			throw new IllegalArgumentException("[ERROR] 중복값은 입력할 수 없습니다.");
-		}
-	}
 }

@@ -28,9 +28,9 @@ public class Input {
 			System.out.println();
 			System.out.println("당첨 번호를 입력해 주세요.");
 			String winning = readLine();
-			WinningNumber numberCheck = new WinningNumber(winning);
-			return numberCheck.winningCheck();
-
+			WinningNumber winningNumber = new WinningNumber(winning);
+			Lotto lotto = new Lotto(winningNumber.winningCheck());
+			return lotto.listValueCheck();
 		} catch (IllegalArgumentException e) {
 			System.err.println(e);
 			winningNumber();
