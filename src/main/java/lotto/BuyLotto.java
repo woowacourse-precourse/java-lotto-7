@@ -6,26 +6,25 @@ import java.util.Comparator;
 import java.util.List;
 
 public class BuyLotto {
-    private final ArrayList<List<Integer>> dataUserLotto;
+    private final List<List<Integer>> dataUserLotto;
 
     public BuyLotto(Money money) {
-        inputView inputView = new inputView();
-        money = inputView.getMoney();
-        ArrayList<List<Integer>> dataUserLotto = makeLottoList(money);
-        this.dataUserLotto = dataUserLotto;
+        this.dataUserLotto = makeLottoList(money);
     }
 
-    private ArrayList<List<Integer>> makeLottoList(Money money) {
-        int moneyValue = money.getMoneyValue();
-        int times = moneyValue / 1000;
-        ArrayList<List<Integer>> dataUserLotto = new ArrayList<>();
+    public List<List<Integer>> getDataUserLotto() {
+        return dataUserLotto;
+    }
+
+    private List<List<Integer>> makeLottoList(Money money) {
+        int times = money.getMoneyValue() / 1000;
+        List<List<Integer>> dataUserLotto = new ArrayList<>();
         for (int i = 0; i < times; i++) {
-            List<Integer> lottoTimes = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoTimes = new ArrayList<>
+                    (Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoTimes.sort(Comparator.naturalOrder());
             dataUserLotto.add(lottoTimes);
-            System.out.println(lottoTimes);
         }
-        System.out.println(dataUserLotto);
         return dataUserLotto;
     }
 }
