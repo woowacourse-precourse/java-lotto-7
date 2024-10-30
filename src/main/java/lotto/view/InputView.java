@@ -11,6 +11,7 @@ public class InputView {
     private static final Pattern validLottoPurchaseAmountPattern = Pattern.compile("^[1-9][0-9]*000$");
     private static final Pattern validWonLottoNumbersPattern = Pattern.compile(
             "^([1-9]|[1-3][0-9]|4[0-5])(,([1-9]|[1-3][0-9]|4[0-5])){5}$");
+    private static final Pattern validBonusLottoNumberPattern = Pattern.compile("^([1-9]|[1-3][0-9]|4[0-5])$");
 
     public static int inputLottoPurchaseAmount() {
         String userInput = readLine();
@@ -39,6 +40,19 @@ public class InputView {
     private static void validateWonLottoNumbers(String userInput) {
         if (!validWonLottoNumbersPattern.matcher(userInput).matches()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1-45까지 숫자 6개가 쉼표(,)로 구분되어야 합니다.");
+        }
+    }
+
+    public static int inputBonusNumber() {
+        String userInput = readLine();
+        validateBonusNumber(userInput);
+
+        return Integer.parseInt(userInput);
+    }
+
+    private static void validateBonusNumber(String userInput) {
+        if (!validBonusLottoNumberPattern.matcher(userInput).matches()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1-45까지의 숫자 중 하나여야 합니다.");
         }
     }
 }
