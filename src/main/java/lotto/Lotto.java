@@ -1,15 +1,18 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private final static int LOW_NUMBER = 1;
-    private final static int HIGH_NUMBER = 45;
+    public final static int LOW_NUMBER = 1;
+    public final static int HIGH_NUMBER = 45;
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validAll(numbers);
         this.numbers = numbers;
     }
 
@@ -21,30 +24,29 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-    private void validRange(int number){
-        if(validNumberRange(number)){
-            throw new IllegalArgumentException("[ERROR] 로또 숫자는 " + LOW_NUMBER + "~" + HIGH_NUMBER + "사이의 숫자이어야 합니다.");
+    private void validRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < LOW_NUMBER || number > HIGH_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 로또 숫자는 " + LOW_NUMBER
+                        + "~" + HIGH_NUMBER + " 사이의 숫자이어야 합니다.");
+            }
         }
     }
 
-    private static boolean validNumberRange(int number) {
-        return !(LOW_NUMBER <= number && number >= HIGH_NUMBER);
-    }
-
-    private void pickNumber(String regax) {
-        String pickNumber = Console.readLine();
-
-        String[] splitNum = pickNumber.split(regax);
-
-        for (String number : splitNum) {
-            numbers.add(Integer.parseInt(number));
-        }
-        duplicatedNumber();
-    }
-
-    private void duplicatedNumber(){
-        if(numbers.size() != numbers.stream().distinct().count()){
+    private void checkDuplicated(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
+    }
+
+    private void validAll(List<Integer> numbers) {
+        validate(numbers);
+        validRange(numbers);
+        checkDuplicated(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return "" + numbers;
     }
 }
