@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,11 @@ public class Lotto {
         validateMeetNumberRangeLimit(numbers);
         validateThereAreDuplicateNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        Collections.sort(numbers); // 원본 리스트 정렬
+        return numbers;
     }
 
     private void validateThereAreSixNumbers(List<Integer> numbers) {
