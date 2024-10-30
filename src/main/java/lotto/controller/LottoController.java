@@ -8,14 +8,17 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoService lottoService;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.lottoService = new LottoService();
     }
 
     public void run() {
         int moneyInput = getMoneyInput();
+        lottoService.purchaseLotto(moneyInput);
 
     }
 
