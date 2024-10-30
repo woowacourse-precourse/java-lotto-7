@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class LottoInputView {
     public String getLottoPurchaseMoney() {
         printLottoPurchaseMessage();
-        return null;
+        return Console.readLine();
     }
 
     private void printLottoPurchaseMessage() {
