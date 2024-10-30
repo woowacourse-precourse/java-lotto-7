@@ -3,12 +3,12 @@ package lotto.view;
 import static lotto.utils.ErrorMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
+import java.util.List;
 
 public class InputView {
-    private static final String INPUT_PRICE = "구입금액을 입력해 주세요.";
-    private static final String BUY_COUNT = "개를 구매했습니다.";
+    private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNER_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
+
 
     public static void errorPrint(String errorMessage) {
         System.out.print(ERROR);
@@ -17,7 +17,7 @@ public class InputView {
 
     public static int inputPrice() {
         try {
-            System.out.println(INPUT_PRICE);
+            System.out.println(INPUT_PRICE_MESSAGE);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             errorPrint("inputPrice");
@@ -25,12 +25,9 @@ public class InputView {
         }
     }
 
-    public static void getLottoList(LottoMachine lottoMachine) {
-        int buy = lottoMachine.getLottoTicketSize();
+    public static List<String> inputNumbers() {
+            System.out.println(INPUT_WINNER_LOTTO_MESSAGE);
+            return List.of(Console.readLine().split(","));
 
-        System.out.println("\n" + buy + BUY_COUNT);
-        for (Lotto lotto : lottoMachine.getLottoTickets()) {
-            System.out.println(lotto.getNumbers());
-        }
     }
 }

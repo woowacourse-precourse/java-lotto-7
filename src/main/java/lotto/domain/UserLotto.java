@@ -1,18 +1,13 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.utils.RandomPicker;
 
-public class UserLottoTickets {
+public class UserLotto {
     private final List<Lotto> lottoTickets;
+    private int total;
 
-    public UserLottoTickets(List<Lotto> lottoTickets) {
-        buyLotto();
+    public UserLotto(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
 
-    private void buyLotto() {
-        Lotto lotto = new Lotto(RandomPicker.getRandomNumbers());
-
-    }
 }

@@ -41,4 +41,12 @@ public class LottoMachine {
         }
         return lottoTickets;
     }
+
+    public int getLottoTicketSize() {
+        return lottoTickets.size();
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }
