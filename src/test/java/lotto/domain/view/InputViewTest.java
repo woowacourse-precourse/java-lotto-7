@@ -67,6 +67,24 @@ class InputViewTest {
         }
     }
 
+    @Nested
+    @DisplayName("사용자가 보너스 번호를 입력하면")
+    class BonusNumberTest {
+        @ParameterizedTest
+        @ValueSource(strings = {"1", "2", "3"})
+        @DisplayName("정상적으로 변환하여야 한다.")
+        void getUserPurchaseAmount(String input) {
+            //given
+            setUserInput(input);
+
+            //when
+            int bonusNumber = inputView.getBonusNumber();
+
+            //then
+            assertThat(bonusNumber).isEqualTo(Integer.parseInt(input));
+        }
+    }
+
 
     private static void setUserInput(String userInput) {
         ByteArrayInputStream in = new ByteArrayInputStream((userInput + "\n").getBytes());
