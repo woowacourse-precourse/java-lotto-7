@@ -15,10 +15,9 @@ public class OutputView {
     }
 
     private void printEachNumber(Lotto lotto) {
-        List<Integer> sortedLotto = lotto.getSortedLotto();
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
 
-        for (Integer integer : sortedLotto) {
+        for (Integer integer : lotto.get()) {
             joiner.add(integer.toString());
         }
 
