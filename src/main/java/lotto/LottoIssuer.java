@@ -12,8 +12,12 @@ public class LottoIssuer {
         execute();
     }
 
-    public List<Lotto> getLottos() {
-        return List.of(lottos);
+    public String getResult() {
+        StringBuilder result = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            result.append(lotto.getNumbers() + "\n");
+        }
+        return result.toString();
     }
 
     public int getLottoCount() {

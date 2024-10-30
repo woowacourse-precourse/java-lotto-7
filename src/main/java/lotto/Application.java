@@ -21,5 +21,7 @@ public class Application {
         int lottoCount = issuer.getLottoCount();
         System.out.println(lottoCount + "개를 구매했습니다.");
 
+        String issuedLottoResult = issuer.getResult();
+        System.out.print(issuedLottoResult);
     }
 }
