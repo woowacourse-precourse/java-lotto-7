@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.validator.exception.LottoException;
