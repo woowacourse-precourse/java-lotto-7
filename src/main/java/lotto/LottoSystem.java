@@ -1,6 +1,8 @@
 package lotto;
 
 import static lotto.StringPool.MONEY_NOT_DIVIDED_BY_1000;
+import static lotto.StringPool.PRINT_SOLD_LOTTO_COUNT;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,13 @@ public class LottoSystem {
             lottos.add(createAutoLotto());
         }
         return lottos;
+    }
+
+    public void printSoldLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + PRINT_SOLD_LOTTO_COUNT);
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     private Lotto createAutoLotto() {
