@@ -19,8 +19,8 @@
 - [x] 아무 값도 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 0을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 로또 입력 금액이 1000 미만인 경우, ``IllegalArgumentException``을 발생시킨다.
-- [ ] 로또 입력 금액이 1000으로 나누어 떨어지지 않는 경우, ``IllegalArgumentException``을 발생시킨다.
-- [ ] 잘못된 값을 입력할 경우, ``[ERROR]``로 시작하는 에러 메시지를 출력하고 다시 입력받는다.
+- [x] 로또 입력 금액이 1000으로 나누어 떨어지지 않는 경우, ``IllegalArgumentException``을 발생시킨다.
+- [x] 잘못된 값을 입력할 경우, ``[ERROR]``로 시작하는 에러 메시지를 출력하고 다시 입력받는다.
 
 ### 📌 로또 번호 생성 및 출력
 

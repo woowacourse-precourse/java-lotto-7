@@ -46,4 +46,15 @@ class PriceValidatorTest {
 
         assertEquals(ErrorMessage.PRICE_UNDER_THOUSAND.getErrorMessage(), exception.getMessage());
     }
+
+    @DisplayName("입력한 값이 1000원 단위가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"14300", "1200"})
+    void validateDivideThousand(String input) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            PriceValidator.validatePrice(input);
+        });
+
+        assertEquals(ErrorMessage.PRICE_NOT_DIVIDE_THOUSAND.getErrorMessage(), exception.getMessage());
+    }
 }

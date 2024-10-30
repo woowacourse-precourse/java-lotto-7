@@ -10,6 +10,7 @@ public class PriceValidator {
         long convertInput = convertToLong(input);
         validateZero(convertInput);
         validateUnderThousand(convertInput);
+        validateDivideThousand(convertInput);
     }
 
     private static void validateNull(String price) {
@@ -27,6 +28,12 @@ public class PriceValidator {
     private static void validateUnderThousand(long price) {
         if (price < 1000) {
             throw new IllegalArgumentException(ErrorMessage.PRICE_UNDER_THOUSAND.getErrorMessage());
+        }
+    }
+
+    private static void validateDivideThousand(long price) {
+        if (price % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessage.PRICE_NOT_DIVIDE_THOUSAND.getErrorMessage());
         }
     }
 
