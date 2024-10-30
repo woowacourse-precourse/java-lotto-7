@@ -29,8 +29,8 @@ public class Lotto {
 
     private List<LottoNumber> convertToLottoNumbers(final List<Integer> numbers) {
         return numbers.stream()
-                .map(LottoNumber::new)
                 .sorted()
+                .map(LottoNumber::new)
                 .toList();
     }
 
