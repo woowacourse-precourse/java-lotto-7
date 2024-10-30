@@ -29,4 +29,10 @@ public class BonusNumberInputHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 숫자는 1에서 45 사이의 값이어야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void 보너스_숫자가_1에서_45_사이의_값이면_예외_없음(int bonusNumber) {
+        assertDoesNotThrow(() -> BonusNumberInputHandler.validateBonusNumberRange(bonusNumber));
+    }
 }
