@@ -5,7 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Application {
@@ -49,13 +51,13 @@ public class Application {
         int bonusNumber = Integer.parseInt(input.trim());
 
         // 당첨, 보너스 번호와 구입한 로또 번호 비교 (당첨 여부 확인)
-        int count2 = 0;
-        for (int number : numbers) {
-            if (winningNumbers.contains(number)) {
-                count2++;
-            }
-        }
-        System.out.println(count2);
+        Map<String, Integer> results = new LinkedHashMap<>();
+        results.put("3개 일치 (5,000원)", 0);
+        results.put("4개 일치 (50,000원)", 0);
+        results.put("5개 일치 (1,500,000원)", 0);
+        results.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
+        results.put("6개 일치 (2,000,000,000원)", 0);
+
 
     }
 }
