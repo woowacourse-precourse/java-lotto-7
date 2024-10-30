@@ -8,10 +8,14 @@ public class LottoNumber {
     private final int lottoNumber;
 
     public LottoNumber(int lottoNumber) {
+        validate(lottoNumber);
+        this.lottoNumber = lottoNumber;
+    }
+
+    private static void validate(int lottoNumber) {
         if (lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER) {
             throw new IllegalArgumentException("//여기 enum 에러값");
         }
-        this.lottoNumber = lottoNumber;
     }
 
     public int getLottoNumber() {
