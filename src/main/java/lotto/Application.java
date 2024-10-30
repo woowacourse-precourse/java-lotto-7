@@ -7,6 +7,8 @@ import java.util.List;
 public class Application {
     public static final int one_ticket = 1000;
     public static final int numSize = 6;
+    public static List<Integer> winning_number;
+    public static List<Integer>[] lotto_list;
     public static final String amount[] = {"5,000","50,000","1,500,000",
             "30,000,000","2,000,000,000"};
     public class print_msg{
@@ -26,6 +28,7 @@ public class Application {
     public void logic(){
         int num = purchase_amount();
         purchase_history(num);
+
     }
     public Lotto inputWinningNumber(){
         Lotto lotto = new Lotto(new ArrayList<>());
@@ -36,13 +39,37 @@ public class Application {
         lotto.numbers.sort(Integer::compareTo);
         return lotto;
     }
+    public int maxNumber(List<Integer>[] lotto_list){
+        for(int i = 0; i < lotto_list.length; i++){
+
+        }
+    }
+    public int NumberMatch(int i){
+        int p1 = 0;
+        int p2 = 0;
+        int count = 0;
+        while(p1 < numSize && p2 < numSize){
+            if(lotto_list[i].get(p1) > winning_number.get(p2)){
+                p2++;
+                continue;
+            }
+            if(lotto_list[i].get(p1) < winning_number.get(p2)){
+                p1++;
+                continue;
+            }
+            p1++;
+            p2++;
+            count++;
+        }
+        return count;
+    }
 
     public void winning_history(){
         for(int i = 3; i < 7; i++){
             System.out.printf(print_msg.matchMsg,i,amount[i-3],3);
         }
     }
-    public void purchase_history(int num){
+    public List<Integer>[] purchase_history(int num){
         System.out.println("\n"+num+print_msg.checkMsg);
         List<Integer> lotto_list [] = initialLottoArray(num);
         for(int i = 0; i < num; i++){
@@ -52,6 +79,7 @@ public class Application {
             lotto_list[i].sort(Integer::compare);
             System.out.println(lotto_list[i]);
         }
+        return lotto_list;
     }
     public List[] initialLottoArray(int num){
         List<Integer> list[] = new ArrayList[num];
