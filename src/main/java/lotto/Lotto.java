@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sortNumbers();
     }
 
     private void validate(List<Integer> numbers) {
@@ -33,6 +36,9 @@ public class Lotto {
 
     public boolean hasBonusNumber(int bonusNumber){
         return numbers.contains(bonusNumber);
+    }
+    private void sortNumbers(){
+        numbers.sort(Comparator.naturalOrder());
     }
 
 
