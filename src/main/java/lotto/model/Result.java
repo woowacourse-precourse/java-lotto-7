@@ -7,14 +7,13 @@ public class Result {
     Map<Prize, Integer> result;
 
     public Result(Map<Prize, Integer> result) {
-        this.result = nullToZero(result);
+        nullToZero(result);
+        this.result = result;
     }
 
-    private Map<Prize, Integer> nullToZero(Map<Prize, Integer> result) {
+    private void nullToZero(Map<Prize, Integer> result) {
         Arrays.stream(Prize.values())
                 .forEach(prize -> result.putIfAbsent(prize, 0));
-
-        return result;
     }
 
     public int totalMoney() {
