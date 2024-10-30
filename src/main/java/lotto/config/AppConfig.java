@@ -6,7 +6,7 @@ import lotto.service.LottoService;
 import lotto.service.ProfitCalculatorService;
 import lotto.service.PurchaseService;
 import lotto.service.StatisticsService;
-import lotto.validator.PurchaseValidator;
+import lotto.service.WinningLottoService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -25,11 +25,11 @@ public class AppConfig {
     }
 
     private LottoService lottoService() {
-        return new LottoService(purchaseService(), lottoGeneratorService(), statisticsService(), profitCalculatorService());
+        return new LottoService(purchaseService(), lottoGeneratorService(), statisticsService(), profitCalculatorService(), winningLottoService());
     }
 
     private PurchaseService purchaseService() {
-        return new PurchaseService(purchaseValidator());
+        return new PurchaseService();
     }
 
     private LottoGeneratorService lottoGeneratorService() {
@@ -44,8 +44,8 @@ public class AppConfig {
         return new ProfitCalculatorService();
     }
 
-    private PurchaseValidator purchaseValidator() {
-        return new PurchaseValidator();
+    private WinningLottoService winningLottoService() {
+        return new WinningLottoService();
     }
 
 }
