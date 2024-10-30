@@ -5,9 +5,9 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
-	
+
 	private static List<Integer> numbers;
-	
+
 	public String readLine() {
 		return Console.readLine();
 	}
@@ -18,7 +18,7 @@ public class Input {
 			String amount = readLine();
 			Amount amountCheck = new Amount(amount);
 		} catch (IllegalArgumentException e) {
-			System.err.println(e);
+			System.out.println(e);
 			amountInput();
 		}
 	}
@@ -30,9 +30,9 @@ public class Input {
 			String winning = readLine();
 			WinningNumber winningNumber = new WinningNumber(winning);
 			Lotto lotto = new Lotto(winningNumber.winningCheck());
-			Input.setNumbers(lotto.listValueCheck());
+			numbers = lotto.getNumbers();
 		} catch (IllegalArgumentException e) {
-			System.err.println(e);
+			System.out.println(e);
 			winningNumber();
 		}
 	}
@@ -44,18 +44,14 @@ public class Input {
 			String bonus = readLine();
 			BonusNumber bonusList = new BonusNumber(bonus, numbers);
 			bonusList.bounsCheck();
-		} catch(IllegalArgumentException e) {
-			System.err.println(e);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e);
 			bonusInput();
 		}
 	}
 
 	public static List<Integer> getNumbers() {
 		return numbers;
-	}
-
-	public static void setNumbers(List<Integer> numbers) {
-		Input.numbers = numbers;
 	}
 
 }

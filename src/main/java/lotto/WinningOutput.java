@@ -51,7 +51,6 @@ public class WinningOutput {
 
 	private String rateOfReturn() {
 		double re = (double) totalAmount / amount;
-		String.format("%.1f", re);
-		return String.format("%.1f", re);
+		return String.format("%.1f", re * 100);
 	}
 }

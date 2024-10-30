@@ -10,6 +10,7 @@ public class Lotto {
 	public Lotto(List<Integer> numbers) {
 		validate(numbers);
 		this.numbers = numbers;
+		listValueCheck();
 	}
 
 	private void validate(List<Integer> numbers) {
@@ -52,4 +53,7 @@ public class Lotto {
 		}
 	}
 
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
 }
