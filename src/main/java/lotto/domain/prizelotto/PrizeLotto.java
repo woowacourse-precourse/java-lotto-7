@@ -18,4 +18,8 @@ public abstract class PrizeLotto {
     abstract public int getRank();
 
     abstract public int getCount();
+
+    abstract public int getMatchCount();
+
+    abstract public int getPrice();
 }

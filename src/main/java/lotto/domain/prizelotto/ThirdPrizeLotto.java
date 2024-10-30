@@ -5,6 +5,11 @@ import lotto.RankPrice;
 import lotto.domain.WinNumbers;
 
 public class ThirdPrizeLotto extends PrizeLotto {
+
+    private static final int RANK = 3;
+    private static final int MATCH_COUNT = 5;
+    private static final int PRICE = 1500000;
+
     @Override
     public int calculatePrize() {
         return RankPrice.THIRD.getPrice() * count;
@@ -17,7 +22,17 @@ public class ThirdPrizeLotto extends PrizeLotto {
 
     @Override
     public int getRank() {
-        return 3;
+        return RANK;
+    }
+
+    @Override
+    public int getMatchCount() {
+        return MATCH_COUNT;
+    }
+
+    @Override
+    public int getPrice() {
+        return PRICE;
     }
 
     @Override

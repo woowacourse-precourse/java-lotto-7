@@ -2,9 +2,9 @@ package lotto.application.printer;
 
 import static java.util.Collections.sort;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.RankPrice;
 import lotto.application.Printer;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -28,11 +28,11 @@ public class LottoResultPrinter implements Printer {
     @Override
     public void printPrizeResult(List<PrizeLotto> prizeLottos, double profit) {
         print("\n당첨 통계\n" + "---");
-        print(RankPrice.FIFTH.getMessage() + " - " + prizeLottos.get(0).getCount() + "개");
-        print(RankPrice.FOURTH.getMessage() + " - " + prizeLottos.get(1).getCount() + "개");
-        print(RankPrice.THIRD.getMessage() + " - " + prizeLottos.get(2).getCount() + "개");
-        print(RankPrice.SECOND.getMessage() + " - " + prizeLottos.get(3).getCount() + "개");
-        print(RankPrice.FIRST.getMessage() + " - " + prizeLottos.get(4).getCount() + "개");
+        for (PrizeLotto prizeLotto : prizeLottos) {
+            print(prizeLotto.getMatchCount() + "개 일치 (" + chunkByThree(prizeLotto.getPrice()) + "원) - "
+                    + prizeLotto.getCount()
+                    + "개");
+        }
         print("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
 
@@ -40,5 +40,10 @@ public class LottoResultPrinter implements Printer {
         List<Integer> sortableList = new ArrayList<>(lotto);
         sort(sortableList);
         return sortableList.toString();
+    }
+
+    private String chunkByThree(int price) {
+        DecimalFormat df = new DecimalFormat("###,###");
+        return df.format(price);
     }
 }
