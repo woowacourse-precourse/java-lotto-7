@@ -5,6 +5,9 @@ import lotto.common.exception.ErrorCode;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static lotto.common.constant.PrintFormatConst.*;
 
 public class Lotto {
 
@@ -33,4 +36,13 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(this.numbers);
     }
+
+    public String print() {
+        return String.format(LOTTO_NUMBERS_FORMAT,
+                numbers.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", "))
+        );
+    }
+
 }
