@@ -45,7 +45,7 @@ public class Application {
         int num = purchase_amount();
         initialLottoList(num);
         purchase_history(num);
-        winning_number = inputWinningNumber().getNumbers();
+        inputWinningNumber();
         inputBonus();
         matchCount();
         winning_history();
@@ -53,7 +53,7 @@ public class Application {
 
     }
 
-    public Lotto inputWinningNumber(){
+    public void inputWinningNumber(){
         Lotto lotto = new Lotto(new ArrayList<>());
         System.out.println("\n"+PrintMsg.WINNING_NUM_MSG.getMessage());
         String winning[] = Console.readLine().split(",");
@@ -62,7 +62,7 @@ public class Application {
         }
         lotto.validate(lotto.numbers);
         lotto.numbers.sort(Integer::compareTo);
-        return lotto;
+        winning_number = lotto.getNumbers();
     }
 
     public int numberMatch(int i,int p1,int p2,int count){
