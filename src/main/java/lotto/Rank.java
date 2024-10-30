@@ -1,6 +1,8 @@
 package lotto;
 
-import java.security.PublicKey;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Rank {
     FIRST(6, false, 2_000_000_000),
@@ -21,11 +23,18 @@ public enum Rank {
     }
 
     public static Rank value(int count, boolean bonus) {
-        for (Rank rank  : Rank.values()) {
+        for (Rank rank : Rank.values()) {
             if (rank.count == count && rank.bonus == bonus) {
                 return rank;
             }
-        } return OTHER;
+        }
+        return OTHER;
+    }
+
+    public static List<Rank> getRanks() {
+        return Arrays.stream(Rank.values())
+                .filter(Rank::isNotOther)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private static boolean isNotOther(Rank rank) {
