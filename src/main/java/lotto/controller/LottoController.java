@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.generator.LottoGenerator;
 import lotto.util.LottoParser;
 import lotto.validator.LottoPurchasePriceValidator;
+import lotto.validator.LottoWinningNumbersValidator;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -14,15 +15,18 @@ public class LottoController {
     private final LottoView lottoView;
     private final LottoPurchasePriceValidator lottoPurchasePriceValidator;
     private final LottoGenerator lottoGenerator;
+    private final LottoWinningNumbersValidator lottoWinningNumbersValidator;
 
     public LottoController(
             LottoView lottoView,
             LottoPurchasePriceValidator lottoPurchasePriceValidator,
-            LottoGenerator lottoGenerator
+            LottoGenerator lottoGenerator,
+            LottoWinningNumbersValidator lottoWinningNumbersValidator
     ) {
         this.lottoView = lottoView;
         this.lottoPurchasePriceValidator = lottoPurchasePriceValidator;
         this.lottoGenerator = lottoGenerator;
+        this.lottoWinningNumbersValidator = lottoWinningNumbersValidator;
     }
 
     public void run() {
@@ -41,7 +45,8 @@ public class LottoController {
 
     private List<Integer> requestLottoWinningNumbers(){
         String lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
-        return null;
+        lottoWinningNumbersValidator.validateLottoWinningNumbers(lottoWinningNumbers);
+        return LottoParser.parseNumbers(lottoWinningNumbers);
     }
 
     private <T> T retry(Supplier<T> logic) {
