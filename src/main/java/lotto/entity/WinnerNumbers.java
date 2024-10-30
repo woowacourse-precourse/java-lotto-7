@@ -1,6 +1,6 @@
 package lotto.entity;
 
-import static lotto.exception.ExceptionUtils.ThrowIllegalArgumentException;
+import static lotto.exception.ExceptionUtils.throwIllegalArgument;
 import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
 
@@ -18,10 +18,10 @@ public class WinnerNumbers {
 
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
         if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-            ThrowIllegalArgumentException(BONUS_NUMBER_OUT_OF_RANGE);
+            throwIllegalArgument(BONUS_NUMBER_OUT_OF_RANGE);
         }
         if (mainNumbers.stream().anyMatch(number -> number == bonusNumber)) {
-            ThrowIllegalArgumentException(BONUS_NUMBER_DUPLICATE);
+            throwIllegalArgument(BONUS_NUMBER_DUPLICATE);
         }
     }
 }
