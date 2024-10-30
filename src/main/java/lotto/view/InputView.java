@@ -19,6 +19,8 @@ public class InputView {
     public String inputWinningNumbers() {
         printMessage(INPUT_WINNING_NUMBERS_MESSAGE);
         String input = Console.readLine();
+        InputValidator.validateContainsComma(input);
+        InputValidator.validateCommaFormat(input);
         return input;
     }
 
