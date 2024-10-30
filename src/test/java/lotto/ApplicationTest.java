@@ -100,6 +100,16 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호가 숫자가 아닌 경우")
+    @Test
+    void readWinningLottoBonusNumberFailTest1() {
+        assertSimpleTest(() -> {
+            runException(PURCHASE_AMOUNT, "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     // ---
 
     @Test
