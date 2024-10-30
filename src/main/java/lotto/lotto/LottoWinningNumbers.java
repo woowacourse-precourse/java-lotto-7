@@ -3,7 +3,6 @@ package lotto.lotto;
 import java.util.List;
 
 public class LottoWinningNumbers {
-    private static final String DUPLICATE_BONUS_ERROR_MESSAGE = "[ERROR] 보너스 번호에 중복이 있습니다.";
     private static final String LOTTO_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private final List<Integer> winningNumbers;
 
