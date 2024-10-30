@@ -10,7 +10,7 @@ public class LottoService {
     private HashMap<Integer,Integer> winningRecord = new HashMap<>();
 
     public LottoService() {
-        for (int i = 1; i <= 5; i++) {
+        for (int i = Rank.FIRST.getRankOrder(); i <= Rank.FIFTH.getRankOrder(); i++) {
             winningRecord.put(i, 0);
         }
     }
