@@ -8,4 +8,5 @@ public class ErrorMessage {
     public static final String INVALID_COUNT = "6개의 숫자를 입력해야 합니다";
     public static final String INVALID_RANGE = "1부터 45 사이의 숫자를 입력해야 합니다";
     public static final String DUPLICATED_NUMBER = "숫자는 중복될 수 없습니다";
+    public static final String DUPLICATED_TO_WINNING_NUMBERS ="보너스 번호는 당첨 번호와 같을 수 없습니다" ;
 }
