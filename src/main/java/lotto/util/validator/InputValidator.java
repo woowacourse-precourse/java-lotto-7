@@ -1,7 +1,6 @@
 package lotto.util.validator;
 
 import java.util.Arrays;
-import java.util.HashSet;
 
 public class InputValidator {
 
@@ -23,7 +22,6 @@ public class InputValidator {
     public static void validateWinningNumbers(String winningNumbers) {
         checkNull(winningNumbers);
         checkWinningNumbersForm(winningNumbers);
-        checkDuplication(winningNumbers);
         checkNumberRange(winningNumbers);
     }
 
@@ -31,15 +29,6 @@ public class InputValidator {
         if (!winningNumbers.matches(WINNING_NUMBERS_REGEX)) {
             throw new IllegalArgumentException(
                 "[ERROR] 로또 번호는 쉼표로 구분된 6자리 숫자여야 합니다.");
-        }
-    }
-
-    private static void checkDuplication(String winningNumbers) {
-        HashSet<String> hashSet = new HashSet<>();
-        boolean isDuplicated = Arrays.stream(winningNumbers.split(","))
-            .anyMatch(num -> !hashSet.add(num));
-        if (isDuplicated) {
-            throw new IllegalArgumentException("[ERROR] 중복된 당첨 번호를 입력하셨습니다.");
         }
     }
 
