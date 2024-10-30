@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,12 +13,13 @@ public class Application {
         int purchaseAmount = repeatUntilValidInput(Application::readPurchaseAmount);
         int lottoCount = purchaseAmount / 1000;
         List<Lotto> lottoList = buyLottos(lottoCount);
+        WinningLotto winningLotto = repeatUntilValidInput(Application::readWinningNumbers);
     }
 
     private static <R> R repeatUntilValidInput(Supplier<R> function) {
         try {
             return function.get();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.printf("%s\n\n", e.getMessage());
             return repeatUntilValidInput(function);
         }
@@ -47,5 +49,15 @@ public class Application {
                 .toList();
         lottoList.forEach(System.out::println);
         return lottoList;
+    }
+
+    private static WinningLotto readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbersString = Console.readLine();
+        String[] winningNumberStringArray = winningNumbersString.replaceAll(" ", "").split(",");
+        List<Integer> winningNumbers = Stream.of(winningNumberStringArray)
+                .map(number -> parseIntWithIllegalArgumentException(number, "[ERROR] 당첨 번호는 숫자여야 합니다."))
+                .toList();
+        return new WinningLotto(winningNumbers);
     }
 }
