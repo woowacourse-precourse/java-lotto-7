@@ -48,7 +48,7 @@ public class ValidateError {
         return winningNumber;
     }
 
-    public static void validateBonusNumber(String bonusNumberStr) {
+    public static int validateBonusNumber(String bonusNumberStr) {
         if (isBlank(bonusNumberStr)) {
             throw new IllegalArgumentException(ERROR_HEAD + NO_EXIST_BONUS_NUMBER);
         }
@@ -61,6 +61,7 @@ public class ValidateError {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_HEAD + NO_NUMBER_BONUS_NUMBER);
         }
+        return bonusNumber;
     }
 
     private static boolean isBlank(String input) {
