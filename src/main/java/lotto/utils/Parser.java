@@ -27,4 +27,12 @@ public class Parser {
             throw LottoException.from(ErrorMessage.LOTTO_PURCHASE_IS_NOT_NUMBER);
         }
     }
+
+    public static int parsingBonusNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw LottoException.from(ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER);
+        }
+    }
 }
