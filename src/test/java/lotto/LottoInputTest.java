@@ -56,4 +56,21 @@ public class LottoInputTest {
         assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
     }
 
+    @Test
+    void 보너스_번호_입력(){
+        String input="7";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        assertEquals(7,InputView.input_bounsNumber());
+    }
+
+    @DisplayName("보너스 번호가 1~45의 숫자가 아니면 에러가 발생한다.")
+    @Test
+    void 보너스_번호가_범위_아니면_에러가_발생한다(){
+        String input="50";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            InputView.input_bounsNumber();
+        });
+        assertEquals("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.",exception.getMessage());
+    }
 }
