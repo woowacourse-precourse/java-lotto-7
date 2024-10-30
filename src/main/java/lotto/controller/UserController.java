@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.service.UserService;
-import lotto.view.ErrorOutputView;
 
 public class UserController {
     // 싱글톤 패턴
@@ -16,20 +15,7 @@ public class UserController {
     }
 
     public void getPurchasePrice(int accessCount) {
-        int count = accessCount;
-        while (count > 0) {
-            try {
-                int purchasePrice = userService.inputPurchasePrice();
-                userService.save(purchasePrice);
-                return;
-
-            } catch (IllegalArgumentException e) {
-                ErrorOutputView.printErrorMessage(e.getMessage());
-                count--;
-            }
-        }
-        if (count == 0) {
-            userService.exit(accessCount);
-        }
+        int purchasePrice = userService.getPurchasePrice(accessCount);
+        userService.save(purchasePrice);
     }
 }
