@@ -29,5 +29,7 @@ public class InputView {
 
     public void inputWinningNumber() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
+
+        String userInput = Console.readLine();
     }
 }
