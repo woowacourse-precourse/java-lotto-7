@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.ExceptionHandler.isPositiveNumber;
 import static lotto.ExceptionHandler.isThousandDivisible;
 import static lotto.IOProcessor.getNumber;
 
@@ -24,6 +25,7 @@ public class Lotto {
         int purchaseAmount = getNumber(prompt.getGuide());
 
         try {
+            isPositiveNumber(purchaseAmount);
             isThousandDivisible(purchaseAmount);
         } catch (IllegalArgumentException e) {
             getPurchaseAmount();
