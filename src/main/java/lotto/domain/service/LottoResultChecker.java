@@ -2,6 +2,9 @@ package lotto.domain.service;
 
 import lotto.domain.entity.Lotto;
 import lotto.domain.type.LottoRank;
+import lotto.exception.LottoException;
+import lotto.exception.LottoNumberExceptionMessage;
+import lotto.util.ValidLottoNumber;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,8 +21,27 @@ public class LottoResultChecker {
     private final int bonusNumber;
 
     public LottoResultChecker(final List<Integer> winningNumbers, final int bonusNumber) {
+        validateNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateNumber(final List<Integer> winningNumbers, final int bonusNumber) {
+        if (ValidLottoNumber.isBoundedNumbers(winningNumbers)) {
+            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
+        }
+
+        if (ValidLottoNumber.isBoundedNumber(bonusNumber)) {
+            throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
+        }
+
+        if (ValidLottoNumber.isSixNumbers(winningNumbers)) {
+            throw new LottoException(LottoNumberExceptionMessage.NUMBERS_LENGTH_EXCEPTION);
+        }
+
+        if (ValidLottoNumber.isDuplicate(winningNumbers)) {
+            throw new LottoException(LottoNumberExceptionMessage.DUPLICATE_EXCEPTION);
+        }
     }
 
     public LottoRank checkRank(final Lotto lotto) {
