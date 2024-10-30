@@ -1,7 +1,6 @@
 package lotto.domain.prizelotto;
 
 import java.util.List;
-import lotto.RankPrice;
 import lotto.domain.WinNumbers;
 
 public class FifthPrizeLotto extends PrizeLotto {
@@ -12,7 +11,7 @@ public class FifthPrizeLotto extends PrizeLotto {
 
     @Override
     public int calculatePrize() {
-        return RankPrice.FIFTH.getPrice() * count;
+        return PRICE * count;
     }
 
     @Override
