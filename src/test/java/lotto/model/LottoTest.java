@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
 
@@ -39,5 +40,18 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")
+    void should_SortLottoNumbersInAscendingOrder() {
+        // given
+        List<Integer> descendingNumbers = List.of(6, 5, 4, 3, 2, 1);
+
+        // when
+        Lotto lotto = new Lotto(descendingNumbers);
+
+        // then
+        assertEquals(lotto.getAllNumbers(), List.of(1, 2, 3, 4, 5, 6));
     }
 }
