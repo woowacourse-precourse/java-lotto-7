@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.validators.LottoNumberValidator;
 import lotto.validators.PurchaseAmountValidator;
 
 public class Application {
@@ -11,5 +12,8 @@ public class Application {
         purchaseAmountValidator.validate(purchaseInput);
 
         String lottoNumbers = inputView.getLottoNumbers();
+
+        LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
+        lottoNumberValidator.validate(lottoNumbers);
     }
 }
