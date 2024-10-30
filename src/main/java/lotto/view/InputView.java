@@ -32,15 +32,9 @@ public class InputView {
         String input = readLine();
 
         List<String> numberTokens = splitWinningNumbers(input);
-        validateWinningNumberCount(numberTokens);
         numberTokens.forEach(i -> validateNumber(i, fieldName));
 
-        List<Integer> winningNumbers = parseToNumbers(numberTokens);
-        validateDuplicates(winningNumbers);
-
-        winningNumbers.forEach(i -> validateNumberInRange(i, fieldName));
-
-        return sortAscending(winningNumbers);
+        return parseToNumbers(numberTokens);
     }
 
     public int readBonusNumber() {
@@ -76,38 +70,19 @@ public class InputView {
         return Arrays.stream(input.split(lottoDelimiter)).toList();
     }
 
-    private void validateWinningNumberCount(List<String> winningNumbers) {
-        int lottoSize = LottoConstant.LOTTO_SIZE.getIntValue();
-        if (winningNumbers.size() != lottoSize) {
-            throw new IllegalArgumentException(String.format("[ERROR] 당첨 번호는 %d개여야 합니다.", lottoSize));
-        }
-    }
-
-    private List<Integer> parseToNumbers(List<String> numbers) {
-        return numbers.stream()
-                .map(Integer::parseInt)
-                .toList();
-    }
-
     private void validateNumberInRange(Integer number, String fieldName) {
         int minNumber = LottoConstant.MIN_NUMBER.getIntValue();
         int maxNumber = LottoConstant.MAX_NUMBER.getIntValue();
 
         if (number < minNumber)
-            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이상이어야 합니다.", fieldName, minNumber));
+            throw new IllegalArgumentException(String.format("[ERROR] %s는 %d 이상이어야 합니다.", fieldName, minNumber));
         if (number > maxNumber)
-            throw new IllegalArgumentException(String.format("[ERROR] %s은(는) %d 이하이어야 합니다.", fieldName, maxNumber));
+            throw new IllegalArgumentException(String.format("[ERROR] %s는 %d 이하이어야 합니다.", fieldName, maxNumber));
     }
 
-    private void validateDuplicates(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 중복될 수 없습니다.");
-        }
-    }
-
-    private List<Integer> sortAscending(List<Integer> numbers) {
+    private List<Integer> parseToNumbers(List<String> numbers) {
         return numbers.stream()
-                .sorted()
+                .map(Integer::parseInt)
                 .toList();
     }
 }
