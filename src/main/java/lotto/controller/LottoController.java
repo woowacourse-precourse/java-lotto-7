@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import lotto.model.Lotto;
 import lotto.service.LottoService;
+import lotto.util.LottoUtils;
 import lotto.util.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,27 +23,40 @@ public class LottoController {
     }
 
     public void run() {
-        int countLotto = getCountLotto();
-        ArrayList<Lotto> lottos = new ArrayList<>();
+        int puchaseAmount = getPuchaseAmount();
+        int countLotto = getCountLotto(puchaseAmount);
+        ArrayList<Lotto> lottos = getLottos(countLotto);
         outputView.printLottos(countLotto,lottos);
 
         int[] winningNums = getWinningNums();
         int bonusNumber = getBonusNumber();
         processLotto(lottos, winningNums, bonusNumber);
 
-        outputResult(countLotto, bonusNumber);
+        outputResult(puchaseAmount);
     }
 
-    public void outputResult(int countLotto, int bonusNumber) {
+    private ArrayList<Lotto> getLottos(int countLotto) {
+        ArrayList<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < countLotto; i++) {
+            lottos.add(LottoUtils.createLotto());
+        }
+        return lottos;
+    }
+
+    public void outputResult(int puchaseAmount) {
         HashMap<Integer,Integer> winningRecord = lottoService.getWinningRecord();
-        double profitMargin = lottoService.calculateProfitMargin(countLotto, bonusNumber);
+        double profitMargin = lottoService.calculateProfitMargin(winningRecord,puchaseAmount);
         outputView.printWinningResult(winningRecord);
         outputView.printProfitMargin(profitMargin);
     }
 
-    public int getCountLotto(){
+    public int getCountLotto(int purchaseAmount){
+        return lottoService.countLotto(purchaseAmount);
+    }
+
+    private int getPuchaseAmount() {
         outputView.requirePurchaseAmount();
-        return lottoService.countLotto(inputView.inputPurchaseAmount());
+        return inputView.inputPurchaseAmount();
     }
 
     public int[] getWinningNums(){
@@ -61,7 +75,10 @@ public class LottoController {
             int count = lottoService.countMatchNumber(winningNums, lottoNums);
             boolean checkBonus = lottoService.checkBonusNumber(bonusNumber, lottoNums);
             Rank rank = Rank.fromMatchCount(count, checkBonus);
-            lottoService.addWinningRecord(rank);
+            if (rank.getRankOrder()!=0) {
+                lottoService.addWinningRecord(rank);
+            }
+
         }
     }
 }
