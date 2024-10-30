@@ -17,6 +17,6 @@ public class LottoController {
     }
 
     public void getPrice() {
-        String price = inputView.readPrice();
+        int price = inputView.readPrice();
     }
 }
