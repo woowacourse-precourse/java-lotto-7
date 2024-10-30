@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.*;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class OutputHandler {
     public void printOK(int k) {
