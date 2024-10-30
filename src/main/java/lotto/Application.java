@@ -3,6 +3,7 @@ package lotto;
 import static lotto.Winning.FIVE;
 import static lotto.Winning.FIVE_BONUS;
 import static lotto.Winning.NONE;
+import static lotto.Winning.values;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -29,6 +30,7 @@ public class Application {
         lottos.keySet().forEach(Lotto::ascNumbers);
 
         lottos.keySet().forEach(System.out::println);
+        System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbers = Console.readLine();
@@ -44,6 +46,12 @@ public class Application {
             if (lotto.confirmBonus(bonusNumber) && lottos.get(lotto) == FIVE) {
                 lottos.put(lotto, FIVE_BONUS);
             }
+            lottos.get(lotto).increaseCount();
         });
+
+        System.out.println("당첨 통계\n---");
+        Arrays.stream(values())
+                .filter(winning -> winning != NONE)
+                .forEach(winning -> System.out.println(winning.toStringMessageAndCount()));
     }
 }

@@ -31,11 +31,9 @@ public class Lotto {
     }
 
     public int confirmWinning(List<Integer> winningNumbers) {
-        int confirmCount = 0;
-        if (winningNumbers.stream().anyMatch(numbers::contains)) {
-            confirmCount++;
-        }
-        return confirmCount;
+        return (int) winningNumbers.stream()
+                .filter(numbers::contains)
+                .count();
     }
 
     public boolean confirmBonus(int bonusNumber) {
