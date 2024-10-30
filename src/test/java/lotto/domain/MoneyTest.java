@@ -47,10 +47,13 @@ class MoneyTest {
     @ParameterizedTest
     @CsvSource({"10000, 10", "1000, 1", "5000, 5"})
     void 살_수_있는_로또_수를_계산한다(String money, int lottoCount) {
+        // given
+        Money validMoney = Money.from(money);
+
         // when
-        Money actual = Money.from(money);
+        int lottoMoney = validMoney.buyLottos();
 
         // then
-        assertThat(actual.buyLottos()).isEqualTo(lottoCount);
+        assertThat(lottoMoney).isEqualTo(lottoCount);
     }
 }
