@@ -3,6 +3,8 @@ package lotto;
 import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.validate.PriceValidate;
+import lotto.view.OutputView;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static lotto.constants.Constants.*;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -59,5 +62,13 @@ class LottoTest {
         assertThatThrownBy(() ->  new PriceValidate("chris"))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage(ERROR + PRICE_NOT_NUMBER);
+    }
+
+    @DisplayName("구매한 로또 수량이 맞는지 확인한다.")
+    @Test
+    void aaa() {
+        User user = new User(10000);
+        int lottoQuantity = user.getLottoQuantity();
+        assertThat(lottoQuantity).isEqualTo(10);
     }
 }
