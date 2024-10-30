@@ -1,4 +1,4 @@
-package lotto.lotto.domain.winning.domain;
+package lotto.lotto.winning.domain;
 
 import lotto.buyer.domain.Money;
 
@@ -10,5 +10,9 @@ public class Benefit {
     }
     public double getRateOfReturn(Money money) {
         return (((double) benefit.getMoney() / money.getMoney()) * PERCENTAGE);
+    }
+    @Override
+    public String toString() {
+        return String.valueOf(benefit.getMoney());
     }
 }
