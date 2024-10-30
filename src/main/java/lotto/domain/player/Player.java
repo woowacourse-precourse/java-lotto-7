@@ -9,10 +9,10 @@ public class Player {
     }
 
     public int getLottoCount() {
-        return 0;
+        return lottoCount;
     }
 
-    public void updateLottoCount(int i) {
-
+    public void updateLottoCount(int lottoCount) {
+        this.lottoCount = lottoCount;
     }
 }

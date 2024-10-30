@@ -4,6 +4,8 @@ import lotto.domain.player.Player;
 
 public class LottoService {
 
+    private static int LOTTO_PRICE = 1000;
+
     private Player player;
 
     public LottoService(Player player) {
@@ -11,6 +13,7 @@ public class LottoService {
     }
 
     public void updateLottoCount(int price) {
-
+        int lottoCount = price / LOTTO_PRICE;
+        player.updateLottoCount(lottoCount);
     }
 }
