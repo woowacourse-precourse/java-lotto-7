@@ -31,6 +31,7 @@ public class InputParser {
         List<Integer> winningNumbers = parseNumbers(separatedInput);
 
         inputValidator.validateNumberCount(winningNumbers);
+        inputValidator.validateNumberRange(winningNumbers);
     }
 
     private List<String> separateInput(String userInput) {
