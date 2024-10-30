@@ -3,6 +3,7 @@ package lotto.common.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.exception.InputValidationError;
 
 public class StringSplitter {
 
@@ -29,7 +30,7 @@ public class StringSplitter {
 
     private static void checkNullOrEmpty(final String target) {
         if (target == null || target.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력은 빈 값일 수 없습니다.");
+            InputValidationError.EMPTY_INPUT.throwException();
         }
     }
 
@@ -37,7 +38,7 @@ public class StringSplitter {
         Arrays.stream(target.split(delimiter, -1))
                 .forEach(part -> {
                     if (part.trim().isEmpty()) {
-                        throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력 형식입니다.");
+                        InputValidationError.INVALID_INPUT_FORMAT.throwException();
                     }
                 });
     }

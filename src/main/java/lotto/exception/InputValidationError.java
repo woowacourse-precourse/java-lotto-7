@@ -4,6 +4,7 @@ public enum InputValidationError {
 
     EMPTY_INPUT("입력은 빈 값일 수 없습니다."),
     INVALID_NUMERIC_FORMAT("올바른 숫자 형식이 아닙니다."),
+    INVALID_INPUT_FORMAT("올바른 입력 형식이 아닙니다."),
     ;
 
     private static final String ERROR_PREFIX = "[ERROR] ";
