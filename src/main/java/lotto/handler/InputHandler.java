@@ -12,4 +12,16 @@ public class InputHandler {
     public int getInputMoney() {
         return inputMoney;
     }
+
+    public String[] setInputLottoNumbers() {
+        String inputString = Console.readLine();
+
+        String[] lottoNumbers = inputString.split(",");
+
+        for (int i = 0; i < lottoNumbers.length; i++) {
+            lottoNumbers[i] = lottoNumbers[i].trim();
+        }
+
+        return lottoNumbers;
+    }
 }
