@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.config.ErrorMessage.INPUT_MONEY_ERROR;
+import static lotto.config.LottoMessage.INPUT_MONEY;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoInput {
@@ -12,11 +15,11 @@ public class LottoInput {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INPUT_MONEY_ERROR.getMessage());
         }
     }
 
     private static void printInputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INPUT_MONEY.getMessage());
     }
 }
