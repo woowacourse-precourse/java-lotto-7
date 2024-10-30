@@ -6,14 +6,14 @@ import lotto.util.RandomNumberGenerator;
 
 import java.util.List;
 
-public class LottoService {
+public class PlayerService {
 
     private static int LOTTO_PRICE = 1000;
 
     private Player player;
     private final RandomNumberGenerator numberGenerator;
 
-    public LottoService(Player player) {
+    public PlayerService(Player player) {
         this.player = player;
         this.numberGenerator = new RandomNumberGenerator();
     }

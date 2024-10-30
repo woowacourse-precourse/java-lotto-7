@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class LottoServiceTest {
+public class PlayerServiceTest {
 
-    private LottoService lottoService;
+    private PlayerService playerService;
     private Player player;
 
     @BeforeEach
     public void setUp() {
         player = new Player();
-        lottoService = new LottoService(player);
+        playerService = new PlayerService(player);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class LottoServiceTest {
         int price = 10000;
 
         // when
-        lottoService.updateLottoCount(price);
+        playerService.updateLottoCount(price);
 
         // then
         assertThat(player.getLottoCount()).isEqualTo(10);
@@ -38,7 +38,7 @@ public class LottoServiceTest {
         int lottoCount = 10;
 
         // when
-        lottoService.addLottos(lottoCount);
+        playerService.addLottos(lottoCount);
 
         // then
         assertThat(player.getLottos().size()).isEqualTo(lottoCount);
