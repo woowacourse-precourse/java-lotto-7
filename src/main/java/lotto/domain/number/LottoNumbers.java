@@ -9,6 +9,9 @@ public class LottoNumbers {
     private final Set<LottoNumber> lottoNumbers;
 
     public LottoNumbers(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException();
+        }
         Set<LottoNumber> lottoNumbers = new HashSet<>(numbers.stream().map(LottoNumber::new).toList());
         validate(lottoNumbers);
         this.lottoNumbers = lottoNumbers;

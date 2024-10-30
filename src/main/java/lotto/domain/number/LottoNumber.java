@@ -7,7 +7,7 @@ public class LottoNumber {
     static final int MAX = 45;
     private final int number;
 
-    LottoNumber(int number) {
+    public LottoNumber(int number) {
         validate(number);
         this.number = number;
     }
