@@ -1,8 +1,7 @@
 package lotto.validation;
 
-import enums.Delimiter;
-import enums.ErrorMessage;
-import util.Converter;
+import lotto.enums.ErrorMessage;
+import lotto.util.Converter;
 
 public class PriceValidator {
 
