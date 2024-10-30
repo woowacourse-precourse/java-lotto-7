@@ -5,6 +5,7 @@ import static lotto.utils.Constant.MAX_LOTTO_NUMBER_COUNT;
 import static lotto.utils.Constant.MIN_LOTTO_NUMBER;
 import static lotto.utils.Constant.MIN_PURCHASE_AMOUNT;
 import static lotto.utils.Constant.WINNING_NUMBER_INPUT_DELIMITER;
+import static lotto.utils.ErrorMessage.BONUS_NUMBER_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.DELIMITER_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.EMPTY_INPUT_ERROR_MESSAGE;
 import static lotto.utils.ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
@@ -49,7 +50,7 @@ public class InputValidator {
         }
     }
 
-    public void validateNumberRange(List<Integer> winningNumbers) {
+    public void validateWinningNumberRange(List<Integer> winningNumbers) {
         if (Collections.min(winningNumbers) < MIN_LOTTO_NUMBER || Collections.max(winningNumbers) > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_ERROR_MESSAGE.toString());
         }
@@ -60,6 +61,12 @@ public class InputValidator {
 
         if (uniqueNumbers.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE.toString());
+        }
+    }
+
+    public void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(BONUS_NUMBER_ERROR_MESSAGE.toString());
         }
     }
 }

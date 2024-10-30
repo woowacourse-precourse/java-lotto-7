@@ -32,7 +32,7 @@ public class InputParser {
         List<Integer> winningNumbers = parseNumbers(separatedInput);
 
         inputValidator.validateNumberCount(winningNumbers);
-        inputValidator.validateNumberRange(winningNumbers);
+        inputValidator.validateWinningNumberRange(winningNumbers);
         inputValidator.validateDuplicateNumber(winningNumbers);
 
         return winningNumbers;
@@ -41,6 +41,9 @@ public class InputParser {
     public void parseBonusNumber(String userInput) {
         inputValidator.validateEmpty(userInput);
         inputValidator.validateNumber(userInput, BONUS_NUMBER_ERROR_MESSAGE.toString());
+
+        int bonusNumber = Integer.parseInt(userInput);
+        inputValidator.validateBonusNumberRange(bonusNumber);
     }
 
     private List<String> separateInput(String userInput) {
