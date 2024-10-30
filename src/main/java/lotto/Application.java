@@ -15,5 +15,7 @@ public class Application {
 
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
         lottoNumberValidator.validate(lottoNumbers);
+
+        String bonusNumbers = inputView.getBonusNumber();
     }
 }
