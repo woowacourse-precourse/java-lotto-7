@@ -68,7 +68,7 @@ public class LottoController {
         lottoView.output.winningResult(ans,rate);
     }
 
-    private int getLottoCount(String inputPrice) {
+    int getLottoCount(String inputPrice) {
         int price;
         try {
             price = Integer.parseInt(inputPrice);
