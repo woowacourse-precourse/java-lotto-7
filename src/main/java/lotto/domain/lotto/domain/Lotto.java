@@ -11,9 +11,15 @@ public class Lotto {
 
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = convertToLottoNumbers(numbers);
+    }
+
+    public static Lotto from(
+            final List<Integer> numbers
+    ) {
+        return new Lotto(numbers);
     }
 
     private List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {

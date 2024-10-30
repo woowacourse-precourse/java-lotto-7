@@ -7,42 +7,51 @@ import java.util.stream.Collectors;
 public class LottoGame {
 
     private final List<Lotto> purchasedLottos;
-    private final List<LottoNumber> winningNumbers;
+    private final List<LottoNumber> winningLottos;
     private final LottoNumber bonusNumber;
     private final Map<LottoResult, Integer> results;
 
     public LottoGame(
             List<Lotto> purchasedLottos,
-            List<LottoNumber> winningNumbers,
+            List<LottoNumber> winningLottos,
             LottoNumber bonusNumber,
             Map<LottoResult, Integer> results
     ) {
         this.purchasedLottos = purchasedLottos;
-        this.winningNumbers = winningNumbers;
+        this.winningLottos = winningLottos;
         this.bonusNumber = bonusNumber;
         this.results = results;
     }
 
     public static LottoGame of(
-            final List<Lotto> purchasedLottos,
-            final List<LottoNumber> winningNumbers,
+            final List<List<Integer>> purchasedNumbers,
+            final List<Integer> winningNumbers,
             final int bonusNumber,
             final Map<LottoResult, Integer> results
     ) {
         return new LottoGame(
-                purchasedLottos,
-                winningNumbers,
+                convertToLottos(purchasedNumbers),
+                convertToLottoNumbers(winningNumbers),
                 LottoNumber.from(bonusNumber),
                 results
         );
     }
 
 
-    public static List<Lotto> from(List<List<Integer>> numbers) {
+
+    private static List<Lotto> convertToLottos(List<List<Integer>> numbers) {
         return numbers.stream()
-                .map(Lotto::new)
+                .map(Lotto::from)
                 .collect(Collectors.toList());
     }
+
+    private static List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::from)
+                .collect(Collectors.toList());
+    }
+
+
 
 
 }
