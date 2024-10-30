@@ -103,12 +103,12 @@ View
         <td>✅로또 관련 예외처리</td> </tr><tr> 
 	<td rowspan="3">로또 구입 금액 사용자 입력</td>
         <td rowspan="1"><b><em>PurchaseAmountCommand</em></b></td>
-        <td>⬜ `PurchaseAmount` 유효성 검증</td> 
-                <td rowspan="3"></td></tr><tr> 
+        <td>✅ `PurchaseAmount` 유효성 검증</td> 
+                <td rowspan="3">feat/purchase-amount-input</td></tr><tr> 
         <td rowspan="1"><b><em>View</em></b></td>
-            <td>⬜ `PurchaseAmountUserInput` 사용자 입력 처리 </td> </tr><tr> 
+            <td>✅ `PurchaseAmountUserInput` 사용자 입력 처리 </td> </tr><tr> 
         <td rowspan="1">PurchaseAmountCommand</td>
-            <td>⬜ `PurchaseAmountUserInput` 반환</td> </tr><tr>
+            <td>✅ `PurchaseAmountUserInput` 반환</td> </tr><tr>
     <td rowspan="6">로또 구매</td>
         <td rowspan="1"><b><em>Lotto</em></b></td>
             <td>⬜ 1장 가격 상수 </td> 
