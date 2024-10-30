@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +25,21 @@ public class InputHandler {
         return list;
 
     }
+    public int getBonusNumber(){
+        String input = Console.readLine();
+        return Integer.parseInt(input);
+    }
+
+
 
     public void isMultipleOfThousand(int amount){
         if(amount%1000!=0){
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> generateLottoNumbers(){
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 
 
