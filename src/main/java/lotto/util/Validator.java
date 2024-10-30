@@ -91,6 +91,22 @@ public class Validator {
     }
 
     public boolean validateBonusNumber(String input, List<Integer> winningNumbers) {
+        try{
+            checkNumberType(input);
+            checkBonusNumber(input, winningNumbers);
+        } catch (IllegalArgumentException e){
+            return false;
+        }
         return true;
+    }
+
+    private void checkBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = Integer.parseInt(input);
+        for (Integer number : winningNumbers) {
+            if (bonusNumber == number) {
+                System.out.println(BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
+                throw new IllegalArgumentException();
+            }
+        }
     }
 }
