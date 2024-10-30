@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.ExceptionMessage.PURCHASE_AMOUNT_NOT_NUMERIC_EXCEPTION;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class PurchaseAmountInputView {
@@ -11,6 +13,13 @@ public class PurchaseAmountInputView {
 
     public String getPurchaseAmount() {
         String purchaseAmount = Console.readLine();
+        validatePurchaseAmountIsNumeric(purchaseAmount);
         return purchaseAmount;
+    }
+
+    private void validatePurchaseAmountIsNumeric(String purchaseAmount) {
+        if (!purchaseAmount.matches("//d+")) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_NUMERIC_EXCEPTION.message());
+        }
     }
 }
