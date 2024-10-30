@@ -30,12 +30,11 @@ public class LottoController {
 
         try {
             ticket = convertValidValue.purchaseAmount(purchaseAmount);
+            ticketCount = ticket;
         }catch (IllegalArgumentException e){
             System.out.println(e.toString());
             lottoAmount();
         }
-
-        ticketCount = ticket;
     }
 
     private void purchaseLotto() {
