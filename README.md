@@ -86,26 +86,30 @@ View
 	<th align="center">기능</th> 
 	<th align="center">컴포넌트</th> 
 	<th align="center">구현</th> 
+    <th align="center">브랜치</th> 
 </tr>
 <tr>
     <td rowspan="4">예외처리</td>
         <td rowspan="1"><b><em>GlobalException</em></b></td>
-            <td>✅전역 예외처리</td> </tr><tr>
+            <td>✅전역 예외처리</td>
+                <td rowspan="4">exception</td></tr><tr>
         <td rowspan="1"><b><em>InputException</em></b></td>
         <td>✅사용자 입력 관련 예외처리</td> </tr><tr> 
         <td rowspan="1"><b><em>AmountException</em></b></td>
-        <td>⬜금액 관련 예외처리</td> </tr><tr> 
+        <td>✅금액 관련 예외처리</td> </tr><tr> 
         <td rowspan="1"><b><em>LottoException</em></b></td>
-        <td>⬜로또 관련 예외처리</td> </tr><tr> 
+        <td>✅로또 관련 예외처리</td> </tr><tr> 
 	<td rowspan="3">로또 구입 금액 사용자 입력</td>
         <td rowspan="1"><b><em>PurchaseAmountCommand</em></b></td>
-        <td>⬜ `PurchaseAmount` 유효성 검증</td> </tr><tr> 
+        <td>⬜ `PurchaseAmount` 유효성 검증</td> 
+                <td rowspan="3"></td></tr><tr> 
         <td rowspan="2"><b><em>View</em></b></td>
             <td>⬜ `PurchaseAmount` 사용자 입력 처리 </td> </tr><tr> 
             <td>⬜ `PurchaseAmount` 반환</td> </tr><tr>
     <td rowspan="6">로또 구매</td>
         <td rowspan="1"><b><em>Lotto</em></b></td>
-            <td>⬜ 1장 가격 상수 </td> </tr><tr> 
+            <td>⬜ 1장 가격 상수 </td> 
+                <td rowspan="6"></td></tr><tr> 
         <td rowspan="1"><b><em>LottoService</em></b></td>
             <td>⬜ `Lotto` 1장 가격 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>AmountService</em></b></td>
@@ -118,7 +122,8 @@ View
         <td>⬜ `Lotto` 오름차순 정렬</td> </tr><tr> 
     <td rowspan="4">당첨 번호 입력</td>
         <td rowspan="1"><b><em>LottoCommand</em></b></td>
-        <td>⬜ `Lotto` 당첨 번호 유효성 검증</td> </tr><tr> 
+        <td>⬜ `Lotto` 당첨 번호 유효성 검증</td> 
+                <td rowspan="4"></td></tr><tr> 
         <td rowspan="2"><b><em>View</em></b></td>
             <td>⬜ `Lotto`  당첨 번호 사용자 입력 처리 </td> </tr><tr> 
             <td>⬜ `Lotto` 당첨 번호 반환</td> </tr><tr>
@@ -126,7 +131,8 @@ View
             <td>⬜ `Lotto`를 `WinningLotto`로 변환</td> </tr><tr> 
     <td rowspan="4">보너스 번호 입력</td>
         <td rowspan="1"><b><em>BonusCommand</em></b></td>
-            <td>⬜ `Bonus` 보너스 번호 유효성 검증</td> </tr><tr>         
+            <td>⬜ `Bonus` 보너스 번호 유효성 검증</td> 
+                <td rowspan="4"></td></tr><tr>         
         <td rowspan="2">View</td>
             <td>⬜ `Bonus` 보너스 번호 사용자 입력 처리 </td> </tr><tr> 
             <td>⬜ `Bonus` 반환</td> </tr><tr>
@@ -134,7 +140,8 @@ View
             <td>⬜ `WinningLotto`에 보너스 번호 추가</td> </tr><tr> 
      <td rowspan="4">로또 당첨 조회</td>
         <td rowspan="1">LottoService</td>
-            <td>⬜ `WinningLotto`와 `PurchasedLottos` 매칭 여부</td> </tr><tr> 
+            <td>⬜ `WinningLotto`와 `PurchasedLottos` 매칭 여부</td> 
+                <td rowspan="4"></tr><tr> 
         <td rowspan="1">LottoService</td>
             <td>⬜ `MatchResults` 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>MatchResult</em></b></td>
@@ -143,7 +150,8 @@ View
             <td>⬜ `MatchResult` 추가</td> </tr><tr> 
     <td rowspan="5">로또 당첨 통계 출력</td>
         <td rowspan="1"><b><em>Prize</em></b></td>
-            <td>⬜  `Prize` 생성</td> </tr><tr> 
+            <td>⬜  `Prize` 생성</td> 
+                <td rowspan="5"></tr><tr> 
         <td rowspan="1">LottoService</td>
             <td>⬜  `Prize` 반환</td> </tr><tr> 
         <td rowspan="1">AmountService</td>
@@ -154,6 +162,7 @@ View
             <td>⬜ `PurchaseLottoResponse`로 수익률 출력</td> </tr><tr>
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
-            <td>⬜ 컴포넌트 의존성 주입</td> </tr><tr>
+            <td>⬜ 컴포넌트 의존성 주입</td> 
+                <td rowspan="1"></tr><tr> 
 </tr>
 </table>
