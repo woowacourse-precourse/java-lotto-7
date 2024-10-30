@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Money;
 
 public class LottoGeneratorService {
+    private final static int LOTTO_LENGTH = 6;
+    private final static int LOTTO_MIN_NUMBER = 1;
+    private final static int LOTTO_MAX_NUMBER = 45;
 
     public Lottos generateLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
@@ -21,6 +23,6 @@ public class LottoGeneratorService {
         return new Lotto(generateNumbers());
     }
     private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH);
     }
 }
