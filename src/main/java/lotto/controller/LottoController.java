@@ -19,7 +19,8 @@ public class LottoController {
 
     public void run() {
         processInput();
-
+        lottoService.checkLottoResult();
+        //printLottoResult();
     }
 
     private void processInput() {
