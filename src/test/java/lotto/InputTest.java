@@ -24,4 +24,12 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1000","-5000","-6000","-14000"})
+    void 구입금액이_양수인지_확인한다(String input){
+        assertThatThrownBy(() -> InputValidator.validatePrice(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_NEGATIVE_NUMBER.getMessage());
+    }
 }
