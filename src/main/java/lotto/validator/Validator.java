@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class Validator {
     private static final String ERROR_INVALID_NUMERIC = "[ERROR] 로또 번호는 숫자 형식이어야 합니다.";
@@ -75,7 +76,7 @@ public class Validator {
 
     public static void validateInputWinningLottoFormat(String input){
         String regex = "[^0-9,]";
-        if(input.contains(regex)){
+        if(Pattern.compile(regex).matcher(input).find()){
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_FORMAT);
         }
     }
