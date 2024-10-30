@@ -17,10 +17,10 @@ class RandomLottoGeneratorTest {
             Lotto randomLotto = randomLottoGenerator.generate();
 
             // then
-            assertThat(randomLotto.getNumbers()).hasSize(6)
-                    .allMatch(lottoNumber -> lottoNumber.getNumber() >= 1 && lottoNumber.getNumber() <= 45);
+            assertThat(randomLotto.getNumbers()).hasSize(6);
+            assertThat(randomLotto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
 
-            System.out.printf("횟수: %d, 결과: %s%n", i, randomLotto.getNumbers().toString());
+            System.out.printf("횟수: %d, 결과: %s%n", i, randomLotto.getNumbers());
         });
     }
 }
