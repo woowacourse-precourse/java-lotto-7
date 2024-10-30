@@ -11,17 +11,16 @@ public class LottoController {
 
 
     public void start() {
-        int lottoCount = getLottoCount(lottoView.input.price());
+        int lottoCount = getLottoCount();
         lottoView.output.lottoCount(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
             lottoView.output.lottoNumber(lottoModel.getLottoNumbers(i));
         }
 
-        String[] inputWinningNumber = lottoView.input.winningNumber().split(",");
-        List<Integer> winningNumber = getWinningNumber(inputWinningNumber);
+//        String[] inputWinningNumber = lottoView.input.winningNumber().split(",");
+        List<Integer> winningNumber = getWinningNumber();
 
-        String inputBonusNumber = lottoView.input.bonusNumber();
-        int bonusNumber = getBonusNumber(inputBonusNumber);
+        int bonusNumber = getBonusNumber();
 
         //당첨 로직 구현
         int[] ans = new int[5];
@@ -66,54 +65,76 @@ public class LottoController {
         lottoView.output.winningResult(ans,rate);
     }
 
-    int getLottoCount(String inputPrice) {
-        int price;
-        try {
-            price = Integer.parseInt(inputPrice);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 문자열은 입력 불가합니다.");
-        }
-        if (price <= 0) {
-            throw new IllegalArgumentException("0 이하의 수는 입력할 수 없습니다.");
-        }
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException("가격은 1000원 단위로 입력 가능합니다.");
+    int getLottoCount() {
+        int price = 0;
+        while (true) {
+            try {
+                try {
+                    price = Integer.parseInt(lottoView.input.price());
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("문자열은 입력 불가합니다.");
+                }
+                if (price <= 0) {
+                    throw new IllegalArgumentException("0 이하의 수는 입력할 수 없습니다.");
+                }
+                if (price % 1000 != 0) {
+                    throw new IllegalArgumentException("가격은 1000원 단위로 입력 가능합니다.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
         }
         return price / 1000;
     }
 
-    List<Integer> getWinningNumber(String[] inputWinningNumber) {
+    List<Integer> getWinningNumber() {
         List<Integer> winningNumber = new ArrayList<>();
-        if (inputWinningNumber.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개를 입력해야 합니다.");
-        }
-        for (String strNumber : inputWinningNumber) {
-            int number;
+        while (true) {
+            String[] inputWinningNumber = lottoView.input.winningNumber().split(",");
             try {
-                number = Integer.parseInt(strNumber);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 문자열은 입력 불가합니다.");
+                if (inputWinningNumber.length != 6) {
+                    throw new IllegalArgumentException("6개를 입력해야 합니다.");
+                }
+                for (String strNumber : inputWinningNumber) {
+                    int number;
+                    try {
+                        number = Integer.parseInt(strNumber);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("문자열은 입력 불가합니다.");
+                    }
+                    if (number < 1 || number > 45) {
+                        throw new IllegalArgumentException("1 ~ 45 중에서 입력할 수 있습니다.");
+                    }
+                    winningNumber.add(number);
+                }
+                if (new HashSet<>(winningNumber).size() != 6) {
+                    throw new IllegalArgumentException("숫자가 중복되면 안 됩니다.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
             }
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("1 ~ 45 중에서 입력할 수 있습니다.");
-            }
-            winningNumber.add(number);
-        }
-        if (new HashSet<>(winningNumber).size() != 6) {
-            throw new IllegalArgumentException("숫자가 중복되면 안 됩니다.");
         }
         return winningNumber;
     }
 
-    private int getBonusNumber(String inputBonusNumber) {
+    private int getBonusNumber() {
         int bonusNumber;
-        try {
-            bonusNumber = Integer.parseInt(inputBonusNumber);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 문자열은 입력 불가합니다.");
-        }
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("1 ~ 45 중에서 입력할 수 있습니다.");
+        while (true) {
+            try {
+                try {
+                    bonusNumber = Integer.parseInt(lottoView.input.bonusNumber());
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("문자열은 입력 불가합니다.");
+                }
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("1 ~ 45 중에서 입력할 수 있습니다.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
         }
         return bonusNumber;
     }
