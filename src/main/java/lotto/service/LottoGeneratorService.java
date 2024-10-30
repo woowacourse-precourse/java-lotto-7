@@ -1,2 +1,4 @@
-package lotto.service;public class LottoGeneratorService {
+package lotto.service;
+
+public class LottoGeneratorService {
 }
