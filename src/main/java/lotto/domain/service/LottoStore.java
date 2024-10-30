@@ -1,6 +1,7 @@
 package lotto.domain.service;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
 import lotto.exception.PayException;
 import lotto.exception.PayExceptionMessage;
 
@@ -12,7 +13,7 @@ public class LottoStore {
     public static final int LOTTO_PRICE = 1000;
     public static final int ZERO = 0;
 
-    public List<Lotto> issueLottos(final int pay) {
+    public Lottos issueLottos(final int pay) {
         validatePayment(pay);
 
         final int lottoCount = pay / LOTTO_PRICE;
@@ -23,7 +24,7 @@ public class LottoStore {
             lottos.add(generateLotto());
         }
 
-        return lottos;
+        return new Lottos(lottos);
     }
 
     private Lotto generateLotto() {

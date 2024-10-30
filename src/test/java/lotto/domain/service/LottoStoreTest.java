@@ -1,10 +1,8 @@
 package lotto.domain.service;
 
-import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
 import lotto.exception.PayException;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -16,10 +14,10 @@ class LottoStoreTest {
     @Test
     void 금액을_입력받고_로또_컬렉션_생성() {
         // given * when
-        final List<Lotto> lottos = lottoStore.issueLottos(14000);
+        final Lottos lottos = lottoStore.issueLottos(14000);
 
         // then
-        assertThat(lottos.size()).isEqualTo(14);
+        assertThat(lottos.getLottos().size()).isEqualTo(14);
     }
 
     @Test

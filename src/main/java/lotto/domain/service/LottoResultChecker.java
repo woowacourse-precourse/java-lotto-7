@@ -1,6 +1,7 @@
 package lotto.domain.service;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
 import lotto.domain.type.LottoRank;
 import lotto.exception.LottoException;
 import lotto.exception.LottoNumberExceptionMessage;
@@ -24,6 +25,10 @@ public class LottoResultChecker {
         validateNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public List<LottoRank> checkLottosRank(final Lottos lottos) {
+        return lottos.getLottos().stream().map(this::checkRank).toList();
     }
 
     public LottoRank checkRank(final Lotto lotto) {
