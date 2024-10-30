@@ -33,7 +33,45 @@ class ValidationTest {
         // then
         assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", throwable.getMessage());
     }
-    
+
+    @DisplayName("로또 번호 중복 체크")
+    @Test
+    void 로또_번호값_중복_체크() {
+        //given
+        List<Integer> lotto_numbers = new ArrayList<>();
+
+        lotto_numbers.add(1);
+        for (int i = 1; i < 6; i++) {
+            lotto_numbers.add(i);
+        }
+
+        //when
+        Throwable throwable = assertThrows(IllegalArgumentException.class, () -> {
+            validation.checkLottoDuplicate(lotto_numbers, null);
+        });
+
+        //then
+        assertEquals("[ERROR] 로또 번호가 중복됩니다.", throwable.getMessage());
+    }
+
+    @DisplayName("로또 보너스 번호 중복 체크")
+    @Test
+    void 로또_보너스_입력값이_중복_체크() {
+        //given
+        List<Integer> lotto_numbers = new ArrayList<>();
+
+        for (int i = 1; i <= 6; i++) {
+            lotto_numbers.add(i);
+        }
+
+        //when
+        Throwable throwable = assertThrows(IllegalArgumentException.class, () -> {
+            validation.checkLottoDuplicate(lotto_numbers, 1);
+        });
+
+        //then
+        assertEquals("[ERROR] 로또 번호가 중복됩니다.", throwable.getMessage());
+    }
 
 
 }
