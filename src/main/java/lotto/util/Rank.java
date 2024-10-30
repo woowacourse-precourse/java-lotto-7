@@ -1,19 +1,21 @@
 package lotto.util;
 
 public enum Rank {
-    FIRST(6, 2000000000),   // 1등: 6개 번호 일치
-    SECOND(5, 30000000),    // 2등: 5개 번호 + 보너스 번호 일치
-    THIRD(5, 1500000),      // 3등: 5개 번호 일치
-    FOURTH(4, 50000),       // 4등: 4개 번호 일치
-    FIFTH(3, 5000),         // 5등: 3개 번호 일치
-    NONE(0, 0);             // 당첨되지 않음
+    FIRST(6, 2000000000, 1),   
+    SECOND(5, 30000000, 2),   
+    THIRD(5, 1500000, 3),     
+    FOURTH(4, 50000, 4),     
+    FIFTH(3, 5000, 5),         
+    NONE(0, 0, 0);          
 
-    private final int matchCount;  
-    private final int prize;        
+    private final int matchCount;
+    private final int prize;
+    private final int rankOrder;
 
-    Rank(int matchCount, int prize) {
+    Rank(int matchCount, int prize, int rankOrder) {
         this.matchCount = matchCount;
         this.prize = prize;
+        this.rankOrder = rankOrder;
     }
 
     public int getMatchCount() {
@@ -22,6 +24,10 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getRankOrder() {
+        return rankOrder;
     }
 
     public static Rank fromMatchCount(int matchCount, boolean hasBonus) {
