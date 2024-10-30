@@ -19,7 +19,6 @@ public class Application {
         List<Integer> winningNumbers = inputView.readWinningNumbers();
         int bonusNumber = inputView.readBonusNumber(winningNumbers);
         Result result = lottoMachine.evaluateLottoTickets(lottos, winningNumbers, bonusNumber);
-
-
+        outputView.printResult(result, amount);
     }
 }

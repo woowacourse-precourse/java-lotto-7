@@ -24,10 +24,10 @@ public class Result {
     return rankCounts;
   }
 
-  public int calculateTotalPrize() {
-    int total = 0;
+  public long calculateTotalPrize() {
+    long total = 0;
     for (Rank rank : Rank.values()) {
-      total += rank.getPrize() * rankCounts.get(rank);
+      total += (long) rank.getPrize() * rankCounts.get(rank);
     }
     return total;
   }
