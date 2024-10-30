@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lottos;
+import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.validator.exception.LottoException;
 import lotto.view.input.InputView;
@@ -25,8 +25,8 @@ public class LottoController {
         while (true) {
             try {
                 String purchaseAmount = inputView.inputPurchaseAmount();
-                Lottos lottos = lottoService.purchaseLotto(purchaseAmount);
-                outputView.displayLottos(lottos);
+                User user = lottoService.purchaseLotto(purchaseAmount);
+                outputView.displayLottos(user);
                 break;
             } catch (LottoException e) {
                 outputView.displayErrorMessage(e);

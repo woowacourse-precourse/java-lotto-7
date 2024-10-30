@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.User;
 import lotto.utils.PurchaseCalculator;
 
 public class LottoService {
@@ -16,10 +17,11 @@ public class LottoService {
         this.profitCalculatorService = profitCalculatorService;
     }
 
-    public Lottos purchaseLotto(String purchaseAmount) {
+    public User purchaseLotto(String purchaseAmount) {
         Money money = purchaseService.validateAndCreateMoney(purchaseAmount);
         int lottoCount = PurchaseCalculator.calculateLottoCount(money);
-        return lottoGeneratorService.generateLottos(lottoCount);
+        Lottos lottos = lottoGeneratorService.generateLottos(lottoCount);
+        return new User(money, lottos);
     }
 
 }
