@@ -2,8 +2,9 @@ package lotto.io.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+import lotto.InputValidator;
 import lotto.Lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Money;
@@ -15,11 +16,29 @@ public class InputView {
     private static final String BONUS_NUMBER_INPUT_GUIDE_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String INPUT_DELIM = ",";
 
+    private final InputValidator validator = new InputValidator();
+
     public Money getAmountOfMoney() {
         System.out.println(AMOUNT_INPUT_GUIDE_MESSAGE);
-        String input = Console.readLine();
+        Money money;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validateAmountOfMoney(input);
+                int amountOfMoney = Integer.parseInt(input);
+                money = new Money(amountOfMoney);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return money;
+    }
 
-        return new Money(input);
+    private void validateAmountOfMoney(String input) {
+        validator.validateWhiteSpace(input);
+        validator.validateNonDigitInput(input);
+        validator.validateOutOfRangeAmount(input);
     }
 
     public Lotto getWinningNumbers() {
