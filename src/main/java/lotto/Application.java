@@ -18,6 +18,7 @@ public class Application {
         static final String bonus_numMsg = "보너스 번호를 입력해 주세요.";
         static final String statisticMsg = "당첨 통계";
         static String matchMsg = "%d개 일치 (%s원) - %d개";
+        static String errorMsg = "[ERROR] 정수 값으로 입력을 해야합니다.";
     }
 
     public static void main(String[] args) {
@@ -28,12 +29,20 @@ public class Application {
     public void logic(){
         int num = purchase_amount();
         purchase_history(num);
+        inputWinningNumber();
+        winning_history();
 
     }
     public Lotto inputWinningNumber(){
         Lotto lotto = new Lotto(new ArrayList<>());
+        System.out.println("\n"+print_msg.winning_numMsg);
+        String winning[] = Console.readLine().split(",");
         for(int i = 0; i < numSize; i++){
-            lotto.numbers.add(Integer.parseInt(Console.readLine()));
+            try{
+                lotto.numbers.add(Integer.parseInt(winning[i]));
+            }catch (IllegalArgumentException e){
+                System.out.println(print_msg.errorMsg);
+            }
         }
         lotto.validate(lotto.numbers);
         lotto.numbers.sort(Integer::compareTo);
@@ -67,10 +76,9 @@ public class Application {
         return ary;
     }
     public void winning_history(){
-
+        int [] ary = matchCount();
         for(int i = 3; i < 7; i++){
-
-            System.out.printf(print_msg.matchMsg,i,amount[i-3],3);
+            System.out.printf(print_msg.matchMsg,i,amount[i-3],ary[i]);
         }
     }
     public List<Integer>[] purchase_history(int num){
