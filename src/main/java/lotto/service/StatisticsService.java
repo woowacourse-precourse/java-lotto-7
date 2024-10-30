@@ -1,2 +1,4 @@
-package lotto.service;public class StatisticsService {
+package lotto.service;
+
+public class StatisticsService {
 }
