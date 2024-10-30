@@ -1,6 +1,17 @@
 package lotto.controller;
 
+import lotto.exception.InvalidPurchaseAmountException;
+import lotto.model.PurchasePrice;
+import lotto.view.InputView;
+
 public class LottoController {
+    private int purchaseCount;
+    private final InputView inputView;
+
+    public LottoController(InputView inputView) {
+        this.inputView = inputView;
+    }
+
     public void play() {
         buy();
         assign();
@@ -26,7 +37,16 @@ public class LottoController {
 
     // 로또 구입 금액을 입력 받는다
     public void inputPurchaseAmount() {
-
+        while (true) {
+            try {
+                int amount = inputView.getPurchaseAmount();
+                PurchasePrice purchasePrice = new PurchasePrice(amount);
+                purchaseCount = purchasePrice.get() / 1000;
+                break;
+            } catch (InvalidPurchaseAmountException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     // 구매한 로또 수 만큼의 로또를 발행한다
