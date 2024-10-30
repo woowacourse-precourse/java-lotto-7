@@ -1,50 +1,57 @@
 package lotto.utils;
 
 import static lotto.utils.Constant.WINNING_NUMBER_INPUT_DELIMITER;
-import static lotto.utils.ErrorMessage.BONUS_NUMBER_ERROR_MESSAGE;
-import static lotto.utils.ErrorMessage.PURCHASE_AMOUNT_ERROR_MESSAGE;
+import static lotto.utils.ErrorMessage.WINNING_NUMBER_ERROR_MESSAGE;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.utils.validator.BonusNumberValidator;
+import lotto.utils.validator.PurchaseAmountValidator;
+import lotto.utils.validator.WinningNumberValidator;
 
 public class InputParser {
-    private final InputValidator inputValidator;
+    private final PurchaseAmountValidator purchaseAmountValidator;
+    private final BonusNumberValidator bonusNumberValidator;
+    private final WinningNumberValidator winningNumberValidator;
 
-    public InputParser(InputValidator inputValidator) {
-        this.inputValidator = inputValidator;
+    public InputParser(
+            PurchaseAmountValidator purchaseAmountValidator,
+            WinningNumberValidator winningNumberValidator,
+            BonusNumberValidator bonusNumberValidator
+    ) {
+        this.purchaseAmountValidator = purchaseAmountValidator;
+        this.winningNumberValidator = winningNumberValidator;
+        this.bonusNumberValidator = bonusNumberValidator;
     }
 
     public int parsePurchaseAmount(String userInput) {
-        inputValidator.validateEmpty(userInput);
-        inputValidator.validateNumber(userInput, PURCHASE_AMOUNT_ERROR_MESSAGE.toString());
+        purchaseAmountValidator.validate(userInput);
 
         int purchaseAmount = Integer.parseInt(userInput);
-        inputValidator.validateDivisibleByThousand(purchaseAmount);
+        purchaseAmountValidator.validateDivisibleByThousand(purchaseAmount);
 
         return purchaseAmount;
     }
 
     public List<Integer> parseWinningNumbers(String userInput) {
-        inputValidator.validateEmpty(userInput);
-        inputValidator.validateDelimiter(userInput);
+        winningNumberValidator.validate(userInput);
 
         List<String> separatedInput = separateInput(userInput);
         List<Integer> winningNumbers = parseNumbers(separatedInput);
 
-        inputValidator.validateNumberCount(winningNumbers);
-        inputValidator.validateWinningNumberRange(winningNumbers);
-        inputValidator.validateDuplicateNumber(winningNumbers);
+        winningNumberValidator.validateNumbersCount(winningNumbers);
+        winningNumberValidator.validateNumbersInRange(winningNumbers);
+        winningNumberValidator.validateDuplicateNumber(winningNumbers);
 
         return winningNumbers;
     }
 
     public int parseBonusNumber(String userInput, List<Integer> winningNumbers) {
-        inputValidator.validateEmpty(userInput);
-        inputValidator.validateNumber(userInput, BONUS_NUMBER_ERROR_MESSAGE.toString());
+        bonusNumberValidator.validate(userInput);
 
         int bonusNumber = Integer.parseInt(userInput);
-        inputValidator.validateBonusNumberRange(bonusNumber);
-        inputValidator.validateDuplicateBonusNumber(bonusNumber, winningNumbers);
+        bonusNumberValidator.validateNumberInRange(bonusNumber);
+        bonusNumberValidator.validateDuplicateBonusNumber(bonusNumber, winningNumbers);
 
         return bonusNumber;
     }
@@ -56,7 +63,7 @@ public class InputParser {
     private List<Integer> parseNumbers(List<String> separatedInput) {
         return separatedInput.stream()
                 .map(input -> {
-                    inputValidator.validateNumber(input, PURCHASE_AMOUNT_ERROR_MESSAGE.toString());
+                    winningNumberValidator.validateNumber(input, WINNING_NUMBER_ERROR_MESSAGE.toString());
                     return Integer.parseInt(input);
                 })
                 .collect(Collectors.toList());
