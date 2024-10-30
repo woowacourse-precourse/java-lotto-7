@@ -6,14 +6,25 @@ import static lotto.utils.Constant.WINNING_NUMBER_INPUT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.utils.InputParser;
+import lotto.utils.parser.BonusNumberParser;
+import lotto.utils.parser.PurchaseAmountParser;
+import lotto.utils.parser.WinningNumberParser;
 
 public class InputView {
-    private final InputParser inputParser;
+    private final PurchaseAmountParser purchaseAmountParser;
+    private final WinningNumberParser winningNumberParser;
+    private final BonusNumberParser bonusNumberParser;
 
-    public InputView(InputParser inputParser) {
-        this.inputParser = inputParser;
+    public InputView(
+            PurchaseAmountParser purchaseAmountParser,
+            WinningNumberParser winningNumberParser,
+            BonusNumberParser bonusNumberParser
+    ) {
+        this.purchaseAmountParser = purchaseAmountParser;
+        this.winningNumberParser = winningNumberParser;
+        this.bonusNumberParser = bonusNumberParser;
     }
+
 
     public int inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
@@ -22,7 +33,7 @@ public class InputView {
             String userInput = Console.readLine();
 
             try {
-                return inputParser.parsePurchaseAmount(userInput);
+                return purchaseAmountParser.parse(userInput);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -36,7 +47,7 @@ public class InputView {
             String userInput = Console.readLine();
 
             try {
-                return inputParser.parseWinningNumbers(userInput);
+                return winningNumberParser.parse(userInput);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
@@ -50,7 +61,7 @@ public class InputView {
             String userInput = Console.readLine();
 
             try {
-                return inputParser.parseBonusNumber(userInput, winningNumbers);
+                return bonusNumberParser.parse(userInput, winningNumbers);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
