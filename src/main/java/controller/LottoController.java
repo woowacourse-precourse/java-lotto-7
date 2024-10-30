@@ -16,5 +16,7 @@ public class LottoController {
         System.out.println(inputHandler.getAmountInput());
         outputHandler.promptForLottoNumber();
         System.out.println(inputHandler.getLottoNumber().toString());
+        outputHandler.promptForBonusNumber();
+        System.out.println(inputHandler.getBonusNumber());
     }
 }

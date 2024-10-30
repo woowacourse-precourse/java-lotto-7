@@ -24,4 +24,8 @@ public class InputHandler {
         //숫자가 총 6개인지 확인
         //숫자가 중복이 없는지 확인
     }
+    public int getBonusNumber(){
+        String stringBonusNumber = Console.readLine();
+        return Integer.parseInt(stringBonusNumber);
+    }
 }
