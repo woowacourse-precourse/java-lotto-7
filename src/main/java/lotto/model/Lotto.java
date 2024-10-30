@@ -12,7 +12,11 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortAscending(numbers);
+    }
+
+    public List<Integer> getAllNumbers() {
+        return List.copyOf(numbers);
     }
 
     private void validate(final List<Integer> numbers) {
@@ -53,5 +57,11 @@ public class Lotto {
         if (distinctCount != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 존재합니다.");
         }
+    }
+
+    private List<Integer> sortAscending(final List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }
