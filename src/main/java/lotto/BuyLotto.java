@@ -19,4 +19,9 @@ public class BuyLotto {
         }
     }
 
+    public void printLottoList() {
+        for (List<Integer> integers : lottoList) {
+            System.out.println(integers);
+        }
+    }
 }
