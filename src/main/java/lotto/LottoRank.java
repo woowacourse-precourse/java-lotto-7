@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
-
 public enum LottoRank {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -32,9 +30,11 @@ public enum LottoRank {
         if (count == 5 && matchBonus) {
             return SECOND;
         }
-        return Arrays.stream(values())
-                .filter(rank -> rank.matchCount == count && rank.matchBonus == matchBonus)
-                .findFirst()
-                .orElse(MISS);
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == count && (!rank.matchBonus || rank.matchBonus == matchBonus)) {
+                return rank;
+            }
+        }
+        return MISS;
     }
 }

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.LottoNumber;
+import lotto.domain.BonusNumber;
 import lotto.io.input.GameInput;
 
 public class InputConsole implements GameInput {
@@ -20,21 +20,21 @@ public class InputConsole implements GameInput {
     }
 
     @Override
-    public List<LottoNumber> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         return parseNumbers(input);
     }
 
     @Override
-    public LottoNumber getBonusNumber() {
+    public BonusNumber getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return new LottoNumber(Integer.parseInt(Console.readLine()));
+        return new BonusNumber(Integer.parseInt(Console.readLine()));
     }
 
-    private List<LottoNumber> parseNumbers(String input) {
+    private List<Integer> parseNumbers(String input) {
         return Arrays.stream(input.split(","))
-                .map(s -> new LottoNumber(Integer.parseInt(s.trim())))
+                .map(s -> Integer.parseInt(s.trim()))
                 .collect(Collectors.toList());
     }
 }

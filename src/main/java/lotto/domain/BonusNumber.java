@@ -1,11 +1,11 @@
-package lotto;
+package lotto.domain;
 
-public class LottoNumber {
+public class BonusNumber {
     private static final int MIN = 1;
     private static final int MAX = 45;
     private final int number;
 
-    public LottoNumber(int number) {
+    public BonusNumber(int number) {
         validate(number);
         this.number = number;
     }
@@ -25,10 +25,10 @@ public class LottoNumber {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof LottoNumber)) {
+        if (!(o instanceof BonusNumber)) {
             return false;
         }
-        LottoNumber that = (LottoNumber) o;
+        BonusNumber that = (BonusNumber) o;
         return number == that.number;
     }
 

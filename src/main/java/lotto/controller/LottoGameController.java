@@ -3,12 +3,12 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoNumber;
 import lotto.LottoRank;
 import lotto.LottoTicket;
 import lotto.Result;
 import lotto.WinningNumbers;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.io.input.GameInput;
 import lotto.io.output.GameOutput;
 
@@ -44,8 +44,8 @@ public class LottoGameController {
     }
 
     private WinningNumbers getWinningNumbers() {
-        List<LottoNumber> winningNumbers = gameInput.getWinningNumbers();
-        LottoNumber bonusNumber = gameInput.getBonusNumber();
+        List<Integer> winningNumbers = gameInput.getWinningNumbers();
+        BonusNumber bonusNumber = gameInput.getBonusNumber();
         return new WinningNumbers(winningNumbers, bonusNumber);
     }
 

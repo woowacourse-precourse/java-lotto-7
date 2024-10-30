@@ -1,13 +1,13 @@
 package lotto.io.input;
 
 import java.util.List;
-import lotto.LottoNumber;
+import lotto.domain.BonusNumber;
 
 public interface GameInput {
     int getPurchaseAmount();
 
-    List<LottoNumber> getWinningNumbers();
+    List<Integer> getWinningNumbers();
 
-    LottoNumber getBonusNumber();
+    BonusNumber getBonusNumber();
 }
 
