@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class InputView {
 
+    private int purchaseAmount;
     private Set<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -13,7 +14,7 @@ public class InputView {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String inputAmount = Console.readLine();
-                int purchaseAmount = Integer.parseInt(inputAmount);
+                purchaseAmount = Integer.parseInt(inputAmount);
                 if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
                 }
