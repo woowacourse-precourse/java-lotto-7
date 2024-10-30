@@ -27,4 +27,8 @@ public class Lotto {
     public static List<Integer> lottoGenerator() {
         return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_SIZE);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
