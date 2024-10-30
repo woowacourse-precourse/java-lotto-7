@@ -1,7 +1,7 @@
 package lotto.exception;
 
 public class LottoException extends IllegalArgumentException {
-    private static final String PREFIX = "[ERROR]";
+    private static final String PREFIX = "[ERROR] ";
 
     public LottoException(ErrorMessage message) {
         super(PREFIX + message.getMessage());
