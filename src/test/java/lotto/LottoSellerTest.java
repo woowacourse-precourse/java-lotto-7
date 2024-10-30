@@ -5,7 +5,6 @@ import static lotto.exception.Exception.MINIMUM_LOTTO_COUNT_REQUIRED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class LottoSellerTest {
@@ -16,10 +15,10 @@ class LottoSellerTest {
         int amount = 1000;
 
         //when
-        List<Lotto> lottos = LottoSeller.sell(amount);
+        LottoBundle lotteries = LottoSeller.sell(amount);
 
         //then
-        assertThat(lottos.size()).isEqualTo(amount / 1000);
+        assertThat(lotteries.getLotteries().size()).isEqualTo(amount / 1000);
     }
 
     @Test
