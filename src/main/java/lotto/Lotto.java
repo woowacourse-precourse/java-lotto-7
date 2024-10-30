@@ -3,13 +3,12 @@ package lotto;
 import static lotto.exception.Exception.DUPLICATED_LOTTO_NUMBERS;
 import static lotto.exception.Exception.INVALID_LOTTO_NUMBERS_COUNT;
 import static lotto.exception.Exception.LOTTO_NUMBERS_OUT_OF_RANGE;
+import static lotto.utils.Constants.LOTTO_NUMBERS_SIZE;
 
 import java.util.List;
 import lotto.utils.LottoNumberValidator;
 
 public class Lotto {
-
-    public static final int LOTTO_NUMBERS_SIZE = 6;
 
     private final List<Integer> numbers;
 
