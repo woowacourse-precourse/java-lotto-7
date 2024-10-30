@@ -108,5 +108,18 @@ public class ValidatorTest {
         assertThat(result).isFalse();
     }
 
+    @Test
+    @DisplayName("중복된 당첨 번호가 있는 경우 예외를 발생시킨다.")
+    void 당첨_번호_입력_예외_테스트_4() throws Exception {
+        // given
+        String input = "1,2,3,4,5,5";
+
+        // when
+        boolean result = validator.validateWinningNumber(input);
+
+        // then
+        assertThat(result).isFalse();
+    }
+
 
 }

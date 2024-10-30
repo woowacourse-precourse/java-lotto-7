@@ -1,6 +1,8 @@
 package lotto.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static lotto.constant.ErrorMessage.*;
 
@@ -67,15 +69,21 @@ public class Validator {
 
     private void checkWinningNumbers(String input) {
         String[] numbers = input.split(",");
+        Set<String> winningNumbers = new HashSet<>();
         for (String number : numbers) {
             checkNumberType(number);
             checkWinningNumberSize(number);
+            if ( winningNumbers.contains(number) ) {
+                System.out.println(WINNING_NUMBER_DUPLICATE_ERROR.getMessage());
+                throw new IllegalArgumentException();
+            }
+            winningNumbers.add(number);
         }
     }
 
     private void checkWinningNumberSize(String input) {
         int number = Integer.parseInt(input);
-        if ( number < MIN_WINNING_NUMBER || number > MAX_WINNING_NUMBER) {
+        if (number < MIN_WINNING_NUMBER || number > MAX_WINNING_NUMBER) {
             System.out.println(WINNING_NUMBER_SIZE_ERROR.getMessage());
             throw new IllegalArgumentException();
         }
