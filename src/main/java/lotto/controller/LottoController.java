@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.service.LottoService;
 import lotto.validator.exception.LottoException;
@@ -19,6 +20,7 @@ public class LottoController {
 
     public void startLottoSimulation() {
         purchaseLotto();
+        inputWinningNumbers();
     }
 
     private void purchaseLotto() {
@@ -27,6 +29,18 @@ public class LottoController {
                 String purchaseAmount = inputView.inputPurchaseAmount();
                 User user = lottoService.purchaseLotto(purchaseAmount);
                 outputView.displayLottos(user);
+                break;
+            } catch (LottoException e) {
+                outputView.displayErrorMessage(e);
+            }
+        }
+    }
+
+    private void inputWinningNumbers() {
+        while(true) {
+            try {
+                String winningNumbers = inputView.inputWinningNumbers();
+                Lotto winningLotto = lottoService.winningLotto(winningNumbers);
                 break;
             } catch (LottoException e) {
                 outputView.displayErrorMessage(e);
