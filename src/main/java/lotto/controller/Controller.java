@@ -32,6 +32,7 @@ public class Controller {
         printHandler.printWinningNumbersPrompt();
         List<Integer> lottoNumbers = inputHandler.setInputLottoNumbers();
         lottoWinningNumbers = new LottoWinningNumbers(lottoNumbers);
+        printHandler.printBonusNumberPrompt();
     }
 
     private void createLotto(int lottoNumberOfPurchases) {

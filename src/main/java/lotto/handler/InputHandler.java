@@ -21,7 +21,7 @@ public class InputHandler {
         String[] lottoNumbers = inputString.split(",");
 
         for (String number : lottoNumbers) {
-            lottoWinnerNumbers.add(Integer.parseInt(number.trim()));
+            lottoWinnerNumbers.add(Integer.parseInt(number));
         }
         return lottoWinnerNumbers;
     }
