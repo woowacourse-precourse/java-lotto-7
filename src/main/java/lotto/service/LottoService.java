@@ -8,7 +8,7 @@ public class LottoService {
 
     private static ArrayList<Rank> winningRecord = new ArrayList<>();
 
-    public static int countLottoNumber(int purchaseAmount){
+    public static int countLotto(int purchaseAmount){
         return purchaseAmount/1000;
     }
 
