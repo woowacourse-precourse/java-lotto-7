@@ -43,10 +43,26 @@ public class InputView {
 
     public Lotto getWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT_GUIDE_MESSAGE);
-        String input = Console.readLine();
-        List<Integer> winningNumbers = convertStringToList(input);
+        Lotto winningNumbers;
+        while (true) {
+            try {
+                String input = Console.readLine();
+                validateWinningNumbers(input);
+                List<Integer> numbers = convertStringToList(input);
+                winningNumbers = new Lotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
 
-        return new Lotto(winningNumbers);
+    private void validateWinningNumbers(String input) {
+        validator.validateWhiteSpace(input);
+        validator.validateEmptyElemFromInput(input);
+        validator.validateEndsWithComma(input);
+        validator.validateExistNotDigitElems(input);
     }
 
     public BonusNumber getBonusNumber() {

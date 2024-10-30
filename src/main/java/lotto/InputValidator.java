@@ -25,4 +25,24 @@ public class InputValidator {
             throw new IllegalArgumentException(ExceptionMessages.AMOUNT_OUT_OF_RANGE.getMessage());
         }
     }
+
+    public void validateEmptyElemFromInput(String input) {
+        String[] splitInput = input.split(",");
+        Arrays.stream(splitInput).forEach(elem -> {
+            if (elem.isBlank()) {
+                throw new IllegalArgumentException(ExceptionMessages.EMPTY_ELEM_EXIST.getMessage());
+            }
+        });
+    }
+
+    public void validateEndsWithComma(String input) {
+        if (input.endsWith(",")) {
+            throw new IllegalArgumentException(ExceptionMessages.ENDS_WITH_COMMA.getMessage());
+        }
+    }
+
+    public void validateExistNotDigitElems(String input) {
+        String[] elems = input.split(",");
+        Arrays.stream(elems).forEach(this::validateNonDigitInput);
+    }
 }
