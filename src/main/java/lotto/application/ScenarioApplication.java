@@ -22,23 +22,15 @@ public class ScenarioApplication {
     }
 
     public void run() {
-        LottoApplication lottoApplication = new LottoApplication(makeNumbersStrategy, calculator);
+        LottoApplication lottoApplication = new LottoApplication(printer, reader);
         printer.print("구입금액을 입력해 주세요.");
         String originPrice = reader.read();
         PurchasePrice purchasePrice = PurchasePrice.validatePrice(originPrice);
         LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice);
         Lottos lottos = Lottos.of(lottoQuantity, makeNumbersStrategy);
         printer.printPurchaseResult(lottoQuantity.value(), lottos);
-
-        printer.print("\n당첨 번호를 입력해 주세요.");
-        String originWinNumbers = reader.read();
-        WinNumbers winNumbersWithOutBonusNumber = WinNumbers.winNumbersFrom(originWinNumbers);
-
-        printer.print("\n보너스 번호를 입력해 주세요.");
-        String bonusNumber = reader.read();
-        WinNumbers winNumbers = winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);
-
-        PrizeNumber prizeNumber = lottoApplication.run(lottoQuantity, winNumbers, lottos);
+        WinNumbers winNumbers = lottoApplication.readWinNumbers();
+        PrizeNumber prizeNumber = lottoApplication.findWinningLottos(winNumbers, lottos);
         calculateResult(purchasePrice, prizeNumber);
     }
 
