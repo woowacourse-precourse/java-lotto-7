@@ -18,10 +18,10 @@ class LottoServiceTest {
         LottoService lottoService = new LottoService(new SortedLottoNumberGenerator());
 
         //when
-        int money = 1000;
+        int money = 10000;
         List<Lotto> purchasedLotto = lottoService.purchase(money);
 
         //then
-        assertThat(purchasedLotto.size()).isEqualTo(LOTTO_PRICE / money);
+        assertThat(purchasedLotto.size()).isEqualTo(money / LOTTO_PRICE);
     }
 }
