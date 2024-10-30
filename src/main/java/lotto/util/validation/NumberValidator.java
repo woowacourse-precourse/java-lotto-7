@@ -5,6 +5,7 @@ import static lotto.exception.ExceptionMessage.MUST_BE_DIGIT;
 import java.util.regex.Pattern;
 
 public class NumberValidator extends AbstractValidator<String> {
+
     private static final String NUMBER_REGEX = "^\\d+$";
     private static final Pattern NUMBER_PATTERN = Pattern.compile(NUMBER_REGEX);
 

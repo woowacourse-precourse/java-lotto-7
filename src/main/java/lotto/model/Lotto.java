@@ -8,14 +8,32 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumberRange.LOTTO_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private List<Integer> sortLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
+
+    public boolean isContainsNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public long winningNumberCount(Lotto winningLottoTicket) {
+        return numbers.stream()
+                .filter(winningLottoTicket.numbers::contains)
+                .count();
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
 }
