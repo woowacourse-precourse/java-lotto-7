@@ -15,6 +15,6 @@ public enum ErrorMessage {
     }
 
     public String getErrorMessage() {
-        return errorMessage;
+        return Delimiter.ERROR.getDelimiter() + errorMessage;
     }
 }
