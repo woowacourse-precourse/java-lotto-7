@@ -1,5 +1,12 @@
 package lotto;
 
+import static lotto.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
+import static lotto.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.LottoConstants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.LottoConstants.MINIMUM_LOTTO_NUMBER;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,9 +18,36 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        checkNumbersCount(numbers);
+        checkDuplication(numbers);
+        checkNumbersRange(numbers);
+    }
+
+    private void checkNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT);
         }
+    }
+
+    protected void checkDuplication(List<Integer> numbers) {
+        long numbersCount = numbers.stream().
+                distinct().
+                count();
+        if (numbersCount != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
+        }
+    }
+
+    private void checkNumbersRange(List<Integer> numbers) {
+        numbers.stream().
+                forEach(number -> {
+                    checkSingleNumberRange(number);
+                });
+    }
+
+    protected void checkSingleNumberRange(int number) {
+        if (number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER)
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
     }
 
     // TODO: 추가 기능 구현
