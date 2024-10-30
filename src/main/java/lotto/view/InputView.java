@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.utils.Constant.PURCHASE_AMOUNT_INPUT_MESSAGE;
+import static lotto.utils.Constant.WINNING_NUMBER_INPUT_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.InputValidator;
@@ -24,5 +25,9 @@ public class InputView {
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    public void inputWinningNumber() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
     }
 }

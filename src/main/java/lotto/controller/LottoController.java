@@ -22,7 +22,8 @@ public class LottoController {
         lottoManager.generateLottoNumbers(purchaseAmount);
 
         List<Lotto> lottoNumbers = lottoManager.getLottoNumbers();
-
         outputView.printLottoNumbers(lottoNumbers.size(), lottoManager.getLottoNumbers());
+
+        inputView.inputWinningNumber();
     }
 }
