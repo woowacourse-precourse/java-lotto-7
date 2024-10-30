@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.lotto.Lotto;
 import lotto.handler.InputHandler;
 import lotto.handler.PrintHandler;
@@ -10,6 +11,7 @@ public class Controller {
     PrintHandler printHandler;
     Lotto lotto;
     LottoStore lottoStore;
+    int index = 0;
 
     public Controller() {
         inputHandler = new InputHandler();
@@ -24,5 +26,14 @@ public class Controller {
         lottoStore.calculateNumberOfPurchases(money);
         int lottoNumberOfPurchases = lottoStore.getLottoNumberOfPurchases();
         printHandler.PrintBuyLottoNumbersOfPurchases(lottoNumberOfPurchases);
+        createLotto(lottoNumberOfPurchases);
+    }
+
+    private void createLotto(int lottoNumberOfPurchases) {
+        while (index != lottoNumberOfPurchases) {
+            List<Integer> numbers = lottoStore.createLottoNumbers();
+            lotto = new Lotto(numbers);
+            index++;
+        }
     }
 }
