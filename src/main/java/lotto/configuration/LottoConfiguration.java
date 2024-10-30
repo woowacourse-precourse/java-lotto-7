@@ -1,14 +1,14 @@
-package lotto.config;
+package lotto.configuration;
 
-public enum LottoConfig {
+public enum LottoConfiguration {
     LOTTO_MAX_NUMBER(45),
-    LOTTO_MIN_NUMBER(1),
+    LOTTO_MIN_NUMBER(-1),
     LOTTO_NUMBER_COUNT(6),
     ;
 
     private final int value;
 
-    LottoConfig(int value) {
+    LottoConfiguration(int value) {
         this.value = value;
     }
 

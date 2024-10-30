@@ -1,8 +1,8 @@
 package lotto.entity;
 
-import static lotto.config.LottoConfig.LOTTO_MAX_NUMBER;
-import static lotto.config.LottoConfig.LOTTO_MIN_NUMBER;
-import static lotto.config.LottoConfig.LOTTO_NUMBER_COUNT;
+import static lotto.configuration.LottoConfiguration.LOTTO_MAX_NUMBER;
+import static lotto.configuration.LottoConfiguration.LOTTO_MIN_NUMBER;
+import static lotto.configuration.LottoConfiguration.LOTTO_NUMBER_COUNT;
 import static lotto.exception.LottoExceptionMessage.DUPLICATE_NUMBERS;
 import static lotto.exception.LottoExceptionMessage.INVALID_NUMBER_COUNT;
 import static lotto.exception.LottoExceptionMessage.NULL_OR_EMPTY_NUMBERS;

@@ -4,7 +4,7 @@ import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_DUPLICAT
 import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
 
 import java.util.List;
-import lotto.config.LottoConfig;
+import lotto.configuration.LottoConfiguration;
 import lotto.exception.LottoValidationException;
 
 public class WinningNumbers {
@@ -18,8 +18,8 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
-        if (!(LottoConfig.LOTTO_MIN_NUMBER.getValue() <= bonusNumber
-                && bonusNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue())) {
+        if (!(LottoConfiguration.LOTTO_MIN_NUMBER.getValue() <= bonusNumber
+                && bonusNumber <= LottoConfiguration.LOTTO_MAX_NUMBER.getValue())) {
             throw new LottoValidationException(BONUS_NUMBER_OUT_OF_RANGE);
         }
         if (mainNumbers.stream().anyMatch(number -> number == bonusNumber)) {
