@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.number;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class NumberTest {
+class LottoNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void 주어진_숫자가_1에서_45가_아닐_경우_예외를_던진다(int number) {
