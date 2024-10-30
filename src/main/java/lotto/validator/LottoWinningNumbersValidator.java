@@ -9,7 +9,7 @@ import lotto.util.LottoParser;
 
 public class LottoWinningNumbersValidator {
 
-    private static final String LOTTO_WINNING_NUMBERS_PATTERN_TEXT = "^\\d+(\\.\\d+){5}$";
+    private static final String LOTTO_WINNING_NUMBERS_PATTERN_TEXT = "^\\d+(,\\d+){5}$";
     private static final Pattern LOTTO_WINNING_NUMBERS_PATTERN = Pattern.compile(LOTTO_WINNING_NUMBERS_PATTERN_TEXT);
     private final int lottoNumberMin;
     private final int lottoNumberMax;
