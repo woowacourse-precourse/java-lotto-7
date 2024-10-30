@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
@@ -8,9 +9,14 @@ public class LottoMachine {
 
     private List<Lotto> purchasedLotto;
 
+    public LottoMachine() {
+        purchasedLotto = new ArrayList<>();
+    }
+
     public void run() {
         Budget budget = inputBudget();
         int lottoQuantity = budget.getAmount() / LOTTO_PRICE;
+        purchaseLotto(lottoQuantity);
     }
 
     private Budget inputBudget() {
@@ -20,6 +26,13 @@ public class LottoMachine {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void purchaseLotto(int lottoQuantity) {
+        for (int i = 0; i < lottoQuantity; i++) {
+            List<Integer> numbers = LottoNumbersGenerator.generate();
+            purchasedLotto.add(new Lotto(numbers));
         }
     }
 }
