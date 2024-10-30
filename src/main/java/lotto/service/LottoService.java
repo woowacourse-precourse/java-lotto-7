@@ -39,8 +39,8 @@ public class LottoService {
             totalWinnings += count * winning.getWinnings();
         }
 
-        double yield = payment / (double) totalWinnings;
+        double yield = totalWinnings / (double) payment;
 
-        return Math.round(yield * 100.0);
+        return Math.round(yield * 1000) / 10.0;
     }
 }
