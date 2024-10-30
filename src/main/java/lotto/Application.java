@@ -1,11 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.converter.WinningNumberConverter;
 import lotto.util.converter.PurchaseCountConverter;
-import lotto.util.generator.RandomNumbers;
+import lotto.util.converter.WinningNumberConverter;
+import lotto.domain.generator.RandomNumbers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -16,10 +15,8 @@ public class Application {
         PurchaseCountConverter purchaseCountConverter = new PurchaseCountConverter(inputPurchaseAmount);
         int purchaseCount = purchaseCountConverter.convert();
 
-        List<RandomNumbers> randomNumberList = new ArrayList<>(); // 일급 컬렉션 사용이 적절한가?
-        for (int i = 0; i < purchaseCount; i++) {
-            randomNumberList.add(RandomNumbers.generate());
-        }
+        RandomNumbers randomNumbers = new RandomNumbers();
+        randomNumbers.addRandomNumber(purchaseCount);
 
         String inputWinningNumber = Console.readLine();
         WinningNumberConverter winningNumberConverter = new WinningNumberConverter(inputWinningNumber);
