@@ -14,9 +14,9 @@ public class WinnerNumbers {
     private final int bonusNumber;
 
     public WinnerNumbers(List<Integer> mainNumbers, int bonusNumber) {
+        validate(mainNumbers, bonusNumber);
         this.mainNumbers = new Lotto(mainNumbers);
         this.bonusNumber = bonusNumber;
-        validate(mainNumbers, bonusNumber);
     }
 
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
