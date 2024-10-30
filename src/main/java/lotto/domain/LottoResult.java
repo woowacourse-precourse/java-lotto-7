@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 //  - 로또 결과에서 발행된 로또들과 당첨 번호를 비교한다
 // 로또 결과 비교하기
 // 수익률 계산하기
 public class LottoResult {
     private Map<LottoRank, Integer> lottoResult = new HashMap<>();
-    private int profitRate;
+    private float profitRate;
 
     public LottoResult() {
         lottoResultInitialize();
@@ -48,11 +47,11 @@ public class LottoResult {
     public void calculateProfitRate(int price) {
         int profit = lottoResult.entrySet()
             .stream()
-            .filter(e -> e.getValue() == 0)
+            .filter(e -> e.getValue() != 0)
             .mapToInt(e -> e.getKey().getPrize() * e.getValue())
             .sum();
 
-        profitRate = (profit / price) * 100;
+        profitRate = ((float) profit / price) * 100;
     }
 
     public Map<LottoRank, Integer> getLottoResult() {
