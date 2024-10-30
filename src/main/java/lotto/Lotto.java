@@ -29,4 +29,16 @@ public class Lotto {
         sb.append("]");
         return sb.toString();
     }
+
+    public int confirmWinning(List<Integer> winningNumbers) {
+        int confirmCount = 0;
+        if (winningNumbers.stream().anyMatch(numbers::contains)) {
+            confirmCount++;
+        }
+        return confirmCount;
+    }
+
+    public boolean confirmBonus(int bonusNumber) {
+        return numbers.stream().anyMatch(number -> number == bonusNumber);
+    }
 }

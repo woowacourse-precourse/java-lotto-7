@@ -33,5 +33,9 @@ public class Application {
         int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println();
 
+        lottos.forEach(lotto -> {
+            lotto.confirmWinning(splitWinningNumbers);
+            lotto.confirmBonus(bonusNumber);
+        });
     }
 }
