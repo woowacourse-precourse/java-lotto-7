@@ -5,14 +5,21 @@ import java.util.List;
 
 public class WinningNumber {
 
-    private static List<Integer> numbers = new ArrayList<>();
+    private final List<Integer> numbers = new ArrayList<>();
+    private final int bonusNumber;
 
-    public WinningNumber(String numbers) {
+    public WinningNumber(String numbers, String bonusNumber) {
         setWinningNumber(numbers);
+
+        this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
     public List<Integer> getWinningNumbers() {
         return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private void setWinningNumber(String input) {
