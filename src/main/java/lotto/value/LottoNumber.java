@@ -1,14 +1,21 @@
 package lotto.value;
 
-public record LottoNumber(Integer number) implements Comparable<LottoNumber> {
+public sealed class LottoNumber implements Comparable<LottoNumber> permits BonusNumber {
 
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
 
-    public LottoNumber {
+    public final Integer number;
+
+    public LottoNumber(final Integer number) {
         if (number < MIN_VALUE || MAX_VALUE < number) {
             throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1~45입니다.");
         }
+        this.number = number;
+    }
+
+    public Integer getNumber() {
+        return number;
     }
 
     @Override
@@ -16,7 +23,7 @@ public record LottoNumber(Integer number) implements Comparable<LottoNumber> {
         if (other == null) {
             throw new IllegalArgumentException("[ERROR] null과 비교할 수 없습니다.");
         }
-        return number.compareTo(other.number());
+        return number.compareTo(other.number);
     }
 
 }
