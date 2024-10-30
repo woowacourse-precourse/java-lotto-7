@@ -28,6 +28,7 @@ public class LottoController {
     public void run() {
         int lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
         List<Lotto> lottos = lottoGenerator.generateLottos(lottoPurchasePrice);
+        lottoView.printLottos(lottos);
     }
 
 
