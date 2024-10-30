@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.exception.constants.ErrorMessage.WINNING_NUMBER_DUPLICATE;
+
 public class WinningLotto {
 
     private final Lotto winningLotto;
@@ -24,7 +26,7 @@ public class WinningLotto {
 
     private void validateBonusNumber(final Lotto winningLotto, final LottoNumber bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 존재합니다.");
+            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE.getMessage());
         }
     }
 
