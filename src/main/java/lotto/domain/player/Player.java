@@ -24,4 +24,8 @@ public class Player {
     public void updateLottoCount(int lottoCount) {
         this.lottoCount = lottoCount;
     }
+
+    public void addLotto(PlayerLotto lotto) {
+        lottos.add(lotto);
+    }
 }

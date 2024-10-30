@@ -38,7 +38,7 @@ public class LottoServiceTest {
         int lottoCount = 10;
 
         // when
-        lottoService.createLottos(lottoCount);
+        lottoService.addLottos(lottoCount);
 
         // then
         assertThat(player.getLottos().size()).isEqualTo(lottoCount);

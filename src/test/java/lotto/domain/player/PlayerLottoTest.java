@@ -11,11 +11,6 @@ public class PlayerLottoTest {
 
     private PlayerLotto playerLotto;
 
-    @BeforeEach
-    public void setUp() {
-        playerLotto = new PlayerLotto();
-    }
-
     @Test
     @DisplayName("로또에 중복되지 않은 숫자 6개를 저장할 수 있다")
     void 로또_숫자_저장_테스트() throws Exception {
@@ -23,7 +18,7 @@ public class PlayerLottoTest {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
 
         // when
-        playerLotto.updateLottoNumbers(lottoNumbers);
+        playerLotto = new PlayerLotto(lottoNumbers);
 
         // then
         Assertions.assertThat(playerLotto.getLottoNumbers()).containsExactly(1, 2, 3, 4, 5,6);

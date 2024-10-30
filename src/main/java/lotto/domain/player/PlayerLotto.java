@@ -7,14 +7,12 @@ public class PlayerLotto {
 
     private List<Integer> lottoNumbers;
 
-    public PlayerLotto() {
-        this.lottoNumbers = new ArrayList<>();
+    public PlayerLotto(List<Integer> lottoNumbers) {
+        this.lottoNumbers = lottoNumbers;
     }
 
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }
 
-    public void updateLottoNumbers(List<Integer> lottoNumbers) {
-    }
 }
