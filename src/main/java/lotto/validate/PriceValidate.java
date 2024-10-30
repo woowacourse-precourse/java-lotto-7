@@ -1,11 +1,8 @@
 package lotto.validate;
 
-public class PriceValidate {
+import static lotto.constants.Constants.*;
 
-    private static final String ERROR = "[ERROR] ";
-    private static final String PRICE_NOT_NUMBER = "구매 금액은 숫자여야 합니다.";
-    private static final String PRICE_NOT_POSITIVE_NUMBER = "구매 금액은 양수여야 합니다.";
-    private static final String PRICE_NOT_SUITABLE = "구매 금액은 1000단위어야 합니다.";
+public class PriceValidate {
 
     private final int price;
 
