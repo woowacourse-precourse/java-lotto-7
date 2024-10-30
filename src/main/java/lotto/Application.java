@@ -17,6 +17,16 @@ public class Application {
         return userLottoNumbers;
     }
 
+    public static int compareLottoNumbers(List<Integer> userLottoNumber, List<Integer> lottoWinningNumber) {
+        int winningNumberCount = 0;
+        for (int number : lottoWinningNumber) {
+            if (userLottoNumber.contains(number)) {
+                winningNumberCount +=  1;
+            }
+        }
+        return winningNumberCount;
+    }
+
     public static void main(String[] args) {
 
     }
