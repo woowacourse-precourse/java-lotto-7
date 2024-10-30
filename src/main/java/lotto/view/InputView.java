@@ -1,16 +1,19 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.IntegerParser;
 import lotto.util.Validator;
 
 import java.util.List;
 
 public class InputView {
 
-    private Validator validator;
+    private final Validator validator;
+    private final IntegerParser integerParser;
 
     public InputView() {
         this.validator = new Validator();
+        this.integerParser = new IntegerParser();
     }
 
     public int readPriceInput(){
@@ -26,7 +29,7 @@ public class InputView {
         while (!validator.validateWinningNumber(input)) {
             input = Console.readLine();
         }
-        return null;
+        return integerParser.stringToIntegerList(input);
     }
 
 }
