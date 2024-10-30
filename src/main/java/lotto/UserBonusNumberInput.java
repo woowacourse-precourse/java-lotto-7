@@ -22,6 +22,10 @@ public class UserBonusNumberInput {
         }
     }
 
+    public void bonusDuplicationCheck(Lotto lotto) {
+        lotto.bonusNumberCheck(bonusNumber);
+    }
+
     private int parseBonusNumber(String bonusNumberInput) {
         try {
             return Integer.parseInt(bonusNumberInput);
