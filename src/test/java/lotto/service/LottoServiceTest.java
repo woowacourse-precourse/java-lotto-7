@@ -3,8 +3,9 @@ package lotto.service;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoServiceTest {
+class LottoServiceTest {
     private final LottoService lottoService = new LottoServiceImpl();
 
     @Test
@@ -15,5 +16,14 @@ public class LottoServiceTest {
         int lottoCount = lottoService.calculateLottoCount(purchaseAmount);
 
         assertThat(lottoCount).isEqualTo(expectedLottoCount);
+    }
+
+    @Test
+    void 로또_구입_금액_단위_예외_테스트() {
+        int invalidPurchaseAmount = 5500;
+
+        assertThatThrownBy(() -> lottoService.calculateLottoCount(invalidPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
 }
