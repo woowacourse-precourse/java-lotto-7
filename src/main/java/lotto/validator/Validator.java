@@ -13,7 +13,7 @@ public class Validator {
     private static final String ERROR_INVALID_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호는 6개의 숫자여야 합니다.";
     private static final String ERROR_INVALID_LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 번호는 중복되면 안 됩니다.";
     private static final String ERROR_INVALID_LOTTO_FORMAT = "[ERROR] 숫자와 콤마만 입력 가능합니다.";
-
+    private static final String ERROR_INVALID_BONUS_DUPLICATE = "[ERROR] 보너스 번호가 당첨번호와 중복됩니다.";
 
     public static int validateLottoAmount(String inputAmount) {
         int amount = validateNumeric(inputAmount);
@@ -78,6 +78,12 @@ public class Validator {
         String regex = "[^0-9,]";
         if(Pattern.compile(regex).matcher(input).find()){
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_FORMAT);
+        }
+    }
+
+    public static void validateBonusDuplicate(List<Integer> winningLotto, int bonusNumber){
+        if(winningLotto.contains(bonusNumber)){
+            throw new IllegalArgumentException(ERROR_INVALID_BONUS_DUPLICATE);
         }
     }
 }
