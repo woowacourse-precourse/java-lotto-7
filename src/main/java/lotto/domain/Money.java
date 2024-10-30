@@ -1,11 +1,11 @@
 package lotto.domain;
 
+import lotto.constant.LotteryConst;
 import lotto.exception.ExceptionMessages;
 
 public class Money {
 
     private static final int ZERO = 0;
-    private static final int LOTTERY_PRICE = 1000;
 
     private final int amount;
 
@@ -26,7 +26,7 @@ public class Money {
     }
 
     private void validateCannotDivisible(int amount) {
-        if (amount % LOTTERY_PRICE != ZERO) {
+        if (amount % LotteryConst.PRICE.getValue() != ZERO) {
             throw new IllegalArgumentException(ExceptionMessages.AMOUNT_CANNOT_DIVISIBLE.getMessage());
         }
     }

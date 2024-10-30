@@ -1,11 +1,9 @@
 package lotto.domain;
 
+import lotto.constant.LotteryConst;
 import lotto.exception.ExceptionMessages;
 
 public class BonusNumber {
-
-    private static final int LOTTERY_MIN = 1;
-    private static final int LOTTERY_MAX = 45;
 
     private final int bonusNumber;
 
@@ -15,7 +13,7 @@ public class BonusNumber {
     }
 
     private void validateOutOfRangeNumber(int bonusNumber) {
-        if (bonusNumber > LOTTERY_MAX || bonusNumber < LOTTERY_MIN) {
+        if (bonusNumber > LotteryConst.MAX.getValue() || bonusNumber < LotteryConst.MIN.getValue()) {
             throw new IllegalArgumentException(ExceptionMessages.NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

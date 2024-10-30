@@ -2,9 +2,11 @@ package lotto;
 
 import java.util.Comparator;
 import java.util.List;
+import lotto.constant.LotteryConst;
 import lotto.exception.ExceptionMessages;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -40,7 +42,7 @@ public class Lotto {
                 .min(Comparator.comparing(x -> x))
                 .orElseThrow();
 
-        if (maxVal > 45 || minVal < 1) {
+        if (maxVal > LotteryConst.MAX.getValue() || minVal < LotteryConst.MIN.getValue()) {
             throw new IllegalArgumentException(ExceptionMessages.NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
