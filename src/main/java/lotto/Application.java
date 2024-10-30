@@ -21,8 +21,7 @@ public class Application {
         Lotto targetLotto = LottoGenerator.generate(Console.readLine(), ",");
 
         System.out.println("보너스 번호를 입력해 주세요.");
-
-        System.out.println("입력한 로또: " + targetLotto);
+        LottoGenerator.addNumber(targetLotto, Integer.parseInt(Console.readLine()));
 
         System.out.println();
     }

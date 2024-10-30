@@ -23,4 +23,8 @@ class LottoGenerator {
         }
         return new Lotto(list);
     }
+
+    public static void addNumber(Lotto lotto, int number){
+        lotto.getNumbers().add(number);
+    }
 }
