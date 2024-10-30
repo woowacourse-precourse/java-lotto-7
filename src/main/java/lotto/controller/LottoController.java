@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import lotto.model.Game;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,9 +21,8 @@ public class LottoController {
 
     public void run() {
         Integer lottoCount = getLottoCount();
-        List<Lotto> lottos = getRandomLottosAndPrint(lottoCount);
-        List<Integer> winningNumbers = getWinningNumbers();
-        Integer bonusNumbers = getBonusNumber();
+        Lottos lottos = new Lottos(createRandomLottosAndPrint(lottoCount));
+        Game game = createGame(lottos);
     }
 
 
@@ -30,17 +31,23 @@ public class LottoController {
         return inputView.inputPrice();
     }
 
-    private List<Lotto> getRandomLottosAndPrint(Integer lottoCount) {
+    private List<Lotto> createRandomLottosAndPrint(Integer lottoCount) {
         outputView.printMessage(lottoCount + "개를 구매했습니다.");
-        List<Lotto> lottos = createLottos(lottoCount);
-        lottos.forEach(outputView::printLottoNumbers);
-        return lottos;
+        List<Lotto> createdLottos = createLotto(lottoCount);
+        createdLottos.forEach(outputView::printLottoNumbers);
+        return createdLottos;
     }
 
-    private List<Lotto> createLottos(Integer lottoCount) {
+    private List<Lotto> createLotto(Integer lottoCount) {
         return Stream.generate(lottoService::createLotto)
                 .limit(lottoCount)
                 .toList();
+    }
+
+    private Game createGame(Lottos lottos) {
+        List<Integer> winningNumbers = getWinningNumbers();
+        Integer bonusNumbers = getBonusNumber();
+        return new Game(lottos, winningNumbers, bonusNumbers);
     }
 
     private List<Integer> getWinningNumbers() {
