@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.ExceptionHandler.isThousandDivisible;
+import static lotto.IOProcessor.getNumber;
+
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +19,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static int getPurchaseAmount() {
+        Prompt prompt = Prompt.PURCHASE;
+        int purchaseAmount = getNumber(prompt.getGuide());
+
+        try {
+            isThousandDivisible(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            getPurchaseAmount();
+        }
+        return purchaseAmount;
+    }
 }
