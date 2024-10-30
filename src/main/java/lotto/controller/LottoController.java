@@ -29,7 +29,7 @@ public class LottoController {
         printPurchaseAmountAndLotto(purchasePrice.getQuantity(), purchasedLotto.getPurchasedLottos());
 
         Lotto winningLottoNumbers = inputService.readWinningLotto();
-        int bonusNum = inputService.readBonusNum();
+        int bonusNum = inputService.readBonusNum(winningLottoNumbers);
         WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNum);
 
         LottoResult lottoResult = new LottoResult(purchasedLotto.getPurchasedLottos(), winningLotto);
