@@ -12,24 +12,26 @@ public class OutputView {
     }
 
     public void requireWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public void requireBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     public void printLottos(int countLotto, ArrayList<Lotto> lottos) {
+        System.out.println();
         System.out.println(countLotto + "개를 구매했습니다.");
         
         for (Lotto lotto : lottos) {
-            printLottoNumbers(lotto);
+            printLottoNumbers(lotto.getLotto());
         }
     }
     
-    private void printLottoNumbers(Lotto lotto) {
+    private void printLottoNumbers(ArrayList<Integer> numbers) {
         StringBuilder lottoNumbers = new StringBuilder("[");
-        ArrayList<Integer> numbers = lotto.getLotto();
         
         for (int i = 0; i < numbers.size(); i++) {
             lottoNumbers.append(numbers.get(i));
@@ -42,7 +44,7 @@ public class OutputView {
     }
 
     public void printWinningResult(HashMap<Integer,Integer> winningRecord) {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+ winningRecord.get(Rank.FIFTH.getRankOrder()) +"개");
         System.out.println("4개 일치 (50,000원) - "+ winningRecord.get(Rank.FOURTH.getRankOrder()) +"개");
