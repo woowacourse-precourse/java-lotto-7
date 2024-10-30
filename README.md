@@ -90,9 +90,9 @@ View
 <tr>
     <td rowspan="4">예외처리</td>
         <td rowspan="1"><b><em>GlobalException</em></b></td>
-            <td>⬜전역 예외처리</td> </tr><tr>
+            <td>✅전역 예외처리</td> </tr><tr>
         <td rowspan="1"><b><em>InputException</em></b></td>
-        <td>⬜사용자 입력 관련 예외처리</td> </tr><tr> 
+        <td>✅사용자 입력 관련 예외처리</td> </tr><tr> 
         <td rowspan="1"><b><em>AmountException</em></b></td>
         <td>⬜금액 관련 예외처리</td> </tr><tr> 
         <td rowspan="1"><b><em>LottoException</em></b></td>
