@@ -33,6 +33,7 @@ public class LottoService {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -69,5 +70,11 @@ public class LottoService {
 
     private boolean matchBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (winnerLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 번호와 중복됩니다.");
+        }
     }
 }
