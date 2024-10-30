@@ -61,15 +61,15 @@ public class LottoResultChecker {
     }
 
     private void validateNumber(final List<Integer> winningNumbers, final int bonusNumber) {
-        if (!ValidLottoNumber.isBoundedNumbers(winningNumbers)) {
+        if (ValidLottoNumber.isNotBoundedNumbers(winningNumbers)) {
             throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
         }
 
-        if (!ValidLottoNumber.isBoundedNumber(bonusNumber)) {
+        if (ValidLottoNumber.isNotBoundedNumber(bonusNumber)) {
             throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
         }
 
-        if (ValidLottoNumber.isSixNumbers(winningNumbers)) {
+        if (ValidLottoNumber.isNotSixNumbers(winningNumbers)) {
             throw new LottoException(LottoNumberExceptionMessage.NUMBERS_LENGTH_EXCEPTION);
         }
 

@@ -21,11 +21,11 @@ public class Lotto implements Iterable<Integer> {
     }
 
     private void validate(List<Integer> numbers) {
-        if (!ValidLottoNumber.isBoundedNumbers(numbers)) {
+        if (ValidLottoNumber.isNotBoundedNumbers(numbers)) {
             throw new LottoException(LottoNumberExceptionMessage.NUMBER_BOUNDED_EXCEPTION);
         }
 
-        if (ValidLottoNumber.isSixNumbers(numbers)) {
+        if (ValidLottoNumber.isNotSixNumbers(numbers)) {
             throw new LottoException(LottoNumberExceptionMessage.NUMBERS_LENGTH_EXCEPTION);
         }
 

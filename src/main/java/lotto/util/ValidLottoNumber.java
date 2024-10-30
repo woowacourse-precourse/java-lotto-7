@@ -6,16 +6,16 @@ import java.util.Set;
 
 public class ValidLottoNumber {
 
-    public static boolean isBoundedNumbers(final List<Integer> numbers) {
-        return numbers.stream()
+    public static boolean isNotBoundedNumbers(final List<Integer> numbers) {
+        return !numbers.stream()
                 .allMatch(number -> number >= 1 && number <= 45);
     }
 
-    public static boolean isBoundedNumber(final int number) {
-        return number >= 1 && number <= 45;
+    public static boolean isNotBoundedNumber(final int number) {
+        return !(number >= 1 && number <= 45);
     }
 
-    public static boolean isSixNumbers(final List<Integer> numbers) {
+    public static boolean isNotSixNumbers(final List<Integer> numbers) {
         return numbers.size() != 6;
     }
 
