@@ -74,7 +74,7 @@ public class Validator {
         for (String number : numbers) {
             checkNumberType(number);
             checkWinningNumberSize(number);
-            if ( winningNumbers.contains(number) ) {
+            if (winningNumbers.contains(number)) {
                 System.out.println(WINNING_NUMBER_DUPLICATE_ERROR.getMessage());
                 throw new IllegalArgumentException();
             }
@@ -109,4 +109,5 @@ public class Validator {
             }
         }
     }
+
 }

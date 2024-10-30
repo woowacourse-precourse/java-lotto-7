@@ -13,6 +13,6 @@ public class LottoService {
     }
 
     public void addWinningNumbers(List<Integer> winningNumbers) {
-
+        lotto.addNumbers(winningNumbers);
     }
 }
