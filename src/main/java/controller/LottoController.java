@@ -47,20 +47,49 @@ public class LottoController {
         outputHandler.promptForBonusNumber();
         int bonusNumber = inputHandler.getBonusNumber();
 
+
         for(Lotto lotto : lottos){
             int winningCount = lotto.compareTo(winningLotto);
 
             if(winningCount == 5 && lotto.hasBonusNumber(bonusNumber)){
                 int winningLottoWithBonus = prizes.get(7);
                 prizes.put(7, ++winningLottoWithBonus);
+
                 continue;
             }
             int winningLottoCount  = prizes.get(winningCount);
             prizes.put(winningCount, ++winningLottoCount);
 
+
         }
         outputHandler.displayPrizes(prizes);
 
 
+
+
+
+
+
+    }
+    private double calculateWinningRate(Map<Integer, Integer> prizes , int amountInput){
+        int winningRate = 0;
+        for(Map.Entry<Integer, Integer> count : prizes.entrySet()){
+            if(count.getKey() == 3){
+                winningRate += (count.getValue() * 5000);
+            }
+            if(count.getKey() == 4){
+                winningRate += (count.getValue() * 50000);
+            }
+            if(count.getKey() == 5){
+                winningRate += (count.getValue() * 1500000);
+            }
+            if(count.getKey() == 6){
+                winningRate += (count.getValue() * 30000000);
+            }
+            if(count.getKey() == 7){
+                winningRate += (count.getValue() * 2000000000);
+            }
+        }
+        return (double) winningRate / amountInput * 100;
     }
 }

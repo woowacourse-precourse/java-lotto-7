@@ -25,4 +25,7 @@ public class OutputHandler {
         System.out.println("5개 일치 (30000000원) - " + prizes.get(7) + "개");
         System.out.println("6개 일치 (2000000000원) - " + prizes.get(6) + "개");
     }
+
+
+
 }
