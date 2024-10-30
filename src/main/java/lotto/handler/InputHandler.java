@@ -5,14 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
-    private int inputMoney;
 
-    public void setInputMoney() {
-        inputMoney = Integer.parseInt(Console.readLine());
-    }
-
-    public int getInputMoney() {
-        return inputMoney;
+    public int setInputMoney() {
+        int inputMoney;
+        return inputMoney = Integer.parseInt(Console.readLine());
     }
 
     public List<Integer> setInputLottoNumbers() {
@@ -24,6 +20,11 @@ public class InputHandler {
             lottoWinnerNumbers.add(Integer.parseInt(number));
         }
         return lottoWinnerNumbers;
+    }
+
+    public int setBonusNumber() {
+        int bonusNumber;
+        return bonusNumber = Integer.parseInt(Console.readLine());
     }
 
 }

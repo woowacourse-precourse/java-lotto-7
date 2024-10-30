@@ -23,8 +23,7 @@ public class Controller {
 
     public void run() {
         printHandler.printBuyMoneyAmount();
-        inputHandler.setInputMoney();
-        int money = inputHandler.getInputMoney();
+        int money = inputHandler.setInputMoney();
         lottoStore.calculateNumberOfPurchases(money);
         int lottoNumberOfPurchases = lottoStore.getLottoNumberOfPurchases();
         printHandler.printBuyLottoNumbersOfPurchases(lottoNumberOfPurchases);
@@ -33,6 +32,7 @@ public class Controller {
         List<Integer> lottoNumbers = inputHandler.setInputLottoNumbers();
         lottoWinningNumbers = new LottoWinningNumbers(lottoNumbers);
         printHandler.printBonusNumberPrompt();
+        int bonusNumber = inputHandler.setBonusNumber();
     }
 
     private void createLotto(int lottoNumberOfPurchases) {
