@@ -20,7 +20,7 @@ public class LottoPurchaseService {
     }
 
     private void validate(String price) {
-        if (price.trim().isEmpty()) {
+        if (price == null || price.isBlank()) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
         }
 
