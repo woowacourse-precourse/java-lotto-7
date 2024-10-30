@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -17,4 +19,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public static Lotto create() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                .stream()
+                .sorted()
+                .toList();
+        return new Lotto(numbers);
+    }
 }
