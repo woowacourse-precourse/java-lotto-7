@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.LottoService;
-import lotto.model.Rank;
+import lotto.service.LottoService;
+import lotto.domain.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

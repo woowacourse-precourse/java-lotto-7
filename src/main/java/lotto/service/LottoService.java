@@ -1,7 +1,11 @@
-package lotto.model;
+package lotto.service;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.LottoTicket;
+import lotto.domain.Money;
+import lotto.domain.Rank;
+import lotto.domain.WinningNumbers;
 import lotto.util.RandomNumGenerator;
 
 public class LottoService {
