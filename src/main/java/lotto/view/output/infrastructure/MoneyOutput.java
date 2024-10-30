@@ -1,4 +1,4 @@
-package lotto.view.output.infra;
+package lotto.view.output.infrastructure;
 
 import lotto.view.output.domain.InfoViewService;
 
