@@ -4,7 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum RegexPattern {
-    INTEGER_INPUT(Pattern.compile("^[0-9]*$"));
+    INTEGER_INPUT(Pattern.compile("^[0-9]*$")),
+    ONLY_INTEGER_AND_COMMA(Pattern.compile("^[0-9|,]*$"));
 
     private final Pattern pattern;
 
