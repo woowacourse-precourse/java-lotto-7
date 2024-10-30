@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.InputConverter;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.WinningNumber;
 import lotto.ui.InputView;
 
 public class LottoController {
@@ -12,6 +14,7 @@ public class LottoController {
     private LottoGenerator lottoGenerator;
     private List<Lotto> lottos;
     private int ticketCount;
+    private WinningNumber winningNumber;
 
     public LottoController(){
         convertValidValue = new InputConverter();
@@ -22,6 +25,9 @@ public class LottoController {
 
     public void run(){
         lottoAmount();
+        purchaseLotto();
+        winningNumber = new WinningNumber(getWinningLotto(), getBonusNumber());
+
     }
 
     private void lottoAmount() {
@@ -41,5 +47,34 @@ public class LottoController {
         for(int i = 0; i< ticketCount; i++){
             lottos.add(lottoGenerator.generate());
         }
+    }
+
+    private Lotto getWinningLotto(){
+        String userInput = InputView.winningNumber();
+        Lotto lotto = null;
+
+        try{
+            List<Integer> li = convertValidValue.winningNumbers(userInput);
+            lotto = new Lotto(li);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.toString());
+            return getWinningLotto();
+        }
+
+        return lotto;
+    }
+
+    private int getBonusNumber(){
+        String UserInput = InputView.bonusNumber();
+        int bonusNumber = 0;
+
+        try {
+            bonusNumber = convertValidValue.bonusNumber(UserInput);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.toString());
+            return getBonusNumber();
+        }
+
+        return bonusNumber;
     }
 }
