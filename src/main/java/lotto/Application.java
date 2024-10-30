@@ -9,6 +9,7 @@ public class Application {
         while (price == null) {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
+            System.out.println();
             try {
                 price = Price.from(input);
             }
@@ -17,5 +18,8 @@ public class Application {
             }
         }
         LottoIssuer issuer = new LottoIssuer(price.getValue());
+        int lottoCount = issuer.getLottoCount();
+        System.out.println(lottoCount + "개를 구매했습니다.");
+
     }
 }

@@ -16,6 +16,10 @@ public class LottoIssuer {
         return List.of(lottos);
     }
 
+    public int getLottoCount() {
+        return this.lottos.length;
+    }
+
     private void execute() {
         for(int i=0; i<lottos.length; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
