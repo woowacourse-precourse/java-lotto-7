@@ -77,6 +77,7 @@ public class InputView {
             return Arrays.stream(numbers)
                     .map(Integer::parseInt)
                     .filter(integer -> integer >= START_NUM && integer <= END_NUM)
+                    .sorted()
                     .toList();
         } catch (NumberFormatException e) {
             throw new BusinessException(INCORRECT_WINNING_NUMBER);
