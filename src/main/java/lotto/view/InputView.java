@@ -43,10 +43,10 @@ public class InputView {
         }
     }
 
-    public void inputBonusNumber() {
+    public void inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
 
         String userInput = Console.readLine();
-        inputParser.parseBonusNumber(userInput);
+        inputParser.parseBonusNumber(userInput, winningNumbers);
     }
 }

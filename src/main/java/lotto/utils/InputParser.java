@@ -38,12 +38,13 @@ public class InputParser {
         return winningNumbers;
     }
 
-    public void parseBonusNumber(String userInput) {
+    public void parseBonusNumber(String userInput, List<Integer> winningNumbers) {
         inputValidator.validateEmpty(userInput);
         inputValidator.validateNumber(userInput, BONUS_NUMBER_ERROR_MESSAGE.toString());
 
         int bonusNumber = Integer.parseInt(userInput);
         inputValidator.validateBonusNumberRange(bonusNumber);
+        inputValidator.validateDuplicateBonusNumber(bonusNumber, winningNumbers);
     }
 
     private List<String> separateInput(String userInput) {
