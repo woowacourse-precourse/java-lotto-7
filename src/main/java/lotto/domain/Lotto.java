@@ -26,8 +26,5 @@ public class Lotto {
         if (checkNumbersCount.size() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 중복값 입력은 불가능합니다.");
         }
-
     }
-
-
 }
