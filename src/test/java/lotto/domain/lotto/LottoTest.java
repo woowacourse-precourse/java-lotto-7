@@ -6,7 +6,6 @@ import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.exception.message.LottoExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

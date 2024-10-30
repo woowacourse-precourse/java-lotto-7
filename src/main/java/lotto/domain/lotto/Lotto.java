@@ -50,4 +50,14 @@ public class Lotto {
         return number < 1 || number > 45;
     }
 
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return "Lotto{" +
+                "numbers=" + numbers +
+                '}';
+    }
 }
