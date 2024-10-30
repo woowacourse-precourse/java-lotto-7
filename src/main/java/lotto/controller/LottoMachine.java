@@ -21,7 +21,7 @@ public class LottoMachine {
 
     private List<Lotto> buyLottoByPrice(int price) {
         int money = inputView.inputMoney();
-        int count = money % price;
+        int count = money / price;
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
