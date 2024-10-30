@@ -2,12 +2,13 @@ package lotto.validation;
 
 import enums.Delimiter;
 import enums.ErrorMessage;
+import util.Converter;
 
 public class PriceValidator {
 
     public static void validatePrice(String input) {
         validateNull(input);
-        long convertInput = convertToLong(input);
+        long convertInput = Converter.convertStringToLong(input);
         validateZero(convertInput);
         validateUnderThousand(convertInput);
         validateDivideThousand(convertInput);
@@ -39,9 +40,5 @@ public class PriceValidator {
 
     private static boolean isNullOrEmpty(String input) {
         return input == null || input.trim().isEmpty();
-    }
-
-    private static long convertToLong(String input) {
-        return Long.parseLong(input.trim());
     }
 }

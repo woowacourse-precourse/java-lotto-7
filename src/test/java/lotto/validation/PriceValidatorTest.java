@@ -22,10 +22,6 @@ class PriceValidatorTest {
         assertEquals(ErrorMessage.INPUT_NULL.getErrorMessage(), exception.getMessage());
     }
 
-    private long parseAndValidateInput(String input) {
-        return Long.parseLong(input.trim());
-    }
-
     @DisplayName("0을 입력한 경우 예외가 발생한다.")
     @Test
     void validateZero() {
