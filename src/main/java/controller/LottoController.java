@@ -1,7 +1,10 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import view.InputHandler;
 import view.OutputHandler;
+
+import java.util.List;
 
 public class LottoController {
     private InputHandler inputHandler;
@@ -13,10 +16,15 @@ public class LottoController {
 
     public void run(){
         outputHandler.promptForAmountInput();
-        System.out.println(inputHandler.getAmountInput());
+        int amountInput = inputHandler.getAmountInput();
+
+        System.out.println(Randoms.pickUniqueNumbersInRange(1,45,6).toString());
+
+
         outputHandler.promptForLottoNumber();
-        System.out.println(inputHandler.getLottoNumber().toString());
+        List<Integer> lottoNumber = inputHandler.getLottoNumber();
         outputHandler.promptForBonusNumber();
-        System.out.println(inputHandler.getBonusNumber());
+        int bonusNumber = inputHandler.getBonusNumber();
+
     }
 }
