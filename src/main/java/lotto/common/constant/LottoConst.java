@@ -16,6 +16,7 @@ public class LottoConst {
 
     public static final String LOTTO_AMOUNT_REQUEST = "구입금액을 입력해 주세요.";
     public static final String LOTTO_WINNING_NUMBER_REQUEST = "당첨 번호를 입력해 주세요.";
+    public static final String LOTTO_BONUS_NUMBER_REQUEST = "보너스 번호를 입력해 주세요.";
 
 
     public static final String NOT_NUMBER_MSG = "구매하고 싶은 정확한 금액을 입력해주세요.";
@@ -26,4 +27,7 @@ public class LottoConst {
     public static final String LOTTO_INVALID_QUANTITY_MSG = "로또 번호는 6개여야 합니다.";
     public static final String LOTTO_NOT_DISTINCT_NUMBERS_MSG = "로또 번호는 중복되지 않아야 합니다.";
     public static final String INVALID_WINNING_NUMBER_FORMAT_MSG = "당첨 번호는 모두 숫자여야 합니다.";
+    public static final String INCORRECT_BONUS_NUMBER_MSG = "보너스 번호는 1부터 45번까지의 숫자여야 합니다.";
+    public static final String DUPLICATED_BONUS_NUMBER_MSG = "보너스 번호는 당첨 번호에서 중복되지 않은 숫자여야 합니다.";
+
 }

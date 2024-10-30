@@ -39,14 +39,6 @@ public class InputView {
         return amount;
     }
 
-    private int parseAmount(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new BusinessException(NOT_NUMBER);
-        }
-    }
-
     private void validateDivisibleByLottoPrice(int amount) {
         if (amount % LOTTO_PRICE != 0) {
             throw new BusinessException(CANT_DIVIDE);
@@ -97,4 +89,44 @@ public class InputView {
         }
     }
 
+    public int getBonusNumber() {
+        printRequestBonusNumber();
+        return readValidBonusNumber();
+    }
+
+    private void printRequestBonusNumber() {
+        System.out.println(LOTTO_BONUS_NUMBER_REQUEST);
+    }
+
+    private int readValidBonusNumber() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                return validBonusNumber(input);
+            } catch (BusinessException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+
+    private int validBonusNumber(String input) {
+        int amount = parseAmount(input);
+        isWithinLimit(amount);
+        return amount;
+    }
+
+    private int parseAmount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new BusinessException(NOT_NUMBER);
+        }
+    }
+
+    private void isWithinLimit(int input) {
+        if (input < START_NUM || input > END_NUM) {
+            throw new BusinessException(INCORRECT_BONUS_NUMBER);
+        }
+    }
 }
