@@ -18,6 +18,10 @@ public class WinningLotto {
                 .count();
     }
 
+    public Boolean isBonusMatch(final Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber.getNumber());
+    }
+
     private void validateBonusNumber(final Lotto winningLotto, final LottoNumber bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber.getNumber())) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 존재합니다.");
