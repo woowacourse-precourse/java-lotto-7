@@ -92,7 +92,7 @@ class InputTest {
 	static class TestInput extends Input {
 		private String testInput;
 		private List<Integer> testList;
-		private static List<Integer> numbers = new ArrayList<>(List.of(1,2,3,4,5,6));
+		private static List<Integer> numbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
 
 		void 입력값(String input) {
 			this.testInput = input;
@@ -128,14 +128,15 @@ class InputTest {
 				String winning = readLine();
 				WinningNumber winningNumber = new WinningNumber(winning);
 				Lotto lotto = new Lotto(winningNumber.winningCheck());
-				Input.setNumbers(lotto.listValueCheck());
+				//numbers = lotto.getNumbers();
+				// 테스트 코드 당첨 번호 지정
 			} catch (IllegalArgumentException e) {
 				System.err.println(e);
 				// 테스트 코드에서 무한 반복을 막기위해 재귀 호출 코드 제거
 				throw e;
 			}
 		}
-		
+
 		@Override
 		public void bonusInput() {
 			try {
