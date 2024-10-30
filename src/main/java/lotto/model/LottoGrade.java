@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoGrade {
+    NONE("0", 0),
     FIFTH("3", 5_000),
     FOURTH("4", 50_000),
     THIRD("5", 1_500_000),
@@ -15,6 +16,7 @@ public enum LottoGrade {
     private static final Map<String, String> GRADE = Collections.unmodifiableMap(
             Stream
                     .of(values())
+                    .filter(grade -> grade != NONE)
                     .collect(Collectors.toMap(LottoGrade::getCorrect, LottoGrade::name)));
 
     private final String correct;

@@ -19,7 +19,7 @@ public class LottoResult {
         long winningNumberCount = lottoDto.lotto().winningNumberCount(winningLottoTicket);
 
         if (isNotValidWinningNumberCount(winningNumberCount)) {
-            return null;
+            return LottoGrade.NONE;
         }
 
         String grade = generateGrade(lottoDto, winningNumberCount);
