@@ -21,10 +21,6 @@ public enum LottoRank {
         return prize;
     }
 
-    public int getMatchCount() {
-        return  matchCount;
-    }
-
     public String getDescription() {
         if (bonusMatch) {
             return String.format("%d개 일치, 보너스 볼 일치", matchCount);
