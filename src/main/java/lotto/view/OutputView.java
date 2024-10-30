@@ -51,6 +51,6 @@ public class OutputView {
                 + LottoRank.FORTH.getTotalPrize()
                 + LottoRank.FIFTH.getTotalPrize();
 
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", (double) totalPrize / usedMoney));
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", totalPrize * 100.0 / usedMoney));
     }
 }
