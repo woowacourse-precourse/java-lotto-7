@@ -14,6 +14,7 @@ public class LottoService {
     private final static int NUMBER_OF_LOTTO_NUMBERS = 6;
 
     private List<Lotto> purchasedLotto = new ArrayList<>();
+    private Lotto winnerLotto;
 
     public void purchaseLotto(int money) {
         for (int i = 0; i < money / MONEY_UNIT; i++) {
@@ -23,6 +24,10 @@ public class LottoService {
 
     public void printPurchasedLottoNumbers() {
         OutputView.printPurchasedLotto(purchasedLotto);
+    }
+
+    public void setWinnerLotto(List<Integer> winnerNumbers) {
+        this.winnerLotto = new Lotto(winnerNumbers);
     }
 
     private Lotto purchaseOneLotto() {
