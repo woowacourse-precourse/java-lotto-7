@@ -142,11 +142,11 @@
 
 - [x] Lotto 클래스 TDD 작성
     - 로또 번호를 나타내며, 중복되지 않는 6개의 번호가 1~45 범위 내에 있는지 검증.
-- [ ] WinningNumbers 클래스 TDD 작성
+- [x] WinningNumbers 클래스 TDD 작성
     - 당첨 번호(6개)와 보너스 번호(1개)를 관리하며, 유효한 값인지 검증.
 
 ### Entities 구현
 
-- [ ] Lotto 클래스 구현
-- [ ] WinningNumbers 클래스 구현
+- [x] Lotto 클래스 구현
+- [x] WinningNumbers 클래스 구현
 - [ ] 에러 메시지 정의 및 추가 
