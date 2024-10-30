@@ -59,7 +59,13 @@ public class Application {
         }
         return count;
     }
-
+    public int[] matchCount(){
+        int[] ary = new int[numSize+1];
+        for(int i = 0; i < lotto_list.length; i++){
+            ary[numberMatch(i)]++;
+        }
+        return ary;
+    }
     public void winning_history(){
 
         for(int i = 3; i < 7; i++){
