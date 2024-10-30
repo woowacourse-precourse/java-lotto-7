@@ -18,7 +18,12 @@ public class PrizeCalculator implements Calculator {
 
     @Override
     public double calculateProfit(int totalPrize, int purchasePrice) {
-        return (double) (totalPrize - purchasePrice) / purchasePrice * 100;
+        System.out.println("totalPrize = " + totalPrize);
+        double result = ((double) (totalPrize - purchasePrice) / purchasePrice) * 100;
+        if (result < 0) {
+            return 100 + result;
+        }
+        return result;
     }
 
     private int multiple(int number, int money) {
