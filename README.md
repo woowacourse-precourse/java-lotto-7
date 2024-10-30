@@ -70,6 +70,7 @@
 - [ ] LottoGameController
 ### Enum
 - [x] LottoGrade
+- [x] LottoNumberRange
 ### Util
 - [ ] LottoNumberGenerator
 - [ ] RandomNumberGenerator

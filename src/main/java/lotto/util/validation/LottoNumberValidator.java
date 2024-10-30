@@ -3,8 +3,13 @@ package lotto.util.validation;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER;
 
 import lotto.model.Lotto;
+import lotto.model.LottoNumberRange;
 
 public class LottoNumberValidator extends NumberValidator {
+
+    private static final int MIN_LOTTO_NUMBER = LottoNumberRange.MIN_LOTTO_NUMBER.getValue();
+    private static final int MAX_LOTTO_NUMBER = LottoNumberRange.MAX_LOTTO_NUMBER.getValue();
+
     @Override
     public void validate(final String target) {
         super.validate(target);
@@ -13,7 +18,7 @@ public class LottoNumberValidator extends NumberValidator {
 
     private void validateLottoNumber(final String target) {
         final int lottoNumber = Integer.parseInt(target);
-        if ((lottoNumber < Lotto.MIN_LOTTO_NUMBER) || (lottoNumber > Lotto.MAX_LOTTO_NUMBER)) {
+        if ((lottoNumber < MIN_LOTTO_NUMBER) || (lottoNumber > MAX_LOTTO_NUMBER)) {
             throwFail(INVALID_LOTTO_NUMBER.format(lottoNumber));
         }
     }
