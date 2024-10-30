@@ -1,7 +1,5 @@
 package lotto.view;
 
-import com.sun.jdi.request.StepRequest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -9,16 +7,23 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static lotto.view.InputHandler.validatePurchaseAmount;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class InputHandlerTest {
 
     @ParameterizedTest
+    @ValueSource(strings = {"a", ","})
+    void 구입_금액이_정수가_아니면_예외_발생(String purchaseAmount) {
+        assertThatThrownBy(() -> InputHandler.validatePurchaseAmountIsInteger(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 정수여야 합니다.");
+    }
+
+    @ParameterizedTest
     @ValueSource(ints = {-1000, -1, 0, 1, 100, 1001})
     void 구입_금액이_1000의_배수가_아니면_예외_발생(int purchaseAmount) {
-        assertThatThrownBy(() -> InputHandler.validatePurchaseAmount(purchaseAmount))
+        assertThatThrownBy(() -> InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
     }
@@ -27,7 +32,7 @@ public class InputHandlerTest {
     @ValueSource(ints = {1000, 2000, 1000000})
     void 구입_금액이_1000의_배수이면_예외_없음(int purchaseAmount) {
         assertDoesNotThrow(() -> {
-            InputHandler.validatePurchaseAmount(purchaseAmount);
+            InputHandler.validatePurchaseAmountIsThousandUnit(purchaseAmount);
         });
     }
 
