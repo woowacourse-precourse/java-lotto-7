@@ -33,7 +33,7 @@ public class InputHandlerTest {
 
     @ParameterizedTest
     @MethodSource("provideInvalidWinningNumbers")
-    void 당첨_번호가_1에서_45_사이의_값이_아니면_예외_발생(String winningNumbers) {
+    void 당첨_번호가_1에서_45_사이의_값이_아니면_예외_발생(List<Integer> winningNumbers) {
         assertThatThrownBy(() -> InputHandler.validateWinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당청 번호는 1에서 45 사이의 정수 값이어야 합니다.");
@@ -48,7 +48,7 @@ public class InputHandlerTest {
 
     @ParameterizedTest
     @MethodSource("provideValidWinningNumbers")
-    void 당첨_번호가_1에서_45_사이의_값이면_예외_없음(String winningNumbers) {
+    void 당첨_번호가_1에서_45_사이의_값이면_예외_없음(List<Integer> winningNumbers) {
         assertDoesNotThrow(() -> {
             InputHandler.validateWinningNumbers(winningNumbers);
         });
