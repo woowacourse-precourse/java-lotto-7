@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.exception.WinningNumbers.BlankWinningNumbersException;
+import lotto.exception.WinningNumbers.InvalidNumberCountException;
 import lotto.exception.WinningNumbers.InvalidRangeException;
 import lotto.exception.WinningNumbers.InvalidRuleException;
 
@@ -14,11 +15,13 @@ public class WinningNumbersValidator {
     private static final String DELIMITER = ",";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private static final int NUMBER_SIZE = 6;
 
     public static void validate(final String input) {
         validateBlank(input);
         validateDelimiter(input);
         List<Integer> numbers = convert(input);
+        validateNumberSize(numbers);
         validateNumberRange(numbers);
     }
 
@@ -37,6 +40,12 @@ public class WinningNumbersValidator {
     private static void validateNumberRange(final List<Integer> numbers) {
         for(int number: numbers) {
             checkRange(number);
+        }
+    }
+
+    private static void validateNumberSize(final List<Integer> numbers) {
+        if(numbers.size() != NUMBER_SIZE) {
+            throw new InvalidNumberCountException();
         }
     }
 
