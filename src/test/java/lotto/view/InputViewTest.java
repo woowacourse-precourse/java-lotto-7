@@ -47,4 +47,20 @@ class InputViewTest {
             LottoNumberRangeValidator.validate(number);
         }
     }
+
+    @Test
+    @DisplayName("보너스 번호 검증, 숫자가 1~45 사이 숫자인지, 숫자 형식인지, 양수인지, 숫자 개수 1개인지,"
+            + " 값이 입력되었는지 테스트")
+    void validateBonusNumber() {
+        String strInput = "1";
+        EmptyInputValidator.validate(strInput);
+        NumberFormatValidator.validate(strInput);
+        InputView.validate1Numbers(strInput);
+
+        int intInput = Integer.parseInt(strInput);
+        PositiveNumberValidator.validate(intInput);
+        LottoNumberRangeValidator.validate(intInput);
+
+        assertThat(intInput).isEqualTo(1);
+    }
 }
