@@ -1,18 +1,20 @@
 package lotto.enums;
+import static lotto.enums.BonusStatus.*;
+
 
 public enum PrizeAmount {
     // 몇 개 매치 (볼 개수, 보너스 볼 여부, 상금)
-    SIX_MATCH (6, false, 2000000000),
-    FIVE_BONUS_MATCH (5, true, 30000000),
-    FIVE_MATCH (5, false, 1500000),
-    FOUR_MATCH (4, false, 50000),
-    THREE_MATCH (3, false, 5000);
+    SIX_MATCH (6, BONUS_EXCLUDED, 2000000000),
+    FIVE_BONUS_MATCH (5, BONUS_INCLUDED, 30000000),
+    FIVE_MATCH (5, BONUS_EXCLUDED, 1500000),
+    FOUR_MATCH (4, BONUS_EXCLUDED, 50000),
+    THREE_MATCH (3, BONUS_EXCLUDED, 5000);
 
     private final int matchCount;
-    private final boolean isBonus;
+    private final BonusStatus isBonus;
     private final int amount;
 
-    PrizeAmount(int matchCount, boolean isBonus, int amount) {
+    PrizeAmount(int matchCount, BonusStatus isBonus, int amount) {
         this.matchCount = matchCount;
         this.isBonus = isBonus;
         this.amount = amount;
@@ -22,7 +24,7 @@ public enum PrizeAmount {
         return matchCount;
     }
 
-    public  boolean getIsBonus() {
+    public BonusStatus getIsBonus() {
         return isBonus;
     }
 
