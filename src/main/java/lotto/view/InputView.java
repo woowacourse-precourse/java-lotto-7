@@ -31,5 +31,6 @@ public class InputView {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
 
         String userInput = Console.readLine();
+        inputValidator.validateWinningNumbers(userInput);
     }
 }

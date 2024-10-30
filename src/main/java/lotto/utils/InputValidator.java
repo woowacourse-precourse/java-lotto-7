@@ -15,6 +15,10 @@ public class InputValidator {
         return purchaseAmount;
     }
 
+    public void validateWinningNumbers(String userInput) {
+        validateEmpty(userInput);
+    }
+
     private void validateEmpty(String userInput) {
         if (userInput.trim().isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR_MESSAGE.toString());
