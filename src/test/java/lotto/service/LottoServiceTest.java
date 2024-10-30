@@ -29,6 +29,12 @@ public class LottoServiceTest {
         });
     }
 
+    @Test
+    void 로또_발행_테스트() {
+        int cost = 8000;
+        assertEquals(cost / lottoService.getLottoCost(), lottoService.issueLotto(cost).size());
+    }
+
     @BeforeAll
     static void beforeAll() {
         lottoService = new LottoService();
