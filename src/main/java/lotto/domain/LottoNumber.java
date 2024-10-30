@@ -3,7 +3,7 @@ package lotto.domain;
 import static lotto.constants.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.constants.LottoConstants.MIN_LOTTO_NUMBER;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private final Integer number;
 
@@ -21,5 +21,10 @@ public class LottoNumber {
 
     public Integer getNumber() {
         return number;
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.number, o.number);
     }
 }
