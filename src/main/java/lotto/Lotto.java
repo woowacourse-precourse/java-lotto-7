@@ -17,6 +17,9 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 없어야 합니다.");
         }
+        if (!numbers.stream().allMatch(n -> 1 <= n && n <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45까지여야 합니다.");
+        }
     }
 
     // TODO: 추가 기능 구현
