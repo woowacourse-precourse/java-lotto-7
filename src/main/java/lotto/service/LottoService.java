@@ -1,5 +1,9 @@
 package lotto.service;
 
+import lotto.domain.Lottos;
+import lotto.domain.Money;
+import lotto.utils.PurchaseCalculator;
+
 public class LottoService {
     private final PurchaseService purchaseService;
     private final LottoGeneratorService lottoGeneratorService;
@@ -12,7 +16,10 @@ public class LottoService {
         this.profitCalculatorService = profitCalculatorService;
     }
 
-    public void purchaseLotto(String purchaseAmount) {
-        purchaseService.processPurchase(purchaseAmount);
+    public Lottos purchaseLotto(String purchaseAmount) {
+        Money money = purchaseService.validateAndCreateMoney(purchaseAmount);
+        int lottoCount = PurchaseCalculator.calculateLottoCount(money);
+        return lottoGeneratorService.generateLottos(lottoCount);
     }
+
 }

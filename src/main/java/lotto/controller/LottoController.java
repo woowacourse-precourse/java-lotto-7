@@ -1,11 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.service.LottoService;
+import lotto.validator.exception.LottoException;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
 public class LottoController {
-
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
@@ -21,6 +22,15 @@ public class LottoController {
     }
 
     private void purchaseLotto() {
-        String purchaseAmount = inputView.inputPurchaseAmount();
+        while (true) {
+            try {
+                String purchaseAmount = inputView.inputPurchaseAmount();
+                Lottos lottos = lottoService.purchaseLotto(purchaseAmount);
+                outputView.displayLottos(lottos);
+                break;
+            } catch (LottoException e) {
+                outputView.displayErrorMessage(e);
+            }
+        }
     }
 }
