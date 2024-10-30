@@ -23,6 +23,10 @@ public class UserAmountInput {
         }
     }
 
+    public PrintTicketCount createPrintTicket() {
+        return new PrintTicketCount(lottoTicketCount);
+    }
+
     private void userInput() {
         System.out.println("구입금액을 입력해 주세요.");
         amountInput = Console.readLine();
@@ -39,7 +43,7 @@ public class UserAmountInput {
     }
 
     private void setLottoTicketCount() {
-            lottoTicketCount = amount / 1000;
+        lottoTicketCount = amount / 1000;
     }
 }
 
