@@ -1,6 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
 import lotto.model.PurchaseAmount;
+import lotto.model.lottonumberstrategy.LottoNumbersStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +21,9 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = tryPurchaseAmount();
         int quantity = purchaseAmount.calculateQuantity();
+
+        LottoGenerator lottoGenerator = LottoGenerator.from(new LottoNumbersStrategy());
+        List<Lotto> lottos = lottoGenerator.issues(quantity);
     }
 
     private PurchaseAmount tryPurchaseAmount() {
