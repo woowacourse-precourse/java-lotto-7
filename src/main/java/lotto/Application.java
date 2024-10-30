@@ -10,9 +10,10 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         int lottoPrice = Integer.parseInt(Console.readLine());
-        
+        System.out.println();
+
         int lottoCount = lottoPrice / 1000;
-        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
 
         List<Lotto> lottos = new ArrayList<>();
         IntStream.range(0, lottoCount)
@@ -21,5 +22,9 @@ public class Application {
         lottos.forEach(Lotto::ascNumbers);
 
         lottos.forEach(System.out::println);
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbers = Console.readLine();
+        System.out.println();
     }
 }
