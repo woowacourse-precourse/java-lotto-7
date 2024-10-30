@@ -1,0 +1,75 @@
+package lotto.command.validate;
+
+
+import lotto.common.exception.ExceptionEnum;
+import lotto.command.Command;
+import lotto.view.exception.InputException;
+
+/**
+ * @author : jiffyin7@gmail.com
+ * @since : 24. 10. 31.
+ */
+public abstract interface ValidateCommand extends Command<String> {
+
+  @Override
+  void execute(String input);
+
+  String ask();
+
+  default void validateBlank(String input) {
+    if (input.isBlank()){
+      throw new InputException(ExceptionEnum.CONTAIN_BLANK);
+    }
+  }
+
+  default void validateWhiteSpace(String input) {
+    if (hasWhiteSpace(input)) {
+      throw new InputException(ExceptionEnum.CONTAIN_WHITESPACE);
+    }
+  }
+
+  default boolean hasWhiteSpace(String input) {
+    return input.chars()
+        .anyMatch(Character::isWhitespace);
+  }
+
+  default int validateIntegerRange(String input, int minimum, int maximum) {
+    try {
+      int value = Integer.parseInt(input);
+      validateMinimum(value, minimum);
+      validateMaximum(value, maximum);
+      return value;
+    } catch (NumberFormatException e) {
+      String runtimeMessage = String.format("%d ~ %d", minimum, maximum);
+      throw new InputException(ExceptionEnum.INVALID_INTEGER_RANGE,
+          runtimeMessage);
+    }
+  }
+
+  default void validateMinimum(int value, int minimum) {
+    if (value < minimum) {
+      String runtimeMessage = String.valueOf(minimum);
+      throw new InputException(ExceptionEnum.INPUT_LESS_THAN_MINIMUM,
+          runtimeMessage);
+    }
+  }
+
+  default void validateMaximum(int value, int maximum) {
+    if (value > maximum) {
+      String runtimeMessage = String.valueOf(maximum);
+      throw new InputException(ExceptionEnum.INPUT_GREATER_THAN_MINIMUM,
+          runtimeMessage);
+    }
+  }
+
+  default void validateLongRange(String input) {
+    try {
+      long value = Long.parseLong(input);
+      // Long.parseLong이 성공하면 자동으로 범위 내에 있는 것입니다.
+    } catch (NumberFormatException e) {
+      throw new InputException(ExceptionEnum.INVALID_LONG_RANGE);
+    }
+  }
+
+  void redo();
+}
