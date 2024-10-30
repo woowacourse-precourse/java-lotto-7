@@ -1,4 +1,4 @@
-package lotto.view.input.infra;
+package lotto.view.input.infrastructure;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.input.domain.InputService;
