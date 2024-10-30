@@ -15,6 +15,7 @@ public class LottoService {
 
     private List<Lotto> purchasedLotto = new ArrayList<>();
     private Lotto winnerLotto;
+    private int bonusNumber;
 
     public void purchaseLotto(int money) {
         for (int i = 0; i < money / MONEY_UNIT; i++) {
@@ -28,6 +29,10 @@ public class LottoService {
 
     public void setWinnerLotto(List<Integer> winnerNumbers) {
         this.winnerLotto = new Lotto(winnerNumbers);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
     private Lotto purchaseOneLotto() {

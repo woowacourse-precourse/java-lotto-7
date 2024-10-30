@@ -24,6 +24,9 @@ public class LottoController {
 
         List<Integer> winnerNumbersInput = getWinnerNumbers();
         lottoService.setWinnerLotto(winnerNumbersInput);
+
+        int bonusNumber = getBonusNumber();
+        lottoService.setBonusNumber(bonusNumber);
     }
 
     private int getMoneyInput() {
@@ -34,5 +37,10 @@ public class LottoController {
     private List<Integer> getWinnerNumbers() {
         outputView.printWinnerNumbersInputMessage();
         return inputView.getWinnerNumbersInput();
+    }
+
+    private int getBonusNumber() {
+        outputView.printBonusNumberInputMessage();
+        return inputView.getBonusNumberInput();
     }
 }

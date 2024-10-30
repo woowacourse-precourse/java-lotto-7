@@ -1,13 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
 
     private final static int MONEY_UNIT = 1000;
+    private final static int LOTTO_NUMBER_UPPER_BOUND = 45;
+    private final static int LOTTO_NUMBER_LOWER_BOUND = 1;
 
     public int getMoneyInput() {
         String moneyInput = Console.readLine();
@@ -21,6 +22,12 @@ public class InputView {
         return formatWinnerNumbers(winnerNumbersInput);
     }
 
+    public int getBonusNumberInput() {
+        String bonusNumberInput = Console.readLine();
+        validateBonusNumberInput(bonusNumberInput);
+        return Integer.parseInt(bonusNumberInput);
+    }
+
     private void validateMoneyInput(String moneyInput) {
         validateMoneyFormat(moneyInput);
         validateMoneyPositive(moneyInput);
@@ -29,6 +36,11 @@ public class InputView {
 
     private void validateWinnerNumbersInput(String winnerNumbersInput) {
         validateWinnerNumbersFormat(winnerNumbersInput);
+    }
+
+    private void validateBonusNumberInput(String bonusNumberInput) {
+        validateBonusNumberFormat(bonusNumberInput);
+        validateBonusNumberRange(bonusNumberInput);
     }
 
     private void validateMoneyFormat(String moneyInput) {
@@ -68,5 +80,20 @@ public class InputView {
         return Arrays.stream(winnerNumbersInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private void validateBonusNumberFormat(String bonusNumberInput) {
+        try {
+            Integer.parseInt(bonusNumberInput);
+        } catch (IllegalStateException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자의 형식이 잘못되었습니다.");
+        }
+    }
+
+    private void validateBonusNumberRange(String bonusNumberInput) {
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        if (bonusNumber < LOTTO_NUMBER_LOWER_BOUND || bonusNumber > LOTTO_NUMBER_UPPER_BOUND) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자의 범위가 1~45를 벗어납니다.");
+        }
     }
 }

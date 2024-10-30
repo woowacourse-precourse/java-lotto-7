@@ -19,4 +19,8 @@ public class OutputView {
     public void printWinnerNumbersInputMessage() {
         System.out.println("\n당첨 번호를 입력해주세요.");
     }
+
+    public void printBonusNumberInputMessage() {
+        System.out.println("\n보너스 번호를 입력해주세요.");
+    }
 }
