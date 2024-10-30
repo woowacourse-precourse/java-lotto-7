@@ -16,8 +16,8 @@ public class LottoGenerator {
     }
 
     private Lotto generateLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, LOTTO_NUM_COUNT);
+        List<Integer> randomNumbers =
+                Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, LOTTO_NUM_COUNT).stream().sorted().toList();
         return Lotto.create(randomNumbers);
     }
-
 }
