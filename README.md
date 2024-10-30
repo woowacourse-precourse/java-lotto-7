@@ -48,8 +48,10 @@
     <td>View</td><td>사용자 입/출력 처리</td></tr><tr>
 </tr> 
 <tr> 
-    <td rowspan="8">DTO</td>
-    <td>PurchaseLottoRequest</td> <td>로또 구입 금액 & 당첨/보너스 번호</td></tr><tr> 
+    <td rowspan="10">DTO</td>
+    <td>PurchaseAmountUserInput</td> <td>로또 구입 금액 사용자 입력</td></tr><tr>
+    <td>WinningLottoUserInput</td> <td>로또의 당첨 번호 사용자 입력</td></tr><tr>
+    <td>BonusUserInput</td> <td>로또의 보너스 번호 사용자 입력</td></tr><tr>
     <td>PurchaseResponse</td> <td>발행한 로또 수량</td></tr><tr> 
     <td>LottoResponse</td> <td>발행한 로또 번호</td></tr><tr>
     <td>MatchResult</td> <td>`PurchaseLottos`의 등수</td></tr><tr>
@@ -103,9 +105,10 @@ View
         <td rowspan="1"><b><em>PurchaseAmountCommand</em></b></td>
         <td>⬜ `PurchaseAmount` 유효성 검증</td> 
                 <td rowspan="3"></td></tr><tr> 
-        <td rowspan="2"><b><em>View</em></b></td>
-            <td>⬜ `PurchaseAmount` 사용자 입력 처리 </td> </tr><tr> 
-            <td>⬜ `PurchaseAmount` 반환</td> </tr><tr>
+        <td rowspan="1"><b><em>View</em></b></td>
+            <td>⬜ `PurchaseAmountUserInput` 사용자 입력 처리 </td> </tr><tr> 
+        <td rowspan="1">PurchaseAmountCommand</td>
+            <td>⬜ `PurchaseAmountUserInput` 반환</td> </tr><tr>
     <td rowspan="6">로또 구매</td>
         <td rowspan="1"><b><em>Lotto</em></b></td>
             <td>⬜ 1장 가격 상수 </td> 
