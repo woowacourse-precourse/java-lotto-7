@@ -18,12 +18,12 @@ public class LottoController {
     }
 
     public void run() {
-        processInput();
+        int moneyInput = processInput();
         lottoService.checkLottoResult();
-        //printLottoResult();
+        outputView.printLottoResult(moneyInput);
     }
 
-    private void processInput() {
+    private int processInput() {
         int moneyInput = getMoneyInput();
         lottoService.purchaseLotto(moneyInput);
         lottoService.printPurchasedLottoNumbers();
@@ -33,6 +33,8 @@ public class LottoController {
 
         int bonusNumber = getBonusNumber();
         lottoService.setBonusNumber(bonusNumber);
+
+        return moneyInput;
     }
 
     private int getMoneyInput() {

@@ -19,6 +19,10 @@ public enum LottoRank {
         return prize;
     }
 
+    public int getNumberOfWins() {
+        return numberOfWins;
+    }
+
     public void win() {
         this.numberOfWins++;
     }
