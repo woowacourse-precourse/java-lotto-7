@@ -22,6 +22,10 @@ public class LottoResult {
         totalAmount = PrizeCalculator.calcTotalPrizeAmount(results);
     }
 
+    public double calculateRate(int purchasePrice) {
+        return ((double) totalAmount / purchasePrice) * 100;
+    }
+
     private void initialize() {
         Arrays.stream(WinningResult.values())
                 .forEach(value -> results.put(value, 0));

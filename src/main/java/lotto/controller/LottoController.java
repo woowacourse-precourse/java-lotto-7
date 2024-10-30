@@ -1,15 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.*;
-import lotto.dto.LottoDto;
+import lotto.domain.LottoResult;
+import lotto.domain.PurchasePrice;
+import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 import lotto.service.InputService;
 import lotto.service.LottoService;
-import lotto.service.WinningResult;
-import lotto.util.PrizeCalculator;
 import lotto.view.OutputView;
-
-import java.util.List;
-import java.util.Map;
 
 public class LottoController {
 
@@ -26,24 +23,24 @@ public class LottoController {
     public void start() {
         PurchasePrice purchasePrice = inputService.readPurchasePrice();
         PurchasedLotto purchasedLotto = lottoService.issueLottoNumAsPurchaseQuantity(purchasePrice.getQuantity());
-        printPurchaseAmountAndLotto(purchasePrice.getQuantity(), purchasedLotto.getPurchasedLottos());
 
-        Lotto winningLottoNumbers = inputService.readWinningLotto();
-        int bonusNum = inputService.readBonusNum(winningLottoNumbers);
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNum);
+        printPurchaseAmountAndLotto(purchasePrice.getQuantity(), purchasedLotto);
+
+        WinningLotto winningLotto = inputService.readWinningLotto();
 
         LottoResult lottoResult = new LottoResult(purchasedLotto.getPurchasedLottos(), winningLotto);
-        double rate = PrizeCalculator.calcRate(purchasePrice.getPurchasePrice(), lottoResult.getTotalAmount());
-        printResult(lottoResult.getResults(), rate);
+        double rate = lottoResult.calculateRate(purchasePrice.getPurchasePrice());
+
+        printResult(lottoResult, rate);
     }
 
-    private void printPurchaseAmountAndLotto(int quantity, List<Lotto> purchasedLotto) {
+    private void printPurchaseAmountAndLotto(int quantity, PurchasedLotto purchasedLotto) {
         outputView.printPurchaseAmount(quantity);
-        outputView.printPurchasedLottos(purchasedLotto.stream().map(LottoDto::new).toList());
+        outputView.printPurchasedLottos(purchasedLotto.getPurchasedLottos());
     }
 
-    private void printResult(Map<WinningResult, Integer> results, double rate) {
-        outputView.printLottoResults(results);
+    private void printResult(LottoResult lottoResult, double rate) {
+        outputView.printLottoResults(lottoResult.getResults());
         outputView.printTotalRate(rate);
     }
 

@@ -14,8 +14,4 @@ public class PrizeCalculator {
         }
         return total;
     }
-
-    public static double calcRate(int purchasePrice, int winningAmount) {
-        return ((double) winningAmount / purchasePrice) * 100;
-    }
 }

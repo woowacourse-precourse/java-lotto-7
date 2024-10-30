@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.dto.LottoDto;
 import lotto.service.WinningResult;
 
@@ -17,12 +18,17 @@ public class OutputView {
         System.out.println(amount + PURCHASE_QUANTITY);
     }
 
-    public void printPurchasedLottos(final List<LottoDto> lottos) {
+    public void printPurchasedLottos(final List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
-        for (LottoDto lotto : lottos) {
+        List<LottoDto> sortedLotto = sortLottos(lottos);
+        for (LottoDto lotto : sortedLotto) {
             sb.append(lotto).append('\n');
         }
         System.out.println(sb);
+    }
+
+    private List<LottoDto> sortLottos(List<Lotto> lottos) {
+        return lottos.stream().map(LottoDto::new).toList();
     }
 
     public void printLottoResults(final Map<WinningResult, Integer> results) {

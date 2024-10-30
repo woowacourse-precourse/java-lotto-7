@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
+import lotto.domain.WinningLotto;
 import lotto.util.InputParsingUtil;
 import lotto.util.RetryUtil;
 import lotto.validator.BonusNumValidator;
@@ -27,7 +28,13 @@ public class InputService {
         });
     }
 
-    public Lotto readWinningLotto() {
+    public WinningLotto readWinningLotto() {
+        Lotto lotto = readWinningLottoNumbers();
+        int bonusNum = readBonusNum(lotto);
+        return new WinningLotto(lotto, bonusNum);
+    }
+
+    private Lotto readWinningLottoNumbers() {
         return RetryUtil.executeWithRetry(() -> {
             String input = inputView.readWinningNumbers();
             List<Integer> numbers = InputParsingUtil.parseWinningLottoNumbers(input);
@@ -36,7 +43,7 @@ public class InputService {
         });
     }
 
-    public int readBonusNum(Lotto winningLotto) {
+    private int readBonusNum(Lotto winningLotto) {
         return RetryUtil.executeWithRetry(() -> {
             int bonusNumber = inputView.readBonusNumber();
             new BonusNumValidator(winningLotto).validateBonusNum(bonusNumber);
