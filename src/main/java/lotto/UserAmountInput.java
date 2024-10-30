@@ -16,7 +16,7 @@ public class UserAmountInput {
                 setLottoTicketCount();
                 break;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 입력이 잘못되었습니다. 로또 구입 금액은 숫자여야 합니다.");
+                System.out.println("[ERROR] 입력이 잘못되었습니다. 로또 구입 금액은 숫자여야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -25,6 +25,11 @@ public class UserAmountInput {
 
     public PrintTicketCount createPrintTicket() {
         return new PrintTicketCount(lottoTicketCount);
+    }
+
+    public void printEarningsRate(double earnings) {
+        double earningsRate = ((earnings / amount) * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningsRate);
     }
 
     private void userInput() {
