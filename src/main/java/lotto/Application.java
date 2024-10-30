@@ -13,7 +13,7 @@ public class Application {
                 price = Price.from(input);
             }
             catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + "문자가 입력됐거나, 숫자 범위를 초과하였습니다.");
+                System.out.println(e.getMessage());
             }
         }
 
