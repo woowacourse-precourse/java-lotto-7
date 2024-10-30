@@ -1,8 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.input.UserBonusNumberInput;
+import lotto.service.PrintTicketCount;
 
 public class LotteryProcess {
     private final List<Integer> numbers;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,15 +14,15 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public void bonusNumberCheck(int bonusNumber) {
         Set<Integer> bonusCheck = new HashSet<>(numbers);
         if (!bonusCheck.add(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호는 중복될 수 없습니다.");
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void numberValidate(List<Integer> numbers) {

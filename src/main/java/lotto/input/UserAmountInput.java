@@ -1,6 +1,7 @@
-package lotto;
+package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.service.PrintTicketCount;
 
 public class UserAmountInput {
     private String amountInput;

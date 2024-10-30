@@ -1,6 +1,7 @@
-package lotto;
+package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 
 public class UserBonusNumberInput {
     private final int bonusNumber;
@@ -11,6 +12,10 @@ public class UserBonusNumberInput {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public void bonusDuplicationCheck(Lotto lotto) {
+        lotto.bonusNumberCheck(bonusNumber);
     }
 
     private int validateAndParseBonusNumber() {
@@ -24,10 +29,6 @@ public class UserBonusNumberInput {
                 System.out.println(e.getMessage()); // 오류 메시지 출력 후 재입력
             }
         }
-    }
-
-    public void bonusDuplicationCheck(Lotto lotto) {
-        lotto.bonusNumberCheck(bonusNumber);
     }
 
     private int parseBonusNumber(String bonusNumberInput) {

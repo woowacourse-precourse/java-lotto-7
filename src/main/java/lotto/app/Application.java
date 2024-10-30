@@ -1,4 +1,12 @@
-package lotto;
+package lotto.app;
+
+import lotto.domain.LotteryProcess;
+import lotto.domain.Lotto;
+import lotto.input.UserAmountInput;
+import lotto.input.UserBonusNumberInput;
+import lotto.input.UserLottoNumberInput;
+import lotto.service.PrintResult;
+import lotto.service.PrintTicketCount;
 
 public class Application {
     public static void main(String[] args) {
@@ -24,7 +32,7 @@ public class Application {
 
         System.out.println();
 
-        LotteryProcess lotteryProcess = new LotteryProcess(lotto,userBonusNumberInput,printTicketCount);
+        LotteryProcess lotteryProcess = new LotteryProcess(lotto, userBonusNumberInput, printTicketCount);
         lotteryProcess.countMatchNumbers(); // 로또 추첨
 
         PrintResult printResult = new PrintResult(lotteryProcess);

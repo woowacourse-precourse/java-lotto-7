@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum LottoRank {
     THIRD(3, 5000, false),
