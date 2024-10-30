@@ -1,7 +1,7 @@
-package lotto.lotto.domain.winning.infrastructure;
+package lotto.lotto.winning.infrastructure;
 
-import lotto.lotto.domain.winning.domain.BonusNumber;
-import lotto.lotto.domain.winning.domain.WinningLotto;
+import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.winning.domain.WinningLotto;
 import lotto.lotto.validator.LottoValidator;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 import lotto.view.output.infra.ErrorOutput;
