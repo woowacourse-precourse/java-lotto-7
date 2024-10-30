@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,9 +17,21 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private List<Integer> sortNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().toList();
+    }
+
+    public long findHits(List<Integer> winningNumbers, int bonusNumber) {
+        long hits = numbers.stream().filter(number -> winningNumbers.stream().anyMatch(Predicate.isEqual(number)))
+                .count();
+
+        return hits;
+    }
+
+    public BonusExistence findBonus(int hits, int bonusNumber){
+        boolean haveBonus=numbers.stream().anyMatch(number->number==bonusNumber);
+
+        return BonusExistence.of(hits,haveBonus);
     }
 
 }
