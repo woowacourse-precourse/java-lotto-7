@@ -25,4 +25,14 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();
     }
+
+    public Prize match(List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean bonusNumberIncluded = numbers.contains(bonusNumber);
+
+        return Prize.valueOf(matchCount, bonusNumberIncluded);
+    }
 }
