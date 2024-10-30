@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.dto.LottoDto;
 
 public class Lotto {
 
@@ -36,4 +37,9 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
+
+    public LottoDto toDto() {
+        return new LottoDto(this);
+    }
+
 }

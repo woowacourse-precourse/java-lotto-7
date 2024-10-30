@@ -65,7 +65,8 @@
 - [x] Lotto 
 - [x] LottoMachine
 - [x] LottoManager
-- [ ] LottoResult
+- [x] LottoResult
+- [x] LottoBuyer
 ### View
 - [ ] InputView
 - [ ] OutputView
@@ -84,4 +85,5 @@
 - [x] ExceptionMessage
 ### DTO
 - [x] LottoDto
-- [ ] LottoResultDto
+- [x] LottoResultDto
+- [x] LottoNumberListDto
