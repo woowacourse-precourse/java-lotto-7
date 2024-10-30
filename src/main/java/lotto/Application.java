@@ -17,5 +17,7 @@ public class Application {
         List<Lotto> lottos = new ArrayList<>();
         IntStream.range(0, lottoCount)
                 .forEach(i -> lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6))));
+
+        lottos.forEach(Lotto::ascNumbers);
     }
 }
