@@ -22,4 +22,16 @@ public class ExceptionHandlerTest {
         assertThatThrownBy(() -> ExceptionHandler.isThousandDivisible(10220))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    
+    @Test
+    void 보너스_번호가_1보다_작으면_예외가_발생한다() {
+        assertThatThrownBy(() -> ExceptionHandler.isLottoNumber(-1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호가_45보다_크면_예외가_발생한다() {
+        assertThatThrownBy(() -> ExceptionHandler.isLottoNumber(46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
