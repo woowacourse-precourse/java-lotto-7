@@ -1,12 +1,17 @@
 package lotto.model;
 
+import static lotto.model.LottoConstants.LOTTO_NUMBERS_SIZE;
+import static lotto.model.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.model.LottoConstants.MIN_LOTTO_NUMBER;
+
 import java.util.List;
+import lotto.exception.LottoValidationError;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = sortAscending(numbers);
     }
@@ -23,27 +28,26 @@ public class Lotto {
     }
 
     private void checkCountOfLottoNumbers(final int size) {
-        if (size != LottoConstants.LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (size != LOTTO_NUMBERS_SIZE) {
+            LottoValidationError.INVALID_LOTTO_NUMBERS_COUNT.throwException(LOTTO_NUMBERS_SIZE);
         }
     }
 
     private void checkMinimumOfLottoNumber(final List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number < LottoConstants.MIN_LOTTO_NUMBER)
+                .filter(number -> number < MIN_LOTTO_NUMBER)
                 .findAny()
-                .ifPresent(invalidNumber -> {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1이상의 숫자여야 합니다.");
-                });
+                .ifPresent(invalidNumber ->
+                        LottoValidationError.LOTTO_NUMBER_BELOW_MINIMUM.throwException(MIN_LOTTO_NUMBER)
+                );
     }
 
     private void checkMaximumOfLottoNumber(final List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number > LottoConstants.MAX_LOTTO_NUMBER)
+                .filter(number -> number > MAX_LOTTO_NUMBER)
                 .findAny()
-                .ifPresent(invalidNumber -> {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 45이하의 숫자여야 합니다.");
-                });
+                .ifPresent(invalidNumber ->
+                        LottoValidationError.LOTTO_NUMBER_ABOVE_MAXIMUM.throwException(MAX_LOTTO_NUMBER));
     }
 
     private void checkDuplicatedNumbers(final List<Integer> numbers) {
@@ -51,7 +55,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctCount != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 존재합니다.");
+            LottoValidationError.DUPLICATED_LOTTO_NUMBERS_EXISTS.throwException();
         }
     }
 
