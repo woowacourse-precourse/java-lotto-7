@@ -15,10 +15,10 @@ public class Application {
         // 구입 금액 입력 받기
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        int amount = Integer.parseInt(input);
+        int purchaseAmount = Integer.parseInt(input);
 
         // 구입 횟수 만큼 로또 구매
-        int count = amount / 1000;
+        int count = purchaseAmount / 1000;
         System.out.println();
         System.out.println(count + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
@@ -95,14 +95,18 @@ public class Application {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        int totalPrize = 0;
+        long totalPrize = 0;
         for (Map.Entry<String, Integer> entry : results.entrySet()) {
             String key = entry.getKey();
             int count3 = entry.getValue();
             System.out.println(key + " - " + count3 + "개");
-            int prize = Integer.parseInt(key.replaceAll("[^0-9]", ""));
+            long prize = Long.parseLong(key.replaceAll("[^0-9]", ""));
             totalPrize += prize * count3;
         }
+
+        // 수익률 계산 및 출력
+        double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
 
     }
 }
