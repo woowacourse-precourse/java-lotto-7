@@ -9,16 +9,30 @@ import java.util.List;
 * 보너스 번호
 * */
 public class ConvertValidValue {
-    public int purchaseAmount(String input){
-        int purchaseAmount;
+    private static final int LOTTO_PRICE = 1000;
+
+    public int purchaseAmount(String input) throws IllegalArgumentException {
+        int budget;
+        int amount;
 
         try{
-            purchaseAmount = Integer.parseInt(input);
+            budget = Integer.parseInt(input);
+            amount = divide(budget);
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 올바른 형태의 구매액을 입력해주세요.");
+        }catch(IllegalArgumentException e){
+            throw e;
         }
 
-        return purchaseAmount;
+        return amount;
+    }
+
+    private int divide(int budget) throws IllegalArgumentException{
+        if(budget % LOTTO_PRICE != 0){
+            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
+        }
+
+        return budget/LOTTO_PRICE;
     }
 
     public List<Integer> winningNumbers(String input){
