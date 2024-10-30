@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.item;
 
 public class Money {
     private final int money;

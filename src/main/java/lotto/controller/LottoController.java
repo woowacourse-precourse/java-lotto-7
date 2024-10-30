@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.HashMap;
-import lotto.domain.AdditionalNumber;
-import lotto.domain.Lotto;
-import lotto.domain.Money;
+import lotto.item.AdditionalNumber;
+import lotto.item.Lotto;
+import lotto.item.Money;
 import lotto.model.BuyLotto;
 import lotto.model.CalculateResult;
 import lotto.model.MatchLotto;

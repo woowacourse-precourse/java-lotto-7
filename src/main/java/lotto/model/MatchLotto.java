@@ -2,8 +2,8 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.List;
-import lotto.domain.AdditionalNumber;
-import lotto.domain.Lotto;
+import lotto.item.AdditionalNumber;
+import lotto.item.Lotto;
 
 public class MatchLotto {
     private HashMap<Integer, Integer> initializeMatchLotto() {

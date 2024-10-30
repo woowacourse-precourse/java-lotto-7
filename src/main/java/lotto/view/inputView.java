@@ -3,9 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.AdditionalNumber;
-import lotto.domain.Lotto;
-import lotto.domain.Money;
+import lotto.item.AdditionalNumber;
+import lotto.item.Lotto;
+import lotto.item.Money;
 
 public class inputView {
     private static Money getUserMoney() {

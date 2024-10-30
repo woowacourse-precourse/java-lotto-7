@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.domain.Money;
+import lotto.item.Money;
 
 public class BuyLotto {
     private final List<List<Integer>> dataUserLotto;
