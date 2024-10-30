@@ -18,6 +18,11 @@ public class LottoController {
     }
 
     public void run() {
+        processInput();
+
+    }
+
+    private void processInput() {
         int moneyInput = getMoneyInput();
         lottoService.purchaseLotto(moneyInput);
         lottoService.printPurchasedLottoNumbers();
