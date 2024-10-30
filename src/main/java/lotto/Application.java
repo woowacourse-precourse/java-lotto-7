@@ -32,6 +32,7 @@ public class Application {
         lotto_list = purchase_history(num);
         winning_number = inputWinningNumber().getNumbers();
         inputBonus();
+        // 당첨 통계
         winning_history();
 
     }
@@ -51,7 +52,6 @@ public class Application {
         lotto.numbers.sort(Integer::compareTo);
         return lotto;
     }
-
     public int numberMatch(int i){
         int p1 = 0;
         int p2 = 0;
@@ -84,6 +84,8 @@ public class Application {
     }
     public void winning_history(){
         int [] ary = matchCount();
+        System.out.println("\n"+print_msg.statisticMsg);
+        System.out.println("---");
         for(int i = 3; i < 7; i++){
             System.out.printf(print_msg.matchMsg,i,amount[i-3],ary[i]);
         }
