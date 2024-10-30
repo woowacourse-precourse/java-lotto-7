@@ -71,7 +71,7 @@ public class InputView {
             for (String winnerNumber : winnerNumbers) {
                 Integer.parseInt(winnerNumber);
             }
-        } catch (IllegalStateException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식이 잘못되었습니다.");
         }
     }
@@ -85,7 +85,7 @@ public class InputView {
     private void validateBonusNumberFormat(String bonusNumberInput) {
         try {
             Integer.parseInt(bonusNumberInput);
-        } catch (IllegalStateException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자의 형식이 잘못되었습니다.");
         }
     }
