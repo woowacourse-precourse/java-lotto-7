@@ -4,6 +4,7 @@ import static lotto.global.util.LottoConst.LOTTO_PRICE;
 
 import java.util.List;
 import java.util.Map;
+import lotto.global.io.InputHandler;
 import lotto.global.io.InputView;
 import lotto.global.io.OutputView;
 import lotto.global.util.MessageFormatter;
@@ -19,46 +20,50 @@ public class LottoController {
     private final LottoService lottoService;
     private final WinningNumberService winningNumberService;
     private final MatchService matchService;
+    private final InputHandler inputHandler;
 
     public LottoController(LottoService lottoService,
                            WinningNumberService winningNumberService,
-                           MatchService matchService) {
+                           MatchService matchService, InputHandler inputHandler) {
         this.lottoService = lottoService;
         this.winningNumberService = winningNumberService;
         this.matchService = matchService;
+        this.inputHandler = inputHandler;
     }
 
     public void start() {
+        List<Lotto> lottos = purchaseLottos();
+        printLottos(lottos);
 
-        try {
-            String amountInput = InputView.printPurchaseLotto();
-            List<Lotto> lottos = purchaseLottos(amountInput);
+        OutputView.printEmpty();
+        WinningNumber winningNumber = getWinningNumber();
+        Map<LottoResult, Integer> matchResults = matchService.calculateMatchResults(lottos, winningNumber);
 
-            WinningNumber winningNumber = getWinningNumber();
-            Map<LottoResult, Integer> matchResults = matchService.calculateMatchResults(lottos, winningNumber);
-
-            printWinningResult(matchResults);
-            printReturnRate(matchResults, lottos);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        printWinningResult(matchResults);
+        printReturnRate(matchResults, lottos);
     }
 
-    private List<Lotto> purchaseLottos(String amountInput) {
-        List<Lotto> lottos = lottoService.purchaseLottos(amountInput);
+    private List<Lotto> purchaseLottos() {
+        return inputHandler.execute(() -> {
+            String amountInput = InputView.printPurchaseLotto();
+            return lottoService.purchaseLottos(amountInput);
+        });
+    }
+
+    private void printLottos(List<Lotto> lottos) {
         OutputView.printEmpty();
         OutputView.printLottos(lottos);
-        return lottos;
     }
 
     private WinningNumber getWinningNumber() {
-        OutputView.printEmpty();
-        String winningNumbers = InputView.printWinningNumbers();
+        return inputHandler.execute(() -> {
+            String winningNumbers = InputView.printWinningNumbers();
 
-        OutputView.printEmpty();
-        String bonusNumber = InputView.printBonusNumber();
+            OutputView.printEmpty();
+            String bonusNumber = InputView.printBonusNumber();
 
-        return winningNumberService.create(winningNumbers, bonusNumber);
+            return winningNumberService.create(winningNumbers, bonusNumber);
+        });
     }
 
     private void printWinningResult(Map<LottoResult, Integer> matchResults) {
