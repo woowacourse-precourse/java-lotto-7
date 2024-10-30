@@ -24,8 +24,12 @@ public class LottoService {
         return lottoTicket.getPrintFormNumbers();
     }
 
-    public void createWinningNumbers(List<Integer> numbers, int bonusNumber) {
-        winningNumbers = new WinningNumbers(numbers, bonusNumber);
+    public void createWinningNumbers(List<Integer> numbers) {
+        winningNumbers = new WinningNumbers(numbers);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        winningNumbers.setBonusNumber(bonusNumber);
     }
 
     public Map<Rank, Integer> getResult() {
