@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,10 +48,26 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("돈 입력 예외처리")
+    void moneyError() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE, " 구입 금액은 1,000원 단위여야 합니다.");
+        });
+
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE, " 구입 금액은 1,000원 단위여야 합니다.");
+        });
+
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액은 1,000원 단위여야 합니다.");
+        });
+
+        assertSimpleTest(() -> {
+            runException("a");
+            assertThat(output()).contains(ERROR_MESSAGE, "구입 금액은 1,000원 단위여야 합니다.");
         });
     }
 
