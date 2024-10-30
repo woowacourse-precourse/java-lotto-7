@@ -73,11 +73,11 @@
 ### Util
 - [ ] LottoNumberGenerator
 - [ ] RandomNumberGenerator
-- [ ] Validator
-  - [ ] LottoPriceValidator
-  - [ ] LottoNumberValidator
-  - [ ] BonusNumberValidator
-- [ ] ExceptionMessage
+- [x] Validator
+  - [x] LottoPriceValidator
+  - [x] LottoNumberValidator
+  - [x] BonusNumberValidator
+- [x] ExceptionMessage
 ### DTO
 - [ ] LottoDto
 - [ ] LottoResultDto
