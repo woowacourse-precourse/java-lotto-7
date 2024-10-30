@@ -8,15 +8,24 @@ public class PurchaseCountConverter {
     private static final int LOTTO_AMOUNT = 1000;
     private static final int ZERO = 0;
 
-    public int getPurchaseCount(String inputPurchaseAmount) {
-        if (!isPositiveInteger(inputPurchaseAmount)) {
-            throw new IllegalArgumentException(ErrorCode.NOT_POSITIVE_INTEGER.getMessage());
-        }
-        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+    private final int purchaseAmount;
+
+    public PurchaseCountConverter(String inputPurchaseAmount) {
+        validate(inputPurchaseAmount);
+        this.purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+    }
+
+    public int convert() {
         if (!isDivisibleByThousand(purchaseAmount)) {
             throw new IllegalArgumentException(ErrorCode.NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
         return purchaseAmount / LOTTO_AMOUNT;
+    }
+
+    private void validate(String inputPurchaseAmount) {
+        if (!isPositiveInteger(inputPurchaseAmount)) {
+            throw new IllegalArgumentException(ErrorCode.NOT_POSITIVE_INTEGER.getMessage());
+        }
     }
 
     private boolean isPositiveInteger(String inputPurchaseAmount) {
