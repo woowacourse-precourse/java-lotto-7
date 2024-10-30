@@ -17,6 +17,7 @@ public class Application {
         WinningLotto winningLotto = repeatUntilValid(() -> readBonusNumber(tempWinningLotto));
         System.out.println(winningLotto);
         List<LottoResult> lottoResults = getLottoResults(winningLotto, lottoList);
+        printLottoResult(purchaseAmount, lottoResults);
     }
 
     private static <R> R repeatUntilValid(Supplier<R> function) {
@@ -79,5 +80,23 @@ public class Application {
         return lottoList.stream()
                 .map(winningLotto::match)
                 .toList();
+    }
+
+    private static void printLottoResult(int purchaseAmount, List<LottoResult> lottoResults) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        List<LottoResult> printSequence = LottoResult.values.stream()
+                .filter(result -> result != LottoResult.NONE)
+                .toList();
+        int totalPrize = printSequence.stream()
+                .mapToInt(result -> {
+                    int count = lottoResults.stream()
+                            .filter(result::equals)
+                            .toList()
+                            .size();
+                    System.out.printf("%s - %d개\n", result.getDescription(), count);
+                    return result.getPrize() * count;
+                }).sum();
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) totalPrize / purchaseAmount * 100);
     }
 }
