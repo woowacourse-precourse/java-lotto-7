@@ -5,7 +5,7 @@ public class PurchaseAmountValidator {
     private int purchaseAmount = 0;
 
     public boolean isNotValidPurchaseAmount(String userInput) {
-        if (isNotParsableToInt(userInput)) {
+        if (isNotParsableToPurchaseAmount(userInput)) {
             return true;
         }
         if (canNotPurchase(purchaseAmount)) {
@@ -14,11 +14,11 @@ public class PurchaseAmountValidator {
         return false;
     }
 
-    private boolean isNotParsableToInt(String userInput) {
+    private boolean isNotParsableToPurchaseAmount(String userInput) {
         try {
             purchaseAmount = Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 올바른 숫자를 입력해 주세요");
+            System.out.println("[ERROR] 올바른 숫자형식을 입력해 주세요.");
             return true;
         }
         return false;

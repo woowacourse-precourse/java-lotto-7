@@ -26,7 +26,7 @@ public class LottoController {
         Set<Integer> winningNumbers = inputView.inputWinningNumbers();
 
         outputView.showBonusNumberInputMessage();
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
 
         Map<Integer, Integer> rankMap = lottoTickets.matchNumbers(winningNumbers, bonusNumber);
         outputView.showResult(rankMap);
