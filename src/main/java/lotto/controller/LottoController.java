@@ -10,6 +10,6 @@ public class LottoController {
     }
 
     public void run() {
-        inputView.inputPurchaseAmount();
+        String purchaseAmount = inputView.inputPurchaseAmount();
     }
 }
