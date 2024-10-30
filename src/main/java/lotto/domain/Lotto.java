@@ -1,13 +1,24 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public int calculateMatchingCount(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +27,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }
