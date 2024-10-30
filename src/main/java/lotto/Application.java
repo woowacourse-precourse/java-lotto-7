@@ -12,9 +12,8 @@ public class Application {
     public static int[] amoutAry;
     public static List<Integer> winning_number;
     public static List<Integer>[] lotto_list;
-    public static final int amount[] = {5000,50000,1500000,2000000000};
-    public static final String amountPrint[] = {"5,000","50,000","1,500,000",
-            "30,000,000","2,000,000,000","30,000,000"};
+    public static final int amount[] = {5000,50000,1500000,2000000000,30000000};
+    public static final String amountPrint[] = {"5,000","50,000","1,500,000","2,000,000,000","30,000,000"};
     public enum PrintMsg {
         INPUT_MSG("구입금액을 입력해 주세요."),
         CHECK_MSG("개를 구매했습니다."),
@@ -25,7 +24,7 @@ public class Application {
         REVENUE_MSG("총 수익률은 %d%%입니다."),
         MATCH_MSG("%d개 일치 (%s원) - %d개\n"),
         BONUS_MSG("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
-        REVENUE("총 수익률은 %.2f%%입니다.");
+        REVENUE("총 수익률은 %.1f%%입니다.");
 
         private final String message;
 
@@ -49,6 +48,7 @@ public class Application {
         inputBonus();
         matchCount();
         winning_history();
+        revenuePrint(num);
 
     }
     public Lotto inputWinningNumber(){
@@ -105,7 +105,7 @@ public class Application {
         for(int i = 3; i < 7; i++){
             System.out.printf(PrintMsg.MATCH_MSG.getMessage(),i,amountPrint[i-3],amoutAry[i]);
             if(i == 5){
-                System.out.printf(PrintMsg.BONUS_MSG.getMessage(),i,amountPrint[5],bonusCount);
+                System.out.printf(PrintMsg.BONUS_MSG.getMessage(),i,amountPrint[4],bonusCount);
             }
         }
     }
@@ -143,6 +143,18 @@ public class Application {
         }
         return num;
     }
+    public void revenuePrint(int num) {
+        System.out.printf(PrintMsg.REVENUE.getMessage(),revenue_rate(num));
+    }
+    public double revenue_rate(int num){
+        double result = 0;
+        for(int i = 3; i <= numSize; i++) {
+            result += (double)amoutAry[i] * (double)amount[i-3];
+        }
+        result += (double)bonusCount * (double)amount[4];
+        return (result / ((double)num * one_ticket)) * 100;
+    }
+
     public int validate_division(int amount){
         if(amount % one_ticket != 0){
             throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지지 않습니다. ");
