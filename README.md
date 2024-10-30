@@ -71,3 +71,9 @@
 - camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console Api를 사용한다.
   - Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용
   - 사용자가 입력하는 값은 camp.nextstop.edu.missionutils.Console의 readLine()을 활용
+
+---
+## 구현 기능 목록
+1. 로또 번호 발행 기능
+- 로또 번호는 1부터 45 사이의 값으로 제한
+- 중복되지 않는 6개의 숫자로 구성 (6개의 숫자가 아닐 시 에러)
