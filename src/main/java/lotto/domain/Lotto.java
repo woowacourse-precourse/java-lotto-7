@@ -41,7 +41,13 @@ public class Lotto {
     }
 
     public boolean isContainNumber(int number) {
-        return this.numbers.contains(number);
+        return numbers.contains(number);
+    }
+
+    public int getMatchingCount(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::isContainNumber)
+                .count();
     }
 
     public LottoDto toDto() {
