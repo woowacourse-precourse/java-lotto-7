@@ -11,7 +11,7 @@ public class LotteryProcess {
     private int matchNumberCount;
 
     private final int RANKING_NUMBER = 5;
-    private List<Integer> rankingCount = new ArrayList<>(Collections.nCopies(RANKING_NUMBER, 0));
+    private final List<Integer> rankingCount = new ArrayList<>(Collections.nCopies(RANKING_NUMBER, 0));
 
 
     public LotteryProcess(Lotto lotto, UserBonusNumberInput userBonusNumberInput,
