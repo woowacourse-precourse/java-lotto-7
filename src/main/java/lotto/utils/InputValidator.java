@@ -15,11 +15,9 @@ public class InputValidator {
     }
 
     public void validateNumber(String userInput, String errorMessage) {
-        if (userInput.matches(Constant.INTEGER_REGEX)) {
-            return;
+        if (!userInput.matches(Constant.INTEGER_REGEX)) {
+            throw new IllegalArgumentException(errorMessage);
         }
-
-        throw new IllegalArgumentException(errorMessage);
     }
 
     public void validateDivisibleByThousand(int purchaseAmount) {
@@ -29,10 +27,8 @@ public class InputValidator {
     }
 
     public void validateDelimiter(String userInput) {
-        if (userInput.contains(WINNING_NUMBER_INPUT_DELIMITER)) {
-            return;
+        if (!userInput.contains(WINNING_NUMBER_INPUT_DELIMITER)) {
+            throw new IllegalArgumentException(DELIMITER_ERROR_MESSAGE.toString());
         }
-
-        throw new IllegalArgumentException(DELIMITER_ERROR_MESSAGE.toString());
     }
 }
