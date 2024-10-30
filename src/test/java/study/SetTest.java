@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
@@ -36,5 +37,13 @@ public class SetTest {
     public void checkValueContain(int value) {
         assertThat(numbers.contains(value))
                 .isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "4:false"}, delimiter = ':')
+    @DisplayName("값 contain 확인 - true, false 같이 확인")
+    public void checkValueContain2(int value, boolean result) {
+        assertThat(numbers.contains(value))
+                .isEqualTo(result);
     }
 }
