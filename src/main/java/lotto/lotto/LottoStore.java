@@ -5,11 +5,14 @@ public class LottoStore {
     private int lottoNumberOfPurchases;
 
 
-
     public void calculateNumberOfPurchases(int money) {
-        if (money % LOTTO_PRICE != 0){
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("잘못된 입력 값 입니다. 확인 바랍니다.");
         }
-        lottoNumberOfPurchases = money % LOTTO_PRICE;
+        lottoNumberOfPurchases = money / LOTTO_PRICE;
+    }
+
+    public int getLottoNumberOfPurchases() {
+        return lottoNumberOfPurchases;
     }
 }
