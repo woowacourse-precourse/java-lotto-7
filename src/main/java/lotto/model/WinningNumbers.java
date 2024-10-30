@@ -9,6 +9,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
         this.winningNumbers = new Lotto(numbers);
+        winningNumbers.checkBonusNumberDuplication(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
