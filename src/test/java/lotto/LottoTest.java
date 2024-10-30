@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.constants.Constants.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -32,27 +33,31 @@ class LottoTest {
     @Test
     void 구매_금액_예외_테스트1() {
         assertThatThrownBy(() ->  new PriceValidate("0"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ERROR + PRICE_NOT_POSITIVE_NUMBER);
     }
 
     @DisplayName("구매 금액이 음수인 경우 예외가 발생한다.")
     @Test
     void 구매_금액_예외_테스트2() {
         assertThatThrownBy(() ->  new PriceValidate("-1000"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ERROR + PRICE_NOT_POSITIVE_NUMBER);
     }
 
     @DisplayName("구매 금액이 1000단위가 아닐 경우 예외가 발생한다.")
     @Test
     void 구매_금액_예외_테스트3() {
         assertThatThrownBy(() ->  new PriceValidate("12345"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ERROR + PRICE_NOT_SUITABLE);
     }
 
     @DisplayName("구매 금액이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void 구매_금액_예외_테스트4() {
         assertThatThrownBy(() ->  new PriceValidate("chris"))
-            .isInstanceOf(IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage(ERROR + PRICE_NOT_NUMBER);
     }
 }
