@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.service.InputService;
 import lotto.service.LottoService;
+import lotto.util.PrizeCalculator;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -26,6 +27,7 @@ public class LottoController {
         int bonusNum = inputService.readBonusNum();
         WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNum);
         LottoResult lottoResult = new LottoResult(purchasedLotto.getPurchasedLottos(), winningLotto);
+        double rate = PrizeCalculator.calcRate(purchasePrice.getPurchasePrice(), lottoResult.getTotalAmount());
     }
 
 }
