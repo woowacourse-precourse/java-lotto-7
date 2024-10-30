@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.errors.RangeError;
+
 public class LottoNumber {
 
     public static final int MAXIMUM_LOTTO_NUMBER = 45;
@@ -14,7 +16,8 @@ public class LottoNumber {
 
     private static void validate(int lottoNumber) {
         if (lottoNumber < MINIMUM_LOTTO_NUMBER || lottoNumber > MAXIMUM_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("//여기 enum 에러값");
+            System.out.println(RangeError.LOTTO_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(RangeError.LOTTO_NUMBER_ERROR.getMessage());
         }
     }
 

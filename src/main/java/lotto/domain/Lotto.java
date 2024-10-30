@@ -18,7 +18,8 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COMBINATION_LENGTH) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %개여야 합니다.", LOTTO_COMBINATION_LENGTH));
+            System.out.println();
+            throw new IllegalArgumentException();
         }
     }
 
