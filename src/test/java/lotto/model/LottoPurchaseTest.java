@@ -7,20 +7,20 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class LottosTest {
-    Lottos lottos;
+public class LottoPurchaseTest {
+    LottoPurchase lottoPurchase;
 
     @BeforeEach
     void init() {
-        lottos = new Lottos();
+        lottoPurchase = new LottoPurchase();
     }
 
     @Test
     void 로또_구입_개수를_계산한다() {
         String purchaseAmount = "5000";
-        lottos.calculateLottoPurchaseCount(purchaseAmount);
+        lottoPurchase.calculateLottoPurchaseCount(purchaseAmount);
 
-        assertThat(lottos.getLottoPurchaseCount())
+        assertThat(lottoPurchase.getLottoPurchaseCount())
                 .isEqualTo(5);
     }
 
@@ -29,7 +29,7 @@ public class LottosTest {
         String purchaseAmount = "5050";
 
         assertThatThrownBy(() ->
-                lottos.calculateLottoPurchaseCount(purchaseAmount))
+                lottoPurchase.calculateLottoPurchaseCount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000_EXCEPTION.message());
     }
