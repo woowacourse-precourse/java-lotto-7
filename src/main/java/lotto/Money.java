@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Money {
 
-    public static String inputMoney() {
+    public static int inputMoney() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             String inputMoney = Console.readLine();
@@ -15,7 +15,7 @@ public class Money {
         }
     }
 
-    private static String validate(String inputNumber) {
+    private static int validate(String inputNumber) {
         try {
             int money = Integer.parseInt(inputNumber);
             if (money % 1000 != 0) {
