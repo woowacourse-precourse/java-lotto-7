@@ -6,14 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class InputParserTest {
     @Test
-    void 숫자가_아닌_예외() {
-        assertThatThrownBy(() -> InputParser.parseInt("abc"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 필요없는_값이_입력된_예외() {
-        assertThatThrownBy(() -> InputParser.parseInt("3000 5"))
+    void 숫자가_아닌_것이_입력된_예외() {
+        assertThatThrownBy(() -> InputParser.parseInt("123 abc"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
