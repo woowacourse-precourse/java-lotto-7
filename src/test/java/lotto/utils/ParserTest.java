@@ -9,12 +9,12 @@ import org.junit.jupiter.api.Test;
 
 public class ParserTest {
 
-    @DisplayName("inputPaser_메서트_테스트_01")
+    @DisplayName("inputParser_메서트_테스트_01")
     @Test
     void 쉼표를_구분자로_하여_당첨_번호를_분리한다() {
         String input = "1,3,4,5,6";
         List<String> expected = Arrays.asList("1", "3", "4", "5", "6");
 
-        assertThat(Paser.inputParser(input)).containsExactlyElementsOf(expected);
+        assertThat(Parser.inputParser(input)).containsExactlyElementsOf(expected);
     }
 }

@@ -6,8 +6,8 @@
   - [x] `priceValidator` : 입력 받은 로또 구입 금액을 검증한다.
   - [x] `winningNumValidator` : 입력 받은 당첨 번호를 검증한다.  
   - [x] `lottoNumValidator` : 번호 검증 (1 ~ 45) 
-- [ ] `Parser`
-  - [ ] `inputParser` : 쉼표를 구분자로 하여 당첨 번호를 분리한다.
+- [x] `Parser`
+  - [x] `inputParser` : 쉼표를 구분자로 하여 당첨 번호를 분리한다.
 - [ ] `Converter`
   - [ ] `priceToLottoCount` : 로또 구입 금액을 구매 개수로 변환한다.
 ### Domain
