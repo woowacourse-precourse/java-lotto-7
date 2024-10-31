@@ -17,19 +17,9 @@ class InputValidationTest {
     @NullAndEmptySource
     void inputNullOrEmpty(String input) {
         //when //then
-        assertThatThrownBy(() -> InputValidation.validate(input))
+        assertThatThrownBy(() -> InputValidation.validateNullOrEmpty(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_INPUT.getErrorMessage());
-    }
-
-    @DisplayName("숫자가 아닌 문자가 입력되면 예외를 발생한다.")
-    @ParameterizedTest
-    @ValueSource(strings = {"a", "?", "-", "1000원"})
-    void inputNumeric(String input) {
-        //when //then
-        assertThatThrownBy(() -> InputValidation.validate(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ONLY_NUMERIC.getErrorMessage());
     }
 
     @DisplayName("입력에 공백이 있다면 예외를 발생한다.")
@@ -37,19 +27,51 @@ class InputValidationTest {
     @ValueSource(strings = {" ", "1000 원", " 1000원", "1000원 "})
     void inputContainBlank(String input) {
         //when //then
-        assertThatThrownBy(() -> InputValidation.validate(input))
+        assertThatThrownBy(() -> InputValidation.validateContainBlank(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NOT_CONTAIN_BLANK.getErrorMessage());
+                .hasMessage(ErrorMessage.CONTAIN_BLANK.getErrorMessage());
     }
 
-    @DisplayName("입력이 null 또는 빈값이 아니고, 공백이 없이 숫자로만 되어있다면 예외를 발생하지 않는다.")
+    @DisplayName("숫자가 아닌 문자가 입력되면 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "?", "-", "1000원"})
+    void inputNumeric(String input) {
+        //when //then
+        assertThatThrownBy(() -> InputValidation.validateNumeric(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ONLY_NUMERIC.getErrorMessage());
+    }
+
+    @DisplayName("입력이 null 또는 빈값이 아니라면 예외를 발생하지 않는다.")
     @Test
-    void input() {
+    void nonInputNullOrEmpty() {
         //given
         String input = "8000";
 
         //when //then
-        assertThatCode(() -> InputValidation.validate(input))
+        assertThatCode(() -> InputValidation.validateNullOrEmpty(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력에 공백이 존재하지 않으면 예외를 발생하지 않는다.")
+    @Test
+    void nonInputContainBlank() {
+        //given
+        String input = "8000";
+
+        //when //then
+        assertThatCode(() -> InputValidation.validateContainBlank(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력에 숫자만 존재한다면 예외를 발생하지 않는다.")
+    @Test
+    void nonInputNumeric() {
+        //given
+        String input = "8000";
+
+        //when //then
+        assertThatCode(() -> InputValidation.validateNumeric(input))
                 .doesNotThrowAnyException();
     }
 }
