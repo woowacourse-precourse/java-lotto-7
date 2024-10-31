@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.net.Inet4Address;
 import java.util.Arrays;
 import java.util.List;
+import java.util.SimpleTimeZone;
 import lotto.utils.Utils;
 import net.bytebuddy.dynamic.loading.ClassInjector.UsingInstrumentation;
 
@@ -53,12 +54,26 @@ public class InputView {
 
     //inputWinningNumber 구현
     public static List<Integer> inputWinningNumber() {
-        String userInput = Console.readLine();
-        String[] numbers = userInput.split(",");
 
-        List<Integer> winningNumber = Arrays.stream(numbers).map(number -> Integer.parseInt(number)).toList();
-        return winningNumber;
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                if (userInput.isEmpty()) {
+                    throw new IllegalArgumentException(EMPTY_INPUT + " : " + userInput);
+                }
+                String[] numbers = userInput.split(",");
+//                validateWinningNumber(numbers);
+                List<Integer> winningNumber = Arrays.stream(numbers).map(number -> Integer.parseInt(number)).toList();
+                return winningNumber;
+            } catch (IllegalArgumentException e) {
+                OutputView.errorPrint(e.getMessage());
+            }
+        }
     }
+
+//    private static void validateWinningNumber(String[] numbers) {
+//        if ()
+//    }
 
     //inputBonusNumber 구현
 }
