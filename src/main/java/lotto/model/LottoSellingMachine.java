@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 
-class LottoSellingMachine {
+public class LottoSellingMachine {
 
     public static Lottos sell(Long money) {
         validateMoney(money);

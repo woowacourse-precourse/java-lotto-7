@@ -1,7 +1,16 @@
-package lotto;
+package lotto.controller;
 
 import java.util.EnumMap;
 import java.util.List;
+import lotto.view.SimpleInputValidator;
+import lotto.model.BonusBall;
+import lotto.model.LottoSellingMachine;
+import lotto.model.Lottos;
+import lotto.model.Rank;
+import lotto.model.WinningAnalyzer;
+import lotto.model.WinningBalls;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 

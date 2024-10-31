@@ -1,9 +1,11 @@
-package lotto;
+package lotto.view;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.model.Lottos;
+import lotto.model.Rank;
 
 public class OutputView {
 

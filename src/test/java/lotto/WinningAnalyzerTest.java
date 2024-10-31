@@ -4,6 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.BonusBall;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.Rank;
+import lotto.model.WinningAnalyzer;
+import lotto.model.WinningBalls;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
