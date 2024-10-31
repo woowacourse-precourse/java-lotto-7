@@ -32,4 +32,13 @@ public enum LottoRank {
     public boolean isContainsBonusNumber() {
         return containsBonusNumber;
     }
+
+    public static LottoRank getRankByMatches(final Integer matchCount) {
+        for (LottoRank lottoRank : values()) {
+            if (lottoRank.matchCount.equals(matchCount)) {
+                return lottoRank;
+            }
+        }
+        return NON_RANK;
+    }
 }
