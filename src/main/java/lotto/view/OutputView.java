@@ -32,6 +32,10 @@ public class OutputView {
         System.out.println(formatTotalProfitMessage(result.calculateYield()));
     }
 
+    public static void printMessage(final String message) {
+        System.out.println(message);
+    }
+
     public static void printEmptyMessage() {
         System.out.println();
     }
