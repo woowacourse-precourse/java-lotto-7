@@ -17,4 +17,8 @@ public class LottoTicket {
         }
         return new LottoTicket(lottoTicket);
     }
+
+    public List<Lotto> getLottoTicket() {
+        return lottoTicket;
+    }
 }
