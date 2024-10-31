@@ -40,7 +40,7 @@ public class Handler {
     return winningNumbers;
   }
 
-  // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교 하고
+  // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
   private void compareNumbers(List<Integer> winningNumbers, int bonus) {
 
   }
