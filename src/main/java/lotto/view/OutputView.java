@@ -12,14 +12,15 @@ import lotto.domain.Ranking;
 
 public class OutputView {
 
-    public void printPurchaseCount(int lottoCount) {
-        printEmptyLine();
-        System.out.println(lottoCount + "개를 구매했습니다.");
-    }
-
     public void printPurchaseLottos(List<Lotto> lottos) {
+        printEmptyLine();
+        printPurchaseCount(lottos.size());
         lottos.forEach(this::printLotto);
         printEmptyLine();
+    }
+
+    private void printPurchaseCount(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
     private void printLotto(Lotto lotto) {

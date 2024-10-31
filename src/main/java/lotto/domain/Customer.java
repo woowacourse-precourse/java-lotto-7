@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 
 public class Customer {
 
-    private final long initialMoney;
-    private long money;
+    private final Money initialMoney;
+    private Money money;
     private List<Lotto> lottos;
 
-    public Customer(int money) {
+    public Customer(Money money) {
         this.initialMoney = money;
         this.money = money;
     }
@@ -23,7 +23,7 @@ public class Customer {
     }
 
     private void minusMoney() {
-        money -= (long) LottoSeller.LOTTO_PRICE * lottos.size();
+        money = money.minus(LottoSeller.LOTTO_PRICE.multiply(Money.from(lottos.size())));
     }
 
     public List<Lotto> getLottos() {

@@ -4,19 +4,16 @@ import java.util.Map;
 
 public class LottoResult {
     private final Map<Ranking, Integer> lottoResults;
-    private final Long totalPrize;
     private final double revenue;
 
-    private LottoResult(Map<Ranking, Integer> lottoResults, Long totalPrize, double revenue) {
+    private LottoResult(Map<Ranking, Integer> lottoResults, double revenue) {
         this.lottoResults = lottoResults;
-        this.totalPrize = totalPrize;
         this.revenue = revenue;
     }
 
-    public static LottoResult from(Map<Ranking, Integer> lottoResults, Long lottoPurchaseMoney) {
-        Long totalPrize = calculateTotalPrize(lottoResults);
-        double revenue = calculateRevenue(totalPrize, lottoPurchaseMoney);
-        return new LottoResult(lottoResults, totalPrize, revenue);
+    public static LottoResult from(Map<Ranking, Integer> lottoResults, Money baseMoney) {
+        Money totalPrize = Money.from(calculateTotalPrize(lottoResults));
+        return new LottoResult(lottoResults, totalPrize.calculateRevenue(baseMoney));
     }
 
     private static Long calculateTotalPrize(Map<Ranking, Integer> lottoResults) {
@@ -25,16 +22,8 @@ public class LottoResult {
                 .sum();
     }
 
-    private static double calculateRevenue(Long totalPrize, Long lottoPurchaseMoney) {
-        return (double) totalPrize / lottoPurchaseMoney * 100;
-    }
-
     public Map<Ranking, Integer> getLottoResults() {
         return lottoResults;
-    }
-
-    public Long getTotalPrize() {
-        return totalPrize;
     }
 
     public double getRevenue() {
