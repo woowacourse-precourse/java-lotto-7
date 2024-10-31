@@ -17,4 +17,8 @@ public class Wallet {
             throw new IllegalArgumentException();
         }
     }
+
+    public Integer getMoney() {
+        return money;
+    }
 }
