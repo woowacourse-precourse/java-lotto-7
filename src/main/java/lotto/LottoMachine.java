@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoMachine {
@@ -56,7 +57,15 @@ public class LottoMachine {
     public void printLottoBunch() {
         System.out.printf("\n%d개를 구매했습니다.\n", lottoBunch.size());
         for (Lotto lotto : lottoBunch) {
-            lotto.print();
+            System.out.println(lotto);
         }
+    }
+
+    public Lotto parseWinningNumber(String input) {
+        List<String> splitInput = Arrays.asList(input.split(","));
+        List<Integer> lottoNumbers = splitInput.stream()
+                .map(this::parseLottoNumber)
+                .toList();
+        return new Lotto(lottoNumbers);
     }
 }

@@ -1,9 +1,12 @@
 package lotto;
 
+import static lotto.Lotto.LOTTO_NUMBER_DUPLICATE_ERROR_MSG;
+import static lotto.Lotto.LOTTO_NUMBER_SIZE_ERROR_MSG;
 import static lotto.LottoMachine.AMOUNT_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_PRICE;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -84,8 +87,19 @@ class LottoMachineTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {"", "로또번호", "LOTTO"})
+    public void 로또번호_숫자X_예외테스트(String input) throws Exception {
+        ///Given
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseLottoNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"0", "46", "2147483647"})
-    public void 로또번호_예외테스트(String input) throws Exception {
+    public void 로또번호_숫자범위_예외테스트(String input) throws Exception {
         ///Given
 
         //When, Then
@@ -106,5 +120,50 @@ class LottoMachineTest {
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void 당첨번호_정상테스트() throws Exception {
+        //Given
+        String input = "1,10,20,30,40,45";
+
+        //When
+        List<Integer> actual = LOTTO_MACHINE.parseWinningNumber(input).getNumbers();
+
+        //Then
+        Assertions.assertThat(actual).containsExactly(1, 10, 20, 30, 40, 45);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "1,,3,4,5,6", "1,2,3,4,5,46", "1,2,3,4,5, 6"})
+    public void 당첨번호_로또숫자_예외테스트(String input) throws Exception {
+        //Given
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
+    }
+
+    @Test
+    public void 당첨번호_중복_예외테스트() throws Exception {
+        //Given
+        String input = "1,2,3,4,6,6";
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_DUPLICATE_ERROR_MSG);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
+    public void 당첨번호_개수_예외테스트(String input) throws Exception {
+        //Given
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_SIZE_ERROR_MSG);
     }
 }

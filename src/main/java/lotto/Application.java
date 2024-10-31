@@ -22,7 +22,7 @@ public class Application {
     }
 
     private static String readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return readNonEmptyLine();
     }
 
@@ -31,5 +31,6 @@ public class Application {
         int amount = lottoMachine.parseAmount(readAmount());
         lottoMachine.issue(amount);
         lottoMachine.printLottoBunch();
+        Lotto winningNumbers = lottoMachine.parseWinningNumber(readWinningNumbers());
     }
 }
