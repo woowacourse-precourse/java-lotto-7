@@ -18,6 +18,11 @@ public class ConsoleView implements View {
     return command.execute(input);
   }
 
+  @Override
+  public void displayOutput(Object parameter) {
+    writeLine(parameter.toString());
+  }
+
   private void writeLine(String text) {
     System.out.println(text);
   }
