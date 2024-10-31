@@ -5,23 +5,19 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     public String readPayment() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
 
-        return input;
+        return Console.readLine();
     }
 
     public String readWinningNumbers() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        System.out.println("\n당첨 번호를 입력해 주세요.");
 
-        return input;
+        return Console.readLine();
     }
 
     public String readBonus() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
 
-        return input;
+        return Console.readLine();
     }
 }
