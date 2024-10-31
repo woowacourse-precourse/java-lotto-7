@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
 import lotto.common.ErrorMessage;
-import lotto.dto.InputMoneyDTO;
+import lotto.dto.MoneyDTO;
 
 public class InputView {
 
@@ -14,11 +14,11 @@ public class InputView {
     private InputView() {
     }
 
-    public InputMoneyDTO readMoney() {
+    public MoneyDTO readMoney() {
         print(INPUT_MONEY_MESSAGE);
         String input = Console.readLine();
         validateNumberFormat(input);
-        return InputMoneyDTO.from(Long.valueOf(input));
+        return MoneyDTO.from(Long.valueOf(input));
     }
 
     private static void validateNumberFormat(String input) {

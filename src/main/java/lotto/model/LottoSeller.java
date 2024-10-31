@@ -2,13 +2,13 @@ package lotto.model;
 
 import java.util.List;
 import lotto.common.ErrorMessage;
-import lotto.dto.InputMoneyDTO;
+import lotto.dto.MoneyDTO;
 
 public class LottoSeller {
 
     public static final int SELL_UNIT = 1000;
 
-    public List<Lotto> sell(final InputMoneyDTO moneyDTO){
+    public List<Lotto> sell(final MoneyDTO moneyDTO){
         validateUnit(moneyDTO.money());
         return LottoGenerator.generate(getQuantity(moneyDTO));
     }
@@ -23,7 +23,7 @@ public class LottoSeller {
         return money % SELL_UNIT != 0;
     }
 
-    private int getQuantity(InputMoneyDTO moneyDTO) {
+    private int getQuantity(MoneyDTO moneyDTO) {
         return (int) (moneyDTO.money() / SELL_UNIT);
     }
 }
