@@ -1,11 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
+import java.net.Inet4Address;
+import java.util.Arrays;
+import java.util.List;
 import lotto.utils.Utils;
 import net.bytebuddy.dynamic.loading.ClassInjector.UsingInstrumentation;
 
 public class InputView {
+    private static final String NOT_NUMBER = "숫자가 아닙니다";
+    private static final String INVALID_RANGE = "범위가 유효하지 않습니다";
+    private static final String NOT_DIVISIBLE_BY_THOUSAND = "천원단위로 나누어 지지 않습니다";
 
     //inputPurchasePrice 구현
     public static int inputPurchasePrice() {
@@ -19,9 +26,9 @@ public class InputView {
                 count = Utils.stringToInteger(userInput);
                 return count;
             } catch (NumberFormatException e) {
-                throw new NumberFormatException("[ERROR] 숫자가 아닙니다 : " + userInput);
+                OutputView.errorPrint(e.getMessage());
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException("[ERROR] Value가 범위안에 없습니다.");
+                OutputView.errorPrint(e.getMessage());
             }
         }
     }
@@ -29,16 +36,26 @@ public class InputView {
     //금액 valiadate
     public static void validatePurchase(String userInput) {
         if (!Utils.isDigitOnly(userInput)) {
-            throw new NumberFormatException("숫자가 아닙니다 : " + userInput);
+            throw new NumberFormatException(NOT_NUMBER + " : " + userInput);
         }
         BigDecimal count = Utils.stringToNumber(userInput);
         if (!Utils.isInRange(new BigDecimal("1000"), new BigDecimal("100000"), count)) {
-            throw new IllegalArgumentException("Value가 범위안에 없습니다.");
+            throw new IllegalArgumentException(INVALID_RANGE + " : " + userInput);
+        }
+        if (!Utils.isDivisibleByThousand(count.intValue())) {
+            throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND + " : " + userInput);
         }
 
     }
 
     //inputWinningNumber 구현
+    public static List<Integer> inputWinningNumber() {
+        String userInput = Console.readLine();
+        String[] numbers = userInput.split(",");
+
+        List<Integer> winningNumber = Arrays.stream(numbers).map(number -> Integer.parseInt(number)).toList();
+        return winningNumber;
+    }
 
     //inputBonusNumber 구현
 }
