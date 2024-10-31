@@ -14,7 +14,8 @@ public class WinningService {
         List<LottoResult> results = getResultbyEnum(lottos, winnings, bonus);
         int[] result = new int[5];
         for(int i = 0; i < results.size(); i++){
-            result[results.get(i).ordinal()]++;
+            if(results.get(i).ordinal() <= 4)
+                result[results.get(i).ordinal()]++;
         }
         return result;
     }
