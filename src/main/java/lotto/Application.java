@@ -5,7 +5,7 @@ import lotto.controller.WinningController;
 
 public class Application {
 	public static void main(String[] args) {
-		new BuyingController();
-		new WinningController();
+		BuyingController buyingController = new BuyingController();
+		WinningController winningController = new WinningController(buyingController.getLottos());
 	}
 }

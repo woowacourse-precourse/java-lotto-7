@@ -36,4 +36,30 @@ public class WinningLotto extends Lotto {
 		return bonusNumber;
 	}
 
+	public LottoRank calculateRank(List<Integer> numbers) {
+		return LottoRank.valueOf(checkMatchCount(numbers), checkBonusMatch(numbers));
+	}
+
+	public int checkMatchCount(List<Integer> lottoNumbers) {
+		int matchCount = 0;
+
+		for (int number : lottoNumbers) {
+			if (super.getNumbers().contains(number)) {
+				matchCount++;
+			}
+		}
+
+		return matchCount;
+	}
+
+	public boolean checkBonusMatch(List<Integer> lottoNumbers) {
+		for (int number : lottoNumbers) {
+			if (number == bonusNumber) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }

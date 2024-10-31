@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -12,6 +13,13 @@ public class Lottos {
 	private static final int DIVISOR = 1000;
 
 	private List<Lotto> lottos = new ArrayList<>();
+	private HashMap<String, Long> winningResult = new HashMap<>();
+
+	public Lottos() {
+		for (LottoRank rank : LottoRank.values()) {
+			winningResult.put(rank.name(), 0L);
+		}
+	}
 
 	public List<Lotto> getLottos() {
 		return lottos;
@@ -43,4 +51,10 @@ public class Lottos {
 		Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
 		lottos.add(lotto);
 	}
+
+	public void addRank(LottoRank rank) {
+		long updateCount = winningResult.get(rank.name()) + 1;
+		winningResult.put(rank.name(), updateCount);
+	}
+
 }

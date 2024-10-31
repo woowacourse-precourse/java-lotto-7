@@ -15,6 +15,10 @@ public class BuyingController {
 		showLottos();
 	}
 
+	public Lottos getLottos() {
+		return lottos;
+	}
+
 	private void buyingLottos() {
 		int numberOfLotto = setNumberOfLotto();
 
