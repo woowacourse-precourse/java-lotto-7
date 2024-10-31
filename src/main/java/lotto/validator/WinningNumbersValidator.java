@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import lotto.dto.WinningNumbersDto;
 import lotto.exception.WinningNumbers.*;
 
 import java.util.Arrays;
@@ -16,13 +17,14 @@ public class WinningNumbersValidator {
     private static final int MAX_NUMBER = 45;
     private static final int NUMBER_SIZE = 6;
 
-    public static void validate(final String input) {
+    public static WinningNumbersDto validate(final String input) {
         validateBlank(input);
         validateDelimiter(input);
         List<Integer> numbers = convert(input);
         validateNumberSize(numbers);
         validateNumberRange(numbers);
         validateDuplicate(numbers);
+        return new WinningNumbersDto(numbers);
     }
 
     private static void validateBlank(final String input) {

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.WinningNumbersDto;
+
 import java.util.List;
 
 public class WinningNumbers {
@@ -12,5 +14,9 @@ public class WinningNumbers {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public static WinningNumbers fromDto(WinningNumbersDto dto) {
+        return new WinningNumbers(dto.value);
     }
 }
