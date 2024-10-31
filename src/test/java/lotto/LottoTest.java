@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +21,63 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 번호가_6개_일치하면_1등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonus_number = 7;
+        lotto.checkLottoWin(winningNumber, bonus_number);
+        assertThat(LottoWinner.FIRST.getCount())
+                .isEqualTo(1);
+    }
+
+    @Test
+    void 번호가_5개와_보너스번호가_일치하면_2등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonus_number = 7;
+        lotto.checkLottoWin(winningNumber, bonus_number);
+        assertThat(LottoWinner.SECOND.getCount())
+                .isEqualTo(1);
+    }
+
+    @Test
+    void 번호가_5개_일치하면_3등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonus_number = 7;
+        lotto.checkLottoWin(winningNumber, bonus_number);
+        assertThat(LottoWinner.THIRD.getCount())
+                .isEqualTo(1);
+    }
+
+    @Test
+    void 번호가_4개_일치하면_4등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 8, 9));
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonus_number = 7;
+        lotto.checkLottoWin(winningNumber, bonus_number);
+        assertThat(LottoWinner.FOURTH.getCount())
+                .isEqualTo(1);
+    }
+
+    @Test
+    void 번호가_3개_일치하면_5등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonus_number = 7;
+        lotto.checkLottoWin(winningNumber, bonus_number);
+        assertThat(LottoWinner.FIFTH.getCount())
+                .isEqualTo(1);
+    }
+
+    @Test
+    void 번호가_3개미만으로_일치하면_당첨안한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 8, 9, 10, 11));
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonus_number = 7;
+        lotto.checkLottoWin(winningNumber, bonus_number);
+        assertThat(LottoWinner.NONE.getCount())
+                .isEqualTo(1);
+    }
 }
