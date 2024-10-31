@@ -11,20 +11,20 @@ public class LottoNumberParser {
     private static final String LOTTO_NUMBER_DELIMITER = ",";
     private static final String WRONG_DELIMITER = ".*[./].*";
 
-    public static List<Number> parse(String numbers) {
+    public static List<Integer> parse(String numbers) {
         validateEmptyLottoNumbers(numbers);
         validateDelimiter(numbers);
 
         List<String> splitNumbers = paresNumbers(numbers);
         validateLottoSize(splitNumbers);
 
-        List<Number> lottoNumbers = new ArrayList<>();
+        List<Integer> lottoNumber = new ArrayList<>();
 
         for (String number : splitNumbers) {
-            lottoNumbers.add(Number.from(number));
+            lottoNumber.add(Integer.parseInt(number));
         }
 
-        return lottoNumbers;
+        return lottoNumber;
     }
 
     private static List<String> paresNumbers(String numbers) {

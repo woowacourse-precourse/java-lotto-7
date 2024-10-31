@@ -17,7 +17,7 @@ class LottoNumberParserTest {
     @ValueSource(strings = {"1,2,3,4,5,6", "1,5,23,32,41,45"})
     void 올바르게_입력된_문자열을_파싱한다(String number) {
         // when
-        List<Number> numbers = LottoNumberParser.parse(number);
+        List<Integer> numbers = LottoNumberParser.parse(number);
 
         // then
         assertThat(numbers.size()).isEqualTo(6);
