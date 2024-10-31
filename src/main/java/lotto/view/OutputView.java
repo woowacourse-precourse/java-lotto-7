@@ -10,10 +10,10 @@ import java.util.List;
 public class OutputView {
     public void printNoticeToPayMent() {
         System.out.println(NoticeMessage.PAYMENT);
-        System.out.println();
     }
 
     public void printNoticeCountBuy(int count) {
+        System.out.println();
         System.out.println(count + NoticeMessage.CONUT_BUY);
     }
 

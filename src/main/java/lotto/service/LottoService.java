@@ -98,7 +98,7 @@ public class LottoService {
 
     public double calculRate(int payment) {
         int prizeMoney = lottoResult.calculPrizeMoney();
-        double rate = (double) prizeMoney / payment;
-        return Math.round(rate * 100);
+        double rate = (double) prizeMoney / payment * 100;
+        return Math.round(rate * 100) / 100.0;
     }
 }
