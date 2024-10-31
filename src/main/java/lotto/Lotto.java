@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Lotto {
@@ -34,5 +35,21 @@ public class Lotto {
         boolean bonusNumberIncluded = numbers.contains(bonusNumber);
 
         return Prize.valueOf(matchCount, bonusNumberIncluded);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Lotto lotto)) {
+            return false;
+        }
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(numbers);
     }
 }
