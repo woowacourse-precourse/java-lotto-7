@@ -6,9 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoInput {
-    public static int inputCost() {
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+    public static String inputCost() {
+        return Console.readLine();
     }
 
     public static List<String> inputCorrectNumbers() {
