@@ -28,34 +28,18 @@ public class LottoManager {
         this.lottoPricePolicy = lottoPricePolicy;
     }
 
-    /**
-     * 1. 로또 구매 가격 입력
-     * 2. 로또 구매
-     * 3. 당첨 번호 입력
-     * 4. 당첨 결과 출력
-     */
+
     public void run() {
         int lottoPrice = lottoPricePolicy.getPrice();
 
-        int purchaseMoney = getPurchaseMoney(lottoPrice);
-        buyLotto(purchaseMoney);
+        int purchaseMoney = getPurchaseMoney(lottoPrice); // 로또 가격에 맞게, 유효한 구매 금액 입력 받음
+        buyLotto(purchaseMoney / lottoPrice); // 금액에 맞게 로또 구입 후, 결과 출력
 
-        WinningLotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = getWinningLotto(); // 유효한 당첨 번호 입력 받음
 
-        responseLottoResult(winningLotto, purchaseMoney);
+        responseLottoResult(winningLotto, purchaseMoney); // 당첨 번호에 따른, 결과 집계 및 출력
     }
 
-
-    private void buyLotto(int purchaseMoney) {
-        int buyCount = purchaseMoney / lottoPricePolicy.getPrice();
-
-        for (int i = 0; i < buyCount; i++) {
-            lottoMachine.buyLotto();
-        }
-
-        List<Lotto> buyingLottos = lottoMachine.getBuyingLottos();
-        lottoResponseWriter.responseLottoPurchase(buyingLottos);
-    }
 
     private int getPurchaseMoney(int lottoPrice) {
         try {
@@ -77,13 +61,15 @@ public class LottoManager {
         }
     }
 
-    private void responseLottoResult(WinningLotto winningLotto, int purchaseMoney) {
-        Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
+    private void buyLotto(int buyCount) {
+        for (int i = 0; i < buyCount; i++) {
+            lottoMachine.buyLotto();
+        }
 
-        LottoResult lottoResult = new LottoResult(lottoPrizeResult, purchaseMoney);
-
-        lottoResponseWriter.responseLottoPrize(lottoResult);
+        List<Lotto> buyingLottos = lottoMachine.getBuyingLottos();
+        lottoResponseWriter.responseLottoPurchase(buyingLottos);
     }
+
 
     private WinningLotto getWinningLotto() {
         try {
@@ -112,5 +98,13 @@ public class LottoManager {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
         }
+    }
+
+    private void responseLottoResult(WinningLotto winningLotto, int purchaseMoney) {
+        Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
+
+        LottoResult lottoResult = new LottoResult(lottoPrizeResult, purchaseMoney);
+
+        lottoResponseWriter.responseLottoPrize(lottoResult);
     }
 }
