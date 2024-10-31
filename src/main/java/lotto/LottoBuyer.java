@@ -9,6 +9,7 @@ public class LottoBuyer {
     private ArrayList<Lotto> lottos = new ArrayList<>();
 
     private Lotto winningLotto;
+    private int bonusLottoNumber;
 
     public LottoBuyer(long lottoCount) {
         this.lottoCount = lottoCount;

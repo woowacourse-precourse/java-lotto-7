@@ -1,8 +1,9 @@
 package exception;
 
+import lotto.LottoValidator;
+
 public class Exception {
 
-}
     public void throwException(String errorMessage) {
         throw new IllegalArgumentException("[ERROR] " + errorMessage);
     }
@@ -34,6 +35,14 @@ public class Exception {
         if (!normalLotto) {
             throwException("로또당첨번호가 정상적으로 입력되지 않았습니다");
         }
+    }
+
+    public int verifyBonusNumber(String bonusNumber) {
+        long buyPrice = changeInputStrToNumber(bonusNumber);
+        if (buyPrice > 45) {
+            throwException("보너스번호는 1~45 이내 숫자 중 1개만 입력해주세요(숫자만 입력하세요)");
+        }
+        return (int) buyPrice;
     }
 
 }

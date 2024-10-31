@@ -49,4 +49,12 @@ public class Input {
         return sortedList;
     }
 
+    public int receiveBonusNumber() {
+        makeEmptyLine("보너스 번호를 입력해 주세요(1~45 이내의 숫자만 입력해주세요)");
+        String bonusNumberInput = Console.readLine().trim();
+        int bonusNumber = exception.verifyBonusNumber(bonusNumberInput);
+        return bonusNumber;
+    }
+
+
 }
