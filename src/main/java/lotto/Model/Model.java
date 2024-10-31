@@ -10,7 +10,7 @@ public class Model {
     private List<Lotto> numbers = new ArrayList<Lotto>();
     private List<Integer> winNumbers;
     private int bonusNumber;
-    private List<Integer> prizeNum = new ArrayList<>(Collections.nCopies(5, 0));
+    private List<Integer> prizeNum = new ArrayList<>(Collections.nCopies(6, 0));
 
 
     public Model(int count) {
@@ -20,7 +20,10 @@ public class Model {
     }
 
     public void countPrizeNum() {
-
+        for (Lotto lotto : numbers) {
+            LottoPrize prize = LottoPrize.getRank(lotto.sameNumCount(winNumbers), lotto.checkBonus(bonusNumber));
+            prizeNum.set(prize.getRank(), prizeNum.get(prize.getRank()+1));
+        }
     }
 
     public void setWinNumbers(List<Integer> winNumbers) {

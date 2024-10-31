@@ -8,7 +8,7 @@ public class Controller {
     public InputView input;
     public OutputView output;
     public Model model;
-    public int count;
+    public int tryCount;
 
     public Controller(InputView input, OutputView output) {
         this.input = input;
@@ -16,11 +16,12 @@ public class Controller {
     }
 
     public void start() {
-        this.count = input.getPurchaseCount();
-        this.model = new Model(this.count);
+        this.tryCount = input.getPurchaseCount();
+        this.model = new Model(this.tryCount);
         output.printLottoNum(model.getNumbers());
         model.setWinNumbers(input.getWinNumber());
         model.setBonusNumber(input.getBonusNum());
+        model.countPrizeNum();
     }
 
 }

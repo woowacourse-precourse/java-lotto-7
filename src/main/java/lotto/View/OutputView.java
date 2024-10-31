@@ -11,7 +11,7 @@ public class OutputView {
         for (Lotto lotto : numbers) {
             lotto.print();
         }
-
     }
+
 
 }
