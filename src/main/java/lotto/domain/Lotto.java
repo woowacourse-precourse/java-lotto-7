@@ -23,6 +23,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_MAX_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
