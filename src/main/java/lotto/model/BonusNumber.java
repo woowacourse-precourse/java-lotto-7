@@ -2,13 +2,13 @@ package lotto.model;
 
 import java.util.List;
 
-public class UserBonusNumber {
+public class BonusNumber {
     private final static String DUPLICATE_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     private final static String INVALID_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 1 이상 45 이하로 입력해주세요.";
 
     private final int bonus;
 
-    public UserBonusNumber(List<Integer> numbers, int bonus) {
+    public BonusNumber(List<Integer> numbers, int bonus) {
         validateNumberRange(bonus);
         validateDuplicate(numbers, bonus);
         this.bonus = bonus;
