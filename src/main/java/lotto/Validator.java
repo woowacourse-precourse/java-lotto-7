@@ -15,8 +15,7 @@ public class Validator {
             int price = Integer.parseInt(input);
             checkMinimumPrice(price);
             checkIsDivisibleByThousand(price);
-
-        } catch (NumberFormatException e){  // 숫자인지
+        } catch (NumberFormatException e){
             System.out.println("[ERROR] "+ e.getMessage());
         }
     }
