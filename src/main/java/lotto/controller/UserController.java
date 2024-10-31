@@ -17,4 +17,9 @@ public class UserController {
     public int getUserIdByInputPurchasePrice() {
         return userService.inputPurchasePriceForUser();
     }
+
+    public void getPurchaseLottoTickets(int userId) {
+        userService.getLottoTickets(userId);
+        userService.displayPurchaseLottoTickets(userId);
+    }
 }

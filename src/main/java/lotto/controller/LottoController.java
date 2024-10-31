@@ -14,11 +14,6 @@ public class LottoController {
         return instance;
     }
 
-    public void getPurchaseLottoTickets(int userId) {
-        lottoService.getLottoTickets(userId);
-        lottoService.displayPurchaseLottoTickets(userId);
-    }
-
     public void getWinningNumbers(int userId) {
         lottoService.getWinningNumbers(userId);
     }
