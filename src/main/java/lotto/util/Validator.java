@@ -17,14 +17,19 @@ public class Validator {
     private Validator() {
     }
 
-    public static boolean validateNumbers(List<Integer> numbers, Integer bonusNumber) {
+    public static boolean validateNumbers(List<Integer> numbers) {
         checkNumberSize(numbers);
-        checkNumberDuplicates(numbers, bonusNumber);
+        checkNumberDuplicates(numbers);
         for (Integer number : numbers) {
             checkNumberRange(number);
         }
-        checkNumberRange(bonusNumber);
 
+        return true;
+    }
+
+    public static boolean validateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+        checkBonusNumberDuplicates(numbers, bonusNumber);
+        checkNumberRange(bonusNumber);
         return true;
     }
 
@@ -41,10 +46,13 @@ public class Validator {
         }
     }
 
-    private static void checkNumberDuplicates(List<Integer> numbers, Integer bonusNumber) {
+    private static void checkNumberDuplicates(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException(NUMBER_DUPLICATED.getMessage());
         }
+    }
+
+    private static void checkBonusNumberDuplicates(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(NUMBER_DUPLICATED.getMessage());
         }

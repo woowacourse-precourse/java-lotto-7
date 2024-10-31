@@ -17,7 +17,8 @@ class ValidatorTest {
     void 숫자_검증_성공(String input) {
         List<Integer> numbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
 
-        assertThat(Validator.validateNumbers(
+        assertThat(Validator.validateNumbers(numbers.subList(0, numbers.size() - 1))).isTrue();
+        assertThat(Validator.validateBonusNumber(
                 numbers.subList(0, numbers.size() - 1), numbers.get(numbers.size() - 1)
         )).isTrue();
     }
@@ -28,8 +29,11 @@ class ValidatorTest {
     void 숫자_예외_테스트(String input) {
         List<Integer> numbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
 
-        assertThatThrownBy(() ->
-                Validator.validateNumbers(numbers.subList(0, numbers.size() - 1), numbers.get(numbers.size() - 1))
+        assertThatThrownBy(() -> {
+                    Validator.validateNumbers(numbers.subList(0, numbers.size() - 1));
+                    Validator.validateBonusNumber(
+                            numbers.subList(0, numbers.size() - 1), numbers.get(numbers.size() - 1));
+                }
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
