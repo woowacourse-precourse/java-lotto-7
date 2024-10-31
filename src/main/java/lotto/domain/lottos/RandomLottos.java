@@ -12,7 +12,7 @@ public class RandomLottos {
         this.lottos = lottos;
     }
 
-    public List<Rank> getMatchedRank(UserLotto userLotto) {
+    public List<Rank> findMatchedRank(UserLotto userLotto) {
         List<Rank> ranks = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
@@ -23,6 +23,18 @@ public class RandomLottos {
             ranks.add(matchedRank);
         }
         return ranks;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder printout = new StringBuilder();
+
+        for (Lotto lotto : lottos) {
+            printout.append(lotto.toString());
+            System.out.println(lotto + "오룸차순확인");
+            printout.append("\n");
+        }
+        return printout.toString();
     }
 
 }

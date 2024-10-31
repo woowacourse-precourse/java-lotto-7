@@ -19,7 +19,7 @@ public class LottoMatchService {
 
 
     public void matchLottos() {
-        List<Rank> ranksResult = randomLottos.getMatchedRank(userLotto);
+        List<Rank> ranksResult = randomLottos.findMatchedRank(userLotto);
 
         for (Rank rank : ranksResult) {
             winningLottos.addRank(rank);
