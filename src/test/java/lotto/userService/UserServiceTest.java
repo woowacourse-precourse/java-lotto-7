@@ -11,6 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.NoSuchElementException;
+
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -31,10 +33,9 @@ public class UserServiceTest extends NsTest {
     @ParameterizedTest
     @ValueSource(strings = {"1000j", "8900", "0", "-1", "", " "})
     void 접근_시도_횟수_초과_예외_테스트(String purchasePrice) {
-
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException(purchasePrice))
-                        .isInstanceOf(IllegalStateException.class)
+                assertThatThrownBy(() -> run(purchasePrice))
+                        .isInstanceOf(NoSuchElementException.class)
         );
     }
 
