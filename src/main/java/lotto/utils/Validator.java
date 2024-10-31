@@ -23,7 +23,7 @@ public class Validator {
 
     public static void winningNumValidator(String input) {
 
-        if(!WINNING_NUM_PATTERN.matches(input)) {
+        if (!WINNING_NUM_PATTERN.matches(input)) {
             throw new IllegalArgumentException("temp");
         }
 
@@ -31,5 +31,20 @@ public class Validator {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("temp");
         }
+    }
+
+    public static void lottoNumValidator(String input) {
+        int price;
+
+        try {
+            price = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("temp");
+        }
+
+        if (price <= 0 || 46 <= price) {
+            throw new IllegalArgumentException("temp");
+        }
+
     }
 }

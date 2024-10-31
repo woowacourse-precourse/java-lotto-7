@@ -42,10 +42,13 @@ public class ValidatorTest {
     void 번호가_1_에서_45_사이의_숫자가_아니면_예외가_발생한다() {
         String input = "0";
         String input2 = "46";
+        String input3 = "0a";
 
         assertThatThrownBy(()->Validator.lottoNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(()->Validator.lottoNumValidator(input2))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()->Validator.lottoNumValidator(input3))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
