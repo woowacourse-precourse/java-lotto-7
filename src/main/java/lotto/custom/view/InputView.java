@@ -1,7 +1,6 @@
 package lotto.custom.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.custom.constants.PromptMessages;
 
 public class InputView {
     public String inputPurchaseAmount() {
