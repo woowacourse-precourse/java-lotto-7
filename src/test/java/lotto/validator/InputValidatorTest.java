@@ -15,7 +15,7 @@ class InputValidatorTest {
     void inputEmptyExceptionTest(String input) {
         InputValidator validator = new InputValidator();
 
-        Assertions.assertThatThrownBy(() -> validator.validator(input))
+        Assertions.assertThatThrownBy(() -> validator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

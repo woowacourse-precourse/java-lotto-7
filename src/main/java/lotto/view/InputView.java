@@ -25,7 +25,7 @@ public class InputView {
         Validator validator = new InputValidator();
 
         String input = Console.readLine();
-        validator.validator(input);
+        validator.validate(input);
         return input;
     }
 }

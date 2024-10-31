@@ -1,9 +1,9 @@
 package lotto.validator;
 
-public class InputValidator implements Validator {
+public class InputValidator implements Validator<String> {
 
     @Override
-    public void validator(String input) {
+    public void validate(String input) {
         if (input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException();
         }
