@@ -1,5 +1,6 @@
 package lotto.buyer.validator;
 
+import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
 
 public class MoneyValidator {
@@ -8,9 +9,9 @@ public class MoneyValidator {
         divisibleByThousandValidator(money);
     }
     private static void divisibleByThousandValidator(Long money) {
-        if (money % LottoConstant.PURCHASE_AMOUNT.getValue() != 0) throw new IllegalArgumentException("[ERROR] 천원으로 나눠지게 입력해주세요");
+        if (money % LottoConstant.PURCHASE_AMOUNT.getValue() != 0) ErrorMessage.DIVISIBLE_BY_THOUSAND.throwIllegalArgumentException();
     }
     private static void limitAmountValidator(Long money) {
-        if (money > LottoConstant.PURCHASE_LIMIT_AMOUNT.getValue()) throw new IllegalArgumentException("[ERROR] 금액은 10만원 이하로 입력해주세요");
+        if (money > LottoConstant.PURCHASE_LIMIT_AMOUNT.getValue()) ErrorMessage.AMOUNT_LIMIT.throwIllegalArgumentException();
     }
 }
