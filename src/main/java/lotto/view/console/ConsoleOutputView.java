@@ -11,13 +11,14 @@ public class ConsoleOutputView implements OutputView {
 
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String ASK_MONEY = "구입금액을 입력해 주세요.";
-    private static final String ASK_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private static final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String WINNING_RESULT_TITLE = "당첨 통계";
+    private static final String LOTTOS_TITLE = LINE_SEPARATOR + "%d개를 구매했습니다.";
+    private static final String ASK_WINNING_NUMBER = LINE_SEPARATOR + "당첨 번호를 입력해 주세요.";
+    private static final String ASK_BONUS_NUMBER = LINE_SEPARATOR + "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_RESULT_TITLE = LINE_SEPARATOR + "당첨 통계";
     private static final String RESULT_LINE = "---";
     private static final String WINNING_RECIPE = "%d개 일치 (%,d원) - %d개";
-    private static final String WINNING_RECIPE_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%d,원) - %d개";
-    private static final String PROFIT_RATIO = "총 수익률은 %,.1f%입니다.";
+    private static final String WINNING_RECIPE_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String PROFIT_RATIO = "총 수익률은 %,.1f%%입니다.";
 
     @Override
     public void printAskMoney() {
@@ -67,7 +68,8 @@ public class ConsoleOutputView implements OutputView {
         if (isRankTwo(winningRecipe)) {
             message = WINNING_RECIPE_WITH_BONUS;
         }
-        return String.format(message, winningRecipe.matchCount(), winningRecipe.price(), winningRecipe.matchQuantity());
+        return String.format(message, winningRecipe.matchCount(), winningRecipe.price().intValue(),
+                winningRecipe.matchQuantity());
     }
 
     private boolean isRankTwo(final WinningRecipe winningRecipe) {
