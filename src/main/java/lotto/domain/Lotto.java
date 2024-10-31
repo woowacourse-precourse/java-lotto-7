@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,9 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public String toString() {
+        List<Integer> numbers = new ArrayList<>(this.numbers);
+        numbers.sort(Integer::compareTo);
+
         return numbers.toString();
     }
 }

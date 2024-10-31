@@ -29,4 +29,10 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
+
+    @Test
+    void 로또번호_정렬_테스트(){
+        Lotto lotto = new Lotto(List.of(6, 2, 4, 3, 5, 1));
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }
