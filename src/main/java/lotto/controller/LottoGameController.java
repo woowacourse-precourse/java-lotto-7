@@ -2,10 +2,11 @@ package lotto.controller;
 
 import static lotto.view.OutputView.printLottoExceptionMessage;
 import static lotto.view.OutputView.printLottoGroup;
+import static lotto.view.OutputView.printNewLine;
 import static lotto.view.OutputView.printPurchaseMessage;
 
-import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
@@ -26,7 +27,8 @@ public class LottoGameController {
     public void run() {
         final int lottoQuantity = getLottoQuantity();
         final Lottos lottos = getLottos(lottoQuantity);
-        final List<Integer> winningNumbers = getWinningNumbers();
+        final WinningNumbers winningNumbers = getWinningNumbers();
+        final BonusNumber bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private int getLottoQuantity() {
@@ -53,17 +55,33 @@ public class LottoGameController {
         return lottos;
     }
 
-    private List<Integer> getWinningNumbers() {
+    private WinningNumbers getWinningNumbers() {
         String input = InputView.inputWinningNumbers();
 
         try {
             WinningNumbers winningNumbers = buyerService.createWinningNumbers(input);
+            printNewLine();
 
-            return winningNumbers.getNumbers();
+            return winningNumbers;
         } catch (LottoException e) {
             printLottoExceptionMessage(e);
 
             return getWinningNumbers();
+        }
+    }
+
+    private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
+        String input = InputView.inputBonusNumbers();
+
+        try {
+            BonusNumber bonusNumber =  buyerService.createBonusNumber(winningNumbers, input);
+            printNewLine();
+
+            return bonusNumber;
+        } catch (LottoException e) {
+            printLottoExceptionMessage(e);
+
+            return getBonusNumber(winningNumbers);
         }
     }
 }
