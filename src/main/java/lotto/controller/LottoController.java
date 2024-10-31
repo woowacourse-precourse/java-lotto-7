@@ -1,9 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrice;
+import lotto.domain.LottoPrize;
 import lotto.domain.LottoTickets;
+import lotto.domain.Number;
+import lotto.domain.WinningLotto;
 import lotto.utils.LottoExceptionUtils;
 import lotto.utils.LottoGenerator;
 import lotto.view.InputView;
@@ -17,6 +20,6 @@ public class LottoController {
         OutputView.printLottoTickets(lottoTickets);
 
         Lotto wonLotto = LottoExceptionUtils.runUntilNoneLottoException(InputView::wonLottoNumbers);
-        BonusNumber bonusNumber = LottoExceptionUtils.runUntilNoneLottoException(InputView::inputBonusNumber);
+        Integer number = LottoExceptionUtils.runUntilNoneLottoException(InputView::inputBonusNumber);
     }
 }
