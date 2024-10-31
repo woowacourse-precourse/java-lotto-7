@@ -52,6 +52,6 @@ public class WinningService {
         earn += result[2]*1500000;
         earn += result[3]*50000;
         earn += result[4]*5000;
-        return Math.round((earn / (count * 1000))/10.0);
+        return Math.round((earn * 10 / (count * 1000))/10.0);
     }
 }
