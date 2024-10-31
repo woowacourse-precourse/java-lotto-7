@@ -16,7 +16,7 @@ public class LottoController {
 
         Money money = userMoneyInput();
         LottoArchive lottoArchive = buyLottos(money.getTickets());
-
+        printLottoList(lottoArchive.getLottoList());
     }
 
     public Money userMoneyInput() {
@@ -37,4 +37,10 @@ public class LottoController {
         return new LottoArchive(lottoList);
     }
 
+    public void printLottoList(List<Lotto> lottoList) {
+        outView.printLottoCount(lottoList.size());
+        for (Lotto lotto : lottoList) {
+            outView.printLottoNumbers(lotto.getNumbers());
+        }
+    }
 }
