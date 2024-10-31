@@ -1,5 +1,6 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,18 +24,23 @@ public class Lotto {
         validateNumberRange(numbers);
     }
 
-    private void validateDuplicateNumbers(List<Integer> numbers){
+    private void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DUPLICATED_NUMBER.getMessage());
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers){
+    private void validateNumberRange(List<Integer> numbers) {
         Predicate<Integer> isOutOfRange = number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER;
-        if(numbers.stream().anyMatch(isOutOfRange)){
+        if (numbers.stream().anyMatch(isOutOfRange)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
+    }
+
+    public static Lotto createWithRandomNumbers() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        return new Lotto(randomNumbers);
     }
 
 }
