@@ -1,8 +1,6 @@
 package lotto.domain;
 
 public class PurchaseAmount {
-    private static final int LOTTO_PRICE = 1_000;
-
     private final int amount;
 
     public PurchaseAmount(int amount) {
@@ -12,17 +10,17 @@ public class PurchaseAmount {
     }
 
     public int getQuantity() {
-        return amount / LOTTO_PRICE;
+        return amount / LottoConfig.PRICE.getValue();
     }
 
     private void checkEnough(int amount) {
-        if (amount < LOTTO_PRICE) {
+        if (amount < LottoConfig.PRICE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 금액이 부족합니다.");
         }
     }
 
     private void checkDivisible(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (amount % LottoConfig.PRICE.getValue() != 0) {
             throw new IllegalArgumentException("[ERROR] 금액이 로또 가격과 나누어 떨어져야 합니다.");
         }
     }

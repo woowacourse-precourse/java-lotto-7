@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.LottoConfig;
 
 public class InputHandler {
     private static final String DELIMITER = ",";
@@ -30,7 +31,7 @@ public class InputHandler {
     }
 
     public void checkNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoConfig.MINIMUM.getValue() || number > LottoConfig.MAXIMUM.getValue()) {
             throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45이어야 합니다.");
         }
     }

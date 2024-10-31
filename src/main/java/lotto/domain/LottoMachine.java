@@ -19,6 +19,7 @@ public class LottoMachine {
         final Lottos lottos = lottoGenerator.generateLottos(purchaseAmount.getQuantity());
         outputView.printLottos(lottos.get());
         final WinningNumbers winningNumbers = inputWinningNumbers();
+        inputBonusNumber(winningNumbers);
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -35,6 +36,18 @@ public class LottoMachine {
         while (true) {
             try {
                 return inputView.readWinningNumbers();
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private void inputBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                int number = inputView.readBonusNumber();
+                winningNumbers.setBonusNumber(number);
+                return;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
             }
