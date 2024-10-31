@@ -1,8 +1,7 @@
 package lotto.service;
 
+import lotto.constants.LottoConstants;
 import lotto.validation.InputValidator;
-
-import static lotto.constants.LottoConstants.LOTTO_PRICE;
 
 public class LottoServiceImpl implements LottoService {
     @Override
@@ -16,6 +15,6 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private int calculateLottoCountFromAmount(int purchaseAmount) {
-        return purchaseAmount / LOTTO_PRICE;
+        return purchaseAmount / LottoConstants.LOTTO_PRICE;
     }
 }
