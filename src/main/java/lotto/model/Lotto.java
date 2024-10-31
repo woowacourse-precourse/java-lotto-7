@@ -1,6 +1,9 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,11 +17,26 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    @Override
+    public String toString() {
+        String numbers = joiningNumbers();
+        return "[" + numbers + "]";
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private String joiningNumbers() {
+        return this.numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+    }
+
+    public List<Integer> getLotto() {
+        return new ArrayList<>(numbers);
+    }
+
 }

@@ -42,4 +42,8 @@ public class Money {
         }
     }
 
+    public double getRateOfReturn(int totalAmount) {
+        return (double) totalAmount / amount * 100;
+    }
+
 }

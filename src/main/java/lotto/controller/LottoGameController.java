@@ -2,10 +2,7 @@ package lotto.controller;
 
 import lotto.config.LottoGameConfig;
 import lotto.exception.LottoGameException;
-import lotto.model.LottoMachine;
-import lotto.model.Lottos;
-import lotto.model.Money;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,6 +28,14 @@ public class LottoGameController {
 
         outputView.getCommentForWinningNumber();
         WinningNumbers winningNumbers = getWinningNumberFromUser();
+
+        outputView.getCommentForBonusNumber();
+        int bonusNumber = getBonusNumberFromUser();
+        LottoResult lottoResult = LOTTO_MACHINE.getLottoResult(lottos, winningNumbers, bonusNumber);
+
+        outputView.getCommentForStatistics(lottoResult);
+        double rateOfReturn = lottoResult.getRateOfReturn(userAmount);
+        outputView.getCommentForRateOfReturn(rateOfReturn);
     }
 
     private Money getPurchaseAmountFromUser() {
@@ -48,6 +53,15 @@ public class LottoGameController {
         } catch (LottoGameException e) {
             outputView.commentErrorMessage(e);
             return getWinningNumberFromUser();
+        }
+    }
+
+    private int getBonusNumberFromUser() {
+        try {
+            return inputView.getBonusNumberFromUser();
+        } catch (LottoGameException e) {
+            outputView.commentErrorMessage(e);
+            return getBonusNumberFromUser();
         }
     }
 
