@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 import lotto.model.constant.ErrorMessage;
+import lotto.model.constant.Values;
 
 public class WinningLotto extends Lotto {
 
@@ -28,7 +29,7 @@ public class WinningLotto extends Lotto {
 	}
 
 	private int validateRange(int bonusNumber) {
-		if (bonusNumber < 1 || bonusNumber > 45) {
+		if (bonusNumber < Values.LEAST_LOTTO_NUMBER || bonusNumber > Values.MOST_LOTTO_NUMBER) {
 			throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
 		}
 

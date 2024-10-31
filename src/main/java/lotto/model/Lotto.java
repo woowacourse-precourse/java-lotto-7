@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import lotto.model.constant.ErrorMessage;
+import lotto.model.constant.Values;
 
 public class Lotto {
 
@@ -17,8 +18,12 @@ public class Lotto {
 		this.numbers = numbers;
 	}
 
+	public List<Integer> getNumbers() {
+		return numbers;
+	}
+
 	private void validateSize(List<Integer> numbers) {
-		if (numbers.size() != 6) {
+		if (numbers.size() != Values.SIZE_OF_LOTTO) {
 			throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
 		}
 	}
@@ -29,10 +34,6 @@ public class Lotto {
 		if (numbers.size() != removeDuplicate.size()) {
 			throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
 		}
-	}
-
-	public List<Integer> getNumbers() {
-		return numbers;
 	}
 
 	@Override

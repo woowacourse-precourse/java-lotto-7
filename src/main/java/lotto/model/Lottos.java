@@ -6,10 +6,9 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.constant.ErrorMessage;
+import lotto.model.constant.Values;
 
 public class Lottos {
-
-	private static final int DIVISOR = 1000;
 
 	private List<Lotto> lottos = new ArrayList<>();
 	private HashMap<LottoRank, Integer> winningResult = new HashMap<>();
@@ -30,7 +29,7 @@ public class Lottos {
 
 	public int calculateNumberOfLotto(String str) {
 		int number = validateNumber(str);
-		int buyingNumber = validateDivisible(number) / DIVISOR;
+		int buyingNumber = validateDivisible(number) / Values.PRICE_PER_LOTTO;
 
 		return buyingNumber;
 	}
@@ -44,14 +43,15 @@ public class Lottos {
 	}
 
 	private int validateDivisible(int num) {
-		if (num % DIVISOR != 0) {
+		if (num % Values.PRICE_PER_LOTTO != 0) {
 			throw new IllegalArgumentException(ErrorMessage.DIVISIBLE_ERROR_MESSAGE);
 		}
 		return num;
 	}
 
 	public void createLotto() {
-		Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+		Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange
+			(Values.LEAST_LOTTO_NUMBER, Values.MOST_LOTTO_NUMBER, Values.SIZE_OF_LOTTO));
 		lottos.add(lotto);
 	}
 

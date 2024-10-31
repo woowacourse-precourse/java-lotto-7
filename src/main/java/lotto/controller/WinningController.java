@@ -8,6 +8,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
+import lotto.model.constant.Values;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -61,7 +62,7 @@ public class WinningController {
 
 	private double computeRateOfReturn() {
 		long totalPrize = lottos.calculateWinningPrize();
-		int buyingMoney = lottos.getLottos().size() * 1000;
+		int buyingMoney = lottos.getLottos().size() * Values.PRICE_PER_LOTTO;
 
 		return totalPrize / (double)buyingMoney * 100;
 	}
