@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,12 +12,14 @@ public class Numbers {
     public Numbers(List<Integer> numbers) {
         List<Number> parsedNumbers = parseIntToNumber(numbers);
         validate(parsedNumbers);
+        parsedNumbers.sort(Comparator.naturalOrder());
         this.numbers = parsedNumbers;
     }
 
     public Numbers(String numbers) {
         List<Number> parsedNumbers = parseStringToNumber(numbers);
         validate(parsedNumbers);
+        parsedNumbers.sort(Comparator.naturalOrder());
         this.numbers = parsedNumbers;
     }
 

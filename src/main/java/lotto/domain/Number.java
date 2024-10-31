@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.Objects;
 
-public class Number {
+public class Number implements Comparable<Number> {
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
     private static final String errorMessage = "[ERROR] 1 ~ 45 사이의 정수만 입력 가능합니다";
@@ -50,4 +50,8 @@ public class Number {
         return Objects.hash(number);
     }
 
+    @Override
+    public int compareTo(Number o) {
+        return Integer.compare(this.number, o.number);
+    }
 }
