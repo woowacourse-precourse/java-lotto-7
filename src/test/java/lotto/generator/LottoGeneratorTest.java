@@ -19,4 +19,10 @@ class LottoGeneratorTest {
         List<Integer> lottoNumbers = lottoGenerator.generate();
         assertThat(lottoNumbers).hasSize(6);
     }
+
+    @Test
+    void 로또_번호_범위_테스트() {
+        List<Integer> lottoNumbers = lottoGenerator.generate();
+        assertThat(lottoNumbers).allMatch(number -> number >= 1 && number <= 45);
+    }
 }
