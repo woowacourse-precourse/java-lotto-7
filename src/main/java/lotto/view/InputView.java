@@ -8,5 +8,5 @@ public interface InputView {
 
     List<Integer> readWinningNumbers();
 
-    void readBonusNumber();
+    int readBonusNumber();
 }

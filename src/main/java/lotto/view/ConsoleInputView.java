@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.constants.PrintMessage.BONUS_NUMBER_MESSAGE;
+import static lotto.constants.PrintMessage.PURCHASE_MESSAGE;
+import static lotto.constants.PrintMessage.WINNING_NUMBERS_MESSAGE;
 import static lotto.parse.InputParser.getParsedPurchaseAmount;
 import static lotto.parse.InputParser.getParsedWinningNumbers;
 import static lotto.validate.PurchaseAmountValidator.validatePurchaseAmount;
@@ -11,49 +14,25 @@ import java.util.List;
 public class ConsoleInputView implements InputView {
 
     @Override
-    public int readPurchaseAmount() {
-        try {
-            Message.PURCHASE_INPUT.display();
-            String purchaseAmount = Console.readLine();
-            validatePurchaseAmount(purchaseAmount);
-            return getParsedPurchaseAmount(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readPurchaseAmount();
-        }
+    public int readPurchaseAmount() throws IllegalArgumentException {
+        PURCHASE_MESSAGE.display();
+        String purchaseAmount = Console.readLine();
+        validatePurchaseAmount(purchaseAmount);
+        return getParsedPurchaseAmount(purchaseAmount);
     }
 
     @Override
-    public List<Integer> readWinningNumbers() {
-        try {
-            Message.WINNING_NUMBERS_INPUT.display();
-            String winningNumbers = Console.readLine();
-            validateWinningNumbers(winningNumbers);
-            return getParsedWinningNumbers(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readWinningNumbers();
-        }
+    public List<Integer> readWinningNumbers() throws IllegalArgumentException {
+        WINNING_NUMBERS_MESSAGE.display();
+        String winningNumbers = Console.readLine();
+        validateWinningNumbers(winningNumbers);
+        return getParsedWinningNumbers(winningNumbers);
     }
 
     @Override
-    public void readBonusNumber() {
-
-    }
-
-    private enum Message {
-        PURCHASE_INPUT("구입 금액을 입력해 주세요."),
-        WINNING_NUMBERS_INPUT("당첨 번호를 입력해 주세요.")
-        ;
-
-        private final String message;
-
-        Message(String message) {
-            this.message = message;
-        }
-
-        private void display() {
-            System.out.println(message + System.lineSeparator());
-        }
+    public int readBonusNumber() {
+        BONUS_NUMBER_MESSAGE.display();
+        String bonusNumber = Console.readLine();
+        return 1;
     }
 }
