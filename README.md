@@ -71,7 +71,7 @@
 - [x] InputView
 - [x] OutputView
 ### Controller
-- [] LottoGameController
+- [x] LottoGameController
 ### Enum
 - [x] LottoGrade
 - [x] LottoNumberRange
