@@ -45,6 +45,17 @@ class WinningNumbersTest {
     }
 
     @Test
+    void 당첨_번호는_중복될_수_없다() {
+        //given
+        List<String> numbers = List.of("1", "2", "3", "3", "4", "5");
+
+        //when && then
+        assertThatThrownBy(() -> new WinningNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LottoErrorMessage.DUPLICATED_NUMBER.getMessage());
+    }
+
+    @Test
     void 정상_테스트() {
         //given
         List<String> numbers = List.of("1", "2", "3", "4", "5", "45");
