@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Lottos;
@@ -24,6 +25,8 @@ public class LottoController {
         printLottoInformation(lottos.count(), lottos.information());
         String rawWinningNumbers = receiveWinningNumbers();
         WinningNumbers winningNumbers = new WinningNumbers(rawWinningNumbers);
+        String rawBonusNumber = receiveBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(rawBonusNumber);
     }
 
     private String receivePurchaseAmount() {
