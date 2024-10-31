@@ -27,7 +27,9 @@ public class LottoController {
                 int parsedMoney = Integer.parseInt(moneyInput);
                 money = new Money(parsedMoney);
             } catch (NumberFormatException e) {
-                errorView.printMoneyInputError();
+                errorView.printMoneyParsingError();
+            } catch (IllegalArgumentException e) {
+                errorView.printErrorMessage(e.getMessage());
             }
         }
 
