@@ -14,6 +14,7 @@ public class CommonResultOutput implements ResultViewService {
         System.out.println(money);
         nextLine();
     }
+
     @Override
     public void viewByLottoTickets(LottoTickets lottoTickets) {
         System.out.println(lottoTickets);
@@ -35,7 +36,7 @@ public class CommonResultOutput implements ResultViewService {
     public void viewByWinningStatistic(Benefit benefit, Money purchaseMoney) {
         System.out.println("당첨 통계\n" + "---");
         System.out.print(WinningPlace.print());
-        System.out.printf("총 수익률은 %.1f%%입니다.", benefit.getRateOfReturn(purchaseMoney));
+        System.out.printf("총 수익률은 %s%%입니다.", benefit.getDecimalFormatByRateOfReturn(purchaseMoney));
     }
 
     private void nextLine() {
