@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class LottoNumber {
     private static final String REQUEST_1_TO_45_NUMBER = "1부터 45 사이의 수를 입력해주세요.";

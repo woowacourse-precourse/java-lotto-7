@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class Amount {
     private static final String REQUEST_POSITIVE_NUMBER_MESSAGE = "양수를 입력해주세요.";

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class Ticket {
     private static final String REQUEST_NON_DUPLICATED_NUMBER = "중복되지 않은 숫자 6개를 입력해주세요.";
