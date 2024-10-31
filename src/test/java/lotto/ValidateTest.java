@@ -39,4 +39,15 @@ public class ValidateTest {
     void shouldReturnFalseWhenInputIsNotEmpty() {
         assertFalse(Validation.isEmptyInput("1"));
     }
+
+    @Test
+    void shouldReturnTrueWhenNumbersAreInRange() {
+        assertTrue(Validation.isInRange1To45(List.of(1,2,3,4,5,6)));
+    }
+
+    @Test
+    void shouldReturnFalseWhenNumbersAreNotInRange() {
+        assertFalse(Validation.isInRange1To45(List.of(0,2,3,4,5,6)));
+        assertFalse(Validation.isInRange1To45(List.of(1,2,3,4,5,46)));
+    }
 }
