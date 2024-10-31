@@ -8,7 +8,8 @@ public enum ExceptionMessage {
     INVALID_AMOUNT_UNIT("입력 금액 %s(은)는 %d 단위로 입력해야 합니다."),
     INVALID_LOTTO_NUMBER("%d(은)는 유효하지 않은 로또 번호입니다."),
     DUPLICATE_BONUS_NUMBER("로또 번호와 보너스 번호는 중복될 수 없습니다."),
-    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복이 있을 수 없습니다.");
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복이 있을 수 없습니다."),
+    INVALID_LOTTO_NUMBER_COUNT("로또 번호는 %d개여야 합니다.");
 
     public static final String BASE_MESSAGE = "[ERROR] %s";
     private final String message;

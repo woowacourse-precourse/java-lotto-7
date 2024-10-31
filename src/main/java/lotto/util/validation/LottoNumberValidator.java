@@ -1,14 +1,16 @@
 package lotto.util.validation;
 
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER;
+import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
 
-import lotto.model.Lotto;
+import java.util.List;
 import lotto.model.LottoNumberRange;
 
 public class LottoNumberValidator extends NumberValidator {
 
     private static final int MIN_LOTTO_NUMBER = LottoNumberRange.MIN_LOTTO_NUMBER.getValue();
     private static final int MAX_LOTTO_NUMBER = LottoNumberRange.MAX_LOTTO_NUMBER.getValue();
+    private static final int REQUIRED_LOTTO_NUMBER_COUNT = 6;
 
     @Override
     public void validate(String target) {
@@ -20,6 +22,12 @@ public class LottoNumberValidator extends NumberValidator {
         final int lottoNumber = Integer.parseInt(target);
         if ((lottoNumber < MIN_LOTTO_NUMBER) || (lottoNumber > MAX_LOTTO_NUMBER)) {
             throwFail(INVALID_LOTTO_NUMBER.format(lottoNumber));
+        }
+    }
+
+    public void validateLottoNumberCount(List<Integer> numbers) {
+        if (numbers.size() != REQUIRED_LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.format(REQUIRED_LOTTO_NUMBER_COUNT));
         }
     }
 }
