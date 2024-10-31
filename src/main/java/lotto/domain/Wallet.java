@@ -46,4 +46,10 @@ public class Wallet {
             .sum();
         return totalPrice / originalMoney;
     }
+
+    public int getRankCount(int rank) {
+        return (int)ranks.stream()
+            .filter((rank1 -> rank1.get() == 1))
+            .count();
+    }
 }

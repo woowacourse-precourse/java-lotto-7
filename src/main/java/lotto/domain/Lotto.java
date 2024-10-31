@@ -34,4 +34,8 @@ public class Lotto {
         }
         return duplicateCount;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
