@@ -7,15 +7,21 @@ public class Purchase {
     private final int MIN_VALUE = 0;
     private final int DIVIDER = 1000;
     private final int purchase;
+    private final int count;
 
     public Purchase(int purchase) {
         isPositiveAmount(purchase);
         isDivisibleByThousand(purchase);
         this.purchase = purchase;
+        this.count = getCountByPurchase(purchase);
     }
 
     public int getPurchase() {
         return purchase;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     private void isDivisibleByThousand(int purchase) {
@@ -28,5 +34,9 @@ public class Purchase {
         if (purchase <= MIN_VALUE) {
             throw new IllegalArgumentException(INPUT_MUST_BE_NUMBER.getMessage());
         }
+    }
+
+    private int getCountByPurchase(int purchase) {
+        return purchase / DIVIDER;
     }
 }
