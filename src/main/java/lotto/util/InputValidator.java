@@ -6,7 +6,7 @@ public class InputValidator {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public static void run(String value) {
+    public static void checkPurchasePrice(String value) {
         validatePurchasePrice(value);
     }
 

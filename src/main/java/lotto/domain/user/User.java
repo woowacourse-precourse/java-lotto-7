@@ -21,7 +21,7 @@ public class User {
     }
 
     private void validate(String purchasePrice) {
-        InputValidator.run(purchasePrice);
+        InputValidator.checkPurchasePrice(purchasePrice);
     }
 
     public void addLotto(Lotto lotto) {
