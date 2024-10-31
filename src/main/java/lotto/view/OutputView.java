@@ -23,10 +23,13 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
-        System.out.print(NEXT_LINE);
     }
 
     public void printWinningNumbersMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(NEXT_LINE + "당첨 번호를 입력해 주세요.");
+    }
+
+    public void printBonusNumberMessage() {
+        System.out.println(NEXT_LINE + "보너스 번호를 입력해 주세요.");
     }
 }

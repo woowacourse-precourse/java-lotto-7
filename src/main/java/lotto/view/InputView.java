@@ -37,4 +37,14 @@ public class InputView {
 
         return winningLottoNumbers;
     }
+
+    public int inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+
+        InputValidation.validateNullOrEmpty(bonusNumber);
+        InputValidation.validateContainBlank(bonusNumber);
+        InputValidation.validateNumeric(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
+    }
 }

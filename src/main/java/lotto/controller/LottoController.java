@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.model.lottonumberstrategy.LottoNumbersStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,15 +21,20 @@ public class LottoController {
 
     public void run() {
         PurchaseAmount purchaseAmount = tryPurchaseAmount();
-        int quantity = purchaseAmount.calculateQuantity();
 
         LottoGenerator lottoGenerator = LottoGenerator.from(new LottoNumbersStrategy());
+        int quantity = purchaseAmount.calculateQuantity();
         List<Lotto> lottos = lottoGenerator.issues(quantity);
 
         outputView.printQuantity(quantity);
         outputView.printLottos(lottos);
 
+        WinningNumbers winningNumbers = issueWinningNumbers();
+    }
+
+    private WinningNumbers issueWinningNumbers() {
         Lotto winningLottoNumbers = tryWinningLottoNumbers();
+        return tryBonusNumber(winningLottoNumbers);
     }
 
     private PurchaseAmount tryPurchaseAmount() {
@@ -47,8 +53,20 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printWinningNumbersMessage();
-                List<Integer> numbers = inputView.inputWinningLottoNumbers();
-                return Lotto.of(numbers);
+                List<Integer> winningLottoNumbers = inputView.inputWinningLottoNumbers();
+                return Lotto.of(winningLottoNumbers);
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
+    }
+
+    private WinningNumbers tryBonusNumber(Lotto winningLottoNumbers) {
+        while (true) {
+            try {
+                outputView.printBonusNumberMessage();
+                int bonusNumber = inputView.inputBonusNumber();
+                return WinningNumbers.of(winningLottoNumbers, bonusNumber);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }
