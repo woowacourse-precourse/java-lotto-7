@@ -1,11 +1,14 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+
 public class LottoBuyer {
 
-}
     private long lottoCount;
     private ArrayList<Lotto> lottos = new ArrayList<>();
 
+    private Lotto winningLotto;
 
     public LottoBuyer(long lottoCount) {
         this.lottoCount = lottoCount;

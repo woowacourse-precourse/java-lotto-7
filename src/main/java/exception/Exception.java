@@ -27,3 +27,13 @@ public class Exception {
         }
         return buyPrice;
     }
+
+    public void verifyWiningNumber(String winingNumber) {
+        LottoValidator lottoValidator = new LottoValidator();
+        boolean normalLotto = lottoValidator.isValidLotto(winingNumber);
+        if (!normalLotto) {
+            throwException("로또당첨번호가 정상적으로 입력되지 않았습니다");
+        }
+    }
+
+}

@@ -10,7 +10,6 @@ import lotto.Lotto;
 
 public class Input {
 
-}
     private final Exception exception = new Exception();
 
     public void makeEmptyLine(String message) {
@@ -30,3 +29,24 @@ public class Input {
         makeEmptyLine(lottoCount + "개를 구매했습니다.");
         return lottoCount;
     }
+
+    public Lotto receiveWiningNumber() {
+        makeEmptyLine("당첨 번호를 입력해 주세요(콤마로 구분하여 공백없이 작성해주세요)");
+        String winingNumberInput = Console.readLine().trim();
+        exception.verifyWiningNumber(winingNumberInput);
+        List<Integer> winningNumber = changeStrToIntList(winingNumberInput);
+        Lotto winningLotto = new Lotto(winningNumber);
+        return winningLotto;
+
+    }
+
+    public List<Integer> changeStrToIntList(String string) {
+        String[] onlyNumbers = string.split(",");
+        List<Integer> sortedList = Arrays.stream(onlyNumbers)
+                .map(Integer::parseInt)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        return sortedList;
+    }
+
+}
