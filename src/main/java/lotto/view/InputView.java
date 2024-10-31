@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.exception.ExceptionMessage;
@@ -10,33 +11,42 @@ import lotto.exception.ExceptionMessage;
 public class InputView {
 
     public int totalCostInput() {
-        int input = parseInt(Console.readLine());
+        int input = parseInt(input());
         checkPositive(input);
         checkDivisibleBy1000(input);
-        Console.close();
-        return input/1000;
+        return input / 1000;
     }
 
     public int setBonusNumber() {
-        int input = parseInt(Console.readLine());
+        int input = parseInt(input());
         checkLottoNumberRange(input);
-        Console.close();
         return input;
     }
 
     public Lotto setWinningNumber() {
-        String input = Console.readLine();
-
+        String input = input();
         String[] splitInput = input.split(",");
         List<Integer> valueOfWinningNumber = parseWinningNumbers(splitInput);
+        checkLottoSize(valueOfWinningNumber);
 
         return new Lotto(valueOfWinningNumber);
+    }
+
+    private String input() {
+        try {
+            String input = Console.readLine();
+            Console.close();
+            return input;
+        } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_NULL.getMessage());
+        }
     }
 
     private List<Integer> parseWinningNumbers(String[] splitInput) {
         return Arrays.stream(splitInput)
                 .map(String::trim)
-                .map(Integer::parseInt)
+                .map(this::parseInt)
+                .peek(this::checkLottoNumberRange)
                 .collect(Collectors.toList());
     }
 
@@ -63,6 +73,12 @@ public class InputView {
     private void checkLottoNumberRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_NOT_IN_LOTTO_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void checkLottoSize(List<Integer> number) {
+        if (number.size() != 6) {
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_LOTTO_SIZE_NOT_MATCHED.getMessage());
         }
     }
 }
