@@ -11,16 +11,13 @@ class InputViewTest {
 
     @Test
     void testInputNumber() {
-        assertSimpleTest(() -> {
-            //given
-            String input = "10";
-            System.setIn(new ByteArrayInputStream(input.getBytes()));
-            new Scanner(System.in);
-            //when
-            String result = InputView.getInput(input);
-            //then
-            assertThat(result).isEqualTo(input);
-        });
-
+        //given
+        String input = "10";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        new Scanner(System.in);
+        //when
+        String result = InputView.getInput(input);
+        //then
+        assertThat(result).isEqualTo(input);
     }
 }
