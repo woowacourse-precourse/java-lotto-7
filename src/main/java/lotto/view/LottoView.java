@@ -1,12 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.math.BigDecimal;
 
 public class LottoView {
-    public BigDecimal inputLottoPrice() {
+    public String inputLottoPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        return new BigDecimal(Integer.parseInt(Console.readLine()));
+        return Console.readLine();
     }
 
     public void printLottoCount(int lottoCount) {

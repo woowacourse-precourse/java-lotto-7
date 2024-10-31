@@ -33,7 +33,7 @@ public class LottoController {
     }
 
     private LottoValue createLottoValue() {
-        BigDecimal lottoPrice = view.inputLottoPrice();
+        BigDecimal lottoPrice = new BigDecimal(Integer.parseInt(view.inputLottoPrice()));
         return new LottoValue(lottoPrice);
     }
 
