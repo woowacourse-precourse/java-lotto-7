@@ -2,11 +2,9 @@ package lotto.domain;
 
 import lotto.constants.message.InputError;
 import lotto.constants.message.RangeError;
-import lotto.constants.value.LottoRule;
 import lotto.domain.factory.LottoFactory;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -29,7 +27,7 @@ public class Lotto {
         return new Lotto(lottoFactory);
     };
 
-    public List<Component> getInstance() {
+    public List<Component> getComponents() {
         return Collections.unmodifiableList(numbers);
     }
 
