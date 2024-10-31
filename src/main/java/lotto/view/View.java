@@ -5,11 +5,10 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class View {
-    private static final String INPUT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String EMPTY_LINE = "";
 
     public String getUserInput() {
-        System.out.println(INPUT_PROMPT);
+        System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }
 
@@ -22,6 +21,13 @@ public class View {
         for (int i = 0; i < lottoNumbers.size(); i++) {
             System.out.println(lottoNumbers.get(i));
         }
+    }
+
+    public String getWinningNumbers() {
+        System.out.println(EMPTY_LINE);
+        System.out.println("당첨 번호를 입력해 주세요.");
+        
+        return Console.readLine();
     }
 
 }

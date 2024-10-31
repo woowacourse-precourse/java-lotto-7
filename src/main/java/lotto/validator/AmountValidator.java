@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AmountValidator {
     // private 생성자: 클래스 인스턴스화 방지
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -17,6 +20,21 @@ public class AmountValidator {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
         }
     }
+
+    public static List<Integer> isNumber(String[] input) {
+        try {
+            List<Integer> winningNumbers = new ArrayList<>();
+            for (String winningNumber : input) {
+                winningNumbers.add(Integer.parseInt(winningNumber));
+            }
+            return winningNumbers;
+
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
+        }
+    }
+
 
     public static void checkAmount(int amount) {
         if (amount < 0) {
