@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Set;
 import lotto.util.RandomUtil;
 
 public class Tickets {
@@ -13,8 +15,12 @@ public class Tickets {
     }
 
     private List<Lotto> generateLottoTickets(TicketCount count) {
-        return IntStream.range(0, count.getCount())
-                .mapToObj(cnt -> new Lotto(RandomUtil.generateLottoNumbers()))
-                .toList();
+        Set<Lotto> uniqueLottos = new HashSet<>();
+
+        while (uniqueLottos.size() < count.getCount()) {
+            uniqueLottos.add(new Lotto(RandomUtil.generateLottoNumbers()));
+        }
+
+        return new ArrayList<>(uniqueLottos);
     }
 }
