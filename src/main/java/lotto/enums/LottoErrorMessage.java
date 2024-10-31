@@ -2,6 +2,7 @@ package lotto.enums;
 
 public enum LottoErrorMessage {
 
+    LOTTOS_INVALID_SIZE("[ERROR] 로또는 한개 이상 천개 이하로 사야합니다."),
     INVALID_NUMBER("[ERROR] 로또 당첨 숫자는 1과 45 사이의 값이어야 합니다."),
     INVALID_BUY_NUMBER("[ERROR] 로또 구매 금액은 천원 단위여야 합니다."),
     INVALID_LOTTO_COUNT("[ERROR] 로또 구매는 최대 천개까지입니다"),
