@@ -8,11 +8,24 @@ import lotto.domain.lotto.factory.LottoFactory;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
     //Entries 라고 명명하고 싶으나 numbers 명을 바꿔도 되는지 모르겠어서 남겨둡니다.
     private final List<LottoEntry> numbers;
+
+    //우테코 제공 테스트용(원래 필요없음)
+    public Lotto(List<Integer> numbers){
+        List<LottoEntry> entries = numbers.stream()
+                .sorted()
+                .map(Number::new)
+                .collect(Collectors.toList());
+        validateLength(entries,LottoRule.COMBINATION_LENGTH.getValue());
+        validateDuplicate(entries);
+
+        this.numbers = entries;
+    }
 
     private Lotto(LottoFactory lottoFactory) {
 

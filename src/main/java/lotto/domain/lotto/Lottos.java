@@ -19,7 +19,7 @@ public class Lottos {
         lottos = new ArrayList<>();
 
         while (lottos.size() < lottoCount) {
-            Lotto lotto = lottoFactory.create();
+            Lotto lotto = Lotto.from(lottoFactory);
             addUnduplicateLotto(lotto);
         }
     }
