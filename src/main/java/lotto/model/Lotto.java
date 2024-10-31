@@ -4,10 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Lotto {
+import lotto.model.constant.ErrorMessage;
 
-	private static final String LOTTO_NUMBER_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
-	private static final String LOTT_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복이 불가능 합니다.";
+public class Lotto {
 
 	private final List<Integer> numbers;
 
@@ -20,7 +19,7 @@ public class Lotto {
 
 	private void validateSize(List<Integer> numbers) {
 		if (numbers.size() != 6) {
-			throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE);
+			throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
 		}
 	}
 
@@ -28,7 +27,7 @@ public class Lotto {
 		Set<Integer> removeDuplicate = new HashSet<>(numbers);
 
 		if (numbers.size() != removeDuplicate.size()) {
-			throw new IllegalArgumentException(LOTT_NUMBER_DUPLICATE_ERROR_MESSAGE);
+			throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
 		}
 	}
 

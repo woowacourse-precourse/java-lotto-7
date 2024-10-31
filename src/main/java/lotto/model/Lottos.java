@@ -5,11 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.constant.ErrorMessage;
 
 public class Lottos {
 
-	private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 숫자가 아닙니다.";
-	private static final String DIVISIBLE_ERROR_MESSAGE = "[ERROR] 1000으로 나눌 수 없습니다.";
 	private static final int DIVISOR = 1000;
 
 	private List<Lotto> lottos = new ArrayList<>();
@@ -40,13 +39,13 @@ public class Lottos {
 		try {
 			return Integer.parseInt(str);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
+			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR_MESSAGE);
 		}
 	}
 
 	private int validateDivisible(int num) {
 		if (num % DIVISOR != 0) {
-			throw new IllegalArgumentException(DIVISIBLE_ERROR_MESSAGE);
+			throw new IllegalArgumentException(ErrorMessage.DIVISIBLE_ERROR_MESSAGE);
 		}
 		return num;
 	}

@@ -13,6 +13,7 @@ public class OutputView {
 	private static final String DASH_THREE = "---";
 	private static final String NUMBER_FORMAT = "%d개\n";
 	private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+	private static final String ERROR_FORMAT = "[ERROR] ";
 
 	public void printBuyingNumber(int buyingNumber) {
 		System.out.println();
@@ -42,5 +43,9 @@ public class OutputView {
 
 	public void printRateOfReturn(double rateOfReturn) {
 		System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
+	}
+
+	public void printErrorMessage(IllegalArgumentException e) {
+		System.out.println(ERROR_FORMAT + e.getMessage());
 	}
 }

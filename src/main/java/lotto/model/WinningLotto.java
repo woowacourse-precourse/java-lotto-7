@@ -2,10 +2,9 @@ package lotto.model;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto {
+import lotto.model.constant.ErrorMessage;
 
-	private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 숫자가 아닙니다.";
-	private static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 숫자 범위가 아닙니다.";
+public class WinningLotto extends Lotto {
 
 	private int bonusNumber;
 
@@ -24,13 +23,13 @@ public class WinningLotto extends Lotto {
 		try {
 			return Integer.parseInt(str);
 		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(NUMBER_ERROR_MESSAGE);
+			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR_MESSAGE);
 		}
 	}
 
 	private int validateRange(int bonusNumber) {
 		if (bonusNumber < 1 || bonusNumber > 45) {
-			throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
+			throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
 		}
 
 		return bonusNumber;

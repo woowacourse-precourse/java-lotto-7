@@ -35,7 +35,7 @@ public class BuyingController {
 				number = lottos.calculateNumberOfLotto(inputView.readMoney());
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				outputView.printErrorMessage(e);
 			}
 		}
 		outputView.printBuyingNumber(number);

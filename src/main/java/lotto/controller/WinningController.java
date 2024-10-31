@@ -39,7 +39,7 @@ public class WinningController {
 
 				break;
 			} catch (IllegalArgumentException e) {
-				System.out.println(e.getMessage());
+				outputView.printErrorMessage(e);
 			}
 		}
 	}
