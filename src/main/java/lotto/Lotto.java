@@ -20,4 +20,20 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
+
+    public void search(List<Integer> intList, int bonus) {
+        int count = 0;
+
+        for (int i = 0; i < intList.size(); i++) {
+            if (numbers.contains(intList.get(i))) {
+                count++;
+            }
+        }
+
+        System.out.println("\ncount : " + count);
+
+        if (count >= 5 && numbers.contains(bonus)) {
+            // Enum - 5개 hit, 보너스볼 hit (+1)
+        }
+    }
 }
