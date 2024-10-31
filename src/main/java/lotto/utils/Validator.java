@@ -11,7 +11,7 @@ public class Validator {
 
     public static void priceValidator(String input) {
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NULL.toString());
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT_NULL.toString());
         }
 
         int price;
