@@ -21,6 +21,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
     private void validateDuplacate(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
