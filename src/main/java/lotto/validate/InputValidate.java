@@ -10,12 +10,15 @@ public class InputValidate {
     private static final Pattern pattern = Pattern.compile(REGEX);
 
     public static boolean run(String input) {
+        String errorMessage = null;
+
         try {
             if (!isNumeric(input)) {
                 throw new IllegalArgumentException(InputMessage.INVALID_INPUT_AMOUNT.getMessage());
             }
         } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
+            errorMessage = e.getMessage();
+            System.err.println(errorMessage);
             return false;
         }
 

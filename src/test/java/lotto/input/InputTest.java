@@ -36,7 +36,7 @@ public class InputTest {
 
     @Test
     @DisplayName("구입금액은 숫자 문자열이 아니라면 불가능하다.")
-    public void testValidateRequestNonNumberInput() {
+    public void testValidateRequestNotNumberInput() {
         // given
         String input = "test";
 
@@ -45,5 +45,23 @@ public class InputTest {
 
         // then
         assertFalse(result);
+    }
+
+    @Test
+    @DisplayName("검증 시, 숫자 문자열이라면 통과한다.")
+    public void testNumberInputValidate() {
+        assertTrue(InputValidate.run("0"));
+        assertTrue(InputValidate.run("123"));
+        assertTrue(InputValidate.run("10000"));
+        assertTrue(InputValidate.run("50000"));
+    }
+
+    @Test
+    @DisplayName("검증 시, 숫자 문자열이 아니라면 통과 못한다.")
+    public void testNotNumberInputValidate() {
+        assertFalse(InputValidate.run("abc"));
+        assertFalse(InputValidate.run("test123"));
+        assertFalse(InputValidate.run(""));
+        assertFalse(InputValidate.run(" "));
     }
 }
