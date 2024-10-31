@@ -4,17 +4,18 @@ import java.util.List;
 import lotto.controller.LottoController;
 import lotto.generator.SortedLottoNumberGenerator;
 import lotto.service.LottoService;
-import lotto.view.LottoInput;
-import lotto.view.LottoOutput;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class Application {
     public static void main(String[] args) {
-        int money = LottoInput.inputMoney();
-
+        int money = LottoInputView.getMoney();
         LottoController lottoController = new LottoController(new LottoService(new SortedLottoNumberGenerator()));
         List<Lotto> lottos = lottoController.purchase(money);
-        LottoOutput.printPurchaseLotto(lottos);
-
-
+        LottoOutputView.printPurchaseLotto(lottos);
+        List<Integer> winNumber = LottoInputView.getWinNumber();
+        System.out.println(winNumber);
+        int bonusNumber = LottoInputView.getBonusNumber(winNumber);
+        System.out.println(bonusNumber);
     }
 }
