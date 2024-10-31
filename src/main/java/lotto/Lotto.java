@@ -17,6 +17,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        for (Integer winningNumber : numbers) {
+            long count = numbers.stream().filter(number -> number.equals(winningNumber)).count();
+            if (count != 1) {
+                System.out.println("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     // TODO: 추가 기능 구현
