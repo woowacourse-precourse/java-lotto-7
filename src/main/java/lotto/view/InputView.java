@@ -17,6 +17,7 @@ public class InputView {
     private static final String EMPTY_INPUT = "빈 입력입니다.";
     private static final String INVALID_WINNING_NUMBER_COUNT = "당첨 번호 개수가 맞지 않습니다.";
     private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String DUPLICATE_LOTTO_NUMBER = "번호는 중복될 수 없습니다.";
     private static final int WINNING_NUMBER_COUNT = 6;
     private static final int MIN_LOTTO_RANGE = 1;
     private static final int MAX_LOTTO_RANGE = 45;
@@ -87,6 +88,9 @@ public class InputView {
         List<BigDecimal> winningNumber = Arrays.stream(numbers).map(number -> new BigDecimal(number)).toList();
         if (!Utils.areAllNumbersValidRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), winningNumber)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE + " : " + userInput);
+        }
+        if (!Utils.isDuplicateNumber(winningNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER + " : " + userInput);
         }
     }
 

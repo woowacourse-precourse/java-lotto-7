@@ -1,7 +1,10 @@
 package lotto.utils;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Utils {
 
@@ -44,6 +47,16 @@ public class Utils {
     public static boolean areAllNumbersValidRange (BigDecimal min, BigDecimal max, List<BigDecimal> numbers) {
         for (BigDecimal number : numbers) {
             if (!Utils.isInRange(min, max, number)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isDuplicateNumber (List<BigDecimal> numbers) {
+        Set<BigDecimal> uniqueNumbers = new HashSet<>();
+        for (BigDecimal number : numbers) {
+            if (!uniqueNumbers.add(number)) {
                 return false;
             }
         }
