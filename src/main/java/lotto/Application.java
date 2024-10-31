@@ -1,6 +1,7 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -13,7 +14,13 @@ public class Application {
         int purchaseAmountInt = validatePurchaseAmount(purchaseAmount);
 
         List<Integer> lotto = pickLottoNumber();
-        System.out.println(lotto);
+        lotto = sortAscendingInteger(lotto);
+
+    }
+
+    public static List<Integer> sortAscendingInteger(List<Integer> integerList) {
+        Collections.sort(integerList);
+        return integerList;
     }
 
     public static List<Integer> pickLottoNumber() {
