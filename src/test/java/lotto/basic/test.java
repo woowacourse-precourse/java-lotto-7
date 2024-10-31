@@ -1,5 +1,6 @@
 package lotto.basic;
 
+import lotto.domain.Money;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,13 +16,14 @@ public class test {
     void 금액_입력_테스트() {
         // given
         InputView inputView =  new InputView();
-        String expectInput = "12000";
+        Money expectInput = new Money("14000");
 
         // when
-        System.setIn(new ByteArrayInputStream(expectInput.getBytes()));
-        String actualInput = inputView.getMoney();
+        System.setIn(new ByteArrayInputStream(String.valueOf(expectInput.getMoney())
+                .getBytes()));
+        Money actualInput = inputView.getMoney();
 
         // then
-        assertThat(actualInput).isEqualTo(expectInput);
+        assertThat(actualInput.getMoney()).isEqualTo(expectInput.getMoney());
     }
 }
