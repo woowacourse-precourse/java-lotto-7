@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.constant.OutputMessage;
+import lotto.constant.Ranking;
+import lotto.domain.WinningLotto;
 
 import java.util.List;
 
@@ -25,4 +27,20 @@ public class Lotto {
                 String.join(OutputMessage.COMMA.getMessage(), numbers.stream().map(String::valueOf).toList()) +
                 SCREEN_END;
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public Ranking getRanking(WinningLotto winningLotto) {
+        int count = matchCount(winningLotto);
+        return Ranking.FIFTH;
+    }
+
+    private int matchCount(WinningLotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
+
 }

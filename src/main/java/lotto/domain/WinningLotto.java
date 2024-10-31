@@ -5,10 +5,14 @@ import lotto.Lotto;
 public class WinningLotto {
 
     private final Lotto lotto;
-    private final int bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto lotto, int bonusNumber) {
+    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    public boolean contains(int number) {
+        return lotto.contains(number);
     }
 }
