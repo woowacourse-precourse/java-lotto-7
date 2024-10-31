@@ -10,4 +10,8 @@ public class Customer {
         this.paidAmount = paidAmount;
         this.lottoTickets = lottoTickets;
     }
+
+    public List<LottoTicket> getLottoTickets() {
+        return lottoTickets;
+    }
 }

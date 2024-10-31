@@ -6,4 +6,8 @@ public class LottoTicket {
     public LottoTicket(Lotto lotto) {
         this.lotto = lotto;
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
 }

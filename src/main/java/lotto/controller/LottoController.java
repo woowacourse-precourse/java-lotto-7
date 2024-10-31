@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.service.LottoService;
 import lotto.model.Customer;
 import lotto.model.LottoTicket;
+import lotto.model.dto.LottoDto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -21,5 +23,8 @@ public class LottoController {
 
         List<LottoTicket> lottoTickets = lottoService.purchase(paidAmount);
         Customer customer = new Customer(paidAmount, lottoTickets);
+
+        List<LottoDto> lottoNumbersOfCustomer = lottoService.getLottoNumbersOfCustomer(customer);
+        OutputView.displayLottoNumbersOfCustomer(lottoNumbersOfCustomer);
     }
 }

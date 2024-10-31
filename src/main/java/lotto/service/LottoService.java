@@ -4,9 +4,11 @@ import static lotto.controller.ErrorMessages.INVALID_UNIT_OF_PAID_AMOUNT;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoNumberGenerator;
 import lotto.model.LottoTicket;
+import lotto.model.dto.LottoDto;
 
 public class LottoService {
 
@@ -27,5 +29,11 @@ public class LottoService {
         }
 
         return tickets;
+    }
+
+    public List<LottoDto> getLottoNumbersOfCustomer(Customer customer) {
+        List<Lotto> lottos = customer.getLottoTickets().stream()
+                .map(LottoTicket::getLotto).toList();
+        return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 }
