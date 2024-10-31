@@ -38,7 +38,7 @@ public class LottoService {
         return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
-    public WinningLotto registerWinningNumbers(List<Integer> winningNumbers) {
-        return new WinningLotto(winningNumbers);
+    public WinningLotto registerWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }

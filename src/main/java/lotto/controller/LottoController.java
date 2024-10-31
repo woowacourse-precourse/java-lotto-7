@@ -37,6 +37,12 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .toList();
 
-        WinningLotto winningLotto = lottoService.registerWinningNumbers(parsedWinningNumbers);
+        String rawBonusNumber = InputView.getBonusNumber();
+        InputValidator.validateWinningNumbers(rawBonusNumber);
+
+        WinningLotto winningLotto = lottoService.registerWinningNumbers(parsedWinningNumbers,
+                Integer.parseInt(rawBonusNumber));
+
+
     }
 }

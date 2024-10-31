@@ -23,4 +23,10 @@ public class InputValidator {
         }
     }
 
+    public static void validateBonusNumber(String input) {
+        if (!input.matches(REGEX_OF_POSITIVE_INTEGER)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_FORMAT);
+        }
+    }
+
 }
