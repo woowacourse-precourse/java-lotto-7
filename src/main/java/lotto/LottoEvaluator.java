@@ -1,5 +1,7 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class LottoEvaluator {
@@ -16,6 +18,14 @@ public class LottoEvaluator {
         purchasedLotteries.stream().map(this::determineRank).forEach(lottoResult::incrementRankCount);
 
         return lottoResult;
+    }
+
+    public BigDecimal calculateYield(LottoResult results, int purchaseAmount) {
+        BigDecimal totalWinnings = new BigDecimal(results.calculateTotalWinnings());
+
+        return totalWinnings.multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(purchaseAmount), 1, RoundingMode.HALF_UP).stripTrailingZeros();
+
     }
 
     private LottoRank determineRank(Lotto lotto) {

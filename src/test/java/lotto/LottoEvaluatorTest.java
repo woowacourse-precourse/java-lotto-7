@@ -2,11 +2,13 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoEvaluatorTest {
 
@@ -40,5 +42,24 @@ class LottoEvaluatorTest {
         assertThat(result.getRankCount(LottoRank.FOURTH)).isEqualTo(1);
         assertThat(result.getRankCount(LottoRank.FIFTH)).isEqualTo(1);
         assertThat(result.getRankCount(LottoRank.MISS)).isEqualTo(0);
+    }
+
+    @ParameterizedTest
+    @DisplayName("구매 금액과 당첨 결과를 사용하여 수익률을 둘째 자리에서 반올림하여 계산한다")
+    @CsvSource({"FIFTH, 8000, 62.5",
+            "FIRST, 1000, 200000000",
+            "MISS, 8000, 0",
+            "FOURTH, 50000, 100",
+            "SECOND, 5000, 600000"})
+    void 수익률을_계산한다(LottoRank rank, int purchaseAmount, BigDecimal expectedYield) {
+        // given
+        LottoResult results = new LottoResult();
+        results.incrementRankCount(rank);
+
+        // when
+        BigDecimal yield = evaluator.calculateYield(results, purchaseAmount);
+
+        // then
+        assertThat(yield.compareTo(expectedYield)).isEqualTo(0);
     }
 }
