@@ -39,6 +39,7 @@ public class OutputHandler {
         }
     }
 
+    // 설계 다시
     public void printWinningAmounts(PrizeAmount pr) {
         DecimalFormat formatter = new DecimalFormat();
         StringBuilder sb = new StringBuilder();

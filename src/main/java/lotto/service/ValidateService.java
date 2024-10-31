@@ -26,9 +26,7 @@ public class ValidateService {
     }
 
     public boolean validateMoney (int money) {
-        String strMoney = Integer.toString(money);
-        int N = strMoney.length() - 1;
-        if (!strMoney.substring(N - 2, N).equals("000")) {
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_INPUT_1000.getMessage());
         }
         return true;

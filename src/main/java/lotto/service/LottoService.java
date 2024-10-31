@@ -40,8 +40,7 @@ public class LottoService {
     // 당첨 횟수 갱신
     public PrizeAmount countPrize(Set<PrizeAmount> prizeAmounts, int count, boolean isBonus) {
         PrizeAmount prizeA = cntPrizeAmount(count, isBonus);
-        if (prizeAmounts.contains(prizeA)) {
-            prizeAmounts.remove(prizeA);
+        if (prizeA != null && prizeAmounts.contains(prizeA)) {
             prizeA.setCount(prizeA.getCount() + 1);
         }
         return prizeA;

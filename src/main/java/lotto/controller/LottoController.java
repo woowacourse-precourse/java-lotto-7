@@ -32,6 +32,7 @@ public class LottoController {
     public void run() {
         // 1. 돈 입력 받고 유효하면 몇개 구매 했는지 출력, 발행 번호도 출력
         int money = inputMoneyHandler();
+        outputHandler.printOK(money / 1000);
         outputHandler.printLottoS(lottoService.lottoIssuance(money));
 
         String[] result = inputHandle();
