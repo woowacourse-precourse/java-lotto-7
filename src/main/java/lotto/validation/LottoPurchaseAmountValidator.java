@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import lotto.view.constant.ErrorConstant;
+import lotto.view.constant.ValidatorConstant;
 
 public class LottoPurchaseAmountValidator {
     public void validateLottoPurchaseAmount(String inputLottoPurchaseAmount) {
@@ -19,7 +20,7 @@ public class LottoPurchaseAmountValidator {
     }
 
     private boolean isNumber(String s) {
-        return s.matches("^[0-9]+$");
+        return ValidatorConstant.NUMBER_PATTERN.matcher(s).matches();
     }
 
     private boolean isPositive(String s) {

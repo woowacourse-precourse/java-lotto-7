@@ -1,11 +1,10 @@
 package lotto.validation;
 
 import lotto.view.constant.ErrorConstant;
+import lotto.view.constant.ValidatorConstant;
 
 public class WinningNumbersValidator {
     private static final String DELIMITER = ",";
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
     private static final int NUMBER_OF_WINNING_NUMBERS = 6;
 
     public void validateWinningNumbers(String winningNumbers) {
@@ -27,9 +26,8 @@ public class WinningNumbersValidator {
         s = eraseBlank(s);
         String[] numbers = s.split(DELIMITER);
         for (String number : numbers) {
-            if (!number.matches("^[0-9]+$")) {
+            if (!ValidatorConstant.NUMBER_PATTERN.matcher(number).matches())
                 return false;
-            }
         }
         return true;
     }
@@ -37,7 +35,8 @@ public class WinningNumbersValidator {
     private boolean isWithinValidRange(String s) {
         String[] numbers = s.split(DELIMITER);
         for (String number : numbers) {
-            if (Integer.parseInt(number) < MIN_NUMBER || Integer.parseInt(number) > MAX_NUMBER)
+            if (Integer.parseInt(number) < ValidatorConstant.MIN_NUMBER
+                    || Integer.parseInt(number) > ValidatorConstant.MAX_NUMBER)
                 return false;
         }
         return true;
