@@ -14,12 +14,12 @@ public enum LottoRank {
 
     private final long matchCount;
     private final boolean isBonusNumber;
-    private final long money;
+    private final long prizeMoney;
 
-    LottoRank(long matchCount, boolean isBonusNumber, long money) {
+    LottoRank(long matchCount, boolean isBonusNumber, long prizeMoney) {
         this.matchCount = matchCount;
         this.isBonusNumber = isBonusNumber;
-        this.money = money;
+        this.prizeMoney = prizeMoney;
     }
 
     public static LottoRank valueOf(long matchCount, boolean isBonusNumber) {
@@ -27,6 +27,10 @@ public enum LottoRank {
                 .filter(rank -> rank.matches(matchCount, isBonusNumber))
                 .findFirst()
                 .orElse(NO_RANK);
+    }
+
+    public long getPrizeMoney() {
+        return prizeMoney;
     }
 
     private boolean matches(long matchCount, boolean isBonusNumber) {
