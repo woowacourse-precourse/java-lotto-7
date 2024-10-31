@@ -6,13 +6,13 @@ public final class PurchaseAmountValidation {
     public static int purchaseAmountValidation(String purchaseAmountStr) throws IllegalArgumentException {
         InputValidation.isNotBlank(purchaseAmountStr);
         int purchaseAmount = InputValidation.numberValidation(purchaseAmountStr);
-        invalidPurchaseAmountValidation(purchaseAmount);
-        return purchaseAmount;
+        return validatePurchaseAmountAndGetLottoCount(purchaseAmount);
     }
 
-    public static void invalidPurchaseAmountValidation(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new InvalidPurchaseAmountException();
+    public static int validatePurchaseAmountAndGetLottoCount(int purchaseAmount) {
+        if (purchaseAmount % 1000 == 0) {
+            return purchaseAmount / 1000;
         }
+        throw new InvalidPurchaseAmountException();
     }
 }
