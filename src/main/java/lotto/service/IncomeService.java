@@ -1,7 +1,15 @@
 package lotto.service;
 
+import java.util.Set;
+import lotto.enums.PrizeAmount;
+
 public class IncomeService {
-    // 투입한 돈이랑
-    // 당첨 내역만 알면 가능
-    // 쌉가능
+
+    public Double rateOfReturn(int money, Set<PrizeAmount> prizeAmounts) {
+        int winningsSum = 0;
+        for (PrizeAmount p: prizeAmounts) {
+            winningsSum += p.getAmount();
+        }
+        return ((double)winningsSum / money) * 100;
+    }
 }

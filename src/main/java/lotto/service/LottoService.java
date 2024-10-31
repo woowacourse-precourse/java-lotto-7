@@ -16,13 +16,11 @@ public class LottoService {
     // 로또 발행
     public List<Lotto> lottoIssuance (int M) {
         List<Lotto> newLotto = new ArrayList<>();
-        if (validateService.validateMoney(M)) {
-            for (int i = 0; i < M / 1000; i++) {
-                List<Integer> pickNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-                pickNum.sort(Comparator.naturalOrder());
-                Lotto lotto = new Lotto(pickNum);
-                newLotto.add(lotto);
-            }
+        for (int i = 0; i < M / 1000; i++) {
+            List<Integer> pickNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            pickNum.sort(Comparator.naturalOrder());
+            Lotto lotto = new Lotto(pickNum);
+            newLotto.add(lotto);
         }
         return newLotto;
     }

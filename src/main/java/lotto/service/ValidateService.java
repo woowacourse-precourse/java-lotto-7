@@ -34,6 +34,11 @@ public class ValidateService {
         return true;
     }
 
-
+    public boolean validateBonus (int bonusNum) {
+        if (bonusNum < 1 || bonusNum > 45) {
+            return false;
+        }
+        return true;
+    }
 
 }

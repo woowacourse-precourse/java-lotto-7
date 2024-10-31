@@ -54,6 +54,8 @@ public class OutputHandler {
     }
 
     public void printRateOfReturn(Double rate) {
-
+        StringBuilder sb = new StringBuilder();
+        String str = String.format("%.1f", rate);
+        sb.append("총 수익률은 ").append(str).append("%입니다.");
     }
 }
