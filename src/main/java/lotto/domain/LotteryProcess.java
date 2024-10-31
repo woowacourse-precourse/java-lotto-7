@@ -9,7 +9,7 @@ public class LotteryProcess {
     private final int bonusBallNumber;
     private final List<List<Integer>> tickets;
 
-    private final int RANKINGS_NUMBER = 5;
+    private static final int RANKINGS_NUMBER = 5;
     private final List<Integer> rankingCount = new ArrayList<>(Collections.nCopies(RANKINGS_NUMBER, 0));
 
 

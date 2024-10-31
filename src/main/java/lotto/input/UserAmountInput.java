@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class UserAmountInput {
     private int amount;
-    private final int TICKET_PRICE = 1000;
+    private static final int TICKET_PRICE = 1000;
 
     public int validation() {
         while (true) {
