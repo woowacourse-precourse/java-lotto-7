@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.exception.constants.ErrorMessage.WINNING_NUMBER_DUPLICATE;
 
+import lotto.exception.LottoException;
+
 public class WinningLotto {
 
     private final Lotto winningLotto;
@@ -26,7 +28,7 @@ public class WinningLotto {
 
     private void validateBonusNumber(final Lotto winningLotto, final LottoNumber bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE.getMessage());
+            throw new LottoException(WINNING_NUMBER_DUPLICATE.getMessage());
         }
     }
 

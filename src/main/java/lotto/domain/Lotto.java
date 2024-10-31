@@ -5,6 +5,7 @@ import static lotto.exception.constants.ErrorMessage.LOTTO_NUMBER_DUPLICATE;
 import static lotto.exception.constants.ErrorMessage.LOTTO_NUMBER_SIZE_NOT_MATCH;
 
 import java.util.List;
+import lotto.exception.LottoException;
 
 public class Lotto {
 
@@ -19,13 +20,13 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE.getValue()) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_NOT_MATCH.getMessage());
+            throw new LottoException(LOTTO_NUMBER_SIZE_NOT_MATCH.getMessage());
         }
     }
 
     private void validateDuplicatedNumber(final List<Integer> numbers) {
         if (isDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE.getMessage());
+            throw new LottoException(LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
 
