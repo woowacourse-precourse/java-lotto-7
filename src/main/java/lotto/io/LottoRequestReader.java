@@ -10,7 +10,7 @@ public class LottoRequestReader {
 
     public int getPurchaseMoney() {
         System.out.println(InputType.PURCHASE_MONEY.getMessage());
-        int purchaseMoney = getPositiveIntInput();
+        int purchaseMoney = getIntInput();
 
         System.out.println();
         return purchaseMoney;
@@ -31,33 +31,27 @@ public class LottoRequestReader {
             int number;
             try {
                 number = Integer.parseInt(s);
-                lottoNumbers.add(number);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
             }
-            if (number < 0) {
-                throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
-            }
+            lottoNumbers.add(number);
         }
         return lottoNumbers;
     }
 
-    private int getPositiveIntInput() {
+    private int getIntInput() {
         int num;
         try {
             num = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
-        if (num < 0) {
-            throw new IllegalArgumentException("[ERROR] 음수를 입력할 수 없습니다.");
-        }
         return num;
     }
 
     public int getBonusNumber() {
         System.out.println(InputType.BONUS_NUMBER.getMessage());
-        int bonusNumber = getPositiveIntInput();
+        int bonusNumber = getIntInput();
 
         System.out.println();
         return bonusNumber;
