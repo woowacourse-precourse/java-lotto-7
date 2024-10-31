@@ -2,6 +2,7 @@ package lotto;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class LottoGame {
 
         List<Integer> winnerNumbers = inputWinnerNumbers();
         int bonusNumber = inputBonusNumber(winnerNumbers);
+
+        List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -56,5 +59,16 @@ public class LottoGame {
         String rawBonusNumber = Console.readLine();
 
         return Integer.parseInt(rawBonusNumber);
+    }
+
+    private List<LottoRank> checkLottosRank(List<Lotto> lottos, List<Integer> winnerNumbers, int bonus) {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            LottoRank lottoRank = lotto.checkRank(winnerNumbers, bonus);
+            lottoRanks.add(lottoRank);
+        }
+
+        return lottoRanks;
     }
 }
