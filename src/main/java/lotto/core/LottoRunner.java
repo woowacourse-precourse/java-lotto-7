@@ -22,7 +22,7 @@ public class LottoRunner {
     }
 
     private void displayWinningStatistics() {
-        System.out.println("당첨 통계\n---");
+        StringBuilder result = this.buildResultIntro();
 
         List<LottoMatchResult> matchResults = this.getLottoMatchResults();
         long prize = 0L;
@@ -30,21 +30,30 @@ public class LottoRunner {
         for (WinningStatistics stats : WinningStatistics.values()) {
             long matches = this.countWinningLottoByRank(matchResults, stats);
             prize += stats.getWinningPrize(matches);
-            this.showStatsByRank(stats, matches);
+            result.append(this.getStatsByRank(stats, matches));
         }
-        this.showRateOfReturn(prize);
+        result.append(this.getRateOfReturn(prize));
+
+        System.out.println(result);
     }
 
-    private void showRateOfReturn(long prize) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", (double) prize / payment * 100);
+    private StringBuilder buildResultIntro() {
+        return new StringBuilder("당첨 통계")
+            .append(System.lineSeparator())
+            .append("---")
+            .append(System.lineSeparator());
     }
 
-    private void showStatsByRank(WinningStatistics stats, long matches) {
+    private String getRateOfReturn(long prize) {
+        return String.format("총 수익률은 %.1f%%입니다.", (double) prize / payment * 100);
+    }
+
+    private String getStatsByRank(WinningStatistics stats, long matches) {
         String format = "%d개 일치 (%,d원) - %d개%n";
         if (stats.getMatchBonus()) {
             format = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
         }
-        System.out.printf(format, stats.getMatchCount(), stats.getWinnings(), matches);
+        return String.format(format, stats.getMatchCount(), stats.getWinnings(), matches);
     }
 
     /**
