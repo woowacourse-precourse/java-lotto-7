@@ -1,6 +1,9 @@
 package lotto.domain.view;
 
-import lotto.domain.model.Lotto;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoRank;
+import lotto.domain.model.lotto.LottoSummary;
+import lotto.domain.model.user.User;
 
 import java.util.List;
 
@@ -14,5 +17,16 @@ public class OutputView {
         lottos.stream()
                 .map(Lotto::print)
                 .forEach(System.out::println);
+    }
+
+    public void printLottoSummary(LottoSummary summary) {
+        for (LottoRank eachRank : LottoRank.getWinningRanks()) {
+            Long winningCount = summary.getWinningCount(eachRank, 0L);
+            System.out.printf(VIEW_PRINT_FORMAT, eachRank.getPrintFormat(), winningCount);
+        }
+    }
+
+    public void printUserProfitRate(User user) {
+        System.out.printf(VIEW_PROFIT_PRINT_FORMAT, user.getProfitRate());
     }
 }
