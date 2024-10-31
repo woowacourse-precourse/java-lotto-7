@@ -5,6 +5,7 @@ import static lotto.exception.WinningNumbersExceptionMessage.BONUS_NUMBER_OUT_OF
 import static lotto.exception.WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.configuration.LottoConfiguration;
 import lotto.exception.LottoValidationException;
 
@@ -19,7 +20,7 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
-        if (mainNumbers == null || mainNumbers.isEmpty() || mainNumbers.contains(null)) {
+        if (mainNumbers == null || mainNumbers.isEmpty() || mainNumbers.stream().anyMatch(Objects::isNull)) {
             throw new LottoValidationException(NULL_OR_EMPTY_NUMBERS);
         }
         if (!(LottoConfiguration.LOTTO_MIN_NUMBER.getValue() <= bonusNumber
