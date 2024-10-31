@@ -134,6 +134,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스번호_당첨번호_중복된_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,8,4", "8");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
