@@ -14,6 +14,9 @@ public class Buy {
         this.money = money;
     }
 
+    public void calculateLottoCounts() {
+        this.lottoCounts = money / THOUSAND;
+    }
     public int getMoney() {
         return money;
     }
