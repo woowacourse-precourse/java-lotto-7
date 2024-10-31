@@ -3,36 +3,49 @@ package lotto;
 import static lotto.StringPool.INVALID_WINNING_NUMBERS_INPUT;
 import static lotto.StringPool.MONEY_NOT_DIVIDED_BY_1000;
 import static lotto.StringPool.PRINT_SOLD_LOTTO_COUNT;
+import static lotto.StringPool.PRIZE_MATCH_RESULT_TEMPLATE;
+import static lotto.StringPool.RATE_OF_RETURN;
+import static lotto.StringPool.SEPARATION_LINE;
+import static lotto.StringPool.WINNING_STATISTICS;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class LottoSystem {
     private static LottoCustomer customer = new LottoCustomer();
-    private ArrayList<LottoRank> rankPerCount = new ArrayList<>(Arrays.asList(LottoRank.values()));
+    private HashMap<Integer, LottoRank> ranks = new HashMap<>();
     private List<Integer> winningNumbers;
     private int bonusNumber;
-    private int printLottoCount;
+    private int issuedLottoCount;
 
+    public LottoSystem() {
+        int i = 3;
+        for (LottoRank rank : LottoRank.values()) {
+            ranks.put(i, rank);
+            ++i;
+        }
+    }
 
     public List<Lotto> buyLotto(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException(MONEY_NOT_DIVIDED_BY_1000);
         }
-        printLottoCount = money / 1000;
+        issuedLottoCount = money / 1000;
         customer.addBetMoney(money);
         ArrayList<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < printLottoCount; ++i) {
+        for (int i = 0; i < issuedLottoCount; ++i) {
             lottos.add(createAutoLotto());
         }
         return lottos;
     }
 
     public void printSoldLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size() + PRINT_SOLD_LOTTO_COUNT);
+        System.out.printf((PRINT_SOLD_LOTTO_COUNT) + "%n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
@@ -60,17 +73,36 @@ public class LottoSystem {
         for (List<Integer> lottoPaper : eachLottos) {
             int count = (int) lottoPaper.stream().filter(this.winningNumbers::contains).count();
             if (count == 5 && !hasBonusNumber(lottoPaper)) {
-                --count;
+                count = 7;
             }
-            LottoRank rank = rankPerCount.get(count);
-            rank.addCount();
+            if (count >= 3) {
+                LottoRank rank = ranks.get(count);
+                rank.addWinningCount();
+            }
         }
+    }
+
+    public void printWinningStatistics() {
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        System.out.println(WINNING_STATISTICS);
+        System.out.println(SEPARATION_LINE);
+        for (LottoRank rank : LottoRank.values()) {
+            System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", rank.getMatchCount(), formatter.format(rank.getPrize()), rank.getWinningCount());
+        }
+        System.out.printf(RATE_OF_RETURN, calculateReturnRate());
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
+    private double calculateReturnRate() {
+        int totalReturn = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            totalReturn += rank.getWinningCount() * rank.getPrize();
+        }
+        return Math.round(10 * (double) totalReturn / (issuedLottoCount * 1000) * 100);
+    }
     private boolean hasBonusNumber(List<Integer> lottoNumbers) {
         return lottoNumbers.contains(this.bonusNumber);
     }
