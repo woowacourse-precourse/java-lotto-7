@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.domain.User;
-import lotto.domain.UserRepository;
+import lotto.domain.user.User;
+import lotto.domain.user.UserRepository;
 import lotto.util.ProgramExit;
 import lotto.view.ErrorOutputView;
 import lotto.view.InputView;

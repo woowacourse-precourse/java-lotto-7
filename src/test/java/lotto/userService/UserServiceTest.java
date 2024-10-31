@@ -2,8 +2,8 @@ package lotto.userService;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
-import lotto.domain.User;
-import lotto.domain.UserRepository;
+import lotto.domain.user.User;
+import lotto.domain.user.UserRepository;
 import lotto.service.UserService;
 import lotto.util.UserIdGenerator;
 import org.junit.jupiter.api.BeforeEach;
