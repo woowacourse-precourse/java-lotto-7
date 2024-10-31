@@ -10,7 +10,7 @@ public class Application {
         Lottos lottos = new Lottos();
         LottoView view = new LottoView();
         LottoController lottoController = new LottoController(lottos, view);
-        BigDecimal lottoPrice = lottoController.startLotto();
-        lottoController.winningNumber(lottoPrice);
+        lottoController.startLotto();
+        lottoController.winningNumber();
     }
 }

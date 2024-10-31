@@ -1,43 +1,40 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.LottoValue;
 import lotto.model.Lottos;
 import lotto.view.LottoView;
 
 public class LottoController {
     private final Lottos lottos;
     private final LottoView view;
+    private final LottoValue lottoValue;
 
     public LottoController(Lottos lottos, LottoView view) {
         this.lottos = lottos;
         this.view = view;
+        this.lottoValue = createLottoValue();
     }
 
-    public BigDecimal startLotto() {
-        BigDecimal lottoPrice = view.inputLottoPrice();
-        int lottoCount = lottoCount(lottoPrice);
-        view.printLottoCount(lottoCount);
-        allocateLottoNumbers(lottoCount);
+    public void startLotto() {
+        view.printLottoCount(lottoValue.lottoCount());
+        allocateLottoNumbers(lottoValue.lottoCount());
         view.printLottoNumbers(lottos.toStringAllLottoNumber());
-        return lottoPrice;
     }
 
-    public void winningNumber(BigDecimal lottoPrice) {
+    public void winningNumber() {
         List<Integer> winningNumber = inputWinningNumber();
         int bonusNumber = inputBonusNumber();
         confirmWinning(winningNumber, bonusNumber);
         traceWinning(lottos.toStringWinningMessageAndCount());
-        view.printWinningRate(getWinningRate(lottoPrice));
+        view.printWinningRate(getWinningRate(lottoValue.lottoPrice()));
     }
 
-
-    private int lottoCount(BigDecimal price) {
-        return price.divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP)
-                .intValue();
+    private LottoValue createLottoValue() {
+        BigDecimal lottoPrice = view.inputLottoPrice();
+        return new LottoValue(lottoPrice);
     }
 
     private void allocateLottoNumbers(int lottoCount) {
