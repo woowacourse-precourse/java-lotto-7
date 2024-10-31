@@ -14,7 +14,11 @@ public class MyLotto {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public List<List<Integer>> getMyLotto() {
+    public List<Lotto> getMyLotto() {
+        return myLotto;
+    }
+
+    public List<List<Integer>> getMyLottoForPrint() {
         return myLotto.stream()
                 .map(Lotto::getNumbers)
                 .collect(Collectors.toList());
