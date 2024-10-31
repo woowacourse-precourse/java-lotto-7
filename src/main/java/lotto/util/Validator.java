@@ -2,6 +2,12 @@ package lotto.util;
 
 import java.util.List;
 
+import static lotto.common.ExceptionMessage.MONEY_CANNOT_DIVIDE_BY_LOTTO_PRICE;
+import static lotto.common.ExceptionMessage.MONEY_INVALID_RANGE;
+import static lotto.common.ExceptionMessage.NOT_ENOUGH_NUMBERS;
+import static lotto.common.ExceptionMessage.NUMBER_DUPLICATED;
+import static lotto.common.ExceptionMessage.NUMBER_INVALID_RANGE;
+
 public class Validator {
     private static final int NUMBERS_SIZE = 6;
     private static final int MAX_NUMBER = 45;
@@ -11,7 +17,7 @@ public class Validator {
     public static boolean validateNumbers(List<Integer> numbers, Integer bonusNumber) {
         checkNumberSize(numbers);
         checkNumberDuplicates(numbers, bonusNumber);
-        for(Integer number : numbers) {
+        for (Integer number : numbers) {
             checkNumberRange(number);
         }
         checkNumberRange(bonusNumber);
@@ -28,34 +34,40 @@ public class Validator {
 
     private static void checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
-            throw new IllegalArgumentException("Number must be 6 numbers");
+            NOT_ENOUGH_NUMBERS.printException();
+            throw new IllegalArgumentException();
         }
     }
 
     private static void checkNumberDuplicates(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("Number must be distinct numbers");
+            NUMBER_DUPLICATED.printException();
+            throw new IllegalArgumentException();
         }
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("Bonus number is already in the list");
+            NUMBER_DUPLICATED.printException();
+            throw new IllegalArgumentException();
         }
     }
 
-    private static void checkNumberRange(Integer number){
+    private static void checkNumberRange(Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("Number must be between " + MIN_NUMBER + " and " + MAX_NUMBER);
+            NUMBER_INVALID_RANGE.printException();
+            throw new IllegalArgumentException();
         }
     }
 
-    private static void checkMoneyRange(Integer money){
+    private static void checkMoneyRange(Integer money) {
         if (money < 0) {
-            throw new IllegalArgumentException("Money must be greater than zero");
+            MONEY_INVALID_RANGE.printException();
+            throw new IllegalArgumentException();
         }
     }
 
-    private static void checkMoneyIsDividedByLottoPrice(Integer money){
+    private static void checkMoneyIsDividedByLottoPrice(Integer money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("Money must be a multiple of " + LOTTO_PRICE);
+            MONEY_CANNOT_DIVIDE_BY_LOTTO_PRICE.printException();
+            throw new IllegalArgumentException();
         }
     }
 }

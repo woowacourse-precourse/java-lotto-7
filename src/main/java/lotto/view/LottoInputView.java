@@ -13,7 +13,7 @@ public class LottoInputView {
     private static final String INPUT_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public Integer getMoneyInput(){
+    public Integer getMoneyInput() {
         Integer moneyInput = 0;
 
         try {
@@ -27,9 +27,9 @@ public class LottoInputView {
         return moneyInput;
     }
 
-    public List<Integer> getNumbersInput(){
+    public List<Integer> getNumbersInput() {
         List<Integer> numbersInput = new ArrayList<>();
-        try{
+        try {
             System.out.println(INPUT_NUMBERS_MESSAGE);
             String temp = Console.readLine();
             Arrays.stream(temp.split(",")).map(Integer::parseInt).forEach(numbersInput::add);
@@ -41,9 +41,9 @@ public class LottoInputView {
         return numbersInput;
     }
 
-    public Integer getBonusNumberInput(){
+    public Integer getBonusNumberInput() {
         Integer bonusNumberInput = 0;
-        try{
+        try {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             bonusNumberInput = Integer.parseInt(Console.readLine());
         } catch (NoSuchElementException e) {

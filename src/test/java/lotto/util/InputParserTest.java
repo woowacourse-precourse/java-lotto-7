@@ -25,7 +25,7 @@ class InputParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6","1, 2, 3, 4, 5, 6"})
+    @ValueSource(strings = {"1,2,3,4,5,6", "1, 2, 3, 4, 5, 6"})
     void 당첨번호_파싱_테스트(String numbers) {
         assertThat(InputParser.parseNumbers(numbers)).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }

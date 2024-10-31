@@ -23,8 +23,8 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,4,5,6", "1,1,2,3,4,5,6", "1,2,3,4,5,6,6", "1,2,3,4,5,6","1,2,3,4,5,6,0"
-            ,"1,2,3,4,5,46,6"})
+    @ValueSource(strings = {"0,1,2,3,4,5,6", "1,1,2,3,4,5,6", "1,2,3,4,5,6,6", "1,2,3,4,5,6", "1,2,3,4,5,6,0"
+            , "1,2,3,4,5,46,6"})
     void 숫자_예외_테스트(String input) {
         List<Integer> numbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
 
@@ -40,7 +40,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1000,1100})
+    @ValueSource(ints = {-1000, 1100})
     void 금액_예외_테스트(Integer input) {
         assertThatThrownBy(() ->
                 Validator.validateMoney(input)
