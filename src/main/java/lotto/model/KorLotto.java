@@ -1,11 +1,11 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
-public class Lotto {
+public class KorLotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public KorLotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
