@@ -24,8 +24,8 @@ public class Lotto {
 
     public int sameNumCount(List<Integer> winNumbers) {
         int count = 0;
-        for (Integer number : winNumbers) {
-            if (this.numbers.contains(number)) {
+        for (Integer number : this.numbers) {
+            if (winNumbers.contains(number)) {
                 count += 1;
             }
         }

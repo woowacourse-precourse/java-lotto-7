@@ -151,7 +151,9 @@ public class InputView {
     private int winNumTypeValidate(String[] winNumInput) {
 
         try {
-            Integer.parseInt(String.join("", winNumInput));
+            for (String winNum : winNumInput) {
+                Integer.parseInt(winNum);
+            }
         } catch (NumberFormatException e) {
             System.out.println(Exception.INVALID_NUMBER_TYPE.getErrorMessage());
             return 0;

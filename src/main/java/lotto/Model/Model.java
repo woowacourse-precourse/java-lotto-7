@@ -21,9 +21,17 @@ public class Model {
 
     public void countPrizeNum() {
         for (Lotto lotto : numbers) {
-            LottoPrize prize = LottoPrize.getRank(lotto.sameNumCount(winNumbers), lotto.checkBonus(bonusNumber));
-            prizeNum.set(prize.getRank(), prizeNum.get(prize.getRank()+1));
+            int rank = LottoPrize.getRank(lotto.sameNumCount(winNumbers), lotto.checkBonus(bonusNumber));
+            prizeNum.set(rank, prizeNum.get(rank)+1);
         }
+    }
+
+    public int sumPrizeMoney() {
+        return  5000*prizeNum.get(5)+
+                50000*prizeNum.get(4)+
+                1500000*prizeNum.get(3)+
+                30000000*prizeNum.get(2)+
+                2000000000*prizeNum.get(1);
     }
 
     public void setWinNumbers(List<Integer> winNumbers) {
@@ -36,5 +44,9 @@ public class Model {
 
     public List<Lotto> getNumbers() {
         return numbers;
+    }
+
+    public List<Integer> getPrizeNum() {
+        return prizeNum;
     }
 }

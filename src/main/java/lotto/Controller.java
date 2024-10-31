@@ -22,6 +22,7 @@ public class Controller {
         model.setWinNumbers(input.getWinNumber());
         model.setBonusNumber(input.getBonusNum());
         model.countPrizeNum();
+        output.printPrize(model.getPrizeNum(), tryCount, model.sumPrizeMoney());
     }
 
 }
