@@ -1,16 +1,15 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.io.ByteArrayInputStream;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     
@@ -28,48 +27,54 @@ class LottoTest {
     }
     
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-    // ------------------ inputMoney 관련 테스트 시작 --------------------
+    
+    @DisplayName("로또 번호가 1미만, 45초과 일 경우 예외가 발생한다.")
     @Test
-    @DisplayName("입력한 금액이 1000원 단위가 아니면 예외가 발생한다")
-    void 입력한_금액이_1000원_단위가_아니면_예외가_발생한다() {
-        // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    void 로또_번호가_1미만_45초과일_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
         
-        Console.close(); // 기존 Scanner 초기화
-        System.setIn(new ByteArrayInputStream("100001\n".getBytes()));
-        
-        // when & then
-        assertThatThrownBy(() -> lotto.playLotto())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1000원 단위로 입력하세요.");
+        assertThatThrownBy(() -> new Lotto(List.of(46, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호의 size가 6이 아닐 경우 예외가 발생한다.")
+    @Test
+    void 로또_번호의_size가_6이_아닐_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
     
-    @ParameterizedTest // 여러 입력값으로 테스트를 반복 실행
-    @DisplayName("입력값이 숫자가 아닌 경우 예외가 발생한다")
-    @ValueSource(strings = {"abc", "1,000", "1000원"}) // 테스트할 입력값들
-    void 입력값이_숫자가_아닌_경우_예외가_발생한다(String input) { // input 파라미터로 각 테스트 케이스 값이 전달됨
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    
+    @Test
+    @DisplayName("로또의 번호들이 배열형식으로 출력이 되는지 확인하는 테스트")
+    void 로또_번호들_배열형식으로_출력이_되는지_확인() {
         
-        Console.close(); // 기존 Scanner 초기화
-        System.setIn(new ByteArrayInputStream((input + "\n").getBytes()));
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
         
-        assertThatThrownBy(() -> lotto.playLotto())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력한 값은 숫자로 변환할 수 없습니다.");
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Lotto lotto = new Lotto(numbers);
+        lotto.printLottoNumbers();
+        
+        // then
+        String output = outputStream.toString().trim(); // 출력된 결과를 문자열로 가져옴
+        
+        assertAll(
+                // 대괄호로 시작하고 끝나는지 확인
+                () -> assertTrue(output.startsWith("["), "출력은 '['로 시작해야 합니다"),
+                () -> assertTrue(output.endsWith("]"), "출력은 ']'로 끝나야 합니다"),
+                
+                // 숫자들이 포함되어 있는지 확인
+                () -> numbers.forEach(number ->
+                        assertTrue(output.contains(String.valueOf(number)),
+                                String.format("출력에 숫자 %d가 포함되어야 합니다", number))
+                )
+        );
+        
+        // 원래 System.out으로 복구
+        System.setOut(System.out);
     }
     
-    @ParameterizedTest // 여러 입력값으로 테스트를 반복 실행
-    @DisplayName("입력값이 비어있거나 null인 경우 예외가 발생한다")
-    @NullAndEmptySource // 이 테스트는 두 번 실행됩니다: null || ""
-    void 입력값이_비어있거나_null인경우_예외가_발생한다(String input) { // input 파라미터로 각 테스트 케이스 값이 전달됨
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        
-        Console.close();
-        System.setIn(new ByteArrayInputStream("\n".getBytes()));  // 엔터키만 입력
-        
-        assertThatThrownBy(() -> lotto.playLotto())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력한 값이 없습니다.");
-    }
-    // ------------------ inputMoney 관련 테스트 끝 --------------------
 }

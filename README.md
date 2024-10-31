@@ -10,7 +10,7 @@
     - 입력값이 null 또는 공백인지 검증
     - 1,000원 단위인지 검증
     - 입력값이 정수로 변환 가능한지 검증
-- [ ] 구매 수량에 맞는 로또 발행
+- [x] 구매 수량에 맞는 로또 발행
     - 1~45 사이의 중복되지 않는 6개 숫자 생성
     - 생성된 번호를 오름차순으로 정렬
     - 발행된 로또 목록 출력
@@ -37,7 +37,7 @@
 - [x] 구매 금액 관련 예외 처리
     - 1,000원으로 나누어떨어지지 않는 경우 IllegalArgumentException 발생
     - 정수가 아닌 경우 IllegalArgumentException 발생
-- [ ] 로또 번호 관련 예외 처리
+- [x] 로또 번호 관련 예외 처리
     - 번호가 1~45 범위를 벗어난 경우 IllegalArgumentException 발생
     - 중복된 번호가 있는 경우 IllegalArgumentException 발생
     - 숫자가 6개가 아닌 경우 IllegalArgumentException 발생
