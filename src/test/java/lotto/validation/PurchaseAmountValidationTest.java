@@ -14,8 +14,8 @@ class PurchaseAmountValidationTest {
     @DisplayName("성공하는 구입 금액 입력 확인하기")
     public void 구입_금액_성공_테스트(String purchaseAmount) {
         int expectedAmount = Integer.parseInt(purchaseAmount) / 1000;
-        assertThat(PurchaseAmountValidation.purchaseAmountValidationAndGetLottoQuantity(purchaseAmount)).isEqualTo(
-                expectedAmount);
+        assertThat(PurchaseAmountValidation.purchaseAmountValidationAndGetLottoQuantity(purchaseAmount))
+                .isEqualTo(expectedAmount);
     }
 
     @ParameterizedTest
