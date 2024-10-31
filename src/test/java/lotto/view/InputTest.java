@@ -41,6 +41,35 @@ public class InputTest {
     assertEquals(expectRequest, actualRequest);
   }
 
+  @DisplayName("당첨 번호를 입력받는다")
+  @Test
+  void readWinningTest() {
+    // given
+    String winningNumbers = "1,2,3,4,5,6";
+    System.setIn(setReadLine(winningNumbers));
+
+    // when
+
+    // then
+  }
+  @DisplayName("보너스 번호를 입력받는다")
+  @Test
+  void readBonusNumberTest() {
+    // given
+    String given = "7";
+    System.setIn(setReadLine(given));
+
+    // when
+    int expect = Integer.parseInt(given);
+    int actual = input.readBonus();
+
+    // then
+    assertEquals(expect, actual);
+
+  }
+
+
+
 //  @DisplayName("입력된 금액에 따른 로또를 정확히 발행한다")
 //  @Test
 //  void getLottosCount() {
