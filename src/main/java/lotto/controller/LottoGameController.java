@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.view.InputView;
@@ -10,6 +11,7 @@ public class LottoGameController {
     private InputView inputView = new InputView();
     private Money money;
     private LottoTickets lottoTickets;
+    private Lotto correctLotto;
 
     public void run() {
         gameStart();
@@ -24,6 +26,17 @@ public class LottoGameController {
         // 기능 추가 예정
     }
 }
+    private void createCorrectLotto() {
+        while (true) {
+            try {
+                correctLotto = new Lotto(inputView.inputLotto());
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.println(e.getMessage());
+            }
+        }
+    }
+
     private void createLottoTickets(int ticket) {
         lottoTickets = new LottoTickets(ticket);
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
