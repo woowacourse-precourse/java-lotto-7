@@ -35,6 +35,15 @@ public class Lotto {
         return lotto;
     }
 
+    public static List<Lotto> sortLottoList(Integer lottoCount, List<Lotto> lottoList){
+        for(int i = 0; i < lottoCount; i++){
+            Lotto newLotto = Lotto.sortLotto(Lotto.getLotto());
+            lottoList.add(newLotto);
+            Lotto.printLotto(newLotto);
+        }
+        return lottoList;
+    }
+
     public static void printLotto(Lotto lotto){
         String joinString = "[";
         joinString = String.join(", ", lotto.numbers.toString());
