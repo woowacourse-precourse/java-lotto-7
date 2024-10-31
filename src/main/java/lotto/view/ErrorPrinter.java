@@ -6,7 +6,7 @@ public class ErrorPrinter {
     public static void errorPrint(InputError message) {
         try {
             throw new IllegalArgumentException(message.getMessage());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }

@@ -1,9 +1,7 @@
 package lotto.validator;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.constants.InputError;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
