@@ -9,18 +9,23 @@ public class LottoResultOutputView {
     private static final String LOTTO_RESULT_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private static final String LOTTO_RESULT_WITH_BONUS_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private static final String NUMBER_WITH_COMMA_PATTERN = "#,###";
+    private static final String PROFIT_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f입니다.";
 
     private DecimalFormat decimalFormat = new DecimalFormat(NUMBER_WITH_COMMA_PATTERN);
 
     public void printLottoResultOutputGuide() {
+
         System.out.println(LOTTO_RESULT_OUTPUT_GUIDE);
     }
 
     public void printLottoResult(Map<Rank, Integer> lottoResult) {
-
         for (Map.Entry<Rank, Integer> entry : lottoResult.entrySet()) {
             printLottoResultByRank(entry.getKey(), entry.getValue());
         }
+    }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE_FORMAT, profitRate);
     }
 
     private void printLottoResultByRank(Rank rank, int rankCount) {
