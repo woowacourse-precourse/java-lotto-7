@@ -9,8 +9,7 @@ public class Application {
 
         LottoController lottoController = new LottoController(
                 appConfig.getInputView(),
-                appConfig.getOutputView(),
-                appConfig.getLottoManager()
+                appConfig.getOutputView()
         );
 
         lottoController.run();

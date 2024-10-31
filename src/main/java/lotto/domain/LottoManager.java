@@ -13,10 +13,13 @@ import java.util.List;
 public class LottoManager {
     private final List<Lotto> lottoNumbers = new ArrayList<>();
     private final LottoResult lottoResult = new LottoResult();
-    private int purchaseAmount;
+    private final int purchaseAmount;
+
+    public LottoManager(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
+    }
 
     public void generateLottoNumbers(int purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
         int lottoCount = purchaseAmount / MIN_PURCHASE_AMOUNT;
 
         for (int count = 0; count < lottoCount; count++) {

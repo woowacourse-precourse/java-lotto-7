@@ -1,6 +1,5 @@
 package lotto.config;
 
-import lotto.domain.LottoManager;
 import lotto.utils.parser.BonusNumberParser;
 import lotto.utils.parser.PurchaseAmountParser;
 import lotto.utils.parser.WinningNumberParser;
@@ -25,9 +24,5 @@ public class AppConfig {
 
     public OutputView getOutputView() {
         return new OutputView();
-    }
-
-    public LottoManager getLottoManager() {
-        return new LottoManager();
     }
 }

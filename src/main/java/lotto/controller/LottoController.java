@@ -9,20 +9,19 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoManager lottoManager;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoManager lottoManager) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoManager = lottoManager;
     }
 
     public void run() {
         int purchaseAmount = inputView.inputPurchaseAmount();
-        lottoManager.generateLottoNumbers(purchaseAmount);
+
+        LottoManager lottoManager = generateLottoManager(purchaseAmount);
 
         List<Lotto> lottoNumbers = lottoManager.getLottoNumbers();
-        outputView.printLottoNumbers(lottoNumbers.size(), lottoManager.getLottoNumbers());
+        outputView.printLottoNumbers(lottoNumbers.size(), lottoNumbers);
 
         List<Integer> winningNumbers = inputView.inputWinningNumber();
         outputView.printEmptyLine();
@@ -30,5 +29,11 @@ public class LottoController {
 
         lottoManager.checkLottoResult(winningNumbers, bonusNumber);
         outputView.printLottoResult(lottoManager.getLottoResult(), lottoManager.getPurchaseAmount());
+    }
+
+    private static LottoManager generateLottoManager(int purchaseAmount) {
+        LottoManager lottoManager = new LottoManager(purchaseAmount);
+        lottoManager.generateLottoNumbers(purchaseAmount);
+        return lottoManager;
     }
 }
