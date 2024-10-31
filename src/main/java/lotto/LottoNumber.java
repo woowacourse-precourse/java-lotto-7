@@ -32,4 +32,9 @@ public class LottoNumber {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 로또 번호입니다.");
         }
     }
+
+    public String toString() {
+        return String.valueOf(number);
+    }
+
 }

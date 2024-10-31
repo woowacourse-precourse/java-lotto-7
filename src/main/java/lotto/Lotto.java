@@ -3,12 +3,19 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers.stream()
             .map(LottoNumber::valueOf).toList();
+    }
+
+    public String getNumbers() {
+        String nums = String.join(", ", numbers.stream()
+            .map(LottoNumber::toString).toList());
+        return "[" + nums + "]";
     }
 
     // TODO: 에러 메시지가 6개 이상일 때 enum 으로 관리!
