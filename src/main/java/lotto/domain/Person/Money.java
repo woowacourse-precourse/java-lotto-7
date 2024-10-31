@@ -16,17 +16,13 @@ public class Money {
         return Math.round(rate * 10) / 10.0;
     }
 
-    public void validateDivisibleByThousand() {
-        if (amount.mod(BigInteger.valueOf(1000)).compareTo(BigInteger.ZERO) != 0) {
-            throw new IllegalArgumentException("금액은 1000으로 나누어 떨어져야 합니다.");
-        }
-    }
-
     private void validGreaterThanZero() {
         if (amount.compareTo(BigInteger.ZERO) < 0) {
             throw new IllegalArgumentException("금액은 0 이상이어야 합니다.");
         }
     }
 
-
+    public BigInteger getAmount() {
+        return amount;
+    }
 }
