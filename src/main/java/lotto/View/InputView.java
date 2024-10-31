@@ -29,7 +29,8 @@ public class InputView {
                 System.out.println("당첨 번호를 입력해주세요.");
                 String winInput = Console.readLine();
                 List<Integer> winNumbers = parseWinNumbers(winInput);
-
+                Validator.validateWinNumbers(winNumbers);
+                return winNumbers;
             }
             catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
