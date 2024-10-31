@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.global.Error.LOTTO_NUMBER_IS_NOT_BETWEEN_1_AND_46;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +23,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호가_1과_46_사이가_아닐시_예외가_발생() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 47)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_IS_NOT_BETWEEN_1_AND_46.getErrorMsg());
+    }
 }
