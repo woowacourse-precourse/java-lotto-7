@@ -21,3 +21,6 @@
 
 ### 4. `LottoChecker` 클래스
 당첨 확인 및 수익률 계산 
+
+### 5. `LottoRank` ENUM 
+enum 타입으로 로또 당첨 순위
