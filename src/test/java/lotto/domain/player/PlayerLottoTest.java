@@ -1,7 +1,6 @@
 package lotto.domain.player;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,9 @@ public class PlayerLottoTest {
         playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        playerLotto.updateWinningCount(winningCount);
+        for (int i = 0; i < winningCount; i++) {
+            playerLotto.increaseWinningCount();
+        }
 
         // then
         Assertions.assertThat(playerLotto.getWinningCount()).isEqualTo(winningCount);
@@ -47,9 +48,9 @@ public class PlayerLottoTest {
         playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        playerLotto.updateBonusCount(bonusCount);
+        playerLotto.increaseBonusCount();
 
         // then
-        Assertions.assertThat(playerLotto.getWinningCount()).isEqualTo(bonusCount);
+        Assertions.assertThat(playerLotto.getBonusCount()).isEqualTo(bonusCount);
     }
 }

@@ -1,16 +1,17 @@
 package lotto.domain.player;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerLotto {
 
     private List<Integer> lottoNumbers;
-    private int WinningCount;
-    private int BonusCount;
+    private int winningCount;
+    private int bonusCount;
 
     public PlayerLotto(List<Integer> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
+        this.winningCount = 0;
+        this.bonusCount = 0;
     }
 
     public List<Integer> getLottoNumbers() {
@@ -18,18 +19,18 @@ public class PlayerLotto {
     }
 
     public int getWinningCount() {
-        return 0;
+        return winningCount;
     }
 
     public int getBonusCount() {
-        return 0;
+        return bonusCount;
     }
 
-    public void updateWinningCount(int winningCount) {
-
+    public void increaseWinningCount() {
+        this.winningCount++;
     }
 
-    public void updateBonusCount(int bonusCount) {
-
+    public void increaseBonusCount() {
+        this.bonusCount++;
     }
 }

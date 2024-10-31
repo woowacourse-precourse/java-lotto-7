@@ -6,6 +6,7 @@ import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
 import lotto.util.RandomNumberGenerator;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class PlayerService {
@@ -41,6 +42,24 @@ public class PlayerService {
     }
 
     public void calculateWinningCount(PlayerLotto playerLotto) {
+        HashSet<Integer> set = new HashSet<>();
+        set.addAll(lotto.getNumbers());
+        for (Integer lottoNumber : playerLotto.getLottoNumbers()) {
+            if (set.contains(lottoNumber)) {
+                playerLotto.increaseWinningCount();
+            }
+        }
 
+        if (playerLotto.getWinningCount() == 5){
+           calculateBonusCount(playerLotto);
+        }
+    }
+
+    private void calculateBonusCount(PlayerLotto playerLotto) {
+        HashSet<Integer> set = new HashSet<>();
+        set.addAll(playerLotto.getLottoNumbers());
+        if (set.contains(bonus.getNumber())) {
+            playerLotto.increaseBonusCount();
+        }
     }
 }
