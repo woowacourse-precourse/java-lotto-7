@@ -33,23 +33,26 @@ public class Application {
                 +5000*statistics[5]);
     }
 
-    public static void printProfitRate(){ // (전체 수익 - 구입 금액)/로또개수
+    public static void printProfitRate(){ // 수익률 = (당첨금액/구입금액)*100
         int profit = calculateProfit();
-        double profitRate = ((double) (profit - budget) / budget) * 100;
+        double profitRate = (profit / budget) * 100;
         System.out.printf("총 수익률은 %.2f%%입니다.", profitRate);
     }
 
     public static void main(String[] args) {
+        // 1. 구매 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
         budget = Integer.parseInt(Console.readLine());
         if(budget<1000){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
 
+        // 2. 구매 개수 계산
         numberOfLotto = budget/1000;
         System.out.println();
         System.out.println(numberOfLotto+"개를 구매했습니다.");
 
+        // 3. 로또 번호 뽑기
         ArrayList<Lotto> lottos = new ArrayList<>();
         for(int i=0;i<numberOfLotto;i++){
             lottos.add(new Lotto(makeLotto()));
@@ -57,6 +60,7 @@ public class Application {
         }
         System.out.println();
 
+        // 4. 당첨 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> goalNumbers = new ArrayList<>();
         for (String number : Console.readLine().split(",")) {
@@ -64,16 +68,18 @@ public class Application {
         }
         System.out.println();
 
+        // 5. 보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println();
 
+        // 6. 등수 계산 및 출력
         statistics = new int[6];
         for(Lotto lotto : lottos){
             int rank = lotto.getRank(goalNumbers,bonusNumber);
             statistics[rank]++;
         }
-
         printStatistics();
+        printProfitRate();
     }
 }
