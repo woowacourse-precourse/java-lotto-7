@@ -11,10 +11,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        numberCountValidate(numbers);
+        overlapValidate(numbers);
+    }
+
+    private void numberCountValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호(보너스 번호 제외)는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void overlapValidate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
+        }
+    }
 }
