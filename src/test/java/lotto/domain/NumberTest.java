@@ -6,11 +6,36 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.domain.exception.CustomErrorCode;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @SuppressWarnings("NonAsciiCharacters")
 class NumberTest {
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 45})
+    void 동일한_값을_가진_객체는_동일하다(int number) {
+        // given
+        Number firstNumber = Number.from(number);
+        Number secondNumber = Number.from(number);
+
+        // when & then
+        assertThat(firstNumber).isEqualTo(secondNumber);
+        assertThat(firstNumber.hashCode()).isEqualTo(secondNumber.hashCode());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"10,20", "1,2", "3,4"})
+    void 다른_값을_가진_객체는_다르다(String number1, String number2) {
+        // given
+        Number firstNumber = Number.from(number1);
+        Number secondNumber = Number.from(number2);
+
+        // when & then
+        assertThat(firstNumber).isNotEqualTo(secondNumber);
+        assertThat(firstNumber.hashCode()).isNotEqualTo(secondNumber.hashCode());
+    }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 45})

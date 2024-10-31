@@ -20,6 +20,25 @@ class LottoTest {
     private final CreateRandomNumbers createRandomNumbers = new FakeLottoNumberGenerator();
 
     @Test
+    void 보너스_넘버가_추가된다() {
+        // given
+        Lotto lotto = new Lotto(createRandomNumbers.getRandomNumbers());
+        Number bonusNumber = Number.from(7);
+        lotto.addBonusNumber(bonusNumber);
+
+        // when
+        List<Integer> displayLotto = lotto.displayLotto()
+                .stream()
+                .map(Number::getNumber)
+                .toList();
+
+        // then
+        assertThat(displayLotto.size()).isEqualTo(7);
+        assertThat(displayLotto)
+                .containsExactly(1, 2, 3, 4, 5, 6, 7);
+    }
+
+    @Test
     void 정상적인_번호를_가진_로또를_생성한다() {
         // given
         Lotto lotto = new Lotto(createRandomNumbers.getRandomNumbers());
@@ -53,6 +72,18 @@ class LottoTest {
         void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다(List<Integer> numbers) {
             // when & then
             assertThatThrownBy(() -> new Lotto(numbers))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(CustomErrorCode.EXCEPTION_DUPLICATED_LOTTO_NUMBER.getMessage());
+        }
+
+        @Test
+        void 보너스_넘버가_당첨_번호와_중복되면_예외가_발생한다() {
+            // given
+            Lotto lotto = new Lotto(createRandomNumbers.getRandomNumbers());
+            Number duplicateBonusNumber = Number.from(5);
+
+            // when & then
+            assertThatThrownBy(() -> lotto.addBonusNumber(duplicateBonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(CustomErrorCode.EXCEPTION_DUPLICATED_LOTTO_NUMBER.getMessage());
         }

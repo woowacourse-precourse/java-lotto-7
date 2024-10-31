@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Objects;
 import lotto.domain.exception.CustomErrorCode;
 import lotto.domain.exception.CustomException;
 
@@ -30,6 +31,18 @@ public class Number {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Number that)) return false;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 
     private static void validateEmptyNumber(String number) {

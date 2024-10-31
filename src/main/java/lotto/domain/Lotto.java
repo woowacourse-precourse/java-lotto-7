@@ -20,6 +20,11 @@ public class Lotto {
         this.numbers = createLotto(numbers);
     }
 
+    public void addBonusNumber(Number bonusNumbers) {
+        validateBonusNumberDuplicate(bonusNumbers);
+        numbers.add(bonusNumbers);
+    }
+
     public List<Number> displayLotto() {
         return Collections.unmodifiableList(numbers);
     }
@@ -27,7 +32,7 @@ public class Lotto {
     private List<Number> createLotto(List<Integer> numbers) {
         List<Number> lottoNumber = new ArrayList<>();
 
-        for(int number : numbers) {
+        for (int number : numbers) {
             lottoNumber.add(Number.from(number));
         }
 
@@ -44,6 +49,12 @@ public class Lotto {
         Set<Integer> lottoNumbers = new HashSet<>(numbers);
 
         if (lottoNumbers.size() != LOTTO_SIZE) {
+            throw new CustomException(CustomErrorCode.EXCEPTION_DUPLICATED_LOTTO_NUMBER);
+        }
+    }
+
+    private void validateBonusNumberDuplicate(Number bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             throw new CustomException(CustomErrorCode.EXCEPTION_DUPLICATED_LOTTO_NUMBER);
         }
     }
