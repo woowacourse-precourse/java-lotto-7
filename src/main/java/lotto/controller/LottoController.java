@@ -2,6 +2,7 @@ package lotto.controller;
 
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.generator.LottoGenerator;
@@ -38,7 +39,7 @@ public class LottoController {
         List<Lotto> lottos = lottoGenerator.generateLottos(lottoPurchasePrice);
         lottoView.printLottos(lottos);
         List<Integer> lottoWinningNumbers = retry(this::requestLottoWinningNumbers);
-        int lottoBonusNumber = retry(this::requestLottoBonusNumber);
+        int lottoBonusNumber = retry(this::requestLottoBonusNumber, lottoWinningNumbers);
     }
 
 
@@ -54,9 +55,9 @@ public class LottoController {
         return LottoParser.parseNumbers(lottoWinningNumbers);
     }
 
-    private int requestLottoBonusNumber(){
+    private int requestLottoBonusNumber(List<Integer> winningNumbers){
         String lottoBonusNumber = lottoView.requestLottoBonusNumber();
-        lottoBonusNumberValidator.validateBonusNumber(lottoBonusNumber);
+        lottoBonusNumberValidator.validateBonusNumber(lottoBonusNumber, winningNumbers);
         return LottoParser.parseInt(lottoBonusNumber);
     }
 
@@ -66,6 +67,20 @@ public class LottoController {
         while (retryFlag) {
             try {
                 result = logic.get();
+                retryFlag = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return result;
+    }
+
+    private <T, R> R retry(Function<T, R> logic, T data){
+        boolean retryFlag = true;
+        R result = null;
+        while (retryFlag) {
+            try {
+                result = logic.apply(data);
                 retryFlag = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
