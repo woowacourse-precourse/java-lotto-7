@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.EnumMap;
 import java.util.Map;
 import lotto.domain.Rank;
 import lotto.domain.Wallet;
@@ -18,22 +17,22 @@ public class Output {
         System.out.printf("[ERROR] %s \n", error);
     }
 
-    public static void printPurchasedLottoList(Wallet wallet, RandomLottos randomLottos){
+    public static void printPurchasedLottoList(Wallet wallet, RandomLottos randomLottos) {
         System.out.println();
-        System.out.printf("%d개를 구매했습니다.\n",wallet.getTicket());
-        for(Lotto lotto : randomLottos.getLottos()){
+        System.out.printf("%s개를 구매했습니다.\n", wallet);
+        for (Lotto lotto : randomLottos.getLottos()) {
             System.out.println(lotto);
         }
     }
 
-    public static void printLottoWinningStatistics(WinningLottos winningLottos){
+    public static void printLottoWinningStatistics(WinningLottos winningLottos) {
         System.out.println("당첨 통계");
         System.out.println("---");
         StringBuilder printout = new StringBuilder();
 
-        for(Map.Entry<Rank,Integer> entry : winningLottos.getWinningStatistics().entrySet()){
+        for (Map.Entry<Rank, Integer> entry : winningLottos.getWinningStatistics().entrySet()) {
             Rank rank = entry.getKey();
-            if(rank.equals(Rank.NOTHING)){
+            if (rank.equals(Rank.NOTHING)) {
                 continue;
             }
 
@@ -41,7 +40,7 @@ public class Output {
             String formatedPrizedMoney = String.format("%,d", rank.getPrizeMoney());
             int matchResult = entry.getValue();
 
-            if(rank.equals(Rank.SECOND)){
+            if (rank.equals(Rank.SECOND)) {
                 printout.append(
                         String.format(PRINT_SECOND_RANK_FORMAT, matchCount, formatedPrizedMoney, matchResult)
                 );
@@ -54,11 +53,10 @@ public class Output {
         System.out.println(printout);
     }
 
-    public static void printRateOfReturn(Wallet wallet){
+    public static void printRateOfReturn(Wallet wallet) {
         System.out.printf(PRINT_RATE_OF_RETURN_FORMAT, wallet.getRateOfReturn());
 
     }
-
 
 
 }
