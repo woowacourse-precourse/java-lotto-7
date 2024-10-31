@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.User;
+import lotto.utils.Parser;
 
 public class ResultService {
     private final StatisticService statisticService;
@@ -14,7 +15,17 @@ public class ResultService {
         this.profitService = profitService;
     }
 
-    public List<Integer> statistics(User user, Lotto winningLotto, BonusNumber bonusNumber) {
+    public List<String> resultProcess(User user, Lotto winningLotto, BonusNumber bonusNumber) {
+        List<Integer> result = statisticProcess(user,winningLotto,bonusNumber);
+        double profit = profitProcess(user, result);
+        return Parser.parsingResult(result, profit);
+    }
+
+    private List<Integer> statisticProcess(User user, Lotto winningLotto, BonusNumber bonusNumber) {
         return statisticService.statisticsCalculator(user, winningLotto, bonusNumber);
+    }
+
+    private double profitProcess(User user, List<Integer> result) {
+        return profitService.profitCalculator(user, result);
     }
 }
