@@ -7,11 +7,11 @@ import lotto.model.Lotto;
 import lotto.view.Request;
 
 public class LottoService {
-
     private final int LOTTO_NUM_COUNT = 6;
 
-    private final Request request = new Request();
     private List<Lotto> lottos = new ArrayList<>();
+    private List<Integer> winNum = new ArrayList<>();
+    private Integer bonusNum;
 
     public List<Lotto> buyLotto(int amount) {
         int lottoCount = amount/1000;
@@ -26,5 +26,13 @@ public class LottoService {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
         }
+    }
+
+    public void createWinNum(List<Integer> winNum) {
+        this.winNum = winNum;
+    }
+
+    public void createBonusNum(Integer bonusNum) {
+        this.bonusNum = bonusNum;
     }
 }
