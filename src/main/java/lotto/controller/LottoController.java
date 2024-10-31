@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.service.LottoService;
@@ -32,5 +33,17 @@ public class LottoController {
                 .collect(Collectors.toList());
 
         response.outputLottos(lottosNum);
+    }
+
+    public void inputWinNum() {
+        List<Integer> winNum;
+        try {
+            winNum = Arrays.stream(request.inputWinNum().split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 가능 합니다.");
+        }
+        lottoService.createWinNum(winNum);
     }
 }
