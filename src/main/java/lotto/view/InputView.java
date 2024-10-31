@@ -13,7 +13,7 @@ public class InputView {
         try {
             return Double.parseDouble(readLine);
         }catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);//todo inputView 가 비즈니스 로직을 알아도 되는가?
         }
     }
 }

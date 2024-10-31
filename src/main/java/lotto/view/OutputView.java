@@ -15,4 +15,12 @@ public class OutputView {
     public void printLottoState(String lottosState) {
         System.out.println(lottosState);
     }
+
+    public void printReadWinningNumber() {
+        System.out.println(Message.WINNING_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void printReadBonusNumber() {
+        System.out.println(Message.BONUS_NUMBER_INPUT_MESSAGE);
+    }
 }

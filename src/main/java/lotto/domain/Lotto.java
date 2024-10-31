@@ -2,8 +2,10 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lotto {
     private static final int SIZE = 6;
@@ -24,7 +26,7 @@ public class Lotto {
     private void validateDuplication(List<Integer> numbers) {
         HashSet<Integer> duplicatedNumbers = new HashSet<>(numbers);
         if (duplicatedNumbers.size() != SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION_ERROR_MESSAGE);
         }
     }
 
