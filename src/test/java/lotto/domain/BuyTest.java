@@ -1,11 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.global.Error.MONEY_NOT_DIVISIBLE_1000;
 import static lotto.global.Error.MONEY_NOT_POSITIVE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.domain.Buy;
 import org.junit.jupiter.api.Test;
 
 public class BuyTest {
