@@ -2,12 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,30 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "  "})
+    void 구입_금액이_빈_값(String purchaseAmount) {
+        assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1000", "10.6", "1000*", "100+200", "$$$"})
+    void 구입_금액에_양의_정수가_아닌_값_입력(String purchaseAmount) {
+        assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"300", "0"})
+    void 구입_금액이_1000원_보다_작은_값(String purchaseAmount) {
+        assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
+    }
+
+    @Test
+    void 구입_금액이_1000원으로_나누어_떨어지지_않는_경우() {
+        String purchaseAmount = "1300";
+        assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
     }
 
     @Override
