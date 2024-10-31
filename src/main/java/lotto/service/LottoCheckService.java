@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LottoCheckService {
 
-    public void checkLotto(WinningNumber winningNumber, List<Lotto> lottos) {
+    public void checkLotto(final WinningNumber winningNumber, final List<Lotto> lottos) {
 
     }
 }

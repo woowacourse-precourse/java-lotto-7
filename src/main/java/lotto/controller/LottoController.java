@@ -30,7 +30,7 @@ public class LottoController {
         checkLotto(lottoInputDto, lottos);
     }
 
-    public void checkLotto(LottoInputDto lottoInputDto, List<Lotto> lottos) {
+    public void checkLotto(final LottoInputDto lottoInputDto, final List<Lotto> lottos) {
         lottoCheckService.checkLotto(WinningNumberConverter.toWinningNumber(lottoInputDto), lottos);
     }
 }

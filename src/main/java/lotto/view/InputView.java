@@ -8,9 +8,6 @@ import java.util.List;
 
 public class InputView {
 
-    private final int lottoPrice = 1000;
-    private final String INVALID_PURCHASE_AMOUNT = "[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.";
-
     public LottoInputDto enterInput() {
         long purchaseAmount = enterPurchaseAmount();
         List<Integer> winningNumber = enterWinningNumber();
@@ -20,9 +17,7 @@ public class InputView {
     }
 
     private long enterPurchaseAmount() {
-        long purchaseAmount = Long.parseLong(Console.readLine());
-        validatePurchaseAmountDividedBy1000(purchaseAmount);
-        return purchaseAmount;
+        return Long.parseLong(Console.readLine());
     }
 
     private List<Integer> enterWinningNumber() {
@@ -34,11 +29,5 @@ public class InputView {
 
     private int enterBonusNumber() {
         return Integer.parseInt(Console.readLine());
-    }
-
-    private void validatePurchaseAmountDividedBy1000(long purchaseAmount) {
-        if (purchaseAmount % lottoPrice != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
-        }
     }
 }
