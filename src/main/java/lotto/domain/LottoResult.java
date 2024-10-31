@@ -7,8 +7,15 @@ public class LottoResult {
     private final Map<LottoRank, Integer> rankCnt;
     private final int purchaseAmount;
 
-    public LottoResult(int purchaseAmount){
+    public LottoResult(int purchaseAmount) {
         this.rankCnt = new EnumMap<>(LottoRank.class);
         this.purchaseAmount = purchaseAmount;
+        initializeResult();
+    }
+
+    private void initializeResult() {
+        for (LottoRank rank : LottoRank.values()) {
+            rankCnt.put(rank, 0);
+        }
     }
 }
