@@ -88,8 +88,12 @@ class LottoValidatorTest {
         static Stream<Arguments> invalidNumbersOverRange() {
             return Stream.of(
                     Arguments.of(
-                            List.of(1, 2, 3, 4, 5, 46),
-                            List.of(0, 1, 2, 3, 4, 5),
+                            List.of(1, 2, 3, 4, 5, 46)
+                    ),
+                    Arguments.of(
+                            List.of(0, 1, 2, 3, 4, 5)
+                    ),
+                    Arguments.of(
                             List.of(45, 46, 47, 48, 49, 50)
                     )
             );
@@ -112,12 +116,17 @@ class LottoValidatorTest {
         static Stream<Arguments> invalidNumbersDuplicated() {
             return Stream.of(
                     Arguments.of(
-                            List.of(1, 1, 3, 4, 5, 6),
-                            List.of(1, 2, 3, 4, 5, 5),
+                            List.of(1, 1, 3, 4, 5, 6)
+                    ),
+                    Arguments.of(
+                            List.of(1, 2, 3, 4, 5, 5)
+                    ),
+                    Arguments.of(
                             List.of(1, 2, 3, 4, 45, 45)
                     )
             );
         }
+
         @ParameterizedTest(name = "({index}) {0}")
         @MethodSource("invalidNumbersNotSix")
         @DisplayName("로또 번호 갯수가 6개가 아닐 경우, 예외가 발생한다.")
@@ -135,12 +144,13 @@ class LottoValidatorTest {
         static Stream<Arguments> invalidNumbersNotSix() {
             return Stream.of(
                     Arguments.of(
-                            List.of(1, 2, 3, 4, 5),
+                            List.of(1, 2, 3, 4, 5)
+                    ),
+                    Arguments.of(
                             List.of(1, 2, 3, 4, 5, 6, 7)
                     )
             );
         }
     }
-
 
 }
