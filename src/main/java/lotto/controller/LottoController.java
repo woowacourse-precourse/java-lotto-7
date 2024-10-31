@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.generator.LottoGenerator;
 import lotto.util.LottoParser;
+import lotto.validator.LottoBonusNumberValidator;
 import lotto.validator.LottoPurchasePriceValidator;
 import lotto.validator.LottoWinningNumbersValidator;
 import lotto.view.LottoView;
@@ -16,17 +17,20 @@ public class LottoController {
     private final LottoPurchasePriceValidator lottoPurchasePriceValidator;
     private final LottoGenerator lottoGenerator;
     private final LottoWinningNumbersValidator lottoWinningNumbersValidator;
+    private final LottoBonusNumberValidator lottoBonusNumberValidator;
 
     public LottoController(
             LottoView lottoView,
             LottoPurchasePriceValidator lottoPurchasePriceValidator,
             LottoGenerator lottoGenerator,
-            LottoWinningNumbersValidator lottoWinningNumbersValidator
+            LottoWinningNumbersValidator lottoWinningNumbersValidator,
+            LottoBonusNumberValidator lottoBonusNumberValidator
     ) {
         this.lottoView = lottoView;
         this.lottoPurchasePriceValidator = lottoPurchasePriceValidator;
         this.lottoGenerator = lottoGenerator;
         this.lottoWinningNumbersValidator = lottoWinningNumbersValidator;
+        this.lottoBonusNumberValidator = lottoBonusNumberValidator;
     }
 
     public void run() {
@@ -52,8 +56,8 @@ public class LottoController {
 
     private int requestLottoBonusNumber(){
         String lottoBonusNumber = lottoView.requestLottoBonusNumber();
-
-        return 0;
+        lottoBonusNumberValidator.validateBonusNumber(lottoBonusNumber);
+        return LottoParser.parseInt(lottoBonusNumber);
     }
 
     private <T> T retry(Supplier<T> logic) {
