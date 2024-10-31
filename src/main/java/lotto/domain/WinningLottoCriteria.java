@@ -1,10 +1,10 @@
-package lotto.constant;
+package lotto.domain;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Optional;
 
-public enum LottoWinningCriteria {
+public enum WinningLottoCriteria {
     FIFTH_PRIZE(3, false, 5_000),
     FOURTH_PRIZE(4, false, 50_000),
     THIRD_PRIZE(5, false, 1_500_000),
@@ -16,18 +16,18 @@ public enum LottoWinningCriteria {
     private final boolean isMatchBonus;
     private final long money;
 
-    LottoWinningCriteria(int winningLottoMatchCount, boolean isMatchBonus, long money) {
+    WinningLottoCriteria(int winningLottoMatchCount, boolean isMatchBonus, long money) {
         this.winningLottoMatchCount = winningLottoMatchCount;
         this.isMatchBonus = isMatchBonus;
         this.money = money;
     }
 
-    public static Optional<LottoWinningCriteria> findPrize(int equalCount, boolean isContainBonus) {
-        for (LottoWinningCriteria criteria : LottoWinningCriteria.values()) {
-            if (criteria.winningLottoMatchCount != equalCount) {
+    public static Optional<WinningLottoCriteria> findPrize(int equalLottoCount, boolean isContainBonus) {
+        for (WinningLottoCriteria criteria : WinningLottoCriteria.values()) {
+            if (criteria.winningLottoMatchCount != equalLottoCount) {
                 continue;
             }
-            if (equalCount == 5 && criteria.isMatchBonus != isContainBonus) {
+            if (equalLottoCount == 5 && criteria.isMatchBonus != isContainBonus) {
                 continue;
             }
             return Optional.of(criteria);
