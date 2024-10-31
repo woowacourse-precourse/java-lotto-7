@@ -10,6 +10,7 @@ public class Application {
     public static int[] statistics;
     public static int budget;
     public static int numberOfLotto;
+    public static Lotto goals;
 
     public static List<Integer> makeLotto(){
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -35,7 +36,6 @@ public class Application {
 
     public static void printProfitRate(){ // 수익률 = (당첨금액/구입금액)*100
         int profit = calculateProfit();
-        System.out.println(profit);
         double profitRate = (double) profit / budget * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
@@ -55,14 +55,20 @@ public class Application {
     public static void main(String[] args) {
         // 1. 구매 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
-        try {
-            budget = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력해야 합니다.");
+        while(true){
+            try {
+                budget = Integer.parseInt(Console.readLine());
+                if (budget < 1000) {
+                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+                }
+                break;
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 구입 금액은 숫자만 입력해야 합니다.");
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        if (budget < 1000) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
-        }
+
 
         // 2. 구매 개수 계산
         numberOfLotto = budget/1000;
@@ -79,27 +85,36 @@ public class Application {
 
         // 4. 당첨 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> goalNumbers = new ArrayList<>();
-        try {
-            for (String number : Console.readLine().split(",")) {
-                goalNumbers.add(Integer.parseInt(number.trim()));
+        while(true){
+            try {
+                List<Integer> goalNumbers = new ArrayList<>();
+                for (String number : Console.readLine().split(",")) {
+                    goalNumbers.add(Integer.parseInt(number.trim()));
+                }
+                goals = new Lotto(goalNumbers);
+                break;
+            } catch(NumberFormatException e){
+                System.out.println("[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
-        } catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
         }
-        System.out.println();
-        Lotto goals = new Lotto(goalNumbers);
 
         // 5. 보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber;
-        try {
-             bonusNumber = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        while(true){
+            try {
+                bonusNumber = Integer.parseInt(Console.readLine());
+                validateBonusDuplicate(goals,bonusNumber);
+                validateNumberRange(bonusNumber);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        validateBonusDuplicate(goals,bonusNumber);
-        validateNumberRange(bonusNumber);
         System.out.println();
 
         // 6. 등수 계산 및 출력
