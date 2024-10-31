@@ -1,9 +1,14 @@
 package lotto.domain.lotto.factory;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoEntry;
+
+import java.util.List;
 
 public interface LottoFactory {
 
-    Lotto create();
+    List<LottoEntry> create();
+
+    int getLottoLength();
 
 }
