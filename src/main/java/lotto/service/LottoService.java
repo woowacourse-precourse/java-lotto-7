@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.constant.LottoRank;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 
 public class LottoService {
 
     private List<Lotto> purchasedLotto = new ArrayList<>();
     private Lotto winnerLotto;
-    private int bonusNumber;
+    private BonusNumber bonusNumber;
 
     public void purchaseLotto(int money) {
         for (int i = 0; i < money / LottoConstant.MONEY_UNIT.getNumber(); i++) {
@@ -30,8 +31,8 @@ public class LottoService {
     }
 
     public void setBonusNumber(int bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        validateBonusNumberDuplicated(bonusNumber);
+        this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
     public void checkLottoResult() {
@@ -55,13 +56,13 @@ public class LottoService {
                 LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber()));
     }
 
-    private boolean matchBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber);
-    }
-
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumberDuplicated(int bonusNumber) {
         if (winnerLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 번호와 중복됩니다.");
         }
+    }
+
+    private boolean matchBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }

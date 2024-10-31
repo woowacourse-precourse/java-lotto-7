@@ -30,12 +30,22 @@ public class InputFormatter {
     }
 
     private void validateWinnerNumbersInput(String winnerNumbersInput) {
-        validateWinnerNumbersFormat(winnerNumbersInput);
+        try {
+            List<String> winnerNumbers = Arrays.asList(winnerNumbersInput.split(DELIMITER));
+            for (String winnerNumber : winnerNumbers) {
+                Integer.parseInt(winnerNumber);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식이 잘못되었습니다.");
+        }
     }
 
     private void validateBonusNumberInput(String bonusNumberInput) {
-        validateBonusNumberFormat(bonusNumberInput);
-        validateBonusNumberRange(bonusNumberInput);
+        try {
+            Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자의 형식이 잘못되었습니다.");
+        }
     }
 
     private void validateMoneyFormat(String moneyInput) {
@@ -60,35 +70,9 @@ public class InputFormatter {
         }
     }
 
-    private void validateWinnerNumbersFormat(String winnerNumbersInput) {
-        try {
-            List<String> winnerNumbers = Arrays.asList(winnerNumbersInput.split(DELIMITER));
-            for (String winnerNumber : winnerNumbers) {
-                Integer.parseInt(winnerNumber);
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식이 잘못되었습니다.");
-        }
-    }
-
     private List<Integer> formatWinnerNumbers(String winnerNumbersInput) {
         return Arrays.stream(winnerNumbersInput.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
-    }
-
-    private void validateBonusNumberFormat(String bonusNumberInput) {
-        try {
-            Integer.parseInt(bonusNumberInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자의 형식이 잘못되었습니다.");
-        }
-    }
-
-    private void validateBonusNumberRange(String bonusNumberInput) {
-        int bonusNumber = Integer.parseInt(bonusNumberInput);
-        if (bonusNumber < LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber() || bonusNumber > LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자의 범위가 1~45를 벗어납니다.");
-        }
     }
 }
