@@ -1,11 +1,9 @@
 package lotto.controller;
 
 
-import java.util.Map;
 import java.util.Set;
 import lotto.LottoMachine;
 import lotto.domain.LottoTickets;
-import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
 import lotto.generator.Generator;
 import lotto.generator.RandomGenerator;

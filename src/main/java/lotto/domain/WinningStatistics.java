@@ -1,13 +1,17 @@
 package lotto.domain;
 
-import static lotto.domain.Rank.*;
+import static lotto.domain.Rank.EMPTY;
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 public class WinningStatistics {
-    private Map<Rank, Integer> statistics;
+    private final Map<Rank, Integer> statistics;
 
     private WinningStatistics(Map<Rank, Integer> statistics) {
         this.statistics = statistics;

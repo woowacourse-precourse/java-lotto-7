@@ -1,6 +1,9 @@
 package lotto.validator;
 
-import java.util.List;
+import static lotto.message.ErrorMessage.DUPLICATE_WINNING_NUMBERS_ERROR;
+import static lotto.message.ErrorMessage.INVALID_NUMBER_ERROR;
+import static lotto.message.ErrorMessage.PARSE_INT_ERROR;
+
 import java.util.Set;
 
 public class BonusNumberValidator {
@@ -13,17 +16,14 @@ public class BonusNumberValidator {
         if (isInvalidNumber(bonusNumber)) {
             return true;
         }
-        if (isDuplicateWinnerNumbers(bonusNumber, winningNumbers)) {
-            return true;
-        }
-        return false;
+        return isDuplicateWinnerNumbers(bonusNumber, winningNumbers);
     }
 
     private boolean isNotParsableToBonusNumber(String userInput) {
         try {
             bonusNumber = Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 올바른 숫자형식을 입력해 주세요.");
+            System.out.println(PARSE_INT_ERROR.getMassage());
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ public class BonusNumberValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println(INVALID_NUMBER_ERROR.getMassage());
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ public class BonusNumberValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 보너스 번호는 당첨 번호에 없는 번호이어야 합니다.");
+            System.out.println(DUPLICATE_WINNING_NUMBERS_ERROR.getMassage());
             return true;
         }
         return false;

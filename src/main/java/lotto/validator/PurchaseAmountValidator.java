@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.message.ErrorMessage.CAN_NOT_PURCHASE;
+import static lotto.message.ErrorMessage.PARSE_INT_ERROR;
+
 public class PurchaseAmountValidator {
 
     private int purchaseAmount = 0;
@@ -18,7 +21,7 @@ public class PurchaseAmountValidator {
         try {
             purchaseAmount = Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 올바른 숫자형식을 입력해 주세요.");
+            System.out.println(PARSE_INT_ERROR.getMassage());
             return true;
         }
         return false;
@@ -30,7 +33,7 @@ public class PurchaseAmountValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또는 1000원 부터 1000원 단위로 구매 가능합니다.");
+            System.out.println(CAN_NOT_PURCHASE.getMassage());
             return true;
         }
         return false;

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.message.ErrorMessage.DUPLICATE_LOTTO_NUMBERS_ERROR;
+
 import java.util.List;
 import java.util.Set;
 
@@ -39,9 +41,9 @@ public class Lotto {
         return numbers.toString();
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.stream().distinct().count() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_ERROR.getMassage());
         }
     }
 }

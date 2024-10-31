@@ -1,9 +1,13 @@
 package lotto.view;
 
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
+
 import java.util.List;
-import java.util.Map;
 import lotto.domain.LottoTickets;
-import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
 
 public class OutputView {
@@ -41,14 +45,14 @@ public class OutputView {
     public void showResult(WinningStatistics winningStatistics) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(Rank.FIFTH.getDescription() + " - " + winningStatistics.getRankCount(Rank.FIFTH) + "개");
-        System.out.println(Rank.FOURTH.getDescription() + " - " + winningStatistics.getRankCount(Rank.FOURTH) + "개");
-        System.out.println(Rank.THIRD.getDescription() + " - " + winningStatistics.getRankCount(Rank.THIRD) + "개");
-        System.out.println(Rank.SECOND.getDescription() + " - " + winningStatistics.getRankCount(Rank.SECOND) + "개");
-        System.out.println(Rank.FIRST.getDescription() + " - " + winningStatistics.getRankCount(Rank.FIRST) + "개");
+        System.out.println(FIFTH.getDescription() + " - " + winningStatistics.getRankCount(FIFTH) + "개");
+        System.out.println(FOURTH.getDescription() + " - " + winningStatistics.getRankCount(FOURTH) + "개");
+        System.out.println(THIRD.getDescription() + " - " + winningStatistics.getRankCount(THIRD) + "개");
+        System.out.println(SECOND.getDescription() + " - " + winningStatistics.getRankCount(SECOND) + "개");
+        System.out.println(FIRST.getDescription() + " - " + winningStatistics.getRankCount(FIRST) + "개");
     }
 
     public void showRateOfReturn(double rateOfReturn) {
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
     }
 }

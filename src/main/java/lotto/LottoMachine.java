@@ -1,8 +1,8 @@
 package lotto;
 
 import java.util.stream.IntStream;
-import lotto.domain.LottoTickets;
 import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
 import lotto.generator.Generator;
 
 public class LottoMachine {

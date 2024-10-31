@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import static lotto.message.ErrorMessage.INVALID_NUMBER_ERROR;
+import static lotto.message.ErrorMessage.INVALID_NUMBER_SIZE_ERROR;
+import static lotto.message.ErrorMessage.PARSE_INT_NUMBERS_ERROR;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,10 +17,7 @@ public class WinningNumbersValidator {
         if (hasInvalidNumber(numbers)) {
             return true;
         }
-        if (isInValidNumberSize(numbers)) {
-            return true;
-        }
-        return false;
+        return isInValidNumberSize(numbers);
     }
 
     private boolean isNotParsableToNumbers(String userInput) {
@@ -25,7 +26,7 @@ public class WinningNumbersValidator {
                     .map(Integer::parseInt)
                     .toList();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 올바른 숫자형식을 입력해 주세요.");
+            System.out.println(PARSE_INT_NUMBERS_ERROR.getMassage());
             return true;
         }
         return false;
@@ -39,7 +40,7 @@ public class WinningNumbersValidator {
                 }
             });
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println(INVALID_NUMBER_ERROR.getMassage());
             return true;
         }
         return false;
@@ -51,7 +52,7 @@ public class WinningNumbersValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 당첨 번호는 6개 입니다.");
+            System.out.println(INVALID_NUMBER_SIZE_ERROR.getMassage());
             return true;
         }
         return false;
