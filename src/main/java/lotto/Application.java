@@ -36,15 +36,18 @@ public class Application {
         System.out.println(LOTTO_BONUS_INPUT);
         String rawBonus  = Console.readLine();
         Integer bonus = parseInt(rawBonus);
+        checkLottoRange(bonus);
         List<MyResult> resultList = new ArrayList<>();
         //로또 결과 저장하기
         for(int i = 0; i < lottoCount; i++){
             MyResult gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
             resultList.add(gradedLotto);
         }
-
-        checkLottoRange(bonus);
-        System.out.println(WIN_STATICS);
+        GradeSaver gradeSaver = new GradeSaver();
+        gradeSaver = gradeSaver.sumUpGrades(resultList);
+        MyResult.printResults(gradeSaver);
+        Integer revenue = MyResult.getRevenue(gradeSaver);
+        System.out.println("총 수익률은 " + getReturn(purchasePrice, revenue) + "%입니다.");
     }
 
     public static Integer parseInt(String input) {
