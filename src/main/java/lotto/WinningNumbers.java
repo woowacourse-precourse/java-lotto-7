@@ -1,7 +1,9 @@
 package lotto;
 
+import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class WinningNumbers {
@@ -58,4 +60,17 @@ public class WinningNumbers {
         boolean hasBonusNumber = hasMatchNumber(lotto);
         return Rank.from(matchCount, hasBonusNumber);
     }
+
+    public Map<Rank, Integer> countRank(List<Lotto> lottos) {
+        Map<Rank, Integer> counts = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            counts.put(rank, 0);
+        }
+        for (Lotto lotto : lottos) {
+            Rank rank = judgeRank(lotto);
+            counts.put(rank, counts.get(rank) + 1);
+        }
+        return counts;
+    }
+    
 }

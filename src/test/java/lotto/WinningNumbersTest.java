@@ -1,5 +1,6 @@
 package lotto;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -61,6 +63,32 @@ public class WinningNumbersTest {
                 Arguments.of(List.of(1, 12, 13, 14, 15, 16), Rank.NONE),
                 Arguments.of(List.of(11, 12, 13, 14, 15, 16), Rank.NONE)
         );
+    }
+
+    @DisplayName("여러 개의 로또와 (당첨 번호 + 보너스 번호)를 비교하여 몇 등을 얼마나 했는지 알려준다.")
+    @Test
+    void test4() {
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 9)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 15, 16)),
+                new Lotto(List.of(1, 2, 3, 14, 15, 16)),
+                new Lotto(List.of(1, 2, 13, 14, 15, 16)),
+                new Lotto(List.of(1, 12, 13, 14, 15, 16)),
+                new Lotto(List.of(11, 12, 13, 14, 15, 16))
+        );
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 9), 6);
+
+        Map<Rank, Integer> counts = winningNumbers.countRank(lottos);
+
+        assertThat(counts).hasSize(6);
+        assertThat(counts.get(Rank.FIRST)).isEqualTo(1);
+        assertThat(counts.get(Rank.SECOND)).isEqualTo(1);
+        assertThat(counts.get(Rank.THIRD)).isEqualTo(1);
+        assertThat(counts.get(Rank.FOURTH)).isEqualTo(1);
+        assertThat(counts.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(counts.get(Rank.NONE)).isEqualTo(3);
     }
 
     @DisplayName("번호가 6개가 아니라면 예외를 반환한다.")
