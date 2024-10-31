@@ -1,11 +1,16 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int money;
+        List<Lotto> lottoList = new ArrayList<>();
 
         while (true) {
             try {
@@ -18,6 +23,13 @@ public class Application {
         }
         int count = countLotto(money);
         outputCount(count);
+
+        for (int i = 0; i < count; i++) {
+            List<Integer> numbers = randomNumbers();
+            Lotto lotto = new Lotto(numbers);
+            lottoList.add(lotto);
+        }
+        outputnumbers(lottoList);
     }
 
     private static int getMoney() {
@@ -40,5 +52,17 @@ public class Application {
 
     private static void outputCount(int count) {
         System.out.println(count + "개를 구매했습니다.");
+    }
+
+    private static List<Integer> randomNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Integer::compareTo);
+        return numbers;
+    }
+
+    private static void outputnumbers(List<Lotto> lottoList) {
+        for (int i = 0; i < lottoList.size(); i++) {
+            System.out.println(lottoList.get(i).getNumbers());
+        }
     }
 }
