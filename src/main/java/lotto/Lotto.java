@@ -26,21 +26,21 @@ public class Lotto {
     }
 
     private LottoRank determineRank(int numOfMatch, int bonus) {
-        return switch (numOfMatch) {
+        switch (numOfMatch) { // TODO: map에 당첨 개수별 등수를 저장해두어 리턴하면 라인수 줄일 수 있음
             case 6:
-                yield LottoRank.GRADE_1TH;
+                return LottoRank.GRADE_1TH;
             case 5:
                 if (numbers.contains(bonus)) {
-                    yield LottoRank.GRADE_2TH;
+                    return LottoRank.GRADE_2TH;
                 }
-                yield LottoRank.GRADE_3TH;
+                return LottoRank.GRADE_3TH;
             case 4:
-                yield LottoRank.GRADE_4TH;
+                return LottoRank.GRADE_4TH;
             case 3:
-                yield LottoRank.GRADE_5TH;
+                return LottoRank.GRADE_5TH;
             default:
-                yield LottoRank.NONE;
-        };
+                return LottoRank.NONE;
+        }
     }
 
     public List<Integer> getNumbers() {
