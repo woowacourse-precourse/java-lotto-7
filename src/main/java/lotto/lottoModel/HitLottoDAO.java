@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HitLottoDAO {
-    private List<HitLotto> hitLottos = new ArrayList<>();
+    private List<HitLotto> hitLottos;
+
+    public HitLottoDAO() {
+        this.hitLottos = new ArrayList<>();
+    }
 
     // HitLotto 객체 저장
     public void save(HitLotto hitLotto) {
