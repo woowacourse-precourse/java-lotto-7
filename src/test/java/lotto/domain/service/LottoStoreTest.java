@@ -1,6 +1,7 @@
 package lotto.domain.service;
 
 import lotto.domain.entity.Lottos;
+import lotto.domain.entity.RandomLottoNumberGenerator;
 import lotto.exception.PayException;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoStoreTest {
 
-    private final LottoStore lottoStore = new LottoStore();
+    private final LottoStore lottoStore = new LottoStore(new RandomLottoNumberGenerator());
 
     @Test
     void 금액을_입력받고_로또_컬렉션_생성() {

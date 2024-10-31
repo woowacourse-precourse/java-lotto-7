@@ -1,6 +1,7 @@
 package lotto.domain.service;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.entity.LottoNumberGenerator;
 import lotto.domain.entity.Lottos;
 import lotto.exception.PayException;
 import lotto.exception.PayExceptionMessage;
@@ -12,6 +13,12 @@ public class LottoStore {
 
     public static final int LOTTO_PRICE = 1000;
     public static final int ZERO = 0;
+
+    private final LottoNumberGenerator lottoNumberGenerator;
+
+    public LottoStore(final LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
+    }
 
     public Lottos issueLottos(final int pay) {
         validatePayment(pay);
@@ -28,7 +35,7 @@ public class LottoStore {
     }
 
     private Lotto generateLotto() {
-        return new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        return lottoNumberGenerator.generateLotto();
     }
 
     private void validatePayment(final int pay) {

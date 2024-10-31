@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.entity.Lottos;
+import lotto.domain.entity.RandomLottoNumberGenerator;
 import lotto.domain.service.LottoStore;
 import lotto.ui.ConsoleInputView;
 import lotto.ui.ConsoleOutputView;
@@ -15,7 +16,7 @@ public class LottoController {
     private final OutputView outputView;
 
     public LottoController() {
-        this.lottoStore = new LottoStore();
+        this.lottoStore = new LottoStore(new RandomLottoNumberGenerator());
         this.inputView = new ConsoleInputView(new InputParser());
         this.outputView = new ConsoleOutputView();
     }
