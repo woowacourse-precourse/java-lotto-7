@@ -5,7 +5,11 @@ import lotto.ExceptionMessage;
 import lotto.Validator;
 
 public class Lotto {
+
     private final List<Integer> numbers;
+    public static final int NUMBER_SIZE = 6;
+    public static final int NUMBER_BEGIN_RANGE = 1;
+    public static final int NUMBER_END_RANGE = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -14,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_SIZE) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
         }
     }
