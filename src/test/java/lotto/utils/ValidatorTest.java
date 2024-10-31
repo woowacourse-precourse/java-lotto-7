@@ -25,6 +25,14 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("priceValidator_메서드_테스트_03")
+    @Test
+    void 음수가_입력된_경우_예외가_발생한다() {
+        String input = "-11100";
+
+        assertThatThrownBy(()->Validator.priceValidator(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     @DisplayName("winningNumValidator_메서드_테스트_01")
     @Test
     void 당첨_번호가_숫자쉼표숫자_패턴이_아니면_예외가_발생한다() {
