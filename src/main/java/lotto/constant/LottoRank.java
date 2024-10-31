@@ -9,6 +9,9 @@ public enum LottoRank {
     FORTH(50_000, 4,"4개 일치 (50,000원)"),
     FIFTH(5_000, 3, "3개 일치 (5,000원)");
 
+    private static final String HYPHEN = " - ";
+    private static final String LOTTO_UNIT = "개";
+
     private final int prize;
     private final int matchCount;
     private final String winningMessage;
@@ -43,6 +46,6 @@ public enum LottoRank {
 
     @Override
     public String toString() {
-        return this.winningMessage + " - " + numberOfWins + "개";
+        return this.winningMessage + HYPHEN + numberOfWins + LOTTO_UNIT;
     }
 }
