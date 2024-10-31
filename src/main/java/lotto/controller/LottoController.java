@@ -6,50 +6,65 @@ import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lottos;
+import lotto.view.LottoView;
 
 public class LottoController {
     private final Lottos lottos;
+    private final LottoView view;
 
-    public LottoController(Lottos lottos) {
+    public LottoController(Lottos lottos, LottoView view) {
         this.lottos = lottos;
+        this.view = view;
     }
 
-    public BigDecimal readPrice() {
-        return new BigDecimal(Integer.parseInt(Console.readLine()));
+    public BigDecimal startLotto() {
+        BigDecimal lottoPrice = view.inputLottoPrice();
+        int lottoCount = lottoCount(lottoPrice);
+        view.printLottoCount(lottoCount);
+        allocateLottoNumbers(lottoCount);
+        view.printLottoNumbers(lottos.toStringAllLottoNumber());
+        return lottoPrice;
     }
 
-    public int lottoCount(BigDecimal price) {
+    public void winningNumber(BigDecimal lottoPrice) {
+        List<Integer> winningNumber = inputWinningNumber();
+        int bonusNumber = inputBonusNumber();
+        confirmWinning(winningNumber, bonusNumber);
+        traceWinning(lottos.toStringWinningMessageAndCount());
+        view.printWinningRate(getWinningRate(lottoPrice));
+    }
+
+
+    private int lottoCount(BigDecimal price) {
         return price.divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP)
                 .intValue();
     }
 
-    public void allocateLottoNumbers(int lottoCount) {
+    private void allocateLottoNumbers(int lottoCount) {
         lottos.allocateLottosByRandomNumber(lottoCount);
+        lottos.ascAllLottoNumber();
     }
 
-    public String printLottoNumbers() {
-        return lottos.toStringAllLottoNumber();
-    }
-
-    public List<Integer> inputWinningNumber() {
-        return Arrays.stream(Console.readLine().split(","))
+    private List<Integer> inputWinningNumber() {
+        String winningNumber = view.inputWinningNumber();
+        return Arrays.stream(winningNumber.split(","))
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    public int inputBonusNumber() {
-        return Integer.parseInt(Console.readLine());
+    private int inputBonusNumber() {
+        return Integer.parseInt(view.inputBonusNumber());
     }
 
-    public void confirmWinning(List<Integer> winningNumber, int bonusNumber) {
+    private void confirmWinning(List<Integer> winningNumber, int bonusNumber) {
         lottos.winningByWinningAndBonusNumber(winningNumber, bonusNumber);
     }
 
-    public String traceWinning() {
-        return lottos.toStringWinningMessageAndCount();
+    private void traceWinning(String trace) {
+        view.printWinningTrace(trace);
     }
 
-    public String getWinningRate(BigDecimal lottoPrice) {
+    private String getWinningRate(BigDecimal lottoPrice) {
         return lottos.calculateWinningRate(lottoPrice).toPlainString();
     }
 }

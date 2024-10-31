@@ -1,41 +1,42 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
-import java.util.List;
-import lotto.controller.LottoController;
 
 public class LottoView {
-    private final LottoController controller;
-
-    public LottoView(LottoController controller) {
-        this.controller = controller;
+    public BigDecimal inputLottoPrice() {
+        System.out.println("구입금액을 입력해 주세요.");
+        return new BigDecimal(Integer.parseInt(Console.readLine()));
     }
 
-    public void startLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
-        BigDecimal lottoPrice = controller.readPrice();
-        System.out.println();
-
-        int lottoCount = controller.lottoCount(lottoPrice);
+    public void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
+    }
 
-        controller.allocateLottoNumbers(lottoCount);
+    public void printLottoNumbers(String lottoNumbers) {
+        System.out.println(lottoNumbers);
+    }
 
-        System.out.println(controller.printLottoNumbers() + "\n");
-
+    public String inputWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumber = controller.inputWinningNumber();
+        String winningNumber = Console.readLine();
         System.out.println();
+        return winningNumber;
+    }
 
+    public String inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = controller.inputBonusNumber();
+        String bonusNumber = Console.readLine();
         System.out.println();
+        return bonusNumber;
+    }
 
-        controller.confirmWinning(winningNumber, bonusNumber);
-
+    public void printWinningTrace(String winningTrace) {
         System.out.println("당첨 통계\n---");
-        System.out.println(controller.traceWinning());
+        System.out.println(winningTrace);
+    }
 
-        System.out.println("총 수익률은 " + controller.getWinningRate(lottoPrice) + "%입니다.");
+    public void printWinningRate(String winningRate) {
+        System.out.println("총 수익률은 " + winningRate + "%입니다.");
     }
 }

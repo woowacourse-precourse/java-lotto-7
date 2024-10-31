@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import lotto.controller.LottoController;
 import lotto.model.Lottos;
 import lotto.view.LottoView;
@@ -7,8 +8,9 @@ import lotto.view.LottoView;
 public class Application {
     public static void main(String[] args) {
         Lottos lottos = new Lottos();
-        LottoController lottoController = new LottoController(lottos);
-        LottoView view = new LottoView(lottoController);
-        view.startLotto();
+        LottoView view = new LottoView();
+        LottoController lottoController = new LottoController(lottos, view);
+        BigDecimal lottoPrice = lottoController.startLotto();
+        lottoController.winningNumber(lottoPrice);
     }
 }

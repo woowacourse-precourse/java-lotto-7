@@ -30,7 +30,7 @@ public class Lottos {
 
     public String toStringAllLottoNumber() {
         StringBuilder sb = new StringBuilder();
-        lottos.keySet().forEach(lotto -> sb.append(lotto.toString()));
+        lottos.keySet().forEach(lotto -> sb.append(lotto.toString()).append("\n"));
         return sb.toString();
     }
 
