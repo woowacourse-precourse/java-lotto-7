@@ -18,7 +18,7 @@ public class LottoWinningNumbers {
         this.winningNumbers = new ArrayList<>();
     }
 
-    public List<Integer> generate() {
+    public void generate() {
         String[] splitNumbers = mainNumbers.split(DELIMITER);
         for (String splitNumber : splitNumbers) {
             Integer number = StringUtil.parseToPositiveInt(splitNumber);
@@ -27,8 +27,6 @@ public class LottoWinningNumbers {
 
         Integer bonus = StringUtil.parseToPositiveInt(bonusNumber);
         winningNumbers.add(bonus);
-
-        return winningNumbers;
     }
 
     public List<Integer> getWinningNumbers() {
