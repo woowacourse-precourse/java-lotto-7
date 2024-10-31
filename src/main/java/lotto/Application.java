@@ -3,6 +3,8 @@ package lotto;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.controller.LottoController;
+import lotto.domain.Lottos;
+import lotto.dto.LottoBuyResponse;
 import lotto.dto.LottoRequest;
 import lotto.exception.LottoInputException;
 import lotto.service.LottoService;
@@ -19,34 +21,53 @@ public class Application {
     private static int buyMoney = -1;
     private static List<Integer> winningNumbers = null;
     private static int bonusNumber = -1;
+    private static Lottos lottos = null;
+    private static LottoController lottoController = new LottoController(new LottoService());
 
 
     public static void main(String[] args) {
         LottoRequest lottoRequest = null;
         while (lottoRequest == null) {
-            lottoRequest = inputLottoRequestDto();
+            if((buyMoney = inputBuyMoney()) == -1) {
+                continue;
+            }
+            if(lottos == null){
+                buyLotto();
+            }
+            if((lottoRequest = inputLottoRequestDto())== null){
+                continue;
+            }
+            OutputView.print(lottoController.calLottos(lottoRequest,lottos));
         }
-        LottoController lottoController = new LottoController(new LottoService());
-        lottoController.buyLottos(lottoRequest);
+    }
+
+    private static void buyLotto() {
+        LottoBuyResponse lottoBuyResponse = lottoController.buyLottos(new LottoRequest(buyMoney, winningNumbers, bonusNumber));
+        lottos = lottoBuyResponse.lottos();
+        OutputView.print(lottoBuyResponse.buyLottoHistory());
     }
 
     private static LottoRequest inputLottoRequestDto() {
         try {
-            buyMoney = inputBuyMoney();
             winningNumbers = inputWinningNumbers();
             bonusNumber = inputBonusNumber();
+            return new LottoRequest(buyMoney,winningNumbers,bonusNumber);
         }catch(LottoInputException e){
             OutputView.printError(e);
             return null;
         }
-        return new LottoRequest(buyMoney,winningNumbers,bonusNumber);
     }
 
     private static int inputBuyMoney() {
-        if(buyMoney != -1) return buyMoney;
-        String input = InputView.inputBuyMoney();
-        LottoBuyMoneyValidator.validateLottoBuyMoney(input);
-        return Integer.parseInt(input);
+        try{
+            if(buyMoney != -1) return buyMoney;
+            String input = InputView.inputBuyMoney();
+            LottoBuyMoneyValidator.validateLottoBuyMoney(input);
+            return Integer.parseInt(input);
+        }catch (LottoInputException e){
+            OutputView.printError(e);
+            return -1;
+        }
     }
 
     private static List<Integer> inputWinningNumbers() {
