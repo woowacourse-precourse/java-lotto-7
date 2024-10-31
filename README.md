@@ -29,9 +29,9 @@
     - [ ] Controller
 - [ ] Model
     - [ ] Lotto
-    - [ ] GenerateLotto
+    - [ ] 
     - [ ] DAO
-    - [ ] DTO
+    - [ ] 
     - [ ] LottoGame
     - [ ] HitLotto
     - [ ] statisticsLotto
