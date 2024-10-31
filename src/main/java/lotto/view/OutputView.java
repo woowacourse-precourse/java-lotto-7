@@ -21,16 +21,16 @@ public class OutputView {
     public static void printInputMoneyPrompt(){
         System.out.println(INPUT_PURCHASE_AMOUNT);
     }
-    public void printInputAgainPrompt(){
+    public static void printInputAgainPrompt(){
         System.out.println(INPUT_AGAIN);
     }
     public static void printPurchasedTicketCount(int amount){
         System.out.println(amount + PURCHASED_TICKETS);
     }
-    public void printInputWinningNumbersPrompt(){
+    public static void printInputWinningNumbersPrompt(){
         System.out.println(INPUT_WINNING_NUMBERS);
     }
-    public void printInputBonusNumberPrompt(){
+    public static void printInputBonusNumberPrompt(){
         System.out.println(INPUT_BONUS_NUMBER);
     }
     public static void printPurchasedLottoNumbers(ArrayList<List<Integer>> purchasedLottoNumbers){
@@ -46,7 +46,4 @@ public class OutputView {
         System.out.println(MATCH_6_PRIZE + rank[4] + COUNT);
         System.out.printf(TOTAL_PROFIT_RATE, totalRate);
     }
-
-
-
 }
