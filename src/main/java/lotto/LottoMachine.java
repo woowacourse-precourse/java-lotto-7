@@ -127,16 +127,16 @@ public class LottoMachine {
         long totalCountOfMatchThree = getTotalCountOf(LottoPrize.MATCH_THREE, prizes);
         ResultPrinter.printPrizeResult(LottoPrize.MATCH_THREE, totalCountOfMatchThree);
 
-        long totalCountOfMatchFour = getTotalCountOf(LottoPrize.MATCH_THREE, prizes);
+        long totalCountOfMatchFour = getTotalCountOf(LottoPrize.MATCH_FOUR, prizes);
         ResultPrinter.printPrizeResult(LottoPrize.MATCH_FOUR, totalCountOfMatchFour);
 
-        long totalCountOfMatchFive = getTotalCountOf(LottoPrize.MATCH_THREE, prizes);
+        long totalCountOfMatchFive = getTotalCountOf(LottoPrize.MATCH_FIVE, prizes);
         ResultPrinter.printPrizeResult(LottoPrize.MATCH_FIVE, totalCountOfMatchFive);
 
-        long totalCountOfMatchFiveWithBonus = getTotalCountOf(LottoPrize.MATCH_THREE, prizes);
+        long totalCountOfMatchFiveWithBonus = getTotalCountOf(LottoPrize.MATCH_FIVE_AND_BONUS, prizes);
         ResultPrinter.printPrizeResult(LottoPrize.MATCH_FIVE_AND_BONUS, totalCountOfMatchFiveWithBonus);
 
-        long totalCountOfMatchSix = getTotalCountOf(LottoPrize.MATCH_THREE, prizes);
+        long totalCountOfMatchSix = getTotalCountOf(LottoPrize.MATCH_SIX, prizes);
         ResultPrinter.printPrizeResult(LottoPrize.MATCH_SIX, totalCountOfMatchSix);
     }
 
