@@ -31,10 +31,7 @@ public class InputFormatter {
 
     private void validateWinningNumbersInput(String winningNumbersInput) {
         try {
-            List<String> winningNumbers = Arrays.asList(winningNumbersInput.split(DELIMITER));
-            for (String winningNumber : winningNumbers) {
-                Integer.parseInt(winningNumber);
-            }
+            formatWinningNumbers(winningNumbersInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식이 잘못되었습니다.");
         }
@@ -72,6 +69,7 @@ public class InputFormatter {
 
     private List<Integer> formatWinningNumbers(String winningNumbersInput) {
         return Arrays.stream(winningNumbersInput.split(DELIMITER))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
     }
