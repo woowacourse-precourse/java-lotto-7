@@ -16,9 +16,11 @@ public class User {
         this.buyingPrice = buyingPrice;
         this.winningPrice = 0;
         this.userLotto = new ArrayList<>();
+
+        addLottoNumber();
     }
 
-    public void addLottoNumber() {
+    private void addLottoNumber() {
         for (int i = 0; i < getLottoQuantity(); i++) {
             userLotto.add(createLotto());
         }
@@ -31,5 +33,4 @@ public class User {
     public int getLottoQuantity() {
         return buyingPrice / LOTTO_PRICE;
     }
-
 }
