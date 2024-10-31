@@ -69,4 +69,13 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.validateLottoNumber(input);
         });
     }
+
+    @DisplayName("입력된 수가 1~45의 범위가 아닌 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,3,71", "11,2,24,4,5,111"})
+    void validateRange(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoNumberValidator.validateLottoNumber(input);
+        });
+    }
 }

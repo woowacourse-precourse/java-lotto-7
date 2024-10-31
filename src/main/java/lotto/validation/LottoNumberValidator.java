@@ -14,6 +14,7 @@ public class LottoNumberValidator {
         validateSixNumbers(input);
         validateStartWithZero(input);
         validateNumberDuplicate(input);
+        validateRange(input);
     }
 
     private static void validateNull(String input) {
@@ -71,6 +72,17 @@ public class LottoNumberValidator {
             value = value.trim();
             if (!numbers.add(value)) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_DUPLICATE_NUMBER.getErrorMessage());
+            }
+        }
+    }
+
+    private static void validateRange(String input) {
+        String [] values = input.split(",");
+
+        for (String value : values) {
+            int number = Integer.parseInt(value.trim());
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
             }
         }
     }
