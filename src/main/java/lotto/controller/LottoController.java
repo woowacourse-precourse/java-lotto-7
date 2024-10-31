@@ -26,22 +26,62 @@ public class LottoController {
         this.outputView = new OutputView();
     }
 
-    public void run() {
-        String inputPayment = inputView.readPayment();
-        int payment = parser.parsePayment(inputPayment);
+    public int getPayment() {
+        int payment;
+        try {
+            String inputPayment = inputView.readPayment();
+            payment = parser.parsePayment(inputPayment);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            payment = getPayment();
+        }
 
+        return payment;
+    }
+
+    public List<Lotto> initLotto(int payment) {
         List<Lotto> lottos = lottoService.initLotto(payment);
         outputView.printLotto(lottos);
 
-        String inputWinningNumbers = inputView.readWinningNumbers();
-        List<Integer> winningNumbers = parser.parseWinningNumbers(inputWinningNumbers);
+        return lottos;
+    }
 
-        String inputBonus = inputView.readBonus();
-        int bonus = parser.parseBonus(inputBonus);
+    public List<Integer> getWinningNumbers() {
+        List<Integer> winningNumbers;
+        try {
+            String inputWinningNumbers = inputView.readWinningNumbers();
+            winningNumbers = parser.parseWinningNumbers(inputWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winningNumbers = getWinningNumbers();
+        }
 
-        Map<Winning, Integer> winnings = lottoService.getWinnings(lottos, winningNumbers, bonus);
-        double yield = lottoService.getYield(payment, winnings);
+        return winningNumbers;
+    }
 
+    public int getBonus() {
+        int bonus;
+
+        try {
+            String inputBonus = inputView.readBonus();
+            bonus = parser.parseBonus(inputBonus);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bonus = getBonus();
+        }
+
+        return bonus;
+    }
+
+    public Map<Winning, Integer> getWinnings(List<Lotto> lottos, List<Integer> winningNumbers, int bonus) {
+        return lottoService.getWinnings(lottos, winningNumbers, bonus);
+    }
+
+    public double getYield(Map<Winning, Integer> winnings, int payment) {
+        return lottoService.getYield(payment, winnings);
+    }
+
+    public void printResult(Map<Winning, Integer> winnings, double yield) {
         outputView.printResult(winnings, yield);
     }
 }
