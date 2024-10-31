@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import lotto.ErrorMessage;
-import lotto.LottoGenerator;
-import lotto.model.Lotto;
+import lotto.LottoManager;
 import lotto.model.Lottos;
+import lotto.NumberGenerate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,24 +13,18 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoManager lottoManager;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, NumberGenerate lottoGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lottoManager = new LottoManager(lottoGenerator);
     }
 
     public void run() {
         int money = lottoMoneyInput();
 
-        int lottoCnt = money / LOTTO_PRICE;
-        // 로또 발행
-        List<Lotto> tmpLottos = new ArrayList<>();
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        for (int cnt = 0; cnt < lottoCnt; cnt++) {
-            List<Integer> numbers = lottoGenerator.randomGenerate(1, 45, 6);
-            tmpLottos.add(new Lotto(numbers));
-        }
-        Lottos lottos = new Lottos(tmpLottos);
+        Lottos lottos = lottoManager.buyLotto(money);
         outputView.showHowManyLotto(lottos);
         outputView.showAllLottoNums(lottos);
     }
