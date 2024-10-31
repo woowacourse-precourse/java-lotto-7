@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.exception.LottoErrorMessage;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -9,15 +10,36 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private void validateNumbers(List<Integer> numbers) {
+        validateNumberSize(numbers);
+        validateNumberRange(numbers);
+        validateNumberDuplicate(numbers);
+    }
+
+    private void validateNumberSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_SIZE_ERROR.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
+            }
+        }
+    }
+
+    private void validateNumberDuplicate(List<Integer> numbers) {
+        var distinctNumbers = numbers.stream().distinct().count();
+        if (distinctNumbers == LOTTO_SIZE) {
+            return;
+        }
+
+        throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
+    }
 }
