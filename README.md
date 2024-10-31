@@ -25,9 +25,9 @@
     - [ ] 당첨 번호 입력 받기
     - [ ] 보너스 번호 입력 받기
     - [ ] 사용자의 입력 검증
-        - [ ] 사용자의 입력들이 숫자가 아니면 IllegalArgumentException을 발생시킨다
-        - [ ] 로또 구입 금액이 1000원 미만이면 IllegalArgumentException을 발생시킨다
-        - [ ] 로또 구입 금액이 1000원 단위가 아니면 IllegalArgumentException을 발생시킨다
+        - [x] 사용자의 입력들이 숫자가 아니면 IllegalArgumentException을 발생시킨다
+        - [x] 로또 구입 금액이 1000원 미만이면 IllegalArgumentException을 발생시킨다
+        - [x] 로또 구입 금액이 1000원 단위가 아니면 IllegalArgumentException을 발생시킨다
         - [ ] 입력된 당첨 번호의 갯수가 6개가 아니면 IllegalArgumentException을 발생시킨다
         - [ ] 입력된 당첨 번호들과 보너스 번호가 로또 번호 숫자 범위 내에 없으면 IllegalArgumentException을 발생시킨다
 
