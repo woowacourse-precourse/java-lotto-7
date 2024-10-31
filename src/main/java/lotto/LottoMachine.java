@@ -102,4 +102,18 @@ public class LottoMachine {
             }
         }
     }
+
+    private long getTotalPrize() {
+        long totalPrize = 0L;
+        totalPrize += 5000L * winningStatistics.getOrDefault(3, 0);
+        totalPrize += 50000L * winningStatistics.getOrDefault(4, 0);
+        totalPrize += 150000L * winningStatistics.getOrDefault(5, 0);
+        totalPrize += 3000000L * winningStatistics.getOrDefault(7, 0);
+        totalPrize += 20000000L * winningStatistics.getOrDefault(6, 0);
+        return totalPrize;
+    }
+
+    public double getReturnRate(double totalPrize, double amount) {
+        return Math.round(totalPrize / amount * 100 * 10) / 10.0;
+    }
 }

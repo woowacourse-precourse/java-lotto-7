@@ -222,4 +222,26 @@ class LottoMachineTest {
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
     }
+
+    static Stream<Arguments> returnRateFactory() {
+        return Stream.of(
+                Arguments.arguments(5000, 8000, 62.5),
+                Arguments.arguments(5000, 1000, 500.0),
+                Arguments.arguments(0, 1000, 0.0),
+                Arguments.arguments(1000, 1000, 100.0),
+                Arguments.arguments(333, 1000, 33.3)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("returnRateFactory")
+    public void 수익률_테스트(double totalPrize, double amount, double expected) throws Exception {
+        //Given
+
+        //When
+        double actual = LOTTO_MACHINE.getReturnRate(totalPrize, amount);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
 }
