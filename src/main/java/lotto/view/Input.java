@@ -16,4 +16,8 @@ public class Input {
   public int getLottoCounts(int amount) {
     return  amount / LOTTO_PRICE;
   }
+
+  // 3. 그 다음 사용자가 당첨 번호를 입력하고
+
+  //  4. 보너스 번호까지 입력하면
 }
