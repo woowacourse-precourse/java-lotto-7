@@ -1,12 +1,14 @@
 package lotto.validator;
 
+import lotto.enums.Constants;
+
 public class LottoValidator {
 
     public static void validateInputMoney(String inputMoney) {
         isEmpty(inputMoney);
         isDigit(inputMoney);
         int money = Integer.parseInt(inputMoney);
-        if (money % 1000 != 0) {
+        if (money % Constants.MONEY_UNIT.getValue() != 0) {
             throw new IllegalArgumentException();
         }
     }
