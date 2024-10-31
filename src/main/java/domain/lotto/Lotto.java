@@ -1,5 +1,6 @@
 package domain.lotto;
 
+import domain.error.LottoErrorMessage;
 import java.util.List;
 
 public class Lotto {
@@ -12,14 +13,22 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
         }
+        int left = 0;
+        while (left < 6) {
+            for (int right = left+1; right < 6; right++) {
+                if (numbers.get(left) == numbers.get(right)) {
+                    throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+                }
+            }
+            left++;
+        }
+    }
 
-        for (int i = 0; i < 6; i++) {
-            if (numbers.contains(numbers.get(i))) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.");
-            };
-        }
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     // TODO: 추가 기능 구현
