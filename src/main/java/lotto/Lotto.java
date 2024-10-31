@@ -8,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicatedNumbers(numbers);
         this.numbers = numbers;
         Collections.sort(numbers);
     }
@@ -27,5 +28,13 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    private void validateDuplicatedNumbers(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (numbers.contains(number)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복된 숫자가 허용되지 않습니다.");
+            }
+        }
     }
 }
