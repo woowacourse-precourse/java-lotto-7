@@ -36,7 +36,7 @@ public class ExceptionHandler {
 
     public static void isOnlyNumber(String input) {
         ExceptionMessage exception = ExceptionMessage.NOT_ONLY_NUMBER;
-        if (input.chars().allMatch(Character::isDigit)) {
+        if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
