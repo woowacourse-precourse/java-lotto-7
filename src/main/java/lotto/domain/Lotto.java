@@ -18,6 +18,11 @@ public class Lotto implements Iterable<Integer> {
     }
 
     @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    @Override
     public Iterator<Integer> iterator() {
         return numbers.iterator();
     }
