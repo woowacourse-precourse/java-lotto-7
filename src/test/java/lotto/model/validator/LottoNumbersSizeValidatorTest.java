@@ -1,14 +1,12 @@
 package lotto.model.validator;
 
-import static lotto.exception.InvalidAmountException.INVALID_AMOUNT_MESSAGE;
-import static lotto.exception.InvalidLottoNumberException.INVALID_LOTTO_NUMBER_MESSAGE;
+import static lotto.exception.InvalidLottoNumberException.INVALID_LOTTO_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.exception.InvalidAmountException;
 import lotto.util.LottoConstants;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +27,7 @@ class LottoNumbersSizeValidatorTest {
 
         assertThatThrownBy(validator::validate)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_LOTTO_NUMBER_MESSAGE);
+                .hasMessage(INVALID_LOTTO_NUMBERS);
     }
 
     @Test
@@ -39,7 +37,7 @@ class LottoNumbersSizeValidatorTest {
 
         assertThatThrownBy(validator::validate)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_LOTTO_NUMBER_MESSAGE);
+                .hasMessage(INVALID_LOTTO_NUMBERS);
     }
 
 
