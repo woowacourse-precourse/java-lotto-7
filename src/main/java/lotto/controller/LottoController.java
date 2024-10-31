@@ -1,20 +1,23 @@
 package lotto.controller;
 
+import lotto.exception.InvalidBonusNumberException;
 import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.InvalidWinningNumbersException;
-import lotto.model.Lotto;
+import lotto.model.BonusNumber;
 import lotto.model.PublishLotteries;
-import lotto.model.PurchasePrice;
+import lotto.model.Purchase;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoController {
-    private int purchaseCount;
-    private List<Integer> winningNumbersToCompare;
-
+    private Purchase purchase;
+    private WinningNumbers winningNumbers;
+    private BonusNumber bonusNumber;
     private PublishLotteries publishLotteries;
+
     private final InputView inputView;
     private final OutputView outputView;
 
@@ -22,6 +25,7 @@ public class LottoController {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
 
     public void play() {
         buy();
@@ -51,8 +55,7 @@ public class LottoController {
         while (true) {
             try {
                 int amount = inputView.getPurchaseAmount();
-                PurchasePrice purchasePrice = new PurchasePrice(amount);
-                purchaseCount = purchasePrice.get() / 1000;
+                purchase = new Purchase(amount);
                 break;
             } catch (InvalidPurchaseAmountException e) {
                 System.out.println(e.getMessage());
@@ -62,7 +65,7 @@ public class LottoController {
 
     // 구매한 로또 수 만큼의 로또를 발행한다
     private void publishLotto() {
-        publishLotteries = new PublishLotteries(purchaseCount);
+        publishLotteries = new PublishLotteries(purchase.getPurchaseCount());
     }
 
     // 발행된 로또 번호를 출력한다
@@ -74,9 +77,8 @@ public class LottoController {
     private void assignWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = inputView.getWinningNumbers();
-                Lotto lotto = new Lotto(winningNumbers);
-                winningNumbersToCompare = lotto.get();
+                List<Integer> input = inputView.getWinningNumbers();
+                winningNumbers = new WinningNumbers(input);
                 break;
             } catch (InvalidWinningNumbersException e) {
                 System.out.println(e.getMessage());
@@ -86,7 +88,15 @@ public class LottoController {
 
     // 보너스 번호를 입력 받는다
     private void assignBonusNumber() {
-
+        while (true) {
+            try {
+                int number = inputView.getBonusNumber();
+                bonusNumber = new BonusNumber(number);
+                break;
+            } catch (InvalidBonusNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     // 번호를 비교하여 당첨 내역을 계산한다
