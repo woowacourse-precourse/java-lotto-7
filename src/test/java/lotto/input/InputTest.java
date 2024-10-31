@@ -48,6 +48,24 @@ public class InputTest {
     }
 
     @Test
+    @DisplayName("구입금액을 문자형으로 형 변환이 가능하다.")
+    public void testValidateIntegerInput() {
+        assertTrue(InputValidate.isParsableAsInteger("0"));
+        assertTrue(InputValidate.isParsableAsInteger("100000"));
+        assertTrue(InputValidate.isParsableAsInteger("50000000"));
+        assertTrue(InputValidate.isParsableAsInteger("2000000000"));
+    }
+
+    @Test
+    @DisplayName("구입금액을 문자형으로 형 변환이 불가능하다.")
+    public void testValidateLongerInput() {
+        assertFalse(InputValidate.isParsableAsInteger("10000000000"));
+        assertFalse(InputValidate.isParsableAsInteger("300000000000000"));
+        assertFalse(InputValidate.isParsableAsInteger("50000000000000000"));
+        assertFalse(InputValidate.isParsableAsInteger("10000000000000000000"));
+    }
+
+    @Test
     @DisplayName("검증 시, 숫자 문자열이라면 통과한다.")
     public void testNumberInputValidate() {
         assertTrue(InputValidate.run("0"));
