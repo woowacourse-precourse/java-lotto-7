@@ -53,6 +53,6 @@ public class LottoController {
 
     private String receiveBonusNumber() {
         outputView.requestBonusNumber();
-        return null;
+        return inputView.receiveString();
     }
 }
