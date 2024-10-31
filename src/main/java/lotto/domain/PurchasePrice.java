@@ -14,4 +14,8 @@ public class PurchasePrice {
     public long getPrice() {
         return price;
     }
+
+    public int calculatePurchaseCount() {
+        return (int) (price / 1000);
+    }
 }
