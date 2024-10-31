@@ -3,6 +3,7 @@ package lotto.provider;
 import static lotto.exception.ExceptionMessage.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -35,6 +36,7 @@ public class LottoProvider {
 	public void pickLottoNumbers() {
 		for (int i = 0; i < numberOfLottos; i++) {
 			List<Integer> pickedLottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_DRAW_COUNT);
+			Collections.sort(pickedLottoNumbers);
 			pickedLottos.add(new Lotto(pickedLottoNumbers));
 		}
 	}
