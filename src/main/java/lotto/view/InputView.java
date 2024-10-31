@@ -2,6 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.global.Error.NOT_INTEGER;
+import static lotto.global.Message.BONUS_NUMBER_MESSAGE;
 import static lotto.global.Message.BUY_LOTTO_MESSAGE;
 import static lotto.global.Message.WINNING_NUMBER_MESSAGE;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Buy;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBonus;
 
 public class InputView {
 
@@ -40,6 +42,20 @@ public class InputView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningLottoNumbers();
+        }
+    }
+
+    public LottoBonus inputLottoBonusNumber(List<Integer> winningLottoNumbers) {
+        System.out.println(BONUS_NUMBER_MESSAGE.getMsg());
+        try {
+            int bonusNumber = convertToInt(readLine());
+            return new LottoBonus(bonusNumber, winningLottoNumbers);
+        } catch (NumberFormatException e) {
+            System.out.println(NOT_INTEGER.getErrorMsg());
+            return inputLottoBonusNumber(winningLottoNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputLottoBonusNumber(winningLottoNumbers);
         }
     }
 
