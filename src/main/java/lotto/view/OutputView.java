@@ -16,8 +16,12 @@ public class OutputView {
     private static final String BONUS_MATCH_MONEY = "30,000,000원";
     private static final String SIX_MATCH_MONEY = "2,000,000,000원";
 
-    public static void printBuyLotto(int amount) {
+    private static void printEnter() {
         System.out.println();
+    }
+
+    public static void printBuyLotto(int amount) {
+        printEnter();
         System.out.println(amount + BUY_LOTTO);
     }
 
@@ -25,6 +29,7 @@ public class OutputView {
         for (List<Integer> number : numbers) {
             System.out.println(number);
         }
+        printEnter();
     }
 
     public static void printMatchNumbers(int three, int four, int five, int fiveAndBonus, int six) {
@@ -37,6 +42,7 @@ public class OutputView {
     }
 
     private static void printResult() {
+        printEnter();
         System.out.println("당첨 통계");
         System.out.println("---");
     }

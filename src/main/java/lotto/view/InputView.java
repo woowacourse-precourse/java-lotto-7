@@ -27,9 +27,14 @@ public class InputView {
     }
 
     public String inputBonusNumber() {
+        printEnter();
         printMessage(INPUT_BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         return input;
+    }
+
+    private static void printEnter() {
+        System.out.println();
     }
 
     private void printMessage(String message) {
