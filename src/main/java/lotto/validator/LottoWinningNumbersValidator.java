@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import lotto.error.LottoError;
 import lotto.util.LottoParser;
 
 public class LottoWinningNumbersValidator {
@@ -31,13 +31,13 @@ public class LottoWinningNumbersValidator {
 
     private void validateFormat(String lottoWinningNumbers) {
         if (!LOTTO_WINNING_NUMBERS_PATTERN.matcher(lottoWinningNumbers).matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_INVALID_FORMAT.getMessage());
         }
     }
 
     private void validateDuplicationNumbers(Set<Integer> numbers, int lottoNumber) {
         if (numbers.contains(lottoNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_DUPLICATION.getMessage());
         }
         numbers.add(lottoNumber);
     }

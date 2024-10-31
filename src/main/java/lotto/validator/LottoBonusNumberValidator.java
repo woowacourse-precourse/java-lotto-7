@@ -1,8 +1,8 @@
 package lotto.validator;
 
-import java.util.List;
 import java.util.regex.Pattern;
 import lotto.domain.WinningLotto;
+import lotto.error.LottoError;
 import lotto.util.LottoParser;
 
 public class LottoBonusNumberValidator {
@@ -25,13 +25,13 @@ public class LottoBonusNumberValidator {
 
     private void validateDigit(String bonusNumber) {
         if (!LOTTO_BONUS_NUMBER_PATTERN.matcher(bonusNumber).matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoError.LOTTO_BONUS_NUMBER_INVALID_FORMAT.getMessage());
         }
     }
 
     private void validateDuplicationNumber(int bonusNumber, WinningLotto winningLotto) {
         if (winningLotto.isContains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoError.LOTTO_BONUS_NUMBER_DUPLICATION.getMessage());
         }
     }
 

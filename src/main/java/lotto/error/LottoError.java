@@ -7,8 +7,16 @@ public enum LottoError {
     LOTTO_PURCHASE_PRICE_LESS_THAN_MIN("로또 구입 가격이 최소값 미만입니다."),
     LOTTO_PURCHASE_PRICE_MORE_THAN_MAX("로또 구입 가격이 최대값 이상입니다."),
 
-    INVALID_NUMBER("유효하지 않은 수의 형식입니다.");
+    LOTTO_WINNING_NUMBERS_INVALID_FORMAT("로또 당첨 번호들의 형식이 유효하지 않습니다."),
+    LOTTO_WINNING_NUMBERS_DUPLICATION("로또 당첨 번호들 중에 중복이 있습니다."),
 
+    LOTTO_NUMBER_LESS_THAN_MIN("로또 번호가 최소값 미만입니다."),
+    LOTTO_NUMBER_MORE_THAN_MAX("로또 번호가 최대값 초과입니다."),
+
+    LOTTO_BONUS_NUMBER_INVALID_FORMAT("로또 보너스 번호의 형식이 유효하지 않습니다."),
+    LOTTO_BONUS_NUMBER_DUPLICATION("로또 보너스 번호가 중복되었습니다."),
+
+    INVALID_NUMBER("유효하지 않은 수의 형식입니다.");
 
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
     private String message;
