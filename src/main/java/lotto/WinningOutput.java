@@ -28,23 +28,28 @@ public class WinningOutput {
 	}
 
 	private Winning determineWinning(int matchCount, boolean matchBonus) {
-		if (matchCount == 6) return Winning.FIRST;
-		if (matchCount == 5 && matchBonus) return Winning.SECOND;
-		if (matchCount == 5) return Winning.THIRD;
-		if (matchCount == 4) return Winning.FOURTH;
-		if (matchCount == 3) return Winning.FIFTH;
+		if (matchCount == 6)
+			return Winning.FIRST;
+		if (matchCount == 5 && matchBonus)
+			return Winning.SECOND;
+		if (matchCount == 5)
+			return Winning.THIRD;
+		if (matchCount == 4)
+			return Winning.FOURTH;
+		if (matchCount == 3)
+			return Winning.FIFTH;
 		return Winning.NONE;
 	}
 
 	private void recordWinning(int matchCount, boolean matchBonus) {
 		Winning winning = determineWinning(matchCount, matchBonus);
-		winningCounts[winning.ordinal()]++;
+		winningCounts[winning.getIndex()]++;
 		totalAmount += winning.getWinningAmount();
 	}
 
 	public void winningPrint() {
 		for (Winning w : Winning.values()) {
-			System.out.println(w.getMessage() + winningCounts[w.ordinal()] + "개");
+			System.out.println(w.getMessage() + winningCounts[w.getIndex()] + "개");
 		}
 		System.out.println("총 수익률은 " + rateOfReturn() + "%입니다.");
 	}
