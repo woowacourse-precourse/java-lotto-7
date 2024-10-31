@@ -11,21 +11,30 @@ public class LottoController {
     private final OutputHandler outputHandler;
     private final LottoPurchaseCalculator lottoManager;
 
-    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, RandomNumberGenerator randomNumberGenerator) {
+    public LottoController(InputHandler inputHandler, OutputHandler outputHandler,
+                           RandomNumberGenerator randomNumberGenerator) {
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;
         this.lottoManager = new LottoPurchaseCalculator(randomNumberGenerator);
     }
 
     public void startLotto() {
-        outputHandler.showLottoPrice();
-        String price = inputHandler.price();
-        int lottoCount = lottoManager.getLottoCount(price);
-        outputHandler.showLottoCount(lottoCount);
+        while (true) {
+            try {
+                outputHandler.showLottoPrice();
+                String price = inputHandler.price();
+                int lottoCount = lottoManager.getLottoCount(price);
+                outputHandler.showLottoCount(lottoCount);
 
-        List<List<Integer>> lottoNumbers = lottoManager.generateLottoNumbers(lottoCount);
-        for (List<Integer> numbers : lottoNumbers) {
-            outputHandler.showLottoList(numbers);
+                List<List<Integer>> lottoNumbers = lottoManager.generateLottoNumbers(lottoCount);
+                for (List<Integer> numbers : lottoNumbers) {
+                    outputHandler.showLottoList(numbers);
+                }
+                break;
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
