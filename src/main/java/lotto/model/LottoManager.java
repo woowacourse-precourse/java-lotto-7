@@ -34,6 +34,15 @@ public class LottoManager {
         return false;
     }
 
+    private boolean isBonusNumberMatch(List<Integer> lottoNumbers) {
+        for (Integer number : lottoNumbers) {
+            if(number.equals(this.bonusNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public List<Lotto> getLotties() {
         return lotties;
     }
