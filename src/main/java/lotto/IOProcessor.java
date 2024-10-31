@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.ExceptionHandler.validateNumeric;
+import static lotto.Utils.calculateProfitRate;
 import static lotto.Utils.issueLottos;
 import static lotto.Utils.parseByComma;
 
@@ -48,5 +49,11 @@ public class IOProcessor {
             String winningDetail = OutputPrompt.valueOf(rank).print(count);
             System.out.println(winningDetail);
         }
+    }
+
+    public static void printProfitRate(int purchaseAmount) {
+        String profitRate = calculateProfitRate(purchaseAmount);
+        String profitRatePrint = OutputPrompt.PROFIT_RATE.print(profitRate);
+        System.out.println(profitRatePrint);
     }
 }
