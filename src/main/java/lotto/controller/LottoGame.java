@@ -1,30 +1,42 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoIssuer;
+import lotto.domain.LottoRanking;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
-    public void initLottoGame() {
+    public void initMoney() {
         int money = InputView.getMoney();
-        issuedLotto(money);
+        issueLotto(money);
+    }
 
+    private void issueLotto(int money) {
+        LottoIssuer lottoIssuer = new LottoIssuer();
+        List<Lotto> issuedLottos = lottoIssuer.generateLottos(money);
+        OutputView.displayIssuedLotto(issuedLottos);
+
+        initWinningLotto(issuedLottos);
+    }
+
+    private void initWinningLotto(List<Lotto> issuedLottos) {
         List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber();
 
+        calculateLotto(issuedLottos, winningNumbers, bonusNumber);
     }
 
-    public void issuedLotto(int money) {
-        for (int i=0; i<money/1000; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            Lotto issuedLotto = new Lotto(numbers);
-            OutputView.displayIssuedLotto(numbers);
-        }
+    private void calculateLotto(List<Lotto> issuedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        LottoRanking lottoRanking = new LottoRanking();
+        Map<String, Integer> result = lottoRanking.calculateRank(issuedLottos, winningNumbers, bonusNumber);
+
+        OutputView.displayResult(result);
+
     }
+
 }
