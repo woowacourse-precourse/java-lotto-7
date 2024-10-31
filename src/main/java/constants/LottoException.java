@@ -14,6 +14,6 @@ public enum LottoException {
     }
 
     public String getMessage() {
-        return message;
+        return "[ERROR] " + message;
     }
 }
