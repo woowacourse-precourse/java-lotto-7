@@ -54,9 +54,13 @@ public class Application {
     public static void main(String[] args) {
         // 1. 구매 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
-        budget = Integer.parseInt(Console.readLine());
-        if(budget<1000){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+        try {
+            budget = Integer.parseInt(Console.readLine());
+            if (budget < 1000) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+            }
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력해야 합니다.");
         }
 
         // 2. 구매 개수 계산
