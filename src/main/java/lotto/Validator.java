@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +14,9 @@ public class Validator {
     }
 
     public static void validateWinningNumbers(List<Integer> numbers) {
-        validateLottoNumberRange(numbers);
+        for (int number : numbers) {
+            validateLottoNumberRange(number);
+        }
         validateNumberOfNumbers(numbers);
         validateUniqueNumbers(numbers);
     }
@@ -46,11 +47,9 @@ public class Validator {
         }
     }
 
-    private static void validateLottoNumberRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1~45 입니다.");
-            }
+    private static void validateLottoNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1~45 입니다.");
         }
     }
 
