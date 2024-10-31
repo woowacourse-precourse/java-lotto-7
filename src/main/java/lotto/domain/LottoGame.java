@@ -7,11 +7,9 @@ import java.util.List;
 
 public class LottoGame {
 
-    private final PurchaseAmount purchaseAmount;
     private final Lottos lottos;
 
     public LottoGame(PurchaseAmount purchaseAmount, LottoGenerator lottoGenerator) {
-        this.purchaseAmount = purchaseAmount;
         this.lottos = generateLottos(lottoGenerator, purchaseAmount.getLottoCount());
     }
 
@@ -24,7 +22,7 @@ public class LottoGame {
     }
 
     public int getLottoCount() {
-        return purchaseAmount.getLottoCount();
+        return lottos.size();
     }
 
     public String getLottoScreen() {
