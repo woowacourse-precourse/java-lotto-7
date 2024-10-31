@@ -2,11 +2,12 @@ package lotto.view;
 
 import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
+import lotto.domain.player.PlayerResult;
 
 import java.util.List;
 
 import static lotto.constant.InputMessage.*;
-import static lotto.constant.OutputMessage.LOTTO_PURCHASED_OUTPUT_MESSAGE;
+import static lotto.constant.OutputMessage.*;
 
 public class OutputView {
 
@@ -31,5 +32,18 @@ public class OutputView {
         for (PlayerLotto lotto : lottos) {
             System.out.println(lotto.getLottoNumbers().toString());
         }
+    }
+
+    public void printResultMessage() {
+        System.out.println(LOTTO_RESULT_OUTPUT_MESSAGE.getMessage());
+    }
+
+    public void printLottoResult(Player player) {
+        PlayerResult playerResult = player.getPlayerResult();
+        System.out.println(FIFTH_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getFifthPlace() + "개");
+        System.out.println(FOURTH_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getFourthPlace() + "개");
+        System.out.println(THIRD_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getThirdPlace() + "개");
+        System.out.println(SECOND_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getSecondPlace() + "개");
+        System.out.println(FIRST_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getFirstPlace() + "개");
     }
 }

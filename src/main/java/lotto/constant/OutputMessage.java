@@ -2,7 +2,14 @@ package lotto.constant;
 
 public enum OutputMessage {
 
-    LOTTO_PURCHASED_OUTPUT_MESSAGE("개를 구매했습니다.");
+    LOTTO_PURCHASED_OUTPUT_MESSAGE("개를 구매했습니다."),
+    LOTTO_RESULT_OUTPUT_MESSAGE("\n" + "당첨 통계" + "\n" + "---"),
+    FIFTH_PLACE_OUTPUT_MESSAGE("3개 일치 (5,000원)"),
+    FOURTH_PLACE_OUTPUT_MESSAGE("4개 일치 (50,000원)"),
+    THIRD_PLACE_OUTPUT_MESSAGE("5개 일치 (1,500,000원)"),
+    SECOND_PLACE_OUTPUT_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    FIRST_PLACE_OUTPUT_MESSAGE("6개 일치 (2,000,000,000원)"),
+    ;
 
     private final String message;
 
