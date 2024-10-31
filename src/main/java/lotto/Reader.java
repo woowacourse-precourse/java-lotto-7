@@ -10,8 +10,7 @@ public class Reader {
             input = Console.readLine();
             Printer.printMessage(input);
         } catch (NoSuchElementException e) {
-            return "ERROR";
-//            throw new IllegalArgumentException(Constants.INPUT_ERROR_EMPTY);
+            ErrorHandler.printAndThrow(Constants.INPUT_ERROR_EMPTY);
         }
         return input;
     }

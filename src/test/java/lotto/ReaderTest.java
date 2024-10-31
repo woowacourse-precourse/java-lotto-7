@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class ReaderTest {
     @Test
@@ -19,12 +20,15 @@ class ReaderTest {
 
     @Test
     void 빈_문자열_테스트() {
-        String dummyInput = "";
-        TestUtils.setInputStream(dummyInput);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    String dummyInput = "";
+                    TestUtils.setInputStream(dummyInput);
 
-        new Reader();
-        String input = Reader.readInput();
+                    new Reader();
+                    String input = Reader.readInput();
 
-        assertThat("ERROR").isEqualTo(input);
+                    assertThat(dummyInput).isEqualTo(input);
+                });
     }
 }
