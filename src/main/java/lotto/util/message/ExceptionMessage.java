@@ -1,5 +1,7 @@
 package lotto.util.message;
 
+import static lotto.util.message.OutputMessage.ERROR_MESSAGE;
+
 public enum ExceptionMessage {
 
     BLANK_INPUT("빈 문자열을 입력했습니다."),
@@ -21,6 +23,6 @@ public enum ExceptionMessage {
 
     @Override
     public String toString() {
-        return String.format("[ERROR] %s", message);
+        return String.format("%s %s", ERROR_MESSAGE, message);
     }
 }
