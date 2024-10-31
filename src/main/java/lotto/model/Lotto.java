@@ -29,11 +29,11 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(Integer bonusNumber) {
+    public Boolean contains(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 
-    public boolean isSecondRank(final List<Integer> winningNumbers, final Integer bonusNumber) {
+    public Boolean isSecondRank(final List<Integer> winningNumbers, final Integer bonusNumber) {
         return countSameNumber(winningNumbers) == 5 && contains(bonusNumber);
     }
 }

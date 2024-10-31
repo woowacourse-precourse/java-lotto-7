@@ -8,7 +8,7 @@ public class PurchaseDTO {
     private final int totalCost;
     private final List<Lotto> lottoTickets;
 
-    public PurchaseDTO(int totalCost, List<Lotto> lottoTickets) {
+    public PurchaseDTO(Integer totalCost, List<Lotto> lottoTickets) {
         this.totalCost = totalCost;
         this.lottoTickets = lottoTickets;
     }
