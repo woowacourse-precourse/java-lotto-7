@@ -15,6 +15,13 @@ public class Lotto {
         this.numbers = convertFrom(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .mapToInt(Number::getValue)
+                .boxed()
+                .toList();
+    }
+
     private List<Number> convertFrom(List<Integer> numbers) {
         return numbers.stream()
                 .map(Number::new)

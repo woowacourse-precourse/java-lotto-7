@@ -18,6 +18,10 @@ public class Lottos {
         generateLottos(count);
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     private void generateLottos(int count) {
         for (int currentCount = 0; currentCount < count; currentCount++) {
             List<Integer> numbers =

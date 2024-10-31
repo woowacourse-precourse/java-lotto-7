@@ -16,6 +16,10 @@ public class Number {
         this.value = value;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
     private void validateInRange(int value) {
         if (value < MIN_LOTTO_NUMBER || value > MAX_LOTTO_NUMBER) {
             throw new CustomException(ExceptionMessage.INVALID_LOTTO_NUMBER_EXCEPTION);
