@@ -20,5 +20,7 @@ public class LottoMachine {
 
         int lottoCount = purchaseAmount.calculateLottoCount();
         outputView.printPurchaseLottoNumbers(lottoCount);
+
+        outputView.requestWinningNumbers();
     }
 }
