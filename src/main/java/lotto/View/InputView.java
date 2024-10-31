@@ -26,7 +26,7 @@ public class InputView {
     public static List<Integer> winInput(){
         while(true){
             try {
-                System.out.println("당첨 번호를 입력해주세요.");
+                System.out.println("당첨 번호를 입력해 주세요.");
                 String winInput = Console.readLine();
                 List<Integer> winNumbers = parseWinNumbers(winInput);
                 Validator.validateWinNumbers(winNumbers);
@@ -48,6 +48,15 @@ public class InputView {
         return winNumbers;
     }
 
+    public static int bonusInput(){
+        while(true) {
+            try{
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusInput = Console.readLine();
+                int bonus = Integer.parseInt(bonusInput.trim());
+            }
+        }
+    }
 
 }
 
