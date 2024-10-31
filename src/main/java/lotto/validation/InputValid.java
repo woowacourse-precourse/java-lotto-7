@@ -25,8 +25,14 @@ public class InputValid {
         return new Lotto(new ArrayList<>(numbers));
     }
 
-    public static int checkBonus(String input, Lotto win) {
+    public static int checkBonus(String input, Lotto win) throws IllegalArgumentException {
         int num = checkEachNum(input);
+
+        HashSet<Integer> numbers = new HashSet<>(win.getNumbers());
+        numbers.add(num);
+        if(numbers.size() != 7) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+        }
 
         return num;
     }
