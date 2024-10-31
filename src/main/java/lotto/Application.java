@@ -7,6 +7,7 @@ public class Application {
 
         try {
             LottoNum lottoNum = new LottoNum(money);
+            input.numberInput();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
