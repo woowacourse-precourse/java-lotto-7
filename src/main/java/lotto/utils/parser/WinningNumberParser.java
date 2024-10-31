@@ -33,11 +33,11 @@ public class WinningNumberParser {
 
     private List<Integer> parseWinningNumbers(List<String> separatedInput) {
         return separatedInput.stream()
-                .map(this::parseAndValidateWinningNumber)
+                .map(this::convertToValidatedNumber)
                 .collect(Collectors.toList());
     }
 
-    private Integer parseAndValidateWinningNumber(String input) {
+    private Integer convertToValidatedNumber(String input) {
         validator.validateNumber(input, WINNING_NUMBER_ERROR_MESSAGE.toString());
         return Integer.parseInt(input);
     }
