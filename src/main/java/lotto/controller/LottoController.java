@@ -28,8 +28,8 @@ public class LottoController {
 
         WinningLotto winningLotto = inputService.readWinningLotto();
 
-        LottoResult lottoResult = new LottoResult(purchasedLotto.getPurchasedLottos(), winningLotto);
-        double rate = lottoResult.calculateRate(purchasePrice.getPurchasePrice());
+        LottoResult lottoResult = lottoService.checkLottoResult(purchasedLotto.getPurchasedLottos(), winningLotto);
+        double rate = lottoService.calcRate(purchasePrice.getPurchasePrice(), lottoResult);
 
         printResult(lottoResult, rate);
     }

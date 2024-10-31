@@ -1,7 +1,9 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,5 +31,13 @@ public class LottoService {
 
     private Lotto createLotto() {
         return new Lotto(lottoNumGenerator);
+    }
+
+    public LottoResult checkLottoResult(final List<Lotto> purchasedLotto, final WinningLotto winningLotto) {
+        return new LottoResult(purchasedLotto, winningLotto);
+    }
+
+    public double calcRate(final int purchasePrice, final LottoResult lottoResult) {
+        return lottoResult.calculateRate(purchasePrice);
     }
 }
