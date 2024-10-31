@@ -5,9 +5,10 @@ import lotto.Application;
 import lotto.domain.User;
 import lotto.domain.UserRepository;
 import lotto.service.UserService;
+import lotto.util.UserIdGenerator;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -23,6 +24,7 @@ public class UserServiceTest extends NsTest {
 
     @BeforeEach
     void setUp() {
+        UserIdGenerator.init();
         userRepository.deleteAll();
     }
 
@@ -45,11 +47,12 @@ public class UserServiceTest extends NsTest {
         });
     }
 
-    @Test
-    void 사용자_조회_테스트() {
+    @ParameterizedTest
+    @CsvSource(value = {"1000,2000","3000,4000"})
+    void 사용자_조회_테스트(String firstValue, String secondValue) {
         // given
-        User firstUser = userRepository.save(new User("1000"));
-        User secondUser = userRepository.save(new User("2000"));
+        User firstUser = userRepository.save(new User(firstValue));
+        User secondUser = userRepository.save(new User(secondValue));
 
         // when
         User findFirstUser = userService.findById(firstUser.getId());
