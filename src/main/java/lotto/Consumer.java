@@ -31,19 +31,19 @@ public class Consumer {
         return price / 1000;
     }
 
-    private void validatePriceOnlyInteger(String priceInput) {
+    private void validatePriceOnlyInteger(String priceInput) throws IllegalArgumentException {
         if (!priceInput.matches("^[0-9]+$")) {
             throw new IllegalArgumentException("[ERROR] 금액은 정수만 입력 가능합니다.");
         }
     }
 
-    private void validatePriceScope(Integer price) {
+    private void validatePriceScope(Integer price) throws IllegalArgumentException{
         if (price < 1000 || 100000 < price) {
             throw new IllegalArgumentException("[ERROR] 금액은 1,000원 이상, 100,000원 이하만 가능합니다");
         }
     }
 
-    private void validatePriceUnit(Integer price) {
+    private void validatePriceUnit(Integer price) throws IllegalArgumentException {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위만 가능합니다.");
         }
