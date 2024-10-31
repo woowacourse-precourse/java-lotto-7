@@ -5,10 +5,10 @@ import lotto.exception.InvalidPurchaseAmountException;
 public final class PurchaseAmountValidation {
     public static final int PRICE_UNIT = 1000;
 
-    public static int purchaseAmountValidationAndGetLottoQuantity(final String purchaseAmountStr)
+    public static int purchaseAmountValidationAndGetLottoQuantity(final String inputAmount)
             throws IllegalArgumentException {
-        InputValidation.isNotBlank(purchaseAmountStr);
-        int purchaseAmount = InputValidation.parseNumberValidation(purchaseAmountStr);
+        InputValidation.isNotBlank(inputAmount);
+        int purchaseAmount = InputValidation.parseNumberValidation(inputAmount);
         validatePurchaseAmountBy1000(purchaseAmount);
         return convertToLottoQuantity(purchaseAmount);
     }

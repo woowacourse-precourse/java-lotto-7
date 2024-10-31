@@ -10,9 +10,9 @@ public final class PurchaseAmountView {
         while (true) {
             try {
                 Output.printlnMessage(IOMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-                String purchaseAmountStr = Input.inputMessage();
+                String inputAmount = Input.inputMessage();
                 int purchaseQuantity = PurchaseAmountValidation.purchaseAmountValidationAndGetLottoQuantity(
-                        purchaseAmountStr);
+                        inputAmount);
                 Output.printlnFormattedMessage(IOMessage.OUTPUT_PURCHASE_QUANTITY.getMessage(), purchaseQuantity);
                 return purchaseQuantity;
             } catch (IllegalArgumentException errorMessage) {
