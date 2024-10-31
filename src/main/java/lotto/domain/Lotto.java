@@ -7,7 +7,7 @@ import static lotto.message.ErrorMessage.*;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
