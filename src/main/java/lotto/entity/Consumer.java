@@ -1,38 +1,60 @@
 package lotto.entity;
 
-import java.util.Scanner;
+import camp.nextstep.edu.missionutils.Console;
+import java.util.*;
 
-public class Consumer { // 로또 구매자
-    private int lottoCount; // 구매할 로또 수량
-    private int totalLottoCost; // 총 로또 구매 금액
-
-    private static final int LOTTO_PRICE = 1000; // 로또 한 장 가격
+public class Consumer {
+    private final int totalLottoCost;
+    private final int lottoCount;
+    private static final int LOTTO_PRICE = 1000;
+    private final List<List<Integer>> lottoTickets; // 생성된 티켓을 저장할 변수
 
     public Consumer() {
-        Scanner sc = new Scanner(System.in);
+        System.out.println("구입 금액을 입력해 주세요.");
+        this.totalLottoCost = Integer.parseInt(Console.readLine());
+        validateTotalLottoCost();
 
-        System.out.println("로또 구매할 수량을 입력해 주세요.");
-        lottoCount = sc.nextInt(); // 구매할 로또 수량 입력 받기
+        this.lottoCount = totalLottoCost / LOTTO_PRICE;
+        System.out.printf("%d개를 구매했습니다.\n", lottoCount);
 
-        // 총 로또 구매 금액 계산
-        totalLottoCost = lottoCount * LOTTO_PRICE;
-
-        validateTotalLottoCost(totalLottoCost); // 구매 금액 유효성 검사
+        this.lottoTickets = generateLottoTickets(); // 티켓을 생성하고 저장
     }
 
-    private void validateTotalLottoCost(int totalLottoCost) {
-        // 총 로또 구매 금액이 1000원 단위인지 검사
-        if (totalLottoCost % LOTTO_PRICE != 0) {
+    private void validateTotalLottoCost() {
+        if (totalLottoCost <= 0 || totalLottoCost % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1,000원 단위여야 합니다.");
         }
     }
 
-    // Getter methods (optional)
-    public int getLottoCount() {
-        return lottoCount; // 구매할 로또 수량 반환
+    private List<List<Integer>> generateLottoTickets() {
+        List<List<Integer>> lottoTickets = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> ticket = new ArrayList<>();
+            while (ticket.size() < 6) {
+                int number = random.nextInt(45) + 1;
+                if (!ticket.contains(number)) {
+                    ticket.add(number);
+                }
+            }
+            Collections.sort(ticket);
+            lottoTickets.add(ticket);
+        }
+
+        lottoTickets.forEach(System.out::println);
+        return lottoTickets; // 생성된 티켓을 반환
     }
 
     public int getTotalLottoCost() {
-        return totalLottoCost; // 총 로또 구매 금액 반환
+        return totalLottoCost;
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
+    public List<List<Integer>> getLottoTickets() { // 티켓을 반환하는 새로운 메서드
+        return lottoTickets;
     }
 }
