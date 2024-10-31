@@ -33,3 +33,9 @@ public class LottoGameController {
         }
     }
 
+    private int getTicket(Money money) {
+        int ticket = money.calculateNumberOfTickets();
+        outputView.moneyInputResultMessage(ticket);
+        return ticket;
+    }
+}
