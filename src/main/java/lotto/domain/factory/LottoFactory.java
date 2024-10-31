@@ -1,6 +1,6 @@
-package lotto.domain.lotto.factory;
+package lotto.domain.factory;
 
-import lotto.domain.lotto.Component;
+import lotto.domain.Component;
 
 import java.util.List;
 

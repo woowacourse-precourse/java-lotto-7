@@ -1,8 +1,8 @@
-package lotto.domain.lotto.factory;
+package lotto.domain.factory;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.lotto.Component;
-import lotto.domain.lotto.Number;
+import lotto.domain.Component;
+import lotto.domain.Number;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain;
 
 import lotto.constants.value.LottoRule;
 import lotto.constants.message.RangeError;

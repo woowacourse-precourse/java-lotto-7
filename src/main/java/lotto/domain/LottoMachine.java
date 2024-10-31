@@ -1,6 +1,6 @@
-package lotto.domain.lotto;
+package lotto.domain;
 
-import lotto.domain.lotto.factory.LottoFactory;
+import lotto.domain.factory.LottoFactory;
 
 public class LottoMachine {
 
