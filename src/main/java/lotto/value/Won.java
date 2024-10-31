@@ -33,8 +33,16 @@ public class Won {
         return new Won(amount.add(won.amount));
     }
 
+    public Won divide(Won won) {
+        return new Won(amount.divide(won.amount));
+    }
+
     public Won reminder(Won won) {
         return new Won(amount.remainder(won.amount));
+    }
+
+    public int getIntValue() {
+        return amount.intValue();
     }
 
     private static boolean isSmallerThanZero(BigInteger amount) {
