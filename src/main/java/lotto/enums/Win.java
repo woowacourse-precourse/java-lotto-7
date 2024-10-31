@@ -5,8 +5,7 @@ public enum Win {
     LOTTO_2ND(5, true, 3, 30000000),
     LOTTO_3RD(5, false, 2, 1500000),
     LOTTO_4TH(4, false, 1, 50000),
-    LOTTO_5TH(3, false, 0, 5000)
-    ;
+    LOTTO_5TH(3, false, 0, 5000);
 
     private final Integer containCount;
     private final Boolean containBonus;
@@ -21,7 +20,7 @@ public enum Win {
     }
 
     public static Win getWin(Integer containCount, Boolean containBonus) {
-        for(Win win : Win.values()) {
+        for (Win win : Win.values()) {
             if (win.containCount.equals(containCount) && win.containBonus.equals(containBonus)) {
                 return win;
             }

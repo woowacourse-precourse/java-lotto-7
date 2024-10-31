@@ -20,10 +20,10 @@ public class LottoService {
     private Integer bonusNum;
 
     public void buyLotto(int amount) {
-        int lottoCount = amount/LOTTO_PRICE;
+        int lottoCount = amount / LOTTO_PRICE;
 
         serviceValidator.amountDivide(amount);
-        for(int count = 0; count < lottoCount; count++) {
+        for (int count = 0; count < lottoCount; count++) {
             createLottoNum();
         }
     }
@@ -51,14 +51,14 @@ public class LottoService {
     }
 
     public void checkLottosWin() {
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             lotto.inputWin(winNum, bonusNum);
         }
     }
 
     public List<Integer> getLottosWin() {
         List<Integer> lottosWin = new ArrayList<>(List.of(0, 0, 0, 0, 0));
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             if (lotto.getWin() == null) {
                 continue;
             }

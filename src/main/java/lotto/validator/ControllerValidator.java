@@ -21,7 +21,7 @@ public class ControllerValidator {
 
     public void winNumIsNum(List<String> winNum) {
         try {
-            for(String num : winNum) {
+            for (String num : winNum) {
                 Integer.parseInt(num);
             }
         } catch (NumberFormatException e) {

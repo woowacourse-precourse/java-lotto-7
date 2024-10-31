@@ -41,8 +41,8 @@ public class Lotto {
 
     private Integer checkWin(List<Integer> winNum) {
         int containCount = 0;
-        for(Integer num : winNum) {
-            if(numbers.contains(num)) {
+        for (Integer num : winNum) {
+            if (numbers.contains(num)) {
                 containCount++;
             }
         }
