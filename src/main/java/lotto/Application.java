@@ -78,7 +78,8 @@ public class Application {
         int compare = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
         if(compare > 0) {
             return matchRecursive(p1,p2+1,compare,i);
-        }else if(compare < 0) {
+        }
+        if(compare < 0) {
             return matchRecursive(p1+1,p2,compare,i);
         }
         return 1 + matchRecursive(p1+1,p2+1,compare,i);
