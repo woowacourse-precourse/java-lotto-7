@@ -213,7 +213,7 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
 ### 기능 구현 리스트
 
 - 로또 구입
-   - [ ] `로또 구입 금액 / 1000`으로 구입할 로또의 개수를 계산한다. 
+   - [x] `로또 구입 금액 / 1000`으로 구입할 로또의 개수를 계산한다. 
 - 로또 발행
    - [ ] 중복되지 않는 숫자 6개를 생성한다. `Randoms.pickUniqueNumbersInRange(1, 45, 6);`
    - [ ] 발행한 로또를 오름차순 정렬한다.
