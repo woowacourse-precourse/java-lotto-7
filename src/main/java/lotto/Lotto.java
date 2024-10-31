@@ -29,4 +29,9 @@ public class Lotto {
         Set<Integer> hashSet = new HashSet<>(numbers);
         return hashSet.size() != numbers.size();
     }
+
+    @Override
+    public String toString(){
+        return numbers.toString();
+    }
 }

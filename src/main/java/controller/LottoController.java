@@ -32,6 +32,7 @@ public class LottoController {
         outputView.printLottoAmount(lottoAmount);
 
         makeLotto();
+        outputView.printLottos(lottoCollection);
     }
 
     private void makeLotto(){
