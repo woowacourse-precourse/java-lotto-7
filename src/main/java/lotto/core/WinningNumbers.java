@@ -26,8 +26,7 @@ public class WinningNumbers {
     }
 
     public WinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        this.numberString = Console.readLine();
+        this.numberString = this.inputNumberString("당첨 번호를 입력해 주세요.");
         this.setWinningNumbers();
         this.setBonusNumber();
     }
@@ -43,10 +42,14 @@ public class WinningNumbers {
     }
 
     private void setBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(this.inputNumberString("보너스 번호를 입력해 주세요."));
         this.validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private String inputNumberString(String message) {
+        System.out.println(message);
+        return Console.readLine();
     }
 
     private void validateNumbers(List<Integer> numbers) {
