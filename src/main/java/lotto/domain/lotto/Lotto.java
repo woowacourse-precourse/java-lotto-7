@@ -18,10 +18,11 @@ public class Lotto {
         this.numbers = validateLotto(numbers);
     }
 
-    //todo: 중복, (1,2,)
     private List<Integer> validateLotto(List<Integer> inputNumbers) {
         return ValidatorBuilder.from(inputNumbers)
                 .validateGroup(numbers -> numbers.size() != LOTTO_SIZE, Exception.INVALID_LOTTO_SIZE)
+                .validateGroup(numbers -> numbers.size() != numbers.stream().distinct().count(),
+                        Exception.DUPLICATE_LOTTO_NUMBER)
                 .validateGroup(numbers -> numbers.stream()
                                 .anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER),
                         Exception.INVALID_LOTTO_NUMBER)
@@ -34,7 +35,9 @@ public class Lotto {
 
     private static List<Integer> parseNumbers(String numbers) {
         return Arrays.stream(numbers.split(SPLIT_DELIMITER))
-                .map(Integer::parseInt)
+                .map(number -> ValidatorBuilder.from(number)
+                        .validateIsInteger()
+                        .get())
                 .toList();
     }
 
