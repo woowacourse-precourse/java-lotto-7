@@ -17,4 +17,13 @@ public class InputHandler {
     public WinningNumberRequest getWinningNumbers() {
         return new WinningNumberRequest(Console.readLine());
     }
+
+    public int getBonusNumber() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new GameException("보너스 번호는 숫자여야 합니다.");
+        }
+    }
+
 }
