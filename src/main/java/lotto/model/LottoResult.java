@@ -12,15 +12,16 @@ public class LottoResult {
     public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers) {
         List<LottoDto> lottoDtos = lottos.getLottoDtos();
         for (LottoDto lottoDto : lottoDtos) {
-            calculateLottoResult(lottoDto, winningNumbers);
+            int duplicateCount = getDuplicateNubers(lottoDto.numbers(), winningNumbers.getWinningNumbers());
         }
     }
 
-    private void calculateLottoResult(LottoDto lottoDto, WinningNumbers winningNumbers) {
-
+    private int getDuplicateNubers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        lottoNumbers.retainAll(winningNumbers);
+        return lottoNumbers.size();
     }
 
-    private void saveLottoResult(int duplicateCount) {
+    private void saveLottoResult(int duplicateCount, boolean isBonusDuplicated) {
 
     }
 }
