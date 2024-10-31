@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.controller.LottoController;
 import lotto.domain.Lottos;
+import lotto.dto.LottoBuyRequest;
 import lotto.dto.LottoBuyResponse;
-import lotto.dto.LottoRequest;
+import lotto.dto.LottoCalculateRequest;
 import lotto.exception.LottoInputException;
 import lotto.service.LottoService;
 import lotto.utility.StringUtility;
@@ -18,71 +19,65 @@ public class Application {
 
     private final static String LOTTO_SPLITTER = ",";
 
-    private static int buyMoney = -1;
-    private static List<Integer> winningNumbers = null;
-    private static int bonusNumber = -1;
-    private static Lottos lottos = null;
-    private static LottoController lottoController = new LottoController(new LottoService());
+    private final static LottoController lottoController = new LottoController(new LottoService());
 
 
     public static void main(String[] args) {
-        LottoRequest lottoRequest = null;
-        while (lottoRequest == null) {
-            if((buyMoney = inputBuyMoney()) == -1) {
-                continue;
-            }
-            if(lottos == null){
-                buyLotto();
-            }
-            if((lottoRequest = inputLottoRequestDto())== null){
-                continue;
-            }
-            OutputView.print(lottoController.calLottos(lottoRequest,lottos));
-        }
+        int buyMoney = inputBuyMoney();
+        Lottos lottos = buyLotto(buyMoney);
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber();
+        LottoCalculateRequest lottoCalculateRequest = new LottoCalculateRequest(buyMoney,winningNumbers,bonusNumber);
+        OutputView.print(lottoController.calLottos(lottoCalculateRequest,lottos));
     }
 
-    private static void buyLotto() {
-        LottoBuyResponse lottoBuyResponse = lottoController.buyLottos(new LottoRequest(buyMoney, winningNumbers, bonusNumber));
-        lottos = lottoBuyResponse.lottos();
+    private static Lottos buyLotto(int buyMoney) {
+        LottoBuyResponse lottoBuyResponse = lottoController.buyLottos(new LottoBuyRequest(buyMoney));
+        Lottos lottos = lottoBuyResponse.lottos();
         OutputView.print(lottoBuyResponse.buyLottoHistory());
+        return lottos;
     }
-
-    private static LottoRequest inputLottoRequestDto() {
-        try {
-            winningNumbers = inputWinningNumbers();
-            bonusNumber = inputBonusNumber();
-            return new LottoRequest(buyMoney,winningNumbers,bonusNumber);
-        }catch(LottoInputException e){
-            OutputView.printError(e);
-            return null;
-        }
-    }
-
     private static int inputBuyMoney() {
-        try{
-            if(buyMoney != -1) return buyMoney;
-            String input = InputView.inputBuyMoney();
-            LottoBuyMoneyValidator.validateLottoBuyMoney(input);
-            return Integer.parseInt(input);
-        }catch (LottoInputException e){
-            OutputView.printError(e);
-            return -1;
+        int buyMoney = -1;
+        while (buyMoney == -1){
+            try{
+                String input = InputView.inputBuyMoney();
+                LottoBuyMoneyValidator.validateLottoBuyMoney(input);
+                buyMoney = Integer.parseInt(input);
+            }catch (LottoInputException e){
+                OutputView.printError(e);
+            }
         }
+        return buyMoney;
     }
 
     private static List<Integer> inputWinningNumbers() {
-        if(winningNumbers != null) return winningNumbers;
-        String input = InputView.inputWinningNumber();
-        LottoWinningNumberValidator.validateLottoWinningNumber(input);
-        return StringUtility.splitBySplitter(input,LOTTO_SPLITTER).stream()
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<Integer> winningNumbers = null;
+        while (winningNumbers == null){
+            try{
+                String input = InputView.inputWinningNumber();
+                LottoWinningNumberValidator.validateLottoWinningNumber(input);
+                winningNumbers = StringUtility.splitBySplitter(input,LOTTO_SPLITTER).stream()
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+            }catch (LottoInputException e){
+                OutputView.printError(e);
+            }
+        }
+        return winningNumbers;
     }
 
     private static int inputBonusNumber() {
-        if(bonusNumber != -1) return bonusNumber;
-        String input = InputView.inputBonusNumber();
-        LottoWinningNumberValidator.validateLottoBonusNumber(input);
-        return Integer.parseInt(input);
+        int bonusNumber = -1;
+        while (bonusNumber == -1){
+            try{
+                String input = InputView.inputBonusNumber();
+                LottoWinningNumberValidator.validateLottoBonusNumber(input);
+                bonusNumber = Integer.parseInt(input);
+            }catch (LottoInputException e){
+                OutputView.printError(e);
+            }
+        }
+        return bonusNumber;
     }
 }
