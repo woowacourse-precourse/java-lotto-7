@@ -1,4 +1,4 @@
-![img.png](img.png)
+![img.png](image/img.png)
 
 # 프리코스 3주차 미션 - 로또
 
@@ -6,7 +6,7 @@
 
 <br>
 
-![img_1.png](img_1.png)
+![img_1.png](image/img_1.png)
 
 # 목차
 - [시작하기](#시작하기)
