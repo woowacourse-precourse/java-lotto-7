@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public int lottoCount() {
+    public int payAmount() {
         String purchasePrice = Console.readLine();
         int priceValue = Integer.parseInt(purchasePrice);
         validatePurchasePrice(priceValue);
 
-        return (priceValue / LottoValue.AMOUNT_UNIT);
+        return priceValue;
     }
 
     public List<Integer> winningNumbers() {
@@ -50,7 +50,7 @@ public class InputView {
         if (str.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.SPILT_EMPTY);
         }
-        if (Integer.parseInt(str) < 1 && Integer.parseInt(str) > 45) {
+        if (Integer.parseInt(str) < LottoValue.MIN_LOTTO_NUM && Integer.parseInt(str) > LottoValue.MAX_LOTTO_NUM) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE);
         }
     }
