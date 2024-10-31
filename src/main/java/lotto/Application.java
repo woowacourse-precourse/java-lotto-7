@@ -7,6 +7,7 @@ public class Application {
         try {
             new LottoGame().start();
         }catch(IllegalArgumentException e) {
+            e.getMessage();
         }
     }
 }

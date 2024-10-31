@@ -85,7 +85,7 @@ public class WinningStatisticsManager {
         increaseSix(lotto);
     }
 
-    public double getEarningRate(BigInteger money) {
+    public BigDecimal getEarningRate(BigInteger money) {
         BigDecimal sum = BigDecimal.ZERO;
         sum = sum.add(BigDecimal.valueOf(5000).multiply(BigDecimal.valueOf(statistics.getFirst())));
         sum = sum.add(BigDecimal.valueOf(50000).multiply(BigDecimal.valueOf(statistics.get(1))));
@@ -93,9 +93,9 @@ public class WinningStatisticsManager {
         sum = sum.add(BigDecimal.valueOf(30000000).multiply(BigDecimal.valueOf(statistics.get(3))));
         sum = sum.add(BigDecimal.valueOf(2000000000).multiply(BigDecimal.valueOf(statistics.get(4))));
         BigDecimal moneyDecimal = new BigDecimal(money);
-        return sum.divide(moneyDecimal, 4, RoundingMode.HALF_UP) // 중간 연산에서 정밀도 확보
+        return sum.divide(moneyDecimal, 4, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
-                .setScale(2, RoundingMode.HALF_UP) // 최종적으로 둘째 자리에서 반올림
-                .doubleValue();
+                .setScale(2, RoundingMode.HALF_UP); // doubleValue() 제거하여 BigDecimal 반환
     }
+
 }

@@ -3,6 +3,7 @@ package lotto.ui;
 import lotto.Lotto;
 import lotto.service.WinningStatisticsManager;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -29,20 +30,22 @@ public class OutputManager {
         System.out.println("\n");
     }
 
-    public void printStatistics(Map<WinningStatisticsManager.PrizeTier, Integer> results, double earingRate) {
+    public void printStatistics(Map<WinningStatisticsManager.PrizeTier, Integer> results, BigDecimal earningRate) {
         System.out.println("\n");
         DecimalFormat formatter = new DecimalFormat("#,###");
         System.out.println("당첨 통계\n---");
         for (WinningStatisticsManager.PrizeTier tier : WinningStatisticsManager.PrizeTier.values()) {
-            System.out.print(tier.getMatchCount()+"개 일치");
-            if(tier.getMatchCount()==5&&tier.getBonusCount()==1) {
+            System.out.print(tier.getMatchCount() + "개 일치");
+            if (tier.getMatchCount() == 5 && tier.getBonusCount() == 1) {
                 System.out.print(", 보너스 볼 일치");
             }
             System.out.printf(" (%s원) - %d개\n",
-                formatter.format(tier.getPrize()),
-                results.getOrDefault(tier, 0)
+                    formatter.format(tier.getPrize()),
+                    results.getOrDefault(tier, 0)
             );
         }
-        System.out.println("총 수익률은 "+earingRate+"%입니다.");
+        // `toPlainString()`으로 지수 표기법 없이 출력
+        System.out.println("총 수익률은 " + earningRate.toPlainString() + "%입니다.");
     }
+
 }
