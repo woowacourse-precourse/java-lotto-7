@@ -41,6 +41,13 @@ public class View {
         return lottoCount;
     }
 
+    public static void printLotto(Lotto lotto){
+        String joinString = "[";
+        joinString = String.join(", ", lotto.getNumbers().toString());
+        joinString = joinString + "]";
+        System.out.println(joinString);
+    }
+
     public Integer getLottoCount(){
         return this.lottoCount;
     }
