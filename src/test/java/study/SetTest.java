@@ -27,7 +27,7 @@ public class SetTest {
 
     @Test
     void size_메서드로_set의_크기_확인() {
-        assertThat(numbers.size()).isEqualTo(4);
+        assertThat(numbers.size()).isEqualTo(3);
     }
 
     @ParameterizedTest
