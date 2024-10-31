@@ -18,4 +18,8 @@ public class WinningNumbers {
                 .map(s -> new Number(s))
                 .collect(Collectors.toList());
     }
+
+    public List<Number> getNumbers() {
+        return numbers;
+    }
 }
