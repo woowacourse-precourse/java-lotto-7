@@ -9,10 +9,15 @@ public class Lotto {
     private final int LOTTO_NUMBER_COUNT = 6;
     private final List<Integer> numbers;
 
-    public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER_COUNT);
-        Collections.sort(numbers);
-        validate(numbers);
+
+    /*
+      NOTE 불변객체로 생성 : 객체 무결성을 보장함으로 사용함
+     */
+  public Lotto() {
+        List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 10, LOTTO_NUMBER_COUNT);
+        Collections.sort(integers);
+        this.numbers = List.copyOf(integers);
+        validate(integers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -29,4 +34,8 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
