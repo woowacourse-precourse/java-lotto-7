@@ -40,7 +40,7 @@ public class WinningLotto extends Lotto {
 		return LottoRank.valueOf(checkMatchCount(numbers), checkBonusMatch(numbers));
 	}
 
-	public int checkMatchCount(List<Integer> lottoNumbers) {
+	private int checkMatchCount(List<Integer> lottoNumbers) {
 		int matchCount = 0;
 
 		for (int number : lottoNumbers) {
@@ -52,7 +52,7 @@ public class WinningLotto extends Lotto {
 		return matchCount;
 	}
 
-	public boolean checkBonusMatch(List<Integer> lottoNumbers) {
+	private boolean checkBonusMatch(List<Integer> lottoNumbers) {
 		for (int number : lottoNumbers) {
 			if (number == bonusNumber) {
 				return true;
