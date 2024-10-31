@@ -1,7 +1,6 @@
 package lotto.Model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,7 @@ import lotto.Lotto;
 public class PlayLottoGame {
     public ArrayList<Integer> winningNumbers;
     public List<Lotto> lottoList;
-    public Map<Integer,Boolean> matchingNumber = new HashMap<>();
+    public static Map<Integer,Boolean> matchingNumber = new HashMap<>();
     public final int bonusNumber;
 
 

@@ -6,7 +6,7 @@ import lotto.View.InputView;
 
 public class InputController {
 
-    private InputView inputView;
+    private final InputView inputView = new InputView();
 
     public int setPurchasePrice() {
         return inputView.inputPurchasePrice() / 1000;
