@@ -40,6 +40,16 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
+
+        while (true) {
+            try {
+                int bonusNumber = inputBonusNumber();
+                bonusException(bonusNumber);
+                break;
+            } catch (IllegalArgumentException error) {
+                System.out.println("[ERROR]" + error.getMessage());
+            }
+        }
     }
 
     private static int getMoney() {
@@ -76,16 +86,27 @@ public class Application {
         }
     }
 
-    public static List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호 6개를 입력하세요 (예: 1,2,3,4,5,6):");
+    private static List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
         String input = Console.readLine();
-        String[] splitInput = input.split(","); // 쉼표로 구분하여 배열로 변환
+        String[] splitInput = input.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (int i = 0; i < splitInput.length; i++) {
             String num = splitInput[i];
-            winningNumbers.add(Integer.parseInt(num)); // 문자열을 정수로 변환하여 추가
+            winningNumbers.add(Integer.parseInt(num));
         }
         return winningNumbers;
+    }
+
+    private static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
+    private static void bonusException (int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
     }
 }
