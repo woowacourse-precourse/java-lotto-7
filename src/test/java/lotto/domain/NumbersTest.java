@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,16 @@ class NumbersTest {
 
         String strings = "1, 2, 3, 4, 5, 6";
 
-        Numbers numbersInt = new Numbers(integers);
-        Numbers numbersStr = new Numbers(strings);
+        String stringsOtherFormat = "1,2, 3  , 4, 5 , 6    ";
 
-        Assertions.assertThat(numbersInt.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-        Assertions.assertThat(numbersStr.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+
+        Numbers numbersInteger = new Numbers(integers);
+        Numbers numbersString = new Numbers(strings);
+        Numbers numbersStrOtherFormat = new Numbers(stringsOtherFormat);
+
+        Assertions.assertThat(numbersInteger.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        Assertions.assertThat(numbersString.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        Assertions.assertThat(numbersStrOtherFormat.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @DisplayName("중복되는 숫자가 입력되면 예외가 발생한다.")
@@ -40,18 +44,23 @@ class NumbersTest {
         assertThatThrownBy(() -> new Numbers(numbers))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+    }
 
-        assertThatThrownBy(() -> new Number("!23"))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("1 ~ 45 사이의 정수만 입력 가능합니다");
+    @DisplayName("로또 숫자가 6개가 아니면 예외가 발생한다.")
+    @Test
+    void 로또_숫자가_6개가_아니면_예외가_발생한다() {
 
-        assertThatThrownBy(() -> new Number("2!3"))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("1 ~ 45 사이의 정수만 입력 가능합니다");
+        String moreThan = "1, 2, 3, 4, 5, 6, 7";
 
-        assertThatThrownBy(() -> new Number("23!"))
+        assertThatThrownBy(() -> new Numbers(moreThan))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("1 ~ 45 사이의 정수만 입력 가능합니다");
+            .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
+
+        String lessThan = "1, 2, 3";
+
+        assertThatThrownBy(() -> new Numbers(lessThan))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
     }
 
 }
