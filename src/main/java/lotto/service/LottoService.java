@@ -7,7 +7,6 @@ import lotto.model.WinningNumber;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoService {
     private List<Lotto> lottos;
@@ -16,10 +15,7 @@ public class LottoService {
 
     public LottoService() {
         this.lottos = new ArrayList<>();
-    }
-
-    public void updateWinningNumber(List<Integer> numbers, int bonusNumber) {
-        this.winningNumber = new WinningNumber(numbers, bonusNumber);
+        this.winningNumber = new WinningNumber();
     }
 
     //구입한 금액에 맞게 로또 구입과 로또 번호 생성
@@ -34,6 +30,10 @@ public class LottoService {
         List<Integer> randoms = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         randoms.sort(null);
         return new Lotto(randoms);
+    }
+
+    public void updateWinningNumber(List<Integer> numbers, int bonusNumber) {
+        winningNumber.updateNumbersAndBonusNumber(numbers, bonusNumber);
     }
 
     //구입한 로또 번호들과 당첨 로또 번호 매칭

@@ -6,7 +6,12 @@ public class WinningNumber {
     private List<Integer> numbers;
     private int bonusNumber;
 
-    public WinningNumber(List<Integer> numbers, int bonusNumber) {
+    public WinningNumber() {
+        this.numbers = null;
+        this.bonusNumber = 0;
+    }
+
+    public void updateNumbersAndBonusNumber(List<Integer> numbers, int bonusNumber) {
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }
