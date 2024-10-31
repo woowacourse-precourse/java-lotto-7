@@ -1,20 +1,25 @@
 package lotto.controller;
 
 import lotto.exception.InvalidPurchaseAmountException;
+import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
 import lotto.model.PurchasePrice;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
     private int purchaseCount;
+    private List<Integer> winningNumbersToCompare;
+
     private PublishLotteries publishLotteries;
     private final InputView inputView;
     private final OutputView outputView;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
-        this.outputView =  outputView;
+        this.outputView = outputView;
     }
 
     public void play() {
@@ -66,7 +71,9 @@ public class LottoController {
 
     // 당첨 번호를 입력 받는다
     private void assignWinningNumbers() {
-
+        List<Integer> winningNumbers = inputView.getWinningNumbers();
+        Lotto lotto = new Lotto(winningNumbers);
+        winningNumbersToCompare = lotto.get();
     }
 
     // 보너스 번호를 입력 받는다
