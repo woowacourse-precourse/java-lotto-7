@@ -20,7 +20,7 @@ public class WinningNumbersValidator {
           ErrorMessage.INVALID_WINNING_NUMBERS_QUANTITY.getMessage());
     }
     for (Integer number : winningAndBonusNumbers) {
-      if (number < RandomNumberConstants.MINIMUM_RANDOM_NUMBER || number > RandomNumberConstants.MINIMUM_RANDOM_NUMBER) {
+      if (number < RandomNumberConstants.MINIMUM_RANDOM_NUMBER || number > RandomNumberConstants.MAXIMUM_RANDOM_NUMBER) {
         throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
       }
     }
