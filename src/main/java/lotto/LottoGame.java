@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
@@ -24,6 +25,7 @@ public class LottoGame {
 
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
         double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
+        Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
     }
 
     private int inputMoney() {
