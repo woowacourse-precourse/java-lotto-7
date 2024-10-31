@@ -14,8 +14,8 @@ public class BonusComponentNumber implements BonusComponent {
 
     //implement된 매서드는 항상 public 입니다.
     @Override
-    public void validateDuplicateWithWinningComponent(Lotto winningComponent, Component component) {
-        if (winningComponent.getComponents().contains(component)){
+    public void validateDuplicateWithWinningComponent(Lotto winningComponents, Component component) {
+        if (winningComponents.getComponents().contains(component)){
             throw new IllegalArgumentException(InputError.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
