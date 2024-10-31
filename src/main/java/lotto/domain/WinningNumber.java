@@ -11,4 +11,6 @@ public class WinningNumber {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }
+
+
 }

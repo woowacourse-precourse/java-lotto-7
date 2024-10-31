@@ -9,7 +9,7 @@ import java.util.List;
 public class InputView {
 
     private final int lottoPrice = 1000;
-    private final String INVALID_PURCHASE_AMOUNT = "로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.";
+    private final String INVALID_PURCHASE_AMOUNT = "[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.";
 
     public LottoInputDto enterInput() {
         long purchaseAmount = enterPurchaseAmount();
