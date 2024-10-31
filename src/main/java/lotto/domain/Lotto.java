@@ -35,6 +35,14 @@ public class Lotto {
         return numbers.stream().distinct().count() == numbers.size();
     }
 
+    public long countSameNumbers(Lotto comparisonLotto) {
+        return comparisonLotto.numbers.stream().filter(numbers::contains).count();
+    }
+
+    public boolean isContainNumber(Integer number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
