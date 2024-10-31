@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.constant.LottoRank;
 import lotto.service.LottoService;
+import lotto.util.InputFormatter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,12 +12,14 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
+    private final InputFormatter inputFormatter;
     private int moneyInput;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoService = new LottoService();
+        this.inputFormatter = new InputFormatter();
     }
 
     public void run() {
@@ -33,18 +36,18 @@ public class LottoController {
 
     private void processMoneyInput() {
         continueUntilNormalInput(() -> {
-            outputView.printMoneyInputMessage();
-            this.moneyInput = inputView.getMoneyInput();
+            String moneyInputRaw = inputView.getMoneyInput();
+            this.moneyInput = inputFormatter.formatMoneyInput(moneyInputRaw);
 
-            lottoService.purchaseLotto(moneyInput);
+            lottoService.purchaseLotto(this.moneyInput);
             printPurchasedLotto();
         });
     }
 
     private void processWinnerNumbersInput() {
         continueUntilNormalInput(() -> {
-            outputView.printWinnerNumbersInputMessage();
-            List<Integer> winnerNumbersInput = inputView.getWinnerNumbersInput();
+            String winnerNumbersInputRaw = inputView.getWinnerNumbersInput();
+            List<Integer> winnerNumbersInput = inputFormatter.formatWinningNumbersInput(winnerNumbersInputRaw);
 
             lottoService.setWinnerLotto(winnerNumbersInput);
         });
@@ -52,8 +55,8 @@ public class LottoController {
 
     private void processBonusNumberInput() {
         continueUntilNormalInput(() -> {
-            outputView.printBonusNumberInputMessage();
-            int bonusNumber = inputView.getBonusNumberInput();
+            String bonusNumberInputRaw = inputView.getBonusNumberInput();
+            int bonusNumber = inputFormatter.formatBonusNumberInput(bonusNumberInputRaw);
 
             lottoService.setBonusNumber(bonusNumber);
         });
