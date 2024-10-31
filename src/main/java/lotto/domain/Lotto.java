@@ -20,8 +20,9 @@ public class Lotto {
                 LottoRules.MAX_NUMBER.getValue(),
                 LottoRules.NUMBER_COUNT.getValue()
         );
-        return new Lotto(randomNumbers);
+        return new AutoLotto(randomNumbers);
     }
+
 
 
     private void validate(List<Integer> numbers) {
@@ -33,9 +34,6 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-
-
 
     private void validateLottoNumCount(List<Integer> numbers) {
         if (!isLottoCountValid(numbers)) {

@@ -12,6 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+
+    // 로또 번호 유효성 검증 테스트
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
     @Test
     void ThrowExceptionWhenLottoNumberCountOverSix() {
@@ -37,6 +39,7 @@ class LottoTest {
 
     }
 
+    // 랜덤값으로 구성된 로또 생성을 위한 정적팩토리 메서드 - createRandomLotto()테스트
     @DisplayName("createRandomLotto() 메서드는 6개의 숫자를 생성해야 한다")
     @Test
     void createRandomLottoGeneratesSixNumbers() {
