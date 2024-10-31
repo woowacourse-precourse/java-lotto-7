@@ -1,6 +1,5 @@
-package lotto.domain.service;
+package lotto.domain.store;
 
-import lotto.domain.store.LottoStore;
 import lotto.domain.entity.Lottos;
 import lotto.domain.generate.RandomLottoNumberGenerator;
 import lotto.domain.exception.PayException;

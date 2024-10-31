@@ -1,6 +1,5 @@
-package lotto.domain.service;
+package lotto.domain.result;
 
-import lotto.domain.result.LottoResultChecker;
 import lotto.ui.parser.InputParser;
 import lotto.domain.entity.Lotto;
 import lotto.domain.entity.Lottos;

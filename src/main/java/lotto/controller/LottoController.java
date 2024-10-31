@@ -29,21 +29,32 @@ public class LottoController {
     }
 
     public void start() {
-        final int pay = inputView.inputPayment();
+        final Lottos lottos = createLottos();
 
-        final Lottos lottos = lottoStore.issueLottos(pay);
-
-        final List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        final int bonusNumber = inputView.inputBonusNumber();
-
-        final LottoResultChecker resultChecker = new LottoResultChecker(winningNumbers, bonusNumber);
+        final LottoResultChecker resultChecker = createResultChecker();
 
         final List<Lotto> checkedLottosRank = resultChecker.checkLottosRank(lottos);
 
-        final int profit = lottoRankPrize.calculateTotalPrize(checkedLottosRank);
+        final int profit = getProfit(checkedLottosRank);
 
         outputView.printLottos(checkedLottosRank);
-
         outputView.winningStats(checkedLottosRank, profit);
+    }
+
+    private Lottos createLottos() {
+        final int pay = inputView.inputPayment();
+
+        return lottoStore.issueLottos(pay);
+    }
+
+    private LottoResultChecker createResultChecker() {
+        final List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        final int bonusNumber = inputView.inputBonusNumber();
+
+        return new LottoResultChecker(winningNumbers, bonusNumber);
+    }
+
+    private int getProfit(final List<Lotto> checkedLottosRank) {
+        return lottoRankPrize.calculateTotalPrize(checkedLottosRank);
     }
 }

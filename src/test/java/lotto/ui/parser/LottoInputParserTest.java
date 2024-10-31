@@ -1,7 +1,6 @@
-package lotto.domain;
+package lotto.ui.parser;
 
 import lotto.ui.exception.InputException;
-import lotto.ui.parser.InputParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
