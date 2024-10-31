@@ -10,11 +10,9 @@ public class InputView {
 
     LottoValidator validator = new LottoValidator();
 
-    public int getPurchaseAmount() {
+    public String getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = Integer.parseInt(Console.readLine());
-        //1000원 단위 검증
-        return purchaseAmount;
+        return Console.readLine();
     }
 
     public Lotto getWinningLotto() {
