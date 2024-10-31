@@ -20,7 +20,7 @@ class LottoIssuerTest {
         LottoTickets lottoTickets = lottoIssuer.issueLottoTicket();
 
         // then
-        assertThat(lottoTickets.size()).isOne();
+        assertThat(lottoTickets.tickets()).hasSize(1);
     }
 
     @Test
@@ -34,6 +34,6 @@ class LottoIssuerTest {
         LottoTickets lottoTickets = lottoIssuer.issueLottoTickets(purchaseAmount);
 
         // then
-        assertEquals(lottoTickets.size(), 5);
+        assertThat(lottoTickets.tickets()).hasSize(5);
     }
 }
