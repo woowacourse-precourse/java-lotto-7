@@ -1,6 +1,8 @@
 package lotto;
 
+import lotto.dto.LottoResultDto;
 import lotto.exception.ErrorMessage;
+import lotto.service.LottoService;
 import lotto.validator.LottoValidator;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -40,5 +43,16 @@ class LottoTest {
         AssertionsForClassTypes.assertThatThrownBy(() -> LottoValidator.validateLottoPurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_NOT_DIVISIBLE_BY_LOTTO_PRICE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 5000, 7000})
+    void 구입한금액만큼_로또장수가_맞는지_확인한다(int input){
+        int purchaseQuantity = input / 1000;
+
+        LottoService lottoService = new LottoService();
+        LottoResultDto dto = lottoService.createLottoList(input);
+
+        assertThat(dto.getLottoList().size() == purchaseQuantity).isTrue();
     }
 }
