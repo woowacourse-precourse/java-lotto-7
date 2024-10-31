@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -39,15 +38,20 @@ class LottoMachineTest {
     void testInsertAmount_invalidAmount() {
         int invalidAmount = 1500;
 
-        assertThatThrownBy(() -> lottoMachine.insertAmount(invalidAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        assertSoftly(softly -> {
+            softly.assertThatThrownBy(() -> lottoMachine.insertAmount(invalidAmount))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        });
     }
 
     @Test
     void testGenerateLotto_withoutAmount() {
-        assertThatThrownBy(() -> lottoMachine.getLottoTickets())
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("[ERROR] 구입 금액을 넣지 않았습니다. 구입 금액: ");
+        assertSoftly(softly -> {
+            softly.assertThatThrownBy(() -> lottoMachine.getLottoTickets())
+                    .isInstanceOf(IllegalStateException.class)
+                    .hasMessageContaining("[ERROR] 구입 금액을 넣지 않았습니다. 구입 금액: ");
+        });
+
     }
 }
