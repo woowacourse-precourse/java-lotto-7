@@ -1,4 +1,4 @@
-package lotto.domain.model;
+package lotto.domain.model.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,15 +7,17 @@ import java.util.stream.IntStream;
 
 import static lotto.common.constant.LottoConst.*;
 
-public class LottoGenerator {
+public class LottoAutoGenerator implements LottoGenerator {
 
-    public List<Lotto> generate(int quantity) {
+    @Override
+    public List<Lotto> generateByQuantity(int quantity) {
         return IntStream.range(0, quantity)
                 .mapToObj(i -> generateLotto())
                 .toList();
     }
 
-    private Lotto generateLotto() {
+    @Override
+    public Lotto generateLotto() {
         List<Integer> randomNumbers =
                 Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, LOTTO_NUM_COUNT).stream().sorted().toList();
         return Lotto.create(randomNumbers);

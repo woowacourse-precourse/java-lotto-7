@@ -1,4 +1,4 @@
-package lotto.domain.model;
+package lotto.domain.model.lotto;
 
 import lotto.common.config.Factory;
 import org.assertj.core.api.Assertions;
@@ -15,15 +15,15 @@ import java.util.List;
 class LottoGeneratorTest {
 
     Factory factory = new Factory();
-    LottoGenerator lottoGenerator;
+    LottoAutoGenerator lottoGenerator;
 
     @BeforeEach
     void setUp() {
-        lottoGenerator = factory.lottoGenerator();
+        lottoGenerator = factory.lottoAutoGenerator();
     }
 
     @Nested
-    @DisplayName("generate 메서드는")
+    @DisplayName("generateByQuantity 메서드는")
     class GenerateTest {
 
         @ParameterizedTest
@@ -33,7 +33,7 @@ class LottoGeneratorTest {
             //given
 
             //when
-            List<Lotto> lottos = lottoGenerator.generate(quantity);
+            List<Lotto> lottos = lottoGenerator.generateByQuantity(quantity);
 
             //then
             Assertions.assertThat(lottos.size()).isEqualTo(quantity);
@@ -46,7 +46,7 @@ class LottoGeneratorTest {
             //given
 
             //when
-            List<Lotto> lottos = lottoGenerator.generate(quantity);
+            List<Lotto> lottos = lottoGenerator.generateByQuantity(quantity);
 
             //then
             for (Lotto lotto : lottos) {
