@@ -4,6 +4,7 @@ import lotto.utils.Randomizer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lottos implements Observable {
     private static final int LOTTO_PRICE = 1000;
@@ -38,5 +39,16 @@ public class Lottos implements Observable {
     private void getLottoCount(int purchaseAmount) {
         this.lottoCount = purchaseAmount / LOTTO_PRICE;
         this.lottos = new ArrayList<>(this.lottoCount);
+    }
+
+    public void getResults(String winningNumberInput, String bonusNumberInput) {
+        LottoResults lottoResults = new LottoResults();
+        List<Integer> winningNumbers = Stream.of(winningNumberInput.split(",")).map(Integer::parseInt).toList();
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        for (Lotto lotto : this.lottos) {
+            int matches = lotto.getMatches(winningNumbers, bonusNumber);
+            lottoResults.recordResult(matches);
+        }
+        lottoResults.calculateRewards();
     }
 }

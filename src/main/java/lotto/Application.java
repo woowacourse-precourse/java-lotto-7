@@ -27,5 +27,7 @@ public class Application {
         lottos.registerObserver(outputView);
         lottos.notifyObserver();
         lottos.generateLottos();
+
+        lottos.getResults(lottoNumbers, bonusNumber);
     }
 }
