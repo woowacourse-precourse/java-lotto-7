@@ -21,6 +21,10 @@ public class Lotto {
             .toList();
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkDuplicate(numbers);

@@ -57,4 +57,26 @@ class LottoTest {
         assertThat(sortedNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
+    @DisplayName("해당 숫자가 로또 번호에 포함되어 있는지 확인한다.")
+    @Test
+    void isContainNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        //when
+        boolean result = lotto.isContain(1);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("해당 숫자가 로또 번호에 포함되어 있는지 확인한다.")
+    @Test
+    void isNotContainNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        //when
+        boolean result = lotto.isContain(7);
+        //then
+        assertThat(result).isFalse();
+    }
+
 }
