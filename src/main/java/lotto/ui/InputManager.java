@@ -1,7 +1,9 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.service.ValidChecker;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,48 +18,30 @@ public class InputManager {
         return input;
     }
 
-    public String validateAndReturnInt(String input){
-            for (char c : input.toCharArray()) {
-                if ((int) c < 48 || (int) c > 57) {
-                    System.out.println("[ERROR] 숫자가 아닌 입력은 허용되지 않습니다");
-                    throw new IllegalArgumentException();
-                }
-            }
-        return input;
+    public BigInteger validateMoney(String money){
+        ValidChecker checker = new ValidChecker();
+        checker.notInt(money);
+        return new BigInteger(money);
     }
 
-    public void notContainComma(String input) {
-            if (!input.contains(",")) {
-                System.out.println("[ERROR] 쉼표로 구분된 6개의 숫자를 넣어주세요");
-                throw new IllegalArgumentException();
-            }
+    public int validateBonusNumber(String number){
+        ValidChecker checker = new ValidChecker();
+        checker.notInt(number);
+        checker.checkUnderMaximum(Integer.parseInt(number));
+        return Integer.parseInt(number);
     }
 
-    public void notSixNumbers(String input) {
-            String[] parts = input.split(",");
-            if (parts.length != 6) {
-                System.out.println("[ERROR] 쉼표로 구분된 6개의 숫자를 넣어주세요");
-                throw new IllegalArgumentException();
-            }
-    }
-
-    public void isAllNumber(String[] parts,List<Integer> numbers) {
-            for (String part : parts) {
-                part = part.trim();
-                if (!part.matches("\\d+")) {
-                    System.out.println("[ERROR] 쉼표로 구분된 6개의 숫자를 넣어주세요");
-                    throw new IllegalArgumentException();
-                }
-                numbers.add(Integer.parseInt(part));
-            }
-    }
-
-    public List<Integer> validateAndReturnNumbersInput(String input) {
-        notContainComma(input);
-        notSixNumbers(input);
+    public List<Integer> validateAndReturnNumbers(String input) {
+        ValidChecker checker = new ValidChecker();
+        checker.notContainComma(input);
+        checker.notSixNumbers(input);
         String[] parts = input.split(",");
         List<Integer> numbers = new ArrayList<>();
-        isAllNumber(parts, numbers);
+        for(String part : parts){
+            checker.notInt(part);
+            checker.checkUnderMaximum(Integer.parseInt(part));
+            numbers.add(Integer.parseInt(part));
+        }
         return numbers;
     }
 }

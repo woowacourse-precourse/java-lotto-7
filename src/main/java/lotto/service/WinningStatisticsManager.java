@@ -1,16 +1,17 @@
-package lotto;
+package lotto.service;
 
-import lotto.domain.Lotto;
-import lotto.service.LottoConverter;
+import lotto.Lotto;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class WinningStatisticsManager {
-    private List<Integer> statistics = new ArrayList<>(Collections.nCopies(5, 0));
-    private LottoConverter converter = new LottoConverter();
-    private WinningNumberChecker checker;
-    private boolean containBonus;
+    private final List<Integer> statistics = new ArrayList<>(Collections.nCopies(5, 0));
+    private final LottoConverter converter = new LottoConverter();
+    private final WinningNumberChecker checker;
+
     public enum PrizeTier {
         FIFTH(3, 0, BigInteger.valueOf(5_000)),
         FOURTH(4, 0, BigInteger.valueOf(50_000)),
@@ -41,28 +42,17 @@ public class WinningStatisticsManager {
         }
     }
 
-    public PrizeTier getPrizeTier(int matchCount, boolean hasBonus) {
-        for (PrizeTier tier : PrizeTier.values()) {
-            if (tier.getMatchCount() == matchCount && (hasBonus ? 1 : 0) == tier.getBonusCount()) {
-                return tier;
-            }
-        }
-        return null;
-    }
-
     public WinningStatisticsManager(WinningNumberChecker winningNumberChecker){
         this.checker = winningNumberChecker;
     }
 
     public Map<PrizeTier, Integer> getWinningStatistics() {
         Map<PrizeTier, Integer> winningStatistics = new HashMap<>();
-
         winningStatistics.put(PrizeTier.FIFTH, statistics.get(0)); // 3개 일치
         winningStatistics.put(PrizeTier.FOURTH, statistics.get(1)); // 4개 일치
         winningStatistics.put(PrizeTier.THIRD, statistics.get(2)); // 5개 일치
         winningStatistics.put(PrizeTier.SECOND, statistics.get(3)); // 5개 일치 + 보너스
         winningStatistics.put(PrizeTier.FIRST, statistics.get(4)); // 6개 일치
-
         return winningStatistics;
     }
 
@@ -76,14 +66,11 @@ public class WinningStatisticsManager {
             statistics.set(1, statistics.get(1) + 1);
     }
 
-    public void increaseFive(Lotto lotto){
-        if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==5)
-            statistics.set(2, statistics.get(2) + 1);
-    }
-
-    public void increaseFiveAndBonus(Lotto lotto,int bonusNumber){
-        if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==5&&containBonus)
+    public void increaseFiveAndBonus(Lotto lotto){
+        if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==5&&checker.doesContainBonusNumber(lotto))
             statistics.set(3, statistics.get(3) + 1);
+        if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==5&&!checker.doesContainBonusNumber(lotto))
+            statistics.set(2, statistics.get(2) + 1);
     }
 
     public void increaseSix(Lotto lotto){
@@ -94,22 +81,21 @@ public class WinningStatisticsManager {
     public void increaseAll(Lotto lotto){
         increaseThree(lotto);
         increaseFour(lotto);
-        increaseFive(lotto);
-        increaseFiveAndBonus(lotto,checker.getBonusNumber());
+        increaseFiveAndBonus(lotto);
         increaseSix(lotto);
     }
 
-    public double getEaringRate(BigInteger money){
-        BigInteger sum = BigInteger.ZERO;
-        sum = sum.add(BigInteger.valueOf(5000).multiply(BigInteger.valueOf(statistics.getFirst())));
-        sum = sum.add(BigInteger.valueOf(50000).multiply(BigInteger.valueOf(statistics.get(1))));
-        sum = sum.add(BigInteger.valueOf(1500000).multiply(BigInteger.valueOf(statistics.get(2))));
-        sum = sum.add(BigInteger.valueOf(30000000).multiply(BigInteger.valueOf(statistics.get(3))));
-        sum = sum.add(BigInteger.valueOf(2000000000).multiply(BigInteger.valueOf(statistics.get(4))));
-        return sum.divide(money).doubleValue();
-    }
-
-    public void setContainBonus(boolean doesContain){
-        this.containBonus = doesContain;
+    public double getEarningRate(BigInteger money) {
+        BigDecimal sum = BigDecimal.ZERO;
+        sum = sum.add(BigDecimal.valueOf(5000).multiply(BigDecimal.valueOf(statistics.getFirst())));
+        sum = sum.add(BigDecimal.valueOf(50000).multiply(BigDecimal.valueOf(statistics.get(1))));
+        sum = sum.add(BigDecimal.valueOf(1500000).multiply(BigDecimal.valueOf(statistics.get(2))));
+        sum = sum.add(BigDecimal.valueOf(30000000).multiply(BigDecimal.valueOf(statistics.get(3))));
+        sum = sum.add(BigDecimal.valueOf(2000000000).multiply(BigDecimal.valueOf(statistics.get(4))));
+        BigDecimal moneyDecimal = new BigDecimal(money);
+        return sum.divide(moneyDecimal, 4, RoundingMode.HALF_UP) // 중간 연산에서 정밀도 확보
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(2, RoundingMode.HALF_UP) // 최종적으로 둘째 자리에서 반올림
+                .doubleValue();
     }
 }

@@ -1,6 +1,7 @@
-package lotto;
+package lotto.ui;
 
-import lotto.domain.Lotto;
+import lotto.Lotto;
+import lotto.service.WinningStatisticsManager;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -28,13 +29,16 @@ public class OutputManager {
         System.out.println("\n");
     }
 
-    public void printStatistics(Map<WinningStatisticsManager.PrizeTier, Integer> results,double earingRate) {
+    public void printStatistics(Map<WinningStatisticsManager.PrizeTier, Integer> results, double earingRate) {
         System.out.println("\n");
         DecimalFormat formatter = new DecimalFormat("#,###");
         System.out.println("당첨 통계\n---");
         for (WinningStatisticsManager.PrizeTier tier : WinningStatisticsManager.PrizeTier.values()) {
-            System.out.printf("%d개 일치 (%s원) - %d개\n",
-                tier.getMatchCount(),
+            System.out.print(tier.getMatchCount()+"개 일치");
+            if(tier.getMatchCount()==5&&tier.getBonusCount()==1) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.printf(" (%s원) - %d개\n",
                 formatter.format(tier.getPrize()),
                 results.getOrDefault(tier, 0)
             );

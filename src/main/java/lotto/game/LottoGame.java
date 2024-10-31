@@ -1,32 +1,32 @@
-package lotto;
+package lotto.game;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.LottoPool;
 import lotto.service.LottoConverter;
 import lotto.service.WinningNumberChecker;
 import lotto.service.WinningStatisticsManager;
+import lotto.ui.InputManager;
 import lotto.ui.OutputManager;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 
 public class LottoGame {
     private final WinningNumberChecker winningNumberChecker = new WinningNumberChecker();
     private final OutputManager outputManager = new OutputManager();
     private final LottoPool lottoPool = new LottoPool();
     private final WinningStatisticsManager winningStatisticsManager = new WinningStatisticsManager(winningNumberChecker);
+    private final InputManager inputManager = new InputManager();
 
     public void start(){
         outputManager.requestMoney();
-        int money = Integer.parseInt(Console.readLine());
-        lottoPool.makeRandomLotto(new LottoConverter().MoneyToLotto(BigInteger.valueOf(money)));
+        BigInteger money =inputManager.validateMoney(inputManager.validateEmptyAndReturnInput());
+        lottoPool.makeRandomLotto(new LottoConverter().MoneyToLotto(money));
         OutputManager.printPurchasedLotto(lottoPool.getLottosDrawn());
         outputManager.requestWinningNumber();
-        winningNumberChecker.setWinningNumber(Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList());
+        winningNumberChecker.setWinningNumber(inputManager.validateAndReturnNumbers(inputManager.validateEmptyAndReturnInput()));
         outputManager.requestBonusNumber();
-        winningNumberChecker.setBonusNumber(Integer.parseInt(Console.readLine()));
+        winningNumberChecker.setBonusNumber(inputManager.validateBonusNumber(inputManager.validateEmptyAndReturnInput()));
         lottoPool.getLottosDrawn().forEach(winningStatisticsManager::increaseAll);
         outputManager.printStatistics(winningStatisticsManager.getWinningStatistics(),
-                winningStatisticsManager.getEaringRate(BigInteger.valueOf(money)));
+                winningStatisticsManager.getEarningRate(money));
     }
 }

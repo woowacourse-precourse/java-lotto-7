@@ -1,7 +1,6 @@
-package lotto;
+package lotto.service;
 
-import lotto.domain.Lotto;
-import lotto.service.LottoConverter;
+import lotto.Lotto;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -32,9 +31,5 @@ public class WinningNumberChecker {
 
     public boolean doesContainBonusNumber(Lotto lotto){
         return new LottoConverter().LottoIntoNumber(lotto).contains(bonusNumber);
-    }
-
-    public int getBonusNumber(){
-        return bonusNumber;
     }
 }

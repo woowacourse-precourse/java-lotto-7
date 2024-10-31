@@ -1,15 +1,11 @@
-package lotto;
+package lotto.service;
 
-import lotto.domain.Lotto;
+import lotto.Lotto;
 
 import java.math.BigInteger;
 import java.util.List;
 
 public class LottoConverter {
-    public Lotto numbersIntoLotto(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
-
     public List<Integer> LottoIntoNumber(Lotto lotto) {
         return lotto.getNumbers();
     }
