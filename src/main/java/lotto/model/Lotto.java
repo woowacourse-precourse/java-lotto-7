@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.Utils;
+
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +18,19 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int getWinningCount(List<Integer> winningNumbers){
+        return Utils.countCommonElements(numbers, winningNumbers);
+    }
+
+    public int getBonusCount(int bonusNumber){
+        if(hasBonusNumber(bonusNumber)){
+            return 1;
+        }
+        return 0;
+    }
+
+    private boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 }
