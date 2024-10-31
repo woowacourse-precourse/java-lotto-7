@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.PurchaseAmount;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,12 +16,19 @@ public class LottoController {
     }
 
     public void start() {
-        double purchaseAmount = readPurchaseAmount();
+        PurchaseAmount purchaseAmount = readPurchaseAmount();
         this.lottoService = new LottoService(purchaseAmount);
+        printLottoPurchaseResult(purchaseAmount);
     }
 
-    private double readPurchaseAmount() {
+    private void printLottoPurchaseResult(PurchaseAmount purchaseAmount) {
+        int numberOfLotto = purchaseAmount.getNumberOfLotto();
+        outputView.printLottoPurchaseResult(numberOfLotto);
+    }
+
+    private PurchaseAmount readPurchaseAmount() {
         outputView.printReadPurchaseAmount();
-        return inputView.readPurchaseAmount();
+        double purchaseAmount = inputView.readPurchaseAmount();
+        return new PurchaseAmount(purchaseAmount);
     }
 }

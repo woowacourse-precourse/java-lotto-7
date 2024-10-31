@@ -8,7 +8,7 @@ public class InputView {
         String readLine = Console.readLine();
         return readLine.trim();
     }
-    public Double readPurchaseAmount() {
+    public double readPurchaseAmount() {
         String readLine = readLine();
         try {
             return Double.parseDouble(readLine);

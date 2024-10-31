@@ -24,4 +24,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(ErrorMessage.UNIT_DIVISIBLE_ERROR_MESSAGE);
         }
     }
+
+    public int getNumberOfLotto() {
+        return (int) (purchaseAmount / UNIT);
+    }
 }
