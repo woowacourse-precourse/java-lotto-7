@@ -31,6 +31,10 @@ public class Validator {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("temp");
         }
+
+        for (String number : numbers) {
+            lottoNumValidator(number);
+        }
     }
 
     public static void lottoNumValidator(String input) {
