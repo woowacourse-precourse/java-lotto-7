@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -34,5 +35,13 @@ public class Lotto {
         numbers.sort(Integer::compareTo);
 
         return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 }

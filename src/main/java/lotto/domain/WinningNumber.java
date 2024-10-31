@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 
 public class WinningNumber {
     private Lotto numbers;
@@ -9,5 +8,12 @@ public class WinningNumber {
     public WinningNumber(Lotto numbers, int bonus) {
         this.numbers = numbers;
         this.bonus = bonus;
+    }
+
+    public Prize matchCount(Lotto lotto) {
+        int count = (int)numbers.getNumbers().stream().filter(lotto::contains).count();
+        boolean bonusMatch = lotto.contains(bonus);
+
+        return Prize.winningMatch(count, bonusMatch);
     }
 }
