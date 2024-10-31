@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class RandomNumbers {
     }
 
     public static List<Integer> generateSortedLottoNumbers(){
-        List<Integer> randomNumbers = randomNumberGenerator();
+        List<Integer> randomNumbers = new ArrayList<>(randomNumberGenerator());
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
