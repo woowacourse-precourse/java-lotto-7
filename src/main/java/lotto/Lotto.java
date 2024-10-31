@@ -1,42 +1,52 @@
-package lotto;
+package lotto.entity;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.Randoms;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
-    private final int bonusNumber;
 
-    public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        this.bonusNumber = pickBonusNumber(numbers);
+    // 기존 생성자
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
+        this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers; // 생성된 로또 번호 목록을 반환
+    // 무작위 로또 번호 생성
+    public static Lotto generateRandomLotto() {
+        Set<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> numbersList = uniqueNumbers.stream().collect(Collectors.toList());
+        return new Lotto(numbersList);
     }
 
-    private int pickBonusNumber(List<Integer> numbers) {
-        int bonus = Randoms.pickUniqueNumbersInRange(1, 45, 1).get(0);
-        if (numbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
-        }
-        return bonus;
-    }
-
+    // 유효성 검사
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        if (new HashSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1번부터 45번 사이여야 합니다.");
+        for (int number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                throw new IllegalArgumentException("로또 번호는 1부터 45 사이여야 합니다.");
+            }
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 로또 번호 확인 메소드
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    // Getter for numbers (optional)
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
