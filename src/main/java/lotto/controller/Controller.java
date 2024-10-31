@@ -1,9 +1,10 @@
 package lotto.controller;
 
-import lotto.constants.ErrorConstants;
 import lotto.util.PurchaseAmountValidator;
 import lotto.util.Validator;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class Controller {
 
@@ -14,6 +15,18 @@ public class Controller {
             String totalAmount = InputView.requestAmountToPurchase();
             try {
                 validator.validate(totalAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+
+        while (true) {
+            String input = InputView.requestJackpotNumbers();
+
+            try {
+
+                break;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }

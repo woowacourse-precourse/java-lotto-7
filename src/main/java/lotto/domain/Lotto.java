@@ -1,10 +1,9 @@
-package lotto;
-
-import lotto.constants.LottoErrorMessage;
+package lotto.domain;
 
 import java.util.List;
 
-import static lotto.constants.LottoErrorMessage.*;
+import static lotto.constants.LottoErrorMessage.INVALID_NUMBER_COUNT;
+import static lotto.constants.LottoErrorMessage.NUMBER_OUT_OF_RANGE;
 
 public class Lotto {
 
