@@ -10,6 +10,7 @@ public enum LottoErrorMessage {
 
     WIN_NUMBERS_CONTAINS_LETTER_ERROR("구분자(',')를 제외한 문자는 입력될 수 없습니다. ','와 숫자만 입력해주세요."),
     WIN_NUMBERS_COUNT_ERROR("당첨 번호는 6개를 입력해주세요."),
+    WIN_NUMBERS_DUPLICATE_ERROR("중복된 숫자를 입력할 수 없습니다."),
     NUMBERS_RANGE_ERROR("1 이상 45 이하의 숫자들만 입력해주세요.");
 
 

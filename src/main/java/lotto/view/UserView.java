@@ -5,7 +5,9 @@ import lotto.exception.LottoErrorMessage;
 import lotto.exception.LottoArgumentException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserView {
     private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -84,6 +86,10 @@ public class UserView {
                 throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
             }
 
+            if(checkDuplicateNumbers(winNumbers)) {
+                throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_DUPLICATE_ERROR);
+            }
+
             return winNumbers;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_CONTAINS_LETTER_ERROR);
@@ -92,6 +98,11 @@ public class UserView {
 
     private static boolean checkValidRangeNumbers(List<Integer> winNumbers) {
         return winNumbers.stream().allMatch(number -> 1 <= number && number <= 45);
+    }
+
+    private static boolean checkDuplicateNumbers(List<Integer> winNumbers) {
+        Set<Integer> duplicateNumbers = new HashSet<>();
+        return winNumbers.stream().anyMatch(number -> !duplicateNumbers.add(number));
     }
 
     public static int printAndGetBonusNumber() {
