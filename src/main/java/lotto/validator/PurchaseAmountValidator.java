@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public class Validator {
+public class PurchaseAmountValidator {
     public static int parseAmount(String input){
         try{
             return Integer.parseInt(input);

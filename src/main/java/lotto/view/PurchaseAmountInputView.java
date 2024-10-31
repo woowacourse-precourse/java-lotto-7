@@ -1,6 +1,6 @@
 package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.Validator;
+import lotto.validator.PurchaseAmountValidator;
 
 
 public class PurchaseAmountInputView {
@@ -16,8 +16,8 @@ public class PurchaseAmountInputView {
     private static int getValidatedPurchaseAmount(){
         System.out.println("구매할 금액을 입력해주세요.");
         String purchaseAmountInput=Console.readLine();
-        int purchaseAmount= Validator.parseAmount(purchaseAmountInput);
-        Validator.validateAmount(purchaseAmount);
+        int purchaseAmount= PurchaseAmountValidator.parseAmount(purchaseAmountInput);
+        PurchaseAmountValidator.validateAmount(purchaseAmount);
         return purchaseAmount;
     }
 }
