@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
+import lotto.domain.LottoProfit;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
@@ -18,6 +19,7 @@ public class LottoView {
     private static final String LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String LOTTO_BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
+    private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public String requestLottoPurchasePrice() {
         System.out.println(LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE);
@@ -41,6 +43,7 @@ public class LottoView {
     public void printLottoResult(LottoResult lottoResult) {
         System.out.println(LOTTO_RESULT_MESSAGE);
         printLottoRankCount(lottoResult.getRankCount());
+        printLottoProfitRate(lottoResult.getLottoProfit());
     }
 
     private String input() {
@@ -75,5 +78,9 @@ public class LottoView {
                 .filter(lottoRank -> lottoRank != LottoRank.FAIL)
                 .map(lottoRank -> String.format(lottoRank.getMessage(), lottoRankCount.get(lottoRank)))
                 .forEach(System.out::println);
+    }
+
+    private void printLottoProfitRate(LottoProfit lottoProfit){
+        System.out.println(String.format(LOTTO_PROFIT_RATE_MESSAGE, lottoProfit.getProfitRate()));
     }
 }
