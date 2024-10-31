@@ -1,30 +1,26 @@
 package lotto.model;
 
 import lotto.utils.InputLottoNumbersValidator;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class Lottos {
-    private final List<Lotto> lottos;
+    private final Map<Integer, List<Integer>> lottoMap;
+    private final int totalInvestment;
 
-    public Lottos(List<Lotto> lottos) {
-        lottos.forEach(lotto -> InputLottoNumbersValidator.validateWinningNumbers(lotto.getNumbers()));
-        this.lottos = new ArrayList<>(lottos);
+    public Lottos(int totalInvestment) {
+        this.lottoMap = new HashMap<>();
+        this.totalInvestment = totalInvestment;
     }
 
-    public List<List<Integer>> getLottoNumbers() {
-        return lottos.stream()
-                .map(Lotto::getNumbers)
-                .collect(Collectors.toList());
+    public void addLotto(int id, List<Integer> numbers) {
+        InputLottoNumbersValidator validator = new InputLottoNumbersValidator();
+        validator.validateWinningNumbers(numbers);
+        lottoMap.put(id, numbers);
     }
 
-    public int getTotalCount() {
-        return lottos.size();
-    }
-
-    public void addLotto(Lotto lotto) {
-        InputLottoNumbersValidator.validateWinningNumbers(lotto.getNumbers());
-        lottos.add(lotto);
+    public List<Integer> getLottoNumbers(int id) {
+        return lottoMap.get(id);
     }
 }
