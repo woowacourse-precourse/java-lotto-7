@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.in;
 
 class LottoTest {
     @Test
@@ -21,5 +23,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또에 1~45 범위를 벗언는 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void givenOutOfRangeNumber_when_thenThrowIllegalArgumentException(){
+        List<Integer> input = List.of(1, 569, -35, 2, 3, 4);
+        assertThatThrownBy(() -> new Lotto(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
