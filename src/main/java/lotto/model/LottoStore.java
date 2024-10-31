@@ -18,5 +18,6 @@ public class LottoStore {
         Validator.isDigitString(purchaseMoney);
         int number = Validator.isInteger(purchaseMoney);
         Validator.isNumberWithinRange(number, LOTTO_PRICE, MAX_BUY_PRICE);
+        Validator.isDivisibleBy(number, LOTTO_PRICE);
     }
 }

@@ -31,4 +31,10 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void isDivisibleBy(int number, int divisor) {
+        if ((number % divisor) != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
