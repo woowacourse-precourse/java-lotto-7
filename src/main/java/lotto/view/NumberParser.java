@@ -23,7 +23,7 @@ public class NumberParser {
 
     public static int parseBonusNumber(String input) {
         String trimNumber = input.trim();
-        //TODO: 숫자 아닌 입력 validation 추가 필요
+        NumberValidator.validateBonusNumberString(trimNumber);
         return Integer.parseInt(trimNumber);
     }
 }
