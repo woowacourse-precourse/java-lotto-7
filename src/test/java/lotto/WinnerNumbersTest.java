@@ -22,4 +22,11 @@ public class WinnerNumbersTest {
         assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 41, 51), 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("번호가 중복이 되면, 예외를 반환한다.")
+    @Test
+    void test3() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 1, 3, 41, 51), 7))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
