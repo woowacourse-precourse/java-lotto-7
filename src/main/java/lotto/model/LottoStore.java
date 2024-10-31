@@ -1,5 +1,9 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.Lotto;
 import lotto.util.Validator;
 
 public class LottoStore {
@@ -10,8 +14,19 @@ public class LottoStore {
 
     public static LottoTicket makeLottoTicket(String purchaseMoney) {
         validateInput(purchaseMoney);
-        int LottoTicketCount = Integer.parseInt(purchaseMoney) / LOTTO_PRICE;
-        return null;
+
+        int lottoTicketCount = Integer.parseInt(purchaseMoney) / LOTTO_PRICE;
+        List<Lotto> lottos = makeLottos(lottoTicketCount);
+
+        return new LottoTicket(lottos);
+    }
+
+    private static List<Lotto> makeLottos(int lottoTicketCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int count = 0; count < lottoTicketCount; count++) {
+            lottos.add(new Lotto(makeRandomNumber()));
+        }
+        return lottos;
     }
 
     private static void validateInput(String purchaseMoney) {
@@ -20,5 +35,9 @@ public class LottoStore {
         int number = Validator.isInteger(purchaseMoney);
         Validator.isNumberWithinRange(number, LOTTO_PRICE, MAX_BUY_PRICE);
         Validator.isDivisibleBy(number, LOTTO_PRICE);
+    }
+
+    private static List<Integer> makeRandomNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
