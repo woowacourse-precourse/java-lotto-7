@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoConstants;
 import lotto.service.LottoGenerator;
+import lotto.service.WinningNumberInput;
 
 public class Application {
     public static void main(String[] args) {
@@ -16,6 +17,9 @@ public class Application {
 
         List<Lotto> lottoTickets = purchaseLottos(lottoCount);
         lottoTickets.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        System.out.println();
+
+        List<Integer> winningNumbers = getWinningNumbers();
 
     }
 
@@ -60,5 +64,18 @@ public class Application {
             lottoTickets.add(lotto);
         }
         return lottoTickets;
+    }
+
+    private static List<Integer> getWinningNumbers() {
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String input = Console.readLine().replace(" ", "");
+
+            try {
+                return WinningNumberInput.getWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
