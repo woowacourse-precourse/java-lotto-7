@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.Collections;
-import java.util.EnumMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +22,12 @@ public class WinningResult {
             final Integer count = lottoRanks.getOrDefault(lottoRank, 0);
             lottoRanks.put(lottoRank, count + 1);
         }
+        lottoRanks.remove(LottoRank.RANK_NONE);
         return Collections.unmodifiableMap(lottoRanks);
     }
 
     private Map<LottoRank, Integer> initializeLottoRanks() {
-        final Map<LottoRank, Integer> lottoRanks = new EnumMap<>(LottoRank.class);
+        final Map<LottoRank, Integer> lottoRanks = new LinkedHashMap<>();
         final List<LottoRank> allLottoRankWithOutRankNone = LottoRank.findAllLottoRankWithOutRankNone();
         for (LottoRank lottoRank : allLottoRankWithOutRankNone) {
             lottoRanks.put(lottoRank, 0);
