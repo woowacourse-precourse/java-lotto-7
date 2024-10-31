@@ -3,10 +3,10 @@ package lotto.lottoModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LotteryDAO {
+public class LottoDAO {
     private List<Lotto> lottoNumbers;
 
-    public LotteryDAO() {
+    public LottoDAO() {
         this.lottoNumbers = new ArrayList<>();
     }
 
