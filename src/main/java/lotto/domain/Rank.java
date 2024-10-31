@@ -1,4 +1,4 @@
 package lotto.domain;
 
-public class Rank {
+public enum Rank {
 }
