@@ -8,4 +8,9 @@ public record LottoNumber(
     public static LottoNumber of(final Lotto lotto) {
         return new LottoNumber(lotto.getNumbers());
     }
+
+    @Override
+    public String toString() {
+        return values.toString();
+    }
 }
