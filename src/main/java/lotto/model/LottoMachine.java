@@ -6,6 +6,7 @@ import java.util.List;
 
 public class LottoMachine {
     private List<Lotto> purchasedLottos = new ArrayList<>();
+    private Lotto winningLotto;
 
     public List<Lotto> generateLottos(int count) {
         for (int i = 0; i < count; i++) {
@@ -13,5 +14,9 @@ public class LottoMachine {
             purchasedLottos.add(new Lotto(numbers));
         }
         return purchasedLottos;
+    }
+
+    public void setWinningLotto(List<Integer> winningNumbers) {
+        this.winningLotto = new Lotto(winningNumbers);
     }
 }
