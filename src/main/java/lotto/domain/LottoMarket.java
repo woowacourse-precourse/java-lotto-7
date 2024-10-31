@@ -9,6 +9,7 @@ public class LottoMarket {
     public Lotto buyLotto(int money) {
 
         validateMoney(money);
+        int lottoCount = calculateLottoCount(money);
     }
 
     private void validateMoney(int money) {
@@ -26,5 +27,9 @@ public class LottoMarket {
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private int calculateLottoCount(int money) {
+        return money / LOTTO_PRICE;
     }
 }
