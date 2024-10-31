@@ -16,10 +16,10 @@ public class LottoFactory {
     }
 
     public Lottos sizeFrom(int size) {
-        List<Lotto> lottos = new ArrayList<>();
+        Lottos lottos = new Lottos();
         for (int cnt = 0; cnt < size; cnt++) {
-            lottos.add(new Lotto(numberGenerator.generate()));
+            lottos.addLotto(new Lotto(numberGenerator.generate()));
         }
-        return new Lottos(lottos);
+        return lottos;
     }
 }
