@@ -1,7 +1,9 @@
 package lotto.view;
 
-import static lotto.validate.PurchaseAmountValidator.getValidatedPurchaseAmount;
-import static lotto.validate.WinningNumbersValidator.getValidatedWinningNumbers;
+import static lotto.parse.InputParser.getParsedPurchaseAmount;
+import static lotto.parse.InputParser.getParsedWinningNumbers;
+import static lotto.validate.PurchaseAmountValidator.validatePurchaseAmount;
+import static lotto.validate.WinningNumbersValidator.validateWinningNumbers;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -13,7 +15,8 @@ public class ConsoleInputView implements InputView {
         try {
             Message.PURCHASE_INPUT.display();
             String purchaseAmount = Console.readLine();
-            return getValidatedPurchaseAmount(purchaseAmount);
+            validatePurchaseAmount(purchaseAmount);
+            return getParsedPurchaseAmount(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readPurchaseAmount();
@@ -25,7 +28,8 @@ public class ConsoleInputView implements InputView {
         try {
             Message.WINNING_NUMBERS_INPUT.display();
             String winningNumbers = Console.readLine();
-            return getValidatedWinningNumbers(winningNumbers);
+            validateWinningNumbers(winningNumbers);
+            return getParsedWinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readWinningNumbers();

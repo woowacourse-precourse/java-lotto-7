@@ -1,16 +1,14 @@
 package lotto.validate;
 
+import static lotto.constants.LottoConstants.PURCHASE_UNIT_WON;
+
 import lotto.constants.ErrorMessage;
 
 public class PurchaseAmountValidator {
 
-    private static final int PURCHASE_UNIT_WON = 1000;
-
-    public static int getValidatedPurchaseAmount(String purchaseAmount) throws IllegalArgumentException {
+    public static void validatePurchaseAmount(String purchaseAmount) throws IllegalArgumentException {
         validateInputType(purchaseAmount);
-        int purchaseAmountToInt = Integer.parseInt(purchaseAmount);
-        validateInputUnit(purchaseAmountToInt);
-        return purchaseAmountToInt;
+        validateInputUnit(Integer.parseInt(purchaseAmount));
     }
 
     private static void validateInputUnit(int purchaseAmount) throws IllegalArgumentException {

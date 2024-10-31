@@ -5,4 +5,9 @@ public class LottoConstants {
     public static final int LOTTO_START_INCLUSIVE = 1;
     public static final int LOTTO_END_INCLUSIVE = 45;
     public static final int NUMBER_COUNT = 6;
+
+    public static final int PURCHASE_UNIT_WON = 1000;
+
+    public static final String DELIMITER = ",";
+    public static final String INPUT_PATTERN = String.format("^[0-9]+(%s[0-9])*$", DELIMITER);
 }
