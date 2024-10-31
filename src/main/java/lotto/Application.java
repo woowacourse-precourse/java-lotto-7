@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.Money;
+import lotto.validation.Parser;
 
 public class Application {
     private String input;
     public int divideByThousand(String input) {
         try{
-            isNumeric(input);
-            checkAmountWithinRange(input);
+            new Money(Parser.stringToInt(input));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             System.out.println("다시 입력해 주세요.");
@@ -25,18 +26,6 @@ public class Application {
         }
         this.input = input;
         return Integer.parseInt(input) / 1000;
-    }
-
-    public void isNumeric(String input){
-        if(!input.matches("[0-9]+$")){
-            throw new IllegalArgumentException(NON_NUMERIC_INPUT.format());
-        }
-    }
-
-    public void checkAmountWithinRange(String input){
-        if (Integer.parseInt(input) % 1000 != 0){
-            throw new IllegalArgumentException(INVALID_PRICE.format());
-        }
     }
 
     public String requestPurchaseAmountInput(){
@@ -103,8 +92,7 @@ public class Application {
 
     public int generateBonusNumber(Lotto lotto, String bonusNumber){
         try {
-            isNumeric(bonusNumber);
-            isNumberBetween1And45(Integer.parseInt(bonusNumber));
+            isNumberBetween1And45(Parser.stringToInt(bonusNumber));
             checkForDuplicates(lotto.getNumbers(), Integer.parseInt(bonusNumber));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
