@@ -44,6 +44,23 @@ public class InputView {
         return createLottoWithWinningNumbers(winningString);
     }
 
+    public int getBonusNumber() {
+        int bonusNumber;
+        System.out.println("\n" + "보너스 번호를 입력해 주세요.");
+
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new InvalidBonusNumberException(INVALID_NUMBER_RANGE.getMessage());
+            }
+
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new InvalidBonusNumberException(INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
     private List<Integer> createLottoWithWinningNumbers(String winningString) {
         List<String> splitWinningString = List.of(winningString.split(","));
         List<Integer> winningNumbers = new ArrayList<>();
