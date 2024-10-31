@@ -1,8 +1,10 @@
 package lotto.Controller;
 
+import lotto.Lotto;
 import lotto.Service.PurchaseService;
 import lotto.View.PurchaseView;
-import static java.lang.Character.isDigit;
+
+import java.util.List;
 
 public class PurchaseController {
     private PurchaseView purchaseView;
@@ -13,7 +15,7 @@ public class PurchaseController {
         purchaseService = new PurchaseService();
     }
 
-    public int purchase() {
+    public List<Lotto> purchase() {
         boolean validate = false;
         int count = 0;
         while(!validate) {
@@ -25,8 +27,9 @@ public class PurchaseController {
                 System.out.println(e.getMessage());
             }
         }
-        purchaseView.output(count);
-        return count;
+        List<Lotto> lottos = purchaseService.draw(count);
+        purchaseView.output(count, lottos);
+        return lottos;
     }
 
     private Pair purchaseFlow() {
@@ -34,6 +37,7 @@ public class PurchaseController {
         String inputed = purchaseView.input();
         if(!isInteger(inputed))
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+
         int count = purchaseService.buy(Integer.parseInt(inputed));
         if (count > 0) {
             result.set(true, count);

@@ -1,5 +1,9 @@
 package lotto.Controller;
 
+import lotto.Lotto;
+
+import java.util.List;
+
 public class LottoController {
     PurchaseController purchaseController;
 
@@ -8,6 +12,7 @@ public class LottoController {
     }
 
     public void start() {
-        int LottoCount = purchaseController.purchase();
+        List<Lotto> lottos = purchaseController.purchase();
+
     }
 }
