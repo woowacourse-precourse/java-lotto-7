@@ -11,7 +11,6 @@ public class LottoGenerator {
     private final static int MIN_RANGE_NUMBER = 1;
     private final static int MAX_RANGE_NUMBER = 45;
     private final static int LOTTO_NUMBERS_AMOUNT = 6;
-    private final static int BONUS_NUMBERS_AMOUNT = 1;
 
     private final int quantity;
 
