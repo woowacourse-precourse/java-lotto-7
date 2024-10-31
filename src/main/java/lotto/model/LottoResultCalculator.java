@@ -3,6 +3,7 @@ package lotto.model;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import lotto.dto.LottoResult;
@@ -33,11 +34,13 @@ public class LottoResultCalculator {
     }
 
     private Map<LottoRank, Integer> calculateAllRanks(final LottoTickets lottoTickets) {
-        return lottoTickets.tickets().stream()
+        Map<LottoRank, Integer> ranks = new EnumMap<>(LottoRank.class);
+        Arrays.asList(LottoRank.values()).forEach(rank -> ranks.put(rank, 0));
+
+        lottoTickets.tickets().stream()
                 .map(winningLotto::calculateRank)
-                .collect(() -> new EnumMap<>(LottoRank.class),
-                        (map, rank) -> map.merge(rank, 1, Integer::sum),
-                        EnumMap::putAll);
+                .forEach(rank -> ranks.merge(rank, 1, Integer::sum));
+        return ranks;
     }
 
     private BigDecimal calculateProfitRate(final BigInteger totalPrize, final PurchaseAmount purchaseAmount) {
