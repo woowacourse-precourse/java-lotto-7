@@ -2,9 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.generator.RandomIntegerListGenerator;
 import lotto.domain.generator.RandomNumberListGenerator;
-import lotto.domain.sorting.AscendingSorter;
 import lotto.domain.sorting.Sorter;
 
 public class LottoGenerator {
@@ -17,8 +15,8 @@ public class LottoGenerator {
     private final Sorter sorter;
 
     public LottoGenerator(RandomNumberListGenerator randomNumberListGenerator, Sorter sorter) {
-        this.randomNumberListGenerator = new RandomIntegerListGenerator();
-        this.sorter = new AscendingSorter();
+        this.randomNumberListGenerator = randomNumberListGenerator;
+        this.sorter = sorter;
     }
 
     public Lotto generate() {
