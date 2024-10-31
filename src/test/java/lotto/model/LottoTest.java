@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.model.ErrorMessage.DUPLICATE_NUMBER;
-import static lotto.model.ErrorMessage.INVALID_NUMBER_COUNT;
-import static lotto.model.ErrorMessage.OUT_OF_RANGE_NUMBER;
+import static lotto.exception.ErrorMessage.DUPLICATE_NUMBER;
+import static lotto.exception.ErrorMessage.INVALID_NUMBER_COUNT;
+import static lotto.exception.ErrorMessage.OUT_OF_RANGE_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
