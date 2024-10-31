@@ -16,7 +16,7 @@ class InputValidationTest {
     @Test
     @DisplayName("숫자 변환 불가할때 오류 확인하기")
     public void 숫자_변환_검증() {
-        assertThatThrownBy(() -> InputValidation.parseValidateNumber("1w3"))
+        assertThatThrownBy(() -> InputValidation.numberValidation("1w3"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

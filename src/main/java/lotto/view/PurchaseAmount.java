@@ -10,8 +10,8 @@ public final class PurchaseAmount {
         while (true) {
             try {
                 Output.printlnMessage(IOMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-                String purchaseAmount = Input.inputMessage();
-                return PurchaseAmountValidation.purchaseAmountValidation(purchaseAmount);
+                String purchaseAmountStr = Input.inputMessage();
+                return PurchaseAmountValidation.purchaseAmountValidation(purchaseAmountStr);
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }

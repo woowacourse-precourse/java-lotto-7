@@ -3,15 +3,15 @@ package lotto.validation;
 import lotto.exception.InvalidPurchaseAmountException;
 
 public final class PurchaseAmountValidation {
-    public static int purchaseAmountValidation(String inputValue) throws IllegalArgumentException {
-        InputValidation.isNotBlank(inputValue);
-        int amount = InputValidation.parseValidateNumber(inputValue);
-        invalidPurchaseAmountValidation(amount);
-        return amount;
+    public static int purchaseAmountValidation(String purchaseAmountStr) throws IllegalArgumentException {
+        InputValidation.isNotBlank(purchaseAmountStr);
+        int purchaseAmount = InputValidation.numberValidation(purchaseAmountStr);
+        invalidPurchaseAmountValidation(purchaseAmount);
+        return purchaseAmount;
     }
 
-    public static void invalidPurchaseAmountValidation(int amount) {
-        if (amount % 1000 != 0) {
+    public static void invalidPurchaseAmountValidation(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
             throw new InvalidPurchaseAmountException();
         }
     }
