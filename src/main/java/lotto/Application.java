@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.View.InputView;
+import lotto.View.OutputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Controller controller = new Controller(new InputView(), new OutputView());
     }
 }
