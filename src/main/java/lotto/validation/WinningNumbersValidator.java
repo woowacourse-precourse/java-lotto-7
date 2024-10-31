@@ -2,11 +2,11 @@ package lotto.validation;
 
 import java.util.HashSet;
 import java.util.List;
+
+import lotto.constants.RandomNumberConstants;
 import lotto.enums.ErrorMessage;
 
 public class WinningNumbersValidator {
-  private static final int MINIMUM_RANDOM_NUMBER = 1;
-  private static final int MAXIMUM_RANDOM_NUMBER = 45;
   private static final int QUANTITY_OF_WINNING_NUMBERS = 7;
 
   public static void mainValidator(List<Integer> winningAndBonusNumbers) {
@@ -20,7 +20,7 @@ public class WinningNumbersValidator {
           ErrorMessage.INVALID_WINNING_NUMBERS_QUANTITY.getMessage());
     }
     for (Integer number : winningAndBonusNumbers) {
-      if (number < MINIMUM_RANDOM_NUMBER || number > MAXIMUM_RANDOM_NUMBER) {
+      if (number < RandomNumberConstants.MINIMUM_RANDOM_NUMBER || number > RandomNumberConstants.MINIMUM_RANDOM_NUMBER) {
         throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
       }
     }
