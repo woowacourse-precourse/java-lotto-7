@@ -7,7 +7,7 @@ public class NumberFormatValidator implements InputValidator {
 
     @Override
     public void validate(String input) {
-        if (!input.matches(NUMBER_REGULAR_EXPRESSION)) {
+        if (!input.trim().matches(NUMBER_REGULAR_EXPRESSION)) {
             throw new IllegalArgumentException(MUST_BE_WHOLE_NUMBER.toString());
         }
     }
