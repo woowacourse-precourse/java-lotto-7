@@ -1,11 +1,20 @@
 package lotto;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        LottoMachine lottoMachine = new LottoMachine(6);
+        LottoController lottoController = new LottoController();
+        lottoController.strat();
+        //LottoMachine lottoMachine = new LottoMachine(10);
+        //System.out.println(lottoMachine.getLottoNumbers());
+        //List<Integer> tt = List.of(1,2,3,4,5,6);
 
-        System.out.println(lottoMachine.getLottoNumbers());
+        //LottoDrawer lottoDrawer = new LottoDrawer(lottoMachine,tt,7);
+        //System.out.println(lottoDrawer.getWinningCount());
+
+
+
     }
 }

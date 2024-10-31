@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +17,20 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
+    public void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number > 45 || number < 0) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+    public void validateNumberEmpty(List<Integer> numbers){
+        if (numbers.stream().distinct().toList().size() != numbers.size()){
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     // TODO: 추가 기능 구현
 }
