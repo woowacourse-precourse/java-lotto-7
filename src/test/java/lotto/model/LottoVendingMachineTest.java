@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoVendingMachineTests {
+class LottoVendingMachineTest {
 
     @Test
     @DisplayName("구입 금액에 따라 발행되는 로또의 개수는 구입 금액을 로또 1장의 가격으로 나눈 값과 동일")
