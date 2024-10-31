@@ -1,23 +1,27 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.common.Winning;
 import lotto.service.LottoService;
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
 
+    private final Validator validator;
+
     private final InputView inputView;
     private final OutputView outputView;
 
     public LottoController() {
-        lottoService = new LottoService();
+        this.lottoService = new LottoService();
+
+        this.validator = new Validator();
 
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -25,7 +29,7 @@ public class LottoController {
 
     public void run() {
         String inputPayment = inputView.readPayment();
-        int payment = 0;
+        int payment;
 
         try {
             payment = Integer.parseInt(inputPayment);
@@ -33,7 +37,7 @@ public class LottoController {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
         }
 
-        validatePayment(payment);
+        validator.validatePayment(payment);
 
         int lottoCount = payment / 1000;
 
@@ -53,7 +57,7 @@ public class LottoController {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
         }
 
-        validateWinningNumbers(winningNumbers);
+        validator.validateWinningNumbers(winningNumbers);
 
         String inputBonus = inputView.readBonus();
 
@@ -64,43 +68,11 @@ public class LottoController {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
         }
 
-        validateLottoNumber(bonus);
+        validator.validateLottoNumber(bonus);
 
         Map<Winning, Integer> winnings = lottoService.getWinnings(lottos, winningNumbers, bonus);
         double yield = lottoService.getYield(payment, winnings);
 
         outputView.printResult(winnings, yield);
-    }
-
-    private void validatePayment(int value) {
-        validatePositive(value);
-
-        if (value % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지도록 입력해주십시오.");
-        }
-    }
-
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        List<Integer> after = winningNumbers.stream().distinct().toList();
-
-        if (winningNumbers.size() != after.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하지 말아주십시오.");
-        }
-
-        for (Integer winningNumber : winningNumbers) {
-            validateLottoNumber(winningNumber);
-        }
-    }
-
-    private void validateLottoNumber(int value) {
-        if (value < 1 || value > 45) {
-            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력해주십시오.");
-        }
-    }
-
-    private void validatePositive(int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException("[ERROR] 양수를 입력해주십시오.");
-        }
     }
 }
