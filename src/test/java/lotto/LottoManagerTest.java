@@ -8,6 +8,11 @@ import org.junit.jupiter.api.Test;
 
 class LottoManagerTest {
     LottoManager lottoManager = new LottoManager();
+    int firstPrize = 2000000000;
+    int secondPrize = 30000000;
+    int thirdPrize = 1500000;
+    int fourthPrize = 50000;
+    int fifthPrize = 5000;
 
     @Test
     void 당첨_확인() {
@@ -31,5 +36,22 @@ class LottoManagerTest {
         Assertions.assertThat(userLotto.getWinningCount(3)).isEqualTo(1);
         Assertions.assertThat(userLotto.getWinningCount(4)).isEqualTo(0);
         Assertions.assertThat(userLotto.getWinningCount(5)).isEqualTo(1);
+    }
+
+    @Test
+    void 총_수익_계산(){
+        // given
+        UserLotto userLotto = new UserLotto(List.of());
+        userLotto.updateWinningCount(1);
+        userLotto.updateWinningCount(3);
+        userLotto.updateWinningCount(5);
+        userLotto.updateWinningCount(5);
+
+        // when
+        int result = lottoManager.calculateTotalPrize(userLotto);
+
+        // then
+        int expectedPrize = firstPrize + thirdPrize + fifthPrize*2;
+        Assertions.assertThat(result).isEqualTo(expectedPrize);
     }
 }
