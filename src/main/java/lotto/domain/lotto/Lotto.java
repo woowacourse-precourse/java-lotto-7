@@ -12,7 +12,7 @@ public class Lotto extends NumberCombination {
 
     public Lotto(List<Integer> numbers) {
 
-        validateLength(LottoRule.COMBINATION_LENGTH.getValue(), numbers);
+        validateLength(numbers);
         validateDuplicate(numbers);
 
         this.numbers = numbers.stream()

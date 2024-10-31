@@ -9,8 +9,8 @@ import java.util.List;
 
 public abstract class NumberCombination {
 
-    protected void validateLength(int length, List<Integer> numbers) {
-        if (numbers.size() != length) {
+    protected void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LottoRule.COMBINATION_LENGTH.getValue()) {
             System.out.println(RangeError.LOTTO.getMessage());
             throw new IllegalArgumentException();
         }
