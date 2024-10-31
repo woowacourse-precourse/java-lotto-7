@@ -3,7 +3,6 @@ package lotto.controller.service;
 import lotto.buyer.domain.Buyer;
 import lotto.buyer.domain.InsertMoneyService;
 import lotto.buyer.infrastructure.InsertWon;
-import lotto.buyer.infrastructure.Won;
 import lotto.controller.domain.LottoController;
 import lotto.controller.domain.WinningLottoController;
 import lotto.lotto.domain.LottoMachine;
@@ -43,6 +42,6 @@ public class LottoControllerFactory {
     }
 
     private static WinningCalculator createWinningCalculator() {
-        return new WinningCalculator(new Won());
+        return new WinningCalculator();
     }
 }
