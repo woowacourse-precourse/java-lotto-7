@@ -104,6 +104,9 @@
 ##### WinningResult
 - [] 로또 당첨 결과를 반환
 
+##### LottoRank
+- [] 로또 당첨 정보를 갖고 있음
+
 #### 2. util
 
 ##### LottoListValidator
@@ -120,3 +123,4 @@
 ##### LottoInputConvertor
 - [] 문자열을 숫자 리스트로 변환
 - [] 문자열을 숫자로 변환
+
