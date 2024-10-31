@@ -40,6 +40,8 @@ public class LottoController {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoTickets.add(new Lotto(numbers));
         }
+        outputView.printLottoNumbers(lottoTickets);
+
         return lottoTickets;
     }
 }
