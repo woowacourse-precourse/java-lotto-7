@@ -28,8 +28,8 @@ public class OutputView {
         }
     }
 
-    public void printRateOfReturn() {
-
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
     private void printEachNumber(Lotto lotto) {
