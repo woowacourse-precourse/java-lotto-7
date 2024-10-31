@@ -93,4 +93,10 @@ public class LottoGame {
             );
         }
     }
+
+    private void printRateOfResult(double rateOfResult) {
+        // 둘째자리에서 반올림하여 출력
+        double result = Math.round(rateOfResult * 100) / 100.0;
+        System.out.println("총 수익률은 " + result + "%입니다.");
+    }
 }
