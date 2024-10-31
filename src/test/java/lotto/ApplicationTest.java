@@ -110,6 +110,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스번호_숫자_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,8,4", "k");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호_1이상_45이하_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,8,4", "48");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
