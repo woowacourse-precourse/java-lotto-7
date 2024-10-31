@@ -45,4 +45,13 @@ class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6), value)).isInstanceOf(
                 IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_확인() {
+        Lotto firstLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto secondLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 7));
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
+        assertThat(winningNumber.findReward(firstLotto)).isEqualTo(LottoReward.FIRST);
+        assertThat(winningNumber.findReward(secondLotto)).isEqualTo(LottoReward.SECOND);
+    }
 }

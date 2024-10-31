@@ -18,10 +18,17 @@ public enum LottoReward {
         this.matchCount = matchCount;
     }
 
-    public static LottoReward findByMatchCount(int matchCount) {
+    public static LottoReward findByMatchCount(int matchCount, boolean hasBonusNumber) {
+        if (isSecond(matchCount) && hasBonusNumber) {
+            return SECOND;
+        }
         return Arrays.stream(LottoReward.values())
                 .filter(lottoReward -> lottoReward.matchCount == matchCount)
                 .findFirst()
                 .orElse(NONE);
+    }
+
+    private static boolean isSecond(int matchCount) {
+        return SECOND.matchCount == matchCount;
     }
 }

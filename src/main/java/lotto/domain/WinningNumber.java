@@ -10,7 +10,7 @@ public class WinningNumber {
         this(Lotto.from(winningNumbers), new LottoNumber(bonusNumber));
     }
 
-    public WinningNumber(Lotto winningNumber, LottoNumber bonusNumber) {
+    private WinningNumber(Lotto winningNumber, LottoNumber bonusNumber) {
         validateContainBonusNumber(winningNumber, bonusNumber);
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
@@ -20,5 +20,13 @@ public class WinningNumber {
         if (winningNumber.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
         }
+    }
+
+    public LottoReward findReward(Lotto lotto) {
+        return LottoReward.findByMatchCount(winningNumber.calculateMatchCount(lotto), hasBonusNumber(lotto));
+    }
+
+    private boolean hasBonusNumber(Lotto lotto) {
+        return lotto.hasNumber(bonusNumber);
     }
 }
