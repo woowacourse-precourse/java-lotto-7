@@ -15,4 +15,8 @@ public class LottoTicketPurchase {
            throw new IllegalArgumentException("[ERROR] 로또 티켓이 발급되지 않았습니다!");
         }
     }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }
