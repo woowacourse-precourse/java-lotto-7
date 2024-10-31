@@ -42,4 +42,13 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.validateLottoNumber(input);
         });
     }
+
+    @DisplayName("6개의 숫자를 입력하지 않으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
+    void validateNotSixNumbers(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoNumberValidator.validateLottoNumber(input);
+        });
+    }
 }

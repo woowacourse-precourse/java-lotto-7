@@ -9,6 +9,7 @@ public class LottoNumberValidator {
         validateSeparatorNotComma(input);
         validateSeparatorContinue(input);
         validateNoEmptyBetweenCommas(input);
+        validateSixNumbers(input);
     }
 
     private static void validateNull(String input) {
@@ -36,6 +37,14 @@ public class LottoNumberValidator {
             if (value.trim().isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_NUMBER_BLANK.getErrorMessage());
             }
+        }
+    }
+
+    private static void validateSixNumbers(String input) {
+        String [] values = input.split(",");
+
+        if (values.length != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_INPUT_SIX_NUMBERS.getErrorMessage());
         }
     }
 }
