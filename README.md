@@ -93,6 +93,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 로또 번호를 오름차순으로 정렬하는 기능 추가
 - [x] 로또 번호에 대한 예외처리 기능 추가
 - LottoManager
+- [x] 로또를 반환하는 기능 추가
 - [x] 로또를 구입하는 기능 추가
 - [x] 구입 가능한 로또 수를 계산하는 기능 추가
 - Money

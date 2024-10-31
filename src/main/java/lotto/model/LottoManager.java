@@ -13,4 +13,7 @@ public class LottoManager {
         int leftMoney = money.getLeftMoney();
         return leftMoney / PRICE_OF_LOTTO;
     }
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
