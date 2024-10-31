@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.config.*;
+import lotto.validator.LottoInputValidator;
 
 public class Application {
     public static void main(String[] args) {

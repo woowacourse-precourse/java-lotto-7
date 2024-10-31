@@ -6,10 +6,19 @@ import lotto.io.Output;
 
 public class ConsoleInput implements Input {
 
+    private static ConsoleInput input;
+
     private final Output output;
 
-    public ConsoleInput(Output output) {
+    private ConsoleInput(Output output) {
         this.output = output;
+    }
+
+    public static ConsoleInput getInstance(Output output) {
+        if(input == null)
+            input = new ConsoleInput(output);
+
+        return input;
     }
 
     public String inputMoney() {

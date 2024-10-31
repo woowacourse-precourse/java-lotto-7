@@ -4,8 +4,17 @@ import lotto.io.Output;
 
 public class ConsoleOutput implements Output {
 
-    public ConsoleOutput() {
+    private static ConsoleOutput output;
 
+    private ConsoleOutput() {
+
+    }
+
+    public static ConsoleOutput getInstance(){
+        if(output == null)
+            output = new ConsoleOutput();
+
+        return output;
     }
 
     public void printPurchaseAmount() {

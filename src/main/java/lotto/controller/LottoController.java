@@ -8,10 +8,12 @@ public class LottoController {
 
     private final Input input;
     private final Output output;
+    private final LottoInputValidator lottoInputValidator;
 
     private LottoController(LottoConfig config) {
         this.input = config.input();
         this.output = config.output();
+        this.lottoInputValidator = config.lottoInputValidator();
     }
 
     public static LottoController getInstance(LottoConfig config) {
