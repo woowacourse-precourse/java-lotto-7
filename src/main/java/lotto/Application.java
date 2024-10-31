@@ -17,6 +17,7 @@ public class Application {
             }
         }
         int count = countLotto(money);
+        outputCount(count);
     }
 
     private static int getMoney() {
@@ -35,5 +36,9 @@ public class Application {
 
     private static int countLotto(int money) {
         return money / 1000;
+    }
+
+    private static void outputCount(int count) {
+        System.out.println("구매한 로또 개수" + count);
     }
 }
