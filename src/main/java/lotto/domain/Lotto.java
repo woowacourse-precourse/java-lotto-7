@@ -31,7 +31,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     // toString 메서드 재정의
     public String toString() {
-        String collected = Arrays.stream(numbers.toArray())
+        String collected = numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
 
