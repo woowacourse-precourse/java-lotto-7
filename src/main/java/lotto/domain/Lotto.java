@@ -21,7 +21,7 @@ public class Lotto {
     }
 
     // 오름차순으로 정렬
-    public void sortNumbers(){
+    public void sortNumbers() {
         Collections.sort(numbers);
     }
 
@@ -42,16 +42,16 @@ public class Lotto {
         if (countWin == 6) {
             return 1;
         }
-        if (countWin == 5 && numbers.contains(bonusNumber)){
+        if (countWin == 5 && numbers.contains(bonusNumber)) {
             return 2;
         }
-        if (countWin == 5 && !numbers.contains(bonusNumber)){
+        if (countWin == 5 && !numbers.contains(bonusNumber)) {
             return 3;
         }
-        if (countWin == 4){
+        if (countWin == 4) {
             return 4;
         }
-        if (countWin == 3){
+        if (countWin == 3) {
             return 5;
         }
         return 0;
