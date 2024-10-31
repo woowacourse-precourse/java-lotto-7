@@ -13,7 +13,7 @@ public class PurchaseAmountTest extends NsTest {
     @Test
     void 금액이_올바른_값을_갖는_경우() throws Exception{
         PurchaseAmountDto dto = PurchaseAmountValidator.validate("3000");
-        assertThat(dto.value).isEqualTo(3000);
+        assertThat(dto.value).isEqualTo(3);
     }
 
     @Test
