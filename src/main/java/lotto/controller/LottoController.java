@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.constant.LottoRank;
 import lotto.service.LottoService;
@@ -29,9 +30,7 @@ public class LottoController {
             lottoService.purchaseLotto(inputView.getMoneyInput());
             printPurchasedLotto();
         });
-
         continueUntilNormalInput(() -> lottoService.setWinningLotto(inputView.getWinningNumbersInput()));
-
         continueUntilNormalInput(() -> lottoService.setBonusNumber(inputView.getBonusNumberInput()));
     }
 
@@ -48,20 +47,16 @@ public class LottoController {
 
     private void printPurchasedLotto() {
         List<String> purchasedLotto = lottoService.purchasedLottoNumbersMessage();
-        outputView.printPurchasedLottoCount(purchasedLotto.size());
 
-        for (String lotto : purchasedLotto) {
-            outputView.printMessage(lotto);
-        }
+        outputView.printPurchasedLottoCount(purchasedLotto.size());
+        purchasedLotto.forEach(outputView::printMessage);
     }
 
     private void printResult() {
         outputView.printLottoResultHeader();
-
-        for (Object lotto : LottoRank.values()) {
-            outputView.printMessage(lotto.toString());
-        }
-
+        Arrays.stream(LottoRank.values())
+                .map(LottoRank::toString)
+                .forEach(outputView::printMessage);
         outputView.printRateOfReturn(lottoService.getRateOfReturn());
     }
 }
