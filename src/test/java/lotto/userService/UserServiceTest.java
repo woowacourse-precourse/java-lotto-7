@@ -16,6 +16,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class UserServiceTest extends NsTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     final UserService userService = UserService.getInstance();
     final UserRepository userRepository = UserRepository.getInstance();
 
@@ -34,38 +36,29 @@ public class UserServiceTest extends NsTest {
         );
     }
 
-    @Test
-    void 사용자_저장_테스트() {
-        // given
-        int purchasePrice = 1000;
-
-        // when
-        userService.save(purchasePrice);
-        User user = userRepository.findAll().getFirst();
-
-        // then
-        assertThat(user.getPurchasePrice()).isEqualTo(purchasePrice);
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", "8900", "0", "-1", "", " "})
+    void 구입_금액_유효성_검사_예외테스트(String inValidPurchasePrice) {
+        assertThatThrownBy(() -> {
+            new User(inValidPurchasePrice);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
     void 사용자_조회_테스트() {
         // given
-        int purchasePrice = 1000;
-        int firstUserId = userService.save(purchasePrice);
-        int secondUserId = userService.save(purchasePrice);
+        User firstUser = userRepository.save(new User("1000"));
+        User secondUser = userRepository.save(new User("2000"));
 
         // when
-        User findFirstUser = userService.findById(firstUserId);
-        User firstUser = userRepository.findAll().get(firstUserId);
-
-        User secondFirstUser = userService.findById(secondUserId);
-        User secondUser = userRepository.findAll().get(secondUserId);
-
+        User findFirstUser = userService.findById(firstUser.getId());
+        User findSecondUser = userService.findById(secondUser.getId());
 
 
         // then
-        assertThat(findFirstUser).isEqualTo(firstUser);
-        assertThat(secondFirstUser).isEqualTo(secondUser);
+        assertThat(firstUser).isEqualTo(findFirstUser);
+        assertThat(secondUser).isEqualTo(findSecondUser);
     }
 
     @Override
