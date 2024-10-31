@@ -10,6 +10,10 @@ public class Validator {
     public static final String WINNING_NUM_PATTERN = "^(\\d+,)+\\d+$";
 
     public static void priceValidator(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NULL.toString());
+        }
+
         int price;
 
         try {
