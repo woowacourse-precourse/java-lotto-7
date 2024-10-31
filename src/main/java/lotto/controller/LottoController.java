@@ -50,4 +50,9 @@ public class LottoController {
         outputView.requestWinningNumbers();
         return inputView.receiveString();
     }
+
+    private String receiveBonusNumber() {
+        outputView.requestBonusNumber();
+        return null;
+    }
 }
