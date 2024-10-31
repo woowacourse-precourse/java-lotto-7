@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.Lotto;
 import lotto.model.Purchase;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,13 +20,26 @@ public class LottoController {
 
     public void run() {
         Purchase purchase = requestPurchase();
-        int purchaseQuantity = purchase.getQuantity();
-        outputView.printPurchaseQuantity(purchaseQuantity);
+        List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
     }
 
     private Purchase requestPurchase() {
         outputView.printPurchasePriceRequest();
         int purchasePrice = inputView.getInteger();
-        return new Purchase(purchasePrice);
+        Purchase purchase = new Purchase(purchasePrice);
+
+        int purchaseQuantity = purchase.getQuantity();
+        outputView.printPurchaseQuantity(purchaseQuantity);
+
+        return purchase;
+    }
+
+    private List<Lotto> generateLottoTickets(int quantity) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int count = 0; count < quantity; count++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoTickets.add(new Lotto(numbers));
+        }
+        return lottoTickets;
     }
 }
