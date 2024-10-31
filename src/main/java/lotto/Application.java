@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.common.Message;
+import lotto.util.calculator.InvestmentReturnCalculator;
 import lotto.domain.Lotto;
 import lotto.domain.enums.LottoRank;
 import lotto.domain.generator.RandomNumber;
@@ -13,36 +13,41 @@ import java.util.EnumMap;
 import java.util.List;
 
 import static lotto.common.Message.*;
-import static lotto.common.Symbol.NEW_LINE;
-import static lotto.common.Symbol.TRIPLE_DASH;
+import static lotto.common.Number.*;
+import static lotto.common.Symbol.*;
 
 public class Application {
     public static void main(String[] args) {
 
         System.out.println(INPUT_PURCHASE_AMOUNT);
-        String inputPurchaseAmount = Console.readLine();
-        System.out.println();
+        int purchaseCount = getPurchaseCount(Console.readLine());
 
-        PurchaseCountConverter purchaseCountConverter = new PurchaseCountConverter(inputPurchaseAmount);
-        int purchaseCount = purchaseCountConverter.convert();
-        System.out.printf(BUY + NEW_LINE, purchaseCount);
-
-        RandomNumbers randomNumbers = new RandomNumbers();
-        randomNumbers.addRandomNumber(purchaseCount);
+        System.out.printf(BUY, purchaseCount);
+        RandomNumbers randomNumbers = getRandomNumbers(purchaseCount);
         printRandomNumbers(randomNumbers);
 
         System.out.println(CHECK_WINNING_NUMBER);
-        String inputWinningNumber = Console.readLine();
-        WinningNumberConverter winningNumberConverter = new WinningNumberConverter(inputWinningNumber);
+        WinningNumberConverter winningNumberConverter = new WinningNumberConverter(Console.readLine());
         List<Integer> winningNumbers = winningNumberConverter.convertWinningNumber();
-        System.out.println();
-        System.out.println(INPUT_BONUS_NUMBER);
-        String inputBonusNumber = Console.readLine();
-        int bonusNumber = winningNumberConverter.convertBonusNumber(inputBonusNumber); // TODO winningNumber 예외가 먼저 발생하도록 변경
 
         Lotto lotto = new Lotto(winningNumbers);
-        EnumMap<LottoRank, Integer> rankCount = lotto.checkWinning(randomNumbers, bonusNumber);
-        printWinningStatistics(rankCount, purchaseCount);
+
+        System.out.println(INPUT_BONUS_NUMBER);
+        int bonusNumber = winningNumberConverter.convertBonusNumber(Console.readLine());
+
+        EnumMap<LottoRank, Integer> rankCountMap = lotto.checkWinning(randomNumbers, bonusNumber);
+        printStatistics(purchaseCount, rankCountMap);
+    }
+
+    private static int getPurchaseCount(String inputPurchaseAmount) {
+        PurchaseCountConverter purchaseCountConverter = new PurchaseCountConverter(inputPurchaseAmount);
+        return purchaseCountConverter.convert();
+    }
+
+    private static RandomNumbers getRandomNumbers(int purchaseCount) {
+        RandomNumbers randomNumbers = new RandomNumbers();
+        randomNumbers.addRandomNumber(purchaseCount);
+        return randomNumbers;
     }
 
     private static void printRandomNumbers(RandomNumbers randomNumbers) {
@@ -53,28 +58,43 @@ public class Application {
         System.out.println(stringBuilder);
     }
 
-    private static void printWinningStatistics(EnumMap<LottoRank, Integer> rankCount, int purchaseCount) {
-        List<LottoRank> list = List.of(LottoRank.values());
+    private static void printStatistics(int purchaseCount, EnumMap<LottoRank, Integer> rankCountMap) {
+        printStatisticsPrefix();
+        printWinningResult(rankCountMap);
+        printInvestmentReturn(purchaseCount, rankCountMap);
+    }
 
+    private static void printStatisticsPrefix() {
         System.out.println(WINNING_STATISTICS);
-        System.out.println(TRIPLE_DASH + NEW_LINE);
+        System.out.println(TRIPLE_DASH);
+    }
 
-        double result = 0L;
+    private static void printInvestmentReturn(int purchaseCount, EnumMap<LottoRank, Integer> rankCountMap) {
+        double percentage = InvestmentReturnCalculator.calculate(rankCountMap, purchaseCount);
+        System.out.printf(PERCENTAGE, percentage);
+    }
 
-        for (int i = list.size() - 1; i >= 0; i--) {
-            LottoRank lottoRank = list.get(i);
-            if (lottoRank.equals(LottoRank.SECOND_RANK)) {
-                System.out.printf(BONUS_WINNING_MESSAGE + NEW_LINE, lottoRank.matchCount(), lottoRank.lotteryPrize(), rankCount.get(lottoRank));
-                result += lottoRank.lotteryPrize() * rankCount.get(lottoRank);
+    private static void printWinningResult(EnumMap<LottoRank, Integer> rankCountMap) {
+        List<LottoRank> lottoRankList = List.of(LottoRank.values());
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = lottoRankList.size() - ONE; i >= ZERO; i--) {
+            LottoRank lottoRank = lottoRankList.get(i);
+            if (lottoRank.equals(LottoRank.UN_RANK)) {
                 continue;
             }
-            if (!lottoRank.equals(LottoRank.UN_RANK)) {
-                System.out.printf(WINNING_MESSAGE + NEW_LINE, lottoRank.matchCount(), lottoRank.lotteryPrize(), rankCount.get(lottoRank));
-                result += lottoRank.lotteryPrize() * rankCount.get(lottoRank);
-            }
+            stringBuilder.append(getResultMessage(lottoRank, rankCountMap.get(lottoRank)));
         }
+        System.out.println(stringBuilder);
+    }
 
-        double percentage = (result / (purchaseCount * 1000L)) * 100;
-        System.out.printf(PERCENTAGE, percentage);
+    private static String getResultMessage(LottoRank lottoRank, int winningCount) {
+        int matchCount = lottoRank.matchCount();
+        int lotteryPrize = lottoRank.lotteryPrize();
+
+        if (lottoRank.equals(LottoRank.SECOND_RANK)) {
+            return String.format(BONUS_WINNING_MESSAGE, matchCount, lotteryPrize, winningCount);
+        }
+        return String.format(WINNING_MESSAGE, matchCount, lotteryPrize, winningCount);
     }
 }

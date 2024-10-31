@@ -2,6 +2,8 @@ package lotto.domain.enums;
 
 import java.util.Arrays;
 
+import static lotto.common.Number.FIVE;
+
 public enum LottoRank {
 
     FIRST_RANK(6, false, 2_000_000_000),
@@ -24,7 +26,7 @@ public enum LottoRank {
     public static LottoRank findLottoRank(int count, boolean isBonusNumberMatched) {
         return Arrays.stream(LottoRank.values())
                 .filter(rank -> {
-                    if (count == 5) {
+                    if (count == FIVE) {
                         return rank.isBonusMatched == isBonusNumberMatched;
                     }
                     return rank.matchCount == count;
@@ -35,10 +37,6 @@ public enum LottoRank {
 
     public int matchCount() {
         return matchCount;
-    }
-
-    public boolean isBonusMatched() {
-        return isBonusMatched;
     }
 
     public int lotteryPrize() {

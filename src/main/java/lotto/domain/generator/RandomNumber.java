@@ -14,7 +14,7 @@ public class RandomNumber {
 
     private final List<Integer> randomNumber;
 
-    private RandomNumber(List<Integer> randomNumber) {
+    private RandomNumber(List<Integer> randomNumber) { // TODO 과도한 캡슐화인지 고민하기 -> 테스트 실패 원인 찾기
         randomNumber.sort(Comparator.naturalOrder());
         this.randomNumber = randomNumber;
     }
