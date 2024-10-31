@@ -1,10 +1,14 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class Answer {
     private final LottoNumbers lottoNumbers;
     private final LottoNumber bonusNumber;
 
-    Answer(LottoNumbers lottoNumbers, LottoNumber bonusNumber) {
+    Answer(List<Integer> numbers, int bonus) {
+        LottoNumbers lottoNumbers = new LottoNumbers(numbers);
+        LottoNumber bonusNumber = new LottoNumber(bonus);
         validate(lottoNumbers, bonusNumber);
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;
