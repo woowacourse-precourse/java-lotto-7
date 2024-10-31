@@ -11,6 +11,9 @@ class NumberParserTest {
     static final String NUMBER_WITH_BLANK = "1,2, 3,4,5 ,6";
     static final List<Integer> EXPECTED_LOTTO_NUMBER = List.of(1, 2, 3, 4, 5, 6);
 
+    static final String BONUS_NUMBER = "7";
+    static final int EXPECTED_BONUS_NUMBER = 7;
+
     @Test
     @DisplayName("6자리 로또 번호 파싱 테스트")
     void testParseLottoNumber() {
@@ -28,4 +31,14 @@ class NumberParserTest {
         //then
         assertEquals(result, EXPECTED_LOTTO_NUMBER);
     }
+
+    @Test
+    void testParseBonusNumber() {
+        //given,when
+        int result = NumberParser.parseBonusNumber(BONUS_NUMBER);
+        //then
+        System.out.println(result);
+        assertEquals(result, EXPECTED_BONUS_NUMBER);
+    }
+
 }
