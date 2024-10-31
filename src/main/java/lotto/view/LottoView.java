@@ -7,7 +7,7 @@ public class LottoView {
         try {
             System.out.println("구매금액을 입력해 주세요.");
             int amount = Integer.parseInt(Console.readLine());
-
+            validateAmount(amount);
             return amount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
