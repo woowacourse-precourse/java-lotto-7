@@ -5,5 +5,8 @@ public class Application {
         LottoPurchase lottoPurchase = new LottoPurchase();
         lottoPurchase.purchase();
         lottoPurchase.printPurchaseLottoList();
+
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
+        lottoWinningNumbers.inputWinningNumbers();
     }
 }
