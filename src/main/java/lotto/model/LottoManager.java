@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class LottoManager {
+
     public static final int AMOUNT_UNIT = 1000;
     private final LottoMachine lottoMachine;
 

@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.dto.LottoDto;
 
 public class LottoResult {
+
     private static final int MIN_CORRECT_COUNT = 3;
     private static final int SECOND_GRADE_NUMBER_COUNT = 5;
     private static final String BONUS_GRADE = "+";
