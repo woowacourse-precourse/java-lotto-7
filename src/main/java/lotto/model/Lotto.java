@@ -37,4 +37,8 @@ public class Lotto {
                         .toList()
         ) + "]";
     }
+
+    protected List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }
