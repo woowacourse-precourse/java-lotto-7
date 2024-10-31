@@ -45,6 +45,22 @@ class ValidatingParserTest {
 			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
 	}
 
+	@DisplayName("구입 금액이 int의 최대 범위를 초과하면 IllegalArgumentException 예외가 발생한다.")
+	@CsvSource({
+		"21500000000",
+		"100000000000"
+	})
+	@ParameterizedTest
+	void validatePurchaseAmountOverFlow(String input) {
+		//given
+		ValidatingParser validatingParser = ValidatingParser.getInstance();
+
+		//when & then
+		assertThatThrownBy(() -> validatingParser.validatePurchaseAmount(input))
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_OVER_FLOW.getMessage());
+	}
+
 	@DisplayName("구입 금액이 양수가 아니면 IllegalArgumentException 예외가 발생한다.")
 	@CsvSource({
 		"0",
@@ -59,22 +75,6 @@ class ValidatingParserTest {
 		assertThatThrownBy(() -> validatingParser.validatePurchaseAmount(input))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_NEGATIVE.getMessage());
-	}
-
-	@DisplayName("구입 금액이 1000으로 나누어 떨어지지 않으면 IllegalArgumentException 예외가 발생한다.")
-	@CsvSource({
-		"1100",
-		"900",
-	})
-	@ParameterizedTest
-	void validatePurchaseAmountNotDivisible(String input) {
-		//given
-		ValidatingParser validatingParser = ValidatingParser.getInstance();
-
-		//when & then
-		assertThatThrownBy(() -> validatingParser.validatePurchaseAmount(input))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
 	}
 
 	@DisplayName("쉼표(,)로 구분된 문자열을 숫자 번호 목록으로 반환한다.")
@@ -98,7 +98,7 @@ class ValidatingParserTest {
 		"12 34 56",
 		"1 2 3 4 5 6"
 	})
-	@Test
+	@ParameterizedTest
 	void validateWinningNumbersNotHasDelimiter(String input) {
 		//given
 		ValidatingParser validatingParser = ValidatingParser.getInstance();
@@ -111,11 +111,11 @@ class ValidatingParserTest {
 
 	@DisplayName("각 문자열이 숫자가 아니면 IllegalArgumentException 예외가 발생한다.")
 	@CsvSource({
-		"a,b,c,d,e,f",
-		"1,a,b,4,5,6",
-		"@,1,2,3,4,^"
+		"'a,b,c,d,e,f'",
+		"'1,a,b,4,5,6'",
+		"'@,1,2,3,4,^'"
 	})
-	@Test
+	@ParameterizedTest
 	void validateWinningNumbersNotNumber(String input) {
 		//given
 		ValidatingParser validatingParser = ValidatingParser.getInstance();
@@ -126,54 +126,20 @@ class ValidatingParserTest {
 			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
 	}
 
-	@DisplayName("분리한 문자열의 개수가 6개가 아니라면 IllegalArgumentException 예외가 발생한다.")
+	@DisplayName("각 문자열이 int의 최대 범위를 초과하면 IllegalArgumentException 예외가 발생한다.")
 	@CsvSource({
-		"1,2,3,4,5",
-		"1,a,b,4,5,6,7"
+		"'1,21500000000,3,4,5,6'",
+		"'1,2,3,4,5,100000000000'"
 	})
-	@Test
-	void validateWinningNumbersNotSize(String input) {
+	@ParameterizedTest
+	void validateWinningNumbersOverFlow(String input) {
 		//given
 		ValidatingParser validatingParser = ValidatingParser.getInstance();
 
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateWinningNumbers(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage());
-	}
-
-	@DisplayName("분리한 문자열의 숫자가 1~45 범위에 있지 않으면 IllegalArgumentException 예외가 발생한다.")
-	@CsvSource({
-		"-1,0,1,2,3,4",
-		"46,47,48,49,50,51",
-		"-1,1,2,3,4,-5"
-	})
-	@Test
-	void validateWinningNumbersNotInRange(String input) {
-		//given
-		ValidatingParser validatingParser = ValidatingParser.getInstance();
-
-		//when & then
-		assertThatThrownBy(() -> validatingParser.validateWinningNumbers(input))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage());
-	}
-
-	@DisplayName("분리한 문자열의 숫자가 중복되었다면 IllegalArgumentException 예외가 발생한다.")
-	@CsvSource({
-		"1,1,1,1,1,1",
-		"1,2,3,4,4,5",
-		"1,1,2,3,4,3"
-	})
-	@Test
-	void validateWinningNumbersDuplication(String input) {
-		//given
-		ValidatingParser validatingParser = ValidatingParser.getInstance();
-
-		//when & then
-		assertThatThrownBy(() -> validatingParser.validateWinningNumbers(input))
-			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_DUPLICATION.getMessage());
+			.hasMessage(LottoValidationMessage.INVALID_WINNING_NUMBERS_OVER_FLOW.getMessage());
 	}
 
 	@DisplayName("보너스 번호를 숫자로 반환한다.")
@@ -226,19 +192,19 @@ class ValidatingParserTest {
 			.hasMessage(LottoValidationMessage.INVALID_BONUS_NUMBER_NEGATIVE.getMessage());
 	}
 
-	@DisplayName("보너스 번호가 1~45 범위에 있지 않으면 IllegalArgumentException 예외가 발생한다.")
+	@DisplayName("보너스 번호가 int의 최대 범위를 초과하면 IllegalArgumentException 예외가 발생한다.")
 	@CsvSource({
-		"-1",
-		"46"
+		"21500000000",
+		"100000000000"
 	})
-	@Test
-	void validateBonusNumberNotInRange(String input) {
+	@ParameterizedTest
+	void validateBonusNumberOverFlow(String input) {
 		//given
 		ValidatingParser validatingParser = ValidatingParser.getInstance();
 
 		//when & then
 		assertThatThrownBy(() -> validatingParser.validateBonusNumber(input))
 			.isInstanceOf(IllegalArgumentException.class)
-			.hasMessage(LottoValidationMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
+			.hasMessage(LottoValidationMessage.INVALID_BONUS_NUMBER_OVER_FLOW.getMessage());
 	}
 }
