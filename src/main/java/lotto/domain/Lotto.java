@@ -27,5 +27,7 @@ public class Lotto {
 
         return "[ " + collected + " ]";
     }
+
     // LottoWinningNumbers와 비교하는 메서드 (일치하는 숫자의 개수를 리턴)
+
 }
