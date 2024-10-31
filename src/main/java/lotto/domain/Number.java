@@ -33,7 +33,7 @@ public class Number {
     }
 
     private void validateNumberRange(int number) {
-        if (number <= MIN_NUMBER || number > MAX_NUMBER) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
