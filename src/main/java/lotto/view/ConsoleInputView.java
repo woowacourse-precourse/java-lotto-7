@@ -3,8 +3,9 @@ package lotto.view;
 import static lotto.constants.PrintMessage.BONUS_NUMBER_MESSAGE;
 import static lotto.constants.PrintMessage.PURCHASE_MESSAGE;
 import static lotto.constants.PrintMessage.WINNING_NUMBERS_MESSAGE;
-import static lotto.parse.InputParser.getParsedPurchaseAmount;
+import static lotto.parse.InputParser.parseToInt;
 import static lotto.parse.InputParser.getParsedWinningNumbers;
+import static lotto.validate.BonusNumberValidator.validateBonusNumber;
 import static lotto.validate.PurchaseAmountValidator.validatePurchaseAmount;
 import static lotto.validate.WinningNumbersValidator.validateWinningNumbers;
 
@@ -18,7 +19,7 @@ public class ConsoleInputView implements InputView {
         PURCHASE_MESSAGE.display();
         String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
-        return getParsedPurchaseAmount(purchaseAmount);
+        return parseToInt(purchaseAmount);
     }
 
     @Override
@@ -33,6 +34,7 @@ public class ConsoleInputView implements InputView {
     public int readBonusNumber() {
         BONUS_NUMBER_MESSAGE.display();
         String bonusNumber = Console.readLine();
-        return 1;
+        validateBonusNumber(bonusNumber);
+        return parseToInt(bonusNumber);
     }
 }

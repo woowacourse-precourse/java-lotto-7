@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class InputParser {
 
-    public static int getParsedPurchaseAmount(String purchaseAmount) {
+    public static int parseToInt(String purchaseAmount) {
         return Integer.parseInt(purchaseAmount);
     }
 

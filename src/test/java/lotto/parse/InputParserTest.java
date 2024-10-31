@@ -1,6 +1,6 @@
 package lotto.parse;
 
-import static lotto.parse.InputParser.getParsedPurchaseAmount;
+import static lotto.parse.InputParser.parseToInt;
 import static lotto.parse.InputParser.getParsedWinningNumbers;
 import static org.assertj.core.api.Assertions.*;
 
@@ -13,7 +13,7 @@ class InputParserTest {
     void 문자열_구입_금액을_정수로_파싱() {
         String input = "8000";
 
-        int parsedPurchaseAmount = getParsedPurchaseAmount(input);
+        int parsedPurchaseAmount = parseToInt(input);
 
         assertThat(parsedPurchaseAmount).isEqualTo(8000);
     }
