@@ -32,7 +32,7 @@ public class Lotto {
 
         System.out.println("\ncount : " + count);
 
-        if (count >= 5 && numbers.contains(bonus)) {
+        if (count == Constant.LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
             // Enum - 5개 hit, 보너스볼 hit (+1)
         }
     }

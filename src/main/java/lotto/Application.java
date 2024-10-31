@@ -7,14 +7,12 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         final int cost = Input.getCost();
-
         List<Lotto> lottoPaper = (new Generate(cost)).getLottoPaper();
         Output.printLotto(lottoPaper);
 
         final List<Integer> winningNumbers = Arrays.stream(Input.getWinNumbers().split(","))
                 .map(Integer::parseInt)
                 .toList();
-
         System.out.println();
 
         final int bonus = Input.getBonusNumber();
