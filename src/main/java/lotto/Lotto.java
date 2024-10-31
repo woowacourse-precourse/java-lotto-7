@@ -17,6 +17,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
     public void print() {
         System.out.print("[");
         System.out.print(getJoinedNumbers());

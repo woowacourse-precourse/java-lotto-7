@@ -11,23 +11,18 @@ public class LottoMachine {
     private static final int LOTTO_NUMBER_END = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    public static List<Lotto> drawResults(int budget) {
-        int numberOfLotto = numberOfLotto(budget);
-        List<Lotto> lottoResults = new ArrayList<>(numberOfLotto);
+    public static List<Lotto> generateLotto(int budget) {
+        int numberOfLottos = budget / LOTTO_PRICE;
+        List<Lotto> lottos = new ArrayList<>(numberOfLottos);
 
-        for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+        for (int i = 0; i < numberOfLottos; i++) {
+            List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(
                     LOTTO_NUMBER_BEGIN,
                     LOTTO_NUMBER_END,
                     LOTTO_NUMBER_COUNT
             );
-            Lotto lotto = new Lotto(numbers);
-            lottoResults.add(lotto);
+            lottos.add(new Lotto(generatedNumbers));
         }
-        return lottoResults;
-    }
-
-    private static int numberOfLotto(int budget) {
-        return budget / LOTTO_PRICE;
+        return lottos;
     }
 }

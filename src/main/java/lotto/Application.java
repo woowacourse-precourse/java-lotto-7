@@ -9,14 +9,21 @@ public class Application {
         String input = Console.readLine();
 
         int budget = InputHandler.toInt(input);
-        List<Lotto> lottoResults = LottoMachine.drawResults(budget);
-        int numberOfLotto = lottoResults.size();
+        List<Lotto> lottos = LottoMachine.generateLotto(budget);
+        int numberOfLotto = lottos.size();
 
         System.out.println();
         System.out.println(numberOfLotto + "개를 구매했습니다.");
 
-        for (Lotto lotto : lottoResults) {
+        for (Lotto lotto : lottos) {
             lotto.print();
         }
+        System.out.println();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Console.readLine();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Console.readLine();
     }
 }

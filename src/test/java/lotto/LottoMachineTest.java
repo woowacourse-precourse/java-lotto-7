@@ -13,7 +13,7 @@ public class LottoMachineTest {
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 10000})
     void numberOfLottoShouldBeBudgetDividedBy1000Won(int budget) {
-        List<Lotto> results = LottoMachine.drawResults(budget);
+        List<Lotto> results = LottoMachine.generateLotto(budget);
 
         assertThat(results.size()).isEqualTo(budget / 1000);
     }
