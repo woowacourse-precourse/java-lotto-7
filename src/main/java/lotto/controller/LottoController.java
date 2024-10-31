@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.LottoGenerator;
+import lotto.LottoNumber;
 import lotto.LottoProfit;
 import lotto.LottoRank;
 import lotto.LottoStore;
@@ -30,10 +31,21 @@ public class LottoController {
         final LottoStore lottoStore = createLottoStore();
         final Money money = requestMoney();
         final List<Lotto> lottos = lottoStore.getLottosByMoney(money);
+        responseLottos(lottos);
         final WinningNumbers winningNumbers = requestWinningNumbers();
         final WinningResult winningResult = new WinningResult(winningNumbers, lottos);
         final LottoProfit lottoProfit = new LottoProfit(winningResult.getLottoRanks(), money);
         responseResult(winningResult, lottoProfit);
+    }
+
+    private void responseLottos(final List<Lotto> lottos) {
+        outputView.printLottoNumber(convertToLottoNumbers(lottos));
+    }
+
+    private List<LottoNumber> convertToLottoNumbers(final List<Lotto> lottos) {
+        return lottos.stream()
+                .map(LottoNumber::of)
+                .toList();
     }
 
     private void responseResult(final WinningResult winningResult, final LottoProfit lottoProfit) {
@@ -60,14 +72,15 @@ public class LottoController {
 
     private Money requestMoney() {
         return tryCatchLoopTemplate(() -> {
+            outputView.printAskMoney();
             final int number = inputView.readNumber();
             return new Money(number);
         });
     }
 
     private WinningNumbers requestWinningNumbers() {
+        final Lotto lotto = requestWinningNumber();
         return tryCatchLoopTemplate(() -> {
-            final Lotto lotto = requestWinningNumber();
             final BonusNumber bonusNumber = requestBonusNumber();
             return new WinningNumbers(lotto, bonusNumber);
         });
