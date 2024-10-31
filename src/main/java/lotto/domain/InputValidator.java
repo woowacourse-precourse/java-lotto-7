@@ -2,6 +2,9 @@ package lotto.domain;
 
 import lotto.view.InputView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputValidator {
 
     /**
@@ -35,6 +38,29 @@ public class InputValidator {
     public static void isValidUnit(int money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력하셔야 합니다.");
+        }
+    }
+
+    /**
+     * 쉼표를 기준으로 문자열 분리
+     */
+    public static String[] splitString(String input) {
+        String[] splitedString = input.split(",");
+        return splitedString;
+    }
+
+    /**
+     * 당첨 번호들을 정수형 숫자로 변환하여 리스트로 반환
+     */
+    public static List<Integer> convertIntegers(String[] input) {
+        List<Integer> numbers = new ArrayList<>();
+        try {
+            for (String number : input) {
+                numbers.add(Integer.parseInt(number));
+            }
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
         }
     }
 }
