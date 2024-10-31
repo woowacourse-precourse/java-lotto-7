@@ -1,32 +1,19 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import lotto.domain.validator.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumbersSize(numbers);
-        validateDuplicateNumber(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    private void validateDuplicateNumber(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-        }
+        LottoValidator.validate(numbers);
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        this.numbers = Collections.unmodifiableList(sortedList);
     }
 
     public Lotto(String invalidNumbers) {
@@ -36,7 +23,7 @@ public class Lotto {
     }
 
     public int getEqualCount(Lotto otherLotto) {
-        List<Integer> otherLottoNumbers = otherLotto.getNumbers();
+        List<Integer> otherLottoNumbers = new ArrayList<>(otherLotto.getNumbers());
         otherLottoNumbers.retainAll(numbers);
 
         return otherLottoNumbers.size();
