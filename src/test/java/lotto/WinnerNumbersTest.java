@@ -16,10 +16,10 @@ public class WinnerNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("번호가 6개가 아니라면 예외를 반환한다.")
+    @DisplayName("번호는 1~45 사이가 아니라면 예외를 반환한다.")
     @Test
     void test2() {
-        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 5), 7))
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 41, 51), 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
