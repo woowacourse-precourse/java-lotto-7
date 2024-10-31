@@ -1,6 +1,10 @@
 package lotto.io;
 
+import lotto.error.LottoErrorMessage;
+
 public interface Output {
 
-    public void printPurchaseAmount();
+    void printInquiry(LottoOutputMessage msg);
+
+    void printErrorMsg(LottoErrorMessage msg);
 }

@@ -2,6 +2,7 @@ package lotto.io.impl;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.io.Input;
+import lotto.io.LottoOutputMessage;
 import lotto.io.Output;
 
 public class ConsoleInput implements Input {
@@ -21,9 +22,24 @@ public class ConsoleInput implements Input {
         return input;
     }
 
+    @Override
     public String inputMoney() {
 
-        output.printPurchaseAmount();
-        return Console.readLine();
+        output.printInquiry(LottoOutputMessage.PURCHASE_AMOUNT_INQUIRY);
+        return Console.readLine().trim();
+    }
+
+    @Override
+    public String[] inputWinningNumbers() {
+
+        output.printInquiry(LottoOutputMessage.BONUS_NUMBER_INQUERY);
+        return Console.readLine().trim().split(",");
+    }
+
+    @Override
+    public String inputBonusNumber() {
+
+        output.printInquiry(LottoOutputMessage.BONUS_NUMBER_INQUERY);
+        return "";
     }
 }

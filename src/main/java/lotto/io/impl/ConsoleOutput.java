@@ -1,5 +1,7 @@
 package lotto.io.impl;
 
+import lotto.error.LottoErrorMessage;
+import lotto.io.LottoOutputMessage;
 import lotto.io.Output;
 
 public class ConsoleOutput implements Output {
@@ -17,10 +19,14 @@ public class ConsoleOutput implements Output {
         return output;
     }
 
-    public void printPurchaseAmount() {
+    @Override
+    public void printInquiry(LottoOutputMessage msg) {
 
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(msg.getMsg());
     }
 
-
+    @Override
+    public void printErrorMsg(LottoErrorMessage msg) {
+        System.out.println("[ERROR] " + msg.getMsg());
+    }
 }
