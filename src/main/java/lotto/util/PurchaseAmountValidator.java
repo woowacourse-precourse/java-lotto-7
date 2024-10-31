@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static lotto.constants.ExceptionMessage.*;
+import static lotto.constants.PurchaseAmountErrorMessage.*;
 
 public class PurchaseAmountValidator implements Validator {
 
