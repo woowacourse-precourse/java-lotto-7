@@ -16,6 +16,32 @@ public class Application {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    public static void validateBudget(){
+        if (budget < 1000) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+        }
+    }
+
+    public static void inputGoals(){
+        List<Integer> goalNumbers = new ArrayList<>();
+        for (String number : Console.readLine().split(",")) {
+            goalNumbers.add(Integer.parseInt(number.trim()));
+        }
+        goals = new Lotto(goalNumbers);
+    }
+
+    public static void validateBonusDuplicate(Lotto goals, int bonus){
+        if(goals.getNumbers().contains(bonus)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 달라야 합니다.");
+        }
+    }
+
+    public static void validateNumberRange(int bonus){
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     public static void printStatistics(){
         System.out.println("당첨통계");
         System.out.println("---");
@@ -40,27 +66,13 @@ public class Application {
         System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 
-    public static void validateBonusDuplicate(Lotto goals, int bonus){
-        if(goals.getNumbers().contains(bonus)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 달라야 합니다.");
-        }
-    }
-
-    public static void validateNumberRange(int bonus){
-        if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
-        }
-    }
-
     public static void main(String[] args) {
         // 1. 구매 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
         while(true){
             try {
                 budget = Integer.parseInt(Console.readLine());
-                if (budget < 1000) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
-                }
+                validateBudget();
                 break;
             } catch (NumberFormatException e){
                 System.out.println("[ERROR] 구입 금액은 숫자만 입력해야 합니다.");
@@ -68,7 +80,6 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-
 
         // 2. 구매 개수 계산
         numberOfLotto = budget/1000;
@@ -87,11 +98,7 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         while(true){
             try {
-                List<Integer> goalNumbers = new ArrayList<>();
-                for (String number : Console.readLine().split(",")) {
-                    goalNumbers.add(Integer.parseInt(number.trim()));
-                }
-                goals = new Lotto(goalNumbers);
+                inputGoals();
                 break;
             } catch(NumberFormatException e){
                 System.out.println("[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
