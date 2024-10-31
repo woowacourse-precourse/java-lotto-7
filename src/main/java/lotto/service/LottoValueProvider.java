@@ -1,4 +1,4 @@
-package lotto.service.domain.lotto;
+package lotto.service;
 
 public interface LottoValueProvider {
     void makePurchasedLotto();
