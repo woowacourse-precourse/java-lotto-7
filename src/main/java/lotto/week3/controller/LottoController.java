@@ -7,6 +7,7 @@ import lotto.week3.dto.PurchaseRequestDto;
 import lotto.week3.dto.WinningNumberRequestDto;
 import lotto.week3.model.LottoGenerator;
 import lotto.week3.model.LottoMatching;
+import lotto.week3.model.LottoStatistics;
 import lotto.week3.view.InputView;
 import lotto.week3.view.OutputView;
 
@@ -30,9 +31,10 @@ public class LottoController {
 
 
         /*
-        로또 번호 매칭 - > 당첨번호랑 자동 발급된 번호 매칭
+        로또 번호 매칭 - > 당첨번호랑 자동 발급된 번호 매칭 -> 확률 구현
          */
-        LottoMatching lottoMatching = new LottoMatching(lottoList);
+        LottoStatistics statistics = new LottoStatistics();
+        LottoMatching lottoMatching = new LottoMatching(lottoList, statistics);
         lottoMatching.mathing(winningNumberRequestDto.getWinningNumbers(), winningNumberRequestDto.getBonusNumber());
 
 

@@ -6,16 +6,22 @@ import lotto.week3.domain.Lotto;
 public class LottoMatching {
 
     private final List<Lotto> lottos;
+    private final LottoStatistics lottoStatistics;
 
-    public LottoMatching(List<Lotto> lottos) {
+
+    public LottoMatching(List<Lotto> lottos, LottoStatistics lottoStatistics) {
         this.lottos = lottos;
+        this.lottoStatistics = lottoStatistics;
     }
 
     public void mathing(List<Integer> winningNumbers, int bonus){
         for(Lotto lotto : lottos){
             int matchCount = lotto.matchCount(winningNumbers);
             boolean contains = lotto.contains(bonus);
+            lottoStatistics.calculatePrize(matchCount, contains);
+
         }
+
     }
 
 
