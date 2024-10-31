@@ -1,24 +1,32 @@
 package lotto.lottoController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import lotto.lottoModel.LotteryDAO;
-import lotto.lottoModel.LotteryDTO;
+import java.util.stream.Collectors;
+import lotto.lottoModel.HitLotto;
+import lotto.lottoModel.HitLottoDAO;
+import lotto.lottoModel.LottoDAO;
+import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.Lotto;
 import lotto.lottoView.InputView;
 import lotto.lottoView.OutputView;
+
 import lotto.Utility.LottoNumberGenerator;
 
 public class LottoController {
-    private LotteryDAO lotteryDAO;
-    private LotteryDTO lotteryDTO;
+    private LottoDAO lottoDAO;
+    private LottoDTO lottoDTO;
     private InputView inputView;
     private OutputView outputView;
     private LottoNumberGenerator lottoNumberGenerator;
+    private HitLottoDAO hitLottoDAO;
 
     public LottoController() {
-        this.lotteryDAO = new LotteryDAO();
+        this.lottoDAO = new LottoDAO();
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        this.hitLottoDAO = new HitLottoDAO();
 
     }
 
@@ -27,15 +35,17 @@ public class LottoController {
         //여기에 유효성 검증
 
         buyLotto(Cost);
-        List<Lotto> allLottos = lotteryDAO.getAll();
+        List<Lotto> allLottos = lottoDAO.getAll();
 
         for (Lotto lotto : allLottos) { //todo:추후 메서드로 빼낼것
-            LotteryDTO dto = new LotteryDTO(lotto.getNumbers());
+            LottoDTO dto = new LottoDTO(lotto.getNumbers());
             System.out.println(dto.getNumbers()); //todo 아웃뷰?
         }
 
-        String hitLotto= inputView.PrintLottoInputMsg();
-        String bonusNumber = inputView.PrintLottoInputMsg();
+        String hitLottoInput= inputView.PrintLottoInputMsg();
+        String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
+        //여기에 유효성 검증
+
 
 
     }
@@ -45,12 +55,24 @@ public class LottoController {
         long calcCost = Long.parseLong(cost);
         long numberOfBuy = calcCost/1000;
         outputView.howManyBuy(numberOfBuy);
-        for (int j=0;j<numberOfBuy;j++){
-            Lotto Lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
-            lotteryDAO.save(Lotto);
+
+        for (int i=0;i<numberOfBuy;i++){
+            Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
+            lottoDAO.save(lotto);
         }
 
     }
 
+    public void saveHitLotto(String hitLottoInput,String bonusNumberInput) {
+        List<Integer> hitNumbers = Arrays.stream(hitLottoInput.split(","))
+                .map(Integer::parseInt)
+                .toList();
+
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        HitLotto hitLotto = new HitLotto(hitNumbers,bonusNumber);
+
+        hitLottoDAO.save(hitLotto);
+
+    }
 
 }
