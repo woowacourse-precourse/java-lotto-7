@@ -17,6 +17,16 @@ public class Application {
         return userLottoNumbers;
     }
 
+    public static void checkLottoMatch(List<List<Integer>> userLottoNumbers, List<Integer> lottoWinningNumber, int lottoBonusNumber) {
+        boolean isBonusNumberMatched = false;
+        for (List<Integer> userLottoNumber: userLottoNumbers) {
+            int winningNumberCount = compareLottoNumbers(userLottoNumber, lottoWinningNumber);
+            if (winningNumberCount == 5) {
+                isBonusNumberMatched = compareBonusNumber(userLottoNumber, lottoBonusNumber);
+            }
+        }
+    }
+
     public static int compareLottoNumbers(List<Integer> userLottoNumber, List<Integer> lottoWinningNumber) {
         int winningNumberCount = 0;
         for (int number : lottoWinningNumber) {
@@ -25,6 +35,10 @@ public class Application {
             }
         }
         return winningNumberCount;
+    }
+
+    public static boolean compareBonusNumber(List<Integer> userLottoNumber, int lottoBonusNumber) {
+        return userLottoNumber.contains(lottoBonusNumber);
     }
 
     public static void main(String[] args) {
