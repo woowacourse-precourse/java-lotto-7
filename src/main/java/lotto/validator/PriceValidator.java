@@ -1,24 +1,22 @@
 package lotto.validator;
 
-import lotto.view.InputView;
+public class PriceValidator implements Validator<Integer> {
 
-public class PriceValidator {
-
-    public void validate(int price) {
+    @Override
+    public void validate(Integer price) {
         validatePositive(price);
         validateThousandUnit(price);
     }
 
-    private void validatePositive(int price) {
+    private void validatePositive(Integer price) {
         if (price <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수를 입력해 주세요.");
         }
     }
 
-    private void validateThousandUnit(int price) {
+    private void validateThousandUnit(Integer price) {
         if (price % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수를 입력해 주세요.");
         }
     }
-
 }
