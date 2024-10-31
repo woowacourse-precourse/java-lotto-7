@@ -38,6 +38,7 @@ public class InputView {
         try {
             check1000(purAmount);
         } catch (IllegalArgumentException e) {
+            System.out.println(Exception.MONEY_IS_NOT_1000UNIT.getErrorMessage());
             return 0;
         }
         return 1;

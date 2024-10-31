@@ -18,6 +18,7 @@ public class Controller {
     public void start() {
         this.count = input.getPurchaseCount();
         this.model = new Model(this.count);
+        output.printLottoNum(model.getNumbers());
     }
 
 }
