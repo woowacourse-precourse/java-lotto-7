@@ -16,5 +16,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean isValidRange(List<Integer> numbers) {
+        return numbers.stream().allMatch(num -> num >= 1 && num <= 45);
+    }
 }
