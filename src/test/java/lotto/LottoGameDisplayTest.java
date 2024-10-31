@@ -61,6 +61,19 @@ public class LottoGameDisplayTest extends NsTest {
                 .isEqualTo(7);
     }
 
+    @Test
+    void 로또_출력() {
+        // given
+        Lotto lotto = new Lotto(List.of(34, 23, 22, 45, 1, 2));
+
+        // when
+        lottoGameDisplay.printLotto(lotto);
+
+        // then
+        assertThat(output())
+                .isEqualTo("[1, 2, 22, 23, 34, 45]");
+    }
+
     @ParameterizedTest
     @CsvSource(value = {"0:0.0", "12.34:12.3", "98.76:98.8", "100:100.0"}, delimiter = ':')
     void 수익률_출력(double rateOfResult, String expect) {

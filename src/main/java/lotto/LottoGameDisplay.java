@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +47,7 @@ public class LottoGameDisplay {
     public void printLotto(Lotto lotto) {
         StringBuilder sb = new StringBuilder();
         List<Integer> numbers = lotto.getNumbers();
+        Collections.sort(numbers);
 
         sb.append("[");
         for (int i = 0; i < numbers.size() - 1; i++) {
