@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -95,15 +96,13 @@ public class LottoService {
     }
 
     private Map<Prize, Integer> initPrizeCount() {
-        Map<Prize, Integer> prizeCount = new HashMap<Prize, Integer>();
-        prizeCount.put(Prize.FIRST, 0);
-        prizeCount.put(Prize.SECOND, 0);
-        prizeCount.put(Prize.THIRD, 0);
-        prizeCount.put(Prize.FOURTH, 0);
+        Map<Prize, Integer> prizeCount = new LinkedHashMap<>();
         prizeCount.put(Prize.FIFTH, 0);
+        prizeCount.put(Prize.FOURTH, 0);
+        prizeCount.put(Prize.THIRD, 0);
+        prizeCount.put(Prize.SECOND, 0);
+        prizeCount.put(Prize.FIRST, 0);
 
         return prizeCount;
     }
-
-
 }
