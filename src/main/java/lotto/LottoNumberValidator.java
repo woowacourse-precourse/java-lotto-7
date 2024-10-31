@@ -4,15 +4,15 @@ import java.util.List;
 
 public class LottoNumberValidator {
 
-    public LottoNumberValidator validateRange(final int number) {
-        if (number < 1 || number > 45) {
+    public LottoNumberValidator validateRange(final int number, final int min, final int max) {
+        if (number < min || number > max) {
             throw new IllegalArgumentException();
         }
         return this;
     }
 
-    public LottoNumberValidator validateUnit(final int number) {
-        if (number % 1_000 != 0) {
+    public LottoNumberValidator validateUnit(final int number, final int unit) {
+        if (number % unit != 0) {
             throw new IllegalArgumentException();
         }
         return this;

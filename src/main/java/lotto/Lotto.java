@@ -27,7 +27,7 @@ public class Lotto {
         final LottoListValidator lottoListValidator = new LottoListValidator();
         final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
         lottoListValidator.validateSize(numbers)
-                .validateRange(numbers, lottoNumberValidator::validateRange)
+                .validateRange(numbers, number -> lottoNumberValidator.validateRange(number, 1, 45))
                 .validateDuplicate(numbers);
     }
 
