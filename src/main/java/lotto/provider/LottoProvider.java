@@ -7,6 +7,7 @@ public class LottoProvider {
 	public LottoProvider(int numberOfLottos, int lottoPurchaseAmount) {
 		validateLottoPurchaseAmount(lottoPurchaseAmount);
 		this.lottoPurchaseAmount = lottoPurchaseAmount;
+		this.numberOfLottos = lottoPurchaseAmount / 1000;
 	}
 
 	private void validateLottoPurchaseAmount(int lottoPurchaseAmount) {
