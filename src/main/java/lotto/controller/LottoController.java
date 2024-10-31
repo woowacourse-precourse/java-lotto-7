@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.dto.PurchaseMoneyRequest;
+import lotto.dto.PurchaseMoneyRequestDTO;
 import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,7 +21,7 @@ public class LottoController {
     }
 
     private Money getMoney() {
-        PurchaseMoneyRequest purchaseMoneyRequest = inputView.readMoneyInput();
+        PurchaseMoneyRequestDTO purchaseMoneyRequest = inputView.readMoneyInput();
         return new Money(purchaseMoneyRequest);
     }
 

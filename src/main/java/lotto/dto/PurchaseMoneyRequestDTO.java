@@ -1,11 +1,11 @@
 package lotto.dto;
 
-public class PurchaseMoneyRequest {
+public class PurchaseMoneyRequestDTO {
     private static final String NON_NUMBER_MESSAGE = "[ERROR] 구입금액은 숫자만 입력해주세요.";
 
     private int money;
 
-    public PurchaseMoneyRequest(String moneyInput) {
+    public PurchaseMoneyRequestDTO(String moneyInput) {
         this.money = parseMoney(moneyInput);
     }
 

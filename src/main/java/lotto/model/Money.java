@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.dto.PurchaseMoneyRequest;
+import lotto.dto.PurchaseMoneyRequestDTO;
 
 public class Money {
     private static final int MIN_PURCHASE_AMOUNT = 1000;
@@ -12,7 +12,7 @@ public class Money {
 
     private int money;
 
-    public Money(PurchaseMoneyRequest request) {
+    public Money(PurchaseMoneyRequestDTO request) {
         validate(request.getMoney());
         this.money = request.getMoney();
     }
