@@ -23,12 +23,12 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(this::IsNumberRangeInCorrect)) {
+        if (numbers.stream().anyMatch(this::IsNumberRangeIncorrect)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean IsNumberRangeInCorrect(Integer number) {
+    private boolean IsNumberRangeIncorrect(Integer number) {
         return number < MIN_NUMBER_RANGE && number > MAX_NUMBER_RANGE;
     }
 }
