@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.error.CustomException;
 import lotto.error.ExceptionMessage;
 
 public class InputView {
@@ -8,8 +9,7 @@ public class InputView {
         String line = Console.readLine();
 
         if (line.isEmpty()) {
-            ExceptionMessage errorMessage = ExceptionMessage.ERROR_MESSAGE_INPUT_IS_EMPTY;
-            throw new IllegalArgumentException(ExceptionMessage.createErrorMessage(errorMessage));
+            throw new CustomException(ExceptionMessage.ERROR_MESSAGE_INPUT_IS_EMPTY);
         }
         return line;
     }
