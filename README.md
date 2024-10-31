@@ -108,6 +108,8 @@
 - isNumeric 
   - 숫자 문자열인지 확인한다.
     - 양수 판별은 숫자인지 확인하며 진행된다.
+- isParsableAsInteger
+  - Integer형으로 형변환이 가능한지 확인한다.
 - isLessThanFirstPrizeAmount
   - 1등 당첨금보다 적은 액수인지 확인한다.
     - 당첨금보다 많이 로또를 구매할 수 없게 1등 당첨금을 최대 구매 가능 액수로 제한했다.
