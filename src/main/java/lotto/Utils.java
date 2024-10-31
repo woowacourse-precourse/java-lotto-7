@@ -33,4 +33,13 @@ public class Utils {
         }
         return lottos;
     }
+
+    public static String calculateProfitRate(int purchaseAmount) {
+        long profit = 0;
+        for (LottoWinner winner : LottoWinner.values()) {
+            profit += winner.calculateProfit();
+        }
+        double profitRate = (double) profit / purchaseAmount;
+        return String.format("%.2f", profitRate);
+    }
 }
