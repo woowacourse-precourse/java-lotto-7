@@ -36,8 +36,7 @@ class InputValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"-1000", "0"})
-    void 구입_금액이_양의_정수가_아닐_경우_예외_테스트() {
-        int invalidAmount = -1000;
+    void 구입_금액이_양의_정수가_아닐_경우_예외_테스트(int invalidAmount) {
         assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_NON_POSITIVE_PURCHASE_AMOUNT);
