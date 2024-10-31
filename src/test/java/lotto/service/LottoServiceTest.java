@@ -1,6 +1,7 @@
 package lotto.service;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +34,20 @@ public class LottoServiceTest {
 
         // when
         int result = lottoService.calculateLottoQuantities(purchaseAmount);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void 로또_번호의_당첨_번호_일치_개수_테스트() {
+        // given
+        List<Integer> lottoNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 7, 8, 9));
+        int expected = 3;
+
+        // when
+        int result = lottoService.matchingWinningNumbers(lottoNumbers, winningNumbers);
 
         // then
         assertThat(result).isEqualTo(expected);
