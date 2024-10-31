@@ -14,8 +14,8 @@ public class StatisticsLottoDAO {
     }
 
     // 보너스가 포함된 경우 추가
-    public void addSpecificValue(int value) {
-        statisticsLotto.addSpecificValue(value);
+    public void addSpecificValue() {
+        statisticsLotto.addSpecificValue();
     }
 
     // DTO로 변환하여 통계 정보 반환

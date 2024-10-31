@@ -11,6 +11,11 @@ public class StatisticsLotto {
     public StatisticsLotto() {
         this.hitNumberFrequency = new HashMap<>();
         this.bonusNumberFrequency = 0 ;
+
+        hitNumberFrequency.put(3, 0);
+        hitNumberFrequency.put(4, 0);
+        hitNumberFrequency.put(5, 0);
+        hitNumberFrequency.put(6, 0);
     }
 
     // 맞춘 개수의 빈도를 업데이트하는 메서드
@@ -21,7 +26,7 @@ public class StatisticsLotto {
     }
 
     // 보너스가 포함된 경우 +1
-    public void addSpecificValue(int value) {
+    public void addSpecificValue() {
         bonusNumberFrequency++;
     }
 
