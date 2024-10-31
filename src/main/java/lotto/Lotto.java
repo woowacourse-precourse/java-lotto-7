@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -44,7 +45,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
+        return new ArrayList<>(numbers);
     }
 
     @Override
