@@ -3,15 +3,18 @@ package lotto.utils;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoTickets;
 
 public class LottoGenerator {
 
-    public static List<Lotto> generateLottos(int lottoAmount) {
-        return Stream.generate(LottoGenerator::generateSortedLottoNumbers)
+    public static LottoTickets generateLottoTickets(int lottoAmount) {
+        List<Lotto> lottoList = Stream.generate(LottoGenerator::generateSortedLottoNumbers)
                 .limit(lottoAmount)
                 .map(Lotto::new)
                 .toList();
+
+        return new LottoTickets(lottoList);
     }
 
     private static List<Integer> generateSortedLottoNumbers() {
