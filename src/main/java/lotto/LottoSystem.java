@@ -98,7 +98,7 @@ public class LottoSystem {
         for (LottoRank rank : LottoRank.values()) {
             totalReturn += rank.getWinningCount() * rank.getPrize();
         }
-        return Math.round(10 * (double) totalReturn / (issuedLottoCount * 1000) * 100);
+        return Math.round((double) totalReturn / (issuedLottoCount * 1000) * 100);
     }
     private boolean hasBonusNumber(List<Integer> lottoNumbers) {
         return lottoNumbers.contains(this.bonusNumber);
