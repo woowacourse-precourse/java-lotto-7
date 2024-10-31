@@ -20,6 +20,10 @@ public class Validator {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT.toString());
         }
 
+        if (price <= 0) {
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_NEGATIVE.toString());
+        }
+
         if (price % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_PRICE_FORMAT_UNIT.toString());
         }
