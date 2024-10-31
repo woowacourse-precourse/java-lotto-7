@@ -16,7 +16,7 @@ public class RandomLottoGenerator implements LottoGenerator {
     private static final int COUNT = 6;
 
     @Override
-    public Lottos generate(final long lottoCount) {
+    public Lottos generate(final int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         LongStream.range(0, lottoCount).forEach(i -> {
             List<Integer> sortedUniqueNumbers = generateSortedUniqueNumbers();
@@ -27,7 +27,8 @@ public class RandomLottoGenerator implements LottoGenerator {
     }
 
     private List<Integer> generateSortedUniqueNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT).stream()
+        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT)
+                .stream()
                 .sorted(naturalOrder())
                 .toList();
     }

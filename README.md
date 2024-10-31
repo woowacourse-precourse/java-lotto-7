@@ -175,7 +175,7 @@
 
 <br>
 
-### LottoDrawRankTable
+### DrawResultRankTable
 
 | Type                   | Field   |
 |------------------------|---------|
@@ -188,21 +188,29 @@
 
 ---
 
-### Lotto
+### Money
 
-| Method              | Parameter | Return Type |
-|---------------------|-----------|-------------|
-| matchingNumbersFrom | Lotto     | int         |
-| has                 | Integer   | boolean     |
+| Method                       | Parameter | Return Type | Implementation |
+|------------------------------|-----------|-------------|----------------|
+| calculatePurchasedLottoCount | -         | int         | ✅              | 
 
 <br>
 
-### [Enum] RankTable
+### Lotto
 
-| Method    | Parameter        | Return Type |
-|-----------|------------------|-------------|
-| getRankBy | Integer, Boolean | Rank        |
-| <TBD>     | int              | boolean     |
+| Method                  | Parameter | Return Type | Implementation |
+|-------------------------|-----------|-------------|----------------|
+| countMatchedNumbersFrom | Lotto     | int         | ✅              |
+| has                     | Integer   | boolean     | ✅              |              
+
+<br>
+
+### [Enum] Rank
+
+| Method                    | Parameter        | Return Type | Implementation |
+|---------------------------|------------------|-------------|----------------|
+| getRankBy                 | Integer, Boolean | Rank        | ✅              |
+| enoughCountToBeSecondRank | int              | boolean     | ✅              |
 
 <br>
 <br>
@@ -213,12 +221,11 @@
 
 ### LottoService
 
-| Access  | Method         | Parameter                      | Return Type        | Implementation |
-|---------|----------------|--------------------------------|--------------------|----------------|
-| public  | offerLottos    | Money                          | Lottos             |                |
-| private | generateLotto  | long                           | Lottos             |                |
-| public  | offerRankTable | xxxDTO(Lottos, Lotto, Integer) | LottoDrawRankTable |                |
-| private | rankMyLotto    | xxxDTO(Lottos, Lotto, Integer) | Rank               |                |
+| Access  | Method        | Parameter                      | Return Type        | Implementation |
+|---------|---------------|--------------------------------|--------------------|----------------|
+| public  | offerLottos   | Money                          | Lottos             | ✅              |
+| public  | rankMyLottos  | xxxDTO(Lottos, Lotto, Integer) | LottoDrawRankTable | ✅              |
+| private | rankEachLotto | xxxDTO(Lottos, Lotto, Integer) | Rank               | ✅              |
 
 <br>
 

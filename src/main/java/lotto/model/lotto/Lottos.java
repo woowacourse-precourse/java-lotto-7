@@ -5,6 +5,7 @@ import static lotto.exception.ShouldNotBeNullException.nullArgument;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class Lottos {
 
@@ -28,6 +29,10 @@ public class Lottos {
         if (hasNullObj) {
             throw nullArgument();
         }
+    }
+
+    public Stream<Lotto> initiateStream() {
+        return lottos.stream();
     }
 
     @Override
