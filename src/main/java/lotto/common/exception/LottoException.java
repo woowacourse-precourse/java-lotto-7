@@ -1,6 +1,6 @@
-package lotto.exception;
+package lotto.common.exception;
 
-import lotto.constant.LottoErrorCode;
+import lotto.common.constant.LottoErrorCode;
 
 public class LottoException extends IllegalArgumentException {
     private final LottoErrorCode errorCode;
