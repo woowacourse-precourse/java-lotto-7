@@ -1,4 +1,11 @@
-package lotto;
+package lotto.controller;
+
+import lotto.service.LottoService;
+import lotto.domain.Lottos;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningNumbers;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;

@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Constant.COMMA;
+import static lotto.utils.Constant.COMMA;
 
 import java.util.Arrays;
 import java.util.List;

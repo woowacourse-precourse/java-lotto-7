@@ -1,4 +1,6 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.Lottos;
 
 public class OutputView {
     public void displayBuyResult(Lottos lottos) {

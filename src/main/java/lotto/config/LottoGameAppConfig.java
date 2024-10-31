@@ -1,4 +1,9 @@
-package lotto;
+package lotto.config;
+
+import lotto.service.LottoService;
+import lotto.controller.LottoController;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameAppConfig {
     private static final InputView inputView = new InputView();

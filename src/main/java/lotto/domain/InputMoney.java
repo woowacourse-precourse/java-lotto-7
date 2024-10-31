@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Constant.LOTTO_PRICE;
-import static lotto.Constant.MINIMUM_PRICE;
+import static lotto.utils.Constant.LOTTO_PRICE;
+import static lotto.utils.Constant.MINIMUM_PRICE;
 
 public class InputMoney {
     private final long amount;
