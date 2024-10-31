@@ -1,11 +1,11 @@
 package lotto.domain;
 
-public class PurchaseLotto {
+public class LottoShop {
     private static final int LOTTO_PRICE = 1000;
 
     private final int money;
 
-    public PurchaseLotto(int money) {
+    public LottoShop(int money) {
         validateLeastMoney(money);
         validateMoneyInThousandUnit(money);
         this.money = money;
@@ -27,5 +27,7 @@ public class PurchaseLotto {
         return money / LOTTO_PRICE;
     }
 
-    
+    public int getMoney() {
+        return money;
+    }
 }

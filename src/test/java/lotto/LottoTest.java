@@ -2,15 +2,15 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGameResult;
 import lotto.domain.LottoNumberGenerator;
-import lotto.domain.PurchaseLotto;
+import lotto.domain.LottoShop;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.dto.LottoDto;
@@ -38,22 +38,22 @@ class LottoTest {
     @DisplayName("구매한 로또 게임 장수를 확인한다.")
     @Test
     void 로또_구매_장수_테스트() {
-        PurchaseLotto purchaseLotto = new PurchaseLotto(8000);
+        LottoShop lottoShop = new LottoShop(8000);
 
-        assertThat(purchaseLotto.calculateLottoGameCount()).isEqualTo(8);
+        assertThat(lottoShop.calculateLottoGameCount()).isEqualTo(8);
     }
 
     @DisplayName("구매할 금액이 1000원 미만이면 예외가 발생한다.")
     @Test
     void 로또_구매_금액_1000원_미만_예외_테스트() {
-        assertThatThrownBy(() -> new PurchaseLotto(100))
+        assertThatThrownBy(() -> new LottoShop(100))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구매할 금액이 1000원 단위가 아니면 예외가 발생한다.")
     @Test
     void 로또_구매_금액_1000원_단위가_아닐때_예외_테스트() {
-        assertThatThrownBy(() -> new PurchaseLotto(1100))
+        assertThatThrownBy(() -> new LottoShop(1100))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
