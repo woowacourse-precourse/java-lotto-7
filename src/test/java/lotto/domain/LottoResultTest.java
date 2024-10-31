@@ -15,8 +15,8 @@ class LottoResultTest {
 
     private LottoResult lottoResult;
     private List<Lotto> purchasedLotto;
-    private List<Integer> winNumbers;
-    private int bonusNumber;
+    private Numbers winNumbers;
+    private Number bonusNumber;
 
     @BeforeEach
     void init() {
@@ -30,9 +30,9 @@ class LottoResultTest {
         purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 43, 44, 45))));
         purchasedLotto.add(new Lotto(new ArrayList<>(Arrays.asList(1, 2, 42, 43, 44, 45))));
 
-        winNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        winNumbers = new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 
-        bonusNumber = 7;
+        bonusNumber = new Number(7);
     }
 
     @DisplayName("발행된 로또들과 당첨 번호를 비교한다.")
