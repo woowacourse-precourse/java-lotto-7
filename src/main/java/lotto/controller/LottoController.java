@@ -27,5 +27,7 @@ public class LottoController {
         List<Integer> winningNumbers = inputView.inputWinningNumber();
         outputView.printEmptyLine();
         int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+
+        outputView.printLottoResult();
     }
 }

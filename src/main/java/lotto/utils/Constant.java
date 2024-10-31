@@ -5,6 +5,8 @@ public class Constant {
     public final static String LOTTO_PURCHASE_COUNT_MESSAGE = "%d개를 구매했습니다.";
     public final static String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     public final static String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+    public final static String LOTTO_RESULT_MESSAGE = "당첨 통계";
+    public final static String HORIZONTAL_DIVIDER_MESSAGE = "---";
 
     public static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
     public static final String INTEGER_REGEX = "[0-9]+";

@@ -1,6 +1,8 @@
 package lotto.view;
 
+import static lotto.utils.Constant.HORIZONTAL_DIVIDER_MESSAGE;
 import static lotto.utils.Constant.LOTTO_PURCHASE_COUNT_MESSAGE;
+import static lotto.utils.Constant.LOTTO_RESULT_MESSAGE;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -22,5 +24,11 @@ public class OutputView {
 
     public void printEmptyLine() {
         System.out.println();
+    }
+
+    public void printLottoResult() {
+        printEmptyLine();
+        System.out.println(LOTTO_RESULT_MESSAGE);
+        System.out.println(HORIZONTAL_DIVIDER_MESSAGE);
     }
 }
