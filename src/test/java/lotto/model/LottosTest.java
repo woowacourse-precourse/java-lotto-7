@@ -28,9 +28,9 @@ public class LottosTest {
 
         lottos.saveLotto(lotto);
 
-        assertThat(lottos.getLottos()
+        assertThat(lottos.getLottoDtos()
                 .get(0)
-                .getLottoNumbers())
+                .numbers())
                 .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 }

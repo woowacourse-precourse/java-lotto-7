@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.dto.LottoDto;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
@@ -17,8 +18,13 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<LottoDto> getLottoDtos() {
+        List<LottoDto> lottoDtos = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            LottoDto lottoDto = LottoDto.from(lotto);
+            lottoDtos.add(lottoDto);
+        }
+        return lottoDtos;
     }
 
     private List<Integer> getRandomNumbers() {
