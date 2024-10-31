@@ -1,0 +1,35 @@
+package lotto.amount;
+
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import lotto.exception.CustomException;
+import lotto.exception.ExceptionMessage;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class AmountTest {
+
+    @DisplayName("입력한 구입 금액이 로또 가격(1,000원)의 배수라면 예외가 발생하지 않는다..")
+    @ValueSource(ints = {1000, 2000, 5000, 10000})
+    @ParameterizedTest
+    void newAmountWithLottoPurchaseUnitAmount(int validAmount) {
+        // when & then
+        assertThatCode(() -> new Amount(validAmount))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력한 구입 금액이 로또 가격(1,000원)의 배수가 아니라면 예외가 발생한다.")
+    @Test
+    void newAmountWithOutLottoPurchaseUnitAmount() {
+        // given
+        int invalidAmount = 1_001;
+
+        // when & then
+        assertThatThrownBy(() -> new Amount(invalidAmount))
+                .isInstanceOf(CustomException.class)
+                .hasMessage("[ERROR] " + ExceptionMessage.INVALID_LOTTO_AMOUNT_EXCEPTION.getMessage());
+    }
+}
