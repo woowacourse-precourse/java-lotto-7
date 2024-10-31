@@ -18,12 +18,14 @@ public class LottoController {
     public void start() {
         PurchaseAmount purchaseAmount = readPurchaseAmount();
         this.lottoService = new LottoService(purchaseAmount);
-        printLottoPurchaseResult(purchaseAmount);
+        String lottosState = lottoService.getLottosState();
+        printLottoPurchaseResult(purchaseAmount,lottosState);
     }
 
-    private void printLottoPurchaseResult(PurchaseAmount purchaseAmount) {
+    private void printLottoPurchaseResult(PurchaseAmount purchaseAmount, String lottosState) {
         int numberOfLotto = purchaseAmount.getNumberOfLotto();
         outputView.printLottoPurchaseResult(numberOfLotto);
+        outputView.printLottoState(lottosState);
     }
 
     private PurchaseAmount readPurchaseAmount() {

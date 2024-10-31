@@ -12,4 +12,8 @@ public class LottoService {
         int numberOfLotto = this.purchaseAmount.getNumberOfLotto();
         this.lottoCollection = new LottoCollection(numberOfLotto);
     }
+
+    public String getLottosState() {
+        return lottoCollection.getState();
+    }
 }

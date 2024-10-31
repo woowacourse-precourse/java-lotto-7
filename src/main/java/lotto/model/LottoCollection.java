@@ -21,4 +21,14 @@ public class LottoCollection {
         List<Integer> randomNumbers = RandomNumbers.getRandomNumbers();
         return new Lotto(randomNumbers);
     }
+
+    public String getState() {
+        StringBuilder state = new StringBuilder();
+        for (Lotto lotto : lottoList) {
+            String lottoState = lotto.getState();
+            state.append(lottoState);
+            state.append("\n");
+        }
+        return state.toString();
+    }
 }

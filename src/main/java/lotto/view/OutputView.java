@@ -11,4 +11,8 @@ public class OutputView {
         System.out.println();
         System.out.println(numberOfLotto + Message.PURCHASE_RESULT_MESSAGE);
     }
+
+    public void printLottoState(String lottosState) {
+        System.out.println(lottosState);
+    }
 }

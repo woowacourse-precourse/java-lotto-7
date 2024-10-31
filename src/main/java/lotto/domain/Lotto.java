@@ -27,4 +27,8 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
+
+    public String getState() {
+        return numbers.toString();
+    }
 }
