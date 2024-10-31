@@ -22,13 +22,12 @@ public class Application {
 
         // 3. 당첨 번호 입력 및 검증
         UserLottoNumberInput userLottoNumberInput = new UserLottoNumberInput();
-        Lotto lotto = new Lotto(userLottoNumberInput.validation());
+        Lotto lotto = userLottoNumberInput.validation();
         List<Integer> lottoNumbers = lotto.getNumbers();
 
         // 4. 보너스 번호 입력 및 중복 검증
         UserBonusNumberInput userBonusNumberInput = new UserBonusNumberInput();
-        int bonusNumber = userBonusNumberInput.validation();
-        userBonusNumberInput.bonusDuplicationCheck(lottoNumbers); // 보너스 번호 중복 체크
+        int bonusNumber = userBonusNumberInput.validation(lottoNumbers);
 
         // 5. 로또 추첨 및 결과 출력
         LotteryProcess lotteryProcess = new LotteryProcess(lottoNumbers, bonusNumber, lottoTickets);

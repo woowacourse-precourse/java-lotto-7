@@ -8,25 +8,17 @@ import java.util.Set;
 public class UserBonusNumberInput {
     private int bonusNumber;
 
-    public int validation() {
+    public int validation(List<Integer> lottoNumbers) {
         while (true) {
             try {
                 bonusNumber = rangeValidation(parseInput(getInput()));
+                bonusDuplicationCheck(lottoNumbers);
+                System.out.println();
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage()); // 오류 메시지 출력 후 재입력
             }
         }
-    }
-
-    public void bonusDuplicationCheck(List<Integer> LottoNumbers) {
-        Set<Integer> bonusCheck = new HashSet<>(LottoNumbers);
-
-        if (!bonusCheck.add(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호는 중복될 수 없습니다.");
-        }
-
-        System.out.println();
     }
 
     private String getInput() {
@@ -47,5 +39,13 @@ public class UserBonusNumberInput {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 정수여야 합니다.");
         }
         return bonusNumber;
+    }
+
+    private void bonusDuplicationCheck(List<Integer> lottoNumbers) {
+        Set<Integer> bonusCheck = new HashSet<>(lottoNumbers);
+
+        if (!bonusCheck.add(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호는 중복될 수 없습니다.");
+        }
     }
 }

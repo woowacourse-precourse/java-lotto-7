@@ -4,16 +4,18 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
 
 
 public class UserLottoNumberInput {
 
-    public List<Integer> validation() {
+    public Lotto validation() {
         while (true) {
             try {
                 List<Integer> lottoNumbers = parsingLottoNumbers((createLottoNumberArray(getInput())));
+                Lotto lotto = new Lotto (lottoNumbers);
                 System.out.println();
-                return lottoNumbers;
+                return lotto;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다");
             } catch (IllegalArgumentException e) {
