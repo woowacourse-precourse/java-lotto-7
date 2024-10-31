@@ -33,6 +33,7 @@
   > - 입력된 당첨 번호가 6자리 이상이면 `IllegalArgumentException` 발생
   > - 입력된 당첨 번호가 1~45범위 밖이면 `IllegalArgumentException` 발생
   > - 쉼표와 당첨 번호 이외의 문자열이 입력된 경우 `IllegalArgumentException` 발생
+  > - 입력된 당첨 번호에 중복이 존재하면 `IllegalArgumentException` 발생
 
 ### 보너스 번호 입력
 
@@ -42,6 +43,7 @@
   >
   > - 입력된 보너스 번호가 1~45범위 밖이면 `IllegalArgumentException` 발생
   > - 보너스 번호 이외의 문자열이 입력된 경우 `IllegalArgumentException` 발생
+  > - 당첨 번호에 이미 보너스 번호와 중복되는 값이 존재하면 `IllegalArgumentException` 발생
 
 ### 당첨 여부 판별
 
