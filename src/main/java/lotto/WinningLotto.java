@@ -13,7 +13,7 @@ public class WinningLotto {
     public WinningLotto(String lottoNumber) {
         validateInput(lottoNumber);
         List<Integer> winningLotto = splitLottoNumber(lottoNumber);
-        validateDuplicateNumber(winningLotto);
+        validateNumber(winningLotto);
         this.lotto = new Lotto(winningLotto);
     }
 
@@ -30,11 +30,28 @@ public class WinningLotto {
         }
     }
 
-    private void validateDuplicateNumber(List<Integer> lotto) {
-        Set<Integer> uniqueNumbers = new HashSet<>(lotto);
-        if (uniqueNumbers.size() != lotto.size()) {
+    private void validateNumber(List<Integer> lotto) {
+
+        if (!validateDuplicateNumber(lotto)) {
             throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_DUPLICATE_NUMBER));
         }
+        if (!checkLottoNumberRange(lotto)) {
+            throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
+        }
+    }
+
+    private static boolean validateDuplicateNumber(List<Integer> lotto) {
+        Set<Integer> uniqueNumbers = new HashSet<>(lotto);
+        return uniqueNumbers.size() == lotto.size();
+    }
+
+    private static boolean checkLottoNumberRange(List<Integer> lotto) {
+        for (Integer number : lotto) {
+            if (number < 1 || number > 45) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
