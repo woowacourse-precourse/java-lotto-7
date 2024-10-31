@@ -44,6 +44,10 @@ public class Application {
                 .flatMap(Optional::stream)
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.summingInt(r -> 1)));
 
-        outputView.printLottoResults(lottoResults);
+        long totalPrize = lottoResults.keySet().stream()
+                .mapToLong(key -> (long) key.getPrize() * lottoResults.get(key))
+                .sum();
+        double revenue = (double) totalPrize / Integer.parseInt(lottoPurchaseMoney) * 100;
+        outputView.printLottoResults(lottoResults, revenue);
     }
 }

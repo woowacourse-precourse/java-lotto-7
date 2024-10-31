@@ -35,9 +35,17 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoResults(Map<Ranking, Integer> lottoResults) {
+    public void printLottoResults(Map<Ranking, Integer> lottoResults, double revenue) {
+        printEmptyLine();
+        printLottoResultsNoticeMessage();
         Arrays.stream(Ranking.values()).sorted(Comparator.comparingInt(Ranking::getMatchCount))
                 .forEach(ranking -> printLottoResult(lottoResults, ranking));
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", revenue);
+    }
+
+    private static void printLottoResultsNoticeMessage() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 
     public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
