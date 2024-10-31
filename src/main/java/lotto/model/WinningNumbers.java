@@ -12,18 +12,25 @@ import java.util.List;
 
 public class WinningNumbers {
     private final Lotto winningNumbers;
+    private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers) {
+    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         try {
             this.winningNumbers = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             String winningNumbersExceptionMessage = getWinningNumbersExceptionMessage(e.getMessage());
             throw new IllegalArgumentException(winningNumbersExceptionMessage);
         }
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getLottoNumbers();
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        
     }
 
     private String getWinningNumbersExceptionMessage(String message) {
