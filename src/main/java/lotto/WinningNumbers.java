@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WinningNumbers {
 
@@ -14,22 +16,38 @@ public class WinningNumbers {
     private static final int WINNING_NUMBER_COUNT = 6;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private static final String Seperator = ",";
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        validateWinningNumbers(winningNumbers);
-        validateBonusNumber(bonusNumber, winningNumbers);
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    public WinningNumbers(String winningNumbersInput, String bonusNumberInput) {
+        this.winningNumbers = parseWinningNumbers(winningNumbersInput);
+        this.bonusNumber = parseBonusNumber(bonusNumberInput);
+        validateWinningNumbers(this.winningNumbers);
+        validateBonusNumber(this.bonusNumber, this.winningNumbers);
     }
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers == null || winningNumbers.isEmpty()) {
+    private List<Integer> parseWinningNumbers(String winningNumbersInput) {
+        if (winningNumbersInput == null || winningNumbersInput.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
         }
 
+        return Arrays.stream(winningNumbersInput.split(Seperator))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+    private int parseBonusNumber(String bonusNumberInput) {
+        try {
+            return Integer.parseInt(bonusNumberInput.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_ERROR);
+        }
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_COUNT_ERROR);
         }
