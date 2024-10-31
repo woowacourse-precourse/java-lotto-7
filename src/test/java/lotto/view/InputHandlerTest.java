@@ -11,7 +11,7 @@ class InputHandlerTest {
     @ParameterizedTest
     @CsvSource(value = {"'     '", "''", "pobi"})
     void 숫자가_입력되지_않은_경우_예외처리(String input) {
-        InputHandler inputHandler = new InputHandler();
+        final InputHandler inputHandler = new InputHandler();
 
         assertThatThrownBy(() -> inputHandler.validateNumber(input)).isInstanceOf(IllegalArgumentException.class);
     }
