@@ -29,8 +29,6 @@ public class NumberLottoFactory implements LottoFactory {
                 .collect(Collectors.toList());
     }
 
-    //직접 생산 부분 만들 자리~
-
     @Override
     public int getLottoLength() {
         return lottoLength;
