@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,4 +22,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 같은번호_개수_구하기() {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.calculateMatchCount(otherLotto)).isEqualTo(6);
+    }
 }
