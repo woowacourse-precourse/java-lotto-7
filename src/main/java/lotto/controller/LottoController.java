@@ -8,19 +8,17 @@ import java.util.List;
 import lotto.Lotto;
 
 public class LottoController {
-    //Feat : 로또 발생기-구현을 취한 입력 구현
-    //- 구입금액, 당첨번호, 보너스 번호 입력
-
     private final List<Lotto> lottos = new ArrayList<>();
     private int bonusNum;
 
     public void buyLottos() {
         System.out.println("구입 금액을 입력해 주세요: ");
         int amount = Integer.parseInt(Console.readLine());
-
-        List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6); // 랜덤 번호 생성
-        lottos.add(new Lotto(numbers));
-
+        int lottoCount = amount / 1000;
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6); // 랜덤 번호 생성
+            lottos.add(new Lotto(numbers));
+        }
     }
 
     public List<Integer> inputLottoNumbers() {
@@ -47,6 +45,4 @@ public class LottoController {
             System.out.println(lotto);
         }
     }
-
-
 }
