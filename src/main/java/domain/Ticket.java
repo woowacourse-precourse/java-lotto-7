@@ -1,5 +1,6 @@
 package domain;
 
+import static exception.ErrorMessage.MINIMUM_TICKET_PURCHASE_ERROR;
 import static exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
 
 public class Ticket {
@@ -18,6 +19,17 @@ public class Ticket {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
+        validateMinimumPurchaseAmount(purchaseAmount);
+        validateDividePurchaseAmount(purchaseAmount);
+    }
+
+    private void validateMinimumPurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount < TICKET_PRICE) {
+            throw new IllegalArgumentException(MINIMUM_TICKET_PURCHASE_ERROR.getMessage());
+        }
+    }
+
+    private void validateDividePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % TICKET_PRICE != 0) {
             throw new IllegalArgumentException(PURCHASE_PRICE_DIVIDE_ERROR.getMessage());
         }
