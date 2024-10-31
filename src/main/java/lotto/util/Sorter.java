@@ -1,11 +1,13 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Sorter {
-    public final static List<Integer> sort(final List<Integer> list) {
-        Collections.sort(list);
-        return list;
+    public static List<Integer> sort(List<Integer> list) {
+        List<Integer> mutableList = new ArrayList<>(list);
+        Collections.sort(mutableList);
+        return mutableList;
     }
 }
