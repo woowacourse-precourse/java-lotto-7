@@ -26,7 +26,7 @@ public class Application {
 
     private static WinningNumber createWinningNumber() {
         try {
-            return new WinningNumber(InputView.inputWinningNumbers());
+            return new WinningNumber(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createWinningNumber();

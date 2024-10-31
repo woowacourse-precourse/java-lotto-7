@@ -4,8 +4,21 @@ import java.util.List;
 
 public class WinningNumber {
     private final Lotto winningNumber;
+    private final LottoNumber bonusNumber;
 
-    public WinningNumber(List<Integer> winningNumbers) {
-        this.winningNumber = Lotto.from(winningNumbers);
+    public WinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+        this(Lotto.from(winningNumbers), new LottoNumber(bonusNumber));
+    }
+
+    public WinningNumber(Lotto winningNumber, LottoNumber bonusNumber) {
+        validateContainBonusNumber(winningNumber, bonusNumber);
+        this.winningNumber = winningNumber;
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateContainBonusNumber(Lotto winningNumber, LottoNumber bonusNumber) {
+        if (winningNumber.hasNumber(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
+        }
     }
 }

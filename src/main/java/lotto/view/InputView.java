@@ -7,6 +7,7 @@ import java.util.List;
 public class InputView {
     private static final String INPUT_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String REGEX = ",|, ";
 
     public static int inputPurchasePrice() {
@@ -45,5 +46,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자값만 입력가능합니다.");
         }
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        return inputNumberValue();
     }
 }
