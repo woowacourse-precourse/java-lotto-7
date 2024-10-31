@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,10 +24,42 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 
+    @Test
     @DisplayName("로또 번호 오름차순 확인")
+    void test1() {
+        List<Integer> numList = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> reversedList = numList.stream().sorted(Comparator.reverseOrder()).toList();
 
+        Lotto expected = new Lotto(toLottoNumList(numList));
+        Lotto result = new Lotto(toLottoNumList(reversedList));
+
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("보너스 넘버 중복 불가 확인")
+    void test2() {
+        List<Integer> numList = List.of(1, 2, 3, 4, 5, 6);
+        List<LottoNum> lottoNums = toLottoNumList(numList);
+        Lotto lotto = new Lotto(lottoNums);
+
+        for (int i = 1; i < 7; i++) {
+            int finalI = i;
+            assertThatThrownBy(() -> lotto
+                    .validBonusNum(new LottoNum(finalI)))
+                    .as(String.valueOf(finalI))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+    }
+
+    @Test
+    @DisplayName("null 테스트")
+    void test3() {
+        assertThatThrownBy(() -> new Lotto(null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 
     private List<LottoNum> toLottoNumList(List<Integer> integerList) {
