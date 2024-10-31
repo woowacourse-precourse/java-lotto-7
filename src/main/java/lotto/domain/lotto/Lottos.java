@@ -1,8 +1,7 @@
 package lotto.domain.lotto;
 
-import lotto.domain.lottofactory.LottoFactory;
+import lotto.domain.lotto.factory.LottoFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
