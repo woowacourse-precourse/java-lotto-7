@@ -18,7 +18,7 @@ public class LottoController {
     }
 
     public static class LottoControllerHolder {
-        public static final LottoController LOTTO_CONTROLLER = new LottoController();
+        private static final LottoController LOTTO_CONTROLLER = new LottoController();
     }
 
     public void run() {
