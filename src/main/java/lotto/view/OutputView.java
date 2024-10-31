@@ -8,7 +8,7 @@ public class OutputView {
     }
 
     public static void printIssuedLottoOutput(String issuedNumbers) {
-        System.out.println(issuedNumbers + System.lineSeparator());
+        System.out.println(issuedNumbers);
     }
 
     public static void printLineSeparator() {
@@ -16,7 +16,7 @@ public class OutputView {
     }
 
     public static void printStatisticMessage() {
-        System.out.println(OutputMessage.STATISTICS_MESSAGE.getMessage());
+        System.out.println(System.lineSeparator() + OutputMessage.STATISTICS_MESSAGE.getMessage());
     }
 
     public static void printLottoResultOutput(String rankMessage, int matchingCount) {
