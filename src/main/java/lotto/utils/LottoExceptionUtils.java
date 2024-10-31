@@ -10,7 +10,7 @@ public class LottoExceptionUtils {
             try {
                 return task.get();
             } catch (LottoException exception) {
-                System.err.println(exception.getMessage());
+                System.out.println(exception.getMessage());
             }
         }
     }
