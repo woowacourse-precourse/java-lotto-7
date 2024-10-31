@@ -1,7 +1,5 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-
 import java.util.List;
 
 public class OutputView {
@@ -19,5 +17,13 @@ public class OutputView {
 
     public static void printIssueAllLottoNumbers(List<List<Integer>> allLottoNumbers){
         allLottoNumbers.forEach(System.out::println);
+    }
+
+    public static void inputWinLottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public static void inputBonusLottoNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 }
