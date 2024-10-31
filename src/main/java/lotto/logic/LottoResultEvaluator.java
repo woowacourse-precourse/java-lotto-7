@@ -14,6 +14,7 @@ import static lotto.constants.RankNumber.THIRD;
 import static lotto.constants.RankNumber.THIRD_PRIZE_MONEY;
 import static lotto.constants.RankNumber.THREE;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.input.Bonus;
@@ -28,6 +29,10 @@ public class LottoResultEvaluator {
     private double returnRate;
 
     public LottoResultEvaluator(Lotto winningNumber, LottoNumbersGenerator lottos, Bonus bonus, Purchase purchase) {
+        this.result = new HashMap<>();
+    }
+
+    public void evaluateLottoResults(Lotto winningNumber, LottoNumbersGenerator lottos, Bonus bonus, Purchase purchase) {
         for (Lotto lotto : lottos.getLottos()) {
             List<Integer> copyLotto = lotto.getNumbers();
             copyLotto.retainAll(winningNumber.getNumbers());
