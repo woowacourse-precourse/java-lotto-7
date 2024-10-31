@@ -1,5 +1,7 @@
 package lotto.global;
 
+import static lotto.global.ErrorMessages.INVALID_MATCH_COUNT;
+
 public enum LottoRank {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
@@ -15,6 +17,20 @@ public enum LottoRank {
         this.prize = prize;
     }
 
+    public static LottoRank findByMatchCount(int i) {
+        if (i == 5) {
+            throw new IllegalStateException(INVALID_MATCH_COUNT.toString());
+        }
+
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.getMatchCount() == i) {
+                return rank;
+            }
+        }
+
+        throw new IllegalStateException(INVALID_MATCH_COUNT.toString());
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
@@ -22,4 +38,6 @@ public enum LottoRank {
     public int getPrize() {
         return prize;
     }
+
+
 }
