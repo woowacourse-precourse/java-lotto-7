@@ -81,6 +81,18 @@ class ApplicationTest extends NsTest {
         assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {" 1000", " 10000 ", " 10000 ", "1000   ", "   1000"})
+    void 구입_금액_앞뒤_공백_있는_경우(String purchaseAmount) {
+        assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isTrue();
+    }
+
+    @Test
+    void 구입_금액_내_공백이_있는_경우() {
+        String purchaseAmount = "100 0";
+        assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
