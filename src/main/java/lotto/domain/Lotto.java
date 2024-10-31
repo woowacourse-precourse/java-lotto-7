@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.common.Constants.LOTTO_MAX_NUMBER;
-import static lotto.common.Constants.LOTTO_MIN_NUMBER;
+import static lotto.common.Constants.LOTTO_NUMBER_MAX;
+import static lotto.common.Constants.LOTTO_NUMBER_MIN;
 import static lotto.common.Constants.LOTTO_NUMBER_MAX_COUNT;
 
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public class Lotto {
         if (numbers.size() != LOTTO_NUMBER_MAX_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (numbers.stream().anyMatch(number -> number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER)) {
+        if (numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);

@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.common.Constants.LOTTO_MAX_NUMBER;
-import static lotto.common.Constants.LOTTO_MIN_NUMBER;
+import static lotto.common.Constants.LOTTO_NUMBER_MAX;
+import static lotto.common.Constants.LOTTO_NUMBER_MIN;
 import static lotto.common.Constants.LOTTO_NUMBER_MAX_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -50,8 +50,8 @@ public class LottoMachine {
 
     private List<Integer> getLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                LOTTO_MIN_NUMBER,
-                LOTTO_MAX_NUMBER,
+                LOTTO_NUMBER_MIN,
+                LOTTO_NUMBER_MAX,
                 LOTTO_NUMBER_MAX_COUNT
         );
     }
