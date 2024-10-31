@@ -19,12 +19,12 @@ public class LottoSeller {
     }
 
     private void validatePrice(int price) {
-        if (price == 0 || price % LottoCommittee.LOTTO_PRICE != 0) {
+        if (price == 0 || price % Lotto.PRICE != 0) {
             throw new IllegalArgumentException("올바르지않은 구입금액");
         }
     }
 
     private int getSellCount(int price) {
-        return price / LottoCommittee.LOTTO_PRICE;
+        return price / Lotto.PRICE;
     }
 }
