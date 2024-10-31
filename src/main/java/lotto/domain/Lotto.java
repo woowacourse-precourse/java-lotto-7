@@ -36,4 +36,10 @@ public class Lotto {
         }
     }
 
+    public void checkBonus(int bonus) {
+        if (numbers.contains(bonus)) {
+            throw new IllegalArgumentException(Error.BONUS_DUPLICATE_ERROR.message());
+        }
+    }
+
 }
