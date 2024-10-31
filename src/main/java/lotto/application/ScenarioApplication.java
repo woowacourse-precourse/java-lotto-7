@@ -9,14 +9,14 @@ import lotto.domain.WinNumbers;
 
 public class ScenarioApplication {
 
-    private final MakeNumbersStrategy makeNumbersStrategy;
+    private final MakingNumbersStrategy makingNumbersStrategy;
     private final Reader reader;
     private final Calculator calculator;
     private final Printer printer;
     private final PrizeNumber prizeNumber;
 
     public ScenarioApplication(AppConfig appConfig) {
-        this.makeNumbersStrategy = appConfig.makeNumbersStrategy();
+        this.makingNumbersStrategy = appConfig.makeNumbersStrategy();
         this.reader = appConfig.reader();
         this.calculator = appConfig.calculator();
         this.printer = appConfig.printer();
@@ -33,7 +33,7 @@ public class ScenarioApplication {
     }
 
     public Lottos buyLottos(LottoQuantity lottoQuantity) {
-        Lottos lottos = Lottos.from(lottoQuantity, makeNumbersStrategy);
+        Lottos lottos = Lottos.from(lottoQuantity, makingNumbersStrategy);
         printer.printPurchaseResult(lottoQuantity.value(), lottos);
         return lottos;
     }

@@ -2,11 +2,11 @@ package lotto.config;
 
 import java.util.List;
 import lotto.application.Calculator;
-import lotto.application.MakeNumbersStrategy;
+import lotto.application.MakingNumbersStrategy;
 import lotto.application.Printer;
 import lotto.application.Reader;
 import lotto.application.calculator.ProfitCalculator;
-import lotto.application.numberstrategy.MakeRandomNumbers;
+import lotto.application.numberstrategy.MakingRandomNumbers;
 import lotto.application.printer.LottoResultPrinter;
 import lotto.application.reader.ConsoleReader;
 import lotto.domain.PrizeNumber;
@@ -23,8 +23,8 @@ public class AppConfig {
         return new ConsoleReader();
     }
 
-    public MakeNumbersStrategy makeNumbersStrategy() {
-        return new MakeRandomNumbers();
+    public MakingNumbersStrategy makeNumbersStrategy() {
+        return new MakingRandomNumbers();
     }
 
     public Calculator calculator() {

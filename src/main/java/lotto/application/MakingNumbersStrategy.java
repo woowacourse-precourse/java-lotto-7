@@ -2,7 +2,7 @@ package lotto.application;
 
 import java.util.List;
 
-public interface MakeNumbersStrategy {
+public interface MakingNumbersStrategy {
 
     List<Integer> makeNumbers();
 }
