@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.exception.LottoErrorMessage;
 import lotto.exception.LottoArgumentException;
 
@@ -8,11 +9,13 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UserView {
     private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WIN_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
+    private static final String PRINT_NUMBER_LOTTO_LIST_MESSAGE = "개를 구매했습니다.";
 
     public static int printAndGetAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
@@ -48,6 +51,20 @@ public class UserView {
             return amount;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
+        }
+    }
+
+    public static void printRandomNumbersList(int number, List<Lotto> lottoList) {
+        System.out.println("\n" + number + PRINT_NUMBER_LOTTO_LIST_MESSAGE);
+        getNumbersList(lottoList);
+    }
+
+    private static void getNumbersList(List<Lotto> lottoList) {
+        for(Lotto lotto : lottoList) {
+            System.out.println(lotto.getNumbers()
+                    .stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", ", "[", "]")));
         }
     }
 
