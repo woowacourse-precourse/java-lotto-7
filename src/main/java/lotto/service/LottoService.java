@@ -15,29 +15,27 @@ import static lotto.common.LottoPlace.SECOND_PLACE;
 import static lotto.common.LottoPlace.THIRD_PLACE;
 
 public class LottoService {
-    private final List<Integer> winningNumbers;
-    private final Integer bonusWinningNumber;
+    private List<Integer> winningNumbers;
+    private Integer bonusWinningNumber;
 
     private List<Lotto> lottos;
     private List<Integer> winningCount;
     private Integer money;
     private Integer prizeSum;
 
-    public LottoService(List<Integer> winningNumbers, Integer bonusWinningNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusWinningNumber = bonusWinningNumber;
+    public LottoService() {
         this.winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         this.lottos = new ArrayList<>();
         this.money = 0;
         this.prizeSum = 0;
     }
 
-    public void makeLottos(Integer money) {
+    public void purchaseLottos(Integer money) {
         this.money += money;
+        LottoOutputView.printPurchase(money);
         for (int i = 0; i < money / LottoConstant.LOTTO_PRICE; i++) {
             lottos.add(generateLotto());
         }
-        LottoOutputView.printPurchase(money);
     }
 
     private Lotto generateLotto() {
@@ -50,7 +48,7 @@ public class LottoService {
     }
 
     public float calculateReturnRate() {
-        return prizeSum / money;
+        return ((float) prizeSum / (float) money) * 100;
     }
 
     public void checkLottos() {
@@ -146,5 +144,13 @@ public class LottoService {
 
     public List<Integer> getWinningCount() {
         return winningCount;
+    }
+
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusWinningNumber(Integer bonusWinningNumber) {
+        this.bonusWinningNumber = bonusWinningNumber;
     }
 }

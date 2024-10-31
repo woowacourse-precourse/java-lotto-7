@@ -15,7 +15,7 @@ public class LottoOutputView {
     private static final String OUTPUT_THIRD_PLACE = "5개 일치 (1,500,000원) - %d개";
     private static final String OUTPUT_FOURTH_PLACE = "4개 일치 (50,000원) - %d개";
     private static final String OUTPUT_FIFTH_PLACE = "3개 일치 (5,000원) - %d개";
-    private static final String OUTPUT_RETURN_RATE = "총 수익률은 %d%입니다.";
+    private static final String OUTPUT_RETURN_RATE = "총 수익률은 %.1f%%입니다.";
 
     private LottoOutputView() {
     }
@@ -27,7 +27,7 @@ public class LottoOutputView {
         System.out.printf(OUTPUT_THIRD_PLACE + lineSeparator, winningCounts.get(2));
         System.out.printf(OUTPUT_FOURTH_PLACE + lineSeparator, winningCounts.get(3));
         System.out.printf(OUTPUT_FIFTH_PLACE + lineSeparator, winningCounts.get(4));
-        System.out.printf(OUTPUT_RETURN_RATE + lineSeparator, returnRate);
+        System.out.printf(OUTPUT_RETURN_RATE, returnRate);
     }
 
     public static void printPurchase(Integer money) {
