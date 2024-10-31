@@ -2,6 +2,7 @@ package lotto.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
@@ -14,8 +15,8 @@ class LottoGeneratorTest {
         // when
         var lotto = LottoGenerator.generateLotto();
         // then
-        assertEquals(LottoGenerator.LOTTO_SIZE, lotto.size());
-        assertEquals(LottoGenerator.LOTTO_SIZE, lotto.stream().distinct().count());
+        assertEquals(Lotto.LOTTO_SIZE, lotto.size());
+        assertEquals(Lotto.LOTTO_SIZE, lotto.stream().distinct().count());
     }
 
     @RepeatedTest(1000)
@@ -26,10 +27,10 @@ class LottoGeneratorTest {
         var lotto = LottoGenerator.generateLotto();
         // then
         assertTrue(lotto.stream()
-                .allMatch(number -> {
-                    return number >= LottoGenerator.MIN_NUMBER
-                            && number <= LottoGenerator.MAX_NUMBER;
-                })
+                .allMatch(number ->
+                        number >= Lotto.MIN_NUMBER &&
+                        number <= Lotto.MAX_NUMBER
+                )
         );
     }
 }
