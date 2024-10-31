@@ -20,4 +20,8 @@ public class WinningLotto extends Lotto {
         }
         return matchCount;
     }
+
+    public boolean isBonusMatched(List<Integer> comparedNumbers) {
+        return comparedNumbers.contains(bonusNumber);
+    }
 }

@@ -2,6 +2,7 @@ package lotto.model;
 
 public class LottoTicket {
     private final Lotto lotto;
+    private Rank rank;
 
     public LottoTicket(Lotto lotto) {
         this.lotto = lotto;
@@ -11,7 +12,7 @@ public class LottoTicket {
         return lotto;
     }
 
-    public int countMatchingNumber(WinningLotto winningLotto) {
-        return lotto.countMatchingNumber(winningLotto);
+    public void determineRank(WinningLotto winningLotto) {
+        this.rank = Rank.findRank(lotto.countMatchingNumber(winningLotto), lotto.isBonusMatched(winningLotto));
     }
 }

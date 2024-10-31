@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
@@ -16,12 +15,8 @@ public class Customer {
         return lottoTickets;
     }
 
-    public List<Integer> countMatchingNumbers(WinningLotto winningLotto) {
-        List<Integer> matchingNumbers = new ArrayList<>();
-        for (LottoTicket lottoTicket : lottoTickets) {
-            matchingNumbers.add(lottoTicket.countMatchingNumber(winningLotto));
-        }
-        return matchingNumbers;
+    public void determineRanks(WinningLotto winningLotto) {
+        this.lottoTickets.forEach(lottoTicket -> lottoTicket.determineRank(winningLotto));
     }
 
 }

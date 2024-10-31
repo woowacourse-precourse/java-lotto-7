@@ -42,7 +42,7 @@ public class LottoService {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public List<Integer> countMatchingNumbers(Customer customer, WinningLotto winningLotto) {
-        return customer.countMatchingNumbers(winningLotto);
+    public void determineRanks(Customer customer, WinningLotto winningLotto) {
+        customer.determineRanks(winningLotto);
     }
 }

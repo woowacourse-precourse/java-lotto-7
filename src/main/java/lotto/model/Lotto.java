@@ -17,4 +17,8 @@ public class Lotto {
     public int countMatchingNumber(WinningLotto winningLotto) {
         return winningLotto.countMatchingNumber(this.numbers);
     }
+
+    public boolean isBonusMatched(WinningLotto winningLotto) {
+        return winningLotto.isBonusMatched(this.numbers);
+    }
 }
