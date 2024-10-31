@@ -69,9 +69,9 @@
 - [x] LottoBuyer
 ### View
 - [x] InputView
-- [ ] OutputView
+- [x] OutputView
 ### Controller
-- [ ] LottoGameController
+- [] LottoGameController
 ### Enum
 - [x] LottoGrade
 - [x] LottoNumberRange
