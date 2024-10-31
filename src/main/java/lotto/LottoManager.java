@@ -38,9 +38,14 @@ public class LottoManager {
         }
     }
 
-    public int calculateTotalPrize(UserLotto userLotto){
+    public float calculateTotalPrizeRate(UserLotto userLotto, int purchaseAmount) {
+        int totalPrize = calculateTotalPrize(userLotto);
+        return (float) totalPrize / purchaseAmount;
+    }
+
+    private int calculateTotalPrize(UserLotto userLotto) {
         int totalPrize = 0;
-        for(LottoRank rank : ranks){
+        for (LottoRank rank : ranks) {
             int winningCount = userLotto.getWinningCount(rank.rank());
             totalPrize += winningCount * rank.prizeAmount();
         }
@@ -48,19 +53,19 @@ public class LottoManager {
         return totalPrize;
     }
 
-    private int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumbers){
-         List<Integer> tempLotto = new ArrayList<>(lotto);
-         tempLotto.retainAll(winningNumbers);
-         return tempLotto.size();
+    private int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumbers) {
+        List<Integer> tempLotto = new ArrayList<>(lotto);
+        tempLotto.retainAll(winningNumbers);
+        return tempLotto.size();
     }
 
-    private boolean checkMatchingBonusNumber(List<Integer> lotto, int bonusNumber){
+    private boolean checkMatchingBonusNumber(List<Integer> lotto, int bonusNumber) {
         return lotto.contains(bonusNumber);
     }
 
-    private void updateWinningCount(UserLotto userLotto, int matchedNumbersCount, boolean isMatchedBonusNumber){
-        for(LottoRank rank : ranks){
-            if(rank.isWinning(matchedNumbersCount, isMatchedBonusNumber)){
+    private void updateWinningCount(UserLotto userLotto, int matchedNumbersCount, boolean isMatchedBonusNumber) {
+        for (LottoRank rank : ranks) {
+            if (rank.isWinning(matchedNumbersCount, isMatchedBonusNumber)) {
                 userLotto.updateWinningCount(rank.rank());
                 break;
             }
