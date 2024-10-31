@@ -18,13 +18,14 @@ class InputValidatorTest {
                 .hasMessageContaining(ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
     }
 
-    //    @ParameterizedTest
-//    @ValueSource(strings = {"five", "5.5", "abc"})
-//    void 구입_금액이_숫자가_아닌_경우_예외_테스트(String invalidInput) {
-//        assertThatThrownBy(() -> InputValidator.validatePurchaseAmountInput(invalidInput))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining(ErrorMessageConstants.INVALID_NUMBER_FORMAT);
-//    }
+    @ParameterizedTest
+    @ValueSource(strings = {"five", "5.5", "abc"})
+    void 구입_금액이_숫자가_아닌_경우_예외_테스트(String invalidInput) {
+        assertThatThrownBy(() -> InputValidator.validatePurchaseAmountInput(invalidInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessageConstants.INVALID_NUMBER_FORMAT);
+    }
+
     @Test
     void 구입_금액이_1000원_단위가_아닐_경우_예외_테스트() {
         int invalidAmount = 1500;

@@ -3,13 +3,28 @@ package lotto.validation;
 import lotto.constants.ErrorMessageConstants;
 
 public class InputValidator {
-    public static void validatePurchaseAmountInput(String purchaseAmount) {
-        validateNotBlank(purchaseAmount);
+    public static void validatePurchaseAmountInput(String purchaseAmountInput) {
+        validateNotBlank(purchaseAmountInput);
+        validateIsNumber(purchaseAmountInput);
     }
 
     public static void validatePurchaseAmount(int purchaseAmount) {
         validatePositiveAmount(purchaseAmount);
         validateLottoAmountUnit(purchaseAmount);
+    }
+
+    private static void validateNotBlank(String purchaseAmountInput) {
+        if (purchaseAmountInput == null || purchaseAmountInput.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
+        }
+    }
+
+    private static void validateIsNumber(String purchaseAmountInput) {
+        try {
+            Integer.parseInt(purchaseAmountInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessageConstants.INVALID_NUMBER_FORMAT);
+        }
     }
 
     private static void validatePositiveAmount(int purchaseAmount) {
@@ -21,12 +36,6 @@ public class InputValidator {
     private static void validateLottoAmountUnit(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessageConstants.INVALID_LOTTO_AMOUNT_UNIT);
-        }
-    }
-
-    private static void validateNotBlank(String input) {
-        if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
         }
     }
 }
