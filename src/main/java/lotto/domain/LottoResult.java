@@ -6,6 +6,7 @@ import java.util.Map;
 import lotto.messages.WinningMessage;
 
 public class LottoResult {
+
     private static final Map<WinningMessage, Integer> winningResults = new EnumMap<>(WinningMessage.class);
 
     public LottoResult() {
@@ -50,5 +51,11 @@ public class LottoResult {
 
     public Map<WinningMessage, Integer> getWinningResults() {
         return winningResults;
+    }
+
+    public double getProfitPercent(LottoPurchase lottoPurchase) {
+        long totalWinningMoney = Calculator.calculateWinningAmountSum(winningResults);
+        int purchaseAmount = lottoPurchase.getPurchaseAmount();
+        return Calculator.calculateProfitPercent(totalWinningMoney, purchaseAmount);
     }
 }
