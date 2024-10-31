@@ -36,6 +36,9 @@ public class LottoMachine {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList()));
 
+        System.out.println();
+
+        System.out.println("보너스 번호를 입력해주세요.");
 
     }
 }
