@@ -34,6 +34,7 @@ public class Lotto {
 
     public Ranking getRanking(WinningLotto winningLotto) {
         int count = matchCount(winningLotto);
+        boolean bonusMatchResult = hasBonus(winningLotto);
         return Ranking.FIFTH;
     }
 
@@ -41,6 +42,12 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(winningLotto::contains)
                 .count();
+    }
+
+    private boolean hasBonus(WinningLotto winningLotto) {
+        return numbers
+                .stream()
+                .anyMatch(winningLotto::equalsWithBonus);
     }
 
 }

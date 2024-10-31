@@ -15,4 +15,8 @@ public class WinningLotto {
     public boolean contains(int number) {
         return lotto.contains(number);
     }
+
+    public boolean equalsWithBonus(int number) {
+        return bonusNumber.isSame(number);
+    }
 }
