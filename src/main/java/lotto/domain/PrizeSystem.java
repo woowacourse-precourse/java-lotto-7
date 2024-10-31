@@ -42,4 +42,33 @@ public class PrizeSystem {
         }
         return matchCount;
     }
+
+    /**
+     * 일치하는 번호 개수를 통해 당첨 통계에 업데이트
+     */
+    public void calculatePrizeCount(List<Integer> lottoNumbers, int matchCount) {
+        if (matchCount == MATCH_FIRST) {
+            firstPrizeCount += 1;
+        }
+        if (matchCount == MATCH_SECOND_THIRD) {
+            bonusCase(lottoNumbers);
+        }
+        if (matchCount == MATCH_FOURTH) {
+            fourthPrizeCount += 1;
+        }
+        if (matchCount == MATCH_FIFTH) {
+            fifthPrizeCount += 1;
+        }
+    }
+
+    /**
+     * 보너스 번호를 비교해야 하는 경우 (2,3등을 가려야 하는 경우)
+     */
+    public void bonusCase(List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            secondPrizeCount += 1;
+            return;
+        }
+        thirdPrizeCount += 1;
+    }
 }
