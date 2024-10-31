@@ -22,4 +22,8 @@ public class Money {
             throw new IllegalArgumentException(Error.MONEY_DIVIDE_ERROR.message());
         }
     }
+
+    public int calculateNumberOfTickets() {
+        return amount / 1000;
+    }
 }
