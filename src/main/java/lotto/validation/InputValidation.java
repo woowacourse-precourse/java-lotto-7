@@ -10,7 +10,7 @@ public final class InputValidation {
         }
     }
 
-    public static int numberValidation(String inputValue) {
+    public static int parseNumberValidation(String inputValue) {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException e) {

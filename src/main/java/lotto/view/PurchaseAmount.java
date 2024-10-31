@@ -11,11 +11,12 @@ public final class PurchaseAmount {
             try {
                 Output.printlnMessage(IOMessage.INPUT_PURCHASE_AMOUNT.getMessage());
                 String purchaseAmountStr = Input.inputMessage();
-                int purchaseQuantity = PurchaseAmountValidation.purchaseAmountValidation(purchaseAmountStr);
+                int purchaseQuantity = PurchaseAmountValidation.purchaseAmountValidationAndGetLottoQuantity(
+                        purchaseAmountStr);
                 Output.printlnFormattedMessage(IOMessage.OUTPUT_PURCHASE_QUANTITY.getMessage(), purchaseQuantity);
                 return purchaseQuantity;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e);
+            } catch (IllegalArgumentException errorMessage) {
+                System.out.println(errorMessage.getMessage());
             }
         }
     }

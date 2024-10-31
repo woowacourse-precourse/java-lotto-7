@@ -3,16 +3,22 @@ package lotto.validation;
 import lotto.exception.InvalidPurchaseAmountException;
 
 public final class PurchaseAmountValidation {
-    public static int purchaseAmountValidation(String purchaseAmountStr) throws IllegalArgumentException {
+
+    public static int purchaseAmountValidationAndGetLottoQuantity(String purchaseAmountStr)
+            throws IllegalArgumentException {
         InputValidation.isNotBlank(purchaseAmountStr);
-        int purchaseAmount = InputValidation.numberValidation(purchaseAmountStr);
-        return validatePurchaseAmountAndGetLottoCount(purchaseAmount);
+        int purchaseAmount = InputValidation.parseNumberValidation(purchaseAmountStr);
+        purchaseAmountValidation(purchaseAmount);
+        return convertToLottoQuantity(purchaseAmount);
     }
 
-    public static int validatePurchaseAmountAndGetLottoCount(int purchaseAmount) {
-        if (purchaseAmount % 1000 == 0) {
-            return purchaseAmount / 1000;
+    public static void purchaseAmountValidation(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
+            throw new InvalidPurchaseAmountException();
         }
-        throw new InvalidPurchaseAmountException();
+    }
+
+    public static int convertToLottoQuantity(int purchaseAmount) {
+        return purchaseAmount / 1000;
     }
 }
