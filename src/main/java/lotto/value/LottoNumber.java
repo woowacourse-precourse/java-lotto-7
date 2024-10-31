@@ -1,5 +1,7 @@
 package lotto.value;
 
+import java.util.Objects;
+
 public sealed class LottoNumber implements Comparable<LottoNumber> permits BonusNumber {
 
     public static final int MIN_VALUE = 1;
@@ -24,6 +26,23 @@ public sealed class LottoNumber implements Comparable<LottoNumber> permits Bonus
             throw new IllegalArgumentException("[ERROR] null과 비교할 수 없습니다.");
         }
         return number.compareTo(other.number);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return Objects.equals(number, that.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(number);
     }
 
 }
