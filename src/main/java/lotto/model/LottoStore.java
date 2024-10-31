@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import lotto.util.Validator;
@@ -38,6 +39,8 @@ public class LottoStore {
     }
 
     private static List<Integer> makeRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(randomNumber);
+        return randomNumber;
     }
 }
