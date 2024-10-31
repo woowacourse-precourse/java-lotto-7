@@ -4,6 +4,7 @@ import static lotto.constants.ErrorMessage.LOTTO_DUPLICATION_ERROR;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_COUNT_ERROR;
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +20,7 @@ public class Lotto {
         validateLottoNumbers(numbers);
         validate(numbers);
         validateDuplication(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
