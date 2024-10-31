@@ -18,6 +18,10 @@ public class PurchasedLotto {
         this.earnedMoney = 0;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     public Map<Prize, Integer> getPrizes() {
         return prizes;
     }
@@ -35,7 +39,8 @@ public class PurchasedLotto {
         for (Lotto lotto : lottos) {
             Prize prize = winningNumber.matchCount(lotto);
             earnedMoney += prize.getRewards();
-            prizes.put(prize, prizes.get(prize) + 1);
+
+            prizes.put(prize, prizes.getOrDefault(prize, 0) + 1);
         }
     }
 
