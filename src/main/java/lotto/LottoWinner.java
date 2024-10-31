@@ -5,8 +5,7 @@ public enum LottoWinner {
     SECOND(30_000_000, 0),
     THIRD(1_500_000, 0),
     FOURTH(50_000, 0),
-    FIFTH(5_000, 0),
-    NONE(0, 0);
+    FIFTH(5_000, 0);
 
     private final int prize;
     private int count;

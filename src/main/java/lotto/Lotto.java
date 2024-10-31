@@ -113,6 +113,5 @@ public class Lotto {
         if (correct == 3) {
             LottoWinner.FIFTH.incrementCount();
         }
-        LottoWinner.NONE.incrementCount();
     }
 }

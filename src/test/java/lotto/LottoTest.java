@@ -72,16 +72,6 @@ class LottoTest {
     }
 
     @Test
-    void 번호가_3개미만으로_일치하면_당첨안한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 8, 9, 10, 11));
-        List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
-        int bonus_number = 7;
-        lotto.checkLottoWin(winningNumber, bonus_number);
-        assertThat(LottoWinner.NONE.getCount())
-                .isEqualTo(1);
-    }
-
-    @Test
     void 천원으로_1등에_당첨되면_수익률이_2_000_000이다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);

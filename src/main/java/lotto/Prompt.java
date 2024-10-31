@@ -19,11 +19,11 @@ enum InputPrompt {
 enum OutputPrompt {
     LOTTO_ISSUE("%d개를 구매했습니다."),
 
-    LOTTO_WINNING_3("3개 일치 (5,000원) - %d개"),
-    LOTTO_WINNING_4("4개 일치 (50,000원) - %d개"),
-    LOTTO_WINNING_5("5개 일치 (,1500,000원) - %d개"),
-    LOTTO_WINNING_BONUS("5개 일치 (30,000,000원) - %d개"),
-    LOTTO_WINNING_6("6개 일치 (2,000,000,000원) - %d개"),
+    FIRST("6개 일치 (2,000,000,000원) - %d개"),
+    SECOND("5개 일치 (30,000,000원) - %d개"),
+    THIRD("5개 일치 (,1500,000원) - %d개"),
+    FOURTH("4개 일치 (50,000원) - %d개"),
+    FIFTH("3개 일치 (5,000원) - %d개"),
 
     PROFIT_RATE("총 수익률은 %s%%이다.");
 

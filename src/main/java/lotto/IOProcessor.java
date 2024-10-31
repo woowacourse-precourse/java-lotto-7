@@ -8,6 +8,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class IOProcessor {
+    private static final List<String> LOTTO_RANK = List.of("FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH");
+
     public static int readNumber(String guide) {
         String numberText = "";
         while (true) {
@@ -37,6 +39,14 @@ public class IOProcessor {
         List<Lotto> lottos = issueLottos(issueAmount);
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    public static void printWinningDetails() {
+        for (String rank : LOTTO_RANK) {
+            int count = LottoWinner.valueOf(rank).getCount();
+            String winningDetail = OutputPrompt.valueOf(rank).print(count);
+            System.out.println(winningDetail);
         }
     }
 }
