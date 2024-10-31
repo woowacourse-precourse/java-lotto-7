@@ -24,6 +24,18 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
+    public static List<Integer> getInputWinLottoNumbers() {
+        System.out.println("당첨 번호를 입력해주세요");
+        List<Integer> inputLottoNumbers = new ArrayList<>();
+        String input = Console.readLine();
+        List<String> str2list = Arrays.asList(input.split(DELIMITER));
+        for (String s : str2list) {
+            inputLottoNumbers.add(Integer.parseInt(s));
+        }
+        return inputLottoNumbers;
+
+    }
+
 
     private static void validateInput(String money) {
         if (!validateNumber(money) || !validateMoney(money)) {
