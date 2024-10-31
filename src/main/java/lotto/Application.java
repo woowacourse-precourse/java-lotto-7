@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.core.LottoRunner;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoRunner lotto = new LottoRunner();
+        lotto.executeDraw();
     }
 }

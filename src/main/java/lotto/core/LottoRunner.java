@@ -24,7 +24,33 @@ public class LottoRunner {
     private void displayWinningStatistics() {
         System.out.println("당첨 통계\n---");
 
-        // 당첨 결과 리스트
+        List<LottoMatchResult> matchResults = this.getLottoMatchResults();
+        long prize = 0L;
+
+        for (WinningStatistics stats : WinningStatistics.values()) {
+            long matches = this.countWinningLottoByRank(matchResults, stats);
+            prize += stats.getWinningPrize(matches);
+            this.showStatsByRank(stats, matches);
+        }
+        this.showRateOfReturn(prize);
+    }
+
+    private void showRateOfReturn(long prize) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", (double) prize / payment * 100);
+    }
+
+    private void showStatsByRank(WinningStatistics stats, long matches) {
+        String format = "%d개 일치 (%,d원) - %d개%n";
+        if (stats.getMatchBonus()) {
+            format = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
+        }
+        System.out.printf(format, stats.getMatchCount(), stats.getWinnings(), matches);
+    }
+
+    /**
+     * 각 로또의 당첨 번호 일치 개수 및 보너스 번호 일치 여부
+     */
+    private List<LottoMatchResult> getLottoMatchResults() {
         List<LottoMatchResult> matchResults = new ArrayList<>();
         for (Lotto lotto : lotteries) {
             Set<Integer> matchedNumbers = new HashSet<>(lotto.getNumbers());
@@ -32,29 +58,17 @@ public class LottoRunner {
             matchedNumbers.retainAll(winning.getNumbers());      // 당첨된 숫자만 남기기
             matchResults.add(new LottoMatchResult(matchedNumbers.size(), isBonusMatching));
         }
+        return matchResults;
+    }
 
-        long prize = 0L;
-
-        for (WinningStatistics stats : WinningStatistics.values()) {
-            // 등수별 댱첨 수
-            long matches = matchResults.stream().filter(match -> {
-                boolean isCountMatch = match.matchCount() == stats.getMatchCount();
-                if (stats.getMatchBonus()) {
-                    isCountMatch = isCountMatch && match.matchBonus();
-                }
-                return isCountMatch;
-            }).count();
-            prize += stats.getWinningPrize(matches);
-
-            // 등수별 당첨 내역 출력
-            String format = "%d개 일치 (%,d원) - %d개%n";
+    private long countWinningLottoByRank(List<LottoMatchResult> matchResults, WinningStatistics stats) {
+        return matchResults.stream().filter(match -> {
+            boolean isCountMatch = match.matchCount() == stats.getMatchCount();
             if (stats.getMatchBonus()) {
-                format = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
+                isCountMatch = isCountMatch && match.matchBonus();
             }
-            System.out.printf(format, stats.getMatchCount(), stats.getWinnings(), matches);
-        }
-        // 수익률 출력
-        System.out.printf("총 수익률은 %.1f%%입니다.", (double) prize / payment * 100);
+            return isCountMatch;
+        }).count();
     }
 
     /**
