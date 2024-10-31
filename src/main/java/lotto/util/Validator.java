@@ -23,4 +23,12 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static int isInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
+    }
 }

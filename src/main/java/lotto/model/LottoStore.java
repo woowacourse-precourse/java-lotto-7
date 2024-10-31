@@ -16,6 +16,7 @@ public class LottoStore {
     private static void validateInput(String purchaseMoney) {
         Validator.isEmptyInput(purchaseMoney);
         Validator.isDigitString(purchaseMoney);
-        Validator.isNumberWithinRange(Integer.parseInt(purchaseMoney), LOTTO_PRICE, MAX_BUY_PRICE);
+        int number = Validator.isInteger(purchaseMoney);
+        Validator.isNumberWithinRange(number, LOTTO_PRICE, MAX_BUY_PRICE);
     }
 }
