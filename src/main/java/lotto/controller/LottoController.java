@@ -3,34 +3,34 @@ package lotto.controller;
 import lotto.dto.LottoResultDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public LottoController(LottoService lottoService, InputView inputView) {
+    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
         LottoResultDto lottoDto = purchaseLotto();
-        printPurchaseLottoList(lottoDto);
+        outputView.printPurchaseLottoList(lottoDto);
     }
 
     private LottoResultDto purchaseLotto() {
         while (true) {
             try {
+                outputView.printPurchaseAmount();
                 int price = inputView.readPrice();
                 return lottoService.createLottoList(price);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printErrorMessage(e);
             }
         }
     }
 
-    private void printPurchaseLottoList(LottoResultDto lottoDto) {
-        System.out.println(lottoDto.getPurchaseQuantity() + "개를 구매했습니다.");
-        lottoDto.getLottoList().forEach(System.out::println);
-    }
 }
