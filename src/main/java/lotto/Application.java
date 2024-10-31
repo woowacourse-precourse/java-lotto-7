@@ -32,10 +32,12 @@ public class Application {
     private static List<Lotto> buyLottos(Integer purchaseMoney) {
         var lottoCount = purchaseMoney / 1000;
         List<Lotto> purchasedLottos = new ArrayList<>();
+        System.out.printf("\n%d개를 구매했습니다.", lottoCount);
 
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             purchasedLottos.add(lotto);
+            Lotto.printLotto(lotto);
         }
 
         return purchasedLottos;
