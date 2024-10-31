@@ -29,4 +29,10 @@ public class ReadUserInputView {
         }
         return winningNumbers;
     }
+
+    public int readBonusNumber() {
+        String userInput = readLine();
+        validator.isValidBonusNumber(userInput);
+        return Integer.parseInt(userInput);
+    }
 }
