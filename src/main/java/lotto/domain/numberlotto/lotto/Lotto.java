@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NumberLotto {
+public class Lotto {
 
     private final List<Number> numbers;
 
-    public NumberLotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
 
         validateLength(numbers);
         validateDuplicate(numbers);

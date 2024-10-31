@@ -1,9 +1,9 @@
 package lotto.domain.numberlotto.lottofactory;
 
-import lotto.domain.numberlotto.lotto.NumberLotto;
+import lotto.domain.numberlotto.lotto.Lotto;
 
 public interface LottoFactory {
 
-    NumberLotto create(int startInclusive, int endInclusive, int count);
+    Lotto create(int startInclusive, int endInclusive, int count);
 
 }

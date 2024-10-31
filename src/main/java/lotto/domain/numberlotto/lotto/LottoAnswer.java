@@ -1,6 +1,5 @@
 package lotto.domain.numberlotto.lotto;
 
-import lotto.domain.LottoObject;
 import lotto.domain.numberlotto.constants.message.InputError;
 import lotto.domain.numberlotto.constants.message.RangeError;
 import lotto.domain.numberlotto.constants.value.LottoRule;
