@@ -1,5 +1,7 @@
-package lotto;
+package lotto.application;
 
+import lotto.Lotto;
+import lotto.LottoPrize;
 import lotto.dto.WinningLotto;
 
 import java.util.Optional;

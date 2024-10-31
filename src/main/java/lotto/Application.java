@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.application.LottoMachine;
+import lotto.application.LottoManager;
+import lotto.application.LottoWinningEvaluator;
 import lotto.io.ErrorLogger;
 import lotto.io.LottoRequestReader;
 import lotto.io.LottoResponseWriter;
