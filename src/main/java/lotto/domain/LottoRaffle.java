@@ -10,6 +10,18 @@ public class LottoRaffle {
         validate(winningLotto.getNumbers(), bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
+        validateDuplicateWithLottoNumber(bonusNumber);
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningLotto.getNumbers();
+    }
+
+    private void validateDuplicateWithLottoNumber(int bonusNumber) {
+        boolean isDuplicate = getWinningNumbers().stream().anyMatch(i -> i == bonusNumber);
+        if (isDuplicate) {
+            throw new IllegalArgumentException("[ ERROR ]당첨번호와 중복되지 않는 번호를 입력해주세요.");
+        }
     }
 
     private void validate(List<Integer> numbers, int bonusNumber) {
