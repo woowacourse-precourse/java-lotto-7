@@ -1,7 +1,8 @@
-package lotto;
+package lotto.dto;
 
 import java.math.BigDecimal;
 import java.util.Map.Entry;
+import lotto.domain.LottoRank;
 
 public record WinningRecipe(
         int rank,

@@ -1,8 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LottoStore {
 

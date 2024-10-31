@@ -1,8 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.LottoNumber;
-import lotto.WinningRecipe;
+import lotto.dto.LottoNumber;
+import lotto.dto.WinningRecipe;
 
 public interface OutputView {
 

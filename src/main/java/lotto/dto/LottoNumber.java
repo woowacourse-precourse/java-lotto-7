@@ -1,6 +1,7 @@
-package lotto;
+package lotto.dto;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public record LottoNumber(
         List<Integer> values

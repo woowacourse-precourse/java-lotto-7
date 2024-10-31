@@ -2,7 +2,7 @@ package lotto.view.console;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import lotto.LottoInputConvertor;
+import lotto.util.LottoInputConvertor;
 import lotto.view.InputView;
 
 public class ConsoleInputView implements InputView {

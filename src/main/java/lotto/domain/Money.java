@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.math.BigDecimal;
+import lotto.util.LottoNumberValidator;
 
 public class Money {
 

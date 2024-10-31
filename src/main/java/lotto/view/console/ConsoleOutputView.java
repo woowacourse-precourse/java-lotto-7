@@ -3,8 +3,8 @@ package lotto.view.console;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.LottoNumber;
-import lotto.WinningRecipe;
+import lotto.dto.LottoNumber;
+import lotto.dto.WinningRecipe;
 import lotto.view.OutputView;
 
 public class ConsoleOutputView implements OutputView {
