@@ -7,11 +7,12 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
-
+    private static final String CREDIT_ERROR = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -53,6 +54,21 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @Test
+    @DisplayName("구입 금액 1,000의 배수 아니면 예외 발생")
+    void testCreditMultiple1000() {
+        assertThatThrownBy(() -> Application.checkCredit(1500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CREDIT_ERROR);
+    }
+
+    @Test
+    @DisplayName("구입 금액을 1000으로 나눈 몫 만큼 로또 발행")
+    void testPieces() {
+        assertThat(Application.checkCredit(8000)).isEqualTo(8);
+    }
+
 
     @Override
     public void runMain() {
