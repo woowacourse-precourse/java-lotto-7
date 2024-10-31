@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.InvalidBonusNumberException;
 import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.InvalidWinningNumbersException;
 
@@ -29,7 +30,7 @@ public class InputView {
 
     public List<Integer> getWinningNumbers() {
         String winningString;
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n" + "당첨 번호를 입력해 주세요.");
         winningString = Console.readLine();
 
         if (winningString.isEmpty()) {
@@ -37,13 +38,13 @@ public class InputView {
         }
 
         if (!winningString.matches("^\\d+(,\\d+){5}")) {
-            throw new InvalidPurchaseAmountException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+            throw new InvalidWinningNumbersException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
 
         return createLottoWithWinningNumbers(winningString);
     }
 
-    public List<Integer> createLottoWithWinningNumbers(String winningString) {
+    private List<Integer> createLottoWithWinningNumbers(String winningString) {
         List<String> splitWinningString = List.of(winningString.split(","));
         List<Integer> winningNumbers = new ArrayList<>();
         HashSet<Integer> uniqueNumbers = new HashSet<>();
@@ -56,7 +57,7 @@ public class InputView {
             }
 
             if (!uniqueNumbers.add(number)) {
-                throw new InvalidPurchaseAmountException(DUPLICATE_NUMBER_IS_NOT_ALLOWED.getMessage());
+                throw new InvalidWinningNumbersException(DUPLICATE_NUMBER_IS_NOT_ALLOWED.getMessage());
             }
 
             winningNumbers.add(number);

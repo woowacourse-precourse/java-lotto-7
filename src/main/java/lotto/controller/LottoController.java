@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.exception.InvalidPurchaseAmountException;
+import lotto.exception.InvalidWinningNumbersException;
 import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
 import lotto.model.PurchasePrice;
@@ -71,9 +72,16 @@ public class LottoController {
 
     // 당첨 번호를 입력 받는다
     private void assignWinningNumbers() {
-        List<Integer> winningNumbers = inputView.getWinningNumbers();
-        Lotto lotto = new Lotto(winningNumbers);
-        winningNumbersToCompare = lotto.get();
+        while (true) {
+            try {
+                List<Integer> winningNumbers = inputView.getWinningNumbers();
+                Lotto lotto = new Lotto(winningNumbers);
+                winningNumbersToCompare = lotto.get();
+                break;
+            } catch (InvalidWinningNumbersException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     // 보너스 번호를 입력 받는다
