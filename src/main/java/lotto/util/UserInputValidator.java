@@ -1,7 +1,9 @@
 package lotto.util;
 
 import static lotto.constant.ErrorMessage.LESS_THAN_THOUSAND_PURCHASE_AMOUNT;
+import static lotto.constant.ErrorMessage.NOT_NUMBER_BONUS_NUMBER;
 import static lotto.constant.ErrorMessage.NOT_NUMBER_PURCHASE_AMOUNT;
+import static lotto.constant.ErrorMessage.NOT_NUMBER_RANGE_BONUS_NUMBER;
 import static lotto.constant.ErrorMessage.NOT_NUMBER_RANGE_WINNING_NUMBER;
 import static lotto.constant.ErrorMessage.NOT_PURCHASE_AMOUNT_FORMAT;
 import static lotto.constant.ErrorMessage.TOO_BIG_PURCHASE_AMOUNT;
@@ -11,8 +13,8 @@ public class UserInputValidator {
     private static final int PURCHASE_AMOUNT_LENGTH_LIMIT = 10;
     private static final int PURCHASE_AMOUNT_REMAIN = 0;
     private static final int WINNING_NUMBERS_SIZE = 6;
-    private static final int WINNING_NUMBER_MIN = 1;
-    private static final int WINNING_NUMBER_MAX = 45;
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
 
     public void isValidPurchaseAmount(String purchaseAmount) {
         isPurchaseAmountNumber(purchaseAmount);
@@ -25,6 +27,10 @@ public class UserInputValidator {
         isWinningNumbersSizeSix(winningNumbers);
         isWinningNumberNumber(winningNumbers);
         isWinningNumberInRange(winningNumbers);
+    }
+
+    public void isValidBonusNumber(String bonusNumber) {
+
     }
 
     private void isPurchaseAmountNumber(String purchaseAmount) {
@@ -67,10 +73,22 @@ public class UserInputValidator {
 
     private void isWinningNumberInRange(String[] winningNumbers) {
         for (String winningNumber : winningNumbers) {
-            if (Integer.parseInt(winningNumber) < WINNING_NUMBER_MIN
-                    || Integer.parseInt(winningNumber) > WINNING_NUMBER_MAX) {
+            if (Integer.parseInt(winningNumber) < LOTTO_NUMBER_MIN
+                    || Integer.parseInt(winningNumber) > LOTTO_NUMBER_MAX) {
                 throw new IllegalArgumentException(NOT_NUMBER_RANGE_WINNING_NUMBER.getMessage());
             }
+        }
+    }
+
+    private void isBonusNumberNumber(String bonusNumber) {
+        if (!bonusNumber.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException(NOT_NUMBER_BONUS_NUMBER.getMessage());
+        }
+    }
+
+    private void isBonusNumberRange(String bonusNumber) {
+        if (Integer.parseInt(bonusNumber) < LOTTO_NUMBER_MIN || Integer.parseInt(bonusNumber) > LOTTO_NUMBER_MAX) {
+            throw new IllegalArgumentException(NOT_NUMBER_RANGE_BONUS_NUMBER.getMessage());
         }
     }
 }
