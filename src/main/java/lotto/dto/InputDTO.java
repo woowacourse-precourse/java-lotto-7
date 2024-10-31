@@ -7,7 +7,7 @@ public class InputDTO {
 
     private int bonusNumber;
 
-    private List<Integer> AllNumbers;
+    private List<Integer> allNumbers;
 
     private int money;
 
@@ -28,11 +28,11 @@ public class InputDTO {
     }
 
     public List<Integer> getAllNumbers() {
-        return AllNumbers;
+        return allNumbers;
     }
 
     public void setAllNumbers(List<Integer> allNumbers) {
-        AllNumbers = allNumbers;
+    this.allNumbers = allNumbers;
     }
 
     public int getMoney() {
