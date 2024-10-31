@@ -19,7 +19,7 @@ public class LottoPurchaseAmountTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1001", "100", "10", "5500"})
-    @DisplayName("로도 구입 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @DisplayName("로또 구입 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
     void validatePurchaseAmountUnit(String input) {
         assertThatThrownBy(() -> LottoPurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
