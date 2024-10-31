@@ -15,4 +15,10 @@ public class WinningResult {
         }
         return count;
     }
+
+    public boolean hasMatchNumber(WinnerNumbers winnerNumbers, Lotto lotto) {
+        int bonusNumber = winnerNumbers.getBonusNumber();
+        List<Integer> numbers = lotto.getNumbers();
+        return numbers.contains(bonusNumber);
+    }
 }

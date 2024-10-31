@@ -21,4 +21,19 @@ public class WinningResultTest {
         assertThat(matchCount).isEqualTo(6);
     }
 
+    @DisplayName("보너스 번호가 로또 번호에 포함되어 있는지 확인한다.")
+    @Test
+    void test2() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinnerNumbers winnerNumbers = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        WinnerNumbers winnerNumbers2 = new WinnerNumbers(List.of(1, 2, 3, 4, 5, 7), 6);
+
+        WinningResult result = new WinningResult();
+        boolean hasMatchNumber = result.hasMatchNumber(winnerNumbers, lotto);
+        boolean hasMatchNumber2 = result.hasMatchNumber(winnerNumbers2, lotto);
+
+        assertThat(hasMatchNumber).isFalse();
+        assertThat(hasMatchNumber2).isTrue();
+    }
+
 }
