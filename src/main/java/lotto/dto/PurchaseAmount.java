@@ -2,22 +2,22 @@ package lotto.dto;
 
 public record PurchaseAmount(int amount) {
 
-    public PurchaseAmount(String input) {
-        this(parseAmount(input));
-    }
+    private static final int MAX_LIMIT = 100_000_000;
 
-    public int getValue() {
-        return amount;
+    public static PurchaseAmount from(String input) {
+        validateIsNumeric(input);
+        int parsedAmount = parseAmount(input);
+        validateWithinLimit(parsedAmount);
+        return new PurchaseAmount(parsedAmount);
     }
 
     private static int parseAmount(String input) {
-        validateNumericInput(input);
         int amount = Integer.parseInt(input);
         validatePositiveAmount(amount);
         return amount;
     }
 
-    private static void validateNumericInput(String input) {
+    private static void validateIsNumeric(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 입력된 금액이 숫자가 아닙니다.");
         }
@@ -26,6 +26,12 @@ public record PurchaseAmount(int amount) {
     private static void validatePositiveAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException("[ERROR] 입력된 금액은 양수여야 합니다.");
+        }
+    }
+
+    private static void validateWithinLimit(int amount) {
+        if (amount > MAX_LIMIT) {
+            throw new IllegalArgumentException("[ERROR] 입력된 금액이 너무 큽니다. 최대 금액은 " + MAX_LIMIT + "원입니다.");
         }
     }
 }

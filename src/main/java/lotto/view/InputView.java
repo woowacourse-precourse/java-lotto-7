@@ -8,7 +8,7 @@ public class InputView {
     public PurchaseAmount readPurchaseAmount() {
         String input = Console.readLine();
         validateEmptyInput(input);
-        return new PurchaseAmount(input);
+        return PurchaseAmount.from(input);
     }
 
     private void validateEmptyInput(String input) {
