@@ -17,7 +17,7 @@ public class Convertor {
     }
     public static List<Integer> splitByList(String input) {
         return Arrays.stream(input.split(Separator.COMMA.getSeparator()))
-                .map(Integer::parseInt)
+                .map(Convertor::stringToInt)
                 .toList();
     }
     public static int stringToInt(String input) throws IllegalArgumentException{
