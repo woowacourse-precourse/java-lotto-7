@@ -1,10 +1,9 @@
-package lotto.Exception;
+package lotto.exception;
 
-public abstract class CustomException extends IllegalArgumentException {
+public class CustomException extends IllegalArgumentException {
     private static final String HEADER = "[ERROR] ";
-    private static String MESSAGE;
 
-    public CustomException() {
-        super(HEADER + MESSAGE);
+    public CustomException(String message) {
+        super(HEADER + message);
     }
 }
