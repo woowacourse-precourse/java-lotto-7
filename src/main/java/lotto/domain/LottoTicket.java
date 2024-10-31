@@ -13,7 +13,7 @@ public class LottoTicket {
     public static LottoTicket createLottoTicket(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            tickets.add(Lotto.generate());
+            tickets.add(Lotto.createRandomLotto());
         }
         return new LottoTicket(tickets);
     }

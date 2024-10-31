@@ -4,49 +4,78 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.common.ErrorMessages;
 import lotto.common.LottoConstants;
-
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public static Lotto generate() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static Lotto createRandomLotto() {
+        List<Integer> lottoNumbers = generateUniqueRandomNumbers();
         return new Lotto(lottoNumbers);
+    }
+    
+    private static List<Integer> generateUniqueRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(
+                LottoConstants.LOTTO_MIN_NUMBER,
+                LottoConstants.LOTTO_MAX_NUMBER,
+                LottoConstants.LOTTO_SIZE
+        );
     }
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
+        validateNumberCount(numbers);
+        validateNoDuplicateNumbers(numbers);
+        validateNumberRange(numbers);
+        this.numbers = sortNumbers(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LottoConstants.LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-        if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 있을 수 없습니다.");
-        }
-        if (!numbers.stream()
-                .allMatch(num -> num >= LottoConstants.LOTTO_MIN_NUMBER && num <= LottoConstants.LOTTO_MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_SIZE_MESSAGE);
         }
     }
 
-    public int matchCount(List<Integer> winningNumbers) {
+    private void validateNoDuplicateNumbers(List<Integer> numbers) {
+        boolean hasDuplicates = new HashSet<>(numbers).size() != numbers.size();
+        if (hasDuplicates) {
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_DUPLICATE_MESSAGE);
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        boolean allInRange = numbers.stream().allMatch(this::isWithinAllowedRange);
+        if (!allInRange) {
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_RANGE_MESSAGE);
+        }
+    }
+
+    private boolean isWithinAllowedRange(int number) {
+        return number >= LottoConstants.LOTTO_MIN_NUMBER && number <= LottoConstants.LOTTO_MAX_NUMBER;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    public int getMatchCount(List<Integer> winningNumbers) {
         return (int) numbers.stream().filter(winningNumbers::contains).count();
     }
 
-    public boolean containsBonus(BonusNumber bonusNumber) {
+    public boolean includesBonusNumber(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getNumber());
     }
 
     @Override
     public String toString() {
+        return formatNumbersForDisplay();
+    }
+
+    private String formatNumbersForDisplay() {
         return numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 }
+
+

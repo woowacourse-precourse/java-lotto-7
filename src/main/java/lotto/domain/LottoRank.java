@@ -8,6 +8,7 @@ public enum LottoRank {
     FIFTH(3, false, 5_000),
     MISS(0, false, 0);
 
+    private static final int SECOND_PRIZE_MATCH_COUNT = 5;
     private final int matchCount;
     private final boolean matchBonus;
     private final int prize;
@@ -27,14 +28,23 @@ public enum LottoRank {
     }
 
     public static LottoRank findByMatchCountAndBonus(int count, boolean matchBonus) {
-        if (count == 5 && matchBonus) {
+        if (isSecondPrize(count, matchBonus)) {
             return SECOND;
         }
+        return findMatchingRank(count);
+    }
+
+    private static boolean isSecondPrize(int count, boolean matchBonus) {
+        return count == SECOND_PRIZE_MATCH_COUNT && matchBonus;
+    }
+
+    private static LottoRank findMatchingRank(int count) {
         for (LottoRank rank : values()) {
-            if (rank.matchCount == count && (!rank.matchBonus || rank.matchBonus == matchBonus)) {
+            if (rank.matchCount == count && !rank.matchBonus) {
                 return rank;
             }
         }
         return MISS;
     }
 }
+

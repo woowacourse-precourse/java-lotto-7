@@ -18,15 +18,19 @@ public class LottoGameController {
     }
 
     public void start() {
-        PurchaseAmount purchaseAmount = createPurchaseAmount();
-        LottoTicket lottoTicket = LottoTicket.createLottoTicket(purchaseAmount.getTicketCount());
-        gameOutput.printPurchasedTickets(lottoTicket);
+        try {
+            PurchaseAmount purchaseAmount = createPurchaseAmount();
+            LottoTicket lottoTicket = LottoTicket.createLottoTicket(purchaseAmount.getTicketCount());
+            gameOutput.printPurchasedTickets(lottoTicket);
 
-        WinningNumbers winningNumbers = createWinningNumbers();
-        BonusNumber bonusNumber = createBonusNumber(winningNumbers);
+            WinningNumbers winningNumbers = createWinningNumbers();
+            BonusNumber bonusNumber = createBonusNumber(winningNumbers);
 
-        Result result = Result.calculateResult(lottoTicket, winningNumbers, bonusNumber);
-        displayYield(purchaseAmount, result);
+            Result result = Result.calculateResult(lottoTicket, winningNumbers, bonusNumber);
+            displayYield(purchaseAmount, result);
+        } finally {
+            gameOutput.close();
+        }
     }
 
     private PurchaseAmount createPurchaseAmount() {
@@ -60,7 +64,7 @@ public class LottoGameController {
     }
 
     private void displayYield(PurchaseAmount purchaseAmount, Result result) {
-        double yield = purchaseAmount.calculateYield(result.getTotalPrize());
+        String yield = purchaseAmount.calculateYield(result.getTotalPrize());
         gameOutput.printResults(result, yield);
     }
 }

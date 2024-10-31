@@ -8,5 +8,6 @@ public class ConsoleMessages {
             System.lineSeparator() + "%d개를 구매했습니다." + System.lineSeparator();
     public static final String WINNING_STATISTICS_HEADER =
             System.lineSeparator() + "당첨 통계" + System.lineSeparator() + "---";
-    public static final String YIELD_MESSAGE = "총 수익률은 %.1f%%입니다." + System.lineSeparator();
+    public static final String YIELD_MESSAGE_PREFIX = "총 수익률은 ";
+    public static final String YIELD_MESSAGE_SUFFIX = "%입니다.";
 }

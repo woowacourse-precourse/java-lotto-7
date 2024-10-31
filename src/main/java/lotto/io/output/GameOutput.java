@@ -6,7 +6,9 @@ import lotto.domain.Result;
 public interface GameOutput {
     void printPurchasedTickets(LottoTicket lottoTicket);
 
-    void printResults(Result result, double yield);
+    void printResults(Result result, String yield);
 
     void printErrorMessage(String message);
+
+    void close();
 }

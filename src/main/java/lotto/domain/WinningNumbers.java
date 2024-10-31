@@ -11,55 +11,70 @@ public class WinningNumbers {
     private final List<Integer> winningNumbers;
 
     public WinningNumbers(String input) {
-        this.winningNumbers = parseAndValidate(input);
+        this.winningNumbers = parseWinningNumbers(input);
     }
 
     public LottoRank calculateRank(Lotto lotto, BonusNumber bonusNumber) {
-        int matchCount = lotto.matchCount(winningNumbers);
-        boolean matchBonus = lotto.containsBonus(bonusNumber);
+        int matchCount = lotto.getMatchCount(winningNumbers);
+        boolean matchBonus = lotto.includesBonusNumber(bonusNumber);
         return LottoRank.findByMatchCountAndBonus(matchCount, matchBonus);
     }
 
-    private List<Integer> parseAndValidate(String input) {
+    private List<Integer> parseWinningNumbers(String input) {
+        validateInputIsNotNull(input);
+        List<String> splitInput = splitInput(input);
+        validateNumberCount(splitInput);
+        List<Integer> numbers = parseToIntegerList(splitInput);
+        validateNoDuplicates(numbers);
+        validateNumberRange(numbers);
+        return numbers;
+    }
+
+    private void validateInputIsNotNull(String input) {
         if (input == null) {
             throw new IllegalArgumentException(ErrorMessages.NULL_WINNING_NUMBER);
         }
-        try {
-            // split 메서드에 limit 값을 설정하여 모든 요소를 포함
-            List<String> splitInput = Arrays.asList(input.split(",", -1));
+    }
 
-            // 각 항목이 빈 문자열인지 검사하고 숫자 개수가 6개인지 확인
-            if (splitInput.size() != LottoConstants.LOTTO_SIZE || splitInput.stream().anyMatch(String::isEmpty)) {
-                throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
-            }
+    private List<String> splitInput(String input) {
+        return Arrays.asList(input.split(",", -1));
+    }
 
-            // 숫자 변환 및 유효성 검사
-            List<Integer> numbers = splitInput.stream()
-                    .map(s -> {
-                        try {
-                            return Integer.parseInt(s.trim());
-                        } catch (NumberFormatException e) {
-                            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_INPUT_ERROR);
-                        }
-                    })
-                    .collect(Collectors.toList());
-
-            // 중복과 범위 검증
-            if (new HashSet<>(numbers).size() != LottoConstants.LOTTO_SIZE) {
-                throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
-            }
-            if (numbers.stream()
-                    .anyMatch(num -> num < LottoConstants.LOTTO_MIN_NUMBER || num > LottoConstants.LOTTO_MAX_NUMBER)) {
-                throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_RANGE);
-            }
-            return numbers;
-        } catch (IllegalArgumentException e) {
-            throw e;
+    private void validateNumberCount(List<String> numbers) {
+        if (numbers.size() != LottoConstants.LOTTO_SIZE || numbers.stream().anyMatch(String::isEmpty)) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
         }
     }
 
+    private List<Integer> parseToIntegerList(List<String> splitInput) {
+        return splitInput.stream()
+                .map(this::parseInteger)
+                .collect(Collectors.toList());
+    }
+
+    private Integer parseInteger(String value) {
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_INPUT_ERROR);
+        }
+    }
+
+    private void validateNoDuplicates(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != LottoConstants.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(num -> num < LottoConstants.LOTTO_MIN_NUMBER || num > LottoConstants.LOTTO_MAX_NUMBER)) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_NUMBER_RANGE);
+        }
+    }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 }
+
