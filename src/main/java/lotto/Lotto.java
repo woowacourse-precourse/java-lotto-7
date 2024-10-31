@@ -13,7 +13,7 @@ public class Lotto {
             .map(LottoNumber::valueOf).toList();
     }
 
-    public String getNumbers() {
+    public String represent() {
         String nums = String.join(", ", numbers.stream()
             .map(LottoNumber::toString).toList());
         return "[" + nums + "]";
