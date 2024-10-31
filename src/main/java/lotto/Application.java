@@ -6,5 +6,6 @@ public class Application {
     public static void main(String[] args) {
         int purchaseAmount = InputView.inputPurchaseAmount();
         Lotto lotto = new Lotto(InputView.inputLottoPrizeNumbers());
+        int bonusNumber = InputView.inputLottoBonusNumber();
     }
 }

@@ -19,4 +19,9 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public static int inputLottoBonusNumber() {
+        System.out.println(InputMessage.BONUS_NUMBER_INPUT.getMessage());
+        return Integer.parseInt(Console.readLine());
+    }
 }
