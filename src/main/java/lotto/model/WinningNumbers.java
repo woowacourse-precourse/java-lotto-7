@@ -1,18 +1,17 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
+
 public class WinningNumbers {
-    private final List<Integer> winningNumbers;
+    private final Lotto winningNumbers;
 
     public WinningNumbers(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
+        this.winningNumbers = new Lotto(winningNumbers);
     }
 
     public List<Integer> getWinningNumbers() {
-        return Collections.unmodifiableList(winningNumbers);
+        return winningNumbers.getLottoNumbers();
     }
 
 }
