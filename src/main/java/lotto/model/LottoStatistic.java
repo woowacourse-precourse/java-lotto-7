@@ -12,8 +12,8 @@ public class LottoStatistic {
     private final Integer bonusNumber;
     private final Map<LottoRank, Integer> countResult;
 
-    public LottoStatistic(List<Integer> numbers, Integer bonusNumber) {
-        this.winningNumbers = numbers;
+    public LottoStatistic(List<Integer> winningNumbers, Integer bonusNumber) {
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.countResult = new EnumMap<>(LottoRank.class);
     }
@@ -35,7 +35,7 @@ public class LottoStatistic {
                 .reduce(0L, Long::sum);
     }
 
-    public Double calculateProfitPercentage(Long totalProfit, Integer totalCost) {
-        return totalProfit * 100.0 / totalCost;
+    public Double calculateProfitPercentage(Integer totalCost) {
+        return calculateTotalRewards() * 100.0 / totalCost;
     }
 }

@@ -13,8 +13,7 @@ public class LottoStatisticController {
         LottoStatistic summary = new LottoStatistic(winningLotto.getWinningNumber(), winningLotto.getBonusNumber());
 
         Map<LottoRank, Integer> countResult = summary.countByLottoRank(purchased.getLottoTickets());
-        Long totalProfit = summary.calculateTotalRewards();
-        Double netProfit = summary.calculateProfitPercentage(totalProfit, purchased.getTotalCost());
+        Double netProfit = summary.calculateProfitPercentage(purchased.getTotalCost());
 
         return new LottoResultDTO(countResult, netProfit);
     }
