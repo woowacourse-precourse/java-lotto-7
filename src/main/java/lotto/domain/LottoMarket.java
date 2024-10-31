@@ -1,15 +1,24 @@
 package lotto.domain;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.Lotto;
 
 public class LottoMarket {
 
+    private final LottoMaker lottoMaker = new LottoMaker();
+
     private static final int LOTTO_PRICE = 1000;
 
-    public Lotto buyLotto(int money) {
+    public List<Lotto> buyLotto(int money) {
 
         validateMoney(money);
         int lottoCount = calculateLottoCount(money);
+
+        return Stream.generate(lottoMaker::makeLotto)
+                .limit(lottoCount)
+                .collect(Collectors.toList());
     }
 
     private void validateMoney(int money) {
