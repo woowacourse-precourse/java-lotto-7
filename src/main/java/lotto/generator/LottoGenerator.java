@@ -22,7 +22,7 @@ public class LottoGenerator {
     }
 
     public LottoBundle generateLottoBundle(int lottoPurchasePrice){
-        return LottoBundle.of(generateLottos(lottoPurchasePrice));
+        return LottoBundle.from(generateLottos(lottoPurchasePrice), lottoPrice);
     }
 
     private List<Lotto> generateLottos(int lottoPurchasePrice) {

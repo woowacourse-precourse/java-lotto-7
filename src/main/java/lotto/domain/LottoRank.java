@@ -73,4 +73,8 @@ public enum LottoRank {
         return message;
     }
 
+    public int getPrizeMoney(){
+        return prizeMoney;
+    }
+
 }

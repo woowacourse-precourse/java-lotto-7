@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
-    final Map<LottoRank, Integer> rankCount;
+    private final Map<LottoRank, Integer> rankCount;
+    private final LottoProfit lottoProfit;
 
-    public LottoResult(List<LottoRank> lottoRanks) {
+    public LottoResult(List<LottoRank> lottoRanks, int lottoPrice, double totalPrizeMoney) {
         rankCount = new HashMap<>();
+        lottoProfit = new LottoProfit(totalPrizeMoney, lottoRanks.size() * lottoPrice);
         initRankCount();
         makeRankCount(lottoRanks);
     }
@@ -26,6 +28,10 @@ public class LottoResult {
 
     public Map<LottoRank, Integer> getRankCount() {
         return rankCount;
+    }
+
+    public LottoProfit getLottoProfit(){
+        return lottoProfit;
     }
 
 }
