@@ -15,6 +15,7 @@ public class LottoCountTest {
         int lottoPrice = 1000;
         int purchaseAmount = LottoPurchaseAmount.from(input).getPurchaseAmount();
         int lottoCount = LottoCount.from(purchaseAmount).getLottoCount();
+
         assertThat(lottoCount).isEqualTo(purchaseAmount / lottoPrice);
     }
 
