@@ -11,6 +11,10 @@ public class PurchaseAmount {
         this.amount = amount;
     }
 
+    public int getQuantity() {
+        return amount / LOTTO_PRICE;
+    }
+
     private void checkEnough(int amount) {
         if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 금액이 부족합니다.");

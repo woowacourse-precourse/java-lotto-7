@@ -8,11 +8,15 @@
     - 로또 번호의 숫자 범위는 1~45
     - 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자 뽑기
     - 로또 1장의 가격은 1,000원
+    - 당첨 번호의 구분자는 쉼표(,)
 
 ## 패키지 구조
 
 - domain
     - Lotto
+    - Lottos
+    - LottoGenerator
+    - LottoMachine
     - PurchaseAmount
 - vew
     - InputHandler
@@ -29,7 +33,7 @@
 
 ### 입력
 
-- [ ] 구매 금액 입력
+- [x] 구매 금액 입력 - InputView#readPurchaseAmount()
     - [x] 입력 받은 값이 숫자가 아니면 예외처리 - InputHandler#validateNumber()
     - [x] 구매 금액이 부족하면 예외처리 - PurchaseAmount#checkEnough()
     - [x] 구매 금액이 로또 가격과 나누어 떨어지지 않으면 예외처리 - PurchaseAmount#checkDivisible()
@@ -44,6 +48,6 @@
 
 ### 출력
 
-- [ ] 구매한 로또 번호 출력
+- [x] 구매한 로또 번호 출력 - OutputView#printLottos()
 - [ ] 당첨 통계 출력
 - [ ] 수익률 출력
