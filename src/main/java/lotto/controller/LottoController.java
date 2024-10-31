@@ -15,6 +15,8 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
     private final LottoMaker lottoMaker = new LottoMaker();
 
+    private int purchaseMoney;
+
     public void run() {
         List<Lotto> lottos = purchaseLotto();
         outputView.printPurchasedLottos(lottos);
@@ -24,11 +26,13 @@ public class LottoController {
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         List<Score> scores = lottos.stream().map(lotto -> Score.calculateScore(lotto, winningLotto)).toList();
+
+        double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
     }
 
     public List<Lotto> purchaseLotto() {
         try {
-            int purchaseMoney = inputView.inputPurchaseMoney();
+            purchaseMoney = inputView.inputPurchaseMoney();
             return lottoMaker.makeLottos(purchaseMoney);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
