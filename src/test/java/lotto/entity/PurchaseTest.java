@@ -58,7 +58,7 @@ public class PurchaseTest {
         int money = 500;
 
         // when
-        IllegalArgumentException exception = Assertions.assertThrowsExactly(
+        IllegalArgumentException exception = Assertions.assertThrows(
                 IllegalArgumentException.class, () -> new Purchase(money));
 
         // then
@@ -71,7 +71,7 @@ public class PurchaseTest {
         int money = 1001;
 
         // when
-        IllegalArgumentException exception = Assertions.assertThrowsExactly(
+        IllegalArgumentException exception = Assertions.assertThrows(
                 IllegalArgumentException.class, () -> new Purchase(money));
 
         // then
@@ -84,7 +84,7 @@ public class PurchaseTest {
         int money = 1999;
 
         // when
-        IllegalArgumentException exception = Assertions.assertThrowsExactly(
+        IllegalArgumentException exception = Assertions.assertThrows(
                 IllegalArgumentException.class, () -> new Purchase(money));
 
         // then
@@ -97,7 +97,7 @@ public class PurchaseTest {
         int money = 11001;
 
         // when
-        IllegalArgumentException exception = Assertions.assertThrowsExactly(
+        IllegalArgumentException exception = Assertions.assertThrows(
                 IllegalArgumentException.class, () -> new Purchase(money));
 
         // then
@@ -110,7 +110,7 @@ public class PurchaseTest {
         int money = 101_000;
 
         // when
-        IllegalArgumentException exception = Assertions.assertThrowsExactly(
+        IllegalArgumentException exception = Assertions.assertThrows(
                 IllegalArgumentException.class, () -> new Purchase(money));
 
         // then
