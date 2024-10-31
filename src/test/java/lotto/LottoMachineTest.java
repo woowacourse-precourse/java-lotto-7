@@ -71,22 +71,25 @@ class LottoMachineTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 45})
-    public void 로또번호_정상테스트(int number) throws Exception {
+    @ValueSource(strings = {"1", "45"})
+    public void 로또번호_정상테스트(String input) throws Exception {
         //Given
+        int expected = Integer.parseInt(input);
 
-        //When, Then
-        Assertions.assertThatCode(() -> LOTTO_MACHINE.validateLottoNumber(number))
-                .doesNotThrowAnyException();
+        //When
+        int actual = LOTTO_MACHINE.parseLottoNumber(input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 46, 2147483647})
-    public void 로또번호_예외테스트(int number) throws Exception {
+    @ValueSource(strings = {"0", "46", "2147483647"})
+    public void 로또번호_예외테스트(String input) throws Exception {
         ///Given
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.validateLottoNumber(number))
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseLottoNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
     }

@@ -27,10 +27,20 @@ public class LottoMachine {
         return amount;
     }
 
-    public void validateLottoNumber(int number) {
+    public int parseLottoNumber(String input) {
+        int number;
+
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MSG);
+        }
+
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MSG);
         }
+
+        return number;
     }
 
     public void issue(int amount) {

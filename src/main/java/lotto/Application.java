@@ -21,6 +21,11 @@ public class Application {
         return readNonEmptyLine();
     }
 
+    private static String readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return readNonEmptyLine();
+    }
+
     public static void main(String[] args) {
         LottoMachine lottoMachine = new LottoMachine();
         int amount = lottoMachine.parseAmount(readAmount());
