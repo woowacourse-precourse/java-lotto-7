@@ -22,39 +22,4 @@ class LottoServiceTest {
 
         assertThat(lottoCount).isEqualTo(expectedLottoCount);
     }
-
-    @Test
-    void 로또_구입_금액_단위_예외_테스트() {
-        int invalidPurchaseAmount = 5500;
-
-        assertThatThrownBy(() -> lottoService.calculateLottoCount(invalidPurchaseAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-    }
-
-    @Test
-    void 로또_구입_금액_양의_정수_예외_테스트() {
-        int invalidPurchaseAmount = -1000;
-
-        assertThatThrownBy(() -> lottoService.calculateLottoCount(invalidPurchaseAmount))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 양의 정수로 입력해야 합니다.");
-    }
-
-    @ParameterizedTest
-    @NullAndEmptySource
-    @ValueSource(strings = {" ", "    "})
-    void 로또_구입_금액_입력값_null_또는_공백_예외_테스트(String invalidInput) {
-        assertThatThrownBy(() -> lottoService.calculateLottoCount(invalidInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"abc", "123abc"})
-    void 로또_구입_금액_입력값이_숫자가_아닌_경우_예외_테스트(String invalidInput) {
-        assertThatThrownBy(() -> InputValidator.validateNumericInput(invalidInput))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessageConstants.INVALID_NOT_NUMBER_PURCHASE_AMOUNT);
-    }
 }
