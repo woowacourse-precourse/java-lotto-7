@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,5 +30,79 @@ class LottoMachineImplTest {
         //when
         lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
         //then
+    }
+
+    @Test
+    void 번호_3개를_맞추면_5등이_당첨된다() {
+        //given
+        List<Integer> lottoTicket = List.of(1, 2, 3, 40, 41, 42);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
+        int bonusNumber = 7;
+        //when
+        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
+        Integer winningNumber = winningResult.get(LottoRank.RANK_5);
+        //then
+        Assertions.assertThat(winningNumber).isEqualTo(1);
+    }
+
+    @Test
+    void 번호_4개를_맞추면_4등이_당첨된다() {
+        //given
+        List<Integer> lottoTicket = List.of(1, 2, 3, 4, 41, 42);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
+        int bonusNumber = 7;
+        //when
+        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
+                bonusNumber);
+        Integer winningNumber = winningResult.get(LottoRank.RANK_4);
+        //then
+        Assertions.assertThat(winningNumber).isEqualTo(1);
+    }
+
+    @Test
+    void 번호_5개를_맞추면_3등이_당첨된다() {
+        //given
+        List<Integer> lottoTicket = List.of(1, 2, 3, 4, 5, 42);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
+        int bonusNumber = 7;
+        //when
+        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
+                bonusNumber);
+        Integer winningNumber = winningResult.get(LottoRank.RANK_3);
+        //then
+        Assertions.assertThat(winningNumber).isEqualTo(1);
+    }
+
+    @Test
+    void 번호_5개_및_보너스_번호를_맞추면_2등이_당첨된다() {
+        //given
+        List<Integer> lottoTicket = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
+        int bonusNumber = 7;
+        //when
+        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
+                bonusNumber);
+        Integer winningNumber = winningResult.get(LottoRank.RANK_2);
+        //then
+        Assertions.assertThat(winningNumber).isEqualTo(1);
+    }
+
+    @Test
+    void 번호_6개를_맞추면_1등이_당첨된다() {
+        //given
+        List<Integer> lottoTicket = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
+        int bonusNumber = 7;
+        //when
+        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
+                bonusNumber);
+        Integer winningNumber = winningResult.get(LottoRank.RANK_1);
+        //then
+        Assertions.assertThat(winningNumber).isEqualTo(1);
     }
 }
