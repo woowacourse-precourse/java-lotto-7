@@ -163,10 +163,10 @@ public class Application {
     public double revenue_rate(int num){
         double result = 0;
         for(int i = 3; i <= numSize; i++) {
-            result += (double)amoutAry[i] * (double)amount[i-3];
+            result += amoutAry[i] * amount[i-3];
         }
-        result += (double)bonusCount * (double)amount[4];
-        return (result / ((double)num * one_ticket)) * 100;
+        result += bonusCount * amount[4];
+        return (result / (num * one_ticket)) * 100;
     }
 
     public int validate_division(int amount){
