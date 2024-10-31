@@ -39,8 +39,23 @@ public class LottoGameDisplay {
         System.out.printf("%d개를 구매했습니다.\n", lottos.size());
 
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            printLotto(lotto);
         }
+    }
+
+    public void printLotto(Lotto lotto) {
+        StringBuilder sb = new StringBuilder();
+        List<Integer> numbers = lotto.getNumbers();
+
+        sb.append("[");
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            sb.append(numbers.get(i).toString());
+            sb.append(", ");
+        }
+        sb.append(numbers.getLast());
+        sb.append("]");
+
+        System.out.println(sb);
     }
 
     public void printWinStatistics(Map<LottoRank, Integer> rankMap, double rateOfResult) {
