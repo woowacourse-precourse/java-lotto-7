@@ -28,5 +28,9 @@ public class Lotto {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
     }
+
+    public List<Integer> get() {
+        return numbers;
+    }
 }
 

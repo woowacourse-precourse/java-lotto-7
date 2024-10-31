@@ -1,10 +1,14 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.LottoNumber;
 import lotto.model.PurchasePrice;
 import lotto.model.RandomNumber;
 import lotto.util.Convertor;
+import lotto.util.Sorter;
+import lotto.util.Splitter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -39,6 +43,14 @@ public class LottoController {
         outputView.printLottoNumber(lottoNumber.get());
     }
 
+    private Lotto initUserNumbers() {
+        return new Lotto(Sorter.sort(Convertor.arrayToList(Splitter.split(inputView.inputWinningNumbers()))));
+    }
+
+    private BonusNumber initBonusNumber(Lotto lotto) {
+        return new BonusNumber(lotto.get(), Convertor.stringToInt(inputView.inputBonusNumber()));
+    }
+
     public void run() {
         PurchasePrice purchasePrice = initPurchasePrice();
         LottoAmount lottoAmount = calculateLottoAmount(purchasePrice);
@@ -47,5 +59,8 @@ public class LottoController {
         RandomNumber randomNumber = new RandomNumber();
         LottoNumber lottoNumber = createLottoNumber(lottoAmount, randomNumber);
         printLottoNumber(lottoNumber);
+
+        Lotto lotto = initUserNumbers();
+        BonusNumber bonusNumber = initBonusNumber(lotto);
     }
 }
