@@ -20,6 +20,10 @@ public class Tickets {
                 .toList();
     }
 
+    public int getSize() {
+        return lottos.size();
+    }
+
     private List<Lotto> generateLottoTickets(TicketCount count) {
         Set<Lotto> uniqueLottos = new HashSet<>();
 
