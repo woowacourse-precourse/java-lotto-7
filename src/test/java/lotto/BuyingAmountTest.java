@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.Validator.BuyingAmountValidator;
+import lotto.validator.BuyingAmountValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
