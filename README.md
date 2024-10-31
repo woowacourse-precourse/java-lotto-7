@@ -12,10 +12,16 @@
 ## 패키지 구조
 
 - domain
+    - Lotto
 - vew
+    - InputView
+    - OutputView
 
 ## 기능 목록
 
+- [x] 로또 생성 - Lotto#Lotto()
+    - [x] 번호의 개수가 6개가 아니면 예외처리 - Lotto#validate()
+    - [x] 중복된 번호가 있으면 예외처리 - Lotto#checkDuplicateNumbers()
 - [ ] 당첨 내역 통계
 - [ ] 수악률을 계산
 
