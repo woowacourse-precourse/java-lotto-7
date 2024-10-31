@@ -25,11 +25,4 @@ public class WinningLotto {
         return LottoRank.of(matchCount, hasBonusMatch);
     }
 
-    public Lotto getLotto() {
-        return lotto;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }
