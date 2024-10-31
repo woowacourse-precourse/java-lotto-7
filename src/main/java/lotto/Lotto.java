@@ -20,6 +20,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        boolean flage = numbers.stream()
+                .allMatch(number -> number >= 1 && number <= 45);
+        if(!flage){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하여야 합니다.");
+        }
     }
 
     public List<Integer> getNumbers() {
