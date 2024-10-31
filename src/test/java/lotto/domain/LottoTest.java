@@ -5,6 +5,7 @@ import lotto.domain.FakeRandomNumber.FakeLottoNumberGenerator;
 import lotto.domain.exception.CustomErrorCode;
 
 import java.util.List;
+import lotto.domain.random.CreateRandomNumbers;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

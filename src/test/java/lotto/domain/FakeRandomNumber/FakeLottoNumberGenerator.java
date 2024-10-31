@@ -1,7 +1,7 @@
 package lotto.domain.FakeRandomNumber;
 
 import java.util.List;
-import lotto.domain.CreateRandomNumbers;
+import lotto.domain.random.CreateRandomNumbers;
 
 public class FakeLottoNumberGenerator implements CreateRandomNumbers {
 

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.FakeRandomNumber.FakeLottoNumberGenerator;
+import lotto.domain.random.CreateRandomNumbers;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("NonAsciiCharacters")

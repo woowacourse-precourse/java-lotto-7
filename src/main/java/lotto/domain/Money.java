@@ -5,7 +5,7 @@ import lotto.domain.exception.CustomException;
 
 public class Money {
 
-    private static final String CHECK_CONTAIN_STRING = "^[1-9]\\d*$";
+    private static final String CHECK_NOT_NUMBER = "^[1-9]\\d*$";
     private static final int MONEY_DIVIDER = 1000;
     private static final int MONEY_REMAINDER = 0;
 
@@ -34,7 +34,7 @@ public class Money {
     }
 
     private static void validateNotNumber(String money) {
-        if (!money.matches(CHECK_CONTAIN_STRING)) {
+        if (!money.matches(CHECK_NOT_NUMBER)) {
             throw new CustomException(CustomErrorCode.EXCEPTION_NOT_NUMBER_MONEY);
         }
     }
