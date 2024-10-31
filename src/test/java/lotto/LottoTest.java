@@ -1,24 +1,50 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_COUNT_ERROR;
+import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.model.Lotto;
+import lotto.model.LottoNumber;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+        // given
+        List<LottoNumber> numbers = List.of(
+                LottoNumber.from(1),
+                LottoNumber.from(2),
+                LottoNumber.from(3),
+                LottoNumber.from(4),
+                LottoNumber.from(5),
+                LottoNumber.from(6),
+                LottoNumber.from(7)
+        );
+
+        // when & then
+        assertThatThrownBy(() -> Lotto.from(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_COUNT_ERROR.message());
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+        // given
+        List<LottoNumber> numbers = List.of(
+                LottoNumber.from(1),
+                LottoNumber.from(2),
+                LottoNumber.from(3),
+                LottoNumber.from(4),
+                LottoNumber.from(5),
+                LottoNumber.from(5)
+        );
+
+        // when & then
+        assertThatThrownBy(() -> Lotto.from(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_DUPLICATION_ERROR.message());
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
