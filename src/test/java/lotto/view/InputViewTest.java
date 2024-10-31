@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 
-class InputNumberViewTest {
+class InputViewTest {
 
     @Test
     void testInputNumber() {
@@ -17,7 +17,7 @@ class InputNumberViewTest {
             System.setIn(new ByteArrayInputStream(input.getBytes()));
             new Scanner(System.in);
             //when
-            String result = InputNumberView.getInput(input);
+            String result = InputView.getInput(input);
             //then
             assertThat(result).isEqualTo(input);
         });
