@@ -29,4 +29,10 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
+
+    public List<LottoReward> compareLottos(WinningNumber winningNumber) {
+        return lottos.stream()
+                .map(winningNumber::findReward)
+                .toList();
+    }
 }

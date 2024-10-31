@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningNumber;
@@ -13,6 +14,8 @@ public class Application {
         OutputView.printPurchasedLottos(lottos);
 
         final WinningNumber winningNumber = createWinningNumber();
+        final LottoResult lottoResult = new LottoResult(lottos.compareLottos(winningNumber));
+        OutputView.printLottoStatistics(lottoResult);
     }
 
     private static PurchasePrice createPurchasePrice() {

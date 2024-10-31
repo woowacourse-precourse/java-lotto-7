@@ -31,4 +31,12 @@ public enum LottoReward {
     private static boolean isSecond(int matchCount) {
         return SECOND.matchCount == matchCount;
     }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
 }
