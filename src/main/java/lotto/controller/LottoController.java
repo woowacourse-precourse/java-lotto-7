@@ -1,23 +1,35 @@
 package lotto.controller;
 
 import lotto.dto.PurchaseMoneyRequestDTO;
+import lotto.model.LottoStore;
+import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.dto.PurchaseResultDTO;
 import lotto.view.Retryable;
 
 public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoStore store;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, LottoStore store) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.store = store;
     }
 
     public void run() {
         Money money = retryIfHasError(this::getMoney);
+        Lottos lottos = buyLottos(money);
+    }
+
+    private Lottos buyLottos(Money money) {
+        Lottos lottos = store.sellLotto(money);
+        outputView.showPurchasedLottos(new PurchaseResultDTO(lottos));
+        return lottos;
     }
 
     private Money getMoney() {

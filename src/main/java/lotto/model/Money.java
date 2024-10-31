@@ -32,4 +32,10 @@ public class Money {
             throw new IllegalArgumentException(INVALID_STANDARD_UNIT_MESSAGE);
         }
     }
+
+    public int exchangedForLottos() {
+        int buyCount = money / PRICE.getConstant();
+        this.money = 0;
+        return buyCount;
+    }
 }
