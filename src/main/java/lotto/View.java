@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import static lotto.Application.parseInt;
 
 public class View {
@@ -16,6 +18,8 @@ public class View {
 
     private Integer purchasePrice;
     private Integer lottoCount;
+    private Lotto answer;
+    private String rawWinningInput;
 
     public Integer getPurchaseAmount(){
         Integer purchasePrice = 0;
@@ -45,6 +49,20 @@ public class View {
         joinString = String.join(", ", lotto.getNumbers().toString());
         joinString = joinString + "]";
         System.out.println(joinString);
+    }
+
+    public Lotto getWinningInput(){
+        System.out.println(LOTTO_WINNING_INPUT);
+        String rawWinningInput = Console.readLine();
+        try {
+            Lotto answer = new Lotto(Arrays.asList(rawWinningInput.split(COMMA)).stream()
+                    .map(Application::parseInt)
+                    .collect(Collectors.toList()));
+        }
+        catch (IllegalArgumentException e){
+            return getWinningInput();
+        }
+        return answer;
     }
 
     public Integer getLottoCount(){
