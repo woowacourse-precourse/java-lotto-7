@@ -6,10 +6,8 @@ public class LottoValidator {
         if (inputMoney == null || inputMoney.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        for (int i = 0; i < inputMoney.length(); i++) {
-            if (!Character.isDigit(inputMoney.charAt(i))) {
-                throw new IllegalArgumentException();
-            }
+        if (!inputMoney.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException();
         }
         int money = Integer.parseInt(inputMoney);
         if (money % 1000 != 0) {
