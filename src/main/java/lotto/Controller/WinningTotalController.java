@@ -7,9 +7,13 @@ import lotto.View.OutputWinningTotalView;
 import java.util.*;
 
 public class WinningTotalController {
-    public void winningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
-        OutputWinningTotalView outputWinningTotalView = new OutputWinningTotalView(calculateWinningTotal(mylottos,winningLotto,bonusNumber));
+    public Map<String, Integer> winningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
+        Map<String, Integer> resultMap = calculateWinningTotal(mylottos, winningLotto, bonusNumber);
+
+        OutputWinningTotalView outputWinningTotalView = new OutputWinningTotalView(resultMap);
         outputWinningTotalView.printWinningTotal();
+
+        return resultMap;
     }
 
     public Map<String, Integer> calculateWinningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
