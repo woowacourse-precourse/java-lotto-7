@@ -4,9 +4,11 @@ import static lotto.view.OutputView.printLottoExceptionMessage;
 import static lotto.view.OutputView.printLottoGroup;
 import static lotto.view.OutputView.printPurchaseMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.exception.LottoException;
 import lotto.service.BuyerService;
 import lotto.service.LottoService;
@@ -24,7 +26,7 @@ public class LottoGameController {
     public void run() {
         final int lottoQuantity = getLottoQuantity();
         final Lottos lottos = getLottos(lottoQuantity);
-        final List<Integer> winningNumbers;
+        final List<Integer> winningNumbers = getWinningNumbers();
     }
 
     private int getLottoQuantity() {
@@ -37,6 +39,7 @@ public class LottoGameController {
             return lottoQuantity;
         } catch (LottoException e) {
             printLottoExceptionMessage(e);
+
             return getLottoQuantity();
         }
     }
@@ -50,7 +53,17 @@ public class LottoGameController {
         return lottos;
     }
 
-    private static void getWinningNumbers() {
+    private List<Integer> getWinningNumbers() {
         String input = InputView.inputWinningNumbers();
+
+        try {
+            WinningNumbers winningNumbers = buyerService.createWinningNumbers(input);
+
+            return winningNumbers.getNumbers();
+        } catch (LottoException e) {
+            printLottoExceptionMessage(e);
+
+            return getWinningNumbers();
+        }
     }
 }
