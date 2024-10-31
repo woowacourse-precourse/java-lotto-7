@@ -23,6 +23,7 @@ public class LottoController {
         Integer lottoCount = getLottoCount();
         Lottos lottos = new Lottos(createRandomLottosAndPrint(lottoCount));
         Game game = createGame(lottos);
+        lottoService.run(game);
     }
 
 
