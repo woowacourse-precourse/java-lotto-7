@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    public List<List<Integer>> generateLottos(int price){
+    public List<Lotto> generateLottos(int price){
         int lottoCount = price / 1000;
 
-        List<List<Integer>> allLottos = new ArrayList<>();
+        List<Lotto> allLottos = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++){
-            allLottos.add(generateLottoNumbers());
+            List<Integer> lottoNumbers = generateLottoNumbers();
+            Lotto lotto = new Lotto(lottoNumbers);
+            allLottos.add(lotto);
         }
         return allLottos;
-
     }
 
     public List<Integer> generateLottoNumbers() {
