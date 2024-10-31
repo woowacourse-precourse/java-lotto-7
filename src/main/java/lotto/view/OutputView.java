@@ -14,13 +14,13 @@ import lotto.domain.constants.Rank;
 public class OutputView {
 
     public static void printLottos(final List<Lotto> lottos) {
-        System.out.println();
+        printEmptyMessage();
         System.out.printf(OUTPUT_LOTTO_PURCHASE_AMOUNT.getMessage(), lottos.size());
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     public static void printLottoResult(final LottoResult result) {
-        System.out.println();
+        printEmptyMessage();
         System.out.println(OUTPUT_LOTTO_RESULT_HEADER.getMessage());
 
         for (Rank rank : Rank.values()) {
@@ -30,6 +30,10 @@ public class OutputView {
             System.out.println(formatLottoResultMessage(rank, result));
         }
         System.out.println(formatTotalProfitMessage(result.calculateYield()));
+    }
+
+    public static void printEmptyMessage() {
+        System.out.println();
     }
 
     private static String formatLottoResultMessage(final Rank rank, final LottoResult result) {
