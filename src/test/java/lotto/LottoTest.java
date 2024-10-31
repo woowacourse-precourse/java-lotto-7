@@ -28,6 +28,13 @@ class LottoTest {
         );
     }
 
+    @Test
+    void 로또_번호_리스트가_NULL이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 NULL 일 수 없습니다.");
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
