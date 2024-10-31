@@ -19,6 +19,10 @@ public class PurchaseAmount {
         return amount / LOTTO_PRICE;
     }
 
+    public int value() {
+        return amount;
+    }
+
     private void validate(final int amount) {
         checkDivisibilityByUnit(amount);
         checkMinimumOfAmount(amount);
