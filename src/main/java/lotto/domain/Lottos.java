@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.domain.factory.LottoFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -14,6 +15,10 @@ public class Lottos {
     public Lottos(int buyAmount, LottoFactory lottoFactory) {
         this.buyAmount = buyAmount;
         this.lottos = createLottos(buyAmount, lottoFactory);
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     private List<Lotto> createLottos(int buyAmount, LottoFactory lottoFactory) {

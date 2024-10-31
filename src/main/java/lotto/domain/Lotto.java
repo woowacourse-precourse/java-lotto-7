@@ -5,10 +5,7 @@ import lotto.constants.message.RangeError;
 import lotto.constants.value.LottoRule;
 import lotto.domain.factory.LottoFactory;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -32,9 +29,8 @@ public class Lotto {
         return new Lotto(lottoFactory);
     };
 
-    //방어적 복사
     public List<Component> getInstance() {
-        return new ArrayList<>(numbers);
+        return Collections.unmodifiableList(numbers);
     }
 
     private void validateLength(List<Component> numbers, int lottoLength) {
