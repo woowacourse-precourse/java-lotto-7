@@ -61,7 +61,8 @@ public class ScenarioApplication {
     }
 
     private WinNumbers readWinNumbers() {
-        printer.print("\n당첨 번호를 입력해 주세요.");
+        printer.printNewLine();
+        printer.print("당첨 번호를 입력해 주세요.");
         String originWinNumbers = reader.read();
         try {
             return WinNumbers.winNumbersFrom(originWinNumbers);
@@ -72,7 +73,8 @@ public class ScenarioApplication {
     }
 
     private WinNumbers readBonusNumber(WinNumbers winNumbersWithOutBonusNumber) {
-        printer.print("\n보너스 번호를 입력해 주세요.");
+        printer.printNewLine();
+        printer.print("보너스 번호를 입력해 주세요.");
         String bonusNumber = reader.read();
         try {
             return winNumbersWithOutBonusNumber.bonusNumberFrom(bonusNumber);

@@ -8,6 +8,8 @@ public interface Printer {
 
     void print(String message);
 
+    void printNewLine();
+
     void printPurchaseResult(int quantity, Lottos lottos);
 
     void printPrizeResult(List<PrizeLotto> prizeLottos, double profit);

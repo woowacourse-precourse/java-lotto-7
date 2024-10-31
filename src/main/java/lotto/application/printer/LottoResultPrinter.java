@@ -17,8 +17,14 @@ public class LottoResultPrinter implements Printer {
     }
 
     @Override
+    public void printNewLine() {
+        System.out.println();
+    }
+
+    @Override
     public void printPurchaseResult(int quantity, Lottos lottos) {
-        print("\n" + quantity + "개를 구매했습니다.");
+        printNewLine();
+        print(quantity + "개를 구매했습니다.");
         List<Lotto> allLotto = lottos.value();
         for (Lotto lotto : allLotto) {
             print(makeSortLotto(lotto.getNumbers()));
@@ -27,18 +33,25 @@ public class LottoResultPrinter implements Printer {
 
     @Override
     public void printPrizeResult(List<PrizeLotto> prizeLottos, double profit) {
-        print("\n당첨 통계\n" + "---");
+        printNewLine();
+        print("당첨 통계");
+        printNewLine();
+        print("---");
         for (PrizeLotto prizeLotto : prizeLottos) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(prizeLotto.getMatchCount()).append("개 일치");
-            if (prizeLotto.getRank() == 2) {
-                stringBuilder.append(", 보너스 볼 일치");
-            }
-            stringBuilder.append(" (").append(chunkByThree(prizeLotto.getPrice())).append("원) - ")
-                    .append(prizeLotto.getCount()).append("개");
-            print(stringBuilder.toString());
+            print(makeEachPrizeResult(prizeLotto));
         }
         print("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+    }
+
+    private String makeEachPrizeResult(PrizeLotto prizeLotto) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(prizeLotto.getMatchCount()).append("개 일치");
+        if (prizeLotto.getRank() == 2) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+        stringBuilder.append(" (").append(chunkByThree(prizeLotto.getPrice())).append("원) - ")
+                .append(prizeLotto.getCount()).append("개");
+        return stringBuilder.toString();
     }
 
     private String makeSortLotto(List<Integer> lotto) {
