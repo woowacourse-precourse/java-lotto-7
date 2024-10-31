@@ -10,7 +10,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (Exception exception) {
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+            throw new IllegalArgumentException("정수를 입력해주세요.");
         }
     }
 
@@ -18,7 +18,7 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput % price != 0) {
-            throw new IllegalArgumentException("[ERROR] " + price + "원 단위의 값을 입력해주세요.");
+            throw new IllegalArgumentException(price + "원 단위의 값을 입력해주세요.");
         }
     }
 }
