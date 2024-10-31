@@ -14,6 +14,14 @@ public class InputValidator {
         }
     }
 
+    private void validatePositiveNumber(String input) {
+        int parsedInput = Integer.parseInt(input);
+
+        if (parsedInput < 0) {
+            throw new IllegalArgumentException("양수 값을 입력해주세요.");
+        }
+    }
+
     private void validateDivideByUnit(String input, int price) {
         int parsedInput = Integer.parseInt(input);
 
