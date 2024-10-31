@@ -19,11 +19,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
-    public Lotto generateLotto(){
+    public static Lotto generateLotto(){
         List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
         lottoNumbers.sort(Comparator.naturalOrder());
         return new Lotto(lottoNumbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
