@@ -1,9 +1,8 @@
-package lotto.PurchaseAmount;
+package lotto.validator;
 
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.dto.PurchaseAmountDto;
-import lotto.validator.PurchaseAmountValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
