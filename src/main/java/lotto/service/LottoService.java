@@ -8,13 +8,16 @@ import lotto.model.Lotto;
 
 public class LottoService {
     private final int LOTTO_NUM_COUNT = 6;
+    private final int LOTTO_PRICE = 1000;
+    private final int LOTTO_NUM_START = 1;
+    private final int LOTTO_NUM_END = 45;
 
     private List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winNum = new ArrayList<>();
     private Integer bonusNum;
 
     public void buyLotto(int amount) {
-        int lottoCount = amount/1000;
+        int lottoCount = amount/LOTTO_PRICE;
         for(int count = 0; count < lottoCount; count++) {
             createLottoNum();
         }
@@ -22,7 +25,7 @@ public class LottoService {
 
     private void createLottoNum() {
         for(int numCount = 0; numCount < LOTTO_NUM_COUNT; numCount++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_START, LOTTO_NUM_END, LOTTO_NUM_COUNT);
             numbers.sort(Comparator.naturalOrder());
             lottos.add(new Lotto(numbers));
         }
@@ -44,5 +47,17 @@ public class LottoService {
         for(Lotto lotto : lottos) {
             lotto.inputWin(winNum);
         }
+    }
+
+    public List<Integer> getLottosWin() {
+        List<Integer> lottosWin = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        for(Lotto lotto : lottos) {
+            if (lotto.getWin() == null) {
+                continue;
+            }
+            int index = lotto.getWin().getIndex();
+            lottosWin.set(index, lottosWin.get(index) + 1);
+        }
+        return lottosWin;
     }
 }

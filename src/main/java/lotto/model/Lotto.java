@@ -36,4 +36,8 @@ public class Lotto {
         }
         return containCount;
     }
+
+    public Win getWin() {
+        return win;
+    }
 }

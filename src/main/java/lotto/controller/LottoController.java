@@ -60,4 +60,8 @@ public class LottoController {
     public void checkLottosWin() {
         lottoService.checkLottosWin();
     }
+
+    public void getLottosWin() {
+        response.outputLottosWin(lottoService.getLottosWin());
+    }
 }
