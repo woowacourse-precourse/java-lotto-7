@@ -1,7 +1,7 @@
 package lotto.model.validator;
 
-import static lotto.exception.InvalidLottoNumberException.DUPLICATE_LOTTO_NUMBERS;
-import static lotto.exception.InvalidLottoNumberException.INVALID_LOTTO_NUMBERS;
+import static lotto.exception.InvalidLottoNumberException.DUPLICATE_WINNING_NUMBERS;
+import static lotto.exception.InvalidLottoNumberException.INVALID_WINNING_NUMBERS;
 import static lotto.exception.InvalidLottoNumberException.OUT_OF_RANGE_NUMBER;
 import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
@@ -31,7 +31,7 @@ class WinningNumbersValidatorTest {
 
         assertThatThrownBy(validator::validate)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_LOTTO_NUMBERS);
+                .hasMessage(INVALID_WINNING_NUMBERS);
     }
 
     @Test
@@ -41,7 +41,7 @@ class WinningNumbersValidatorTest {
 
         assertThatThrownBy(validator::validate)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_LOTTO_NUMBERS);
+                .hasMessage(INVALID_WINNING_NUMBERS);
     }
 
     @Test
@@ -59,7 +59,7 @@ class WinningNumbersValidatorTest {
 
         assertThatThrownBy(validator::validate)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(DUPLICATE_LOTTO_NUMBERS);
+                .hasMessage(DUPLICATE_WINNING_NUMBERS);
     }
 
     @Test

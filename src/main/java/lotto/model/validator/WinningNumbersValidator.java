@@ -1,7 +1,7 @@
 package lotto.model.validator;
 
-import static lotto.exception.InvalidLottoNumberException.DUPLICATE_LOTTO_NUMBERS;
-import static lotto.exception.InvalidLottoNumberException.INVALID_LOTTO_NUMBERS;
+import static lotto.exception.InvalidLottoNumberException.DUPLICATE_WINNING_NUMBERS;
+import static lotto.exception.InvalidLottoNumberException.INVALID_WINNING_NUMBERS;
 import static lotto.exception.InvalidLottoNumberException.OUT_OF_RANGE_NUMBER;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class WinningNumbersValidator implements Validator{
 
     private void validateNumberCount() {
         if (winNumbers.size() != LottoConstants.LOTTO_NUMBERS_COUNT) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS);
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS);
         }
     }
 
@@ -32,7 +32,7 @@ public class WinningNumbersValidator implements Validator{
         long uniqueNumberCount = getUniqueNumberCount();
 
         if (uniqueNumberCount != winNumbers.size()) {
-            throw new InvalidLottoNumberException(DUPLICATE_LOTTO_NUMBERS);
+            throw new InvalidLottoNumberException(DUPLICATE_WINNING_NUMBERS);
         }
     }
 
