@@ -36,7 +36,7 @@ public class Lotto {
         int winCount = getWinningCount(winningNumbers);
         boolean isBonus = isBonus(bonusNumber);
         if(winCount == LottoCriteria.BONUS_LOTTO_NUM.getCriteriaVal() && isBonus){
-            winCount = LottoCriteria.BONUS_CASE_LOTTO_NUM.getCriteriaVal();
+            winCount = LottoCriteria.BONUS_CASE_SPECIAL_LOTTO_NUM.getCriteriaVal();
         }
         return new LottoWinResult(winCount,isBonus,LottoCalculator.cal(winCount,isBonus));
     }
