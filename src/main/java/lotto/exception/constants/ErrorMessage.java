@@ -9,6 +9,7 @@ public enum ErrorMessage {
     LOTTO_PURCHASE_MONEY_LESS_THAN_1000("구입 금액이 1,000원보다 작을 수 없습니다."),
     LOTTO_PURCHASE_MONEY_UNIT_NOT_1000("구입 금액을 1,000원 단위로 입력해주시길 바랍니다."),
     INVALID_INPUT_TEXT("잘못된 입력 값입니다."),
+    INVALID_NUMBER("잘못된 번호 값입니다."),
     ;
 
     private static final String ERROR_PREFIX = "[ERROR] ";
