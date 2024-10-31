@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinnerNumbers {
+public class WinningNumbers {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public WinnerNumbers(List<Integer> numbers, int bonusNumber) {
+    public WinningNumbers(List<Integer> numbers, int bonusNumber) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
@@ -37,11 +37,20 @@ public class WinnerNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public int countMatch(Lotto lotto) {
+        int count = 0;
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        for (Integer winningNumber : numbers) {
+            if (lottoNumbers.contains(winningNumber)) {
+                count++;
+            }
+        }
+        return count;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean hasMatchNumber(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        return numbers.contains(bonusNumber);
     }
+
 }
