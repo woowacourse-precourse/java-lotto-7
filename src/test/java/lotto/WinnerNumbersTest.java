@@ -36,4 +36,11 @@ public class WinnerNumbersTest {
         assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 71))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 당첨 번호 6개에 포함되는 값이라면 예외를 반환한다.")
+    @Test
+    void test5() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

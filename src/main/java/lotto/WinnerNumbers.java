@@ -26,5 +26,9 @@ public class WinnerNumbers {
         if (!(1 <= bonusNumber && bonusNumber <= 45)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45사이의 번호여야 합니다.");
         }
+
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복이 되면 안됩니다.");
+        }
     }
 }
