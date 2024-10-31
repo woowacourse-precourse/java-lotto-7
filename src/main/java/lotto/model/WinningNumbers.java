@@ -13,6 +13,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         validateWinningNumbers(winningNumbers);
+        validateBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -21,6 +22,11 @@ public class WinningNumbers {
         validateSizeOfWinningNumbers(winningNumbers);
         validateDuplicateOfWinningNumbers(winningNumbers);
         validateRangeOfLottoWinningNumbers(winningNumbers);
+    }
+
+    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        validateRangeOfBonusNumber(bonusNumber);
+        validateDuplicateOfBonusNumber(winningNumbers, bonusNumber);
     }
 
     private void validateSizeOfWinningNumbers(List<Integer> winningNumbers) {
@@ -41,6 +47,18 @@ public class WinningNumbers {
             if (number < MINIMUM_NUMBER || number > MAXIMUM_NUMBER) {
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_RANGE.getMessage());
             }
+        }
+    }
+
+    private void validateRangeOfBonusNumber(int bonusNumber) {
+        if (bonusNumber < MINIMUM_NUMBER || bonusNumber > MAXIMUM_NUMBER) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateDuplicateOfBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }
