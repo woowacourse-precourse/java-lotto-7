@@ -18,6 +18,9 @@ public class InputParser {
 
     public static List<Integer> parseNumbers(String numbers) {
         try {
+            if(numbers.endsWith(NUMBER_DELIMITER)) {
+                throw new IllegalArgumentException();
+            }
             return Arrays.stream(numbers.replaceAll(" ","").split(NUMBER_DELIMITER))
                     .map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
