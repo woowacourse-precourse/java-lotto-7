@@ -2,7 +2,10 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoMachine {
 
@@ -11,6 +14,7 @@ public class LottoMachine {
     public static final String BONUS_NUMBER_DUPLICATE_ERROR_MSG = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
     public static final int LOTTO_PRICE = 1000;
 
+    private final HashMap<Integer, Integer> winningStatistics = new HashMap<>();
     private final List<Lotto> lottoBunch = new ArrayList<>();
 
     public int parseAmount(String input) {
@@ -76,5 +80,26 @@ public class LottoMachine {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MSG);
         }
         return bonusNumber;
+    }
+
+    public int compareLotto(Lotto lotto, Lotto winningNumber) {
+        Set<Integer> intersection = new HashSet<>(lotto.getNumbers());
+        intersection.retainAll(winningNumber.getNumbers());
+        return intersection.size();
+    }
+
+    public void draw(Lotto winningNumbers, int bonusNumber) {
+        for (Lotto lotto : lottoBunch) {
+            int matching = compareLotto(lotto, winningNumbers);
+            boolean bonusMatching = lotto.getNumbers().contains(bonusNumber);
+
+            if (matching == 5 && bonusMatching) {
+                matching = 7;
+            }
+            if (matching > 2) {
+                int value = winningStatistics.getOrDefault(matching, 0) + 1;
+                winningStatistics.put(matching, value);
+            }
+        }
     }
 }

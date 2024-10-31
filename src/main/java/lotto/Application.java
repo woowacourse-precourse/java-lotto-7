@@ -38,5 +38,6 @@ public class Application {
         lottoMachine.printLottoBunch();
         Lotto winningNumbers = lottoMachine.parseWinningNumber(readWinningNumbers());
         int bonusNumber = lottoMachine.parseBonusNumber(winningNumbers, readBonusNumbers());
+        lottoMachine.draw(winningNumbers, bonusNumber);
     }
 }

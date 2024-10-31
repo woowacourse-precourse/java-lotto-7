@@ -8,9 +8,12 @@ import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_PRICE;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoMachineTest {
@@ -192,5 +195,31 @@ class LottoMachineTest {
         Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseBonusNumber(winningNumbers, input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_DUPLICATE_ERROR_MSG);
+    }
+
+    static Stream<Arguments> lottoFactory() {
+        return Stream.of(
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 45), 5),
+                Arguments.arguments(List.of(1, 2, 3, 4, 44, 45), 4),
+                Arguments.arguments(List.of(1, 2, 3, 43, 44, 45), 3),
+                Arguments.arguments(List.of(1, 2, 42, 43, 44, 45), 2),
+                Arguments.arguments(List.of(1, 41, 42, 43, 44, 45), 1),
+                Arguments.arguments(List.of(40, 41, 42, 43, 44, 45), 0)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("lottoFactory")
+    public void 로또번호_당첨번호_비교_테스트(List<Integer> numbers, int expected) throws Exception {
+        //Given
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(numbers);
+
+        //When
+        int actual = LOTTO_MACHINE.compareLotto(lotto, winningNumbers);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 }
