@@ -28,7 +28,7 @@ class LottoNumberTest {
         LottoNumber otherOne = LottoNumber.of(1);
 
         // when
-        boolean same = one.sameAs(otherOne);
+        boolean same = one.equals(otherOne);
 
         // then
         assertThat(same).isTrue();
