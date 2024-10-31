@@ -31,7 +31,7 @@ class LottoTest {
     }
 
     @Test
-    void 당첨금_계산이_올바른지_테스트() {
+    void 당첨_번호와_일치하는_수_개수가_올바른지_테스트() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;

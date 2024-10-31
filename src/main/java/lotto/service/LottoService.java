@@ -42,7 +42,7 @@ public class LottoService {
     public int sumOfPrizes(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         int sum = 0;
         for (Lotto lotto : lottos) {
-            sum += lotto.calculatePrize(winningNumbers, bonusNumber);
+            sum += lotto.getMatchingCount(winningNumbers, bonusNumber);
         }
         return sum;
     }

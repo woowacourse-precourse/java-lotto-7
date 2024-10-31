@@ -3,9 +3,7 @@ package lotto.service;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -54,14 +52,39 @@ public class LottoServiceTest {
     }
 
     @Test
-    void 로또_당첨금_총합_계산이_올바른지_테스트() {
+    void 숫자_일치_개수에_따른_로또_장수_계산_테스트() {
         // given
-        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         List<Lotto> lottos = new ArrayList<>(List.of(
-                new Lotto(List.of(1,2,3,4,5,6)), // 6개 일치
-                new Lotto(List.of(1,2,3,4,5,7)), // 5개 일치 + 보너스 볼 일치
-                new Lotto(List.of(1,2,3,4,5,8)) // 5개 일치
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 6개 일치
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 5개 일치 + 보너스 볼 일치
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)) // 5개 일치
+        ));
+        Map<Integer, Integer> expected = new HashMap<>() {{
+            put(3, 0);
+            put(4, 0);
+            put(5, 1);
+            put(6, 1);
+            put(7, 1);
+        }};
+
+        // when
+        Map<Integer, Integer> result = lottoService.getMatchingCounts(lottos, winningNumbers, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void 로또_당첨금_총합_계산이_올바른지_테스트() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        List<Lotto> lottos = new ArrayList<>(List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 6개 일치
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 5개 일치 + 보너스 볼 일치
+                new Lotto(List.of(1, 2, 3, 4, 5, 8)) // 5개 일치
         ));
         int expected = WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7) + WINNING_PRIZES.get(5);
 
