@@ -10,27 +10,31 @@ import lotto.view.LottoView;
 
 
 public class LottoController {
-    public void run() {
-        try {
-            BigInteger amount = LottoView.inputPurchaseAmount();
-            LottoBuy purchase = new LottoBuy(amount);
-            LottoView.printPurchaseResult(purchase.getNumberOfLottos());
+   public void run() {
+       try {
+           BigInteger amount = LottoView.inputPurchaseAmount();
+           LottoBuy purchase = new LottoBuy(amount);
+           LottoView.printPurchaseResult(purchase.getNumberOfLottos());
 
 
-            List<Lotto> lottos = generateLottos(purchase.getNumberOfLottos().intValue());
-            lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-    }
+           List<Lotto> lottos = generateLottos(purchase.getNumberOfLottos().intValue());
+           lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
 
-    private List<Lotto> generateLottos(int count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lottos.add(Lotto.generate());
-        }
-        return lottos;
-    }
+           List<Integer> winningNumbers = LottoView.inputWinningNumbers();
+           // 추가 로직 ...
+       } catch (IllegalArgumentException e) {
+           System.out.println(e.getMessage());
+           return;
+       }
+   }
+
+
+   private List<Lotto> generateLottos(int count) {
+       List<Lotto> lottos = new ArrayList<>();
+       for (int i = 0; i < count; i++) {
+           lottos.add(Lotto.generate());
+       }
+       return lottos;
+   }
 }
