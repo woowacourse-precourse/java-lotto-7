@@ -26,4 +26,15 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
         }
     }
+
+    public void setBonusNumber(int bonusNumber) {
+        bonusNumberValidate(bonusNumber);
+        numbers.add(bonusNumber);
+    }
+
+    private void bonusNumberValidate(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호는 중복되면 안됩니다.");
+        }
+    }
 }
