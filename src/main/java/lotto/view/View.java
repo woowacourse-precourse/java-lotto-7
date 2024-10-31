@@ -13,4 +13,14 @@ public class View {
         outputView.printMessage(Output.INPUT_MONEY);
         return inputView.userInput();
     }
+
+    public String inputWinningLotto() {
+        outputView.printMessage(Output.INPUT_WINNING_NUMBER);
+        return inputView.userInput();
+    }
+
+    public String inputBonusNumber() {
+        outputView.printMessage(Output.INPUT_BONUS_NUMBER);
+        return inputView.userInput();
+    }
 }
