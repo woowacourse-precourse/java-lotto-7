@@ -2,7 +2,7 @@ package lotto.domain.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.exception.BusinessException;
-import lotto.domain.model.Lotto;
+import lotto.domain.model.lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -90,31 +90,37 @@ public class InputView {
         }
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(Lotto winningNumber) {
         printRequestBonusNumber();
-        return readValidBonusNumber();
+        return readValidBonusNumber(winningNumber);
     }
 
     private void printRequestBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_REQUEST);
     }
 
-    private int readValidBonusNumber() {
+    private int readValidBonusNumber(Lotto winningNumber) {
         while (true) {
             try {
                 String input = Console.readLine();
-                return validBonusNumber(input);
+                return validBonusNumber(input, winningNumber);
             } catch (BusinessException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private int validBonusNumber(String input, Lotto winningNumber) {
+        int bonusNumber = parseAmount(input);
+        isWithinLimit(bonusNumber);
+        isContaininWithWinninNumber(bonusNumber, winningNumber);
+        return bonusNumber;
+    }
 
-    private int validBonusNumber(String input) {
-        int amount = parseAmount(input);
-        isWithinLimit(amount);
-        return amount;
+    private void isContaininWithWinninNumber(int amount, Lotto winningNumber) {
+        if (winningNumber.isContainingNumber(amount)) {
+            throw new BusinessException(DUPLICATE_BONUS_NUMBER);
+        }
     }
 
     private int parseAmount(String input) {

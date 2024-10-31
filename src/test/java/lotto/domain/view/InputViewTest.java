@@ -2,7 +2,8 @@ package lotto.domain.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.common.config.Factory;
-import lotto.domain.model.Lotto;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.utils.TestLotto;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -76,15 +77,14 @@ class InputViewTest {
         void getUserPurchaseAmount(String input) {
             //given
             setUserInput(input);
-
+            Lotto testLotto = TestLotto.createTestLotto(List.of(10, 11, 12, 13, 14, 15));
             //when
-            int bonusNumber = inputView.getBonusNumber();
+            int bonusNumber = inputView.getBonusNumber(testLotto);
 
             //then
             assertThat(bonusNumber).isEqualTo(Integer.parseInt(input));
         }
     }
-
 
     private static void setUserInput(String userInput) {
         ByteArrayInputStream in = new ByteArrayInputStream((userInput + "\n").getBytes());
