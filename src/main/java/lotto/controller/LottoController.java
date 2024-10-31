@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.entity.PurchaseAmount;
+import lotto.domain.vo.PurchaseAmount;
 import lotto.view.InputView;
 import lotto.view.OutputMessage;
 import lotto.view.OutputView;
