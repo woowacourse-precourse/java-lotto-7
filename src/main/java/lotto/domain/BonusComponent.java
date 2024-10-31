@@ -2,5 +2,5 @@ package lotto.domain;
 
 public interface BonusComponent {
 
-    void validateDuplicateWithWinningNumber(Lotto winningNumber);
+    void validateDuplicateWithWinningComponent(Lotto winningComponent,Component component);
 }
