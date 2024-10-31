@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.User.LOTTO_PRICE;
+
 import lotto.validator.Money;
 
 public class Controller {
@@ -19,6 +21,14 @@ public class Controller {
         }
 
         this.user = new User(money.getAmount());
-        System.out.println("구입금액 : " + user.getMoneyAmount());
+    }
+
+    public void buying() {
+        user.buyLotto();
+
+        System.out.println("\n" + user.getMoneyAmount() / LOTTO_PRICE + "개를 구매했습니다.");
+        for (Lotto lotto : user.getLottos()) {
+            System.out.println(lotto);
+        }
     }
 }
