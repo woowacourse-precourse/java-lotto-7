@@ -10,12 +10,12 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoPurchaseMoneyTest {
+public class LottoPurchaseTest {
 
     @ParameterizedTest
     @ValueSource(longs = {100L, 1L, 20001L, 300L})
     void 구매_금액은_1000으로_나누어_떨어지지_않으면_예외가_발생_한다(long money) {
-        assertThatThrownBy(() -> new LottoPurchaseMoney(money))
+        assertThatThrownBy(() -> new LottoPurchase(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -23,10 +23,10 @@ public class LottoPurchaseMoneyTest {
     @MethodSource("구매_금액_및_로또_발행_개수")
     void 구매_금액에_따른_로또_발행_개수를_저장한다(long moeny, long expectedLottoCount) {
         //given
-        LottoPurchaseMoney lottoPurchaseMoney = new LottoPurchaseMoney(moeny);
+        LottoPurchase lottoPurchase = new LottoPurchase(moeny);
 
         //when
-        long lottoCount = lottoPurchaseMoney.getLottoCount();
+        long lottoCount = lottoPurchase.getCount();
 
         //then
         assertThat(lottoCount).isEqualTo(expectedLottoCount);
