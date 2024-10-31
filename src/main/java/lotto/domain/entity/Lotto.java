@@ -38,4 +38,9 @@ public class Lotto implements Iterable<Integer> {
     public Iterator<Integer> iterator() {
         return this.numbers.iterator();
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

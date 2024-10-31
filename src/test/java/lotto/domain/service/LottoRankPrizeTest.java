@@ -1,21 +1,23 @@
 package lotto.domain.service;
 
+import lotto.ui.parser.InputParser;
 import lotto.domain.entity.Lotto;
 import lotto.domain.entity.Lottos;
 import lotto.domain.type.LottoRank;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoRankPrizeTest {
 
+    private final InputParser inputParser = new InputParser();
+
     @Test
     void 최종_금액을_반환_테스트() {
         // given
-        final List<Integer> winningNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
         final int bonusNumber = 7;
 
         final Lotto allMatched = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -40,7 +42,7 @@ class LottoRankPrizeTest {
     @Test
     void 최종_금액을_반환_테스트_2() {
         // given
-        final List<Integer> winningNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
         final int bonusNumber = 7;
 
         final Lotto allMatched = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -62,7 +64,7 @@ class LottoRankPrizeTest {
     @Test
     void 최종_금액을_반환_테스트_3() {
         // given
-        final List<Integer> winningNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
         final int bonusNumber = 7;
 
         final Lotto allMatched = new Lotto(List.of(11, 12, 13, 14, 15, 16));
