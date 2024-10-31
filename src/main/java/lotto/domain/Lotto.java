@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
+import java.util.Iterator;
 import java.util.List;
 
-public class Lotto {
+public class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,5 +17,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public Iterator<Integer> iterator() {
+        return numbers.iterator();
+    }
 }
