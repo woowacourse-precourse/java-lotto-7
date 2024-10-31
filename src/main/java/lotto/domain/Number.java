@@ -22,6 +22,14 @@ public class Number implements Comparable<Number> {
         return Integer.compare(this.value, other.value);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Number other)) {
+            return false;
+        }
+        return this.value == other.value;
+    }
+
     private static class Validator {
         private static void validate(int value) {
             validateRange(value);

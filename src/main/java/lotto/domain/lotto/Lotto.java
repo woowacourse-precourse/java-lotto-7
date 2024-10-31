@@ -23,6 +23,11 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean contains(Number target) {
+        return numbers.stream()
+                .anyMatch(number -> number.equals(target));
+    }
+
     public List<Number> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

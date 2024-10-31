@@ -14,6 +14,10 @@ public class WinningNumbers {
         return new WinningNumbers(winningNumbers);
     }
 
+    public boolean contains(Number target) {
+        return winningNumbers.contains(target);
+    }
+
     public Lotto getWinningNumbers() {
         return winningNumbers;
     }
