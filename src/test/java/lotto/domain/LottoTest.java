@@ -1,9 +1,15 @@
 package lotto.domain;
 
+import lotto.constants.Ranking;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -19,5 +25,29 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideRankingResult")
+    void 당첨_정보와_비교해_당첨_순위_계산_한다(List<Integer> winningNumbers, int bonusNumber, Ranking expectedRanking) {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
+        Ranking ranking = lotto.checkRanking(winningLotto);
+
+        Assertions.assertThat(ranking).isEqualTo(expectedRanking);
+    }
+
+    static Stream<Arguments> provideRankingResult() {
+        /**
+         * 로또 번호 1,2,3,4,5,6 인 경우
+         */
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7, Ranking.FIRST),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 45), 6, Ranking.SECOND),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 44), 45, Ranking.THIRD),
+                Arguments.of(List.of(1, 2, 3, 4, 43, 44), 45, Ranking.FOURTH),
+                Arguments.of(List.of(1, 2, 3, 42, 43, 44), 45, Ranking.FIFTH),
+                Arguments.of(List.of(1, 2, 41, 42, 43, 44), 45, Ranking.NONE)
+        );
     }
 }
