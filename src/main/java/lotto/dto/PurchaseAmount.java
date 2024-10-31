@@ -6,16 +6,14 @@ public record PurchaseAmount(int amount) {
     private static final int UNIT_PRICE = 1000;
 
     public static PurchaseAmount from(String input) {
-        validateIsNumeric(input);
         int parsedAmount = parseAmount(input);
-        validateWithinLimit(parsedAmount);
-        validateMultipleOfUnit(parsedAmount);
         return new PurchaseAmount(parsedAmount);
     }
 
     private static int parseAmount(String input) {
+        validateIsNumeric(input);
         int amount = Integer.parseInt(input);
-        validatePositiveAmount(amount);
+        validateParsedAmount(amount);
         return amount;
     }
 
@@ -23,6 +21,12 @@ public record PurchaseAmount(int amount) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 입력된 금액이 숫자가 아닙니다.");
         }
+    }
+
+    private static void validateParsedAmount(int amount) {
+        validatePositiveAmount(amount);
+        validateWithinLimit(amount);
+        validateMultipleOfUnit(amount);
     }
 
     private static void validatePositiveAmount(int amount) {
