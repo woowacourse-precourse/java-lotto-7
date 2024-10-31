@@ -13,12 +13,11 @@ public class Lotto {
         validateLottoLength(numbers);
         validateLottoRange(numbers);
         validateLottoDuplicate(numbers);
-        
+
         this.numbers = numbers;
     }
-
-    //todo 우와 다른 객ㄱ체여도 바로 otrhernLotto.nnumers가 되구나
-    public int getNumberOfMatches(final Lotto randomLotto) {
+    
+    public int getMatchedCount(final Lotto randomLotto) {
         int result = 0;
 
         for (Integer userLottoNumber : numbers) {
@@ -64,4 +63,5 @@ public class Lotto {
         Collections.sort(printout);
         return printout.toString();
     }
+
 }

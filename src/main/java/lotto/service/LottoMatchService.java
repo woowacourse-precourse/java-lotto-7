@@ -4,25 +4,24 @@ import java.util.List;
 import lotto.domain.Rank;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.UserLotto;
-import lotto.domain.lottos.user.WinningLottos;
+import lotto.domain.lottos.user.WinningLotto;
 
 public class LottoMatchService {
     private final UserLotto userLotto;
     private final RandomLottos randomLottos;
-    private final WinningLottos winningLottos;
+    private final WinningLotto winningLotto;
 
-    public LottoMatchService(RandomLottos randomLottos, UserLotto userLotto, WinningLottos winningLottos) {
+    public LottoMatchService(RandomLottos randomLottos, UserLotto userLotto, WinningLotto winningLottos) {
         this.randomLottos = randomLottos;
         this.userLotto = userLotto;
-        this.winningLottos = winningLottos;
+        this.winningLotto = winningLottos;
     }
-
 
     public void matchLottos() {
         List<Rank> ranksResult = randomLottos.findMatchedRank(userLotto);
 
         for (Rank rank : ranksResult) {
-            winningLottos.addRank(rank);
+            winningLotto.addRank(rank);
         }
     }
 

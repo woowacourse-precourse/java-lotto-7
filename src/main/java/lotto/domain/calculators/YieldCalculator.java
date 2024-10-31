@@ -6,6 +6,4 @@ public class YieldCalculator {
         return (float) totalPrizeMoney / amount * 100;
     }
 
-    //얘를 어다ㅣ에?
-
 }

@@ -7,17 +7,19 @@ import lotto.domain.lottos.Lotto;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.number.NumbersMaker;
 
-public class RandomLottoFactory {
+public class RandomLottoMarket {
     private final NumbersMaker numbersMaker;
     private final Wallet wallet;
 
-    public RandomLottoFactory(NumbersMaker randomNumberMaker, Wallet wallet) {
+    public RandomLottoMarket(NumbersMaker randomNumberMaker, Wallet wallet) {
         this.numbersMaker = randomNumberMaker;
         this.wallet = wallet;
     }
 
     public RandomLottos createRandomLottos() {
+        wallet.buyTicket();
         List<Lotto> lottos = makeLottos();
+        
         return new RandomLottos(lottos);
     }
 

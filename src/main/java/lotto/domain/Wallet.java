@@ -8,6 +8,7 @@ public class Wallet {
 
     private final TicketCalculator ticketCalculator;
     private final YieldCalculator yieldCalculator;
+
     private final int amount;
     private int ticket;
     private float rateOfReturn = 0;
@@ -15,6 +16,7 @@ public class Wallet {
     public Wallet(int money, TicketCalculator ticketCalculator, YieldCalculator yieldCalculator) {
         validateMinAmount(money);
         validateUnit(money);
+
         this.ticketCalculator = ticketCalculator;
         this.yieldCalculator = yieldCalculator;
         this.amount = money;
@@ -36,6 +38,7 @@ public class Wallet {
         rateOfReturn = yieldCalculator.calculate(finalPrizeAmount, amount);
     }
 
+    
     public float getRateOfReturn() {
         return rateOfReturn;
     }

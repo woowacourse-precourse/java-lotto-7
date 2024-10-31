@@ -11,12 +11,10 @@ public class WinningStatisticPrinter {
     private final static String PRINT_SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private final static String PRIZE_MONEY_FORMAT = "%,d";
 
-
     public static void print(WinningLotto winningLotto) {
         System.out.println(getPrintout(winningLotto));
     }
-
-
+    
     public static String getPrintout(WinningLotto winningLotto) {
         StringBuilder printout = new StringBuilder();
         EnumMap<Rank, Integer> ranks = winningLotto.getWinningStatistics();

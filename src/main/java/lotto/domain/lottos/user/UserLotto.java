@@ -2,9 +2,6 @@ package lotto.domain.lottos.user;
 
 import lotto.domain.lottos.Lotto;
 
-/**
- * 로또를 대조하는 행위도 포함될까 역할에
- */
 public class UserLotto {
     private final Lotto mainLotto;
     private final BonusLotto bonusLotto;
@@ -15,11 +12,11 @@ public class UserLotto {
     }
 
     public int getMainLottoMatchedCount(final Lotto randomLotto) {
-        return mainLotto.getNumberOfMatches(randomLotto);
+        return mainLotto.getMatchedCount(randomLotto);
     }
 
     public boolean isContainBonusLotto(final Lotto randomLotto) {
-        return bonusLotto.isContainMainLotto(randomLotto);
+        return bonusLotto.isContainedMainLotto(randomLotto);
     }
 
     @Override
@@ -31,9 +28,6 @@ public class UserLotto {
     }
 
 
-    /**
-     * 사용 이유 : BonusLotto가 mainLotto에 중복되어있는지 확인하기위해서는 1. mainLotto을 먼저 입력받고 2. Bonus 객체를 생성시키기 전에
-     */
     public static class Builder {
         private Lotto mainLotto;
         private BonusLotto bonusLotto;

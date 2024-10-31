@@ -50,6 +50,7 @@ public class MainController {
         return randomLottoMarket.createRandomLottos();
     }
 
+
     private UserLotto createUserLotto() {
         UserLotto.Builder builder = new UserLotto.Builder();
         createUserMainSixLottoBuilder(builder);

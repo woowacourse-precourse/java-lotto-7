@@ -6,7 +6,6 @@ public class TicketCalculatorImpl implements TicketCalculator {
     @Override
     public int calculate(int amount) {
         return amount / PRICE_OF_ONE_TICKET;
-
     }
 
 }

@@ -5,13 +5,10 @@ import java.util.Map;
 import lotto.domain.Rank;
 import lotto.domain.Wallet;
 
-/**
- * 맵 초기화?
- */
-public class WinningLottos {
+public class WinningLotto {
     private final EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
 
-    public WinningLottos() {
+    public WinningLotto() {
         initRanks();
     }
 
@@ -23,7 +20,6 @@ public class WinningLottos {
         wallet.calculateRateOfReturn(getFinalPrizeAmount());
     }
 
-    //마지막 한번만 필요한 결과이기때문에 필드로 생성하지 않음
     private long getFinalPrizeAmount() {
         long result = 0;
 
@@ -39,14 +35,14 @@ public class WinningLottos {
         return result;
     }
 
+    public EnumMap<Rank, Integer> getWinningStatistics() {
+        return ranks;
+    }
+
     private void initRanks() {
         for (Rank rank : Rank.values()) {
             ranks.put(rank, 0);
         }
-    }
-
-    public EnumMap<Rank, Integer> getWinningStatistics() {
-        return ranks;
     }
 
 }

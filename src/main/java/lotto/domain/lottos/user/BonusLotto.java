@@ -9,10 +9,9 @@ public class BonusLotto {
         this.bonus = bonus;
     }
 
-    public boolean isContainMainLotto(Lotto lotto) {
+    public boolean isContainedMainLotto(Lotto lotto) {
         return lotto.isContainNumber(bonus);
     }
-
 
     @Override
     public String toString() {
