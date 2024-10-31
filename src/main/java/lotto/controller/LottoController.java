@@ -57,11 +57,13 @@ public class LottoController {
         lottoService.inputBonusNum(bonusNum);
     }
 
-    public void checkLottosWin() {
-        lottoService.checkLottosWin();
-    }
 
     public void getLottosWin() {
+        lottoService.checkLottosWin();
         response.outputLottosWin(lottoService.getLottosWin());
+    }
+
+    public void getWinnings() {
+        response.outputLottosWinningRate(lottoService.getWinningsRate());
     }
 }

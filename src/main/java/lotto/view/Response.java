@@ -20,4 +20,8 @@ public class Response {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottosWin.get(winIndex++));
         System.out.println("6개 일치 (2,000,000,000원) - " + lottosWin.get(winIndex));
     }
+
+    public void outputLottosWinningRate(Double winningsRate) {
+        System.out.println("총 수익률은 " + winningsRate + "%입니다.");
+    }
 }

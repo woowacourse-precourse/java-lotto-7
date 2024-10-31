@@ -60,4 +60,17 @@ public class LottoService {
         }
         return lottosWin;
     }
+
+    public Double getWinningsRate() {
+        long totalWinnings = 0L;
+        for (Lotto lotto : lottos) {
+            if (lotto.getWin() == null) {
+                continue;
+            }
+            totalWinnings += lotto.getWin().getWinnings();
+        }
+
+        double winningsRate = (double) totalWinnings / (lottos.size() * LOTTO_PRICE) * 100;
+        return Math.round(winningsRate * 10) / 10.0;
+    }
 }
