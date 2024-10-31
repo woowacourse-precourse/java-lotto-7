@@ -2,7 +2,6 @@ package lotto.view.output;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.validator.exception.LottoException;
 
@@ -13,10 +12,15 @@ public class OutputView {
     public void displayLottos(User user) {
         int lottosCount = user.getLottos().getLottoCount();
         System.out.printf(OutputMessage.PURCHASED_COUNT_MESSAGE.getOutputMessage(), lottosCount);
-        for (Lotto lotto : user.getLottos().getLottos()) {
-            System.out.println(lotto.getNumbers());
-        }
+
+        user.getLottos().getLottos().forEach(lotto -> {
+            List<Integer> sortedLotto = lotto.getNumbers().stream()
+                    .sorted()
+                    .toList();
+            System.out.println(sortedLotto);
+        });
     }
+
     public void displayStatistics(List<String> result) {
         List<OutputMessage> messages = Arrays.asList(
                 OutputMessage.THREE_MATCHES,

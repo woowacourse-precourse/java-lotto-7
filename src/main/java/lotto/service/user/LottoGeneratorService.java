@@ -24,11 +24,10 @@ public class LottoGeneratorService {
     }
 
     private Lotto generateLotto() {
-        return new Lotto((generateNumbers()));
+        return new Lotto(generateNumbers());
     }
+
     private List<Integer> generateNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH);
-        Collections.sort(numbers);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH);
     }
 }
