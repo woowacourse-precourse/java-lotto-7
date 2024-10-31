@@ -5,7 +5,7 @@ import lotto.utils.Utils;
 
 import static lotto.message.ErrorMessage.*;
 
-public class Validation {
+public class GlobalValidation {
 
     private static final String NONE_INPUT_STRING = "";
     public static void validateStringToInteger(String input){

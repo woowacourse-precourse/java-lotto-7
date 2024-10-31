@@ -1,8 +1,9 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.validation.Validation;
+import lotto.validation.GlobalValidation;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 public class Utils {
 
     public static int stringToInteger(String input){
-        Validation.validateStringToInteger(input);
+        GlobalValidation.validateStringToInteger(input);
         return Integer.parseInt(input);
     }
 
@@ -30,6 +31,12 @@ public class Utils {
         firstSet.retainAll(secondSet);
 
         return firstSet.size();
+    }
+
+    public static List<Integer> parseAndconvertToIntegerList(String input, String delimiter){
+        List<String> parseList = Arrays.stream(input.split(delimiter)).toList();
+        return parseList.stream().map(Utils::stringToInteger)
+                .collect(Collectors.toList());
     }
 
 }
