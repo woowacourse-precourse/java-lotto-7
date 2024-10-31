@@ -9,7 +9,7 @@ public class InputView {
         return inputPrice();
     }
 
-    public String getWinningNumbersInput() {
+    public String getWinningNumberInput() {
         printInputWinningNumbers();
         return inputWinningNumbers();
     }
