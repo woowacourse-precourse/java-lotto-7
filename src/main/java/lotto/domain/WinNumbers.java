@@ -15,6 +15,12 @@ public record WinNumbers(
 
     public static WinNumbers winNumbersFrom(String originWinNumbers) {
         List<String> numbers = Arrays.stream(originWinNumbers.split(SEPARATOR)).toList();
+        List<Integer> extractWinNumbers = validateWinNumbersCanChange(numbers);
+        validateWinNumbers(extractWinNumbers);
+        return new WinNumbers(extractWinNumbers, null);
+    }
+
+    private static List<Integer> validateWinNumbersCanChange(List<String> numbers) {
         List<Integer> extractWinNumbers = new ArrayList<>();
         for (String number : numbers) {
             try {
@@ -23,8 +29,7 @@ public record WinNumbers(
                 throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXCEPTION.getMessage());
             }
         }
-        validateWinNumbers(extractWinNumbers);
-        return new WinNumbers(extractWinNumbers, null);
+        return extractWinNumbers;
     }
 
     private static void validateWinNumbers(List<Integer> extractWinNumbers) {
