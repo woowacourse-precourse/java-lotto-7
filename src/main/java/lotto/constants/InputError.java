@@ -1,12 +1,10 @@
 package lotto.constants;
 
-import lotto.constants.LottoConstInteger;
-
-public enum InputErrorMessage {
+public enum InputError {
     // 접두사
     ERROR_PREFIX("[ERROR] "),
     // 로또 구입 금액 예외
-    PURCHASE_PRICE_NOT_NUMBER("로또 구입 금액에는 숫자만 입력하셔야 합니다."),
+    PURCHASE_PRICE_NOT_A_NUMBER("로또 구입 금액에는 숫자만 입력하셔야 합니다."),
     PURCHASE_PRICE_NOT_REACH_AT_LEAST("최소 한 개 이상의 로또를 구입할 수 있는 가격을 입력하셔야 합니다."
             + "(최소 금액 : "
             + LottoConstInteger.LOTTO_PRICE.getValue()
@@ -15,20 +13,28 @@ public enum InputErrorMessage {
             + "으로 나눠지는 수를 입력하셔야 합니다."),
     // 로또 당첨 번호 예외
     LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT("로또 당첨 번호에는 숫자와 구분자만을 입력하셔야 합니다."),
-    LOTTO_WINNING_NUMBER_EXACTLY_NOT_SIX("로또 당첨 번호는 정확히 "
+    LOTTO_WINNING_NUMBER_NOT_EQUAL_COUNT("로또 당첨 번호는 정확히 "
             + LottoConstInteger.LOTTO_WINNING_NUMBER_COUNT.getValue()
             + " 개를 입력하셔야 합니다."),
-    LOTTO_WINNING_NUMBER_NOT_VALID_NUMBER("로또 당첨 번호는 "
+    LOTTO_WINNING_NUMBER_NOT_IN_BETWEEN_START_AND_END("로또 당첨 번호는 "
             + LottoConstInteger.LOTTO_START_NUMBER.getValue()
             + "~"
             + LottoConstInteger.LOTTO_END_NUMBER.getValue()
             + " 사이의 숫자를 입력하셔야 합니다."),
-    BONUS_NUMBER_NOT_NUMBER("보너스 번호는 ")
-    ;
+    //보너스 번호 예외
+    BONUS_NUMBER_NOT_A_NUMBER("보너스 번호는 숫자를 입력하셔야 합니다."),
+    BONUS_NUMBER_NOT_EQUAL_COUNT("보너스 번호는 정확히 "
+            + LottoConstInteger.BONUS_NUMBER_COUNT
+            + " 개를 입력하셔야 합니다."),
+    BONUS_NUMBER_NOT_IN_BETWEEN_START_AND_END("보너스 번호는 "
+            + LottoConstInteger.LOTTO_START_NUMBER.getValue()
+            + "~"
+            + LottoConstInteger.LOTTO_END_NUMBER.getValue()
+            + " 사이의 숫자를 입력하셔야 합니다.");
 
     private final String message;
 
-    InputErrorMessage(String message) {
+    InputError(String message) {
         this.message = message;
     }
 
