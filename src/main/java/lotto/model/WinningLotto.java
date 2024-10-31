@@ -27,7 +27,7 @@ public class WinningLotto {
 
     private void validate(List<Integer> numbers, int bonusNumber) {
         validateNumbers(numbers);
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(numbers, bonusNumber);
     }
 
     private void validateNumbers(List<Integer> numbers) {
@@ -44,7 +44,7 @@ public class WinningLotto {
         }
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호에 포함되서는 안됩니다.");
         }
