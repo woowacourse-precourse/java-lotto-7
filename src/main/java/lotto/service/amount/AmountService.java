@@ -19,6 +19,10 @@ public class AmountService {
     return this.validateCommand;
   }
 
+  public PurchaseAmount createPurchaseAmount(PurchaseAmountUserInput userInput) {
+    return PurchaseAmount.from(userInput);
+  }
+
   public int getPurchasableCount (PurchaseAmount amount, int price) {
     return amount.calculatePurchasableCount(price);
   }
