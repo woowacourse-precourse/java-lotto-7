@@ -1,0 +1,22 @@
+package lotto;
+
+public class Money {
+
+    private final int value;
+
+    public Money(final int value) {
+        validate(value);
+        this.value = value;
+    }
+
+    public int calculateQuotient(final int number) {
+        return value / number;
+    }
+
+
+    private void validate(final int value) {
+        final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
+        lottoNumberValidator.validateUnit(value, 1_000);
+    }
+
+}
