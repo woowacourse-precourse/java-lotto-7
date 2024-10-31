@@ -22,7 +22,7 @@ public class PurchaseController extends Validate {
         while(!validate) {
             try {
                 Pair validated = purchaseFlow();
-                validate = validated.isValidated();
+                validate = validated.getBoolean();
                 count = (Integer)validated.getValue();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

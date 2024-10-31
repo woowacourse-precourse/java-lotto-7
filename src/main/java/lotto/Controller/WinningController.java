@@ -29,6 +29,8 @@ public class WinningController extends Validate{
     public void getWinning() {
         List<Integer> winningNumbers = getWinningInput();
         int bonusNumber = getBonusInput(winningNumbers);
+        int[] ranks = winningService.getResult(lottos, winningNumbers, bonusNumber);
+
     }
 
     private List<Integer> getWinningInput() {
@@ -38,7 +40,7 @@ public class WinningController extends Validate{
             try {
                 String input = winningView.getInput();
                 Pair validatedResult = validateWinningInput(input);
-                validated = validatedResult.isValidated();
+                validated = validatedResult.getBoolean();
                 winningNumbers = (List<Integer>)validatedResult.getValue();
             } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
@@ -54,7 +56,7 @@ public class WinningController extends Validate{
             try {
                 String input = bonusView.getInput();
                 Pair validatedResult = validateBonusInput(input, winningNumbers);
-                validated = validatedResult.isValidated();
+                validated = validatedResult.getBoolean();
                 bonusNumber = (int)validatedResult.getValue();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

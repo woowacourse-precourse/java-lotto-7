@@ -1,21 +1,21 @@
 package lotto;
 
 public class Pair {
-    private boolean validated;
+    private boolean bool;
     private Object value;
 
     public Pair() {}
 
-    public Pair(boolean validated, Object value) {
-        this.validated = validated;
+    public Pair(boolean bool, Object value) {
+        this.bool = bool;
         this.value = value;
     }
 
-    public void set(boolean validated, Object value) {
-        this.validated = validated;
+    public void set(boolean bool, Object value) {
+        this.bool = bool;
         this.value = value;
     }
 
-    public boolean isValidated() { return validated; }
+    public boolean getBoolean() { return bool; }
     public Object getValue() { return value; }
 }
