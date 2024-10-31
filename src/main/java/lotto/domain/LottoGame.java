@@ -8,26 +8,26 @@ import java.util.List;
 public class LottoGame {
 
     private final PurchaseAmount purchaseAmount;
-    private final List<Lotto> lottoes;
+    private final Lottos lottos;
 
     public LottoGame(PurchaseAmount purchaseAmount, LottoGenerator lottoGenerator) {
         this.purchaseAmount = purchaseAmount;
-        this.lottoes = generateLottoes(lottoGenerator, purchaseAmount.getLottoCount());
+        this.lottos = generateLottos(lottoGenerator, purchaseAmount.getLottoCount());
     }
 
-    private List<Lotto> generateLottoes(LottoGenerator lottoGenerator, int count) {
+    private Lottos generateLottos(LottoGenerator lottoGenerator, int count) {
         List<Lotto> randomLotto = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             randomLotto.add(lottoGenerator.generate());
         }
-        return randomLotto;
+        return new Lottos(randomLotto);
     }
 
     public int getLottoCount() {
         return purchaseAmount.getLottoCount();
     }
 
-    public List<Lotto> getLottoes() {
-        return lottoes;
+    public String getLottoScreen() {
+        return lottos.getLottoNumbersScreen();
     }
 }

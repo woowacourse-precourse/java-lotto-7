@@ -1,9 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
 import lotto.constant.OutputMessage;
-
-import java.util.List;
 
 public class OutputView {
 
@@ -15,8 +12,8 @@ public class OutputView {
         System.out.println(String.format(OutputMessage.PURCHASE_AMOUNT.getMessage(), amount));
     }
 
-    public void printLotto(List<Lotto> lottoes) {
-        lottoes.forEach(lotto -> System.out.println(lotto.getScreen()));
+    public void printLotto(String lottoNumbers) {
+        System.out.println(lottoNumbers);
     }
 
     public void printWinningNumberGuide() {

@@ -22,7 +22,7 @@ public class LottoController {
         PurchaseAmount amount = readPurchasePrice();
         LottoGame game = new LottoGame(amount, new RandomLottoGenerator());
         outputView.printPurchaseAmount(game.getLottoCount());
-        outputView.printLotto(game.getLottoes());
+        outputView.printLotto(game.getLottoScreen());
         Lotto winningNumber = readWinningNumber();
         BonusNumber bonusNumber = readBonusNumber();
     }
