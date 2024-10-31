@@ -36,7 +36,13 @@ public class MyResult {
         System.out.println("6개 일치 (2,000,000,000원) - " + grades.getSixth() + "개");
     }
 
-
-
-
+    public static Integer getRevenue(GradeSaver grades){
+        int revenue = 0;
+        revenue += grades.getThird() * 5000;
+        revenue += grades.getFourth() * 50000;
+        revenue += grades.getFifth() * 1500000;
+        revenue += grades.getFifthBonus() * 30000000;
+        revenue += grades.getSixth() * 2000000000;
+        return revenue;
+    }
 }
