@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
 import lotto.validator.ServiceValidator;
@@ -36,8 +37,10 @@ public class LottoService {
         lottos.add(new Lotto(numbers));
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<List<Integer>> getLottosNum() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .collect(Collectors.toList());
     }
 
     public void inputWinNum(List<Integer> winNum) {

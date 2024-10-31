@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,12 +30,13 @@ public class LottoController {
     }
 
     public void getLottos() {
-        List<String> lottosNum = lottoService.getLottos().stream()
-                .map(lotto -> lotto.getNumbers().stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", "))
-                )
-                .collect(Collectors.toList());
+        List<String> lottosNum = new ArrayList<>();
+        for (List<Integer> num : lottoService.getLottosNum()) {
+            String joinNum = num.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", "));
+            lottosNum.add(joinNum);
+        }
 
         response.outputLottos(lottosNum);
     }
