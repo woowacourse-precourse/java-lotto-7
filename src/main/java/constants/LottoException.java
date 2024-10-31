@@ -1,4 +1,4 @@
-package exception;
+package constants;
 
 public enum LottoException {
     NOT_A_NUMBER("숫자가 아닙니다."),
