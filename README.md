@@ -20,14 +20,8 @@
 
 
 # 로또 발매기(LottoTicketMachine)
-- 당첨 번호 생성
-- 로또들 생성
-- 당첨 통계 조회
-```java
-Lottos lottos = LottoTicketController.pay(ThousandWons money);
-WinnerNumber winnerNumber =  WinnerNumberController.generate()
-WinnerStastics winnerStatistics = GetWinnerStatisticsUsecase.execute(lottos,winnerNumber);
-```
+- 컨트롤러간의 흐름 제어를 한다. 
+
 
 ## 📌 컨트롤러 
 ### LottoTicketController (로또 티켓 컨트롤러)
