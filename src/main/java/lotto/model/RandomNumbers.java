@@ -7,7 +7,7 @@ public class RandomNumbers {
     public RandomNumbers(){
 
     }
-    public List<Integer> randomNumberGenerator(){
+    public static List<Integer> randomNumberGenerator(){
         return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 }
