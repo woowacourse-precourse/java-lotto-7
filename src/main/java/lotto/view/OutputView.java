@@ -36,5 +36,7 @@ public class OutputView {
         System.out.printf(REVENUE_RESULT, dto.revenue());
     }
 
-
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
