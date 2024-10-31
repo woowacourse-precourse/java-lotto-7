@@ -6,7 +6,7 @@ public enum IOMessage {
 
     private final String ioMessage;
 
-    IOMessage(String ioMessage) {
+    IOMessage(final String ioMessage) {
         this.ioMessage = ioMessage;
     }
 
