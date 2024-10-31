@@ -42,13 +42,16 @@ public class LottoService {
     public void inputWinNum(List<Integer> winNum) {
         for(int num : winNum) {
             if(winNum.indexOf(num) != winNum.lastIndexOf(num)) {
-                throw new IllegalArgumentException("당첨 번호에 중복된 번호가 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 있습니다.");
             }
         }
         this.winNum = winNum;
     }
 
     public void inputBonusNum(Integer bonusNum) {
+        if (winNum.contains(bonusNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호에 존재합니다.");
+        }
         this.bonusNum = bonusNum;
     }
 
