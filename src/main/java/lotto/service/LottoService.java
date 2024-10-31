@@ -16,11 +16,16 @@ public class LottoService {
     }
 
     public void createLottoStorage(String buyLottoMoney) {
-        int buyLottoCount = lottoGenerator.calculateBuyLottoCount(Integer.parseInt(buyLottoMoney));
+        int buyLottoCount = calculateBuyLottoCount(Integer.parseInt(buyLottoMoney));
         for (int i = 0; i < buyLottoCount; i++) {
             List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers();
             Lotto lotto = new Lotto(lottoNumbers);
             lottoStorage.addLotto(lotto);
         }
+    }
+
+    public int calculateBuyLottoCount(int buyLottoMoney) {
+        int lottoCount = buyLottoMoney / 1000;
+        return lottoCount;
     }
 }
