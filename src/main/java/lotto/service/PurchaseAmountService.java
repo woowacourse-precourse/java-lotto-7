@@ -6,14 +6,14 @@ import lotto.constant.ExceptionMessage;
 import lotto.parse.InputParser;
 import lotto.validation.InputValidator;
 
-public class LottoService {
+public class PurchaseAmountService {
 
     private final InputValidator inputValidator;
     private final InputParser inputParser;
 
-    public LottoService() {
-        this.inputValidator = new InputValidator();
-        this.inputParser = new InputParser();
+    public PurchaseAmountService(InputValidator inputValidator, InputParser inputParser) {
+        this.inputValidator = inputValidator;
+        this.inputParser = inputParser;
     }
 
     public void processPurchaseAmount(String purchaseAmountInput) {
