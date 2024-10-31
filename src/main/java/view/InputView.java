@@ -23,4 +23,13 @@ public class InputView {
 
         return LottoValidator.hasSixElements(parsedNumbers);
     }
+
+    public static Integer inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+
+        Integer parsedBonusNumber = LottoValidator.isNumber(bonusNumber);
+
+        return LottoValidator.isInLottoRange(parsedBonusNumber);
+
+    }
 }
