@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.messages;
 
 public class ExceptionMessage {
     public static final String INVALID_POSITIVE_NUMBER = "[ERROR] 구입금액은 0보다 큰 숫자여야 합니다.";
