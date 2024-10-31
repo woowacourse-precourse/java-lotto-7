@@ -1,12 +1,11 @@
 package lotto.view;
 
+import static lotto.view.OutputMessage.OUTPUT_PURCHASE_QUANTITY;
+
 import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputView {
-
-    private static final String PURCHASE_QUANTITY_MESSAGE = "개를 구매했습니다.";
-    private static final String LINE_BREAK = "\n";
 
     public static void displayPurchasedLottoNumbers(List<Lotto> purchasedLotto) {
         displayPurchaseQuantity(purchasedLotto.size());
@@ -16,6 +15,6 @@ public class OutputView {
     }
 
     private static void displayPurchaseQuantity(int lottoQuantity) {
-        System.out.println(LINE_BREAK + lottoQuantity + PURCHASE_QUANTITY_MESSAGE);
+        System.out.println(OUTPUT_PURCHASE_QUANTITY.format(lottoQuantity));
     }
 }
