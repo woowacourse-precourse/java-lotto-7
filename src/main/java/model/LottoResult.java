@@ -31,7 +31,7 @@ public class LottoResult {
             winningCost += prize.getPrizeMoney();
         }
 
-        BigDecimal roundedWinningCost = new BigDecimal(winningCost / cost).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedWinningCost = BigDecimal.valueOf((winningCost / cost) * 100).setScale(2, RoundingMode.HALF_UP);
         return roundedWinningCost.doubleValue();
 
     }
