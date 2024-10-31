@@ -1,38 +1,22 @@
 package lotto.util.converter;
 
-import lotto.exception.ErrorCode;
+import lotto.exception.custom.NotDivisibleByThousandException;
+
+import static lotto.common.Lotto.LOTTO_PRICE;
+import static lotto.common.Number.ZERO;
 
 public class PurchaseCountConverter {
 
-    private static final String INTEGER_PATTERN = "\\d+";
-    private static final int LOTTO_AMOUNT = 1000;
-    private static final int ZERO = 0;
+    public static int convert(String inputPurchaseAmount) {
+        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
 
-    private final int purchaseAmount;
-
-    public PurchaseCountConverter(String inputPurchaseAmount) {
-        validate(inputPurchaseAmount);
-        this.purchaseAmount = Integer.parseInt(inputPurchaseAmount);
-    }
-
-    public int convert() {
         if (!isDivisibleByThousand(purchaseAmount)) {
-            throw new IllegalArgumentException(ErrorCode.NOT_DIVISIBLE_BY_THOUSAND.getMessage());
+            throw new NotDivisibleByThousandException();
         }
-        return purchaseAmount / LOTTO_AMOUNT;
+        return purchaseAmount / LOTTO_PRICE;
     }
 
-    private void validate(String inputPurchaseAmount) {
-        if (!isPositiveInteger(inputPurchaseAmount)) {
-            throw new IllegalArgumentException(ErrorCode.NOT_POSITIVE_INTEGER.getMessage());
-        }
-    }
-
-    private boolean isPositiveInteger(String inputPurchaseAmount) {
-        return inputPurchaseAmount.matches(INTEGER_PATTERN);
-    }
-
-    private boolean isDivisibleByThousand(int purchaseAmount) {
-        return purchaseAmount % LOTTO_AMOUNT == ZERO;
+    private static boolean isDivisibleByThousand(int purchaseAmount) {
+        return purchaseAmount % LOTTO_PRICE == ZERO;
     }
 }

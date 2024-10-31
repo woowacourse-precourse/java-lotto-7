@@ -1,9 +1,10 @@
 package lotto.domain;
 
-import lotto.domain.generator.RandomNumbers;
+import lotto.domain.generator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,8 +31,9 @@ class LottoTest {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         HashMap<Integer, Integer> winningCount = new HashMap<>();
-        RandomNumbers randomNumbers = new RandomNumbers();
-        randomNumbers.addRandomNumber(2);
+        List<List<Integer>> randomNumbers = new ArrayList<>();
+        randomNumbers.add(RandomNumberGenerator.generate());
+        randomNumbers.add(RandomNumberGenerator.generate());
 
         //when
         lotto.checkWinning(randomNumbers, 7);

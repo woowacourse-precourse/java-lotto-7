@@ -1,13 +1,15 @@
 package lotto.domain;
 
 import lotto.domain.enums.LottoRank;
-import lotto.domain.generator.RandomNumber;
-import lotto.domain.generator.RandomNumbers;
+import lotto.exception.custom.DuplicateLottoNumber;
+import lotto.exception.custom.InvalidLottoNumberCount;
 
-import java.util.*;
+import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.List;
 
-import static lotto.exception.ErrorCode.DUPLICATE_LOTTO_NUMBER;
-import static lotto.exception.ErrorCode.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.common.Lotto.LOTTO_NUMBER_SIZE;
+import static lotto.common.Number.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,15 +25,15 @@ public class Lotto {
     }
 
     private void validateLottoNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) { // TODO 하드코딩 제거
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new InvalidLottoNumberCount();
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
         HashSet<Integer> numberSet = new HashSet<>(numbers);
         if (isDuplicateNumber(numbers, numberSet)) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
+            throw new DuplicateLottoNumber();
         }
     }
 
@@ -39,23 +41,20 @@ public class Lotto {
         return numberSet.size() != numbers.size();
     }
 
-    public EnumMap<LottoRank, Integer> checkWinning(RandomNumbers randomNumbers, int bonusNumber) {
+    public EnumMap<LottoRank, Integer> checkWinning(List<List<Integer>> randomNumbers, int bonusNumber) {
         EnumMap<LottoRank, Integer> rankCount = new EnumMap<>(LottoRank.class);
         initRankCount(rankCount);
-        List<RandomNumber> totalRandomNumberList = randomNumbers.randomNumbers();
 
-        for (RandomNumber randomNumberList : totalRandomNumberList) {
-            List<Integer> randomNumber = randomNumberList.randomNumber();
-
+        for (List<Integer> randomNumber : randomNumbers) {
             LottoRank lottoRank = getLottoRank(randomNumber, bonusNumber);
-            rankCount.put(lottoRank, rankCount.getOrDefault(lottoRank, 0) + 1); // TODO 하드코딩 제거
+            rankCount.put(lottoRank, rankCount.getOrDefault(lottoRank, ZERO) + ONE);
         }
         return rankCount;
     }
 
     private void initRankCount(EnumMap<LottoRank, Integer> rankCount) {
         for (LottoRank lottoRank : LottoRank.values()) {
-            rankCount.put(lottoRank, 0); // TODO 하드코딩 제거
+            rankCount.put(lottoRank, ZERO);
         }
     }
 

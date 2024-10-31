@@ -1,59 +1,83 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.calculator.InvestmentReturnCalculator;
 import lotto.domain.Lotto;
 import lotto.domain.enums.LottoRank;
-import lotto.domain.generator.RandomNumber;
-import lotto.domain.generator.RandomNumbers;
+import lotto.domain.generator.RandomNumberGenerator;
+import lotto.util.calculator.InvestmentReturnCalculator;
 import lotto.util.converter.PurchaseCountConverter;
 import lotto.util.converter.WinningNumberConverter;
+import lotto.validator.type.InputType;
+import lotto.validator.InputValidator;
+import lotto.validator.factory.InputValidatorStrategyFactory;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
 import static lotto.common.Message.*;
-import static lotto.common.Number.*;
-import static lotto.common.Symbol.*;
+import static lotto.common.Number.ONE;
+import static lotto.common.Number.ZERO;
+import static lotto.common.Symbol.NEW_LINE;
+import static lotto.common.Symbol.TRIPLE_DASH;
+import static lotto.validator.type.InputType.*;
 
 public class Application {
+
+    private static final InputValidatorStrategyFactory validateFactory = new InputValidatorStrategyFactory();
+
     public static void main(String[] args) {
 
-        System.out.println(INPUT_PURCHASE_AMOUNT);
-        int purchaseCount = getPurchaseCount(Console.readLine());
+        String inputPurchaseAmount = checkInputFormat(INPUT_PURCHASE_AMOUNT, PURCHASE_AMOUNT);
+        int purchaseCount = PurchaseCountConverter.convert(inputPurchaseAmount);
 
         System.out.printf(BUY, purchaseCount);
-        RandomNumbers randomNumbers = getRandomNumbers(purchaseCount);
+        List<List<Integer>> randomNumbers = addRandomNumbers(purchaseCount);
         printRandomNumbers(randomNumbers);
 
-        System.out.println(CHECK_WINNING_NUMBER);
-        WinningNumberConverter winningNumberConverter = new WinningNumberConverter(Console.readLine());
-        List<Integer> winningNumbers = winningNumberConverter.convertWinningNumber();
+        String inputWinningNumber = checkInputFormat(CHECK_WINNING_NUMBER, WINNING_NUMBER);
+        List<Integer> winningNumbers = WinningNumberConverter.convertWinningNumber(inputWinningNumber);
 
         Lotto lotto = new Lotto(winningNumbers);
 
-        System.out.println(INPUT_BONUS_NUMBER);
-        int bonusNumber = winningNumberConverter.convertBonusNumber(Console.readLine());
+        String inputBonusNumber = checkInputFormat(INPUT_BONUS_NUMBER, BONUS_NUMBER);
+        int bonusNumber = WinningNumberConverter.convertBonusNumber(inputWinningNumber, inputBonusNumber);
 
         EnumMap<LottoRank, Integer> rankCountMap = lotto.checkWinning(randomNumbers, bonusNumber);
         printStatistics(purchaseCount, rankCountMap);
     }
 
-    private static int getPurchaseCount(String inputPurchaseAmount) {
-        PurchaseCountConverter purchaseCountConverter = new PurchaseCountConverter(inputPurchaseAmount);
-        return purchaseCountConverter.convert();
+    private static String checkInputFormat(String message, InputType inputType) {
+        System.out.println(message);
+        InputValidator inputValidator = validateFactory.getValidator(inputType);
+        return getValidInput(inputValidator);
     }
 
-    private static RandomNumbers getRandomNumbers(int purchaseCount) {
-        RandomNumbers randomNumbers = new RandomNumbers();
-        randomNumbers.addRandomNumber(purchaseCount);
+    private static String getValidInput(InputValidator inputValidator) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                inputValidator.validate(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static List<List<Integer>> addRandomNumbers(int purchaseCount) {
+        List<List<Integer>> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < purchaseCount; i++) {
+            randomNumbers.add(RandomNumberGenerator.generate());
+        }
         return randomNumbers;
     }
 
-    private static void printRandomNumbers(RandomNumbers randomNumbers) {
+    private static void printRandomNumbers(List<List<Integer>> randomNumbers) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (RandomNumber randomNumber : randomNumbers.randomNumbers()) {
-            stringBuilder.append(randomNumber.randomNumber()).append(NEW_LINE);
+
+        for (List<Integer> randomNumber : randomNumbers) {
+            stringBuilder.append(randomNumber).append(NEW_LINE);
         }
         System.out.println(stringBuilder);
     }
@@ -67,11 +91,6 @@ public class Application {
     private static void printStatisticsPrefix() {
         System.out.println(WINNING_STATISTICS);
         System.out.println(TRIPLE_DASH);
-    }
-
-    private static void printInvestmentReturn(int purchaseCount, EnumMap<LottoRank, Integer> rankCountMap) {
-        double percentage = InvestmentReturnCalculator.calculate(rankCountMap, purchaseCount);
-        System.out.printf(PERCENTAGE, percentage);
     }
 
     private static void printWinningResult(EnumMap<LottoRank, Integer> rankCountMap) {
@@ -96,5 +115,10 @@ public class Application {
             return String.format(BONUS_WINNING_MESSAGE, matchCount, lotteryPrize, winningCount);
         }
         return String.format(WINNING_MESSAGE, matchCount, lotteryPrize, winningCount);
+    }
+
+    private static void printInvestmentReturn(int purchaseCount, EnumMap<LottoRank, Integer> rankCountMap) {
+        double percentage = InvestmentReturnCalculator.calculate(rankCountMap, purchaseCount);
+        System.out.printf(PERCENTAGE, percentage);
     }
 }
