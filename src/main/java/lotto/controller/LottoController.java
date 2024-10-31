@@ -4,13 +4,17 @@ import lotto.exception.InvalidBonusNumberException;
 import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.InvalidWinningNumbersException;
 import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
 import lotto.model.Purchase;
+import lotto.model.WinningHistory;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.model.Rank;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private Purchase purchase;
@@ -25,7 +29,6 @@ public class LottoController {
         this.inputView = inputView;
         this.outputView = outputView;
     }
-
 
     public void play() {
         buy();
@@ -45,8 +48,6 @@ public class LottoController {
     }
 
     private void showResult() {
-        calculateWinnings();
-        calculateTotalRateOfReturn();
         printWinningStatistics();
     }
 
@@ -100,8 +101,16 @@ public class LottoController {
     }
 
     // 번호를 비교하여 당첨 내역을 계산한다
-    private void calculateWinnings() {
+    private Map<Rank, Integer> calculateWinnings() {
+        List<Integer> winningNumbersToCompare = winningNumbers.get();
+        List<Lotto> publishedLotteries = publishLotteries.get();
+        int bonus = bonusNumber.get();
+        Map<Rank, Integer> winningCountOfEachRanks;
 
+        WinningHistory winningHistory = new WinningHistory(winningNumbersToCompare, publishedLotteries, bonus);
+        winningCountOfEachRanks = winningHistory.getWinningCountOfEachRank();
+
+        return winningCountOfEachRanks;
     }
 
     // 총 수익률을 계산한다
@@ -109,9 +118,19 @@ public class LottoController {
 
     }
 
+    private void printCalculatedWinnings() {
+        Map<Rank, Integer> winningCountOfEachRanks = calculateWinnings();
+        outputView.printWinnings(winningCountOfEachRanks);
+    }
+
+    private void printCalculatedRateOfReturn() {
+
+    }
+
     // 당첨 통계를 출력한다
     private void printWinningStatistics() {
-
+        printCalculatedWinnings();
+        printCalculatedRateOfReturn();
     }
 
 }
