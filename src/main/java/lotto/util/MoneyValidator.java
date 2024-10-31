@@ -7,7 +7,7 @@ public final class MoneyValidator {
 
     public static void validate(String input){
         if(input == null || input.isEmpty() || !input.matches(NUMBER_PATTERN))
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_INPUT.format());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORM.format());
 
         int money = Integer.parseInt(input);
         if(money < 1000 || money % 1000 != 0)

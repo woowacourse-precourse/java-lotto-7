@@ -12,7 +12,7 @@ class MoneyValidatorTest {
     void 숫자_외의_문자_입력시_검증_실패(String input) {
         Assertions.assertThatThrownBy(() -> MoneyValidator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_MONEY_INPUT.format());
+                .hasMessage(ErrorMessage.INVALID_NUMBER_FORM.format());
     }
 
     @ParameterizedTest
