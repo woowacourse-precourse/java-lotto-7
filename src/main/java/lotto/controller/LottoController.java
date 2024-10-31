@@ -32,7 +32,9 @@ public class LottoController {
 
     private void processMoneyInput() {
         continueUntilNormalInput(() -> {
-            this.moneyInput = getMoneyInput();
+            outputView.printMoneyInputMessage();
+            this.moneyInput = inputView.getMoneyInput();
+
             lottoService.purchaseLotto(moneyInput);
             lottoService.printPurchasedLottoNumbers();
         });
@@ -40,14 +42,18 @@ public class LottoController {
 
     private void processWinnerNumbersInput() {
         continueUntilNormalInput(() -> {
-            List<Integer> winnerNumbersInput = getWinnerNumbers();
+            outputView.printWinnerNumbersInputMessage();
+            List<Integer> winnerNumbersInput = inputView.getWinnerNumbersInput();
+
             lottoService.setWinnerLotto(winnerNumbersInput);
         });
     }
 
     private void processBonusNumberInput() {
         continueUntilNormalInput(() -> {
-            int bonusNumber = getBonusNumber();
+            outputView.printBonusNumberInputMessage();
+            int bonusNumber = inputView.getBonusNumberInput();
+
             lottoService.setBonusNumber(bonusNumber);
         });
     }
@@ -61,20 +67,5 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
-    }
-
-    private int getMoneyInput() {
-        outputView.printMoneyInputMessage();
-        return inputView.getMoneyInput();
-    }
-
-    private List<Integer> getWinnerNumbers() {
-        outputView.printWinnerNumbersInputMessage();
-        return inputView.getWinnerNumbersInput();
-    }
-
-    private int getBonusNumber() {
-        outputView.printBonusNumberInputMessage();
-        return inputView.getBonusNumberInput();
     }
 }
