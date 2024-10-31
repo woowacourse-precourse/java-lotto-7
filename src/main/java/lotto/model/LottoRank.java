@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.function.BiPredicate;
 
@@ -12,8 +13,8 @@ public enum LottoRank {
     SECOND(5, 30_000_000, (matchedCount, bonusNumber) -> matchedCount == 5 && bonusNumber),
     FIRST(6, 2_000_000_000, (matchedCount, bonusNumber) -> matchedCount == 6);
 
-    private static final String DEFAULT_RESULT_MESSAGE = "%d개 일치 (%,d원) - %d개";
-    private static final String BONUS_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String DEFAULT_RESULT_MESSAGE = "%d개 일치 (%,d원)";
+    private static final String BONUS_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원)";
 
     private final int matchCount;
     private final int prize;
@@ -32,18 +33,19 @@ public enum LottoRank {
                 .orElse(NONE);
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getPrize() {
-        return prize;
+    public BigInteger calculatePrizeByCount(final int count) {
+        BigInteger total = BigInteger.valueOf(this.prize);
+        return total.multiply(BigInteger.valueOf(count));
     }
 
     public String getResultMessage() {
        if (this == SECOND) {
-           return BONUS_RESULT_MESSAGE;
+           return getFormattedResultMessage(BONUS_RESULT_MESSAGE);
        }
-       return DEFAULT_RESULT_MESSAGE;
+       return getFormattedResultMessage(DEFAULT_RESULT_MESSAGE);
+    }
+
+    private String getFormattedResultMessage(String message) {
+        return String.format(message, this.matchCount, this.prize);
     }
 }
