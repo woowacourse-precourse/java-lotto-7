@@ -6,6 +6,7 @@ import lotto.enums.ErrorMessage;
 
 public final class LottoValidator {
     private static final String NUMBER_WITH_COMMA_PATTERN = "^[0-9,]+$";
+    private static final String NUMBER_PATTERN = "^[0-9]+$";
 
     public static void validateNumbers(String input) {
         checkValidInputString(input);
@@ -16,12 +17,20 @@ public final class LottoValidator {
         checkDuplicatedNumber(numbers);
     }
 
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers){
+        checkNumberForm(input);
+
+        int number = Integer.parseInt(input);
+        checkNumberInRange(number);
+        checkDuplicatedWithWinningNumbers(number,winningNumbers);
+    }
+
+
     private static void checkValidInputString(String input) {
         if (input == null || input.isEmpty() || !input.matches(NUMBER_WITH_COMMA_PATTERN)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS_INPUT.format());
         }
     }
-
     private static List<Integer> getNumberList(String input) {
         try {
             return Arrays.stream(input.split(","))
@@ -54,6 +63,18 @@ public final class LottoValidator {
     private static void checkDuplicatedNumber(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()){
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS.format());
+        }
+    }
+
+    private static void checkNumberForm(String input) {
+        if(input == null || input.isEmpty() || !input.matches(NUMBER_PATTERN)){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORM.format());
+        }
+    }
+
+    private static void checkDuplicatedWithWinningNumbers(int number, List<Integer> winningNumbers) {
+        if(winningNumbers.contains(number)){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WITH_WINNING_NUMBERS.format());
         }
     }
 }
