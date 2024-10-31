@@ -33,5 +33,4 @@ class LottoTest {
         int result=lottoService.LottoNumber(InputView.input_purchaseAmount());
         assertEquals(result,6);
     }
-
 }
