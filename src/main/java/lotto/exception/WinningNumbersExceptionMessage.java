@@ -12,7 +12,8 @@ public enum WinningNumbersExceptionMessage implements ExceptionMessage {
                     LottoConfiguration.LOTTO_MIN_NUMBER.getValue(),
                     LottoConfiguration.LOTTO_MAX_NUMBER.getValue())),
 
-    NULL_NUMBERS("당첨 번호가 존재하지 않습니다.");
+    NULL_OR_EMPTY_NUMBERS("당첨 번호가 존재하지 않습니다.");
+
 
     private final String message;
 

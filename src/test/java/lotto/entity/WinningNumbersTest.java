@@ -5,6 +5,8 @@ import static lotto.exception.WinningNumbersExceptionMessage.BONUS_NUMBER_OUT_OF
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.exception.LottoExceptionMessage;
 import lotto.exception.WinningNumbersExceptionMessage;
@@ -36,7 +38,21 @@ public class WinningNumbersTest {
                 () -> new WinningNumbers(integers, bonusNumber));
 
         // then
-        assertEquals(WinningNumbersExceptionMessage.NULL_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertEquals(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호가_중간에_NULL() {
+        // given
+        List<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, null));
+        int bonusNumber = 40;
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(integers, bonusNumber));
+
+        // then
+        assertEquals(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test

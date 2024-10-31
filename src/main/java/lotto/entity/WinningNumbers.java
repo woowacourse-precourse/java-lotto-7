@@ -2,7 +2,7 @@ package lotto.entity;
 
 import static lotto.exception.WinningNumbersExceptionMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.exception.WinningNumbersExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
-import static lotto.exception.WinningNumbersExceptionMessage.NULL_NUMBERS;
+import static lotto.exception.WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS;
 
 import java.util.List;
 import lotto.configuration.LottoConfiguration;
@@ -19,8 +19,8 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
-        if (mainNumbers == null) {
-            throw new LottoValidationException(NULL_NUMBERS);
+        if (mainNumbers == null || mainNumbers.isEmpty() || mainNumbers.contains(null)) {
+            throw new LottoValidationException(NULL_OR_EMPTY_NUMBERS);
         }
         if (!(LottoConfiguration.LOTTO_MIN_NUMBER.getValue() <= bonusNumber
               && bonusNumber <= LottoConfiguration.LOTTO_MAX_NUMBER.getValue())) {
