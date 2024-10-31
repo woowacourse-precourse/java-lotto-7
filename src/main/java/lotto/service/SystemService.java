@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.User;
@@ -33,6 +34,10 @@ public class SystemService {
 
     public void bonusNumberProcess(String number) {
         bonusNumber = numberService.winningBonusNumber(number, winningLotto);
+    }
+
+    public List<Integer> statisticsProcess() {
+        return resultService.statistics(user,winningLotto,bonusNumber);
     }
 
 }
