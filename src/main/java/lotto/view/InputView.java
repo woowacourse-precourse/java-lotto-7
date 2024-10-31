@@ -23,14 +23,14 @@ public class InputView {
         return InputUtil.readInt();
     }
 
-    private boolean validateUnit(int convertedInput) {
-        if (isDevidedUnit(convertedInput)) {
+    private void validateUnit(int convertedInput) {
+        if (isDividedUnit(convertedInput)) {
             throw new LottoGameException(InputException.INVALID_UNIT);
         }
-        return true;
     }
 
-    private boolean isDevidedUnit(int convertedInput) {
+    private boolean isDividedUnit(int convertedInput) {
         return convertedInput % LottoGameConfig.LOTTO_PRICE_UNIT != 0;
     }
+
 }
