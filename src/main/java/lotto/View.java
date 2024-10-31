@@ -4,7 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import static lotto.Application.parseInt;
+
+import static lotto.Application.*;
 
 public class View {
 
@@ -62,7 +63,23 @@ public class View {
         catch (IllegalArgumentException e){
             return getWinningInput();
         }
+        this.answer = answer;
         return answer;
+    }
+
+    public Integer getBonusInput(){
+        System.out.println(LOTTO_BONUS_INPUT);
+        String rawBonus  = Console.readLine();
+        Integer bonus = 0;
+        try{
+            bonus = parseInt(rawBonus);
+            checkBonus(bonus, answer);
+            checkRange(bonus);
+        }
+        catch (IllegalArgumentException e){
+            return getBonusInput();
+        }
+        return bonus;
     }
 
     public Integer getLottoCount(){
@@ -72,6 +89,4 @@ public class View {
     public Integer getPurchasePrice(){
         return this.purchasePrice;
     }
-
-
 }
