@@ -7,15 +7,15 @@ import java.util.Map;
 public class LottoResult {
     private final Map<Rank, Integer> resultCountMap;
 
-    public LottoResult(WinningNumbers winningNumbers, List<Lotto> purchasedLottos) {
-        this.resultCountMap = calculateResults(winningNumbers, purchasedLottos);
+    public LottoResult(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
+        this.resultCountMap = calculateResults(winningLotto, purchasedLottos);
     }
 
-    private Map<Rank, Integer> calculateResults(WinningNumbers winningNumbers, List<Lotto> lottos) {
+    private Map<Rank, Integer> calculateResults(WinningLotto winningLotto, List<Lotto> lottos) {
         Map<Rank, Integer> resultMap = initializeResultMap();
         for (Lotto lotto : lottos) {
-            int matchCount = calculateMatchCount(lotto, winningNumbers);
-            boolean hasBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+            int matchCount = calculateMatchCount(lotto, winningLotto);
+            boolean hasBonus = lotto.getNumbers().contains(winningLotto.getBonusNumber());
             Rank rank = Rank.getRank(matchCount, hasBonus);
             if (rank != null) resultMap.put(rank, resultMap.get(rank) + 1);
         }
@@ -30,10 +30,10 @@ public class LottoResult {
         return resultMap;
     }
 
-    private int calculateMatchCount(Lotto lotto, WinningNumbers winningNumbers) {
+    private int calculateMatchCount(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = 0;
         for (int number : lotto.getNumbers()) {
-            if (winningNumbers.getWinningNumbers().getNumbers().contains(number)) {
+            if (winningLotto.getWinningNumbers().getNumbers().contains(number)) {
                 matchCount++;
             }
         }

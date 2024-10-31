@@ -14,7 +14,7 @@ class LottoResultTest {
 
     @Test
     void 각_등수별_당첨_횟수_계산() {
-        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        WinningLotto winningNumbers = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
 
         List<Lotto> purchasedLottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
@@ -37,7 +37,7 @@ class LottoResultTest {
 
     @Test
     void 일치_하는_번호가_없는_경우() {
-        WinningNumbers winningNumbers = new WinningNumbers(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        WinningLotto winningNumbers = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
 
         List<Lotto> purchasedLottos = Arrays.asList(
                 new Lotto(Arrays.asList(14, 15, 16, 17, 18, 19)), // 미당첨

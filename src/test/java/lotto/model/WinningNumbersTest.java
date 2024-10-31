@@ -15,7 +15,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 7;
 
-        WinningNumbers winningNumbersobj = new WinningNumbers(winningNumbers, bonusNumber);
+        WinningLotto winningNumbersobj = new WinningLotto(winningNumbers, bonusNumber);
 
         Assertions.assertThat(winningNumbersobj.getWinningNumbers().getNumbers()).containsExactlyInAnyOrder(1, 2, 3, 4, 5, 6);
         Assertions.assertThat(winningNumbersobj.getBonusNumber()).isEqualTo(bonusNumber);
@@ -26,7 +26,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 46;
 
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+        Assertions.assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1 ~ 45사이의 당첨번호와 중복되지 않는 번호여야 합니다.");
     }
@@ -36,7 +36,7 @@ class WinningNumbersTest {
         final List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 6;
 
-        Assertions.assertThatThrownBy(() -> new WinningNumbers(winningNumbers, bonusNumber))
+        Assertions.assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1 ~ 45사이의 당첨번호와 중복되지 않는 번호여야 합니다.");
     }

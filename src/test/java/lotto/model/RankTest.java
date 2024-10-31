@@ -10,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class RankTest {
 
     @Test
-    void 각_등수_확인(){
-        assertThat(Rank.getRank(6,false)).isEqualTo(Rank.FIRST);
-        assertThat(Rank.getRank(5,true)).isEqualTo(Rank.SECOND);
-        assertThat(Rank.getRank(5,false)).isEqualTo(Rank.THIRD);
-        assertThat(Rank.getRank(4,false)).isEqualTo(Rank.FOURTH);
-        assertThat(Rank.getRank(3,false)).isEqualTo(Rank.FIFTH);
+    void 각_등수_확인() {
+        assertThat(Rank.getRank(6, false)).isEqualTo(Rank.FIRST);
+        assertThat(Rank.getRank(5, true)).isEqualTo(Rank.SECOND);
+        assertThat(Rank.getRank(5, false)).isEqualTo(Rank.THIRD);
+        assertThat(Rank.getRank(4, false)).isEqualTo(Rank.FOURTH);
+        assertThat(Rank.getRank(3, false)).isEqualTo(Rank.FIFTH);
     }
 
     @Test
-    void 각_등수_상금_확인(){
+    void 각_등수_상금_확인() {
         assertThat(Rank.FIRST.getPrize()).isEqualTo(2_000_000_000);
         assertThat(Rank.SECOND.getPrize()).isEqualTo(3_000_000);
         assertThat(Rank.THIRD.getPrize()).isEqualTo(1_500_000);
@@ -28,7 +28,7 @@ class RankTest {
     }
 
     @Test
-    void 등수가_없을_경우_null_반환(){
+    void 등수가_없을_경우_null_반환() {
         assertThat(Rank.getRank(2, false)).isNull();
         assertThat(Rank.getRank(1, true)).isNull();
         assertThat(Rank.getRank(0, false)).isNull();
