@@ -10,8 +10,8 @@ public class OutputView {
     private class OutputMessage {
 
         public static String LOTTOCOUNT_MESSAGE = "%d개를 구매했습니다.%n";
-        public static String SECOND_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n";
-        public static String THIRD_MESSAGE = "%d개 일치 (%s원) - %d개%n";
+        public static String SECOND_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+        public static String THIRD_MESSAGE = "%d개 일치 (%s원) - %d개";
         public static String RETURN_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
         public static String PRICE_FORMAT = "%,d";
     }
