@@ -11,10 +11,11 @@ public class LottoMachine {
     }
 
     public void setLottoFactory(LottoFactory lottoFactory){
-        this.lottoFactory = lottoFactory
+        this.lottoFactory = lottoFactory;
     }
 
     public void buyNumberOfLottos(int amount){
-        lottos = new Lottos(amount);
+        lottos = new Lottos(amount,lottoFactory);
     }
+
 }

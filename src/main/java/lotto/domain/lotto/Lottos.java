@@ -7,22 +7,26 @@ import java.util.List;
 
 public class Lottos {
 
-    private final int lottoCount;
-    private List<Lotto> lottos;
+    private final int buyAmount;
+    private final List<Lotto> lottos;
 
 
-    public Lottos(int lottoCount) {
-        this.lottoCount = lottoCount;
+    public Lottos(int buyAmount, LottoFactory lottoFactory) {
+        this.buyAmount = buyAmount;
+        this.lottos = createLottos(buyAmount, lottoFactory);
     }
 
-    public void makeLottos(LottoFactory lottoFactory) {
-        lottos = new ArrayList<>();
+    private List<Lotto> createLottos(int buyAmount], LottoFactory lottoFactory) {
 
-        while (lottos.size() < lottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        while (lottos.size() < buyAmount) {
             Lotto lotto = Lotto.from(lottoFactory);
             addUnduplicateLotto(lotto);
         }
+        return lottos;
     }
+
 
     private void addUnduplicateLotto(Lotto lotto) {
 
