@@ -4,7 +4,6 @@ import lotto.exception.BudgetErrorMessage;
 
 public class Budget {
     private static final Integer MIN_BUDGET = 1000;
-    private static final Integer BUDGET_UNIT = 1000;
 
     private Integer budget;
 
@@ -25,7 +24,7 @@ public class Budget {
     }
 
     private void validateBudgetUnit(Integer budget) {
-        if (budget % BUDGET_UNIT == 0) {
+        if (budget % Lotto.LOTTO_PRICE == 0) {
             return;
         }
 
