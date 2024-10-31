@@ -17,6 +17,14 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public boolean isWinningNumber(int number) {
+        return mainNumber.getNumbers().contains(number);
+    }
+
+    public boolean isBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
     private void validate(List<Integer> mainNumber, int bonusNumber) {
         validateBonusNumberIsExcluded(mainNumber, bonusNumber);
         validateBonusNumber(bonusNumber);
