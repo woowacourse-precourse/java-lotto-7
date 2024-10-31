@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Payment;
 import lotto.view.console.Reader;
 import lotto.view.console.Writer;
 
@@ -7,9 +8,9 @@ public class InputView {
 
     private static final String QUESTION_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
 
-    public int readPrice() {
+    public Payment readPrice() {
         Writer.println(QUESTION_PURCHASE_AMOUNT);
-        return Validator.validatePrice(Reader.read());
+        return Payment.of(Validator.validatePrice(Reader.read()));
     }
 
     private static class Validator {

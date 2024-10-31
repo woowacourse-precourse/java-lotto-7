@@ -23,7 +23,7 @@ public class LottoController {
     private Payment receive() {
         while (true) {
             try {
-                return Payment.of(inputView.readPrice());
+                return inputView.readPrice();
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
                 return receive();
