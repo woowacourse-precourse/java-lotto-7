@@ -1,6 +1,8 @@
 package lotto.utility;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class NumberUtility {
 
@@ -35,6 +37,17 @@ public class NumberUtility {
 
     public static boolean isPositive(int num) {
         if(num >= 1) return true;
+        return false;
+    }
+
+    public static boolean isDuplicateNumberExists(List<Integer> numbers) {
+        Set<Integer> duplicateCheckSet = new HashSet<>();
+        for(Integer num : numbers){
+            if(duplicateCheckSet.contains(num)) {
+                return true;
+            }
+            duplicateCheckSet.add(num);
+        }
         return false;
     }
 }
