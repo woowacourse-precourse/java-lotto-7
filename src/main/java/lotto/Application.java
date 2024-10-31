@@ -25,7 +25,6 @@ public class Application {
         lottoMachine.processLottoResult(boughtLottos);
         System.out.printf("%n");
         lottoMachine.printWinningStatistics();
-
     }
 }
 

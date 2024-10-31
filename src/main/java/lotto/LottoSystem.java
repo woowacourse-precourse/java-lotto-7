@@ -11,13 +11,11 @@ import static lotto.StringPool.WINNING_STATISTICS;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class LottoSystem {
-    private static LottoCustomer customer = new LottoCustomer();
     private HashMap<Integer, LottoRank> ranks = new HashMap<>();
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -36,7 +34,6 @@ public class LottoSystem {
             throw new IllegalArgumentException(MONEY_NOT_DIVIDED_BY_1000);
         }
         issuedLottoCount = money / 1000;
-        customer.addBetMoney(money);
         ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < issuedLottoCount; ++i) {
             lottos.add(createAutoLotto());
