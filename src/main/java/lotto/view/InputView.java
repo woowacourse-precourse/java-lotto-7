@@ -10,4 +10,12 @@ public class InputView {
     private String userInput() {
         return Console.readLine();
     }
+
+    public int inputBonus() {
+        outputView.bonusInputMessage();
+        String input = userInput();
+        inputValidate.bonusRangeValidate(input);
+        int bonus = Integer.parseInt(input);
+        return bonus;
+    }
 }
