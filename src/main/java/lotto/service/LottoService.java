@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.constant.LottoConstant.BONUS_NUMBER_CHECK_CRITERIA;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +51,21 @@ public class LottoService {
         return totalPrizeCount;
     }
 
+    public BigDecimal calculateProfit(int purchaseAmount, List<Prize> prizes) {
+        BigDecimal totalPrizeAmount = BigDecimal.ZERO;
+        BigDecimal purchase = BigDecimal.valueOf(purchaseAmount);
+
+        for (Prize prize : prizes) {
+            BigDecimal prizeAmount = BigDecimal.valueOf(prize.getPrizeAmount());
+            totalPrizeAmount = totalPrizeAmount.add(prizeAmount);
+        }
+
+        BigDecimal profit = totalPrizeAmount.divide(purchase, 3, BigDecimal.ROUND_HALF_UP).multiply(new BigDecimal("100"));
+
+        BigDecimal roundedProfit = profit.setScale(1, BigDecimal.ROUND_HALF_UP);
+        return roundedProfit;
+    }
+
     private LottoMatchResult matchLottoNums(Lotto lottoTicket, Lotto winningLotto, int bonusNumber) {
         List<Integer> lottoNums = lottoTicket.getNumbers();
         List<Integer> winningNums = winningLotto.getNumbers();
@@ -88,4 +104,6 @@ public class LottoService {
 
         return prizeCount;
     }
+
+
 }
