@@ -21,7 +21,7 @@ public class OutputView {
         System.out.println("---");
 
         for(Prize prize: Prize.lowToHigh()){
-            System.out.println(prize.toString() + "- " + winnings.getOrDefault(prize, 0) + "개");
+            System.out.println(prize.toString() + winnings.getOrDefault(prize, 0) + "개");
         }
 
         System.out.printf("총 수익률은 %.1f%%입니다.", ratio);
