@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.view.Request;
 
 public class LottoService {
     private final int LOTTO_NUM_COUNT = 6;
@@ -25,6 +24,10 @@ public class LottoService {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(numbers));
         }
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     public void createWinNum(List<Integer> winNum) {

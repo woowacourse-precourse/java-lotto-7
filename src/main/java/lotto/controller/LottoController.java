@@ -1,16 +1,15 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.time.temporal.TemporalAmount;
-import java.util.ArrayList;
 import java.util.List;
-import lotto.model.Lotto;
+import java.util.stream.Collectors;
 import lotto.service.LottoService;
 import lotto.view.Request;
+import lotto.view.Response;
 
 public class LottoController {
 
     private final Request request = new Request();
+    private final Response response = new Response();
     private final LottoService lottoService = new LottoService();
 
     public void buyLotto() {
@@ -22,5 +21,16 @@ public class LottoController {
         }
 
         lottoService.buyLotto(amount);
+    }
+
+    public void getLottos() {
+        List<String> lottosNum = lottoService.getLottos().stream()
+                .map(lotto -> lotto.getNumbers().stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", "))
+                )
+                .collect(Collectors.toList());
+
+        response.outputLottos(lottosNum);
     }
 }
