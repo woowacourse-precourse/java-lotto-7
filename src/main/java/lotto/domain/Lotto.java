@@ -5,6 +5,7 @@ import lotto.constants.message.RangeError;
 import lotto.constants.value.LottoRule;
 import lotto.domain.factory.LottoFactory;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +31,11 @@ public class Lotto {
     public static Lotto from(LottoFactory lottoFactory){
         return new Lotto(lottoFactory);
     };
+
+    //방어적 복사
+    public List<Component> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
 
     private void validateLength(List<Component> numbers, int lottoLength) {
         if (numbers.size() != lottoLength) {
