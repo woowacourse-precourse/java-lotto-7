@@ -16,7 +16,7 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    public int getMatchingCount(Lotto winningNumbers) {
+    public int getMatchCount(Lotto winningNumbers) {
         return (int) numbers.stream().filter(winningNumbers.getNumbers()::contains).count();
     }
 

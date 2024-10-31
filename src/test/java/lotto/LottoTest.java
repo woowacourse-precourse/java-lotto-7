@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -38,7 +37,7 @@ class LottoTest {
     void 당첨_개수_확인_테스트() {
         lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int result = lotto.getMatchingCount(winningNumbers);
+        int result = lotto.getMatchCount(winningNumbers);
 
         assertThat(result).isEqualTo(6);
     }
