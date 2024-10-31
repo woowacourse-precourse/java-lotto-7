@@ -21,6 +21,14 @@ public enum Rank {
         return prize;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean getNeedToCheckBonus() {
+        return needToCheckBonus;
+    }
+
     public static Rank getRank(int matchCount, boolean hasBonus) {
         for (Rank rank : Rank.values()) {
             if (rank.matchCount == matchCount && (rank.needToCheckBonus == hasBonus)) {
