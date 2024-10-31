@@ -66,6 +66,21 @@ public class InputTest {
     }
 
     @Test
+    @DisplayName("로또 구입금액이 1등 당첨금보다 적다.")
+    public void testPurchaseAmountLessThanFirstPrize() {
+        assertTrue(InputValidate.isLessThanFirstPrizeAmount(0));
+        assertTrue(InputValidate.isLessThanFirstPrizeAmount(25000));
+        assertTrue(InputValidate.isLessThanFirstPrizeAmount(300000));
+    }
+
+    @Test
+    @DisplayName("로또 구입금액이 1등 당첨금보다 많을 수 없다.")
+    public void testPurchaseAmountMoreThanFirstPrize() {
+        assertFalse(InputValidate.isLessThanFirstPrizeAmount(2000500000));
+        assertFalse(InputValidate.isLessThanFirstPrizeAmount(2000100000));
+    }
+
+    @Test
     @DisplayName("검증 시, 숫자 문자열이라면 통과한다.")
     public void testNumberInputValidate() {
         assertTrue(InputValidate.run("0"));

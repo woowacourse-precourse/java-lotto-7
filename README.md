@@ -111,7 +111,7 @@
 - isParsableAsInteger
   - Integer형으로 형변환이 가능한지 확인한다.
 - isLessThanFirstPrizeAmount
-  - 1등 당첨금보다 적은 액수인지 확인한다.
+  - 로또 구입 금액이 1등 당첨금보다 적은 액수인지 확인한다.
     - 당첨금보다 많이 로또를 구매할 수 없게 1등 당첨금을 최대 구매 가능 액수로 제한했다.
 - isDivisibleBy1000 
   - 1000으로 나누어 떨어지는 숫자인지 확인한다.
