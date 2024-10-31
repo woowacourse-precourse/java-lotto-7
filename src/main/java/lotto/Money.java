@@ -16,7 +16,7 @@ public class Money {
     }
 
     public double calculateRatio(final BigDecimal value) {
-        return (this.value / value.doubleValue()) * 100;
+        return (value.longValue() / (double) this.value) * 100;
     }
 
 
