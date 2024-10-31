@@ -2,7 +2,7 @@ package lotto.Enum;
 
 
 public enum ExceptionCode {
-    INVALID_NUMBERS_LENGTH("LOTTO_01", "[ERROR] 로또 번호는 6개로 이루어져야 합니다."),
+    INVALID_NUMBERS_LENGTH("LOTTO_01", "[ERROR] 로또 번호는 6개여야 합니다."),
     INVALID_RANGE("LOTTO_02", "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATED_NUMBER("LOTTO_03", "[ERROR] 로또 번호는 중복된 숫자가 올 수 없습니다."),
     INVALID_LOTTO_INPUT("LOTTO_04", "[ERROR] 로또 번호는 숫자와 구분자(,)로만 이루어져야 합니다."),

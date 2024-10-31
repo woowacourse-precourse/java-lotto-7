@@ -7,7 +7,8 @@ public enum PrintConstants {
     OUTPUT_NUMBER_OF_TICKETS("개를 구매했습니다."),
     OUTPUT_ERNING_RATE_1("총 수익률은 "),
     OUTPUT_ERNING_RATE_2("%입니다."),
-    ALERT_WINNING_TOTAL("당첨 통계\n---");
+    ALERT_WINNING_TOTAL("당첨 통계"),
+    SEPARATE_LINE("---");
 
 
     private final String message;
