@@ -13,6 +13,7 @@ public class InputView {
     private static final String NOT_NUMBER = "숫자가 아닙니다";
     private static final String INVALID_RANGE = "범위가 유효하지 않습니다";
     private static final String NOT_DIVISIBLE_BY_THOUSAND = "천원단위로 나누어 지지 않습니다";
+    private static final String EMPTY_INPUT = "빈 입력입니다";
 
     //inputPurchasePrice 구현
     public static int inputPurchasePrice() {
@@ -35,6 +36,9 @@ public class InputView {
 
     //금액 valiadate
     public static void validatePurchase(String userInput) {
+        if (userInput.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT + " : " + userInput);
+        }
         if (!Utils.isDigitOnly(userInput)) {
             throw new NumberFormatException(NOT_NUMBER + " : " + userInput);
         }
