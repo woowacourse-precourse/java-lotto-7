@@ -8,18 +8,12 @@ public class InputView {
     public static final String ASK_MONEY_INPUT = "구입금액을 입력해 주세요.";
 
     public int lottoMoneyInput() {
-        String rawMoney;
-        while (true) {
-            System.out.println(ASK_MONEY_INPUT);
-            rawMoney = Console.readLine();
-            try {
-                validateIsNumber(rawMoney);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            return Integer.parseInt(rawMoney);
-        }
+        System.out.println(ASK_MONEY_INPUT);
+        String rawMoney = Console.readLine();
+
+        validateIsNumber(rawMoney);
+
+        return Integer.parseInt(rawMoney);
     }
 
     private void validateIsNumber(String rawValue) {
