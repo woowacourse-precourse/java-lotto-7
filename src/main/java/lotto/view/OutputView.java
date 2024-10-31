@@ -20,21 +20,14 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printWinningResult(Map<WinningMessage, Integer> winningResult) {
-        System.out.println();
+    public void printWinningResult(Map<WinningMessage, Integer> winningResult, double performance) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(printResult(winningResult));
-    }
 
-    public String printResult(Map<WinningMessage, Integer> winningResult) {
-        return winningResult.entrySet().stream()
-                .map(entry ->
-                        String.format("%s %d개",
-                                entry.getKey().getMessage(),
-                                /*entry.getKey().getMatchCount(),
-                                entry.getKey().getWinningAmount(),*/
-                                entry.getValue()))
-                .collect(Collectors.joining("\n"));
+        winningResult.forEach((message, count) -> {
+            System.out.printf("%s - %d개\n", message.getMessage(), count);
+        });
+
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", performance);
     }
 }

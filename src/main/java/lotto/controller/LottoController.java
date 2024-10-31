@@ -13,6 +13,7 @@ import lotto.messages.WinningMessage;
 import lotto.view.OutputView;
 
 public class LottoController {
+
     private final OutputView outputView;
     private final LottoResult lottoResult;
 
@@ -20,7 +21,6 @@ public class LottoController {
         outputView = new OutputView();
         lottoResult = new LottoResult();
     }
-
 
     public void run() {
         LottoPurchase lottoPurchase = inputAmount();
@@ -35,9 +35,8 @@ public class LottoController {
         lottoResult.calculateWinningResult(lottoNumbers, numbers);
 
         Map<WinningMessage, Integer> winningResult = lottoResult.getWinningResults();
-        outputView.printWinningResult(winningResult);
-
-
+        double profitPercent = lottoResult.getProfitPercent(lottoPurchase);
+        outputView.printWinningResult(winningResult, profitPercent);
     }
 
     private List<Lotto> makeLotto(int purchaseAmount) {
