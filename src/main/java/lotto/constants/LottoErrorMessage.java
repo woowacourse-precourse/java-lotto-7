@@ -4,7 +4,8 @@ import static lotto.constants.ErrorConstants.*;
 
 public enum LottoErrorMessage implements ErrorMessage {
     INVALID_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
-    NUMBER_OUT_OF_RANGE("로또 번호는 1 이상 45 이하여야 합니다.");
+    NUMBER_OUT_OF_RANGE("로또 번호는 1 이상 45 이하여야 합니다."),
+    DUPLICATE_INPUT_NUMBER("중복된 숫자가 입력되었습니다.");
 
     private final String message;
 

@@ -1,9 +1,13 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.util.JackpotNumbersValidator;
 import lotto.util.PurchaseAmountValidator;
+import lotto.util.StringParser;
 import lotto.util.Validator;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class Controller {
 
@@ -24,10 +28,12 @@ public class Controller {
             String inputJackpotNumbers = InputView.requestJackpotNumbers();
             try {
                 jackpotNumbersValidator.validate(inputJackpotNumbers);
+                List<Integer> intList = StringParser.toIntList(inputJackpotNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
         }
+
     }
 }
