@@ -25,4 +25,12 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.validateLottoNumber("1 2 3 4 5 7");
         });
     }
+
+    @DisplayName("쉼표(,)가 2개 이상 연속적으로 입력되면 예외가 발생한다.")
+    @Test
+    void validateSeparatorContinue() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoNumberValidator.validateLottoNumber("1,2,3,4,5,,,7");
+        });
+    }
 }
