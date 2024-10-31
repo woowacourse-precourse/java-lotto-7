@@ -11,7 +11,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public Lottos from(int amount) {
+    public static Lottos from(int amount) {
         List<Lotto> lottos = new ArrayList<>(amount);
         for (int i = 0; i < amount; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
