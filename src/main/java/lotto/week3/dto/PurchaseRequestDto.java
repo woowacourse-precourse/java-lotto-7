@@ -13,7 +13,10 @@ public class PurchaseRequestDto {
         if (cost % 1000 != 0) {
             throw new IllegalArgumentException("[error] 천원  단워로 입력 해주세요. ");
         }
-        return cost % 1000;
+        return cost / 1000;
     }
 
+    public int getLottoCount() {
+        return lottoCount;
+    }
 }

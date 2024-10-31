@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.week3.domain.Lotto;
 import lotto.week3.dto.PurchaseRequestDto;
 import lotto.week3.dto.WinningNumberRequestDto;
+import lotto.week3.model.LottoGenerator;
 import lotto.week3.view.InputView;
 import lotto.week3.view.OutputView;
 
@@ -18,12 +19,8 @@ public class LottoController {
 
 
         // 로또 발행
-        List<Lotto> answer = new ArrayList<>();
-        for(int i = 0; i < lottoCount; i++){
-            answer.add(new Lotto());
-        }
-        OutputView.lottoOutput(answer);
-
+        List<Lotto> lottoList = LottoGenerator.generatorLottos(purchaseRequestDto.getLottoCount());
+        OutputView.lottoOutput(lottoList);
 
 
         /*
@@ -45,10 +42,10 @@ public class LottoController {
         로또 번호 매칭 - > 당첨번호랑 자동 발급된 번호 매칭
          */
 
-        for(Lotto lotto: answer){
-            int matchCount = lotto.matchCount(winningNumber);
-
-        }
+//        for(Lotto lotto: answer){
+//            int matchCount = lotto.matchCount(winningNumber);
+//
+//        }
 
 
 
