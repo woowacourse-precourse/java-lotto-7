@@ -5,7 +5,7 @@ import java.util.List;
 public class LotteryDTO {
     private List<Integer> numbers;
 
-    public LottoDTO(List<Integer> numbers) {
+    public LotteryDTO(List<Integer> numbers) {
         this.numbers = numbers;
     }
 
