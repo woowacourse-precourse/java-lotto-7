@@ -20,6 +20,8 @@ public class InputView {
                 return count;
             } catch (NumberFormatException e) {
                 throw new NumberFormatException("[ERROR] 숫자가 아닙니다 : " + userInput);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("[ERROR] Value가 범위안에 없습니다.");
             }
         }
     }
@@ -29,6 +31,11 @@ public class InputView {
         if (!Utils.isDigitOnly(userInput)) {
             throw new NumberFormatException("숫자가 아닙니다 : " + userInput);
         }
+        BigDecimal count = Utils.stringToNumber(userInput);
+        if (!Utils.isInRange(new BigDecimal("1000"), new BigDecimal("100000"), count)) {
+            throw new IllegalArgumentException("Value가 범위안에 없습니다.");
+        }
+
     }
 
     //inputWinningNumber 구현
