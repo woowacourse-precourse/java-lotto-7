@@ -1,16 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.lang.reflect.Array;
 import java.math.BigDecimal;
-import java.net.Inet4Address;
 import java.util.Arrays;
 import java.util.List;
 import lotto.enums.ErrorMessage;
-import java.util.SimpleTimeZone;
 import lotto.enums.OutputViewEnum;
 import lotto.utils.Utils;
-import net.bytebuddy.dynamic.loading.ClassInjector.UsingInstrumentation;
 
 public class InputView {
     private static final int WINNING_NUMBER_COUNT = 6;
@@ -19,8 +15,6 @@ public class InputView {
 
     //inputPurchasePrice 구현
     public static int inputPurchasePrice() {
-
-
         while (true) {
             try {
                 OutputView.printPrompt(OutputViewEnum.PURCHASE_AMOUNT_INPUT.getMessage());
