@@ -36,10 +36,10 @@ public class LottoController {
         }
 
         outputHandler.promptForLottoNumber();
-        List<Integer> lottoNumber = inputHandler.getLottoNumber();
-        Lotto winningLottoNumber = new Lotto(lottoNumber);
+        List<Integer> lottoNumbers = inputHandler.getLottoNumber();
+        Lotto winningLottoNumber = new Lotto(lottoNumbers);
         outputHandler.promptForBonusNumber();
-        int bonusNumber = inputHandler.getBonusNumber();
+        int bonusNumber = inputHandler.getBonusNumber(lottoNumbers);
 
 
         for(Lotto lotto : lottos){
