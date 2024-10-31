@@ -39,6 +39,10 @@ public class Lotto {
         }
     }
 
+    public boolean contains(int number){
+        return numbers.contains(number);
+    }
+
     public static Lotto createWithRandomNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
         return new Lotto(randomNumbers);
