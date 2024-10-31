@@ -23,6 +23,10 @@ public class Application {
         // 당첨 번호 입력
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> number = inputNumber();
+
+        // 보너스 번호 입력
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = inputBonusNumber(number);
     }
 
     private static int inputMoney() {
@@ -82,6 +86,39 @@ public class Application {
         }
         if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static int inputBonusNumber(List<Integer> winningNumber) {
+        while (true) {
+            try {
+                String input = Console.readLine().trim();
+                parseBonusNumber(input);
+                int bonusNumber = Integer.parseInt(input);
+                validateBonusNumber(bonusNumber, winningNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+            }
+        }
+    }
+
+    private static void parseBonusNumber(String input) {
+        if (input.contains(",") || input.trim().contains(" ")) {
+            throw new IllegalArgumentException("보너스 번호는 숫자 1개만 입력해야 합니다.");
+        }
+
+        if (!input.matches("\\d+")) {
+            throw new IllegalArgumentException("보너스 번호는 정수여야 합니다.");
+        }
+    }
+
+    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
