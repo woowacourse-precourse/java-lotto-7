@@ -45,4 +45,8 @@ public class LottoService {
     public void judgeLotto() {
         lottoCollection.compareWinningLotto(winningLotto);
     }
+
+    public int [] getWinningResult() {
+       return lottoCollection.getWinningResult();
+    }
 }

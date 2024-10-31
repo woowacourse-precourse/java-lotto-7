@@ -48,4 +48,15 @@ public class LottoCollection {
             resultList.add(wonLotto);
         }
     }
+
+    public int [] getWinningResult() {
+        int [] resultArray = new int [Rank.NUMBER_OF_RANKS];
+        for (WonLotto wonLotto : resultList) {
+            int rank = wonLotto.getRank();
+            if(rank != 0){
+                resultArray[rank - 1]++;
+            }
+        }
+        return resultArray;
+    }
 }

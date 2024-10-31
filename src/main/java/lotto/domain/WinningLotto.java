@@ -37,10 +37,6 @@ public class WinningLotto {
         }
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
-
     public Bonus getBonus() {
         return bonus;
     }
@@ -49,8 +45,4 @@ public class WinningLotto {
         return winningLotto.getMatchingCount(numbers);
     }
 
-    public boolean getMatchingBonus(Bonus bonus) {
-        int number = bonus.getBonus();
-        return winningLotto.getMatchingBonus(number);
-    }
 }

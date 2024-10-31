@@ -42,7 +42,4 @@ public class Bonus {
     public int getBonus() {
         return bonus;
     }
-
-    public boolean isBonus(List<Integer> numbers) {
-    }
 }

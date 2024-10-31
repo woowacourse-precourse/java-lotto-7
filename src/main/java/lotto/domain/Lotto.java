@@ -47,7 +47,8 @@ public class Lotto {
         int matchingCount = winningLotto.getMatchingCount(numbers);
         if(matchingCount == 5) {
             Bonus bonus = winningLotto.getBonus();
-            isBonus = winningLotto.getMatchingBonus(bonus);
+            int number = bonus.getBonus();
+            isBonus = this.getMatchingBonus(number);
         }
         boolean finalBonus = isBonus;
 

@@ -10,6 +10,7 @@
 package lotto.view;
 
 import lotto.constant.Message;
+import lotto.domain.Rank;
 
 public class OutputView {
     public void printReadPurchaseAmount() {
@@ -32,5 +33,20 @@ public class OutputView {
     public void printReadBonusNumber() {
         System.out.println();
         System.out.println(Message.BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void printWinningResult(int[] winningResult) {
+        System.out.println();
+        System.out.println(Message.WINNING_STATISTICS_MESSAGE);
+        System.out.println(Message.DIVIDER_MESSAGE);
+        printWinningStatistics(winningResult);
+    }
+
+    private void printWinningStatistics(int[] winningResult) {
+        System.out.println(Message.FIFTH_MESSAGE + winningResult[Rank.FIFTH.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.FOURTH_MESSAGE + winningResult[Rank.FOURTH.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.THIRD_MESSAGE + winningResult[Rank.THIRD.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.SECOND_MESSAGE + winningResult[Rank.SECOND.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.FIRST_MESSAGE + winningResult[Rank.FIRST.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
     }
 }

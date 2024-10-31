@@ -32,7 +32,21 @@ public class LottoController {
         printLottoPurchaseResult();
         WinningNumber winningNumber = readWinningNumber();
         Bonus bonus = readBouns();
-        lottoService.readWinningLotto(winningNumber,bonus);
+        readWinningLotto(winningNumber, bonus);
+        judgeLotto();
+        printWinningResult();
+    }
+
+    private void printWinningResult() {
+        int[] winningResult = lottoService.getWinningResult();
+        outputView.printWinningResult(winningResult);
+    }
+
+    private void readWinningLotto(WinningNumber winningNumber, Bonus bonus) {
+        lottoService.readWinningLotto(winningNumber, bonus);
+    }
+
+    private void judgeLotto() {
         lottoService.judgeLotto();
     }
 
