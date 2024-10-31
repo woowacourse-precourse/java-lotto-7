@@ -11,4 +11,10 @@ class UserBonusNumberTest {
         assertThatThrownBy(() -> new UserBonusNumber(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_1_이상_45_이하가_아니라면_예외가_발생한다() {
+        assertThatThrownBy(() -> new UserBonusNumber(List.of(1, 2, 3, 4, 5, 6), 46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -6,8 +6,8 @@ import lotto.util.Sorter;
 
 public class RandomNumber {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
     private static final int GENERATE_COUNT = 6;
 
     public List<Integer> generate() {
