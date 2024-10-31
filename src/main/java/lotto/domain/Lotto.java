@@ -34,4 +34,11 @@ public class Lotto {
     public static void sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
     }
+
+    /**
+     * 로또 번호 getter
+     */
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
