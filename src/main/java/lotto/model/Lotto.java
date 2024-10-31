@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.Constant.MAX_NUMBER;
+import static lotto.Constant.MIN_NUMBER;
+import static lotto.Constant.NUMBER_COUNT;
 import static lotto.exception.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.exception.ErrorMessage.INVALID_NUMBER_COUNT;
 import static lotto.exception.ErrorMessage.OUT_OF_RANGE_NUMBER;
@@ -9,10 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final int NUMBER_COUNT = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
