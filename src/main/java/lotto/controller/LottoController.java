@@ -1,13 +1,19 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPrice;
+import lotto.service.LottoService;
 import lotto.utils.LottoExceptionUtils;
 import lotto.view.InputView;
 
 public class LottoController {
+
+    private final LottoService lottoService;
+
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
+    }
 
     public void runLotto() {
         LottoPrice lottoPurchaseAmount = LottoExceptionUtils.runUntilNoneLottoException(
@@ -15,5 +21,7 @@ public class LottoController {
         Lotto wonLotto = LottoExceptionUtils.runUntilNoneLottoException(
                 InputView::wonLottoNumbers);
         BonusNumber bonusNumber = LottoExceptionUtils.runUntilNoneLottoException(InputView::inputBonusNumber);
+
+
     }
 }
