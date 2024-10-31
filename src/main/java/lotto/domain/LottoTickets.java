@@ -21,4 +21,27 @@ public class LottoTickets {
     public List<List<Integer>> getLottoTickets() {
         return lottoTickets;
     }
+
+    public int[] createLottoRank(Lotto lotto, int bonus) {
+        int[] lottoRank = new int[6];
+        for (List<Integer> numbers : lottoTickets) {
+            int correct = lotto.countCorrect(numbers, bonus);
+            if (correct == 3) {
+                lottoRank[5]++;
+            }
+            if (correct == 4) {
+                lottoRank[4]++;
+            }
+            if (correct == 5) {
+                lottoRank[3]++;
+            }
+            if (correct == 7) {
+                lottoRank[2]++;
+            }
+            if (correct == 6) {
+                lottoRank[1]++;
+            }
+        }
+        return lottoRank;
+    }
 }
