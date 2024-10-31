@@ -19,14 +19,14 @@ public class LottoController {
         LottoStore lottoStore = new LottoStore();
         lottoStore.buyLotto(purchasePrice);
 
-        OutputView.printPurchasedLottoAmount(lottoStore.getLottos().size());
-        OutputView.printPurchasedLottoNumbers(lottoStore.getLottos());
+        OutputView.printPurchasedLottoAmount(lottoStore.getPurchasedLottos().size());
+        OutputView.printPurchasedLottoNumbers(lottoStore.getPurchasedLottos());
 
         List<Integer> winNumbers = Arrays.stream(InputView.inputWinNumbers().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         int bonusNumber = Integer.parseInt(InputView.inputBonusNumber());
 
         LottoResult lottoResult = new LottoResult();
-        lottoResult.calculateLottoResult(lottoStore.getLottos(), winNumbers, bonusNumber);
+        lottoResult.calculateLottoResult(lottoStore.getPurchasedLottos(), winNumbers, bonusNumber);
         lottoResult.calculateProfitRate(purchasePrice);
 
         Map<LottoRank, Integer> lottoResultDetail = lottoResult.getLottoResult();

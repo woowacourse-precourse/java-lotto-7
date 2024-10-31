@@ -18,7 +18,7 @@ class LottoStoreTest {
     void 천원_이상_입력_시_로또_발행() {
         LottoStore lottoStore = new LottoStore();
         lottoStore.buyLotto(5000);
-        List<Lotto> lottos = lottoStore.getLottos();
+        List<Lotto> lottos = lottoStore.getPurchasedLottos();
 
         Assertions.assertThat(lottos.size()).isEqualTo(5);
     }

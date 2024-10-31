@@ -7,13 +7,13 @@ import java.util.List;
 //- 역할
 //  - 받은 금액만큼 로또를 발행한다
 public class LottoStore {
-    private final List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> purchasedLottos = new ArrayList<>();
 
     private static final int LOTTO_PRICE = 1000;
 
     public void buyLotto(int price) {
         for (int i = 0; i < price/LOTTO_PRICE; i++) {
-            lottos.add(new Lotto(generateRandomNumbers()));
+            purchasedLottos.add(new Lotto(generateRandomNumbers()));
         }
     }
 
@@ -21,8 +21,8 @@ public class LottoStore {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public List<Lotto> getLottos() {
-        return this.lottos;
+    public List<Lotto> getPurchasedLottos() {
+        return this.purchasedLottos;
     }
 
 

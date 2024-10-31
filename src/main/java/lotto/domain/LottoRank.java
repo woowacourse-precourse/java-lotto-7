@@ -12,16 +12,16 @@ public enum LottoRank {
 
     private final String message;
     private final int prize;
-    private final int lottoScore;
+    private final int score;
 
-    LottoRank(int lottoScore, int prize, String message) {
-        this.lottoScore = lottoScore;
+    LottoRank(int score, int prize, String message) {
+        this.score = score;
         this.prize = prize;
         this.message = message;
     }
 
     public static LottoRank findRank(int lottoScore) {
-        return Arrays.stream(LottoRank.values()).filter(lottoRank -> lottoRank.lottoScore == lottoScore).findFirst().orElse(null);
+        return Arrays.stream(LottoRank.values()).filter(lottoRank -> lottoRank.score == lottoScore).findFirst().orElse(null);
     }
 
     public String getMessage() {
@@ -30,9 +30,5 @@ public enum LottoRank {
 
     public int getPrize() {
         return prize;
-    }
-
-    public int getLottoScore() {
-        return lottoScore;
     }
 }
