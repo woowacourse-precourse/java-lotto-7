@@ -27,5 +27,12 @@ public class Application {
             lottos.add(new Lotto(makeLotto()));
             System.out.println(lottos.get(i).toString());
         }
+        System.out.println();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> goalNumbers = new ArrayList<>();
+        for (String number : Console.readLine().split(",")) {
+            goalNumbers.add(Integer.parseInt(number.trim()));
+        }
     }
 }
