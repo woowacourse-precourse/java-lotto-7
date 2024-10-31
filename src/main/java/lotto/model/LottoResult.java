@@ -11,6 +11,12 @@ import lotto.dto.LottoDto;
 public class LottoResult {
     private final Map<Rank, Integer> lottoResult = new EnumMap<>(Rank.class);
 
+    public LottoResult() {
+        for (Rank rank : Rank.values()) {
+            lottoResult.put(rank, 0);
+        }
+    }
+
     public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers) {
         List<LottoDto> lottoDtos = lottos.getLottoDtos();
 
@@ -42,6 +48,6 @@ public class LottoResult {
 
     private void saveLottoResult(int duplicateCount, boolean isBonusNumberDuplicated) {
         Rank rank = Rank.from(duplicateCount, isBonusNumberDuplicated);
-        lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+        lottoResult.put(rank, lottoResult.get(rank) + 1);
     }
 }

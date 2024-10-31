@@ -33,7 +33,10 @@ public class LottoResultTest {
                         Map.of(
                                 Rank.FIRST, 1,
                                 Rank.SECOND, 1,
-                                Rank.FIFTH, 1
+                                Rank.THIRD, 0,
+                                Rank.FOURTH, 0,
+                                Rank.FIFTH, 1,
+                                Rank.NONE, 0
                         )
                 );
     }
