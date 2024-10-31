@@ -63,8 +63,12 @@ public class Application {
         // 4. 당첨 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> goalNumbers = new ArrayList<>();
-        for (String number : Console.readLine().split(",")) {
-            goalNumbers.add(Integer.parseInt(number.trim()));
+        try {
+            for (String number : Console.readLine().split(",")) {
+                goalNumbers.add(Integer.parseInt(number.trim()));
+            }
+        } catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
         }
         System.out.println();
         Lotto goals = new Lotto(goalNumbers);
