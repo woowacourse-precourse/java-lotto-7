@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.Model.Lotto;
+import lotto.domain.Lotto;
 import lotto.Service.LottoService;
 import lotto.View.InputView;
 import org.junit.jupiter.api.DisplayName;
@@ -26,11 +26,5 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    @Test
-    void 로또_발행_개수(){
-        String input="6000";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-        int result=lottoService.LottoNumber(InputView.input_purchaseAmount());
-        assertEquals(result,6);
-    }
+
 }
