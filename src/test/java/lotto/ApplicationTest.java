@@ -54,6 +54,17 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void InputHandler_Test() {
+        String testDataName = "구입금액을";
+        String expectedInput = "8000";
+
+        System.setIn(new java.io.ByteArrayInputStream(expectedInput.getBytes()));
+        String actualInput = inputHandler.inputData(testDataName);
+
+        assertEquals(expectedInput, actualInput);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
