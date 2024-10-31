@@ -1,0 +1,27 @@
+package lotto;
+
+import static lotto.Constant.COMMA;
+
+public class BonusNumber {
+    private final int bonusNumber;
+
+    public BonusNumber(String input) {
+        validateBonusNumber(input);
+        this.bonusNumber = Integer.parseInt(input);
+    }
+
+    private void validateBonusNumber(String input) {
+        if (input.contains(COMMA)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 하나의 숫자여야 합니다.");
+        }
+        int number;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 이상 45 이하의 숫자여야 합니다.");
+        }
+    }
+}
