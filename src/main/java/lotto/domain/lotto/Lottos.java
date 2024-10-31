@@ -16,7 +16,7 @@ public class Lottos {
         this.lottos = createLottos(buyAmount, lottoFactory);
     }
 
-    private List<Lotto> createLottos(int buyAmount], LottoFactory lottoFactory) {
+    private List<Lotto> createLottos(int buyAmount, LottoFactory lottoFactory) {
 
         List<Lotto> lottos = new ArrayList<>();
 
