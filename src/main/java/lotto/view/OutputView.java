@@ -39,9 +39,9 @@ public class OutputView {
         System.out.println(MSG_INPUT_BONUS_NUMBER);
     }
 
-    public static void printNewLotto(List<Lotto> newLotto, int numOfLotto){
-        System.out.println( numOfLotto + RESULT_NEW_LOTTO_COUNT );
-        for (Lotto lotto : newLotto) {
+    public static void printNewLotto(List<Lotto> Lotto){
+        System.out.println( Lotto.size() + RESULT_NEW_LOTTO_COUNT );
+        for (Lotto lotto : Lotto) {
             System.out.println(lotto);
         }
     }
