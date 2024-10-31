@@ -1,5 +1,6 @@
 package lotto.domain.lotto.vo;
 
+import lotto.infrastructure.constant.ExceptionMessage;
 import lotto.infrastructure.exception.CustomException;
 
 public record LottoNumber(int value) {
@@ -21,7 +22,7 @@ public record LottoNumber(int value) {
 
     private static void validate(final int number) {
         if (number > MAX || number < MIN) {
-            throw new CustomException("로또 번호는 1 ~ 45 사이의 숫자만 입력될 수 있습니다.");
+            throw new CustomException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER(MIN, MAX));
         }
     }
 }

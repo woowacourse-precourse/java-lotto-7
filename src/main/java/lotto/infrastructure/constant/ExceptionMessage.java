@@ -12,4 +12,8 @@ public final class ExceptionMessage {
     public static String INVALID_PURCHASE_UNIT(int unit) {
         return String.format("구입 금액은 %d 단위의 정수만 가능합니다.", unit);
     }
+
+    public static String OUT_OF_RANGE_LOTTO_NUMBER(int min, int max) {
+        return String.format("로또 번호는 %d ~ %d 사이의 숫자만 입력할 수 있습니다.", min, max);
+    }
 }
