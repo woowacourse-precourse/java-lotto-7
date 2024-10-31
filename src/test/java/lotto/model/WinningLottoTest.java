@@ -94,4 +94,17 @@ class WinningLottoTest {
                 .withMessage("[ERROR] 당첨번호를 숫자로만 입력해주세요.");
     }
 
+    @DisplayName("보너스 번호가 1 ~ 45 외의 숫자인 경우 예외발생")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    void 보너스번호가_1_45_외의_숫자인_경우_예외발생(int invalidBonusNumber) {
+        // given
+        WinningLottoInfo invalidBonusNumberWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5,6", invalidBonusNumber);
+
+        // then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningLotto(invalidBonusNumberWinningLottoInfo))
+                .withMessage("[ERROR] 보너스 번호는 1~45 사이의 수만 가능합니다.");
+    }
+
 }
