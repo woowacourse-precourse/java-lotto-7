@@ -5,7 +5,7 @@ import lotto.domain.lotto.vo.LottoNumber;
 
 import java.util.List;
 
-public class LottoGenerator implements RandomGenerator {
+public class RandomUniqueNumbersGenerator implements RandomGenerator {
     private static final int COUNT = 6;
 
     @Override
