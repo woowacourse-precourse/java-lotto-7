@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.constants;
 
 import lotto.constants.LottoConstInteger;
 
@@ -15,13 +15,15 @@ public enum InputErrorMessage {
             + "으로 나눠지는 수를 입력하셔야 합니다."),
     // 로또 당첨 번호 예외
     LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT("로또 당첨 번호에는 숫자와 구분자만을 입력하셔야 합니다."),
+    LOTTO_WINNING_NUMBER_EXACTLY_NOT_SIX("로또 당첨 번호는 정확히 "
+            + LottoConstInteger.LOTTO_WINNING_NUMBER_COUNT.getValue()
+            + " 개를 입력하셔야 합니다."),
     LOTTO_WINNING_NUMBER_NOT_VALID_NUMBER("로또 당첨 번호는 "
             + LottoConstInteger.LOTTO_START_NUMBER.getValue()
             + "~"
             + LottoConstInteger.LOTTO_END_NUMBER.getValue()
             + " 사이의 숫자를 입력하셔야 합니다."),
-    LOTTO_WINNING_NUMBER_EXACTLY_NOT_SIX("로또 당첨 번호는 ")
-
+    BONUS_NUMBER_NOT_NUMBER("보너스 번호는 ")
     ;
 
     private final String message;
