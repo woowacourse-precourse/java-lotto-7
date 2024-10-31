@@ -1,8 +1,9 @@
 package lotto.domain.service;
 
+import lotto.domain.store.LottoStore;
 import lotto.domain.entity.Lottos;
-import lotto.domain.entity.RandomLottoNumberGenerator;
-import lotto.exception.PayException;
+import lotto.domain.generate.RandomLottoNumberGenerator;
+import lotto.domain.exception.PayException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,7 +19,7 @@ class LottoStoreTest {
         final Lottos lottos = lottoStore.issueLottos(14000);
 
         // then
-        assertThat(lottos.getLottos().size()).isEqualTo(14);
+        assertThat(lottos.lottos().size()).isEqualTo(14);
     }
 
     @Test

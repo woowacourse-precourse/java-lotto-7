@@ -1,10 +1,10 @@
-package lotto.domain.service;
+package lotto.domain.store;
 
 import lotto.domain.entity.Lotto;
-import lotto.domain.entity.LottoNumberGenerator;
 import lotto.domain.entity.Lottos;
-import lotto.exception.PayException;
-import lotto.exception.PayExceptionMessage;
+import lotto.domain.exception.PayException;
+import lotto.domain.exception.PayExceptionMessage;
+import lotto.domain.generate.LottoNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +49,7 @@ public class LottoStore {
     }
 
     private boolean isPaymentValid(final int pay) {
-        return pay <= LOTTO_PRICE;
+        return pay < LOTTO_PRICE;
     }
 
     private boolean isDivisibleByPayment(final int pay) {

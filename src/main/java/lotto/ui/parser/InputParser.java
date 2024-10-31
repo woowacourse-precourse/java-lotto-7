@@ -1,7 +1,7 @@
 package lotto.ui.parser;
 
-import lotto.exception.LottoException;
-import lotto.exception.LottoNumberExceptionMessage;
+import lotto.ui.exception.InputException;
+import lotto.ui.exception.InputExceptionMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,7 @@ public class InputParser {
         try {
             return Arrays.stream(inputWinningNumbers.split(DELIMITER)).mapToInt(Integer::parseInt).boxed().toList();
         } catch (Exception e) {
-            throw new LottoException(LottoNumberExceptionMessage.INVALID_NUMBER_FORMAT);
+            throw new InputException(InputExceptionMessage.INVALID_NUMBER_FORMAT);
         }
     }
 }

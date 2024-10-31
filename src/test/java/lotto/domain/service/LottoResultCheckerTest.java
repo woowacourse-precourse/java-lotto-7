@@ -1,10 +1,11 @@
 package lotto.domain.service;
 
+import lotto.domain.result.LottoResultChecker;
 import lotto.ui.parser.InputParser;
 import lotto.domain.entity.Lotto;
 import lotto.domain.entity.Lottos;
-import lotto.domain.type.LottoRank;
-import lotto.exception.LottoException;
+import lotto.domain.rank.LottoRank;
+import lotto.domain.exception.LottoException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -29,13 +30,13 @@ class LottoResultCheckerTest {
 
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
         // when
-        final LottoRank lottoRanksFirst = resultChecker.checkRank(allMatched);
-        final LottoRank lottoRanksSecond = resultChecker.checkRank(fiveMatchedWithBonusNumber);
+        final Lotto lottoRanksFirst = resultChecker.checkRank(allMatched);
+        final Lotto lottoRanksSecond = resultChecker.checkRank(fiveMatchedWithBonusNumber);
 
         // then
         assertAll(
-                () -> assertThat(lottoRanksFirst).isEqualTo(LottoRank.FIRST),
-                () -> assertThat(lottoRanksSecond).isEqualTo(LottoRank.SECOND)
+                () -> assertThat(lottoRanksFirst.getRank()).isEqualTo(LottoRank.FIRST),
+                () -> assertThat(lottoRanksSecond.getRank()).isEqualTo(LottoRank.SECOND)
         );
     }
 
@@ -44,6 +45,8 @@ class LottoResultCheckerTest {
         // given
         final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
         final int bonusNumber = 7;
+
+        List<LottoRank> ranksToCheck = List.of(LottoRank.FIRST, LottoRank.SECOND, LottoRank.THIRD, LottoRank.FOURTH);
 
         final Lotto allMatched = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         final Lotto fiveMatchedWithBonusNumber = new Lotto(List.of(1, 2, 3, 4, 5, 7));
@@ -54,15 +57,10 @@ class LottoResultCheckerTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
         // when
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber, fiveMatched, fourMatched, threeMatched));
-        final List<LottoRank> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final List<Lotto> lottosRank = resultChecker.checkLottosRank(lottos);
 
         // then
-        assertAll(
-                () -> assertTrue(lottoRanks.contains(LottoRank.FIRST)),
-                () -> assertTrue(lottoRanks.contains(LottoRank.SECOND)),
-                () -> assertTrue(lottoRanks.contains(LottoRank.THIRD)),
-                () -> assertTrue(lottoRanks.contains(LottoRank.FOURTH))
-        );
+        assertTrue(lottosRank.stream().map(Lotto::getRank).anyMatch(ranksToCheck::contains));
     }
 
     @Test

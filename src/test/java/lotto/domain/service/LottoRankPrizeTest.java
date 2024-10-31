@@ -1,9 +1,10 @@
 package lotto.domain.service;
 
+import lotto.domain.rank.LottoRankPrize;
+import lotto.domain.result.LottoResultChecker;
 import lotto.ui.parser.InputParser;
 import lotto.domain.entity.Lotto;
 import lotto.domain.entity.Lottos;
-import lotto.domain.type.LottoRank;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -17,7 +18,7 @@ class LottoRankPrizeTest {
     @Test
     void 최종_금액을_반환_테스트() {
         // given
-        final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
+        final List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 7;
 
         final Lotto allMatched = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -29,7 +30,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber, fiveMatched, fourMatched, threeMatched));
-        final List<LottoRank> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();
@@ -42,7 +43,7 @@ class LottoRankPrizeTest {
     @Test
     void 최종_금액을_반환_테스트_2() {
         // given
-        final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
+        final List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 7;
 
         final Lotto allMatched = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -51,7 +52,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber));
-        final List<LottoRank> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();
@@ -64,7 +65,7 @@ class LottoRankPrizeTest {
     @Test
     void 최종_금액을_반환_테스트_3() {
         // given
-        final List<Integer> winningNumber = List.of(1,2,3,4,5,6);
+        final List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 7;
 
         final Lotto allMatched = new Lotto(List.of(11, 12, 13, 14, 15, 16));
@@ -73,7 +74,7 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber));
-        final List<LottoRank> lottoRanks = resultChecker.checkLottosRank(lottos);
+        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
         final LottoRankPrize lottoRankPrize = new LottoRankPrize();

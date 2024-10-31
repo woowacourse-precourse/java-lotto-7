@@ -1,10 +1,10 @@
-package lotto.domain.service;
+package lotto.domain.result;
 
 import lotto.domain.entity.Lotto;
 import lotto.domain.entity.Lottos;
-import lotto.domain.type.LottoRank;
-import lotto.exception.LottoException;
-import lotto.exception.LottoNumberExceptionMessage;
+import lotto.domain.exception.LottoException;
+import lotto.domain.exception.LottoNumberExceptionMessage;
+import lotto.domain.rank.LottoRank;
 import lotto.util.ValidLottoNumber;
 
 import java.util.HashSet;
@@ -27,17 +27,18 @@ public class LottoResultChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<LottoRank> checkLottosRank(final Lottos lottos) {
-        return lottos.getLottos().stream().map(this::checkRank).toList();
+    public List<Lotto> checkLottosRank(final Lottos lottos) {
+        return lottos.lottos().stream().map(this::checkRank).toList();
     }
 
-    public LottoRank checkRank(final Lotto lotto) {
+    public Lotto checkRank(final Lotto lotto) {
         final Set<Integer> winningNumbers = new HashSet<>(this.winningNumbers);
 
         final long matchingCount = lotto.getNumbers().stream().filter(winningNumbers::contains).count();
         final boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
-        return validRank(matchingCount, hasBonus);
+        final LottoRank rank = validRank(matchingCount, hasBonus);
+        return lotto.withRank(rank);
     }
 
     private LottoRank validRank(final long matchingCount, final boolean hasBonus) {

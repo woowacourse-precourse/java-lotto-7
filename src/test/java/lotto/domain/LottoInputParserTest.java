@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.LottoException;
+import lotto.ui.exception.InputException;
 import lotto.ui.parser.InputParser;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ class LottoInputParserTest {
         // when & then
         assertThatThrownBy(() -> {
             inputParser.inputToWinningNumbers(winningNumberInput);
-        }).isInstanceOf(LottoException.class);
+        }).isInstanceOf(InputException.class);
     }
 
     @Test

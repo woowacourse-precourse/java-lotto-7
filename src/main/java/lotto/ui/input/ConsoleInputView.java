@@ -1,6 +1,8 @@
-package lotto.ui;
+package lotto.ui.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.ui.exception.InputException;
+import lotto.ui.exception.InputExceptionMessage;
 import lotto.ui.parser.InputParser;
 
 import java.util.List;
@@ -15,8 +17,16 @@ public class ConsoleInputView implements InputView {
 
     @Override
     public int inputPayment() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        do {
+            System.out.println("구입금액을 입력해 주세요.");
+            String input = Console.readLine();
+
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                throw new InputException(InputExceptionMessage.INVALID_NUMBER_FORMAT);
+            }
+        } while (true);
     }
 
     @Override

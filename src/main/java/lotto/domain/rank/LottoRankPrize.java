@@ -1,6 +1,6 @@
-package lotto.domain.service;
+package lotto.domain.rank;
 
-import lotto.domain.type.LottoRank;
+import lotto.domain.entity.Lotto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +24,9 @@ public class LottoRankPrize {
         rankPayouts.put(LottoRank.FIFTH, FIFTH_PRIZE);
     }
 
-    public int calculateTotalPrize(final List<LottoRank> lottoRanks) {
-        return lottoRanks.stream()
-                .mapToInt(rank -> rankPayouts.getOrDefault(rank, 0))
+    public int calculateTotalPrize(final List<Lotto> lottos) {
+        return lottos.stream()
+                .mapToInt(lotto -> rankPayouts.getOrDefault(lotto.getRank(), 0))
                 .sum();
     }
 }

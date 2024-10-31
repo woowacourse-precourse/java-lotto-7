@@ -1,6 +1,7 @@
-package lotto.domain.entity;
+package lotto.domain.generate;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.entity.Lotto;
 
 public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 

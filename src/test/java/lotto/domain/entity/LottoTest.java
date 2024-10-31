@@ -1,6 +1,6 @@
 package lotto.domain.entity;
 
-import lotto.exception.LottoException;
+import lotto.domain.exception.LottoException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
