@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.Arrays;
+import lotto.domain.BonusNumber;
+import lotto.domain.Number;
 import lotto.domain.Payment;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lotto.Lotto;
@@ -11,6 +13,7 @@ public class InputView {
 
     private static final String QUESTION_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String QUESTION_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String QUESTION_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String SEPARATOR = ",";
 
     public Payment readPrice() {
@@ -22,6 +25,12 @@ public class InputView {
         Writer.println(QUESTION_WINNING_NUMBERS);
         String winningNumbers = Validator.validateSeparator(Reader.read());
         return WinningNumbers.of(convert(winningNumbers));
+    }
+
+    public BonusNumber readBonusNumber(WinningNumbers winningNumbers) {
+        Writer.println(QUESTION_BONUS_NUMBER);
+        int bonusNumber = Validator.validateNumber(Reader.read());
+        return BonusNumber.valueOf(winningNumbers, Number.of(bonusNumber));
     }
 
     private Lotto convert(String input) {
