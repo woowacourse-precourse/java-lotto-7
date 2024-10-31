@@ -2,14 +2,14 @@ package lotto.domain.player;
 
 public class PlayerResult {
 
-    private final int firstPlace;
-    private final int secondPlace;
-    private final int thirdPlace;
-    private final int fourthPlace;
-    private final int fifthPlace;
+    private int firstPlace;
+    private int secondPlace;
+    private int thirdPlace;
+    private int fourthPlace;
+    private int fifthPlace;
 
-    private final long profit;
-    private final float profitRate;
+    private long profit;
+    private float profitRate;
 
     public PlayerResult(){
         this.firstPlace = 0;
@@ -67,4 +67,31 @@ public class PlayerResult {
         return profitRate;
     }
 
+    public void increaseFirstPlace() {
+        this.firstPlace++;
+    }
+
+    public void increaseSecondPlace() {
+        this.secondPlace++;
+    }
+
+    public void increaseThirdPlace() {
+        this.thirdPlace++;
+    }
+
+    public void increaseFourthPlace() {
+        this.fourthPlace++;
+    }
+
+    public void increaseFifthPlace() {
+        this.fifthPlace++;
+    }
+
+    public void updateProfit(long profit) {
+        this.profit = profit;
+    }
+
+    public void updateProfitRate(float profitRate) {
+        this.profitRate = profitRate;
+    }
 }

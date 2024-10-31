@@ -26,7 +26,31 @@ public class PlayerServiceTest {
         player = new Player();
         lotto = new Lotto();
         bonus = new Bonus();
+
         playerService = new PlayerService(player, lotto, bonus);
+
+        lotto.addNumbers(List.of(1, 2, 3, 4, 5, 6));
+        bonus.updateNumber(7);
+
+        player.updateLottoCount(5);
+
+        PlayerLotto playerLotto1 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
+        PlayerLotto playerLotto2 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 7));
+        PlayerLotto playerLotto3 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 8));
+        PlayerLotto playerLotto4 = new PlayerLotto(List.of(1, 2, 3, 4, 8, 9));
+        PlayerLotto playerLotto5 = new PlayerLotto(List.of(1, 2, 3, 8, 9, 10));
+
+        playerService.calculateWinningCount(playerLotto1);
+        playerService.calculateWinningCount(playerLotto2);
+        playerService.calculateWinningCount(playerLotto3);
+        playerService.calculateWinningCount(playerLotto4);
+        playerService.calculateWinningCount(playerLotto5);
+
+        player.addLotto(playerLotto1);
+        player.addLotto(playerLotto2);
+        player.addLotto(playerLotto3);
+        player.addLotto(playerLotto4);
+        player.addLotto(playerLotto5);
     }
 
     @Test
@@ -46,21 +70,20 @@ public class PlayerServiceTest {
     @DisplayName("구매할 수 있는 로또의 개수만큼 로또를 생성하고 저장할 수 있다.")
     void 로또_생성_테스트() throws Exception {
         // given
-        int lottoCount = 10;
+        int newLottoCount = 10;
+        int initialLottoCount = player.getLottoCount();
 
         // when
-        playerService.addLottos(lottoCount);
+        playerService.addLottos(newLottoCount);
 
         // then
-        assertThat(player.getLottos().size()).isEqualTo(lottoCount);
+        assertThat(player.getLottos().size()).isEqualTo(initialLottoCount + newLottoCount);
     }
 
     @Test
     @DisplayName("로또에서 당첨된 번호 개수를 알려줄 수 았다.")
     void 당첨_개수_확인_테스트() throws Exception {
         // given
-        lotto.addNumbers(List.of(1, 2, 3, 4, 5, 6));
-        bonus.updateNumber(7);
         PlayerLotto playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 7));
 
         // when
@@ -75,26 +98,18 @@ public class PlayerServiceTest {
     @DisplayName("당첨된 로또의 순위를 저장할 수 있다.")
     void 당첨_로또_순위_저장_테스트() throws Exception {
         // given
-        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 5, 6)));
-        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 5, 7)));
-        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 5, 8)));
-        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 8, 9)));
-        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 8, 9, 10)));
-
         List<PlayerLotto> playerLottos = player.getLottos();
-
-        lotto.addNumbers(List.of(1,2,3,4,5,6));
-        bonus.updateNumber(7);
+        PlayerResult playerResult = player.getPlayerResult();
 
         // when
-        playerService.calculateWinningRank(playerLottos);
+        playerService.calculateWinningRanks(playerLottos, playerResult);
 
         // then
-        assertEquals(player.getPlayerResult().getFirstPlace(), 1);
-        assertEquals(player.getPlayerResult().getSecondPlace(), 1);
-        assertEquals(player.getPlayerResult().getThirdPlace(), 1);
-        assertEquals(player.getPlayerResult().getFourthPlace(), 1);
-        assertEquals(player.getPlayerResult().getFifthPlace(), 1);
+        assertEquals(1, player.getPlayerResult().getFirstPlace());
+        assertEquals(1, player.getPlayerResult().getSecondPlace());
+        assertEquals(1, player.getPlayerResult().getThirdPlace());
+        assertEquals(1, player.getPlayerResult().getFourthPlace());
+        assertEquals(1, player.getPlayerResult().getFifthPlace());
     }
 
     @Test
@@ -104,7 +119,7 @@ public class PlayerServiceTest {
         PlayerResult playerResult = new PlayerResult(1, 1, 1, 1, 1);
 
         // when
-        int profit = playerService.calculateProfit(playerResult);
+        long profit = playerService.calculateProfit(playerResult);
 
         // then
         assertThat(profit).isEqualTo(2031555000);
@@ -121,39 +136,23 @@ public class PlayerServiceTest {
         float profitRate =  playerService.calculateProfitRate(price, profit);
 
         // then
-        assertThat(player.getPlayerResult().getProfitRate()).isEqualTo(40631100.0);
+        assertThat(profitRate).isEqualTo(40631100f);
     }
 
     @Test
     @DisplayName("당첨된 로또의 순위를 저장할 수 있다.")
     void 로또_결과_수정_테스트() throws Exception {
-        // given
-        PlayerLotto playerLotto1 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
-        PlayerLotto playerLotto2 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 7));
-        PlayerLotto playerLotto3 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 8));
-        PlayerLotto playerLotto4 = new PlayerLotto(List.of(1, 2, 3, 4, 8, 9));
-        PlayerLotto playerLotto5 = new PlayerLotto(List.of(1, 2, 3, 8, 9, 10));
-
-        player.addLotto(playerLotto1);
-        player.addLotto(playerLotto2);
-        player.addLotto(playerLotto3);
-        player.addLotto(playerLotto4);
-        player.addLotto(playerLotto5);
-
-        lotto.addNumbers(List.of(1,2,3,4,5,6));
-        bonus.updateNumber(7);
-
-        // when
+        // given & when
         playerService.updatePlayerResult(player);
 
         // then
-        assertEquals(player.getPlayerResult().getFirstPlace(), 1);
-        assertEquals(player.getPlayerResult().getSecondPlace(), 1);
-        assertEquals(player.getPlayerResult().getThirdPlace(), 1);
-        assertEquals(player.getPlayerResult().getFourthPlace(), 1);
-        assertEquals(player.getPlayerResult().getFifthPlace(), 1);
+        assertEquals(1, player.getPlayerResult().getFirstPlace());
+        assertEquals(1, player.getPlayerResult().getSecondPlace());
+        assertEquals(1, player.getPlayerResult().getThirdPlace());
+        assertEquals(1, player.getPlayerResult().getFourthPlace());
+        assertEquals(1, player.getPlayerResult().getFifthPlace());
         assertThat(player.getPlayerResult().getProfit()).isEqualTo(2031555000);
-        assertThat(player.getPlayerResult().getProfitRate()).isEqualTo(40631100.0);
+        assertThat(player.getPlayerResult().getProfitRate()).isEqualTo(40631100f);
     }
 
 }

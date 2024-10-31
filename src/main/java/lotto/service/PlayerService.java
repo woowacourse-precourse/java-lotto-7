@@ -13,6 +13,11 @@ import java.util.List;
 public class PlayerService {
 
     private static int LOTTO_PRICE = 1000;
+    private static int FIRST_PLACE_AMOUNT = 2000000000;
+    private static int SECOND_PLACE_AMOUNT = 30000000;
+    private static int THIRD_PLACE_AMOUNT = 1500000;
+    private static int FOURTH_PLACE_AMOUNT = 50000;
+    private static int FIFTH_PLACE_AMOUNT = 5000;
 
     private final Player player;
     private final Lotto lotto;
@@ -70,18 +75,87 @@ public class PlayerService {
 
     // 6. 수익률을 계산하는 기능
     public void updatePlayerResult(Player player) {
+        PlayerResult playerResult = player.getPlayerResult();
+        calculateWinningRanks(player.getLottos(), playerResult);
 
+        long profit = calculateProfit(playerResult);
+        playerResult.updateProfit(profit);
+
+        int purchasePrice = player.getLottoCount() * LOTTO_PRICE;
+        playerResult.updateProfitRate(calculateProfitRate(purchasePrice, profit));
     }
 
-    public void calculateWinningRank(List<PlayerLotto> playerLottos) {
-
+    public void calculateWinningRanks(List<PlayerLotto> playerLottos, PlayerResult playerResult) {
+        for (PlayerLotto playerLotto : playerLottos) {
+            calculateWinningRank(playerLotto, playerResult);
+        }
     }
 
-    public int calculateProfit(PlayerResult playerResult) {
-        return 0;
+    private void calculateWinningRank(PlayerLotto playerLotto, PlayerResult playerResult) {
+        if (checkFirstPlace(playerLotto)){
+            playerResult.increaseFirstPlace();
+        }
+        if (checkSecondPlace(playerLotto)){
+            playerResult.increaseSecondPlace();
+        }
+        if (checkThirdPlace(playerLotto)){
+            playerResult.increaseThirdPlace();
+        }
+        if (checkFourthPlace(playerLotto)){
+            playerResult.increaseFourthPlace();
+        }
+        if (checkFifthPlace(playerLotto)){
+            playerResult.increaseFifthPlace();
+        }
+    }
+
+    private boolean checkFirstPlace(PlayerLotto playerLotto) {
+        if (playerLotto.getWinningCount() == 6){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkSecondPlace(PlayerLotto playerLotto) {
+        if (playerLotto.getWinningCount() == 5 && playerLotto.getBonusCount() == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkThirdPlace(PlayerLotto playerLotto) {
+        if (playerLotto.getWinningCount() == 5 && playerLotto.getBonusCount() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkFourthPlace(PlayerLotto playerLotto) {
+        if (playerLotto.getWinningCount() == 4){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkFifthPlace(PlayerLotto playerLotto) {
+        if (playerLotto.getWinningCount() == 3){
+            return true;
+        }
+        return false;
+    }
+
+    public long calculateProfit(PlayerResult playerResult) {
+        long profit = 0;
+        profit += (long) playerResult.getFirstPlace() * FIRST_PLACE_AMOUNT;
+        profit += (long) playerResult.getSecondPlace() * SECOND_PLACE_AMOUNT;
+        profit += (long) playerResult.getThirdPlace() * THIRD_PLACE_AMOUNT;
+        profit += (long) playerResult.getFourthPlace() * FOURTH_PLACE_AMOUNT;
+        profit += (long) playerResult.getFifthPlace() * FIFTH_PLACE_AMOUNT;
+        return profit;
     }
 
     public float calculateProfitRate(int price, long profit) {
-        return 0;
+        float profitRate = ((float) profit / price) * 100;
+        return Math.round(profitRate * 10) / 10f;
     }
 }
