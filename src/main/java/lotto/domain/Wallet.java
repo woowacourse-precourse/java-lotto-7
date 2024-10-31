@@ -3,13 +3,14 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.constant.RankPrice;
 import lotto.util.RandomUtil;
 
 public class Wallet {
 
     private long money;
     private long originalMoney;
-    private List<Rank> ranks = new ArrayList<>();
+    private List<RankPrice> ranks = new ArrayList<>();
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Wallet(long money) {
@@ -40,20 +41,20 @@ public class Wallet {
         return lottos.size();
     }
 
-    public void addRank(Rank rank) {
-        ranks.add(rank);
+    public void addRank(RankPrice rankPrice) {
+        ranks.add(rankPrice);
     }
 
     public double gain() {
-        int totalPrice = ranks.stream()
-            .mapToInt(Rank::getPrice)
+        long totalPrice = ranks.stream()
+            .mapToLong(RankPrice::getPrice)
             .sum();
         return totalPrice / originalMoney;
     }
 
     public int getRankCount(int rank) {
         return (int)ranks.stream()
-            .filter((rank1 -> rank1.get() == rank))
+            .filter((rank1 -> rank1.getRank() == rank))
             .count();
     }
 }

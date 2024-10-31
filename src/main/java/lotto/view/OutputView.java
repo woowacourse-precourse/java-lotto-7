@@ -1,8 +1,10 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lotto.constant.RankPrice;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 
@@ -31,10 +33,14 @@ public class OutputView {
 
     public static void result(Wallet wallet) {
         print("\n");
-        for (int i = 5; i >= 1; i--) {
-            print(String.format("%d개 일치 (%s원) - %d개%n", 6 - i, 3000, wallet.getRankCount(i)));
-        }
-        print(String.format("총 수익률은 %.1f%%입니다.", wallet.gain()));
+        Arrays.stream(RankPrice.values())
+            .filter(rankPrice -> !rankPrice.equals(RankPrice.NONE))
+            .forEach(rankPrice ->
+                print(String.format("%d개 일치 (%s원) - %d개%n", rankPrice.getMatchCount(), rankPrice.getPrice(),
+                    wallet.getRankCount(rankPrice.getRank()))
+                )
+            );
+        print(String.format("총 수익률은 %.1f%%입니다.", wallet.gain() * 100));
     }
 
     private static void print(String content) {

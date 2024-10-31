@@ -23,18 +23,6 @@ public class Lotto {
         }
     }
 
-    public int getEqualNumbersCount(Lotto other) {
-        Set<Integer> filteredNumbers = new HashSet<>();
-        filteredNumbers.addAll(numbers);
-        int duplicateCount = 0;
-        for (int number : other.numbers) {
-            if (!filteredNumbers.add(number)) {
-                duplicateCount++;
-            }
-        }
-        return duplicateCount;
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }

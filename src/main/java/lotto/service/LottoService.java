@@ -3,7 +3,6 @@ package lotto.service;
 import java.util.List;
 
 import lotto.domain.Lotto;
-import lotto.domain.Rank;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
 

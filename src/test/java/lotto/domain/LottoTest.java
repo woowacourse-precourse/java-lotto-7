@@ -9,6 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import lotto.constant.RankPrice;
 import lotto.util.RandomUtil;
 
 class LottoTest {
@@ -33,16 +34,16 @@ class LottoTest {
         numbers.removeLast();
         numbers.add(0);
         Lotto lotto = new Lotto(numbers);
-        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), 0);
-        Rank rank = winningLotto.getRank(lotto);
-        assertThat(rank.get()).isEqualTo(3);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), 46);
+        RankPrice rankPrice = winningLotto.getRank(lotto);
+        assertThat(rankPrice.getRank()).isEqualTo(3);
     }
 
     @Test
     void 수익률을_계산한다() {
         Wallet wallet = new Wallet(5000);
         wallet.buyLottoTickets();
-        wallet.addRank(new Rank(3));
+        wallet.addRank(RankPrice.THIRD);
         assertThat(wallet.gain()).isEqualTo((double) 1_500_000 / 5_000 );
     }
 }

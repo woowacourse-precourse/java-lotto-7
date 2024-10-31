@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import lotto.constant.RankPrice;
+
 public class WinningLotto {
 
     private final Lotto lotto;
@@ -10,20 +16,19 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank getRank(Lotto other) {
-        int equalNumbersCount = lotto.getEqualNumbersCount(other);
-        if (equalNumbersCount == 6) {
-            return new Rank(1);
-        }
-        if (equalNumbersCount == 5) {
-            if (lotto.getNumbers().contains(bonusNumber)) {
-                return new Rank(2);
+    public RankPrice getRank(Lotto target) {
+        List<Integer> targetNumbers = target.getNumbers();
+        int matchCount = 0;
+        boolean matchBonus = false;
+        for (int i = 0; i < 6; i++) {
+            if (lotto.getNumbers().get(i) == targetNumbers.get(i)) {
+                matchCount++;
+                continue;
             }
-            return new Rank(3);
+            if (targetNumbers.get(i) == bonusNumber) {
+                matchBonus = true;
+            }
         }
-        if (equalNumbersCount < 3) {
-            return new Rank(-1);
-        }
-        return new Rank(8 - equalNumbersCount);
+        return RankPrice.of(matchCount, matchBonus);
     }
 }
