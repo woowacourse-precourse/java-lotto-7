@@ -21,4 +21,8 @@ public class OutputView {
                 .collect(Collectors.joining("\n"));
         System.out.println(result);
     }
+
+    public void printWinningNumbersRequest() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
 }

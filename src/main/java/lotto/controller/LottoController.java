@@ -21,6 +21,7 @@ public class LottoController {
     public void run() {
         Purchase purchase = requestPurchase();
         List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
+        requestWinningNumbers();
     }
 
     private Purchase requestPurchase() {
@@ -43,5 +44,10 @@ public class LottoController {
         outputView.printLottoNumbers(lottoTickets);
 
         return lottoTickets;
+    }
+
+    private void requestWinningNumbers() {
+        outputView.printWinningNumbersRequest();
+        String winningNumbers = inputView.getString();
     }
 }
