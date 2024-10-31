@@ -2,13 +2,13 @@ package lotto.service;
 
 import lotto.domain.User;
 import lotto.domain.UserRepository;
+import lotto.util.ProgramExit;
 import lotto.view.ErrorOutputView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import static lotto.enums.LottoConstant.ACCESS_COUNT;
 import static lotto.view.OutputView.ENTER_PURCHASE_PRICE;
-import static lotto.view.OutputView.EXIT_APPLICATION;
 
 public class UserService {
     // 싱글톤 패턴
@@ -38,18 +38,13 @@ public class UserService {
                 ErrorOutputView.printErrorMessage(e.getMessage());
             }
         }
-        exit(accessCount);
+        ProgramExit.run(accessCount);
         return -1;
     }
 
     private String inputPurchasePrice() {
         OutputView.printMessage(ENTER_PURCHASE_PRICE);
         return InputView.readLine();
-    }
-
-    private void exit(int accessCount) {
-        ErrorOutputView.printErrorMessage(accessCount + EXIT_APPLICATION.getMessage());
-        throw new IllegalStateException();
     }
 
 }
