@@ -17,7 +17,7 @@ class ValidatorTest {
 
     @Test
     void 예외_테스트_구매_금액은_1000_단위로_나누어_떨어지지_않으면_실패한다() {
-        String price = "2001";
+        int price = 2001;
         assertThatThrownBy(() -> validator.validatePrice(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 구입 금액은 1,000원 단위로 입력해주세요.");
@@ -25,7 +25,7 @@ class ValidatorTest {
 
     @Test
     void 예외_테스트_구매_금액에_0을_입력하면_실패한다() {
-        String price = "0";
+        int price = 0;
         assertThatThrownBy(() -> validator.validatePrice(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 구입 금액은 양의 정수로 입력해주세요.");
@@ -33,9 +33,17 @@ class ValidatorTest {
 
     @Test
     void 예외_테스트_구매_금액에_음의_정수를_입력하면_실패한다() {
-        String price = "-2000";
+        int price = -2000;
         assertThatThrownBy(() -> validator.validatePrice(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 구입 금액은 양의 정수로 입력해주세요.");
+    }
+
+    @Test
+    void 예외_테스트_구매_금액에_문자를_입력하면_실패한다() {
+        String price = "오천원";
+        assertThatThrownBy(() -> validator.isNumber(price))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 숫자로 입력해주세요.");
     }
 }

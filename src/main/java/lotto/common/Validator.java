@@ -3,10 +3,17 @@ package lotto.common;
 public class Validator {
     private final static int CRITERIA_PRICE = 1000;
 
-    public void validatePrice(String input) {
-        int price = Integer.parseInt(input);
+    public void validatePrice(int price) {
         isPositivePrice(price);
         isValidPrice(price);
+    }
+
+    public int isNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(ExceptionCode.INVALID_PRICE.message());
+        }
     }
 
     private void isValidPrice(int price) {
@@ -19,6 +26,10 @@ public class Validator {
         if (price <= 0) {
             throw new IllegalArgumentException(ExceptionCode.INVALID_POSITIVE_PRICE.message());
         }
+    }
+
+    public int parseQuantity(int price) {
+        return price / CRITERIA_PRICE;
     }
 
     // 2.당첨 번호 구분자 validate
