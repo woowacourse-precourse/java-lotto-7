@@ -35,7 +35,7 @@ class LottoTest {
     void createLottoFromOutOfMaxRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 로또 번호는 1부터 45사이여야 합니다.");
+            .hasMessage("[ERROR] 범위를 벗어난 숫자입니다. 1부터 45사이여야 합니다.");
     }
 
     @DisplayName("로또 번호가 지정 범위의 최솟값을 넘어가면 예외가 발생한다.")
@@ -43,7 +43,7 @@ class LottoTest {
     void createLottoFromOutOfMinRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 로또 번호는 1부터 45사이여야 합니다.");
+            .hasMessage("[ERROR] 범위를 벗어난 숫자입니다. 1부터 45사이여야 합니다.");
     }
 
     @DisplayName("로또 번호의 정렬 결과를 확인한다.")

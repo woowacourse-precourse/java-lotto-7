@@ -15,7 +15,7 @@ class LottoVendingMachineTest {
     void costShouldOverMinPrice() {
         assertThatThrownBy(() -> new LottoVendingMachine(999))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 로또 구입 금액은 1000원 이상이어야 합니다.");
+            .hasMessage("[ERROR] 구매 금액이 부족합니다. 최소 1000원 이상 입력해주세요.");
     }
 
     @DisplayName("로또 구매금액은 나누어 떨어지는 금액이어야 한다.")

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.exception.ErrorMessage;
 import lotto.exception.GameException;
 import lotto.provider.NumbersProvider;
 
@@ -29,10 +30,10 @@ public class LottoVendingMachine {
 
     private void validate(int cost) {
         if (cost < SALE_PRICE.value()) {
-            throw new GameException("로또 구입 금액은 %s원 이상이어야 합니다.".formatted(SALE_PRICE.value()));
+            throw new GameException(ErrorMessage.NOT_ENOUGH_MONEY);
         }
         if (hasRemain(cost)) {
-            throw new GameException("로또 구입 금액은 %s원 단위로 입력해야 합니다.".formatted(SALE_PRICE.value()));
+            throw new GameException(ErrorMessage.INVALID_MONEY_UNIT);
         }
     }
 

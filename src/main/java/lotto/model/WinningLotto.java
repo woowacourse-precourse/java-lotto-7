@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.exception.ErrorMessage;
 import lotto.exception.GameException;
 
 public class WinningLotto {
@@ -28,7 +29,7 @@ public class WinningLotto {
 
     private void validateDuplicateBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
         if (lotto.isContain(bonusNumber.getNumber())) {
-            throw new GameException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new GameException(ErrorMessage.HAS_DUPLICATE_NUMBER);
         }
     }
 

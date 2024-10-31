@@ -14,7 +14,7 @@ class BonusNumberTest {
     void bonusNumberInRangeLotto(int number) {
         assertThatThrownBy(() -> new BonusNumber(number))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45사이여야 합니다.");
+            .hasMessageContaining("[ERROR] 범위를 벗어난 숫자입니다. 1부터 45사이여야 합니다.");
     }
 
 }
