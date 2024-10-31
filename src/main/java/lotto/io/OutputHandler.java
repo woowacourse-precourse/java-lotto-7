@@ -1,6 +1,8 @@
 package lotto.io;
 
 import lotto.model.Lotto;
+import lotto.model.Rank;
+import lotto.model.WinningResult;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +29,10 @@ public class OutputHandler {
     public void showLottos(List<Lotto> lottos) {
         showPurchaseInformation(lottos);
         showLottosNotation(lottos);
+    }
+
+    public void showWinningResult(WinningResult result) {
+        System.out.println(Rank.notationFrom(result));
     }
 
     private void showPurchaseInformation(List<Lotto> lottos) {

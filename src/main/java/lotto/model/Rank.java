@@ -1,13 +1,54 @@
 package lotto.model;
 
-public enum Rank {
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-    FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
-    SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    THIRD(5, 1_500_000, "5개 일치 (1,500,000원)"),
-    FOURTH(4, 50_000, "4개 일치 (50,000원)"),
-    FIFTH(3, 5_000, "3개 일치 (5,000원)"),
-    NONE(0, 0, "당첨되지 않았음 (0원)");
+public enum Rank implements RankProvider {
+
+    FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)") {
+        @Override
+        public String provide(WinningResult result) {
+            Integer count = result.getWinningCount(this);
+            return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+    },
+    SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)") {
+        @Override
+        public String provide(WinningResult result) {
+            Integer count = result.getWinningCount(this);
+            return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+    },
+    THIRD(5, 1_500_000, "5개 일치 (1,500,000원)") {
+        @Override
+        public String provide(WinningResult result) {
+            Integer count = result.getWinningCount(this);
+            return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+    },
+    FOURTH(4, 50_000, "4개 일치 (50,000원)") {
+        @Override
+        public String provide(WinningResult result) {
+            Integer count = result.getWinningCount(this);
+            return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+    },
+    FIFTH(3, 5_000, "3개 일치 (5,000원)") {
+        @Override
+        public String provide(WinningResult result) {
+            Integer count = result.getWinningCount(this);
+            return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+    },
+    NONE(0, 0, "당첨되지 않았음 (0원)") {
+        @Override
+        public String provide(WinningResult result) {
+            Integer count = result.getWinningCount(this);
+            return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+    };
+
+    public static final String RANK_RESULT_NOTATION_FORM = "%s - %d개%n";
 
     private final int matchCount;
     private final int prize;
@@ -20,22 +61,32 @@ public enum Rank {
     }
 
     public static Rank of(int matchCount, boolean isMatchBonusNumber) {
-        if (matchCount == 6) {
+        if (FIRST.matchCount == matchCount) {
             return FIRST;
         }
-        if (matchCount == 5 && isMatchBonusNumber) {
+        if (SECOND.matchCount == matchCount && isMatchBonusNumber) {
             return SECOND;
         }
-        if (matchCount == 5) {
+        if (THIRD.matchCount == matchCount) {
             return THIRD;
         }
-        if (matchCount == 4) {
+        if (FOURTH.matchCount == matchCount) {
             return FOURTH;
         }
-        if (matchCount == 3) {
+        if (FIFTH.matchCount == matchCount) {
             return FIFTH;
         }
         return NONE;
     }
 
+    public static String notationFrom(WinningResult result) {
+        return Arrays.stream(values())
+            .filter(rank -> rank != NONE)
+            .map(rank -> rank.provide(result))
+            .collect(Collectors.joining());
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

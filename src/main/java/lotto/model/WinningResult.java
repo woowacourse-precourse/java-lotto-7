@@ -10,4 +10,8 @@ public class WinningResult {
         this.result = result;
     }
 
+    public Integer getWinningCount(Rank rank) {
+        return result.get(rank);
+    }
+
 }
