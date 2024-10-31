@@ -33,7 +33,7 @@ class StringTest {
     }
 
     @Test
-    void 순서와_값이_일치하지_않으면_예가_발생한다() {
+    void 순서와_값이_일치하지_않으면_예외가_발생한다() {
         // === 추가 공부 : containsExactly ===
         String additionalStudy = "1,2,3,2,1";
         String[] additionalStudySplit = additionalStudy.split(",");
