@@ -9,14 +9,6 @@ public class LottoGameAppConfig {
     private LottoGameAppConfig() {
     }
 
-    public static InputView getInputView() {
-        return inputView;
-    }
-
-    public static OutputView getOutputView() {
-        return outputView;
-    }
-
     public static LottoController getLottoController() {
         return lottoController;
     }
