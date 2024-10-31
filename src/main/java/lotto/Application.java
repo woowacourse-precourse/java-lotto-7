@@ -13,8 +13,11 @@ public class Application {
 
         int purchaseAmountInt = validatePurchaseAmount(purchaseAmount);
 
-        List<Integer> lotto = pickLottoNumber();
-        lotto = sortAscendingInteger(lotto);
+        for (int i = 0; i < purchaseAmountInt / 1000; i++) {
+            List<Integer> lotto = pickLottoNumber();
+            lotto = sortAscendingInteger(lotto);
+        }
+
 
     }
 
