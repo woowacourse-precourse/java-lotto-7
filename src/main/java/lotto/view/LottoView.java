@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoView {
     public int getInputPurchaseAmount() {
@@ -29,6 +31,16 @@ public class LottoView {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getInputWinningNumbers();
+        }
+    }
+
+    private List<Integer> parseNumbers(String input) {
+        try {
+            return Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
         }
     }
 }
