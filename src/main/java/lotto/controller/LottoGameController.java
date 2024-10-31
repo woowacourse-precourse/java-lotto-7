@@ -1,17 +1,21 @@
 package lotto.controller;
 
-import static lotto.constant.LottoGameRule.LOTTO_COST;
+import static lotto.view.OutputView.printLottoExceptionMessage;
+import static lotto.view.OutputView.printLottoGroup;
 import static lotto.view.OutputView.printPurchaseMessage;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.exception.LottoException;
 import lotto.service.BuyerService;
 import lotto.view.InputView;
 
 public class LottoGameController {
     private final BuyerService buyerService;
 
-    public LottoGameController() {
-        this.buyerService = new BuyerService();
+    public LottoGameController(BuyerService buyerService) {
+        this.buyerService = buyerService;
     }
 
     public void run() {
@@ -21,7 +25,16 @@ public class LottoGameController {
 
     private int getLottoQuantity() {
         String input = InputView.inputPurchaseAmount();
-        return buyerService.calculateLottoQuantity(input);
+
+        try {
+            int lottoQuantity = buyerService.calculateLottoQuantity(input);
+            printPurchaseMessage(lottoQuantity);
+
+            return lottoQuantity;
+        } catch (LottoException e) {
+            printLottoExceptionMessage(e);
+            return getLottoQuantity();
+        }
     }
 
     private static void getWinningNumbers() {
