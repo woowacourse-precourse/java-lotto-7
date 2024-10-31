@@ -17,6 +17,10 @@ public class LottoResult {
         }
     }
 
+    public List<Integer> getLottoSameSize() {
+        return this.lottoSameSize;
+    }
+
     public void updateLottoRankSize(int rank) {
         int rankSize = lottoSameSize.get(rank - 1);
         lottoSameSize.set(rank - 1, rankSize + 1);

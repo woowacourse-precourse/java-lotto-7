@@ -21,11 +21,21 @@ public class LottoService {
         this.lottoResult = new LottoResult();
     }
 
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
+    public LottoResult getLottoResult() {
+        return this.lottoResult;
+    }
+
+    public int calculPayment(int payment) {
+        return payment / LottoValue.AMOUNT_UNIT;
+    }
+
     //구입한 금액에 맞게 로또 구입과 로또 번호 생성
-    public void buyLotto(int payment) {
-        int countLotto = payment / LottoValue.AMOUNT_UNIT;
+    public void buyLotto(int countLotto) {
         for (int i = 0; i < countLotto; i++) {
-            lottos.add(createLotto());
             lottos.add(createLotto());
         }
     }
