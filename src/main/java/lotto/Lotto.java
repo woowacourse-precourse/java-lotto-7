@@ -24,7 +24,10 @@ public class Lotto {
                 matchCount++;
             }
         }
-       
+        if(numbers.contains(bonus)) {
+            matchCount++;
+        }
+        
         return null;
     }
 }
