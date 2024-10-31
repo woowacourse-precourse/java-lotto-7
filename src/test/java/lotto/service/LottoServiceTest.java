@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {
@@ -31,6 +32,23 @@ class LottoServiceTest {
         assertThat(lottoService.getLottos()).allSatisfy(lotto -> {
             assertThat(lotto).isInstanceOf(Lotto.class);
         });
+    }
+
+    @Test
+    void 당첨_확인_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoService lottoService = new LottoService(List.of(1, 2, 3, 4, 5, 6), 7);
+                    lottoService.makeLottos(5000);
+                    lottoService.checkLottos();
+                    assertThat(lottoService.getWinningCount()).isEqualTo(List.of(1, 1, 1, 1, 1));
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 10),
+                List.of(1, 2, 3, 4, 10, 11),
+                List.of(1, 2, 3, 10, 11, 12)
+        );
     }
 
 }
