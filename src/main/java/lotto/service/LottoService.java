@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.constant.LottoRank;
-import lotto.model.Lotto;
-import lotto.model.WinningLotto;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.util.InputFormatter;
 
 public class LottoService {
