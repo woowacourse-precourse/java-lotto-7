@@ -12,7 +12,7 @@ class BudgetTest {
     @DisplayName("예산이 0 미만일 경우 예외를 발생시킨다.")
     void validateBudgetRangeTest() {
         // given
-        final int budget = -1;
+        final int budget = 0;
 
         // when && then
         assertThatThrownBy(() -> new Budget(budget))

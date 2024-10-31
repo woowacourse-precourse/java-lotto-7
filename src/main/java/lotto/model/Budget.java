@@ -3,7 +3,7 @@ package lotto.model;
 import lotto.exception.BudgetErrorMessage;
 
 public class Budget {
-    private static final Integer MIN_BUDGET = 0;
+    private static final Integer MIN_BUDGET = 1000;
     private static final Integer BUDGET_UNIT = 1000;
 
     private Integer budget;
