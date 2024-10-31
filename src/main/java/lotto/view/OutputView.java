@@ -4,6 +4,7 @@ import static lotto.global.Message.BUY_LOTTO_COUNT_MESSAGE;
 import static lotto.global.Message.LOTTO_BONUS_NUMBER_CORRECT_RESULT;
 import static lotto.global.Message.LOTTO_NUMBER_CORRECT_RESULT;
 import static lotto.global.Message.LOTTO_NUMBER_RESULT;
+import static lotto.global.Message.LOTTO_PROFIT_RESULT;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,11 @@ public class OutputView {
             String matchCountMessage = generateMatchCountMessage(lottoScore, count);
             System.out.println(matchCountMessage);
         });
+    }
+
+    public void printLottoProfit(double lottoProfit) {
+        String format = String.format(LOTTO_PROFIT_RESULT.getMsg(), lottoProfit);
+        System.out.println(format);
     }
 
     private String generateMatchCountMessage(LottoScore lottoScore, int count) {
