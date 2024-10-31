@@ -1,11 +1,13 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.LottoShop;
 
 public class UserInput {
-    public void getPurchaseAmount() {
+    public int getPurchaseAmount() {
         String input = Console.readLine().trim();
         validateEmptyInput(input);
+        return LottoShop.validatePurchaseAmount(input);
     }
 
     private void validateEmptyInput(String input) {

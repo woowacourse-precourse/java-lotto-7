@@ -16,7 +16,7 @@ public class Application {
 
     public void run() {
         output.requestPurchaseAmount();
-        input.getPurchaseAmount();
+        int amount = input.getPurchaseAmount();
     }
 
     public static void main(String[] args) {

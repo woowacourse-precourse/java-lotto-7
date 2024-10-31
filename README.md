@@ -28,10 +28,10 @@
 ### 3) 로또 생성
 
 - [ ] 구입 금액에 따른 로또 구입
-    - [ ] 숫자인지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
-    - [ ] 1000원 단위인지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
+    - [x] 숫자인지 검증
+        - [x] 예외인 경우 IllegalArgumentException 발생
+    - [x] 1000원 단위인지 검증
+        - [x] 예외인 경우 IllegalArgumentException 발생
     - [ ] 로또 생성
       - [ ] 로또 번호 오름차순 정렬
 
