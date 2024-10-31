@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.model.Purchase;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,7 +22,7 @@ public class LottoController {
     public void run() {
         Purchase purchase = requestPurchase();
         List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
-        requestWinningNumbers();
+        WinningNumbers winningNumbers = requestWinningNumbers();
     }
 
     private Purchase requestPurchase() {
@@ -46,11 +47,21 @@ public class LottoController {
         return lottoTickets;
     }
 
-    private void requestWinningNumbers() {
+    private WinningNumbers requestWinningNumbers() {
         outputView.printWinningNumbersRequest();
-        String winningNumbers = inputView.getString();
+        List<Integer> winningNumbers = parseNumbers(inputView.getString());
+        Lotto numbers = new Lotto(winningNumbers);
 
         outputView.printBonusNumberRequest();
-        Integer bonusNumber = inputView.getInteger();
+        int bonusNumber = inputView.getInteger();
+
+        return new WinningNumbers(numbers, bonusNumber);
+    }
+
+    private List<Integer> parseNumbers(String input) {
+        List<String> numbers = List.of(input.split(","));
+        return numbers.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 }
