@@ -9,6 +9,5 @@ public class LottoController {
     }
     public void run(){
         int lottoAmount = lottoView.inputPurchaseAmount();
-        System.out.println(lottoAmount);
     }
 }
