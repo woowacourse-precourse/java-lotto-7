@@ -1,5 +1,5 @@
 package lotto.service;
 
 public interface LottoService {
-    int calculateLottoCount(int purchaseAmount);
+    int calculateLottoCount(String purchaseAmountInput);
 }
