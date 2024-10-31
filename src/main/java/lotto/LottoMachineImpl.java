@@ -62,38 +62,15 @@ public class LottoMachineImpl implements LottoMachine {
         return count;
     }
 
-    private void updateWinningResult(int count, Lotto lottoTicket, int bonusNumber, HashMap<LottoRank, Integer> winningCounts) {
-        //1등
-        if (count == 6) {
-            LottoRank key = RANK_1;
-            int value = winningCounts.get(key) + 1;
-            winningCounts.put(key, value);
-        }
-        //2등
-        //당첨 번호 5개 일치 + 보너스 번호도 일치
-        if (count == 5 && lottoTicket.getNumbers().contains(bonusNumber)) {
-            LottoRank key = RANK_2;
-            int value = winningCounts.get(key) + 1;
-            winningCounts.put(key, value);
-        }
-        //3등
-        if (count == 5) {
-            LottoRank key = RANK_3;
-            int value = winningCounts.get(key) + 1;
-            winningCounts.put(key, value);
-        }
-        //4등
-        if (count == 4) {
-            LottoRank key = RANK_4;
-            int value = winningCounts.get(key) + 1;
-            winningCounts.put(key, value);
-        }
-        //5등
-        if (count == 3) {
-            LottoRank key = RANK_5;
-            int value = winningCounts.get(key) + 1;
-            winningCounts.put(key, value);
-        }
+    private void updateWinningResult(int matchCount, Lotto lottoTicket, int bonusNumber, HashMap<LottoRank, Integer> winningResult) {
+        boolean isBonusNumber = isMatchBonusNumber(lottoTicket, bonusNumber);
+        LottoRank key = getRank(matchCount, isBonusNumber);
+        int value = winningResult.get(key) + 1;
+        winningResult.put(key, value);
+    }
+
+    private boolean isMatchBonusNumber(Lotto lottoTicket, int bonusNumber) {
+        return lottoTicket.getNumbers().contains(bonusNumber);
     }
 
     private void printWinningResult(HashMap<LottoRank, Integer> winningCounts) {
