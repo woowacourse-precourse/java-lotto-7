@@ -44,15 +44,7 @@ public class OutputHandler {
 		System.out.println(PROMPT_WINNING_REPORT_HEADER);
 	}
 
-	public void showInvalidAmountExceptionMessage(String message) {
-		System.out.println(message);
-	}
-
-	public void showInvalidWinningNumbersExceptionMessage(String message) {
-		System.out.println(message);
-	}
-
-	public void showInvalidBonusNumberExceptionMessage(String message) {
+	public void showExceptionMessage(String message) {
 		System.out.println(message);
 	}
 }
