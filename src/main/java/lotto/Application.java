@@ -16,6 +16,7 @@ public class Application {
             }
 
             int lottoCount = buyAmount / 1000;
+            System.out.println("로또 구매 개수: " + lottoCount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
