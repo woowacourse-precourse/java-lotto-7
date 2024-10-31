@@ -21,7 +21,7 @@ class LottoMachineTest {
     private static final LottoMachine LOTTO_MACHINE = new LottoMachine();
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "1000", "10000", "14000", "2147483000"})
+    @ValueSource(strings = {"1000", "10000", "14000", "2147483000"})
     public void 구입금액_정상테스트(String input) throws Exception {
         //Given
         int expected = Integer.parseInt(input);
@@ -37,6 +37,17 @@ class LottoMachineTest {
     @ValueSource(strings = {"", "1000원", "구입금액", "AMOUNT"})
     public void 구입금액_숫자X_예외테스트(String input) throws Exception {
         //Given
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(AMOUNT_ERROR_MSG);
+    }
+
+    @Test
+    public void 구입금액_0원_예외테스트() throws Exception {
+        //Given
+        String input = "0";
 
         //When, Then
         Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseAmount(input))

@@ -26,7 +26,7 @@ public class LottoMachine {
             throw new IllegalArgumentException(AMOUNT_ERROR_MSG);
         }
 
-        if (amount < 0 || amount % LOTTO_PRICE != 0) {
+        if (amount <= 0 || amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(AMOUNT_ERROR_MSG);
         }
 
