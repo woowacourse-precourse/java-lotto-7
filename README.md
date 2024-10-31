@@ -50,7 +50,7 @@
 
 #### 🚫 예외처리
 
-- [ ] 아무 값도 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
+- [x] 아무 값도 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 6개의 숫자를 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 중복된 숫자가 있을 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 구분자가 쉼표(,)가 아닌 경우, ``IllegalArgumentException``을 발생시킨다.
