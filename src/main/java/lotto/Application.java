@@ -1,8 +1,12 @@
 package lotto;
 
+import java.lang.ModuleLayer.Controller;
+import lotto.lottoController.LottoController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
 
+        LottoController controller = new LottoController();
+        controller.run();
     }
 }
