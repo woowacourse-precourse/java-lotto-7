@@ -17,6 +17,7 @@ public class LottoController {
     public void run() {
         Purchase purchase = requestPurchase();
         int purchaseQuantity = purchase.getQuantity();
+        outputView.printPurchaseQuantity(purchaseQuantity);
     }
 
     private Purchase requestPurchase() {
