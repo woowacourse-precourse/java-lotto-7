@@ -26,6 +26,11 @@ public class WinningNumbersInputView {
         return getIntegerWinningNumbers(parsedWinningNumbers);
     }
 
+    public int getBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return Integer.parseInt(bonusNumber);
+    }
+
     private List<String> getParsedWinningNumbers(String winningNumbers) {
         String[] parsedWinningNumbers = winningNumbers.split(",");
         return List.of(parsedWinningNumbers);
@@ -38,6 +43,7 @@ public class WinningNumbersInputView {
             }
         }
     }
+
 
     private List<Integer> getIntegerWinningNumbers(List<String> winningNumbers) {
         List<Integer> integerWinningNumbers = new ArrayList<>();
