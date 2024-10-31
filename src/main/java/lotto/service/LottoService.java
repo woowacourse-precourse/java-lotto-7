@@ -16,6 +16,9 @@ public class LottoService {
     }
 
     public int issueLottoCount(int cost) throws IllegalArgumentException {
+        if (cost < 0) {
+            throw new IllegalArgumentException("[Error] 구입 금액은 0 이상의 정수이어야 합니다.");
+        }
         if (cost % LOTTO_COST > 0) {
             throw new IllegalArgumentException("[Error] 구입 금액은 " + LOTTO_COST + "원 단위이어야 합니다.");
         }
