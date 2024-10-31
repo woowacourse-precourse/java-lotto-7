@@ -6,6 +6,7 @@ public enum ExceptionMessage {
     NONE_NUMERIC_INPUT_EXCEPTION("숫자 값만 입력할 수 있습니다."),
     INVALID_LOTTO_AMOUNT_EXCEPTION("로또 구입 금액은 1,000원 단위만 가능합니다."),
     EXCEED_MAX_LOTTO_AMOUNT_EXCEPTION("로또 구입 금액은 100,000원을 초과할 수 없습니다."),
+    INVALID_LOTTO_NUMBER_EXCEPTION("로또 번호는 1~45 사이의 수여야 합니다.")
     ;
 
     private final String message;
