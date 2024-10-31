@@ -13,21 +13,18 @@ public class PrizeSystem {
     private final int bonusNumber;
 
     // 당첨 통계 변수 - 당첨 카운팅
-    private int firstPrizeCount;
-    private int secondPrizeCount;
-    private int thirdPrizeCount;
-    private int fourthPrizeCount;
-    private int fifthPrizeCount;
+    private PrizeCount prizeCount;
 
     public PrizeSystem(List<Integer> prizeNumbers, int bonusNumber) {
         this.prizeNumbers = prizeNumbers;
         this.bonusNumber = bonusNumber;
 
-        this.firstPrizeCount = 0;
-        this.secondPrizeCount = 0;
-        this.thirdPrizeCount = 0;
-        this.fourthPrizeCount = 0;
-        this.fifthPrizeCount = 0;
+        prizeCount = new PrizeCount();
+        prizeCount.firstPrizeCount = 0;
+        prizeCount.secondPrizeCount = 0;
+        prizeCount.thirdPrizeCount = 0;
+        prizeCount.fourthPrizeCount = 0;
+        prizeCount.fifthPrizeCount = 0;
     }
 
     /**
@@ -46,18 +43,18 @@ public class PrizeSystem {
     /**
      * 일치하는 번호 개수를 통해 당첨 통계에 업데이트
      */
-    public void calculatePrizeCount(List<Integer> lottoNumbers, int matchCount) {
+    public void updatePrizeCount(List<Integer> lottoNumbers, int matchCount) {
         if (matchCount == MATCH_FIRST) {
-            firstPrizeCount += 1;
+            prizeCount.firstPrizeCount += 1;
         }
         if (matchCount == MATCH_SECOND_THIRD) {
             bonusCase(lottoNumbers);
         }
         if (matchCount == MATCH_FOURTH) {
-            fourthPrizeCount += 1;
+            prizeCount.fourthPrizeCount += 1;
         }
         if (matchCount == MATCH_FIFTH) {
-            fifthPrizeCount += 1;
+            prizeCount.fifthPrizeCount += 1;
         }
     }
 
@@ -66,21 +63,21 @@ public class PrizeSystem {
      */
     public void bonusCase(List<Integer> lottoNumbers) {
         if (lottoNumbers.contains(bonusNumber)) {
-            secondPrizeCount += 1;
+            prizeCount.secondPrizeCount += 1;
             return;
         }
-        thirdPrizeCount += 1;
+        prizeCount.thirdPrizeCount += 1;
     }
 
     /**
      * 총 당첨 금액 계산
      */
     public int getPrizeMoney() {
-        int prizeMoney = PrizeMoney.PRIZE_FIRST.getPrizeMoney() * firstPrizeCount +
-                PrizeMoney.PRIZE_SECOND.getPrizeMoney() * secondPrizeCount +
-                PrizeMoney.PRIZE_THIRD.getPrizeMoney() * thirdPrizeCount +
-                PrizeMoney.PRIZE_FOURTH.getPrizeMoney() * fourthPrizeCount +
-                PrizeMoney.PRIZE_FIFTH.getPrizeMoney() * fifthPrizeCount;
+        int prizeMoney = PrizeMoney.PRIZE_FIRST.getPrizeMoney() * prizeCount.firstPrizeCount +
+                PrizeMoney.PRIZE_SECOND.getPrizeMoney() * prizeCount.secondPrizeCount +
+                PrizeMoney.PRIZE_THIRD.getPrizeMoney() * prizeCount.thirdPrizeCount +
+                PrizeMoney.PRIZE_FOURTH.getPrizeMoney() * prizeCount.fourthPrizeCount +
+                PrizeMoney.PRIZE_FIFTH.getPrizeMoney() * prizeCount.fifthPrizeCount;
         return prizeMoney;
     }
 
@@ -90,5 +87,23 @@ public class PrizeSystem {
     public double getProfit(int purchaseMoney, int prizeMoney) {
         double profit = prizeMoney / purchaseMoney * 100;
         return profit;
+    }
+
+    /**
+     * 당첨 통계 이너 클래스
+     */
+    class PrizeCount {
+        private int firstPrizeCount;
+        private int secondPrizeCount;
+        private int thirdPrizeCount;
+        private int fourthPrizeCount;
+        private int fifthPrizeCount;
+    }
+
+    /**
+     * 당첨 통계 변수 getter
+     */
+    public PrizeCount getPrizeCount() {
+        return prizeCount;
     }
 }
