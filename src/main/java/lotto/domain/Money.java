@@ -26,4 +26,26 @@ public class Money {
     public int calculateNumberOfTickets() {
         return amount / 1000;
     }
+
+    public double calculateRateOfReturn(int[] lottoRanks) {
+        double totalWinnings = 0;
+        for (int rank = 1; rank <= 5; rank++) {
+            if (rank == 1) {
+                totalWinnings += 200000000 * lottoRanks[rank];
+            }
+            if (rank == 2) {
+                totalWinnings += 30000000 * lottoRanks[rank];
+            }
+            if (rank == 3) {
+                totalWinnings += 1500000 * lottoRanks[rank];
+            }
+            if (rank == 4) {
+                totalWinnings += 50000 * lottoRanks[rank];
+            }
+            if (rank == 5) {
+                totalWinnings += 5000 * lottoRanks[rank];
+            }
+        }
+        return (totalWinnings / amount) * 100;
+    }
 }
