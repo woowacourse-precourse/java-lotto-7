@@ -21,7 +21,7 @@ public class PurchaseAmount {
         try {
             amount= Double.parseDouble(purchaseAmount);
         }catch (Exception e) {
-
+            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
         }
         validateUnit(amount);
         validateMax(amount);
@@ -42,5 +42,9 @@ public class PurchaseAmount {
 
     public int getNumberOfLotto() {
         return (int) (purchaseAmount / UNIT);
+    }
+
+    public double getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

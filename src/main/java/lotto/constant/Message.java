@@ -22,5 +22,6 @@ public class Message {
     public static final String SECOND_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String FIRST_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     public static final String COUNT_UNIT_MESSAGE = "개";
-    public static final String NEW_LINE = "\n";
+    public static final String RATE_OF_RETURN_START_MESSAGE = "총 수익률은 ";
+    public static final String RATE_OF_RETURN_END_MESSAGE = "%입니다.";
 }

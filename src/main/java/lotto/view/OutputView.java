@@ -49,4 +49,12 @@ public class OutputView {
         System.out.println(Message.SECOND_MESSAGE + winningResult[Rank.SECOND.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
         System.out.println(Message.FIRST_MESSAGE + winningResult[Rank.FIRST.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
     }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println(Message.RATE_OF_RETURN_START_MESSAGE + rateOfReturn + Message.RATE_OF_RETURN_END_MESSAGE);
+    }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
 }

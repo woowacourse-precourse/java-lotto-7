@@ -40,6 +40,8 @@ public class LottoController {
     private void printWinningResult() {
         int[] winningResult = lottoService.getWinningResult();
         outputView.printWinningResult(winningResult);
+        double rateOfReturn = lottoService.getRateOfReturn();
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
     private void readWinningLotto(WinningNumber winningNumber, Bonus bonus) {
@@ -74,6 +76,10 @@ public class LottoController {
     private void readPurchaseAmount() {
         outputView.printReadPurchaseAmount();
         String readLine = inputView.readLine();
-        lottoService.readPurchaseAmount(readLine);
+        try {
+            lottoService.readPurchaseAmount(readLine);
+        }catch (Exception e) {
+            outputView.printExceptionMessage(e.getMessage());
+        }
     }
 }

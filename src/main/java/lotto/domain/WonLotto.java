@@ -9,7 +9,10 @@ public class WonLotto {
         this.rank = rank;
     }
 
-    public int getRank() {
+    public int getRankNumber() {
         return rank.getRank();
+    }
+    public Rank getRank() {
+        return rank;
     }
 }

@@ -49,4 +49,11 @@ public class LottoService {
     public int [] getWinningResult() {
        return lottoCollection.getWinningResult();
     }
+
+    public double getRateOfReturn() {
+        int totalWinnings = lottoCollection.getTotalWinnings();
+        double purchaseAmount1 = purchaseAmount.getPurchaseAmount();
+        double result = totalWinnings / purchaseAmount1;
+        return result * 100;
+    }
 }

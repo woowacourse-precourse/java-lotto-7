@@ -52,11 +52,21 @@ public class LottoCollection {
     public int [] getWinningResult() {
         int [] resultArray = new int [Rank.NUMBER_OF_RANKS];
         for (WonLotto wonLotto : resultList) {
-            int rank = wonLotto.getRank();
+            int rank = wonLotto.getRankNumber();
             if(rank != 0){
                 resultArray[rank - 1]++;
             }
         }
         return resultArray;
+    }
+
+    public int getTotalWinnings() {
+        int totalWinnings = 0;
+        for (WonLotto wonLotto : resultList) {
+            Rank rank = wonLotto.getRank();
+            int reward = rank.getReward();
+            totalWinnings += reward;
+        }
+        return totalWinnings;
     }
 }

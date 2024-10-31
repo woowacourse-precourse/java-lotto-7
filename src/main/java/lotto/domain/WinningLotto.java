@@ -44,5 +44,4 @@ public class WinningLotto {
     public int getMatchingCount(List<Integer> numbers) {
         return winningLotto.getMatchingCount(numbers);
     }
-
 }
