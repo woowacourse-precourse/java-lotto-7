@@ -1,6 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.utils.Randomizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Lottos implements Observable {
 
     public void generateLottos() {
         for (int i = 0; i < this.lottoCount; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNumbers = Randomizer.getRandomValues();
             Lotto newLotto = new Lotto(randomNumbers);
             newLotto.registerObserver(this.observer);
             newLotto.notifyObserver();
