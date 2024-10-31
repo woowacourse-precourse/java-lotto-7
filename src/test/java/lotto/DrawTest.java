@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DrawTest {
 
@@ -18,6 +19,14 @@ class DrawTest {
 
         assertThat(draw).extracting("winningNumbers").isEqualTo(winningNumbers);
         assertThat(draw).extracting("bonusNumber").isEqualTo(7);
+    }
+
+    @DisplayName("당첨 번호가 null이면 예외를 던진다.")
+    @Test
+    void drawWinningNumbersCannotBeNull() {
+        assertThatThrownBy(() -> new Draw(null, 7))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("당첨 번호는 null 일 수 없습니다.");
     }
 
 }
