@@ -21,6 +21,7 @@ public class InputView {
     public String inputWinningNumbers() {
         printMessage(INPUT_WINNING_NUMBERS_MESSAGE);
         String input = Console.readLine();
+        InputValidator.validateNull(input);
         InputValidator.validateContainsComma(input);
         InputValidator.validateCommaFormat(input);
         return input;
@@ -30,6 +31,9 @@ public class InputView {
         printEnter();
         printMessage(INPUT_BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
+        InputValidator.validateNull(input);
+        InputValidator.validateInteger(input);
+        InputValidator.validatePositiveNumber(input);
         return input;
     }
 
