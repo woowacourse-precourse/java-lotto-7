@@ -6,6 +6,7 @@ import lotto.exception.ExceptionMessages;
 public class InputValidator {
 
     private static final String DIGIT_REGEX = "^[0-9]*$";
+    private static final String INPUT_DELIM = ",";
 
     public void validateWhiteSpace(String input) {
         if (input.isBlank()) {
@@ -27,7 +28,7 @@ public class InputValidator {
     }
 
     public void validateEmptyElemFromInput(String input) {
-        String[] splitInput = input.split(",");
+        String[] splitInput = input.split(INPUT_DELIM);
         Arrays.stream(splitInput).forEach(elem -> {
             if (elem.isBlank()) {
                 throw new IllegalArgumentException(ExceptionMessages.EMPTY_ELEM_EXIST.getMessage());
