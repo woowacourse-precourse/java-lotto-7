@@ -81,13 +81,13 @@
     - **요구사항:** 로또 티켓 한 장의 번호를 생성할 수 있다.
     - **작업 항목:**
         - [x] `Lotto` 클래스 구현 (1~45 범위의 6개 숫자 유효성 검사).
-        - [ ] `LottoMachine`에서 랜덤 번호로 여러 `Lotto` 생성 후 `LottoTickets`라는 객체 생성.
+        - [x] `LottoMachine`에서 랜덤 번호로 여러 `Lotto` 생성 후 `LottoTickets`라는 객체 생성.
 
 - **Story 1.2:** 구매 금액에 따른 티켓 수 계산 기능
     - **요구사항:** 로또 구입 금액을 입력받아 발행할 수 있는 티켓 수를 계산한다.
     - **작업 항목:**
-        - [ ] `LottoMachine` 클래스에서 `calculateTicketCount()` 메서드를 통해 티켓 수 계산.
-        - [ ] 금액이 1,000원 단위로 나누어떨어지지 않으면 `IllegalArgumentException` 발생.
+        - [x] `LottoMachine` 클래스에서 `calculateTicketCount()` 메서드를 통해 티켓 수 계산.
+        - [x] 금액이 1,000원 단위로 나누어떨어지지 않으면 `IllegalArgumentException` 발생.
 
 ---
 
