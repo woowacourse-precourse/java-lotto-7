@@ -23,7 +23,7 @@ public class LottoNumbersGenerator {
     private List<Lotto> generateLottos(int count) {
         Set<Lotto> lottos = new HashSet<>();
 
-        while (lottos.size() == count) {
+        while (lottos.size() < count) {
             Lotto lotto = new Lotto(generateRandomNumbers());
             lottos.add(lotto);
         }
