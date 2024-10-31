@@ -11,6 +11,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int price = inputPrice();
+
         System.out.println();
 
         List<Lotto> lottos = manyGenerators(price, TICKET_PRICE);
@@ -46,11 +47,11 @@ public class Application {
     private static void successStaticsPrint(List<Lotto> lottos, Lotto targetLotto) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(Grade.THREECOINSIDE + congratulation(lottos, targetLotto, 3));
-        System.out.println(Grade.FOURCOINSIDE + congratulation(lottos, targetLotto, 4));
-        System.out.println(Grade.FIVECOINSIDE + congratulation(lottos, targetLotto, 5));
-        System.out.println(Grade.FIVECOINSIDE_BONUS + congratulation(lottos, targetLotto, 5, true));
-        System.out.println(Grade.SIXCOINSIDE + congratulation(lottos, targetLotto, 6));
+        System.out.println(Grade.THREECOINSIDE + "" + congratulation(lottos, targetLotto, 3) + "개");
+        System.out.println(Grade.FOURCOINSIDE + "" + congratulation(lottos, targetLotto, 4) + "개");
+        System.out.println(Grade.FIVECOINSIDE + "" + congratulation(lottos, targetLotto, 5) + "개");
+        System.out.println(Grade.FIVECOINSIDE_BONUS + "" + congratulation(lottos, targetLotto, 5, true) + "개");
+        System.out.println(Grade.SIXCOINSIDE + "" + congratulation(lottos, targetLotto, 6) + "개");
         System.out.println();
     }
 
@@ -78,32 +79,34 @@ public class Application {
         }
     }
 
-    public static String congratulation(List<Lotto> lottos, Lotto targetLotto, int matchTarget) {
+    public static int congratulation(List<Lotto> lottos, Lotto targetLotto, int matchTarget) {
         boolean b = false;
         return congratulation(lottos, targetLotto, matchTarget, b);
     }
 
-    public static String congratulation(List<Lotto> lottos, Lotto targetLotto, int matchTarget, boolean b) {
+    public static int congratulation(List<Lotto> lottos, Lotto targetLotto, int matchTarget, boolean b) {
         int matchCount = 0;
         for (Lotto lotto : lottos) {
             matchCount = getMatchCount(targetLotto, matchTarget, lotto, matchCount, b);
         }
 
-        return matchCount + "개";
+        return matchCount;
     }
 
-    private static int getMatchCount(Lotto targetLotto, int matchTarget, Lotto lotto, int matchCount, boolean checkBonus) {
+    private static int getMatchCount(Lotto targetLotto, int matchTarget, Lotto lotto, int matchCount,
+                                     boolean checkBonus) {
         int matchValue = 0;
         if (checkBonus && lotto.getNumbers().contains(targetLotto.getBonus())) {
             return returnMatchCount(targetLotto, matchTarget, lotto, matchCount, matchValue);
         }
-        if(!checkBonus && lotto.getNumbers().contains(targetLotto.getBonus()) && matchTarget == 5){
+        if (!checkBonus && lotto.getNumbers().contains(targetLotto.getBonus()) && matchTarget == 5) {
             return 0;
         }
         return returnMatchCount(targetLotto, matchTarget, lotto, matchCount, matchValue);
     }
 
-    private static int returnMatchCount(Lotto targetLotto, int matchTarget, Lotto lotto, int matchCount, int matchValue) {
+    private static int returnMatchCount(Lotto targetLotto, int matchTarget, Lotto lotto, int matchCount,
+                                        int matchValue) {
         for (Integer number : lotto.getNumbers()) {
             matchValue = getMatchValue(targetLotto, number, matchValue);
         }
@@ -120,6 +123,7 @@ public class Application {
 
         return matchValue;
     }
+
 }
 
 
