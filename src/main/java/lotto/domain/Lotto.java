@@ -1,13 +1,18 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +21,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }
