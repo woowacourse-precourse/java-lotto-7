@@ -13,15 +13,20 @@ public class Lotto {
         this.bonusNumber = pickBonusNumber(numbers);
         validate(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers; // 생성된 로또 번호 목록을 반환
+    }
+
     private int pickBonusNumber(List<Integer> numbers) {
         int bonus = Randoms.pickUniqueNumbersInRange(1, 45, 1).get(0);
-        if(numbers.contains(bonus)) {
+        if (numbers.contains(bonus)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
         }
         return bonus;
     }
 
-    private void validate(List<Integer> numbers) { //검증
+    private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
