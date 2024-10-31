@@ -112,7 +112,7 @@ View
     <td rowspan="6">로또 구매</td>
         <td rowspan="1"><b><em>Lotto</em></b></td>
             <td>✅ 1장 가격 상수 </td> 
-                <td rowspan="6"></td></tr><tr> 
+                <td rowspan="6">feat/purchase-lottos</td></tr><tr> 
         <td rowspan="1"><b><em>LottoService</em></b></td>
             <td>✅ `Lotto` 1장 가격 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>AmountService</em></b></td>
