@@ -1,6 +1,13 @@
 package domain.consumer;
 
+import domain.lotto.LottoPrice;
+
 public class Consumer {
+
+    public int getQuantityPurchaseLottoBy(int money) {
+        return money / LottoPrice.LOTTO_PRICE.getPrice();
+    }
+
     /**
      * 소비자는 돈을 소지하고 있는다.
      * 소비자는 로또를 저장할 수 있다.
