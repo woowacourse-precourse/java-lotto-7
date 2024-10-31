@@ -3,6 +3,8 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -33,6 +35,23 @@ class LottoVendingMachineTest {
         int quantity = vendingMachine.getAvailableQuantity();
         //then
         assertThat(quantity).isEqualTo(3);
+    }
+
+    @DisplayName("로또를 구매한다.")
+    @Test
+    void purchaseAll() {
+        //given
+        LottoVendingMachine vendingMachine = new LottoVendingMachine(3000);
+        //when
+        List<Lotto> lottos = vendingMachine.purchaseAll(() -> List.of(1, 2, 3, 4, 5, 6));
+        //then
+        assertThat(lottos).hasSize(3)
+            .extracting("numbers")
+            .containsExactlyInAnyOrder(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6)
+            );
     }
 
 }
