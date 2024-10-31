@@ -3,11 +3,13 @@ package lotto;
 import lotto.exception.GameException;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
-import lotto.model.Lotto;
-import lotto.model.LottoVendingMachine;
+import lotto.model.*;
 import lotto.provider.NumbersProvider;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoGame {
 
@@ -24,6 +26,7 @@ public class LottoGame {
     public void run() {
         List<Lotto> lottos = purchaseLotto();
         outputHandler.showLottos(lottos);
+        Lotto normalNumbersOfLotto = createWinningNumbers();
     }
 
     private List<Lotto> purchaseLotto() {
@@ -37,4 +40,23 @@ public class LottoGame {
             return purchaseLotto();
         }
     }
+
+    private Lotto createWinningNumbers() {
+        try {
+            outputHandler.showWinningNumbersInstruction();
+            String candidateWinningNumbers = inputHandler.getWinningNumbers().value();
+            return convertLottoFrom(candidateWinningNumbers);
+        } catch (GameException e) {
+            System.out.println(e.getMessage());
+            return createWinningNumbers();
+        }
+    }
+
+    private Lotto convertLottoFrom(String candidateWinningNumbers) {
+        List<Integer> winningNumbers = Arrays.stream(candidateWinningNumbers.split(","))
+            .map(Integer::parseInt)
+            .toList();
+        return new Lotto(winningNumbers);
+    }
+    
 }
