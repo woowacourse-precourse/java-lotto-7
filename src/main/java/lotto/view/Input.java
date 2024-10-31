@@ -20,15 +20,9 @@ public class Input {
   }
 
   // 3. 그 다음 사용자가 당첨 번호를 입력하고
-  public List<Integer> readWinning() {
+  public String readWinning() {
     String winning = Console.readLine();
-    List<Integer> winningNumbers = new ArrayList<>();
-    // 당천 번호 입력 문자열을 읽으면
-    for (int i = 0; i < winning.length(); i++) {
-      // 쉼표와 공백 구분자를 제외하고 각 정수를 하나씩 리스트에 추가한다
-//      winningNumbers.add(index);
-    }
-    return winningNumbers;
+    return winning;
   }
 
   //  4. 보너스 번호까지 입력하면

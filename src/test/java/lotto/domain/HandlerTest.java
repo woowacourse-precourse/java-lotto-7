@@ -53,6 +53,10 @@ class HandlerTest {
     assertEquals(expectGenerated, actualGenerated);
   }
 
+  @DisplayName("입력받은 당첨번호를 쉼표, 공백 구분자와 정수를 분리한다")
+  @Test
+  void generateWinningTest() throws Exception{}
 
+  @DisplayName("")
 
 }
