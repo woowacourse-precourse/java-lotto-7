@@ -29,7 +29,7 @@
 
 #### 6. 당첨 번호 입력
 
-- [X] Console.readLine()을 통한 당첨 번호 입력
+- [X] Console.readLine()을 통한 당첨 번호 입력 **(Done)**
 
 #### 7. 보너스 번호 입력
 
