@@ -14,33 +14,39 @@ public class View {
     public static final String COMMA = ",";
     public static final String BLANK = "";
 
-    public static Integer getPurchaseAmount(){
+    private Integer purchasePrice;
+    private Integer lottoCount;
+
+    public Integer getPurchaseAmount(){
         Integer purchasePrice = 0;
         try {
             System.out.println(LOTTO_AMOUNT_PHRASE);
             String rawPurchasePrice = Console.readLine();
             purchasePrice = parseInt(rawPurchasePrice);
+            this.lottoCount = this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 구입 금액은 오직 숫자로 이루어져야 합니다.");
-            getPurchaseAmount();
+            System.out.println("[ERROR] 구입 금액은 1000으로 나누어 떨어지는 숫자로만 기입해주세요.");
+            return getPurchaseAmount();
         }
         return purchasePrice;
     }
 
-    public static Integer countLotto(Integer input){
+    public Integer countLotto(Integer input){
         Integer lottoCount = input/1000;
-        try {
-            if (input % 1000 != 0) {
-                throw new IllegalArgumentException("1000원으로 나누어 떨어지는 금액을 입력해주세요.");
-            }
-        }
-        catch (IllegalArgumentException e){
-            System.out.println("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야합니다.");
-            getPurchaseAmount();
+        if (input % 1000 != 0) {
+            throw new IllegalArgumentException("1000원으로 나누어 떨어지는 금액을 입력해주세요.");
         }
         System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
         return lottoCount;
+    }
+
+    public Integer getLottoCount(){
+        return this.lottoCount;
+    }
+
+    public Integer getPurchasePrice(){
+        return this.purchasePrice;
     }
 
 
