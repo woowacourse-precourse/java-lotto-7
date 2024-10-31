@@ -3,9 +3,9 @@ package lotto.view;
 import java.util.List;
 import lotto.Lotto;
 
-public class LottoOutput {
+public class LottoOutputView {
 
-    private LottoOutput() {
+    private LottoOutputView() {
     }
 
     public static void printPurchaseLotto(List<Lotto> lottos) {
