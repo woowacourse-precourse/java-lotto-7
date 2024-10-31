@@ -17,15 +17,13 @@ public class Money {
         this.price = price;
     }
 
-    private static void validatePrice(final int price) {
-        validateDivisibility(price);
-        validateRange(price);
+    public int getPrice() {
+        return price;
     }
 
-    private static void validateDivisibility(final int price) {
-        if (isNotDivisible(price)) {
-            throw new LottoException(format(MONEY_NOT_DIVISIBLE.getMessage(), LOTTO_COST.getValue()));
-        }
+    private static void validatePrice(final int price) {
+        validateRange(price);
+        validateDivisibility(price);
     }
 
     private static void validateRange(final int price) {
@@ -34,12 +32,18 @@ public class Money {
         }
     }
 
-    private static boolean isNotDivisible(final int price) {
-        return price % LOTTO_COST.getValue() != 0;
+    private static void validateDivisibility(final int price) {
+        if (isNotDivisible(price)) {
+            throw new LottoException(format(MONEY_NOT_DIVISIBLE.getMessage(), LOTTO_COST.getValue()));
+        }
     }
 
     private static boolean isInValidRange(final int price) {
         return price < LOTTO_COST.getValue();
+    }
+
+    private static boolean isNotDivisible(final int price) {
+        return price % LOTTO_COST.getValue() != 0;
     }
 
 }
