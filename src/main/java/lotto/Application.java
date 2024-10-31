@@ -34,5 +34,12 @@ public class Application {
         for (String number : Console.readLine().split(",")) {
             goalNumbers.add(Integer.parseInt(number.trim()));
         }
+        System.out.println();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
+
+        
     }
 }
