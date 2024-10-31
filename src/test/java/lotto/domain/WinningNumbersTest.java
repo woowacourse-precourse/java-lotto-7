@@ -12,7 +12,7 @@ class WinningNumbersTest {
     @CsvSource(value = {"1", "2", "3", "4", "5", "6"})
     void 당첨_번호와_보너스_번호가_중복되면_예외처리(int number) {
         //given
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1,2,3,4,5,6));
+        final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         //then

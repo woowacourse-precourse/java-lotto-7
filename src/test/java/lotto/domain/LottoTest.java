@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,4 +25,17 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @ParameterizedTest
+    @CsvSource(value = {"1, true", "2, true", "3, true", "4, true", "5, true", "6, true"})
+    void 포함하고_있는_숫자인지_확인(int number, boolean excepted) {
+        //given
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //when
+        boolean contains = lotto.contains(number);
+
+        //then
+        Assertions.assertThat(contains).isEqualTo(excepted);
+    }
 }

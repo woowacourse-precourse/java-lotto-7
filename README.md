@@ -30,7 +30,8 @@
 - [x] 로또 생성 - Lotto#Lotto()
     - [x] 번호의 개수가 6개가 아니면 예외처리 - Lotto#validate()
     - [x] 중복된 번호가 있으면 예외처리 - Lotto#checkDuplicateNumbers()
-- [ ] 당첨 내역 통계
+- [x] 로또 번호중에 숫자가 포함되어 있는지 확인 - Lotto#contains()
+- [ ] 포함되어 있는 숫자의 갯수를 계산
 - [ ] 수악률을 계산
 
 ### 입력
