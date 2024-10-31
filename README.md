@@ -105,7 +105,7 @@
     - **요구사항:** 사용자의 티켓을 기준으로 당첨 번호와 일치하는 개수를 통해 당첨 순위를 판별한다.
     - **작업 항목:**
         - [x] `LottoRank` Enum을 이용해 당첨 순위 정의.
-        - [ ] `WinningNumbers` 클래스에 `determineRank()` 메서드를 구현하여 순위 판별.
+        - [x] `WinningNumbers` 클래스에 `determineRank()` 메서드를 구현하여 순위 판별.
 
 ---
 
