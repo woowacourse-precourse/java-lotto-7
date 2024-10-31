@@ -50,24 +50,26 @@ public class LottoController {
     }
 
     private LottoShop createLottoShop() {
-       try {
-           int money = getMoney();
-           return new LottoShop(money);
-       } catch (IllegalArgumentException e) {
-           printErrorMessageOutput(e.getMessage());
-           return createLottoShop();
+       while (true) {
+           try {
+               int money = getMoney();
+               return new LottoShop(money);
+           } catch (IllegalArgumentException e) {
+               printErrorMessageOutput(e.getMessage());
+           }
        }
     }
 
     private int getMoney() {
-        try {
-            String moneyInput = getMoneyInput();
-            validateNullOrEmpty(moneyInput);
-            validateNumber(moneyInput);
-            return Integer.parseInt(moneyInput);
-        } catch (IllegalArgumentException e) {
-            printErrorMessageOutput(e.getMessage());
-            return getMoney();
+        while (true) {
+            try {
+                String moneyInput = getMoneyInput();
+                validateNullOrEmpty(moneyInput);
+                validateNumber(moneyInput);
+                return Integer.parseInt(moneyInput);
+            } catch (IllegalArgumentException e) {
+                printErrorMessageOutput(e.getMessage());
+            }
         }
     }
 
@@ -84,24 +86,39 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-        try {
-            List<Integer> winningNumbers = getWinningNumbers();
-            int bonusNumber = getBonusNumber();
-            return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
-        } catch (IllegalArgumentException e) {
-            printErrorMessageOutput(e.getMessage());
-            return createWinningLotto();
+        Lotto winningLotto = getLottoByWinningNumbers();
+        int bonusNumber = getBonusNumber();
+
+        while (true) {
+            try {
+                return new WinningLotto(winningLotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                printErrorMessageOutput(e.getMessage());
+                bonusNumber = getBonusNumber();
+            }
+        }
+    }
+
+    private Lotto getLottoByWinningNumbers() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = getWinningNumbers();
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                printErrorMessageOutput(e.getMessage());
+            }
         }
     }
 
     private List<Integer> getWinningNumbers() {
-        try {
-            String winningNumbersInput = getWinningNumberInput();
-            validateNullOrEmpty(winningNumbersInput);
-            return parseWinningNumbers(winningNumbersInput);
-        } catch (IllegalArgumentException e) {
-            printErrorMessageOutput(e.getMessage());
-            return getWinningNumbers();
+        while (true) {
+            try {
+                String winningNumbersInput = getWinningNumberInput();
+                validateNullOrEmpty(winningNumbersInput);
+                return parseWinningNumbers(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                printErrorMessageOutput(e.getMessage());
+            }
         }
     }
 
@@ -116,14 +133,15 @@ public class LottoController {
     }
 
     private int getBonusNumber() {
-        try {
-            String bonusNumberInput = getBonusNumberInput();
-            validateNullOrEmpty(bonusNumberInput);
-            validateNumber(bonusNumberInput);
-            return Integer.parseInt(bonusNumberInput);
-        } catch (IllegalArgumentException e) {
-            printErrorMessageOutput(e.getMessage());
-            return getBonusNumber();
+        while (true) {
+            try {
+                String bonusNumberInput = getBonusNumberInput();
+                validateNullOrEmpty(bonusNumberInput);
+                validateNumber(bonusNumberInput);
+                return Integer.parseInt(bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                printErrorMessageOutput(e.getMessage());
+            }
         }
     }
 
