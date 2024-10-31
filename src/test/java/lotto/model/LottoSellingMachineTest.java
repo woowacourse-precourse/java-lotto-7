@@ -14,7 +14,7 @@ class LottoSellingMachineTest {
     @ValueSource(longs = {1000L, 2000L})
     @DisplayName("1000원 단위의 금액을 넣으면 로또 1개를 생성한다")
     void createOneLottoWhenInputMoney1000(long money) {
-        Lottos lottos = LottoSellingMachine.sell(money);
+        Lottos lottos = new LottoSellingMachine().sell(money);
         assertEquals(money/1000, lottos.getSize());
     }
 
@@ -23,7 +23,7 @@ class LottoSellingMachineTest {
     void throwExceptionWhenInputMoneyIsNotUnitOf1000() {
         long money = 1500;
         assertThrows(IllegalArgumentException.class,
-                () -> LottoSellingMachine.sell(money));
+                () -> new LottoSellingMachine().sell(money));
     }
 
     @DisplayName("1000원 미만의 금액이 입력되면 예외가 발생한다")
@@ -31,6 +31,6 @@ class LottoSellingMachineTest {
     void throwExceptionWhenInputMoneyIsLessThan1000() {
         long money = 500;
         assertThrows(IllegalArgumentException.class,
-                () -> LottoSellingMachine.sell(money));
+                () -> new LottoSellingMachine().sell(money));
     }
 }

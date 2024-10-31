@@ -32,7 +32,7 @@ public class LottoController {
         while (true) {
             try {
                 Long money = inputView.inputAmount();
-                Lottos lottos = LottoSellingMachine.sell(money);
+                Lottos lottos = new LottoSellingMachine().sell(money);
                 outputView.printSellResult(lottos);
                 return lottos;
             } catch (IllegalArgumentException e) {
