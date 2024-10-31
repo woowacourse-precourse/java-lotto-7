@@ -22,30 +22,24 @@ class NumbersTest {
         integers.add(5);
         integers.add(6);
 
-//        String strings = "1, 2, 3, 4, 5, 6";
+        String strings = "1, 2, 3, 4, 5, 6";
 
         Numbers numbersInt = new Numbers(integers);
-//        Numbers numbersStr = new Numbers(strings);
+        Numbers numbersStr = new Numbers(strings);
 
         Assertions.assertThat(numbersInt.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-//        Assertions.assertThat(numbersStr.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        Assertions.assertThat(numbersStr.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
-    @DisplayName("같은 값을 가진 두 번호 객체가 동일하다.")
+    @DisplayName("중복되는 숫자가 입력되면 예외가 발생한다.")
     @Test
-    void 같은_값_번호_객체_동일() {
-        Number numberInteger = new Number(30);
-        Number numberString = new Number("30");
+    void 중복되는_숫자가_입력되면_예외가_발생한다() {
 
-        Assertions.assertThat(numberInteger).isEqualTo(numberString);
-    }
+        String numbers = "2, 2, 3, 4, 5, 6";
 
-    @DisplayName("번호에 특수문자가 입력되면 예외가 발생한다.")
-    @Test
-    void 번호에_특수문자가_입력되면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Number("!"))
+        assertThatThrownBy(() -> new Numbers(numbers))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("1 ~ 45 사이의 정수만 입력 가능합니다");
+            .hasMessageContaining("[ERROR] 로또 번호는 중복이 없어야 합니다.");
 
         assertThatThrownBy(() -> new Number("!23"))
             .isInstanceOf(IllegalArgumentException.class)
