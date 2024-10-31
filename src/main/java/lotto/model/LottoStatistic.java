@@ -1,16 +1,18 @@
 package lotto.model;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoSummary {
+public class LottoStatistic {
 
     private final List<Integer> winningNumbers;
     private final Integer bonusNumber;
     private final Map<LottoRank, Integer> countResult;
 
-    public LottoSummary(List<Integer> numbers, Integer bonusNumber) {
+    public LottoStatistic(List<Integer> numbers, Integer bonusNumber) {
         this.winningNumbers = numbers;
         this.bonusNumber = bonusNumber;
         this.countResult = new EnumMap<>(LottoRank.class);
@@ -19,20 +21,21 @@ public class LottoSummary {
     public Map<LottoRank, Integer> countByLottoRank(List<Lotto> purchased) {
         for (Lotto lotto : purchased) {
             int sameNumberCount = lotto.countSameNumber(winningNumbers);
-            LottoRank rank = LottoRank.findRank(sameNumberCount, lotto.isSecondRank(sameNumberCount, bonusNumber));
+            boolean isSecondRank = lotto.isSecondRank(sameNumberCount, bonusNumber);
+            LottoRank rank = LottoRank.findRank(sameNumberCount, isSecondRank);
+
             countResult.merge(rank, 1, Integer::sum);
         }
-        return countResult;
+        return Collections.unmodifiableMap(countResult);
     }
 
     public Long calculateTotalRewards() {
-        return LottoRank.getWinningRanks().stream()
-                .map(rank -> rank.getReward()*countResult.getOrDefault(rank, 0))
+        return Arrays.stream(LottoRank.values())
+                .map(rank -> rank.getReward() * countResult.getOrDefault(rank, 0))
                 .reduce(0L, Long::sum);
     }
 
-    public Double calculateProfitPercentage(Integer totalCost) {
-        Long totalReward = calculateTotalRewards();
-        return totalReward * 100.0 / totalCost;
+    public Double calculateProfitPercentage(Long totalProfit, Integer totalCost) {
+        return totalProfit * 100.0 / totalCost;
     }
 }
