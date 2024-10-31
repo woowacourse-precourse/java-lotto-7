@@ -27,4 +27,22 @@ class WinningResultTest {
         assertThat(winningCount).isEqualTo(1);
     }
 
+    @DisplayName("수익률을 계산한다.")
+    @Test
+    void calculateProfitRate() {
+        //given
+        WinningResult result = new WinningResult(Map.of(
+            Rank.FIRST, 0,
+            Rank.SECOND, 0,
+            Rank.THIRD, 0,
+            Rank.FOURTH, 0,
+            Rank.FIFTH, 1,
+            Rank.NONE, 7)
+        );
+        //when
+        double profitRate = result.getProfitRate();
+        //then
+        assertThat(profitRate).isEqualTo(62.5);
+    }
+
 }
