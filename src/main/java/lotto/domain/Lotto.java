@@ -45,7 +45,21 @@ public class Lotto {
         if (numbers.contains(bonusNumber)) {
             throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
         }
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
+        }
         numbers.add(bonusNumber);
+    }
+
+    public int calculateMatchCount(Lotto winningLotto) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean isBonusMatched(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     private void validateSize(final List<Integer> numbers) {

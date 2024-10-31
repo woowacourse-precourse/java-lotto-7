@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.dto.LottoDto;
+import lotto.dto.LottoResultDto;
 import lotto.exception.InvalidNumberFormatException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -32,6 +33,10 @@ public class LottoController {
 
         Lotto winningLotto = getWinningNumber();
         int bonusNumber = getBonusNumber(winningLotto);
+
+        LottoResultDto resultDto = lottoService.getResult(lottos, winningLotto, bonusNumber);
+        outputView.printWinningDetail(resultDto);
+        outputView.printRevenueResult(resultDto);
     }
 
     private int getLottoCount() {
