@@ -7,13 +7,22 @@ import lotto.constant.LottoConstant;
 import lotto.constant.LottoRank;
 import lotto.model.Lotto;
 import lotto.model.WinningLotto;
+import lotto.util.InputFormatter;
 
 public class LottoService {
 
-    private List<Lotto> purchasedLotto = new ArrayList<>();
+    private int money;
+    private List<Lotto> purchasedLotto;
     private WinningLotto winningLotto;
+    private InputFormatter inputFormatter;
 
-    public void purchaseLotto(int money) {
+    public LottoService() {
+        this.purchasedLotto = new ArrayList<>();
+        this.inputFormatter = new InputFormatter();
+    }
+
+    public void purchaseLotto(String moneyInput) {
+        this.money = inputFormatter.formatMoneyInput(moneyInput);
         for (int i = 0; i < money / LottoConstant.MONEY_UNIT.getNumber(); i++) {
             purchasedLotto.add(purchaseOneLotto());
         }
@@ -25,11 +34,13 @@ public class LottoService {
                 .toList();
     }
 
-    public void setWinningLotto(List<Integer> winningNumbers) {
+    public void setWinningLotto(String winningNumbersInput) {
+        List<Integer> winningNumbers = inputFormatter.formatWinningNumbersInput(winningNumbersInput);
         this.winningLotto = new WinningLotto(new Lotto(winningNumbers));
     }
 
-    public void setBonusNumber(int bonusNumber) {
+    public void setBonusNumber(String bonusNumberInput) {
+        int bonusNumber = inputFormatter.formatBonusNumberInput(bonusNumberInput);
         winningLotto.setBonusNumber(bonusNumber);
     }
 
@@ -38,6 +49,10 @@ public class LottoService {
             int matchNumbers = findMatchNumbers(lotto);
             LottoRank.checkLottoPrize(matchNumbers, matchBonusNumber(lotto));
         }
+    }
+
+    public double getRateOfReturn() {
+        return LottoRank.getTotalPrize() * 100.0 / money;
     }
 
     private int findMatchNumbers(Lotto lotto) {
