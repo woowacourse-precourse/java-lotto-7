@@ -60,7 +60,7 @@ public record WinNumbers(
         if (primaryWinNumbers.contains(convertBonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXIST_EXCEPTION.getMessage());
         }
-        if (convertBonusNumber < 1 || convertBonusNumber > 45) {
+        if (convertBonusNumber < Lotto.NUMBER_BEGIN_RANGE || convertBonusNumber > Lotto.NUMBER_END_RANGE) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_RANGE_EXCEPTION.getMessage());
         }
     }

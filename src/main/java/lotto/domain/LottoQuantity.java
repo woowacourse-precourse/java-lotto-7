@@ -5,7 +5,7 @@ public record LottoQuantity(
 ) {
 
     public static LottoQuantity findQuantity(int purchasePrice) {
-        int quantity = purchasePrice / 1000;
+        int quantity = purchasePrice / PurchasePrice.DIVIDE_UNIT;
         return new LottoQuantity(quantity);
     }
 }
