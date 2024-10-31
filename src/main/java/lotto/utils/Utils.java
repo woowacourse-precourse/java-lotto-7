@@ -26,4 +26,13 @@ public class Utils {
     public static boolean isDivisibleByThousand (int num) {
         return (num % 1000 == 0);
     }
+
+    public static boolean allElementsAreDigits (String[] input) {
+        for (String target : input) {
+            if (!Utils.isDigitOnly(target)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

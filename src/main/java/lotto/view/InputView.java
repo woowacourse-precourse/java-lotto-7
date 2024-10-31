@@ -58,11 +58,8 @@ public class InputView {
         while (true) {
             try {
                 String userInput = Console.readLine();
-                if (userInput.isEmpty()) {
-                    throw new IllegalArgumentException(EMPTY_INPUT + " : " + userInput);
-                }
+                validateWinningNumber(userInput);
                 String[] numbers = userInput.split(",");
-//                validateWinningNumber(numbers);
                 List<Integer> winningNumber = Arrays.stream(numbers).map(number -> Integer.parseInt(number)).toList();
                 return winningNumber;
             } catch (IllegalArgumentException e) {
@@ -71,9 +68,15 @@ public class InputView {
         }
     }
 
-//    private static void validateWinningNumber(String[] numbers) {
-//        if ()
-//    }
+    private static void validateWinningNumber(String userInput) {
+        if (userInput.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT + " : " + userInput);
+        }
+        String[] numbers = userInput.split(",");
+        if (!Utils.allElementsAreDigits(numbers)) {
+            throw new IllegalArgumentException(NOT_NUMBER + " : " + userInput);
+        }
+    }
 
     //inputBonusNumber 구현
 }
