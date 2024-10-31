@@ -1,3 +1,12 @@
+/*
+ * 클래스 이름 WinningLotto
+ *
+ * 버전 정보 V1
+ *
+ * 날짜 10월 31일
+ *
+ * 저작권 주의
+ */
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;

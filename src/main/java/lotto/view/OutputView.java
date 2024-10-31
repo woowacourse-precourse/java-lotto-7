@@ -1,3 +1,12 @@
+/*
+ * 클래스 이름 OutputView
+ *
+ * 버전 정보 V1
+ *
+ * 날짜 10월 30일
+ *
+ * 저작권 주의
+ */
 package lotto.view;
 
 import lotto.constant.Message;

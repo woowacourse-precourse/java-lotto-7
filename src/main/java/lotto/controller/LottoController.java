@@ -1,7 +1,15 @@
+/*
+ * 클래스 이름 LottoController
+ *
+ * 버전 정보 V1
+ *
+ * 날짜 10월 30일
+ *
+ * 저작권 주의
+ */
 package lotto.controller;
 
 import lotto.domain.Bonus;
-import lotto.domain.WinningLotto;
 import lotto.domain.WinningNumber;
 import lotto.service.LottoService;
 import lotto.view.InputView;

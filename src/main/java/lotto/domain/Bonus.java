@@ -1,7 +1,15 @@
+/*
+ * 클래스 이름 Bonus
+ *
+ * 버전 정보 V1
+ *
+ * 날짜 10월 31일
+ *
+ * 저작권 주의
+ */
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.Message;
 
 public class Bonus {
     private static final int START_INCLUSIVE = 1;
