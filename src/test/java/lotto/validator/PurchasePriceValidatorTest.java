@@ -42,4 +42,9 @@ class PurchasePriceValidatorTest {
     void notANumber() {
         assertThat(PurchasePriceValidator.validate("1,")).isFalse();
     }
+    @Test
+    @DisplayName("똑바로 된 값을 입력했을 때")
+    void validate() {
+        assertThat(PurchasePriceValidator.validate("1000")).isTrue();
+    }
 }
