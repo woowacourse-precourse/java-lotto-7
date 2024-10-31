@@ -1,6 +1,6 @@
-package domain;
+package lotto.domain;
 
-import utils.LottoErrorMessage;
+import lotto.utils.LottoErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;

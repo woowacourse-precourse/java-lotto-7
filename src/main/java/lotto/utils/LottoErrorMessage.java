@@ -1,4 +1,4 @@
-package utils;
+package lotto.utils;
 
 public enum LottoErrorMessage {
     INVALID_LOTTO_NUMBER_IN_RANGE("[ERROR] 로또 번호는 1~45 사이의 정수여야 합니다."),
