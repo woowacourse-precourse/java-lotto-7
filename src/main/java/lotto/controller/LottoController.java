@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoArchive;
+import lotto.model.LottoMaker;
 import lotto.model.Money;
 import lotto.view.MoneyInputView;
 import lotto.view.OutView;
@@ -11,10 +15,13 @@ public class LottoController {
     public void start() {
 
         Money money = userMoneyInput();
+        LottoArchive lottoArchive = buyLottos(money.getTickets());
 
     }
 
     public Money userMoneyInput() {
+        outView.printMoneyInputMessage();
+
         while (true) {
             try {
                 Long number = MoneyInputView.getMoney();
@@ -24,4 +31,10 @@ public class LottoController {
             }
         }
     }
+
+    public LottoArchive buyLottos(Long ticket) {
+        List<Lotto> lottoList = LottoMaker.makeLottos(ticket);
+        return new LottoArchive(lottoList);
+    }
+
 }
