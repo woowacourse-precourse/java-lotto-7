@@ -19,4 +19,8 @@ public class Lotto {
     private boolean isValidRange(List<Integer> numbers) {
         return numbers.stream().allMatch(num -> num >= 1 && num <= 45);
     }
+
+    private boolean hasDuplicates(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
 }
