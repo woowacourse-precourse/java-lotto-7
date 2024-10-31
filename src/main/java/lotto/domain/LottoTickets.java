@@ -28,5 +28,4 @@ public class LottoTickets {
         return lottoNumbers;
     }
 
-
 }

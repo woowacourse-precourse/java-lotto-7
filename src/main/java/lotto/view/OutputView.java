@@ -13,4 +13,9 @@ public class OutputView {
             System.out.println(lottoTicket);
         }
     }
+
+    public static void printWinningStatistics(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }

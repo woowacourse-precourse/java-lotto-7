@@ -28,8 +28,12 @@ public class Controller {
             winningNumbers.add(Converter.stringToInt(inputsWinningNumbers[i]));
         }
 
+        String inputBonus = InputView.promptPurchaseBonusNumber();
+        int bonusNumber = Converter.stringToInt(inputBonus);
 
+        OutputView.printWinningStatistics();
 
 
     }
 }
+
