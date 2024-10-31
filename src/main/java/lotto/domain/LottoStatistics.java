@@ -16,8 +16,14 @@ public class LottoStatistics {
         results.put(rank, results.get(rank) + 1);
     }
 
+    public double calculateProfitRate(int totalInvestment) {
+        int totalPrize = results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return (double) totalPrize / totalInvestment * 100;
+    }
+
     public Map<LottoRank, Integer> getResults() {
         return results;
     }
 }
-
