@@ -26,11 +26,17 @@ public class Application {
         return readNonEmptyLine();
     }
 
+    private static String readBonusNumbers() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        return readNonEmptyLine();
+    }
+
     public static void main(String[] args) {
         LottoMachine lottoMachine = new LottoMachine();
         int amount = lottoMachine.parseAmount(readAmount());
         lottoMachine.issue(amount);
         lottoMachine.printLottoBunch();
         Lotto winningNumbers = lottoMachine.parseWinningNumber(readWinningNumbers());
+        int bonusNumber = lottoMachine.parseBonusNumber(winningNumbers, readBonusNumbers());
     }
 }

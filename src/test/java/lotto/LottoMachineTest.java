@@ -3,6 +3,7 @@ package lotto;
 import static lotto.Lotto.LOTTO_NUMBER_DUPLICATE_ERROR_MSG;
 import static lotto.Lotto.LOTTO_NUMBER_SIZE_ERROR_MSG;
 import static lotto.LottoMachine.AMOUNT_ERROR_MSG;
+import static lotto.LottoMachine.BONUS_NUMBER_DUPLICATE_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_PRICE;
 
@@ -165,5 +166,31 @@ class LottoMachineTest {
         Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_SIZE_ERROR_MSG);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"7", "45"})
+    public void 보너스번호_정상테스트(String input) throws Exception {
+        //Given
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int expected = Integer.parseInt(input);
+
+        //When
+        int actual = LOTTO_MACHINE.parseBonusNumber(winningNumbers, input);
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "6"})
+    public void 보너스번호_중복_예외테스트(String input) throws Exception {
+        //Given
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseBonusNumber(winningNumbers, input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUMBER_DUPLICATE_ERROR_MSG);
     }
 }
