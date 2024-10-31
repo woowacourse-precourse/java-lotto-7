@@ -17,4 +17,14 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public Rank read(List<Integer> winningNum, int bonus) {
+        int matchCount = 0;
+        for(int num : numbers) {
+            if(winningNum.contains(num)) {
+                matchCount++;
+            }
+        }
+       
+        return null;
+    }
 }
