@@ -24,11 +24,11 @@ public class LottoService {
     }
 
     private void createLottoNum() {
-        for(int numCount = 0; numCount < LOTTO_NUM_COUNT; numCount++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUM_START, LOTTO_NUM_END, LOTTO_NUM_COUNT);
-            numbers.sort(Comparator.naturalOrder());
-            lottos.add(new Lotto(numbers));
-        }
+        List<Integer> randomNumbers =
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUM_START, LOTTO_NUM_END, LOTTO_NUM_COUNT);
+        List<Integer> numbers = new ArrayList<>(randomNumbers);
+        numbers.sort(Comparator.naturalOrder());
+        lottos.add(new Lotto(numbers));
     }
 
     public List<Lotto> getLottos() {
