@@ -11,7 +11,8 @@ public class Controller {
         int lottoCount = LottoService.calculateLottoCount(money);
         List<Lotto> lottoTickets = LottoService.generateLottos(lottoCount);
         OutputView.printLottos(lottoTickets);
-        Lotto WinningLotto = getWinningLotto();
+        Lotto winningLotto = getWinningLotto();
+        int BonusLottoNumber = getBonusNumber(winningLotto);
     }
 
     private static int getPurchaseAmount() {
@@ -35,6 +36,17 @@ public class Controller {
                         .map(Integer::parseInt)
                         .collect(Collectors.collectingAndThen(Collectors.toList(), Lotto::new));
                 return lotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int getBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                String input = InputView.readBonusNumber();
+                return InputValidator.validateBonusNumber(input, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
