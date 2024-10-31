@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import lotto.domain.lotto.vo.LottoNumber;
+import lotto.domain.rank.vo.Rank;
 import lotto.infrastructure.constant.ExceptionMessage;
 import lotto.infrastructure.exception.CustomException;
 
@@ -17,6 +18,20 @@ public class Lotto {
                 .sorted()
                 .map(LottoNumber::of)
                 .toList();
+    }
+
+    public Rank getRank(WinningLotto winningLotto) {
+        int match = 0;
+        int bonus = 0;
+        for (LottoNumber number : numbers) {
+            if (winningLotto.basicNumbers().contains(number.value())) {
+                match++;
+            }
+            if (winningLotto.bonusNumber() == number.value()) {
+                bonus++;
+            }
+        }
+        return Rank.of(match, bonus);
     }
 
     private void validateCount(List<Integer> numbers) {
