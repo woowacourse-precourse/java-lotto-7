@@ -11,7 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoServiceTest {
     private final LottoService lottoService = new LottoService();
-    private static final List<Integer> WINNING_PRIZES = List.of(0, 2000000000, 30000000, 1500000, 50000, 5000);
+    private static final List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
 
     @Test
     void 로또_번호는_오름차순으로_정렬되어야_한다() {

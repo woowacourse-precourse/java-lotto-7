@@ -5,11 +5,11 @@ import lotto.domain.Lotto;
 import java.util.List;
 
 public class LottoService {
-    private static final List<Integer> WINNING_PRIZES = List.of(0, 2000000000, 30000000, 1500000, 50000, 5000);
+    private static final List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
 
     public List<Integer> sortLottoNumbersAscending(List<Integer> lottoNumber) {
         for (int i = 0; i < lottoNumber.size() - 1; i++) {
-            for (int j = 0; j <lottoNumber.size() - i - 1; j ++) {
+            for (int j = 0; j < lottoNumber.size() - i - 1; j++) {
                 lottoNumber = swap(j, j + 1, lottoNumber);
             }
         }
@@ -37,5 +37,13 @@ public class LottoService {
             }
         }
         return count;
+    }
+
+    public int sumOfPrizes(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int sum = 0;
+        for (Lotto lotto : lottos) {
+            sum += lotto.calculatePrize(winningNumbers, bonusNumber);
+        }
+        return sum;
     }
 }
