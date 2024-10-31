@@ -67,9 +67,10 @@ public class LottoController {
 
     private void printResult(Lottos lottos, WinningBalls winningBalls, BonusBall bonusBall) {
         RankResult rankResult = lottos.calculateWinningResults(winningBalls, bonusBall);
-        Float returnRate1 = lottos.calculateReturnRate(winningBalls, bonusBall);
+        Long totalPrice = lottos.getTotalPrice();
+        Float returnRate = rankResult.calculateReturnRate(totalPrice);
 
         outputView.printResult(rankResult, new EnumMap<>(Rank.class));
-        outputView.printReturnRate(returnRate1);
+        outputView.printReturnRate(returnRate);
     }
 }

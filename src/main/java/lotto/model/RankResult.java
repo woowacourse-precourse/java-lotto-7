@@ -10,6 +10,11 @@ public class RankResult {
         this.ranks = map;
     }
 
+    public Float calculateReturnRate(Long totalLottoPrice) {
+        Long winningAmount = calculateWinningAmount();
+        return (Float.valueOf(winningAmount) / totalLottoPrice) * 100;
+    }
+
     public Long calculateWinningAmount() {
         Long sum = 0L;
         Integer firstCount = this.ranks.getOrDefault(Rank.FIRST, 0);

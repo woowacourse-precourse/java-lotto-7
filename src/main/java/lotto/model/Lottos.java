@@ -57,10 +57,6 @@ public class Lottos {
         return this.lottos.size();
     }
 
-    public List<Lotto> getLottos() {
-        return this.lottos;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -69,5 +65,9 @@ public class Lottos {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    public Long getTotalPrice() {
+        return LOTTO_PRICE * getSize();
     }
 }
