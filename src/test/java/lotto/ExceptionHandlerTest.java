@@ -56,4 +56,19 @@ public class ExceptionHandlerTest {
         assertThatThrownBy(() -> ExceptionHandler.validateLottoNumber(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 로또_번호가_중복이면_예외가_발생한다() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 5, 5, 6);
+        assertThatThrownBy(() -> ExceptionHandler.hasDuplicates(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호와_보너스_번호가_중복이면_예외가_발생한다() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 4;
+        assertThatThrownBy(() -> ExceptionHandler.hasDuplicates(lottoNumber, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
