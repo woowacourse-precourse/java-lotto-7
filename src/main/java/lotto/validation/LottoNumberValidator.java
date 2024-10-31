@@ -2,7 +2,9 @@ package lotto.validation;
 
 import java.util.HashSet;
 import java.util.Set;
+import lotto.enums.Delimiter;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoValue;
 
 public class LottoNumberValidator {
 
@@ -24,19 +26,19 @@ public class LottoNumberValidator {
     }
 
     private static void validateSeparatorNotComma(String input) {
-        if (!input.contains(",") || !input.matches("^[\\d,\\s]+$")) {
+        if (!input.contains(Delimiter.COMMA.getDelimiter())) {
             throw new IllegalArgumentException(ErrorMessage.SEPARATOR_NOT_COMMA.getErrorMessage());
         }
     }
 
     private static void validateSeparatorContinue(String input) {
-        if (input.contains(",,")) {
+        if (input.contains(Delimiter.CONTINUE_COMMA.getDelimiter())) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_SEPARATOR_CONTINUE.getErrorMessage());
         }
     }
 
     private static void validateNoEmptyBetweenCommas(String input) {
-        String [] values = input.split(",");
+        String [] values = getSplit(input);
 
         for (String value : values) {
             if (value.trim().isEmpty()) {
@@ -46,7 +48,7 @@ public class LottoNumberValidator {
     }
 
     private static void validateSixNumbers(String input) {
-        String [] values = input.split(",");
+        String [] values = getSplit(input);
 
         if (values.length != 6) {
             throw new IllegalArgumentException(ErrorMessage.NOT_INPUT_SIX_NUMBERS.getErrorMessage());
@@ -54,7 +56,7 @@ public class LottoNumberValidator {
     }
 
     private static void validateStartWithZero(String input) {
-        String [] values = input.split(",");
+        String [] values = getSplit(input);
 
         for (String value : values) {
             value = value.trim();
@@ -65,7 +67,7 @@ public class LottoNumberValidator {
     }
 
     private static void validateNumberDuplicate(String input) {
-        String [] values = input.split(",");
+        String [] values = getSplit(input);
         Set<String> numbers = new HashSet<>();
 
         for (String value : values) {
@@ -77,13 +79,17 @@ public class LottoNumberValidator {
     }
 
     private static void validateRange(String input) {
-        String [] values = input.split(",");
+        String [] values = getSplit(input);
 
         for (String value : values) {
             int number = Integer.parseInt(value.trim());
-            if (number < 1 || number > 45) {
+            if (number < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
                 throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
             }
         }
+    }
+
+    private static String[] getSplit(String input) {
+        return input.split(Delimiter.COMMA.getDelimiter());
     }
 }
