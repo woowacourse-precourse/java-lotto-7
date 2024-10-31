@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import lotto.io.Output;
-import lotto.message.IOMessage;
-import lotto.view.PurchaseAmount;
+import lotto.view.PurchaseAmountView;
 
 public final class LottoController {
     public void run() {
-        int purchaseQuantity = PurchaseAmount.purchaseAmount();
+        int purchaseQuantity = PurchaseAmountView.purchaseAmount();
     }
 }

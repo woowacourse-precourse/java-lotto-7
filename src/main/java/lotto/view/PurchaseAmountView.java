@@ -5,7 +5,7 @@ import lotto.io.Output;
 import lotto.message.IOMessage;
 import lotto.validation.PurchaseAmountValidation;
 
-public final class PurchaseAmount {
+public final class PurchaseAmountView {
     public static int purchaseAmount() {
         while (true) {
             try {
