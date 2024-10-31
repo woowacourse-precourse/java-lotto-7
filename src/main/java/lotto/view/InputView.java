@@ -2,26 +2,31 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
+import lotto.validator.LottoValidator;
 
 public class InputView {
+
+    LottoValidator validator = new LottoValidator();
 
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseAmount = Integer.parseInt(Console.readLine());
         //1000원 단위 검증
-        return purchaseAmount / 1000;
+        return purchaseAmount;
     }
 
-    public Lotto getWinningNumbers() {
+    public Lotto getWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
 
         String[] winningNumberInput = Console.readLine().split(","); //","를 상수로
         List<Integer> winningLotto = convertArrayToList(winningNumberInput);
 
-        return new Lotto(winningLotto);
+        Lotto winningLottoTicket = new Lotto(winningLotto);
+        validator.duplicateNumValidator(winningLottoTicket);
+
+        return winningLottoTicket;
     }
 
     public int getBonusNumber() {
