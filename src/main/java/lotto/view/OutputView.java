@@ -14,29 +14,33 @@ import lotto.domain.constants.Rank;
 public class OutputView {
 
     public static void printLottos(final List<Lotto> lottos) {
-        printEmptyMessage();
-        System.out.printf(OUTPUT_LOTTO_PURCHASE_AMOUNT.getMessage(), lottos.size());
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        printEmptyLine();
+        printf(OUTPUT_LOTTO_PURCHASE_AMOUNT.getMessage(), lottos.size());
+        lottos.forEach(lotto -> print(lotto.getNumbers()));
     }
 
     public static void printLottoResult(final LottoResult result) {
-        printEmptyMessage();
-        System.out.println(OUTPUT_LOTTO_RESULT_HEADER.getMessage());
+        printEmptyLine();
+        print(OUTPUT_LOTTO_RESULT_HEADER.getMessage());
 
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MISS) {
                 continue;
             }
-            System.out.println(formatLottoResultMessage(rank, result));
+            print(formatLottoResultMessage(rank, result));
         }
-        System.out.println(formatTotalProfitMessage(result.calculateYield()));
+        print(formatTotalProfitMessage(result.calculateYield()));
     }
 
-    public static void printMessage(final String message) {
-        System.out.println(message);
+    public static void print(final Object object) {
+        System.out.println(object);
     }
 
-    public static void printEmptyMessage() {
+    public static void printf(final String format, final Object... args) {
+        System.out.printf(format, args);
+    }
+
+    public static void printEmptyLine() {
         System.out.println();
     }
 

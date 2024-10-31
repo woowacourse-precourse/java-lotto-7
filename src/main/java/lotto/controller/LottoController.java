@@ -71,7 +71,7 @@ public class LottoController {
             try {
                 return action.get();
             } catch (LottoException e) {
-                OutputView.printMessage(e.getMessage());
+                OutputView.print(e.getMessage());
                 printEmptyMessageIfTrue(isPrintEmptyMessage);
             }
         }
@@ -83,7 +83,7 @@ public class LottoController {
 
     private void printEmptyMessageIfTrue(final Boolean printEmptyMessage) {
         if (Boolean.TRUE.equals(printEmptyMessage)) {
-            OutputView.printEmptyMessage();
+            OutputView.printEmptyLine();
         }
     }
 }

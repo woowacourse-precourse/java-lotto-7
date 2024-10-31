@@ -9,19 +9,19 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public static String readLottoPurchaseMoney() {
-        System.out.println(INPUT_LOTTO_PURCHASE_MONEY.getMessage());
+        OutputView.print(INPUT_LOTTO_PURCHASE_MONEY.getMessage());
         return Console.readLine();
     }
 
     public static String readLottoWinningNumber() {
-        System.out.println();
-        System.out.println(INPUT_WINNING_NUMBER.getMessage());
+        OutputView.printEmptyLine();
+        OutputView.print(INPUT_WINNING_NUMBER.getMessage());
         return Console.readLine();
     }
 
     public static String readLottoBonusNumber() {
-        System.out.println();
-        System.out.println(INPUT_BONUS_NUMBER.getMessage());
+        OutputView.printEmptyLine();
+        OutputView.print(INPUT_BONUS_NUMBER.getMessage());
         return Console.readLine();
     }
 }
