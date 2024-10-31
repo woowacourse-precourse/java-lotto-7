@@ -12,9 +12,8 @@ public class LottoIssuer {
         this.lottoNumbersGenerator = lottoNumbersGenerator;
     }
 
-    public LottoTickets issueLottoTicket() {
-        List<Integer> lottoNumbers = lottoNumbersGenerator.generate();
-        return new LottoTickets(List.of(new Lotto(lottoNumbers)));
+    public Lotto issueLotto(final List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     public LottoTickets issueLottoTickets(final PurchaseAmount amount) {
