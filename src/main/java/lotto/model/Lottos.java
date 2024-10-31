@@ -64,7 +64,7 @@ public class Lottos {
 	public long calculateWinningPrize() {
 		long totalPrize = 0;
 
-		for(LottoRank rank : LottoRank.values()) {
+		for (LottoRank rank : LottoRank.values()) {
 			totalPrize += (long)rank.getPrize() * winningResult.get(rank);
 		}
 

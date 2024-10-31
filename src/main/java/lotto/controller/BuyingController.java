@@ -28,7 +28,16 @@ public class BuyingController {
 	}
 
 	private int setNumberOfLotto() {
-		int number = lottos.calculateNumberOfLotto(inputView.readMoney());
+		int number = 0;
+
+		while (true) {
+			try {
+				number = lottos.calculateNumberOfLotto(inputView.readMoney());
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		outputView.printBuyingNumber(number);
 
 		return number;

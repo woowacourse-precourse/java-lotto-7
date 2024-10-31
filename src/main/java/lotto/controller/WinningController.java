@@ -28,11 +28,20 @@ public class WinningController {
 	}
 
 	private void setNumberOfWinning() {
-		List<Integer> numbers = Arrays.stream(inputView.readWinningNumber().split(","))
-			.mapToInt(Integer::parseInt)
-			.boxed().collect(Collectors.toList());
+		List<Integer> numbers;
 
-		winningLotto = new WinningLotto(numbers, inputView.readBonusNumber());
+		while (true) {
+			try {
+				numbers = Arrays.stream(inputView.readWinningNumber().split(","))
+					.mapToInt(Integer::parseInt)
+					.boxed().collect(Collectors.toList());
+				winningLotto = new WinningLotto(numbers, inputView.readBonusNumber());
+
+				break;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	private void countRank() {
