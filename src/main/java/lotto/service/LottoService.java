@@ -21,6 +21,14 @@ public class LottoService {
         return new PurchasedLotto(lottos);
     }
 
+    public LottoResult checkLottoResult(final List<Lotto> purchasedLotto, final WinningLotto winningLotto) {
+        return new LottoResult(purchasedLotto, winningLotto);
+    }
+
+    public double calcRate(final int purchasePrice, final LottoResult lottoResult) {
+        return lottoResult.calculateRate(purchasePrice);
+    }
+
     private List<Lotto> issueLotto(final int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
@@ -31,13 +39,5 @@ public class LottoService {
 
     private Lotto createLotto() {
         return new Lotto(lottoNumGenerator);
-    }
-
-    public LottoResult checkLottoResult(final List<Lotto> purchasedLotto, final WinningLotto winningLotto) {
-        return new LottoResult(purchasedLotto, winningLotto);
-    }
-
-    public double calcRate(final int purchasePrice, final LottoResult lottoResult) {
-        return lottoResult.calculateRate(purchasePrice);
     }
 }

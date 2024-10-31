@@ -11,10 +11,6 @@ public class PurchasePrice {
         quantity = calculateQuantity();
     }
 
-    private int calculateQuantity() {
-        return purchasePrice / UNIT;
-    }
-
     public int getPurchasePrice() {
         return purchasePrice;
     }
@@ -22,4 +18,9 @@ public class PurchasePrice {
     public int getQuantity() {
         return quantity;
     }
+
+    private int calculateQuantity() {
+        return purchasePrice / UNIT;
+    }
+
 }

@@ -26,6 +26,11 @@ public class LottoResult {
         return ((double) totalAmount / purchasePrice) * 100;
     }
 
+
+    public Map<WinningResult, Integer> getResults() {
+        return results;
+    }
+    
     private void initialize() {
         Arrays.stream(WinningResult.values())
                 .forEach(value -> results.put(value, 0));
@@ -53,13 +58,5 @@ public class LottoResult {
             return WinningResult.BONUS;
         }
         return WinningResult.fromMatchCount(String.valueOf(matchCount));
-    }
-
-    public Map<WinningResult, Integer> getResults() {
-        return results;
-    }
-
-    public int getTotalAmount() {
-        return totalAmount;
     }
 }

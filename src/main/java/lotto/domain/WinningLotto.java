@@ -20,8 +20,4 @@ public class WinningLotto {
     public Set<Integer> getWinningLottoNumbers() {
         return winningLottoNumbers;
     }
-
-    public int getBonusNum() {
-        return bonusNum;
-    }
 }

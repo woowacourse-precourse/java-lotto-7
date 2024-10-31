@@ -27,10 +27,6 @@ public class Lotto {
         return purchasedNumbers.size();
     }
 
-    private List<Integer> generateLottoNumbers(LottoNumGenerator lottoNumGenerator) {
-        return lottoNumGenerator.generateNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }
@@ -38,5 +34,9 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    private List<Integer> generateLottoNumbers(LottoNumGenerator lottoNumGenerator) {
+        return lottoNumGenerator.generateNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
     }
 }

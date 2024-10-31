@@ -27,10 +27,6 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    private List<LottoDto> sortLottos(List<Lotto> lottos) {
-        return lottos.stream().map(LottoDto::new).toList();
-    }
-
     public void printLottoResults(final Map<WinningResult, Integer> results) {
         StringBuilder sb = new StringBuilder();
         sb.append(WINNING_RESULT);
@@ -46,4 +42,9 @@ public class OutputView {
         String format = String.format(TOTAL_RATE, rate);
         System.out.print(format + PERCENTAGE);
     }
+
+    private List<LottoDto> sortLottos(List<Lotto> lottos) {
+        return lottos.stream().map(LottoDto::new).toList();
+    }
+
 }
