@@ -48,4 +48,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000 단위여야 합니다.");
         }
     }
+
+    private void validateNotEmpty(String userInput) {
+        if (userInput.isEmpty() || userInput.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 빈 값은 입력할 수 없습니다.");
+        }
+    }
+
+
 }
