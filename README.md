@@ -198,5 +198,6 @@ private final List<Integer> numbers;
 # View
    - [x] RegexPattern 에 맞지 않을 경우
 # 기능 테스트
+   - [x] Convertor overflow 테스트
    - [x] 당첨에 따른 금액 테스트
    - [x] 수익률 테스트
