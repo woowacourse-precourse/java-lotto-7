@@ -18,14 +18,19 @@
 - 사용자가 구입한 로또의 당첨 결과를 계산하는 기능 : model.Result
 
 
-- 사용자의 입력 관련 처리와 새로운 로또 생성 기능 : service.setUpService
+- 사용자의 입력을 받고, 결과를 처리하는 기능 : service.LottoService
 
 
-- 사용자의 입력을 받은 후, 결과를 처리하는 기능 : service.resultService
+- 사용자의 입력 관련 처리와 새로운 로또 생성 기능 : service.SetupService
 
 
 - 사용자와의 상호작용, 입출력 기능 : view.InputView, view.OutputView
 
 
-- View와 Service/Model을 연결, 보너스 번호 예외처리 : controller.MainController, controller.InputController,
-  controller.OutputController
+- input, output을 담당하는 controller와 Service/Model을 연결 : controller.LottoController
+
+
+- 사용자의 입력을 받는 기능, 입력 예외처리 : controller.InputController
+
+
+- 사용자에게 설명서를 제공, 로또 당첨 결과를 출력하는 기능 : controller.OutputController
