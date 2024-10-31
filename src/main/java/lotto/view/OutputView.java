@@ -27,13 +27,19 @@ public class OutputView {
 
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NONE) {
-                String message = rank.getFormattedMessage(
-                        rankCounts.getOrDefault(rank, 0L),
-                        MONEY_FORMAT.format(rank.getWinnings())
-                );
+                String message = getRankMessage(rank, rankCounts.getOrDefault(rank, 0L));
                 System.out.println(message);
             }
         }
+    }
+
+    private String getRankMessage(Rank rank, long count) {
+        String formattedWinningAmount = MONEY_FORMAT.format(rank.getWinnings());
+        return switch (rank) {
+            case FIRST -> String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
+            case SECOND -> String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
+            default -> String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
+        };
     }
 
     public void printProfitRate(double profitRate) {
