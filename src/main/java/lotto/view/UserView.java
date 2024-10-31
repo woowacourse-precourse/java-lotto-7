@@ -122,22 +122,22 @@ public class UserView {
         return winNumbers.stream().anyMatch(number -> !duplicateNumbers.add(number));
     }
 
-    public static int printAndGetBonusNumber() {
+    public static int printAndGetBonusNumber(List<Integer> winNumbers) {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return getBonusNumber();
+        return getBonusNumber(winNumbers);
     }
 
-    private static int getBonusNumber() {
+    private static int getBonusNumber(List<Integer> winNumbers) {
         while (true) {
             try {
-                return checkBonusNumbers(Console.readLine());
+                return checkBonusNumbers(Console.readLine(), winNumbers);
             } catch (LottoArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static int checkBonusNumbers(String inputBonusNumber) {
+    private static int checkBonusNumbers(String inputBonusNumber, List<Integer> winNumbers) {
         if (inputBonusNumber == null || inputBonusNumber.equals("\n") || inputBonusNumber.isBlank()) {
             throw new LottoArgumentException(LottoErrorMessage.INVALID_INPUT_ERROR);
         }
@@ -149,9 +149,17 @@ public class UserView {
                 throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
             }
 
+            if(checkDuplicateWinNumbersAndBonusNumber(bonusNumber, winNumbers)) {
+                throw new LottoArgumentException(LottoErrorMessage.DUPLICATE_WIN_BONUS_NUMBER_ERROR);
+            }
+
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
         }
+    }
+
+    private static boolean checkDuplicateWinNumbersAndBonusNumber(int bonusNumber, List<Integer> winNumbers) {
+        return winNumbers.stream().anyMatch(number -> number == bonusNumber);
     }
 }
