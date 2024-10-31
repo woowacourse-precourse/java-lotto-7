@@ -7,8 +7,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = numbers;
         LottoValidator.validateProcess(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
