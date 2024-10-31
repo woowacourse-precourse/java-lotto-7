@@ -30,15 +30,20 @@ public class IoHandler {
 		boolean isValidAmount = false;
 		int purchaseAmount = 0;
 		while (!isValidAmount) {
+			outputHandler.showPurchaseAmountPrompt();
 			String input = inputHandler.readLine();
 			try {
 				purchaseAmount = validatingParser.validatePurchaseAmount(input);
 				isValidAmount = true;
 			} catch (IllegalArgumentException invalidAmountException) {
-				outputHandler.showInvalidAmountExceptionMessage(invalidAmountException.getMessage());
+				outputHandler.showExceptionMessage(invalidAmountException.getMessage());
 			}
 		}
 		return purchaseAmount;
+	}
+
+	public void showExceptionMessage(String message) {
+		outputHandler.showExceptionMessage(message);
 	}
 
 	public void showPurchaseLottos(PurchaseLottos purchaseLottos) {
@@ -49,12 +54,13 @@ public class IoHandler {
 		boolean isValidWinningNumbers = false;
 		List<Integer> purchaseAmount = new ArrayList<>();
 		while (!isValidWinningNumbers) {
+			outputHandler.showWinningNumbersPrompt();
 			String input = inputHandler.readLine();
 			try {
 				purchaseAmount = validatingParser.validateWinningNumbers(input);
 				isValidWinningNumbers = true;
 			} catch (IllegalArgumentException invalidWinningNumbersException) {
-				outputHandler.showInvalidWinningNumbersExceptionMessage(invalidWinningNumbersException.getMessage());
+				outputHandler.showExceptionMessage(invalidWinningNumbersException.getMessage());
 			}
 		}
 		return purchaseAmount;
@@ -64,12 +70,13 @@ public class IoHandler {
 		boolean isValidBonusNumber = false;
 		int bonusNumber = 0;
 		while (!isValidBonusNumber) {
+			outputHandler.showBonusNumberPrompt();
 			String input = inputHandler.readLine();
 			try {
 				bonusNumber = validatingParser.validateBonusNumber(input);
 				isValidBonusNumber = true;
 			} catch (IllegalArgumentException invalidBonusNumberException) {
-				outputHandler.showInvalidBonusNumberExceptionMessage(invalidBonusNumberException.getMessage());
+				outputHandler.showExceptionMessage(invalidBonusNumberException.getMessage());
 			}
 		}
 		return bonusNumber;
