@@ -5,7 +5,7 @@ import lotto.constant.LottoConstant;
 
 public class WinningLotto {
 
-    private Lotto winningLotto;
+    private final Lotto winningLotto;
     private int bonusNumber;
 
     public WinningLotto(Lotto winningLotto) {
