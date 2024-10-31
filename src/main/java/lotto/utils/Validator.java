@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import static lotto.global.ErrorMessages.*;
+import static lotto.global.error.InputErrorMessages.*;
 
 import java.util.Arrays;
 import java.util.List;

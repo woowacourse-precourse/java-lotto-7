@@ -25,8 +25,8 @@
   - [x] 당첨 개수와 당첨 금액을 관리하는 `Enum`
   - [x] `findByMatchCount` : 매칭된 숫자의 개수에 따라 적절한 로또 순위를 반환하는 메서드
 ### Domain
-- [ ] `Lotto`
-  - [ ] `checkWinningStatus` : 매칭 숫자 + 보너스 넘버를 비교하여 당첨 형태를 return 한다.
+- [x] `Lotto`
+  - [x] `checkWinningStatus` : 매칭 숫자 + 보너스 넘버를 비교하여 당첨 형태를 return 한다.
 - [ ] `Lottos`
   - [ ] 
 - [ ] `WinningLotto` : 당첨 로또 클래스
