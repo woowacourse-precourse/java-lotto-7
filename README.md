@@ -93,6 +93,13 @@ woowaLottoBudget : 돈이 1000배수 인지 확인
 
 ## 구현
 ___
+### Lotto
+- [ ] makeLottos
+- [x] validate
+  - [x] duplicate
+  - [x] size
+
+### LottoNumber
 
 ## 고민한 점
 ___
