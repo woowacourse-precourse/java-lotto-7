@@ -7,8 +7,14 @@ import lotto.lotto.domain.LottoMachine;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.NumberGenerator;
 import lotto.lotto.infrastructure.WonCalculator;
+import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.winning.infrastructure.BonusNumberCreator;
+import lotto.lotto.winning.infrastructure.WinningLottoCreator;
 import lotto.view.input.domain.InputService;
+import lotto.view.input.hanlder.domain.InputHandlerService;
 import lotto.view.input.hanlder.infrastructure.MoneyHandler;
+import lotto.view.output.domain.PurchaseCountViewService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -26,7 +33,6 @@ public class InputViewTest {
     void init() {
         InsertMoneyService insertMoneyService = new InsertWon(new MoneyHandler(new MoneyInputTest()));
         money = insertMoneyService.insert();
-
     }
 
     @Test
@@ -37,7 +43,7 @@ public class InputViewTest {
 
     @Test
     @DisplayName("로또 생성기 (정렬)")
-    void lottoCrate() {
+    void lottoCrateTest() {
         String excepted = String.join("\n",
                 "[40, 41, 42, 43, 44, 45]",
                 "[34, 35, 36, 37, 38, 39]",
@@ -48,10 +54,38 @@ public class InputViewTest {
                 "[4, 5, 6, 7, 8, 9]",
                 "[2, 3, 42, 43, 44, 45]\n"
         );
-        LottoMachine lottoMachine = new LottoMachine(new WonCalculator(), new NumberGenerateTest());
+        LottoMachine lottoMachine = new LottoMachine(new WonCalculator(), new NumberGenerateTest(), new PurchaseOutputViewTest());
         LottoTickets lottoTickets = lottoMachine.purchaseLottoTickets(money);
         assertThat(lottoTickets.toString()).isEqualTo(excepted);
     }
+
+    @Test
+    @DisplayName("당첨 번호를 입력해 주세요")
+    void winningLottoTest() {
+        WinningLottoCreator winningLottoCreator = createManager("1,2,3,4,5,6", WinningLottoHandlerTest::new, WinningLottoCreator::new);
+
+        WinningLotto winningLotto = winningLottoCreator.create();
+
+        assertThat(winningLotto.toString()).isEqualTo("1,2,3,4,5,6");
+    }
+
+    @Test
+    @DisplayName("보너스 번호를 입력해주세요")
+    void BonusLottoTest() {
+        WinningLottoCreator winningLottoCreator = createManager("1,2,3,4,5,6", WinningLottoHandlerTest::new, WinningLottoCreator::new);
+        BonusNumberCreator bonusNumberCreator = createManager("7", BonusNumberHandlerTest::new, BonusNumberCreator::new);
+
+        WinningLotto winningLotto = winningLottoCreator.create();
+        BonusNumber bonusNumber = bonusNumberCreator.create(winningLotto);
+
+        assertThat(bonusNumber.toString()).isEqualTo("7");
+    }
+
+    private <T, R> R createManager(String input, Function<String, T> transformer, Function<T, R> finalProcessor) {
+        T intermediateResult = transformer.apply(input);
+        return finalProcessor.apply(intermediateResult);
+    }
+
 
 }
 
@@ -59,6 +93,12 @@ class MoneyInputTest implements InputService {
     @Override
     public String input() {
         return "8000";
+    }
+}
+
+class PurchaseOutputViewTest implements PurchaseCountViewService {
+    @Override
+    public void view(int count) {
     }
 }
 
@@ -78,5 +118,31 @@ class NumberGenerateTest implements NumberGenerator {
     @Override
     public List<Integer> generate() {
         return list.get(start++);
+    }
+}
+
+class WinningLottoHandlerTest implements InputHandlerService {
+    private final String input;
+
+    public WinningLottoHandlerTest(String input) {
+        this.input = input;
+    }
+
+    @Override
+    public <R> R retrieveReceive(Function<String, R> function) {
+        return function.apply(input);
+    }
+}
+
+class BonusNumberHandlerTest implements InputHandlerService {
+    private final String input;
+
+    public BonusNumberHandlerTest(String input) {
+        this.input = input;
+    }
+
+    @Override
+    public <R> R retrieveReceive(Function<String, R> function) {
+        return function.apply(input);
     }
 }
