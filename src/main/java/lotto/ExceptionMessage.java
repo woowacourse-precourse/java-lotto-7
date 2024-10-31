@@ -8,7 +8,10 @@ public enum ExceptionMessage {
     LOTTO_NUMBER_DUPLICATE_EXCEPTION("로또 번호는 중복될 수 없습니다."),
     LOTTO_NUMBER_OUT_OF_RANGE_EXCEPTION("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
 
-    WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION("당첨 번호는 숫자로만 이루어져야 합니다.");
+    WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION("당첨 번호는 숫자로만 이루어져야 합니다."),
+    WINNING_NUMBER_LENGTH_EXCEPTION("당첨 번호는 6개여야 합니다."),
+    WINNING_NUMBER_DUPLICATE_EXCEPTION("당첨 번호는 중복될 수 없습니다."),
+    WINNING_NUMBER_OUT_OF_RANGE_EXCEPTION("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
 
     private String exceptionMessagePrefix = "[ERROR] ";
     private String exceptionMessage;
