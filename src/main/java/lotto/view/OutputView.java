@@ -46,4 +46,8 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
+
+    public static void printProfit(double rate) {
+        System.out.println("총 수익률은 " + rate +"%입니다.");
+    }
 }

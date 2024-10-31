@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.LottoNumber;
 import lotto.model.MatchNumbers;
+import lotto.model.Profit;
 import lotto.model.PurchasePrice;
 import lotto.model.RandomNumber;
 import lotto.util.Convertor;
@@ -62,6 +63,19 @@ public class LottoController {
         );
     }
 
+    private Profit createProfit(PurchasePrice purchasePrice) {
+        return new Profit(purchasePrice.get());
+    }
+
+    private void calculateProfit(Profit profit, MatchNumbers matchNumbers) {
+        profit.calculateTotalMoney(matchNumbers);
+        profit.calculateRate();
+    }
+
+    private void printProfit(final Profit profit) {
+        outputView.printProfit(profit.getRate());
+    }
+
     public void run() {
         PurchasePrice purchasePrice = initPurchasePrice();
         LottoAmount lottoAmount = calculateLottoAmount(purchasePrice);
@@ -77,5 +91,9 @@ public class LottoController {
         MatchNumbers matchNumbers = new MatchNumbers();
         matchNumbers.count(lottoNumber.get(), lotto.get(), bonusNumber.get());
         printMatchResult(matchNumbers);
+
+        Profit profit = createProfit(purchasePrice);
+        calculateProfit(profit, matchNumbers);
+        printProfit(profit);
     }
 }
