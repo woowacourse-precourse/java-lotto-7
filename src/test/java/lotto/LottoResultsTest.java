@@ -2,17 +2,22 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lotto.model.Lotto;
 import lotto.model.LottoResults;
+import lotto.model.Rank;
 import org.junit.jupiter.api.Test;
 
 public class LottoResultsTest {
     @Test
-    void 로또_결과_계산_테스트() {
-        LottoResults lottoResults = new LottoResults();
-        int Winnings = lottoResults.calculateResult(Arrays.asList(1, 2, 3, 4, 5, 6),
-                Arrays.asList(1, 2, 3, 10, 11, 12));
-        // 결과: 3개 일치
-        assertEquals(3, Winnings, "일치하는 번호 개수가 3이어야 합니다.");
+    void 초기화된_resultMap이_모든_Rank에_대해_0으로_설정되어야_한다() {
+        LottoResults results = new LottoResults(List.of(), new Lotto(List.of()), 7);
+        Map<Rank, Integer> expected = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            expected.put(rank, 0);
+        }
+        assertEquals(expected, results.getResultMap());
     }
 }
