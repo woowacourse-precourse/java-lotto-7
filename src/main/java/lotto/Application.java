@@ -4,16 +4,16 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        String purchaseAmount = promptPurchaseAmount();
+        int purchaseAmount = promptPurchaseAmount();
     }
 
-    public static String promptPurchaseAmount() {
+    public static int promptPurchaseAmount() {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             String purchaseAmount = Console.readLine();
 
             if (isValidPurchaseAmount(purchaseAmount)) {
-                return purchaseAmount;
+                return Integer.parseInt(purchaseAmount.trim());
             }
 
             handleInvalidPurchaseAmount();
@@ -26,7 +26,7 @@ public class Application {
         }
 
         try {
-            return Integer.parseInt(purchaseAmount) >= 1000 && Integer.parseInt(purchaseAmount) % 1000 == 0;
+            return Integer.parseInt(purchaseAmount.trim()) >= 1000 && Integer.parseInt(purchaseAmount.trim()) % 1000 == 0;
         } catch (NumberFormatException e) {
             return false;
         }
