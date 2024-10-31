@@ -12,8 +12,9 @@ public class User {
     private final ArrayList<Lotto> lottos = new ArrayList<>();
     private final Map<Prize, Integer> prizes = new LinkedHashMap<>();
 
-    public User(String purchaseAmount) {
-        this.purchaseAmount = validatePurchaseAmount(purchaseAmount);
+    public User(int purchaseAmount) {
+        validate(purchaseAmount);
+        this.purchaseAmount = purchaseAmount;
         for (int i = 0; i < this.purchaseAmount / 1000; i++) {
             this.lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
@@ -22,20 +23,10 @@ public class User {
         }
     }
 
-    private static int validatePurchaseAmount(String input) {
-        int purchaseAmount;
-
-        try {
-            purchaseAmount = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 구입 금액은 숫자로 입력해야 합니다.");
-        }
-
+    private static void validate(int purchaseAmount) {
         if (purchaseAmount < 1000 || purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
-
-        return purchaseAmount;
     }
 
     public ArrayList<Lotto> getLottos() {
@@ -49,7 +40,7 @@ public class User {
 
     public Map<Prize, Integer> getPrizes() {
         if (this.prizes.isEmpty()) {
-            throw new IllegalStateException("당첨 번호를 입력해야 당첨 통계를 확인할 수 있습니다.");
+            throw new IllegalStateException("당첨 번호를 확인해야 당첨 통계를 확인할 수 있습니다.");
         }
         return this.prizes;
     }
