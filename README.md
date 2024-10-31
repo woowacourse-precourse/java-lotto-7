@@ -1,1 +1,1 @@
-# java-lotto-precourse
+# 구현 기능 목록
