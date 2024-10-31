@@ -20,4 +20,10 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 로또_번호는_1에서_45이내의_숫자여야_합니다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
