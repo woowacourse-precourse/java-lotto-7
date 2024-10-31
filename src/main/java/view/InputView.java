@@ -19,10 +19,8 @@ public class InputView {
     public static List<Integer> inputWinningNumbers() {
         String numbers = Console.readLine();
 
-        return Arrays.stream(numbers.split(","))
-                .map(String::strip)
-                .filter(s -> !s.isEmpty())
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> parsedNumbers = LottoValidator.isParseableString(numbers);
+
+        return LottoValidator.hasSixElements(parsedNumbers);
     }
 }
