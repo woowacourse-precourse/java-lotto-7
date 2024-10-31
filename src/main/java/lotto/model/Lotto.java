@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import lotto.utils.ExceptionMessage;
 
 public class Lotto {
@@ -41,6 +42,12 @@ public class Lotto {
     public static Lotto createWithRandomNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
         return new Lotto(randomNumbers);
+    }
+
+    @Override
+    public String toString() {
+        String lottoInfo = numbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
+        return "[" + lottoInfo + "]";
     }
 
 }
