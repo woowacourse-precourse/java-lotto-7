@@ -19,6 +19,7 @@ public class LottoController {
         String rawPrice = inputView.readPriceInput();
         Price price = new Price(parseInt(rawPrice));
         int ticketCount = price.convertToTicket();
+        outputView.printLottoTicket(ticketCount);
 
         inputView.closeConsole();
     }
