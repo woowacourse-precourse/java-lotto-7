@@ -32,9 +32,16 @@ public class ValidatorTest {
 
     @DisplayName("EXCEPTION_NULL_01: 입력값이 비어있을 경우 예외 발생")
     @Test
-    void 비어있는_입력값이면_예외_발생() {
+    void 비어있는_입력값이면_예외_발생한다() {
         assertThatThrownBy(() -> validator.validateEmptyInput(""))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 빈 값은 입력될 수 없습니다.");
+    }
+
+    @DisplayName("EXCEPTION_LOTTO_2: 보너스 번호의 범위가 1~45여야 함")
+    @Test
+    void 보너스_번호가_1부터_45에_해당되지_않으면_예외가_발생한다() {
+        assertThatThrownBy(() -> validator.validateBonusRange(46))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
 }
