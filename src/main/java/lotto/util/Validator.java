@@ -2,11 +2,10 @@ package lotto.util;
 
 import lotto.exception.ValidatorException;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
-
-    private static final int LOTTO_PRICE = 1000;
 
     // 구입 금액 검사
     public static void checkPurchasePrice(String value) {
@@ -14,9 +13,8 @@ public class Validator {
     }
 
     private static void validatePurchasePrice(String value) {
-        ValidatorException.throwIfValueIsBlank(value);
         ValidatorException.throwIfValueIsNotNumber(value);
-        ValidatorException.throwIfPurchasePriceNotMatchToUnit(value, LOTTO_PRICE);
+        ValidatorException.throwIfPurchasePriceNotMatchToUnit(value);
         ValidatorException.throwIfValueIsOutOfRange(value);
     }
 
@@ -37,10 +35,19 @@ public class Validator {
 
     private static void validateWinningNumbers(String[] values) {
         for(String value : values) {
-            ValidatorException.throwIfValueIsBlank(value);
             ValidatorException.throwIfValueIsNotNumber(value);
             ValidatorException.throwIfValueIsOutOfRange(value);
         }
+        List<Integer> integerValues = convertToIntegerList(values);
+
+        ValidatorException.throwIfValuesIsMismatch(integerValues);
+        ValidatorException.throwIfValuesIsDuplicate(integerValues);
+    }
+
+    private static List<Integer> convertToIntegerList(String[] values) {
+        return Arrays.stream(values)
+                .map(Integer::parseInt)
+                .toList();
     }
 
 
