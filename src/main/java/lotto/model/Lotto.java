@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.util.LottoNumberGenerator;
+import lotto.util.generator.LottoNumberGenerator;
 import lotto.vo.BonusNumber;
 
 public class Lotto {
