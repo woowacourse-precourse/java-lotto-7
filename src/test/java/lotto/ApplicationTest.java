@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.model.Money;
 import lotto.validation.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -65,10 +66,9 @@ class ApplicationTest extends NsTest {
     }
     @Test
     void divideByThousand_예외_메시지_테스트_1000원_단위로_입력() {
-        Application application = new Application();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            application.checkAmountWithinRange("1001");
+            Money money = new Money(1001);
         });
 
         Assertions.assertEquals("[ERROR] 1000원 단위의 금액을 입력해 주세요.", exception.getMessage());
