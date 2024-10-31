@@ -1,13 +1,19 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
+import java.util.List;
 
 public class RankResult {
 
-    private EnumMap<Rank, Integer> ranks;
+    private static final String MATCH_FORMAT = "%d개 일치 (%,d원) - %d개%n";
+    private static final String MATCH_WITH_BONUS_FORMAT = "5개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
 
-    public RankResult(EnumMap<Rank, Integer> map) {
-        this.ranks = map;
+    private EnumMap<Rank, Integer> rankResults;
+
+    public RankResult(EnumMap<Rank, Integer> rankResults) {
+        this.rankResults = rankResults;
     }
 
     public Float calculateReturnRate(Long totalLottoPrice) {
@@ -17,15 +23,15 @@ public class RankResult {
 
     public Long calculateWinningAmount() {
         Long sum = 0L;
-        Integer firstCount = this.ranks.getOrDefault(Rank.FIRST, 0);
+        Integer firstCount = this.rankResults.getOrDefault(Rank.FIRST, 0);
         sum += firstCount * Rank.FIRST.getPrize();
-        Integer secondCount = this.ranks.getOrDefault(Rank.SECOND, 0);
+        Integer secondCount = this.rankResults.getOrDefault(Rank.SECOND, 0);
         sum += secondCount * Rank.SECOND.getPrize();
-        Integer thirdCount = this.ranks.getOrDefault(Rank.THIRD, 0);
+        Integer thirdCount = this.rankResults.getOrDefault(Rank.THIRD, 0);
         sum += thirdCount * Rank.THIRD.getPrize();
-        Integer fourthCount = this.ranks.getOrDefault(Rank.FOURTH, 0);
+        Integer fourthCount = this.rankResults.getOrDefault(Rank.FOURTH, 0);
         sum += fourthCount * Rank.FOURTH.getPrize();
-        Integer fifthCount = this.ranks.getOrDefault(Rank.FIFTH, 0);
+        Integer fifthCount = this.rankResults.getOrDefault(Rank.FIFTH, 0);
         sum += fifthCount * Rank.FIFTH.getPrize();
 
         return sum;
@@ -33,14 +39,40 @@ public class RankResult {
 
     @Override
     public String toString() {
-        return "3개 일치 (5,000원) - 1개\n"
-                + "4개 일치 (50,000원) - 0개\n"
-                + "5개 일치 (1,500,000원) - 0개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
-                + "6개 일치 (2,000,000,000원) - 0개";
+        return getRankResults();
+    }
+
+    private String getRankResults() {
+        StringBuilder sb = new StringBuilder();
+        List<Rank> sortedRanks = getSortedRanksExceptNone();
+
+        for (Rank rank : sortedRanks) {
+            sb.append(formatRankResult(rank));
+        }
+
+        return sb.toString();
+    }
+
+    private List<Rank> getSortedRanksExceptNone() {
+        List<Rank> sortedRanks = new ArrayList<>(rankResults.keySet());
+        sortedRanks.remove(Rank.NONE);
+        Collections.sort(sortedRanks, Collections.reverseOrder());
+        return sortedRanks;
+    }
+
+    private String formatRankResult(Rank rank) {
+        if (rank == Rank.SECOND) {
+            return String.format(MATCH_WITH_BONUS_FORMAT,
+                    rank.getMoney(),
+                    rankResults.get(rank));
+        }
+        return String.format(MATCH_FORMAT,
+                rank.getMatchCount(),
+                rank.getMoney(),
+                rankResults.get(rank));
     }
 
     public int getMatchCount(Rank rank) {
-        return this.ranks.get(rank);
+        return this.rankResults.get(rank);
     }
 }

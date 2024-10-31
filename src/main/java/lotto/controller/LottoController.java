@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import java.util.EnumMap;
 import java.util.List;
 import lotto.model.BonusBall;
 import lotto.model.LottoSellingMachine;
 import lotto.model.Lottos;
-import lotto.model.Rank;
 import lotto.model.RankResult;
 import lotto.model.WinningBalls;
 import lotto.view.InputView;
@@ -70,7 +68,7 @@ public class LottoController {
         Long totalPrice = lottos.getTotalPrice();
         Float returnRate = rankResult.calculateReturnRate(totalPrice);
 
-        outputView.printResult(rankResult, new EnumMap<>(Rank.class));
+        outputView.printResult(rankResult);
         outputView.printReturnRate(returnRate);
     }
 }
