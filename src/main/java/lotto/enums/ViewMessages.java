@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 
 public enum ViewMessages {
     // Input
-    PROMPT_MONEY("구입금액을 입력해 주세요. (단위: 1,000원)"),
+    PROMPT_MONEY("구입 금액을 입력해 주세요. (최소 단위: {0}원)"),
 
     // Output
     ;
