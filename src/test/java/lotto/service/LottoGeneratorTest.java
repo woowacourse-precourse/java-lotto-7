@@ -18,6 +18,11 @@ class LottoGeneratorTest {
         Lotto[] lotto = lottoGenerator.getLotto();
 
         assertThat(lotto.length).isEqualTo(Integer.parseInt(amount)/1000);
+        for (Lotto singleLotto : lotto) {
+            assertThat(singleLotto.getNumbers()).hasSize(6);
+            assertThat(singleLotto.getNumbers()).hasOnlyElementsOfTypes(Integer.class);
+        }
+        System.out.println();
     }
 
     @ParameterizedTest

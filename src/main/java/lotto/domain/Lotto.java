@@ -29,6 +29,19 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    // LottoWinningNumbers와 비교하는 메서드 (일치하는 숫자의 개수를 리턴)
+    public long compareResult(LottoWinningNumbers winningNumbers) {
+        return numbers.stream()
+                .filter(o -> winningNumbers.getWinningNumbers().stream()
+                        .anyMatch(Predicate.isEqual(o)))
+                .count();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // toString 메서드 재정의
     public String toString() {
         String collected = numbers.stream()
@@ -36,13 +49,5 @@ public class Lotto {
                 .collect(Collectors.joining(", "));
 
         return "[ " + collected + " ]";
-    }
-
-    // LottoWinningNumbers와 비교하는 메서드 (일치하는 숫자의 개수를 리턴)
-    public long compareResult(Lotto userLotto, LottoWinningNumbers winningNumbers) {
-        return userLotto.numbers.stream()
-                .filter(o -> winningNumbers.getWinningNumbers().stream()
-                        .anyMatch(Predicate.isEqual(o)))
-                .count();
     }
 }
