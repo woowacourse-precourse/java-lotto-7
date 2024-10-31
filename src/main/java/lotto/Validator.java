@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
     public static int validateMoneyInput(String userInput) {
@@ -15,6 +17,7 @@ public class Validator {
     public static void validateWinningNumbers(List<Integer> numbers) {
         validateLottoNumberRange(numbers);
         validateNumberOfNumbers(numbers);
+        validateUniqueNumbers(numbers);
     }
 
     public static int validateNumberInput(String userInput) {
@@ -54,6 +57,13 @@ public class Validator {
     private static void validateNumberOfNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void validateUniqueNumbers(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
         }
     }
 }
