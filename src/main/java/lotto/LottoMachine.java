@@ -1,9 +1,10 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface LottoMachine {
     List<Lotto> createLottoTickets(int count);
 
-    void getWinningResult(List<Integer> winningNumbers, int bonusNumber);
+    HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber);
 }

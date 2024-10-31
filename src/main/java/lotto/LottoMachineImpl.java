@@ -22,21 +22,22 @@ public class LottoMachineImpl implements LottoMachine {
     }
 
     @Override
-    public void getWinningResult(List<Integer> winningNumbers, int bonusNumber) {
-        HashMap<LottoRank, Integer> winningCounts = new HashMap<>();
-        //map 초기화
-        for(LottoRank rank: LottoRank.values()) {
-            winningCounts.put(rank, 0);
+    public HashMap<LottoRank, Integer> getWinningResult(
+            List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+        HashMap<LottoRank, Integer> winningResult = new HashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            winningResult.put(rank, 0);
         }
 
         for (Lotto lottoTicket : lottoTickets) {
             //당첨 개수를 센다.
             int matchCount = getMatchNumbers(lottoTicket, winningNumbers);
             //등수를 확인하고 업데이트 한다.
-            updateWinningResult(matchCount, lottoTicket, bonusNumber, winningCounts);
+            updateWinningResult(matchCount, lottoTicket, bonusNumber, winningResult);
         }
-        //당첨 결과 출력
-        printWinningResult(winningCounts);
+        //당첨 결과를 출력한다.
+        printWinningResult(winningResult);
+        return winningResult;
     }
 
     private List<Integer> pickLottoNumbers() {
