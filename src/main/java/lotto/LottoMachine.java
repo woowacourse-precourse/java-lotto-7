@@ -19,5 +19,6 @@ public class LottoMachine {
         Amount purchaseAmount = inputView.getPurchaseAmount();
 
         int lottoCount = purchaseAmount.calculateLottoCount();
+        outputView.printPurchaseLottoNumbers(lottoCount);
     }
 }
