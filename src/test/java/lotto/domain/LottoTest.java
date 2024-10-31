@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
-    private static final List<Integer> WINNING_PRIZES = List.of(0, 2000000000, 30000000, 1500000, 50000, 5000);
+    private static final List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
 
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
@@ -38,7 +38,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
-        int expected = WINNING_PRIZES.get(2);
+        int expected = WINNING_PRIZES.get(7);
 
         // when
         int result = lotto.calculatePrize(winningNumbers, bonusNumber);
