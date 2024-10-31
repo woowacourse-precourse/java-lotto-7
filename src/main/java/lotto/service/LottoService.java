@@ -44,6 +44,6 @@ public class LottoService {
     }
 
     public double getRateOfReturn() {
-        return purchasedLotto.calculateRateOfReturn();
+        return LottoRank.getTotalPrize() * 100.0 / purchasedLotto.getMoney();
     }
 }

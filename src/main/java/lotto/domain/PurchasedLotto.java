@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
-import lotto.constant.LottoRank;
 
 public class PurchasedLotto {
 
@@ -19,26 +18,23 @@ public class PurchasedLotto {
         purchasedLotto = purchaseLotto();
     }
 
-    public double calculateRateOfReturn() {
-        return LottoRank.getTotalPrize() * 100.0 / money;
-    }
-
     public List<Lotto> getPurchasedLotto() {
         return Collections.unmodifiableList(purchasedLotto);
     }
 
-    private List<Lotto> purchaseLotto() {
-        List<Lotto> lotto = new ArrayList<>();
-        for (int i = 0; i < money / LottoConstant.MONEY_UNIT.getNumber(); i++) {
-            lotto.add(purchaseOneLotto());
-        }
-        return lotto;
+    public int getMoney() {
+        return money;
     }
 
-    private Lotto purchaseOneLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber(),
-                LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber(),
-                LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber()));
+    private List<Lotto> purchaseLotto() {
+        List<Lotto> purchaseLotto = new ArrayList<>();
+        for (int i = 0; i < money / LottoConstant.MONEY_UNIT.getNumber(); i++) {
+            purchaseLotto.add(new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber(),
+                    LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber(),
+                    LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber())));
+        }
+
+        return purchaseLotto;
     }
 
     private void validate(int money) {
