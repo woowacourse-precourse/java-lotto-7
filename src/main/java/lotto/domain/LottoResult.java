@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,10 @@ public class LottoResult {
 
     public double calculateProfitRate() {
         long totalPrize = calculateTotalPrize();
-        return (totalPrize * 100.0) /purchaseAmount;
+        return (totalPrize * 100.0) / purchaseAmount;
     }
 
+    public Map<LottoRank, Integer> getRankCounts() {
+        return Collections.unmodifiableMap(rankCnt);
+    }
 }
