@@ -6,7 +6,7 @@ import lotto.message.InputMessage;
 
 public class InputValidate {
 
-    private static final String REGEX = "[0-9]";
+    private static final String REGEX = "[0-9]+";
     private static final Pattern pattern = Pattern.compile(REGEX);
 
     public static boolean run(String input) {
@@ -22,7 +22,7 @@ public class InputValidate {
         return true;
     }
 
-    private static boolean isNumeric(String input) {
+    public static boolean isNumeric(String input) {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
     }
