@@ -1,9 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -43,12 +41,28 @@ public class LottoOutput {
 	}
 
 	private void lottoNumberOutput() {
-		Collections.sort(randoms);
+		listSort(randoms);
 		System.out.println(randoms.toString());
 	}
-	
+
 	private void addRandomsList() {
-			randomsList.add(randoms);
+		randomsList.add(randoms);
+	}
+
+	private void listSort(List<Integer> randoms) {
+		for (int i = 0; i < randoms.size() - 1; i++) {
+			listSortChange(randoms, i);
+		}
+	}
+
+	private void listSortChange(List<Integer> randoms, int i) {
+		for (int j = 0; j < randoms.size() - 1 - i; j++) {
+			if (randoms.get(j) > randoms.get(j + 1)) {
+				int tmp = randoms.get(j);
+				randoms.set(j, randoms.get(j + 1));
+				randoms.set(j + 1, tmp);
+			}
+		}
 	}
 
 	public List<List<Integer>> getRandoms() {

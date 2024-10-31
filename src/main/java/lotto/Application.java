@@ -20,9 +20,8 @@ public class Application {
 			input.bonusInput();
 			int bonus = BonusNumber.getBonus();
 
-			WinningOutput wop = new WinningOutput();
-			wop.winningOutput();
-			wop.winningOutput(amount, randoms, winningList, bonus);
+			WinningOutput wop = new WinningOutput(amount);
+			wop.winningOutput(randoms, winningList, bonus);
 			wop.winningPrint();
 
 		} catch (IllegalStateException e) {

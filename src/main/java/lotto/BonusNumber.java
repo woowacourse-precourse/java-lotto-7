@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BonusNumber {
-	
+
 	private static int bonus;
 	private static List<Integer> winningList = new ArrayList<>();
-	
+
 	public BonusNumber(String bonus, List<Integer> winningList) {
-		BonusNumber.setBonus(numberCheck(bonus));
+		BonusNumber.bonus = numberCheck(bonus);
 		BonusNumber.winningList = winningList;
 	}
 
@@ -17,7 +17,7 @@ public class BonusNumber {
 		numberScope();
 		duplication();
 	}
-	
+
 	private int numberCheck(String bonus) {
 		try {
 			return Integer.parseInt(bonus);
@@ -34,10 +34,10 @@ public class BonusNumber {
 			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이로 입력해주세요.");
 		}
 	}
-	
+
 	private static void duplication() {
-		for(int i = 0; i < winningList.size(); i++) {
-			if(winningList.get(i) == getBonus()) {
+		for (int i = 0; i < winningList.size(); i++) {
+			if (winningList.get(i) == getBonus()) {
 				throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복값을 입력할 수 없습니다.");
 			}
 		}
@@ -45,10 +45,6 @@ public class BonusNumber {
 
 	public static int getBonus() {
 		return bonus;
-	}
-
-	public static void setBonus(int bonus) {
-		BonusNumber.bonus = bonus;
 	}
 
 }

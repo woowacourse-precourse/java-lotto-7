@@ -8,14 +8,14 @@ public class WinningOutput {
 	private int amount;
 	private int[] winningCounts = new int[Winning.values().length];
 
-	public void winningOutput() {
+	public WinningOutput(int amount) {
+		this.amount = amount;
 		System.out.println();
 		System.out.println("당첨통계");
 		System.out.println("---");
 	}
 
-	public void winningOutput(int amount, List<List<Integer>> randoms, List<Integer> winningList, int bonus) {
-		this.amount = amount;
+	public void winningOutput(List<List<Integer>> randoms, List<Integer> winningList, int bonus) {
 		for (List<Integer> randomNumbers : randoms) {
 			int matchCount = winningCheck(randomNumbers, winningList);
 			boolean matchBonus = randomNumbers.contains(bonus);

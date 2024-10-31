@@ -19,11 +19,10 @@ public class Lotto {
 		}
 	}
 
-	public List<Integer> listValueCheck() {
+	private void listValueCheck() {
 		Set<Integer> numberSet = new LinkedHashSet<>();
 		numberSet = valueCheck(numbers, numberSet);
 		duplicationCheck(numbers.size(), numberSet.size());
-		return numbers;
 	}
 
 	private Set<Integer> valueCheck(List<Integer> winningArr, Set<Integer> numberSet) {
