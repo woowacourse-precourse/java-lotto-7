@@ -11,6 +11,9 @@ public class WinningNumbersValidator {
   }
 
   private static void validateNumbers(List<Integer> winningAndBonusNumbers) {
+    if (winningAndBonusNumbers.size() != 7) {
+        throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_QUANTITY.getMessage());
+      }
     for (Integer number : winningAndBonusNumbers) {
       if (number <= 0 || number > 45) {
         throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
