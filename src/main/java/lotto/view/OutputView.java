@@ -1,4 +1,4 @@
-package lotto.outputview;
+package lotto.view;
 
 import java.util.List;
 import java.util.Map;
@@ -16,8 +16,13 @@ public class OutputView {
 
     public void displayResults(Map<Rank, Integer> resultMap) {
         System.out.println("당첨 통계");
+        System.out.println("---");
         for (Rank rank : Rank.values()) {
-            System.out.println(rank.getPrize() + " - " + resultMap.get(rank) + "개");
+            if (rank == Rank.MISS) {
+                continue; // 꽝인 경우는 출력 생략
+            }
+            int count = resultMap.getOrDefault(rank, 0);
+            System.out.println(rank.getDescription() + " - " + count + "개");
         }
     }
 
