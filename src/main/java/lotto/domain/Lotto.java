@@ -21,5 +21,14 @@ public class Lotto {
         return new ArrayList<>(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public Match compareWith(List<Integer> winningNumbers, int bonusNumber) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+
+        return new Match(count, numbers.contains(bonusNumber));
+    }
 }
