@@ -16,5 +16,4 @@ public class LottoAnswer extends NumberCombination {
                 .map(Number::new)
                 .collect(Collectors.toList());
     }
-
 }
