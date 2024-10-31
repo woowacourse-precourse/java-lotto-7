@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.CustomException;
+import lotto.exception.ExceptionMessage;
 
 public class InputView {
 
@@ -12,7 +14,7 @@ public class InputView {
 
     private void validateBlankInput(String input) {
         if (input == null || input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 빈 문자열은 입력할 수 없습니다.");
+            throw new CustomException(ExceptionMessage.BLANK_INPUT_EXCEPTION);
         }
     }
 }
