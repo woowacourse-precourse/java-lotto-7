@@ -50,6 +50,10 @@ public class Numbers {
         return numbers;
     }
 
+    public boolean contains(Number targetNumber) {
+        return numbers.stream().anyMatch(number -> number.value() == targetNumber.value());
+    }
+
     public boolean contains(int targetNumber) {
         return numbers.stream().anyMatch(number -> number.value() == targetNumber);
     }

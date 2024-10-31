@@ -20,7 +20,7 @@ public class Lotto {
             .count();
     }
 
-    public boolean checkHasBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean checkHasBonusNumber(Number bonusNumber) {
+        return numbers.contains(bonusNumber.value());
     }
 }

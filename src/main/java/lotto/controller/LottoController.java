@@ -1,12 +1,12 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.Map;
-import java.util.stream.Collectors;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoStore;
+import lotto.domain.Numbers;
+import lotto.domain.Number;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,8 +22,10 @@ public class LottoController {
         OutputView.printPurchasedLottoAmount(lottoStore.getPurchasedLottos().size());
         OutputView.printPurchasedLottoNumbers(lottoStore.getPurchasedLottos());
 
-        List<Integer> winNumbers = Arrays.stream(InputView.inputWinNumbers().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
-        int bonusNumber = Integer.parseInt(InputView.inputBonusNumber());
+        Numbers winNumbers = new Numbers(InputView.inputWinNumbers());
+        Number bonusNumber = new Number(InputView.inputBonusNumber());
+
+        if (winNumbers.contains(bonusNumber)) return ;//보너스 관련 로직 추가 필요;
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateLottoResult(lottoStore.getPurchasedLottos(), winNumbers, bonusNumber);

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 // 로또 결과 비교하기
 // 수익률 계산하기
 public class LottoResult {
-    private Map<LottoRank, Integer> lottoResult = new HashMap<>();
+    private Map<LottoRank, Integer> lottoResult = new EnumMap<>(LottoRank.class);
     private float profitRate;
 
     public LottoResult() {
@@ -21,7 +21,7 @@ public class LottoResult {
         }
     }
 
-    public void calculateLottoResult(List<Lotto> purchasedLottos, Numbers winNumbers, int bonusNumber) {
+    public void calculateLottoResult(List<Lotto> purchasedLottos, Numbers winNumbers, Number bonusNumber) {
         for (Lotto lotto : purchasedLottos) {
             int lottoScore = lotto.countMatchNumbers(winNumbers);
             boolean hasBonusNumber = lotto.checkHasBonusNumber(bonusNumber);
