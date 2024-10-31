@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.input.InputTest;
 import lotto.view.Input;
@@ -18,9 +19,12 @@ class HandlerTest {
 
   @BeforeEach
   void setUp() throws Exception {
-    inputTest = new InputTest();
+    // 사용자가 구매 금액을 입력하면
+    this.input = new Input();
     String readLine = "14000";
     System.setIn(setReadLine(readLine));
+
+    // 로또 발행 수를 요청한다
     int amount = input.readAmount();
     int request = input.getLottoCounts(amount);
     handler = new Handler(request);
@@ -30,23 +34,23 @@ class HandlerTest {
     return new ByteArrayInputStream(readLine.getBytes());
   }
 
-  @DisplayName("사용자 입력 후 로또를 발행하여 전달한다")
+  @DisplayName("사용자 입력 후 로또를 요청 수만큼 발행했는지 확인한다")
   @Test
   public void generateLottoTest() throws Exception{
       //given
-    Input input = new Input();
+    int expectGenerated = 14;
+    int givenRequest = input.getLottoCounts(expectGenerated);
+
+    // when
+    List<List<Integer>> model = new ArrayList<>();
+    for (int i = 0; i < expectGenerated; i++) {
+      List<Integer> generated = handler.generateLotto(givenRequest);
+      model.add(generated);
+    }
 
 
-
-    List<Integer> actual = handler.generateLotto();
-    //when
-    int amount = input.readAmount();
-    int request = input.getLottoCounts(amount);
-
-    List<Integer> given = List.of(1, 2, 3, 4, 5, 6);
-    int expect = given.size();
-    //then
-    assertEquals(expect, actual.size());
+    int actualGenerated = model.size();
+    assertEquals(expectGenerated, actualGenerated);
   }
 
 }

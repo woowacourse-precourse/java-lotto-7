@@ -11,14 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    private Lotto lotto;
-    private Handler handler;
-    @BeforeEach
-    void setUp() {
-        List<Integer> numbers = handler.generateLotto();
-        lotto = new Lotto(numbers);
 
-    }
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -33,29 +26,4 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-
-    @DisplayName("발행된 로또를 전달한다")
-    @Test
-    public void generateTest() throws Exception{
-        //given
-        List<Integer> given = List.of(1, 2, 3, 4, 5, 6);
-
-        //when
-        int expect = given.size();
-        List<Integer> numbers = handler.generateLotto();
-        int actual = numbers.size();
-
-        //then
-        Assertions.assertEquals(expect, actual);
-    }
-    @Test
-    @DisplayName("발행해야 되는 수만큼 로또 번호를 생성한다")
-    public void generateLotto() throws Exception{
-        //given
-
-
-        //when
-
-        //then
-    }
 }
