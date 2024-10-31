@@ -2,7 +2,7 @@ package lotto.global;
 
 public enum Message {
 
-    PURCHASE_MESSAGE("구입금액을 입력해 주세요.");
+    BUY_LOTTO_MESSAGE("지불액을 입력해 주세요.");
 
     private String msg;
 
