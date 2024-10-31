@@ -23,11 +23,11 @@ public class LottoOutput {
     public void printResult(LottoResult prizeCountMap, double profitRate) {
         System.out.println("당첨 통계");
         System.out.println("---------");
-        for (int i = 1; i <= Constants.REWARD_TYPE_COUNT; i++) {
+        for (int i = Constants.REWARD_TYPE_COUNT; i > 0; i--) {
             String formatMoney = String.format("%,d", Constants.REWARD_PRICE[i-1]);
             String formattedMessage = String.format(prizeMessages[i-1], formatMoney, prizeCountMap.getPrizeCount(i));
             System.out.println(formattedMessage);
         }
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
 }

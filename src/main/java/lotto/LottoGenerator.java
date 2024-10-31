@@ -19,7 +19,7 @@ public class LottoGenerator {
     }
 
     private Lotto generateRandomLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.LOTTO_MAIN_COUNT);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.LOTTO_MAIN_COUNT));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
