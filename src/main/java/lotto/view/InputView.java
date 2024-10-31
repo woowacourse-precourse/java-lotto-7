@@ -7,22 +7,22 @@ public class InputView {
     private static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static String getPurchaseAmount() {
+    public String getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         return readInput();
     }
 
-    public static String getWinningNumbers() {
+    public String getWinningNumbers() {
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
         return readInput();
     }
 
-    public static String getBonusNumbers() {
+    public String getBonusNumbers() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         return readInput();
     }
 
-    private static String readInput() {
+    private String readInput() {
         return Console.readLine();
     }
 }
