@@ -2,8 +2,8 @@ package lotto.io.reader;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import lotto.io.printer.DefaultPrinter;
 import lotto.exception.InputException;
+import lotto.io.printer.DefaultPrinter;
 import lotto.util.validator.InputValidator;
 
 import java.util.List;

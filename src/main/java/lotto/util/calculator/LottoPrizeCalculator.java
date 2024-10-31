@@ -4,7 +4,6 @@ import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.LottoPrize;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class LottoPrizeCalculator {

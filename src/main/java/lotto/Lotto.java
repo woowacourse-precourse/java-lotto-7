@@ -2,8 +2,8 @@ package lotto;
 
 import lotto.util.validator.LottoValidator;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Collections;
 
 public class Lotto {
     private final List<Integer> numbers;

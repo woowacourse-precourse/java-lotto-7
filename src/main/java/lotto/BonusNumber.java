@@ -2,8 +2,6 @@ package lotto;
 
 import lotto.util.validator.LottoValidator;
 
-import java.util.List;
-
 public class BonusNumber {
 
     private final Integer number;

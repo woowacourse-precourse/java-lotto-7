@@ -2,8 +2,8 @@ package lotto;
 
 import lotto.exception.LottoException;
 import lotto.exception.MoneyException;
-import lotto.io.reader.LottoNumberReader;
 import lotto.io.reader.MoneyReader;
+import lotto.io.reader.LottoNumberReader;
 import lotto.io.printer.LottoPrinter;
 import lotto.io.printer.ResultPrinter;
 import lotto.io.printer.DefaultPrinter;

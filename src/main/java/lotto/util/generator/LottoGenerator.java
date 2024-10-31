@@ -1,9 +1,9 @@
 package lotto.util.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import lotto.Lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public final class LottoGenerator {
