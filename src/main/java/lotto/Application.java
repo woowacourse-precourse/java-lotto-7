@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
@@ -8,11 +11,13 @@ public class Application {
     public static final String INVALID_MONEY_FORMAT_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
 
     public static void main(String[] args) {
+        Integer purchaseMoney = null;
+
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 var moneyInput = Console.readLine();
-                var purchaseMoney = validateIntegerInput(moneyInput);
+                purchaseMoney = validateIntegerInput(moneyInput);
                 validatePurchaseMoney(purchaseMoney);
                 break;
             } catch (IllegalArgumentException e) {
@@ -20,7 +25,20 @@ public class Application {
             }
         }
 
+        var purchasedLottos = buyLottos(purchaseMoney);
         // TODO: 추가 기능 구현
+    }
+
+    private static List<Lotto> buyLottos(Integer purchaseMoney) {
+        var lottoCount = purchaseMoney / 1000;
+        List<Lotto> purchasedLottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            purchasedLottos.add(lotto);
+        }
+
+        return purchasedLottos;
     }
 
     public static Integer validateIntegerInput(String input) {
