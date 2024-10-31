@@ -7,7 +7,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
-        Validator.validator(numbers);
+        Validator.validateLottoNumbers(numbers);
         this.numbers = sortLottoNumbers(numbers);
     }
 
@@ -27,7 +27,7 @@ public class Lotto {
 
     private static class Validator {
 
-        private static void validator(List<Integer> numbers) {
+        private static void validateLottoNumbers(List<Integer> numbers) {
             validateLottoNumberSize(numbers);
             validateLottoNumberDuplicate(numbers);
             validateLottoNumberRange(numbers);
