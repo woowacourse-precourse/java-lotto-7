@@ -16,4 +16,9 @@ public class PurchaseAmount {
         long amount = Convertor.convertToLong(input);
         return new PurchaseAmount(amount);
     }
+
+    public int countLottoQuantity() {
+        return (int) purchaseAmount / LOTTO_PRICE;
+    }
 }
+
