@@ -7,14 +7,19 @@ public class LottoService {
     public List<Integer> sortLottoNumbersAscending(List<Integer> lottoNumber) {
         for (int i = 0; i < lottoNumber.size() - 1; i++) {
             for (int j = 0; j <lottoNumber.size() - i - 1; j ++) {
-                if (lottoNumber.get(j) > lottoNumber.get(j + 1)) {
-                    int tmp = lottoNumber.get(j) ;
-                    lottoNumber.set(j, lottoNumber.get(j + 1));
-                    lottoNumber.set(j + 1, tmp) ;
-                }
+                lottoNumber = swap(j, j + 1, lottoNumber);
             }
         }
         return lottoNumber;
+    }
+
+    private List<Integer> swap(int idx1, int idx2, List<Integer> arr) {
+        if (arr.get(idx1) > arr.get(idx2)) {
+            int tmp = arr.get(idx1);
+            arr.set(idx1, arr.get(idx2));
+            arr.set(idx2, tmp);
+        }
+        return arr;
     }
 
     public int calculateLottoQuantities(int purchaseAmount) {
