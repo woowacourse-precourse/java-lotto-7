@@ -42,4 +42,18 @@ public class Lotto {
         }
     }
 
+    public int countCorrect(List<Integer> lotto, int bonus) {
+        int count = 0;
+        for (int num : lotto) {
+            if (numbers.contains(num)) {
+                count++;
+            }
+        }
+        if (count == 5) {
+            if (lotto.contains(bonus)) {
+                count = 7;
+            }
+        }
+        return count;
+    }
 }
