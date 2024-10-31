@@ -19,6 +19,7 @@ public class Application {
         int amount = input.getPurchaseAmount();
 
         List<Lotto> purChasedLotto = new LottoShop(amount).getPurChasedLotto();
+        output.printPurChasedLotto(purChasedLotto);
 
     }
 
