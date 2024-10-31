@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.dto.LottoTickets;
 
 public class LottoIssuer {
 

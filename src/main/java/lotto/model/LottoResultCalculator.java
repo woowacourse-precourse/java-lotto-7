@@ -5,6 +5,8 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.dto.LottoResult;
+import lotto.dto.LottoTickets;
 
 public class LottoResultCalculator {
 
