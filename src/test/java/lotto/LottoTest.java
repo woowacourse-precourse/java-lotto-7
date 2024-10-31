@@ -16,11 +16,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
 
+    private final DefaultRangeValidator rangeValidator = new DefaultRangeValidator();
+
     @DisplayName("로또 번호의 개수가 6개보다 적거나 많으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("provideNumbersGreaterOrLess6InLength")
-    void LottoHas6Numbers(List<Integer> numbers) {
-        assertThatThrownBy(() -> new Lotto(numbers))
+    void lottoHas6Numbers(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 6개여야 합니다.");
     }
@@ -34,18 +36,18 @@ class LottoTest {
 
     @DisplayName("로또 번호 리스트가 null이면 예외가 발생한다.")
     @Test
-    void LottoNumberListCannotBeNull() {
-        assertThatThrownBy(() -> new Lotto(null))
+    void lottoNumberListCannotBeNull() {
+        assertThatThrownBy(() -> new Lotto(null, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 NULL 일 수 없습니다.");
     }
 
     @DisplayName("로또 번호가 null이면 예외가 발생한다.")
     @Test
-    void LottoNumberCannotBeNull() {
+    void lottoNumberCannotBeNull() {
         List<Integer> numbers = Arrays.asList(null, 2, 3, 4, 5, 6);
 
-        assertThatThrownBy(() -> new Lotto(numbers))
+        assertThatThrownBy(() -> new Lotto(numbers, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 null 을 포함할 수 없습니다.");
     }
@@ -53,8 +55,8 @@ class LottoTest {
     @DisplayName("로또 번호가 1과 45 사이 범위를 넘어가면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("provideOutOfRangeNumbers")
-    void LottoNumberShouldBeBetween1And45(List<Integer> numbers, Integer invalidNumber) {
-        assertThatThrownBy(() -> new Lotto(numbers))
+    void lottoNumberShouldBeBetween1And45(List<Integer> numbers, Integer invalidNumber) {
+        assertThatThrownBy(() -> new Lotto(numbers, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1 ~ 45 사이의 숫자입니다. 잘못된 숫자 : %s", invalidNumber);
     }
@@ -69,8 +71,8 @@ class LottoTest {
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void LottoHasUniqueNumbers() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+    void lottoHasUniqueNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5), rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 중복될 수 없습니다.");
     }
@@ -79,7 +81,7 @@ class LottoTest {
     @ParameterizedTest
     @CsvSource(value = {"1, true", "7, false"}, delimiter = ',')
     void returnLottoHasSpecificNumber(Integer number, boolean expected) {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
 
         assertThat(lotto.hasNumber(number)).isEqualTo(expected);
     }

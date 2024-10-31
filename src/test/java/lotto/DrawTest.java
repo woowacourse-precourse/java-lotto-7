@@ -13,17 +13,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DrawTest {
 
+    private final RangeValidator rangeValidator = new DefaultRangeValidator();
     private Lotto winningNumbers;
 
     @BeforeEach
     void setUp() {
-        this.winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        this.winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
     }
 
     @DisplayName("추첨 시 6개의 당첨 번호와 1개의 보너스 번호를 갖는다.")
     @Test
     void drawHas6WinningNumbersAndOneBonusNumber() {
-        Draw draw = new Draw(winningNumbers, 7);
+        Draw draw = new Draw(winningNumbers, 7, rangeValidator);
 
         assertThat(draw).extracting("winningNumbers").isEqualTo(winningNumbers);
         assertThat(draw).extracting("bonusNumber").isEqualTo(7);
@@ -32,7 +33,7 @@ class DrawTest {
     @DisplayName("당첨 번호가 null이면 예외를 던진다.")
     @Test
     void drawWinningNumbersCannotBeNull() {
-        assertThatThrownBy(() -> new Draw(null, 7))
+        assertThatThrownBy(() -> new Draw(null, 7, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호는 null 일 수 없습니다.");
     }
@@ -40,7 +41,7 @@ class DrawTest {
     @DisplayName("보너스 번호가 null이면 예외를 던진다.")
     @Test
     void bonusNumberCannotBeNull() {
-        assertThatThrownBy(() -> new Draw(winningNumbers, null))
+        assertThatThrownBy(() -> new Draw(winningNumbers, null, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 null 일 수 없습니다.");
     }
@@ -49,7 +50,7 @@ class DrawTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void bonusNumberShouldBeBetween1And45(Integer bonusNumber) {
-        assertThatThrownBy(() -> new Draw(winningNumbers, bonusNumber))
+        assertThatThrownBy(() -> new Draw(winningNumbers, bonusNumber, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
     }
@@ -57,9 +58,9 @@ class DrawTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void bonusNumberCannotBeDuplicatedWithWinningNumbers() {
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
 
-        assertThatThrownBy(() -> new Draw(winningNumbers, 6))
+        assertThatThrownBy(() -> new Draw(winningNumbers, 6, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }

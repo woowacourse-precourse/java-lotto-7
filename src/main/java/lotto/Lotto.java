@@ -6,19 +6,17 @@ import java.util.List;
 public class Lotto {
 
     private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
+    public Lotto(List<Integer> numbers, RangeValidator rangeValidator) {
+        validate(numbers, rangeValidator);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers, RangeValidator rangeValidator) {
         validateNumbers(numbers);
-        validateEachNumber(numbers);
+        validateEachNumber(numbers, rangeValidator);
         validateDuplication(numbers);
     }
 
@@ -32,13 +30,13 @@ public class Lotto {
         }
     }
 
-    private void validateEachNumber(List<Integer> numbers) {
+    private void validateEachNumber(List<Integer> numbers, RangeValidator rangeValidator) {
         for (Integer number : numbers) {
             if (number == null) {
                 throw new IllegalArgumentException("로또 번호는 null 을 포함할 수 없습니다.");
             }
 
-            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            if (rangeValidator.outOfRange(number)) {
                 throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자입니다. 잘못된 숫자 : " + number);
             }
         }

@@ -5,9 +5,9 @@ public class Draw {
     private final Lotto winningNumbers;
     private final Integer bonusNumber;
 
-    public Draw(Lotto winningNumbers, Integer bonusNumber) {
+    public Draw(Lotto winningNumbers, Integer bonusNumber, RangeValidator rangeValidator) {
         validateWinningNumbers(winningNumbers);
-        validateBonusNumber(bonusNumber, winningNumbers);
+        validateBonusNumber(bonusNumber, winningNumbers, rangeValidator);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
@@ -18,12 +18,12 @@ public class Draw {
         }
     }
 
-    private void validateBonusNumber(Integer bonusNumber, Lotto winningNumbers) {
+    private void validateBonusNumber(Integer bonusNumber, Lotto winningNumbers, RangeValidator rangeValidator) {
         if (bonusNumber == null) {
             throw new IllegalArgumentException("보너스 번호는 null 일 수 없습니다.");
         }
 
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (rangeValidator.outOfRange(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
         }
 
