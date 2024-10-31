@@ -18,11 +18,20 @@ public class LottoResults {
     }
 
     private void initializeResultMap() {
-        return;
+        for (Rank rank : Rank.values()) {
+            resultMap.put(rank, 0);
+        }
     }
 
-    public int calculateResult(List<Integer> winningNumbers, List<Integer> userNumbers, int bonusNumber) {
-        return (int) winningNumbers.stream().filter(userNumbers::contains).count();
+    public void calculateResult() {
+        for (Lotto lotto : userLottos) {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(winningLotto.getNumbers()::contains)
+                    .count();
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            Rank rank = Rank.getRank(matchCount, bonusMatch);
+            resultMap.put(rank, resultMap.get(rank) + 1);
+        }
     }
 
     public Map<Rank, Integer> getResultMap() {
