@@ -19,10 +19,11 @@ public class LottoProvider {
 
 	private List<Lotto> pickedLottos = new ArrayList<>();
 
-	public LottoProvider(int lottoPurchaseAmount) {
-		validateLottoPurchaseAmount(lottoPurchaseAmount);
-		this.lottoPurchaseAmount = lottoPurchaseAmount;
-		this.numberOfLottos = lottoPurchaseAmount / THOUSAND;
+	public LottoProvider(String lottoPurchaseAmount) {
+		int lottoPurchaseAmountNum = Integer.parseInt(lottoPurchaseAmount);
+		validateLottoPurchaseAmount(lottoPurchaseAmountNum);
+		this.lottoPurchaseAmount = lottoPurchaseAmountNum;
+		this.numberOfLottos = lottoPurchaseAmountNum / THOUSAND;
 	}
 
 	private void validateLottoPurchaseAmount(int lottoPurchaseAmount) {
