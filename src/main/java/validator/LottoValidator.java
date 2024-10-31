@@ -1,5 +1,9 @@
 package validator;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class LottoValidator {
     public static Integer isNumber(String targetString) {
         try{
@@ -15,4 +19,12 @@ public class LottoValidator {
         }
         return targetInteger;
     }
+
+    public static Integer isInLottoRange(Integer targetInteger) {
+        if (targetInteger >= 1 && targetInteger <= 45) {
+            return targetInteger;
+        }
+        throw new IllegalArgumentException("로또 번호 범위를 벗어났습니다.");
+    }
+
 }
