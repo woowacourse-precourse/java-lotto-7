@@ -7,7 +7,8 @@ public enum ExceptionMessage {
     MONEY_CANNOT_DIVIDE_BY_LOTTO_PRICE("금액이 1000의 배수여야 합니다."),
     NUMBER_DUPLICATED("번호가 중복됩니다."),
     INVALID_COUNT_NUMBERS("당첨 번호는 6개여야 합니다."),
-    INVALID_FORMAT("부적절한 형식의 입력입니다.");
+    INVALID_FORMAT("부적절한 형식의 입력입니다."),
+    INVALID_INPUT("부적절한 입력입니다.");
 
     private String message;
 
@@ -16,10 +17,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return message;
-    }
-
-    public void printException() {
-        System.out.println("[ERROR] " + message);
+        return "[ERROR] " + message;
     }
 }

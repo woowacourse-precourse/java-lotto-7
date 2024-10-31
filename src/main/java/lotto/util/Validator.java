@@ -37,40 +37,34 @@ public class Validator {
 
     private static void checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
-            INVALID_COUNT_NUMBERS.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_COUNT_NUMBERS.getMessage());
         }
     }
 
     private static void checkNumberDuplicates(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            NUMBER_DUPLICATED.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_DUPLICATED.getMessage());
         }
         if (numbers.contains(bonusNumber)) {
-            NUMBER_DUPLICATED.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_DUPLICATED.getMessage());
         }
     }
 
     private static void checkNumberRange(Integer number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            NUMBER_INVALID_RANGE.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_INVALID_RANGE.getMessage());
         }
     }
 
     private static void checkMoneyRange(Integer money) {
         if (money < 0) {
-            MONEY_INVALID_RANGE.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MONEY_INVALID_RANGE.getMessage());
         }
     }
 
     private static void checkMoneyIsDividedByLottoPrice(Integer money) {
         if (money % LOTTO_PRICE != 0) {
-            MONEY_CANNOT_DIVIDE_BY_LOTTO_PRICE.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MONEY_CANNOT_DIVIDE_BY_LOTTO_PRICE.getMessage());
         }
     }
 }

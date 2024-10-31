@@ -17,22 +17,19 @@ public class InputParser {
         try {
             return Integer.parseInt(money.replaceAll(" ", ""));
         } catch (NumberFormatException e) {
-            INPUT_NOT_NUMBER.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_NUMBER.getMessage());
         }
     }
 
     public static List<Integer> parseNumbers(String numbers) {
         try {
             if (numbers.endsWith(NUMBER_DELIMITER)) {
-                INVALID_FORMAT.printException();
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(INVALID_FORMAT.getMessage());
             }
             return Arrays.stream(numbers.replaceAll(" ", "").split(NUMBER_DELIMITER))
                     .map(Integer::parseInt).toList();
         } catch (NumberFormatException e) {
-            INPUT_NOT_NUMBER.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_NUMBER.getMessage());
         }
     }
 
@@ -40,8 +37,7 @@ public class InputParser {
         try {
             return Integer.parseInt(number.replaceAll(" ", ""));
         } catch (NumberFormatException e) {
-            INPUT_NOT_NUMBER.printException();
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_NOT_NUMBER.getMessage());
         }
     }
 }
