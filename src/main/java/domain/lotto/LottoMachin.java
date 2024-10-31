@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import domain.consumer.Consumer;
 import io.Input;
+import io.InputMessage;
 import io.Output;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +26,17 @@ public class LottoMachin {
         for (int i = 0; i < lottoQuantity; i++) {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT)));
         }
+        lottos.forEach(Lotto::sortLottoNumbers);
         return lottos;
     }
 
     public void printLottoInfo(Consumer consumer) {
-        Output.println("\r\n"+consumer.getPurchasedLottos().size() + "개를 구매했습니다.");
+        StringBuilder LottoInfo = new StringBuilder();
+        LottoInfo
+                .append(InputMessage.NEW_LINE.getInputMessage())
+                .append(consumer.getPurchasedLottos().size())
+                .append(InputMessage.PURCHASE_LOTTO_COUNT.getInputMessage());
+        Output.println(LottoInfo.toString());
         consumer.getPurchasedLottos().forEach(Output::println);
     }
 

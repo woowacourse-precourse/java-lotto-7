@@ -17,13 +17,17 @@ public class Lotto {
         }
         int left = 0;
         while (left < 6) {
-            for (int right = left+1; right < 6; right++) {
+            for (int right = left + 1; right < 6; right++) {
                 if (numbers.get(left) == numbers.get(right)) {
                     throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_LOTTO_NUMBER.getErrorMessage());
                 }
             }
             left++;
         }
+    }
+
+    public void sortLottoNumbers() {
+        numbers.sort(Integer::compareTo);
     }
 
     @Override
