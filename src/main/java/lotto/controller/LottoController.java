@@ -26,7 +26,7 @@ public class LottoController {
 
             return Integer.parseInt(rawMoney);
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            outputView.printException(exception.getMessage());
 
             return inputMoney();
         }

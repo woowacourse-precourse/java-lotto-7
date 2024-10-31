@@ -47,4 +47,8 @@ public class OutputView {
             System.out.println(" (" + decimalPrizeMoney + "원) - " + winCount + "개");
         });
     }
+
+    public void printException(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage + "\n");
+    }
 }
