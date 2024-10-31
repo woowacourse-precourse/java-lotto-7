@@ -13,7 +13,6 @@ import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoShop;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
-import lotto.domain.dto.LottoDto;
 import lotto.utils.NumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,11 +62,10 @@ class LottoTest {
         NumberGenerator numberGenerator = new LottoNumberGenerator();
 
         Lotto lotto = new Lotto(numberGenerator.generate());
-        LottoDto lottoDto = lotto.toDto();
 
-        assertThat(lottoDto.getNumbers()).hasSize(6);
-        assertThat(lottoDto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
-        assertThat(lottoDto.getNumbers()).doesNotHaveDuplicates();
+        assertThat(lotto.getNumbers()).hasSize(6);
+        assertThat(lotto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
+        assertThat(lotto.getNumbers()).doesNotHaveDuplicates();
     }
 
     @DisplayName("로또를 여러 개 발행하고 1~45 사이의 중복없는 6개의 숫자로 발행되는지 확인한다.")
@@ -76,14 +74,14 @@ class LottoTest {
         NumberGenerator numberGenerator = new LottoNumberGenerator();
         int numberOfLottos = 5;
 
-        List<LottoDto> lottoDtos = IntStream.range(0, numberOfLottos)
-                .mapToObj(i -> new Lotto(numberGenerator.generate()).toDto())
+        List<Lotto> lottos = IntStream.range(0, numberOfLottos)
+                .mapToObj(i -> new Lotto(numberGenerator.generate()))
                 .toList();
 
-        lottoDtos.forEach(lottoDto -> {
-            assertThat(lottoDto.getNumbers()).hasSize(6);
-            assertThat(lottoDto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
-            assertThat(lottoDto.getNumbers()).doesNotHaveDuplicates();
+        lottos.forEach(lotto -> {
+            assertThat(lotto.getNumbers()).hasSize(6);
+            assertThat(lotto.getNumbers()).allMatch(number -> number >= 1 && number <= 45);
+            assertThat(lotto.getNumbers()).doesNotHaveDuplicates();
         });
     }
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.dto.LottoDto;
 
@@ -50,7 +51,7 @@ public class Lotto {
                 .count();
     }
 
-    public LottoDto toDto() {
-        return new LottoDto(new ArrayList<>(numbers));
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }
