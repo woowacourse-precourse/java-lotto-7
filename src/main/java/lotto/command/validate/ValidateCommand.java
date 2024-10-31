@@ -3,6 +3,8 @@ package lotto.command.validate;
 import lotto.common.exception.ExceptionEnum;
 import lotto.command.Command;
 import lotto.dto.UserInput;
+import lotto.view.ConsoleView;
+import lotto.view.View;
 import lotto.view.exception.InputException;
 
 /**
@@ -10,11 +12,12 @@ import lotto.view.exception.InputException;
  * @since : 24. 10. 31.
  */
 public abstract interface ValidateCommand extends Command<UserInput, String> {
-
-  @Override
-  UserInput execute(String input);
-
+  View view = new ConsoleView();
   String ask();
+
+  default UserInput redo () {
+    return (UserInput) view.promptInput(this);
+  }
 
   default void validateBlank(String input) {
     if (input.isBlank()){
@@ -70,6 +73,4 @@ public abstract interface ValidateCommand extends Command<UserInput, String> {
       throw new InputException(ExceptionEnum.INVALID_LONG_RANGE);
     }
   }
-
-  void redo();
 }
