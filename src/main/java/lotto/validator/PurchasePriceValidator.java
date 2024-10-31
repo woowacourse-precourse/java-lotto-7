@@ -12,7 +12,7 @@ public class PurchasePriceValidator {
         if (!isNumber(rawPurchasePrice)) {
             return false;
         }
-        if (!isOverFlow(rawPurchasePrice)) {
+        if (!isNotOverFlow(rawPurchasePrice)) {
             return false;
         }
         int intPurchasePrice = Integer.parseInt(rawPurchasePrice);
@@ -43,12 +43,14 @@ public class PurchasePriceValidator {
         return false;
     }
 
-    private static boolean isOverFlow(String rawPurchasePrice) {
-        if (rawPurchasePrice.compareTo(String.valueOf(Integer.MAX_VALUE)) <= 0) {
-            return true;
+    private static boolean isNotOverFlow(String rawPurchasePrice) {
+        try{
+            Integer.parseInt(rawPurchasePrice);
+        }catch (NumberFormatException exception){
+            ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_OVER_PROGRAM_MAX);
+            return false;
         }
-        ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_OVER_PROGRAM_MAX);
-        return false;
+        return true;
     }
 
     private static boolean isReachAtLeastPrice(int intPurchasePrice) {
