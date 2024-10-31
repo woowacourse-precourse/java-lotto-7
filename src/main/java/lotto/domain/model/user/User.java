@@ -1,4 +1,6 @@
-package lotto.domain.model;
+package lotto.domain.model.user;
+
+import lotto.domain.model.lotto.Lotto;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,7 +9,7 @@ public class User {
 
     private final List<Lotto> lottos;
     private int totalAmountPurchased;
-    private double profitRate;
+    private double profitRate = 0;
 
     private User(int amount, List<Lotto> lottos) {
         this.totalAmountPurchased = amount;
@@ -30,7 +32,7 @@ public class User {
         return profitRate;
     }
 
-    public void addTotalAmountPurchased(int amountPurchased) {
+    public void addAmount(int amountPurchased) {
         this.totalAmountPurchased += amountPurchased;
     }
 

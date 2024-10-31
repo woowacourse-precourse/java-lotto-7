@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.common.constant.PrintFormatConst;
-import lotto.domain.model.Lotto;
+import lotto.domain.model.lotto.Lotto;
 import lotto.domain.utils.TestLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
