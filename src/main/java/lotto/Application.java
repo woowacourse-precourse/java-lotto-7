@@ -7,9 +7,10 @@ public class Application {
 
         // 1. 구입 금액 입력
         InputView inputView = new InputView();
-        int purchaseMoney = inputView.getPurchaseMoney();
-        
+        int inputMoney = inputView.getInputMoney();
+
         // 2. 로또 구매
+        int myLotto = inputMoney / 10;
 
         // 3. 로또 발행
 
