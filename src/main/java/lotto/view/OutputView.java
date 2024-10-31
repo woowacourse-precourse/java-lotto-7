@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.domain.User;
-import lotto.domain.UserLottoNumber;
+import lotto.domain.UserLotto;
 
 public class OutputView {
 
@@ -10,8 +10,8 @@ public class OutputView {
     }
 
     public static void buyLottoNumber(User user) {
-        for (UserLottoNumber userLottoNumber : user.getUserLottoNumber()) {
-            System.out.println(userLottoNumber.getLottoNumber());
+        for (UserLotto userLotto : user.getUserLotto()) {
+            System.out.println(userLotto.getLottoNumber());
         }
     }
 }

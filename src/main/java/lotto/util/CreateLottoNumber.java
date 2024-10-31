@@ -1,7 +1,7 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.UserLottoNumber;
+import lotto.domain.UserLotto;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +21,7 @@ public class CreateLottoNumber {
         return numbers;
     }
 
-    public static UserLottoNumber createLotto() {
-        return new UserLottoNumber(sortNumber(createNumber()));
+    public static UserLotto createLotto() {
+        return new UserLotto(sortNumber(createNumber()));
     }
 }

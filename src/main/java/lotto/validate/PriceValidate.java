@@ -10,6 +10,7 @@ public class PriceValidate {
         int price= isNumber(priceString);
         isPositiveNumber(price);
         validatePrice(price);
+
         this.price = price;
     }
 
