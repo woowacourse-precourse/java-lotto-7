@@ -17,12 +17,24 @@ public class LottoMachine {
 
         for (int i = 0; i < numberOfLottos; i++) {
             List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(
-                    LOTTO_NUMBER_BEGIN,
-                    LOTTO_NUMBER_END,
+                    LOTTO_NUMBER_BEGIN, LOTTO_NUMBER_END,
                     LOTTO_NUMBER_COUNT
             );
             lottos.add(new Lotto(generatedNumbers));
         }
         return lottos;
+    }
+
+    public static LottoResult match(WinningNumbers winningNumbers, List<Lotto> lottos) {
+        List<LottoPrize> prizes = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            long matchCount = lotto.getMatchCount(winningNumbers.lotto());
+            boolean isBonusBallMatched = lotto.contains(winningNumbers.bonusBall());
+
+            LottoPrize prize = LottoPrize.of(matchCount, isBonusBallMatched);
+            prizes.add(prize);
+        }
+        return new LottoResult(prizes);
     }
 }

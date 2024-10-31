@@ -33,5 +33,15 @@ public class Lotto {
                 .collect(Collectors.joining(", "));
     }
 
+    public long getMatchCount(Lotto lotto) {
+        return numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     // TODO: 추가 기능 구현
 }

@@ -15,11 +15,11 @@ public class WinningNumbersTest {
         int bonusBall = 7;
 
         WinningNumbers winningNumbers = new WinningNumbers(lotto, bonusBall);
-        List<Integer> lottoNumbers = winningNumbers.getLotto().getNumbers();
+        List<Integer> lottoNumbers = winningNumbers.lotto().getNumbers();
 
         assertThat(lottoNumbers).hasSize(6);
         lottoNumbers.forEach(number -> assertThat(number).isBetween(1, 45));
 
-        assertThat(winningNumbers.getBonusBall()).isBetween(1, 45);
+        assertThat(winningNumbers.bonusBall()).isBetween(1, 45);
     }
 }

@@ -21,9 +21,14 @@ public class Application {
         System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        Console.readLine();
+        String numbersInput = Console.readLine();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        Console.readLine();
+        String bonusBallInput = Console.readLine();
+
+        Lotto lotto = new Lotto(InputHandler.toNumbers(numbersInput));
+        int bonusBall = InputHandler.toInt(bonusBallInput);
+
+        LottoMachine.match(new WinningNumbers(lotto, bonusBall), lottos);
     }
 }
