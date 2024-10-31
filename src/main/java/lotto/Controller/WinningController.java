@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.Lotto;
+import lotto.LottoResult;
 import lotto.Pair;
 import lotto.Service.WinningService;
 import lotto.View.BonusView;
@@ -29,8 +30,9 @@ public class WinningController extends Validate{
     public void getWinning() {
         List<Integer> winningNumbers = getWinningInput();
         int bonusNumber = getBonusInput(winningNumbers);
-        int[] ranks = winningService.getResult(lottos, winningNumbers, bonusNumber);
-
+        int[] result = winningService.getResult(lottos, winningNumbers, bonusNumber);
+        float returnRate = winningService.getReturnRate(result, lottos.size());
+        statisticsView.print(result, returnRate);
     }
 
     private List<Integer> getWinningInput() {
