@@ -25,6 +25,10 @@ public class Lottos {
 		return lottos;
 	}
 
+	public HashMap<String, Long> getWinningResult() {
+		return winningResult;
+	}
+
 	public int calculateNumberOfLotto(String str) {
 		int number = validateNumber(str);
 		int buyingNumber = validateDivisible(number) / DIVISOR;

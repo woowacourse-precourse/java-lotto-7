@@ -9,10 +9,12 @@ import lotto.model.LottoRank;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class WinningController {
 
 	private InputView inputView = new InputView();
+	private OutputView outputView = new OutputView();
 	private Lottos lottos;
 	private WinningLotto winningLotto;
 
@@ -21,6 +23,7 @@ public class WinningController {
 
 		setNumberOfWinning();
 		countRank();
+		showWinningResult();
 	}
 
 	private void setNumberOfWinning() {
@@ -32,9 +35,13 @@ public class WinningController {
 	}
 
 	private void countRank() {
-		for(Lotto lotto : lottos.getLottos()) {
+		for (Lotto lotto : lottos.getLottos()) {
 			LottoRank rank = winningLotto.calculateRank(lotto.getNumbers());
 			lottos.addRank(rank);
 		}
+	}
+
+	private void showWinningResult() {
+		outputView.printWinningResult(lottos.getWinningResult());
 	}
 }
