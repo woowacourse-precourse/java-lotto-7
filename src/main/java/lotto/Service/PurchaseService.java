@@ -29,14 +29,14 @@ public class PurchaseService {
 
     public List<Lotto> draw(int count) {
         List<Lotto> lottos = new ArrayList<Lotto>();
+        List<Integer> numbers = new ArrayList<>();
         for(int i = 0; i < count; i++) {
             for(int j = 0; j < 6; j++) {
-                List<Integer> numbers = new ArrayList<>();
                 numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
                 Collections.sort(numbers);
-                Lotto lotto = new Lotto(numbers);
-                lottos.add(lotto);
             }
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
         }
         return lottos;
     }
