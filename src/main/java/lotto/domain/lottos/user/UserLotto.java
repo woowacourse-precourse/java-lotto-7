@@ -14,15 +14,6 @@ public class UserLotto {
         this.bonusLotto = bonusLotto;
     }
 
-
-    public Lotto getMainLotto() {
-        return mainLotto;
-    }
-
-    public BonusLotto getBonusLotto() {
-        return bonusLotto;
-    }
-
     public int getMainLottoMatchedCount(final Lotto randomLotto) {
         return mainLotto.getNumberOfMatches(randomLotto);
     }

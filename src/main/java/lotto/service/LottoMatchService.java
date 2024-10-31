@@ -1,9 +1,8 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.domain.Rank;
-import lotto.domain.lottos.Lotto;
 import lotto.domain.lottos.RandomLottos;
-import lotto.domain.lottos.user.BonusLotto;
 import lotto.domain.lottos.user.UserLotto;
 import lotto.domain.lottos.user.WinningLottos;
 
@@ -18,23 +17,12 @@ public class LottoMatchService {
         this.winningLottos = winningLottos;
     }
 
-    /**
-     * 개수 확인하고
-     * winningLotto에 해당 Rank 넣기
-     * 캡슐화??
-     * Lotto에 get만 없으면 되지 않나?
-     */
 
-    public void matchLottos(){
-        Lotto maninLotto = userLotto.getMainLotto();
-        BonusLotto bonusLotto = userLotto.getBonusLotto();
+    public void matchLottos() {
+        List<Rank> ranksResult = randomLottos.getMatchedRank(userLotto);
 
-        for(Lotto randomLotto : randomLottos.getLottos()){
-            int numberOfMatches = maninLotto.getNumberOfMatches(randomLotto);
-            boolean isContainBonus = bonusLotto.isContainMainLotto(randomLotto);
-            Rank matchedRank = Rank.findRank(numberOfMatches, isContainBonus);
-
-            winningLottos.addRank(matchedRank);
+        for (Rank rank : ranksResult) {
+            winningLottos.addRank(rank);
         }
     }
 
