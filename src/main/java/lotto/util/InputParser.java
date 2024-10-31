@@ -7,15 +7,31 @@ public class InputParser {
 
     private final static String NUMBER_DELIMITER = ",";
 
-    public static Integer parseMoney(String money){
-        return Integer.parseInt(money);
+    public static Integer parseMoney(String money) {
+        try {
+            return Integer.parseInt(money.replaceAll(" ",""));
+        } catch (NumberFormatException e) {
+            System.out.println("error");
+            throw new IllegalArgumentException();
+        }
     }
 
-    public static List<Integer> parseNumbers(String numbers){
-        return Arrays.stream(numbers.split(NUMBER_DELIMITER)).map(Integer::parseInt).toList();
+    public static List<Integer> parseNumbers(String numbers) {
+        try {
+            return Arrays.stream(numbers.replaceAll(" ","").split(NUMBER_DELIMITER))
+                    .map(Integer::parseInt).toList();
+        } catch (NumberFormatException e) {
+            System.out.println("error");
+            throw new IllegalArgumentException();
+        }
     }
 
-    public static Integer parseBonusNumber(String number){
-        return Integer.parseInt(number);
+    public static Integer parseBonusNumber(String number) {
+        try {
+            return Integer.parseInt(number.replaceAll(" ",""));
+        } catch (NumberFormatException e) {
+            System.out.println("error");
+            throw new IllegalArgumentException();
+        }
     }
 }

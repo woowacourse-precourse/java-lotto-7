@@ -18,7 +18,7 @@ public class LottoInputView {
 
         try {
             System.out.println(INPUT_MONEY_MESSAGE);
-            moneyInput = Integer.parseInt(Console.readLine().trim());
+            moneyInput = Integer.parseInt(Console.readLine());
         } catch (NoSuchElementException e) {
             System.out.println("input error");
             throw new IllegalArgumentException();
@@ -31,7 +31,7 @@ public class LottoInputView {
         List<Integer> numbersInput = new ArrayList<>();
         try{
             System.out.println(INPUT_NUMBERS_MESSAGE);
-            String temp = Console.readLine().trim();
+            String temp = Console.readLine();
             Arrays.stream(temp.split(",")).map(Integer::parseInt).forEach(numbersInput::add);
         } catch (NoSuchElementException e) {
             System.out.println("input error");
@@ -45,7 +45,7 @@ public class LottoInputView {
         Integer bonusNumberInput = 0;
         try{
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-            bonusNumberInput = Integer.parseInt(Console.readLine().trim());
+            bonusNumberInput = Integer.parseInt(Console.readLine());
         } catch (NoSuchElementException e) {
             System.out.println("input error");
             throw new IllegalArgumentException();
