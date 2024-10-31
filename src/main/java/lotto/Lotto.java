@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -42,7 +39,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        Collections.sort(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(this.numbers);
+        Collections.sort(sortedNumbers);
         return numbers.toString();
     }
 
