@@ -12,9 +12,14 @@ public enum ErrorMessage {
 
     // 당첨 번호
     WINNING_NUMBER_NOT_DIGIT("당첨 번호는 숫자여야 합니다."),
-    OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    WINNING_NUMBER_OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     DUPLICATED_NUMBER("중복된 번호가 있습니다."),
-    NUMBERS_SIZE_ERROR("로또 번호는 %d개여야 합니다.");
+    NUMBERS_SIZE_ERROR("로또 번호는 %d개여야 합니다."),
+
+    // 보너스 번호
+    BONUS_NUMBER_NOT_DIGIT("보너스 번호는 숫자여야 합니다."),
+    BONUS_NUMBER_DUPLICATE("당첨 번호와 중복된 번호입니다."),
+    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
 
     private final String message;
 
