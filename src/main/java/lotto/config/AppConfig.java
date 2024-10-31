@@ -7,7 +7,7 @@ import lotto.service.result.ProfitService;
 import lotto.service.result.ResultService;
 import lotto.service.result.StatisticService;
 import lotto.service.user.LottoGeneratorService;
-import lotto.service.numbers.LottoService;
+import lotto.service.numbers.NumberService;
 import lotto.service.user.MoneyService;
 import lotto.service.numbers.WinningLottoService;
 import lotto.service.user.UserService;
@@ -40,8 +40,8 @@ public class AppConfig {
     private LottoGeneratorService lottoGeneratorService() {
         return new LottoGeneratorService();
     }
-    private LottoService lottoService() {
-        return new LottoService(winningLottoService(), bonusNumberService());
+    private NumberService lottoService() {
+        return new NumberService(winningLottoService(), bonusNumberService());
     }
     private BonusNumberService bonusNumberService() {
         return new BonusNumberService();

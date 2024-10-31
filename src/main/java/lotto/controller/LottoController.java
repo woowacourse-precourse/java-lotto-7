@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.User;
 import lotto.service.SystemService;
-import lotto.service.numbers.LottoService;
 import lotto.validator.exception.LottoException;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -20,8 +18,8 @@ public class LottoController {
 
     public void startLottoSimulation() {
         purchaseLotto();
-//        inputWinningNumbers();
-//        inputBonusNumber();
+        inputWinningNumbers();
+        inputBonusNumber();
     }
 
     private void purchaseLotto() {
@@ -36,27 +34,27 @@ public class LottoController {
         }
     }
 
-//    private void inputWinningNumbers() {
-//        while(true) {
-//            try {
-//                String winningNumbers = inputView.inputWinningNumbers();
-//                lottoService.winningLotto(winningNumbers);
-//                break;
-//            } catch (LottoException e) {
-//                outputView.displayErrorMessage(e);
-//            }
-//        }
-//    }
-//
-//    private void inputBonusNumber() {
-//        while(true) {
-//            try {
-//                String bonusNumber = inputView.inputBonusNumber();
-//                lottoService.bonusNumber(bonusNumber);
-//                break;
-//            } catch (LottoException e) {
-//                outputView.displayErrorMessage(e);
-//            }
-//        }
-//    }
+    private void inputWinningNumbers() {
+        while(true) {
+            try {
+                String winningNumbers = inputView.inputWinningNumbers();
+                systemService.winningLottoProcess(winningNumbers);
+                break;
+            } catch (LottoException e) {
+                outputView.displayErrorMessage(e);
+            }
+        }
+    }
+
+    private void inputBonusNumber() {
+        while(true) {
+            try {
+                String bonusNumber = inputView.inputBonusNumber();
+                systemService.bonusNumberProcess(bonusNumber);
+                break;
+            } catch (LottoException e) {
+                outputView.displayErrorMessage(e);
+            }
+        }
+    }
 }
