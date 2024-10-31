@@ -25,7 +25,10 @@ class LottoTest {
         Lotto lotto = new Lotto(createRandomNumbers.getRandomNumbers());
 
         // when
-        List<Integer> displayLotto = lotto.displayLotto();
+        List<Integer> displayLotto = lotto.displayLotto()
+                .stream()
+                .map(Number::getNumber)
+                .toList();
 
         // then
         assertThat(displayLotto.size()).isEqualTo(6);
@@ -54,15 +57,6 @@ class LottoTest {
                     .hasMessageContaining(CustomErrorCode.EXCEPTION_DUPLICATED_LOTTO_NUMBER.getMessage());
         }
 
-        @ParameterizedTest
-        @MethodSource("provideOutOfRangeLottoNumbers")
-        void 로또_번호에_범위를_벗어난_숫자가_있으면_예외가_발생한다(List<Integer> numbers) {
-            // when & then
-            assertThatThrownBy(() -> new Lotto(numbers))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(CustomErrorCode.EXCEPTION_LOTTO_RANGE.getMessage());
-        }
-
         private static Stream<List<Integer>> provideInvalidLottoSizes() {
             return Stream.of(
                     List.of(1, 2, 3, 4),
@@ -76,14 +70,6 @@ class LottoTest {
                     List.of(1, 2, 3, 4, 4, 5),
                     List.of(1, 1, 3, 4, 5, 6),
                     List.of(1, 2, 3, 45, 45, 45)
-            );
-        }
-
-        private static Stream<List<Integer>> provideOutOfRangeLottoNumbers() {
-            return Stream.of(
-                    List.of(0, 1, 2, 3, 4, 5),
-                    List.of(1, 2, 3, 4, 5, 46),
-                    List.of(0, 2, 3, 4, 5, 45)
             );
         }
     }

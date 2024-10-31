@@ -19,12 +19,17 @@ public class Number {
         return new Number(lottoNumber);
     }
 
-    public int getNumber() {
-        return number;
+    public static Number from(int number) {
+        validateNumberRange(number);
+        return new Number(number);
     }
 
     private Number(int number) {
         this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     private static void validateEmptyNumber(String number) {

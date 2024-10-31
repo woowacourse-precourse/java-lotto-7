@@ -13,6 +13,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 class NumberTest {
 
     @ParameterizedTest
+    @ValueSource(ints = {1, 3, 45})
+    void 로또_조건을_만족하는_숫자를_입력받는다(int number) {
+        // given
+        Number lottoNumber = Number.from(number);
+
+        // when
+        int actual = lottoNumber.getNumber();
+
+        // then
+        assertThat(actual).isEqualTo(number);
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"1", "3", "45"})
     void 로또_조건을_만족하는_숫자_형식의_문자를_입력받는다(String number) {
         // given
@@ -48,7 +61,16 @@ class NumberTest {
 
         @ParameterizedTest
         @ValueSource(strings = {"0", "000", "48", "-1", "-42"})
-        void 로또_범위를_벗어난_숫자를_입력받는다(String number) {
+        void 로또_범위를_벗어난_숫자_형식의_문자를_입력받는다(String number) {
+            // when & then
+            assertThatThrownBy(() -> Number.from(number))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining(CustomErrorCode.EXCEPTION_LOTTO_RANGE.getMessage());
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {0, 48, -1, -42})
+        void 로또_범위를_벗어난_숫자를_입력받는다(int number) {
             // when & then
             assertThatThrownBy(() -> Number.from(number))
                     .isInstanceOf(IllegalArgumentException.class)
