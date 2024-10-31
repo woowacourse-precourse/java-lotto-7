@@ -8,6 +8,13 @@ public class PurchaseAmountValidator implements Validator {
     public void validate(String input) {
         int purchaseAmount = isNumber(input);
         hasMinimum(purchaseAmount);
+        isDivisibleByMinimumAmount(purchaseAmount);
+    }
+
+    private void isDivisibleByMinimumAmount(int purchaseAmount) {
+        if (!(purchaseAmount % MINIMUM_AMOUNT == 0)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void hasMinimum(int purchaseAmount) {

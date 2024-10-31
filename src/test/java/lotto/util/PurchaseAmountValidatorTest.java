@@ -34,4 +34,13 @@ class PurchaseAmountValidatorTest {
         assertThatThrownBy(() -> validator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void isDivisibleByMinimumAmountTest() {
+        // given
+        String input = "1999";
+        // when & then
+        assertThatThrownBy(() -> validator.validate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
