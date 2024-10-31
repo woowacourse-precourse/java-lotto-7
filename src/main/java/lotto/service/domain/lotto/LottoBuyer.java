@@ -1,7 +1,7 @@
-package lotto;
+package lotto.service.domain.lotto;
 
-import java.util.ArrayList;
 import java.util.List;
+import lotto.service.domain.money.Money;
 
 public class LottoBuyer implements LottoValueProvider{
     /**

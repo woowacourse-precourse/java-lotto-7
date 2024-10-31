@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service.domain.lotto;
 
 public class LottoNumber {
     private static final int MINIMUM_NUMBER_RANGE = 1;
