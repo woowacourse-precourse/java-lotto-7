@@ -21,6 +21,7 @@ public class LottoController {
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
     private PublishLotteries publishLotteries;
+    private WinningHistory winningHistory;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -51,7 +52,6 @@ public class LottoController {
         printWinningStatistics();
     }
 
-    // 로또 구입 금액을 입력 받는다
     private void inputPurchaseAmount() {
         while (true) {
             try {
@@ -64,17 +64,14 @@ public class LottoController {
         }
     }
 
-    // 구매한 로또 수 만큼의 로또를 발행한다
     private void publishLotto() {
         publishLotteries = new PublishLotteries(purchase.getPurchaseCount());
     }
 
-    // 발행된 로또 번호를 출력한다
     private void printPublishedLotto() {
         outputView.printPublishedLotteries(publishLotteries.get());
     }
 
-    // 당첨 번호를 입력 받는다
     private void assignWinningNumbers() {
         while (true) {
             try {
@@ -87,7 +84,6 @@ public class LottoController {
         }
     }
 
-    // 보너스 번호를 입력 받는다
     private void assignBonusNumber() {
         while (true) {
             try {
@@ -100,37 +96,38 @@ public class LottoController {
         }
     }
 
-    // 번호를 비교하여 당첨 내역을 계산한다
-    private Map<Rank, Integer> calculateWinnings() {
+    private Map<Rank, Integer> getCalculateWinnings() {
         List<Integer> winningNumbersToCompare = winningNumbers.get();
         List<Lotto> publishedLotteries = publishLotteries.get();
         int bonus = bonusNumber.get();
         Map<Rank, Integer> winningCountOfEachRanks;
 
-        WinningHistory winningHistory = new WinningHistory(winningNumbersToCompare, publishedLotteries, bonus);
+        winningHistory = new WinningHistory(winningNumbersToCompare, publishedLotteries, bonus);
         winningCountOfEachRanks = winningHistory.getWinningCountOfEachRank();
 
         return winningCountOfEachRanks;
     }
 
-    // 총 수익률을 계산한다
-    private void calculateTotalRateOfReturn() {
+    private double getCalculateTotalRateOfReturn() {
+        int totalPrize = winningHistory.getTotalPrize();
+        int purchasePrice = purchase.getPurchasePrice();
+        double rateOfReturn = (double) totalPrize / purchasePrice * 100;
 
+        return Math.round(rateOfReturn * 10) / 10.0;
     }
 
     private void printCalculatedWinnings() {
-        Map<Rank, Integer> winningCountOfEachRanks = calculateWinnings();
+        Map<Rank, Integer> winningCountOfEachRanks = getCalculateWinnings();
         outputView.printWinnings(winningCountOfEachRanks);
     }
 
     private void printCalculatedRateOfReturn() {
-
+        double rateOfReturn = getCalculateTotalRateOfReturn();
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
-    // 당첨 통계를 출력한다
     private void printWinningStatistics() {
         printCalculatedWinnings();
         printCalculatedRateOfReturn();
     }
-
 }
