@@ -60,7 +60,7 @@
 
 ## MVC 패턴 구조
 ### Main
-- [ ] Application
+- [x] Application
 ### Model
 - [x] Lotto 
 - [x] LottoMachine
