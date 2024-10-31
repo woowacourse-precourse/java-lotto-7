@@ -45,7 +45,7 @@ public class LottoService {
 
     public void checkLottosWin() {
         for(Lotto lotto : lottos) {
-            lotto.inputWin(winNum);
+            lotto.inputWin(winNum, bonusNum);
         }
     }
 

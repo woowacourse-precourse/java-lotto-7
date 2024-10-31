@@ -23,8 +23,13 @@ public class Lotto {
         return numbers;
     }
 
-    public void inputWin(List<Integer> winNum) {
-        this.win = Win.getWin(checkWin(winNum));
+    public void inputWin(List<Integer> winNum, Integer bonusNum) {
+        Boolean existBonusNum = false;
+        if (numbers.contains(bonusNum)) {
+            existBonusNum = true;
+        }
+        Win win = Win.getWin(checkWin(winNum), existBonusNum);
+        this.win = win;
     }
 
     private Integer checkWin(List<Integer> winNum) {
