@@ -42,7 +42,6 @@ public class LottoController {
 
     private void allocateLottoNumbers(int lottoCount) {
         lottos.allocateLottosByRandomNumber(lottoCount);
-        lottos.ascAllLottoNumber();
     }
 
     private List<Integer> inputWinningNumber() {

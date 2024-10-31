@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -7,7 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = ascNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,9 +17,10 @@ public class Lotto {
         }
     }
 
-    public List<Integer> ascNumbers() {
-        numbers.sort(Integer::compareTo);
-        return numbers;
+    public List<Integer> ascNumbers(List<Integer> numbers) {
+        List<Integer> ascNumbers = new ArrayList<>(numbers);
+        ascNumbers.sort(Integer::compareTo);
+        return ascNumbers;
     }
 
     public String toString() {

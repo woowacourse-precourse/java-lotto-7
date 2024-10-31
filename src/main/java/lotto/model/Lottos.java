@@ -24,10 +24,6 @@ public class Lottos {
                 .forEach(i -> lottos.put(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)), NONE));
     }
 
-    public void ascAllLottoNumber() {
-        lottos.keySet().forEach(Lotto::ascNumbers);
-    }
-
     public String toStringAllLottoNumber() {
         StringBuilder sb = new StringBuilder();
         lottos.keySet().forEach(lotto -> sb.append(lotto.toString()).append("\n"));
