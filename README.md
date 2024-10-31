@@ -92,9 +92,9 @@
     - [X] 콤마(,)를 통해 숫자를 3자리씩 구분한다.
 
 ### 8. 그 외
-- [ ] 사용자가 잘못된 값을 입력할 경우 `IllgalArgumentException`을 발생시키고, 다시 입력 받는다.
-- [ ] 에러가 발생할 경우 `[ERROR]`로 시작하는 에러 메시지를 출력한다.
-- [ ] 제공된 라이브러리를 사용한다.
+- [X] 사용자가 잘못된 값을 입력할 경우 `IllgalArgumentException`을 발생시키고, 다시 입력 받는다.
+- [X] 에러가 발생할 경우 `[ERROR]`로 시작하는 에러 메시지를 출력한다.
+- [X] 제공된 라이브러리를 사용한다.
     - `camp.nextstep.edu.missionutils.Randoms` 의 `pickUniqueNumbersInRange()`
     - `camp.nextstep.edu.missionutils.Console` 의 `readLine()`
 
