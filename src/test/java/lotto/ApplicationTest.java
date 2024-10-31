@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -96,6 +97,18 @@ class ApplicationTest extends NsTest {
                 () -> Application.validatePurchaseAmount("-1000")
         );
         assertEquals("[ERROR] 구입금액은 1,000원 단위여야합니다.", exception.getMessage());
+    }
+
+    @Test
+    @DisplayName("정수 리스트가 오름차순으로 정렬이 되었는지 테스트")
+    void testIntegerNumberAreSorted() {
+        List<Integer> intNumbers = Arrays.asList(6, 3, 5, 1, 4, 2);
+        intNumbers = Application.sortAscendingInteger(intNumbers);
+
+        for (int i = 0; i < intNumbers.size() - 1; i++) {
+            assertTrue(intNumbers.get(i) <= intNumbers.get(i+1), "숫자들이 오름차순으로 정렬되어야 합니다.");
+        }
+
     }
 
     @Override
