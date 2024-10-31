@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.Lotto;
 
 public class LottoView {
     public int getInputPurchaseAmount() {
@@ -43,6 +44,11 @@ public class LottoView {
             System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
             return getInputBonusNumber();
         }
+    }
+
+    public void displayLottos(List<Lotto> lottos){
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     private List<Integer> parseNumbers(String input) {
