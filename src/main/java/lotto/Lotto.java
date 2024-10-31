@@ -20,10 +20,6 @@ public class Lotto {
         return numbers.contains(num);
     }
 
-    public boolean contains(Bonus bonus) {
-        return contains(bonus.getNum());
-    }
-
     public int getCnt(Lotto lotto) {
         return (int) numbers.stream().filter(lotto::contains).count();
     }
@@ -32,6 +28,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
-    // TODO: 추가 기능 구현
 }

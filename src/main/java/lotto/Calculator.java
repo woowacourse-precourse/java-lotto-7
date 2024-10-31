@@ -19,19 +19,19 @@ public class Calculator {
 
     private final int userLottoCnt;
     private int[] matchCnts;
-    private final Bonus bonus;
+    private final int bonus;
 
-    public Calculator(List<Lotto> userLottos, Lotto targetLotto, Bonus bonus) {
-        this.userLottoCnt = userLottos.size();
+    public Calculator(List<Lotto> userLotties, Lotto winningLotto, int bonus) {
+        this.userLottoCnt = userLotties.size();
         this.bonus = bonus;
-        initMatchCntList(userLottos, targetLotto);
+        initMatchCntList(userLotties, winningLotto);
     }
 
 
-    private void initMatchCntList(List<Lotto> userLottos, Lotto targetLotto) {
+    private void initMatchCntList(List<Lotto> userLotties, Lotto winningLotto) {
         this.matchCnts = new int[6];
-        for (Lotto lotto : userLottos) {
-            int rank = RANK_MAPPER[lotto.getCnt(targetLotto)];
+        for (Lotto lotto : userLotties) {
+            int rank = RANK_MAPPER[lotto.getCnt(winningLotto)];
             if (rank == -1) {
                 continue;
             }
@@ -45,7 +45,7 @@ public class Calculator {
 
     private double calcRateOfReturn() {
         double sum = 0;
-        for (int i = 3; i < matchCnts.length; i++) {
+        for (int i = 1; i < matchCnts.length; i++) {
             sum += (matchCnts[i] * PRIZE_MONEY.get(i));
         }
         return sum / (userLottoCnt * 1000) * 100;
