@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.ExceptionMessage.BONUS_NUMBER_NOT_NUMERIC_EXCEPTION;
 import static lotto.ExceptionMessage.PURCHASE_AMOUNT_NOT_NUMERIC_EXCEPTION;
 import static lotto.ExceptionMessage.WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION;
 
@@ -28,6 +29,7 @@ public class WinningNumbersInputView {
 
     public int getBonusNumber() {
         String bonusNumber = Console.readLine();
+        validateBonusNumberIsNumeric(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 
@@ -52,5 +54,11 @@ public class WinningNumbersInputView {
             integerWinningNumbers.add(integerWinningNumber);
         }
         return integerWinningNumbers;
+    }
+
+    private void validateBonusNumberIsNumeric(String bonusNumber) {
+        if (!bonusNumber.matches("\\d+")) {
+            throw new IllegalArgumentException(BONUS_NUMBER_NOT_NUMERIC_EXCEPTION.message());
+        }
     }
 }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.ExceptionMessage.BONUS_NUMBER_NOT_NUMERIC_EXCEPTION;
 import static lotto.ExceptionMessage.WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -42,5 +43,16 @@ public class WinningNumbersInputViewTest {
                 winningNumbersInputView.getWinningNumbers())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION.message());
+    }
+
+    @Test
+    void 보너스_번호가_숫자로만_이루어진_문자열이_아니라면_예외가_발생한다() {
+        String input = "14번";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        assertThatThrownBy(() ->
+                winningNumbersInputView.getBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(BONUS_NUMBER_NOT_NUMERIC_EXCEPTION.message());
     }
 }
