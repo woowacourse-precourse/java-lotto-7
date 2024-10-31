@@ -1,7 +1,7 @@
 package lotto.message.info;
 
 public enum InfoMessage {
-    REQUEST_PURCHASE_AMOUT("구입 금액을 입력해 주세요.");
+    REQUEST_PURCHASE_AMOUNT("구입 금액을 입력해 주세요.");
 
     private final String message;
 
