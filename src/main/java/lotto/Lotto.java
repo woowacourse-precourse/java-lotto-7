@@ -41,7 +41,7 @@ public class Lotto {
         return purchaseAmount;
     }
 
-    public static int getPublishAmount(int purchaseAmount) {
+    public static int getIssueAmount(int purchaseAmount) {
         return purchaseAmount / 1000;
     }
 
@@ -78,7 +78,7 @@ public class Lotto {
         return winningNumbers;
     }
 
-    public static Lotto publish() {
+    public static Lotto issue() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);

@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.ExceptionHandler.validateNumeric;
+import static lotto.Utils.issueLottos;
 import static lotto.Utils.parseByComma;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -26,5 +27,16 @@ public class IOProcessor {
         System.out.println(guide);
         String commaSeperatedText = Console.readLine().strip();
         return parseByComma(commaSeperatedText);
+    }
+
+    public static void printIssuedLotto(int purchaseAmount) {
+        int issueAmount = Lotto.getIssueAmount(purchaseAmount);
+        String issueText = OutputPrompt.LOTTO_ISSUE.print(issueAmount);
+        System.out.println(issueText);
+
+        List<Lotto> lottos = issueLottos(issueAmount);
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 }

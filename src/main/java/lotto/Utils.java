@@ -26,10 +26,10 @@ public class Utils {
         return commaSeperatedNumber;
     }
 
-    public static List<Lotto> publishLottos(int publishAmount) {
+    public static List<Lotto> issueLottos(int issueAmount) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < publishAmount; i++) {
-            lottos.add(Lotto.publish());
+        for (int i = 0; i < issueAmount; i++) {
+            lottos.add(Lotto.issue());
         }
         return lottos;
     }
