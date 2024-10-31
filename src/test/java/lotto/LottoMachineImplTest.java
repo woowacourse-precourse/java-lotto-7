@@ -18,4 +18,15 @@ class LottoMachineImplTest {
         Assertions.assertThat(lottoTickets.size()).isEqualTo(count);
         Assertions.assertThat(lottoTickets.get(1).getNumbers().size()).isEqualTo(LOTTO_NUMBER);
     }
+
+    @Test
+    void 자동으로_생성된_로또_결과_출력_테스트() {
+        //given
+        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(5);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        //when
+        lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
+        //then
+    }
 }
