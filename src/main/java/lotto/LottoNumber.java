@@ -1,0 +1,35 @@
+package lotto;
+
+import java.util.List;
+import java.util.stream.IntStream;
+
+public class LottoNumber {
+
+    public final static int LOTTO_NUM_MIN_VALUE = 1;
+    public final static int LOTTO_NUM_MAX_VALUE = 45;
+    private static final List<LottoNumber> cache;
+
+    private final int number;
+
+    static {
+        cache = IntStream.rangeClosed(LOTTO_NUM_MIN_VALUE, LOTTO_NUM_MAX_VALUE)
+            .mapToObj(LottoNumber::new)
+            .toList();
+    }
+
+    private LottoNumber(final int number) {
+        validate(number);
+        this.number = number;
+    }
+
+    public static LottoNumber valueOf(final int number) {
+        validate(number);
+        return cache.get(number);
+    }
+
+    private static void validate(final int number) {
+        if(number < LOTTO_NUM_MIN_VALUE || number >LOTTO_NUM_MAX_VALUE) {
+            throw new IllegalArgumentException("[ERROR] 존재하지 않는 로또 번호입니다.");
+        }
+    }
+}
