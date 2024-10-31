@@ -2,7 +2,10 @@ package lotto.controller;
 
 import static lotto.exception.ErrorType.INVALID_NUMBER_FORMAT;
 
+import java.util.List;
 import java.util.function.Supplier;
+import lotto.domain.Lotto;
+import lotto.dto.LottoDto;
 import lotto.exception.InvalidNumberFormatException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -22,6 +25,10 @@ public class LottoController {
     public void run() {
         int lottoCount = getLottoCount();
         outputView.printPurchaseCount(lottoCount);
+
+        List<Lotto> lottos = lottoService.getLottosByCount(lottoCount);
+        List<LottoDto> lottoDtos = convertToDto(lottos);
+        outputView.printLottos(lottoDtos);
     }
 
     private int getLottoCount() {
@@ -29,6 +36,10 @@ public class LottoController {
             int amount = parseInt(inputView.getPurchaseAmount());
             return lottoService.getLottoCountByAmount(amount);
         });
+    }
+
+    private List<LottoDto> convertToDto(List<Lotto> lottos) {
+        return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
     private int parseInt(String input) {
