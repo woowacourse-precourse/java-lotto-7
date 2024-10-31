@@ -62,13 +62,17 @@ public class LottoRunner {
         List<Lotto> lotteries = new ArrayList<>();
 
         for (int i = 0; i < amount; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
+            Lotto lotto = new Lotto(this.getRandomNumbers());
             lotteries.add(lotto);
         }
         System.out.println();
 
         return lotteries;
+    }
+
+    private List<Integer> getRandomNumbers() {
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(numbers);
+        return numbers;
     }
 }
