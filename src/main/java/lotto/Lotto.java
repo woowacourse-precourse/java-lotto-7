@@ -7,11 +7,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = makeLottos(numbers);
+        this.numbers = makeLotto(numbers);
     }
 
-    private List<LottoNumber> makeLottos(List<Integer> numbers) {
-        return null;
+    private List<LottoNumber> makeLotto(List<Integer> numbers) {
+        return numbers.stream()
+                .map(number -> new LottoNumber(number))
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {
