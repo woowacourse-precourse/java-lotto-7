@@ -46,6 +46,8 @@ public class Application {
                 int bonusNumber = inputBonusNumber();
                 bonusException(bonusNumber);
                 break;
+            } catch (NumberFormatException error) {
+                System.out.println("[ERROR]" + " 숫자만 입력하세요.");
             } catch (IllegalArgumentException error) {
                 System.out.println("[ERROR]" + error.getMessage());
             }
@@ -106,7 +108,7 @@ public class Application {
 
     private static void bonusException (int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("보너스 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
     }
 }
