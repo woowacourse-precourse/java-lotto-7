@@ -51,4 +51,18 @@ class LottoServiceTest {
         );
     }
 
+    @Test
+    void 수익률_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoService lottoService = new LottoService(List.of(1, 2, 3, 4, 5, 6), 7);
+                    lottoService.makeLottos(2000);
+                    lottoService.checkLottos();
+                    assertThat(lottoService.calculateReturnRate()).isEqualTo(55000 / 2000);
+                },
+                List.of(1, 2, 3, 4, 10, 11),
+                List.of(1, 2, 3, 10, 11, 12)
+        );
+    }
+
 }

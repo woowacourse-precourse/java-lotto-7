@@ -20,6 +20,7 @@ public class LottoService {
     private List<Lotto> lottos;
     private List<Integer> winningCount;
     private Integer money;
+    private Integer prizeSum;
 
     public LottoService(List<Integer> winningNumbers, Integer bonusWinningNumber) {
         this.winningNumbers = winningNumbers;
@@ -27,6 +28,7 @@ public class LottoService {
         this.winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0));
         this.lottos = new ArrayList<>();
         this.money = 0;
+        this.prizeSum = 0;
     }
 
     public void makeLottos(Integer money) {
@@ -43,6 +45,10 @@ public class LottoService {
                 .sorted()
                 .toList());
         return lotto;
+    }
+
+    public float calculateReturnRate() {
+        return prizeSum / money;
     }
 
     public void checkLottos() {
@@ -71,6 +77,7 @@ public class LottoService {
     private boolean checkFirstPlace(Lotto lotto) {
         if (getEqualCount(lotto) == FIRST_PLACE.getEqualCount()) {
             winningCount.set(0, winningCount.get(0) + 1);
+            prizeSum += FIRST_PLACE.getPrize();
             return true;
         }
         return false;
@@ -80,6 +87,7 @@ public class LottoService {
         if (getEqualCount(lotto) == SECOND_PLACE.getEqualCount()
                 && lotto.getNumbers().contains(bonusWinningNumber)) {
             winningCount.set(1, winningCount.get(1) + 1);
+            prizeSum += SECOND_PLACE.getPrize();
             return true;
         }
         return false;
@@ -88,6 +96,7 @@ public class LottoService {
     private boolean checkThirdPlace(Lotto lotto) {
         if (getEqualCount(lotto) == THIRD_PLACE.getEqualCount()) {
             winningCount.set(2, winningCount.get(2) + 1);
+            prizeSum += THIRD_PLACE.getPrize();
             return true;
         }
         return false;
@@ -96,6 +105,7 @@ public class LottoService {
     private boolean checkFourthPlace(Lotto lotto) {
         if (getEqualCount(lotto) == FOURTH_PLACE.getEqualCount()) {
             winningCount.set(3, winningCount.get(3) + 1);
+            prizeSum += FOURTH_PLACE.getPrize();
             return true;
         }
         return false;
@@ -104,6 +114,7 @@ public class LottoService {
     private boolean checkFifthPlace(Lotto lotto) {
         if (getEqualCount(lotto) == FIFTH_PLACE.getEqualCount()) {
             winningCount.set(4, winningCount.get(4) + 1);
+            prizeSum += FIFTH_PLACE.getPrize();
             return true;
         }
         return false;
