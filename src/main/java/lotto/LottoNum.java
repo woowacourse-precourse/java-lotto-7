@@ -12,7 +12,7 @@ public class LottoNum {
     public LottoNum(int money) {
         checkMoney(money);
         lottoNumbers(money);
-        printNumber();
+        printNumber(money);
     }
 
     private void checkMoney(int money) {
@@ -30,7 +30,9 @@ public class LottoNum {
         }
     }
 
-    public void printNumber() {
+    public void printNumber(int money) {
+        System.out.println();
+        System.out.println( (money/1000) + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
