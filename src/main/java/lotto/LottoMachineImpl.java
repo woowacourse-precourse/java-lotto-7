@@ -33,7 +33,9 @@ public class LottoMachineImpl implements LottoMachine {
             //당첨 개수를 센다.
             int matchCount = getMatchNumbers(lottoTicket, winningNumbers);
             //등수를 확인하고 업데이트 한다.
-            updateWinningResult(matchCount, lottoTicket, bonusNumber, winningResult);
+            if (matchCount >= 3) {
+                updateWinningResult(matchCount, lottoTicket, bonusNumber, winningResult);
+            }
         }
         //당첨 결과를 출력한다.
         printWinningResult(winningResult);
