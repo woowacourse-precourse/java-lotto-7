@@ -13,12 +13,13 @@ public class LottoRunner {
 
     private int payment;
     private List<Lotto> lotteries;      // 뽑은 로또들
+    private WinningNumbers winning;     // 당첨 번호 && 보너스 번호
 
     public void executeDraw() {
         int purchaseAmount = this.getPurchaseAmount();
         lotteries = this.selection(purchaseAmount);
+        winning = new WinningNumbers();
     }
-
 
     /**
      * 로또 구매 수량
