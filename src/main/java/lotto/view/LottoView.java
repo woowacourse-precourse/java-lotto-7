@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.*;
@@ -13,7 +14,6 @@ public class LottoView {
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String ERROR_MESSAGE = "[ERROR]";
-
 
 
     public int inputPurchaseAmountProcess() {
@@ -52,6 +52,43 @@ public class LottoView {
     }
 
 
+    public List<Integer> inputWinningNumbersProcess() {
+        while (true) {
+            try {
+                String input = readLine();
+                String[] inputTokens = input.split(",");
+                List<Integer> winningNumbers = getWinningNumbers(inputTokens);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                System.out.println(ERROR_MESSAGE + " " + "로또 번호는 1부터 45 사이의 6개의 숫자여야 합니다.");
 
+            }
+        }
+    }
 
+    public List<Integer> getWinningNumbers(String[] inputTokens) {
+        if (inputTokens.length != 6) {
+            throw new IllegalArgumentException("6개의 숫자를 입력해야함.");
+        }
+
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String inputToken : inputTokens) {
+            int winningNumber = validateTokenNumberForm(inputToken);
+            winningNumbers.add(winningNumber);
+        }
+        return winningNumbers;
+    }
+
+    private static int validateTokenNumberForm(String winningNumberToken) {
+        try {
+            int winningNumber = Integer.parseInt(winningNumberToken);
+            if (winningNumber < 1 || winningNumber > 45) throw new IllegalArgumentException("1과 45사이의 숫자가 아님.");
+
+            return winningNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수가 아님.");
+        }
+
+    }
 }

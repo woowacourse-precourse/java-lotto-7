@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -9,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUnique(numbers);
         this.numbers = numbers;
     }
 
@@ -19,6 +22,12 @@ public class Lotto {
         }
     }
 
+    private void validateUnique(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() < numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
+        }
+    }
 
     public List<Integer> getNumbers() {
         return this.numbers;
