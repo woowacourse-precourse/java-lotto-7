@@ -17,6 +17,10 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getMatchCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream().filter(numbers::contains).count();
+    }
+
     private void validate(List<Integer> numbers, int bonusNumber) {
         validateNumbers(numbers);
         validateBonusNumber(bonusNumber);
