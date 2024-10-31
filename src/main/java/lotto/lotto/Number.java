@@ -1,5 +1,6 @@
 package lotto.lotto;
 
+import java.util.Objects;
 import lotto.exception.CustomException;
 import lotto.exception.ExceptionMessage;
 
@@ -19,5 +20,22 @@ public class Number {
         if (value < MIN_LOTTO_NUMBER || value > MAX_LOTTO_NUMBER) {
             throw new CustomException(ExceptionMessage.INVALID_LOTTO_NUMBER_EXCEPTION);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Number number = (Number) o;
+        return value == number.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(value);
     }
 }
