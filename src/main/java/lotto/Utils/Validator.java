@@ -34,4 +34,10 @@ public class Validator {
         }
     }
 
+    // NULL_01
+    public void validateEmptyInput(String input) {
+        if (input.isEmpty()||input.isBlank()) {
+            throw new IllegalArgumentException(ExceptionCode.NULL_INPUT.getMessage());
+        }
+    }
 }

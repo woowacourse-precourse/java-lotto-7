@@ -33,7 +33,7 @@ public class Lotto {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         sortedNumbers.sort((num1, num2) -> {
             int compared = num1.compareTo(num2);
-            if(compared == 0) {
+            if (compared == 0) {
                 throw new IllegalArgumentException(ExceptionCode.DUPLICATED_NUMBER.getMessage());
             }
             return compared;

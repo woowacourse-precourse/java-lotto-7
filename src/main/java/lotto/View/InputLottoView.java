@@ -15,6 +15,7 @@ public class InputLottoView {
             System.out.println(PrintConstants.INPUT_PRICE.getMessage());
             String priceInput = Console.readLine();
             try {
+                validator.validateEmptyInput(priceInput);
                 price = validator.validateInteger(priceInput);
                 validator.validatePrice1000(price);
                 break;
@@ -31,6 +32,7 @@ public class InputLottoView {
             System.out.println(PrintConstants.INPUT_WINNING_NUMBERS.getMessage());
             String lottoInput = Console.readLine();
             try {
+                validator.validateEmptyInput(lottoInput);
                 winningLotto = new Lotto(validator.validateNumbersInput(lottoInput));
                 break;
             } catch (IllegalArgumentException e) {

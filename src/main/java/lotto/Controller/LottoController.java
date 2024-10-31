@@ -14,7 +14,6 @@ public class LottoController {
     public void init() {
         int price = inputLottoView.inputPrice();
         MyLottos issuedTickets = issueTicketController.issueTickets(getNumberOfTickets(price));
-        outputLottoView.printMylottos(issuedTickets);
         Lotto winningLotto = inputLottoView.inputWinningNumbers();
     }
 
