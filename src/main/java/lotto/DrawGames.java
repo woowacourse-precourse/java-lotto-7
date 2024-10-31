@@ -7,10 +7,10 @@ import lotto.view.OutputView;
 
 public class DrawGames {
 
-    private InputView inputView;
-    private OutputView outputView;
-    private LottoController controller;
-    private LottoControllerFactory controllerFactory;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final LottoController controller;
+    private final LottoControllerFactory controllerFactory;
 
     public DrawGames() {
         inputView = new InputView();
