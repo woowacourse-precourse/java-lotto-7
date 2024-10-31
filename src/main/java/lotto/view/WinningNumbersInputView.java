@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.ExceptionMessage.PURCHASE_AMOUNT_NOT_NUMERIC_EXCEPTION;
+import static lotto.ExceptionMessage.WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
@@ -12,11 +15,21 @@ public class WinningNumbersInputView {
 
     public List<String> getWinningNumbers() {
         String winningNumbers = Console.readLine();
-        return getParsedWinningNumbers(winningNumbers);
+        List<String> parsedWinningNumbers = getParsedWinningNumbers(winningNumbers);
+        validateWinningNumbersIsNumeric(parsedWinningNumbers);
+        return parsedWinningNumbers;
     }
 
     private List<String> getParsedWinningNumbers(String winningNumbers) {
         String[] parsedWinningNumbers =  winningNumbers.split(",");
         return List.of(parsedWinningNumbers);
+    }
+
+    private void validateWinningNumbersIsNumeric(List<String> winningNumbers) {
+        for (String winningNumber : winningNumbers) {
+            if (!winningNumber.matches("\\d+")) {
+                throw new IllegalArgumentException(WINNING_NUMBERS_NOT_NUMERIC_EXCEPTION.message());
+            }
+        }
     }
 }
