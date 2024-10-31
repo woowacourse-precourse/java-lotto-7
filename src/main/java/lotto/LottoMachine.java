@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.amount.Amount;
+import lotto.lotto.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,5 +23,6 @@ public class LottoMachine {
         outputView.printPurchaseLottoNumbers(lottoCount);
 
         outputView.requestWinningNumbers();
+        WinningNumbers winningNumbers = inputView.getWinningNumbers();
     }
 }

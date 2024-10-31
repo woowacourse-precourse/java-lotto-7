@@ -2,11 +2,11 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import lotto.amount.Amount;
 import lotto.exception.CustomException;
 import lotto.exception.ExceptionMessage;
+import lotto.lotto.WinningNumbers;
 
 public class InputView {
 
@@ -16,10 +16,10 @@ public class InputView {
         return new Amount(validateNumber(input));
     }
 
-    public List<Integer> getWinningNumbers() {
+    public WinningNumbers getWinningNumbers() {
         String input = Console.readLine();
         validateBlankInput(input);
-        return parseWinningNumbers(input);
+        return new WinningNumbers(parseWinningNumbers(input));
     }
 
     private void validateBlankInput(String input) {
