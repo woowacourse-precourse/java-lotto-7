@@ -1,13 +1,17 @@
 package lotto;
 import lotto.controller.LottoController;
-import lotto.model.LottoGame;
+import lotto.model.LottoStatistics;
+import lotto.services.LottoService;
+import lotto.services.LottoServices;
 import lotto.view.LottoView;
 
 public class Application {
     public static void main(String[] args) {
         LottoView lottoView = new LottoView();
-        LottoGame game = new LottoGame();
-        LottoController controller = new LottoController(lottoView, game);
+        LottoService game = new LottoService();
+        LottoServices lottoServices = new LottoService();
+        LottoStatistics statistics = new LottoStatistics();
+        LottoController controller = new LottoController(lottoView, lottoServices, statistics);
         controller.start();
     }
 }

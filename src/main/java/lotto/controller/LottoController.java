@@ -1,19 +1,22 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.model.LottoGame;
+import lotto.services.LottoService;
 import lotto.model.LottoStatistics;
+import lotto.services.LottoServices;
 import lotto.view.LottoView;
 
 import java.util.List;
 
 public class LottoController {
     private final LottoView view;
-    private final LottoGame game;
+    private final LottoServices services;
+    private final LottoStatistics statistics;
 
-    public LottoController(LottoView view, LottoGame game) {
+    public LottoController(LottoView view, LottoServices services, LottoStatistics statistics) {
         this.view = view;
-        this.game = game;
+        this.services = services;
+        this.statistics = statistics;
     }
 
     public void start() {
@@ -22,19 +25,21 @@ public class LottoController {
         int quantity = amount / 1000;
 
         // 랜덤 로또 N장 생성 및 출력
-        List<Lotto> generatedLotto = game.generateLotto(quantity);
+        List<Lotto> randomLotteries = services.createRandomLotteries(quantity);
         view.displayLottoCount(quantity);
-        view.displayLottos(generatedLotto);
+        view.displayLottos(randomLotteries);
 
         // 사용자 로또 번호 입력 받기
-        List<Integer> winningNumbers = readValidWinningNumbers();
+        Lotto userLotto = services.createLotto(readValidWinningNumbers());
 
         // 사용자 로또 보너스 번호 입력 받기
         int bonusNumber = readValidBonusNumber();
 
         // 당첨 결과 확인 및 출력
-        LottoStatistics statistics = game.checkResults(generatedLotto, winningNumbers, bonusNumber);
-        view.displayStatistics(statistics, amount);
+        services.checkLottoResults(statistics, randomLotteries, userLotto, bonusNumber);
+        services.calculateLottoYield(statistics, amount);
+        view.printLottoResult(statistics);
+
     }
 
     public int readValidPurchaseAmount() {

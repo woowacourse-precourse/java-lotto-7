@@ -51,7 +51,7 @@
   - [x] 생성자 구현: 번호 유효성 검사를 포함하여 6개의 번호를 초기화한다.
   - [x] 번호 유효성 검사 메서드 구현: 번호의 중복, 범위(1~45) 체크.
 
-- **LottoGame 클래스**
+- **LottoService 클래스**
   - [x] 로또 번호 생성 메서드 구현: `generateLottos(int quantity)`로 주어진 수량만큼 로또 번호를 생성한다.
   - [x] 당첨 결과 체크 메서드 구현: `checkResults(List<Lotto> purchasedLotto, List<Integer> usersLotto, int bonusNumber)`로 당첨 통계를 계산한다.
   - [x] 일치하는 번호 개수 카운트 메서드 구현: `countMatchingNumbers(List<Integer> eachPurchasedLotto, List<Integer> usersLotto)`.
@@ -91,14 +91,14 @@
   - **Model**
     - 로또 게임 내 데이터 및 비즈니스 로직 처리를 담당하도록 설계합니다.
       - Lotto : 게임 내 로또 객체를 생성하고, 로또 번호 유효성을 검증하는 로직을 갖습니다.
-      - LottoGame : N개의 랜덤로또 번호를 생성하여 각각의 로또 객체로 반환하고, 사용자가 입력한 로또 번호와 일치하는지 검사하는 로직을 갖습니다.
+      - LottoService : N개의 랜덤로또 번호를 생성하여 각각의 로또 객체로 반환하고, 사용자가 입력한 로또 번호와 일치하는지 검사하는 로직을 갖습니다.
       - LottoStatistics : 로또 게임의 통계 계산 로직을 갖습니다.
   - **ModelTest 단위테스트**
     - [x] LottoTest : 1~45 사이의 6개 정수 번호를 갖는 로또가 유효성 검증을 정상적으로 통과하는지 검증합니다.
-    - [x] LottoGameTest : N개 로또가 정상적으로 생성되는지 검사합니다. 또한 N개 로또에 대해 사용자의 로또 번호와 정상적으로 일치 여부를 반환하는지 검증합니다. 
+    - [x] LottoServiceTest : N개 로또가 정상적으로 생성되는지 검사합니다. 또한 N개 로또에 대해 사용자의 로또 번호와 정상적으로 일치 여부를 반환하는지 검증합니다. 
     - LottoStatisticsTest : 사전 설정된 로또 일치 여부에 따라 정상적인 금액 통계를 반환하는지 검증합니다.
 
-### 24.10.31 ~ 11.1
+### 24.10.31 (목)
 - **Controller 및 View 구현**
   - **View**
     - 사용자 입력 받기, 내용 출력하기, 에러내용 출력하기 에 대한 기능을 담당합니다.
@@ -109,3 +109,16 @@
 - **Application.java Main() 구현**
   - View, Model 객체를 생성하여 Controller에 전달합니다.
   - Controller 내부 로직에 따라 View, Model 객체 제어를 통해 로또 게임을 수행합니다.
+
+### 24.11.11.(금)
+- **Model-View-Controller + Services**
+  - **Model**
+    -  한 장의 로또를 표현하는 Lotto 클래스, 로또 게임의 전체 로또 통계 데이터를 표현하는 LottoStatistics 클래스를 갖도록 수정합니다.
+  - **View**
+    - 기존 LottoStatistics 클래스에 구현된 통계 출력 메서드를 View로 분리하였습니다.
+  - **Services**
+    - Controller로부터 전달받은 데이터 작업 관련 요청을 처리합니다.
+      - Model 객체 생성 요청 처리
+      - LottoStatistics 객체의 통계데이터(Map) 및 수익률 (Yield) 데이터 갱신 작업을 수행합니다.
+  - **Controller**
+    - Controller 클래스에서는, Model,View,Services 객체에 대한 기능 동작 요청만 수행하도록 변경합니다.

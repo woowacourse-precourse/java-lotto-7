@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class LottoStatistics {
     private Map<String, Integer> statistics;
+    private double yield;
 
     public LottoStatistics() {
         statistics = new HashMap<>();
@@ -13,6 +14,11 @@ public class LottoStatistics {
         statistics.put("5개 일치 (1,500,000원)", 0);
         statistics.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
         statistics.put("6개 일치 (2,000,000,000원)", 0);
+        yield = 0.0;
+    }
+
+    public double getYield() {
+        return yield;
     }
 
     public void increment(String key) {
@@ -22,6 +28,7 @@ public class LottoStatistics {
     public Map<String, Integer> getStatistics() {
         return statistics;
     }
+
 
     public double calculateTotalEarnings() {
         double total = 0.0;
@@ -33,10 +40,10 @@ public class LottoStatistics {
         return total;
     }
 
-    public double calculateYield(int purchaseAmount) {
+    public void updateLottoYield(int purchaseAmount) {
         double totalEarnings = calculateTotalEarnings();
-        double yield = (totalEarnings / purchaseAmount) * 100; // 수익률 계산
-        return Math.round(yield * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림
+        double yield = (totalEarnings / purchaseAmount) * 100;
+        this.yield = Math.round(yield * 100.0) / 100.0;
     }
 
     public void printStatistics(int amount) {
@@ -45,6 +52,6 @@ public class LottoStatistics {
         statistics.forEach((key, value) -> {
             System.out.printf("%s - %d개%n", key, value);
         });
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", calculateYield(amount));
+        //System.out.printf("총 수익률은 %.1f%%입니다.%n", calculateYield(amount));
     }
 }

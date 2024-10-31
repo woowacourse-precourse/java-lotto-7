@@ -18,10 +18,6 @@ public class LottoView {
         }
     }
 
-    public void displayStatistics(LottoStatistics statistics, int amount) {
-        statistics.printStatistics(amount);
-    }
-
     public void displayError(String message) {
         System.out.println("[ERROR] " + message);
     }
@@ -42,6 +38,14 @@ public class LottoView {
     public int readBonusNumber() {
         System.out.print("보너스 번호를 입력해 주세요: ");
         return Integer.parseInt(Console.readLine());
+    }
+
+    public void printLottoResult(LottoStatistics lottoStatistics) {
+        System.out.println("당첨 통계\n---");
+        lottoStatistics.getStatistics().forEach((key, value) -> {
+            System.out.printf("%s - %d개%n", key, value);
+        });
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", lottoStatistics.getYield());
     }
 
 }
