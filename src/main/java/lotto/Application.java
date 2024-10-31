@@ -60,27 +60,29 @@ public class Application {
         for(int i = 0; i < numSize; i++){
             lotto.numbers.add(validate_parsInt(winning[i]));
         }
-        lotto.validate(lotto.numbers);
-        lotto.numbers.sort(Integer::compareTo);
+        lotto.validate(lotto.getNumbers());
+        lotto.getNumbers().sort(Integer::compareTo);
         winning_number = lotto.getNumbers();
     }
 
-    public int numberMatch(int i,int p1,int p2,int count){
-        while(p1 < numSize && p2 < numSize){
-            int result = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
-            if(result > 0){
-                p2++;
-                continue;
-            }
-            if(result < 0){
-                p1++;
-                continue;
-            }
-            p1++;
-            p2++;
-            count++;
+    public int numberMatch(int i){
+        int p1 = 0;
+        int p2 = 0;
+        int result = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
+        return matchRecursive(p1, p2, result, i);
+    }
+
+    public int matchRecursive(int p1,int p2, int result,int i) {
+        if(p1 == numSize || p2 == numSize) {
+            return 0;
         }
-        return count;
+        int compare = Integer.compare(lotto_list[i].get(p1),winning_number.get(p2));
+        if(compare > 0) {
+            return matchRecursive(p1,p2+1,compare,i);
+        }else if(compare < 0) {
+            return matchRecursive(p1+1,p2,compare,i);
+        }
+        return 1 + matchRecursive(p1+1,p2+1,compare,i);
     }
 
     public void bonusCheck(int i){
@@ -97,7 +99,7 @@ public class Application {
     public void matchCount(){
         amoutAry = new int[numSize+1];
         for(int i = 0; i < lotto_list.length; i++){
-            int num = numberMatch(i,0,0,0);
+            int num = numberMatch(i);
             if(num == 5){
                 bonusCheck(i);
             }
