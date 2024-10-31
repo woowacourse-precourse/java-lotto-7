@@ -9,13 +9,13 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
-        InputLottoNumbersValidator.validateLottoNumbers(lottos);
+        lottos.forEach(lotto -> InputLottoNumbersValidator.validateWinningNumbers(lotto.getNumbers()));
         this.lottos = new ArrayList<>(lottos);
     }
 
     public List<List<Integer>> getLottoNumbers() {
         return lottos.stream()
-                .map(lotto -> new ArrayList<>(lotto.numbers))
+                .map(Lotto::getNumbers)
                 .collect(Collectors.toList());
     }
 
@@ -24,7 +24,7 @@ public class Lottos {
     }
 
     public void addLotto(Lotto lotto) {
-        InputLottoNumbersValidator.validateLottoNumbers(this.lottos);
+        InputLottoNumbersValidator.validateWinningNumbers(lotto.getNumbers());
         lottos.add(lotto);
     }
 }
