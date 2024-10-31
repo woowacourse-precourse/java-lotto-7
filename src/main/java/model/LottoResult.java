@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,8 +13,14 @@ public class LottoResult {
         this.winningResult = winningResult;
     }
 
-    public List<Prize> getWinningResult() {
-        return winningResult;
+    public List<Integer> getWinningResult() {
+        List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
+        for (Prize prize : winningResult) {
+            if (prize.getRank() > 0) {
+                result.set(prize.getRank() - 1, result.get(prize.getRank() - 1) + 1);
+            }
+        }
+        return result;
     }
 
     public double calculateWinningRate() {
