@@ -6,11 +6,11 @@ import lotto.exception.LottoArgumentException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserView {
     private static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WIN_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
     public static int printAndGetAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
@@ -45,7 +45,7 @@ public class UserView {
 
             return amount;
         } catch (NumberFormatException e) {
-            throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_AMOUNT_ERROR);
+            throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
         }
     }
 
@@ -81,7 +81,7 @@ public class UserView {
             }
 
             if(!checkValidRangeNumbers(winNumbers)) {
-                throw new LottoArgumentException(LottoErrorMessage.WIN_NUMBERS_RANGE_ERROR);
+                throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
             }
 
             return winNumbers;
@@ -92,5 +92,38 @@ public class UserView {
 
     private static boolean checkValidRangeNumbers(List<Integer> winNumbers) {
         return winNumbers.stream().allMatch(number -> 1 <= number && number <= 45);
+    }
+
+    public static int printAndGetBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        return getBonusNumber();
+    }
+
+    private static int getBonusNumber() {
+        while (true) {
+            try {
+                return checkBonusNumbers(Console.readLine());
+            } catch (LottoArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int checkBonusNumbers(String inputBonusNumber) {
+        if (inputBonusNumber == null || inputBonusNumber.equals("\n") || inputBonusNumber.isBlank()) {
+            throw new LottoArgumentException(LottoErrorMessage.INVALID_INPUT_ERROR);
+        }
+
+        try {
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+
+            if(bonusNumber < 1 || 45 < bonusNumber) {
+                throw new LottoArgumentException(LottoErrorMessage.NUMBERS_RANGE_ERROR);
+            }
+
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new LottoArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR);
+        }
     }
 }
