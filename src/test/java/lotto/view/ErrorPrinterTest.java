@@ -1,5 +1,7 @@
-package lotto.exception;
+package lotto.view;
 
+import lotto.constants.InputErrorMessage;
+import lotto.view.ErrorPrinter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
