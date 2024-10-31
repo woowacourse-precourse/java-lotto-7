@@ -91,7 +91,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 [Model]    
 - Lotto 
 - [x] 로또 번호를 오름차순으로 정렬하는 기능 추가
-- [ ] 로또 번호에 대한 예외처리 기능 추가
+- [x] 로또 번호에 대한 예외처리 기능 추가
 - LottoManager
 - [ ] Lotto를 생성해 저장하는 기능 추가
 - [ ] Lotto 리스트를 반환하는 기능 추가
