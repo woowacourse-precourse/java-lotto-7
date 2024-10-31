@@ -15,13 +15,13 @@ public class LottoPurchase {
 
     private static void validateUnit(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_MULTIPLE_HUNDRED);
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000원 단위의 숫자여야 합니다.");
         }
     }
 
     private static void validatePositive(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITIVE_NUMBER);
+        if (amount <= 1000) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000보다 큰 숫자여야 합니다.");
         }
     }
 
