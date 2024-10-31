@@ -15,12 +15,12 @@ public class LottoService {
         return LOTTO_COST;
     }
 
-    public int issueLottoCount(int cost) throws IllegalArgumentException {
+    public int issueLottoCount(int cost) {
         if (cost < 0) {
-            throw new IllegalArgumentException("[Error] 구입 금액은 0 이상의 정수이어야 합니다.");
+            throw new IllegalArgumentException("[Error] 구입 금액은 0 이상의 정수이어야 합니다. 입력 값: " + cost);
         }
         if (cost % LOTTO_COST > 0) {
-            throw new IllegalArgumentException("[Error] 구입 금액은 " + LOTTO_COST + "원 단위이어야 합니다.");
+            throw new IllegalArgumentException("[Error] 구입 금액은 " + LOTTO_COST + "원 단위이어야 합니다. 입력 값: " + cost);
         }
 
         return cost / LOTTO_COST;
@@ -39,6 +39,13 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBER_COUNT));
+        Lotto lotto = new Lotto(
+                Randoms.pickUniqueNumbersInRange(
+                        START_INCLUSIVE, END_INCLUSIVE, LOTTO_NUMBER_COUNT
+                )
+        );
+        lotto.sortNumbers();
+
+        return lotto;
     }
 }
