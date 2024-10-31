@@ -1,10 +1,15 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoMachine {
 
     public static final String AMOUNT_ERROR_MSG = "[ERROR] 구입 금액은 1000(원) 단위의 숫자입니다. 예: 14000";
     public static final String LOTTO_NUMBER_ERROR_MSG = "[ERROR] 로또 번호는 1 ~ 45 사이의 숫자입니다.";
     public static final int LOTTO_PRICE = 1000;
+
+    private final List<Lotto> lottoBunch = new ArrayList<>();
 
     public int parseAmount(String input) {
         int amount = 0;
@@ -22,10 +27,26 @@ public class LottoMachine {
         return amount;
     }
 
-
     public void validateLottoNumber(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MSG);
+        }
+    }
+
+    public void issue(int amount) {
+        for (int i = 0; i < amount / LOTTO_PRICE; i++) {
+            lottoBunch.add(Lotto.issue());
+        }
+    }
+
+    public List<Lotto> getLottoBunch() {
+        return lottoBunch;
+    }
+
+    public void printLottoBunch() {
+        System.out.printf("\n%d개를 구매했습니다.\n", lottoBunch.size());
+        for (Lotto lotto : lottoBunch) {
+            lotto.print();
         }
     }
 }

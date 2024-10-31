@@ -2,8 +2,10 @@ package lotto;
 
 import static lotto.LottoMachine.AMOUNT_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_NUMBER_ERROR_MSG;
+import static lotto.LottoMachine.LOTTO_PRICE;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -87,5 +89,19 @@ class LottoMachineTest {
         Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.validateLottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_ERROR_MSG);
+    }
+
+    @Test
+    public void 로또_발행_테스트() throws Exception {
+        //Given
+        int amount = 14000;
+        int expected = amount / LOTTO_PRICE;
+        LOTTO_MACHINE.issue(amount);
+
+        //When
+        int actual = LOTTO_MACHINE.getLottoBunch().size();
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 }
