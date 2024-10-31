@@ -27,6 +27,7 @@ public class LottoGame {
         List<Lotto> lottos = purchaseLotto();
         outputHandler.showLottos(lottos);
         Lotto normalNumbersOfLotto = createWinningNumbers();
+        WinningLotto winningLotto = createBonusNumber(normalNumbersOfLotto);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -58,5 +59,16 @@ public class LottoGame {
             .toList();
         return new Lotto(winningNumbers);
     }
-    
+
+    private WinningLotto createBonusNumber(Lotto lotto) {
+        try {
+            outputHandler.showBonusNumberInstruction();
+            int bonusNumber = inputHandler.getBonusNumber();
+            return new WinningLotto(lotto, new BonusNumber(bonusNumber));
+        } catch (GameException e) {
+            System.out.println(e.getMessage());
+            return createBonusNumber(lotto);
+        }
+    }
+
 }
