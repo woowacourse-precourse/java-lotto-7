@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.ExceptionMessage.LOTTO_NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.ExceptionMessage.LOTTO_NUMBER_LENGTH_EXCEPTION;
+import static lotto.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE_EXCEPTION;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
+        validateNumbersRange(numbers);
         validateNoDuplicateNumbers(numbers);
     }
 
@@ -31,10 +33,18 @@ public class Lotto {
         }
     }
 
+    private void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE_EXCEPTION.message());
+            }
+        }
+    }
+
     private void validateNoDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
-        for(int number : numbers) {
-            if(!set.add(number)) {
+        for (int number : numbers) {
+            if (!set.add(number)) {
                 throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION.message());
             }
         }
