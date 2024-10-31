@@ -20,7 +20,7 @@ public enum LottoRank {
 
     public static LottoRank valueOf(int matchcnt, boolean matchBonus) {
         if (matchcnt == 6) {
-            return FIFTH;
+            return FIRST;
         }
         if (matchcnt == 5 && matchBonus) {
             return SECOND;
