@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.List;
 import lotto.constant.LottoConstant;
 
 public class WinningLotto {
@@ -14,12 +13,14 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getWinningLottoNumbers() {
-        return winningLotto.getNumbers();
+    public int findMatchNumbers(Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .filter(number -> winningLotto.getNumbers().contains(number))
+                .toList().size();
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean matchBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     private void validateBonusNumber(int bonusNumber) {

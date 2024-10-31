@@ -47,8 +47,8 @@ public class LottoService {
 
     public void checkLottoResult() {
         for (Lotto lotto : purchasedLotto) {
-            int matchNumbers = findMatchNumbers(lotto);
-            LottoRank.checkLottoPrize(matchNumbers, matchBonusNumber(lotto));
+            int matchNumbers = winningLotto.findMatchNumbers(lotto);
+            LottoRank.checkLottoPrize(matchNumbers, winningLotto.matchBonusNumber(lotto));
         }
     }
 
@@ -56,19 +56,9 @@ public class LottoService {
         return LottoRank.getTotalPrize() * 100.0 / money;
     }
 
-    private int findMatchNumbers(Lotto lotto) {
-        return lotto.getNumbers().stream()
-                .filter(number -> winningLotto.getWinningLottoNumbers().contains(number))
-                .toList().size();
-    }
-
     private Lotto purchaseOneLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber(),
                 LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber(),
                 LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber()));
-    }
-
-    private boolean matchBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(winningLotto.getBonusNumber());
     }
 }
