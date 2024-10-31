@@ -8,6 +8,7 @@ public enum ExceptionMessage {
     DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
     OUT_OF_RANGE("1부터 45 사이의 숫자만 입력 가능합니다.");
 
+    private static final String ERROR_FORMAT = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {
@@ -15,6 +16,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return message;
+        return ERROR_FORMAT + message;
     }
 }
