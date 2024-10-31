@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.common.LottoConstant;
+import lotto.view.LottoOutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class LottoService {
         for (int i = 0; i < money / LottoConstant.LOTTO_PRICE; i++) {
             lottos.add(generateLotto());
         }
+        LottoOutputView.printPurchase(money);
     }
 
     private Lotto generateLotto() {

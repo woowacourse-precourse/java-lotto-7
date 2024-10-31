@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.common.ExceptionMessage;
+import lotto.view.LottoOutputView;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        LottoOutputView.printLotto(this);
     }
 
     private void validate(List<Integer> numbers) {
