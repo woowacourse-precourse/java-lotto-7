@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import lotto.dto.BonusNumberDto;
 import lotto.exception.bonusNumber.BlankBonusNumberException;
 import lotto.exception.bonusNumber.InvalidRangeBonusNumberException;
 import lotto.exception.bonusNumber.NotNumberBonusNumberException;
@@ -10,11 +11,13 @@ public class BonusNumberValidator {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
-    public static void validate(final String input) {
+    public static BonusNumberDto validate(final String input) {
         validateBlank(input);
         validateNumber(input);
         int number = convert(input);
         validateRange(number);
+
+        return new BonusNumberDto(number);
     }
 
     private static void validateBlank(final String input) {
