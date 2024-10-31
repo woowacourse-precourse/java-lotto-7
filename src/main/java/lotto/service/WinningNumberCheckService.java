@@ -3,10 +3,13 @@ package lotto.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.model.LottoResult;
 
 public class WinningNumberCheckService {
-    public long checkWinningNumber(List<Integer> randomLotto, List<Integer> winningNumber) {
+    public LottoResult checkWinningNumber(List<Integer> randomLotto, List<Integer> winningNumber, int bonusNumber) {
         Set<Integer> winningNumberSet = new HashSet<>(winningNumber);
-        return randomLotto.stream().filter(winningNumberSet::contains).count();
+        long matchCount = randomLotto.stream().filter(winningNumberSet::contains).count();
+        boolean hasBonus = randomLotto.contains(bonusNumber);
+        return new LottoResult(matchCount, hasBonus);
     }
 }
