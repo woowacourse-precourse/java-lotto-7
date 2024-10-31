@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNum {
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<List<Integer>> lottos = new ArrayList<>();
 
     public LottoNum(int money) {
         checkMoney(money);
@@ -25,15 +25,14 @@ public class LottoNum {
         for (int i = 0; i < money / 1000; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
+            lottos.add(numbers);
         }
     }
 
     public void printNumber(int money) {
         System.out.println();
         System.out.println( (money/1000) + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
+        for (List<Integer> lotto : lottos) {
             System.out.println(lotto);
         }
     }
