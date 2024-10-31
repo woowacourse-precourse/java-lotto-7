@@ -100,4 +100,29 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 당첨 번호를 입력해 주시길 바랍니다.");
         }
     }
+
+    /**
+     * 올바른 보너스 번호를 입력 받기
+     */
+    public static int getValidBonusNumber(List<Integer> prizeNumbers) {
+        try {
+            int bonusNumber = convertInteger(InputView.getBonusNumber());
+            isDuplicateWithPrizeNumber(prizeNumbers, bonusNumber);
+
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return getValidBonusNumber(prizeNumbers);
+        }
+    }
+
+    /**
+     * 보너스 번호가 당첨 번호와 중복되지 않는지 검사
+     */
+    public static void isDuplicateWithPrizeNumber(List<Integer> prizeNumbers, int bonusNumber) {
+        for (Integer prizeNumber : prizeNumbers) {
+            if (prizeNumber == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            }
+        }
+    }
 }
