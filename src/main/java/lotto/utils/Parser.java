@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import static java.lang.String.format;
+import static lotto.exception.ErrorMessage.BONUS_NUMBER_NOT_DIGIT;
 import static lotto.exception.ErrorMessage.END_WITH_DELIMITER;
 import static lotto.exception.ErrorMessage.INPUT_EMPTY_ERROR;
 import static lotto.exception.ErrorMessage.MONEY_NOT_NUMBER;
@@ -31,6 +32,18 @@ public class Parser {
         return splitByDelimiter(input).stream()
                 .map(Parser::convertToInt)
                 .toList();
+    }
+
+    public static int parseBonusNumber(final String input) {
+        int number;
+
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new LottoException(BONUS_NUMBER_NOT_DIGIT);
+        }
+
+        return number;
     }
 
     private static void inputValidate(final String input) {
