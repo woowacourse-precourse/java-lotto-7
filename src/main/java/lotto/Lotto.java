@@ -26,4 +26,12 @@ public class Lotto implements Observable {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
+    public int getMatches(List<Integer> winningNumbers, int bonusNumber) {
+        List<Integer> matchingNumbers = winningNumbers.stream().filter(this.numbers::contains).toList();
+        if (matchingNumbers.size() == 6 || matchingNumbers.size() == 5 && winningNumbers.contains(bonusNumber)) {
+            return matchingNumbers.size() + 1;
+        }
+        return matchingNumbers.size();
+    }
 }
