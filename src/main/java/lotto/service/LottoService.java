@@ -7,7 +7,7 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class LottoService {
-    private final int LOTTO_NUM_COUNT = 6;
+    private final int LOTTO_NUM_SIZE = 6;
     private final int LOTTO_PRICE = 1000;
     private final int LOTTO_NUM_START = 1;
     private final int LOTTO_NUM_END = 45;
@@ -29,7 +29,7 @@ public class LottoService {
 
     private void createLottoNum() {
         List<Integer> randomNumbers =
-                Randoms.pickUniqueNumbersInRange(LOTTO_NUM_START, LOTTO_NUM_END, LOTTO_NUM_COUNT);
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUM_START, LOTTO_NUM_END, LOTTO_NUM_SIZE);
         List<Integer> numbers = new ArrayList<>(randomNumbers);
         numbers.sort(Comparator.naturalOrder());
         lottos.add(new Lotto(numbers));
@@ -40,6 +40,11 @@ public class LottoService {
     }
 
     public void inputWinNum(List<Integer> winNum) {
+        for(int num : winNum) {
+            if(winNum.indexOf(num) != winNum.lastIndexOf(num)) {
+                throw new IllegalArgumentException("당첨 번호에 중복된 번호가 있습니다.");
+            }
+        }
         this.winNum = winNum;
     }
 
