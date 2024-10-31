@@ -86,11 +86,13 @@ NumberCombination 구현
 - [x]  lotto . 가상속
 - [x]  validation 기능 protected로 구현
 
-✅
+✅ 
+
+Lotto에 들어가는 것을 숫자가 아닌 모든 것으로 하기 위해 필드를 interface화 해보자
 
 입력의 그 부분부터 다시 시작 조심하세요
 
 같은 숫자의 로또가 뽑히면 손해잖아..
 
-~~어떤 로또든지 할 수 있는 프로그램을 만들어보자!!~~ -> 오버 엔지니어링
+
 interface를 적극 활용
