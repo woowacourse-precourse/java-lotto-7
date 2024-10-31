@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -16,6 +17,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+
+        List<Integer> duplicatedNumbers = numbers.stream()
+                .filter(o -> Collections.frequency(numbers, o) > 1)
+                .toList();
+
+        if (!duplicatedNumbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.");
         }
     }
 
