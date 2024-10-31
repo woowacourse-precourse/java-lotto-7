@@ -16,6 +16,7 @@ public class LottoController {
 
     public void start() {
         PurchaseAmount amount = readPurchasePrice();
+        System.out.println(amount.getLottoCount());
     }
 
     private PurchaseAmount readPurchasePrice() {

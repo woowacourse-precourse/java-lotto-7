@@ -19,4 +19,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(message.getMessage());
         }
     }
+
+    public int getLottoCount() {
+        return this.amount / DIGIT;
+    }
 }
