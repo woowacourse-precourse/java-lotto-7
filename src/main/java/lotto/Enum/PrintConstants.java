@@ -5,8 +5,7 @@ public enum PrintConstants {
     INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     OUTPUT_NUMBER_OF_TICKETS("개를 구매했습니다."),
-    OUTPUT_ERNING_RATE_1("총 수익률은 "),
-    OUTPUT_ERNING_RATE_2("%입니다."),
+    OUTPUT_ERNING_RATE("총 수익률은 %s%%입니다."),
     ALERT_WINNING_TOTAL("당첨 통계"),
     SEPARATE_LINE("---");
 
