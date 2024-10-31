@@ -1,5 +1,10 @@
 package lotto;
 
+import static lotto.ErrorMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.ErrorMessage.INVALID_PRICE;
+import static lotto.ErrorMessage.NON_NUMERIC_INPUT;
+import static lotto.ErrorMessage.NUMBER_OUT_OF_RANGE;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -23,13 +28,13 @@ public class Application {
 
     public void isNumeric(String input){
         if(!input.matches("[0-9]+$")){
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+            throw new IllegalArgumentException(NON_NUMERIC_INPUT.format());
         }
     }
 
     public void checkAmountWithinRange(String input){
         if (Integer.parseInt(input) % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 1000원 단위의 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_PRICE.format());
         }
     }
 
@@ -88,12 +93,12 @@ public class Application {
 
     public void isNumberBetween1And45(int bonusNumber){
         if(bonusNumber < 1 || bonusNumber > 45){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.format());
         }
     }
     public void checkForDuplicates(List<Integer> numbers, int bonusNumber){
         if(numbers.contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되어선 안됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.format());
         }
     }
 
