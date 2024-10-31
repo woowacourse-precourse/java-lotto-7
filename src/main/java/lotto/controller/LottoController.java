@@ -1,45 +1,33 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.InputConverter;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
-import lotto.domain.Prize;
+import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningNumber;
 import lotto.ui.InputView;
+import lotto.ui.OutputView;
 
 public class LottoController {
     private InputConverter convertValidValue;
     private LottoGenerator lottoGenerator;
-    private List<Lotto> lottos;
+    private PurchasedLotto purchasedLotto;
     private int ticketCount;
     private WinningNumber winningNumber;
-    private Map<Prize, Integer> prizes;
 
     public LottoController(){
         convertValidValue = new InputConverter();
         lottoGenerator = new LottoGenerator();
-        lottos = new ArrayList<Lotto>();
+        purchasedLotto = new PurchasedLotto();
         ticketCount = 0;
-        initPrize();
     }
 
     public void run(){
         lottoAmount();
         purchaseLotto();
         getWinningNumber();
-        compareLotto();
-    }
-
-    private void initPrize(){
-        prizes = new LinkedHashMap<Prize, Integer>();
-
-        for(Prize p : Prize.values()){
-            prizes.put(p, 0);
-        }
+        showSummary();
     }
 
     private void lottoAmount() {
@@ -57,7 +45,7 @@ public class LottoController {
 
     private void purchaseLotto() {
         for(int i = 0; i< ticketCount; i++){
-            lottos.add(lottoGenerator.generate());
+            purchasedLotto.addLotto(lottoGenerator.generate());
         }
     }
 
@@ -102,11 +90,9 @@ public class LottoController {
         }
     }
 
-    private void compareLotto(){
-        for(Lotto lotto : lottos){
-            Prize prize = winningNumber.matchCount(lotto);
+    private void showSummary(){
+        purchasedLotto.matchLotto(winningNumber);
 
-            prizes.put(prize, prizes.get(prize) + 1);
-        }
+        OutputView.summaryWinning(purchasedLotto.getPrizes(), purchasedLotto.getRateOfReturn());
     }
 }
