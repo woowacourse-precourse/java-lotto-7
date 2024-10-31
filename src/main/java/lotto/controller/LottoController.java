@@ -16,11 +16,23 @@ public class LottoController {
     }
 
     public void run() {
-        String rawPrice = inputView.readPriceInput();
-        Price price = new Price(parseInt(rawPrice));
+        Price price = inputBuyLotto();
+        OutputTicketCount(price);
+    }
+
+    private Price inputBuyLotto() {
+        while (true) {
+            try {
+                String rawPrice = inputView.readPriceInput();
+                return new Price(parseInt(rawPrice));
+            } catch (IllegalArgumentException e) {
+                outputView.printResult(e.getMessage());
+            }
+        }
+    }
+
+    private void OutputTicketCount(Price price) {
         int ticketCount = price.convertToTicket();
         outputView.printLottoTicket(ticketCount);
-
-        inputView.closeConsole();
     }
 }
