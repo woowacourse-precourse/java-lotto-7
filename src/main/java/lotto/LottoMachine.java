@@ -3,10 +3,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoMachine {
 
+    private Lotto lotto;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
     public void run() {
@@ -14,7 +17,7 @@ public class LottoMachine {
 
         int cost = Integer.parseInt(Console.readLine().trim());
 
-        int purchaseCount = cost/1000;
+        int purchaseCount = cost / 1000;
 
         System.out.println();
 
@@ -28,6 +31,11 @@ public class LottoMachine {
         System.out.println();
 
         System.out.println("당첨 번호를 입력해 주세요.");
+
+        lotto = new Lotto(Arrays.stream(Console.readLine().trim().split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList()));
+
 
     }
 }
