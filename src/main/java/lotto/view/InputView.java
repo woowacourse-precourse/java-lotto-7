@@ -15,7 +15,7 @@ public class InputView {
         print(INPUT_MONEY_MESSAGE);
         String input = Console.readLine();
         validateNumberFormat(input);
-        return InputMoneyDTO.from(Integer.valueOf(input));
+        return InputMoneyDTO.from(Long.valueOf(input));
     }
 
     private static void validateNumberFormat(String input) {
