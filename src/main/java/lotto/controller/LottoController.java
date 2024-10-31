@@ -2,13 +2,12 @@ package lotto.controller;
 
 import lotto.io.Output;
 import lotto.message.IOMessage;
+import lotto.view.PurchaseAmount;
 
 public final class LottoController {
     public void run() {
-        purchaseAmount();
+        PurchaseAmount.purchaseAmount();
     }
 
-    public void purchaseAmount() {
-        Output.printlnMessage(IOMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-    }
+
 }
