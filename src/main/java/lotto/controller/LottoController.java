@@ -4,6 +4,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.LottoNumber;
+import lotto.model.MatchNumbers;
 import lotto.model.PurchasePrice;
 import lotto.model.RandomNumber;
 import lotto.util.Convertor;
@@ -51,6 +52,16 @@ public class LottoController {
         return new BonusNumber(lotto.get(), Convertor.stringToInt(inputView.inputBonusNumber()));
     }
 
+    private void printMatchResult(MatchNumbers matchNumbers) {
+        outputView.printMatchNumbers(
+                matchNumbers.getThreeMatch(),
+                matchNumbers.getFourMatch(),
+                matchNumbers.getFiveMatch(),
+                matchNumbers.getFiveAndBonusMatch(),
+                matchNumbers.getSixMatch()
+        );
+    }
+
     public void run() {
         PurchasePrice purchasePrice = initPurchasePrice();
         LottoAmount lottoAmount = calculateLottoAmount(purchasePrice);
@@ -62,5 +73,9 @@ public class LottoController {
 
         Lotto lotto = initUserNumbers();
         BonusNumber bonusNumber = initBonusNumber(lotto);
+
+        MatchNumbers matchNumbers = new MatchNumbers();
+        matchNumbers.count(lottoNumber.get(), lotto.get(), bonusNumber.get());
+        printMatchResult(matchNumbers);
     }
 }
