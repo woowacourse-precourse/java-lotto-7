@@ -11,12 +11,22 @@ public enum Rank implements RankProvider {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
+
+        @Override
+        public Long totalPrize(WinningResult result) {
+            return (long) result.getWinningCount(this) * this.getPrize();
+        }
     },
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)") {
         @Override
         public String provide(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+
+        @Override
+        public Long totalPrize(WinningResult result) {
+            return (long) result.getWinningCount(this) * this.getPrize();
         }
     },
     THIRD(5, 1_500_000, "5개 일치 (1,500,000원)") {
@@ -25,6 +35,11 @@ public enum Rank implements RankProvider {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
+
+        @Override
+        public Long totalPrize(WinningResult result) {
+            return (long) result.getWinningCount(this) * this.getPrize();
+        }
     },
     FOURTH(4, 50_000, "4개 일치 (50,000원)") {
         @Override
@@ -32,6 +47,12 @@ public enum Rank implements RankProvider {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
+
+        @Override
+        public Long totalPrize(WinningResult result) {
+            return (long) result.getWinningCount(this) * this.getPrize();
+        }
+
     },
     FIFTH(3, 5_000, "3개 일치 (5,000원)") {
         @Override
@@ -39,12 +60,23 @@ public enum Rank implements RankProvider {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
         }
+
+        @Override
+        public Long totalPrize(WinningResult result) {
+            return (long) result.getWinningCount(this) * this.getPrize();
+        }
+
     },
     NONE(0, 0, "당첨되지 않았음 (0원)") {
         @Override
         public String provide(WinningResult result) {
             Integer count = result.getWinningCount(this);
             return String.format(RANK_RESULT_NOTATION_FORM, this.getMessage(), count);
+        }
+
+        @Override
+        public Long totalPrize(WinningResult result) {
+            return (long) result.getWinningCount(this) * this.getPrize();
         }
     };
 
@@ -84,6 +116,10 @@ public enum Rank implements RankProvider {
             .filter(rank -> rank != NONE)
             .map(rank -> rank.provide(result))
             .collect(Collectors.joining());
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     public String getMessage() {
