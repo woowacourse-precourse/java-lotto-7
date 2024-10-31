@@ -2,8 +2,8 @@ package lotto.domain;
 
 public class Amount {
 
-    private static final int LOTTO_PRICE = 1000;
-    private static final int ZERO = 0;
+    public static final int LOTTO_PRICE = 1000;
+    public static final int ZERO = 0;
 
     private Integer amount;
 
