@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.function.Function;
-import java.util.function.Supplier;
 import lotto.model.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
