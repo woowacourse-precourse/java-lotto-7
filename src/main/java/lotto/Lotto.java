@@ -51,4 +51,7 @@ public class Lotto {
         }
     }
 
+    public boolean hasNumber(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

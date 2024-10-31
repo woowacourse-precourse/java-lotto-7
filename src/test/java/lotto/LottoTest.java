@@ -4,12 +4,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -71,6 +73,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 중복될 수 없습니다.");
+    }
+
+    @DisplayName("로또가 특정 번호를 가졌는지 여부를 반환한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1, true", "7, false"}, delimiter = ',')
+    void returnLottoHasSpecificNumber(Integer number, boolean expected) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.hasNumber(number)).isEqualTo(expected);
     }
 
 }
