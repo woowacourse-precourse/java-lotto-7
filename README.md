@@ -24,6 +24,7 @@
 - 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
 - 사용자가 잘못된 값을 입력할 경우`IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     - `Exception`이 아닌`IllegalArgumentException`,`IllegalStateException`등과 같은 명확한 유형을 처리한다.
+
 ### 예외 요구 사항
 - 로또 구입 금액을 입력 받는 경우
   - 숫자가 아닌 문자가 있는 경우 예외 처리
@@ -39,3 +40,25 @@
   - 숫자가 아닌 문자가 있는 경우 예외 처리
   - 숫자가 1~45가 아닌 경우 예외 처리
   - 숫자가 당첨 번호에 존재하는 번호일 경우 예외 처리
+
+## 패키지 구조
+- Application.java
+- controller
+  - LottoController.java
+- exception
+  - ErrorMessage.java
+  - LottoException.java
+- factory
+  - LottoFactory.java
+- model
+  - KorLotto.java
+  - KorLottoMachine.java
+  - Lotto.java
+  - LottoMachine.java
+- validate
+  - Validator.java
+- view
+  - InputHelper.java
+  - KorInputHelper.java
+  - KorOutPutHelper.java
+  - OutputHelper.java
