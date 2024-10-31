@@ -12,7 +12,8 @@ public enum PrintMessage {
     LOTTO_THIRD_PLACE_WINNING("5개 일치 (1,500,000원) - %d개"),
     LOTTO_SECOND_PLACE_WINNING("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     LOTTO_FIRST_PLACE_WINNING("6개 일치 (2,000,000,000원) - %d개"),
-    LOTTO_PROFIT_RATE("총 수익률은 %.1f%%입니다.");
+    LOTTO_PROFIT_RATE("총 수익률은 %.1f%%입니다."),
+    LINE_SPACE("");
 
     private final String message;
 
