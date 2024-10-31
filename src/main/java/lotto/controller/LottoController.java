@@ -1,11 +1,23 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.validator.LottoValidator;
+import lotto.view.InputView;
 
 public class LottoController {
 
-    public void run() {
+    InputView inputView;
 
+    public LottoController() {
+        this.inputView = new InputView();
+    }
+
+    public void run() {
+        int money = getMoney();
+    }
+
+    private int getMoney() {
+        String inputMoney = inputView.promptMoney();
+        LottoValidator.validateInputMoney(inputMoney);
+        return Integer.parseInt(inputMoney);
     }
 }
