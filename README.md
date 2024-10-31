@@ -1,11 +1,16 @@
 # java-lotto-precourse
 ## 이번 미션 소묙표
 [] 오버 엔지니어링만 하지 말자
+- 아 벌써 예외 처리에서 오바했다
+- kiss! keep it small and simple 해보자
 
 
 ### knwon issue
 
-- 
+- 줄여야 하는 병목 5 / 8
+- 진척 속도가 충분하지 않음
+- 진척 속도 저하가 어떻게 발생하는가?
+- 왜 발생하는가?
 
 ---
 
@@ -28,7 +33,7 @@
    5. then: 당첨 번호와 보너스 번호까지 입력하면 사용자가 구매한 로또 번호와 당첨 번호를 비굫여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료
       1. 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException
       2. 에러 미시지 출력 후 그 부분 입력을 다시 요청
-      3. 이 때 그냥 Exception 클래스가 아닌 IllegalArgumentException, IllegalStateException등과 같은 명확한 유형을 처리
+      3. 이 때 그냥 Exception 클래스가 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
 2. 가정할 수 있는 것들을 확인
    1. 입력 가능 범위는 정해져있는가?
    2. 실제 로또 최대 구매비용은 10만원인데 동일한 상황으로 고려해야 되는가? (사용자가 구매할 수 있는 로또는 최대 100장..?)
