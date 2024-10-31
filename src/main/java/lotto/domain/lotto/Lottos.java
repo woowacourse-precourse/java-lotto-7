@@ -2,9 +2,8 @@ package lotto.domain.lotto;
 
 import lotto.domain.lotto.factory.LottoFactory;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Lottos {
 
@@ -17,9 +16,19 @@ public class Lottos {
     }
 
     public void makeLottos(LottoFactory lottoFactory) {
-        List<Lotto> lottos = Stream.generate(lottoFactory::create)
-                .limit(lottoCount)
-                .collect(Collectors.toList());
+        lottos = new ArrayList<>();
+
+        while (lottos.size() < lottoCount) {
+            Lotto lotto = lottoFactory.create();
+            addUnduplicateLotto(lotto);
+        }
+    }
+
+    private void addUnduplicateLotto(Lotto lotto) {
+
+        if (!lottos.contains(lotto)) {
+            lottos.add(lotto);
+        }
     }
 
 }
