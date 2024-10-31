@@ -3,22 +3,17 @@ package lotto.core;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class WinningNumbers {
-    public static final int MIN_LOTTERY_NUMBER = 1;
-    public static final int MAX_LOTTERY_NUMBER = 45;
-    public static final int LOTTERY_SIZE = 6;
     public static final String DELIMITER = ",";
 
     private String numberString;
-    private List<Integer> numbers;
+    private Lotto winningNumbers;
     private int bonusNumber;
 
-    public List<Integer> getNumbers() {
-        return this.numbers;
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers.getNumbers();
     }
 
     public int getBonusNumber() {
@@ -47,9 +42,7 @@ public class WinningNumbers {
             .map(String::trim)
             .map(Integer::parseInt)
             .toList();
-
-        this.validateNumbers(numbers);
-        this.numbers = numbers;
+        this.winningNumbers = new Lotto(numbers);
     }
 
     private void setBonusNumber() {
@@ -70,26 +63,9 @@ public class WinningNumbers {
         return Console.readLine();
     }
 
-    private void validateNumbers(List<Integer> numbers) {
-        this.validateSize(numbers);
-        this.validateRange(numbers);
-        this.validateUniqueNumbers(numbers);
-    }
-
     private void validateBonusNumber(int bonusNumber) {
         this.validateRange(bonusNumber);
         this.validateUniqueNumbers(bonusNumber);
-    }
-
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTERY_SIZE) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
-        }
-    }
-
-    private void validateRange(List<Integer> numbers) {
-        boolean isOutOfRange = numbers.stream().anyMatch(this::checkRange);
-        this.throwOutOfRange(isOutOfRange);
     }
 
     private void validateRange(int bonusNumber) {
@@ -98,7 +74,7 @@ public class WinningNumbers {
     }
 
     private boolean checkRange(int num) {
-        return num > MAX_LOTTERY_NUMBER || num < MIN_LOTTERY_NUMBER;
+        return num > Lotto.MAX_LOTTERY_NUMBER || num < Lotto.MIN_LOTTERY_NUMBER;
     }
 
     private void throwOutOfRange(boolean isOutOfRange) {
@@ -107,15 +83,8 @@ public class WinningNumbers {
         }
     }
 
-    private void validateUniqueNumbers(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
-        }
-    }
-
     private void validateUniqueNumbers(int bonusNumber) {
-        if (this.numbers.contains(bonusNumber)) {
+        if (this.winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }

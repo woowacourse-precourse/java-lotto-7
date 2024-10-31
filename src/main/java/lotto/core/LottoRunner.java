@@ -64,7 +64,7 @@ public class LottoRunner {
         for (Lotto lotto : lotteries) {
             Set<Integer> matchedNumbers = new HashSet<>(lotto.getNumbers());
             boolean isBonusMatching = matchedNumbers.contains(winning.getBonusNumber());
-            matchedNumbers.retainAll(winning.getNumbers());      // 당첨된 숫자만 남기기
+            matchedNumbers.retainAll(winning.getWinningNumbers());      // 당첨된 숫자만 남기기
             matchResults.add(new LottoMatchResult(matchedNumbers.size(), isBonusMatching));
         }
         return matchResults;
