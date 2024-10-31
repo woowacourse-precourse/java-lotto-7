@@ -13,9 +13,13 @@ public abstract class Validator {
     }
 
     public void validateNumber(String userInput, String errorMessage) {
-        if (!userInput.matches(Constant.INTEGER_REGEX)) {
+        if (isNotNumber(userInput)) {
             throw new IllegalArgumentException(errorMessage);
         }
+    }
+
+    private boolean isNotNumber(String userInput) {
+        return !userInput.matches(Constant.INTEGER_REGEX);
     }
 
     public abstract void validate(String userInput);

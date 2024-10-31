@@ -22,9 +22,13 @@ public class WinningNumberValidator extends Validator {
     }
 
     private void validateContainDelimiter(String userInput) {
-        if (!userInput.contains(WINNING_NUMBER_INPUT_DELIMITER)) {
+        if (hasNotDelimiter(userInput)) {
             throw new IllegalArgumentException(DELIMITER_ERROR_MESSAGE.toString());
         }
+    }
+
+    private boolean hasNotDelimiter(String userInput) {
+        return !userInput.contains(WINNING_NUMBER_INPUT_DELIMITER);
     }
 
     public void validateNumbersCount(List<Integer> winningNumbers) {
