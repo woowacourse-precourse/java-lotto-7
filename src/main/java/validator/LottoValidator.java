@@ -27,4 +27,13 @@ public class LottoValidator {
         throw new IllegalArgumentException("로또 번호 범위를 벗어났습니다.");
     }
 
+    public static List<Integer> isParseableString(String targetString) {
+        return Arrays.stream(targetString.split(","))
+                .map(String::strip)
+                .filter(s -> !s.isEmpty())
+                .map(LottoValidator::isNumber)
+                .map(LottoValidator::isInLottoRange)
+                .collect(Collectors.toList());
+    }
+
 }
