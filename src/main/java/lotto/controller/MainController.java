@@ -1,43 +1,53 @@
 package lotto.controller;
 
 import lotto.domain.Wallet;
+import lotto.domain.calculators.TicketCalculator;
+import lotto.domain.calculators.TicketCalculatorImpl;
+import lotto.domain.calculators.YieldCalculator;
 import lotto.domain.factory.UserMainLottoFactory;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.UserLotto;
-import lotto.domain.lottos.user.WinningLottos;
-import lotto.domain.number.NumbersMaker;
+import lotto.domain.lottos.user.WinningLotto;
 import lotto.domain.number.RandomLottoNumberMaker;
 import lotto.service.LottoMatchService;
-import lotto.service.RandomLottoFactory;
+import lotto.service.RandomLottoMarket;
 import lotto.service.YieldCalculateService;
 import lotto.view.Input;
 import lotto.view.Output;
 
-/**
- * 구매 내역 출력
- */
 public class MainController {
+    private RandomLottoMarket randomLottoMarket;
     private LottoMatchService lottoMatchService;
     private YieldCalculateService yieldCalculateService;
 
     public void run() {
         Wallet wallet = createWallet();
-        wallet.buyTicket();
         RandomLottos randomLottos = createRandomLottos(wallet);
-
         Output.printPurchasedLottoList(wallet, randomLottos);
 
         UserLotto userLotto = createUserLotto();
-        WinningLottos winningLottos = new WinningLottos();
+        WinningLotto winningLotto = new WinningLotto();
 
-        lottoMatchService = new LottoMatchService(randomLottos, userLotto, winningLottos);
-        lottoMatchService.matchLottos();
-        yieldCalculateService = new YieldCalculateService(wallet, winningLottos);
-        yieldCalculateService.calculateYield();
+        matchLotto(randomLottos, userLotto, winningLotto);
+        calculateRateOfReturn(wallet, winningLotto);
 
-        Output.printLottoWinningStatistics(winningLottos);
+        Output.printLottoWinningStatistics(winningLotto);
         Output.printRateOfReturn(wallet);
+    }
 
+    private void calculateRateOfReturn(Wallet wallet, WinningLotto winningLotto) {
+        yieldCalculateService = new YieldCalculateService(wallet, winningLotto);
+        yieldCalculateService.calculateRateOfReturn();
+    }
+
+    private void matchLotto(RandomLottos randomLottos, UserLotto userLotto, WinningLotto winningLotto) {
+        lottoMatchService = new LottoMatchService(randomLottos, userLotto, winningLotto);
+        lottoMatchService.matchLottos();
+    }
+
+    private RandomLottos createRandomLottos(Wallet wallet) {
+        randomLottoMarket = new RandomLottoMarket(new RandomLottoNumberMaker(), wallet);
+        return randomLottoMarket.createRandomLottos();
     }
 
     private UserLotto createUserLotto() {
@@ -72,22 +82,17 @@ public class MainController {
         }
     }
 
-    private RandomLottos createRandomLottos(Wallet wallet) {
-        NumbersMaker numbersMaker = new RandomLottoNumberMaker(); //6자리 숫자를 만듦
-        RandomLottoFactory randomLottoFactory = new RandomLottoFactory(numbersMaker, wallet); //RandomLotto 객체를 만듦
-
-        return randomLottoFactory.createRandomLottos();
-    }
-
     private Wallet createWallet() {
+        TicketCalculator ticketCalculator = new TicketCalculatorImpl();
+        YieldCalculator yieldCalculator = new YieldCalculator();
+
         while (true) {
             try {
-                return new Wallet(Input.inputPurchaseAmount());
+                return new Wallet(Input.inputPurchaseAmount(), ticketCalculator, yieldCalculator);
             } catch (IllegalArgumentException e) {
                 Output.printError(e.getMessage());
             }
         }
     }
-
 
 }
