@@ -1,14 +1,13 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.SortComparator;
 import lotto.domain.prizelotto.PrizeLotto;
 
 public class PrizeNumber {
 
-    private List<PrizeLotto> prizeLottos;
+    private final List<PrizeLotto> prizeLottos;
 
     public PrizeNumber(List<PrizeLotto> prizeLottos) {
         this.prizeLottos = prizeLottos;
@@ -47,7 +46,7 @@ public class PrizeNumber {
         return sortedPrizeLottos;
     }
 
-    public void findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
+    public void countWinningLottos(WinNumbers winNumbers, Lottos lottos) {
         List<Lotto> allLotto = lottos.value();
         for (Lotto lotto : allLotto) {
             countMatchNumber(lotto.getNumbers(), winNumbers);

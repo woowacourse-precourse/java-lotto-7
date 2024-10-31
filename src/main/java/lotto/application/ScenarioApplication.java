@@ -28,7 +28,7 @@ public class ScenarioApplication {
         LottoQuantity lottoQuantity = LottoQuantity.findQuantity(purchasePrice.value());
         Lottos lottos = buyLottos(lottoQuantity);
         WinNumbers winNumbers = readAllWinNumbers();
-        prizeNumber.findWinningLottos(winNumbers, lottos);
+        prizeNumber.countWinningLottos(winNumbers, lottos);
         calculateResult(purchasePrice, prizeNumber);
     }
 
