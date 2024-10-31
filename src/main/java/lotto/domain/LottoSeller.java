@@ -5,9 +5,9 @@ import java.util.List;
 import lotto.domain.utils.RandomNumbersGenerator;
 
 public class LottoSeller {
-    LottoMachine lottoMachine = new LottoMachine(new RandomNumbersGenerator());
+    private final LottoMachine lottoMachine = new LottoMachine(new RandomNumbersGenerator());
 
-    List<Lotto> sell(int price) {
+    public List<Lotto> sell(int price) {
         validatePrice(price);
 
         List<Lotto> lottos = new ArrayList<>();

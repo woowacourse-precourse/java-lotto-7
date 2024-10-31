@@ -1,4 +1,4 @@
-package lotto.domain.number;
+package lotto.domain;
 
 import java.util.Objects;
 
@@ -7,13 +7,9 @@ public class LottoNumber {
     static final int MAX = 45;
     private final int number;
 
-    public LottoNumber(int number) {
+    LottoNumber(int number) {
         validate(number);
         this.number = number;
-    }
-
-    public int getNumber() {
-        return number;
     }
 
     private void validate(int number) {
