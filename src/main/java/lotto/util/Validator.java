@@ -17,4 +17,10 @@ public class Validator {
             }
         }
     }
+
+    public static void isNumberWithinRange(int number, int minNumber, int maxNumber) {
+        if (number < minNumber || number > maxNumber) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
