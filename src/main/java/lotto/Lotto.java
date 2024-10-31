@@ -7,6 +7,16 @@ public class Lotto {
     public final static int LOW_NUMBER = 1;
     public final static int HIGH_NUMBER = 45;
 
+    private int bonus;
+
+    public int getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

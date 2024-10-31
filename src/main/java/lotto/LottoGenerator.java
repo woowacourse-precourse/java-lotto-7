@@ -25,6 +25,6 @@ class LottoGenerator {
     }
 
     public static void addNumber(Lotto lotto, int number){
-        lotto.getNumbers().add(number);
+        lotto.setBonus(number);
     }
 }
