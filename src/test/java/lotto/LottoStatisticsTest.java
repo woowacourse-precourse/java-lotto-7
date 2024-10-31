@@ -3,7 +3,9 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -31,5 +33,34 @@ public class LottoStatisticsTest {
                 Arguments.of(List.of(LottoRank.NONE, LottoRank.GRADE_2TH), 8000, 375000),
                 Arguments.of(List.of(LottoRank.NONE, LottoRank.GRADE_1TH), 8000, 25000000)
         );
+    }
+
+    @Test
+    void 로또_당첨_등수_통계_계산() {
+        // given
+        List<LottoRank> lottoRanks = List.of(
+                LottoRank.NONE, LottoRank.NONE, LottoRank.NONE, LottoRank.NONE,
+                LottoRank.GRADE_5TH, LottoRank.GRADE_5TH, LottoRank.GRADE_5TH, LottoRank.GRADE_5TH,
+                LottoRank.GRADE_4TH, LottoRank.GRADE_4TH, LottoRank.GRADE_4TH,
+                LottoRank.GRADE_3TH, LottoRank.GRADE_3TH,
+                LottoRank.GRADE_1TH
+        );
+
+        // when
+        Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
+
+        // then
+        assertThat(rankMap.get(LottoRank.NONE))
+                .isEqualTo(4);
+        assertThat(rankMap.get(LottoRank.GRADE_5TH))
+                .isEqualTo(4);
+        assertThat(rankMap.get(LottoRank.GRADE_4TH))
+                .isEqualTo(3);
+        assertThat(rankMap.get(LottoRank.GRADE_3TH))
+                .isEqualTo(2);
+        assertThat(rankMap.get(LottoRank.GRADE_2TH))
+                .isEqualTo(0);
+        assertThat(rankMap.get(LottoRank.GRADE_1TH))
+                .isEqualTo(1);
     }
 }
