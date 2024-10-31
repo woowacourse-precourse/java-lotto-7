@@ -20,6 +20,18 @@ class LottoValidatorTest {
     }
 
     @Test
+    @DisplayName("입력된 숫자 중 1-45 범위를 벗어나는 숫자가 있는 경우")
+    void whenOutOfRangeLottoNumberThenThrowException() {
+        //given
+        List<Integer> invalidNumbers = List.of(4, 3, 1, 47, 33, 2);
+
+        //when then
+        Assertions.assertThatThrownBy(() -> LottoValidator.validate(invalidNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1-45 사이의 숫자만 가능합니다.");
+    }
+
+    @Test
     @DisplayName("입력된 숫자 중 중복된 숫자가 있는 경우")
     void whenDuplicateNumbersThenThrowException() {
         //given
