@@ -12,8 +12,16 @@ public class PurchaseLottos {
         this.lottos = purchaseLottos(money);
     }
 
+    protected PurchaseLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
     public static PurchaseLottos of(Integer money) {
         return new PurchaseLottos(money);
+    }
+
+    public static PurchaseLottos of(List<Lotto> lottos) {
+        return new PurchaseLottos(lottos);
     }
 
     public List<Lotto> getLottos() {
