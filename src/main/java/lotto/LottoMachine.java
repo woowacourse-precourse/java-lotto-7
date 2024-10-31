@@ -43,5 +43,11 @@ public class LottoMachine {
 
         bonusNumber = Integer.parseInt(Console.readLine().trim());
 
+        System.out.println();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+
     }
 }
