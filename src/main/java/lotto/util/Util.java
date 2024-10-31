@@ -12,4 +12,9 @@ public class Util {
         return Randoms.pickUniqueNumbersInRange(start, end, size);
     }
 
+    public static List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
+    }
+
 }
