@@ -44,6 +44,7 @@ public class LottoController {
     public void buyLotto(String cost) {
         long calcCost = Long.parseLong(cost);
         long numberOfBuy = calcCost/1000;
+        outputView.howManyBuy(numberOfBuy);
         for (int j=0;j<numberOfBuy;j++){
             Lotto Lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
             lotteryDAO.save(Lotto);
