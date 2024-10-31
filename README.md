@@ -15,9 +15,11 @@
 - domain
     - Lotto
     - Lottos
+    - LottoConfig
     - LottoGenerator
     - LottoMachine
     - PurchaseAmount
+    - WinningNumbers
 - view
     - InputHandler
     - InputView
