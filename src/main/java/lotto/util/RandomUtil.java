@@ -14,4 +14,12 @@ public class RandomUtil {
     public static List<Integer> getLottoNumbers() {
         return getLottoNumbers(DEFAULT_COUNT);
     }
+
+    public static int getBonusNumber(List<Integer> lottoNumbers) {
+        int bonusNumber = Randoms.pickNumberInRange(1, 45);
+        if (lottoNumbers.contains(bonusNumber)) {
+            return getBonusNumber(lottoNumbers);
+        }
+        return bonusNumber;
+    }
 }
