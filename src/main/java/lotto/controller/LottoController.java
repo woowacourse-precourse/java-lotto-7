@@ -18,40 +18,24 @@ public class LottoController {
 
     private int getPurchasePrice() {
         outputView.printPurchasePriceRequest();
-        String purchasePrice = inputView.read();
+        int purchasePrice = inputView.getInteger();
         validatePurchasePrice(purchasePrice);
-        return Integer.parseInt(purchasePrice);
+        return purchasePrice;
     }
 
-    private void validatePurchasePrice(final String purchasePrice) {
-        validateNumberFormat(purchasePrice);
-        validatePositiveIntegerRange(purchasePrice);
-        validatePurchaseUnit(Integer.parseInt(purchasePrice));
+    private void validatePurchasePrice(int value) {
+        validatePositive(value);
+        validatePurchaseUnit(value);
     }
 
-    private void validateNumberFormat(final String input) {
-        if (isNotNumber(input)) {
+    private void validatePositive(final int value) {
+        if (isNotPositive(value)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isNotNumber(final String input) {
-        return !input.matches("\\d+");
-    }
-
-    private void validatePositiveIntegerRange(final String input) {
-        try {
-            final int value = Integer.parseInt(input);
-            if (isZero(value)) {
-                throw new IllegalArgumentException();
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private boolean isZero(final int value) {
-        return value == 0;
+    private boolean isNotPositive(final int value) {
+        return value <= 0;
     }
 
     private void validatePurchaseUnit(final int value) {
