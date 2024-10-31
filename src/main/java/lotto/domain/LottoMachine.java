@@ -7,11 +7,11 @@ import lotto.domain.utils.NumbersGenerator;
 public class LottoMachine {
     private final NumbersGenerator numbersGenerator;
 
-    public LottoMachine(NumbersGenerator numbersGenerator) {
+    LottoMachine(NumbersGenerator numbersGenerator) {
         this.numbersGenerator = numbersGenerator;
     }
 
-    public Lotto generate() {
+    Lotto generate() {
         return new Lotto(generateNumbers());
     }
 

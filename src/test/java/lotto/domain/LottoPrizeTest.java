@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LottoPrizeTest {
     @ParameterizedTest
     @MethodSource("getLottoPrize")
-    void getLottoPrize(int matches, int bonus, LottoPrize expected) {
+    void 로또번호와_보너스번호_일치갯수에_맞는_당첨을_반환한다(int matches, int bonus, LottoPrize expected) {
         LottoPrize prize = LottoPrize.getPrize(matches, bonus);
 
         assertThat(prize).isEqualTo(expected);

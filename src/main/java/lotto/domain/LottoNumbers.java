@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class LottoNumbers {
-    static final int NUMBERS_SIZE = 6;
+    private static final int NUMBERS_SIZE = 6;
     private final Set<LottoNumber> lottoNumbers;
 
     LottoNumbers(List<Integer> numbers) {
