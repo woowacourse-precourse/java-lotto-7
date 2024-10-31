@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,6 +21,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> sortedNumbers = numbers.stream().sorted().toList();
+        return sortedNumbers.toString();
     }
 }
