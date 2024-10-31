@@ -13,6 +13,6 @@ public class ConverterTest {
         String input = "11000";
         int expected = 11;
 
-        assertThat(Counter.priceToLottoCount(input)).isEqualTo(expected);
+        assertThat(Converter.priceToLottoCount(input)).isEqualTo(expected);
     }
 }

@@ -8,8 +8,8 @@
   - [x] `lottoNumValidator` : 번호 검증 (1 ~ 45) 
 - [x] `Parser`
   - [x] `inputParser` : 쉼표를 구분자로 하여 당첨 번호를 분리한다.
-- [ ] `Converter`
-  - [ ] `priceToLottoCount` : 로또 구입 금액을 구매 개수로 변환한다.
+- [x] `Converter`
+  - [x] `priceToLottoCount` : 로또 구입 금액을 구매 개수로 변환한다.
 ### Domain
 - [ ] `Winning` : `enum`
   - [ ] 당첨 개수와 당첨 금액을 관리하는 `enum`
