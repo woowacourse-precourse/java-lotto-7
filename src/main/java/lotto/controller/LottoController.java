@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import static lotto.view.OutputMessage.*;
+
+import lotto.domain.entity.Wallet;
 import lotto.domain.vo.PurchaseAmount;
 import lotto.view.InputView;
-import lotto.view.OutputMessage;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -15,16 +17,23 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount amount = receivePurchaseAmount();
+        PurchaseAmount amount = inputPurchaseAmount();
+        Wallet wallet = purchaseLotto(amount);
     }
 
-    private PurchaseAmount receivePurchaseAmount() {
-        outputView.print(OutputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
+    private PurchaseAmount inputPurchaseAmount() {
+        outputView.print(INPUT_PURCHASE_AMOUNT);
         try {
             return PurchaseAmount.from(inputView.readLine());
         } catch (IllegalArgumentException e) {
             outputView.print(e.getMessage());
-            return receivePurchaseAmount();
+            return inputPurchaseAmount();
         }
+    }
+
+    private Wallet purchaseLotto(PurchaseAmount amount) {
+        int count = amount.calculateRemainder();
+        outputView.print(PURCHASE_RESULT, count);
+        return Wallet.from(amount);
     }
 }
