@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class Application {
 
@@ -13,7 +14,7 @@ public class Application {
         User user = inputNewUser();
         printPurchaseStatus(user.getLottos());
 
-        Committee committee = new Committee();
+        Committee committee = inputNewCommittee();
         committee.checkLottos(user);
 
         printPrizes(user.getPrizes(), user.getReturnRate());
@@ -23,6 +24,8 @@ public class Application {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             return new User(Console.readLine());
+        } catch (NoSuchElementException e) {
+            throw e;
         } catch (Exception e) {
             System.out.println(ERROR_MESSAGE + e.getMessage());
             return inputNewUser();
@@ -46,5 +49,45 @@ public class Application {
             }
         }
         System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
+    }
+
+    private static Committee inputNewCommittee() {
+        try {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            String[] numbers = input.split(",");
+
+            ArrayList<Integer> winningNumbers = getWinningNumbers(numbers);
+
+            return inputBonusNumber(winningNumbers);
+        } catch (NoSuchElementException e) {
+            throw e;
+        } catch (Exception e) {
+            System.out.println(ERROR_MESSAGE + e.getMessage());
+            return inputNewCommittee();
+        }
+    }
+
+    private static Committee inputBonusNumber(ArrayList<Integer> winningNumbers) {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        int bonusNumber = validateStringToNumber(input);
+        return new Committee(winningNumbers, bonusNumber);
+    }
+
+    private static ArrayList<Integer> getWinningNumbers(String[] numbers) {
+        ArrayList<Integer> winningNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            winningNumbers.add(validateStringToNumber(number.trim()));
+        }
+        return winningNumbers;
+    }
+
+    private static int validateStringToNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("로또 번호는 숫자로 입력해야 합니다.");
+        }
     }
 }

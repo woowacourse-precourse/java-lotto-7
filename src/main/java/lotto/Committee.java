@@ -1,92 +1,35 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 
 public class Committee {
 
-    private ArrayList<Integer> winningNumbers = new ArrayList<>();
-    private int bonusNumber;
-    private int winningNumberIllegalArgumentExceptionCount = 0;
-    private int bonusNumberIllegalArgumentExceptionCount = 0;
+    private final ArrayList<Integer> winningNumbers;
+    private final int bonusNumber;
 
-    public Committee() {
-        inputWinningNumbers();
-        inputBonusNumber();
+    public Committee(ArrayList<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+        validate(winningNumbers, bonusNumber);
     }
 
-    private void inputWinningNumbers() {
-        try {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
-            String input = Console.readLine();
-            String[] numbers = input.split(",");
-
-            validateWinningNumbers(numbers);
-
-            for (String number : numbers) {
-                int validatedNumber = validateWinningNumber(number.trim());
-                this.winningNumbers.add(validatedNumber);
-            }
-        } catch (Exception e) {
-            if (winningNumberIllegalArgumentExceptionCount++ < 5) {
-                System.out.println(e.getMessage());
-                inputWinningNumbers();
-            }
-            throw e;
+    private void validate(ArrayList<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
         }
-    }
-
-    private int validateWinningNumber(String number) {
-        try {
-            int intNumber = Integer.parseInt(number);
-            if (intNumber < 1 || intNumber > 45) {
-                this.winningNumbers.clear();
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이여야 합니다.");
-            }
-            if (this.winningNumbers.contains(intNumber)) {
-                this.winningNumbers.clear();
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
-            }
-            return intNumber;
-        } catch (NumberFormatException e) {
-            this.winningNumbers.clear();
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해야 합니다.");
+        if (winningNumbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
         }
-    }
-
-    private void validateWinningNumbers(String[] numbers) {
-        if (numbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        for (int number : winningNumbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("당첨 번호는 1부터 45사이여야 합니다.");
+            }
         }
-    }
-
-    private void inputBonusNumber() {
-        try {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
-            String input = Console.readLine();
-            this.bonusNumber = validateBonusNumber(input);
-        } catch (Exception e) {
-            if (bonusNumberIllegalArgumentExceptionCount++ < 5) {
-                System.out.println(e.getMessage());
-                inputBonusNumber();
-            }
-            throw e;
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
-    }
-
-    private int validateBonusNumber(String number) {
-        try {
-            int intNumber = Integer.parseInt(number);
-            if (intNumber < 1 || intNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45사이여야 합니다.");
-            }
-            if (this.winningNumbers.contains(intNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-            }
-            return intNumber;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45사이여야 합니다.");
         }
     }
 
