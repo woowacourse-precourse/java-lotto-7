@@ -16,6 +16,7 @@ public class LottoController {
 
     public void run() {
         Purchase purchase = requestPurchase();
+        int purchaseQuantity = purchase.getQuantity();
     }
 
     private Purchase requestPurchase() {

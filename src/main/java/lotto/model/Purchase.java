@@ -8,6 +8,10 @@ public class Purchase {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return price / 1000;
+    }
+
     private void validatePrice(int value) {
         validatePositive(value);
         validatePurchaseUnit(value);
