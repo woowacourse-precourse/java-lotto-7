@@ -22,6 +22,15 @@ public class Lotto {
         return numbers;
     }
 
+    public int sameNumCount(List<Integer> winNumbers) {
+        int count = 0;
+        for (Integer number : winNumbers) {
+            if (this.numbers.contains(number)) {
+                count += 1;
+            }
+        }
+        return count;
+    }
 
     public void print() {
         System.out.print("[");
