@@ -1,11 +1,22 @@
 package domain.consumer;
 
+import domain.lotto.Lotto;
 import domain.lotto.LottoPrice;
+import java.util.List;
 
 public class Consumer {
+    private List<Lotto> purchasedLottos;
 
     public int getQuantityPurchaseLottoBy(int money) {
         return money / LottoPrice.LOTTO_PRICE.getPrice();
+    }
+
+    public void receiveLottoTicket(List<Lotto> generatedLotto) {
+        this.purchasedLottos = generatedLotto;
+    }
+
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
     }
 
     /**
