@@ -11,8 +11,9 @@ public class User {
         this.lottoTickets = new ArrayList<>();
     }
 
-    public void addLottoTicket(Lotto ticket) {
-        this.lottoTickets.add(ticket);
+
+    public void addLottoTicket(Lotto lotto) {
+        lottoTickets.add(lotto);
     }
 
     public List<Lotto> getLottoTickets() {
