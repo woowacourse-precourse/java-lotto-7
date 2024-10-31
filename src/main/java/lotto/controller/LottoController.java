@@ -1,10 +1,13 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.InputConverter;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
+import lotto.domain.Prize;
 import lotto.domain.WinningNumber;
 import lotto.ui.InputView;
 
@@ -14,19 +17,29 @@ public class LottoController {
     private List<Lotto> lottos;
     private int ticketCount;
     private WinningNumber winningNumber;
+    private Map<Prize, Integer> prizes;
 
     public LottoController(){
         convertValidValue = new InputConverter();
         lottoGenerator = new LottoGenerator();
         lottos = new ArrayList<Lotto>();
         ticketCount = 0;
+        initPrize();
     }
 
     public void run(){
         lottoAmount();
         purchaseLotto();
         getWinningNumber();
+        compareLotto();
+    }
 
+    private void initPrize(){
+        prizes = new LinkedHashMap<Prize, Integer>();
+
+        for(Prize p : Prize.values()){
+            prizes.put(p, 0);
+        }
     }
 
     private void lottoAmount() {
@@ -86,6 +99,14 @@ public class LottoController {
         }catch (IllegalArgumentException e){
             System.out.println(e.toString());
             getWinningNumber();
+        }
+    }
+
+    private void compareLotto(){
+        for(Lotto lotto : lottos){
+            Prize prize = winningNumber.matchCount(lotto);
+
+            prizes.put(prize, prizes.get(prize) + 1);
         }
     }
 }
