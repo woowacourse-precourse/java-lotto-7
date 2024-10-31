@@ -13,4 +13,8 @@ public class BonusNumber {
     public static BonusNumber from(String input) {
         return new BonusNumber(Convertor.convertToInt(input));
     }
+
+    public boolean isSameAs(int number) {
+        return this.bonusNumber == number;
+    }
 }
