@@ -2,10 +2,9 @@ package lotto.controller;
 
 import lotto.domain.LottoFormatter;
 import lotto.domain.Lottos;
+import lotto.dto.LottoBuyRequest;
 import lotto.dto.LottoBuyResponse;
-import lotto.dto.LottoRequest;
-import lotto.dto.LottoWinResult;
-import lotto.enums.LottoCriteria;
+import lotto.dto.LottoCalculateRequest;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -16,7 +15,7 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public LottoBuyResponse buyLottos(LottoRequest lottoRequest) {
+    public LottoBuyResponse buyLottos(LottoBuyRequest lottoRequest) {
         StringBuilder responseStringBuilder = new StringBuilder();
         Lottos lottos = lottoService.buyLottos(lottoRequest);
         responseStringBuilder.append(LottoFormatter.getFormattedLottosSize(lottoRequest.buyMoney()));
@@ -25,9 +24,9 @@ public class LottoController {
         return new LottoBuyResponse(buyLottoHistory,lottos);
     }
 
-    public String calLottos(LottoRequest lottoRequest,Lottos lottos){
+    public String calLottos(LottoCalculateRequest lottoCalculateRequest, Lottos lottos){
         StringBuilder responseStringBuilder = new StringBuilder();
-        responseStringBuilder.append(lottoService.calLottoResult(lottos,lottoRequest));
+        responseStringBuilder.append(lottoService.calLottoResult(lottos, lottoCalculateRequest));
         return responseStringBuilder.toString();
     }
 }

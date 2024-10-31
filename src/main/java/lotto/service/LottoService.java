@@ -7,24 +7,25 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoCalculator;
 import lotto.domain.LottoFormatter;
 import lotto.domain.Lottos;
-import lotto.dto.LottoRequest;
+import lotto.dto.LottoBuyRequest;
+import lotto.dto.LottoCalculateRequest;
 import lotto.dto.LottoWinResult;
 import lotto.enums.LottoCriteria;
 import lotto.domain.LottoRandomNumber;
 
 public class LottoService {
 
-    public Lottos buyLottos(LottoRequest lottoRequest) {
+    public Lottos buyLottos(LottoBuyRequest lottoBuyRequest) {
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i< lottoRequest.buyMoney() / LottoCriteria.BUY_MONEY_UNIT.getCriteriaVal(); i++){
+        for (int i = 0; i< lottoBuyRequest.buyMoney() / LottoCriteria.BUY_MONEY_UNIT.getCriteriaVal(); i++){
             lottoList.add(buyLotto());
         }
         return new Lottos(lottoList);
     }
 
-    public String calLottoResult(Lottos lottos, LottoRequest lottoRequest) {
-        List<LottoWinResult> lottoWinResultList = lottos.getWinResult(lottoRequest.winningNumbers(), lottoRequest.bonusNumber());
-        double lottoWinMoneyRate = LottoCalculator.getStatisticResult(lottoWinResultList,lottoRequest.buyMoney());
+    public String calLottoResult(Lottos lottos, LottoCalculateRequest lottoCalculateRequest) {
+        List<LottoWinResult> lottoWinResultList = lottos.getWinResult(lottoCalculateRequest.winningNumbers(), lottoCalculateRequest.bonusNumber());
+        double lottoWinMoneyRate = LottoCalculator.getStatisticResult(lottoWinResultList, lottoCalculateRequest.buyMoney());
         Map<Integer, List<LottoWinResult>> winLottoResultMap = LottoCalculator.getWinLottoResultMap(lottoWinResultList);
         return LottoFormatter.getLottoResultStr(lottoWinMoneyRate,winLottoResultMap);
     }
