@@ -2,43 +2,58 @@ package lotto;
 
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 public class Application {
-
-    private static String readNonEmptyLine() {
-        String line;
-        try {
-            line = Console.readLine();
-        } catch (NoSuchElementException e) {
-            line = "";
-        }
-        return line;
-    }
-
+    
     private static String readAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return readNonEmptyLine();
+        return Console.readLine();
     }
 
     private static String readWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        return readNonEmptyLine();
+        return Console.readLine();
     }
 
     private static String readBonusNumbers() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        return readNonEmptyLine();
+        return Console.readLine();
     }
 
     public static void main(String[] args) {
         LottoMachine lottoMachine = new LottoMachine();
-        int amount = lottoMachine.parseAmount(readAmount());
+        int amount;
+        Lotto winningNumbers;
+        int bonusNumber;
+        while (true) {
+            try {
+                amount = lottoMachine.parseAmount(readAmount());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         lottoMachine.issue(amount);
         lottoMachine.printLottoBunch();
-        Lotto winningNumbers = lottoMachine.parseWinningNumber(readWinningNumbers());
-        int bonusNumber = lottoMachine.parseBonusNumber(winningNumbers, readBonusNumbers());
+
+        while (true) {
+            try {
+                winningNumbers = lottoMachine.parseWinningNumber(readWinningNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (true) {
+            try {
+                bonusNumber = lottoMachine.parseBonusNumber(winningNumbers, readBonusNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         lottoMachine.draw(winningNumbers, bonusNumber);
         lottoMachine.printWinningStatistics(amount);
+        Console.close();
     }
 }

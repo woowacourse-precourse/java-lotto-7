@@ -53,9 +53,9 @@
     - [x] 당첨 기준과 당첨 기준 별 당첨 횟수를 출력한다.
     - [x] 총 수익률을 출력한다.
 10. **예외 처리**
-    - [ ] 유효하지 않은 입력으로 인한 예외는 `IllegalArgumentException`를 발생시킨다.
-    - [ ] `IllegalArgumentException` 발생 시 에러 문구를 출력하고, 다시 입력받는다.
-    - [ ] 에러 문구는 `[ERROR]`로 시작한다.
+    - [x] 유효하지 않은 입력으로 인한 예외는 `IllegalArgumentException`를 발생시킨다.
+    - [x] `IllegalArgumentException` 발생 시 에러 문구를 출력하고, 다시 입력받는다.
+    - [x] 에러 문구는 `[ERROR]`로 시작한다.
 
 ## 클래스 구조
 
