@@ -27,13 +27,21 @@ public enum LottoRank {
         }
 
         Optional<LottoRank> rank = Arrays.stream(LottoRank.values())
-                .filter((lottoRank) -> lottoRank.matchCount == matchCount && lottoRank.matchBonus == matchBonus)
+                .filter(lottoRank -> lottoRank.matchCount == matchCount && lottoRank.matchBonus == matchBonus)
                 .findFirst();
 
         if (rank.isEmpty()) {
-            throw new IllegalStateException(matchCount + "개가 일치하는 등수는 존재하지 않습니다.");
+            throwNotExistRankException(matchCount, matchBonus);
         }
 
         return rank.get();
+    }
+
+    private static void throwNotExistRankException(int matchCount, boolean matchBonus) {
+        if (matchBonus) {
+            throw new IllegalStateException(matchCount + "개와 보너스번호가 일치하는 등수는 존재하지 않습니다.");
+        }
+
+        throw new IllegalStateException(matchCount + "개가 일치하고 보너스 번호가 일치하지 않는 등수는 존재하지 않습니다.");
     }
 }
