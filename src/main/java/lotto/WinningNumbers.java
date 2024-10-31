@@ -53,4 +53,9 @@ public class WinningNumbers {
         return numbers.contains(bonusNumber);
     }
 
+    public Rank judgeRank(Lotto lotto) {
+        int matchCount = countMatch(lotto);
+        boolean hasBonusNumber = hasMatchNumber(lotto);
+        return Rank.from(matchCount, hasBonusNumber);
+    }
 }
