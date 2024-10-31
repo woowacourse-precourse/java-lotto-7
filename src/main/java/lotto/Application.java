@@ -33,6 +33,12 @@ public class Application {
                 +5000*statistics[5]);
     }
 
+    public static void printProfitRate(){ // (전체 수익 - 구입 금액)/로또개수
+        int profit = calculateProfit();
+        double profitRate = ((double) (profit - budget) / budget) * 100;
+        System.out.printf("총 수익률은 %.2f%%입니다.", profitRate);
+    }
+
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         budget = Integer.parseInt(Console.readLine());
