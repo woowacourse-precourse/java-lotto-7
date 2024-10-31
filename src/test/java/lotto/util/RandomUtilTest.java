@@ -29,4 +29,14 @@ class RandomUtilTest {
         List<Integer> lottoNumbers = RandomUtil.getLottoNumbers();
         assertThat(lottoNumbers.size()).isEqualTo(6);
     }
+
+    @Test
+    void 당첨_번호와_중복되지_않는_보너스_번호를_뽑는다() {
+        List<Integer> lottoNumbers = RandomUtil.getLottoNumbers();
+        int bonusNumber = RandomUtil.getBonusNumber();
+        Set<Integer> filteredNumbers = new HashSet<>();
+        filteredNumbers.addAll(lottoNumbers);
+        filteredNumbers.add(bonusNumber);
+        assertThat(filteredNumbers.size()).isEqualTo(lottoNumbers.size() + 1);
+    }
 }
