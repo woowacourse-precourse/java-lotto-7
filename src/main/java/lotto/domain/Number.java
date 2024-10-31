@@ -9,4 +9,8 @@ public class Number {
         NumberValidator.validate(number);
         this.number = Integer.parseInt(number);
     }
+
+    public int getNumber() {
+        return number;
+    }
 }
