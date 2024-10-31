@@ -36,6 +36,7 @@ public class LottoController {
         LottoStatistics statistics = new LottoStatistics();
         LottoMatching lottoMatching = new LottoMatching(lottoList, statistics);
         lottoMatching.mathing(winningNumberRequestDto.getWinningNumbers(), winningNumberRequestDto.getBonusNumber());
+        OutputView.lottoStatisticsOutput(statistics);
 
 
 

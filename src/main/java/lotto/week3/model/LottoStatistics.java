@@ -35,10 +35,10 @@ public class LottoStatistics {
     }
 
     public int calculateTotalPrize() {
-        return resultMap.get("3개 일치") * FIFTH_PRIZE +
-                resultMap.get("4개 일치") * FOURTH_PRIZE +
-                resultMap.get("5개 일치") * THIRD_PRIZE +
-                resultMap.get("5개 일치 + 보너스") * SECOND_PRIZE +
-                resultMap.get("6개 일치") * FIRST_PRIZE;
+        return resultMap.get("3개 맞춤") * FIFTH_PRIZE +
+                resultMap.get("4개 맞춤") * FOURTH_PRIZE +
+                resultMap.get("5개 맞춤") * THIRD_PRIZE +
+                resultMap.get("5개 맞춤 + 보너스 맞춤") * SECOND_PRIZE +
+                resultMap.get("6개 맞춤") * FIRST_PRIZE;
     }
 }
