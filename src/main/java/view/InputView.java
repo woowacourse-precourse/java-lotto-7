@@ -18,8 +18,9 @@ public class InputView {
         String numbers = Console.readLine();
 
         List<Integer> parsedNumbers = LottoValidator.isParseableString(numbers);
+        List<Integer> validDuplicateNumbers = LottoValidator.isUniqueNumbers(parsedNumbers);
 
-        return LottoValidator.hasSixElements(parsedNumbers);
+        return LottoValidator.hasSixElements(validDuplicateNumbers);
     }
 
     public static Integer inputBonusNumber() {
