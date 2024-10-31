@@ -28,6 +28,17 @@ public class PrizeSystem {
     }
 
     /**
+     * 발행한 로또들의 당첨 내역 확인
+     */
+    public void checkPrizeResult(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            int matchCount = getMatchCount(lottoNumbers);
+            updatePrizeCount(lottoNumbers, matchCount);
+        }
+    }
+
+    /**
      * 로또 번호 6개 중 당첨 번호와 일치하는 번호 개수 반환
      */
     public int getMatchCount(List<Integer> lottoNumbers) {
