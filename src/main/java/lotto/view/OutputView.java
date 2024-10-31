@@ -35,4 +35,22 @@ public class OutputView {
         printf(RANK_1_MESSAGE, lottoRank[1]);
         printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
+
+    public void bonusInputMessage() {
+        println();
+        println(BONUS_INPUT_MESSAGE);
+    }
+
+    public void lottoInputMessage() {
+        println(LOTTO_INPUT_MESSAGE);
+    }
+
+    public void moneyInputMessage() {
+        println(MONEY_INPUT_MESSAGE);
+    }
+
+    public void moneyInputResultMessage(int money) {
+        println();
+        printf(MONEY_INPUT_RESULT_MESSAGE, money);
+    }
 }
