@@ -9,7 +9,8 @@ public enum ErrorMessage {
     NOT_DIVIDE_PURCHASE_AMOUNT("구입 금액은 1000원 단위로 입력해야 합니다."),
     LOTTO_NUMBERS_SIZE("로또 번호는 6개여야 합니다."),
     DUPLICATE_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
-    LOTTO_NUMBER_OUT_OF_RANGE("당첨 번호는 1 부터 45 까지의 정수만 입력할 수 있습니다.");
+    LOTTO_NUMBER_OUT_OF_RANGE("당첨 번호는 1 부터 45 까지의 정수만 입력할 수 있습니다."),
+    WINNING_NUMBERS_DELIMITER("당첨 번호는 공백없이 쉼표로 구분된 정수들로 입력해야 합니다.");
 
     private final String message;
 

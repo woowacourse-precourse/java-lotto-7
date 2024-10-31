@@ -27,6 +27,8 @@ public class LottoController {
 
         outputView.printQuantity(quantity);
         outputView.printLottos(lottos);
+
+        Lotto winningLottoNumbers = tryWinningLottoNumbers();
     }
 
     private PurchaseAmount tryPurchaseAmount() {
@@ -35,6 +37,18 @@ public class LottoController {
                 outputView.printPurchaseAmountMessage();
                 int purchaseAmount = inputView.inputPurchaseAmount();
                 return PurchaseAmount.from(purchaseAmount);
+            } catch (IllegalArgumentException exception) {
+                outputView.printErrorMessage(exception.getMessage());
+            }
+        }
+    }
+
+    private Lotto tryWinningLottoNumbers() {
+        while (true) {
+            try {
+                outputView.printWinningNumbersMessage();
+                List<Integer> numbers = inputView.inputWinningLottoNumbers();
+                return Lotto.of(numbers);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }

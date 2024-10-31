@@ -4,6 +4,8 @@ import lotto.exception.ErrorMessage;
 
 public class InputValidation {
 
+    private static final String WINNING_NUMBERS_DELIMITER = "^-?\\d+(,-?\\d+)*$";
+
     private InputValidation() {
     }
 
@@ -24,6 +26,12 @@ public class InputValidation {
             Integer.parseInt(input);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMERIC.getErrorMessage());
+        }
+    }
+
+    public static void validateDelimiter(String input) {
+        if (!input.matches(WINNING_NUMBERS_DELIMITER)) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_DELIMITER.getErrorMessage());
         }
     }
 }
