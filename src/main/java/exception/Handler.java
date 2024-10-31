@@ -1,5 +1,7 @@
 package exception;
 
+import lotto.Lotto;
+
 public class Handler {
     public static int getMoney(io.Input input) {
         String inputString = input.getInput();
@@ -33,7 +35,7 @@ public class Handler {
                 money = exception.Handler.getMoney(input);
                 validity = moneyIsValid(money);
             } catch (IllegalArgumentException ex) {
-                exception.Handler.handleException(inputString);
+                exception.Handler.handleException(inputString, Message.INVALID_MONEY);
 
             }
 
@@ -41,11 +43,11 @@ public class Handler {
         return money / 1000;
     }
 
-    static void handleException(String inputString) {
+    public static void handleException(String inputString, String exceptionMessage) {
         exception.Message message = new exception.Message(inputString);
-        String exceptionMessage = message.getMessage(Message.INVALID_MONEY);
-        io.Print printMessage = new io.Print(exceptionMessage);
-        printMessage.print();
+        String printMessage = message.getMessage(exceptionMessage);
+        io.Print.print(printMessage);
     }
+
 
 }

@@ -42,11 +42,21 @@ public class Lotto {
         }
     }
 
-    private void checkRange(List<Integer> numbers) {
+    static void checkRange(List<Integer> numbers) {
         for (int number: numbers) {
             if (number < 1 || number > 45) {
                 exception.Message message = new exception.Message(Integer.toString(number));
                 String exceptionMessage = message.getMessage(Message.INVALID_RANGE);
+                throw new IllegalArgumentException(exceptionMessage);
+            }
+        }
+    }
+
+    static void checkBonusNumber(Lotto lotto, int bonusNumber) {
+        for (int number: lotto.numbers) {
+            if (bonusNumber == number) {
+                exception.Message message = new exception.Message(Integer.toString(number));
+                String exceptionMessage = message.getMessage(Message.INVALID_BONUS_NUMBER);
                 throw new IllegalArgumentException(exceptionMessage);
             }
         }
@@ -65,8 +75,7 @@ public class Lotto {
 
     public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            io.Print printMessage = new io.Print(lotto.numbers.toString());
-            printMessage.print();
+            io.Print.print(lotto.numbers.toString());
         }
     }
 
