@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.utils.Constant.HORIZONTAL_DIVIDER_MESSAGE;
+import static lotto.utils.Constant.LOTTO_PRIZE_MESSAGE;
 import static lotto.utils.Constant.LOTTO_PURCHASE_COUNT_MESSAGE;
 import static lotto.utils.Constant.LOTTO_RESULT_MESSAGE;
 
@@ -27,10 +28,11 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoResult(LottoResult lottoResult) {
+    public void printLottoResult(LottoResult lottoResult, int purchaseAmount) {
         printEmptyLine();
         System.out.println(LOTTO_RESULT_MESSAGE);
         System.out.println(HORIZONTAL_DIVIDER_MESSAGE);
         System.out.println(lottoResult.toString());
+        System.out.printf(LOTTO_PRIZE_MESSAGE, lottoResult.calculatePrize(purchaseAmount));
     }
 }
