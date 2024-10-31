@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.util.LottoConstant;
+import lotto.util.LottoNumberValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +46,7 @@ public class InputView {
         validateNumber(input, fieldName);
 
         int bonusNumber = Integer.parseInt(input);
-        validateNumberInRange(bonusNumber, fieldName);
+        LottoNumberValidator.validateNumberInRange(bonusNumber);
 
         return bonusNumber;
     }
@@ -68,16 +69,6 @@ public class InputView {
     private List<String> splitWinningNumbers(String input) {
         String lottoDelimiter = LottoConstant.DELIMITER.getValue();
         return Arrays.stream(input.split(lottoDelimiter)).toList();
-    }
-
-    private void validateNumberInRange(Integer number, String fieldName) {
-        int minNumber = LottoConstant.MIN_NUMBER.getIntValue();
-        int maxNumber = LottoConstant.MAX_NUMBER.getIntValue();
-
-        if (number < minNumber)
-            throw new IllegalArgumentException(String.format("[ERROR] %s는 %d 이상이어야 합니다.", fieldName, minNumber));
-        if (number > maxNumber)
-            throw new IllegalArgumentException(String.format("[ERROR] %s는 %d 이하이어야 합니다.", fieldName, maxNumber));
     }
 
     private List<Integer> parseToNumbers(List<String> numbers) {
