@@ -6,7 +6,7 @@ import lotto.view.PurchaseAmount;
 
 public final class LottoController {
     public void run() {
-        PurchaseAmount.purchaseAmount();
+        int purchaseAmount = PurchaseAmount.purchaseAmount();
     }
 
 
