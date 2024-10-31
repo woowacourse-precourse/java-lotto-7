@@ -51,4 +51,13 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.validateLottoNumber(input);
         });
     }
+
+    @DisplayName("숫자가 0으로 시작되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,03,4,5,7", "1,2,0,4,5,6", "1,2,044,4,5,6"})
+    void validateStartWithZero(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoNumberValidator.validateLottoNumber(input);
+        });
+    }
 }
