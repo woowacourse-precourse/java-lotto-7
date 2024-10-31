@@ -40,7 +40,7 @@ public class LottoProvider {
 	}
 
 	public void printPickedLottoResults() {
-		System.out.println(lottoPurchaseAmount + LOTTO_PURCHASE_AMOUNT_MESSAGE);
+		System.out.println(numberOfLottos + LOTTO_PURCHASE_AMOUNT_MESSAGE);
 		for (Lotto pickedLotto : pickedLottos) {
 			pickedLotto.printLottoNumbers();
 		}
