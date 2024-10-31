@@ -10,7 +10,10 @@ public class Input {
   public int readAmount() {
     String enteredValue = Console.readLine();
     int amount = Integer.parseInt(enteredValue);
-    return amount / LOTTO_PRICE;
+    return amount;
   }
 
+  public int getLottoCounts(int amount) {
+    return  amount / LOTTO_PRICE;
+  }
 }

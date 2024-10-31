@@ -25,17 +25,34 @@ class InputTest {
   }
 
 
-  @DisplayName("애플리케이션을 실행하면 사용자가 로또 구매 금액을 입력하여 해당 금액만큼의 로또가 발행 수를 획득한다")
+  @DisplayName("애플리케이션을 실행하면 사용자가 로또 구매 금액을 입력하여 값을 읽는다")
   @Test
-  public void runApplicationTest() throws Exception{
+  void runApplicationTest() throws Exception{
     //given
     String given = "8000";
     System.setIn(setReadLine(given));
 
     //when
+    // find why : 함수를 하나식 쪼갰더니 전체 테스트 실행에서 NoSuchElementException
     int actual = input.readAmount();
-    int expect = 8;
+    int expect = 8000;
     //then
+    assertEquals(expect, actual);
+  }
+
+  @DisplayName("입력된 금액에 따른 로또를 정확히 발행한다")
+  @Test
+  void getLottosCount() {
+
+    // given
+    System.setIn(setReadLine("14000"));
+    int amount = input.readAmount();
+    int actual = input.getLottoCounts(amount);
+
+    // when
+    int expect = 14;
+
+    // then
     assertEquals(expect, actual);
   }
 
