@@ -30,42 +30,46 @@
 1. domain
    - Lotto
      - 당첨번호 6개 + 보너스번호 1개 저장
+     - 로또 번호가 6개인지 검증
+     - 보너스 번호가 로또 번호랑 중복이 없는지 검증
    - User
      - 구매 금액, 구매한 로또, 획득한 상금 관리
    - UserLottoNumber
      - 유저가 구매한 로또 번호를 담는 클래스
-   - 레이팅
+   - LottoRanking
      - 로또 등수 (enum)
 2. service
-  - aaa
-    - bbb
+   - InputService
+     - 입력받은 구매 금액으로 유저의 로또 생성
+     - 구매 금액과 로또를 유저에 반환
+   - LottoCalculatorService
+     - 당첨 결과 계산
 3. controller
-  - InputController
-    - aaa
-  - LottoController
-    - aaa
+   - LottoController
+     - aaa
 4. util
-  - CreateLootNumber
-    - 1 ~ 45 범위중 6개의 숫자 추출 + 정렬로 자동 로또 생성
+   - CreateLootNumber
+     - 1 ~ 45 범위중 6개의 숫자 추출 + 정렬로 자동 로또 생성
 5. validate
-  - PriceValidate
-    - 구매 금액이 숫자인지 검증
-    - 구매 금액이 양수인지 검증
-  - LottoNumberValidate
-    - 로또 번호가 6개인지 검증
-    - 로또 번호에 중복이 없는지 검증
-    - 로또 번호의 범위가 1 ~ 45 인지 검증
-  - BonusNumberValidate
-    - 보너스 번호가 1개인지 검증
-    - 보너스 번호가 로또 번호랑 중복이 없는지 검증
+   - PriceValidate
+     - 구매 금액이 숫자인지 검증
+     - 구매 금액이 양수인지 검증
+   - LottoNumberValidate
+       - 로또 번호가 6개인지 검증
+       - 로또 번호에 중복이 없는지 검증
+       - 로또 번호의 범위가 1 ~ 45 인지 검증
+   - BonusNumberValidate
+       - 보너스 번호가 1개인지 검증
+       - 보너스 번호가 로또 번호랑 중복이 없는지 검증
+       - 보너스 번호의 범위가 1 ~ 45 인지 검증
 6. view
-  - InputView
-    - 구매 금액을 입력
-    - 당첨 번호를 입력
-    - 보너스 번호를 입력
-  - OutputView
-    - 로또 구매시 자동 생성된 로또 번호 출력
-    - 당첨 통계 출력
+   - InputView
+     - 구매 금액을 입력
+     - 당첨 번호를 입력
+     - 보너스 번호를 입력
+   - OutputView
+     - 로또 구매시 자동 생성된 로또 번호 출력
+     - 당첨 통계 출력
 7. constants
    - Constants
      - 상수를 정리
