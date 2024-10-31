@@ -3,6 +3,8 @@ package lotto.domain.lotto;
 import lotto.domain.constants.value.LottoRule;
 import lotto.domain.constants.message.RangeError;
 
+import java.util.Objects;
+
 import static lotto.domain.constants.value.LottoRule.MAXIMUM_NUMBER_RANGE;
 
 public class Number {
@@ -23,5 +25,18 @@ public class Number {
 
     public int getLottoNumber() {
         return number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Number number1 = (Number) o;
+        return number == number1.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(number);
     }
 }
