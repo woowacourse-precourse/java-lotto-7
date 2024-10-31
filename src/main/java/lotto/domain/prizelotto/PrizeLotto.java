@@ -13,7 +13,7 @@ public abstract class PrizeLotto {
 
     abstract public int calculatePrize();
 
-    abstract public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers);
+    abstract public boolean isSatisfyPrizeRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers);
 
     abstract public int getRank();
 

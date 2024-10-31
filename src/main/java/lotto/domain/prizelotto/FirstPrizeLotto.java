@@ -15,8 +15,8 @@ public class FirstPrizeLotto extends PrizeLotto {
     }
 
     @Override
-    public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
-        return count == 6;
+    public boolean isSatisfyPrizeRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
+        return count == MATCH_COUNT;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Validator {
         }
     }
 
-    public static void validatedNumberCount(List<Integer> numbers) {
+    public static void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
         }

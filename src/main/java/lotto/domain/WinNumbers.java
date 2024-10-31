@@ -41,7 +41,7 @@ public record WinNumbers(
 
     private static void validateWinNumbers(List<Integer> extractWinNumbers) {
         Validator.validateNumberRange(extractWinNumbers);
-        Validator.validatedNumberCount(extractWinNumbers);
+        Validator.validateNumberCount(extractWinNumbers);
         Validator.validateDuplicate(extractWinNumbers);
     }
 

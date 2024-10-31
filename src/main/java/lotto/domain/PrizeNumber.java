@@ -27,7 +27,7 @@ public class PrizeNumber {
 
     private void decideRankNumber(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
         for (PrizeLotto prizeLotto : prizeLottos) {
-            if (prizeLotto.isSatisfyRule(count, lottoNumbers, winNumbers)) {
+            if (prizeLotto.isSatisfyPrizeRule(count, lottoNumbers, winNumbers)) {
                 prizeLotto.upCount();
             }
         }

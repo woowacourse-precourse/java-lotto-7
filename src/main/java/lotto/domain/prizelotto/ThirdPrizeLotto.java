@@ -15,8 +15,8 @@ public class ThirdPrizeLotto extends PrizeLotto {
     }
 
     @Override
-    public boolean isSatisfyRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
-        return (count == 5) && (!lottoNumbers.contains(winNumbers.bonusWinNumber()));
+    public boolean isSatisfyPrizeRule(int count, List<Integer> lottoNumbers, WinNumbers winNumbers) {
+        return (count == MATCH_COUNT) && (!lottoNumbers.contains(winNumbers.bonusWinNumber()));
     }
 
     @Override
