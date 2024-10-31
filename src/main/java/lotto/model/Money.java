@@ -1,13 +1,12 @@
 package lotto.model;
 
+import static lotto.model.LottoRule.MAX_PURCHASE_COUNT;
+import static lotto.model.LottoRule.PRICE;
+
 import lotto.dto.PurchaseMoneyRequestDTO;
 
 public class Money {
-    private static final int MIN_PURCHASE_AMOUNT = 1000;
-    private static final int MAX_PURCHASE_AMOUNT = 100000;
     private static final String INVALID_PURCHASE_AMOUNT_MESSAGE = "[ERROR] 구입금액은 1,000원 단위이어야 합니다.";
-
-    private static final int STANDARD_UNIT = 1000;
     private static final String INVALID_STANDARD_UNIT_MESSAGE = "[ERROR] 구입금액은 1,000 ~ 100,000까지 가능합니다.";
 
     private int money;
@@ -23,13 +22,13 @@ public class Money {
     }
 
     private void validateRange(int money) {
-        if (money < MIN_PURCHASE_AMOUNT || money > MAX_PURCHASE_AMOUNT) {
+        if (money < PRICE.getConstant() || money > PRICE.getConstant() * MAX_PURCHASE_COUNT.getConstant()) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE);
         }
     }
 
     private void validateUnit(int money) {
-        if (money % STANDARD_UNIT != 0) {
+        if (money % PRICE.getConstant() != 0) {
             throw new IllegalArgumentException(INVALID_STANDARD_UNIT_MESSAGE);
         }
     }
