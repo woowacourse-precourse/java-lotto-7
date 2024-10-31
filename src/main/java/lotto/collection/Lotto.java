@@ -1,6 +1,6 @@
 package lotto.collection;
 
-import lotto.util.LottoValidator;
+import lotto.util.Validator;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidator.run(numbers);
+        Validator.checkLottoTickets(numbers);
     }
 
     public List<Integer> getNumbers() {

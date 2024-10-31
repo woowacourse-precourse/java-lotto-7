@@ -2,7 +2,8 @@ package lotto.domain.user;
 
 import lotto.collection.Lotto;
 import lotto.collection.LottoTickets;
-import lotto.util.InputValidator;
+import lotto.collection.WinningNumbers;
+import lotto.util.Validator;
 import lotto.util.UserIdGenerator;
 
 public class User {
@@ -10,6 +11,7 @@ public class User {
     private final int id;
     private final int purchasePrice;
     private final LottoTickets lottoTickets;
+    private WinningNumbers winningNumbers;
     private long revenue;
 
     public User(String purchasePrice) {
@@ -21,9 +23,10 @@ public class User {
     }
 
     private void validate(String purchasePrice) {
-        InputValidator.checkPurchasePrice(purchasePrice);
+        Validator.checkPurchasePrice(purchasePrice);
     }
 
+    // setter
     public void addLotto(Lotto lotto) {
         this.lottoTickets.addLotto(lotto);
     }
@@ -32,6 +35,12 @@ public class User {
         this.revenue += revenue;
     }
 
+    public void addWinningNumbers(WinningNumbers winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
+
+    // getter
     public int getId() {
         return id;
     }
@@ -42,6 +51,10 @@ public class User {
 
     public LottoTickets getLottoTickets() {
         return lottoTickets;
+    }
+
+    public WinningNumbers getWinningNumbers() {
+        return winningNumbers;
     }
 
     public long getRevenue() {
