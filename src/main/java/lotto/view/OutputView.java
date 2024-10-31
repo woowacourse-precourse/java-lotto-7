@@ -1,5 +1,9 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoWallet;
+
 public class OutputView {
 
     public void printSpace() {
@@ -12,6 +16,13 @@ public class OutputView {
 
     public void printTicketCount(int count) {
         System.out.println(count + PrintMessage.TICKET_COUNT.getMessage());
+    }
+
+    public void printBoughtTicketNumbers(LottoWallet lottoWallet) {
+        List<Lotto> lottos = lottoWallet.getLottos();
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
     }
 
     public void printInputWinningNumbers() {
