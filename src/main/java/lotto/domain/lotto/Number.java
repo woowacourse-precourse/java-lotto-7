@@ -1,11 +1,11 @@
 package lotto.domain.lotto;
 
-import lotto.domain.constants.value.LottoRule;
-import lotto.domain.constants.message.RangeError;
+import lotto.constants.value.LottoRule;
+import lotto.constants.message.RangeError;
 
 import java.util.Objects;
 
-import static lotto.domain.constants.value.LottoRule.MAXIMUM_NUMBER_RANGE;
+import static lotto.constants.value.LottoRule.MAXIMUM_NUMBER_RANGE;
 
 public class Number {
 

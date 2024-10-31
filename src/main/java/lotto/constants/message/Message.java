@@ -1,4 +1,4 @@
-package lotto.domain.constants.message;
+package lotto.constants.message;
 
 public interface Message {
 
