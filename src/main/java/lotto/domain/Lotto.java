@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -19,12 +21,9 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public Lotto generateLotto(){
-        return new Lotto(randomNumbers());
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+        lottoNumbers.sort(Comparator.naturalOrder());
+        return new Lotto(lottoNumbers);
     }
-
-    private List<Integer> randomNumbers(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
 
 }
