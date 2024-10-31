@@ -23,6 +23,10 @@ public class Lotto {
             if (number == null) {
                 throw new IllegalArgumentException("로또 번호는 null 을 포함할 수 없습니다.");
             }
+
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자입니다. 잘못된 숫자 : " + number);
+            }
         }
     }
 

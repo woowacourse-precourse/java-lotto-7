@@ -45,6 +45,22 @@ class LottoTest {
                 .hasMessage("로또 번호는 null 을 포함할 수 없습니다.");
     }
 
+    @ParameterizedTest
+    @MethodSource("provideOutOfRangeNumbers")
+    void 로또_번호가_1과_45_범위를_넘어가면_예외가_발생한다(List<Integer> numbers, Integer invalidNumber) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1 ~ 45 사이의 숫자입니다. 잘못된 숫자 : %s", invalidNumber);
+    }
+
+    private static Stream<Arguments> provideOutOfRangeNumbers() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(0, 1, 2, 3, 4, 5), 0),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, -6), -6),
+                Arguments.of(Arrays.asList(41, 42, 43, 44, 45, 46), 46)
+        );
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
