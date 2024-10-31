@@ -10,7 +10,7 @@ public class OutputView implements Output {
     }
 
     @Override
-    public void printPurchaseResult(Integer purchase) {
+    public void printBuyResult(Integer purchase) {
         System.out.printf(PrintMessage.LOTTO_PURCHASE_NUMBER.getMessage(), purchase);
     }
 

@@ -6,7 +6,7 @@ public interface Output {
 
     void printlnMessage(PrintMessage printMessage);
 
-    void printPurchaseResult(Integer purchase);
+    void printBuyResult(Integer purchase);
 
     void printWinningDetail(List<String> winning);
 
