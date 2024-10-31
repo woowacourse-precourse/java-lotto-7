@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -32,5 +33,19 @@ class LottoTest {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             new Lotto(numbers);
         });
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있다면 true 를 반환한다.")
+    @Test
+    void containsBonusNumber() {
+        //given
+        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 3;
+
+        //when
+        boolean result = lotto.isDuplicateBonusNumber(bonusNumber);
+
+        //then
+        assertThat(result).isTrue();
     }
 }
