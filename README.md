@@ -106,7 +106,9 @@
 - getUserInput 
   - 문자열을 입력받는다. 
 - isNumeric 
-  - 숫자 문자열인지 확인한다. 
+  - 숫자 문자열인지 확인한다.
+- isLessThanFirstPrizeAmount
+  - 1등 당첨금보다 적은 액수인지 확인한다.
 - isDivisibleBy1000 
   - 1000으로 나누어 떨어지는 숫자인지 확인한다.
 
