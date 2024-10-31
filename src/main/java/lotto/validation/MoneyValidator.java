@@ -9,7 +9,7 @@ public class MoneyValidator {
 
   public static void validateMoney(Integer money) {
     if (money <= MINIMUM_AMOUNT) {
-      throw new IllegalArgumentException(ErrorMessage.INVALID_TURN_NUMBER.getMessage());
+      throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
     }
     if (money % MONEY_UNIT != DIVISIBILITY_CHECK) {
       throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_UNIT.getMessage());

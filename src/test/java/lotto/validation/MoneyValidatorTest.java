@@ -30,6 +30,6 @@ public class MoneyValidatorTest {
 
         assertThatThrownBy(() -> MoneyValidator.validateMoney(money))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage(ErrorMessage.INVALID_TURN_NUMBER.getMessage());
+            .hasMessage(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
     }
 }
