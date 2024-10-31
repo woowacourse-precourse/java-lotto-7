@@ -15,7 +15,7 @@ public class LottoView {
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-
+    //구입금액 입력
     public int inputPurchaseAmountProcess() {
         while (true) {
             try {
@@ -51,7 +51,7 @@ public class LottoView {
 
     }
 
-
+    //당첨번호 입력
     public List<Integer> inputWinningNumbersProcess() {
         while (true) {
             try {
@@ -88,6 +88,33 @@ public class LottoView {
             return winningNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("정수가 아님.");
+        }
+
+    }
+
+    //보너스 번호 입력
+    public int inputBonusNumberProcess() {
+        while (true) {
+            try {
+                String inputBonusNumber = readLine();
+                int bonusNumber = validateBonusNumber(inputBonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                System.out.println(ERROR_MESSAGE + " " + "1부터 45사이의 숫자를 입력해주세요.");
+            }
+        }
+
+    }
+
+    public int validateBonusNumber(String inputBonusNumbers) {
+
+        try {
+            int bonusNumber = Integer.parseInt(inputBonusNumbers);
+            if (bonusNumber < 1 || bonusNumber > 45) throw new IllegalArgumentException("1부터 45사이의 숫자가 아닙니다.");
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자가 아닙니다.");
         }
 
     }
