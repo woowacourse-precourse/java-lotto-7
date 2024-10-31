@@ -118,4 +118,20 @@ class WinningLottoTest {
         // then
         assertEquals(lottoRank, LottoRank.FIRST);
     }
+
+    @Test
+    @DisplayName("당첨 번호와 같은 숫자가 4개이고, 보너스 번호가 일치하면 4등이여야 한다.")
+    void should_ReturnFourthRank_When_MatchCountIsFourAndContainsBonusNumber() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        Lotto target = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+
+        // when
+        LottoRank lottoRank = winningLotto.calculateRank(target);
+
+        // then
+        assertEquals(lottoRank, LottoRank.FOURTH);
+    }
 }
