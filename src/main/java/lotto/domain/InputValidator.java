@@ -44,6 +44,22 @@ public class InputValidator {
     }
 
     /**
+     * 올바른 당첨 번호 입력 받기
+     */
+    public static List<Integer> getValidPrizeNumber() {
+        try {
+            String[] numbers = splitString(InputView.getPrizeNumber());
+            List<Integer> prizeNumbers = convertIntegers(numbers);
+            isValidLength(prizeNumbers);
+            isDuplicate(prizeNumbers);
+
+            return prizeNumbers;
+        } catch (IllegalArgumentException e) {
+            return getValidPrizeNumber();
+        }
+    }
+
+    /**
      * 쉼표를 기준으로 문자열 분리
      */
     public static String[] splitString(String input) {
