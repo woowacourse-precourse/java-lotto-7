@@ -1,10 +1,5 @@
 package lotto.constant;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import lotto.domain.Rank;
-
 public enum OutputMessage {
     PURCHASE_COUNT_MESSAGE("개를 구매했습니다."),
     STATISTICS_MESSAGE("당첨 통계"),
