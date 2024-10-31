@@ -1,7 +1,7 @@
-package lotto.domain.lottofactory;
+package lotto.domain.numberlotto.lottofactory;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.lotto.Lotto;
+import lotto.domain.numberlotto.lotto.Lotto;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package lotto.domain.constants.message;
+package lotto.domain.numberlotto.constants.message;
 
-import lotto.domain.constants.value.LottoRule;
+import lotto.domain.numberlotto.constants.value.LottoRule;
 
 public enum RangeError implements Message {
     NUMBER("[ERROR] 로또 번호는 "+ LottoRule.MINIMUM_NUMBER_RANGE.getValue() +"부터 "+ LottoRule.MAXIMUM_NUMBER_RANGE.getValue() +"사이여야 합니다."),
