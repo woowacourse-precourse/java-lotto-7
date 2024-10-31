@@ -35,4 +35,12 @@ public class Parser {
             throw LottoException.from(ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER);
         }
     }
+    public static List<String> parsingResult(List<Integer> result, double profit) {
+        List<String> convertedResult = new ArrayList<>();
+        for(int accordCount : result) {
+            convertedResult.add(String.valueOf(accordCount));
+        }
+        convertedResult.add(String.format("%.1f", profit));
+        return convertedResult;
+    }
 }
