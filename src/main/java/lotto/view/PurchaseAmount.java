@@ -11,7 +11,9 @@ public final class PurchaseAmount {
             try {
                 Output.printlnMessage(IOMessage.INPUT_PURCHASE_AMOUNT.getMessage());
                 String purchaseAmountStr = Input.inputMessage();
-                return PurchaseAmountValidation.purchaseAmountValidation(purchaseAmountStr);
+                int purchaseQuantity = PurchaseAmountValidation.purchaseAmountValidation(purchaseAmountStr);
+                Output.printlnFormattedMessage(IOMessage.OUTPUT_PURCHASE_QUANTITY.getMessage(), purchaseQuantity);
+                return purchaseQuantity;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);
             }
