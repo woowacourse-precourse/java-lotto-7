@@ -87,6 +87,7 @@ public class LottoGame {
     private void showResult(WinningResult result) {
         outputHandler.showWinningStatisticsComment();
         outputHandler.showWinningResult(result);
+        outputHandler.showTotalPrize(result);
     }
-    
+
 }

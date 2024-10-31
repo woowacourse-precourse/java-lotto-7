@@ -35,6 +35,10 @@ public class OutputHandler {
         System.out.println(Rank.notationFrom(result));
     }
 
+    public void showTotalPrize(WinningResult result) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", result.getProfitRate());
+    }
+
     private void showPurchaseInformation(List<Lotto> lottos) {
         System.out.printf("%d개를 구매했습니다.%n", lottos.size());
     }
