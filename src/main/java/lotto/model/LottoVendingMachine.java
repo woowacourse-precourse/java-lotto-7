@@ -6,9 +6,9 @@ import lotto.provider.NumbersProvider;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LottoVendingMachine {
+import static lotto.model.LottoOption.*;
 
-    public static final int LOTTO_PRICE = 1000;
+public class LottoVendingMachine {
 
     private final int cost;
 
@@ -24,20 +24,20 @@ public class LottoVendingMachine {
     }
 
     public int getAvailableQuantity() {
-        return cost / LOTTO_PRICE;
+        return cost / SALE_PRICE.value();
     }
 
     private void validate(int cost) {
-        if (cost < LOTTO_PRICE) {
-            throw new GameException("로또 구입 금액은 %s원 이상이어야 합니다.".formatted(LOTTO_PRICE));
+        if (cost < SALE_PRICE.value()) {
+            throw new GameException("로또 구입 금액은 %s원 이상이어야 합니다.".formatted(SALE_PRICE.value()));
         }
         if (hasRemain(cost)) {
-            throw new GameException("로또 구입 금액은 %s원 단위로 입력해야 합니다.".formatted(LOTTO_PRICE));
+            throw new GameException("로또 구입 금액은 %s원 단위로 입력해야 합니다.".formatted(SALE_PRICE.value()));
         }
     }
 
     private boolean hasRemain(int cost) {
-        return cost % LOTTO_PRICE != 0;
+        return cost % SALE_PRICE.value() != 0;
     }
 
 }

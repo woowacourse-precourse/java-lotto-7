@@ -17,7 +17,7 @@ public class WinningResult {
     }
 
     public double getProfitRate() {
-        return (totalPrize() / (double) (totalCount() * 1000)) * PERCENTAGE;
+        return (totalPrize() / (double) (totalCount() * LottoOption.SALE_PRICE.value())) * PERCENTAGE;
     }
 
     private long totalPrize() {
