@@ -11,7 +11,8 @@ public class LottoWinningNumbersValidatorTest {
     private final LottoWinningNumbersValidator lottoWinningNumbersValidator;
 
     public LottoWinningNumbersValidatorTest() {
-        this.lottoWinningNumbersValidator = new LottoWinningNumbersValidator(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+        LottoNumberValidator lottoNumberValidator = new LottoNumberValidator(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+        this.lottoWinningNumbersValidator = new LottoWinningNumbersValidator(lottoNumberValidator);
     }
 
     @Test
