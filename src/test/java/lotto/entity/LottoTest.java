@@ -166,4 +166,11 @@ class LottoTest {
         // then
         assertThrowsExactly(UnsupportedOperationException.class, () -> numbers.add(7));
     }
+
+    @Test
+    void 로또_정적펙토리_테스트() {
+        for (int i = 0; i < 10; i++) {
+            Lotto.createRandomLotto();
+        }
+    }
 }
