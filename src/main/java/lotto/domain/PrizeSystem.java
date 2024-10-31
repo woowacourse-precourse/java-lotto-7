@@ -71,4 +71,24 @@ public class PrizeSystem {
         }
         thirdPrizeCount += 1;
     }
+
+    /**
+     * 총 당첨 금액 계산
+     */
+    public int getPrizeMoney() {
+        int prizeMoney = PrizeMoney.PRIZE_FIRST.getPrizeMoney() * firstPrizeCount +
+                PrizeMoney.PRIZE_SECOND.getPrizeMoney() * secondPrizeCount +
+                PrizeMoney.PRIZE_THIRD.getPrizeMoney() * thirdPrizeCount +
+                PrizeMoney.PRIZE_FOURTH.getPrizeMoney() * fourthPrizeCount +
+                PrizeMoney.PRIZE_FIFTH.getPrizeMoney() * fifthPrizeCount;
+        return prizeMoney;
+    }
+
+    /**
+     * 수익률 계산
+     */
+    public double getProfit(int purchaseMoney, int prizeMoney) {
+        double profit = prizeMoney / purchaseMoney * 100;
+        return profit;
+    }
 }
