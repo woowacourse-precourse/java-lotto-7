@@ -55,19 +55,19 @@ public class View {
     public Lotto getWinningInput(){
         System.out.println(LOTTO_WINNING_INPUT);
         String rawWinningInput = Console.readLine();
+        Lotto answer;
         try {
-            Lotto answer = new Lotto(Arrays.asList(rawWinningInput.split(COMMA)).stream()
+            answer = new Lotto(Arrays.asList(rawWinningInput.split(COMMA)).stream()
                     .map(Application::parseInt)
                     .collect(Collectors.toList()));
         }
         catch (IllegalArgumentException e){
             return getWinningInput();
         }
-        this.answer = answer;
         return answer;
     }
 
-    public Integer getBonusInput(){
+    public Integer getBonusInput(Lotto answer){
         System.out.println(LOTTO_BONUS_INPUT);
         String rawBonus  = Console.readLine();
         Integer bonus = 0;
@@ -77,7 +77,7 @@ public class View {
             checkRange(bonus);
         }
         catch (IllegalArgumentException e){
-            return getBonusInput();
+            return getBonusInput(answer);
         }
         return bonus;
     }
