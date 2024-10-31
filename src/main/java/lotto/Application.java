@@ -7,7 +7,10 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static List<Integer> selectRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange( 1, 45, 6 );
+        return Randoms.pickUniqueNumbersInRange( Constants.MIN_NUMBER, Constants.MAX_NUMBER, Constants.NUM_COUNT );
+    }
+    public static Lotto publishLotto(){
+        return new Lotto( selectRandomNumbers() );
     }
 
     public static void main(String[] args) {
