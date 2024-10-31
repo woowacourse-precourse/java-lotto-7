@@ -1,5 +1,8 @@
-package lotto.domain.factory;
+package lotto.service;
 
+import java.util.List;
+import lotto.domain.factory.RandomLottoMachine;
+import lotto.domain.lottos.Lotto;
 import lotto.domain.lottos.RandomLottos;
 
 public class RandomLottoFactory {
@@ -10,7 +13,8 @@ public class RandomLottoFactory {
     }
 
     public RandomLottos make() {
-        return new RandomLottos(lottoMachine.makeLottos());
+        List<Lotto> lottos = lottoMachine.makeLottos();
+        return new RandomLottos(lottos);
     }
 
 }
