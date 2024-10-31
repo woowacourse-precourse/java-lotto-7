@@ -1,20 +1,25 @@
 package lotto.domain;
 
+import lotto.common.validator.LottoValidator;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        this.numbers = createNumbers(numbers);
+        LottoValidator.validate(this.numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    public List<Number> getNumbers() {
+        return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    private List<Number> createNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(n -> new Number(String.valueOf(n)))
+                .collect(Collectors.toList());
+    }
 }
