@@ -79,12 +79,15 @@ public class LottoController {
         hitLottoDAO.save(hitLotto);
     }
 
-    public void checkLotto(List<Integer> lottos, List<Integer> hitLottos) {
-        Set<Integer> lottoNumber = new HashSet<>(lottos);
-        Set<Integer> hitLottoNumber = new HashSet<>(hitLottos);
-
-        lottoNumber.retainAll(hitLottoNumber); //두 세트의 공통 원소만 뽑아서 합친 세트
+    public void retainLotto(List<Lotto> alllottos, List<HitLotto> hitLottos) {
+        for (Lotto lotto: alllottos ) {
+            Set<Lotto> lottoNumber = new HashSet<>(alllottos);
+            Set<HitLotto> hitLottoNumber = new HashSet<>(hitLottos);
+            lottoNumber.retainAll(hitLottoNumber); //두 세트의 공통 원소만 뽑아서 합친 세트
+            int hitSize = lottoNumber.size();
+        }
 
     }
+
 
 }
