@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.ui.InputView;
+import lotto.ui.OutputView;
 import lotto.validators.BonusNumberValidator;
 import lotto.validators.LottoNumberValidator;
 import lotto.validators.PurchaseAmountValidator;

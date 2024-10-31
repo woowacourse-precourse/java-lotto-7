@@ -1,13 +1,13 @@
-package lotto;
+package lotto.ui;
+
+import lotto.Observer;
 
 import java.util.List;
 
 public class OutputView implements Observer {
-    private static final String PURCHASED_MESSAGE = "개를 구매했습니다.";
-
     @Override
     public void update(int lottoCount) {
-        System.out.println(lottoCount + PURCHASED_MESSAGE);
+        System.out.println(lottoCount + ResultText.PURCHASED.getText());
     }
 
     @Override
