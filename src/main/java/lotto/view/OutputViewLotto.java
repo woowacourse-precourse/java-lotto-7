@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.model.BuyLotto;
 import lotto.item.Money;
 
-public class OutViewLotto {
+public class OutputViewLotto {
     public void viewLottoList(Money money, BuyLotto buyLotto) {
         int times = money.getMoneyValue() / 1000;
         System.out.println(times + "개를 구매했습니다.");

@@ -7,7 +7,7 @@ import lotto.item.AdditionalNumber;
 import lotto.item.Lotto;
 import lotto.item.Money;
 
-public class inputView {
+public class InputViewLotto {
     private static Money getUserMoney() {
         System.out.print("원하는 금액을 입력하세요 : ");
         String money = Console.readLine();

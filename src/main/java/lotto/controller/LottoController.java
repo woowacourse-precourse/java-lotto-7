@@ -7,11 +7,11 @@ import lotto.item.Money;
 import lotto.model.BuyLotto;
 import lotto.model.CalculateResult;
 import lotto.model.MatchLotto;
-import lotto.view.OutViewLotto;
-import lotto.view.inputView;
+import lotto.view.OutputViewLotto;
+import lotto.view.InputViewLotto;
 
 public class LottoController {
-    inputView Input = new inputView();
+    InputViewLotto Input = new InputViewLotto();
     Money money = Input.getMoney();
     Lotto lotto = Input.getLotto();
     AdditionalNumber additionalNumber = Input.getAdditionalNumber();
@@ -37,7 +37,7 @@ public class LottoController {
     }
 
     public void Display(HashMap<Integer, Integer> result, float rewordRatio){
-        OutViewLotto Output = new OutViewLotto();
+        OutputViewLotto Output = new OutputViewLotto();
         Output.viewLottoList(money, BuyLotto);
         Output.ViewResultDetail(result);
         Output.ViewResultPrice(rewordRatio);
@@ -50,5 +50,3 @@ public class LottoController {
         Display(result, rewordRatio);
     }
     }
-
-
