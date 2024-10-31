@@ -22,6 +22,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
         Lottos lottos = drawLottoNumbers(purchaseAmount.calculateLottoCount());
         printLottoInformation(lottos.count(), lottos.information());
+        requestWinningNumbers();
     }
 
     private void requestPurchaseAmount() {
@@ -45,5 +46,9 @@ public class LottoController {
     private void printLottoInformation(int lottoCount, String lottoInformation) {
         outputView.printLottoCount(lottoCount);
         outputView.printLottoInformation(lottoInformation);
+    }
+
+    private void requestWinningNumbers() {
+        outputView.requestWinningNumbers();
     }
 }
