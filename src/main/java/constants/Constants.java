@@ -9,9 +9,6 @@ public class Constants {
 
     public static final char LOTTO_NUMBER_DELIMITER = ',';
 
-    public static final int REWARD_PRICE_1ST = 2000000000;
-    public static final int REWARD_PRICE_2ND = 30000000;
-    public static final int REWARD_PRICE_3RD = 1500000;
-    public static final int REWARD_PRICE_4TH = 50000;
-    public static final int REWARD_PRICE_5TH = 5000;
+    public static final int REWARD_TYPE_COUNT = 5;
+    public static final int[] REWARD_PRICE = {2000000000, 30000000, 1500000, 50000, 5000};
 }
