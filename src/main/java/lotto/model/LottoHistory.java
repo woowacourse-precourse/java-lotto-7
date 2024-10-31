@@ -16,14 +16,6 @@ public class LottoHistory {
         this.lottoStatistic = new LottoStatistic(rankList);
     }
 
-    public WinningLotto getWinningLotto() {
-        return winningLotto;
-    }
-
-    public List<Lotto> getBoughtLottoList() {
-        return List.copyOf(boughtLottoList);
-    }
-
     public LottoStatistic getLottoStatistic() {
         return lottoStatistic;
     }
