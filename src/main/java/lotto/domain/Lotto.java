@@ -33,7 +33,7 @@ public class Lotto {
     };
 
     //방어적 복사
-    public List<Component> getNumbers() {
+    public List<Component> getInstance() {
         return new ArrayList<>(numbers);
     }
 
