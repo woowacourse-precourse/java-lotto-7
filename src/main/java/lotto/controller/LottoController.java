@@ -5,95 +5,88 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.ErrorMessage;
-import lotto.LottoManager;
-import lotto.model.Lottos;
-import lotto.NumberGenerate;
+import lotto.service.LottoService;
+import lotto.model.BonusBall;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
+import lotto.util.NumberGenerate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    public static final int LOTTO_PRICE = 1000;
-
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoManager lottoManager;
+    private final LottoService lottoService;
 
     public LottoController(InputView inputView, OutputView outputView, NumberGenerate lottoGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoManager = new LottoManager(lottoGenerator);
+        this.lottoService = new LottoService(lottoGenerator);
     }
 
     public void run() {
-        int money = lottoMoneyInput();
+        List<Lotto> purchasedLotto = lottoMoneyInput();
 
-        Lottos lottos = lottoManager.buyLotto(money);
-        outputView.showHowManyLotto(lottos);
-        outputView.showAllLottoNums(lottos);
+        outputView.showHowManyLotto(purchasedLotto);
+        outputView.showAllLottoNums(purchasedLotto);
 
-        List<Integer> numbers;
+        WinningLotto prizeWinningLotto = winningLottoInput();
+    }
+
+    private List<Lotto> lottoMoneyInput() {
+        while (true) {
+            try {
+                int money = inputView.lottoMoneyInput();
+                return lottoService.purchaseLotto(money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto winningLottoInput() {
+        Lotto prizeLotto = prizeNumberInput();
+        BonusBall bonusBall = bonusBallInput(prizeLotto);
+        return new WinningLotto(prizeLotto, bonusBall);
+    }
+
+    private Lotto prizeNumberInput() {
         while (true) {
             try {
                 String rawNumbers = inputView.lottoNumsInput();
-                numbers = Arrays.stream(rawNumbers.split(","))
-                        .map(Integer::parseInt)
-                        .toList();
-                validateNumberDuplication(numbers);
+                List<Integer> numbers = StringToIntList(rawNumbers);
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            break;
         }
+    }
 
-        int bonusNumbers;
+    private BonusBall bonusBallInput(Lotto lotto) {
         while (true) {
             try {
-                bonusNumbers = inputView.lottoBounsNumInput();
-                validateBonusNumberDuplication(numbers, bonusNumbers);
+                int bonusNumbers = inputView.lottoBonusNumInput();
+                BonusBall bonusBall = new BonusBall(bonusNumbers);
+                validateBonusNumberDuplication(lotto, bonusBall);
+                return bonusBall;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                continue;
             }
-            break;
         }
     }
 
-    private void validateNumberDuplication(List<Integer> numbers) {
-        Set<Integer> duplication = new HashSet<>(numbers);
-        if (duplication.size() != numbers.size()) {
+    private List<Integer> StringToIntList(String rawNumbers) {
+        return Arrays.stream(rawNumbers.split(","))
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    private static void validateBonusNumberDuplication(Lotto lotto, BonusBall bonus) {
+        Set<Integer> duplication = new HashSet<>(lotto.lottoNums());
+        duplication.add(bonus.getNum());
+        if (duplication.size() != 7) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMS_DUPLICATION.getMsg());
-        }
-    }
-
-    private void validateBonusNumberDuplication(List<Integer> numbers, int bonus) {
-        Set<Integer> duplication = new HashSet<>(numbers);
-        duplication.add(bonus);
-        if (duplication.size() != (numbers.size() + 1)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMS_DUPLICATION.getMsg());
-        }
-    }
-
-    private int lottoMoneyInput() {
-        int money;
-        while (true) {
-            try {
-                money = inputView.lottoMoneyInput();
-                validateIsRightNumber(money);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                continue;
-            }
-            break;
-        }
-
-        return money;
-    }
-
-    private void validateIsRightNumber(int value) {
-        if (value % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_NOT_DIVIDE_PRICE.getMsg());
         }
     }
 }

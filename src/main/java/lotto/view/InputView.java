@@ -12,9 +12,7 @@ public class InputView {
     public int lottoMoneyInput() {
         System.out.println(ASK_MONEY_INPUT);
         String rawMoney = Console.readLine();
-
         validateIsNumber(rawMoney);
-
         return Integer.parseInt(rawMoney);
     }
 
@@ -23,10 +21,9 @@ public class InputView {
         return Console.readLine();
     }
 
-    public int lottoBounsNumInput() {
+    public int lottoBonusNumInput() {
         System.out.println(ASK_LOTTO_BONUS_NUM_INPUT);
         String rawNumber = Console.readLine();
-
         validateIsNumber(rawNumber);
         return Integer.parseInt(rawNumber);
     }
@@ -35,7 +32,7 @@ public class InputView {
         try {
             Integer.parseInt(rawValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_NOT_NUMBER.getMsg());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMsg());
         }
     }
 }

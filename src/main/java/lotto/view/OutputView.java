@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.Lottos;
+import java.util.List;
 import lotto.model.Lotto;
 
 public class OutputView {
@@ -8,13 +8,13 @@ public class OutputView {
     private static final String LOTTO_CNT_MSG = "%d개를 구매했습니다.\n";
     private static final String LOTTO_NUMBERS = "[%s]\n";
 
-    public void showHowManyLotto(Lottos lottos) {
+    public void showHowManyLotto(List<Lotto> lottos) {
         System.out.println();
         System.out.printf(LOTTO_CNT_MSG, lottos.size());
     }
 
-    public void showAllLottoNums(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottos()) {
+    public void showAllLottoNums(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
             showLottoNums(lotto);
         }
     }
