@@ -21,7 +21,7 @@
 Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 기능 목록
-- [ ] 구매 금액 입력 받기
+- [X] 구매 금액 입력 받기
   - [ ] 구매 금액 입력 예외 처리
 - [ ] 구매 금액에 해당하는 만큼 로또 발행하기
 - [ ] 로또 발행
