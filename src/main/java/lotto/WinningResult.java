@@ -1,0 +1,42 @@
+package lotto;
+
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+
+public class WinningResult {
+
+    private final WinningNumbers winningNumbers;
+    private final List<Lotto> lottos;
+
+    public WinningResult(final WinningNumbers winningNumbers, final List<Lotto> lottos) {
+        this.winningNumbers = winningNumbers;
+        this.lottos = lottos;
+    }
+
+    public Map<LottoRank, Integer> getLottoRanks() {
+        final Map<LottoRank, Integer> lottoRanks = initializeLottoRanks();
+        for (Lotto lotto : lottos) {
+            final LottoRank lottoRank = calculateLottoRank(lotto);
+            final Integer count = lottoRanks.getOrDefault(lottoRank, 0);
+            lottoRanks.put(lottoRank, count + 1);
+        }
+        return lottoRanks;
+    }
+
+    private Map<LottoRank, Integer> initializeLottoRanks() {
+        final Map<LottoRank, Integer> lottoRanks = new EnumMap<>(LottoRank.class);
+        final List<LottoRank> allLottoRankWithOutRankNone = LottoRank.findAllLottoRankWithOutRankNone();
+        for (LottoRank lottoRank : allLottoRankWithOutRankNone) {
+            lottoRanks.put(lottoRank, 0);
+        }
+        return lottoRanks;
+    }
+
+    private LottoRank calculateLottoRank(final Lotto lotto) {
+        final List<Integer> numbers = lotto.getNumbers();
+        final int matchCount = winningNumbers.countMatchNumber(numbers);
+        final boolean matchBonusNumber = winningNumbers.isMatchBonusNumber(numbers);
+        return LottoRank.findByMatchCountAndMatchBonus(matchCount, matchBonusNumber);
+    }
+}
