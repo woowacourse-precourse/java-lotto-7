@@ -4,7 +4,7 @@ public enum LottoConstInteger {
     LOTTO_PRICE(1000),
     LOTTO_START_NUMBER(1),
     LOTTO_END_NUMBER(45),
-    LOTTO_WINNING_NUMBER_COUNT(6),
+    LOTTO_NUMBER_COUNT(6),
     BONUS_NUMBER_COUNT(1),
 
     ;

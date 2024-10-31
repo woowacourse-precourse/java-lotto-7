@@ -18,7 +18,7 @@ public enum InputError {
     // 로또 당첨 번호 예외
     LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT("로또 당첨 번호에는 숫자와 구분자만을 입력하셔야 합니다."),
     LOTTO_WINNING_NUMBER_NOT_EQUAL_COUNT("로또 당첨 번호는 정확히 "
-            + LottoConstInteger.LOTTO_WINNING_NUMBER_COUNT.getValue()
+            + LottoConstInteger.LOTTO_NUMBER_COUNT.getValue()
             + " 개를 입력하셔야 합니다."),
     LOTTO_WINNING_NUMBER_NOT_IN_BETWEEN_START_AND_END("로또 당첨 번호는 "
             + LottoConstInteger.LOTTO_START_NUMBER.getValue()
