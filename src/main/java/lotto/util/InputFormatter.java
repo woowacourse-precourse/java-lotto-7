@@ -24,9 +24,19 @@ public class InputFormatter {
     }
 
     private void validateMoneyInput(String moneyInput) {
-        validateMoneyFormat(moneyInput);
-        validateMoneyIsPositive(moneyInput);
-        validateMoneyUnit(moneyInput);
+        try {
+            Integer.parseInt(moneyInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 정수여야 합니다.");
+        }
+
+        if (Integer.parseInt(moneyInput) <= 0) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 1원 이상이어야 합니다.");
+        }
+
+        if ((Integer.parseInt(moneyInput) % LottoConstant.MONEY_UNIT.getNumber()) != 0) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 1000원 단위여야 합니다.");
+        }
     }
 
     private void validateWinningNumbersInput(String winningNumbersInput) {
@@ -42,28 +52,6 @@ public class InputFormatter {
             Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자의 형식이 잘못되었습니다.");
-        }
-    }
-
-    private void validateMoneyFormat(String moneyInput) {
-        try {
-            Integer.parseInt(moneyInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 정수여야 합니다.");
-        }
-    }
-
-    private void validateMoneyIsPositive(String moneyInput) {
-        int money = Integer.parseInt(moneyInput);
-        if (money <= 0) {
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 1원 이상이어야 합니다.");
-        }
-    }
-
-    private void validateMoneyUnit(String moneyInput) {
-        int money = Integer.parseInt(moneyInput);
-        if ((money % LottoConstant.MONEY_UNIT.getNumber()) != 0) {
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 1000원 단위여야 합니다.");
         }
     }
 
