@@ -7,6 +7,10 @@ import lotto.constant.LottoConstant;
 
 public class Lotto {
 
+    private static final String LOTTO_MESSAGE_PREFIX = "[";
+    private static final String LOTTO_MESSAGE_SUFFIX = "]";
+    private static final String COMMA = ", ";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -47,9 +51,9 @@ public class Lotto {
     @Override
     public String toString() {
         List<Integer> sortedNumbers = numbers.stream().sorted().toList();
-        return "[" + String.join(", ", sortedNumbers
+        return LOTTO_MESSAGE_PREFIX + String.join(COMMA, sortedNumbers
                 .stream()
                 .map(Object::toString)
-                .toList()) + "]";
+                .toList()) + LOTTO_MESSAGE_SUFFIX;
     }
 }
