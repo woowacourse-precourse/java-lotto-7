@@ -6,7 +6,7 @@ import lotto.util.Converter;
 import java.util.regex.Pattern;
 
 public class LottoValidator {
-    private static final Pattern LOTTO_NUMBER_FORMAT = Pattern.compile("^//d+(,//d+)*$");
+    private static final Pattern LOTTO_NUMBER_FORMAT = Pattern.compile("^-?\\d+(,-?\\d+)*$");
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
     private static final int WINNING_NUMBER_COUNT = 6;
