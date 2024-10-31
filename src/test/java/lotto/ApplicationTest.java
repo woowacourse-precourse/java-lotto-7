@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.validation.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -54,10 +55,10 @@ class ApplicationTest extends NsTest {
     }
     @Test
     void divideByThousand_예외_메시지_테스트_숫자만_입력() {
-        Application application = new Application();
+        Parser parser = new Parser();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            application.isNumeric("abc");
+            parser.stringToInt("abc");
         });
 
         Assertions.assertEquals("[ERROR] 숫자만 입력해 주세요.", exception.getMessage());
@@ -82,17 +83,6 @@ class ApplicationTest extends NsTest {
         });
 
         Assertions.assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
-    }
-
-    @Test
-    void 예외_메시지_테스트_숫자만_입력() {
-        Application application = new Application();
-
-        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            application.isNumeric("a");
-        });
-
-        Assertions.assertEquals("[ERROR] 숫자만 입력해 주세요.", exception.getMessage());
     }
 
     @Test
