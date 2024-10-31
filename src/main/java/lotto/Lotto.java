@@ -1,9 +1,14 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
+
+    public Lotto() {
+        this.numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,5 +21,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void printLotto() {
+        String lottoPrintMessage = "[" +
+                numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "))
+                + "]";
+        System.out.println(lottoPrintMessage);
+    }
+
 }
