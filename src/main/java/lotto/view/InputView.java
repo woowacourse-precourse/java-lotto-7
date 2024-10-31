@@ -108,5 +108,9 @@ public class InputView {
         if (!Utils.isDigitOnly(userInput)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage() + " : " + userInput);
         }
+        BigDecimal count = Utils.stringToNumber(userInput);
+        if (!Utils.isInRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), count)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage() + " : " + userInput);
+        }
     }
 }
