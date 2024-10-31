@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import lotto.Lotto;
-import lotto.util.Validator;
 
 public class LottoTicket {
 
@@ -10,5 +9,9 @@ public class LottoTicket {
 
     public LottoTicket(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public int getLottosCount() {
+        return lottos.size();
     }
 }

@@ -2,15 +2,17 @@ package lotto.controller;
 
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
-import lotto.util.Validator;
 import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class LottoController {
 
     private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
 
-    public LottoController(LottoInputView lottoInputView) {
+    public LottoController(LottoInputView lottoInputView, LottoOutputView lottoOutputView) {
         this.lottoInputView = lottoInputView;
+        this.lottoOutputView = lottoOutputView;
     }
 
     public void run() {
@@ -28,6 +30,9 @@ public class LottoController {
 
     private LottoTicket createLottoTicket() {
         String purchaseMoney = lottoInputView.getLottoPurchaseMoney();
-        return LottoStore.makeLottoTicket(purchaseMoney);
+        LottoTicket lottoTicket = LottoStore.makeLottoTicket(purchaseMoney);
+        lottoOutputView.printLottoCount(lottoTicket.getLottosCount());
+
+        return lottoTicket;
     }
 }
