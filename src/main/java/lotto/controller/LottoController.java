@@ -16,10 +16,10 @@ public class LottoController {
     private int ticketCount;
     private WinningNumber winningNumber;
 
-    public LottoController(){
-        convertValidValue = new InputConverter();
-        lottoGenerator = new LottoGenerator();
-        purchasedLotto = new PurchasedLotto();
+    public LottoController(InputConverter inputConverter, LottoGenerator lottoGenerator, PurchasedLotto purchasedLotto) {
+        convertValidValue = inputConverter;
+        this.lottoGenerator = lottoGenerator;
+        this.purchasedLotto = purchasedLotto;
         ticketCount = 0;
     }
 
@@ -47,6 +47,7 @@ public class LottoController {
         for(int i = 0; i< ticketCount; i++){
             purchasedLotto.addLotto(lottoGenerator.generate());
         }
+        OutputView.showPurchasedNumbers(purchasedLotto.getLottos());
     }
 
     private Lotto getWinningLotto(){

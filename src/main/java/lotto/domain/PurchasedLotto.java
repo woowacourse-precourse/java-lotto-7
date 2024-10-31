@@ -41,6 +41,7 @@ public class PurchasedLotto {
             earnedMoney += prize.getRewards();
 
             prizes.put(prize, prizes.getOrDefault(prize, 0) + 1);
+
         }
     }
 

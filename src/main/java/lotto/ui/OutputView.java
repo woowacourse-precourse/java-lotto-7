@@ -7,10 +7,11 @@ import lotto.domain.Prize;
 
 public class OutputView {
     public static void showPurchasedNumbers(List<Lotto> lottos){
+        System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
 
         for(Lotto lotto : lottos){
-            System.out.println(lotto.toString());
+            System.out.println(lotto.toString());g
         }
     }
 
