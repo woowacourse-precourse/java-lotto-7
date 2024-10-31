@@ -1,5 +1,6 @@
 package lotto.mvc.controller;
 
+import lotto.mvc.validation.PurchaseAmountValidator;
 import lotto.mvc.view.InputView;
 
 public class LottoController {
@@ -11,9 +12,14 @@ public class LottoController {
 
     public void run() {
         inputView.showPurchaseAmountMsg();
+
         String purchaseAmount = inputView.getUserInput();
         purchaseAmount = trimInput(purchaseAmount);
         purchaseAmount = removeDelimiter(purchaseAmount);
+
+        PurchaseAmountValidator.isValid(purchaseAmount);
+
+        int count = extractLottoCount(purchaseAmount);
     }
 
     private String trimInput(String input) {
@@ -29,5 +35,10 @@ public class LottoController {
         }
 
         return output.toString();
+    }
+
+    private int extractLottoCount(String input) {
+        Long count = Long.parseLong(input) / 1000;
+        return count.intValue();
     }
 }

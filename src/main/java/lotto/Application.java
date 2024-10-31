@@ -8,11 +8,5 @@ public class Application {
         LottoController lottoController = new LottoController(new InputView());
 
         lottoController.run();
-
-        String s = "-1111111111111111111111";
-
-        long lon = Long.parseLong(s);
-
-        System.out.println("lon = " + lon);
     }
 }
