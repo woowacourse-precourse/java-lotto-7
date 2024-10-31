@@ -34,4 +34,15 @@ public class LottoResult {
         rankCnt.put(rank, rankCnt.get(rank) + 1);
     }
 
+    private long calculateTotalPrize() {
+        return rankCnt.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getAmount() * entry.getValue())
+                .sum();
+    }
+
+    public double calculateProfitRate() {
+        long totalPrize = calculateTotalPrize();
+        return (totalPrize * 100.0) /purchaseAmount;
+    }
+
 }
