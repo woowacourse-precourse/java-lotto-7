@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.controller.LottoMachine;
+import lotto.model.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
