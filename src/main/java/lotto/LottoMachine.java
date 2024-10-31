@@ -16,7 +16,6 @@ public class LottoMachine {
     }
 
     public void inputMoney() {
-        int m;
         while(true) {
             Output.money();
             try {
@@ -48,7 +47,7 @@ public class LottoMachine {
         while(true) {
             Output.bonus();
             try {
-                bonus = Input.bonus();
+                bonus = Input.bonus(win);
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());

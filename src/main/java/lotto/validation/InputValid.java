@@ -25,6 +25,12 @@ public class InputValid {
         return new Lotto(new ArrayList<>(numbers));
     }
 
+    public static int checkBonus(String input, Lotto win) {
+        int num = checkEachNum(input);
+
+        return num;
+    }
+
     public static int checkInt(String input) throws IllegalArgumentException {
         try {
             return Integer.parseInt(input);
@@ -34,10 +40,10 @@ public class InputValid {
     }
 
     public static int checkEachNum(String input) throws IllegalArgumentException {
-        int n = checkInt(input);
-        if(n<1 || n>45) {
+        int num = checkInt(input);
+        if(num<1 || num>45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45의 숫자여야 합니다.");
         }
-        return n;
+        return num;
     }
 }

@@ -1,7 +1,5 @@
 package lotto.io;
 
-import java.util.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.validation.InputValid;
@@ -15,7 +13,7 @@ public class Input {
         return InputValid.checkNumber(Console.readLine());
     }
 
-    public static int bonus() throws IllegalArgumentException {
-        return InputValid.checkEachNum(Console.readLine());
+    public static int bonus(Lotto win) throws IllegalArgumentException {
+        return InputValid.checkBonus(Console.readLine(), win);
     }
 }
