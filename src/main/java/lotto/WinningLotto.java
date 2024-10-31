@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 
 public class WinningLotto {
     private Lotto lotto;
-    private int BonusNumber;
+    private int bonusNumber;
 
-    public WinningLotto(String lottoNumber) {
+    public WinningLotto(String lottoNumber, int bonusNumber) {
         validateInput(lottoNumber);
         List<Integer> winningLotto = splitLottoNumber(lottoNumber);
-        validateNumber(winningLotto);
+        validateNumber(winningLotto, bonusNumber);
         this.lotto = new Lotto(winningLotto);
+        this.bonusNumber = bonusNumber;
     }
 
     private List<Integer> splitLottoNumber(String lottoNumber) {
@@ -30,12 +31,12 @@ public class WinningLotto {
         }
     }
 
-    private void validateNumber(List<Integer> lotto) {
+    private void validateNumber(List<Integer> lotto, int bonusNumber) {
 
         if (!validateDuplicateNumber(lotto)) {
             throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_DUPLICATE_NUMBER));
         }
-        if (!checkLottoNumberRange(lotto)) {
+        if (!checkLottoNumberRange(lotto) || !checkNumberRange(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE));
         }
     }
@@ -47,11 +48,14 @@ public class WinningLotto {
 
     private static boolean checkLottoNumberRange(List<Integer> lotto) {
         for (Integer number : lotto) {
-            if (number < 1 || number > 45) {
+            if (checkNumberRange(number)) {
                 return false;
             }
         }
         return true;
+    }
+    private static boolean checkNumberRange(int number) {
+        return number >= 1 && number <= 45;
     }
 
 }

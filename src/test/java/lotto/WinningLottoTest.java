@@ -10,7 +10,7 @@ public class WinningLottoTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         String hasSevenElements = "1,2,3,4,5,6,7";
-        assertThatThrownBy(() -> new WinningLotto(hasSevenElements))
+        assertThatThrownBy(() -> new WinningLotto(hasSevenElements, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -18,7 +18,7 @@ public class WinningLottoTest {
     void 로또_번호가_쉼표로_구분되지_않으면_예외가_발생한다() {
         String wrongNumber = "1,2,3'4,5,6";
 
-        assertThatThrownBy(() -> new WinningLotto(wrongNumber))
+        assertThatThrownBy(() -> new WinningLotto(wrongNumber, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -26,7 +26,7 @@ public class WinningLottoTest {
     void 로또_번호에_중복된_수가_있으면_예외가_발생한다() {
         String wrongNumber = "1,1,3,4,5,6";
 
-        assertThatThrownBy(() -> new WinningLotto(wrongNumber))
+        assertThatThrownBy(() -> new WinningLotto(wrongNumber, 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,9 +35,21 @@ public class WinningLottoTest {
         String wrongNumber1 = "1,10,30,40,50,60";
         String wrongNumber2 = "0,10,30,40,50,60";
 
-        assertThatThrownBy(() -> new WinningLotto(wrongNumber1))
+        assertThatThrownBy(() -> new WinningLotto(wrongNumber1, 7))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new WinningLotto(wrongNumber2))
+        assertThatThrownBy(() -> new WinningLotto(wrongNumber2, 7))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호가_1에서_45사이가_아닌_경우_예외가_발생한다() {
+        String wrongNumber = "1,2,3,4,5,6";
+
+
+        assertThatThrownBy(() -> new WinningLotto(wrongNumber, 0))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new WinningLotto(wrongNumber, 46))
+                .isInstanceOf(IllegalArgumentException.class);
+
     }
 }
