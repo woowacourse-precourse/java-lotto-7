@@ -33,8 +33,8 @@
 
 #### 7. 보너스 번호 입력
 
-- [X] Console.readLine()을 통한 보너스 번호 입력
-- [X] Console.close() 호출
+- [X] Console.readLine()을 통한 보너스 번호 입력 **(Done)**
+- [X] Console.close() 호출 **(Done)**
 
 #### 8. 당첨 로또(당첨 번호 + 보너스 번호) 생성
 
