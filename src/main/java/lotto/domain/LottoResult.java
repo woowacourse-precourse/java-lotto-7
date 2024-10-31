@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
@@ -17,5 +18,11 @@ public class LottoResult {
         for (LottoRank rank : LottoRank.values()) {
             rankCnt.put(rank, 0);
         }
+    }
+
+    private int countMatches(List<Integer> winningNumbers, List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 }
