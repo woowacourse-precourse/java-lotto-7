@@ -21,6 +21,10 @@ public class WinningLotto {
         return (int) lotto.getNumbers().stream().filter(numbers::contains).count();
     }
 
+    public boolean isBonusNumberMatches(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
     private void validate(List<Integer> numbers, int bonusNumber) {
         validateNumbers(numbers);
         validateBonusNumber(bonusNumber);
