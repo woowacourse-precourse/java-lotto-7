@@ -58,9 +58,9 @@ public class WinningNumberParserTest {
     }
 
     @DisplayName("1부터 45까지의 숫자를 입력하지 않은 경우 예외가 발생해야한다.")
-    @Test
-    void testNumbersInRange() {
-        String input = "0,1,2,3,4,46";
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2,3,4,45", "1,2,3,4,5,46"})
+    void testNumbersInRange(String input) {
         assertThatThrownBy(() -> parser.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.WINNING_NUMBER_ERROR_MESSAGE.toString());
