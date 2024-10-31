@@ -38,7 +38,7 @@ public enum Prize {
 
     public static Prize prizeOf(int matchCount, boolean matchBonus) {
         for (Prize prize : Prize.values()) {
-            if (prize.matchCount == matchCount && prize.matchBonus) {
+            if (prize.matchCount == matchCount && prize.matchBonus == matchBonus) {
                 return prize;
             }
         }
