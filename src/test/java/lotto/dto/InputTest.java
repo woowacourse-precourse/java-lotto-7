@@ -52,4 +52,27 @@ public class InputTest {
         // WHEN - THEN
         assertThatThrownBy(() -> new WinningNumberRequestDTO(input)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("보너스 번호 입력 숫자를 정확하게 전달한다.")
+    public void bonusNumber() {
+        // GIVEN
+        String input = "5";
+
+        // WHEN
+        BonusNumberRequestDTO bonusNumberRequestDTO = new BonusNumberRequestDTO(input);
+
+        // THEN
+        assertThat(bonusNumberRequestDTO.getBonusNumber()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력이 숫자가 아닐 경우, 예외를 발생시킨다.")
+    public void notNomberBonusNumber() {
+        // GIVEN
+        String input = "a";
+
+        // WHEN - THEN
+        assertThatThrownBy(() -> new BonusNumberRequestDTO(input)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
