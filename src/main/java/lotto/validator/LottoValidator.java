@@ -8,10 +8,22 @@ import lotto.Lotto;
 
 public class LottoValidator {
 
-    public void purchaseAmountValidator(int purchaseAmount) {
+    public void purchaseAmountTypeValidator(String purchaseAmount) {
+        for (char num : purchaseAmount.toCharArray()) {
+            if(!Character.isDigit(num)) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액에는 문자가 들어갈 수 없습니다.");
+            }
+        }
+    }
+
+    public void purchaseAmountPositiveValidator(int purchaseAmount) {
         if (purchaseAmount < 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 음수가 될 수 없습니다.");
         }
+
+    }
+
+    public void purchaseAmountUnitValidator (int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
