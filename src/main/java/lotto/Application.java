@@ -7,20 +7,23 @@ import static lotto.Winning.values;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
 public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
-        int lottoPrice = Integer.parseInt(Console.readLine());
+        BigDecimal lottoPrice = new BigDecimal(Integer.parseInt(Console.readLine()));
         System.out.println();
 
-        int lottoCount = lottoPrice / 1000;
+        int lottoCount = lottoPrice.divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP)
+                .intValue();
         System.out.println(lottoCount + "개를 구매했습니다.");
 
         Map<Lotto, Winning> lottos = new LinkedHashMap<>();
@@ -53,5 +56,18 @@ public class Application {
         Arrays.stream(values())
                 .filter(winning -> winning != NONE)
                 .forEach(winning -> System.out.println(winning.toStringMessageAndCount()));
+
+        AtomicReference<BigDecimal> totalWinningPrice = new AtomicReference<>(BigDecimal.ZERO);
+        Arrays.stream(values())
+                .filter(winning -> winning != NONE)
+                .forEach(winning -> {
+                    totalWinningPrice.updateAndGet(p -> p.add(winning.multiplyCount()));
+                });
+        BigDecimal totalWinningRate = totalWinningPrice.get()
+                .divide(lottoPrice, 10, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(1, RoundingMode.HALF_UP)
+                .stripTrailingZeros();
+        System.out.println("총 수익률은 " + totalWinningRate.toPlainString() + "%입니다.");
     }
 }
