@@ -12,9 +12,11 @@ public class LottoMachine {
     public void run() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        int cost = Integer.parseInt(Console.readLine());
+        int cost = Integer.parseInt(Console.readLine().trim());
 
         int purchaseCount = cost/1000;
+
+        System.out.println();
 
         System.out.println(purchaseCount + "개를 구매했습니다.");
 
@@ -22,6 +24,10 @@ public class LottoMachine {
             lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             System.out.println(lottoNumbers.get(i));
         }
+
+        System.out.println();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
 
     }
 }
