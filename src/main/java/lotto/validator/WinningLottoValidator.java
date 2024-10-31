@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.utils.ExceptionUtils;
+
 import java.util.List;
 
 public class WinningLottoValidator {
@@ -8,7 +10,7 @@ public class WinningLottoValidator {
 
     public static void validateWinningLotto(List<Integer> winNumbers, int bonusNumber) {
         if (winNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
+            ExceptionUtils.throwIllegalArgument(ERROR_BONUS_NUMBER_DUPLICATE);
         }
     }
 }
