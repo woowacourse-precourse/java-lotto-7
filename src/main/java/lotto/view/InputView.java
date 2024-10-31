@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.LottoConstant;
+import lotto.util.LottoConstant;
 
 import java.util.Arrays;
 import java.util.List;
