@@ -37,6 +37,17 @@ public class LottoManager {
             updateWinningCount(userLotto, matchedNumbersCount, isMatchedBonusNumber);
         }
     }
+
+    public int calculateTotalPrize(UserLotto userLotto){
+        int totalPrize = 0;
+        for(LottoRank rank : ranks){
+            int winningCount = userLotto.getWinningCount(rank.rank());
+            totalPrize += winningCount * rank.prizeAmount();
+        }
+
+        return totalPrize;
+    }
+
     private int countMatchingNumbers(List<Integer> lotto, List<Integer> winningNumbers){
          List<Integer> tempLotto = new ArrayList<>(lotto);
          tempLotto.retainAll(winningNumbers);
