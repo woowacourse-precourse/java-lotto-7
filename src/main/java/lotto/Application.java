@@ -11,7 +11,7 @@ public class Application {
         final LottoController lottoController = LottoController.getInstance();
 
         // 구입금액 입력
-        int userId = userController.getPurchasePrice(ACCESS_COUNT);
+        int userId = userController.getUserIdByInputPurchasePrice(ACCESS_COUNT);
 
         // 로또 구매
         lottoController.purchaseLottoTickets(userId);

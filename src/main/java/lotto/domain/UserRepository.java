@@ -17,12 +17,9 @@ public class UserRepository {
 
     private final List<User> users = new ArrayList<>();
 
-    public void save(User user) {
+    public User save(User user) {
         users.add(user);
-    }
-
-    public List<User> findAll() {
-        return new ArrayList<>(users);
+        return users.getLast();
     }
 
     public User findById(int id) {

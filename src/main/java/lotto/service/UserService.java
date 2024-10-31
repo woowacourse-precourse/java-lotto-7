@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.User;
 import lotto.domain.UserRepository;
-import lotto.util.InputValidator;
 import lotto.view.ErrorOutputView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,46 +22,27 @@ public class UserService {
         return instance;
     }
 
-    public int save(int purchasePrice) {
-        User user = new User(purchasePrice);
-        userRepository.save(user);
-
-        return user.getId();
-    }
-
     public User findById(int id) {
         return userRepository.findById(id);
     }
 
-    public int getPurchasePrice(int accessCount) {
+    public int inputPurchasePriceForUser(int accessCount) {
         for(int count = 0; count < accessCount; count++) {
-            int purchasePrice = checkPurchasePrice();
-            if (purchasePrice != -1) {
-                return purchasePrice;
+            String purchasePrice = inputPurchasePrice();
+            try {
+                User user = new User(purchasePrice);
+                return userRepository.save(user).getId();
+            } catch (IllegalArgumentException e) {
+                ErrorOutputView.printErrorMessage(e.getMessage());
             }
         }
         exit(accessCount);
         return -1;
     }
 
-    private int checkPurchasePrice() {
-        String purchasePrice = inputPurchasePrice();
-        try {
-            isValidPurchasePrice(purchasePrice);
-            return Integer.parseInt(purchasePrice);
-        } catch (IllegalArgumentException e) {
-            ErrorOutputView.printErrorMessage(e.getMessage());
-            return -1;
-        }
-    }
-
     private String inputPurchasePrice() {
         OutputView.printMessage(ENTER_PURCHASE_PRICE);
         return InputView.readLine();
-    }
-
-    private void isValidPurchasePrice(String purchasePrice) {
-        InputValidator.run(purchasePrice);
     }
 
     private void exit(int accessCount) {
