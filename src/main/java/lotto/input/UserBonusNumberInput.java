@@ -30,7 +30,7 @@ public class UserBonusNumberInput {
         try {
             return Integer.parseInt(getInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 한 개의 정수여야 합니다.");
         }
     }
 
