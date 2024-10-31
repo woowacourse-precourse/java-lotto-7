@@ -1,9 +1,10 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -33,5 +34,9 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 로또번호는 중복될 수 없습니다.");
         }
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }
