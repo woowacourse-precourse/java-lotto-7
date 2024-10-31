@@ -43,7 +43,7 @@ public class Application {
     }
     public void logic(){
         int num = purchase_amount();
-        initialLottoList(num);
+        initialLottoArray();
         purchase_history(num);
         inputWinningNumber();
         inputBonus();
@@ -116,9 +116,6 @@ public class Application {
             }
         }
     }
-    public void initialLottoList(int num) {
-        lotto_list = initialLottoArray(num);
-    }
 
     public void purchase_history(int num){
         System.out.println("\n"+num+PrintMsg.CHECK_MSG.getMessage());
@@ -131,12 +128,10 @@ public class Application {
         }
     }
 
-    public List[] initialLottoArray(int num){
-        List<Integer> list[] = new ArrayList[num];
-        for(int i = 0; i < num; i++){
-            list[i] = new ArrayList<>();
+    public void initialLottoArray(){
+        for(int i = 0; i < lotto_list.length; i++){
+            lotto_list[i] = new ArrayList<>();
         }
-        return list;
     }
 
     public int purchase_amount(){
