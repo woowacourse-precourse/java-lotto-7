@@ -14,7 +14,7 @@ class BonusNumberValidatorTest {
     @ValueSource(strings = {"a", ";", "/1","13L","32mill"})
     void 숫자_이외의_문자_예외(String input){
         Assertions.assertThatThrownBy(() -> BonusNumberValidator.validateOnlyNumeric(input))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_BONUS_NUMBER_NOT_NUMERIC.toString());
     }
 
@@ -30,7 +30,7 @@ class BonusNumberValidatorTest {
     @ValueSource(ints = {0, 46, 100, 67})
     void 숫자_범위_벗어남_예외(int bonusNumber){
         Assertions.assertThatThrownBy(() -> BonusNumberValidator.validateNumberRange(bonusNumber))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGE.toString());
     }
 
@@ -46,8 +46,8 @@ class BonusNumberValidatorTest {
     @ValueSource(ints = {1,31,41,29,16,5})
     void 당첨_번호와_숫자_중복_예외(int bonusNumber){
         List<Integer> winningNumbers = List.of(1,31,41,29,16,5);
-        Assertions.assertThatThrownBy(() -> BonusNumberValidator.validateDuplicate(winningNumbers,bonusNumber))
-                .isInstanceOf(IllegalStateException.class)
+        Assertions.assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumberDuplicate(winningNumbers,bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_BONUS_NUMBER_DUPLICATE.toString());
     }
 
@@ -56,7 +56,7 @@ class BonusNumberValidatorTest {
     @ValueSource(ints = {32, 15, 10})
     void 당첨_번호와_숫자_중복_없음_통과(int bonusNumber){
         List<Integer> winningNumbers = List.of(1,31,41,29,16,5);
-        BonusNumberValidator.validateDuplicate(winningNumbers,bonusNumber);
+        BonusNumberValidator.validateBonusNumberDuplicate(winningNumbers,bonusNumber);
     }
 
 
