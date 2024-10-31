@@ -119,12 +119,16 @@ public class LottoRunner {
      */
     private List<Lotto> selection(int amount) {
         List<Lotto> lotteries = new ArrayList<>();
+        StringBuilder lottoSelectionOutput = new StringBuilder();
 
         for (int i = 0; i < amount; i++) {
             Lotto lotto = new Lotto(this.getRandomNumbers());
             lotteries.add(lotto);
+            lottoSelectionOutput
+                .append(lotto.getNumberString())
+                .append(System.lineSeparator());
         }
-        System.out.println();
+        System.out.println(lottoSelectionOutput);
 
         return lotteries;
     }

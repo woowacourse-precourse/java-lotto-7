@@ -9,7 +9,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        this.printNumbers();
     }
 
     private void validate(List<Integer> numbers) {
@@ -22,11 +21,9 @@ public class Lotto {
         return this.numbers;
     }
 
-    private void printNumbers() {
-        System.out.println(
-            this.numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", ", "[", "]"))
-        );
+    public String getNumberString() {
+        return this.numbers.stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(", ", "[", "]"));
     }
 }
