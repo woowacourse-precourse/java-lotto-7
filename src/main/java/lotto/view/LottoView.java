@@ -11,6 +11,7 @@ public class LottoView {
     private static final String GENERATED_LOTTO_NUMBERS_MESSAGE = "[%s]";
     private static final String GENERATED_LOTTO_NUMBERS_DELIMITER = ", ";
     private static final String LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String LOTTO_BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
     public String requestLottoPurchasePrice() {
         System.out.println(LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE);
@@ -19,6 +20,11 @@ public class LottoView {
 
     public String requestLottoWinningNumbers(){
         System.out.println(LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE);
+        return input();
+    }
+
+    public String requestLottoBonusNumber(){
+        System.out.println(LOTTO_BONUS_NUMBER_REQUEST_MESSAGE);
         return input();
     }
 

@@ -34,6 +34,7 @@ public class LottoController {
         List<Lotto> lottos = lottoGenerator.generateLottos(lottoPurchasePrice);
         lottoView.printLottos(lottos);
         List<Integer> lottoWinningNumbers = retry(this::requestLottoWinningNumbers);
+        int lottoBonusNumber = retry(this::requestLottoBonusNumber);
     }
 
 
@@ -47,6 +48,12 @@ public class LottoController {
         String lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
         lottoWinningNumbersValidator.validateLottoWinningNumbers(lottoWinningNumbers);
         return LottoParser.parseNumbers(lottoWinningNumbers);
+    }
+
+    private int requestLottoBonusNumber(){
+        String lottoBonusNumber = lottoView.requestLottoBonusNumber();
+
+        return 0;
     }
 
     private <T> T retry(Supplier<T> logic) {
