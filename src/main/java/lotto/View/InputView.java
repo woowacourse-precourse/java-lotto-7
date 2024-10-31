@@ -3,6 +3,7 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
@@ -27,6 +28,7 @@ public class InputView {
             try {
                 System.out.println("당첨 번호를 입력해주세요.");
                 String winInput = Console.readLine();
+                List<Integer> winNumbers = parseWinNumbers(winInput);
 
             }
             catch (IllegalArgumentException e) {
@@ -35,6 +37,15 @@ public class InputView {
         }
     }
 
+    private static List<Integer> parseWinNumbers(String winInput){
+        String[] winNumbersArr  = winInput.split(",");
+        List<Integer> winNumbers = new ArrayList<>();
+
+        for(String winNumber : winNumbersArr){
+            winNumbers.add(Integer.parseInt(winNumber.trim()));
+        }
+        return winNumbers;
+    }
 
 
 }
