@@ -8,9 +8,9 @@ public class LottoWinningNumbers {
 
     private static final String DELIMITER = ",";
 
-    private List<Integer> winningNumbers;
-    private String mainNumbers;
-    private String bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final String mainNumbers;
+    private final String bonusNumber;
 
     public LottoWinningNumbers(String secondLine, String thridLine) {
         this.mainNumbers = secondLine;
