@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.Lotto;
 
 public class Application {
     private String input;
