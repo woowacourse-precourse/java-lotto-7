@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.Rank.EMPTY;
+import static lotto.domain.Rank.NO_PRIZE;
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
 import static lotto.domain.Rank.FOURTH;
@@ -24,7 +24,7 @@ public class WinningStatistics {
                 THIRD, 0,
                 FOURTH, 0,
                 FIFTH, 0,
-                EMPTY, 0
+                NO_PRIZE, 0
         ));
         return new WinningStatistics(enumMap);
     }

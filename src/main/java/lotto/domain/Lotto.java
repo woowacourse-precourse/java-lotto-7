@@ -23,6 +23,11 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     public Rank getResult(Set<Integer> winningNumbers, int bonusNumber) {
         boolean isBonusMatched = false;
 
@@ -34,11 +39,6 @@ public class Lotto {
             isBonusMatched = true;
         }
         return Rank.getRank(matchedNumberCount, isBonusMatched);
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 
     private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
