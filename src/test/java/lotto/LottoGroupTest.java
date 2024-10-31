@@ -27,8 +27,6 @@ class LottoGroupTest {
         lottoGroup = new LottoGroup(lottoList);
     }
 
-    // TODO : 로또그룹 객체에 getter 가 필요하다면 테스트한다.
-
     @DisplayName("로또그룹 생성에 성공한다.")
     @Test
     void containsLottoList() {
@@ -42,10 +40,10 @@ class LottoGroupTest {
         int bonusNumber = 7;
         List<Prize> prizes = lottoGroup.getPrizes(choices, bonusNumber);
         Assertions.assertThat(prizes)
-                .hasSize(lottoList.size()) // lottoList 사이즈와 동일
+                .hasSize(1)
                 .containsExactly(
-                        Prize.NONE, Prize.NONE, Prize.NONE, Prize.NONE, Prize.NONE, Prize.NONE, Prize.NONE, Prize.THREE
-                ); // 마지막 녀석만 3등에 당첨
+                        Prize.THREE
+                ); // NONE 을 제외한 녀석들만 소유
     }
 
     @DisplayName("당첨 여부를 판별하여 당첨금 총합을 계산한다.")
@@ -55,5 +53,20 @@ class LottoGroupTest {
         int bonusNumber = 7;
         int winning = lottoGroup.getTotalReward(choices, bonusNumber);
         Assertions.assertThat(winning).isEqualTo(5000);
+    }
+
+    @DisplayName("toString()은 출력 양식과 동일한 포맷의 String 을 리턴한다.")
+    @Test
+    void toStringTest() {
+        String expected = """
+                [8, 21, 23, 41, 42, 43]
+                [3, 5, 11, 16, 32, 38]
+                [7, 11, 16, 35, 36, 44]
+                [1, 8, 11, 31, 41, 42]
+                [13, 14, 16, 38, 42, 45]
+                [7, 11, 30, 40, 42, 43]
+                [2, 13, 22, 32, 38, 45]
+                [1, 3, 5, 14, 22, 45]""";
+        Assertions.assertThat(lottoGroup).hasToString(expected);
     }
 }

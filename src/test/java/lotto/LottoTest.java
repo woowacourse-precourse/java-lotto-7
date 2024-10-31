@@ -30,6 +30,13 @@ class LottoTest {
                 .hasMessage(ErrorMessage.DUPLICATED_NUMBERS_IN_LOTTO.getMessage());
     }
 
+    @DisplayName("로또를 String 으로 변환하면 요구사항의 출력 형식에 맞게 변환된다.")
+    @Test
+    void 로또를_String_으로_변환하면_요구사항의_출력_형식에_맞게_변환된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertThat(lotto).hasToString("[1, 2, 3, 4, 5, 6]");
+    }
+
     @DisplayName("equals(), hashCode() 메서드를 테스트한다.")
     @Nested
     class EqualsAndHashCodeTest {
