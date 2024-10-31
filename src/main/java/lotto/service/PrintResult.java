@@ -1,14 +1,13 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.LotteryProcess;
 import lotto.domain.LottoRank;
 
 public class PrintResult {
     private final List<Integer> rankingCount;
 
-    public PrintResult(LotteryProcess lotteryProcess) {
-        this.rankingCount = lotteryProcess.getRankingCount();
+    public PrintResult(List<Integer> rankingCount) {
+        this.rankingCount = rankingCount;
     }
 
     public void printPrize() {
@@ -16,14 +15,21 @@ public class PrintResult {
         printRankingResult();
     }
 
-    public double calculateEarnings() {
+    private double getEarnings() {
         double earnings = 0;
+
         for (LottoRank rank : LottoRank.values()) {
             int count = rankingCount.get(rank.ordinal());
             earnings += (rank.getPrize() * count);
         }
 
         return earnings;
+    }
+
+    public void printEarningsRate(int amount) {
+        double earnings = getEarnings();
+        double earningsRate = ((earnings / amount) * 100);
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningsRate);
     }
 
     private void printRankingResult() {
