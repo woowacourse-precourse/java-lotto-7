@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoTickets {
-    List<Lotto> tickets;
+    private final List<Lotto> tickets;
 
     private LottoTickets(List<Lotto> tickets) {
         this.tickets = tickets;
@@ -32,6 +32,5 @@ public class LottoTickets {
         });
         return winningStatistics;
     }
-
 
 }
