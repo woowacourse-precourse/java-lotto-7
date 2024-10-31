@@ -7,6 +7,13 @@ import java.util.List;
 public class Consumer {
     private List<Lotto> lotto;
 
+    public Consumer(String priceInput){
+        int count = getCount(priceInput);
+        for (int i = 0; i < count; i++){
+            setLotto(Randoms.pickUniqueNumbersInRange(1,45,6));
+        }
+    }
+
     private void setLotto(List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
         this.lotto.add(lotto);
