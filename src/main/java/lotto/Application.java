@@ -2,6 +2,14 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Input input = new Input();
+        int money = input.moneyInput();
+
+        try {
+            LottoNum lottoNum = new LottoNum(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }
