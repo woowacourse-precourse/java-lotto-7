@@ -5,7 +5,7 @@ import static java.lang.Integer.parseInt;
 
 public class InputView {
 
-    public int getPurchaseMoney() {
+    public int getInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = readLine();
 
@@ -17,6 +17,7 @@ public class InputView {
     }
 
     // TODO: 로직 개선 필요
+    //  0을 옳은 값으로 받는 문제
     private boolean validate(String money) {
         try {
             if (parseInt(money) % 1000 != 0) {

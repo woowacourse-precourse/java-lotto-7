@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.List;
+import model.Lotto;
+import model.LottoMaker;
 import view.InputView;
 
 public class Application {
@@ -10,9 +13,12 @@ public class Application {
         int inputMoney = inputView.getInputMoney();
 
         // 2. 로또 구매
-        int myLotto = inputMoney / 10;
+        int lottoCount = inputMoney / 10;
 
         // 3. 로또 발행
+        LottoMaker lottoMaker = new LottoMaker(lottoCount);
+        lottoMaker.makeLottos();
+        List<Lotto> lottos = lottoMaker.getLottos();
 
         // 4. 당첨 번호 입력
 
