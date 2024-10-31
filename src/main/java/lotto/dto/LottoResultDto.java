@@ -8,7 +8,7 @@ public record LottoResultDto(
         int amount,
         int winningCount
 ) {
-    public static LottoResultDto of(final LottoGrade grade, final int winningCount) {
+    public static LottoResultDto of(LottoGrade grade, int winningCount) {
         return new LottoResultDto(grade, grade.getCorrect(), grade.getAmount(), winningCount);
     }
 }

@@ -7,7 +7,7 @@ import lotto.model.Lotto;
 public record LottoNumberListDto(
         List<Integer> numbers
 ) {
-    public static LottoNumberListDto from(final Lotto lotto) {
+    public static LottoNumberListDto from(Lotto lotto) {
         return new LottoNumberListDto(lotto.getNumbers());
     }
 }
