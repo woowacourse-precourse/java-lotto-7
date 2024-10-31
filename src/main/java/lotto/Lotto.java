@@ -1,7 +1,9 @@
 package lotto;
 
-import java.util.List;
 import constants.Constants;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +16,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_MAIN_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 "+Constants.LOTTO_MAIN_COUNT+"개여야 합니다.");
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있을 수 없습니다.");
         }
     }
 
