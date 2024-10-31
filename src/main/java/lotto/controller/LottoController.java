@@ -18,6 +18,8 @@ public class LottoController {
 
         WinningLotto winningLotto = new WinningLotto(InputView.getWinningNumbers(), InputView.getBonusNumber());
         LottoResult result = new LottoResult(winningLotto, purchasedLottos);
+        OutputView.printLottoResult(result.getResultCountMap());
+        OutputView.printRateOfReturn(calculateRateOfReturn(result, money));
     }
 
     private int calculateNumberOfLottos(int money) {
