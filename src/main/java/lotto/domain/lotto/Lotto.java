@@ -47,6 +47,10 @@ public class Lotto {
         }
     }
 
+    protected List<LottoNumber> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         List<String> numberStrings = numbers.stream()

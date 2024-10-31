@@ -15,15 +15,14 @@ class WinningLottoImplTest {
     void 정상_케이스() {
         // given
         List<Integer> winningInput = List.of(1, 2, 3, 4, 5, 6);
-        List<LottoNumber> winningResult = winningInput.stream().map(LottoNumber::of).toList();
         final int bonusInput = 7;
 
         // when
         WinningLottoImpl winningLotto = WinningLottoImpl.of(winningInput, bonusInput);
 
         // then
-        assertThat(winningLotto.basicNumbers()).containsSequence(winningResult);
-        assertThat(winningLotto.bonusNumber().value()).isEqualTo(bonusInput);
+        assertThat(winningLotto.basicNumbers()).containsSequence(winningInput);
+        assertThat(winningLotto.bonusNumber()).isEqualTo(bonusInput);
     }
 
     @Test
