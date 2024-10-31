@@ -8,5 +8,9 @@ public class LottoMachine {
 
         int cost = Integer.parseInt(Console.readLine());
 
+        System.out.println(cost/1000 + "개를 구매했습니다.");
+
+
+
     }
 }
