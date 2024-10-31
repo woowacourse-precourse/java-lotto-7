@@ -18,6 +18,7 @@
     - LottoConfig
     - LottoGenerator
     - LottoMachine
+    - LottoRank
     - PurchaseAmount
     - WinningNumbers
 - view
@@ -32,6 +33,7 @@
     - [x] 중복된 번호가 있으면 예외처리 - Lotto#checkDuplicateNumbers()
 - [x] 로또 번호중에 숫자가 포함되어 있는지 확인 - Lotto#contains()
 - [x] 포함되어 있는 숫자의 개수 구하기 - Lotto#getMatchCount()
+- [x] 로또 등수 구하기 -LottoRank#get()
 - [ ] 수악률을 계산
 
 ### 입력

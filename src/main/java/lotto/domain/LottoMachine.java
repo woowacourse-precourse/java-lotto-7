@@ -21,6 +21,7 @@ public class LottoMachine {
         outputView.printLottos(lottos.get());
         final WinningNumbers winningNumbers = inputWinningNumbers();
         inputBonusNumber(winningNumbers);
+
     }
 
     private PurchaseAmount inputPurchaseAmount() {

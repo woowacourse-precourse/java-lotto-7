@@ -17,4 +17,24 @@ public enum LottoRank {
         this.count = count;
         this.winnings = winnings;
     }
+
+    public static LottoRank get(int matchCount, boolean isBonus) {
+        for (final LottoRank rank : LottoRank.values()) {
+            if (rank == LottoRank.THIRD && isBonus) {
+                continue;
+            }
+            if (rank.count == matchCount) {
+                return rank;
+            }
+        }
+        return LottoRank.SIXTH;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getWinnings() {
+        return winnings;
+    }
 }
