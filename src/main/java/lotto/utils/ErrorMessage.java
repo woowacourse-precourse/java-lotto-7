@@ -14,10 +14,6 @@ public enum ErrorMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return this.message;
-    }
-
     @Override
     public String toString() {
         return Constant.ERROR_MESSAGE_PREFIX + this.message;
