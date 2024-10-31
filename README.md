@@ -111,18 +111,18 @@ View
             <td>✅ `PurchaseAmountUserInput` 반환</td> </tr><tr>
     <td rowspan="6">로또 구매</td>
         <td rowspan="1"><b><em>Lotto</em></b></td>
-            <td>⬜ 1장 가격 상수 </td> 
+            <td>✅ 1장 가격 상수 </td> 
                 <td rowspan="6"></td></tr><tr> 
         <td rowspan="1"><b><em>LottoService</em></b></td>
-            <td>⬜ `Lotto` 1장 가격 반환</td> </tr><tr> 
+            <td>✅ `Lotto` 1장 가격 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>AmountService</em></b></td>
-            <td>⬜ `PurchasedLottos` 구매</td> </tr><tr> 
+            <td>✅ `PurchasedLottos` 구매</td> </tr><tr> 
         <td rowspan="1"><b><em>PurchasedLottos</em></b></td>
-            <td>⬜ `PurchasedLottos` 생성</td> </tr><tr>     
+            <td>✅ `PurchasedLottos` 생성</td> </tr><tr>     
         <td rowspan="1">LottoService</td>
-            <td>⬜ `PurchasedLottos` 발행</td> </tr><tr>
+            <td>✅ `PurchasedLottos` 발행</td> </tr><tr>
         <td rowspan="1">Lotto</td>
-        <td>⬜ `Lotto` 오름차순 정렬</td> </tr><tr> 
+        <td>✅ `Lotto` 오름차순 정렬</td> </tr><tr> 
     <td rowspan="4">당첨 번호 입력</td>
         <td rowspan="1"><b><em>LottoCommand</em></b></td>
         <td>⬜ `Lotto` 당첨 번호 유효성 검증</td> 
