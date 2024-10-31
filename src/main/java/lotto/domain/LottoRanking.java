@@ -27,4 +27,8 @@ public enum LottoRanking {
     public String getStatus() {
         return this.status;
     }
+
+    public int getPrize() {
+        return this.prize;
+    }
 }

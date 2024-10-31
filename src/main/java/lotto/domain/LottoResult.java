@@ -31,6 +31,15 @@ public class LottoResult {
         return LottoRanking.NOTHING;
     }
 
+    public double calculatePrize(int purchaseAmount) {
+        double totalPrize = 0.0;
+        for (LottoRanking rank : LottoRanking.values()) {
+            totalPrize += (rank.getPrize() * result.get(rank));
+        }
+
+        return totalPrize / purchaseAmount * 100;
+    }
+
     @Override
     public String toString() {
         StringJoiner lottoRankingResult = new StringJoiner("\n");
