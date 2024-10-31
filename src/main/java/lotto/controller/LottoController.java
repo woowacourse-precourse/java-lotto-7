@@ -24,6 +24,9 @@ public class LottoController {
 
         LottoGenerator lottoGenerator = LottoGenerator.from(new LottoNumbersStrategy());
         List<Lotto> lottos = lottoGenerator.issues(quantity);
+
+        outputView.printQuantity(quantity);
+        outputView.printLottos(lottos);
     }
 
     private PurchaseAmount tryPurchaseAmount() {
