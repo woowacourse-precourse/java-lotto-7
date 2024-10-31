@@ -39,8 +39,9 @@ class LottoManagerTest {
     }
 
     @Test
-    void 총_수익_계산(){
+    void 총_수익률_계산(){
         // given
+        int purchaseAmount = 500 * 1000;
         UserLotto userLotto = new UserLotto(List.of());
         userLotto.updateWinningCount(1);
         userLotto.updateWinningCount(3);
@@ -48,10 +49,11 @@ class LottoManagerTest {
         userLotto.updateWinningCount(5);
 
         // when
-        int result = lottoManager.calculateTotalPrize(userLotto);
+        float result = lottoManager.calculateTotalPrizeRate(userLotto,purchaseAmount);
 
         // then
-        int expectedPrize = firstPrize + thirdPrize + fifthPrize*2;
-        Assertions.assertThat(result).isEqualTo(expectedPrize);
+        int expectedTotalPrize = firstPrize + thirdPrize + fifthPrize*2;
+        float expectedTotalPrizeRate = (float) expectedTotalPrize / purchaseAmount;
+        Assertions.assertThat(result).isEqualTo(expectedTotalPrizeRate);
     }
 }
