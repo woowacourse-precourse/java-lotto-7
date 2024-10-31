@@ -60,4 +60,13 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.validateLottoNumber(input);
         });
     }
+
+    @DisplayName("중복된 숫자가 있으면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,3,7", "11,2,0,4,5,11"})
+    void validateNumberDuplicate(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoNumberValidator.validateLottoNumber(input);
+        });
+    }
 }

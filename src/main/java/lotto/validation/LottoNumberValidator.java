@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import java.util.HashSet;
+import java.util.Set;
 import lotto.enums.ErrorMessage;
 
 public class LottoNumberValidator {
@@ -11,6 +13,7 @@ public class LottoNumberValidator {
         validateNoEmptyBetweenCommas(input);
         validateSixNumbers(input);
         validateStartWithZero(input);
+        validateNumberDuplicate(input);
     }
 
     private static void validateNull(String input) {
@@ -56,6 +59,18 @@ public class LottoNumberValidator {
             value = value.trim();
             if (value.startsWith("0")) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_START_WITH_ZERO.getErrorMessage());
+            }
+        }
+    }
+
+    private static void validateNumberDuplicate(String input) {
+        String [] values = input.split(",");
+        Set<String> numbers = new HashSet<>();
+
+        for (String value : values) {
+            value = value.trim();
+            if (!numbers.add(value)) {
+                throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_DUPLICATE_NUMBER.getErrorMessage());
             }
         }
     }
