@@ -4,12 +4,10 @@ import java.util.List;
 
 public class LottoTicketPurchase {
     List<Lotto> lottoTickets;
-    Integer ticketCount;
 
-    public LottoTicketPurchase(List<Lotto> lottoTickets, Integer ticketCount) {
+    public LottoTicketPurchase(List<Lotto> lottoTickets) {
         validationTicketNullCheck(lottoTickets);
         this.lottoTickets = lottoTickets;
-        this.ticketCount = ticketCount;
     }
 
     private void validationTicketNullCheck(List<Lotto> lottoTickets) {

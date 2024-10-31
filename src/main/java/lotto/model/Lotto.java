@@ -22,4 +22,9 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호중 같은 번호가 있습니다.");
         }
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
