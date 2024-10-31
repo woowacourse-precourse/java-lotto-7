@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
