@@ -14,4 +14,8 @@ public class WinningNumber {
     public static WinningNumber from(String input) {
         return new WinningNumber(Convertor.convertToIntegerList(input));
     }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }
