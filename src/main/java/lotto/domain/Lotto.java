@@ -11,14 +11,16 @@ public class Lotto {
         this.numbers = validation(numbers);
     }
 
-    public List<Integer> validation(List<Integer> numbers) {
-        numberValidate(numbers);
-        rangeValidate(numbers);
-        duplicationValidate(numbers);
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public List<Integer> getNumbers() {
+    private List<Integer> validation(List<Integer> numbers) {
+
+        numberValidate(numbers);
+        rangeValidate(numbers);
+        duplicationValidate(numbers);
+
         return numbers;
     }
 
