@@ -5,7 +5,7 @@
 ## 프로그램 흐름도
 초기 설계 단계에서 요구사항을 분석하고, 프로그램 흐름도를 작성한 후 코딩을 시작했습니다. 아래는 프로그램 흐름도입니다.
 
-![프로그램 흐름도](https://github.com/leeedongjaee/java-lotto-7/blob/leeedongjaee/로또%20프로그램%20흐름도.jpeg?raw=true)
+![프로그램 흐름도](https://github.com/leeedongjaee/java-lotto-7/blob/leeedongjaee/java-lotto.jpeg?raw=true)
 
 ### 흐름도 설명
 1. **구입 금액 입력**:
