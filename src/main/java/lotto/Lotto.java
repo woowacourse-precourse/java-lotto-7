@@ -39,17 +39,12 @@ public class Lotto {
         for(int i = 0; i < lottoCount; i++){
             Lotto newLotto = Lotto.sortLotto(Lotto.getLotto());
             lottoList.add(newLotto);
-            Lotto.printLotto(newLotto);
+            View.printLotto(newLotto);
         }
         return lottoList;
     }
 
-    public static void printLotto(Lotto lotto){
-        String joinString = "[";
-        joinString = String.join(", ", lotto.numbers.toString());
-        joinString = joinString + "]";
-        System.out.println(joinString);
-    }
+
 
     public static MyResult gradeLotto(Lotto answer, Lotto target, Integer bonus){
         List<Integer> matchList = answer.numbers.stream().filter(num -> target.numbers.stream()
