@@ -10,17 +10,34 @@ public class WinningNumber {
     private final Lotto winningNumbers;
     private int bonusNumber;
 
-    public WinningNumber(String inputWinningNumbers){
+    public WinningNumber(String inputWinningNumbers) {
         ValidatorUtils.isNotEmpty(inputWinningNumbers);
         winningNumbers = new Lotto(extractWinningNumbers(inputWinningNumbers));
     }
 
-    public int makeBonusNumber(String inputBonusNumber){
+    public int makeBonusNumber(String inputBonusNumber) {
         this.bonusNumber = extractBonusNumber(inputBonusNumber);
         return this.bonusNumber;
     }
 
-    private List<Integer> extractWinningNumbers(String inputWinningNumbers){
+    public int calculateCorrectCount(Lotto lotto) {
+        int correctCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (this.winningNumbers.contains(number)) {
+                correctCount++;
+            }
+        }
+        return correctCount;
+    }
+
+    public boolean correctBonus(Lotto lotto) {
+        if (lotto.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+    private List<Integer> extractWinningNumbers(String inputWinningNumbers) {
         return Arrays.asList(inputWinningNumbers.split(",")).stream()
                 .map(ValidatorUtils::isNotEmpty)
                 .map(ValidatorUtils::canParseToInt)
@@ -36,8 +53,8 @@ public class WinningNumber {
         return bonusNumber;
     }
 
-    private void isWinningNumber(int bonusNumber){
-        if(this.winningNumbers.contains(bonusNumber)){
+    private void isWinningNumber(int bonusNumber) {
+        if (this.winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("당첨 번호에 없는 보너스 번호를 입력하셔야 합니다.");
         }
     }
