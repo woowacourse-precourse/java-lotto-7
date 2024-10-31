@@ -22,4 +22,18 @@ public class ValidatorTest {
         assertThat(result).isFalse();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "\t", "\n"})
+    public void 문자열이_공백문자만_있으면_True를_반환한다(String input) {
+        boolean result = Validator.isBlankString(input);
+        assertThat(result).isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" 0", "1\t", "2\n"})
+    public void 문자열이_공백아닌문자가_있으면_False를_반환한다(String input) {
+        boolean result = Validator.isBlankString(input);
+        assertThat(result).isFalse();
+    }
+
 }
