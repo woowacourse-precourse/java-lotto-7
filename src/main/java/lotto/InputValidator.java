@@ -14,38 +14,19 @@ public class InputValidator {
     private static final int TICKET_PRICE = 1000;
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int VALID_LOTTO_NUMBER_COUNT = 6;
     private static final String COMMAS = ",,";
 
-    //구매 금액 검증
+    //구매 금액 검증 (컨트롤러)
     public static void validatePurchaseAmount(final int purchaseAmount) {
         if (purchaseAmount % TICKET_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 
-    //당첨 번호 검증
+    //당첨 번호 검증 (컨트롤러)
     public static void validateInputWinnigNumber(final String inputWinnigNumber) {
         if (inputWinnigNumber.contains(COMMAS)) {
             throw new IllegalArgumentException(CONTIGIOUS_COMMA.getMessage());
-        }
-    }
-
-    public static void validateWinningNumberRange(final List<Integer> winningNumbers) {
-        for (Integer winningNumber : winningNumbers) {
-            validateNumberRange(winningNumber);
-        }
-    }
-
-    public static void validateWinningNumberDuplicate(final List<Integer> winningNumbers) {
-        if (hasDuplicates(winningNumbers)) {
-            throw new IllegalArgumentException(DUPLICATE_WINNIG_NUMBER.getMessage());
-        }
-    }
-
-    public static void validateWinningNumberCount(final List<Integer> winningNumbers) {
-        if (winningNumbers.size() != VALID_LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(INVALID_WINNIG_NUMBER_COUNT.getMessage());
         }
     }
 
@@ -54,7 +35,8 @@ public class InputValidator {
         validateNumberRange(bonusNumber);
     }
 
-    public static void validateBonusNumberDuplicate(final int bonusNumber,final List<Integer> winningNumbers) {
+    public static void validateBonusNumberDuplicate(final int bonusNumber,
+        final List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATE_BONNUS_NUMBER.getMessage());
         }
