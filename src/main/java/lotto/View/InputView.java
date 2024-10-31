@@ -2,6 +2,9 @@ package lotto.View;
 
 import lotto.Model.Exception;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
@@ -50,4 +53,52 @@ public class InputView {
         }
     }
 
+    public List<Integer> getWinNumber() {
+        List<Integer> winNumber = new ArrayList<Integer>();
+        int validWinNum = 0;
+        while (validWinNum == 0) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String[] winNumInput = readLine().split(",");
+            validWinNum = winNumTypeValidate(winNumInput);
+            if (validWinNum == 1) {
+                validWinNum = dupValidate(winNumInput);
+            }
+            if (validWinNum == 2) {
+                winNumber = makeWinNums(winNumInput);
+            }
+        }
+        return winNumber;
+    }
+
+    public int dupValidate(String[] winNums) {
+        List<Integer> winTemp = new ArrayList<Integer>();
+        for (String winNum : winNums) {
+            if (winTemp.contains(Integer.parseInt(winNum))) {
+                System.out.println(Exception.DUPLICATE_NUMBER.getErrorMessage());
+                return 0;
+            }
+            winTemp.add(Integer.parseInt(winNum));
+        }
+        return 2;
+    }
+
+    public List<Integer> makeWinNums(String[] winNums) {
+        List<Integer> winNumList = new ArrayList<Integer>();
+        for (String winNum : winNums) {
+            winNumList.add(Integer.parseInt(winNum));
+        }
+        return winNumList;
+    }
+
+    public int winNumTypeValidate(String[] winNumInput) {
+
+        try {
+            Integer.parseInt(String.join("", winNumInput));
+        } catch (NumberFormatException e) {
+            System.out.println(Exception.INVALID_NUMBER_TYPE.getErrorMessage());
+            return 0;
+        }
+        return 1;
+
+    }
 }
