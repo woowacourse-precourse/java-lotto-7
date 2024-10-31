@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.util.InputValidate;
 
 public class InputView {
@@ -17,5 +19,18 @@ public class InputView {
         inputValidate.bonusRangeValidate(input);
         int bonus = Integer.parseInt(input);
         return bonus;
+    }
+
+    public List<Integer> inputLotto() {
+        outputView.lottoInputMessage();
+        List<Integer> lotto = new ArrayList<>();
+        String[] input = userInput().split(",");
+        for (String num : input) {
+            inputValidate.blankValidate(num);
+            inputValidate.isDigitValidate(num);
+            int lottoNum = Integer.parseInt(num);
+            lotto.add(lottoNum);
+        }
+        return lotto;
     }
 }
