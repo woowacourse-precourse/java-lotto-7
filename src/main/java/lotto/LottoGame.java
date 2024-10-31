@@ -1,69 +1,33 @@
 package lotto;
 
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
 
     private final LottoStore lottoStore;
+    private final LottoGameDisplay lottoGameDisplay;
 
     public LottoGame() {
         this.lottoStore = new LottoStore();
+        this.lottoGameDisplay = new LottoGameDisplay();
     }
 
     public void run() {
-        int money = inputMoney();
+        int money = lottoGameDisplay.inputMoney();
         List<Lotto> lottos = lottoStore.purchase(money);
-        printPurchaseBreakdown(lottos);
+        lottoGameDisplay.printPurchaseBreakdown(lottos);
 
-        List<Integer> winnerNumbers = inputWinnerNumbers();
-        int bonusNumber = inputBonusNumber(winnerNumbers);
+        List<Integer> winnerNumbers = lottoGameDisplay.inputWinnerNumbers();
+        int bonusNumber = lottoGameDisplay.inputBonusNumber(winnerNumbers);
 
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
+
         double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
         Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
-
-        printWinStatistics(rankMap, rateOfResult);
-    }
-
-    private int inputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String rawMoney = Console.readLine();
-
-        return Integer.parseInt(rawMoney);
-    }
-
-    private void printPurchaseBreakdown(List<Lotto> lottos) {
-        System.out.println();
-        System.out.printf("%d개를 구매했습니다.\n", lottos.size());
-
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto);
-        }
-    }
-
-    private List<Integer> inputWinnerNumbers() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String numberMass = Console.readLine();
-        String[] rawNumbers = numberMass.split(",");
-
-        return Arrays.stream(rawNumbers)
-                .map(String::strip)
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    private int inputBonusNumber(List<Integer> winnerNumbers) {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String rawBonusNumber = Console.readLine();
-
-        return Integer.parseInt(rawBonusNumber);
+        lottoGameDisplay.printWinStatistics(rankMap, rateOfResult);
     }
 
     private List<LottoRank> checkLottosRank(List<Lotto> lottos, List<Integer> winnerNumbers, int bonus) {
@@ -75,39 +39,5 @@ public class LottoGame {
         }
 
         return lottoRanks;
-    }
-
-    private void printWinStatistics(Map<LottoRank, Integer> rankMap, double rateOfResult) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        printRankBreakdown(rankMap);
-        printRateOfResult(rateOfResult);
-    }
-
-    private void printRankBreakdown(Map<LottoRank, Integer> rankMap) {
-        List<LottoRank> printLottoRanks = List.of(
-                LottoRank.GRADE_5TH,
-                LottoRank.GRADE_4TH,
-                LottoRank.GRADE_3TH,
-                LottoRank.GRADE_2TH,
-                LottoRank.GRADE_1TH
-        );
-
-        for (LottoRank lottoRank : printLottoRanks) {
-            System.out.printf("%s (%,d%s) - %d개\n",
-                    lottoRank.getWinCondition(),
-                    lottoRank.getPrizeMoney(),
-                    LottoRank.UNIT,
-                    rankMap.get(lottoRank)
-            );
-        }
-    }
-
-    private void printRateOfResult(double rateOfResult) {
-        // 둘째자리에서 반올림하여 출력
-        double result = Math.round(rateOfResult * 100) / 100.0;
-        System.out.println("총 수익률은 " + result + "%입니다.");
     }
 }
