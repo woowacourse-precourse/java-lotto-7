@@ -4,6 +4,7 @@ import static lotto.ExceptionHandler.validateNumeric;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Utils {
@@ -15,12 +16,13 @@ public class Utils {
         return parsedText;
     }
 
-    public static List<Integer> convertToNumber(List<String> numbersText) {
+    public static List<Integer> convertToSortedNumber(List<String> numbersText) {
         List<Integer> commaSeperatedNumber = new ArrayList<>();
         for (String numberText : numbersText) {
             validateNumeric(numberText);
             commaSeperatedNumber.add(Integer.parseInt(numberText));
         }
+        commaSeperatedNumber.sort(Comparator.naturalOrder());
         return commaSeperatedNumber;
     }
 }
