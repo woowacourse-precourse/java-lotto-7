@@ -40,12 +40,12 @@ public class InputView {
 
     private static List<Integer> parseWinNumbers(String winInput){
         String[] winNumbersArr  = winInput.split(",");
-        List<Integer> winNumbers = new ArrayList<>();
+        List<Integer> parsedWinNumbers = new ArrayList<>();
 
         for(String winNumber : winNumbersArr){
-            winNumbers.add(Integer.parseInt(winNumber.trim()));
+            parsedWinNumbers.add(Integer.parseInt(winNumber.trim()));
         }
-        return winNumbers;
+        return parsedWinNumbers;
     }
 
     public static int bonusInput(){
