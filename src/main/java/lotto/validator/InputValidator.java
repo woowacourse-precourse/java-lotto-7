@@ -2,11 +2,17 @@ package lotto.validator;
 
 import lotto.exception.ErrorMessage;
 
+import java.util.List;
+
 public class InputValidator {
-    public static void validatePrice(String input) {
+    public static void validateInput(String input) {
         isEmpty(input);
         isNumber(input);
         isPositive(input);
+    }
+
+    public static void validateWinningNumbers(List<String> stringList) {
+        stringList.forEach(InputValidator::validateInput);
     }
 
     private static void isEmpty(String input) {

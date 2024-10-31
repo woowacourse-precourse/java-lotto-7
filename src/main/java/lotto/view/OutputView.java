@@ -16,5 +16,10 @@ public class OutputView {
         System.out.println();
         System.out.println(lottoDto.getPurchaseQuantity() + "개를 구매했습니다.");
         lottoDto.getLottoList().forEach(System.out::println);
+        System.out.println();
+    }
+
+    public void printWinningNumberInputMessage(){
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 }

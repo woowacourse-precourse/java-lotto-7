@@ -5,6 +5,8 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
     private final LottoService lottoService;
     private final InputView inputView;
@@ -19,6 +21,7 @@ public class LottoController {
     public void run() {
         LottoResultDto lottoDto = purchaseLotto();
         outputView.printPurchaseLottoList(lottoDto);
+        receiveWinningAndBonusNumbers();
     }
 
     private LottoResultDto purchaseLotto() {
@@ -27,6 +30,17 @@ public class LottoController {
                 outputView.printPurchaseAmount();
                 int price = inputView.readPrice();
                 return lottoService.createLottoList(price);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    private void receiveWinningAndBonusNumbers() {
+        while (true) {
+            try {
+                outputView.printWinningNumberInputMessage();
+                List<Integer> winningNumbers = inputView.readWinningNumbers();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
