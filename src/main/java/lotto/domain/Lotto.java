@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.dto.LottoDto;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
