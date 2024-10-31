@@ -4,6 +4,7 @@ import lotto.domain.lotto.Bonus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
+import lotto.domain.player.PlayerResult;
 import lotto.util.RandomNumberGenerator;
 
 import java.util.HashSet;
@@ -25,11 +26,14 @@ public class PlayerService {
         this.numberGenerator = new RandomNumberGenerator();
     }
 
-    public void updateLottoCount(int price) {
+    // 1. 구매할 수 있는 로또의 개수
+    public int updateLottoCount(int price) {
         int lottoCount = price / LOTTO_PRICE;
         player.updateLottoCount(lottoCount);
+        return lottoCount;
     }
 
+    // 2. 구매할 수 있는 개수만큼 로또를 생성하는 기능
     public void addLottos(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             player.addLotto(createLotto());
@@ -41,6 +45,7 @@ public class PlayerService {
         return new PlayerLotto(lottoNumbers);
     }
 
+    // 5. 로또 당첨 여부를 판단하는 기능
     public void calculateWinningCount(PlayerLotto playerLotto) {
         HashSet<Integer> set = new HashSet<>();
         set.addAll(lotto.getNumbers());
@@ -61,5 +66,22 @@ public class PlayerService {
         if (set.contains(bonus.getNumber())) {
             playerLotto.increaseBonusCount();
         }
+    }
+
+    // 6. 수익률을 계산하는 기능
+    public void updatePlayerResult(Player player) {
+
+    }
+
+    public void calculateWinningRank(List<PlayerLotto> playerLottos) {
+
+    }
+
+    public int calculateProfit(PlayerResult playerResult) {
+        return 0;
+    }
+
+    public float calculateProfitRate(int price, long profit) {
+        return 0;
     }
 }

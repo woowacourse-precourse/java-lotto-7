@@ -15,10 +15,12 @@ public class LottoService {
         this.bonus = bonus;
     }
 
+    // 3. 로또 당첨 번호를 입력하는 기능
     public void addWinningNumbers(List<Integer> winningNumbers) {
         lotto.addNumbers(winningNumbers);
     }
 
+    // 4. 로또 보너스 번호를 입력하는 기능
     public void updateBonusNumber(int number) {
         bonus.updateNumber(number);
     }

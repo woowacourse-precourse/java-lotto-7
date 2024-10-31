@@ -4,7 +4,7 @@ import lotto.domain.lotto.Bonus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
-import org.junit.jupiter.api.Assertions;
+import lotto.domain.player.PlayerResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,10 +36,10 @@ public class PlayerServiceTest {
         int price = 10000;
 
         // when
-        playerService.updateLottoCount(price);
+        int lottoCount = playerService.updateLottoCount(price);
 
         // then
-        assertThat(player.getLottoCount()).isEqualTo(10);
+        assertThat(lottoCount).isEqualTo(10);
     }
 
     @Test
@@ -59,9 +59,9 @@ public class PlayerServiceTest {
     @DisplayName("로또에서 당첨된 번호 개수를 알려줄 수 았다.")
     void 당첨_개수_확인_테스트() throws Exception {
         // given
-        lotto.addNumbers(List.of(1,2,3,4,5,6));
+        lotto.addNumbers(List.of(1, 2, 3, 4, 5, 6));
         bonus.updateNumber(7);
-        PlayerLotto playerLotto = new PlayerLotto(List.of(1,2,3,4,5,7));
+        PlayerLotto playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 7));
 
         // when
         playerService.calculateWinningCount(playerLotto);
@@ -69,6 +69,91 @@ public class PlayerServiceTest {
         // then
         assertEquals(playerLotto.getWinningCount(), 5);
         assertEquals(playerLotto.getBonusCount(), 1);
+    }
+
+    @Test
+    @DisplayName("당첨된 로또의 순위를 저장할 수 있다.")
+    void 당첨_로또_순위_저장_테스트() throws Exception {
+        // given
+        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 5, 6)));
+        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 5, 7)));
+        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 5, 8)));
+        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 4, 8, 9)));
+        player.addLotto(new PlayerLotto(List.of(1, 2, 3, 8, 9, 10)));
+
+        List<PlayerLotto> playerLottos = player.getLottos();
+
+        lotto.addNumbers(List.of(1,2,3,4,5,6));
+        bonus.updateNumber(7);
+
+        // when
+        playerService.calculateWinningRank(playerLottos);
+
+        // then
+        assertEquals(player.getPlayerResult().getFirstPlace(), 1);
+        assertEquals(player.getPlayerResult().getSecondPlace(), 1);
+        assertEquals(player.getPlayerResult().getThirdPlace(), 1);
+        assertEquals(player.getPlayerResult().getFourthPlace(), 1);
+        assertEquals(player.getPlayerResult().getFifthPlace(), 1);
+    }
+
+    @Test
+    @DisplayName("당첨된 금액의 총합을 구할 수 있다")
+    void 당첨_금액_계산_테스트() throws Exception {
+        // given
+        PlayerResult playerResult = new PlayerResult(1, 1, 1, 1, 1);
+
+        // when
+        int profit = playerService.calculateProfit(playerResult);
+
+        // then
+        assertThat(profit).isEqualTo(2031555000);
+    }
+
+    @Test
+    @DisplayName("당첨된 금액의 총합으로 수익률을 구할 수 있다")
+    void 수익률_계산_테스트() throws Exception {
+        // given
+        long profit = 2031555000;
+        int price = 5000;
+
+        // when
+        float profitRate =  playerService.calculateProfitRate(price, profit);
+
+        // then
+        assertThat(player.getPlayerResult().getProfitRate()).isEqualTo(40631100.0);
+    }
+
+    @Test
+    @DisplayName("당첨된 로또의 순위를 저장할 수 있다.")
+    void 로또_결과_수정_테스트() throws Exception {
+        // given
+        PlayerLotto playerLotto1 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
+        PlayerLotto playerLotto2 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 7));
+        PlayerLotto playerLotto3 = new PlayerLotto(List.of(1, 2, 3, 4, 5, 8));
+        PlayerLotto playerLotto4 = new PlayerLotto(List.of(1, 2, 3, 4, 8, 9));
+        PlayerLotto playerLotto5 = new PlayerLotto(List.of(1, 2, 3, 8, 9, 10));
+
+        player.addLotto(playerLotto1);
+        player.addLotto(playerLotto2);
+        player.addLotto(playerLotto3);
+        player.addLotto(playerLotto4);
+        player.addLotto(playerLotto5);
+
+        lotto.addNumbers(List.of(1,2,3,4,5,6));
+        bonus.updateNumber(7);
+
+        // when
+        playerService.updatePlayerResult(player);
+
+        // then
+        assertEquals(player.getPlayerResult().getFirstPlace(), 1);
+        assertEquals(player.getPlayerResult().getSecondPlace(), 1);
+        assertEquals(player.getPlayerResult().getThirdPlace(), 1);
+        assertEquals(player.getPlayerResult().getFourthPlace(), 1);
+        assertEquals(player.getPlayerResult().getFifthPlace(), 1);
+        assertThat(player.getPlayerResult().getProfit()).isEqualTo(2031555000);
+        assertThat(player.getPlayerResult().getProfitRate()).isEqualTo(40631100.0);
     }
 
 }

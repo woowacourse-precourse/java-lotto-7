@@ -7,10 +7,12 @@ public class Player {
 
     private int lottoCount;
     private List<PlayerLotto> lottos;
+    private PlayerResult playerResult;
 
     public Player() {
         this.lottoCount = 0;
         this.lottos = new ArrayList<>();
+        this.playerResult = new PlayerResult();
     }
 
     public int getLottoCount() {
@@ -19,6 +21,10 @@ public class Player {
 
     public List<PlayerLotto> getLottos() {
         return lottos;
+    }
+
+    public PlayerResult getPlayerResult() {
+        return playerResult;
     }
 
     public void updateLottoCount(int lottoCount) {
