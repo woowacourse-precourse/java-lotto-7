@@ -8,4 +8,8 @@ public class LottoStorage {
     public LottoStorage(List<Lotto> lottos) {
         this.lottoNumbers = lottos;
     }
+
+    public void addLotto(Lotto lotto) {
+        this.lottoNumbers.add(lotto);
+    }
 }
