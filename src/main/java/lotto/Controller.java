@@ -1,9 +1,14 @@
 package lotto;
 
+import java.util.List;
+
 public class Controller {
 
     public static void main(String[] args) {
-        int purchaseAmount = getPurchaseAmount();
+int money = getPurchaseAmount();
+        int lottoCount = LottoService.calculateLottoCount(money);
+        List<Lotto> lottoTickets = LottoService.generateLottos(lottoCount);
+        OutputView.printLottos(lottoTickets);
     }
 
     private static int getPurchaseAmount() {
