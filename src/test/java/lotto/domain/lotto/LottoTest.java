@@ -26,8 +26,8 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("주어진 당첨 번호에 대해 올바른 순위를 반환할 수 있다.")
-    void 당첨_번호로_올바른_순위를_반환할_수_있다() {
+    @DisplayName("주어진 당첨 번호에 대해 1위를 반환할 수 있다.")
+    void 당첨_번호로_1위를_반환할_수_있다() {
         // given
         Lotto lotto = new Lotto(winningLotto.basicNumbers());
 
@@ -36,5 +36,61 @@ class LottoTest {
 
         // then
         assertThat(rank).isEqualByComparingTo(Rank.FIRST);
+    }
+
+    @Test
+    @DisplayName("주어진 당첨 번호에 대해 2위를 반환할 수 있다.")
+    void 당첨_번호로_2위를_반환할_수_있다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 7);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        Rank rank = lotto.getRank(winningLotto);
+
+        // then
+        assertThat(rank).isEqualByComparingTo(Rank.SECOND);
+    }
+
+    @Test
+    @DisplayName("주어진 당첨 번호에 대해 3위를 반환할 수 있다.")
+    void 당첨_번호로_3위를_반환할_수_있다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 8);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        Rank rank = lotto.getRank(winningLotto);
+
+        // then
+        assertThat(rank).isEqualByComparingTo(Rank.THIRD);
+    }
+
+    @Test
+    @DisplayName("주어진 당첨 번호에 대해 4위를 반환할 수 있다.")
+    void 당첨_번호로_4위를_반환할_수_있다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 8, 9);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        Rank rank = lotto.getRank(winningLotto);
+
+        // then
+        assertThat(rank).isEqualByComparingTo(Rank.FOURTH);
+    }
+
+    @Test
+    @DisplayName("주어진 당첨 번호에 대해 5위를 반환할 수 있다.")
+    void 당첨_번호로_5위를_반환할_수_있다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 8, 9, 10);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        Rank rank = lotto.getRank(winningLotto);
+
+        // then
+        assertThat(rank).isEqualByComparingTo(Rank.FIFTH);
     }
 }
