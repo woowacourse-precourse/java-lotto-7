@@ -7,29 +7,33 @@ import lotto.util.RandomUtil;
 
 public class Wallet {
 
-    private int money;
-    private int originalMoney;
+    private long money;
+    private long originalMoney;
     private List<Rank> ranks = new ArrayList<>();
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Wallet(int money) {
+    public Wallet(long money) {
         validateMoney(money);
         this.money = money;
         originalMoney = money;
     }
 
     public void buyLottoTickets() {
-        int ticketCount = money / 1000;
+        long ticketCount = money / 1000;
         money -= ticketCount * 1000;
         while (ticketCount-- > 0) {
             lottos.add(new Lotto(RandomUtil.getLottoNumbers()));
         }
     }
 
-    private void validateMoney(int money) {
+    private void validateMoney(long money) {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.\n");
         }
+    }
+
+    public List<Lotto> getTickets() {
+        return lottos;
     }
 
     public int getLottoTicketCounts() {
@@ -49,7 +53,7 @@ public class Wallet {
 
     public int getRankCount(int rank) {
         return (int)ranks.stream()
-            .filter((rank1 -> rank1.get() == 1))
+            .filter((rank1 -> rank1.get() == rank))
             .count();
     }
 }

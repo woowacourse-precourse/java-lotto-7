@@ -9,15 +9,15 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public long money() {
+    public static long money() {
         try {
-            return Integer.parseInt(input());
+            return Long.parseLong(input());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("구입금액은 숫자여야 합니다\n");
         }
     }
 
-    public List<Integer> winningNumbers() {
+    public static List<Integer> winningNumbers() {
         try {
             return Arrays.stream(input().split(","))
                 .mapToInt(Integer::parseInt)
@@ -30,7 +30,15 @@ public class InputView {
         }
     }
 
-    private String input() {
+    public static int bonusNumber() {
+        try {
+            return Integer.parseInt(input());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("보너스 번호는 숫자여야 합니다\n");
+        }
+    }
+
+    private static String input() {
         return Console.readLine();
     }
 }

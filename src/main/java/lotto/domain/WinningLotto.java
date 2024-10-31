@@ -10,13 +10,13 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Rank getRank(Lotto other, int bonusNumber) {
+    public Rank getRank(Lotto other) {
         int equalNumbersCount = lotto.getEqualNumbersCount(other);
         if (equalNumbersCount == 6) {
             return new Rank(1);
         }
         if (equalNumbersCount == 5) {
-            if (this.bonusNumber == bonusNumber) {
+            if (lotto.getNumbers().contains(bonusNumber)) {
                 return new Rank(2);
             }
             return new Rank(3);

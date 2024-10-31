@@ -28,6 +28,9 @@ public class Rank {
         if (rank == 5) {
             return 5_000;
         }
+        if (rank == -1) {
+            return 0;
+        }
         throw new IllegalStateException("[ERROR] 잘못된 등수입니다.");
     }
 }

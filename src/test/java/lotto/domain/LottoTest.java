@@ -34,7 +34,7 @@ class LottoTest {
         numbers.add(0);
         Lotto lotto = new Lotto(numbers);
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), 0);
-        Rank rank = winningLotto.getRank(lotto, 1);
+        Rank rank = winningLotto.getRank(lotto);
         assertThat(rank.get()).isEqualTo(3);
     }
 
