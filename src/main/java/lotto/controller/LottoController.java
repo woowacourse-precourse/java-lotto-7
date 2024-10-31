@@ -21,7 +21,7 @@ public class LottoController {
         purchaseLotto();
         inputWinningNumbers();
         inputBonusNumber();
-        outputWinningStatistics();
+        outputResult();
     }
 
     private void purchaseLotto() {
@@ -59,9 +59,9 @@ public class LottoController {
             }
         }
     }
-    private void outputWinningStatistics() {
+    private void outputResult() {
         outputView.displayMessage(OutputMessage.WINNING_STATISTICS.getOutputMessage());
         outputView.displayMessage(OutputMessage.HYPHEN.getOutputMessage());
-        outputView.displayStatistics(systemService.statisticsProcess());
+        outputView.displayStatistics(systemService.result());
     }
 }
