@@ -12,24 +12,32 @@ public class Application {
         IOController ioController = new IOController();
 
         Integer LottoCount = ioController.inputPurchaseAmount();
-
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < LottoCount / LOTTO_PRICE; i++) {
-            lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-
+        List<Lotto> lottoList = getLottoList(LottoCount);
         ioController.printLottoList(lottoList);
 
         List<Integer> winningNumbers = ioController.inputWinningNumbers();
         Integer bonusNumber = ioController.inputBonusNumber(winningNumbers);
 
+        List<LottoResult> lottoResultList = getLottoResults(lottoList, winningNumbers, bonusNumber);
+        ioController.printWinningStatistics(new LottoStatistic(lottoResultList));
+    }
+
+    private static List<LottoResult> getLottoResults(List<Lotto> lottoList, List<Integer> winningNumbers,
+                                                     Integer bonusNumber) {
         List<LottoResult> lottoResultList = new ArrayList<>();
         for (Lotto lotto : lottoList) {
             lottoResultList.add(new LottoResult(lotto, winningNumbers, bonusNumber));
         }
-
-        LottoStatistic lottoStatistic = new LottoStatistic(lottoResultList);
-        ioController.printWinningStatistics(lottoStatistic);
-
+        return lottoResultList;
     }
+
+    private static List<Lotto> getLottoList(Integer LottoCount) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < LottoCount / LOTTO_PRICE; i++) {
+            lottoList.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottoList;
+    }
+
+
 }

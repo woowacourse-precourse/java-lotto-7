@@ -12,7 +12,6 @@ public class IOController {
     public static final String COMMA = ",";
 
     public Integer inputPurchaseAmount() {
-
         Integer purchaseAmount = null;
         while (purchaseAmount == null) {
             System.out.println("구입금액을 입력해 주세요.");
@@ -34,7 +33,6 @@ public class IOController {
     }
 
     public List<Integer> inputWinningNumbers() {
-
         List<Integer> winningNumbers = null;
         while (winningNumbers == null) {
             System.out.println("당첨 번호를 입력해 주세요.");
@@ -51,7 +49,6 @@ public class IOController {
     }
 
     public Integer inputBonusNumber(List<Integer> winningNumbers) {
-
         Integer bonusNumber = null;
         while (bonusNumber == null) {
             System.out.println("보너스 번호를 입력해 주세요.");

@@ -21,7 +21,6 @@ public class Validator {
     }
 
     public void winningNumberValidate(List<String> winningNumbers) {
-
         lottoNumberCountValidate(winningNumbers);
         duplicateElementValidate(winningNumbers);
         for (String winningNumberString : winningNumbers) {
