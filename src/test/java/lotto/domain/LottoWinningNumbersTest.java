@@ -14,7 +14,11 @@ class LottoWinningNumbersTest {
     void 로또_당첨_번호_생성_테스트(String first, String second){
         LottoWinningNumbers lotto = new LottoWinningNumbers(first, second);
         lotto.generate();
+
         List<Integer> winningNumbers = lotto.getWinningNumbers();
-        assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6, 7);
+        assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
+
+        int bonusNumber = lotto.getBonusNumber();
+        assertThat(bonusNumber).isEqualTo(7);
     }
 }
