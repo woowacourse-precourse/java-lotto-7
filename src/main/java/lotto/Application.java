@@ -17,6 +17,9 @@ public class Application {
     public void run() {
         output.requestPurchaseAmount();
         int amount = input.getPurchaseAmount();
+
+        List<Lotto> purChasedLotto = new LottoShop(amount).getPurChasedLotto();
+
     }
 
     public static void main(String[] args) {

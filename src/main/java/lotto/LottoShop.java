@@ -1,10 +1,31 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LottoShop {
     private static final int LOTTO_UNIT = 1000;
     private static final int ZERO_AMOUNT = 0;
 
-    public static int validatePurchaseAmount(String input){
+    private final List<Lotto> purChasedLotto = new ArrayList<>();
+
+    public LottoShop(int amount){
+        int count = getLottoCount(amount);
+        while (count != ZERO_AMOUNT) {
+            Lotto lotto = new Lotto(drawNumberList());
+            this.purChasedLotto.add(lotto);
+            count--;
+        }
+    }
+
+    public List<Lotto> getPurChasedLotto() {
+        return purChasedLotto;
+    }
+
+    public static int validatePurchaseAmount(String input) {
         validateDigitsOnly(input);
         return validateUnit(input);
     }
@@ -17,17 +38,26 @@ public class LottoShop {
 
     private static int validateUnit(String input) {
         int amount = Integer.parseInt(input);
-        if(isInvalidAmountUnit(amount)){
+        if (isInvalidAmountUnit(amount)) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
         }
         return amount;
     }
 
-    private static boolean containsNonDigit(String input){
+    private static boolean containsNonDigit(String input) {
         return input.chars().anyMatch(c -> !Character.isDigit(c));
     }
 
-    private static boolean isInvalidAmountUnit(int amount){
+    private static boolean isInvalidAmountUnit(int amount) {
         return amount % LOTTO_UNIT != ZERO_AMOUNT || amount == ZERO_AMOUNT;
     }
+
+    private List<Integer> drawNumberList(){
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    private int getLottoCount(int amount) {
+        return amount / LOTTO_UNIT;
+    }
+
 }
