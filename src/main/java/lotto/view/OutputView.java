@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.Rank;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 
 public class OutputView {
@@ -12,6 +14,22 @@ public class OutputView {
         for (Lotto lotto : lotteries) {
             printEachNumber(lotto);
         }
+    }
+
+    public void printWinnings(Map<Rank, Integer> winningCountOfEachRanks) {
+        System.out.println("\n" + "당첨 통계");
+        System.out.println("---");
+
+        for (Map.Entry<Rank, Integer> entry : winningCountOfEachRanks.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+
+            System.out.println(rank.displayRankResult(count));
+        }
+    }
+
+    public void printRateOfReturn() {
+
     }
 
     private void printEachNumber(Lotto lotto) {
