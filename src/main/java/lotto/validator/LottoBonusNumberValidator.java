@@ -8,20 +8,17 @@ public class LottoBonusNumberValidator {
 
     private static final String LOTTO_BONUS_NUMBER_PATTERN_TEXT = "^\\d+$";
     private static final Pattern LOTTO_BONUS_NUMBER_PATTERN = Pattern.compile(LOTTO_BONUS_NUMBER_PATTERN_TEXT);
-    private final int lottoNumberMin;
-    private final int lottoNumberMax;
+    private final LottoNumberValidator lottoNumberValidator;
 
-    public LottoBonusNumberValidator(int lottoNumberMin, int lottoNumberMax) {
-        this.lottoNumberMin = lottoNumberMin;
-        this.lottoNumberMax = lottoNumberMax;
+    public LottoBonusNumberValidator(LottoNumberValidator lottoNumberValidator) {
+        this.lottoNumberValidator = lottoNumberValidator;
     }
 
     public void validateBonusNumber(String bonusNumber, List<Integer> lottoWinningNumbers) {
         validateDigit(bonusNumber);
-
         int number = LottoParser.parseInt(bonusNumber);
-        validateMoreThanLottoNumberMin(number);
-        validateLessThanLottoNumberMax(number);
+
+        lottoNumberValidator.validateLottoNumber(number);
         validateDuplicationNumber(number, lottoWinningNumbers);
     }
 
@@ -31,20 +28,8 @@ public class LottoBonusNumberValidator {
         }
     }
 
-    private void validateMoreThanLottoNumberMin(int bounusNumber) {
-        if (bounusNumber < lottoNumberMin) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateLessThanLottoNumberMax(int bonusNumber) {
-        if (bonusNumber > lottoNumberMax) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateDuplicationNumber(int bonusNumber, List<Integer> winningNumbers){
-        if(winningNumbers.contains(bonusNumber)){
+    private void validateDuplicationNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }
