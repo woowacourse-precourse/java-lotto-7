@@ -1,6 +1,5 @@
 package lotto.domain.numberlotto.lotto;
 
-import lotto.domain.LottoObject;
 import lotto.domain.numberlotto.constants.message.InputError;
 import lotto.domain.numberlotto.constants.message.RangeError;
 import lotto.domain.numberlotto.constants.value.LottoRule;
@@ -9,11 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lotto {
+public class NumberLotto {
 
     private final List<Number> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public NumberLotto(List<Integer> numbers) {
 
         validateLength(numbers);
         validateDuplicate(numbers);
