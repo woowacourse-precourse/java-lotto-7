@@ -27,7 +27,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource("invalidRangeIntegerLists")
+    @MethodSource("invalidLottoNumbers")
     void 로또_번호가_범위에_맞지_않으면_예외가_발생한다(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -44,7 +44,7 @@ class LottoTest {
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
-    static Stream<List<Integer>> invalidRangeIntegerLists() {
+    private static Stream<List<Integer>> invalidLottoNumbers() {
         return Stream.of(
                 List.of(0, 1, 2, 3, 4, 5),
                 List.of(1, 2, 3, 4, 5, 46)

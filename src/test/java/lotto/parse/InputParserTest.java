@@ -1,7 +1,7 @@
 package lotto.parse;
 
-import static lotto.parse.InputParser.parseToInt;
-import static lotto.parse.InputParser.getParsedWinningNumbers;
+import static lotto.parse.InputParser.parsePurchasedAmount;
+import static lotto.parse.InputParser.parseWinningNumber;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
@@ -13,7 +13,7 @@ class InputParserTest {
     void 문자열_구입_금액을_정수로_파싱() {
         String input = "8000";
 
-        int parsedPurchaseAmount = parseToInt(input);
+        int parsedPurchaseAmount = parsePurchasedAmount(input);
 
         assertThat(parsedPurchaseAmount).isEqualTo(8000);
     }
@@ -22,7 +22,7 @@ class InputParserTest {
     void 문자열_로또_번호를_리스트로_파싱() {
         String input = "1,2,3,4,5,6";
 
-        List<Integer> parsedWinningNumbers = getParsedWinningNumbers(input);
+        List<Integer> parsedWinningNumbers = parseWinningNumber(input);
 
         assertThat(parsedWinningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
