@@ -18,6 +18,7 @@ public class Application {
         System.out.println(StringPool.INSERT_BONUS_NUMBER);
         lottoMachine.setBonusNumber(Integer.parseInt(Console.readLine()));
 
+        lottoMachine.processLottoResult(boughtLottos);
 
     }
 }

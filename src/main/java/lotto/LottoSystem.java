@@ -6,11 +6,13 @@ import static lotto.StringPool.PRINT_SOLD_LOTTO_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class LottoSystem {
     private static LottoCustomer customer = new LottoCustomer();
+    private ArrayList<LottoRank> rankPerCount = new ArrayList<>(Arrays.asList(LottoRank.values()));
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private int printLottoCount;
@@ -53,8 +55,24 @@ public class LottoSystem {
         this.bonusNumber = bonusNumber;
     }
 
+    public void processLottoResult(List<Lotto> lottos) {
+        List<List<Integer>> eachLottos = lottos.stream().map(Lotto::getNumbers).toList();
+        for (List<Integer> lottoPaper : eachLottos) {
+            int count = (int) lottoPaper.stream().filter(this.winningNumbers::contains).count();
+            if (count == 5 && !hasBonusNumber(lottoPaper)) {
+                --count;
+            }
+            LottoRank rank = rankPerCount.get(count);
+            rank.addCount();
+        }
+    }
+
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
+    }
+
+    private boolean hasBonusNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(this.bonusNumber);
     }
 
     private boolean isNumberInRange(int num) {
