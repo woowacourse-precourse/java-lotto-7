@@ -1,6 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +21,18 @@ public class Lotto {
         }
     }
 
+    public boolean isBonusBallMatch(Integer bonusBall) {
+        return numbers.contains(bonusBall);
+    }
+
+    public int getCorrectCount(Lotto winner) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winner.numbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
     // TODO: 추가 기능 구현
 }
