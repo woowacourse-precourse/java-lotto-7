@@ -36,8 +36,8 @@ public class SystemService {
         bonusNumber = numberService.winningBonusNumber(number, winningLotto);
     }
 
-    public List<Integer> statisticsProcess() {
-        return resultService.statistics(user,winningLotto,bonusNumber);
+    public List<String> result() {
+        return resultService.resultProcess(user,winningLotto,bonusNumber);
     }
 
 }
