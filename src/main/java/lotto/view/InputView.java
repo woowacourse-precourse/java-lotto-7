@@ -11,14 +11,15 @@ import lotto.utils.Utils;
 import net.bytebuddy.dynamic.loading.ClassInjector.UsingInstrumentation;
 
 public class InputView {
-    private static final String NOT_NUMBER = "숫자가 아닙니다";
-    private static final String INVALID_RANGE = "범위가 유효하지 않습니다";
-    private static final String NOT_DIVISIBLE_BY_THOUSAND = "천원단위로 나누어 지지 않습니다";
-    private static final String EMPTY_INPUT = "빈 입력입니다";
-    private static final String INVALID_WINNING_NUMBER_COUNT = "당첨 번호 개수가 맞지 않습니다";
+    private static final String NOT_NUMBER = "숫자가 아닙니다.";
+    private static final String INVALID_RANGE = "범위가 유효하지 않습니다.";
+    private static final String NOT_DIVISIBLE_BY_THOUSAND = "천원단위로 나누어 지지 않습니다.";
+    private static final String EMPTY_INPUT = "빈 입력입니다.";
+    private static final String INVALID_WINNING_NUMBER_COUNT = "당첨 번호 개수가 맞지 않습니다.";
+    private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final int WINNING_NUMBER_COUNT = 6;
-
-
+    private static final int MIN_LOTTO_RANGE = 1;
+    private static final int MAX_LOTTO_RANGE = 45;
 
     //inputPurchasePrice 구현
     public static int inputPurchasePrice() {
@@ -82,6 +83,10 @@ public class InputView {
         }
         if (!Utils.checkSizeEqual(numbers, WINNING_NUMBER_COUNT)) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT + " : " + userInput);
+        }
+        List<BigDecimal> winningNumber = Arrays.stream(numbers).map(number -> new BigDecimal(number)).toList();
+        if (!Utils.areAllNumbersValidRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), winningNumber)) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE + " : " + userInput);
         }
     }
 

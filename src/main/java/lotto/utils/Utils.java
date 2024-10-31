@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Utils {
 
@@ -38,5 +39,14 @@ public class Utils {
 
     public static boolean checkSizeEqual (String[] input, int size) {
         return input.length == size;
+    }
+
+    public static boolean areAllNumbersValidRange (BigDecimal min, BigDecimal max, List<BigDecimal> numbers) {
+        for (BigDecimal number : numbers) {
+            if (!Utils.isInRange(min, max, number)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
