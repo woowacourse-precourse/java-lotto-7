@@ -18,4 +18,20 @@ public class InputValidator {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
+
+    //들어온 문자열이 정수형으로 변환되는지 확인해주는 메소드
+    public static int validateNumber(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    public static void validateContainBlank(String input){
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CONTAIN_BLANK.getMessage());
+        }
+    }
 }
