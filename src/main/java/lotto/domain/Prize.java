@@ -51,6 +51,6 @@ public enum Prize {
 
     @Override
     public String toString() {
-        return description + " (" + rewards + ") ";
+        return description + " (" + String.format("%,d", rewards) + ") ";
     }
 }

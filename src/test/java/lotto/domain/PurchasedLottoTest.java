@@ -32,6 +32,23 @@ public class PurchasedLottoTest {
 
         assertThat(prizes.get(Prize.FOURTH)).isEqualTo(2);
         assertThat(prizes.get(Prize.FAIL)).isEqualTo(1);
+    }
 
+    @Test
+    void 수익률_반환_테스트(){
+        PurchasedLotto purchasedLotto = new PurchasedLotto();
+
+        purchasedLotto.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+        purchasedLotto.addLotto(new Lotto(List.of(12,13,14,15,16,17)));
+
+        purchasedLotto.matchLotto(new WinningNumber(new Lotto(List.of(1,2,3,9,10,11)), 15));
+
+        assertThat(purchasedLotto.getRateOfReturn()).isEqualTo(62.5);
     }
 }
