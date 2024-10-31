@@ -1,7 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.Purchase;
+import lotto.domain.lotto.LottoGenerator;
+import lotto.domain.purchase.Purchase;
+import lotto.domain.winning.WinningNumber;
+import lotto.domain.winning.WinningStatics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,10 +19,18 @@ public class LottoController {
 
     public void run() {
         Purchase purchase = new Purchase(inputView.purchaseInput());
-        int amount = purchase.getAmount();
 
-        LottoGenerator lotto = new LottoGenerator(purchase.numberOfLotto());
+        LottoGenerator lottos = new LottoGenerator(purchase.numberOfLotto());
 
-        outputView.printLottoStatus(lotto.getLottos());
+        outputView.printLottoStatus(lottos.getLottos());
+
+        String winningNum = inputView.winningNumberInput();
+        String bounsNumber = inputView.bonusInput();
+
+        WinningNumber winningNumber = new WinningNumber(winningNum, bounsNumber);
+        WinningStatics winningStatics = new WinningStatics();
+        winningStatics.numOfWinnings(lottos.getLottos(), winningNumber);
+
+        outputView.printWinningStatics(winningStatics);
     }
 }

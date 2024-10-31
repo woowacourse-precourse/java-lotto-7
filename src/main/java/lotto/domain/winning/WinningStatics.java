@@ -23,7 +23,7 @@ public class WinningStatics {
         return winningStatics.get(winningRank);
     }
 
-    public void numOfWinnings(List<List<Integer>> lottos, WinningNumber winningNumber ) {
+    public void numOfWinnings(List<List<Integer>> lottos, WinningNumber winningNumber) {
         for (List<Integer> lotto : lottos) {
             boolean containBonusNumber = false;
             List<Integer> matchedNumbers = new ArrayList<>(lotto);
