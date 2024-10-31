@@ -18,7 +18,7 @@ public class PurchaseAmountInputView {
     }
 
     private void validatePurchaseAmountIsNumeric(String purchaseAmount) {
-        if (!purchaseAmount.matches("//d+")) {
+        if (!purchaseAmount.matches("\\d+")) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_NOT_NUMERIC_EXCEPTION.message());
         }
     }
