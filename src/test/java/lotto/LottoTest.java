@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -33,6 +34,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 NULL 일 수 없습니다.");
+    }
+
+    @Test
+    void 로또_번호가_NULL이면_예외가_발생한다() {
+        List<Integer> numbers = Arrays.asList(null, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 null 을 포함할 수 없습니다.");
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
