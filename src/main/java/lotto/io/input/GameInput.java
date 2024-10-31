@@ -7,5 +7,3 @@ public interface GameInput {
 
     String getBonusNumberInput();
 }
-
-

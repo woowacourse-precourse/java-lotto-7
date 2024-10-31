@@ -10,4 +10,3 @@ public interface GameOutput {
 
     void printErrorMessage(String message);
 }
-
