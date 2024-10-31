@@ -2,14 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Application {
     static List<List<Integer>> userLottoNumbers = new ArrayList<>();
-    static Map<Rank, Integer> lottoPrizeCount = new HashMap<>() {{
+    static Map<Rank, Integer> lottoPrizeCount = new LinkedHashMap<>() {{
        put(Rank.FIRST, 0);
        put(Rank.SECOND, 0);
        put(Rank.THIRD, 0);
@@ -26,8 +27,8 @@ public class Application {
     }
 
     public static void checkLottoMatch(List<Integer> lottoWinningNumber, int lottoBonusNumber) {
-        boolean isBonusNumberMatched = false;
         for (List<Integer> userLottoNumber : userLottoNumbers) {
+            boolean isBonusNumberMatched = false;
             int winningNumberCount = compareLottoNumbers(userLottoNumber, lottoWinningNumber);
             if (winningNumberCount == 5) {
                 isBonusNumberMatched = compareBonusNumber(userLottoNumber, lottoBonusNumber);
