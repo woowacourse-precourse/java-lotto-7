@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoGame;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.RandomLottoGenerator;
@@ -23,6 +24,7 @@ public class LottoController {
         outputView.printPurchaseAmount(game.getLottoCount());
         outputView.printLotto(game.getLottoes());
         Lotto winningNumber = readWinningNumber();
+        BonusNumber bonusNumber = readBonusNumber();
     }
 
     private PurchaseAmount readPurchasePrice() {
@@ -33,5 +35,10 @@ public class LottoController {
     private Lotto readWinningNumber() {
         outputView.printWinningNumberGuide();
         return inputView.readWinningNumber();
+    }
+
+    private BonusNumber readBonusNumber() {
+        outputView.printBonusNumberGuide();
+        return inputView.readBonusNumber();
     }
 }

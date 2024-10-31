@@ -22,4 +22,8 @@ public class OutputView {
     public void printWinningNumberGuide() {
         System.out.println(OutputMessage.WINNING_NUMBER_GUIDE.getMessage());
     }
+
+    public void printBonusNumberGuide() {
+        System.out.println(OutputMessage.BONUS_GUID.getMessage());
+    }
 }

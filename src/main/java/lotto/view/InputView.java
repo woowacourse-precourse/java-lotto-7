@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.validator.InputValidator;
 
@@ -26,5 +27,10 @@ public class InputView {
                     .boxed()
                     .toList()
         );
+    }
+
+    public BonusNumber readBonusNumber() {
+        String input = Console.readLine();
+        return new BonusNumber(Integer.parseInt(input));
     }
 }
