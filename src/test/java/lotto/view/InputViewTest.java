@@ -2,6 +2,7 @@ package lotto.view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import net.bytebuddy.build.ToStringPlugin.Enhance;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,5 +38,17 @@ public class InputViewTest {
 
         // Assert
         assertEquals("1,2,3,4,5,6", winningNumbers);
+    }
+
+    @Test
+    void 보너스번호를_정상적으로_입력받는지_확인() {
+        // Arrange
+        String simulatedInput = "7";
+
+        // Act
+        int bonusNumber = inputView.requestBonusNumber(simulatedInput);
+
+        // Assert
+        assertEquals(7, bonusNumber);
     }
 }
