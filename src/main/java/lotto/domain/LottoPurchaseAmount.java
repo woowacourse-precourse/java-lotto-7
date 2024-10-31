@@ -11,8 +11,8 @@ public class LottoPurchaseAmount {
         this.purchaseAmount = Integer.parseInt(purchaseAmount);
     }
 
-    public static LottoPurchaseAmount from(String amount) {
-        return new LottoPurchaseAmount(amount);
+    public static LottoPurchaseAmount from(String purchaseAmount) {
+        return new LottoPurchaseAmount(purchaseAmount);
     }
 
     public int getPurchaseAmount() {
