@@ -3,6 +3,8 @@ package lotto.validation;
 import lotto.exception.InvalidPurchaseAmountException;
 
 public final class PurchaseAmountValidation {
+    public static final int PRICE_UNIT = 1000;
+
     public static int purchaseAmountValidationAndGetLottoQuantity(final String purchaseAmountStr)
             throws IllegalArgumentException {
         InputValidation.isNotBlank(purchaseAmountStr);
@@ -12,12 +14,12 @@ public final class PurchaseAmountValidation {
     }
 
     private static void validatePurchaseAmountBy1000(final int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % PRICE_UNIT != 0) {
             throw new InvalidPurchaseAmountException();
         }
     }
 
     private static int convertToLottoQuantity(final int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / PRICE_UNIT;
     }
 }
