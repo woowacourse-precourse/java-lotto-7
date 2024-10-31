@@ -17,11 +17,11 @@ public class InputView {
     public MoneyDTO readMoney() {
         print(INPUT_MONEY_MESSAGE);
         String input = Console.readLine();
-        validateNumberFormat(input);
+        validateMoneyFormat(input);
         return MoneyDTO.from(Long.valueOf(input));
     }
 
-    private void validateNumberFormat(String input) {
+    private void validateMoneyFormat(String input) {
         if (!Pattern.matches(REGEXP_NUMBER, input)) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_IS_DIGIT.getMessage());
         }
