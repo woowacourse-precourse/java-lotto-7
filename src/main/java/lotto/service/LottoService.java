@@ -1,38 +1,29 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.LottoConstant;
 import lotto.constant.LottoRank;
 import lotto.domain.Lotto;
+import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
 import lotto.util.InputFormatter;
 
 public class LottoService {
 
-    private int money;
-    private final List<Lotto> purchasedLotto;
+    private PurchasedLotto purchasedLotto;
     private Lotto winningLottoNumbers;
     private WinningLotto winningLotto;
     private final InputFormatter inputFormatter;
 
     public LottoService() {
-        this.purchasedLotto = new ArrayList<>();
         this.inputFormatter = new InputFormatter();
     }
 
     public void purchaseLotto(String moneyInput) {
-        this.money = inputFormatter.formatMoneyInput(moneyInput);
-        for (int i = 0; i < money / LottoConstant.MONEY_UNIT.getNumber(); i++) {
-            purchasedLotto.add(purchaseOneLotto());
-        }
+        this.purchasedLotto = new PurchasedLotto(inputFormatter.formatMoneyInput(moneyInput));
     }
 
-    public List<String> purchasedLottoNumbersMessage() {
-        return purchasedLotto.stream()
-                .map(Lotto::toString)
-                .toList();
+    public String purchasedLottoNumbersMessage() {
+        return this.purchasedLotto.toString();
     }
 
     public void setWinningLotto(String winningNumbersInput) {
@@ -46,19 +37,13 @@ public class LottoService {
     }
 
     public void checkLottoResult() {
-        for (Lotto lotto : purchasedLotto) {
+        for (Lotto lotto : purchasedLotto.getPurchasedLotto()) {
             int matchNumbers = winningLotto.findMatchNumbers(lotto);
             LottoRank.checkLottoPrize(matchNumbers, winningLotto.matchBonusNumber(lotto));
         }
     }
 
     public double getRateOfReturn() {
-        return LottoRank.getTotalPrize() * 100.0 / money;
-    }
-
-    private Lotto purchaseOneLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber(),
-                LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber(),
-                LottoConstant.NUMBER_OF_LOTTO_NUMBERS.getNumber()));
+        return purchasedLotto.calculateRateOfReturn();
     }
 }

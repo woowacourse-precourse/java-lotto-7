@@ -3,7 +3,6 @@ package lotto.util;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoConstant;
 
 public class InputFormatter {
 
@@ -31,13 +30,6 @@ public class InputFormatter {
             throw new IllegalArgumentException(ErrorMessage.MONEY_FORMAT_WRONG.toString());
         }
 
-        if (Integer.parseInt(moneyInput) <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.toString());
-        }
-
-        if ((Integer.parseInt(moneyInput) % LottoConstant.MONEY_UNIT.getNumber()) != 0) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_WRONG.toString());
-        }
     }
 
     private void validateWinningNumbersInput(String winningNumbersInput) {

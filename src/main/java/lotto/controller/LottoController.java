@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.constant.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -46,10 +45,7 @@ public class LottoController {
     }
 
     private void printPurchasedLotto() {
-        List<String> purchasedLotto = lottoService.purchasedLottoNumbersMessage();
-
-        outputView.printPurchasedLottoCount(purchasedLotto.size());
-        purchasedLotto.forEach(outputView::printMessage);
+        outputView.printMessage(lottoService.purchasedLottoNumbersMessage());
     }
 
     private void printResult() {

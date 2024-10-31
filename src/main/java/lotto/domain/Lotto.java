@@ -9,7 +9,7 @@ import lotto.constant.LottoConstant;
 public class Lotto {
 
     private static final String LOTTO_MESSAGE_PREFIX = "[";
-    private static final String LOTTO_MESSAGE_SUFFIX = "]";
+    private static final String LOTTO_MESSAGE_SUFFIX = "]\n";
     private static final String COMMA = ", ";
 
     private final List<Integer> numbers;
