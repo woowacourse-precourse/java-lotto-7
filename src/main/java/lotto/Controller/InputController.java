@@ -8,23 +8,20 @@ public class InputController {
 
     private InputView inputView;
 
-    public int setPurchasePrice(){
-        return inputView.inputPurchasePrice()/1000;
+    public int setPurchasePrice() {
+        return inputView.inputPurchasePrice() / 1000;
     }
 
-    public ArrayList<Integer> setWinningNumber(){
-        String[] winningNumber= inputView.setWinningNumber();
+    public ArrayList<Integer> setWinningNumber() {
+        String[] winningNumber = inputView.setWinningNumber();
         return new ArrayList<>(Arrays.stream(winningNumber)
                 .map(Integer::valueOf)
                 .toList());
     }
 
-    public int setBonusNumber(){
+    public int setBonusNumber() {
         return inputView.setBonusNumber();
     }
-
-
-
 
 
 }

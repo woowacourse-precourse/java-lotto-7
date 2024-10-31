@@ -10,24 +10,23 @@ import lotto.Lotto;
 public class PlayLottoGame {
     public ArrayList<Integer> winningNumbers;
     public List<Lotto> lottoList;
-    public Map<Integer,Integer> matchingNumber = new HashMap<>();
+    public Map<Integer,Boolean> matchingNumber = new HashMap<>();
+    public final int bonusNumber;
 
 
 
-    public PlayLottoGame(ArrayList<Integer> winningNumbers, List<Lotto> lottoList) {
+    public PlayLottoGame(ArrayList<Integer> winningNumbers, List<Lotto> lottoList, int bonusNumber) {
         this.lottoList=lottoList;
         this.winningNumbers=winningNumbers;
-        for (int i = 0; i <= 6; i++) {
-            matchingNumber.put(i, 0);
-        }
+        this.bonusNumber=bonusNumber;
     }
 
-    public Map<Integer, Integer> play() {
+    public Map<Integer, Boolean> play() {
         lottoList.forEach(lotto -> {
             long matchCount = lotto.getNumbers().stream()
                     .filter(winningNumbers::contains)
                     .count();
-            matchingNumber.put((int)matchCount,matchingNumber.get((int)matchCount)+1);
+            matchingNumber.put((int)matchCount,(winningNumbers.contains(bonusNumber)));
         });
         return matchingNumber;
     }
