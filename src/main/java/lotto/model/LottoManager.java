@@ -24,7 +24,12 @@ public class LottoManager {
     private Lotto issueLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
-    
+
+    public void checkLottiesWin() {
+        for (Lotto lotto : this.lotties) {
+            this.isLottoWin(lotto);
+        }
+    }
 
     private void isLottoWin(Lotto lotto) {
         int count = 0;
