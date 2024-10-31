@@ -3,9 +3,11 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import lotto.dto.Lottos;
 import lotto.service.LottoService;
+import lotto.service.WinService;
 import lotto.validator.ControllerValidator;
+import lotto.validator.ServiceValidator;
 import lotto.view.Request;
 import lotto.view.Response;
 
@@ -13,8 +15,16 @@ public class LottoController {
 
     private final Request request = new Request();
     private final Response response = new Response();
-    private final LottoService lottoService = new LottoService();
+    private final LottoService lottoService;
+    private final WinService winService;
     private final ControllerValidator controllerValidator = new ControllerValidator();
+
+    public LottoController() {
+        ServiceValidator serviceValidator = new ServiceValidator();
+        Lottos lottos = new Lottos();
+        this.lottoService = new LottoService(lottos, serviceValidator);
+        this.winService = new WinService(lottos, serviceValidator);
+    }
 
     public void buyLotto() {
         String inputAmount;
@@ -47,10 +57,10 @@ public class LottoController {
         try {
             controllerValidator.winNumSize(inputWinNum);
             controllerValidator.winNumIsNum(inputWinNum);
-            List<Integer> winNum = Stream.of(request.inputWinNum().split(","))
+            List<Integer> winNum = inputWinNum.stream()
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            lottoService.inputWinNum(winNum);
+            winService.inputWinNum(winNum);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputWinNum();
@@ -61,7 +71,7 @@ public class LottoController {
         try {
             String inputBonusNum = request.inputBonusNum();
             controllerValidator.bonusNumIsNum(inputBonusNum);
-            lottoService.inputBonusNum(Integer.parseInt(inputBonusNum));
+            winService.inputBonusNum(Integer.parseInt(inputBonusNum));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputBonusNum();
@@ -70,11 +80,11 @@ public class LottoController {
 
 
     public void getLottosWin() {
-        lottoService.checkLottosWin();
-        response.outputLottosWin(lottoService.getLottosWin());
+        winService.checkLottosWin();
+        response.outputLottosWin(winService.getLottosWin());
     }
 
     public void getWinnings() {
-        response.outputLottosWinningRate(lottoService.getWinningsRate());
+        response.outputLottosWinningRate(winService.getWinningsRate());
     }
 }
