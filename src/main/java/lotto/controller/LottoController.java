@@ -31,41 +31,34 @@ public class LottoController {
     }
 
     private void processMoneyInput() {
-        while (true) {
-            try {
-                this.moneyInput = getMoneyInput();
-                lottoService.purchaseLotto(moneyInput);
-                lottoService.printPurchasedLottoNumbers();
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-                continue;
-            }
-        }
+        continueUntilNormalInput(() -> {
+            this.moneyInput = getMoneyInput();
+            lottoService.purchaseLotto(moneyInput);
+            lottoService.printPurchasedLottoNumbers();
+        });
     }
 
     private void processWinnerNumbersInput() {
-        while (true) {
-            try {
-                List<Integer> winnerNumbersInput = getWinnerNumbers();
-                lottoService.setWinnerLotto(winnerNumbersInput);
-                break;
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-                continue;
-            }
-        }
+        continueUntilNormalInput(() -> {
+            List<Integer> winnerNumbersInput = getWinnerNumbers();
+            lottoService.setWinnerLotto(winnerNumbersInput);
+        });
     }
 
     private void processBonusNumberInput() {
+        continueUntilNormalInput(() -> {
+            int bonusNumber = getBonusNumber();
+            lottoService.setBonusNumber(bonusNumber);
+        });
+    }
+
+    private void continueUntilNormalInput(Runnable processSpecificInput) {
         while (true) {
             try {
-                int bonusNumber = getBonusNumber();
-                lottoService.setBonusNumber(bonusNumber);
+                processSpecificInput.run();
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
-                continue;
             }
         }
     }
