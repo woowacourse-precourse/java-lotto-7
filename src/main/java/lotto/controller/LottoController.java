@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.service.SystemService;
 import lotto.validator.exception.LottoException;
 import lotto.view.input.InputView;
+import lotto.view.output.OutputMessage;
 import lotto.view.output.OutputView;
 
 public class LottoController {
@@ -20,6 +21,7 @@ public class LottoController {
         purchaseLotto();
         inputWinningNumbers();
         inputBonusNumber();
+        outputWinningStatistics();
     }
 
     private void purchaseLotto() {
@@ -56,5 +58,10 @@ public class LottoController {
                 outputView.displayErrorMessage(e);
             }
         }
+    }
+    private void outputWinningStatistics() {
+        outputView.displayMessage(OutputMessage.WINNING_STATISTICS.getOutputMessage());
+        outputView.displayMessage(OutputMessage.HYPHEN.getOutputMessage());
+        outputView.displayStatistics(systemService.statisticsProcess());
     }
 }
