@@ -6,7 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class ConsoleInputView implements InputView {
     @Override
-    public int readPurchaseAmount() throws IllegalArgumentException {
+    public int readPurchaseAmount() {
         try {
             Message.PURCHASE_INPUT.display();
             String purchaseAmount = Console.readLine();
@@ -19,7 +19,6 @@ public class ConsoleInputView implements InputView {
 
     @Override
     public void readWinningNumbers() {
-
     }
 
     @Override
@@ -38,7 +37,7 @@ public class ConsoleInputView implements InputView {
         }
 
         private void display() {
-            System.out.println(message);
+            System.out.println(message + System.lineSeparator());
         }
     }
 }
