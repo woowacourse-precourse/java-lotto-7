@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,9 @@ public class OutputView {
     public static void printPurchasedLottos(List<Lotto> purchasedLottos){
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
         for(Lotto lotto : purchasedLottos){
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedLotto);
+            System.out.println(sortedLotto);
         }
     }
 
