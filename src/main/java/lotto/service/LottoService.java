@@ -45,4 +45,8 @@ public class LottoService {
     public void determineRanks(Customer customer, WinningLotto winningLotto) {
         customer.determineRanks(winningLotto);
     }
+
+    public double calculateProfitRate(Customer customer) {
+        return customer.calculateProfitRate();
+    }
 }

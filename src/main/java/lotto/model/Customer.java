@@ -19,4 +19,18 @@ public class Customer {
         this.lottoTickets.forEach(lottoTicket -> lottoTicket.determineRank(winningLotto));
     }
 
+    public double calculateProfitRate() {
+        return ((double) (getTotalProfit() - paidAmount) / paidAmount) * 100;
+    }
+
+    private int getTotalProfit() {
+        int totalProfit = 0;
+
+        for (LottoTicket lottoTicket : lottoTickets) {
+            totalProfit += lottoTicket.getProfit();
+        }
+
+        return totalProfit;
+    }
+
 }

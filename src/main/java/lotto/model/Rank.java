@@ -5,7 +5,8 @@ public enum Rank {
     SECOND_PLACE(3_000_000, 5, true),
     THIRD_PLACE(1_500_000, 5, false),
     FOURTH_PLACE(50_000, 4, false),
-    FIFTH_PLACE(5_000, 3, false);
+    FIFTH_PLACE(5_000, 3, false),
+    DEFAULT(0, 0, false);
 
 
     private final int prizeMoney;
@@ -25,6 +26,10 @@ public enum Rank {
                 return rank;
             }
         }
-        return null;
+        return DEFAULT;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

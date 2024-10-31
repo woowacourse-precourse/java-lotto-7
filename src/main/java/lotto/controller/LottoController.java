@@ -44,5 +44,7 @@ public class LottoController {
                 Integer.parseInt(rawBonusNumber));
 
         lottoService.determineRanks(customer, winningLotto);
+        double profitRate = lottoService.calculateProfitRate(customer);
+        OutputView.displayProfitRate(profitRate);
     }
 }
