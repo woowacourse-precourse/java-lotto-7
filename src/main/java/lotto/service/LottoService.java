@@ -40,18 +40,7 @@ public class LottoService {
 
     private void checkOneLottoResult(Lotto lotto) {
         int matchNumbers = findMatchNumbers(lotto);
-
-        if (matchNumbers == 3) {
-            LottoRank.FIFTH.win();
-        } else if (matchNumbers == 4) {
-            LottoRank.FORTH.win();
-        } else if (matchNumbers == 5 && !matchBonusNumber(lotto)) {
-            LottoRank.THIRD.win();
-        } else if (matchNumbers == 5) {
-            LottoRank.SECOND.win();
-        } else if (matchNumbers == 6) {
-            LottoRank.FIRST.win();
-        }
+        LottoRank.checkLottoPrize(matchNumbers, matchBonusNumber(lotto));
     }
 
     private int findMatchNumbers(Lotto lotto) {
