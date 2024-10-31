@@ -1,6 +1,15 @@
 package lotto.domain;
 
+import static lotto.exception.ErrorType.DUPLICATION_NUM;
+import static lotto.exception.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
+import static lotto.exception.ErrorType.INVALID_BONUS_NUM;
+import static lotto.exception.ErrorType.OUT_OF_RANGE_NUMBER;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.exception.InvalidBonusNumberException;
+import lotto.exception.InvalidLottoNumberException;
 import lotto.generator.LottoGenerator;
 
 public class Lotto {
@@ -23,12 +32,40 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        validateSize(numbers);
+        validateNoDuplicate(numbers);
+        validateNumberRange(numbers);
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public void addBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
+        }
+        numbers.add(bonusNumber);
+    }
+
+    private void validateSize(final List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new InvalidLottoNumberException(INSUFFICIENT_OR_EXCESSIVE_NUMBERS);
+        }
+    }
+
+    private void validateNoDuplicate(final List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new InvalidLottoNumberException(DUPLICATION_NUM);
+        }
+    }
+
+    private void validateNumberRange(final List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if (number < 1 || number > 45) {
+                throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
+            }
+        });
     }
 }
