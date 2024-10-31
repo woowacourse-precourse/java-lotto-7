@@ -20,7 +20,11 @@ public class LottoGameController {
     }
 
     private void gameStart() {
-        // 기능 추가 예정
+        createMoney();
+        int ticket = getTicket(money);
+        createLottoTickets(ticket);
+        createCorrectLotto();
+        createBonusNumber();
     }
 
     private void gameResult() {
