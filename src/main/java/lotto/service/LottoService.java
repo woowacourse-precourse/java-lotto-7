@@ -4,26 +4,26 @@ import lotto.domain.Parser;
 import lotto.validation.Validator;
 
 public class LottoService {
-    public boolean isValidNumber(String inputCost) {
-        if (isBlank(inputCost) == true || !isPositiveNumber(inputCost) == true) {
-            return false;
-        }
-        return true;
+    public void isValidNumber(String inputCost) {
+        isBlank(inputCost);
+        isPositiveNumber(inputCost);
+        int parsedCost = parseStringToInt(inputCost);
+        isDivisibleByThousand(parsedCost);
     }
 
-    private boolean isBlank(String inputCost) {
-        return Validator.isBlank(inputCost);
+    private void isBlank(String inputCost) {
+        Validator.isBlank(inputCost);
     }
 
-    private boolean isPositiveNumber(String inputCost) {
-        return Validator.isPositiveNumber(inputCost);
+    private void isPositiveNumber(String inputCost) {
+        Validator.isPositiveNumber(inputCost);
     }
 
     public int parseStringToInt(String inputCost) {
         return Parser.parseStringToInt(inputCost);
     }
 
-    public boolean isDivisibleByThousand(int parsedPurchaseAmount) {
-        return Validator.isDivisibleByThousand(parsedPurchaseAmount);
+    private void isDivisibleByThousand(int parsedPurchaseAmount) {
+        Validator.isDivisibleByThousand(parsedPurchaseAmount);
     }
 }

@@ -17,14 +17,22 @@ public class LottoController {
     }
 
     public void startLottoSales() {
-        outputView.printMessage(OutputMessage.INPUT_PURCHASE_AMOUNT);
-        String inputCost = inputView.InputPurchaseAmount();
-        boolean isValidNumber = lottoService.isValidNumber(inputCost);
+        boolean isValidNumber = false;
+        String inputCost;
+
+        do {
+            outputView.printMessage(OutputMessage.INPUT_PURCHASE_AMOUNT);
+            inputCost = inputView.InputPurchaseAmount();
+
+            try {
+                lottoService.isValidNumber(inputCost);
+                isValidNumber = true;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        } while (!isValidNumber);
 
         int parsedPurchaseAmount = lottoService.parseStringToInt(inputCost);
-        lottoService.isDivisibleByThousand(parsedPurchaseAmount);
-
-
     }
 
 
