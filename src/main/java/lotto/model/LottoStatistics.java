@@ -33,11 +33,18 @@ public class LottoStatistics {
         return total;
     }
 
-    public void printStatistics() {
+    public double calculateYield(int purchaseAmount) {
+        double totalEarnings = calculateTotalEarnings();
+        double yield = (totalEarnings / purchaseAmount) * 100; // 수익률 계산
+        return Math.round(yield * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림
+    }
+
+    public void printStatistics(int amount) {
         System.out.println("당첨 통계");
         System.out.println("---");
         statistics.forEach((key, value) -> {
             System.out.printf("%s - %d개%n", key, value);
         });
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", calculateYield(amount));
     }
 }
