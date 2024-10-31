@@ -20,4 +20,8 @@ public class LottoMachine {
             .map(Lotto::toString)
             .toList();
     }
+
+    public WinningCount calculateWinningCount(WinningNumbers winningNumbers) {
+        return new WinningCount(winningNumbers, lottos);
+    }
 }

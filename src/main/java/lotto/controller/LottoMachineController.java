@@ -4,6 +4,8 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningCount;
+import lotto.domain.WinningNumbers;
 import lotto.utils.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,6 +28,12 @@ public class LottoMachineController {
 
         Lotto winningLotto = RetryUtil.retry(this::makeWinningLotto);
         Bonus bonus = RetryUtil.retry(() -> makeBonus(winningLotto));
+
+        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonus);
+
+        WinningCount winningCount = lottoMachine.calculateWinningCount(winningNumbers);
+        outputView.printWinningCount(winningCount.getWinning());
+        outputView.printRateOfReturn(winningCount.getRateOfReturn(purchaseAmount));
     }
 
     private PurchaseAmount makePurchaseAmount() {
