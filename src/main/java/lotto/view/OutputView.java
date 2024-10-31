@@ -15,4 +15,8 @@ public class OutputView {
     public void displayLotto(List<Integer> lotto) {
         System.out.println(lotto);
     }
+
+    public void getWinningNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+    }
 }

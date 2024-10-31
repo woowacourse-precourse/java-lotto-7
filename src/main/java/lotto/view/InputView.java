@@ -7,4 +7,8 @@ public class InputView {
     public String getMoney() {
         return Console.readLine();
     }
+
+    public String getWinningNumber() {
+        return Console.readLine();
+    }
 }
