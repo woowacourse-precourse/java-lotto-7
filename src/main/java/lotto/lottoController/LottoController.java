@@ -1,14 +1,20 @@
 package lotto.lottoController;
 
+import static lotto.lottoModel.HitLotto.getInstance;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.lottoModel.HitLotto;
 import lotto.lottoModel.HitLottoDAO;
+import lotto.lottoModel.HitLottoDTO;
 import lotto.lottoModel.LottoDAO;
 import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.Lotto;
+import lotto.lottoModel.StatisticsLottoDAO;
+import lotto.lottoModel.StatisticsLottoDTO;
+import lotto.lottoModel.StatisticsLotto;
 import lotto.lottoView.InputView;
 import lotto.lottoView.OutputView;
 
@@ -21,12 +27,16 @@ public class LottoController {
     private OutputView outputView;
     private LottoNumberGenerator lottoNumberGenerator;
     private HitLottoDAO hitLottoDAO;
+    private HitLottoDTO hitLottoDTO;
+    private StatisticsLottoDAO statisticsDAO;
+    private StatisticsLottoDTO statisticsDTO;
 
     public LottoController() {
         this.lottoDAO = new LottoDAO();
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.hitLottoDAO = new HitLottoDAO();
+        this.statisticsDAO = new StatisticsLottoDAO();
 
     }
 
@@ -42,15 +52,18 @@ public class LottoController {
             System.out.println(dto.getNumbers()); //todo 아웃뷰?
         }
 
-        String hitLottoInput= inputView.PrintLottoInputMsg();
+        String hitLottoInput = inputView.PrintLottoInputMsg();
         String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
         //여기에 유효성 검증
 
         saveHitLotto(hitLottoInput, bonusNumberInput);
-        List<HitLotto> allHitLottos = hitLottoDAO.getAll();
 
+        HitLotto hitLotto = getInstance(null,0);
 
+        retainLotto(allLottos, hitLotto.getAllHitNumbers());
 
+        StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();
+        System.out.println(stats.getHitNumberFrequency());
 
 
     }
@@ -74,19 +87,32 @@ public class LottoController {
                 .toList();
 
         int bonusNumber = Integer.parseInt(bonusNumberInput);
-        HitLotto hitLotto = new HitLotto(hitNumbers,bonusNumber);
+        getInstance(hitNumbers,bonusNumber);
 
-        hitLottoDAO.save(hitLotto);
     }
 
-    public void retainLotto(List<Lotto> alllottos, List<HitLotto> hitLottos) {
+    public void retainLotto(List<Lotto> alllottos, List<Integer> hitLottos) {
         for (Lotto lotto: alllottos ) {
-            Set<Lotto> lottoNumber = new HashSet<>(alllottos);
-            Set<HitLotto> hitLottoNumber = new HashSet<>(hitLottos);
+            Set<Integer> lottoNumber = new HashSet<>(lotto.getNumbers());
+            Set<Integer> hitLottoNumber = new HashSet<>(hitLottos);
             lottoNumber.retainAll(hitLottoNumber); //두 세트의 공통 원소만 뽑아서 합친 세트
-            int hitSize = lottoNumber.size();
+            saveLottoStatistics(lottoNumber);
         }
 
+    }
+
+    public void saveLottoStatistics(Set<Integer> lottoNumber) {
+        int hitSize = lottoNumber.size();
+        HitLotto hitLotto = HitLotto.getInstance(null,0);
+        //3~6까지 맞춘 횟수 빈도 추가
+        if (hitSize >= 3 && hitSize <= 6) {
+            statisticsDAO.updateSizeFrequency(hitSize);
+        }
+
+        // 5일 때 특정 값이 있는지 확인하고 있으면 추가
+        if (hitSize == 5 && lottoNumber.contains(hitLotto.getBonusNumber())) {
+            statisticsDAO.addSpecificValue();
+        }
     }
 
 
