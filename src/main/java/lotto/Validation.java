@@ -14,6 +14,7 @@ public class Validation {
     }
 
     public static boolean validateNumber(String number) {
+        if(isEmptyInput(number)) return false;
         return number.chars().allMatch(Character::isDigit);
     }
 
