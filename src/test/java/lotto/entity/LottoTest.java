@@ -6,6 +6,8 @@ import static lotto.exception.LottoExceptionMessage.NULL_OR_EMPTY_NUMBERS;
 import static lotto.exception.LottoExceptionMessage.NUMBER_OUT_OF_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -138,5 +140,30 @@ class LottoTest {
 
         // then
         assertEquals(NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_contains_테스트() {
+        // given
+        List<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        // when
+        boolean contains = new Lotto(integers).contains(4);
+
+        // then
+        assertTrue(contains);
+    }
+
+    @Test
+    void 로또_getter_불변성_확인() {
+        // given
+        List<Integer> integers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        // when
+        Lotto lotto = new Lotto(integers);
+        List<Integer> numbers = lotto.getNumbers();
+
+        // then
+        assertThrowsExactly(UnsupportedOperationException.class, () -> numbers.add(7));
     }
 }
