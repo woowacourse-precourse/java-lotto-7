@@ -9,7 +9,8 @@ enum ExceptionMessage {
     NOT_POSITIVE_NUMBER("[ERROR] 0보다 큰 양수를 입력하세요."),
     NOT_THOUSAND_DIVISIBLE("[ERROR] 1,000원 단위로 입력하세요"),
     NOT_LOTTO_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 값입니다."),
-    INVALID_LOTTO_SIZE("[ERROR] 로또 번호는 6개여야 합니다.");
+    INVALID_LOTTO_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
+    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복된 값을 가질 수 없습니다.");
 
     private final String message;
 
@@ -83,6 +84,23 @@ public class ExceptionHandler {
         }
         for (int number : input) {
             isLottoNumber(number);
+        }
+    }
+
+    // 숫자 리스트 내에 중복값이 존재하면 예외를 발생한다.
+    public static void hasDuplicates(List<Integer> numbers) {
+        ExceptionMessage exception = ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+        List<Integer> distinctNumbers = numbers.stream().distinct().toList();
+        if (distinctNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(exception.getMessage());
+        }
+    }
+
+    // 인자로 받은 숫자가 숫자 리스트 내에 존재하면 예외를 발생한다.
+    public static void hasDuplicates(List<Integer> numbers, int value) {
+        ExceptionMessage exception = ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
+        if (numbers.contains(value)) {
+            throw new IllegalArgumentException(exception.getMessage());
         }
     }
 }

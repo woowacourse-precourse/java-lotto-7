@@ -1,12 +1,13 @@
 package lotto;
 
+import static lotto.ExceptionHandler.hasDuplicates;
 import static lotto.ExceptionHandler.isLottoNumber;
 import static lotto.ExceptionHandler.isPositiveNumber;
 import static lotto.ExceptionHandler.isThousandDivisible;
 import static lotto.ExceptionHandler.validateLottoNumber;
 import static lotto.IOProcessor.getCommaSeperatedText;
 import static lotto.IOProcessor.getNumber;
-import static lotto.Utils.convertToNumber;
+import static lotto.Utils.convertToSortedNumber;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +38,14 @@ public class Lotto {
         return purchaseAmount;
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> numbers) {
         Prompt prompt = Prompt.BONUS_NUMBER;
         int bonusNumber = getNumber(prompt.getGuide());
         try {
             isLottoNumber(bonusNumber);
+            hasDuplicates(numbers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            getBonusNumber();
+            getBonusNumber(numbers);
         }
         return bonusNumber;
     }
@@ -53,8 +55,9 @@ public class Lotto {
         List<String> winningNumbersText = getCommaSeperatedText(prompt.getGuide());
         List<Integer> winningNumbers = new ArrayList<>();
         try {
-            winningNumbers = convertToNumber(winningNumbersText);
+            winningNumbers = convertToSortedNumber(winningNumbersText);
             validateLottoNumber(winningNumbers);
+            hasDuplicates(winningNumbers);
         } catch (IllegalArgumentException e) {
             getWinningNumbers();
         }
