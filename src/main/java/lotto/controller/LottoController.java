@@ -4,7 +4,10 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBundle;
+import lotto.domain.WinningLotto;
 import lotto.generator.LottoGenerator;
 import lotto.util.LottoParser;
 import lotto.validator.LottoBonusNumberValidator;
@@ -36,10 +39,10 @@ public class LottoController {
 
     public void run() {
         int lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
-        List<Lotto> lottos = lottoGenerator.generateLottos(lottoPurchasePrice);
-        lottoView.printLottos(lottos);
-        List<Integer> lottoWinningNumbers = retry(this::requestLottoWinningNumbers);
-        int lottoBonusNumber = retry(this::requestLottoBonusNumber, lottoWinningNumbers);
+        LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(lottoPurchasePrice);
+        lottoView.printLottoBundle(lottoBundle);
+        WinningLotto winningLotto = retry(this::requestLottoWinningNumbers);
+        BonusNumber bonusNumber = retry(this::requestLottoBonusNumber, winningLotto);
     }
 
 
@@ -49,16 +52,18 @@ public class LottoController {
         return LottoParser.parseInt(lottoPurchasePrice);
     }
 
-    private List<Integer> requestLottoWinningNumbers(){
+    private WinningLotto requestLottoWinningNumbers(){
         String lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
         lottoWinningNumbersValidator.validateLottoWinningNumbers(lottoWinningNumbers);
-        return LottoParser.parseNumbers(lottoWinningNumbers);
+        List<Integer> winningNumbers = LottoParser.parseNumbers(lottoWinningNumbers);
+        return WinningLotto.of(winningNumbers);
     }
 
-    private int requestLottoBonusNumber(List<Integer> winningNumbers){
+    private BonusNumber requestLottoBonusNumber(WinningLotto winningLotto){
         String lottoBonusNumber = lottoView.requestLottoBonusNumber();
-        lottoBonusNumberValidator.validateBonusNumber(lottoBonusNumber, winningNumbers);
-        return LottoParser.parseInt(lottoBonusNumber);
+        lottoBonusNumberValidator.validateBonusNumber(lottoBonusNumber, winningLotto);
+        int bonusNumber = LottoParser.parseInt(lottoBonusNumber);
+        return BonusNumber.of(bonusNumber);
     }
 
     private <T> T retry(Supplier<T> logic) {

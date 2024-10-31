@@ -2,6 +2,7 @@ package lotto.validator;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.domain.WinningLotto;
 import lotto.util.LottoParser;
 
 public class LottoBonusNumberValidator {
@@ -14,12 +15,12 @@ public class LottoBonusNumberValidator {
         this.lottoNumberValidator = lottoNumberValidator;
     }
 
-    public void validateBonusNumber(String bonusNumber, List<Integer> lottoWinningNumbers) {
+    public void validateBonusNumber(String bonusNumber, WinningLotto winningLotto) {
         validateDigit(bonusNumber);
         int number = LottoParser.parseInt(bonusNumber);
 
         lottoNumberValidator.validateLottoNumber(number);
-        validateDuplicationNumber(number, lottoWinningNumbers);
+        validateDuplicationNumber(number, winningLotto);
     }
 
     private void validateDigit(String bonusNumber) {
@@ -28,8 +29,8 @@ public class LottoBonusNumberValidator {
         }
     }
 
-    private void validateDuplicationNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (winningNumbers.contains(bonusNumber)) {
+    private void validateDuplicationNumber(int bonusNumber, WinningLotto winningLotto) {
+        if (winningLotto.isContains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }

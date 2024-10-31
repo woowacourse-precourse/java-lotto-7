@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBundle;
 
 public class LottoView {
     private static final String LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
@@ -32,7 +33,11 @@ public class LottoView {
         return Console.readLine();
     }
 
-    public void printLottos(List<Lotto> lottos) {
+    public void printLottoBundle(LottoBundle lottoBundle){
+        printLottos(lottoBundle.getLottos());
+    }
+
+    private void printLottos(List<Lotto> lottos) {
         printLottosCount(lottos.size());
 
         lottos.stream()

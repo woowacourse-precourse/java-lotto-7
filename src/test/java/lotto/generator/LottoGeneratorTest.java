@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBundle;
 import org.junit.jupiter.api.Test;
 
 public class LottoGeneratorTest {
@@ -26,9 +27,9 @@ public class LottoGeneratorTest {
 
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    List<Lotto> lottos = lottoGenerator.generateLottos(lottoCount * LOTTO_PRICE);
+                    LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(lottoCount * LOTTO_PRICE);
 
-                    assertThat(lottos.getFirst())
+                    assertThat(lottoBundle.getLottos().getFirst())
                             .extracting("numbers")
                             .usingRecursiveComparison()
                             .isEqualTo(randomNumbers);
@@ -41,8 +42,8 @@ public class LottoGeneratorTest {
     public void 로또_발행_갯수_테스트() {
         int lottoCount = 100;
 
-        List<Lotto> lottos = lottoGenerator.generateLottos(lottoCount * LOTTO_PRICE);
+        LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(lottoCount * LOTTO_PRICE);
 
-        assertThat(lottos.size()).isEqualTo(lottoCount);
+        assertThat(lottoBundle.getLottos().size()).isEqualTo(lottoCount);
     }
 }
