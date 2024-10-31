@@ -11,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicatedNumbers(numbers);
+        validateRangeOfNumbers(numbers);
         this.numbers = numbers;
         Collections.sort(numbers);
     }
@@ -30,6 +31,14 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    private void validateRangeOfNumbers(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.");
+            }
+        }
     }
 
     private void validateDuplicatedNumbers(List<Integer> numbers) {
