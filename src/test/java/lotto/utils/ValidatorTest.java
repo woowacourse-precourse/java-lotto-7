@@ -2,7 +2,6 @@ package lotto.utils;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +34,18 @@ public class ValidatorTest {
         assertThatThrownBy(()->Validator.winningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(()->Validator.winningNumValidator(input2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("lottoNumValidator_메서트_테스트_01")
+    @Test
+    void 번호가_1_에서_45_사이의_숫자가_아니면_예외가_발생한다() {
+        String input = "0";
+        String input2 = "46";
+
+        assertThatThrownBy(()->Validator.lottoNumValidator(input))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()->Validator.lottoNumValidator(input2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
