@@ -40,15 +40,15 @@ public class InputView {
 
     private static List<Integer> parseWinNumbers(String winInput){
         String[] winNumbersArr  = winInput.split(",");
-        List<Integer> winNumbers = new ArrayList<>();
+        List<Integer> parsedWinNumbers = new ArrayList<>();
 
         for(String winNumber : winNumbersArr){
-            winNumbers.add(Integer.parseInt(winNumber.trim()));
+            parsedWinNumbers.add(Integer.parseInt(winNumber.trim()));
         }
-        return winNumbers;
+        return parsedWinNumbers;
     }
 
-    public static int bonusInput(){
+    public static int bonusInput(List<Integer> winNumbers){
         while(true) {
             try{
                 System.out.println("보너스 번호를 입력해 주세요.");
