@@ -28,7 +28,7 @@ public class OutputView {
 
         System.out.println("당첨 통계\n---");
         printEachResult(winningResult);
-        System.out.println("총 수익률은 " + roundedRatio + "% 입니다.");
+        System.out.println("총 수익률은 " + roundedRatio + "%입니다.");
     }
 
     private void printEachResult(HashMap<LottoRank, Integer> winningResult) {
