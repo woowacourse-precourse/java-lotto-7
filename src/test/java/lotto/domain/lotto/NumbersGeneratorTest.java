@@ -9,7 +9,7 @@ import lotto.domain.sorting.Sorter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class LottoGeneratorTest {
+class NumbersGeneratorTest {
 
     private RandomNumberListGenerator randomNumberListGenerator;
 
@@ -27,9 +27,9 @@ class LottoGeneratorTest {
         LottoGenerator lottoGenerator = new LottoGenerator(randomNumberListGenerator, sorter);
 
         //when
-        Lotto lotto = lottoGenerator.generate();
+        Numbers numbers = lottoGenerator.generate();
 
         //then
-        assertNotNull(lotto);
+        assertNotNull(numbers);
     }
 }

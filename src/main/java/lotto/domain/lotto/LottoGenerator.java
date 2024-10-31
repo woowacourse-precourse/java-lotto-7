@@ -19,18 +19,18 @@ public class LottoGenerator {
         this.sorter = sorter;
     }
 
-    public Lotto generate() {
+    public Numbers generate() {
 
         List<Integer> lottoNumbers = randomNumberListGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
                 COUNT);
         sorter.sort(lottoNumbers);
 
-        List<LottoNumber> lotto = new ArrayList<>();
+        List<LottoNumber> numbers = new ArrayList<>();
 
         for (Integer number : lottoNumbers) {
-            lotto.add(new LottoNumber(number));
+            numbers.add(new LottoNumber(number));
         }
 
-        return new Lotto(lotto);
+        return new Numbers(numbers);
     }
 }
