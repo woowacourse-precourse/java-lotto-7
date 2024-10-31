@@ -18,4 +18,14 @@ public class Lottos {
         elements.forEach(value -> sb.append(value.getScreen()).append(OutputMessage.NEW_LINE.getMessage()));
         return sb.toString();
     }
+
+    public int size() {
+        return elements.size();
+    }
+
+    public LottoResult calculateResult(WinningLotto winningLotto) {
+        LottoResult result = new LottoResult();
+        elements.forEach(value -> result.increaseCount(value.getRanking(winningLotto)));
+        return result;
+    }
 }
