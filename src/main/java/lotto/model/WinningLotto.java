@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.value.BonusNumber;
 import lotto.value.LottoNumbers;
+import lotto.value.WinningResult;
 
 public class WinningLotto {
 
@@ -15,6 +16,15 @@ public class WinningLotto {
 
         this.winningLottoNumbers = winningLottoNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public WinningResult drawLotto(Lotto targetLotto) {
+        int countOfWinningNumber = (int) targetLotto.stream()
+                .filter(winningLottoNumbers::contains)
+                .count();
+        boolean isWinningBonus = targetLotto.stream()
+                .anyMatch(bonusNumber::equals);
+        return WinningResult.matchBy(countOfWinningNumber, isWinningBonus);
     }
 
 }

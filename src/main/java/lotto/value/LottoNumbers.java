@@ -1,6 +1,7 @@
 package lotto.value;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public record LottoNumbers(List<LottoNumber> lottoNumbers) {
 
@@ -31,6 +32,10 @@ public record LottoNumbers(List<LottoNumber> lottoNumbers) {
 
     public boolean contains(LottoNumber number) {
         return lottoNumbers.contains(number);
+    }
+
+    public Stream<LottoNumber> stream() {
+        return lottoNumbers.stream();
     }
 
     private static boolean isNumbersDuplicated(List<LottoNumber> lottoNumbers) {

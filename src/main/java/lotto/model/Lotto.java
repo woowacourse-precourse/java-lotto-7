@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Stream;
+import lotto.value.LottoNumber;
 import lotto.value.LottoNumbers;
 
 public class Lotto {
@@ -19,4 +21,8 @@ public class Lotto {
 //    }
 
     // TODO: 추가 기능 구현
+    public Stream<LottoNumber> stream() {
+        return numbers.stream();
+    }
+
 }
