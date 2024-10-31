@@ -29,4 +29,13 @@ public class Validator {
             }
         }
     }
+
+    public static void validateBonusNumber(int bonus, List<Integer> winNumbers) {
+        if (bonus < 1 || bonus > 45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 숫자 범위는 1~45까지입니다.");
+        }
+        if (winNumbers.contains(bonus)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
+    }
 }
