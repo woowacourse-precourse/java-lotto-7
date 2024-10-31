@@ -3,7 +3,6 @@ package lotto.lotto;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.amount.Amount;
 import lotto.exception.CustomException;
 import lotto.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
