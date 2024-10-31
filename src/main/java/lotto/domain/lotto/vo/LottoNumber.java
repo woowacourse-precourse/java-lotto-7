@@ -11,8 +11,12 @@ public record LottoNumber(int value) {
         return new LottoNumber(number);
     }
 
-    public boolean sameAs(LottoNumber other) {
-        return other.value == value;
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof LottoNumber) {
+            return ((LottoNumber) object).value == value;
+        }
+        return false;
     }
 
     private static void validate(final int number) {
