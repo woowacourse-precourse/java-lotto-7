@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public void printLottos(List<LottoDto> lottoDtos) {
-        lottoDtos.forEach(System.out::println);
+        lottoDtos.forEach(lottoDto -> System.out.println(lottoDto.lotto()));
     }
 
     public void printWinningDetail(LottoResultDto dto) {
