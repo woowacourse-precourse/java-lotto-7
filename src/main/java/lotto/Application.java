@@ -14,5 +14,7 @@ public class Application {
         // 로또 구매
         lottoController.getPurchaseLottoTickets(userId);
 
+        // 당첨 번호 입력
+        lottoController.getWinningNumbers(userId);
     }
 }

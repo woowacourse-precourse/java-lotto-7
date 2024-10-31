@@ -1,17 +1,20 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTickets;
-import lotto.domain.User;
+import lotto.collection.Lotto;
+import lotto.collection.LottoTickets;
+import lotto.collection.WinningNumbers;
+import lotto.domain.user.User;
 import lotto.enums.LottoConstant;
 import lotto.util.ProgramExit;
 import lotto.view.ErrorOutputView;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 
 import static lotto.enums.LottoConstant.ACCESS_COUNT;
+import static lotto.view.OutputView.ENTER_WINNING_NUMBER;
 import static lotto.view.OutputView.PURCHASED_LOTTO_COUNT;
 
 public class LottoService {
@@ -40,7 +43,7 @@ public class LottoService {
 
     private String getLottoList(LottoTickets lottoTickets) {
         StringBuilder sb = new StringBuilder();
-        for(Lotto lotto : lottoTickets.getTickets()) {
+        for (Lotto lotto : lottoTickets.getTickets()) {
             sb.append(lotto.getNumbers()).append("\n");
         }
         return sb.toString();
@@ -78,6 +81,28 @@ public class LottoService {
 
     private List<Integer> autoCreateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public void getWinningNumbers(int userId) {
+        int count = ACCESS_COUNT.getValue();
+        User user = userService.findById(userId);
+
+        for (int i = 0; i < count; i++) {
+            try {
+                String[] winningNumber = inputWinningNumbers();
+                user.addWinningNumbers(new WinningNumbers(winningNumber));
+                return;
+
+            } catch (IllegalArgumentException e) {
+                ErrorOutputView.printErrorMessage(e.getMessage());
+            }
+        }
+        ProgramExit.run(count);
+    }
+
+    private String[] inputWinningNumbers() {
+        OutputView.printMessage(ENTER_WINNING_NUMBER.getMessage());
+        return InputView.readLine().split(",");
     }
 
 }

@@ -19,5 +19,7 @@ public class LottoController {
         lottoService.displayPurchaseLottoTickets(userId);
     }
 
-
+    public void getWinningNumbers(int userId) {
+        lottoService.getWinningNumbers(userId);
+    }
 }
