@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Lottos {
 
-    private int lottoCount;
+    private final int lottoCount;
     private List<Lotto> lottos;
 
 
