@@ -29,10 +29,21 @@ LottoTest {
     @DisplayName("checkWinningStatus_메서드_테스트_01")
     @Test
     void 기능_테스트() {
+        //BonusNumber Hit!
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 7, 4, 6);
+        int bonusNumber = 6;
 
-        assertThat(lotto.checkWinningStatus(winningLotto))
-                .isEqualTo(LottoRank.FIRST);
+        //BonusNumber Dont Hit :(
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> winningLotto2 = Arrays.asList(1, 2, 3, 4, 5, 9);
+        int bonusNumber2 = 9;
+
+        assertThat(lotto.checkWinningStatus(winningLotto, bonusNumber))
+                .isEqualTo(LottoRank.SECOND);
+
+
+        assertThat(lotto.checkWinningStatus(winningLotto, bonusNumber2))
+                .isEqualTo(LottoRank.THIRD);
     }
 }
