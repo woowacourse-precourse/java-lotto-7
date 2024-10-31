@@ -17,11 +17,14 @@ classDiagram
         -Lotto
         -LottoMachine
         -LottoResults
+        -LottoRank
         +generateLotto()
         +calculateResult()
     }
 
     class View {
+        -lottoInputView
+        -lottoOuputView
         +displayLotto()
         +displayError()
         +displayWinnings()
@@ -43,7 +46,7 @@ classDiagram
 - **Lotto**:
   - [ ] 로또 티켓 생성 및 번호 유효성 검사
 - **LottoMachine**:
-  - [ ] 로또 번호를 무작위로 생성하는 `generateLotto()` 메서드 작성
+  - [x] 로또 번호를 무작위로 생성하는 `generateLotto()` 메서드 작성
   - [ ] 유저 구매 로또 수량 계산 및 발행
 - **LottoResults**:
   - [ ] 당첨 결과 계산 로직 작성
