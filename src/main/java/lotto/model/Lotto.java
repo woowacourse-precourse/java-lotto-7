@@ -47,6 +47,9 @@ public class Lotto {
     @Override
     public String toString() {
         List<Integer> sortedNumbers = numbers.stream().sorted().toList();
-        return "[" + String.join(", ", sortedNumbers.stream().map(num -> num.toString()).toList()) + "]";
+        return "[" + String.join(", ", sortedNumbers
+                .stream()
+                .map(Object::toString)
+                .toList()) + "]";
     }
 }
