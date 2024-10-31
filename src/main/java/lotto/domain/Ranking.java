@@ -20,16 +20,10 @@ public enum Ranking {
         this.isRequireMatchBonus = isRequireMatchBonus;
     }
 
-    public static int calculatePrize(Match match) {
-        Optional<Ranking> ranking = findByMatch(match);
-        return ranking.map(value -> value.prize)
-                .orElse(0);
-    }
-
-    public static Optional<Ranking> findByMatch(Match match) {
+    public static Optional<Ranking> findBy(int matchCount, boolean isMatchBonus) {
         return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking.matchCount == match.matchCount() &&
-                        (!ranking.isRequireMatchBonus || match.isMatchBonus()))
+                .filter(ranking -> ranking.matchCount == matchCount &&
+                        (!ranking.isRequireMatchBonus || isMatchBonus))
                 .findFirst();
     }
 

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Ranking;
 
 public class OutputView {
@@ -35,17 +36,21 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoResults(Map<Ranking, Integer> lottoResults, double revenue) {
+    public void printLottoResults(LottoResult lottoResult) {
         printEmptyLine();
         printLottoResultsNoticeMessage();
-        Arrays.stream(Ranking.values()).sorted(Comparator.comparingInt(Ranking::getMatchCount))
-                .forEach(ranking -> printLottoResult(lottoResults, ranking));
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", revenue);
+        printLottoResult(lottoResult);
+        printRevenue(lottoResult);
     }
 
-    private static void printLottoResultsNoticeMessage() {
+    private void printLottoResultsNoticeMessage() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
+
+    private void printLottoResult(LottoResult lottoResult) {
+        Arrays.stream(Ranking.values()).sorted(Comparator.comparingInt(Ranking::getMatchCount))
+                .forEach(ranking -> printLottoResult(lottoResult.getLottoResults(), ranking));
     }
 
     public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
@@ -55,6 +60,10 @@ public class OutputView {
         } else {
             System.out.printf("%d개 일치 (%,d원) - %d개\n", ranking.getMatchCount(), ranking.getPrize(), count);
         }
+    }
+
+    private void printRevenue(LottoResult lottoResult) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", lottoResult.getRevenue());
     }
 
 }
