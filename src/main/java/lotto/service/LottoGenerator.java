@@ -9,6 +9,11 @@ import lotto.util.StringUtil;
 
 public class LottoGenerator {
 
+    private static final int LOTTO_START_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
+    private static final int LOTTO_NUMBERS_COUNT = 6;
+    private static final int LOTTO_PRICE = 1000;
+
     private Lotto[] lotto;
     private int numberOfLottoTickets;
 
@@ -21,7 +26,7 @@ public class LottoGenerator {
         lotto = new Lotto[numberOfLottoTickets];
 
         for (int i = 0; i < numberOfLottoTickets; i++) {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBERS_COUNT);
             Collections.sort(randomNumbers);
 
             lotto[i] = new Lotto(randomNumbers);
@@ -30,14 +35,14 @@ public class LottoGenerator {
 
     // 입력된 구매 금액이 1000원 단위로 입력되었는지 확인하는 메서드
     private void validatePurchaseAmount(int purchaseAmount) {
-        if(purchaseAmount % 1000 != 0){
+        if(purchaseAmount % LOTTO_PRICE != 0){
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
         }
     }
 
     // 총 발행할 로또의 수를 계산하는 메서드
     private void calculateNumberOfLottoTickets(int purchaseAmount) {
-        numberOfLottoTickets = purchaseAmount / 1000;
+        numberOfLottoTickets = purchaseAmount / LOTTO_PRICE;
     }
 
     // 발행된 로또를 출력하는 메서드
