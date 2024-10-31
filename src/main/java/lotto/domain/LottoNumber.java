@@ -2,7 +2,9 @@ package lotto.domain;
 
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
+    public static final int MAX = 45;
+    public static final int MIN = 1;
     private final int number;
 
     public static LottoNumber of(int number) {
@@ -15,7 +17,7 @@ public class LottoNumber {
     }
 
     private void validateRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN || number > MAX) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
@@ -35,5 +37,17 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hashCode(number);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return this.number - o.number;
     }
 }

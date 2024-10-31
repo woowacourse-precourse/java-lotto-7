@@ -12,6 +12,7 @@ public class Lotto {
         validateNoDuplicate(numbers);
         this.numbers = numbers.stream()
                 .map(LottoNumber::of)
+                .sorted()
                 .toList();
     }
 
@@ -30,5 +31,9 @@ public class Lotto {
 
     public boolean has(LottoNumber number) {
         return numbers.contains(number);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return numbers;
     }
 }
