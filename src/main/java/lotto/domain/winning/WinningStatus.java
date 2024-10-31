@@ -45,4 +45,5 @@ public class WinningStatus {
     public Map<String, Integer> getPrizeCounts() {
         return prizeCounts;
     }
+
 }

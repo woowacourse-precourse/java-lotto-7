@@ -14,9 +14,8 @@ public class LottoMachine {
 
     public WinningStatus checkWinningStatus(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            int matchCount = countMatchingNumbers(lotto.getNumbers(),
-                winningNumbers.getWinningNumbers());
-            boolean bonusMatch = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+            int matchCount = countMatchingNumbers(lotto.getNumbers(), winningNumbers.getNumbers());
+            boolean bonusMatch = lotto.getNumbers().contains(winningNumbers.getBonus());
 
             if (matchCount == 6) {
                 winningStatus.addWinning("6개");

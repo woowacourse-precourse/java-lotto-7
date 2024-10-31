@@ -40,13 +40,13 @@ class LottoMachineTest {
     @DisplayName("당첨 번호 추출 테스트")
     void getWinningNumbersTest() {
         List<Integer> expectedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        assertEquals(expectedWinningNumbers, winningNumbers.getWinningNumbers());
+        assertEquals(expectedWinningNumbers, winningNumbers.getNumbers());
     }
 
     @Test
     @DisplayName("보너스 번호 확인 테스트")
     void getBonusNumberTest() {
-        assertEquals(7, winningNumbers.getBonusNumber());
+        assertEquals(7, winningNumbers.getBonus());
     }
 
     @Test

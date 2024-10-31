@@ -4,23 +4,22 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public static String getConsoleInput() {
-        String input = Console.readLine();
-        return input;
-    }
 
-    public String requestPurchaseAmount(String purchaseAmount) {
+    public String requestPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
+        String purchaseAmount = Console.readLine();
         return purchaseAmount;
     }
 
-    public String requestWinningNumbers(String winningNumbers) {
+    public String requestWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbers = Console.readLine();
         return winningNumbers;
     }
 
-    public int requestBonusNumber(String bonusNumber) {
+    public int requestBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
         return Integer.parseInt(bonusNumber);
     }
 }

@@ -14,14 +14,14 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> getNumbers() {
         for (String number : winningNumbersString.split(",")) {
             winningNumbers.add(Integer.parseInt(number.trim()));
         }
         return winningNumbers;
     }
 
-    public int getBonusNumber() {
+    public int getBonus() {
         return bonusNumber;
     }
 }
