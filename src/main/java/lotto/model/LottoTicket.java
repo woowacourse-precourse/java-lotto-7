@@ -19,5 +19,6 @@ public class LottoTicket {
 
     private static void validateInput(String puchaseMoney) {
         Validator.isEmptyInput(puchaseMoney);
+        Validator.isDigitString(puchaseMoney);
     }
 }
