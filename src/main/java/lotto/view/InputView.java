@@ -105,5 +105,8 @@ public class InputView {
         if (userInput.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage() + " : " + userInput);
         }
+        if (!Utils.isDigitOnly(userInput)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage() + " : " + userInput);
+        }
     }
 }
