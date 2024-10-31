@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,7 @@ public class Application {
         int lottoCount = purchaseAmount / LOTTO_PRICE;
 
         // 로또 발행
-        List<Lotto> purchasedLottos = issueLottos(purchaseAmount / LOTTO_PRICE);
+        List<Lotto> purchasedLottos = issueLottos(lottoCount);
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
         purchasedLottos.forEach(System.out::println);
 
@@ -27,6 +28,9 @@ public class Application {
         // 보너스 번호 입력
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = inputBonusNumber(number);
+
+        // 당첨 통계
+        printWinning(purchaseAmount, purchasedLottos, number, bonusNumber);
     }
 
     private static int inputMoney() {
@@ -120,5 +124,76 @@ public class Application {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+    private static void printWinning(int purchaseAmount, List<Lotto> purchasedLottos, List<Integer> numbers, int bonusNumber) {
+        HashMap<String, Integer> statistics = new HashMap<>();
+        int totalEarnings = 0;
+
+         initializeStatistics(statistics);
+
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = lotto.matchCount(numbers);
+            String resultKey = getResultKey(lotto, matchCount, bonusNumber);
+            totalEarnings += getEarnings(matchCount, bonusNumber, lotto);
+            statistics.put(resultKey, statistics.getOrDefault(resultKey, 0) + 1);
+        }
+
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.println(" - 3개 일치 (5,000원) - " + statistics.get("3개 일치 (5,000원)") + "개");
+        System.out.println(" - 4개 일치 (50,000원) - " + statistics.get("4개 일치 (50,000원)") + "개");
+        System.out.println(" - 5개 일치 (1,500,000원) - " + statistics.get("5개 일치 (1,500,000원)") + "개");
+        System.out.println(" - 5개 일치, 보너스 볼 일치 (30,000,000원) - " + statistics.get("5개 일치, 보너스 볼 일치 (30,000,000원)") + "개");
+        System.out.println(" - 6개 일치 (2,000,000,000원) - " + statistics.get("6개 일치 (2,000,000,000원)") + "개");
+
+        double returnRate = purchaseAmount == 0 ? 0.0 : (double) totalEarnings / purchaseAmount * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
+    }
+
+    private static void initializeStatistics(HashMap<String, Integer> statistics) {
+        statistics.put("3개 일치 (5,000원)", 0);
+        statistics.put("4개 일치 (50,000원)", 0);
+        statistics.put("5개 일치 (1,500,000원)", 0);
+        statistics.put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
+        statistics.put("6개 일치 (2,000,000,000원)", 0);
+    }
+
+    private static String getResultKey(Lotto lotto, int matchCount, int bonusNumber) {
+        if (matchCount == 6) {
+            return "6개 일치 (2,000,000,000원)";
+        }
+        if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+            return "5개 일치, 보너스 볼 일치 (30,000,000원)";
+        }
+        if (matchCount == 5) {
+            return "5개 일치 (1,500,000원)";
+        }
+        if (matchCount == 4) {
+            return "4개 일치 (50,000원)";
+        }
+        if (matchCount == 3) {
+            return "3개 일치 (5,000원)";
+        }
+        return ""; // 3개 미만일 경우
+    }
+
+    private static int getEarnings(int matchCount, int bonusNumber, Lotto lotto) {
+        if (matchCount == 6) {
+            return 2000000000;
+        }
+        if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+            return 30000000;
+        }
+        if (matchCount == 5) {
+            return 1500000;
+        }
+        if (matchCount == 4) {
+            return 50000;
+        }
+        if (matchCount == 3) {
+            return 5000;
+        }
+        return 0;
     }
 }
