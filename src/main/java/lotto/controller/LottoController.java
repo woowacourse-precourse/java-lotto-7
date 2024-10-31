@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.lotto.Bonus;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
+import lotto.domain.player.PlayerLotto;
 import lotto.service.LottoService;
 import lotto.service.PlayerService;
 import lotto.view.InputView;
@@ -36,6 +37,7 @@ public class LottoController {
         purchaseLotto();
         receiveWinningNumbers();
         receiveBonusNumber();
+        startLottoGame();
         getLottoResult();
     }
 
@@ -58,6 +60,14 @@ public class LottoController {
         outputView.printBonusNumberInputMessage();
         int bonusNumber = inputView.readBonusNumberInput(lotto.getNumbers());
         lottoService.updateBonusNumber(bonusNumber);
+    }
+
+    private void startLottoGame() {
+        List<PlayerLotto> playerLottos = player.getLottos();
+        for (PlayerLotto playerLotto : playerLottos) {
+            playerService.calculateWinningCount(playerLotto);
+        }
+        playerService.updatePlayerResult(player);
     }
 
     private void getLottoResult() {

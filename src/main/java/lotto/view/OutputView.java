@@ -40,10 +40,11 @@ public class OutputView {
 
     public void printLottoResult(Player player) {
         PlayerResult playerResult = player.getPlayerResult();
-        System.out.println(FIFTH_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getFifthPlace() + "개");
-        System.out.println(FOURTH_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getFourthPlace() + "개");
-        System.out.println(THIRD_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getThirdPlace() + "개");
-        System.out.println(SECOND_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getSecondPlace() + "개");
-        System.out.println(FIRST_PLACE_OUTPUT_MESSAGE.getMessage() + " - " + playerResult.getFirstPlace() + "개");
+        System.out.printf(FIFTH_PLACE_OUTPUT_MESSAGE.getMessage(), playerResult.getFifthPlace());
+        System.out.printf(FOURTH_PLACE_OUTPUT_MESSAGE.getMessage(), playerResult.getFourthPlace());
+        System.out.printf(THIRD_PLACE_OUTPUT_MESSAGE.getMessage(), playerResult.getThirdPlace());
+        System.out.printf(SECOND_PLACE_OUTPUT_MESSAGE.getMessage(), playerResult.getSecondPlace());
+        System.out.printf(FIRST_PLACE_OUTPUT_MESSAGE.getMessage(), playerResult.getFirstPlace());
+        System.out.printf(PROFIT_RATE_OUTPUT_MESSAGE.getMessage(), playerResult.getProfitRate());
     }
 }

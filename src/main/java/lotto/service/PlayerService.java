@@ -155,7 +155,6 @@ public class PlayerService {
     }
 
     public float calculateProfitRate(int price, long profit) {
-        float profitRate = ((float) profit / price) * 100;
-        return Math.round(profitRate * 10) / 10f;
+        return ((float) profit / price) * 100;
     }
 }
