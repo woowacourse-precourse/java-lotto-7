@@ -20,4 +20,35 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public int countMatches(List<Integer> goalNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (goalNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getRank(List<Integer> goalNumbers, int bonusNumber){
+        int count = countMatches(goalNumbers);
+
+        if(count==6){
+            return 1;
+        }
+        else if(count==5){
+            if(numbers.contains(bonusNumber)){
+                return 2;
+            }
+            return 3;
+        }
+        else if(count==4){
+            return 4;
+        }
+        else if(count==3){
+            return 5;
+        }
+        return 0;
+    }
 }
