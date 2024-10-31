@@ -3,6 +3,8 @@ package lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -41,6 +43,15 @@ class DrawTest {
         assertThatThrownBy(() -> new Draw(winningNumbers, null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 null 일 수 없습니다.");
+    }
+
+    @DisplayName("보너스 번호가 1과 45 사이 범위를 넘어가면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 0, 46})
+    void bonusNumberShouldBeBetween1And45(Integer bonusNumber) {
+        assertThatThrownBy(() -> new Draw(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
     }
 
 }

@@ -22,6 +22,10 @@ public class Draw {
         if (bonusNumber == null) {
             throw new IllegalArgumentException("보너스 번호는 null 일 수 없습니다.");
         }
+
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
+        }
     }
 
 }
