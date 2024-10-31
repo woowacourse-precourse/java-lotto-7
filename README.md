@@ -44,7 +44,8 @@
      - 입력받은 구매 금액으로 유저의 로또 생성
      - 구매 금액과 로또를 유저에 반환
    - LottoCalculatorService
-     - 당첨 결과 계산
+     - 로또 당첨 결과 확인
+     - 수익률 계산
 3. controller
    - LottoController
      - aaa
