@@ -11,7 +11,7 @@ public enum InputError {
     WINNING_NUMBER_RANGE_INVALID(ERROR + "로또 번호는 1-45 사이의 숫자로 입력해주세요."),
     WINNING_NUMBER_CANNOT_DUPLICATE(ERROR + "중복된 로또 번호가 있습니다.");
 
-    public final String message;
+    final String message;
 
     InputError(String message) {
         this.message = message;
