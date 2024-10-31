@@ -16,9 +16,11 @@ public class Wallet {
         validateUnit(money);
 
         ticketCalculator = new TicketCalculatorImpl();
-
         this.amount = money;
-        this.ticket = calculateNumberOfLottoPurchases(money);
+    }
+
+    public void buyTicket() {
+        ticket = ticketCalculator.calculate(amount);
     }
 
     public boolean isRunOutTicket() {
@@ -38,12 +40,6 @@ public class Wallet {
     //todo 아 이 계산하는 로직을 서비스에서 시키는것보다 calculator를 이 객체 안에 의존해줘야하나?
     public void calculateRateOfReturn(long totalPrizeMoney) {
         rateOfReturn = (float) totalPrizeMoney / amount * 100;
-    }
-
-
-    //todo 이것도 계산하는걸 의존시켜야하나?
-    private int calculateNumberOfLottoPurchases(int money) {
-        return money / MIN_PRICE_PER_LOTTO_TICKET;
     }
 
 
