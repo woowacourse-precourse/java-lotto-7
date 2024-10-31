@@ -23,17 +23,16 @@ public class LottoService {
     public void getLottoTickets(int userId) {
         User user = userService.findById(userId);
         int lottoTicketCount = getLottoTicketCount(user.getPurchasePrice());
-        AutoCreateLottoTickets(user, lottoTicketCount);
+        saveLottoTickets(user, lottoTicketCount);
     }
 
     private int getLottoTicketCount(int purchasePrice) {
         return purchasePrice / LottoConstant.PRICE.getValue();
     }
 
-    private void AutoCreateLottoTickets(User user, int lottoTicketCount) {
+    private void saveLottoTickets(User user, int lottoTicketCount) {
         while(lottoTicketCount > 0) {
-            List<Integer> lottoTickets = randomNumbers();
-            saveLotto(user,lottoTickets);
+            saveLotto(user,autoCreateLottoNumbers());
             lottoTicketCount--;
         }
     }
@@ -46,7 +45,7 @@ public class LottoService {
         }
     }
 
-    private List<Integer> randomNumbers() {
+    private List<Integer> autoCreateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
