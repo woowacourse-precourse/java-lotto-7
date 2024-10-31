@@ -36,9 +36,24 @@ class AmountValidatorTest {
                 () -> amountValidator.validate(input));
     }
 
+    @DisplayName("0으로 시작하는 숫자일시, 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings ={"0","01000","03000"})
+    void validateNonZeroStart_throwsException(String input){
+        assertThrows(IllegalArgumentException.class,() -> amountValidator.validate(input));
+    }
+
+    @DisplayName("숫자가 아닌 다른 문자일시, 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings ={"a","aaa","bbb","10b3","100!0"})
+    void validateNumeric_throwsException(String input){
+        assertThrows(IllegalArgumentException.class, () -> amountValidator.validate(input));
+    }
+
+
     @DisplayName("전체 통합 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"1000", "20000", "3000"})
+    @ValueSource(strings = {"1000", "20000", "3000","50000"})
     void validateAmount_success(String input) {
         assertDoesNotThrow(() -> amountValidator.validate(input));
     }
