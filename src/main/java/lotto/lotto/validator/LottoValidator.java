@@ -1,5 +1,6 @@
 package lotto.lotto.validator;
 
+import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
 import lotto.lotto.winning.domain.BonusNumber;
 import lotto.lotto.winning.domain.WinningLotto;
@@ -22,28 +23,27 @@ public class LottoValidator {
     }
 
     private static void isDuplicateValidate(BonusNumber bonusNumber, WinningLotto winningLotto) {
-        if (winningLotto.isContain(bonusNumber.getNumber()))
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        if (winningLotto.isContain(bonusNumber.getNumber())) ErrorMessage.DUPLICATE.throwIllegalArgumentException();
     }
 
     private static void isNumberCountValidate(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            ErrorMessage.NUMBER_COUNT.throwIllegalArgumentException();
         }
     }
 
     private static void isWithinRangeValidate(BonusNumber bonusNumber) {
         boolean outOfRange = isWithinRange(bonusNumber.getNumber());
-        if (outOfRange) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (outOfRange) ErrorMessage.WITHIN_RANGE.throwIllegalArgumentException();
     }
     private static void isWithinRangeValidate(List<Integer> numbers) {
         boolean outOfRange = numbers.stream().anyMatch(LottoValidator::isWithinRange);
-        if (outOfRange) throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (outOfRange) ErrorMessage.WITHIN_RANGE.throwIllegalArgumentException();
     }
 
     private static void isDuplicateValidate(List<Integer> numbers) {
         Set<Integer> exceptedDuplicate = new HashSet<>(numbers);
-        if (numbers.size() != exceptedDuplicate.size()) throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        if (numbers.size() != exceptedDuplicate.size()) ErrorMessage.DUPLICATE.throwIllegalArgumentException();
 
     }
 
