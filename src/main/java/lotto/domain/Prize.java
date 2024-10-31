@@ -30,6 +30,17 @@ public enum Prize {
         return FAIL;
     }
 
+    public static Prize[] lowToHigh(){
+        Prize[] prizes = Prize.values();
+        Prize[] reversePrizes = new Prize[prizes.length - 1];
+
+        for(int i = 0; i < reversePrizes.length; i++){
+            reversePrizes[i] = prizes[reversePrizes.length - 1 - i];
+        }
+
+        return reversePrizes;
+    }
+
     public int getRewards() {
         return rewards;
     }

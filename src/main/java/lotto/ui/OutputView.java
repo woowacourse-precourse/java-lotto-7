@@ -11,16 +11,17 @@ public class OutputView {
         System.out.println(lottos.size() + "개를 구매했습니다.");
 
         for(Lotto lotto : lottos){
-            System.out.println(lotto.toString());g
+            System.out.println(lotto.toString());
         }
     }
 
     public static void summaryWinning(Map<Prize, Integer> winnings, double ratio){
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(Prize prize : winnings.keySet()){
-            System.out.println(prize.toString() + "-" + winnings.get(prize) + "개");
+        for(Prize prize: Prize.lowToHigh()){
+            System.out.println(prize.toString() + "- " + winnings.getOrDefault(prize, 0) + "개");
         }
 
         System.out.printf("총 수익률은 %.1f 입니다", ratio);
