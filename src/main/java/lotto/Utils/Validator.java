@@ -9,6 +9,13 @@ public class Validator {
 
     // LOTTO_01, LOTTO_03 은 Lotto 클래스 안에서 검증
 
+    // LOTTO_02 (int)
+    public void validateBonusRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ExceptionCode.INVALID_RANGE.getMessage());
+        }
+    }
+
     // LOTTO_04
     public List<Integer> validateNumbersInput(String lottoInput) {
         try{

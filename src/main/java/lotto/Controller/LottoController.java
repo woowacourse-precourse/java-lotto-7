@@ -15,6 +15,7 @@ public class LottoController {
         int price = inputLottoView.inputPrice();
         MyLottos issuedTickets = issueTicketController.issueTickets(getNumberOfTickets(price));
         Lotto winningLotto = inputLottoView.inputWinningNumbers();
+        int bonusNumber = inputLottoView.inputBonusNumber();
     }
 
     public int getNumberOfTickets(int price) {

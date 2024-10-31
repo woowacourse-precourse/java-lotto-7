@@ -41,4 +41,21 @@ public class InputLottoView {
         }
         return winningLotto;
     }
+
+    public int inputBonusNumber() {
+        int bonusNumber = 0;
+        while (true) {
+            System.out.println(PrintConstants.INPUT_BONUS_NUMBER.getMessage());
+            String bonusInput = Console.readLine();
+            try {
+                validator.validateEmptyInput(bonusInput);
+                bonusNumber = validator.validateInteger(bonusInput);
+                validator.validateBonusRange(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
 }
