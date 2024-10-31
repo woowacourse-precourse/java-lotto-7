@@ -1,6 +1,6 @@
 package lotto.enums;
 
-public enum Exceptions {
+public enum ExceptionMessage {
     NOT_BLANK("빈 칸은 입력할 수 없습니다."),
     INVALID_MONEY_UNIT("금액의 단위는 1000원이어야 합니다."),
     DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
@@ -8,7 +8,7 @@ public enum Exceptions {
 
     private final String message;
 
-    Exceptions(String message) {
+    ExceptionMessage(String message) {
         this.message = message;
     }
 
