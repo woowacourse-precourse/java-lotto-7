@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.exception.LottoGameException;
+import lotto.exception.custom.WinningNumberException;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -8,18 +11,12 @@ public class WinningNumbers {
     private final List<Integer> numbers;
 
     private WinningNumbers(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
         this.numbers = numbers;
     }
 
     public static WinningNumbers of(List<Integer> numbers) {
         return new WinningNumbers(numbers);
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
-        }
     }
 
     public int compareAt(Lotto lotto) {
@@ -34,7 +31,18 @@ public class WinningNumbers {
                 .anyMatch(number -> isBonusNumber(bonusNumber, number));
     }
 
+    private void validateSize(List<Integer> numbers) {
+        if (isRightSize(numbers)) {
+            throw new LottoGameException(WinningNumberException.INVALID_INPUT);
+        }
+    }
+
     private boolean isBonusNumber(int bonusNumber, Integer number) {
         return number == bonusNumber;
     }
+
+    private boolean isRightSize(List<Integer> numbers) {
+        return numbers.size() != 6;
+    }
+
 }
