@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Validation {
-    public static boolean validateNoDuplication(List<Integer> numbers) {
+    public static boolean isUnique(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>();
         for(int number:numbers) {
             if(!set.add(number)) return false;
@@ -13,7 +13,7 @@ public class Validation {
         return true;
     }
 
-    public static boolean validateNumber(String number) {
+    public static boolean isNumeric(String number) {
         if(isEmptyInput(number)) return false;
         return number.chars().allMatch(Character::isDigit);
     }
