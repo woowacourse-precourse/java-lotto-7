@@ -12,6 +12,18 @@ public class Budget {
         this.budget = budget;
     }
 
+    public boolean buyLotto() {
+        if (isUnavailable()) {
+            return false;
+        }
+        budget -= Lotto.LOTTO_PRICE;
+        return true;
+    }
+
+    public boolean isUnavailable() {
+        return budget >= Lotto.LOTTO_PRICE;
+    }
+
     private void validateBudget(Integer budget) {
         validateBudgetRange(budget);
         validateBudgetUnit(budget);
