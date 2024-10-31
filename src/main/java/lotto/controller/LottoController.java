@@ -26,6 +26,7 @@ public class LottoController {
         printLottoInformation(lottos.count(), lottos.information());
         WinningNumbers winningNumbers = receiveWinningNumbers();
         BonusNumber bonusNumber = receiveBonusNumber();
+        displayWinningStatistic(winningNumbers, bonusNumber);
     }
 
     private PurchaseAmount receivePurchaseAmount() {
@@ -67,5 +68,9 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private void displayWinningStatistic(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        outputView.printWinningStatistic();
     }
 }

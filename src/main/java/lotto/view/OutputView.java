@@ -2,6 +2,7 @@ package lotto.view;
 
 public class OutputView {
     public static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    public static final String WINNING_STATISTIC_HEADER = "당첨 통계\n---";
     private static final String LINE_BREAK = "\n";
     private static final String REQUEST_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String LOTTO_COUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.";
@@ -29,5 +30,9 @@ public class OutputView {
 
     public void printErrorMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printWinningStatistic() {
+        System.out.println(WINNING_STATISTIC_HEADER);
     }
 }
