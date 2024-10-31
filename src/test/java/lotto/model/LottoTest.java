@@ -1,8 +1,7 @@
 package lotto.model;
 
 import java.util.stream.Stream;
-import lotto.validate.ErrorMessage;
-import org.assertj.core.api.Assertions;
+import lotto.constants.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

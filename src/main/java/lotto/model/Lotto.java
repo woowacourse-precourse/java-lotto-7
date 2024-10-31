@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.Collections;
 import java.util.List;
 import lotto.constants.LottoConstants;
-import lotto.validate.ErrorMessage;
+import lotto.constants.ErrorMessage;
 
 public class Lotto {
 

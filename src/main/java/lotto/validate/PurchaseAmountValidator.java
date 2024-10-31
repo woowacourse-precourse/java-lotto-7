@@ -1,5 +1,7 @@
 package lotto.validate;
 
+import lotto.constants.ErrorMessage;
+
 public class PurchaseAmountValidator {
 
     private static final int PURCHASE_UNIT_WON = 1000;

@@ -3,6 +3,7 @@ package lotto.validate;
 import static lotto.validate.PurchaseAmountValidator.getValidatedPurchaseAmount;
 import static org.assertj.core.api.Assertions.*;
 
+import lotto.constants.ErrorMessage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
