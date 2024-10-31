@@ -18,5 +18,8 @@ public class Application {
 
         Lotto mainLotto = lottoInput.mainNumbersInput();
         int bonusNumber = lottoInput.bonusNumberInput(mainLotto.getNumbers());
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateResult(lottos, mainLotto, bonusNumber);
     }
 }
