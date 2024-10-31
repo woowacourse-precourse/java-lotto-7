@@ -67,6 +67,7 @@ public class Application {
             goalNumbers.add(Integer.parseInt(number.trim()));
         }
         System.out.println();
+        Lotto goals = new Lotto(goalNumbers);
 
         // 5. 보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
@@ -76,7 +77,7 @@ public class Application {
         // 6. 등수 계산 및 출력
         statistics = new int[6];
         for(Lotto lotto : lottos){
-            int rank = lotto.getRank(goalNumbers,bonusNumber);
+            int rank = lotto.getRank(goals,bonusNumber);
             statistics[rank]++;
         }
         printStatistics();
