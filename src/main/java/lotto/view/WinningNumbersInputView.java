@@ -9,9 +9,14 @@ import java.util.List;
 
 public class WinningNumbersInputView {
     private static final String WINNING_NUMBERS_INPUT_GUIDE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_GUIDE = "보너스 번호를 입력해 주세요.";
 
     public void printWinningNumbersInputGuide() {
         System.out.println(WINNING_NUMBERS_INPUT_GUIDE);
+    }
+
+    public void printBonusNumberInputGuide() {
+        System.out.println(BONUS_NUMBER_INPUT_GUIDE);
     }
 
     public List<Integer> getWinningNumbers() {
