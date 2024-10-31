@@ -1,6 +1,7 @@
 package lotto.io.output.impl;
 
 import lotto.common.ConsoleMessages;
+import lotto.common.ErrorMessages;
 import lotto.domain.LottoTicket;
 import lotto.domain.Result;
 import lotto.io.output.GameOutput;
@@ -21,6 +22,6 @@ public class OutputConsole implements GameOutput {
 
     @Override
     public void printErrorMessage(String message) {
-        System.out.println(ConsoleMessages.ERROR_PREFIX + message);
+        System.out.println(ErrorMessages.ERROR_PREFIX + message);
     }
 }

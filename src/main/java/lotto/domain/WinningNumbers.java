@@ -14,6 +14,12 @@ public class WinningNumbers {
         this.winningNumbers = parseAndValidate(input);
     }
 
+    public LottoRank calculateRank(Lotto lotto, BonusNumber bonusNumber) {
+        int matchCount = lotto.matchCount(winningNumbers);
+        boolean matchBonus = lotto.containsBonus(bonusNumber);
+        return LottoRank.findByMatchCountAndBonus(matchCount, matchBonus);
+    }
+
     private List<Integer> parseAndValidate(String input) {
         if (input == null) {
             throw new IllegalArgumentException(ErrorMessages.NULL_WINNING_NUMBER);

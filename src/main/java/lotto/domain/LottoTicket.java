@@ -10,6 +10,15 @@ public class LottoTicket {
         this.tickets = new ArrayList<>(tickets);
     }
 
+    public static LottoTicket createLottoTicket(int ticketCount) {
+        List<Lotto> tickets = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            tickets.add(Lotto.generate());
+        }
+        return new LottoTicket(tickets);
+    }
+
+
     public List<Lotto> getTickets() {
         return tickets;
     }

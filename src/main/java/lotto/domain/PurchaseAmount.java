@@ -6,6 +6,7 @@ public class PurchaseAmount {
     private static final int UNIT = 1000;
     private static final int MAX_PURCHASE_AMOUNT = 100000;
     private static final int PERCENTAGE_CONVERSION_FACTOR = 100;
+    private static final int ROUNDING_SCALE = 100;
     private final int amount;
 
     public PurchaseAmount(String input) {
@@ -35,6 +36,10 @@ public class PurchaseAmount {
     }
 
     public double calculateYield(int totalPrize) {
-        return (double) totalPrize / amount * PERCENTAGE_CONVERSION_FACTOR;
+        return roundToTwoDecimalPlaces((double) totalPrize / amount * PERCENTAGE_CONVERSION_FACTOR);
+    }
+
+    private double roundToTwoDecimalPlaces(double value) {
+        return Math.round(value * ROUNDING_SCALE) / (double) ROUNDING_SCALE;
     }
 }

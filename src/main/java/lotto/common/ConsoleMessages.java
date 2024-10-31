@@ -1,7 +1,6 @@
 package lotto.common;
 
 public class ConsoleMessages {
-    public static final String ERROR_PREFIX = "[ERROR]";
     public static final String PURCHASE_AMOUNT_PROMPT = "구입 금액을 입력해 주세요.";
     public static final String WINNING_NUMBERS_PROMPT = System.lineSeparator() + "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_PROMPT = System.lineSeparator() + "보너스 번호를 입력해 주세요.";
@@ -10,5 +9,4 @@ public class ConsoleMessages {
     public static final String WINNING_STATISTICS_HEADER =
             System.lineSeparator() + "당첨 통계" + System.lineSeparator() + "---";
     public static final String YIELD_MESSAGE = "총 수익률은 %.1f%%입니다." + System.lineSeparator();
-    ;
 }

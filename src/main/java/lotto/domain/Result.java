@@ -18,11 +18,16 @@ public class Result {
         }
     }
 
-    public void calculateResults(LottoTicket lottoTicket, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public static Result calculateResult(LottoTicket lottoTicket, WinningNumbers winningNumbers,
+                                         BonusNumber bonusNumber) {
+        Result result = new Result();
+        result.storeResults(lottoTicket, winningNumbers, bonusNumber);
+        return result;
+    }
+
+    private void storeResults(LottoTicket lottoTicket, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Lotto lotto : lottoTicket.getTickets()) {
-            int matchCount = lotto.matchCount(winningNumbers.getWinningNumbers());
-            boolean matchBonus = lotto.containsBonus(bonusNumber);
-            LottoRank rank = LottoRank.findByMatchCountAndBonus(matchCount, matchBonus);
+            LottoRank rank = winningNumbers.calculateRank(lotto, bonusNumber);
             addMatchResult(rank);
         }
     }
@@ -56,4 +61,3 @@ public class Result {
         return formattedResults;
     }
 }
-
