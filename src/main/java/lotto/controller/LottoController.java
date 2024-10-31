@@ -34,7 +34,7 @@ public class LottoController {
         try {
             String rawInputPurchaseAmount = inputView.requestPurchaseAmount();
             validatePurchaseAmount(rawInputPurchaseAmount);
-            return parsePurchaseAmount(rawInputPurchaseAmount);
+            return Integer.parseInt(rawInputPurchaseAmount);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return readPurchaseAmount();
@@ -44,14 +44,6 @@ public class LottoController {
     private void validatePurchaseAmount(String rawInput) {
         InputValidator inputValidator = new InputValidator();
         inputValidator.validatePurchaseAmount(rawInput);
-    }
-
-    private int parsePurchaseAmount(String rawInput) {
-        try {
-            return Integer.parseInt(rawInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
-        }
     }
 
     private List<Lotto> purchaseLotto(int purchaseAmount) {
@@ -96,11 +88,7 @@ public class LottoController {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String input : separatedInputs) {
-            try {
-                winningNumbers.add(Integer.parseInt(input.trim()));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
-            }
+            winningNumbers.add(Integer.parseInt(input.trim()));
         }
         return winningNumbers;
     }
@@ -109,7 +97,7 @@ public class LottoController {
         try {
             String rawInputBonusNumber = inputView.requestBonusNumber();
             validateBonusNumber(rawInputBonusNumber, winningNumbers);
-            return parseBonusNumber(rawInputBonusNumber);
+            return Integer.parseInt(rawInputBonusNumber);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return readBonusNumber(winningNumbers);
@@ -119,14 +107,6 @@ public class LottoController {
     private void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
         InputValidator inputValidator = new InputValidator();
         inputValidator.validateBonusNumber(rawInput, winningNumbers);
-    }
-
-    private int parseBonusNumber(String rawInput) {
-        try {
-            return Integer.parseInt(rawInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
-        }
     }
 
     private WinningResult evaluateLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoTickets) {
