@@ -2,10 +2,12 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 
 public class Lottos {
-
+    private static final Long LOTTO_PRICE = 1_000L;
     private final List<Lotto> lottos;
 
     public static Lottos from(Long count) {
@@ -19,6 +21,36 @@ public class Lottos {
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public Float calculateReturnRate(WinningBalls winningBalls, BonusBall bonusBall) {
+        EnumMap<Rank, Integer> result = calculateWinningResults(winningBalls, bonusBall);
+        Long winningAmount = Rank.calculateWinningAmount(result);
+        long totalPrice = getSize() * LOTTO_PRICE;
+        return (Float.valueOf(winningAmount) / totalPrice) * 100;
+    }
+
+    public EnumMap<Rank, Integer> calculateWinningResults(WinningBalls winningBalls, BonusBall bonusBall) {
+        EnumMap<Rank, Integer> ranks = initializeRanks();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = calculateRankForLotto(lotto, winningBalls, bonusBall);
+            ranks.put(rank, ranks.getOrDefault(rank, 0) + 1);
+        }
+        return ranks;
+    }
+
+    private EnumMap<Rank, Integer> initializeRanks() {
+        EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
+        Arrays.stream(Rank.values())
+                .forEach(rank -> ranks.put(rank, 0));
+        return ranks;
+    }
+
+    private Rank calculateRankForLotto(Lotto lotto, WinningBalls winningBalls, BonusBall bonusBall) {
+        int sameWinningCount = winningBalls.getSameNumberCount(lotto);
+        int sameBonusCount = bonusBall.getSameNumberCount(lotto);
+        return Rank.valueOf(sameWinningCount, sameBonusCount);
     }
 
     public int getSize() {

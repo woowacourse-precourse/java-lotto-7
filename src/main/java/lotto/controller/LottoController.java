@@ -2,15 +2,14 @@ package lotto.controller;
 
 import java.util.EnumMap;
 import java.util.List;
-import lotto.view.SimpleInputValidator;
 import lotto.model.BonusBall;
 import lotto.model.LottoSellingMachine;
 import lotto.model.Lottos;
 import lotto.model.Rank;
-import lotto.model.WinningAnalyzer;
 import lotto.model.WinningBalls;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.SimpleInputValidator;
 
 public class LottoController {
 
@@ -66,11 +65,10 @@ public class LottoController {
     }
 
     private void printResult(Lottos lottos, WinningBalls winningBalls, BonusBall bonusBall) {
-        WinningAnalyzer winningAnalyzer = new WinningAnalyzer(winningBalls, bonusBall);
-        EnumMap<Rank, Integer> result = winningAnalyzer.getResult(lottos);
-        Float returnRate = winningAnalyzer.calculateReturnRate(lottos);
+        EnumMap<Rank, Integer> rankIntegerEnumMap = lottos.calculateWinningResults(winningBalls, bonusBall);
+        Float returnRate1 = lottos.calculateReturnRate(winningBalls, bonusBall);
 
-        outputView.printResult(result);
-        outputView.printReturnRate(returnRate);
+        outputView.printResult(rankIntegerEnumMap);
+        outputView.printReturnRate(returnRate1);
     }
 }
