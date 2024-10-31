@@ -1,6 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import exception.Message;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -27,7 +29,27 @@ public class Lotto {
         }
     }
 
-    class Price {
-        final static int PRICE = 1000;
+    public static List<Lotto> getLottos(int number) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i=0;i<number;i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> sortedNumbers = numbers.stream().sorted().toList();
+            lottos.add(new Lotto(sortedNumbers));
+        }
+
+        return lottos;
+    }
+
+    public static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto: lottos) {
+        io.Print printMessage = new io.Print(lotto.numbers.toString());
+        printMessage.print();
+    }
+    }
+
+
+
+    public class Price {
+        public final static int PRICE = 1000;
     }// TODO: 추가 기능 구현
 }

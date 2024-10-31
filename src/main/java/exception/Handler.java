@@ -14,7 +14,7 @@ public class Handler {
     }
 
     private static boolean moneyIsValid(int money) {
-        if (money % 1000 != 0) {
+        if (money % lotto.Lotto.Price.PRICE != 0) {
             Message message = new Message(Integer.toString(money));
             String exceptionMessage = message.getMessage(Message.INVALID_MONEY);
             throw new IllegalArgumentException(exceptionMessage);
