@@ -4,22 +4,25 @@ import java.util.List;
 
 public class LottoListValidator {
 
-    public void validateSize(final List<Integer> numbers) {
+    public LottoListValidator validateSize(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        return this;
     }
 
-    public void validateDuplicate(final List<Integer> numbers) {
+    public LottoListValidator validateDuplicate(final List<Integer> numbers) {
         if (isDuplicate(numbers)) {
             throw new IllegalArgumentException();
         }
+        return this;
     }
 
-    public void validateRange(final List<Integer> numbers, final ValidateFunction validateFunction) {
+    public LottoListValidator validateRange(final List<Integer> numbers, final ValidateFunction validateFunction) {
         for (Integer number : numbers) {
             validateFunction.validate(number);
         }
+        return this;
     }
 
     private boolean isDuplicate(final List<Integer> numbers) {
