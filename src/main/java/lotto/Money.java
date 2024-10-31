@@ -1,5 +1,7 @@
 package lotto;
 
+import java.math.BigDecimal;
+
 public class Money {
 
     private final int value;
@@ -11,6 +13,10 @@ public class Money {
 
     public int calculateQuotient(final int number) {
         return value / number;
+    }
+
+    public double calculateRatio(final BigDecimal value) {
+        return (this.value / value.doubleValue()) * 100;
     }
 
 
