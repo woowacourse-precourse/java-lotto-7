@@ -24,5 +24,11 @@ public class LottoMatching {
 
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 
+    public LottoStatistics getLottoStatistics() {
+        return lottoStatistics;
+    }
 }
