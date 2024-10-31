@@ -27,14 +27,9 @@ public class LottoController {
         WinningStatistics winningStatistics = lottoTickets.getWinningStatistics(winningNumbers, bonusNumber);
         outputView.showResult(winningStatistics);
 
-        Long total = 0L;
-        total += winningStatistics.getRankCount(Rank.FIRST) * 2000000000;
-        total += winningStatistics.getRankCount(Rank.SECOND) * 30000000;
-        total += winningStatistics.getRankCount(Rank.THIRD) * 1500000;
-        total += winningStatistics.getRankCount(Rank.FOURTH) * 50000;
-        total += winningStatistics.getRankCount(Rank.FIFTH) * 5000;
+        double rateOfReturn = winningStatistics.calculateRateOfReturn(purchaseAmount);
 
-        outputView.showRateOfReturn(total, purchaseAmount);
+        outputView.showRateOfReturn(rateOfReturn);
     }
 
     private int getBonusNumber(Set<Integer> winningNumbers) {

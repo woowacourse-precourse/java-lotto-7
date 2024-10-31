@@ -39,14 +39,16 @@ public class OutputView {
     }
 
     public void showResult(WinningStatistics winningStatistics) {
-        System.out.println("3개 일치 (5,000원) - " + winningStatistics.getRankCount(Rank.FIFTH) + "개");
-        System.out.println("4개 일치 (50,000원) - " + winningStatistics.getRankCount(Rank.FOURTH) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winningStatistics.getRankCount(Rank.THIRD) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningStatistics.getRankCount(Rank.SECOND) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winningStatistics.getRankCount(Rank.FIRST) + "개");
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(Rank.FIFTH.getDescription() + " - " + winningStatistics.getRankCount(Rank.FIFTH) + "개");
+        System.out.println(Rank.FOURTH.getDescription() + " - " + winningStatistics.getRankCount(Rank.FOURTH) + "개");
+        System.out.println(Rank.THIRD.getDescription() + " - " + winningStatistics.getRankCount(Rank.THIRD) + "개");
+        System.out.println(Rank.SECOND.getDescription() + " - " + winningStatistics.getRankCount(Rank.SECOND) + "개");
+        System.out.println(Rank.FIRST.getDescription() + " - " + winningStatistics.getRankCount(Rank.FIRST) + "개");
     }
 
-    public void showRateOfReturn(Long total, int purchaseAmount) {
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", (total / (double)purchaseAmount) * 100));
+    public void showRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", rateOfReturn));
     }
 }
