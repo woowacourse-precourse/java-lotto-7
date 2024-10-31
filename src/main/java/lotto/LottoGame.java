@@ -26,6 +26,8 @@ public class LottoGame {
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
         double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
         Map<LottoRank, Integer> rankMap = LottoStatistics.calcRankStatistics(lottoRanks);
+
+        printWinStatistics(rankMap, rateOfResult);
     }
 
     private int inputMoney() {
@@ -73,6 +75,15 @@ public class LottoGame {
         }
 
         return lottoRanks;
+    }
+
+    private void printWinStatistics(Map<LottoRank, Integer> rankMap, double rateOfResult) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        printRankBreakdown(rankMap);
+        printRateOfResult(rateOfResult);
     }
 
     private void printRankBreakdown(Map<LottoRank, Integer> rankMap) {
