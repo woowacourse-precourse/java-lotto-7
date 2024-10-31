@@ -25,4 +25,12 @@ public class Utils {
         commaSeperatedNumber.sort(Comparator.naturalOrder());
         return commaSeperatedNumber;
     }
+
+    public static List<Lotto> publishLottos(int publishAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < publishAmount; i++) {
+            lottos.add(Lotto.publish());
+        }
+        return lottos;
+    }
 }

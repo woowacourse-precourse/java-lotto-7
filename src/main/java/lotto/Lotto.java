@@ -9,21 +9,17 @@ import static lotto.IOProcessor.getCommaSeperatedText;
 import static lotto.IOProcessor.getNumber;
 import static lotto.Utils.convertToSortedNumber;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumber(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
     }
 
     public static int getPurchaseAmount() {
@@ -36,6 +32,10 @@ public class Lotto {
             getPurchaseAmount();
         }
         return purchaseAmount;
+    }
+
+    public static int getPublishAmount(int purchaseAmount) {
+        return purchaseAmount / 1000;
     }
 
     public static int getBonusNumber(List<Integer> numbers) {
@@ -57,10 +57,15 @@ public class Lotto {
         try {
             winningNumbers = convertToSortedNumber(winningNumbersText);
             validateLottoNumber(winningNumbers);
-            hasDuplicates(winningNumbers);
         } catch (IllegalArgumentException e) {
             getWinningNumbers();
         }
         return winningNumbers;
+    }
+
+    public static Lotto publish() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Comparator.naturalOrder());
+        return new Lotto(numbers);
     }
 }
