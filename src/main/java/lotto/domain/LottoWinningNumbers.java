@@ -8,18 +8,18 @@ public class LottoWinningNumbers {
 
     private static final String DELIMITER = ",";
 
-    private String winningNumber;
+    private List<Integer> winningNumbers;
+    private String mainNumbers;
     private String bonusNumber;
 
-    public LottoWinningNumbers(String winningNumber, String bonusNumber) {
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+    public LottoWinningNumbers(String secondLine, String thridLine) {
+        this.mainNumbers = secondLine;
+        this.bonusNumber = thridLine;
+        this.winningNumbers = new ArrayList<>();
     }
 
     public List<Integer> generate() {
-        List<Integer> winningNumbers = new ArrayList<>();
-
-        String[] splitNumbers = winningNumber.split(DELIMITER);
+        String[] splitNumbers = mainNumbers.split(DELIMITER);
         for (String splitNumber : splitNumbers) {
             Integer number = StringUtil.parseToPositiveInt(splitNumber);
             winningNumbers.add(number);
@@ -28,6 +28,10 @@ public class LottoWinningNumbers {
         Integer bonus = StringUtil.parseToPositiveInt(bonusNumber);
         winningNumbers.add(bonus);
 
+        return winningNumbers;
+    }
+
+    public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 }
