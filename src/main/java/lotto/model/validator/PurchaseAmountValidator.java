@@ -1,8 +1,8 @@
-package lotto.controller.validator;
+package lotto.model.validator;
 
 import static lotto.exception.InvalidAmountException.INVALID_AMOUNT_MESSAGE;
 
-import lotto.exception.InvalidAmountException;
+import lotto.exception.InvalidLottoNumberException;
 import lotto.util.LottoConstants;
 
 public class PurchaseAmountValidator {
@@ -14,7 +14,7 @@ public class PurchaseAmountValidator {
 
     public void validate() {
         if (amount % LottoConstants.LOTTO_PURCHASE_AMOUNT != 0) {
-            throw new InvalidAmountException(INVALID_AMOUNT_MESSAGE);
+            throw new InvalidLottoNumberException(INVALID_AMOUNT_MESSAGE);
         }
     }
 }

@@ -1,10 +1,11 @@
-package lotto.controller.validator;
+package lotto.model.validator;
 
 import static lotto.exception.InvalidAmountException.INVALID_AMOUNT_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.exception.InvalidAmountException;
+import lotto.model.validator.PurchaseAmountValidator;
 import lotto.util.LottoConstants;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class PurchaseAmountValidatorTest {
         PurchaseAmountValidator validator = new PurchaseAmountValidator(invalidAmount);
 
         assertThatThrownBy(validator::validate)
-                .isInstanceOf(InvalidAmountException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_AMOUNT_MESSAGE);
     }
 }
