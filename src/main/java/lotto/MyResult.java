@@ -27,16 +27,7 @@ public class MyResult {
         return bonusPoint;
     }
 
-    public static void printResults(GradeSaver grades){
-        System.out.println("당첨 통계\n" + "---");
-        System.out.println("3개 일치 (5,000원) - " + grades.getThird() + "개");
-        System.out.println("4개 일치 (50,000원) - " + grades.getFourth() + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + grades.getFifth() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +grades.getFifthBonus() + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + grades.getSixth() + "개");
-    }
-
-    public static Integer getRevenue(GradeSaver grades){
+    public static Integer getMyRevenue(GradeSaver grades){
         int revenue = 0;
         revenue += grades.getThird() * 5000;
         revenue += grades.getFourth() * 50000;
@@ -44,5 +35,10 @@ public class MyResult {
         revenue += grades.getFifthBonus() * 30000000;
         revenue += grades.getSixth() * 2000000000;
         return revenue;
+    }
+
+    public static double getReturn(Integer purchasePrice, Integer revenue){
+        double myReturn = (double)revenue / (double)purchasePrice * 100;
+        return Math.round(myReturn * 100)/100.0;
     }
 }
