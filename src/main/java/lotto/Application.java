@@ -75,7 +75,8 @@ public class Application {
         return lottoNum;
     }
 
-    public static double getReturn(Integer purchasePrice, Integer winnings){
-        return Math.round((double)(winnings - purchasePrice)/100);
+    public static double getReturn(Integer purchasePrice, Integer revenue){
+        double myReturn = (double)revenue / (double)purchasePrice * 100;
+        return Math.round(myReturn * 100)/100.0;
     }
 }
