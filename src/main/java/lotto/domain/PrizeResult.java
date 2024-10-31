@@ -17,6 +17,8 @@ public class PrizeResult {
         for (Rank rank:prizeResult.keySet()){
             totalPrize+=(prizeResult.get(rank)*(rank.getPrizeAmount()));
         }
-        return Math.round(totalPrize/paymentInput.getPayment());
+        double gain=totalPrize/(double)paymentInput.getPayment()*100;
+
+        return Math.round(gain*10)/10.0;
     }
 }
