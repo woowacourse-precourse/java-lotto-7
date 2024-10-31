@@ -21,7 +21,7 @@ public class InputView {
         return MoneyDTO.from(Long.valueOf(input));
     }
 
-    private static void validateNumberFormat(String input) {
+    private void validateNumberFormat(String input) {
         if (!Pattern.matches(REGEXP_NUMBER, input)) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_IS_DIGIT.getMessage());
         }
