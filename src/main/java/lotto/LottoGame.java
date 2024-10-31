@@ -28,6 +28,8 @@ public class LottoGame {
         outputHandler.showLottos(lottos);
         Lotto normalNumbersOfLotto = createWinningNumbers();
         WinningLotto winningLotto = createBonusNumber(normalNumbersOfLotto);
+        WinningResult winningResult = calculateResult(lottos, winningLotto);
+        showResult(winningResult);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -71,4 +73,20 @@ public class LottoGame {
         }
     }
 
+    private WinningResult calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        Map<Rank, Integer> resultMap = Arrays.stream(Rank.values())
+            .collect(Collectors.toMap(rank -> rank, rank -> 0));
+
+        lottos.stream()
+            .map(winningLotto::calculateRank)
+            .forEach(rank -> resultMap.put(rank, resultMap.get(rank) + 1));
+
+        return new WinningResult(resultMap);
+    }
+
+    private void showResult(WinningResult result) {
+        outputHandler.showWinningStatisticsComment();
+        outputHandler.showWinningResult(result);
+    }
+    
 }
