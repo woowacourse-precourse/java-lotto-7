@@ -11,4 +11,10 @@ public class NumberParser {
         //TODO: 숫자 아닌 입력 validation 추가 필요
         return trimNumbers.map(Integer::parseInt).toList();
     }
+
+    public static int parseBonusNumber(String input) {
+        String trimNumber = input.trim();
+        //TODO: 숫자 아닌 입력 validation 추가 필요
+        return Integer.parseInt(trimNumber);
+    }
 }
