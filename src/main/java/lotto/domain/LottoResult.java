@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.utils.Constant.DEFAULT_MATCH_COUNT_VALUE;
 import static lotto.utils.Constant.LOTTO_WINNING_STATUS_MESSAGE;
 
 import java.util.Collections;
@@ -13,12 +14,12 @@ public class LottoResult {
 
     public LottoResult() {
         for (LottoRanking rank : LottoRanking.values()) {
-            result.put(rank, 0);
+            result.put(rank, DEFAULT_MATCH_COUNT_VALUE);
         }
     }
 
     public void addMatchCount(LottoRanking rank) {
-        result.put(rank, result.getOrDefault(rank, 0) + 1);
+        result.put(rank, result.getOrDefault(rank, DEFAULT_MATCH_COUNT_VALUE) + 1);
     }
 
     public LottoRanking findRanking(int matchCount, boolean checkBonusNumber) {

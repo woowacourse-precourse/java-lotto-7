@@ -19,6 +19,7 @@ public class Constant {
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int MAX_LOTTO_NUMBER_COUNT = 6;
     public static final int CHECK_BONUS_NUMBER = 5;
+    public static final int DEFAULT_MATCH_COUNT_VALUE = 0;
 
     private Constant() {
     }
