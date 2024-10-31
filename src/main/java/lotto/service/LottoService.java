@@ -14,7 +14,6 @@ public class LottoService {
     private List<Lotto> lottos = new ArrayList<>();
 
     public List<Lotto> buyLotto(int amount) {
-        String input = request.inputAmount();
         int lottoCount = amount/1000;
         for(int count = 0; count < lottoCount; count++) {
             createLottoNum();
