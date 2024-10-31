@@ -6,6 +6,7 @@ import lotto.domain.UserLotto;
 public class OutputView {
 
     public static void buyLottoQuantity(User user) {
+        System.out.println();
         System.out.println(user.getLottoQuantity() + "개를 구매했습니다.");
     }
 
