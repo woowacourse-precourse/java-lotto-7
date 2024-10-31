@@ -24,5 +24,7 @@ public class LottoMachine {
 
         outputView.requestWinningNumbers();
         WinningNumbers winningNumbers = inputView.getWinningNumbers();
+
+        outputView.requestBonusNumber();
     }
 }
