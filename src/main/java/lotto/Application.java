@@ -12,7 +12,16 @@ public class Application {
         InputView inputView = new InputView();
 
         // 테스트할 입력값들을 배열에 추가
-        String[] testInputs = {"5000", "abc", "-100", "100000001"};
+        String[] testInputs = {
+                "5000",         // 정상 입력
+                "abc",          // 숫자가 아님
+                "-100",         // 음수 값
+                "100000001",    // 최대 한도 초과
+                "1500",         // 1,000원 단위 아님
+                "2500",         // 1,000원 단위 아님
+                "300",          // 1,000원 단위 아님
+                "15000"          // 정상 입력
+        };
 
         for (String input : testInputs) {
             try {
