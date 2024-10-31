@@ -2,12 +2,6 @@ package lotto.Controller;
 
 import lotto.Service.PurchaseService;
 import lotto.View.PurchaseView;
-import org.assertj.core.groups.Tuple;
-
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
-
 import static java.lang.Character.isDigit;
 
 public class PurchaseController {
@@ -24,7 +18,9 @@ public class PurchaseController {
         int count = 0;
         while(!validate) {
             try {
-                validate = purchaseFlow().isValidated();
+                Pair validated = purchaseFlow();
+                validate = validated.isValidated();
+                count = validated.getCount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -37,8 +33,6 @@ public class PurchaseController {
         Pair result = new Pair();
         String inputed = purchaseView.input();
         if(!isInteger(inputed))
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
-        if(!isDigit(Integer.parseInt(inputed)))
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
         int count = purchaseService.buy(Integer.parseInt(inputed));
         if (count > 0) {
