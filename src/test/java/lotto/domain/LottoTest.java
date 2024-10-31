@@ -25,10 +25,10 @@ class LottoTest {
 
     @Test
     void 구매_로또_개수_계산() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoGenerator lottoGenerator = new LottoGenerator();
 
-        Long lottoCount = lotto.calculateBuyLottoCount(5000L);
+        int lottoCount = lottoGenerator.calculateBuyLottoCount(5000);
 
-        assertThat(lottoCount).isEqualTo(5L);
+        assertThat(lottoCount).isEqualTo(5);
     }
 }
