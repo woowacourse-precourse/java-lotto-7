@@ -1,7 +1,8 @@
-package lotto.domain.lotto;
+package lotto.domain.machine;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.lotto.Lotto;
 
 public class LottoMachine {
 
@@ -19,7 +20,7 @@ public class LottoMachine {
         return lottos;
     }
 
-    private Lotto issueLotto() {
+    public Lotto issueLotto() {
         return Lotto.from(numberGenerator.generate());
     }
 

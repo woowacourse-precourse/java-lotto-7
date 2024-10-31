@@ -1,10 +1,9 @@
 package lotto.fake;
 
-import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.lotto.NumberGenerator;
+import lotto.domain.machine.impl.RandomNumberGenerator;
 
-public class FakeNumberGenerator extends NumberGenerator {
+public class FakeRandomNumberGenerator extends RandomNumberGenerator {
 
     public List<Integer> numbers;
 

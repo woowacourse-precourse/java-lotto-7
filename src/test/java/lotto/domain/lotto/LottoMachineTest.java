@@ -3,7 +3,8 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.fake.FakeNumberGenerator;
+import lotto.domain.machine.LottoMachine;
+import lotto.fake.FakeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class LottoMachineTest {
 
     @BeforeEach
     void setUp() {
-        FakeNumberGenerator fakeNumberGenerator = new FakeNumberGenerator();
+        FakeRandomNumberGenerator fakeNumberGenerator = new FakeRandomNumberGenerator();
         fakeNumberGenerator.numbers = List.of(1, 2, 3, 4, 5, 6);
         lottoMachine = new LottoMachine(fakeNumberGenerator);
     }

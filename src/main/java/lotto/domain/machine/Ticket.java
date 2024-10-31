@@ -1,11 +1,11 @@
-package lotto.domain.lotto;
+package lotto.domain.machine;
 
 import lotto.exception.TicketException;
 import lotto.exception.message.TicketExceptionMessage;
 
 public class Ticket {
 
-    private int count;
+    private final int count;
 
     public Ticket(int money) {
         validateMoneyAmount(money);
