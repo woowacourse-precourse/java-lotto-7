@@ -45,21 +45,20 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
+        while(true) {
+            try {
+                String inputViewPurchaseAmount = inputView.getPurchaseAmount();
+                lottoValidator.purchaseAmountTypeValidator(inputViewPurchaseAmount);
 
-        try {
-            String inputViewPurchaseAmount = inputView.getPurchaseAmount();
-            lottoValidator.purchaseAmountTypeValidator(inputViewPurchaseAmount);
+                int purchaseAmount = Integer.parseInt(inputViewPurchaseAmount);
+                lottoValidator.purchaseAmountPositiveValidator(purchaseAmount);
+                lottoValidator.purchaseAmountUnitValidator(purchaseAmount);
 
-            Integer purchaseAmount = Integer.parseInt(inputViewPurchaseAmount);
-            lottoValidator.purchaseAmountPositiveValidator(purchaseAmount);
-            lottoValidator.purchaseAmountUnitValidator(purchaseAmount);
-
-            return purchaseAmount;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            getPurchaseAmount();
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return 0;
     }
 
     private int getLottoTicketAmount(int purchaseAmount) {
@@ -67,10 +66,29 @@ public class LottoController {
     }
 
     private Lotto getWinningLotto() {
-        return inputView.getWinningLotto();
+        while(true) {
+            try {
+                Lotto winningLotto = inputView.getWinningLotto();
+                lottoValidator.duplicateNumValidator(winningLotto);
+                lottoValidator.lottoNumRangeValidator(winningLotto);
+
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private int getBonusNumber() {
-        return inputView.getBonusNumber();
+        while(true) {
+            try {
+                int bonusNumber = inputView.getBonusNumber();
+                lottoValidator.bonusNumRangeValidator(bonusNumber);
+
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
