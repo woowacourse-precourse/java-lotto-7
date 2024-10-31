@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningLotto {
@@ -10,7 +12,9 @@ public class WinningLotto {
 
     public WinningLotto(String lottoNumber) {
         validateInput(lottoNumber);
-        lotto = new Lotto(splitLottoNumber(lottoNumber));
+        List<Integer> winningLotto = splitLottoNumber(lottoNumber);
+        validateDuplicateNumber(winningLotto);
+        this.lotto = new Lotto(winningLotto);
     }
 
     private List<Integer> splitLottoNumber(String lottoNumber) {
@@ -23,6 +27,13 @@ public class WinningLotto {
         // 숫자와 쉼표만 허용하는 정규식 검증
         if (!lottoNumber.matches("^[0-9,]+$")) {
             throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_DELIMETER_ONLY_HAS_COMMA));
+        }
+    }
+
+    private void validateDuplicateNumber(List<Integer> lotto) {
+        Set<Integer> uniqueNumbers = new HashSet<>(lotto);
+        if (uniqueNumbers.size() != lotto.size()) {
+            throw new IllegalArgumentException(ErrorMessage.printError(ErrorMessage.ERROR_DUPLICATE_NUMBER));
         }
     }
 
