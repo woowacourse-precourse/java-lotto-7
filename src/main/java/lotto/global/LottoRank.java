@@ -1,6 +1,6 @@
 package lotto.global;
 
-import static lotto.global.ErrorMessages.INVALID_MATCH_COUNT;
+import static lotto.global.error.LottoErrorMessages.INVALID_MATCH_COUNT;
 
 public enum LottoRank {
     FIRST(6, 2_000_000_000),
@@ -38,6 +38,5 @@ public enum LottoRank {
     public int getPrize() {
         return prize;
     }
-
 
 }

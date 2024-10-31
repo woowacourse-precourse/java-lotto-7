@@ -1,6 +1,6 @@
-package lotto.global;
+package lotto.global.error;
 
-public enum ErrorMessages {
+public enum InputErrorMessages {
     INVALID_INPUT_FORMAT_NULL("구입 금액 입력값이 비어 있습니다."),
 
     INVALID_PRICE_FORMAT("로또 구입 금액에는 문자가 포함되면 안됩니다."),
@@ -15,7 +15,7 @@ public enum ErrorMessages {
 
     private final String message;
 
-    ErrorMessages(String message) {
+    InputErrorMessages(String message) {
         this.message = message;
     }
 
