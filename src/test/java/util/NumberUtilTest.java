@@ -17,7 +17,7 @@ class NumberUtilTest {
         // when // then
         assertThatThrownBy(() -> NumberUtil.convertNumberFrom(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("양수를 입력해주세요.");
+                .hasMessage("[ERROR] 양수를 입력해주세요.");
     }
 
     @DisplayName("음수이면 예외 처리")
@@ -29,7 +29,7 @@ class NumberUtilTest {
         // when // then
         assertThatThrownBy(() -> NumberUtil.isNotPositive(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("양수를 입력해주세요.");
+                .hasMessage("[ERROR] 양수를 입력해주세요.");
     }
 
     @DisplayName("0이면 예외 처리")
@@ -41,7 +41,7 @@ class NumberUtilTest {
         // when // then
         assertThatThrownBy(() -> NumberUtil.isZeroNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("양수를 입력해주세요.");
+                .hasMessage("[ERROR] 양수를 입력해주세요.");
     }
 
 }
