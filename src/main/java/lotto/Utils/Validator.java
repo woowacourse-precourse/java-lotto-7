@@ -13,4 +13,8 @@ public class Validator {
         return input.isEmpty();
     }
 
+    public static boolean isBlankString(String input) {
+        return input.isBlank();
+    }
+
 }
