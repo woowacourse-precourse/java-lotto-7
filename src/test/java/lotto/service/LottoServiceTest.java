@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.constants.ErrorMessageConstants;
+import lotto.validation.InputValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -47,5 +48,13 @@ class LottoServiceTest {
         assertThatThrownBy(() -> lottoService.calculateLottoCount(invalidInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", "123abc"})
+    void 로또_구입_금액_입력값이_숫자가_아닌_경우_예외_테스트(String invalidInput) {
+        assertThatThrownBy(() -> InputValidator.validateNumericInput(invalidInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessageConstants.INVALID_NOT_NUMBER_PURCHASE_AMOUNT);
     }
 }
