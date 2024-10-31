@@ -11,7 +11,7 @@
 - [x] `Converter`
   - [x] `priceToLottoCount` : 로또 구입 금액을 구매 개수로 변환한다.
 ### Domain
-- [ ] `Winning` : `enum`
+- [ ] `LottoRank` : `enum`
   - [ ] 당첨 개수와 당첨 금액을 관리하는 `enum`
 - [ ] `Lotto`
   - [ ] `countMatchingNumbers` : 매칭 숫자 + 보너스 넘버를 비교하여 당첨 형태를 return 한다.
