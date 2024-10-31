@@ -4,31 +4,26 @@ import lotto.exception.ErrorMessage;
 
 public class InputValidation {
 
-    private static final String NUMERIC_REGEX = "^[0-9]*$";
+    private InputValidation() {
+    }
 
-    public static void validate(String input) {
-        if (isNullOrEmpty(input)) {
+    public static void validateNullOrEmpty(String input) {
+        if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getErrorMessage());
         }
+    }
 
-        if (isContainBlank(input)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_CONTAIN_BLANK.getErrorMessage());
+    public static void validateContainBlank(String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException(ErrorMessage.CONTAIN_BLANK.getErrorMessage());
         }
+    }
 
-        if (isNumeric(input)) {
+    public static void validateNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMERIC.getErrorMessage());
         }
-    }
-
-    private static boolean isNullOrEmpty(String input) {
-        return input == null || input.isEmpty();
-    }
-
-    private static boolean isContainBlank(String input) {
-        return input.contains(" ");
-    }
-
-    private static boolean isNumeric(String input) {
-        return !input.matches(NUMERIC_REGEX);
     }
 }

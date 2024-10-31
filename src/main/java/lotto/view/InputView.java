@@ -7,7 +7,10 @@ public class InputView {
 
     public int inputPurchaseAmount() {
         String purchaseAmount = Console.readLine();
-        InputValidation.validate(purchaseAmount);
+
+        InputValidation.validateNullOrEmpty(purchaseAmount);
+        InputValidation.validateContainBlank(purchaseAmount);
+        InputValidation.validateNumeric(purchaseAmount);
 
         return Integer.parseInt(purchaseAmount);
     }
