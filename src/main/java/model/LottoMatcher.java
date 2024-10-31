@@ -18,8 +18,8 @@ public class LottoMatcher {
         return result;
     }
 
-    public static int compareBonusNumber(Lotto randomLotto, Integer bonusNumber) {
+    public static boolean compareBonusNumber(Lotto randomLotto, Integer bonusNumber) {
         Set<Integer> randomNumbers = new HashSet<>(randomLotto.getNumbers());
-        return randomNumbers.contains(bonusNumber) ? 1 : 0;
+        return randomNumbers.contains(bonusNumber);
     }
 }
