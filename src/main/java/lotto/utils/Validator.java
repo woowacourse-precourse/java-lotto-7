@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import static lotto.global.ErrorMessages.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,23 +15,23 @@ public class Validator {
         try {
             price = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("temp");
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT.toString());
         }
 
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException("temp");
+            throw new IllegalArgumentException(INVALID_PRICE_FORMAT_UNIT.toString());
         }
     }
 
     public static void winningNumValidator(String input) {
 
         if (!WINNING_NUM_PATTERN.matches(input)) {
-            throw new IllegalArgumentException("temp");
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.toString());
         }
 
         List<String> numbers = Arrays.asList(input.split(","));
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("temp");
+            throw new IllegalArgumentException(INVALID_WINNING_NUM_COUNT.toString());
         }
 
         for (String number : numbers) {
@@ -43,12 +45,11 @@ public class Validator {
         try {
             price = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("temp");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_FORMAT.toString());
         }
 
         if (price <= 0 || 46 <= price) {
-            throw new IllegalArgumentException("temp");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.toString());
         }
-
     }
 }
