@@ -1,35 +1,22 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 
+import static lotto.domain.LottoConstants.*;
+
 public class LottoService {
-    private static final int SECOND_PLACE_MATCH_COUNT = 5;
-    private static final Map<Integer, Integer> MATCH_COUNT_TO_RANK = Map.of(
-            6, 1,
-            5, 3,
-            4, 4,
-            3, 5
-    );  // (n, m) n개 일치 시 m등
-    private static final Map<Integer, Integer> PRIZE_AMOUNT_BY_RANK = Map.of(
-            1, 2000000000,
-            2, 30000000,
-            3, 1500000,
-            4, 50000,
-            5, 5000
-    );  // (m, k) m등 상금 k원
-    private final Map<Integer, Integer> winningRankCount = new HashMap<>(Map.of(
-            1, 0,
-            2, 0,
-            3, 0,
-            4, 0,
-            5, 0
-    ));
+    private final Map<Integer, Integer> winningRankCount = initializeWinningRankCount();
     private final List<Lotto> lottoTickets;
     private final Lotto winningNumbers;
     private final Lotto bonusNumber;
+
+    private BigDecimal winningAmount;
+    private BigDecimal earningsRate;
 
     public LottoService(List<Lotto> lottoTickets, Lotto winningNumbers, Lotto bonusNumber) {
         this.lottoTickets = lottoTickets;
@@ -37,11 +24,25 @@ public class LottoService {
         this.bonusNumber = bonusNumber;
     }
 
-    public int calculateWinningAmount() {
+    private static Map<Integer, Integer> initializeWinningRankCount() {
+        Map<Integer, Integer> initialCount = new HashMap<>();
+        for (int rank = FIRST_RANK; rank <= NUMBER_OF_RANKS; rank++) {
+            initialCount.put(rank, INITIAL_WINNING_COUNT);
+        }
+
+        return initialCount;
+    }
+
+    public void calculateWinningAmount() {
         calculateRankResults();
-        return winningRankCount.entrySet().stream()
-                .mapToInt(entry -> PRIZE_AMOUNT_BY_RANK.get(entry.getKey()) * entry.getValue())
-                .sum();
+        this.winningAmount = winningRankCount.entrySet().stream()
+                .map(entry -> calculatePrizeAmount(entry.getKey(), entry.getValue()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private BigDecimal calculatePrizeAmount(int rank, int count) {
+        BigDecimal prizeAmount = BigDecimal.valueOf(PRIZE_AMOUNT_BY_RANK.get(rank));
+        return prizeAmount.multiply(BigDecimal.valueOf(count));
     }
 
     private void calculateRankResults() {
@@ -49,21 +50,40 @@ public class LottoService {
             int matchCount = ticket.getMatchCount(winningNumbers);
             int rank = determineRank(matchCount, ticket);
 
-            if (rank > 0) {
-                winningRankCount.merge(rank, 1, Integer::sum);
-            }
+            updateWinningRankCount(rank);
         }
     }
 
-    private boolean isSecondPlaceWinner(int matchCount, Lotto ticket) {
-        return matchCount == SECOND_PLACE_MATCH_COUNT && ticket.isBonusNumberMatched(bonusNumber);
+    private void updateWinningRankCount(int rank) {
+        if (rank > 0) {
+            winningRankCount.merge(rank, 1, Integer::sum);
+        }
+    }
+
+    private boolean isSecondRankWinner(int matchCount, Lotto ticket) {
+        return matchCount == SECOND_RANK_MATCH_COUNT && ticket.isBonusNumberMatched(bonusNumber);
     }
 
     private int determineRank(int matchCount, Lotto ticket) {
-        if (isSecondPlaceWinner(matchCount, ticket)) {
+        if (isSecondRankWinner(matchCount, ticket)) {
             return 2;
         }
         return MATCH_COUNT_TO_RANK.getOrDefault(matchCount, 0);
     }
 
+    public BigDecimal getWinningAmount() {
+        return this.winningAmount;
+    }
+
+    public void calculateRateOfReturn() {
+        BigDecimal purchaseAmount = BigDecimal.valueOf(lottoTickets.size() * LOTTO_PRICE);
+        BigDecimal winningAmount = getWinningAmount();
+
+        BigDecimal earningsRatio = winningAmount.divide(purchaseAmount, PLACE_TO_ROUND_TO, RoundingMode.HALF_UP);
+        this.earningsRate = earningsRatio.multiply(BigDecimal.valueOf(PERCENT));
+    }
+
+    public BigDecimal getEarningsRate() {
+        return this.earningsRate;
+    }
 }
