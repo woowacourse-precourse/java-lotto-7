@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -17,8 +16,9 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provideNumbersGreaterOrLess6InLength")
     void 로또_번호의_개수가_6개보다_적거나_많으면_예외가_발생한다(List<Integer> numbers) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new Lotto(numbers));
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 6개여야 합니다.");
     }
 
     private static Stream<Arguments> provideNumbersGreaterOrLess6InLength() {
