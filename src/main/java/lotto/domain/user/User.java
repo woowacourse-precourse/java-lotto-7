@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.domain.user;
 
+import lotto.collection.Lotto;
+import lotto.collection.LottoTickets;
 import lotto.util.InputValidator;
 import lotto.util.UserIdGenerator;
 
