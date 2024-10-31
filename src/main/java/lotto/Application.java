@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Application {
     public static int[] statistics;
+    public static int budget;
+    public static int numberOfLotto;
 
     public static List<Integer> makeLotto(){
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -23,19 +25,27 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - "+statistics[1]+"개");
     }
 
+    public static int calculateProfit(){
+        return (2000000000*statistics[1]
+                +30000000*statistics[2]
+                +1500000*statistics[3]
+                +50000*statistics[4]
+                +5000*statistics[5]);
+    }
+
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
-        int budget = Integer.parseInt(Console.readLine());
+        budget = Integer.parseInt(Console.readLine());
         if(budget<1000){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
 
-        int count = budget/1000;
+        numberOfLotto = budget/1000;
         System.out.println();
-        System.out.println(count+"개를 구매했습니다.");
+        System.out.println(numberOfLotto+"개를 구매했습니다.");
 
         ArrayList<Lotto> lottos = new ArrayList<>();
-        for(int i=0;i<count;i++){
+        for(int i=0;i<numberOfLotto;i++){
             lottos.add(new Lotto(makeLotto()));
             System.out.println(lottos.get(i).toString());
         }
