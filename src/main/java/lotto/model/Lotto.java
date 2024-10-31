@@ -16,6 +16,16 @@ public class Lotto {
         }
     }
 
+    public static int countMatchingNumbers(Lotto ticket, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (Integer number : ticket.numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
 
     @Override
     public String toString() {

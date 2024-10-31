@@ -19,11 +19,16 @@ public class LottoController {
 
     public void run(User user) {
         int amount = AmountValidator.isNumber(view.getUserInput());
-        int tickets = amount / 1000;
-        view.printPurchaseMessage(tickets);
-        lottoService.provideLottoTickets(user, tickets);
+        AmountValidator.checkAmount(amount);
+        int numberOfTickets = amount / 1000;
+        view.printPurchaseMessage(numberOfTickets);
+        lottoService.provideLottoTickets(user, numberOfTickets);
         view.printLottoNumbers(user.getLottoTickets());
         String[] numbers = InputParser.splitNumbers(view.getWinningNumbers());
         List<Integer> winningNumbers = AmountValidator.isNumber(numbers);
+        int bonusNumber = AmountValidator.isNumber(view.getBonusNumbers());
+        lottoService.setAdditionalNumbers(winningNumbers, bonusNumber);
+        //Map<Lotto, Integer> matchCounts = lottoService.countMatchingNumbersForAllTickets(winningNumbers);
+        //System.out.println(matchCounts);
     }
 }

@@ -13,9 +13,9 @@ public class AmountValidator {
 
     public static int isNumber(String input) {
         try {
-            int amount = Integer.parseInt(input);
-            checkAmount(amount);
-            return amount;
+            int number = Integer.parseInt(input);
+
+            return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 유효한 숫자를 입력해야 합니다.");
         }
