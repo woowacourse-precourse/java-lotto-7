@@ -6,19 +6,16 @@ import lotto.constant.LottoConstant;
 public class WinningLotto {
 
     private final Lotto winningLotto;
-    private int bonusNumber;
+    private final int bonusNumber;
 
-    public WinningLotto(Lotto winningLotto) {
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getWinningLottoNumbers() {
         return winningLotto.getNumbers();
-    }
-
-    public void setBonusNumber(int bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
     }
 
     public int getBonusNumber() {

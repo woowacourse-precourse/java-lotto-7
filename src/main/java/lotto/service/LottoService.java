@@ -12,9 +12,10 @@ import lotto.util.InputFormatter;
 public class LottoService {
 
     private int money;
-    private List<Lotto> purchasedLotto;
+    private final List<Lotto> purchasedLotto;
+    private Lotto winningLottoNumbers;
     private WinningLotto winningLotto;
-    private InputFormatter inputFormatter;
+    private final InputFormatter inputFormatter;
 
     public LottoService() {
         this.purchasedLotto = new ArrayList<>();
@@ -36,12 +37,12 @@ public class LottoService {
 
     public void setWinningLotto(String winningNumbersInput) {
         List<Integer> winningNumbers = inputFormatter.formatWinningNumbersInput(winningNumbersInput);
-        this.winningLotto = new WinningLotto(new Lotto(winningNumbers));
+        this.winningLottoNumbers = new Lotto(winningNumbers);
     }
 
     public void setBonusNumber(String bonusNumberInput) {
         int bonusNumber = inputFormatter.formatBonusNumberInput(bonusNumberInput);
-        winningLotto.setBonusNumber(bonusNumber);
+        this.winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 
     public void checkLottoResult() {
