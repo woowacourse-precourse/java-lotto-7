@@ -21,6 +21,11 @@ public enum WinningStatistics {
         return this.matchBonus;
     }
 
+    public long getWinningPrize(long count) {
+        // 상금 = 등수에 따른 금액 * 당첨된 장 수
+        return count * this.winnings;
+    }
+
     public int getWinnings() {
         return this.winnings;
     }
