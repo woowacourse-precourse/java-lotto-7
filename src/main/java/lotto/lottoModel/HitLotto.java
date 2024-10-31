@@ -30,9 +30,12 @@ public class HitLotto {
         return allNumbers;
     }
 
+    public List<Integer> getHitNumbers() {
+        return hitNumbers;
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
-    }
     }
 
 }
