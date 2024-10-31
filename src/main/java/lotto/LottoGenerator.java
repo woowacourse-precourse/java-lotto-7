@@ -26,6 +26,16 @@ public class LottoGenerator {
         }
     }
 
+    public List<Lotto> generate() {
+        List<Lotto> lotties = new ArrayList<>();
+
+        for (int i = 0; i < quantity; i++) {
+            List<Integer> numbers = generateNumbers();
+            lotties.add(new Lotto(numbers));
+        }
+        return lotties;
+    }
+
     public List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE_NUMBER, MAX_RANGE_NUMBER,
                 LOTTO_NUMBERS_AMOUNT);

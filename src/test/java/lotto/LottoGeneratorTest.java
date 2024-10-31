@@ -34,4 +34,12 @@ public class LottoGeneratorTest {
         assertThat(lottoNumbers.size())
                 .isEqualTo(new HashSet<>(lottoNumbers).size());
     }
+
+    @Test
+    void 로또_구입금액만큼_발행() {
+        LottoGenerator lottoGenerator = new LottoGenerator(5_000);
+        List<Lotto> lotties = lottoGenerator.generate();
+        assertThat(lotties.size())
+                .isEqualTo(5);
+    }
 }
