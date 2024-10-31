@@ -5,7 +5,6 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.service.LottoService;
 import lotto.service.PlayerService;
-import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -38,5 +37,9 @@ public class LottoController {
     private void purchaseLotto() {
         outputView.printPriceInputMessage();
         int purchasePrice = inputView.readPriceInput();
+        int lottoCount = playerService.updateLottoCount(purchasePrice);
+        playerService.addLottos(lottoCount);
+        outputView.printLottoCountOutputMessage(player);
+        outputView.printLottoNumbers(player);
     }
 }
