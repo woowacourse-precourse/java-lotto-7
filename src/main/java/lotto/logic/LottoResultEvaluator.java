@@ -1,7 +1,6 @@
 package lotto.logic;
 
 import static lotto.constants.RankNumber.FIFTH;
-import static lotto.constants.RankNumber.FIFTH_PRIZE_MONEY;
 import static lotto.constants.RankNumber.FIRST;
 import static lotto.constants.RankNumber.FIRST_PRIZE_MONEY;
 import static lotto.constants.RankNumber.FIVE;
@@ -17,13 +16,13 @@ import static lotto.constants.RankNumber.THREE;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constants.RankNumber;
 import lotto.input.Bonus;
 import lotto.input.Lotto;
 import lotto.input.Purchase;
 
 public class LottoResultEvaluator {
 
+    private static final int ZERO = 0;
     private Map<Integer, Integer> result;
     private int profit;
     private double returnRate;
@@ -38,6 +37,7 @@ public class LottoResultEvaluator {
             getFourthRank(copyLotto);
             getFifthRank(copyLotto);
         }
+        this.profit = getProfitMoney(this.result);
     }
 
     public Map<Integer, Integer> getResult() {
@@ -80,5 +80,51 @@ public class LottoResultEvaluator {
         if (copyLotto.size() == THREE.getNumber()) {
             result.put(FIFTH.getNumber(), result.getOrDefault(FIFTH.getNumber(), 0) + 1);
         }
+    }
+
+    private int getProfitMoney(Map<Integer, Integer> result) {
+        int money = 0;
+        money += get1stMoney(result.get(FIRST));
+        money += get2ndMoney(result.get(SECOND));
+        money += get3thMoney(result.get(THIRD));
+        money += get4thMoney(result.get(FOURTH));
+        money += get5thMoney(result.get(FIFTH));
+
+        return money;
+    }
+
+    private int get1stMoney(int count) {
+        if (count != ZERO) {
+            return FIRST_PRIZE_MONEY.getNumber() * count;
+        }
+        return 0;
+    }
+
+    private int get2ndMoney(int count) {
+        if (count != ZERO) {
+            return SECOND_PRIZE_MONEY.getNumber() * count;
+        }
+        return 0;
+    }
+
+    private int get3thMoney(int count) {
+        if (count != ZERO) {
+            return THIRD_PRIZE_MONEY.getNumber() * count;
+        }
+        return 0;
+    }
+
+    private int get4thMoney(int count) {
+        if (count != ZERO) {
+            return FOURTH_PRIZE_MONEY.getNumber() * count;
+        }
+        return 0;
+    }
+
+    private int get5thMoney(int count) {
+        if (count != ZERO) {
+            return FIFTH.getNumber() * count;
+        }
+        return 0;
     }
 }
