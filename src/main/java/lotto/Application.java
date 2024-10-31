@@ -12,6 +12,7 @@ public class Application {
         int userId = userController.getUserIdByInputPurchasePrice();
 
         // 로또 구매
-        lottoController.purchaseLottoTickets(userId);
+        lottoController.getPurchaseLottoTickets(userId);
+
     }
 }

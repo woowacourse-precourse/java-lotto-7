@@ -15,8 +15,12 @@ public class LottoTickets {
         lottoTickets.add(lotto);
     }
 
-    public List<Lotto> getLottoTickets() {
+    public List<Lotto> getTickets() {
         return lottoTickets;
+    }
+
+    public int size() {
+        return lottoTickets.size();
     }
 
 }

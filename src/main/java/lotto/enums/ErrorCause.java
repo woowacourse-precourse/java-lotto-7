@@ -10,8 +10,7 @@ public enum ErrorCause {
 
     // 로또
     LOTTO_NUMBER_COUNT("로또 번호의 개수가 잘못되었습니다."),
-    LOTTO_NUMBER_DUPLICATION("로또 번호에 중복 값이 있습니다.")
-    ;
+    LOTTO_NUMBER_DUPLICATION("로또 번호에 중복 값이 있습니다.");
 
     private final String message;
 
@@ -20,6 +19,6 @@ public enum ErrorCause {
     }
 
     public String getMessage() {
-        return  message;
+        return message;
     }
 }
