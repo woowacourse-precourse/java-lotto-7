@@ -1,5 +1,10 @@
 package lotto.util.validator;
 
+import static lotto.util.LottoConstants.CONSECUTIVE_DELIMITER;
+import static lotto.util.LottoConstants.INPUT_DELIMITER;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_LAST;
+import static lotto.util.LottoConstants.LOTTO_NUMBER_START;
+import static lotto.util.LottoConstants.NEEDED_LOTTO_NUMBER_COUNT;
 import static lotto.util.message.ExceptionMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.util.message.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.util.message.ExceptionMessage.ILLEGAL_DELIMITER_USE;
@@ -18,21 +23,23 @@ public class LottoNumberValidator extends InputValidator {
     }
 
     private static void validateDelimiter(String input) {
-        if (input.startsWith(",") || input.contains(",,") || input.endsWith(",")) {
+        if (input.startsWith(INPUT_DELIMITER)
+                || input.contains(CONSECUTIVE_DELIMITER)
+                || input.endsWith(INPUT_DELIMITER)) {
             throw new IllegalArgumentException(ILLEGAL_DELIMITER_USE.toString());
         }
     }
 
     public static Integer validateNumberInRange(String numberToken) {
         int number = validateInteger(numberToken);
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_LAST) {
             throw new IllegalArgumentException(WINNING_NUMBER_NOT_IN_RANGE.toString());
         }
         return number;
     }
 
     public static void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NEEDED_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_COUNT_NOT_SIX.toString());
         }
     }

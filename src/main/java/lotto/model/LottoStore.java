@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.LottoConstants.LOTTO_TICKET_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +12,7 @@ public class LottoStore {
     private final List<Lotto> purchased;
 
     public LottoStore(int totalCost) {
-        this.lottoCount = totalCost/1000;
+        this.lottoCount = totalCost/LOTTO_TICKET_PRICE;
         this.purchased = new ArrayList<>();
     }
 

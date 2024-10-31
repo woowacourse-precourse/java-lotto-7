@@ -41,9 +41,9 @@ public enum LottoRank {
                 .orElse(NONE);
     }
 
-    private boolean isMatched(int sameNumberCount, boolean isMatchedToSecond) {
+    private boolean isMatched(int sameNumberCount, boolean isSecondRank) {
         return this.sameNumberCount == sameNumberCount
-                && this.isSecondRank == isMatchedToSecond;
+                && this.isSecondRank == isSecondRank;
     }
 
     public static List<LottoRank> getWinningRanks() {
