@@ -30,7 +30,7 @@ public class LottoManager {
     }
 
     public void executeWinningProcess(UserLotto userLotto, List<Integer> winningNumbers, int bonusNumber) {
-        for (Lotto lotto : userLotto.getLottos()) {
+        for (Lotto lotto : userLotto.getLotteries()) {
             List<Integer> numbers = lotto.getNumbers();
             int matchedNumbersCount = countMatchingNumbers(numbers, winningNumbers);
             boolean isMatchedBonusNumber = checkMatchingBonusNumber(numbers, bonusNumber);
