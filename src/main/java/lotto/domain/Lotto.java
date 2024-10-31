@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.Ranking;
 import lotto.validator.LottoValidator;
 
 import java.util.List;
@@ -20,10 +21,9 @@ public class Lotto {
 
     private static List<LottoNumber> convertToLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
-                .map(LottoNumber::from)
+                .map(LottoNumber::valueOf)
                 .collect(Collectors.toList());
     }
-
 
     // TODO: 추가 기능 구현
 }
