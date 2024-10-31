@@ -32,4 +32,16 @@ class AmountTest {
                 .isInstanceOf(CustomException.class)
                 .hasMessage("[ERROR] " + ExceptionMessage.INVALID_LOTTO_AMOUNT_EXCEPTION.getMessage());
     }
+
+    @DisplayName("입력한 구입 금액이 최대 로또 구입 금액을 초과하면 예외가 발생한다.")
+    @Test
+    void newAmountWithExceedMaxLottoPurchaseAmount() {
+        // given
+        int exceedAmount = 101_000;
+
+        // when & then
+        assertThatThrownBy(() -> new Amount(exceedAmount))
+                .isInstanceOf(CustomException.class)
+                .hasMessage("[ERROR] " + ExceptionMessage.EXCEED_MAX_LOTTO_AMOUNT_EXCEPTION.getMessage());
+    }
 }
