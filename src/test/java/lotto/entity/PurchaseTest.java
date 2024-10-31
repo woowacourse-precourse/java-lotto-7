@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 public class PurchaseTest {
     @Test
-    void 성공__사용자가_출력할수있는_티켓_수() {
+    void 성공__사용자가_출력할수있는_티켓_수_1개() {
         // given
         int money = 1000;
 
@@ -13,7 +13,31 @@ public class PurchaseTest {
         Purchase purchase = new Purchase(money);
 
         // then
-        purchase.calculateTicketCount();
+        Assertions.assertEquals(1, purchase.calculateTicketCount());
+    }
+
+    @Test
+    void 성공__사용자가_출력할수있는_티켓_수_2개() {
+        // given
+        int money = 2000;
+
+        // when
+        Purchase purchase = new Purchase(money);
+
+        // then
+        Assertions.assertEquals(2, purchase.calculateTicketCount());
+    }
+
+    @Test
+    void 성공__사용자가_출력할수있는_티켓_수_100개() {
+        // given
+        int money = 100_000;
+
+        // when
+        Purchase purchase = new Purchase(money);
+
+        // then
+        Assertions.assertEquals(100, purchase.calculateTicketCount());
     }
 
     @Test
@@ -25,7 +49,7 @@ public class PurchaseTest {
         Purchase purchase = new Purchase(money);
 
         // then
-        purchase.getPaymentAmount();
+        Assertions.assertEquals(1000, purchase.getAmount());
     }
 
     @Test
@@ -83,7 +107,7 @@ public class PurchaseTest {
     @Test
     void 실패__사용자가_결제한_금액이_10만원이_초과될_경우() {
         // given
-        int money = 100_001;
+        int money = 101_000;
 
         // when
         IllegalArgumentException exception = Assertions.assertThrowsExactly(
