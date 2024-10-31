@@ -2,8 +2,8 @@ package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.List;
+import java.util.Set;
 
 public class UserBonusNumberInput {
     private int bonusNumber;

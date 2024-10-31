@@ -27,7 +27,7 @@ public class Application {
 
         // 4. 보너스 번호 입력 및 중복 검증
         UserBonusNumberInput userBonusNumberInput = new UserBonusNumberInput();
-        int bonusNumber = userBonusNumberInput.validation(); // 입력 & 변환 & 검증
+        int bonusNumber = userBonusNumberInput.validation();
         userBonusNumberInput.bonusDuplicationCheck(lottoNumbers); // 보너스 번호 중복 체크
 
         // 5. 로또 추첨 및 결과 출력

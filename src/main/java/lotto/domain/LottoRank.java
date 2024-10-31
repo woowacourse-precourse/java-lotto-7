@@ -4,7 +4,7 @@ public enum LottoRank {
     THIRD(3, 5000, false),
     FOURTH(4, 50000, false),
     SECOND(5, 1500000, false),
-    BONUS_SECOND(5, 30000000, true), // 보너스 볼 일치 여부를 true로 설정
+    BONUS_SECOND(5, 30000000, true), // 보너스 볼 일치를 true로 설정
     FIRST(6, 2000000000, false);
 
     private final int matchCount;
