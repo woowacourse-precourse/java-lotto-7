@@ -6,7 +6,6 @@ import java.util.List;
 import lotto.constant.LottoConstant;
 import lotto.constant.LottoRank;
 import lotto.model.Lotto;
-import lotto.view.OutputView;
 
 public class LottoService {
 
@@ -20,8 +19,10 @@ public class LottoService {
         }
     }
 
-    public void printPurchasedLottoNumbers() {
-        OutputView.printPurchasedLotto(purchasedLotto);
+    public List<String> purchasedLottoNumbersMessage() {
+        return purchasedLotto.stream()
+                .map(Lotto::toString)
+                .toList();
     }
 
     public void setWinnerLotto(List<Integer> winnerNumbers) {
