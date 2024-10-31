@@ -35,7 +35,7 @@ public class Lotto {
     public Ranking getRanking(WinningLotto winningLotto) {
         int count = matchCount(winningLotto);
         boolean bonusMatchResult = hasBonus(winningLotto);
-        return Ranking.FIFTH;
+        return Ranking.getRanking(count, bonusMatchResult);
     }
 
     private int matchCount(WinningLotto winningLotto) {

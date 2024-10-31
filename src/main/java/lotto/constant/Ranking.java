@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.util.Arrays;
+
 public enum Ranking {
 
     NONE(0, false, 0),
@@ -17,5 +19,13 @@ public enum Ranking {
         this.matchCount = matchCount;
         this.isMatchBonus = isMatchBonus;
         this.prize = prize;
+    }
+
+    public static Ranking getRanking(int matchCount, boolean matchBonusResult) {
+        return Arrays.stream(Ranking.values())
+                .filter(value -> value.matchCount == matchCount)
+                .filter(value -> value.isMatchBonus == matchBonusResult)
+                .findAny()
+                .orElse(NONE);
     }
 }
