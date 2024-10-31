@@ -85,7 +85,7 @@ public class WinningNumbers {
     }
 
     private boolean isInRange(Integer number) {
-        return RANGE_START <= number && RANGE_END <= number;
+        return RANGE_START <= number && number <= RANGE_END;
     }
 
     private List<String> splitByComma(String rawWinningNumbers) {

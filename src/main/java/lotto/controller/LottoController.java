@@ -9,6 +9,8 @@ import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.function.Function;
+
 public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
@@ -19,19 +21,16 @@ public class LottoController {
     }
 
     public void run() {
-        String rawPurchaseAmount = receivePurchaseAmount();
-        PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
+        PurchaseAmount purchaseAmount = receivePurchaseAmount();
         Lottos lottos = drawLottoNumbers(purchaseAmount.calculateLottoCount());
         printLottoInformation(lottos.count(), lottos.information());
-        String rawWinningNumbers = receiveWinningNumbers();
-        WinningNumbers winningNumbers = new WinningNumbers(rawWinningNumbers);
-        String rawBonusNumber = receiveBonusNumber();
-        BonusNumber bonusNumber = new BonusNumber(rawBonusNumber);
+        WinningNumbers winningNumbers = receiveWinningNumbers();
+        BonusNumber bonusNumber = receiveBonusNumber();
     }
 
-    private String receivePurchaseAmount() {
+    private PurchaseAmount receivePurchaseAmount() {
         outputView.requestPurchaseAmount();
-        return inputView.receiveString();
+        return getValidInput(PurchaseAmount::new);
     }
 
     private Lottos drawLottoNumbers(int lottoCount) {
@@ -49,13 +48,24 @@ public class LottoController {
         outputView.printLottoInformation(lottoInformation);
     }
 
-    private String receiveWinningNumbers() {
+    private WinningNumbers receiveWinningNumbers() {
         outputView.requestWinningNumbers();
-        return inputView.receiveString();
+        return getValidInput(WinningNumbers::new);
     }
 
-    private String receiveBonusNumber() {
+    private BonusNumber receiveBonusNumber() {
         outputView.requestBonusNumber();
-        return inputView.receiveString();
+        return getValidInput(BonusNumber::new);
+    }
+
+    private <T> T getValidInput(Function<String, T> creationFunction) {
+        while (true) {
+            try {
+                String input = inputView.receiveString();
+                return creationFunction.apply(input);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
