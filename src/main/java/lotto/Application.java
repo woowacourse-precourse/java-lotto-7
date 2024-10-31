@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
@@ -17,6 +19,10 @@ public class Application {
         List<Lotto> purchasedLottos = issueLottos(purchaseAmount / LOTTO_PRICE);
         System.out.println("\n" + lottoCount + "개를 구매했습니다.");
         purchasedLottos.forEach(System.out::println);
+
+        // 당첨 번호 입력
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        List<Integer> number = inputNumber();
     }
 
     private static int inputMoney() {
@@ -44,5 +50,38 @@ public class Application {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
         return lottos;
+    }
+
+    private static List<Integer> inputNumber() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                List<Integer> numbers = parseWinningNumbers(input);
+                validateWinningNumbers(numbers);
+                return numbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_MESSAGE + " " + e.getMessage());
+            }
+        }
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        try {
+            return Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("정수를 입력해야 합니다.");
+        }
+    }
+
+    private static void validateWinningNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6 || numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
+        }
+        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 }
