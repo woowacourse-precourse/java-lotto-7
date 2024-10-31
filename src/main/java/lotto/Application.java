@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,6 +15,11 @@ public class Application {
         print(lottoPurchaseQuantity);
         List<Lotto> lottos = createLottos(lottoPurchaseQuantity);
         print(lottos);
+        List<Integer> lottoWinningNumbers = createWinningLottoNumber(Console.readLine());
+    }
+
+    private static List<Integer> createWinningLottoNumber(String inputString) {
+        return Arrays.stream(inputString.split(",")).map(Integer::parseInt).toList();
     }
 
     private static void print(List<Lotto> lottos) {
