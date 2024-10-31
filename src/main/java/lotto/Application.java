@@ -48,7 +48,8 @@ public class Application {
                 System.out.println(e.getMessage());
             }
             System.out.println();
-
         }
+
+        System.out.println("당첨 통계\n---");
     }
 }
