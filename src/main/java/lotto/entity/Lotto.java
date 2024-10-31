@@ -21,6 +21,14 @@ public class Lotto {
         this.numbers = List.copyOf(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.isEmpty() || numbers.stream().anyMatch(Objects::isNull)) {
             throw new LottoValidationException(NULL_OR_EMPTY_NUMBERS);
