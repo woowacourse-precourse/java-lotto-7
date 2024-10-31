@@ -13,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateNumberCount(numbers);
         validateNumberRange(numbers);
+        validateNumberDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -30,5 +31,16 @@ public class Lotto {
 
     private boolean IsNumberRangeIncorrect(Integer number) {
         return number < MIN_NUMBER_RANGE && number > MAX_NUMBER_RANGE;
+    }
+
+    private void validateNumberDuplication(List<Integer> numbers) {
+        if (IsNumberDuplicate(numbers)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean IsNumberDuplicate(List<Integer> numbers) {
+        return numbers.stream().distinct().toList()
+                .size() != numbers.size();
     }
 }
