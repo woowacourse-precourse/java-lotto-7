@@ -44,9 +44,9 @@ public class PurchasePriceValidator {
     }
 
     private static boolean isNotOverFlow(String rawPurchasePrice) {
-        try{
+        try {
             Integer.parseInt(rawPurchasePrice);
-        }catch (NumberFormatException exception){
+        } catch (NumberFormatException exception) {
             ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_OVER_PROGRAM_MAX);
             return false;
         }
