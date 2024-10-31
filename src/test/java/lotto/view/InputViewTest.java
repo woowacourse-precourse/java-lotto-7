@@ -26,4 +26,16 @@ public class InputViewTest {
         // Assert
         assertEquals("1000", purchaseAmount);
     }
+
+    @Test
+    void 당첨번호를_정상적으로_입력받는지_확인() {
+        // Arrange
+        String simulatedInput = "1,2,3,4,5,6";
+
+        // Act
+        String winningNumbers = inputView.requestWinningNumbers(simulatedInput);
+
+        // Assert
+        assertEquals("1,2,3,4,5,6", winningNumbers);
+    }
 }
