@@ -15,5 +15,16 @@ public class Application {
         List<Lotto> lottos = lotto.Lotto.getLottos(lottoNumber);
         lotto.Lotto.printLottos(lottos);
 
+        printMessage = new io.Print(io.Print.NUMBERS_INPUT_MESSAGE);
+        printMessage.print();
+
+        io.Input lottoInput = new io.Input();
+        String lottoInputNumbers = lottoInput.getInput();
+        List<String> lottoArray = Stream.of(lottoInputNumbers.split(",")).toList();
+        List<Integer> lottoArrayNum = lottoArray.stream().map(Integer::parseInt).toList();
+
+        List<Integer> sortedLottoArray = lottoArrayNum.stream().sorted().toList();
+
+        Lotto winningLotto = new Lotto(sortedLottoArray);
     }
 }

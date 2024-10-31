@@ -9,10 +9,6 @@ public class Input {
         this.inputString = Console.readLine();
     }
 
-    public Input(String string) {
-        this.inputString = string;
-    }
-
     public String getInput() {
         return this.inputString;
     }
