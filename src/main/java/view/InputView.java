@@ -7,6 +7,7 @@ import validator.LottoValidator;
 
 public class InputView {
     public static Integer inputCost() {
+        System.out.println("구입 금액을 입력해 주세요.");
         String cost = Console.readLine();
 
         Integer parsedCost = LottoValidator.isNumber(cost);
@@ -15,6 +16,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine();
 
         List<Integer> parsedNumbers = LottoValidator.isParseableString(numbers);
@@ -24,6 +26,7 @@ public class InputView {
     }
 
     public static Integer inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
 
         Integer parsedBonusNumber = LottoValidator.isNumber(bonusNumber);
