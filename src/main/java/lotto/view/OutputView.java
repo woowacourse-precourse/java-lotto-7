@@ -24,4 +24,15 @@ public class OutputView {
     public void printf(String format, Object... args) {
         System.out.printf(format, args);
     }
+
+    public void resultMessage(int[] lottoRank, double rateOfReturn) {
+        println();
+        println(GAME_RESULT_MESSAGE);
+        printf(RANK_5_MESSAGE, lottoRank[5]);
+        printf(RANK_4_MESSAGE, lottoRank[4]);
+        printf(RANK_3_MESSAGE, lottoRank[3]);
+        printf(RANK_2_MESSAGE, lottoRank[2]);
+        printf(RANK_1_MESSAGE, lottoRank[1]);
+        printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
+    }
 }
