@@ -13,6 +13,12 @@ public class InputView {
         return rawPurchaseAmount.trim();
     }
 
+    public String readRawWinningNumbers() {
+        printGuideMessage(WINNING_NUMBER_REQUEST_MESSAGE);
+        String rawWinningNumbers = Console.readLine();
+        return rawWinningNumbers.trim();
+    }
+
     public void close() {
         Console.close();
     }
