@@ -15,19 +15,26 @@ public record WinNumbers(
 
     public static WinNumbers winNumbersFrom(String originWinNumbers) {
         List<String> numbers = Arrays.stream(originWinNumbers.split(SEPARATOR)).toList();
-        List<Integer> extractWinNumbers = validateWinNumbersCanChange(numbers);
+        validateWinNumbersCanChange(numbers);
+        List<Integer> extractWinNumbers = convertWinNumbers(numbers);
         validateWinNumbers(extractWinNumbers);
         return new WinNumbers(extractWinNumbers, null);
     }
 
-    private static List<Integer> validateWinNumbersCanChange(List<String> numbers) {
-        List<Integer> extractWinNumbers = new ArrayList<>();
+    private static void validateWinNumbersCanChange(List<String> numbers) {
         for (String number : numbers) {
             try {
-                extractWinNumbers.add(Integer.parseInt(number));
+                Integer.parseInt(number);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_EXCEPTION.getMessage());
             }
+        }
+    }
+
+    private static List<Integer> convertWinNumbers(List<String> numbers) {
+        List<Integer> extractWinNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            extractWinNumbers.add(Integer.parseInt(number));
         }
         return extractWinNumbers;
     }
