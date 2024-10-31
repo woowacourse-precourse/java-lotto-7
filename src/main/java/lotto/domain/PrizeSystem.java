@@ -30,4 +30,16 @@ public class PrizeSystem {
         this.fifthPrizeCount = 0;
     }
 
+    /**
+     * 로또 번호 6개 중 당첨 번호와 일치하는 번호 개수 반환
+     */
+    public int getMatchCount(List<Integer> lottoNumbers) {
+        int matchCount = 0;
+        for (Integer lottoNumber : lottoNumbers) {
+            if (prizeNumbers.contains(lottoNumber)) {
+                matchCount += 1;
+            }
+        }
+        return matchCount;
+    }
 }
