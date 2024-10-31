@@ -3,12 +3,10 @@ package lotto.model;
 import lotto.contants.value.LottoValue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
 
 public class LottoResult {
-    private List<Integer> lottoSameSize;
+    private final List<Integer> lottoSameSize;
 
     public LottoResult() {
         lottoSameSize = new ArrayList<>();
@@ -24,7 +22,15 @@ public class LottoResult {
         lottoSameSize.set(rank - 1, rankSize + 1);
     }
 
-    public int getLottoRankSize(int rank) {
-        return lottoSameSize.get(rank - 1);
+    public int calculPrizeMoney() {
+        int sum = 0;
+
+        sum += lottoSameSize.get(0) * LottoValue.RANK_FIRST_MONEY;
+        sum += lottoSameSize.get(1) * LottoValue.RANK_SECOND_MONEY;
+        sum += lottoSameSize.get(2) * LottoValue.RANK_THRID_MONEY;
+        sum += lottoSameSize.get(3) * LottoValue.RANK_FOURTH_MONEY;
+        sum += lottoSameSize.get(4) * LottoValue.RANK_FIFTH_MONEY;
+
+        return sum;
     }
 }
