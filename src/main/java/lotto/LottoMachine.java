@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.amount.Amount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,6 +16,6 @@ public class LottoMachine {
 
     public void run() {
         outputView.requestPurchaseAmount();
-        inputView.getPurchaseAmount();
+        Amount purchaseAmount = inputView.getPurchaseAmount();
     }
 }

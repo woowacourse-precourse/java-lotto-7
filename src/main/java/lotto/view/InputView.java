@@ -1,15 +1,16 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.amount.Amount;
 import lotto.exception.CustomException;
 import lotto.exception.ExceptionMessage;
 
 public class InputView {
 
-    public int getPurchaseAmount() {
+    public Amount getPurchaseAmount() {
         String input = Console.readLine();
         validateBlankInput(input);
-        return validateNumber(input);
+        return new Amount(validateNumber(input));
     }
 
     private void validateBlankInput(String input) {
