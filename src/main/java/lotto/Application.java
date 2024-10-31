@@ -40,6 +40,15 @@ public class Application {
         BonusNumber bonusNumber = null;
         while(bonusNumber == null) {
             System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            try {
+                bonusNumber = bonusNumber.from(input, winningNumber);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println();
+
         }
     }
 }
