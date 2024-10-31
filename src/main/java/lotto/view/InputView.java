@@ -16,11 +16,11 @@ public class InputView {
         return priceValue;
     }
 
-    public List<Integer> winningNumbers() {
-        String winningNumbers = Console.readLine();
-        String[] splitWinningNumbers = winningNumbers.split(",");
+    public List<Integer> prizeNumbers() {
+        String prizeNumbers = Console.readLine();
+        String[] splitPrizeNumbers = prizeNumbers.split(",");
 
-        return convertToWinningNumbers(splitWinningNumbers);
+        return convertToPrizeNumbers(splitPrizeNumbers);
     }
 
     public int bonusNumber() {
@@ -30,9 +30,9 @@ public class InputView {
         return Integer.parseInt(bonusNumber);
     }
 
-    public List<Integer> convertToWinningNumbers(String[] splitWinningNumbers) {
+    public List<Integer> convertToPrizeNumbers(String[] splitPrizeNumbers) {
         List<Integer> winningNumberValues = new ArrayList<>();
-        for (String str : splitWinningNumbers) {
+        for (String str : splitPrizeNumbers) {
             validateLottoNumber(str);
             winningNumberValues.add(Integer.parseInt(str));
         }

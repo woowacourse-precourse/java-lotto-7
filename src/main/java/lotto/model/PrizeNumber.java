@@ -2,11 +2,11 @@ package lotto.model;
 
 import java.util.List;
 
-public class WinningNumber {
+public class PrizeNumber {
     private List<Integer> numbers;
     private int bonusNumber;
 
-    public WinningNumber() {
+    public PrizeNumber() {
         this.numbers = null;
         this.bonusNumber = 0;
     }

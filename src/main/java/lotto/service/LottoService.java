@@ -3,25 +3,29 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.contants.value.LottoValue;
 import lotto.model.Lotto;
-import lotto.model.WinningNumber;
+import lotto.model.LottoResult;
+import lotto.model.PrizeNumber;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
     private List<Lotto> lottos;
-    private WinningNumber winningNumber;
+    private final PrizeNumber prizeNumber;
+    private final LottoResult lottoResult;
 
 
     public LottoService() {
         this.lottos = new ArrayList<>();
-        this.winningNumber = new WinningNumber();
+        this.prizeNumber = new PrizeNumber();
+        this.lottoResult = new LottoResult();
     }
 
     //구입한 금액에 맞게 로또 구입과 로또 번호 생성
     public void buyLotto(int payment) {
         int countLotto = payment / LottoValue.AMOUNT_UNIT;
         for (int i = 0; i < countLotto; i++) {
+            lottos.add(createLotto());
             lottos.add(createLotto());
         }
     }
@@ -33,37 +37,53 @@ public class LottoService {
     }
 
     public void updateWinningNumber(List<Integer> numbers, int bonusNumber) {
-        winningNumber.updateNumbersAndBonusNumber(numbers, bonusNumber);
+        prizeNumber.updateNumbersAndBonusNumber(numbers, bonusNumber);
     }
 
     //구입한 로또 번호들과 당첨 로또 번호 매칭
     public void matchLottos() {
         for (Lotto lotto : lottos) {
-            matchWinningNumbers(lotto);
+            matchPrizeNumbers(lotto);
         }
     }
 
-    public void matchWinningNumbers(Lotto lotto) {
-        List<Integer> winningNumbers = winningNumber.getNumbers();
+    public void matchPrizeNumbers(Lotto lotto) {
+        List<Integer> prizeNumbers = prizeNumber.getNumbers();
         List<Integer> lottoNumbers = lotto.getNumbers();
-        //로또 번호와 당첨 번호 교집합 리스트 구하기
+        //로또 번호와 당첨 번호 교집합 리스트 구하기 - 로또 번호 보존을 위해 filter 사용
         List<Integer> intersection = lottoNumbers.stream()
-                .filter(winningNumbers::contains)
+                .filter(prizeNumbers::contains)
                 .toList();
 
-        boolean hasBonusNumber = false;
-        if (intersection.size() == 5) {
-            hasBonusNumber = matchBonusNumber(lottoNumbers);
-        }
+        matchRankAndUpdateRankSize(intersection, lottoNumbers);
     }
 
     public boolean matchBonusNumber(List<Integer> lottoNumbers) {
         for (int num : lottoNumbers) {
-            if (num == winningNumber.getBonusNumber()) {
+            if (num == prizeNumber.getBonusNumber()) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void matchRankAndUpdateRankSize(List<Integer> intersection, List<Integer> lottoNumbers) {
+        int sameSize = intersection.size();
+        if (sameSize == 6) {
+            lottoResult.updateLottoRankSize(LottoValue.RANK_FIRST);
+        }
+        if (sameSize == 5 && matchBonusNumber(lottoNumbers)) {
+            lottoResult.updateLottoRankSize(LottoValue.RANK_SECOND);
+        }
+        if (sameSize == 5 && !matchBonusNumber(lottoNumbers)) {
+            lottoResult.updateLottoRankSize(LottoValue.RANK_THRID);
+        }
+        if (sameSize == 4) {
+            lottoResult.updateLottoRankSize(LottoValue.RANK_FOURTH);
+        }
+        if (sameSize == 3) {
+            lottoResult.updateLottoRankSize(LottoValue.RANK_FIFTH);
+        }
     }
 
 }

@@ -18,10 +18,10 @@ public class LottoController {
         int payment = inputView.payAmount();
         lottoService.buyLotto(payment);
 
-        List<Integer> winningNumbers = inputView.winningNumbers();
+        List<Integer> prizeNumbers = inputView.prizeNumbers();
         int bonusNumber = inputView.bonusNumber();
         //당첨 번호와 보너스 번호 객체 생성 및 저장
-        lottoService.updateWinningNumber(winningNumbers, bonusNumber);
+        lottoService.updateWinningNumber(prizeNumbers, bonusNumber);
         lottoService.matchLottos();
     }
 }
