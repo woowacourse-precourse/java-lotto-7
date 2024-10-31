@@ -11,6 +11,7 @@ public class InputHandler {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private final Validator validator;
 
+    // TODO: InputHandler가 OutputHandler에 의존하여 Sysout 하는 것 고민하기
     public InputHandler(Validator validator) {
         this.validator = validator;
     }
@@ -23,7 +24,7 @@ public class InputHandler {
                 validator.checkPurchaseMoney(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_PREFIX + e.getMessage());
+                print(ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -31,14 +32,14 @@ public class InputHandler {
     public List<Integer> getInputForWinningNumber() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                print("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 validator.checkLottoNumbers(input);
                 return Stream.of(input.split(DELIMITER))
-                        .map(Integer::parseInt)
+                        .map(number -> Integer.parseInt(number.trim()))
                         .collect(Collectors.toList());
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_PREFIX + e.getMessage());
+                print(ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -46,7 +47,7 @@ public class InputHandler {
     public Integer getInputForBonusNumber() {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                print("\n보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 validator.checkBonusNumber(input);
                 return Integer.parseInt(input);
@@ -54,5 +55,10 @@ public class InputHandler {
                 System.out.println(ERROR_PREFIX + e.getMessage());
             }
         }
+    }
+
+    public void print(String message) {
+        System.out.println(message);
+        System.out.flush();
     }
 }
