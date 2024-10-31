@@ -1,8 +1,7 @@
-package lotto;
+package lotto.validator;
 
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.validator.Money;
 import org.junit.jupiter.api.Test;
 
 class MoneyTest {
