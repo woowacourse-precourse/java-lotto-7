@@ -89,4 +89,9 @@ public class InputView {
     }
 
     //inputBonusNumber 구현
+    public static int inputBonusNumber() {
+        String userInput = Console.readLine();
+
+        return Integer.parseInt(userInput);
+    }
 }
