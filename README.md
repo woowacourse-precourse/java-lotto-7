@@ -13,9 +13,9 @@
 
 ### 2) 사용자 문자열 입력 및 검증 기능
 
-- [ ] 구임 금액 입력
-    - [ ] 입력 값이 비어있는지 검증
-      - [ ] 예외인 경우 IllegalArgumentException 발생
+- [x] 구임 금액 입력
+    - [x] 입력 값이 비어있는지 검증
+      - [x] 예외인 경우 IllegalArgumentException 발생
 - [ ] 당첨 번호 입력
     - [ ] 입력 값이 비어있는지 검증
         - [ ] 예외인 경우 IllegalArgumentException 발생
