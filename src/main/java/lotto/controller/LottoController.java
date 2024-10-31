@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.enums.Constants;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
@@ -16,8 +17,13 @@ public class LottoController {
     }
 
     private int getMoney() {
-        String inputMoney = inputView.promptMoney();
-        LottoValidator.validateInputMoney(inputMoney);
-        return Integer.parseInt(inputMoney);
+        try {
+            String inputMoney = inputView.promptMoney();
+            LottoValidator.validateInputMoney(inputMoney);
+            return Integer.parseInt(inputMoney);
+        } catch (IllegalArgumentException error) {
+            System.err.println(error.getMessage());
+        }
+        return getMoney();
     }
 }
