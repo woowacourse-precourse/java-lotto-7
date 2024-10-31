@@ -2,10 +2,9 @@ package lotto.core;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.core.constants.WinningStatistics;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoRunner {
     public static final String ERROR_PREFIX = "[ERROR] ";
@@ -19,6 +18,43 @@ public class LottoRunner {
         int purchaseAmount = this.getPurchaseAmount();
         lotteries = this.selection(purchaseAmount);
         winning = new WinningNumbers();
+        this.displayWinningStatistics();
+    }
+
+    private void displayWinningStatistics() {
+        System.out.println("당첨 통계\n---");
+
+        // 당첨 결과 리스트
+        List<LottoMatchResult> matchResults = new ArrayList<>();
+        for (Lotto lotto : lotteries) {
+            Set<Integer> matchedNumbers = new HashSet<>(lotto.getNumbers());
+            boolean isBonusMatching = matchedNumbers.contains(winning.getBonusNumber());
+            matchedNumbers.retainAll(winning.getNumbers());      // 당첨된 숫자만 남기기
+            matchResults.add(new LottoMatchResult(matchedNumbers.size(), isBonusMatching));
+        }
+
+        long prize = 0L;
+
+        for (WinningStatistics stats : WinningStatistics.values()) {
+            // 등수별 댱첨 수
+            long matches = matchResults.stream().filter(match -> {
+                boolean isCountMatch = match.matchCount() == stats.getMatchCount();
+                if (stats.getMatchBonus()) {
+                    isCountMatch = isCountMatch && match.matchBonus();
+                }
+                return isCountMatch;
+            }).count();
+            prize += stats.getWinningPrize(matches);
+
+            // 등수별 당첨 내역 출력
+            String format = "%d개 일치 (%,d원) - %d개%n";
+            if (stats.getMatchBonus()) {
+                format = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
+            }
+            System.out.printf(format, stats.getMatchCount(), stats.getWinnings(), matches);
+        }
+        // 수익률 출력
+        System.out.printf("총 수익률은 %.1f%%입니다.", (double) prize / payment * 100);
     }
 
     /**
