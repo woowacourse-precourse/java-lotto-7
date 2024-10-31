@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.BudgetErrorMessage;
@@ -32,4 +33,21 @@ class BudgetTest {
                 .hasMessage(BudgetErrorMessage.BUDGET_UNIT_ERROR.getMessage());
     }
 
+    @Test
+    @DisplayName("예산 만큼 로또를 구매 테스트")
+    void buyLottoTest() {
+        // given
+        final int budget = 3000;
+        final int lottoCount = budget / Lotto.LOTTO_PRICE;
+        final Budget userBudget = new Budget(budget);
+
+        // when
+        int count = 0;
+        while (userBudget.buyLotto()) {
+            count++;
+        }
+
+        // then
+        assertThat(count).isEqualTo(lottoCount);
+    }
 }
