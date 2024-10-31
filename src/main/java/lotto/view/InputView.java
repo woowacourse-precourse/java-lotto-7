@@ -35,7 +35,7 @@ public class InputView {
     }
 
     //금액 valiadate
-    public static void validatePurchase(String userInput) {
+    private static void validatePurchase(String userInput) {
         if (userInput.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT + " : " + userInput);
         }
@@ -49,7 +49,6 @@ public class InputView {
         if (!Utils.isDivisibleByThousand(count.intValue())) {
             throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND + " : " + userInput);
         }
-
     }
 
     //inputWinningNumber 구현
