@@ -1,7 +1,16 @@
 package lotto;
 
+import lotto.config.AppConfig;
+import lotto.controller.LottoController;
+import lotto.service.LottoService;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        AppConfig appConfig = new AppConfig(
+                new LottoService()
+        );
+
+        LottoController lottoController = appConfig.lottoController();
+        lottoController.run();
     }
 }
