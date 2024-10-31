@@ -26,14 +26,14 @@ public class LottoTicketPurchase {
         }
     }
 
-    private Lotto genarateLotto() {
+    private Lotto generateLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private List<Lotto> makeBuyLottoList(int buyCount) {
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < buyCount; i++) {
-            lottoList.add(genarateLotto());
+            lottoList.add(generateLotto());
         }
         return lottoList;
     }
