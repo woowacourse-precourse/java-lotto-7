@@ -29,7 +29,7 @@ public class ValidateError {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_HEAD + NO_NUMBER_PURCHASE_PRICE);
         }
-        return purchasePrice / 1000;
+        return purchasePrice;
     }
 
     public static int validateWinningNumber(String winningNumberStr) {
