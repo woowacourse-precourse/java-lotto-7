@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,7 +17,24 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public int getMatchCountWinningLotto(WinningLotto winningLotto) {
+        return numbers.stream()
+                .filter(number -> winningLotto.isContains(number))
+                .collect(Collectors.toList()).size();
+    }
+
+    public boolean isMatchBonusNumber(BonusNumber bonusNumber) {
+        int matchCount = numbers.stream()
+                .filter(number -> bonusNumber.isMatch(number))
+                .collect(Collectors.toList()).size();
+
+        if (matchCount == 1) {
+            return true;
+        }
+        return false;
     }
 }

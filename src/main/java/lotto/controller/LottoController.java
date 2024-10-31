@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.generator.LottoGenerator;
 import lotto.util.LottoParser;
@@ -43,8 +44,9 @@ public class LottoController {
         lottoView.printLottoBundle(lottoBundle);
         WinningLotto winningLotto = retry(this::requestLottoWinningNumbers);
         BonusNumber bonusNumber = retry(this::requestLottoBonusNumber, winningLotto);
+        LottoResult lottoResult = lottoBundle.makeLottoResult(winningLotto, bonusNumber);
+        lottoView.printLottoResult(lottoResult);
     }
-
 
     private int requestLottoPurchasePrice() {
         String lottoPurchasePrice = lottoView.requestLottoPurchasePrice();
