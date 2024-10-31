@@ -58,7 +58,7 @@ class ApplicationTest extends NsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "  "})
+    @ValueSource(strings = {"\n", "  "})
     void 구입_금액이_빈_값(String purchaseAmount) {
         assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
     }
@@ -91,6 +91,32 @@ class ApplicationTest extends NsTest {
     void 구입_금액_내_공백이_있는_경우() {
         String purchaseAmount = "100 0";
         assertThat(Application.isValidPurchaseAmount(purchaseAmount)).isFalse();
+    }
+
+    @Test
+    void 예외_테스트_구입_금액이_빈_값() {
+        assertSimpleTest(() -> {
+            runException("\n");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("  ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_구입_금액이_유효하지_않은_경우() {
+        assertSimpleTest(() -> {
+            runException("-2000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("##");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Override
