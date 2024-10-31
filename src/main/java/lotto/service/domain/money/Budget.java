@@ -12,12 +12,12 @@ public class Budget implements Money{
 
     private void validateThousand(long userMoney) {
         if(userMoney % THOUSAND_WON != DEVIDED) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위만 허용합니다.")
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위만 허용합니다.");
         }
     }
 
     @Override
-    public void getBudget() {
-
+    public long getBudget() {
+        return this.userMoney;
     }
 }
