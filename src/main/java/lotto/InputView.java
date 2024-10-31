@@ -2,8 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.*;
+
 public class InputView {
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private static final String DELIMITER = ",";
 
     public int getInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -11,6 +14,16 @@ public class InputView {
         validateInput(input);
         return Integer.parseInt(input);
     }
+
+    public static int getLottoNumber() {
+        System.out.println("개수를 입력하시오.");
+        String input = Console.readLine();
+        if (!validLottoNumber(input) || !validateNumber(input)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "잘못된 입력입니다.");
+        }
+        return Integer.parseInt(input);
+    }
+
 
     private static void validateInput(String money) {
         if (!validateNumber(money) || !validateMoney(money)) {
@@ -34,4 +47,13 @@ public class InputView {
         }
         return true;
     }
+
+    private static boolean validLottoNumber(String number) {
+        int count = Integer.parseInt(number);
+        if (count <= 0) {
+            return false;
+        }
+        return true;
+    }
+
 }
