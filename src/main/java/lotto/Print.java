@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.Application.correctDetail;
+
 public class Print {
 
     public static void pricePrint() {
@@ -24,6 +26,32 @@ public class Print {
             System.out.print(lotto.getNumbers().get(j)+", ");
         }
         System.out.println(lotto.getNumbers().get(5)+"]");
+    }
+
+    public static void winPrint() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
+    public static void correct3() {
+        System.out.print("3개 일치 (5,000원) - ");
+        System.out.println(correctDetail[0]+"개");
+    }
+    public static void correct4() {
+        System.out.print("4개 일치 (50,000원) - ");
+        System.out.println(correctDetail[1]+"개");
+    }
+    public static void correct5() {
+        System.out.print("5개 일치 (1,500,000원) - ");
+        System.out.println(correctDetail[2]+"개");
+    }
+    public static void correctBonus() {
+        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+        System.out.println(correctDetail[3]+"개");
+    }
+    public static void correct6() {
+        System.out.print("6개 일치 (2,000,000,000원) - ");
+        System.out.println(correctDetail[4]+"개");
     }
 
 }

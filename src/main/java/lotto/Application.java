@@ -10,6 +10,7 @@ public class Application {
     public static Lotto winningNumber;
     public static int bonusNumber;
     public static Lotto[] lottos;
+    public static int[] correctDetail = new int[5];
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -61,5 +62,21 @@ public class Application {
 
         // 보너스 번호를 입력받아서 저장
         bonusNumber = Input.intInput();
+
+        // 당첨 통계 문구 출력
+        Print.winPrint();
+
+        // 당첨 개수 저장할 배열 초기화
+        correctDetail = new int[5];
+
+        // 당첨 결과 판단
+        Correct.iterator();
+
+        // 당첨 결과 출력
+        Print.correct3();
+        Print.correct4();
+        Print.correct5();
+        Print.correctBonus();
+        Print.correct6();
     }
 }

@@ -1,0 +1,47 @@
+package lotto;
+
+import static lotto.Application.*;
+
+public class Correct {
+
+    public static void iterator() {
+        for (int t=0;t<lottoCount;t++) {
+            correctJudge(lottos[t]);
+        }
+    }
+
+    public static int judgeNumber(int number) {
+        int result = 0;
+        for (int j=0;j<6;j++) {
+            result+=isCorrect(number, winningNumber.getNumbers().get(j));
+        }
+        return result;
+    }
+
+    public static int isCorrect(int a, int b) {
+        if (a==b) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public static void correctJudge(Lotto lotto) {
+        int num = 0;
+        int bonusCorrect = 0;
+        for (int c=0;c<6;c++) {
+            num+=judgeNumber(lotto.getNumbers().get(c));
+            bonusCorrect+=isCorrect(lotto.getNumbers().get(c),bonusNumber);
+        }
+        if (num==3) {
+            correctDetail[0]++;
+        } else if (num==4) {
+            correctDetail[1]++;
+        } else if (num==5 && bonusCorrect==1) {
+            correctDetail[3]++;
+        } else if (num==5) {
+            correctDetail[2]++;
+        } else if (num==6) {
+            correctDetail[4]++;
+        }
+    }
+}
