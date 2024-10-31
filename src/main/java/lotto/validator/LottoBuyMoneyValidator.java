@@ -11,7 +11,7 @@ public class LottoBuyMoneyValidator {
         if(!NumberUtility.isNumber(lottoBuyMoney)){
             throw new LottoInputException(LottoErrorMessage.NOT_A_NUMBER);
         }
-        if(!NumberUtility.isPositive(NumberUtility.getNumber(lottoBuyMoney)){
+        if(!NumberUtility.isPositive(NumberUtility.getNumber(lottoBuyMoney))){
             throw new LottoInputException(LottoErrorMessage.NOT_POSITIVE);
         }
         if(!isValidMoneyUnit(NumberUtility.getNumber(lottoBuyMoney))){
