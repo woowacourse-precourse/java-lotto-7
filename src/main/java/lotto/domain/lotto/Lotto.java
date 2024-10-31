@@ -29,7 +29,7 @@ public class Lotto {
 
     private Lotto(LottoFactory lottoFactory) {
 
-        this.numbers = lottoFactory.create();
+        this.numbers = lottoFactory.randomCreate();
         validateLength(numbers,lottoFactory.getLottoLength());
         validateDuplicate(numbers);
 

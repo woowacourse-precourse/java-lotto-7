@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LottoFactory {
 
-    List<Component> create();
+    List<Component> randomCreate();
 
     int getLottoLength();
 

@@ -21,7 +21,7 @@ public class NumberLottoFactory implements LottoFactory {
 
 
     @Override
-    public List<Component> create() {
+    public List<Component> randomCreate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, lottoLength);
         return numbers.stream()
                 .sorted()
