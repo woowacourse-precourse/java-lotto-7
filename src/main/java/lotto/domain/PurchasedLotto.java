@@ -27,7 +27,7 @@ public class PurchasedLotto {
     }
 
     public double getRateOfReturn(){
-        return (double)earnedMoney / usedMoney;
+        return (double)(earnedMoney / usedMoney) * 100;
     }
 
     public void addLotto(Lotto lotto) {
