@@ -85,6 +85,7 @@ public class ExceptionHandler {
         for (int number : input) {
             isLottoNumber(number);
         }
+        hasDuplicates(input);
     }
 
     // 숫자 리스트 내에 중복값이 존재하면 예외를 발생한다.
