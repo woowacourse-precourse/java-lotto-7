@@ -7,7 +7,6 @@ import java.util.List;
 import lotto.dto.LottoStatus;
 import lotto.dto.LottoTicketStatus;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -26,5 +25,4 @@ class LottoTicketTest {
         //then
         assertThat(lottoStatuses.size()).isEqualTo(expected);
     }
-  
 }

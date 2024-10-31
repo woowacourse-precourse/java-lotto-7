@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.LottoTicketStatus;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
 import lotto.validator.PurchaseAmountValidator;
@@ -18,10 +19,9 @@ public class Controller {
 
     public void run() {
 
-        // 로또 구매
         LottoTicket lottoTicket = purchaseLottoTicket();
 
-        // 로또 상태 출력
+        printLottoTicketStatus(lottoTicket);
 
         // 당첨번호 입력
 
@@ -55,5 +55,7 @@ public class Controller {
         }
     }
 
-
+    private void printLottoTicketStatus(LottoTicket lottoTicket) {
+        LottoTicketStatus lottoTicketStatus =  lottoTicket.getLottoTicketStatus();
+    }
 }
