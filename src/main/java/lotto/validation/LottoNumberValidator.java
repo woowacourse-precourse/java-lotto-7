@@ -19,7 +19,7 @@ public class LottoNumberValidator {
       throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_QUANTITY.getMessage());
     }
     for (Integer number : lottoNumbers) {
-      if (number < RandomNumberConstants.MINIMUM_RANDOM_NUMBER || number > RandomNumberConstants.MINIMUM_RANDOM_NUMBER) {
+      if (number < RandomNumberConstants.MINIMUM_RANDOM_NUMBER || number > RandomNumberConstants.MAXIMUM_RANDOM_NUMBER) {
         throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
       }
     }
