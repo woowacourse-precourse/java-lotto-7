@@ -1,5 +1,6 @@
 package domain;
 
+import static exception.ErrorMessage.MINIMUM_TICKET_PURCHASE_ERROR;
 import static exception.ErrorMessage.PURCHASE_PRICE_DIVIDE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -28,6 +29,7 @@ public class TicketTest {
         Ticket ticket = new Ticket(purchaseAmount);
         assertThat(ticket.getQuantity()).isEqualTo(1);
     }
+
     @ParameterizedTest
     @ValueSource(ints = {1, 500, 900, 1300, 9999})
     @DisplayName("천 단위로 나누어지지 않을 경우, 예외가 발생한다")
@@ -36,6 +38,16 @@ public class TicketTest {
             Ticket ticket = new Ticket(purchaseAmount);
         });
         assertThat(exception.getMessage()).isEqualTo(PURCHASE_PRICE_DIVIDE_ERROR.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1000, 0, 1, 500, 999})
+    @DisplayName("티켓을 한 장도 살 수 없는 경우, 예외가 발생한다")
+    void cannot_buy_ticket(int purchaseAmount) {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            Ticket ticket = new Ticket(purchaseAmount);
+        });
+        assertThat(exception.getMessage()).isEqualTo(MINIMUM_TICKET_PURCHASE_ERROR.getMessage());
     }
 
 }
