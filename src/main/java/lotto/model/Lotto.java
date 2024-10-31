@@ -20,4 +20,12 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
+
+    public LottoRank getRankFrom(WinningLotto winningLotto) {
+        List<Integer> winningNumberList = winningLotto.getWinningNumberList();
+        List<Integer> list = this.numbers.stream().filter(winningNumberList::contains).toList();
+        int bonusNumber = winningLotto.getBonusNumber();
+
+        return LottoRank.by(list.size(), numbers.contains(bonusNumber));
+    }
 }
