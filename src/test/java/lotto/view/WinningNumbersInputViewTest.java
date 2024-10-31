@@ -30,7 +30,7 @@ public class WinningNumbersInputViewTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         assertThat(winningNumbersInputView.getWinningNumbers())
-                .isEqualTo(List.of("1", "2", "3", "4", "5", "6"));
+                .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test
