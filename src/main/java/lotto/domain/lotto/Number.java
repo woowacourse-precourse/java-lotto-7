@@ -1,9 +1,9 @@
 package lotto.domain.lotto;
 
-import lotto.domain.constants.LottoRule;
-import lotto.domain.errors.RangeError;
+import lotto.domain.constants.value.LottoRule;
+import lotto.domain.constants.message.RangeError;
 
-import static lotto.domain.constants.LottoRule.MAXIMUM_NUMBER_RANGE;
+import static lotto.domain.constants.value.LottoRule.MAXIMUM_NUMBER_RANGE;
 
 public class Number {
 

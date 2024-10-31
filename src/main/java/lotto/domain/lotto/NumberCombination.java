@@ -1,8 +1,8 @@
 package lotto.domain.lotto;
 
-import lotto.domain.constants.LottoRule;
-import lotto.domain.errors.InputError;
-import lotto.domain.errors.RangeError;
+import lotto.domain.constants.value.LottoRule;
+import lotto.domain.constants.message.InputError;
+import lotto.domain.constants.message.RangeError;
 
 import java.util.HashSet;
 import java.util.List;

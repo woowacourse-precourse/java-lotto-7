@@ -1,8 +1,5 @@
 package lotto.domain.lotto;
 
-import lotto.domain.constants.LottoRule;
-import lotto.domain.errors.RangeError;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
