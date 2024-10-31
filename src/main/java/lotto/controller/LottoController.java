@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import lotto.dto.BonusNumberRequestDTO;
 import lotto.dto.PurchaseMoneyRequestDTO;
 import lotto.dto.PurchaseResultDTO;
 import lotto.dto.WinningNumberRequestDTO;
+import lotto.model.BonusNumber;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.Money;
@@ -27,6 +29,7 @@ public class LottoController {
         Money money = retryIfHasError(this::getMoney);
         Lottos lottos = buyLottos(money);
         WinningNumbers winningNumbers = retryIfHasError(this::getWinningNumbers);
+        BonusNumber bonusNumber = retryIfHasError(this::getBonusNumber);
     }
 
     private Lottos buyLottos(Money money) {
@@ -43,6 +46,11 @@ public class LottoController {
     private WinningNumbers getWinningNumbers() {
         WinningNumberRequestDTO winningNumberInput = inputView.readWinningNumberInput();
         return new WinningNumbers(winningNumberInput);
+    }
+
+    private BonusNumber getBonusNumber() {
+        BonusNumberRequestDTO bonusNumberInput = inputView.readBonusNumberInput();
+        return new BonusNumber(bonusNumberInput);
     }
 
     private <T> T retryIfHasError(Retryable<T> retryable) {
