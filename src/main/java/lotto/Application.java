@@ -45,6 +45,12 @@ public class Application {
         }
     }
 
+    public static void validateNumberRange(int bonus){
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     public static void main(String[] args) {
         // 1. 구매 금액 입력
         System.out.println("구입금액을 입력해 주세요.");
@@ -83,6 +89,7 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
         validateBonusDuplicate(goals,bonusNumber);
+        validateNumberRange(bonusNumber);
         System.out.println();
 
         // 6. 등수 계산 및 출력
