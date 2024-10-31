@@ -14,9 +14,9 @@ public class Handler {
   private int generateRequest;
   private Lotto lotto;
 
-  public Handler(Input input) {
-    int amount = input.readAmount();
-    this.generateRequest = input.getLottoCounts(amount);
+  public Handler(int request) {
+
+    this.generateRequest = request;
   }
 
   // 1~45 범위 정수 6개가 담긴 로또를 발행하여 전달한다
