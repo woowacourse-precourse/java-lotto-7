@@ -45,10 +45,21 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
-        int purchaseAmount = inputView.getPurchaseAmount();
-        lottoValidator.purchaseAmountValidator(purchaseAmount);
 
-        return purchaseAmount;
+        try {
+            String inputViewPurchaseAmount = inputView.getPurchaseAmount();
+            lottoValidator.purchaseAmountTypeValidator(inputViewPurchaseAmount);
+
+            Integer purchaseAmount = Integer.parseInt(inputViewPurchaseAmount);
+            lottoValidator.purchaseAmountPositiveValidator(purchaseAmount);
+            lottoValidator.purchaseAmountUnitValidator(purchaseAmount);
+
+            return purchaseAmount;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getPurchaseAmount();
+        }
+        return 0;
     }
 
     private int getLottoTicketAmount(int purchaseAmount) {
