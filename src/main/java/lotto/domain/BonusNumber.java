@@ -14,7 +14,7 @@ public class BonusNumber {
         return new BonusNumber(Convertor.convertToInt(input));
     }
 
-    public boolean isSameAs(int number) {
+    public boolean isEqualTo(int number) {
         return this.bonusNumber == number;
     }
 }

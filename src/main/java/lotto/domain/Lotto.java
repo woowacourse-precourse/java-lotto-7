@@ -23,6 +23,6 @@ public class Lotto {
     }
 
     public boolean containsBonusNumber(BonusNumber bonusNumber) {
-        return numbers.stream().anyMatch(bonusNumber::isSameAs);
+        return numbers.stream().anyMatch(bonusNumber::isEqualTo);
     }
 }
