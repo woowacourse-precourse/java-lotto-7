@@ -22,11 +22,11 @@ public class InputValidatorTest {
     @ParameterizedTest
     @DisplayName("당첨 번호가 쉼표와 0보다 큰 정수로 이루어진 형태가 아닌 경우 예외가 발생한다.")
     @ValueSource(strings = {"1,2,", "abc", "$", "   ", "$,$", "-1.2,3,45"})
-    void throwExceptionWhenFormOfWinningLottoIsInvalid(String input) {
+    void throwExceptionWhenFormOfWinningNumbersAreInvalid(String input) {
         // when & then
-        Assertions.assertThatThrownBy(() -> InputValidator.validateWinningLotto(input))
+        Assertions.assertThatThrownBy(() -> InputValidator.validateWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.INVALID_WINNING_LOTTO_FORMAT);
+                .hasMessage(ErrorMessages.INVALID_WINNING_NUMBERS_FORMAT);
     }
 
 }
