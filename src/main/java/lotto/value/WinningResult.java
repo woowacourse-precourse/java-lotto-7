@@ -12,13 +12,16 @@ public enum WinningResult {
     FIFTH(5, 5, 3, false, 5_000L),
     LOSE(6, null, 0, false, 0L);
 
+    public final Integer ranking;
+    public final long prize;
+    public final int minCountOfWinningNumber;
+    public final boolean isRequiredWinningBonus;
     private final int matchOrder;
-    private final Integer ranking;
-    private final int minCountOfWinningNumber;
-    private final boolean isRequiredWinningBonus;
-    private final long prize;
 
-    WinningResult(int matchOrder, Integer ranking, int minCountOfWinningNumber, boolean isRequiredWinningBonus,
+    WinningResult(int matchOrder,
+                  Integer ranking,
+                  int minCountOfWinningNumber,
+                  boolean isRequiredWinningBonus,
                   long prize) {
         this.matchOrder = matchOrder;
         this.ranking = ranking;
