@@ -41,8 +41,6 @@ public class LottoMachine {
                 prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1)
             );
         }
-
-        userLottoRepository.clear();
         return prizeResult;
     }
 

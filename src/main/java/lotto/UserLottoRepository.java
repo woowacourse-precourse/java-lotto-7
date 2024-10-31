@@ -14,9 +14,5 @@ public class UserLottoRepository {
         return userLottos;
     }
 
-    public void clear() {
-        userLottos.clear();
-    }
-
 
 }
