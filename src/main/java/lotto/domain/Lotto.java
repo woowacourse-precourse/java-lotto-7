@@ -13,5 +13,14 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public int countMatchNumbers(Numbers winNumbers) {
+        return (int) numbers.getNumbers()
+            .stream()
+            .filter(number -> winNumbers.contains(number.value()))
+            .count();
+    }
+
+    public boolean checkHasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

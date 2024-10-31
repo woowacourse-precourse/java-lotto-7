@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,18 +23,9 @@ public class LottoResult {
 
     public void calculateLottoResult(List<Lotto> purchasedLottos, Numbers winNumbers, int bonusNumber) {
         for (Lotto lotto : purchasedLottos) {
-            boolean hasBonus = false;
-            int lottoScore = 0;
-
-            if (lotto.getNumbers().contains(bonusNumber)) {
-                hasBonus = true;
-                lottoScore += 10;
-            }
-            Numbers temp = lotto.getNumbers();
-            temp.retainAll(winNumbers);
-            lottoScore += temp.size();
-
-            LottoRank rank = LottoRank.findRank(lottoScore);
+            int lottoScore = lotto.countMatchNumbers(winNumbers);
+            boolean hasBonusNumber = lotto.checkHasBonusNumber(bonusNumber);
+            LottoRank rank = LottoRank.evaluate(lottoScore, hasBonusNumber);
 
             if (rank != null) {
                 Integer i = lottoResult.get(rank);
