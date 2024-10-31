@@ -18,6 +18,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하지 말아주십시오.");
         }
 
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입력해주십시오.");
+        }
+
         for (Integer winningNumber : winningNumbers) {
             validateLottoNumber(winningNumber);
         }
