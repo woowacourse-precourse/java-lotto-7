@@ -89,11 +89,11 @@ public class InputView {
     }
 
     //inputBonusNumber 구현
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> winningNumber) {
         while (true) {
             try {
                 String userInput = Console.readLine();
-                validateBonusNumber(userInput);
+                validateBonusNumber(userInput, winningNumber);
                 return Integer.parseInt(userInput);
             } catch (IllegalArgumentException e) {
                 OutputView.errorPrint(e.getMessage());
@@ -101,7 +101,7 @@ public class InputView {
         }
     }
 
-    private static void validateBonusNumber(String userInput) {
+    private static void validateBonusNumber(String userInput, List<Integer> winningNumber) {
         if (userInput.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage() + " : " + userInput);
         }
@@ -111,6 +111,9 @@ public class InputView {
         BigDecimal count = Utils.stringToNumber(userInput);
         if (!Utils.isInRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), count)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage() + " : " + userInput);
+        }
+        if (Utils.isNumberInList(winningNumber, count.intValue())) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage() + " : " + userInput);
         }
     }
 }

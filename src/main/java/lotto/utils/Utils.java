@@ -62,4 +62,13 @@ public class Utils {
         }
         return true;
     }
+
+    public static boolean isNumberInList(List<Integer> numbers, int target) {
+        for (Integer number : numbers) {
+            if (number == target) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
