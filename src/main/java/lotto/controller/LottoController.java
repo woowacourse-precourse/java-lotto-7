@@ -26,29 +26,60 @@ public class LottoController {
         int bonusNumber = readBonusNumber(winningNumbers);
     }
 
-    private int readBonusNumber(List<Integer> winningNumbers) {
-        String rawInputBonusNumber = inputView.requestBonusNumber();
-        validateBonusNumber(rawInputBonusNumber, winningNumbers);
-        return parseBonusNumber(rawInputBonusNumber);
-    }
-
-    private void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
-        InputValidator inputValidator = new InputValidator();
-        inputValidator.validateRawInputBonusNumber(rawInput, winningNumbers);
-    }
-
-    private int parseBonusNumber(String rawInput) {
+    private int readPurchaseAmount() {
         try {
-            return Integer.parseInt(rawInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+            String rawInputPurchaseAmount = inputView.requestPurchaseAmount();
+            validatePurchaseAmount(rawInputPurchaseAmount);
+            return parsePurchaseAmount(rawInputPurchaseAmount);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readPurchaseAmount();
         }
     }
 
+    private void validatePurchaseAmount(String rawInput) {
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.validateRawInputPurchaseAmount(rawInput);
+    }
+
+    private int parsePurchaseAmount(String rawInput) {
+        try {
+            return Integer.parseInt(rawInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+        }
+    }
+
+    private List<Lotto> purchaseLotto(int purchaseAmount) {
+        try {
+            LottoMachine lottoMachine = new LottoMachine();
+            return lottoMachine.purchase(purchaseAmount);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return purchaseLotto(purchaseAmount);
+        }
+    }
+
+    private void displayLotto(List<Lotto> lottoTickets) {
+        outputView.printPurchasedQuantity(lottoTickets.size());
+        outputView.printLottoTickets(getLottoTickets(lottoTickets));
+    }
+
+    private List<List<Integer>> getLottoTickets(List<Lotto> lottoTickets) {
+        return lottoTickets.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
+
     private List<Integer> readWinningNumbers() {
-        String rawInputWinningNumbers = inputView.requestWinningNumbers();
-        validateWinningNumbers(rawInputWinningNumbers);
-        return parseWinningNumbers(rawInputWinningNumbers);
+        try {
+            String rawInputWinningNumbers = inputView.requestWinningNumbers();
+            validateWinningNumbers(rawInputWinningNumbers);
+            return parseWinningNumbers(rawInputWinningNumbers);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readWinningNumbers();
+        }
     }
 
     private void validateWinningNumbers(String rawInput) {
@@ -70,38 +101,27 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private int readPurchaseAmount() {
-        String rawInputPurchaseAmount = inputView.requestPurchaseAmount();
-        validatePurchaseAmount(rawInputPurchaseAmount);
-        return parsePurchaseAmount(rawInputPurchaseAmount);
-    }
-
-    private void validatePurchaseAmount(String rawInput) {
-        InputValidator inputValidator = new InputValidator();
-        inputValidator.validateRawInputPurchaseAmount(rawInput);
-    }
-
-    private int parsePurchaseAmount(String rawInput) {
+    private int readBonusNumber(List<Integer> winningNumbers) {
         try {
-            return Integer.parseInt(rawInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+            String rawInputBonusNumber = inputView.requestBonusNumber();
+            validateBonusNumber(rawInputBonusNumber, winningNumbers);
+            return parseBonusNumber(rawInputBonusNumber);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return readBonusNumber(winningNumbers);
         }
     }
 
-    private List<Lotto> purchaseLotto(int purchaseAmount) {
-        LottoMachine lottoMachine = new LottoMachine();
-        return lottoMachine.purchase(purchaseAmount);
+    private void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.validateRawInputBonusNumber(rawInput, winningNumbers);
     }
 
-    private void displayLotto(List<Lotto> lottoTickets) {
-        outputView.printPurchasedQuantity(lottoTickets.size());
-        outputView.printLottoTickets(getLottoTickets(lottoTickets));
-    }
-
-    private List<List<Integer>> getLottoTickets(List<Lotto> lottoTickets) {
-        return lottoTickets.stream()
-                .map(Lotto::getNumbers)
-                .toList();
+    private int parseBonusNumber(String rawInput) {
+        try {
+            return Integer.parseInt(rawInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+        }
     }
 }
