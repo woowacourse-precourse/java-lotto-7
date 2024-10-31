@@ -12,7 +12,6 @@ public class LottoGenerator {
 
     public Lotto issueLotto() {
         List<Integer> lottoNumbers = lottoNumberGenerator.generate();
-        Collections.sort(lottoNumbers);
 
         return new Lotto(lottoNumbers);
     }
