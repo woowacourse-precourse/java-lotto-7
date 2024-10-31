@@ -9,10 +9,10 @@ import lotto.exception.InvalidLottoNumberException;
 import lotto.util.LottoConstants;
 
 public class WinningNumbersValidator implements Validator{
-    private final List<Integer> lottoNumbers;
+    private final List<Integer> winNumbers;
 
-    public WinningNumbersValidator(List<Integer> lottoNumbers) {
-        this.lottoNumbers = lottoNumbers;
+    public WinningNumbersValidator(List<Integer> winNumbers) {
+        this.winNumbers = winNumbers;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class WinningNumbersValidator implements Validator{
     }
 
     private void validateNumberCount() {
-        if (lottoNumbers.size() != LottoConstants.LOTTO_NUMBERS_COUNT) {
+        if (winNumbers.size() != LottoConstants.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBERS);
         }
     }
@@ -31,13 +31,13 @@ public class WinningNumbersValidator implements Validator{
     private void validateNoDuplicateNumbers() {
         long uniqueNumberCount = getUniqueNumberCount();
 
-        if (uniqueNumberCount != lottoNumbers.size()) {
+        if (uniqueNumberCount != winNumbers.size()) {
             throw new InvalidLottoNumberException(DUPLICATE_LOTTO_NUMBERS);
         }
     }
 
     private void validateNumberRange() {
-        boolean outOfRange = lottoNumbers.stream()
+        boolean outOfRange = winNumbers.stream()
                 .anyMatch(n -> n < LottoConstants.LOTTO_NUMBER_MIN || n > LottoConstants.LOTTO_NUMBER_MAX);
 
         if (outOfRange) {
@@ -46,7 +46,7 @@ public class WinningNumbersValidator implements Validator{
     }
 
     private long getUniqueNumberCount() {
-        return lottoNumbers.stream()
+        return winNumbers.stream()
                 .distinct()
                 .count();
     }
