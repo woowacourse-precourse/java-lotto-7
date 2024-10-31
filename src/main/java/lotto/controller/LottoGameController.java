@@ -12,6 +12,7 @@ public class LottoGameController {
     private Money money;
     private LottoTickets lottoTickets;
     private Lotto correctLotto;
+    private int bonus;
 
     public void run() {
         gameStart();
@@ -26,6 +27,20 @@ public class LottoGameController {
         // 기능 추가 예정
     }
 }
+
+    private void createBonusNumber() {
+        while (true) {
+            try {
+                int temp = inputView.inputBonus();
+                correctLotto.checkBonus(temp);
+                bonus = temp;
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.println(e.getMessage());
+            }
+        }
+    }
+
     private void createCorrectLotto() {
         while (true) {
             try {
