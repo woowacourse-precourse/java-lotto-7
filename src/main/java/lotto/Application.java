@@ -29,5 +29,6 @@ public class Application {
         lottos.generateLottos();
 
         lottos.getResults(lottoNumbers, bonusNumber);
+        lottos.getProfit(purchaseAmount);
     }
 }

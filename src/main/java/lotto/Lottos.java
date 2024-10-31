@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.utils.Decimals;
 import lotto.utils.Randomizer;
 
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ public class Lottos implements Observable {
     private Observer observer;
     private int lottoCount;
     private ArrayList<Lotto> lottos;
+    private long totalRewards;
+    private double profit;
 
     public Lottos(int purchaseAmount) {
         getLottoCount(purchaseAmount);
@@ -49,6 +52,11 @@ public class Lottos implements Observable {
             int matches = lotto.getMatches(winningNumbers, bonusNumber);
             lottoResults.recordResult(matches);
         }
-        lottoResults.calculateRewards();
+        this.totalRewards = lottoResults.calculateRewards();
+    }
+
+    public void getProfit(int purchaseAmount) {
+        double profit = (double) purchaseAmount / this.totalRewards;
+        this.profit = Decimals.round(profit, 1);
     }
 }
