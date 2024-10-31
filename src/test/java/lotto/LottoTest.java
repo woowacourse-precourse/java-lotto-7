@@ -14,9 +14,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
 
+    @DisplayName("로또 번호의 개수가 6개보다 적거나 많으면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("provideNumbersGreaterOrLess6InLength")
-    void 로또_번호의_개수가_6개보다_적거나_많으면_예외가_발생한다(List<Integer> numbers) {
+    void LottoHas6Numbers(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 6개여야 합니다.");
@@ -29,15 +30,17 @@ class LottoTest {
         );
     }
 
+    @DisplayName("로또 번호 리스트가 null이면 예외가 발생한다.")
     @Test
-    void 로또_번호_리스트가_NULL이면_예외가_발생한다() {
+    void LottoNumberListCannotBeNull() {
         assertThatThrownBy(() -> new Lotto(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 NULL 일 수 없습니다.");
     }
 
+    @DisplayName("로또 번호가 null이면 예외가 발생한다.")
     @Test
-    void 로또_번호가_NULL이면_예외가_발생한다() {
+    void LottoNumberCannotBeNull() {
         List<Integer> numbers = Arrays.asList(null, 2, 3, 4, 5, 6);
 
         assertThatThrownBy(() -> new Lotto(numbers))
@@ -45,9 +48,10 @@ class LottoTest {
                 .hasMessage("로또 번호는 null 을 포함할 수 없습니다.");
     }
 
+    @DisplayName("로또 번호가 1과 45 사이 범위를 넘어가면 예외가 발생한다.")
     @ParameterizedTest
     @MethodSource("provideOutOfRangeNumbers")
-    void 로또_번호가_1과_45_범위를_넘어가면_예외가_발생한다(List<Integer> numbers, Integer invalidNumber) {
+    void LottoNumberShouldBeBetween1And45(List<Integer> numbers, Integer invalidNumber) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1 ~ 45 사이의 숫자입니다. 잘못된 숫자 : %s", invalidNumber);
@@ -63,7 +67,7 @@ class LottoTest {
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    void LottoHasUniqueNumbers() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 중복될 수 없습니다.");
