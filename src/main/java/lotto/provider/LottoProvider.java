@@ -30,6 +30,7 @@ public class LottoProvider {
 	public void pickLottoNumbers() {
 		for (int i = 0; i < numberOfLottos; i++) {
 			List<Integer> pickedLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			pickedLottos.add(new Lotto(pickedLottoNumbers));
 		}
 	}
 }
