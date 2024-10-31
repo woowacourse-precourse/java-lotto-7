@@ -30,7 +30,8 @@
         - [x] 로또 구입 금액이 1000원 미만이면 IllegalArgumentException을 발생시킨다
         - [x] 로또 구입 금액이 1000원 단위가 아니면 IllegalArgumentException을 발생시킨다
         - [x] 입력된 당첨 번호의 갯수가 6개가 아니면 IllegalArgumentException을 발생시킨다
-        - [x] 입력된 당첨 번호들과 보너스 번호가 로또 번호 숫자 범위 내에 없으면 IllegalArgumentException을 발생시킨다
+        - [x] 입력된 당첨 번호들이 로또 번호 숫자 범위 내에 없으면 IllegalArgumentException을 발생시킨다
+        - [ ] 보너스 번호가 로또 번호 숫자 범위 내에 없으면 IllegalArgumentException을 발생시킨다
 
 - [ ] 발행한 횟수 만큼 로또 발행 및 수량, 번호 출력
     - [ ] 발행한 횟수 만큼 무작위 6개의 로또 번호 생성
