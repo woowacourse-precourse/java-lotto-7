@@ -17,12 +17,13 @@ public class LottoController {
         this.lottoRankSummary = lottoRankSummary;
     }
 
-    public void input() {
+    public void start() {
         PurchaseAmount purchaseAmount = InputView.inputPurchaseAmount();
         WinningNumber winningNumber = InputView.inputWinningNumber();
         InputView.inputBonusNumber(winningNumber);
         List<Lotto> lottos = generateLotto(purchaseAmount);
         calculateLottoRank(lottos, winningNumber);
+        double rateOfReturn = lottoRankSummary.calculateRateOfReturn(purchaseAmount);
     }
 
     private List<Lotto> generateLotto(PurchaseAmount purchaseAmount) {
