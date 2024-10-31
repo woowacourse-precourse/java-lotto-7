@@ -10,9 +10,13 @@
   - [x] `inputParser` : 쉼표를 구분자로 하여 당첨 번호를 분리한다.
 - [x] `Converter`
   - [x] `priceToLottoCount` : 로또 구입 금액을 구매 개수로 변환한다.
-### Domain
+### Global
+- [x] `ErrorMessages`
+  - [x] 에러메세지들을 포함한 Enum 
 - [x] `LottoRank` : `enum`
   - [x] 당첨 개수와 당첨 금액을 관리하는 `enum`
+  - [ ]`findByMatchCount` : 매칭된 숫자의 개수에 따라 적절한 로또 순위를 반환하는 메서드
+### Domain
 - [ ] `Lotto`
   - [ ] `checkWinningStatus` : 매칭 숫자 + 보너스 넘버를 비교하여 당첨 형태를 return 한다.
 - [ ] `Lottos`
