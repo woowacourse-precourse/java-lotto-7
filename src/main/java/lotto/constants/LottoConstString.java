@@ -5,7 +5,8 @@ public enum LottoConstString {
     ;
 
     private final String value;
-    LottoConstString(String value){
+
+    LottoConstString(String value) {
         this.value = value;
     }
 

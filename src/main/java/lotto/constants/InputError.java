@@ -10,6 +10,8 @@ public enum InputError {
             + "(최소 금액 : "
             + LottoConstInteger.LOTTO_PRICE.getValue()
             + "원)"),
+    PURCHASE_PRICE_OVER_PROGRAM_MAX(Integer.MAX_VALUE
+            + " 보다 큰 금액은 지원하지 않습니다."),
     PURCHASE_PRICE_SHOULD_BE_DIVIDED_CLEARLY("로또 구입 금액에는 "
             + LottoConstInteger.LOTTO_PRICE.getValue()
             + "으로 나눠지는 수를 입력하셔야 합니다."),

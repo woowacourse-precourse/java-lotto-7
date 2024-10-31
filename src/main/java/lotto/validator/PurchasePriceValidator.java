@@ -12,11 +12,14 @@ public class PurchasePriceValidator {
         if (!isNumber(rawPurchasePrice)) {
             return false;
         }
-        int intPurchasePrice = Integer.parseInt(rawPurchasePrice);
-        if(!isReachAtLeastPrice(intPurchasePrice)) {
+        if (!isOverFlow(rawPurchasePrice)) {
             return false;
         }
-        if(!isDividedClearly(intPurchasePrice)){
+        int intPurchasePrice = Integer.parseInt(rawPurchasePrice);
+        if (!isReachAtLeastPrice(intPurchasePrice)) {
+            return false;
+        }
+        if (!isDividedClearly(intPurchasePrice)) {
             return false;
         }
         return true;
@@ -40,6 +43,14 @@ public class PurchasePriceValidator {
         return false;
     }
 
+    private static boolean isOverFlow(String rawPurchasePrice) {
+        if (rawPurchasePrice.compareTo(String.valueOf(Integer.MAX_VALUE)) <= 0) {
+            return true;
+        }
+        ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_OVER_PROGRAM_MAX);
+        return false;
+    }
+
     private static boolean isReachAtLeastPrice(int intPurchasePrice) {
         if (intPurchasePrice >= LottoConstInteger.LOTTO_PRICE.getValue()) {
             return true;
@@ -49,8 +60,9 @@ public class PurchasePriceValidator {
     }
 
     private static boolean isDividedClearly(int intPurchasePrice) {
-        if (intPurchasePrice % LottoConstInteger.LOTTO_PRICE.getValue() == 0)
+        if (intPurchasePrice % LottoConstInteger.LOTTO_PRICE.getValue() == 0) {
             return true;
+        }
         ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_SHOULD_BE_DIVIDED_CLEARLY);
         return false;
     }
