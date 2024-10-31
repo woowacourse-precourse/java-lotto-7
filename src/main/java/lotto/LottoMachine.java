@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class LottoMachine {
 
     private Lotto lotto;
+    private int bonusNumber;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
     public void run() {
@@ -39,6 +40,8 @@ public class LottoMachine {
         System.out.println();
 
         System.out.println("보너스 번호를 입력해주세요.");
+
+        bonusNumber = Integer.parseInt(Console.readLine().trim());
 
     }
 }
