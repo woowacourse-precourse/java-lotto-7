@@ -23,4 +23,10 @@ public class OutputView {
     public void printBonusNumberGuide() {
         System.out.println(OutputMessage.BONUS_GUID.getMessage());
     }
+
+    public void printLottoResult(String resultScreen) {
+        System.out.println(OutputMessage.RESULT_GUIDE.getMessage());
+        System.out.println(OutputMessage.LINE.getMessage());
+        System.out.println(resultScreen);
+    }
 }

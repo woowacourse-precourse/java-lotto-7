@@ -5,6 +5,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.LottoGame;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.RandomLottoGenerator;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,6 +26,8 @@ public class LottoController {
         outputView.printLotto(game.getLottoScreen());
         Lotto winningNumber = readWinningNumber();
         BonusNumber bonusNumber = readBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
+        outputView.printLottoResult(game.getResultScreen(winningLotto));
     }
 
     private PurchaseAmount readPurchasePrice() {

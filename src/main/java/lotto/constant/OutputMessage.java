@@ -7,7 +7,13 @@ public enum OutputMessage {
     NEW_LINE("\n"),
     COMMA(", "),
     WINNING_NUMBER_GUIDE("당첨 번호를 입력해 주세요."),
-    BONUS_GUID("보너스 번호를 입력해 주세요.");
+    BONUS_GUID("보너스 번호를 입력해 주세요."),
+    MATCH_COUNT("%d개 일치"),
+    PRIZE(" (%,d원)"),
+    MATCH_BONUS(", 보너스 볼 일치"),
+    RANKING_COUNT(" - %d개"),
+    RESULT_GUIDE("당첨 통계"),
+    LINE("---");
 
     private final String message;
 

@@ -28,4 +28,9 @@ public class LottoGame {
     public String getLottoScreen() {
         return lottos.getLottoNumbersScreen();
     }
+
+    public String getResultScreen(WinningLotto winningLotto) {
+        LottoResult lottoResult = lottos.calculateResult(winningLotto);
+        return lottoResult.getResultScreen();
+    }
 }
