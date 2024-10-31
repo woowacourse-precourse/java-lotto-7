@@ -9,11 +9,16 @@ import java.util.stream.Collectors;
 
 public class OutputHandler {
 
+    public static final String LOTTO_NUMBER_DELIMITER = ", ";
+    public static final String LOTTO_NOTATATION_PREFIX = "[";
+    public static final String LOTTO_NOTATION_SUFFIX = "]";
+
     public void showPurchaseAmountInstruction() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
     public void showWinningNumbersInstruction() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
@@ -22,6 +27,7 @@ public class OutputHandler {
     }
 
     public void showWinningStatisticsComment() {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
     }
@@ -40,6 +46,7 @@ public class OutputHandler {
     }
 
     private void showPurchaseInformation(List<Lotto> lottos) {
+        System.out.println();
         System.out.printf("%d개를 구매했습니다.%n", lottos.size());
     }
 
@@ -53,7 +60,7 @@ public class OutputHandler {
     private String convertLottoNotation(List<Integer> numbers) {
         return numbers.stream()
             .map(String::valueOf)
-            .collect(Collectors.joining(", ", "[", "]"));
+            .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER, LOTTO_NOTATATION_PREFIX, LOTTO_NOTATION_SUFFIX));
     }
 
 }

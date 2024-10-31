@@ -1,8 +1,7 @@
 package lotto;
 
 import lotto.exception.GameException;
-import lotto.io.InputHandler;
-import lotto.io.OutputHandler;
+import lotto.io.LottoIOHandler;
 import lotto.model.*;
 import lotto.provider.NumbersProvider;
 
@@ -13,19 +12,16 @@ import java.util.stream.Collectors;
 
 public class LottoGame {
 
-    private final InputHandler inputHandler;
-    private final OutputHandler outputHandler;
+    private final LottoIOHandler ioHandler = new LottoIOHandler();
     private final NumbersProvider numbersProvider;
 
-    public LottoGame(InputHandler inputHandler, OutputHandler outputHandler, NumbersProvider numbersProvider) {
-        this.inputHandler = inputHandler;
-        this.outputHandler = outputHandler;
+    public LottoGame(NumbersProvider numbersProvider) {
         this.numbersProvider = numbersProvider;
     }
 
     public void run() {
         List<Lotto> lottos = purchaseLotto();
-        outputHandler.showLottos(lottos);
+        ioHandler.showPurchasedLottos(lottos);
         Lotto normalNumbersOfLotto = createWinningNumbers();
         WinningLotto winningLotto = createBonusNumber(normalNumbersOfLotto);
         WinningResult winningResult = calculateResult(lottos, winningLotto);
@@ -34,8 +30,7 @@ public class LottoGame {
 
     private List<Lotto> purchaseLotto() {
         try {
-            outputHandler.showPurchaseAmountInstruction();
-            int budget = inputHandler.inputPurchaseAmount();
+            int budget = ioHandler.askPurchaseAmount();
             LottoVendingMachine vendingMachine = new LottoVendingMachine(budget);
             return vendingMachine.purchaseAll(numbersProvider);
         } catch (GameException e) {
@@ -46,8 +41,7 @@ public class LottoGame {
 
     private Lotto createWinningNumbers() {
         try {
-            outputHandler.showWinningNumbersInstruction();
-            String candidateWinningNumbers = inputHandler.getWinningNumbers().value();
+            String candidateWinningNumbers = ioHandler.askWinningNumbers();
             return convertLottoFrom(candidateWinningNumbers);
         } catch (GameException e) {
             System.out.println(e.getMessage());
@@ -64,8 +58,7 @@ public class LottoGame {
 
     private WinningLotto createBonusNumber(Lotto lotto) {
         try {
-            outputHandler.showBonusNumberInstruction();
-            int bonusNumber = inputHandler.getBonusNumber();
+            int bonusNumber = ioHandler.askBonusNumber();
             return new WinningLotto(lotto, new BonusNumber(bonusNumber));
         } catch (GameException e) {
             System.out.println(e.getMessage());
@@ -85,9 +78,7 @@ public class LottoGame {
     }
 
     private void showResult(WinningResult result) {
-        outputHandler.showWinningStatisticsComment();
-        outputHandler.showWinningResult(result);
-        outputHandler.showTotalPrize(result);
+        ioHandler.showWinningStatistics(result);
     }
 
 }
