@@ -15,14 +15,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> getSortedNumbersByAscending() {
         return numbers.stream()
             .sorted()
             .toList();
     }
 
-    public boolean isContain(int number) {
-        return numbers.contains(number);
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
