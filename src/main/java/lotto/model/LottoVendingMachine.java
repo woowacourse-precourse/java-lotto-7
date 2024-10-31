@@ -12,7 +12,7 @@ public class LottoVendingMachine {
     private final int totalCost;
     private final List<Lotto> purchased;
 
-    public LottoVendingMachine(int totalCost) {
+    public LottoVendingMachine(Integer totalCost) {
         this.totalCost = totalCost;
         this.purchased = new ArrayList<>();
     }
