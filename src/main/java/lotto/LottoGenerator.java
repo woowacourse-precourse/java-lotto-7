@@ -14,17 +14,12 @@ class LottoGenerator {
     }
 
     public static Lotto generateRandom() {
-        List<Integer> list = new ArrayList<>();
-        while (list.size() < 6) {
-            int number = Randoms.pickNumberInRange(Lotto.LOW_NUMBER, Lotto.HIGH_NUMBER);
-            if (!list.contains(number)) {
-                list.add(number);
-            }
-        }
-        return new Lotto(list);
+
+        return new Lotto(Randoms.pickUniqueNumbersInRange(Lotto.LOW_NUMBER, Lotto.HIGH_NUMBER, 6));
+
     }
 
-    public static void addNumber(Lotto lotto, int number){
+    public static void addNumber(Lotto lotto, int number) {
         lotto.setBonus(number);
     }
 }

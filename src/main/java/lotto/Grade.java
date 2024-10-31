@@ -41,13 +41,13 @@ public enum Grade {
 
     public String bonusToString(){
         if(isBonus()) {
-            return ", 보너스 볼 일치 ";
+            return ", 보너스 볼 일치";
         }
         return "";
     }
 
     @Override
     public String toString() {
-        return getCoinside() + "개 일치 " + bonusToString() + " (" + df.format(getPrice()) + "원) - ";
+        return getCoinside() + "개 일치" + bonusToString() + " (" + df.format(getPrice()) + "원) - ";
     }
 }

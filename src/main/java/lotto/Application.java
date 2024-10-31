@@ -24,6 +24,8 @@ public class Application {
         inputBonusNumber(targetLotto);
 
         successStaticsPrint(lottos, targetLotto);
+
+        getRateOfReturn(lottos, targetLotto);
     }
 
     private static int inputPrice() {
@@ -47,11 +49,11 @@ public class Application {
     private static void successStaticsPrint(List<Lotto> lottos, Lotto targetLotto) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(Grade.THREECOINSIDE + "" + congratulation(lottos, targetLotto, 3) + "개");
-        System.out.println(Grade.FOURCOINSIDE + "" + congratulation(lottos, targetLotto, 4) + "개");
-        System.out.println(Grade.FIVECOINSIDE + "" + congratulation(lottos, targetLotto, 5) + "개");
-        System.out.println(Grade.FIVECOINSIDE_BONUS + "" + congratulation(lottos, targetLotto, 5, true) + "개");
-        System.out.println(Grade.SIXCOINSIDE + "" + congratulation(lottos, targetLotto, 6) + "개");
+        System.out.println(Grade.THREECOINSIDE + "" + checkLotto(lottos, targetLotto, 3) + "개");
+        System.out.println(Grade.FOURCOINSIDE + "" + checkLotto(lottos, targetLotto, 4) + "개");
+        System.out.println(Grade.FIVECOINSIDE + "" + checkLotto(lottos, targetLotto, 5) + "개");
+        System.out.println(Grade.FIVECOINSIDE_BONUS + "" + checkLotto(lottos, targetLotto, 5, true) + "개");
+        System.out.println(Grade.SIXCOINSIDE + "" + checkLotto(lottos, targetLotto, 6) + "개");
         System.out.println();
     }
 
@@ -79,12 +81,12 @@ public class Application {
         }
     }
 
-    public static int congratulation(List<Lotto> lottos, Lotto targetLotto, int matchTarget) {
+    public static int checkLotto(List<Lotto> lottos, Lotto targetLotto, int matchTarget) {
         boolean b = false;
-        return congratulation(lottos, targetLotto, matchTarget, b);
+        return checkLotto(lottos, targetLotto, matchTarget, b);
     }
 
-    public static int congratulation(List<Lotto> lottos, Lotto targetLotto, int matchTarget, boolean b) {
+    public static int checkLotto(List<Lotto> lottos, Lotto targetLotto, int matchTarget, boolean b) {
         int matchCount = 0;
         for (Lotto lotto : lottos) {
             matchCount = getMatchCount(targetLotto, matchTarget, lotto, matchCount, b);
@@ -124,6 +126,19 @@ public class Application {
         return matchValue;
     }
 
+    private static void getRateOfReturn(List<Lotto> lottos, Lotto targetLotto){
+        int count = lottos.size();
+        Long totalPrice = Grade.THREECOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 3);
+        totalPrice += Grade.FOURCOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 4);
+        totalPrice += Grade.FIVECOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 5);
+        totalPrice += Grade.FIVECOINSIDE_BONUS.getPrice() * checkLotto(lottos, targetLotto, 5, true);
+        totalPrice += Grade.SIXCOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 6);
+        System.out.println(totalPrice);
+        System.out.println(count* TICKET_PRICE);
+        double rateOfReturn = (double)totalPrice / (count * TICKET_PRICE) * 100.0;
+        // 5000, 8000
+        System.out.println("총 수익률은 " + Math.round((rateOfReturn)*100)/100.0 + "%입니다.");
+    }
 }
 
 
