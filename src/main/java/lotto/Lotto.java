@@ -24,10 +24,24 @@ public class Lotto {
                 matchCount++;
             }
         }
+        if(matchCount == 6) {
+            return Rank.FIRST;
+        }
         if(numbers.contains(bonus)) {
             matchCount++;
         }
-        
+        if(matchCount == 6) {
+            return Rank.SECOND;
+        }
+        if(matchCount == 5) {
+            return Rank.THIRD;
+        }
+        if(matchCount == 4) {
+            return Rank.FORTH;
+        }
+        if(matchCount == 3) {
+            return Rank.FIFTH;
+        }
         return null;
     }
 }
