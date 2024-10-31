@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottoResultsTest {
     @Test
-    public void 로또_결과_계산_테스트() {
+    void 로또_결과_계산_테스트() {
         LottoResults lottoResults = new LottoResults();
         int Winnings = lottoResults.calculateResult(Arrays.asList(1, 2, 3, 4, 5, 6),
                 Arrays.asList(1, 2, 3, 10, 11, 12));
