@@ -1,5 +1,9 @@
 package lotto.enumerate;
 
+import java.util.HashMap;
+import java.util.Map;
+import lotto.view.InputView;
+
 public enum Prize {
 
     FIRST(6, false, 2000000000),
@@ -39,4 +43,12 @@ public enum Prize {
     public void incrementCount() {
         this.count++;
     }
+
+    @Override
+    public String toString() {
+        return matchCount + "개 일치"
+                + "(" + prizeAmount + ")"
+                + " - " + count + "개";
+    }
+
 }
