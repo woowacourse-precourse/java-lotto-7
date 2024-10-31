@@ -12,6 +12,7 @@ public class PrizeSystem {
     private final List<Integer> prizeNumbers;
     private final int bonusNumber;
 
+    // 당첨 통계 변수 - 당첨 카운팅
     private int firstPrizeCount;
     private int secondPrizeCount;
     private int thirdPrizeCount;
