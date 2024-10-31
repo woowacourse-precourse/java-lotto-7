@@ -26,9 +26,20 @@ public class WinningNumbers {
     }
 
     public WinningNumbers() {
-        this.numberString = this.inputNumberString("당첨 번호를 입력해 주세요.");
-        this.setWinningNumbers();
-        this.setBonusNumber();
+        this.init();
+    }
+
+    public void init() {
+        while (true) {
+            try {
+                this.numberString = this.inputNumberString("당첨 번호를 입력해 주세요.");
+                this.setWinningNumbers();
+                this.setBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                this.printErrorMessage(e);
+            }
+        }
     }
 
     private void setWinningNumbers() {
@@ -42,9 +53,16 @@ public class WinningNumbers {
     }
 
     private void setBonusNumber() {
-        int bonusNumber = Integer.parseInt(this.inputNumberString("보너스 번호를 입력해 주세요."));
-        this.validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        while (true) {
+            try {
+                int bonusNumber = Integer.parseInt(this.inputNumberString("보너스 번호를 입력해 주세요."));
+                this.validateBonusNumber(bonusNumber);
+                this.bonusNumber = bonusNumber;
+                break;
+            } catch (IllegalArgumentException e) {
+                this.printErrorMessage(e);
+            }
+        }
     }
 
     private String inputNumberString(String message) {
@@ -100,5 +118,9 @@ public class WinningNumbers {
         if (this.numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
+    }
+
+    private void printErrorMessage(Exception e) {
+        System.out.println("\n" + LottoRunner.ERROR_PREFIX + e.getMessage());
     }
 }
