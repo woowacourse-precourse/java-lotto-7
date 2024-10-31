@@ -25,4 +25,13 @@ class PurchaseAmountValidatorTest {
         assertThatThrownBy(() -> validator.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void nullTest() {
+        // given
+        String input = null;
+        // when & then
+        assertThatThrownBy(() -> validator.validate(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
