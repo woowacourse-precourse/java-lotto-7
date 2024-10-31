@@ -1,4 +1,6 @@
-package lotto.Controller;
+package lotto.controller;
+
+import lotto.View.InputView;
 
 public class LottoController {
     private final LottoService;
