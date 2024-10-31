@@ -17,8 +17,8 @@ public class OutputWinningTotalView {
         System.out.println(PrintConstants.ALERT_WINNING_TOTAL.getMessage());
         System.out.println(PrintConstants.SEPARATE_LINE.getMessage());
 
-        for(WinningPrize prize : WinningPrize.values()) {
-            System.out.println(String.format(prize.getMessage(),resultMap.get(prize.toString())));
+        for (WinningPrize prize : WinningPrize.values()) {
+            System.out.println(String.format(prize.getMessage(), resultMap.get(prize.toString())));
         }
 
         System.out.println(PrintConstants.SEPARATE_LINE.getMessage());

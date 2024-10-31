@@ -23,10 +23,9 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         // LOTTO_02
-        if(numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException(ExceptionCode.INVALID_RANGE.getMessage());
-        };
-
+        }
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

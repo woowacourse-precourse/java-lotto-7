@@ -18,9 +18,9 @@ public class Validator {
 
     // LOTTO_04
     public List<Integer> validateNumbersInput(String lottoInput) {
-        try{
+        try {
             return Arrays.stream(lottoInput.split(", |,")).map(Integer::parseInt).toList();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionCode.INVALID_LOTTO_INPUT.getMessage());
         }
     }
@@ -29,7 +29,7 @@ public class Validator {
     public int validateInteger(String number) {
         try {
             return Integer.parseInt(number);
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException(ExceptionCode.INVALID_TYPE.getMessage());
         }
     }
@@ -43,7 +43,7 @@ public class Validator {
 
     // NULL_01
     public void validateEmptyInput(String input) {
-        if (input.isEmpty()||input.isBlank()) {
+        if (input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException(ExceptionCode.NULL_INPUT.getMessage());
         }
     }

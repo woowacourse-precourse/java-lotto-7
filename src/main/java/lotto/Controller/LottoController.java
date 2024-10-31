@@ -19,9 +19,9 @@ public class LottoController {
         Lotto winningLotto = inputLottoView.inputWinningNumbers();
         int bonusNumber = inputLottoView.inputBonusNumber();
 
-        Map<String, Integer> resultMap = winningTotalController.winningTotal(issuedTickets,winningLotto,bonusNumber);
+        Map<String, Integer> resultMap = winningTotalController.winningTotal(issuedTickets, winningLotto, bonusNumber);
 
-        earningRateController.earningRate(price,resultMap);
+        earningRateController.earningRate(price, resultMap);
     }
 
     public int getNumberOfTickets(int price) {
