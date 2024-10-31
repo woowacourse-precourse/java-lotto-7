@@ -10,22 +10,23 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        Validator.validateWinningNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void printRequestingMoneyInput() {
+    public static void printRequestingMoneyInput() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
 
-    private void printRequestingLottoWinningNumbers() {
+    public static void printRequestingLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public String getUserInput() {
+    public static String getUserInput() {
         return Console.readLine();
     }
 
-    private int getLottoPurchaseCount(String userInput) {
+    private static int getLottoPurchaseCount(String userInput) {
         int money = Validator.validateMoneyInput(userInput);
         return money / 1000;
     }
