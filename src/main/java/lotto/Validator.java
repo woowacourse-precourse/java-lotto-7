@@ -21,7 +21,12 @@ public class Validator {
         validateUniqueNumbers(numbers);
     }
 
-    public static int validateNumberInput(String userInput) {
+    public static int validateLottoNumber(String userInput) {
+        validateNotEmpty(userInput);
+        return validateNumberInput(userInput);
+    }
+
+    private static int validateNumberInput(String userInput) {
         try {
             int userIntInput = Integer.parseInt(userInput);
 
@@ -41,7 +46,7 @@ public class Validator {
         }
     }
 
-    public static void validateNotEmpty(String userInput) {
+    private static void validateNotEmpty(String userInput) {
         if (userInput.isEmpty() || userInput.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 빈 값은 입력할 수 없습니다.");
         }

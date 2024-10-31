@@ -22,6 +22,10 @@ public class Lotto {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
+    public static void printRequestingBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public static String getUserInput() {
         return Console.readLine();
     }
@@ -37,10 +41,8 @@ public class Lotto {
         String[] numbers = userInput.split(",", -1);
 
         for (String number : numbers) {
-            Validator.validateNotEmpty(number);
-            int winningNumber = Validator.validateNumberInput(number);
-
-            winningNumbers.add(winningNumber);
+            int validatedNumber = Validator.validateLottoNumber(number);
+            winningNumbers.add(validatedNumber);
         }
 
         return new Lotto(winningNumbers);
