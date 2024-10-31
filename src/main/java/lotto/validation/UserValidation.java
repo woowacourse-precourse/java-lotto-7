@@ -13,8 +13,7 @@ public class UserValidation {
 
     private static void validateBuyAmountThousandUnit(int buyAmount) {
         if(isNotDivisibleByThousand(buyAmount)){
-            Utils.print(BUY_AMOUNT_NOT_THOUSAND_UNIT.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BUY_AMOUNT_NOT_THOUSAND_UNIT.getMessage());
         }
     }
 
@@ -24,8 +23,7 @@ public class UserValidation {
 
     private static void validateBuyAmountRange(int buyAmount){
         if(isLessThanThousand(buyAmount)){
-            Utils.print(BUY_AMOUNT_LESS_THAN_THOUSAND.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BUY_AMOUNT_LESS_THAN_THOUSAND.getMessage());
         }
     }
 
