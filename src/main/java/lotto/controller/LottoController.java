@@ -22,10 +22,12 @@ public class LottoController {
     public void run() {
         purchaseAmount = inputView.requestPurchaseAmount();
         lottoCount = lottoStore.getLottoCount(purchaseAmount);
+
         lottos = lottoStore.buyLotto(lottoCount);
 
         String winningNumbers = inputView.requestWinningNumbers();
         int bonusNumber = inputView.requestBonusNumber();
+
         WinningNumbers winningNumbersObject = new WinningNumbers(winningNumbers, bonusNumber);
         LottoMachine lottoMachine = new LottoMachine(winningNumbersObject);
         winningStatus = lottoMachine.checkWinningStatus(lottos);
