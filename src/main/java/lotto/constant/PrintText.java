@@ -2,7 +2,7 @@ package lotto.constant;
 
 public enum PrintText {
     REQUIRE_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
-    ;
+    REQUIRE_WINNING_NUMBERS("당첨 번호를 입력해 주세요.");
 
 
     private final String text;
