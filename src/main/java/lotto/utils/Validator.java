@@ -10,9 +10,7 @@ public class Validator {
     public static final String WINNING_NUM_PATTERN = "^(\\d+,)+\\d+$";
 
     public static void priceValidator(String input) {
-        if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException(INVALID_INPUT_FORMAT_NULL.toString());
-        }
+        nullAndEmptyValidator(input);
 
         int price;
 
@@ -28,6 +26,7 @@ public class Validator {
     }
 
     public static void winningNumValidator(String input) {
+        nullAndEmptyValidator(input);
 
         if (!WINNING_NUM_PATTERN.matches(input)) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_PATTERN.toString());
@@ -44,6 +43,8 @@ public class Validator {
     }
 
     public static void lottoNumValidator(String input) {
+        nullAndEmptyValidator(input);
+
         int price;
 
         try {
@@ -54,6 +55,12 @@ public class Validator {
 
         if (price <= 0 || 46 <= price) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.toString());
+        }
+    }
+
+    private static void nullAndEmptyValidator(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT_NULL.toString());
         }
     }
 }
