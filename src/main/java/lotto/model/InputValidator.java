@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.error.InputError;
+import org.junit.platform.commons.util.StringUtils;
 
 public class InputValidator {
 
@@ -11,52 +13,66 @@ public class InputValidator {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_NUMBERS_COUNT = 6;
+    private static final String SEPARATOR = ",";
+    private static final String ONLY_NUMBERS_AND_SEPARATORS = "^[\\d" + SEPARATOR + "]+$";
 
-    public void validateRawInputPurchaseAmount(String rawInput) {
-        if (rawInput.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 구입금액을 입력되지 않았어요. 다시 입력해주세요.");
+    public void validatePurchaseAmount(String rawInput) {
+        if (StringUtils.isBlank(rawInput)) {
+            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_EMPTY.getMessage());
         }
-
         int purchaseAmount = parsePurchaseAmount(rawInput);
-        validatePurchaseAmount(purchaseAmount);
+        validateAboveBaseAmount(purchaseAmount);
+        validateIsMultipleOfBaseAmount(purchaseAmount);
     }
 
     private int parsePurchaseAmount(String rawInput) {
         try {
             return Integer.parseInt(rawInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_INVALID.getMessage());
         }
     }
 
-    private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < ZERO) {
-            throw new IllegalArgumentException("[ERROR] 구입금액이 0보다 작아요. 다시 입력해주세요.");
+    private void validateAboveBaseAmount(int purchaseAmount) {
+        if (purchaseAmount < PURCHASE_BASE_AMOUNT) {
+            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_UNDER_BASE_LIMIT.getMessage());
         }
-        if (purchaseAmount == ZERO) {
-            throw new IllegalArgumentException("[ERROR] 구입금액이 0이에요. 다시 입력해주세요.");
-        }
+    }
+
+    private void validateIsMultipleOfBaseAmount(int purchaseAmount) {
         if (purchaseAmount % PURCHASE_BASE_AMOUNT != ZERO) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 해요. 다시 입력해주세요.");
+            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }
 
-    public void validateRawInputWinningNumbers(String rawInput) {
-        if (rawInput.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호가 입력되지 않았어요. 다시 입력해주세요.");
+    public void validateWinningNumbers(String rawInput) {
+        if (StringUtils.isBlank(rawInput)) {
+            throw new IllegalArgumentException(InputError.WINNING_NUMBERS_EMPTY.getMessage());
         }
+        validateContainsOnlyNumbersAndCommas(rawInput);
+        String[] separatedInputs = rawInput.split(SEPARATOR);
+        validateCorrectCount(separatedInputs);
+        validateNoDuplicates(separatedInputs);
+    }
 
-        String[] separatedInputs = rawInput.split(",");
-        Set<Integer> winningNumbers = new HashSet<>();
+    private void validateContainsOnlyNumbersAndCommas(String rawInput) {
+        if (!rawInput.matches(ONLY_NUMBERS_AND_SEPARATORS)) {
+            throw new IllegalArgumentException(InputError.WINNING_NUMBERS_INVALID.getMessage());
+        }
+    }
 
+    private void validateCorrectCount(String[] separatedInputs) {
         if (separatedInputs.length != LOTTO_NUMBERS_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 해요. 다시 입력해주세요.");
+            throw new IllegalArgumentException(InputError.WINNING_NUMBERS_COUNT.getMessage());
         }
+    }
 
+    private void validateNoDuplicates(String[] separatedInputs) {
+        Set<Integer> winningNumbers = new HashSet<>();
         for (String input : separatedInputs) {
             int number = parseLottoNumber(input.trim());
             if (!winningNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 포함되어 있어요. 다시 입력해주세요.");
+                throw new IllegalArgumentException(InputError.WINNING_NUMBERS_DUPLICATE.getMessage());
             }
         }
     }
@@ -65,24 +81,26 @@ public class InputValidator {
         try {
             int number = Integer.parseInt(rawInput);
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1과 45 사이의 숫자여야 해요. 다시 입력해주세요.");
+                throw new IllegalArgumentException(InputError.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             }
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+            throw new IllegalArgumentException(InputError.LOTTO_NUMBER_INVALID.getMessage());
         }
     }
 
-    public void validateRawInputBonusNumber(String rawInput, List<Integer> winningNumbers) {
-        if (rawInput.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 입력되지 않았어요. 다시 입력해주세요.");
+    public void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
+        if (StringUtils.isBlank(rawInput)) {
+            throw new IllegalArgumentException(InputError.BONUS_NUMBER_EMPTY.getMessage());
         }
 
-        for (Integer winningNumber : winningNumbers) {
-            int number = parseLottoNumber(rawInput.trim());
-            if (number == winningNumber) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복될 수 없어요. 다시 입력해주세요.");
-            }
+        int bonusNumber = parseLottoNumber(rawInput.trim());
+        validateBonusNumberNotInWinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private void validateBonusNumberNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(InputError.BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 }

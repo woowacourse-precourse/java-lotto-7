@@ -43,7 +43,7 @@ public class LottoController {
 
     private void validatePurchaseAmount(String rawInput) {
         InputValidator inputValidator = new InputValidator();
-        inputValidator.validateRawInputPurchaseAmount(rawInput);
+        inputValidator.validatePurchaseAmount(rawInput);
     }
 
     private int parsePurchaseAmount(String rawInput) {
@@ -88,7 +88,7 @@ public class LottoController {
 
     private void validateWinningNumbers(String rawInput) {
         InputValidator inputValidator = new InputValidator();
-        inputValidator.validateRawInputWinningNumbers(rawInput);
+        inputValidator.validateWinningNumbers(rawInput);
     }
 
     private List<Integer> parseWinningNumbers(String rawInput) {
@@ -118,7 +118,7 @@ public class LottoController {
 
     private void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
         InputValidator inputValidator = new InputValidator();
-        inputValidator.validateRawInputBonusNumber(rawInput, winningNumbers);
+        inputValidator.validateBonusNumber(rawInput, winningNumbers);
     }
 
     private int parseBonusNumber(String rawInput) {
