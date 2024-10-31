@@ -24,4 +24,10 @@ public class LottoBuyer {
         }
     }
 
+    public void setWinningLottoAndBonusNumber(Lotto winningLotto, int bonusLottoNumber) {
+        this.winningLotto = winningLotto;
+        this.bonusLottoNumber = bonusLottoNumber;
+    }
+
+
 }
