@@ -35,8 +35,9 @@ public class Application {
 
     public static void printProfitRate(){ // 수익률 = (당첨금액/구입금액)*100
         int profit = calculateProfit();
-        double profitRate = (profit / budget) * 100;
-        System.out.printf("총 수익률은 %.2f%%입니다.", profitRate);
+        System.out.println(profit);
+        double profitRate = (double) profit / budget * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 
     public static void validateBonusDuplicate(Lotto goals, int bonus){
@@ -56,11 +57,11 @@ public class Application {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             budget = Integer.parseInt(Console.readLine());
-            if (budget < 1000) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
-            }
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력해야 합니다.");
+        }
+        if (budget < 1000) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
 
         // 2. 구매 개수 계산
