@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface LottoMachine {
     List<Lotto> createLottoTickets(int count);
+
+    void getWinningResult(List<Integer> winningNumbers, int bonusNumber);
 }
