@@ -1,12 +1,16 @@
 package lotto.controller;
 
+import lotto.util.validator.PurchaseMoneyValidator;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
 public class LottoController {
 
     // 로또 내부 메인 실행 흐름
     public static void startLotto(){
 
         // 1. 로또 구입 금액 입력 및 유효성 검증
-        getValidatedPurchaseAmountFromUser();
+        long validatedPurchaseMoney = getValidatedPurchaseAmountFromUser();
 
         // 2. 로또 구입 금액에 따라 새로운 로또 번호를 생성
         generateNewLottoNumbers();
@@ -24,8 +28,12 @@ public class LottoController {
         displayTotalWinningStatistics();
     }
 
-    static void getValidatedPurchaseAmountFromUser() {
+    static long getValidatedPurchaseAmountFromUser() {
         // 로또 구입 금액 입력 및 유효성 검증 코드
+        OutputView.printPurchaseAmountPrompt();
+        String purchaseMoneyInput = InputView.getUserInput();
+        PurchaseMoneyValidator.validatePurchaseMoney(purchaseMoneyInput);
+        return Long.parseLong(purchaseMoneyInput);
     }
 
     static void generateNewLottoNumbers() {
