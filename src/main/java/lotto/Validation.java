@@ -12,4 +12,8 @@ public class Validation {
         }
         return true;
     }
+
+    public static boolean validateNumber(String number) {
+        return number.chars().allMatch(Character::isDigit);
+    }
 }
