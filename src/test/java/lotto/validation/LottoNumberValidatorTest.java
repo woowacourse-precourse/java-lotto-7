@@ -33,4 +33,13 @@ class LottoNumberValidatorTest {
             LottoNumberValidator.validateLottoNumber("1,2,3,4,5,,,7");
         });
     }
+
+    @DisplayName("쉼표(,) 사이에 공백이 있을 경우 연속적으로 입력되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3, ,5,,,7", "1,2,3,   ,5,,,7"})
+    void validateNoEmptyBetweenCommas(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoNumberValidator.validateLottoNumber(input);
+        });
+    }
 }
