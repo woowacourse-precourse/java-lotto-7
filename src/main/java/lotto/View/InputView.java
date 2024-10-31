@@ -1,6 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +28,7 @@ public class InputView {
             ErrorInvalidAmount();
         }
     }
-    public static List<Integer> input_winningNumber() {
+    public static Lotto input_winningNumber() {
         while (true) {
             System.out.println(ASK_WinningNumber);
             String input_winning_number = readLine();
@@ -43,7 +44,7 @@ public class InputView {
                 ErrorOverlapValidWinningNumber();
                 continue;
             }
-            return parseWinningNumbers(input_winning_number);
+            return (Lotto) parseWinningNumbers(input_winning_number);
         }
     }
     public static int input_bounsNumber() {
