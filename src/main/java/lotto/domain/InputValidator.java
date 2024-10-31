@@ -3,7 +3,9 @@ package lotto.domain;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputValidator {
 
@@ -28,7 +30,7 @@ public class InputValidator {
             int convertedNumber = Integer.parseInt(input);
             return convertedNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주시길 바랍니다.");
         }
     }
 
@@ -37,7 +39,7 @@ public class InputValidator {
      */
     public static void isValidUnit(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해 주시길 바랍니다.");
         }
     }
 
@@ -60,7 +62,26 @@ public class InputValidator {
             }
             return numbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주시길 바랍니다.");
+        }
+    }
+
+    /**
+     * 입력된 당첨 번호가 6개인지 검사
+     */
+    public static void isValidLength(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 당첨 번호를 입력해 주시길 바랍니다.");
+        }
+    }
+
+    /**
+     * 입력된 당첨 번호들의 중복 검사
+     */
+    public static void isDuplicate(List<Integer> numbers) {
+        Set<Integer> convertedSet = new HashSet<>(numbers);
+        if (convertedSet.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 당첨 번호를 입력해 주시길 바랍니다.");
         }
     }
 }
