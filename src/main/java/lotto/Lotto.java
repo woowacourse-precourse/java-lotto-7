@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -7,14 +10,25 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+        lottoNumbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    public boolean isContainsNumber(final int number) {
+        return numbers.contains(number);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    private void validate(List<Integer> numbers) {
+        final LottoListValidator lottoListValidator = new LottoListValidator();
+        final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
+        lottoListValidator.validateSize(numbers)
+                .validateRange(numbers, lottoNumberValidator::validateRange)
+                .validateDuplicate(numbers);
+    }
+
 }
