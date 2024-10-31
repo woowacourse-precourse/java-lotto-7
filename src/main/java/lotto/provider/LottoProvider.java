@@ -10,6 +10,9 @@ import lotto.Lotto;
 
 public class LottoProvider {
 	private static final int THOUSAND = 1000;
+	private static final int MIN_LOTTO_NUMBER = 1;
+	private static final int MAX_LOTTO_NUMBER = 45;
+	private static final int LOTTO_DRAW_COUNT = 6;
 	private final int numberOfLottos;
 	private final int lottoPurchaseAmount;
 
@@ -29,7 +32,7 @@ public class LottoProvider {
 
 	public void pickLottoNumbers() {
 		for (int i = 0; i < numberOfLottos; i++) {
-			List<Integer> pickedLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			List<Integer> pickedLottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_DRAW_COUNT);
 			pickedLottos.add(new Lotto(pickedLottoNumbers));
 		}
 	}
