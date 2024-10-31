@@ -1,4 +1,85 @@
 package lotto.Controller;
 
-public class WinningController {
+import lotto.Lotto;
+import lotto.Pair;
+import lotto.Service.WinningService;
+import lotto.View.BonusView;
+import lotto.View.StatisticsView;
+import lotto.View.WinningView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class WinningController extends Validate{
+    WinningView winningView;
+    BonusView bonusView;
+    StatisticsView statisticsView;
+    WinningService winningService;
+    List<Lotto> lottos;
+
+    public WinningController(List<Lotto> lottos) {
+        winningView = new WinningView();
+        bonusView = new BonusView();
+        statisticsView = new StatisticsView();
+        winningService = new WinningService();
+
+        this.lottos = lottos;
+    }
+
+    public void getWinning() {
+        List<Integer> winningNumbers = getWinningInput();
+        int bonusNumber = getBonusInput();
+        while(!validated) {
+            String bonus = bonusView.getInput();
+        }
+    }
+
+    private List<Integer> getWinningInput() {
+        boolean validated = false;
+        List<Integer> winningNumbers = new ArrayList<>();
+        while(!validated) {
+            try {
+                String input = winningView.getInput();
+                Pair validatedResult = validateWinningInput(input);
+                validated = validatedResult.isValidated();
+                winningNumbers = (List<Integer>)validatedResult.getValue();
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
+    private int getBonusInput() {
+        boolean validated = false;
+        int bonusNumber = 0;
+        while(!validated) {
+            try {
+                String input = bonusView.getInput();
+                Pair validatedResult = validateBonusInput(input);
+                validated = validatedResult.isValidated();
+                bonusNumber = (int)validatedResult.getValue();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private Pair validateWinningInput(String input) {
+        String[] split = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<Integer>();
+        for(int i = 0; i < split.length; i++) {
+            if(!isInteger(split[i])) {
+                throw new IllegalArgumentException("정수를 입력해 주세요.");
+            }
+            winningNumbers.add(Integer.parseInt(split[i]));
+        }
+        Pair validatedResult = new Pair(true, winningNumbers);
+        return validatedResult;
+    }
+
+    private Pair validateBonusInput(String input) {
+
+    }
 }

@@ -3,10 +3,11 @@ package lotto.Controller;
 import lotto.Lotto;
 import lotto.Service.PurchaseService;
 import lotto.View.PurchaseView;
+import lotto.Pair;
 
 import java.util.List;
 
-public class PurchaseController {
+public class PurchaseController extends Validate {
     private PurchaseView purchaseView;
     private PurchaseService purchaseService;
 
@@ -22,7 +23,7 @@ public class PurchaseController {
             try {
                 Pair validated = purchaseFlow();
                 validate = validated.isValidated();
-                count = validated.getCount();
+                count = (Integer)validated.getValue();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -46,28 +47,4 @@ public class PurchaseController {
         result.set(false, 0);
         return result;
     }
-
-    private boolean isInteger(String s) {
-        return s.matches(".?\\d+");
-    }
-}
-
-class Pair {
-    private boolean validated;
-    private int count;
-
-    public Pair() {}
-
-    public Pair(boolean validated, int count) {
-        this.validated = validated;
-        this.count = count;
-    }
-
-    public void set(boolean validated, int count) {
-        this.validated = validated;
-        this.count = count;
-    }
-
-    public boolean isValidated() { return validated; }
-    public int getCount() { return count; }
 }
