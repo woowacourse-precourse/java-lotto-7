@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import lotto.SortComparator;
 import lotto.domain.prizelotto.PrizeLotto;
 
 public class PrizeNumber {
@@ -43,20 +43,14 @@ public class PrizeNumber {
 
     public List<PrizeLotto> sortByRank() {
         List<PrizeLotto> sortedPrizeLottos = new ArrayList<>(prizeLottos);
-        Collections.sort(sortedPrizeLottos, new Comparator<PrizeLotto>() {
-            @Override
-            public int compare(PrizeLotto o1, PrizeLotto o2) {
-                return o2.getRank() - o1.getRank();
-            }
-        });
+        sortedPrizeLottos.sort(new SortComparator());
         return sortedPrizeLottos;
     }
 
-    public PrizeNumber findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
+    public void findWinningLottos(WinNumbers winNumbers, Lottos lottos) {
         List<Lotto> allLotto = lottos.value();
         for (Lotto lotto : allLotto) {
             countMatchNumber(lotto.getNumbers(), winNumbers);
         }
-        return new PrizeNumber(prizeLottos);
     }
 }
