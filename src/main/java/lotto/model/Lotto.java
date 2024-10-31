@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,7 +16,4 @@ public class Lotto {
         }
     }
 
-    private void sortNumbers() {
-        Collections.sort(numbers);
-    }
 }

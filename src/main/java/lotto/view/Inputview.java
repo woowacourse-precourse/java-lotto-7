@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class Inputview {
     public static int inputMoney() {
         int money = Integer.parseInt(Console.readLine());
-        if (money % 10 != 0) {
+        if (money % 1000 != 0) {
             throw new IllegalArgumentException();
         }
         return money;
