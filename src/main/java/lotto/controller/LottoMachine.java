@@ -26,6 +26,7 @@ public class LottoMachine {
         WinningLotto winningLotto = generateWinningLotto();
 
         LottoStatistic lottoStatistic = generateLottoStatistic(winningLotto, lottoList);
+        outputView.printLottoStatistic(lottoStatistic);
     }
 
     private List<Lotto> buyLottoByPrice(int price) {
