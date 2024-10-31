@@ -1,9 +1,9 @@
 package lotto.lottoController;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 import lotto.lottoModel.HitLotto;
 import lotto.lottoModel.HitLottoDAO;
 import lotto.lottoModel.LottoDAO;
@@ -46,6 +46,11 @@ public class LottoController {
         String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
         //여기에 유효성 검증
 
+        saveHitLotto(hitLottoInput, bonusNumberInput);
+        List<HitLotto> allHitLottos = hitLottoDAO.getAll();
+
+
+
 
 
     }
@@ -72,6 +77,13 @@ public class LottoController {
         HitLotto hitLotto = new HitLotto(hitNumbers,bonusNumber);
 
         hitLottoDAO.save(hitLotto);
+    }
+
+    public void checkLotto(List<Integer> lottos, List<Integer> hitLottos) {
+        Set<Integer> lottoNumber = new HashSet<>(lottos);
+        Set<Integer> hitLottoNumber = new HashSet<>(hitLottos);
+
+        lottoNumber.retainAll(hitLottoNumber); //두 세트의 공통 원소만 뽑아서 합친 세트
 
     }
 
