@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import lotto.Lotto;
+import lotto.LottoPrize;
 
 public class LottoManager {
     private final List<Lotto> lotties = new ArrayList<>();
@@ -105,6 +106,20 @@ public class LottoManager {
         }
     }
 
+    public Long calculateEarnRate() {
+        double earnRate = (this.sumOfLotto() / this.money)*100;
+        return Math.round(earnRate * 10) / 10;
+    }
+
+    private Double sumOfLotto() {
+        int index=0;
+        double sum = 0L;
+        for (LottoPrize prize : LottoPrize.values()){
+            sum += ((double) prize.getIntPrize() * this.winLottiesCount.get(index));
+            index++;
+        }
+        return sum;
+    }
 
     public List<Lotto> getLotties() {
         return lotties;
