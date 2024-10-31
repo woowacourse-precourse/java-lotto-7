@@ -2,7 +2,7 @@ package lotto.validation;
 
 public class InputValidator {
 
-    private static final String ERROR_PREFIX = "[ERROR]";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public static void validateNonBlank(String input) {
         if (input.isBlank()) {
