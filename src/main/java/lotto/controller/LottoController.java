@@ -11,6 +11,7 @@ public class LottoController {
     private final LottoService lottoService;
     private final InputView inputView;
     private final OutputView outputView;
+    private LottoResultDto lottoDto;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -19,9 +20,9 @@ public class LottoController {
     }
 
     public void run() {
-        LottoResultDto lottoDto = purchaseLotto();
+        lottoDto = purchaseLotto();
         outputView.printPurchaseLottoList(lottoDto);
-        receiveWinningAndBonusNumbers();
+        receiveWinningNumbers();
     }
 
     private LottoResultDto purchaseLotto() {
@@ -36,11 +37,12 @@ public class LottoController {
         }
     }
 
-    private void receiveWinningAndBonusNumbers() {
+    private void receiveWinningNumbers() {
         while (true) {
             try {
                 outputView.printWinningNumberInputMessage();
                 List<Integer> winningNumbers = inputView.readWinningNumbers();
+                lottoService.createWinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }

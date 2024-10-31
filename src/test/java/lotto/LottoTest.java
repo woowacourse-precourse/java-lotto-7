@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -54,5 +55,31 @@ class LottoTest {
         LottoResultDto dto = lottoService.createLottoList(input);
 
         assertThat(dto.getLottoList().size() == purchaseQuantity).isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,15,26,27,30,41,44", "5,25,31,37,40","1,2,4,5,6,7,25", "35"})
+    void 당첨번호가_6개_이하_또는_이상일때(String input){
+        List<Integer> list = Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_INVALID_LOTTO_NUMBER_COUNT.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,4,16,25,30", "5,25,31,37,40,37","1,2,4,4,6,7"})
+    void 중복된_당첨번호가_있는지_확인한다(String input){
+        List<Integer> list = Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_DUPLICATE_LOTTO_NUMBERS.getMessage());
     }
 }

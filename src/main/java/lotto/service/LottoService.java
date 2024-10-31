@@ -18,22 +18,26 @@ public class LottoService {
         return getLottoResult(purchaseQuantity);
     }
 
+    public List<Integer> createWinningNumbers(List<Integer> winningNumbers) {
+        return new Lotto(winningNumbers).getNumbers();
+    }
+
     private int calculatePurchaseQuantity(int price) {
         return price / LOTTO_PRICE;
     }
 
-    private LottoResultDto getLottoResult(int purchaseQuantity){
+    private LottoResultDto getLottoResult(int purchaseQuantity) {
         List<Lotto> lottoList = getLottoList(purchaseQuantity);
         return new LottoResultDto(purchaseQuantity, lottoList);
     }
 
-    private List<Lotto> getLottoList(int purchaseQuantity){
-        return IntStream.range(0,purchaseQuantity)
+    private List<Lotto> getLottoList(int purchaseQuantity) {
+        return IntStream.range(0, purchaseQuantity)
                 .mapToObj(i -> new Lotto(getRandomNumbers()))
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> getRandomNumbers(){
+    private List<Integer> getRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }
