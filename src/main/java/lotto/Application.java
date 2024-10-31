@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.round;
@@ -38,7 +35,15 @@ public class Application {
         Lotto answer = new Lotto(checkWinNumber(rawWinningInput));
         System.out.println(LOTTO_BONUS_INPUT);
         String rawBonus  = Console.readLine();
-        checkLottoRange(parseInt(rawBonus));
+        Integer bonus = parseInt(rawBonus);
+        List<MyResult> resultList = new ArrayList<>();
+        //로또 결과 저장하기
+        for(int i = 0; i < lottoCount; i++){
+            MyResult gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
+            resultList.add(gradedLotto);
+        }
+
+        checkLottoRange(bonus);
         System.out.println(WIN_STATICS);
     }
 
@@ -70,5 +75,4 @@ public class Application {
     public static double getReturn(Integer purchasePrice, Integer winnings){
         return Math.round((double)(winnings - purchasePrice)/100);
     }
-
 }
