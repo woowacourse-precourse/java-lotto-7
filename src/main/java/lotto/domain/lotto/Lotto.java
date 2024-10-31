@@ -50,6 +50,16 @@ public class Lotto {
         return number < 1 || number > 45;
     }
 
+    public int match(Lotto otherLotto) {
+        int count = 0;
+        for (int number: otherLotto.numbers) {
+            if (contains(number)) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
     public boolean contains(Integer number) {
         return numbers.contains(number);
     }

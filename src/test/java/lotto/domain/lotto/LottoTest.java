@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import static lotto.exception.message.LottoExceptionMessage.DUPLICATE_NUMBER_INPUT;
 import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_COUNT;
 import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -47,6 +48,39 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_NUMBER_RANGE.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호가 모두 일치할 경우, 6을 반환한다.")
+    void givenLottoAndOtherLotto_whenMatch_thenReturnAllMatchedCount() {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+
+        int result = lotto.match(otherLotto);
+
+        assertThat(result).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("로또 번호가 하나도 일치하지 않을 경우, 0을 반환한다.")
+    void givenLottoAndOtherLotto_whenMatch_thenReturnZeroMatchedCount() {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = Lotto.from(List.of(23, 24, 25, 26, 27, 28));
+
+        int result = lotto.match(otherLotto);
+
+        assertThat(result).isZero();
+    }
+
+    @Test
+    @DisplayName("로또 번호 중 일부만 같을 경우, 일부 개수를 반환한다.")
+    void givenLottoAndOtherLotto_whenMatch_thenReturnTwoMatchedCount() {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = Lotto.from(List.of(23, 24, 3, 4, 27, 28));
+
+        int result = lotto.match(otherLotto);
+
+        assertThat(result).isEqualTo(2);
     }
 
 }

@@ -8,12 +8,12 @@ import lotto.exception.WinningNumberException;
 
 public class WinningNumber {
 
-    private final Lotto winningNumbers;
+    private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningNumber(Lotto winningNumbers, int bonusNumber) {
-        validateBonusNumber(winningNumbers, bonusNumber);
-        this.winningNumbers = winningNumbers;
+    public WinningNumber(Lotto winningLotto, int bonusNumber) {
+        validateBonusNumber(winningLotto, bonusNumber);
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -34,12 +34,11 @@ public class WinningNumber {
         }
     }
 
-    @Override
-    public String toString() {
-        return "WinningNumber{" +
-                "winningNumbers=" + winningNumbers +
-                ", bonusNumber=" + bonusNumber +
-                '}';
+    public Rank match(Lotto lotto) {
+        return Rank.of(
+                winningLotto.match(lotto),
+                lotto.contains(bonusNumber)
+        );
     }
 
 }
