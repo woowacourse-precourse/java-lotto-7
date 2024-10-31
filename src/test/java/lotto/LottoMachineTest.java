@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.LottoMachine.AMOUNT_ERROR_MSG;
+import static lotto.LottoMachine.LOTTO_NUMBER_ERROR_MSG;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -65,5 +66,26 @@ class LottoMachineTest {
         Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(AMOUNT_ERROR_MSG);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 45})
+    public void 로또번호_정상테스트(int number) throws Exception {
+        //Given
+
+        //When, Then
+        Assertions.assertThatCode(() -> LOTTO_MACHINE.validateLottoNumber(number))
+                .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46, 2147483647})
+    public void 로또번호_예외테스트(int number) throws Exception {
+        ///Given
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.validateLottoNumber(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_ERROR_MSG);
     }
 }
