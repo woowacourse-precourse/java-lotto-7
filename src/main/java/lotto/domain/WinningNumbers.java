@@ -9,4 +9,15 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> numbers) {
         this.numbers = new Lotto(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers.getNumbers();
+    }
+
+    public void setBonusNumber(int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 있습니다.");
+        }
+        bonusNumber = number;
+    }
 }

@@ -7,8 +7,8 @@ import lotto.domain.WinningNumbers;
 
 public class InputView {
     private final static String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
-    private final static String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private final static String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private final static String INPUT_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.";
+    private final static String INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
 
     private final InputHandler inputHandler;
 
@@ -19,22 +19,26 @@ public class InputView {
     public PurchaseAmount readPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
         final String input = Console.readLine();
-        final int validateNumber = inputHandler.validateNumber(input);
-        return new PurchaseAmount(validateNumber);
+        final int number = inputHandler.validateNumber(input);
+        return new PurchaseAmount(number);
     }
 
     public WinningNumbers readWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
         final String input = Console.readLine();
         inputHandler.checkNull(input);
-        List<Integer> numbers = inputHandler.parsedNumbers(input);
-        for (Integer number : numbers) {
+        final List<Integer> numbers = inputHandler.parsedNumbers(input);
+        for (final Integer number : numbers) {
             inputHandler.checkNumberRange(number);
         }
         return new WinningNumbers(numbers);
     }
 
-//    public void readBonusNumber() {
-//        System.out.println(INPUT_BONUS_NUMBER);
-//    }
+    public int readBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER);
+        final String input = Console.readLine();
+        final int number = inputHandler.validateNumber(input);
+        inputHandler.checkNumberRange(number);
+        return number;
+    }
 }

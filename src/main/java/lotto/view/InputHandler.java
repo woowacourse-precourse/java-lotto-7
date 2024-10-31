@@ -21,8 +21,8 @@ public class InputHandler {
     }
 
     public List<Integer> parsedNumbers(String input) {
-        List<Integer> parsedNumbers = new ArrayList<>();
-        String[] numbers = input.split(DELIMITER);
+        final List<Integer> parsedNumbers = new ArrayList<>();
+        final String[] numbers = input.split(DELIMITER);
         for (String number : numbers) {
             parsedNumbers.add(validateNumber(number));
         }
