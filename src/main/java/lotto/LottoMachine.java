@@ -9,7 +9,6 @@ public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
 
-
     public List<Lotto> creatLotto(int amount) {
         int count = amountToCount(amount);
 
@@ -22,6 +21,13 @@ public class LottoMachine {
         }
 
         return lottos;
+    }
+
+    public Lotto createWinningLotto(List<Integer> winningNumbers) {
+
+        Lotto lotto = new Lotto(winningNumbers);
+
+        return lotto;
     }
 
     private int amountToCount(int amount) {
