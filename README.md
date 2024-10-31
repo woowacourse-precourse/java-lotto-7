@@ -11,8 +11,12 @@
 
 ### 검증 기능
 - [ ] 구입 금액은 1000원 단위로 나누어 떨어져야 한다.
+  - [ ] 예외 : 1200, 1230, 1234, 1000.1, -1000, 숫자x
 - [ ] 로또 번호는 1~45의 양의 정수여야 한다.
+  - [ ] 예외 : <0, >45, 1.5 
 - [ ] 로또 번호는 쉼표(,)를 기준으로 구분한다.
+  - [ ] 예외 : 구분자가 쉼표x
+- [ ] 로또 번호의 갯수는 6개여야 한다.
 
 ### 계산 기능
 - [ ] 1~45의 무작위 숫자 6개를 생성하는 기능
@@ -119,5 +123,26 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+### Lotto 클래스
+- 제공된 Lotto 클래스를 사용하여 구현해야 한다.
+- Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
+- numbers의 접근 제어자인 private은 변경할 수 없다.
+- Lotto의 패키지를 변경할 수 있다.
+```Java
+public class Lotto {
+    private final List<Integer> numbers;
 
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
 
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    // TODO: 추가 기능 구현
+}
+```
