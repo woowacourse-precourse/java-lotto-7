@@ -20,8 +20,8 @@ public class BuyLottoController {
         this.buyPrice = new BuyPrice(price);
     }
 
-    public BuyPrice getBuyPrice() {
-        return buyPrice;
+    public Integer getBuyCount() {
+        return this.buyPrice.getPrice() / 1000;
     }
 
 }
