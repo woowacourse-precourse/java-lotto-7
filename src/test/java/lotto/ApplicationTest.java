@@ -71,6 +71,25 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("당첨 번호 예외처리")
+    void numberError() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE, "로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
+        });
+
+        assertSimpleTest(() -> {
+            runException("3000", "a");
+            assertThat(output()).contains(ERROR_MESSAGE, "로또 번호는 중복되지 않는 6개의 숫자여야 합니다.");
+        });
+
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,50,6", "1,2,3,4,5,6,-1");
+            assertThat(output()).contains(ERROR_MESSAGE, "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
