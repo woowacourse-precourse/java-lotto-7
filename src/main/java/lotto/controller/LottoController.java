@@ -16,21 +16,16 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void startLottoSales()  {
+    public void startLottoSales() {
         outputView.printMessage(OutputMessage.INPUT_PURCHASE_AMOUNT);
         String inputCost = inputView.InputPurchaseAmount();
+        boolean isValidNumber = lottoService.isValidNumber(inputCost);
+
         int parsedPurchaseAmount = lottoService.parseStringToInt(inputCost);
+        lottoService.isDivisibleByThousand(parsedPurchaseAmount);
 
 
     }
-
-
-
-
-
-
-
-
 
 
 }
