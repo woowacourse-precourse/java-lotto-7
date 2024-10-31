@@ -24,6 +24,7 @@ public class WinningController {
 		setNumberOfWinning();
 		countRank();
 		showWinningResult();
+		showRateOfReturn();
 	}
 
 	private void setNumberOfWinning() {
@@ -44,4 +45,16 @@ public class WinningController {
 	private void showWinningResult() {
 		outputView.printWinningResult(lottos.getWinningResult());
 	}
+
+	private void showRateOfReturn() {
+		outputView.printRateOfReturn(computeRateOfReturn());
+	}
+
+	private double computeRateOfReturn() {
+		long totalPrize = lottos.calculateWinningPrize();
+		int buyingMoney = lottos.getLottos().size() * 1000;
+
+		return totalPrize / (double)buyingMoney * 100;
+	}
+
 }

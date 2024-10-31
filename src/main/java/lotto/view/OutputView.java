@@ -12,6 +12,7 @@ public class OutputView {
 	private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
 	private static final String DASH_THREE = "---";
 	private static final String NUMBER_FORMAT = "%d개\n";
+	private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
 	public void printBuyingNumber(int buyingNumber) {
 		System.out.println();
@@ -25,7 +26,7 @@ public class OutputView {
 		System.out.println();
 	}
 
-	public void printWinningResult(HashMap<String, Long> winningResult) {
+	public void printWinningResult(HashMap<LottoRank, Integer> winningResult) {
 		System.out.println();
 		System.out.println(WINNING_STATISTICS_MESSAGE);
 		System.out.println(DASH_THREE);
@@ -35,7 +36,11 @@ public class OutputView {
 				continue;
 			}
 			System.out.print(rank);
-			System.out.printf(NUMBER_FORMAT, winningResult.get(rank.name()));
+			System.out.printf(NUMBER_FORMAT, winningResult.get(rank));
 		}
+	}
+
+	public void printRateOfReturn(double rateOfReturn) {
+		System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
 	}
 }

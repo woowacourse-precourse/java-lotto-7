@@ -13,11 +13,11 @@ public class Lottos {
 	private static final int DIVISOR = 1000;
 
 	private List<Lotto> lottos = new ArrayList<>();
-	private HashMap<String, Long> winningResult = new HashMap<>();
+	private HashMap<LottoRank, Integer> winningResult = new HashMap<>();
 
 	public Lottos() {
 		for (LottoRank rank : LottoRank.values()) {
-			winningResult.put(rank.name(), 0L);
+			winningResult.put(rank, 0);
 		}
 	}
 
@@ -25,7 +25,7 @@ public class Lottos {
 		return lottos;
 	}
 
-	public HashMap<String, Long> getWinningResult() {
+	public HashMap<LottoRank, Integer> getWinningResult() {
 		return winningResult;
 	}
 
@@ -57,8 +57,18 @@ public class Lottos {
 	}
 
 	public void addRank(LottoRank rank) {
-		long updateCount = winningResult.get(rank.name()) + 1;
-		winningResult.put(rank.name(), updateCount);
+		int updateCount = winningResult.get(rank) + 1;
+		winningResult.put(rank, updateCount);
+	}
+
+	public long calculateWinningPrize() {
+		long totalPrize = 0;
+
+		for(LottoRank rank : LottoRank.values()) {
+			totalPrize += (long)rank.getPrize() * winningResult.get(rank);
+		}
+
+		return totalPrize;
 	}
 
 }
