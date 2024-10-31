@@ -30,7 +30,7 @@ public class LottoController {
 
     private void processInput() {
         processMoneyInput();
-        processWinnerNumbersInput();
+        processWinningNumbersInput();
         processBonusNumberInput();
     }
 
@@ -44,12 +44,12 @@ public class LottoController {
         });
     }
 
-    private void processWinnerNumbersInput() {
+    private void processWinningNumbersInput() {
         continueUntilNormalInput(() -> {
-            String winnerNumbersInputRaw = inputView.getWinnerNumbersInput();
-            List<Integer> winnerNumbersInput = inputFormatter.formatWinningNumbersInput(winnerNumbersInputRaw);
+            String winningNumbersInputRaw = inputView.getWinningNumbersInput();
+            List<Integer> winningNumbersInput = inputFormatter.formatWinningNumbersInput(winningNumbersInputRaw);
 
-            lottoService.setWinnerLotto(winnerNumbersInput);
+            lottoService.setWinningLotto(winningNumbersInput);
         });
     }
 

@@ -25,8 +25,8 @@ public class LottoService {
                 .toList();
     }
 
-    public void setWinnerLotto(List<Integer> winnerNumbers) {
-        this.winningLotto = new WinningLotto(new Lotto(winnerNumbers));
+    public void setWinningLotto(List<Integer> winningNumbers) {
+        this.winningLotto = new WinningLotto(new Lotto(winningNumbers));
     }
 
     public void setBonusNumber(int bonusNumber) {

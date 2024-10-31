@@ -14,8 +14,8 @@ public class InputFormatter {
     }
 
     public List<Integer> formatWinningNumbersInput(String winningNumbersInput) {
-        validateWinnerNumbersInput(winningNumbersInput);
-        return formatWinnerNumbers(winningNumbersInput);
+        validateWinningNumbersInput(winningNumbersInput);
+        return formatWinningNumbers(winningNumbersInput);
     }
 
     public int formatBonusNumberInput(String bonusNumberInput) {
@@ -29,11 +29,11 @@ public class InputFormatter {
         validateMoneyUnit(moneyInput);
     }
 
-    private void validateWinnerNumbersInput(String winnerNumbersInput) {
+    private void validateWinningNumbersInput(String winningNumbersInput) {
         try {
-            List<String> winnerNumbers = Arrays.asList(winnerNumbersInput.split(DELIMITER));
-            for (String winnerNumber : winnerNumbers) {
-                Integer.parseInt(winnerNumber);
+            List<String> winningNumbers = Arrays.asList(winningNumbersInput.split(DELIMITER));
+            for (String winningNumber : winningNumbers) {
+                Integer.parseInt(winningNumber);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식이 잘못되었습니다.");
@@ -70,8 +70,8 @@ public class InputFormatter {
         }
     }
 
-    private List<Integer> formatWinnerNumbers(String winnerNumbersInput) {
-        return Arrays.stream(winnerNumbersInput.split(DELIMITER))
+    private List<Integer> formatWinningNumbers(String winningNumbersInput) {
+        return Arrays.stream(winningNumbersInput.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
     }

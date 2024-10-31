@@ -9,7 +9,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public String getWinnerNumbersInput() {
+    public String getWinningNumbersInput() {
         System.out.println("\n당첨 번호를 입력해주세요.");
         return Console.readLine();
     }
