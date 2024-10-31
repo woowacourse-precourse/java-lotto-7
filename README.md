@@ -68,7 +68,7 @@
 - [x] LottoResult
 - [x] LottoBuyer
 ### View
-- [ ] InputView
+- [x] InputView
 - [ ] OutputView
 ### Controller
 - [ ] LottoGameController
