@@ -11,5 +11,9 @@ public class Application {
         if(budget<1000){
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
+
+        int count = budget/1000;
+        System.out.println();
+        System.out.println(count+"개를 구매했습니다.");
     }
 }
