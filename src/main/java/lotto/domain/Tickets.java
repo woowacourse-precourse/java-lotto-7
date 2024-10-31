@@ -8,10 +8,16 @@ import lotto.util.RandomUtil;
 
 public class Tickets {
 
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public Tickets(TicketCount count) {
         this.lottos = generateLottoTickets(count);
+    }
+
+    public List<String> getTicketsInfo() {
+        return lottos.stream()
+                .map(Lotto::createNumberInfo)
+                .toList();
     }
 
     private List<Lotto> generateLottoTickets(TicketCount count) {
