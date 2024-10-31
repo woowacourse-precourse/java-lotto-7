@@ -21,6 +21,6 @@ public class LotteryService {
 
         lotteryValidator.validatePurchaseAmount(purchaseAmount);
 
-        return purchaseAmount;
+        return purchaseAmount / 1000;
     }
 }
