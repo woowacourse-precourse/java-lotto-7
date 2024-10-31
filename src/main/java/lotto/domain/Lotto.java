@@ -37,4 +37,14 @@ public class Lotto {
     public boolean contains(int number) {
         return numbers.contains(number);
     }
+
+    public int getMatchCount(List<Integer> winningNumbers) {
+        int count = 0;
+        for (final Integer number : winningNumbers) {
+            if (numbers.contains(number)) {
+                ++count;
+            }
+        }
+        return count;
+    }
 }

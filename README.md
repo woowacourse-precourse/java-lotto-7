@@ -31,7 +31,7 @@
     - [x] 번호의 개수가 6개가 아니면 예외처리 - Lotto#validate()
     - [x] 중복된 번호가 있으면 예외처리 - Lotto#checkDuplicateNumbers()
 - [x] 로또 번호중에 숫자가 포함되어 있는지 확인 - Lotto#contains()
-- [ ] 포함되어 있는 숫자의 갯수를 계산
+- [x] 포함되어 있는 숫자의 개수 구하기 - Lotto#getMatchCount()
 - [ ] 수악률을 계산
 
 ### 입력

@@ -1,12 +1,15 @@
 package lotto.domain;
 
+import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -37,5 +40,30 @@ class LottoTest {
 
         //then
         Assertions.assertThat(contains).isEqualTo(excepted);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideTest")
+    void 포함하고_있는_숫자의_개수_구하기(List<Integer> winningNumbers, int expected) {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        int matchCount = lotto.getMatchCount(winningNumbers);
+
+        // then
+        Assertions.assertThat(matchCount).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> provideTest() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 7), 5),
+                Arguments.of(List.of(1, 2, 3, 4, 7, 8), 4),
+                Arguments.of(List.of(1, 2, 3, 7, 8, 9), 3),
+                Arguments.of(List.of(1, 2, 7, 8, 9, 10), 2),
+                Arguments.of(List.of(1, 7, 8, 9, 10, 11), 1),
+                Arguments.of(List.of(7, 8, 9, 10, 11, 12), 0)
+        );
     }
 }

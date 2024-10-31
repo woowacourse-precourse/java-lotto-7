@@ -14,8 +14,7 @@ class WinningNumbersTest {
         //given
         final WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
 
-        //when
-        //then
+        //when & then
         assertThatThrownBy(() -> winningNumbers.setBonusNumber(number)).isInstanceOf(IllegalArgumentException.class);
     }
 }
