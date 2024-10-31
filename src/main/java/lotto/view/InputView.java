@@ -10,8 +10,6 @@ import lotto.validator.LottoValidator;
 
 public class InputView {
 
-    LottoValidator validator = new LottoValidator();
-
     public String getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
@@ -23,10 +21,7 @@ public class InputView {
         String[] winningNumberInput = Console.readLine().split(LOTTO_NUM_DELIMITER);
         List<Integer> winningLotto = convertArrayToList(winningNumberInput);
 
-        Lotto winningLottoTicket = new Lotto(winningLotto);
-        validator.duplicateNumValidator(winningLottoTicket);
-
-        return winningLottoTicket;
+        return new Lotto(winningLotto);
     }
 
     public int getBonusNumber() {
@@ -37,6 +32,7 @@ public class InputView {
     private List<Integer> convertArrayToList(String[] array) {
         List<Integer> list = new ArrayList<>();
         for (String number: array) {
+            number = number.trim();
             list.add(Integer.parseInt(number));
         }
         return list;
