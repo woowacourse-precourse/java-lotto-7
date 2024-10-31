@@ -91,7 +91,45 @@ class UserInputTest {
         //then
         assertThatThrownBy(() -> userInput.getLottoWinningNumbers(lottoWinningNumbersInput)).isInstanceOf(
                 IllegalArgumentException.class).hasMessageContaining(
-                "[ERROR] 로또 당첨 번호는 " + userInput.LOTTO_NUMBER_MINIMUM_VALUE + "~" + userInput.LOTTO_NUMBER_MAXIMUM_VALUE
+                "[ERROR] 로또 번호는 " + userInput.LOTTO_NUMBER_MINIMUM_VALUE + "~" + userInput.LOTTO_NUMBER_MAXIMUM_VALUE
+                        + "까지 입니다.");
+    }
+
+    @Test
+    void 유효한_로또_당첨_보너스_번호_입력_테스트() {
+
+        //given
+        String lottoWinningBonusNumberInput = "8";
+
+        //when
+        int winningBonusNumber = userInput.getLottoWinningBonusNumber(lottoWinningBonusNumberInput);
+
+        //then
+        assertThat(winningBonusNumber).isEqualTo(8);
+
+    }
+
+    @Test
+    void 로또_당첨_보너스_입력을_숫자로_변환할_수_없을_때_예외_테스트() {
+
+        //given
+        String lottoWinningBonusNumberInput = "eight";
+
+        //then
+        assertThatThrownBy(() -> userInput.getLottoWinningBonusNumber(lottoWinningBonusNumberInput)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining("[ERROR] 로또 당첨 보너스 번호는 숫자입니다.");
+    }
+
+    @Test
+    void 로또_당첨_보너스_입력이_1부터_45범위_밖일_시_예외_테스트() {
+
+        //given
+        String lottoPurchaseAmountInput = "46";
+
+        //then
+        assertThatThrownBy(() -> userInput.getLottoWinningBonusNumber(lottoPurchaseAmountInput)).isInstanceOf(
+                IllegalArgumentException.class).hasMessageContaining(
+                "[ERROR] 로또 번호는 " + userInput.LOTTO_NUMBER_MINIMUM_VALUE + "~" + userInput.LOTTO_NUMBER_MAXIMUM_VALUE
                         + "까지 입니다.");
     }
 

@@ -37,7 +37,7 @@ public class UserInput {
 
             for (int winningNumberId = 0; winningNumberId < winningNumbers.length; winningNumberId++) {
                 winningNumbers[winningNumberId] = Integer.parseInt(numbersSplit[winningNumberId]);
-                validateWinningNumber(winningNumbers[winningNumberId]);
+                validateLottoNumber(winningNumbers[winningNumberId]);
             }
 
             return winningNumbers;
@@ -54,13 +54,24 @@ public class UserInput {
         }
     }
 
-    private void validateWinningNumber(int winningNumberId) {
+    private void validateLottoNumber(int winningNumberId) {
 
         if (!(LOTTO_NUMBER_MINIMUM_VALUE <= winningNumberId && winningNumberId <= LOTTO_NUMBER_MAXIMUM_VALUE)) {
             throw new IllegalArgumentException(
-                    "[ERROR] 로또 당첨 번호는 " + LOTTO_NUMBER_MINIMUM_VALUE + "~" + LOTTO_NUMBER_MAXIMUM_VALUE + "까지 입니다.");
+                    "[ERROR] 로또 번호는 " + LOTTO_NUMBER_MINIMUM_VALUE + "~" + LOTTO_NUMBER_MAXIMUM_VALUE + "까지 입니다.");
         }
 
+    }
+
+    public int getLottoWinningBonusNumber(String winningBonusNumberInput) {
+        try {
+            int winningBonusNumber = Integer.parseInt(winningBonusNumberInput);
+            validateLottoNumber(winningBonusNumber);
+
+            return winningBonusNumber;
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 보너스 번호는 숫자입니다.");
+        }
     }
 
 }
