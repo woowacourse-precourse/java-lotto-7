@@ -24,9 +24,10 @@ public class LottoGameController {
     }
 
     private void gameResult() {
-        // 기능 추가 예정
+        int[] lottoRank = lottoTickets.createLottoRank(correctLotto, bonus);
+        double rateOfReturn = money.calculateRateOfReturn(lottoRank);
+        outputView.resultMessage(lottoRank, rateOfReturn);
     }
-}
 
     private void createBonusNumber() {
         while (true) {
