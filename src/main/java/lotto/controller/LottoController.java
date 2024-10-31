@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.Lotto;
 import lotto.util.Calculator;
+import lotto.validator.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,8 +24,8 @@ public class LottoController {
         output.printLottoTicket(userLotto,lottoTicketNumber);
 
         List<Integer> winningLotto = inputWinningNumber();
-        int bonusNumber = inputBonusNumber();
-        // 보너스 번호 당첨 번호와 중복되는지 확인
+        int bonusNumber = inputBonusNumber(winningLotto);
+
         // 발행된 로또와 당첨 로또, 보너스 비교
     }
 
@@ -46,12 +47,14 @@ public class LottoController {
         }
     }
 
-    public int inputBonusNumber(){
+    public int inputBonusNumber(List<Integer> winningLotto){
         try{
-            return input.inputBonusNumber();
+            int bonusNumber = input.inputBonusNumber();
+            Validator.validateBonusDuplicate(winningLotto, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningLotto);
         }
     }
 }
