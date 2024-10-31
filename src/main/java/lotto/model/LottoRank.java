@@ -38,10 +38,6 @@ public enum LottoRank {
         return total.multiply(BigInteger.valueOf(count));
     }
 
-    public int getPrize() {
-        return prize;
-    }
-
     public String getResultMessage() {
        if (this == SECOND) {
            return getFormattedResultMessage(BONUS_RESULT_MESSAGE);
