@@ -15,11 +15,11 @@ public enum LottoPrize {
         this.price = price;
     }
 
-    public String getStringPrice() {
+    public String getStringPrize() {
         return price;
     }
 
-    public int getIntPrice() {
+    public int getIntPrize() {
         return parseInt(price.replaceAll(",", ""));
     }
 }
