@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public int readPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -16,13 +17,22 @@ public class InputView {
         return Integer.parseInt(amount);
     }
 
-    private void validateNotNullOrBlank(String amount) {
-        if (amount == null || amount.isBlank())
+    public String readWinningNumber() {
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        String inputWinning = Console.readLine();
+
+        validateNotNullOrBlank(inputWinning);
+
+        return inputWinning;
+    }
+
+    private void validateNotNullOrBlank(String input) {
+        if (input == null || input.isBlank())
             throw new IllegalArgumentException();
     }
 
-    private void validateIsNumeric(String amount) {
-        if (!amount.chars().allMatch(Character::isDigit))
+    private void validateIsNumeric(String input) {
+        if (!input.chars().allMatch(Character::isDigit))
             throw new IllegalArgumentException();
     }
 }
