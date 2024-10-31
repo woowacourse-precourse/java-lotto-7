@@ -32,6 +32,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printLottoNumber(final List<LottoNumber> lottoNumbers) {
+        printlnMessage(String.format(LOTTOS_TITLE, lottoNumbers.size()));
         final String message = lottoNumbers.stream()
                 .map(Record::toString)
                 .collect(Collectors.joining(LINE_SEPARATOR));
