@@ -2,16 +2,30 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+
+    @ParameterizedTest
+    @MethodSource("provideNumbersGreaterOrLess6InLength")
+    void 로또_번호의_개수가_6개보다_적거나_많으면_예외가_발생한다(List<Integer> numbers) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new Lotto(numbers));
+    }
+
+    private static Stream<Arguments> provideNumbersGreaterOrLess6InLength() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6, 7)),
+                Arguments.of(List.of(1, 2, 3, 4, 5))
+        );
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
