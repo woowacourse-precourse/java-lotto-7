@@ -1,10 +1,9 @@
-package lotto.input;
+package lotto.view;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import lotto.view.Input;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ public class InputTest {
 
   @DisplayName("애플리케이션을 실행하면 사용자가 로또 구매 금액을 입력하여 값을 읽고 로또 발행 수량까지 요청한다")
   @Test
-  void runApplicationTest() throws Exception{
+  void runApplicationTest() {
     //given
     String given = "8000";
     System.setIn(setReadLine(given));
