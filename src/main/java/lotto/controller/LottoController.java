@@ -4,12 +4,15 @@ import lotto.view.InputView;
 
 public class LottoController {
 
-    Integer buyAmount;
-    String winNumbers;
-    Integer bonusNumber;
+    private String winNumbersStr;
 
-    public static void run(){
-        InputView.inputBuyAmount();
+    private Integer buyAmount;
+    private String winNumbers;
+    private Integer bonusNumber;
+
+    public void run(){
+        buyAmount = InputView.inputBuyAmount();
+        winNumbersStr = InputView.inputWinNumbers();
     }
 
 }
