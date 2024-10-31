@@ -23,6 +23,12 @@ public class InputView {
         return answer;
     }
 
+     public static int bonusNumberInput(){
+        System.out.println("보너스 번호 입력해주세요. ");
+        return Integer.parseInt(Console.readLine().trim());
+     }
+
+
 
 
 
