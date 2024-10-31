@@ -1,6 +1,5 @@
 package lotto.lotto.winning.domain;
 
-import lotto.buyer.infrastructure.Won;
 import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,7 @@ public class WinningCalculatorTest {
 
     @BeforeEach
     void init() {
-        winningCalculator = new WinningCalculator(new Won());
+        winningCalculator = new WinningCalculator();
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
     }
