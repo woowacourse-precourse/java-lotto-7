@@ -10,7 +10,7 @@ class PurchaseAmountTest {
     @Test
     @DisplayName("구입 금액 단위 테스트")
     public void validateUnitTest() {
-        double amount = 1123.0;
+        String amount = "1234";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new PurchaseAmount(amount);
         });
@@ -20,7 +20,7 @@ class PurchaseAmountTest {
     @Test
     @DisplayName("구입 금액 최대 금액 초과 테스트")
     public void validateMax() {
-        double amount = 100001000.0;
+        String amount = "100001000";
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new PurchaseAmount(amount);
         });
@@ -31,7 +31,7 @@ class PurchaseAmountTest {
     @DisplayName("구입 금액에 따른 로또 구매 개수 테스트")
     public void getNumberOfLottoTest() {
         //given
-        double amount = 8000.0;
+        String amount = "8000";
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
         //when
         int numberOfLotto = purchaseAmount.getNumberOfLotto();

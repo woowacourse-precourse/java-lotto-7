@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.Bonus;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningNumber;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,38 +10,47 @@ import lotto.view.OutputView;
 public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
-    private LottoService lottoService;
+    private final LottoService lottoService;
 
     public LottoController(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
         this.inputView = inputView;
+        lottoService = new LottoService();
     }
 
     public void start() {
-        PurchaseAmount purchaseAmount = readPurchaseAmount();
-        this.lottoService = new LottoService(purchaseAmount);
-        String lottosState = lottoService.getLottosState();
-        printLottoPurchaseResult(purchaseAmount,lottosState);
-        WinningLotto winningLotto = readWinningNumber();
-
+        readPurchaseAmount();
+        lottoIssuance();
+        printLottoPurchaseResult();
+        WinningNumber winningNumber = readWinningNumber();
+        Bonus bonus = readBouns();
+        lottoService.readWinningLotto(winningNumber,bonus);
     }
 
-    private WinningLotto readWinningNumber() {
+    private void lottoIssuance() {
+        lottoService.lottoIssuance();
+    }
+
+    private Bonus readBouns() {
+        outputView.printReadBonusNumber();
+        String bonusNumber = inputView.readLine();
+        return new Bonus(bonusNumber);
+    }
+
+    private WinningNumber readWinningNumber() {
         outputView.printReadWinningNumber();
         String winningNumber = inputView.readLine();
-        outputView.printReadBonusNumber();
-        return new WinningLotto(winningNumber);
+        return new WinningNumber(winningNumber);
     }
 
-    private void printLottoPurchaseResult(PurchaseAmount purchaseAmount, String lottosState) {
-        int numberOfLotto = purchaseAmount.getNumberOfLotto();
-        outputView.printLottoPurchaseResult(numberOfLotto);
-        outputView.printLottoState(lottosState);
+    private void printLottoPurchaseResult() {
+        String state = lottoService.getLottoPurchaseResult();
+        outputView.printLottoState(state);
     }
 
-    private PurchaseAmount readPurchaseAmount() {
+    private void readPurchaseAmount() {
         outputView.printReadPurchaseAmount();
-        double purchaseAmount = inputView.readPurchaseAmount();
-        return new PurchaseAmount(purchaseAmount);
+        String readLine = inputView.readLine();
+        lottoService.readPurchaseAmount(readLine);
     }
 }

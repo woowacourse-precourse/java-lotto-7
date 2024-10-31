@@ -1,6 +1,5 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.RandomNumbers;
 
@@ -15,6 +14,7 @@ public class LottoCollection {
             Lotto lotto = getRandomLotto();
             lottoList.add(lotto);
         }
+
     }
 
     private Lotto getRandomLotto() {

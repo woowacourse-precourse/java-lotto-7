@@ -2,23 +2,27 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class WinningLotto {
     private final Lotto winningLotto;
+    private final Bonus bonus;
 
-    public WinningLotto(String readLine) {
-        List<Integer> list;
-        try {
-            String[] split = readLine.split(",");
-            Stream<String> stream = Arrays.stream(split);
-            Stream<Integer> integerStream = stream.map(Integer::parseInt);
-            list = integerStream.toList();
-        }catch (Exception e){
-            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
+    public WinningLotto(WinningNumber winningNumber, Bonus bonus) {
+        List<Integer> winningNumberList = winningNumber.getList();
+        this.winningLotto  = new Lotto(winningNumberList);
+        this.bonus = bonus;
+        validate();
+    }
+
+    private void validate() {
+        validateDuplication();
+    }
+
+    private void validateDuplication() {
+        String state = winningLotto.getState();
+        if(state.contains(bonus.getBonus())) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION_ERROR_MESSAGE);
         }
-        winningLotto = new Lotto(list);
     }
 }

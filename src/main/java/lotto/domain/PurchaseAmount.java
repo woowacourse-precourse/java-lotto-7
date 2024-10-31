@@ -7,10 +7,16 @@ public class PurchaseAmount {
     private static final double MAX_PURCHASE_AMOUNT = 100000000.0;
     private final double purchaseAmount;
 
-    public PurchaseAmount(double purchaseAmount) {
-        validateUnit(purchaseAmount);
-        validateMax(purchaseAmount);
-        this.purchaseAmount = purchaseAmount;
+    public PurchaseAmount(String purchaseAmount) {
+        double amount = 0;
+        try {
+            amount= Double.parseDouble(purchaseAmount);
+        }catch (Exception e) {
+
+        }
+        validateUnit(amount);
+        validateMax(amount);
+        this.purchaseAmount = amount;
     }
 
     private void validateMax(double purchaseAmount) {
