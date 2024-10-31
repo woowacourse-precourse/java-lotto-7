@@ -13,7 +13,7 @@ public class NumberParser {
         for(String number: splitNumbers) {
             trimNumbers.add(number.trim());
         }
-        NumberValidator.validateNumberString(trimNumbers);
+        NumberValidator.validateLottoNumberString(trimNumbers);
         return trimNumbers.stream().map(Integer::parseInt).toList();
     }
 
