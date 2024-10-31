@@ -31,4 +31,17 @@ class StoreTest {
 
         assertEquals(numbers.size(), numbers.stream().distinct().count());
     }
+
+    @Test
+    @DisplayName("구매된 로또의 개수가 올바른지 확인한다.")
+    void 구매된_로또의_개수가_올바른지_확인한다() {
+        Store store = new Store();
+        Money money = new Money(5500);
+
+        int numOfLotto = 5;
+        List<Lotto> lottos = store.sellLottos(money, numOfLotto);
+
+        assertEquals(lottos.size(), numOfLotto);
+    }
+
 }

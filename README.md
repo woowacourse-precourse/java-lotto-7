@@ -104,7 +104,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [ ] 수익률을 반환하는 기능 추가
 - Store
 - [x] 로또 번호를 발행하는 기능 추가
-
+- [x] 로또를 판매하는 기능 추가
 - Comparator
 - [ ] 일치하는 수를 계산하는 기능 추가
 - [ ] 일치하는 수를 반환하는 기능 추가
