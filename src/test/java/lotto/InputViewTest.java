@@ -36,6 +36,16 @@ public class InputViewTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("입력된 당첨번호의 구분자가 , 가 아닌경우")
+    public void NotDelimiterWinnumber(){
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1000", "1|2|3|4|5|6"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(ErrorMessage.NOTDELIMITERWINNUMBERS.getMessage())
+        );
+    }
+
 
     @Override
     public void runMain() {
