@@ -1,12 +1,14 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoRules;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lotto.utils.LottoErrorMessage;
+import lotto.domain.LottoErrorMessage;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -33,5 +35,32 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessage.INVALID_LOTTO_NUMBER_IN_RANGE.getMessage());
 
+    }
+
+    @DisplayName("createRandomLotto() 메서드는 6개의 숫자를 생성해야 한다")
+    @Test
+    void createRandomLottoGeneratesSixNumbers() {
+        Lotto lotto = Lotto.createRandomLotto();
+        List<Integer> numbers = lotto.getNumbers();
+        assertThat(numbers).hasSize(LottoRules.NUMBER_COUNT.getValue());
+    }
+
+
+    @DisplayName("createRandomLotto() 메서드는 1~45 사이의 숫자를 생성해야 한다")
+    @Test
+    void createRandomLottoGeneratesNumbersWithinRange() {
+        Lotto lotto = Lotto.createRandomLotto();
+        List<Integer> numbers = lotto.getNumbers();
+        assertThat(numbers).allMatch(number ->
+                number >= LottoRules.MIN_NUMBER.getValue() && number <= LottoRules.MAX_NUMBER.getValue()
+        );
+    }
+
+    @DisplayName("createRandomLotto() 메서드는 고유한 숫자를 생성해야 한다")
+    @Test
+    void createRandomLottoGeneratesUniqueNumbers() {
+        Lotto lotto = Lotto.createRandomLotto();
+        List<Integer> numbers = lotto.getNumbers();
+        assertThat(numbers).doesNotHaveDuplicates();
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utils.LottoErrorMessage;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,10 +14,24 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto createRandomLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+                LottoRules.MIN_NUMBER.getValue(),
+                LottoRules.MAX_NUMBER.getValue(),
+                LottoRules.NUMBER_COUNT.getValue()
+        );
+        return new Lotto(randomNumbers);
+    }
+
+
     private void validate(List<Integer> numbers) {
         validateLottoNumCount(numbers);
         validateLottoNumbersInRange(numbers);
         checkNoDuplicateNumbers(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
 
