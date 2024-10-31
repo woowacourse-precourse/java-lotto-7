@@ -107,4 +107,15 @@ class WinningLottoTest {
                 .withMessage("[ERROR] 보너스 번호는 1~45 사이의 수만 가능합니다.");
     }
 
+    @DisplayName("보너스번호가 당첨번호와 중복되면 예외발생")
+    @Test
+    void 보너스번호가_당첨번호와_중복되면_예외발생() {
+        // given
+        WinningLottoInfo invalidBonusNumberWinningLottoInfo = new WinningLottoInfo("1,2,3,4,5,6", 3);
+
+        // then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningLotto(invalidBonusNumberWinningLottoInfo))
+                .withMessage("[ERROR] 당첨번호와 보너스번호가 중복되면 안됩니다.");
+    }
 }
