@@ -4,10 +4,13 @@ import java.util.List;
 import lotto.common.ErrorMessage;
 
 public class Lotto {
+    public static final int MIN = 1;
+    public static final int MAX = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
+        validateNumbersRange(numbers);
         this.numbers = numbers;
     }
 
@@ -17,9 +20,13 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(Integer number){
-        if(number < 1 || number > 45){
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45까지입니다.");
+    private void validateNumbersRange(List<Integer> numbers){
+        numbers.stream().forEach(number -> validateNumberRange(number));
+    }
+
+    private void validateNumberRange(Integer number) {
+        if(number < MIN || number > MAX){
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
