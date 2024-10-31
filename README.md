@@ -30,10 +30,12 @@
 
 - [ ] 당첨 번호와 로또번호를 비교하는 기능
 
-- [] 입금 금액과 당첨금액을 토대로 수익률을 계산하는 기능
+- [ ] 입금 금액과 당첨금액을 토대로 수익률을 계산하는 기능
     - [ ] 위의 결과를 출력하는 기능
 
-- [ ] `IllegalArgumentException` 예외 발생 시 Error Message 출력
+- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException 을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [ ] Exception 이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+
 
 
 - [ ] `enum`을 이용한 상수화
