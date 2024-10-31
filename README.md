@@ -137,7 +137,7 @@ View
                 <td rowspan="4"></td></tr><tr> 
         <td rowspan="1">View</td>
             <td>⬜ `WinningLottoUserInput`  당첨 번호 사용자 입력 처리 </td> </tr><tr> 
-        <td rowspan="1">WinningLottoCommand</td>
+        <td rowspan="1">LottoCommand</td>
             <td>⬜ `WinningLottoUserInput` 당첨 번호 반환</td> </tr><tr>
         <td rowspan="1">LottoService</td>
             <td>⬜ `WinningLottoUserInput`를 `WinningLotto`로 변환</td> </tr><tr> 
