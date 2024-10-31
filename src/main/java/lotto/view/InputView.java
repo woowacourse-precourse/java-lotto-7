@@ -12,12 +12,24 @@ public class InputView {
         String userInput;
         int count;
 
-        userInput = Console.readLine();
-        count = Utils.stringToInteger(userInput);
-        return count;
+        while (true) {
+            userInput = Console.readLine();
+            try {
+                validatePurchase(userInput);
+                count = Utils.stringToInteger(userInput);
+                return count;
+            } catch (NumberFormatException e) {
+                throw new NumberFormatException("[ERROR] 숫자가 아닙니다 : " + userInput);
+            }
+        }
     }
 
-    //금액 valiadate 구현
+    //금액 valiadate
+    public static void validatePurchase(String userInput) {
+        if (!Utils.isDigitOnly(userInput)) {
+            throw new NumberFormatException("숫자가 아닙니다 : " + userInput);
+        }
+    }
 
     //inputWinningNumber 구현
 
