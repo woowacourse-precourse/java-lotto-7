@@ -24,8 +24,6 @@ public class RateOfReturnTest {
         winningCalculator = new WinningCalculator();
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
-
-
     }
 
     @Test
