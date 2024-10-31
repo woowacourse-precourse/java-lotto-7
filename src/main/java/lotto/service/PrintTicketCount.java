@@ -26,6 +26,7 @@ public class PrintTicketCount {
         for (int i = 0; i < lottoTicketCount; i++) {
             makeLottoNumber();
         }
+        System.out.println();
     }
 
     private void makeLottoNumber() {

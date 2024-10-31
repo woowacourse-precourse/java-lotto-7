@@ -19,6 +19,7 @@ public class Lotto {
         if (!bonusCheck.add(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호는 중복될 수 없습니다.");
         }
+        System.out.println();
     }
 
     public List<Integer> getNumbers() {
