@@ -16,6 +16,7 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
+        int count = countLotto(money);
     }
 
     private static int getMoney() {
@@ -30,5 +31,9 @@ public class Application {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("로또 금액이 1개당 1000원이므로 1000원 단위로 입력하세요.");
         }
+    }
+
+    private static int countLotto(int money) {
+        return money / 1000;
     }
 }
