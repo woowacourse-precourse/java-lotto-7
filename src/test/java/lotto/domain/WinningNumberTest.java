@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningNumberTest {
     @Test
@@ -34,6 +36,13 @@ class WinningNumberTest {
     @Test
     void 당첨번호_보너스번호_중복_예외처리() {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 6)).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 46})
+    void 보너스번호_범위_예외처리(int value) {
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6), value)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 }
