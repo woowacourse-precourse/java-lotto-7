@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,16 +38,16 @@ public class Numbers {
     }
 
     private List<Number> parseStringToNumber(String numbers) {
-        return Stream.of(numbers.split(","))
+        return new ArrayList<>(Stream.of(numbers.split(","))
             .map(String::trim)
             .map(Number::new)
-            .toList();
+            .toList());
     }
 
     private List<Number> parseIntToNumber(List<Integer> numbers) {
-        return numbers.stream()
+        return new ArrayList<>(numbers.stream()
             .map(Number::new)
-            .collect(Collectors.toList());
+            .collect(Collectors.toList()));
     }
 
     public List<Number> getNumbers() {

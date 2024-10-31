@@ -19,11 +19,16 @@ public class LottoController {
         LottoStore lottoStore = new LottoStore();
         lottoStore.buyLotto(purchasePrice);
 
+        System.out.println();
         OutputView.printPurchasedLottoAmount(lottoStore.getPurchasedLottos().size());
         OutputView.printPurchasedLottoNumbers(lottoStore.getPurchasedLottos());
+        System.out.println();
 
         Numbers winNumbers = new Numbers(InputView.inputWinNumbers());
+        System.out.println();
+
         Number bonusNumber = new Number(InputView.inputBonusNumber());
+        System.out.println();
 
         if (winNumbers.contains(bonusNumber)) return ;//보너스 관련 로직 추가 필요;
 

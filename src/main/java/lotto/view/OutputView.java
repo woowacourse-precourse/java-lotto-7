@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 
 public class OutputView {
 
-    private static final String PURCHASED_LOTTO = "%d개를 구매했습니다%n";
+    private static final String PURCHASED_LOTTO = "%d개를 구매했습니다.%n";
     private static final String WIN_STATISTICS = "당첨 통계" + System.lineSeparator() + "---";
     private static final String WIN_STATISTICS_DETAIL = "%s - %d개%n";
     private static final String PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
