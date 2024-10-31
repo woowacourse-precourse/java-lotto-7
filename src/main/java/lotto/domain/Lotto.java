@@ -24,7 +24,7 @@ public class Lotto {
     private void validateDuplication(List<Integer> numbers) {
         HashSet<Integer> duplicatedNumbers = new HashSet<>(numbers);
         if (duplicatedNumbers.size() != SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
 }
