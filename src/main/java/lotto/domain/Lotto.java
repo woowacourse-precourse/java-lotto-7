@@ -18,7 +18,7 @@ public class Lotto {
         }
     }
 
-    private void validateNumber(List<Integer> numbers) {
+    public static void validateNumber(List<Integer> numbers) {
         numbers.forEach(number -> {
                     if (number < 1 || number > 45) {
                         throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
@@ -30,6 +30,10 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 존재하면 안됩니다.");
         }
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
 //    public List<Integer> getNumbers() {

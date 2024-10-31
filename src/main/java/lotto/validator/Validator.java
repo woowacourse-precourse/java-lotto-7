@@ -1,13 +1,11 @@
 package lotto.validator;
 
-import lotto.constants.ExceptionMessage;
-
 public class Validator {
-    public static int validateAmount(String input) {
+    public static int validateInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(ExceptionMessage.INVALID_TYPE_INPUT);
+            throw new NumberFormatException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
 }
