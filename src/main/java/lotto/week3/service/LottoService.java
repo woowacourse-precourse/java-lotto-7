@@ -1,20 +1,18 @@
-package lotto.week3.model;
+package lotto.week3.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.week3.dto.PurchaseRequestDto;
 
-public class AutomaticLotto {
+public class LottoService {
 
-
-    public static List<List<Integer>> lottoNumberPrinting(int money){
+    public static List<List<Integer>> lottoNumberPrinting(PurchaseRequestDto purchase){
         List<List<Integer>> answer = new ArrayList<>();
-        if(money % 1000 == 0){
-            for(int i = 0; i < money/1000; i++){
+            for(int i = 0; i < purchase.getLottoCount(); i++){
                 List<Integer> integers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
                 answer.add(integers);
             }
-        }
         return answer;
     }
 }

@@ -6,6 +6,7 @@ import lotto.week3.domain.Lotto;
 import lotto.week3.dto.PurchaseRequestDto;
 import lotto.week3.dto.WinningNumberRequestDto;
 import lotto.week3.model.LottoGenerator;
+import lotto.week3.model.LottoMatching;
 import lotto.week3.view.InputView;
 import lotto.week3.view.OutputView;
 
@@ -22,16 +23,6 @@ public class LottoController {
         List<Lotto> lottoList = LottoGenerator.generatorLottos(purchaseRequestDto.getLottoCount());
         OutputView.lottoOutput(lottoList);
 
-
-        /*
-        로또 구입 하기 ->  금액에 따른 자동 로또 번호 출력
-         */
-//        InputView inputView = new InputView();
-//        OutputView outputView = new OutputView();
-//        AutomaticLotto automaticLotto = new AutomaticLotto();
-//        List<List<Integer>> lottoNumberPrinting = automaticLotto.lottoNumberPrinting(purchaseAmount);
-
-
         // 뽀너스 입력, 당첨 번호 입력
         int numberInput = InputView.bonusNumberInput();
         List<Integer> winningNumber = InputView.winningNumberInput();
@@ -41,12 +32,8 @@ public class LottoController {
         /*
         로또 번호 매칭 - > 당첨번호랑 자동 발급된 번호 매칭
          */
-
-//        for(Lotto lotto: answer){
-//            int matchCount = lotto.matchCount(winningNumber);
-//
-//        }
-
+        LottoMatching lottoMatching = new LottoMatching(lottoList);
+        lottoMatching.mathing(winningNumberRequestDto.getWinningNumbers(), winningNumberRequestDto.getBonusNumber());
 
 
 
