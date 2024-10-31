@@ -31,7 +31,8 @@ public class Application {
         }
         outputnumbers(lottoList);
 
-        Lotto.inputWinningNumbers();
+        List<Integer> WinningNumbers = Lotto.inputWinningNumbers();
+        Lotto winningNumbers = new Lotto(WinningNumbers);
     }
 
     private static int getMoney() {
