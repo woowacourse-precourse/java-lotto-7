@@ -1,5 +1,13 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+import lotto.util.constant.LottoConstants;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static lotto.util.constant.LottoConstants.*;
+
 public class OutputView {
 
     /**
@@ -29,5 +37,12 @@ public class OutputView {
 
     public static void printBonusNumbersPrompt() {
         System.out.println(MSG_INPUT_BONUS_NUMBER);
+    }
+
+    public static void printNewLotto(List<Lotto> newLotto, int numOfLotto){
+        System.out.println( numOfLotto + RESULT_NEW_LOTTO_COUNT );
+        for (Lotto lotto : newLotto) {
+            System.out.println(lotto);
+        }
     }
 }
