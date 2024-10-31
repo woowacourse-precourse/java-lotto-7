@@ -10,4 +10,14 @@ public class WinningLotto extends Lotto {
         super(numbers);
         this.bonusNumber = bonusNumber;
     }
+
+    public int countMatchingNumber(List<Integer> comparedNumbers) {
+        int matchCount = 0;
+        for (Integer number : comparedNumbers) {
+            if (this.numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
 }

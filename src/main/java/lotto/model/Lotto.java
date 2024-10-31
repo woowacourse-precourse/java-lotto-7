@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
@@ -12,5 +12,9 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public int countMatchingNumber(WinningLotto winningLotto) {
+        return winningLotto.countMatchingNumber(this.numbers);
     }
 }

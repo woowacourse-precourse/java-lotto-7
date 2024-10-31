@@ -10,4 +10,8 @@ public class LottoTicket {
     public Lotto getLotto() {
         return lotto;
     }
+
+    public int countMatchingNumber(WinningLotto winningLotto) {
+        return lotto.countMatchingNumber(winningLotto);
+    }
 }

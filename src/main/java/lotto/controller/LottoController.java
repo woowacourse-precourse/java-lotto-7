@@ -43,6 +43,6 @@ public class LottoController {
         WinningLotto winningLotto = lottoService.registerWinningNumbers(parsedWinningNumbers,
                 Integer.parseInt(rawBonusNumber));
 
-
+        lottoService.countMatchingNumbers(customer, winningLotto);
     }
 }

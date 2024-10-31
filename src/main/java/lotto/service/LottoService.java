@@ -41,4 +41,8 @@ public class LottoService {
     public WinningLotto registerWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
+
+    public List<Integer> countMatchingNumbers(Customer customer, WinningLotto winningLotto) {
+        return customer.countMatchingNumbers(winningLotto);
+    }
 }
