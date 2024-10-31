@@ -1,4 +1,4 @@
-package lotto.domain.Person;
+package lotto.domain;
 
 import java.math.BigInteger;
 
@@ -22,5 +22,5 @@ public class Revenue {
             throw new IllegalArgumentException("금액은 1000으로 나누어 떨어져야 합니다.");
         }
     }
-    
+
 }
