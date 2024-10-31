@@ -26,7 +26,7 @@ class LottoResultTest {
         );
 
         LottoResult lottoResult = new LottoResult(winningNumbers, purchasedLottos);
-        Map<Rank, Integer> resultCount = lottoResult.getResultCount();
+        Map<Rank, Integer> resultCount = lottoResult.getResultCountMap();
 
         assertThat(resultCount.get(Rank.FIRST)).isEqualTo(1);   // 1등 1회
         assertThat(resultCount.get(Rank.SECOND)).isEqualTo(1);  // 2등 1회
@@ -45,7 +45,7 @@ class LottoResultTest {
         );
 
         LottoResult lottoResult = new LottoResult(winningNumbers, purchasedLottos);
-        Map<Rank, Integer> resultCount = lottoResult.getResultCount();
+        Map<Rank, Integer> resultCount = lottoResult.getResultCountMap();
 
         assertThat(resultCount.get(Rank.FIRST)).isEqualTo(0);
         assertThat(resultCount.get(Rank.SECOND)).isEqualTo(0);

@@ -40,7 +40,7 @@ public class LottoResult {
         return matchCount;
     }
 
-    public Map<Rank, Integer> getResultCount() {
+    public Map<Rank, Integer> getResultCountMap() {
         return resultCountMap;
     }
 }
