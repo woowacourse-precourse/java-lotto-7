@@ -1,5 +1,6 @@
 package lotto.app;
 
+import java.util.List;
 import lotto.domain.LotteryProcess;
 import lotto.domain.Lotto;
 import lotto.input.UserAmountInput;
@@ -10,28 +11,31 @@ import lotto.service.PrintTicketCount;
 
 public class Application {
     public static void main(String[] args) {
-
+        // 1. 사용자 금액 입력 및 검증
         UserAmountInput userAmountInput = new UserAmountInput();
-        userAmountInput.userAmountInput();
+        int amount = userAmountInput.validation();
 
-        PrintTicketCount printTicketCount = userAmountInput.createPrintTicket();
-        printTicketCount.printCount();
-        printTicketCount.repeatPrintNumber();
+        // 2. 로또 티켓 생성 및 출력
+        PrintTicketCount printTicketCount = new PrintTicketCount(userAmountInput.getLottoTicketCount());
+        List<List<Integer>> lottoTickets = printTicketCount.getLottoTickets();
+        printTicketCount.printCountAndTickets(lottoTickets);
 
-        UserLottoNumberInput lottoInput = new UserLottoNumberInput();
-        lottoInput.userLottoNumberInput();
+        // 3. 당첨 번호 입력 및 검증
+        UserLottoNumberInput userLottoNumberInput = new UserLottoNumberInput();
+        Lotto lotto = new Lotto(userLottoNumberInput.validation());
+        List<Integer> lottoNumbers = lotto.getNumbers();
 
-        Lotto lotto = lottoInput.saveLottoNumber();
-
+        // 4. 보너스 번호 입력 및 중복 검증
         UserBonusNumberInput userBonusNumberInput = new UserBonusNumberInput();
-        userBonusNumberInput.bonusDuplicationCheck(lotto); // 보너스 번호 중복 체크
+        int bonusNumber = userBonusNumberInput.validation(); // 입력 & 변환 & 검증
+        userBonusNumberInput.bonusDuplicationCheck(lottoNumbers); // 보너스 번호 중복 체크
 
-        LotteryProcess lotteryProcess = new LotteryProcess(lotto, userBonusNumberInput, printTicketCount);
-        lotteryProcess.countMatchNumbers(); // 로또 추첨
+        // 5. 로또 추첨 및 결과 출력
+        LotteryProcess lotteryProcess = new LotteryProcess(lottoNumbers, bonusNumber, lottoTickets);
+        List<Integer> rankingCount = lotteryProcess.countMatchNumbers(); // 로또 추첨
 
-        PrintResult printResult = new PrintResult(lotteryProcess);
+        PrintResult printResult = new PrintResult(rankingCount);
         printResult.printPrize(); // 당첨 통계 출력
-
-        userAmountInput.printEarningsRate(printResult.calculateEarnings()); // 수익률 출력
+        printResult.printEarningsRate(amount); // 수익률 출력
     }
 }
