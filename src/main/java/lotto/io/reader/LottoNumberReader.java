@@ -2,7 +2,7 @@ package lotto.io.reader;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import lotto.io.printer.Printer;
+import lotto.io.printer.DefaultPrinter;
 import lotto.exception.InputException;
 import lotto.util.validator.InputValidator;
 
@@ -23,7 +23,7 @@ public final class LottoNumberReader {
     public static List<Integer> readWinningNumbers() {
         String input;
         do {
-            Printer.printLine(MESSAGE_FOR_REQUEST_WINNING_NUMBERS);
+            DefaultPrinter.printLine(MESSAGE_FOR_REQUEST_WINNING_NUMBERS);
             input = Console.readLine();
         } while (!isAvailableNumbers(input));
 
@@ -35,7 +35,7 @@ public final class LottoNumberReader {
     public static Integer readBonusNumber() {
         String input;
         do {
-            Printer.printLine(MESSAGE_FOR_REQUEST_BONUS_NUMBER);
+            DefaultPrinter.printLine(MESSAGE_FOR_REQUEST_BONUS_NUMBER);
             input = Console.readLine();
         } while (!isAvailableNumber(input));
 
@@ -47,7 +47,7 @@ public final class LottoNumberReader {
             InputValidator.validateLottoNumberInput(numberInput);
             return true;
         } catch (InputException exception) {
-            Printer.printLine(exception.getMessage());
+            DefaultPrinter.printLine(exception.getMessage());
             return false;
         }
     }
