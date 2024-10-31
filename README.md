@@ -139,7 +139,7 @@
 
 <br>
 
-### EarningRate
+### RecoveryRatio
 
 | Type       | Field |
 |------------|-------|
@@ -171,7 +171,6 @@
 |-------------------------------|--------------|
 | Integer                       | matchedCount |
 | BiPredicate<Integer, Boolean> | predicate    |
-| Money                         | prize        |
 
 <br>
 
@@ -190,9 +189,12 @@
 
 ### Money
 
-| Method                       | Parameter | Return Type | Implementation |
-|------------------------------|-----------|-------------|----------------|
-| calculatePurchasedLottoCount | -         | int         | ✅              | 
+| Method                       | Parameter          | Return Type | Implementation |
+|------------------------------|--------------------|-------------|----------------|
+| calculatePurchasedLottoCount | -                  | int         | ✅              | 
+| findByRank                   | Rank               | Money       | ✅              | 
+| addAll                       | List<Money> monies | Money       | ✅              | 
+| toBigDecimal                 | -                  | BigDecimal  | ✅              | 
 
 <br>
 
@@ -205,12 +207,28 @@
 
 <br>
 
-### [Enum] Rank
+### Lottos
+
+| Method         | Parameter | Return Type   | Implementation |
+|----------------|-----------|---------------|----------------|
+| initiateStream | -         | Stream<Lotto> | ✅              |
+
+<br>
+
+### [Enum] RankCondition
 
 | Method                    | Parameter        | Return Type | Implementation |
 |---------------------------|------------------|-------------|----------------|
 | getRankBy                 | Integer, Boolean | Rank        | ✅              |
 | enoughCountToBeSecondRank | int              | boolean     | ✅              |
+
+<br>
+
+### RecoveryRatio
+
+| Method | Parameter              | Return Type   | Implementation |
+|--------|------------------------|---------------|----------------|
+| of     | BigDecimal, BigDecimal | RecoveryRatio | ✅              |
 
 <br>
 <br>
@@ -221,16 +239,16 @@
 
 ### LottoService
 
-| Access  | Method        | Parameter                      | Return Type        | Implementation |
-|---------|---------------|--------------------------------|--------------------|----------------|
-| public  | offerLottos   | Money                          | Lottos             | ✅              |
-| public  | rankMyLottos  | xxxDTO(Lottos, Lotto, Integer) | LottoDrawRankTable | ✅              |
-| private | rankEachLotto | xxxDTO(Lottos, Lotto, Integer) | Rank               | ✅              |
+| Access  | Method        | Parameter              | Return Type        | Implementation |
+|---------|---------------|------------------------|--------------------|----------------|
+| public  | offerLottos   | Money                  | Lottos             | ✅              |
+| public  | rankMyLottos  | Lottos, Lotto, Integer | LottoDrawRankTable | ✅              |
+| private | rankEachLotto | Lottos, Lotto, Integer | RankCondition      | ✅              |
 
 <br>
 
 ### StatisticService
 
-| Access | Method         | Parameter | Return Type |
-|--------|----------------|-----------|-------------|
-| public | myRateOfReturn | xxxDTO    | EarningRate |
+| Access | Method             | Parameter                  | Return Type |
+|--------|--------------------|----------------------------|-------------|
+| public | returnOfInvestment | DrawResultRankTable, Money | EarningRate |

@@ -5,22 +5,23 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.money.Money;
 import lotto.model.rank.DrawResultRankTable;
+import lotto.model.statistic.RecoveryRatio;
 import lotto.service.LottoService;
 import lotto.service.StatisticService;
 
-public class ServerController {
+public class MainController {
 
     private final LottoService lottoService;
-    private final StatisticService service;
+    private final StatisticService statisticService;
 
-    public ServerController(final LottoService lottoService, final StatisticService service) {
+    public MainController(final LottoService lottoService, final StatisticService statisticService) {
         this.lottoService = lottoService;
-        this.service = service;
+        this.statisticService = statisticService;
     }
 
     public void run() {
         // TODO: IO Operations
-        Money mock = Money.from(8000L);
+        Money purchasedAmount = Money.from(8000L);
         Lotto winning = Lotto.from(List.of(13, 14, 16, 38, 42, 45));
         Integer bonus = 13;
 
@@ -37,9 +38,9 @@ public class ServerController {
                 )
         );
 
-        Lottos lottos = lottoService.offerLottos(mock);
+        Lottos lottos = lottoService.offerLottos(purchasedAmount);
         DrawResultRankTable drawResultRankTable = lottoService.rankMyLottos(mockLottos, winning, bonus);
-
-        System.out.println(mockLottos.toString());
+        RecoveryRatio recoveryRatio = statisticService.returnOfInvestment(drawResultRankTable, purchasedAmount);
+        System.out.println(recoveryRatio.toString());
     }
 }

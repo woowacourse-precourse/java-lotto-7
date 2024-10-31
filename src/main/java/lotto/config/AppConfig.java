@@ -1,9 +1,8 @@
 package lotto.config;
 
-import lotto.controller.ServerController;
+import lotto.controller.MainController;
 import lotto.model.lotto.generator.LottoGenerator;
 import lotto.model.lotto.generator.RandomLottoGenerator;
-import lotto.service.CalculateService;
 import lotto.service.LottoService;
 import lotto.service.StatisticService;
 
@@ -20,8 +19,8 @@ public class AppConfig {
         return AppConfigHolder.INSTANCE;
     }
 
-    public ServerController serverController() {
-        return new ServerController(lottoService(), statisticService());
+    public MainController serverController() {
+        return new MainController(lottoService(), statisticService());
     }
 
     private LottoService lottoService() {
@@ -29,11 +28,7 @@ public class AppConfig {
     }
 
     private StatisticService statisticService() {
-        return new StatisticService(calculateService());
-    }
-
-    private CalculateService calculateService() {
-        return new CalculateService();
+        return new StatisticService();
     }
 
     private LottoGenerator lottoGenerator() {

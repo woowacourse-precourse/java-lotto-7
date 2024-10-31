@@ -18,4 +18,10 @@ public class DrawResultRankTableHelper {
         initiate.updateResultRankTable(RankCondition.THIRD);
         return initiate;
     }
+
+    public static DrawResultRankTable oneFifthRank() {
+        DrawResultRankTable initiate = DrawResultRankTable.initiate();
+        initiate.updateResultRankTable(RankCondition.FIFTH);
+        return initiate;
+    }
 }
