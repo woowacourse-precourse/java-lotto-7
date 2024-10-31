@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -47,6 +49,6 @@ public class LottoStatistic {
             totalPrizeMoney += prizeMoney * winCount;
         }
 
-        this.profitRatio = totalPrizeMoney / (totalLottoTimes * 1000) * 100;
+        this.profitRatio = totalPrizeMoney / (totalLottoTimes * LOTTO_UNIT_PRICE) * 100;
     }
 }

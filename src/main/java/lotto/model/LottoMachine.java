@@ -1,12 +1,14 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
     public List<Lotto> buyLottoByPrice(int money) {
-        int count = money / 1000;
+        int count = money / LOTTO_UNIT_PRICE;
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {

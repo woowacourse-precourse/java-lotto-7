@@ -1,11 +1,13 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
+
 public class InputValidator {
     public void validateInputMoney(String input) {
         validateParseNumber(input);
         validatePositiveNumber(input);
         validateOverLottoPrice(input);
-        validateDivideByUnit(input, 1000);
+        validateDivideByUnit(input);
     }
 
     private void validateParseNumber(String input) {
@@ -27,16 +29,16 @@ public class InputValidator {
     private void validateOverLottoPrice(String input) {
         int parsedInput = Integer.parseInt(input);
 
-        if (parsedInput < 1000) {
-            throw new IllegalArgumentException(1000 + "원 이상의 값을 입력해주세요.");
+        if (parsedInput < LOTTO_UNIT_PRICE) {
+            throw new IllegalArgumentException(LOTTO_UNIT_PRICE + "원 이상의 값을 입력해주세요.");
         }
     }
 
-    private void validateDivideByUnit(String input, int price) {
+    private void validateDivideByUnit(String input) {
         int parsedInput = Integer.parseInt(input);
 
-        if (parsedInput % price != 0) {
-            throw new IllegalArgumentException(price + "원 단위의 값을 입력해주세요.");
+        if (parsedInput % LOTTO_UNIT_PRICE != 0) {
+            throw new IllegalArgumentException(LOTTO_UNIT_PRICE + "원 단위의 값을 입력해주세요.");
         }
     }
 }
