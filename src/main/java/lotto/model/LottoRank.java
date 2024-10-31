@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum LottoRank {
 
@@ -34,21 +33,15 @@ public enum LottoRank {
         return isSecondRank;
     }
 
-    public static LottoRank findRank(int sameNumberCount, boolean isSecondRank) {
+    public static LottoRank findRank(Integer sameNumberCount, Boolean isSecondRank) {
         return Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.isMatched(sameNumberCount, isSecondRank))
                 .findFirst()
                 .orElse(NONE);
     }
 
-    private boolean isMatched(int sameNumberCount, boolean isSecondRank) {
+    private boolean isMatched(Integer sameNumberCount, Boolean isSecondRank) {
         return this.sameNumberCount == sameNumberCount
                 && this.isSecondRank == isSecondRank;
-    }
-
-    public static List<LottoRank> getWinningRanks() {
-        return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank != NONE)
-                .toList();
     }
 }
