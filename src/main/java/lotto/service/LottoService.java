@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
+import lotto.validator.ServiceValidator;
 
 public class LottoService {
     private final int LOTTO_NUM_SIZE = LottoConfig.LOTTO_NUM_SIZE.getValue();
@@ -13,6 +14,7 @@ public class LottoService {
     private final int LOTTO_NUM_START = LottoConfig.LOTTO_NUM_START.getValue();
     private final int LOTTO_NUM_END = LottoConfig.LOTTO_NUM_END.getValue();
 
+    private final ServiceValidator serviceValidator = new ServiceValidator();
     private List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winNum = new ArrayList<>();
     private Integer bonusNum;
@@ -20,9 +22,7 @@ public class LottoService {
     public void buyLotto(int amount) {
         int lottoCount = amount/LOTTO_PRICE;
 
-        if(amount%LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
-        }
+        serviceValidator.amountDivide(amount);
         for(int count = 0; count < lottoCount; count++) {
             createLottoNum();
         }
@@ -41,18 +41,12 @@ public class LottoService {
     }
 
     public void inputWinNum(List<Integer> winNum) {
-        for(int num : winNum) {
-            if(winNum.indexOf(num) != winNum.lastIndexOf(num)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 있습니다.");
-            }
-        }
+        serviceValidator.winNumDup(winNum);
         this.winNum = winNum;
     }
 
     public void inputBonusNum(Integer bonusNum) {
-        if (winNum.contains(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호에 존재합니다.");
-        }
+        serviceValidator.bonusNumDup(winNum, bonusNum);
         this.bonusNum = bonusNum;
     }
 
