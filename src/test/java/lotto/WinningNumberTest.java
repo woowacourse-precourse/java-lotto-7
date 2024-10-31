@@ -19,7 +19,7 @@ public class WinningNumberTest {
         String input = "1,2,3,4,5,6";
 
         //when
-        List<String> winnigNumbers = Controller.splitByComma(input);
+        List<String> winnigNumbers = LottoController.splitByComma(input);
 
         //then
         assertEquals(expectedList, winnigNumbers);
