@@ -15,6 +15,10 @@ public class InputView {
     private static final String INVALID_RANGE = "범위가 유효하지 않습니다";
     private static final String NOT_DIVISIBLE_BY_THOUSAND = "천원단위로 나누어 지지 않습니다";
     private static final String EMPTY_INPUT = "빈 입력입니다";
+    private static final String INVALID_WINNING_NUMBER_COUNT = "당첨 번호 개수가 맞지 않습니다";
+    private static final int WINNING_NUMBER_COUNT = 6;
+
+
 
     //inputPurchasePrice 구현
     public static int inputPurchasePrice() {
@@ -75,6 +79,9 @@ public class InputView {
         String[] numbers = userInput.split(",");
         if (!Utils.allElementsAreDigits(numbers)) {
             throw new IllegalArgumentException(NOT_NUMBER + " : " + userInput);
+        }
+        if (!Utils.checkSizeEqual(numbers, WINNING_NUMBER_COUNT)) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT + " : " + userInput);
         }
     }
 

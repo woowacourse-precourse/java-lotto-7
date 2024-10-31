@@ -35,4 +35,8 @@ public class Utils {
         }
         return true;
     }
+
+    public static boolean checkSizeEqual (String[] input, int size) {
+        return input.length == size;
+    }
 }
