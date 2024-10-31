@@ -20,6 +20,7 @@ public class LottoController {
         PurchaseAmount amount = readPurchasePrice();
         LottoGame game = new LottoGame(amount, new RandomLottoGenerator());
         outputView.printPurchaseAmount(game.getLottoCount());
+        outputView.printLotto(game.getLottoes());
     }
 
     private PurchaseAmount readPurchasePrice() {
