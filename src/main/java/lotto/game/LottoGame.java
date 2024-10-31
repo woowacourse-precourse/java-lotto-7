@@ -21,6 +21,7 @@ public class LottoGame {
     }
 
     public void start(WinningNumbers winningNumbers) {
-        lottos.checkLottos(winningNumbers);
+        LottoPrizeRecord lottoPrizeRecord = lottos.checkLottos(winningNumbers);
+        lottoPrizeRecord.printResult();
     }
 }

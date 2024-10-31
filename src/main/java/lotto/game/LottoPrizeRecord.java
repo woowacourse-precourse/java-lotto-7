@@ -23,6 +23,11 @@ public class LottoPrizeRecord {
         }
     }
 
+    public void printResult() {
+        OutputHandler.printWinningStatistics();
+        OutputHandler.printWinningCount(result);
+    }
+
     public Map<LottoPrize, Integer> getResult() {
         return result;
     }

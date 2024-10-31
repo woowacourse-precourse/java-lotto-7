@@ -1,6 +1,11 @@
 package lotto.io;
 
+import lotto.dto.LottoPrize;
+
 import java.util.List;
+import java.util.Map;
+
+import static lotto.Utils.Convertor.convert;
 
 public class OutputHandler {
     public static void printLottoCount(int lottoCount) {
@@ -8,16 +13,27 @@ public class OutputHandler {
         System.out.printf("%d개를 구매했습니다", lottoCount);
         System.out.println();
     }
-    public static void printLottos(List<Integer> lottoNumbers) {
-        List<String> numbers = convertToStringList(lottoNumbers);
+
+    public static void printLottos(List<String> lottoNumbers) {
         System.out.print("[");
-        System.out.print(String.join(", ", numbers));
+        System.out.print(String.join(", ", lottoNumbers));
         System.out.println("]");
     }
 
-    private static List<String> convertToStringList(List<Integer> lottoNumbers) {
-        return lottoNumbers.stream()
-                .map(String::valueOf)
-                .toList();
+    public static void printWinningStatistics() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
+
+    public static void printWinningCount(Map<LottoPrize, Integer> result) {
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            if (lottoPrize == LottoPrize.BONUS) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", lottoPrize.getCount(), convert(lottoPrize.getPrice()), result.get(lottoPrize));
+            }
+            System.out.printf("%d개 일치 (%s) - %d개\n", lottoPrize.getCount(), convert(lottoPrize.getPrice()), result.get(lottoPrize));
+        }
+    }
+
+    private OutputHandler() {}
 }
