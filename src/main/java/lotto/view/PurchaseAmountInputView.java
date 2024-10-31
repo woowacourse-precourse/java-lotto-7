@@ -11,10 +11,10 @@ public class PurchaseAmountInputView {
         System.out.println(PURCHASE_AMOUNT_INPUT_GUIDE);
     }
 
-    public String getPurchaseAmount() {
+    public long getPurchaseAmount() {
         String purchaseAmount = Console.readLine();
         validatePurchaseAmountIsNumeric(purchaseAmount);
-        return purchaseAmount;
+        return Long.parseLong(purchaseAmount);
     }
 
     private void validatePurchaseAmountIsNumeric(String purchaseAmount) {

@@ -17,7 +17,7 @@ public class LottoPurchaseTest {
 
     @Test
     void 로또_구입_개수를_계산한다() {
-        String purchaseAmount = "5000";
+        long purchaseAmount = 5000L;
         lottoPurchase.calculateLottoPurchaseCount(purchaseAmount);
 
         assertThat(lottoPurchase.getLottoPurchaseCount())
@@ -26,7 +26,7 @@ public class LottoPurchaseTest {
 
     @Test
     void 구입금액이_1000원으로_나누어_떨어지지_않는_경우_예외가_발생한다() {
-        String purchaseAmount = "5050";
+        long purchaseAmount = 5050L;
 
         assertThatThrownBy(() ->
                 lottoPurchase.calculateLottoPurchaseCount(purchaseAmount))

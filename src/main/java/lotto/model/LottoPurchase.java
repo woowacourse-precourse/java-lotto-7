@@ -5,10 +5,9 @@ import static lotto.ExceptionMessage.PURCHASE_AMOUNT_NOT_DIVISIBLE_BY_1000_EXCEP
 public class LottoPurchase {
     private long lottoPurchaseCount;
 
-    public void calculateLottoPurchaseCount(String purchaseAmount) {
-        long amount = Long.parseLong(purchaseAmount);
-        validatePurchaseAmountDivisibleBy1000(amount);
-        lottoPurchaseCount = amount / 1000;
+    public void calculateLottoPurchaseCount(long purchaseAmount) {
+        validatePurchaseAmountDivisibleBy1000(purchaseAmount);
+        lottoPurchaseCount = purchaseAmount / 1000;
     }
 
     public long getLottoPurchaseCount() {
