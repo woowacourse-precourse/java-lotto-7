@@ -18,6 +18,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
     private void validateNumbers(List<Integer> numbers) {
         validateNumberSize(numbers);
         validateNumberRange(numbers);
