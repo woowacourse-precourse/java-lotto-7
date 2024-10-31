@@ -1,14 +1,17 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
+    private static final List<Integer> WINNING_PRIZES = List.of(0, 2000000000, 30000000, 1500000, 50000, 5000);
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -27,5 +30,20 @@ class LottoTest {
     void 로또_번호가_1에서_45_사이에_없으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 수익_총합_계산이_올바른지_테스트() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 6;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
+        int expected = WINNING_PRIZES.get(2);
+
+        // when
+        int result = lotto.calculatePrize(winningNumbers, bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }

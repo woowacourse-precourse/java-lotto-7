@@ -1,8 +1,11 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
+
 import java.util.List;
 
 public class LottoService {
+    private static final List<Integer> WINNING_PRIZES = List.of(0, 2000000000, 30000000, 1500000, 50000, 5000);
 
     public List<Integer> sortLottoNumbersAscending(List<Integer> lottoNumber) {
         for (int i = 0; i < lottoNumber.size() - 1; i++) {
