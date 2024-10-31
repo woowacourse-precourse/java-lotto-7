@@ -15,7 +15,8 @@ public class LottoGame {
     }
 
     public void run() {
-        List<Lotto> lottos = purchaseLotto();
+        int money = inputMoney();
+        List<Lotto> lottos = lottoStore.purchase(money);
         printPurchaseBreakdown(lottos);
 
         List<Integer> winnerNumbers = inputWinnerNumbers();
@@ -24,12 +25,11 @@ public class LottoGame {
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
     }
 
-    private List<Lotto> purchaseLotto() {
+    private int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String rawMoney = Console.readLine();
 
-        int money = Integer.parseInt(rawMoney);
-        return lottoStore.purchase(money);
+        return Integer.parseInt(rawMoney);
     }
 
     private void printPurchaseBreakdown(List<Lotto> lottos) {
