@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 
 public class OutputView {
+    private final static String NEW_LINE = System.lineSeparator();
     private final static String INFORM_PURCHASE_LOTTO_MESSAGE = "%d개를 구매했습니다.";
     private final static String WINNING_STATISTICS_TITLE = "당첨 통계";
     private final static String SEPARATOR = "---";
@@ -23,6 +24,6 @@ public class OutputView {
         lottoGroup.forEach(lotto -> {
             System.out.println(lotto.getNumbers());
         });
-        System.out.println(System.lineSeparator());
+        System.out.printf(NEW_LINE);
     }
 }
