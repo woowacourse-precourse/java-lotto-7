@@ -4,25 +4,24 @@ import static lotto.constant.LottoGameRule.LOTTO_COST;
 import static lotto.view.OutputView.printPurchaseMessage;
 
 import java.util.List;
-import lotto.validator.PurchaseAmountValidator;
+import lotto.service.BuyerService;
 import lotto.view.InputView;
 
 public class LottoGameController {
+    private final BuyerService buyerService;
+
+    public LottoGameController() {
+        this.buyerService = new BuyerService();
+    }
+
     public void run() {
         final int lottoQuantity = getLottoQuantity();
         final List<Integer> winningNumbers;
     }
 
-    private static int getPurchaseAmount() {
+    private int getLottoQuantity() {
         String input = InputView.inputPurchaseAmount();
-        return PurchaseAmountValidator.validate(input);
-    }
-
-    private static int getLottoQuantity() {
-        int lottoQuantity =  getPurchaseAmount() / LOTTO_COST.getValue();
-        printPurchaseMessage(lottoQuantity);
-
-        return lottoQuantity;
+        return buyerService.calculateLottoQuantity(input);
     }
 
     private static void getWinningNumbers() {
