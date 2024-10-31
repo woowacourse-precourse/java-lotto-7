@@ -27,4 +27,8 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + map.get(Rank.TWO) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + map.get(Rank.ONE) + "개");
     }
+
+    public void printLottoYield(int yield) {
+        System.out.println("총 수익률은 " + yield + "%입니다.");
+    }
 }
