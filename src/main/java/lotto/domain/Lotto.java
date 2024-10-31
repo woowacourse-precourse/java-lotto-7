@@ -7,7 +7,6 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
@@ -15,9 +14,17 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+    public int matchCount(Lotto other) {
+        return (int) numbers.stream()
+                .filter(other::contains)
+                .count();
+    }
+
+    public boolean matchBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    private boolean contains(Integer number) {
+        return numbers.contains(number);
     }
 }
