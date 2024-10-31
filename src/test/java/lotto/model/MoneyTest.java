@@ -30,4 +30,16 @@ class MoneyTest {
         int expect = 5500 - 2000;
         assertEquals(money.getLeftMoney(), expect);
     }
+
+    @Test
+    @DisplayName("가져간 돈과 사용한 돈이 같은지 확인한다.")
+    void 가져간_돈과_사용한_돈이_같은지_확인한다() {
+        int takedMoney = 2000;
+        Money money = new Money(5500);
+
+        money.take(takedMoney);
+        int usedMoney = money.getUsedMoney();
+
+        assertEquals(takedMoney, usedMoney);
+    }
 }
