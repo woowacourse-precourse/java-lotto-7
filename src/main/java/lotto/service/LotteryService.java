@@ -13,12 +13,14 @@ public class LotteryService {
         this.lotteryValidator = new LotteryValidator();
     }
 
-    public int readPurchaseAmount() {
+    public int getPurchaseAmount() {
         outputView.printRequirePurchaseAmount();
 
         final String inputPurchaseAmount = Console.readLine();
-        lotteryValidator.validatePurchaseAmount(Integer.parseInt(inputPurchaseAmount));
+        final int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
 
-        return Integer.parseInt(inputPurchaseAmount);
+        lotteryValidator.validatePurchaseAmount(purchaseAmount);
+
+        return purchaseAmount;
     }
 }
