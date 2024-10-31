@@ -13,7 +13,14 @@ public class LottoYieldCalculator {
     }
 
     public double calculateYield() {
-        if (totalInvestment == 0) return 0.0;
+        return totalInvestment == 0 ? 0.0 : calculateYieldPercentage();
+    }
+
+    private double calculateYieldPercentage() {
         return Math.round((double) totalPrize / totalInvestment * 10000) / 100.0;
+    }
+
+    public void printYield() {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateYield());
     }
 }
