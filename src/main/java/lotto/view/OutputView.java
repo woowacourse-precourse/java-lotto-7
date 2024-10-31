@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(purchaseCount + PURCHASE_COUNT);
     }
 
-    public void printLottoNumberList(List<LottoDto> lottoDtos) {
+    public void printLottos(List<LottoDto> lottoDtos) {
         lottoDtos.forEach(System.out::println);
     }
 
