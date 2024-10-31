@@ -6,8 +6,8 @@ import lotto.Lotto;
 import lotto.common.Winning;
 
 public class OutputView {
-    public void printLotto(int lottoCount, List<Lotto> lottos) {
-        System.out.printf("\n%d개를 구매했습니다.\n", lottoCount);
+    public void printLotto(List<Lotto> lottos) {
+        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
         for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
             System.out.printf("[%d, %d, %d, %d, %d, %d]\n", numbers.get(0), numbers.get(1), numbers.get(2),

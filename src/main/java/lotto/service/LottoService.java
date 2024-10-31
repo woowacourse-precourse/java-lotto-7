@@ -10,9 +10,11 @@ import lotto.Lotto;
 import lotto.common.Winning;
 
 public class LottoService {
-    public List<Lotto> initLotto(int payCount) {
+    public List<Lotto> initLotto(int payment) {
+        int lottoCount = payment / 1000;
+
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < payCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> rawLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             List<Integer> lottoNumbers = new ArrayList<>(rawLottoNumbers);
             lottoNumbers.sort(Integer::compareTo);
