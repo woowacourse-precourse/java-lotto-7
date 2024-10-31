@@ -22,6 +22,7 @@ public class Lotto {
         return numbers;
     }
 
+
     public void print() {
         System.out.print("[");
         for (int i = 0; i < numbers.size(); i++) {

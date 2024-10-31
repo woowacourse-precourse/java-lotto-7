@@ -7,7 +7,7 @@ public enum Exception {
     MONEY_IS_NOT_INTEGER("구입 금액은 정수여야 합니다."),
     INVALID_NUMBER_RANGE("로또 번호는 1부터 45사이의 숫자여야 합니다."),
     INVALID_NUMBER_TYPE("로또 번호는 정수여야 합니다."),
-    EXIST_NUMBER("보너스 번호는 당첨 번호와 중첩되지 않아야 합니다.")
+    EXIST_BONUS_NUMBER("보너스 번호는 당첨 번호와 중첩되지 않아야 합니다.")
     ;
 
 
