@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GradeSaver {
@@ -18,6 +19,15 @@ public class GradeSaver {
             else if(result.getMatches() == 6) this.sixth++;
         }
         return this;
+    }
+
+    public static List<MyResult> saveMyGrades(List<Lotto> lottoList, Lotto answer, Integer bonus){
+        List<MyResult> resultList = new ArrayList<MyResult>();
+        for(int i = 0; i < lottoList.size(); i++){
+            MyResult gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
+            resultList.add(gradedLotto);
+        }
+        return resultList;
     }
 
     public Integer getThird() {
