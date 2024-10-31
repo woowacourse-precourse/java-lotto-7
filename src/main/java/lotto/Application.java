@@ -39,6 +39,6 @@ public class Application {
     }
 
     private static void outputCount(int count) {
-        System.out.println("구매한 로또 개수" + count);
+        System.out.println(count + "개를 구매했습니다.");
     }
 }
