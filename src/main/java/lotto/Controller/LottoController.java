@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
 import lotto.View.InputLottoView;
 import lotto.View.OutputLottoView;
@@ -14,6 +15,7 @@ public class LottoController {
         int price = inputLottoView.inputPrice();
         MyLottos issuedTickets = issueTicketController.issueTickets(getNumberOfTickets(price));
         outputLottoView.printMylottos(issuedTickets);
+        Lotto winningLotto = inputLottoView.inputWinningNumbers();
     }
 
     public int getNumberOfTickets(int price) {
