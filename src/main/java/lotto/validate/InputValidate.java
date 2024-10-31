@@ -17,6 +17,10 @@ public class InputValidate {
                 throw new IllegalArgumentException(InputMessage.INVALID_INPUT_AMOUNT.getMessage());
             }
 
+            if (!isParsableAsInteger(input)) {
+                throw new IllegalArgumentException(InputMessage.OUT_OF_RANGE_AMOUNT.getMessage());
+            }
+
             int money = Integer.parseInt(input);
 
             if (!isLessThanFirstPrizeAmount(money)) {
@@ -35,6 +39,16 @@ public class InputValidate {
     public static boolean isNumeric(String input) {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
+    }
+
+    public static boolean isParsableAsInteger(String input) {
+        try {
+            int money = Integer.parseInt(input);
+
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static boolean isLessThanFirstPrizeAmount(int money) {
