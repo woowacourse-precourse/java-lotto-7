@@ -15,9 +15,8 @@ public class LottoDAO {
         lottoNumbers.add(lotto);
     }
 
-
     // 모든 로또 번호 리스트 조회
     public List<Lotto> getAll() {
-        return new ArrayList<>(lottoNumbers); // 예시 반환값
+        return new ArrayList<>(lottoNumbers);
     }
 }
