@@ -1,7 +1,7 @@
 package lotto;
 
 import static lotto.LottoMachine.AMOUNT_ERROR_MSG;
-import static lotto.LottoMachine.LOTTO_NUMBER_ERROR_MSG;
+import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_PRICE;
 
 import org.assertj.core.api.Assertions;
@@ -88,7 +88,7 @@ class LottoMachineTest {
         //When, Then
         Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.validateLottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_ERROR_MSG);
+                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
     }
 
     @Test
