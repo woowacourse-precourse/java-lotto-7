@@ -22,5 +22,9 @@ public class WinnerNumbers {
                 );
             }
         }
+
+        if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45사이의 번호여야 합니다.");
+        }
     }
 }

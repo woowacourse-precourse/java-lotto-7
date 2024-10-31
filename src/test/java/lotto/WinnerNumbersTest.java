@@ -29,4 +29,11 @@ public class WinnerNumbersTest {
         assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 1, 3, 41, 51), 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호는 1~45 사이가 아니라면 예외를 반환한다.")
+    @Test
+    void test4() {
+        assertThatThrownBy(() -> new WinnerNumbers(List.of(1, 2, 3, 4, 5, 6), 71))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
