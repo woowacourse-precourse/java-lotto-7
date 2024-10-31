@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.Rank;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -12,4 +15,8 @@ public class LottoController {
         this.lottoView = lottoView;
     }
 
+    private double calculateProfitRate(List<Rank> results, int purchaseAmount) {
+        int totalPrize = results.stream().mapToInt(Rank::getPrize).sum();
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 }
