@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.exception.ExceptionMessage;
 
 public class InputView {
