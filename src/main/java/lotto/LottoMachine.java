@@ -12,4 +12,8 @@ public class LottoMachine {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
+    public void run() {
+        outputView.requestPurchaseAmount();
+    }
 }
