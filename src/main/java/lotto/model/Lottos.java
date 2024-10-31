@@ -33,4 +33,10 @@ public class Lottos {
                         lotto.checkBonus(targetBonus)))
                 .filter(Objects::nonNull);
     }
+
+    public String toString() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
+    }
 }

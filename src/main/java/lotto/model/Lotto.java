@@ -43,4 +43,8 @@ public class Lotto {
     public Prize lottoToPrize(int hit, boolean bonus) {
         return Prize.findByHitAndBonus(hit, bonus);
     }
+
+    public String toString() {
+        return numbers.toString();
+    }
 }
