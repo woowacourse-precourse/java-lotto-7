@@ -1,5 +1,6 @@
 package lotto.amount;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -43,5 +44,21 @@ class AmountTest {
         assertThatThrownBy(() -> new Amount(exceedAmount))
                 .isInstanceOf(CustomException.class)
                 .hasMessage("[ERROR] " + ExceptionMessage.EXCEED_MAX_LOTTO_AMOUNT_EXCEPTION.getMessage());
+    }
+
+    @DisplayName("구매한 로또 갯수는 '구입 금액 / 로또 가격' 이다. ")
+    @Test
+    void calculatePurchaseLottoCount() {
+        // given
+        int purchaseAmount = 5_000;
+        int lottoPurchaseUnit = 1_000;
+
+        // when
+        Amount amount = new Amount(purchaseAmount);
+        int lottoCount = amount.calculateLottoCount();
+
+        // then
+        assertThat(lottoCount)
+                .isEqualTo(purchaseAmount / lottoPurchaseUnit);
     }
 }
