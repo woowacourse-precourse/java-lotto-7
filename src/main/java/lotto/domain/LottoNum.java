@@ -4,17 +4,21 @@ import static lotto.utils.ErrorMessage.INVALID_LOTTO_NUM;
 
 import java.util.Objects;
 
-public class LottoNum {
+public class LottoNum implements Comparable<LottoNum> {
 
     private final Integer num;
 
-    public LottoNum(Integer num) {
+    protected LottoNum(Integer num) {
         this.num = validateNum(num);
     }
 
-    public LottoNum(String num) {
-        Integer parsedNum = parsedInt(num);
+    protected LottoNum(String input) {
+        Integer parsedNum = parsedInt(input);
         this.num = validateNum(parsedNum);
+    }
+
+    public static LottoNum create(String input) {
+        return new LottoNum(input);
     }
 
     public Integer parsedInt(String num) {
@@ -29,7 +33,6 @@ public class LottoNum {
         if (num == null || num <= 0 || num > 45) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUM.getMessage());
         }
-
         return num;
     }
 
@@ -53,5 +56,11 @@ public class LottoNum {
     @Override
     public int hashCode() {
         return Objects.hashCode(num);
+    }
+
+
+    @Override
+    public int compareTo(LottoNum o) {
+        return Integer.compare(this.num, o.num);
     }
 }

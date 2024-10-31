@@ -21,4 +21,17 @@ public class LottoList {
 
         return new LottoList(lottoCollection);
     }
+
+    public WinnerCountList countWinnerMatches(WinnerLotto winnerLotto) {
+        WinnerCountList countDtoList = new WinnerCountList();
+
+        for (Lotto lotto : lottoCollection) {
+            WinnerCount countDto = winnerLotto.countWinnerMatch(lotto);
+            countDtoList.add(countDto);
+        }
+
+        return countDtoList;
+    }
+
+
 }

@@ -2,7 +2,11 @@ package lotto.domain;
 
 import static lotto.utils.ErrorMessage.INVALID_MONEY_INPUT;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
+import lotto.dto.MoneyDto;
+import lotto.utils.DtoMapper;
 
 public class Money {
     private final Long amount;
@@ -16,6 +20,14 @@ public class Money {
 
     public static Money create(String input) {
         return new Money(input);
+    }
+
+    public MoneyDto toDto() {
+        return DtoMapper.toMoneyDto(this, amount);
+    }
+
+    protected String calculateProfitRate(BigDecimal sum) {
+        return sum.divide(BigDecimal.valueOf(amount), 2, RoundingMode.HALF_UP).toString();
     }
 
     private Long parseMoney(String money) {
