@@ -1,5 +1,6 @@
 package lotto.domain.lotto.vo;
 
+import lotto.domain.lotto.WinningLottoImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class WinningLottoTest {
+class WinningLottoImplTest {
     @Test
     @DisplayName("올바른 입력 값에 대해서 당첨 로또 객체를 생성할 수 있다.")
     void 정상_케이스() {
@@ -18,7 +19,7 @@ class WinningLottoTest {
         final int bonusInput = 7;
 
         // when
-        WinningLotto winningLotto = WinningLotto.of(winningInput, bonusInput);
+        WinningLottoImpl winningLotto = WinningLottoImpl.of(winningInput, bonusInput);
 
         // then
         assertThat(winningLotto.basicNumbers()).containsSequence(winningResult);
@@ -33,7 +34,7 @@ class WinningLottoTest {
         final int bonusInput = 6;
 
         // when & then
-        assertThatThrownBy(() -> WinningLotto.of(winningInput, bonusInput))
+        assertThatThrownBy(() -> WinningLottoImpl.of(winningInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,7 +46,7 @@ class WinningLottoTest {
         final int bonusInput = 0;
 
         // when & then
-        assertThatThrownBy(() -> WinningLotto.of(winningInput, bonusInput))
+        assertThatThrownBy(() -> WinningLottoImpl.of(winningInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -57,7 +58,7 @@ class WinningLottoTest {
         final int bonusInput = 6;
 
         // when & then
-        assertThatThrownBy(() -> WinningLotto.of(winningInput, bonusInput))
+        assertThatThrownBy(() -> WinningLottoImpl.of(winningInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -69,7 +70,7 @@ class WinningLottoTest {
         final int bonusInput = 1;
 
         // when & then
-        assertThatThrownBy(() -> WinningLotto.of(winningInput, bonusInput))
+        assertThatThrownBy(() -> WinningLottoImpl.of(winningInput, bonusInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
