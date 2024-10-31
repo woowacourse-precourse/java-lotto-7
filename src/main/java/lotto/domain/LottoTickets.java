@@ -10,16 +10,22 @@ public class LottoTickets {
         this.lottoTickets = lottoTickets;
     }
 
-
-    private static List<Lotto> generateLottoTickets(int count){
-        List<Lotto> lottoTickets = new ArrayList<>();
+    public static LottoTickets generateLottoTickets(int count){
+        List<Lotto> tickets = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            Lotto lotto = Lotto.generateLotto();
-            lottoTickets.add(lotto);
+            tickets.add(Lotto.generateLotto());
         }
 
-        return lottoTickets;
+        return new LottoTickets(tickets);
+    }
+
+    public List<List<Integer>> getLottoTickets() {
+        List<List<Integer>> lottoNumbers = new ArrayList<>();
+        for (Lotto lotto : lottoTickets) {
+            lottoNumbers.add(lotto.getNumbers());
+        }
+        return lottoNumbers;
     }
 
 
