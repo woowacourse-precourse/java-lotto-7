@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private List<Lotto> lottos;
+    private Lo lottos;
     private LottoProgram lottoProgram;
 
 
