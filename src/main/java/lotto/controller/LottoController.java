@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.dto.WinningResult;
 import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.LottoResultEvaluator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,6 +26,8 @@ public class LottoController {
         displayLotto(lottoTickets);
         List<Integer> winningNumbers = readWinningNumbers();
         int bonusNumber = readBonusNumber(winningNumbers);
+        WinningResult winningResult = evaluateLotto(winningNumbers, bonusNumber, lottoTickets);
+        displayResult(winningResult);
     }
 
     private int readPurchaseAmount() {
@@ -123,5 +127,14 @@ public class LottoController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
         }
+    }
+
+    private WinningResult evaluateLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoTickets) {
+        LottoResultEvaluator lottoResultEvaluator = new LottoResultEvaluator(winningNumbers, bonusNumber);
+        return lottoResultEvaluator.evaluate(lottoTickets);
+    }
+
+    private void displayResult(WinningResult winningResult) {
+        outputView.printWinningResult(winningResult);
     }
 }
