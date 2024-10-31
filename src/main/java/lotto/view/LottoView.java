@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.model.Rank;
 
 public class LottoView {
     public int getInputPurchaseAmount() {
@@ -49,6 +50,18 @@ public class LottoView {
     public void displayLottos(List<Lotto> lottos){
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+    }
+
+    public void displayResults(List<Rank> results, double profitRate) {
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                long count = results.stream().filter(result -> result == rank).count();
+                System.out.println(rank.getMatchCount() + "개 일치 ("
+                        + rank.getPrize() + "원" + count + "개");
+            }
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     private List<Integer> parseNumbers(String input) {
