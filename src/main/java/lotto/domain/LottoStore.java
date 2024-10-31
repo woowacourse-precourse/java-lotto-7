@@ -13,8 +13,12 @@ public class LottoStore {
 
     public void buyLotto(int price) {
         for (int i = 0; i < price/LOTTO_PRICE; i++) {
-            purchasedLottos.add(new Lotto(generateRandomNumbers()));
+            purchasedLottos.add(generateLottoByNumbers(generateRandomNumbers()));
         }
+    }
+
+    private Lotto generateLottoByNumbers(List<Integer> lottoNumbers) {
+        return new Lotto(lottoNumbers);
     }
 
     private List<Integer> generateRandomNumbers() {
@@ -22,7 +26,7 @@ public class LottoStore {
     }
 
     public List<Lotto> getPurchasedLottos() {
-        return this.purchasedLottos;
+        return purchasedLottos;
     }
 
 

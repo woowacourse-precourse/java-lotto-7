@@ -55,10 +55,10 @@ public class LottoResult {
     }
 
     public Map<LottoRank, Integer> getLottoResult() {
-        return this.lottoResult;
+        return lottoResult;
     }
 
     public float getProfitRate() {
-        return this.profitRate;
+        return profitRate;
     }
 }
