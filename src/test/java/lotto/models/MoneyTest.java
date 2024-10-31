@@ -45,4 +45,18 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money(over)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Money(under)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 구매 시, 정확한 개수의 로또와 교환된다.")
+    public void exchange() {
+        // GIVEN
+        Money money = new Money(new PurchaseMoneyRequestDTO("10000"));
+
+        // WHEN
+        int count = money.exchangedForLottos();
+
+        // THEN
+        assertThat(count).isEqualTo(10);
+        assertThat(money.getMoney()).isEqualTo(0);
+    }
 }
