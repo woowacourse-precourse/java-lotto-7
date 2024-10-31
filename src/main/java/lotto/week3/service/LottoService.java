@@ -19,7 +19,7 @@ public class LottoService {
 
     // 로또 발행
     public LottoMatching generatorLottos(PurchaseRequestDto purchaseRequestDto) {
-    List<Lotto> lottoList = LottoGenerator.generatorLottos(purchaseRequestDto.getLottoCount());
+    List<Lotto> lottoList = LottoGenerator.generatorLottos(purchaseRequestDto.getMoney());
     LottoStatistics statistics = new LottoStatistics();
     return new LottoMatching(lottoList, statistics);
 }
