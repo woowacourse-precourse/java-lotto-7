@@ -42,6 +42,16 @@ class InputValidationTest {
                 .hasMessage(ErrorMessage.ONLY_NUMERIC.getErrorMessage());
     }
 
+    @DisplayName("쉼표가 아닌 구분자가 입력되면 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1.2/3.4/5.6", "1,2,3,4,5.6", "1,,2,3,4,5,6"})
+    void inputOtherDelimiter(String input) {
+        //when //then
+        assertThatThrownBy(() -> InputValidation.validateDelimiter(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.WINNING_NUMBERS_DELIMITER.getErrorMessage());
+    }
+
     @DisplayName("입력이 null 또는 빈값이 아니라면 예외를 발생하지 않는다.")
     @Test
     void nonInputNullOrEmpty() {
@@ -72,6 +82,17 @@ class InputValidationTest {
 
         //when //then
         assertThatCode(() -> InputValidation.validateNumeric(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력이 쉼표로 구분되어 있다면 예외를 발생하지 않는다.")
+    @Test
+    void inputDelimiter() {
+        //given
+        String input = "1,2,3,4,5,6";
+
+        //when //then
+        assertThatCode(() -> InputValidation.validateDelimiter(input))
                 .doesNotThrowAnyException();
     }
 }
