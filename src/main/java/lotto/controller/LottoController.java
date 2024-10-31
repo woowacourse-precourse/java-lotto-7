@@ -9,7 +9,7 @@ import lotto.model.LottoNumberGenerator;
 import lotto.model.LottoRankCalculator;
 import lotto.model.ProfitCalculator;
 import lotto.util.InputValidator;
-import lotto.util.StatisticsGenerator;
+import lotto.model.StatisticsGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -1,11 +1,10 @@
-package lotto.util;
+package lotto.model;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.model.LottoRankCalculator;
 
 public class StatisticsGenerator {
     private final Map<LottoRank, Integer> statistics = new HashMap<>();
