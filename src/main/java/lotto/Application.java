@@ -9,8 +9,9 @@ public class Application {
 
         try {
             LottoNum lottoNum = new LottoNum(money);
-            List<Integer> number = input.numberInput();
+            List<Integer> numbers = input.numberInput();
             int bonus = input.bonusInput();
+            lottoNum.printResult(numbers, bonus, money);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
