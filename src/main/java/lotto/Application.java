@@ -1,7 +1,18 @@
 package lotto;
 
+import lotto.mvc.controller.LottoController;
+import lotto.mvc.view.InputView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoController lottoController = new LottoController(new InputView());
+
+        lottoController.run();
+
+        String s = "-1111111111111111111111";
+
+        long lon = Long.parseLong(s);
+
+        System.out.println("lon = " + lon);
     }
 }
