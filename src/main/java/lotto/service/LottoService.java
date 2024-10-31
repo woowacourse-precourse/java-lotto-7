@@ -4,6 +4,7 @@ package lotto.service;
 import static lotto.exception.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -48,7 +49,7 @@ public class LottoService {
     }
 
     public LottoResultDto getResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-        Map<Integer, Integer> result = Map.of();
+        Map<Integer, Integer> result = new HashMap<>();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.calculateMatchCount(winningLotto);
             boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
@@ -70,7 +71,7 @@ public class LottoService {
         } else if (matchCount == 5) {
             result.put(3, result.getOrDefault(3, 0) + 1);
         } else if (matchCount == 4) {
-            result.put(4, result.getOrDefault(3, 0) + 1);
+            result.put(4, result.getOrDefault(4, 0) + 1);
         } else if (matchCount == 3) {
             result.put(5, result.getOrDefault(5, 0) + 1);
         }
