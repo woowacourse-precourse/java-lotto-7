@@ -22,7 +22,7 @@ class LottosTest {
     }
 
     @ParameterizedTest(name = "{index}: {2}")
-    @MethodSource("lottoTest")
+    @MethodSource("lottosTest")
     @DisplayName("선택한 수에 따른 결과 테스트")
     void prize_findByHitAndBonusTest(Lotto targetLotto, int targetBonus, String message, int totalMoney) {
 
@@ -31,7 +31,7 @@ class LottosTest {
         assertEquals(sampleResult.totalMoney(), totalMoney);
     }
 
-    static Stream<Arguments> lottoTest() {
+    static Stream<Arguments> lottosTest() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 12, 13, 45)), 4, "2등+3등+5등", 31_505_000),
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7, "1등+4등+5등", 2_000_055_000),
