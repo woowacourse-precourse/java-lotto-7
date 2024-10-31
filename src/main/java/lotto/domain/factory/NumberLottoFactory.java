@@ -2,7 +2,7 @@ package lotto.domain.factory;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Component;
-import lotto.domain.Number;
+import lotto.domain.NumberComponent;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class NumberLottoFactory implements LottoFactory {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, lottoLength);
         return numbers.stream()
                 .sorted()
-                .map(Number::new)
+                .map(NumberComponent::new)
                 .collect(Collectors.toList());
     }
 

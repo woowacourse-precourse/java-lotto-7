@@ -7,11 +7,11 @@ import java.util.Objects;
 
 import static lotto.constants.value.LottoRule.MAXIMUM_NUMBER_RANGE;
 
-public class lottoNumber implements Component {
+public class NumberComponent implements Component {
 
     private final int number;
 
-    public lottoNumber(int lottoNumber) {
+    public NumberComponent(int lottoNumber) {
         validateRange(lottoNumber);
         this.number = lottoNumber;
     }
@@ -27,8 +27,8 @@ public class lottoNumber implements Component {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        lottoNumber lottoNumber1 = (lottoNumber) o;
-        return number == lottoNumber1.number;
+        NumberComponent numberComponent1 = (NumberComponent) o;
+        return number == numberComponent1.number;
     }
 
     @Override

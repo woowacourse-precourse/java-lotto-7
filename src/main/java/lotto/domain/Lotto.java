@@ -16,15 +16,8 @@ public class Lotto {
     private final List<Component> numbers;
 
     //우테코 제공 테스트용(원래 필요없음)
-    public Lotto(List<Integer> numbers){
-        List<Component> entries = numbers.stream()
-                .sorted()
-                .map(Number::new)
-                .collect(Collectors.toList());
-        validateLength(entries,LottoRule.COMBINATION_LENGTH.getValue());
-        validateDuplicate(entries);
-
-        this.numbers = entries;
+    public Lotto(List<Component> components){
+        this.numbers = components;
     }
 
     private Lotto(LottoFactory lottoFactory) {
