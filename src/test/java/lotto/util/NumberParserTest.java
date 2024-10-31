@@ -21,6 +21,9 @@ class NumberParserTest {
     static final String ALPHABET_INPUT = "1,2,3,4,5,a";
     static final String SPECIAL_CHARACTER_INPUT = "1,2,3,4,5,/";
 
+    static final String ALPHABET = "a";
+    static final String SPECIAL_CHARACTER = "/";
+
     @Test
     @DisplayName("6자리 로또 번호 파싱 테스트")
     void testParseLottoNumber() {
@@ -55,4 +58,10 @@ class NumberParserTest {
         assertThrows(IllegalArgumentException.class, () -> NumberParser.parseLottoNumbers(input));
     }
 
+    @ParameterizedTest
+    @DisplayName("알파벳과 특수문자가 들어간 보너스 번호 예외 처리 테스트 ")
+    @ValueSource(strings = {ALPHABET, SPECIAL_CHARACTER})
+    void testNonNumericBonusNumber(String input) {
+        assertThrows(IllegalArgumentException.class, () -> NumberParser.parseBonusNumber(input));
+    }
 }
