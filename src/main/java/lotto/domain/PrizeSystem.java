@@ -84,7 +84,8 @@ public class PrizeSystem {
     /**
      * 수익률 계산
      */
-    public double getProfit(int purchaseMoney, int prizeMoney) {
+    public double getProfit(int purchaseMoney) {
+        int prizeMoney = getPrizeMoney();
         double profit = prizeMoney / purchaseMoney * 100;
         return profit;
     }
