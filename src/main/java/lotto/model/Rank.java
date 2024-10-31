@@ -9,8 +9,8 @@ public enum Rank {
     FIFTH(3, 5_000),
     NONE(2, 0);
 
-    private final int duplicatedCount;
-    private final int reward;
+    public final int duplicatedCount;
+    public final int reward;
 
     Rank(int duplicatedCount, int reward) {
         this.duplicatedCount = duplicatedCount;
