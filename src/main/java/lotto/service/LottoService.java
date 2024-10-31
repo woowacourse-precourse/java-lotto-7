@@ -8,6 +8,7 @@ import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoNumberGenerator;
 import lotto.model.LottoTicket;
+import lotto.model.WinningLotto;
 import lotto.model.dto.LottoDto;
 
 public class LottoService {
@@ -35,5 +36,9 @@ public class LottoService {
         List<Lotto> lottos = customer.getLottoTickets().stream()
                 .map(LottoTicket::getLotto).toList();
         return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
+    }
+
+    public WinningLotto registerWinningNumbers(List<Integer> winningNumbers) {
+        return new WinningLotto(winningNumbers);
     }
 }
