@@ -11,12 +11,12 @@ class LottoMakerTest {
 
     @Test
     void 로또_생성_개수_테스트() {
-        int lottoCount = 5;
-        LottoMaker lottoMaker = new LottoMaker(lottoCount);
-        lottoMaker.makeLottos();
-
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
+                    int lottoCount = 5;
+                    LottoMaker lottoMaker = new LottoMaker(lottoCount);
+                    lottoMaker.makeLottos();
+
                     assertThat(lottoMaker.getLottos()).hasSize(lottoCount);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
@@ -30,13 +30,13 @@ class LottoMakerTest {
     // TODO: 랜덤 테스트가 제대로 안되는 상황 해결
     @Test
     void 로또_생성_번호_테스트() {
-        int lottoCount = 5;
-        LottoMaker lottoMaker = new LottoMaker(lottoCount);
-        lottoMaker.makeLottos();
-        List<Lotto> lottos = lottoMaker.getLottos();
-
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
+                    int lottoCount = 5;
+                    LottoMaker lottoMaker = new LottoMaker(lottoCount);
+                    lottoMaker.makeLottos();
+                    List<Lotto> lottos = lottoMaker.getLottos();
+
                     assertThat(lottos.get(0).getNumbers()).contains(8, 21, 23, 41, 42, 43);
                     assertThat(lottos.get(1).getNumbers()).contains(3, 5, 11, 16, 32, 38);
                     assertThat(lottos.get(2).getNumbers()).contains(7, 11, 16, 35, 36, 44);

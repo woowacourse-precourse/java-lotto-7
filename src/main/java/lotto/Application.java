@@ -26,6 +26,7 @@ public class Application {
         outpuView.showLottos(lottos);
 
         // 5. 당첨 번호 입력
+        List<Integer> inputNumber = inputView.getInputNumber();
 
         // 6. 보너스 번호 입력
 
