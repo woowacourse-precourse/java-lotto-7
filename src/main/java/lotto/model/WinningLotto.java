@@ -13,7 +13,9 @@ public class WinningLotto extends Lotto {
 		super(numbers);
 
 		int number = validateNumber(bonusStr);
-		this.bonusNumber = validateRange(number);
+		validateDuplicate(number);
+		validateRange(number);
+		this.bonusNumber = number;
 	}
 
 	public int getBonusNumber() {
@@ -25,6 +27,12 @@ public class WinningLotto extends Lotto {
 			return Integer.parseInt(str);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_ERROR_MESSAGE);
+		}
+	}
+
+	private void validateDuplicate(int bonusNumber) {
+		if(super.getNumbers().contains(bonusNumber)) {
+			throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
 		}
 	}
 

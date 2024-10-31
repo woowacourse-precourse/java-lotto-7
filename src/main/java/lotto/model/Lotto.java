@@ -14,6 +14,7 @@ public class Lotto {
 	public Lotto(List<Integer> numbers) {
 		validateSize(numbers);
 		validateDuplicate(numbers);
+		validateRange(numbers);
 
 		this.numbers = numbers;
 	}
@@ -33,6 +34,14 @@ public class Lotto {
 
 		if (numbers.size() != removeDuplicate.size()) {
 			throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+		}
+	}
+
+	private void validateRange(List<Integer> numbers) {
+		for (int number : numbers) {
+			if (number < Values.LEAST_LOTTO_NUMBER || number > Values.MOST_LOTTO_NUMBER) {
+				throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
+			}
 		}
 	}
 
