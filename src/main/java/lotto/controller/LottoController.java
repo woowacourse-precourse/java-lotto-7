@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.util.inputParser.parseInt;
 
+import lotto.model.Lottos;
 import lotto.model.Price;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,7 +18,9 @@ public class LottoController {
 
     public void run() {
         Price price = inputBuyLotto();
-        OutputTicketCount(price);
+        int ticketCount = price.convertToTicket();
+        Lottos lottos = new Lottos(ticketCount);
+        outputRandomLottoNumber(ticketCount, lottos);
     }
 
     private Price inputBuyLotto() {
@@ -31,8 +34,9 @@ public class LottoController {
         }
     }
 
-    private void OutputTicketCount(Price price) {
-        int ticketCount = price.convertToTicket();
+    private void outputRandomLottoNumber(int ticketCount, Lottos lottos) {
         outputView.printLottoTicket(ticketCount);
+        String lottosNumber = lottos.getLottos();
+        outputView.printResult(lottosNumber);
     }
 }
