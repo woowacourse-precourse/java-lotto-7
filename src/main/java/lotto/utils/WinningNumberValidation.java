@@ -18,9 +18,9 @@ public class WinningNumberValidation {
         }
     }
 
-    public static int validateNumberFormat(String winningNumber) {
+    public static int validateNumberFormat(String rawWinningNumber) {
         try {
-            return Integer.parseInt(winningNumber);
+            return Integer.parseInt(rawWinningNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(WinningNumberErrorType.INVALID_WINNING_NUMBER_FORMAT.getMessage());
         }
