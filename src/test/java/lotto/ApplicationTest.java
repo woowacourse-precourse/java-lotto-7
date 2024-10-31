@@ -47,9 +47,73 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구입금액이_숫자가_아닐_때() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액이_1000원_미만일_때(){
+        assertSimpleTest(() -> {
+            runException("800");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호의_길이가_6이_아닐_때(){
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호가_중복될_때(){
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호가_범위_내_숫자가_아닐_때(){
+        assertSimpleTest(() -> {
+            runException("8000","0,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호가_문자일_때(){
+        assertSimpleTest(() -> {
+            runException("8000","a,b,c,d,e,f");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호가_당첨번호와_일치할_때(){
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,6","1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호가_범위_내_숫자가_아닐_때(){
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,6","50");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스번호가_문자일_때(){
+        assertSimpleTest(() -> {
+            runException("8000","1,2,3,4,5,6","hi");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
