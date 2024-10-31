@@ -10,10 +10,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateSize(numbers);
-        validateNumbersRange(numbers);
-        validateDuplicateNumbers(numbers);
-        this.numbers = numbers;
+        List<Integer> newNumbers = numbers.stream().toList();
+        validateSize(newNumbers);
+        validateNumbersRange(newNumbers);
+        validateDuplicateNumbers(newNumbers);
+        this.numbers = newNumbers;
     }
 
     private void validateSize(List<Integer> numbers) {
