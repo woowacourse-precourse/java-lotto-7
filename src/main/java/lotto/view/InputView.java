@@ -20,6 +20,11 @@ public class InputView {
         return Utils.parseAndconvertToIntegerList(readLine(), DELIMITER);
     }
 
+    public static int inputBonusNumber(){
+        print(INPUT_BONUS_NUMBER.getMessage());
+        return Utils.stringToInteger(readLine());
+    }
+
     private static void print(String message){
         System.out.println(message);
     }
