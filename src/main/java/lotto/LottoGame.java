@@ -23,6 +23,7 @@ public class LottoGame {
         int bonusNumber = inputBonusNumber(winnerNumbers);
 
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
+        double rateOfResult = LottoStatistics.calcRateOfReturn(money, lottoRanks);
     }
 
     private int inputMoney() {
