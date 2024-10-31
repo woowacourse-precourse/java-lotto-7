@@ -20,6 +20,6 @@ public enum ExceptionMessage {
     }
 
     public void printException() {
-        System.out.println("[ERROR} " + message);
+        System.out.println("[ERROR] " + message);
     }
 }
