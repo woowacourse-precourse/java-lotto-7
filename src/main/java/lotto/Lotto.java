@@ -3,6 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import validation.Validation;
 
 public class Lotto {
 
@@ -19,16 +20,15 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_NUM_SIX_ERROR);
         }
-        if (isDuplicate(numbers)) {
+        try{
+            Validation.duplicate(numbers);
+        }
+        catch(IllegalArgumentException e){
             throw new IllegalArgumentException(LOTTO_NUM_DUPLICATE_ERROR);
         }
     }
 
     // TODO: 추가 기능 구현
-    private boolean isDuplicate(List<Integer> numbers) {
-        Set<Integer> hashSet = new HashSet<>(numbers);
-        return hashSet.size() != numbers.size();
-    }
 
     @Override
     public String toString(){

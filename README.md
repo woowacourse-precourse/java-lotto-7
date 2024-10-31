@@ -42,6 +42,8 @@
 8. 당첨 번호 6개를 입력받는다. 번호는 쉼표(,)를 기준으로 구분한다.
 + ,로 구분한 후 공백을 제거한다. 
 + 1~45사이의 숫자가 아닌 경우 '[ERROR] 정상적인 입력이 아닙니다.' 메시지를 넣어 IllegalArgumentException을 발생시킨다.
++ 중복 유무를 검사하고 중복인 경우, '[ERROR] 정상적인 입력이 아닙니다.' 메시지를 넣어 IllegalArgumentException을 발생시킨다.
 
 9. 보너스 번호를 입력받는다.
 + 1~45사이의 숫자가 아닌 경우 '[ERROR] 정상적인 입력이 아닙니다.' 메시지를 넣어 IllegalArgumentException을 발생시킨다.
++ 입력한 보너스 번호가 입력한 당첨 번호에 존재할 경우, '[ERROR] 정상적인 입력이 아닙니다.' 메시지를 넣어 IllegalArgumentException을 발생시킨다.

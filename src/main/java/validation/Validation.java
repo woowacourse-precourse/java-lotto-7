@@ -1,5 +1,9 @@
 package validation;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class Validation {
 
     private static final String BLANK_INPUT_ERROR = "[ERROR] 비어있는 문자열입니다.";
@@ -30,6 +34,13 @@ public class Validation {
         if (inputMoney > MAX_MONEY) {
             throw new IllegalArgumentException(OVER_INPUT_ERROR);
         }
+    }
+
+    public static <T> void duplicate(List<T> input){
+        Set<T> hashSet = new HashSet<>();
+        hashSet.addAll(input);
+        if(hashSet.size() != input.size())
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
     }
 }
 
