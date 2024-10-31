@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import static lotto.util.inputParser.parseInt;
+
+import lotto.model.Price;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,6 +17,9 @@ public class LottoController {
 
     public void run() {
         String rawPrice = inputView.readPriceInput();
+        Price price = new Price(parseInt(rawPrice));
+        int ticketCount = price.convertToTicket();
+
         inputView.closeConsole();
     }
 }
