@@ -33,7 +33,6 @@ public class Lotto {
                 if (numbers.contains(bonus)) {
                     yield LottoRank.GRADE_2TH;
                 }
-
                 yield LottoRank.GRADE_3TH;
             case 4:
                 yield LottoRank.GRADE_4TH;

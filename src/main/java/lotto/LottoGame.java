@@ -24,7 +24,6 @@ public class LottoGame {
         // 당첨 번호 설정
         List<Integer> winnerNumbers = lottoGameDisplay.inputWinnerNumbers();
         int bonusNumber = lottoGameDisplay.inputBonusNumber(winnerNumbers);
-
         // 당첨 확인
         List<LottoRank> lottoRanks = checkLottosRank(lottos, winnerNumbers, bonusNumber);
 

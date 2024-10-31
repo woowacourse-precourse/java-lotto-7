@@ -81,8 +81,7 @@ public class LottoGameDisplay {
         for (LottoRank lottoRank : printLottoRanks) {
             System.out.printf("%s (%,d%s) - %d개\n",
                     lottoRank.getWinCondition(),
-                    lottoRank.getPrizeMoney(),
-                    LottoRank.UNIT,
+                    lottoRank.getPrizeMoney(), LottoRank.UNIT,
                     rankMap.get(lottoRank)
             );
         }
