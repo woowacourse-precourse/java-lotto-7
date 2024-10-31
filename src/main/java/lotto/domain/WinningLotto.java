@@ -15,6 +15,14 @@ public class WinningLotto {
 
     public static WinningLotto of(List<Integer> numbers, int bonusNumber){
         WinningLottoValidator.validateWinningLotto(numbers, bonusNumber);
-        return new WinningLotto(Lotto.from(numbers), LottoNumber.from(bonusNumber));
+        return new WinningLotto(Lotto.from(numbers), LottoNumber.valueOf(bonusNumber));
+    }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
     }
 }

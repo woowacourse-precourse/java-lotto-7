@@ -25,5 +25,23 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
-    // TODO: 추가 기능 구현
+    public Ranking checkRanking(WinningLotto winLotto) {
+        int matchCount = calculateMatchCount(winLotto.getLotto().getNumbers());
+        boolean isBonusMatch = isMatchBonusNumber(winLotto.getBonusNumber());
+        return Ranking.of(matchCount, isBonusMatch);
+    }
+
+    private int calculateMatchCount(List<LottoNumber> winNumbers) {
+        return (int) winNumbers.stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
+    private boolean isMatchBonusNumber(LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
 }
