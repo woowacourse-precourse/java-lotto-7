@@ -5,6 +5,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -38,5 +40,14 @@ public class Lotto {
         joinString = String.join(", ", lotto.numbers.toString());
         joinString = joinString + "]";
         System.out.println(joinString);
+    }
+
+    public static MyResult gradeLotto(Lotto answer, Lotto target, Integer bonus){
+        List<Integer> matchList = answer.numbers.stream().filter(num -> target.numbers.stream()
+                .anyMatch(Predicate.isEqual(num))).collect(Collectors.toList());
+        boolean bonusMatch = target.numbers.stream().anyMatch(Predicate.isEqual(bonus));
+        MyResult myresult = new MyResult(matchList.size(), bonusMatch);
+
+        return myresult;
     }
 }
