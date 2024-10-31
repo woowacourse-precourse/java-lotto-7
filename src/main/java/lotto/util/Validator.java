@@ -7,12 +7,15 @@ import static lotto.common.ExceptionMessage.MONEY_INVALID_RANGE;
 import static lotto.common.ExceptionMessage.NOT_ENOUGH_NUMBERS;
 import static lotto.common.ExceptionMessage.NUMBER_DUPLICATED;
 import static lotto.common.ExceptionMessage.NUMBER_INVALID_RANGE;
+import static lotto.common.LottoConstant.LOTTO_PRICE;
+import static lotto.common.LottoConstant.MAX_NUMBER;
+import static lotto.common.LottoConstant.MIN_NUMBER;
+import static lotto.common.LottoConstant.NUMBERS_SIZE;
 
 public class Validator {
-    private static final int NUMBERS_SIZE = 6;
-    private static final int MAX_NUMBER = 45;
-    private static final int MIN_NUMBER = 1;
-    private static final int LOTTO_PRICE = 1000;
+
+    private Validator() {
+    }
 
     public static boolean validateNumbers(List<Integer> numbers, Integer bonusNumber) {
         checkNumberSize(numbers);

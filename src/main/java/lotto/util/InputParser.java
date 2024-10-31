@@ -10,6 +10,9 @@ public class InputParser {
 
     private final static String NUMBER_DELIMITER = ",";
 
+    private InputParser() {
+    }
+
     public static Integer parseMoney(String money) {
         try {
             return Integer.parseInt(money.replaceAll(" ", ""));
