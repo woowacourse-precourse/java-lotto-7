@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -43,6 +44,17 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("[ERROR] 로또 번호는 1부터 45사이여야 합니다.");
+    }
+
+    @DisplayName("로또 번호의 정렬 결과를 확인한다.")
+    @Test
+    void getSortedNumbersByAscending() {
+        //given
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+        //when
+        List<Integer> sortedNumbers = lotto.getSortedNumbersByAscending();
+        //then
+        assertThat(sortedNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
 }

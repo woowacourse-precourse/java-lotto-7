@@ -15,6 +15,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getSortedNumbersByAscending() {
+        return numbers.stream()
+            .sorted()
+            .toList();
+    }
+
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkDuplicate(numbers);
