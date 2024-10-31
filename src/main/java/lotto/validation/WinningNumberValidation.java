@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.constants.ErrorMessage.LOTTO_NUMBER_ONLY_CAN_LENGTH_6;
+import static lotto.constants.ErrorMessage.LOTTO_NUMBER_ONLY_CAN_MONEY;
 import static lotto.constants.LottoNumbers.LOTTO_NUMBER_COUNT;
 
 public class WinningNumberValidation {
@@ -13,6 +14,7 @@ public class WinningNumberValidation {
     public static void validate(String inputWinningNumbers) {
         List<String> winningNumbers = setTrimNumbers(inputWinningNumbers);
         winningNumbers = setUniqueNumbers(winningNumbers);
+        List<Integer> parsedWinningNumbers = parseNumbers(winningNumbers);
     }
 
     public static List<String> setTrimNumbers(String inputWinningNumbers) {
@@ -31,5 +33,15 @@ public class WinningNumberValidation {
         }
 
         return uniqueWinningNumbers.stream().toList();
+    }
+
+    public static List<Integer> parseNumbers(List<String> winningNumbers) {
+        return winningNumbers.stream().map(number -> {
+            try {
+                return Integer.parseInt(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_ONLY_CAN_MONEY.getErrorMessage());
+            }
+        }).toList();
     }
 }

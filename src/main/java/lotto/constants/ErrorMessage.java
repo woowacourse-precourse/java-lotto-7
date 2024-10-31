@@ -3,6 +3,7 @@ package lotto.constants;
 public enum ErrorMessage {
     PURCHASE_MONEY_ONLY_CAN_NUMBER("[ERROR] 구입 금액은 숫자여야 합니다."),
     PURCHASE_MONEY_ONLY_CAN_THOUSAND_UNIT("[ERROR] 구입 금액은 1,000원 단위여야 합니다."),
+    LOTTO_NUMBER_ONLY_CAN_MONEY("[ERROR] 로또 번호는 숫자여야 합니다."),
     LOTTO_NUMBER_ONLY_CAN_LENGTH_6("[ERROR] 로또 번호는 중복되지 않은 6개의 숫자여야 합니다.");
 
     private final String errorMessage;
