@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.enums.ErrorMessage;
@@ -11,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -40,5 +42,9 @@ public class Lotto {
     public static Lotto generateLottoNumber() {
         List<Integer> generatedNumbers = LottoGenerator.generateLottoNumbers();
         return new Lotto(generatedNumbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

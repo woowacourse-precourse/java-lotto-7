@@ -1,8 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoConstants;
+import lotto.service.LottoGenerator;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,7 +14,8 @@ public class Application {
 
         System.out.println(lottoCount+"개를 구매했습니다.");
 
-        Lotto lotto = Lotto.generateLottoNumber();
+        List<Lotto> lottoTickets = purchaseLottos(lottoCount);
+        lottoTickets.forEach(lotto -> System.out.println(lotto.getNumbers()));
 
     }
 
@@ -34,7 +38,7 @@ public class Application {
         return amount;
     }
 
-    private static int validateAmount(String input) {
+    private static int validateAmount(final String input) {
         int amount;
         try {
             amount = Integer.parseInt(input);
@@ -47,5 +51,14 @@ public class Application {
         }
 
         return amount;
+    }
+
+    private static List<Lotto> purchaseLottos(final int lottoCount) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = Lotto.generateLottoNumber();
+            lottoTickets.add(lotto);
+        }
+        return lottoTickets;
     }
 }
