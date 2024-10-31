@@ -15,7 +15,7 @@ public class LottoController {
         int purchaseAmount = getPurchaseAmount(inputParser);
     }
 
-    private int getPurchaseAmount(InputParser inputParser) {
+    public int getPurchaseAmount(InputParser inputParser) {
         while (true) {
             try {
                 String purchaseAmount = inputView.readPurchaseAmount();
