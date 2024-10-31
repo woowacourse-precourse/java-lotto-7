@@ -2,7 +2,8 @@ package lotto.view;
 
 import static java.lang.String.format;
 
-
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.exception.LottoException;
 
 public class OutputView {
@@ -16,5 +17,11 @@ public class OutputView {
 
     public static void printLottoExceptionMessage(LottoException e) {
         System.out.println(e.getMessage() + System.lineSeparator());
+    }
+
+    public static void printLottoGroup(List<Lotto> lottoGroup) {
+        lottoGroup.forEach(lotto -> {
+            System.out.println(lotto.getNumbers());
+        });
     }
 }
