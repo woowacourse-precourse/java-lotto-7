@@ -1,9 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import lotto.domain.Rank;
 
 public class LottoGameResult {
     private final Map<Rank, Integer> lottoGameResult;
@@ -31,5 +31,9 @@ public class LottoGameResult {
                 .stream()
                 .mapToLong(result -> result.getKey().getPrize() * result.getValue())
                 .sum();
+    }
+
+    public Map<Rank, Integer> getLottoGameResult() {
+        return Collections.unmodifiableMap(lottoGameResult);
     }
 }
