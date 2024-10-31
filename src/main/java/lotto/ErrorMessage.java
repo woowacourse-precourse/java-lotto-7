@@ -6,7 +6,8 @@ public enum ErrorMessage {
     ERROR_PRICE_NOT_IN_UNITS_OF_1000("금액은 1000원 단위여야 합니다."),
     ERROR_DELIMETER_ONLY_HAS_COMMA("로또 번호는 숫자와 ','만 포함할 수 있습니다."),
     ERROR_DUPLICATE_NUMBER("로또 번호에 중복된 숫자가 포함되어 있습니다."),
-    ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE("로또 번호는 1이상 45이하입니다.")
+    ERROR_NUMBER_UNDER_ZERO_OVER_FORTY_FIVE("로또 번호는 1이상 45이하입니다."),
+    ERROR_NUMBER_ONLY_SIX("로또 번호는 6개여야 합니다.")
     ;
 
 
