@@ -22,7 +22,7 @@ public class LottoResult {
         }
     }
 
-    public void calculateLottoResult(List<Lotto> purchasedLottos, List<Integer> winNumbers, int bonusNumber) {
+    public void calculateLottoResult(List<Lotto> purchasedLottos, Numbers winNumbers, int bonusNumber) {
         for (Lotto lotto : purchasedLottos) {
             boolean hasBonus = false;
             int lottoScore = 0;
@@ -31,7 +31,7 @@ public class LottoResult {
                 hasBonus = true;
                 lottoScore += 10;
             }
-            List<Integer> temp = new ArrayList<>(lotto.getNumbers());
+            Numbers temp = lotto.getNumbers();
             temp.retainAll(winNumbers);
             lottoScore += temp.size();
 

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Numbers {
-    private List<Number> numbers;
+    private final List<Number> numbers;
 
     public Numbers(List<Integer> numbers) {
         List<Number> parsedNumbers = parseIntToNumber(numbers);
@@ -44,6 +44,14 @@ public class Numbers {
         return numbers.stream()
             .map(Number::new)
             .collect(Collectors.toList());
+    }
+
+    public List<Number> getNumbers() {
+        return numbers;
+    }
+
+    public boolean contains(int targetNumber) {
+        return numbers.stream().anyMatch(number -> number.value() == targetNumber);
     }
 
     @Override
