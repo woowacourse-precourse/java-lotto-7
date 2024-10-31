@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class LottoResult {
     private final Map<Integer, Integer> prizeCountMap = new HashMap<>();
-    private int toalPrize = 0;
+    private int totalPrize = 0;
 
     public LottoResult(){
         for (int i =1; i<=Constants.REWARD_TYPE_COUNT; i++){
@@ -23,7 +23,7 @@ public class LottoResult {
             int rank = getRank(matchCount, bonusMatch);
             if (rank != 0){
                 prizeCountMap.put(rank, prizeCountMap.get(rank)+1);
-                toalPrize += Constants.REWARD_PRICE[rank-1];
+                totalPrize += Constants.REWARD_PRICE[rank-1];
             }
         }
     }
@@ -47,8 +47,13 @@ public class LottoResult {
         return 0;
     }
 
+    public int getPrizeCount(int rank) {
+        return prizeCountMap.getOrDefault(rank, 0);
+    }
+
     public double calculateProfitRate(int purchaseAmount){
-        double profitRate = (double)toalPrize / purchaseAmount * 100;
+        double profitRate = (double)totalPrize / purchaseAmount * 100;
         return Math.round(profitRate * 100) / 100.0;
     }
+
 }

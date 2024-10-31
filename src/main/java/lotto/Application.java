@@ -21,5 +21,8 @@ public class Application {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateResult(lottos, mainLotto, bonusNumber);
+
+        double profitRate = lottoResult.calculateProfitRate(amount);
+        lottoOutput.printResult(lottoResult, profitRate);
     }
 }
