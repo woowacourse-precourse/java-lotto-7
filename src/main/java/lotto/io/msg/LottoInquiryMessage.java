@@ -1,6 +1,6 @@
-package lotto.io;
+package lotto.io.msg;
 
-public enum LottoOutputMessage {
+public enum LottoInquiryMessage {
 
     PURCHASE_AMOUNT_INQUIRY("구입금액을 입력해 주세요."),
     WINNING_NUMBERS_INQUIRY("당첨 번호를 입력해주세요."),
@@ -8,9 +8,10 @@ public enum LottoOutputMessage {
 
     private final String msg;
 
-    LottoOutputMessage(String msg) {
+    LottoInquiryMessage(String msg) {
         this.msg=msg;
     }
+
     public String getMsg(){
         return msg;
     }

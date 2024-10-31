@@ -1,8 +1,10 @@
 package lotto.io.impl;
 
 import lotto.error.LottoErrorMessage;
-import lotto.io.LottoOutputMessage;
+import lotto.io.msg.LottoInquiryMessage;
 import lotto.io.Output;
+
+import java.util.List;
 
 public class ConsoleOutput implements Output {
 
@@ -20,9 +22,24 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printInquiry(LottoOutputMessage msg) {
+    public void printInquiry(LottoInquiryMessage msg) {
 
         System.out.println(msg.getMsg());
+    }
+
+    @Override
+    public void completePurchase(int num) {
+        System.out.println(num+ "개를 구매했습니다.");
+    }
+
+    @Override
+    public void printLotto(List<String> lottoNumbers) {
+
+    }
+
+    @Override
+    public void printWinningStatistics() {
+
     }
 
     @Override
