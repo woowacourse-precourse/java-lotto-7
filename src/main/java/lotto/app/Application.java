@@ -35,7 +35,6 @@ public class Application {
         List<Integer> rankingCount = lotteryProcess.countMatchNumbers(); // 로또 추첨
 
         PrintResult printResult = new PrintResult(rankingCount);
-        printResult.printPrize(); // 당첨 통계 출력
-        printResult.printEarningsRate(amount); // 수익률 출력
+        printResult.printPrizeAndEarnings(amount); // 당첨 통계 및 수익률 출력
     }
 }
