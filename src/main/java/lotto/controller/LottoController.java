@@ -2,6 +2,9 @@ package lotto.controller;
 
 import static lotto.view.OutputMessage.*;
 
+import java.util.List;
+
+import lotto.domain.entity.Lotto;
 import lotto.domain.entity.Wallet;
 import lotto.domain.vo.PurchaseAmount;
 import lotto.view.InputView;
@@ -19,6 +22,7 @@ public class LottoController {
     public void run() {
         PurchaseAmount amount = inputPurchaseAmount();
         Wallet wallet = purchaseLotto(amount);
+        printLottoNumbers(wallet);
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -35,5 +39,12 @@ public class LottoController {
         int count = amount.calculateRemainder();
         outputView.print(PURCHASE_RESULT, count);
         return Wallet.from(amount);
+    }
+
+    private void printLottoNumbers(Wallet wallet) {
+        List<Lotto> lottos = wallet.lottos();
+        for (Lotto lotto : lottos) {
+            outputView.print(String.valueOf(lotto));
+        }
     }
 }

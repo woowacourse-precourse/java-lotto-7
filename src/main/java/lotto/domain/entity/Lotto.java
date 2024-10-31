@@ -48,4 +48,9 @@ public class Lotto {
             throw new IllegalArgumentException(INCORRECT_LENGTH);
         }
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

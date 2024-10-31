@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import lotto.domain.entity.Wallet;
 import lotto.domain.vo.PurchaseAmount;
 
 public class RecodeTest {
@@ -12,8 +13,10 @@ public class RecodeTest {
     @DisplayName("Record는 getter 메서드를 자동으로 생성한다")
     void recordAutomaticallyCreatesGetter() {
         PurchaseAmount amount = new PurchaseAmount(1000);
+        Wallet wallet = new Wallet(amount);
 
         assertThat(amount.amount()).isEqualTo(1000);
+        assertThat(wallet.lottos().size()).isEqualTo(1);
     }
 
     @Test
