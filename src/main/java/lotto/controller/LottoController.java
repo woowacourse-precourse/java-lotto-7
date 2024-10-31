@@ -1,10 +1,14 @@
 package lotto.controller;
 
+import lotto.converter.WinningNumberConverter;
+import lotto.domain.Lotto;
 import lotto.dto.LottoInputDto;
 import lotto.service.LottoBuyService;
 import lotto.service.LottoCheckService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -22,10 +26,11 @@ public class LottoController {
 
     public void buyLotto() {
         LottoInputDto lottoInputDto = inputView.enterInput();
-        lottoBuyService.buyLotto(lottoInputDto.purchaseAmount());
+        List<Lotto> lottos = lottoBuyService.buyLotto(lottoInputDto.purchaseAmount());
+        checkLotto(lottoInputDto, lottos);
     }
 
-    public void checkLotto() {
-
+    public void checkLotto(LottoInputDto lottoInputDto, List<Lotto> lottos) {
+        lottoCheckService.checkLotto(WinningNumberConverter.toWinningNumber(lottoInputDto), lottos);
     }
 }

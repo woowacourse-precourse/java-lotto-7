@@ -8,6 +8,5 @@ public class Application {
         AppConfig appConfig = new AppConfig();
         LottoController lottoController = appConfig.getLottoController();
         lottoController.buyLotto();
-        lottoController.checkLotto();
     }
 }

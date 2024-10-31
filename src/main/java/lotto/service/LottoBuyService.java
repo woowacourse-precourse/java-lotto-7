@@ -15,10 +15,13 @@ public class LottoBuyService {
 
     public List<Lotto> buyLotto(long purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
+
         for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++)
             selectLottoNumbers(lottos);
 
-        return lottos;
+        return lottos.stream()
+                .map(lotto -> new Lotto(lotto.getNumbers()))
+                .toList();
     }
 
     public void selectLottoNumbers(List<Lotto> lottos) {
