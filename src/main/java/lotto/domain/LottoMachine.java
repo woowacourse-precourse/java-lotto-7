@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.utils.RandomPicker;
 
@@ -36,10 +37,15 @@ public class LottoMachine {
 
         int createLotto = amount / LOTTO_PRICE;
         for (int i = 0; i < createLotto; i++) {
-            Lotto lotto = new Lotto(RandomPicker.getRandomNumbers());
+            Lotto lotto = new Lotto(sort(RandomPicker.getRandomNumbers()));
             lottoTickets.add(lotto);
         }
         return lottoTickets;
+    }
+
+    private static List<Integer> sort(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return numbers;
     }
 
     public int getLottoTicketSize() {
