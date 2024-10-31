@@ -43,6 +43,7 @@ public class InputView {
     private List<Integer> numbersToInteger(String notSplitWinningNumbers) {
         String[] stringWinningNumbers = notSplitWinningNumbers.split(",");
         return Arrays.stream(stringWinningNumbers)
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
     }
