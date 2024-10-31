@@ -7,5 +7,7 @@ public interface GameOutput {
     void printPurchasedTickets(LottoTicket lottoTicket);
 
     void printResults(Result result, double yield);
+
+    void printErrorMessage(String message);
 }
 

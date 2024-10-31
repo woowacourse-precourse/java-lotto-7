@@ -22,18 +22,40 @@ public class LottoGameController {
     }
 
     public void start() {
-        // 구입 금액 입력 및 객체 생성
-        PurchaseAmount purchaseAmount = new PurchaseAmount(gameInput.getPurchaseAmountInput());
+        PurchaseAmount purchaseAmount;
+        while (true) {
+            try {
+                purchaseAmount = new PurchaseAmount(gameInput.getPurchaseAmountInput());
+                break;
+            } catch (IllegalArgumentException e) {
+                gameOutput.printErrorMessage(e.getMessage());
+            }
+        }
         LottoTicket lottoTicket = generateLottoTickets(purchaseAmount.getTicketCount());
-
         gameOutput.printPurchasedTickets(lottoTicket);
 
-        // 당첨 번호 및 보너스 번호 입력 후 객체 생성
-        WinningNumbers winningNumbers = new WinningNumbers(gameInput.getWinningNumbersInput());
-        BonusNumber bonusNumber = new BonusNumber(gameInput.getBonusNumberInput(), winningNumbers.getWinningNumbers());
+        WinningNumbers winningNumbers;
+        while (true) {
+            try {
+                winningNumbers = new WinningNumbers(gameInput.getWinningNumbersInput());
+                break;
+            } catch (IllegalArgumentException e) {
+                gameOutput.printErrorMessage(e.getMessage());
+            }
+        }
+
+        BonusNumber bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = new BonusNumber(gameInput.getBonusNumberInput(), winningNumbers.getWinningNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                gameOutput.printErrorMessage(e.getMessage());
+            }
+        }
 
         Result result = new Result();
-        result.calculateResults(lottoTicket, winningNumbers, bonusNumber); // 결과 계산 및 저장
+        result.calculateResults(lottoTicket, winningNumbers, bonusNumber);
         double yield = purchaseAmount.calculateYield(result.getTotalPrize());
         gameOutput.printResults(result, yield);
     }

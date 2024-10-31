@@ -15,9 +15,17 @@ public class WinningNumbers {
     }
 
     private List<Integer> parseAndValidate(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력해야 합니다.");
+        }
         try {
             // split 메서드에 limit 값을 설정하여 모든 요소를 포함
             List<String> splitInput = Arrays.asList(input.split(",", -1));
+
+            // 각 항목이 빈 문자열인지 검사하고 숫자 개수가 6개인지 확인
+            if (splitInput.size() != 6 || splitInput.stream().anyMatch(String::isEmpty)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 구분자로 구분된 숫자 6개여야 합니다.");
+            }
 
             // 숫자 변환 및 유효성 검사
             List<Integer> numbers = splitInput.stream()
@@ -30,10 +38,6 @@ public class WinningNumbers {
                     })
                     .collect(Collectors.toList());
 
-            // 각 항목이 빈 문자열인지 검사하고 숫자 개수가 6개인지 확인
-            if (splitInput.size() != 6 || splitInput.stream().anyMatch(String::isEmpty)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복 없이 6개여야 합니다.");
-            }
             // 중복과 범위 검증
             if (new HashSet<>(numbers).size() != 6) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복 없이 6개여야 합니다.");

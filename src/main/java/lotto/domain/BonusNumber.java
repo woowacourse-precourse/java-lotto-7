@@ -12,6 +12,9 @@ public class BonusNumber {
     }
 
     private int parseAndValidate(String input, List<Integer> winningNumbers) {
+        if (input == null) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해야 합니다.");
+        }
         try {
             int number = Integer.parseInt(input);
             if (number < MIN || number > MAX) {
