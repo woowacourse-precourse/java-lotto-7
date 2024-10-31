@@ -1,13 +1,11 @@
-package lotto;
-
-import lotto.domain.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
+package lotto.domain;
 
 import static lotto.global.Error.LOTTO_NUMBER_IS_NOT_BETWEEN_1_AND_46;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
