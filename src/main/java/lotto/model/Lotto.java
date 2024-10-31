@@ -24,6 +24,12 @@ public class Lotto {
         return numbers.contains(value);
     }
 
+    public int countSameNumber(final Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::contains)
+                .count();
+    }
+
     private void validate(final List<Integer> numbers) {
         checkCountOfLottoNumbers(numbers.size());
         checkMinimumOfLottoNumber(numbers);

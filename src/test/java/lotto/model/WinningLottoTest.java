@@ -57,7 +57,7 @@ class WinningLottoTest {
 
     @Test
     @DisplayName("당첨 번호와 같은 숫자가 4개이면 4등이여야 한다.")
-    void should_ReturnFifthRank_When_MatchCountIsThree() {
+    void should_ReturnFourthRank_When_MatchCountIsThree() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
@@ -73,7 +73,7 @@ class WinningLottoTest {
 
     @Test
     @DisplayName("당첨 번호와 같은 숫자가 5개지만, 보너스 번호가 일치하지 않으면 3등이여야 한다.")
-    void should_ReturnFifthRank_When_MatchCountIsThree() {
+    void should_ReturnThirdRank_When_MatchCountIsThree() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
@@ -89,7 +89,7 @@ class WinningLottoTest {
 
     @Test
     @DisplayName("당첨 번호와 같은 숫자가 5개이고, 보너스 번호가 일치하면 2등이여야 한다.")
-    void should_ReturnFifthRank_When_MatchCountIsThree() {
+    void should_ReturnSecondRank_When_MatchCountIsThree() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
@@ -105,7 +105,7 @@ class WinningLottoTest {
 
     @Test
     @DisplayName("당첨 번호와 같은 숫자가 6개이면 1등이여야 한다.")
-    void should_ReturnFifthRank_When_MatchCountIsThree() {
+    void should_ReturnFirstRank_When_MatchCountIsThree() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7);
