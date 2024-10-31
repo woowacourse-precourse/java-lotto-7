@@ -19,8 +19,8 @@ public class Controller {
         this.count = input.getPurchaseCount();
         this.model = new Model(this.count);
         output.printLottoNum(model.getNumbers());
-        model.getWinNumbers(input.getWinNumber());
-        model.getBonusNumber(input.getBonusNum());
+        model.setWinNumbers(input.getWinNumber());
+        model.setBonusNumber(input.getBonusNum());
     }
 
 }

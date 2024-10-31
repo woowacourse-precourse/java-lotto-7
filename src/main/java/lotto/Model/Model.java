@@ -3,12 +3,14 @@ package lotto.Model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Model {
     private List<Lotto> numbers = new ArrayList<Lotto>();
     private List<Integer> winNumbers;
     private int bonusNumber;
+    private List<Integer> prizeNum = new ArrayList<>(Collections.nCopies(5, 0));
 
 
     public Model(int count) {
@@ -17,11 +19,15 @@ public class Model {
         }
     }
 
-    public void getWinNumbers(List<Integer> winNumbers) {
+    public void countPrizeNum() {
+
+    }
+
+    public void setWinNumbers(List<Integer> winNumbers) {
         this.winNumbers = winNumbers;
     }
 
-    public void getBonusNumber(int bonusNumber) {
+    public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 

@@ -32,6 +32,10 @@ public class Lotto {
         return count;
     }
 
+    public boolean checkBonus(int bonusNum) {
+        return numbers.contains(bonusNum);
+    }
+
     public void print() {
         System.out.print("[");
         for (int i = 0; i < numbers.size(); i++) {
