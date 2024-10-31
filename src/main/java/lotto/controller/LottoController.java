@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.InputConverter;
@@ -26,7 +25,7 @@ public class LottoController {
     public void run(){
         lottoAmount();
         purchaseLotto();
-        winningNumber = new WinningNumber(getWinningLotto(), getBonusNumber());
+        getWinningNumber();
 
     }
 
@@ -76,5 +75,17 @@ public class LottoController {
         }
 
         return bonusNumber;
+    }
+
+    private void getWinningNumber(){
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber();
+
+        try{
+            winningNumber = new WinningNumber(winningLotto, bonusNumber);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.toString());
+            getWinningNumber();
+        }
     }
 }
