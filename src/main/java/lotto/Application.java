@@ -31,8 +31,16 @@ public class Application {
         }
         outputnumbers(lottoList);
 
-        List<Integer> WinningNumbers = Lotto.inputWinningNumbers();
-        Lotto winningNumbers = new Lotto(WinningNumbers);
+        while (true) {
+            try {
+                List<Integer> WinningNumbers = Lotto.inputWinningNumbers();
+                Lotto winningNumbers = new Lotto(WinningNumbers);
+                break;
+            } catch (IllegalArgumentException error) {
+                System.out.println("[ERROR]" + error.getMessage());
+            }
+        }
+
     }
 
     private static int getMoney() {
