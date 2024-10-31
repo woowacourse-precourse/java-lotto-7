@@ -15,11 +15,11 @@ public class OutputView {
     }
 
     public void printWinningNumberInputMessage(){
-        System.out.println(WINNING_NUMBER_INPUT_MESSAGE.getMessage());
+        System.out.println("\n" + WINNING_NUMBER_INPUT_MESSAGE.getMessage());
     }
 
     public void printBonusNumberInputMessage(){
-        System.out.println(BONUS_NUMBER_INPUT_MESSAGE.getMessage());
+        System.out.println("\n" + BONUS_NUMBER_INPUT_MESSAGE.getMessage());
     }
 
     public void printLottoCountOutputMessage(Player player) {

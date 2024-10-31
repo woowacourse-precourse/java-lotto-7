@@ -8,6 +8,8 @@ import lotto.service.PlayerService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
 
     private final InputView inputView;
@@ -32,6 +34,8 @@ public class LottoController {
 
     public void run() {
         purchaseLotto();
+        receiveWinningNumbers();
+        receiveBonusNumber();
     }
 
     private void purchaseLotto() {
@@ -41,5 +45,17 @@ public class LottoController {
         playerService.addLottos(lottoCount);
         outputView.printLottoCountOutputMessage(player);
         outputView.printLottoNumbers(player);
+    }
+
+    private void receiveWinningNumbers() {
+        outputView.printWinningNumberInputMessage();
+        List<Integer> winningNumbers = inputView.readWinningNumberInput();
+        lottoService.addWinningNumbers(winningNumbers);
+    }
+
+    private void receiveBonusNumber() {
+        outputView.printBonusNumberInputMessage();
+        int bonusNumber = inputView.readBonusNumberInput(lotto.getNumbers());
+        lottoService.updateBonusNumber(bonusNumber);
     }
 }
