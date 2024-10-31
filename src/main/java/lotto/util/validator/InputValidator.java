@@ -13,13 +13,13 @@ public final class InputValidator {
 
     public static void validateLottoNumberInput(String numberInput) {
         validateNullOrEmpty(numberInput);
-        if (!numberInput.matches(AVAILABLE_NUMBER_PATTERN)) {
+        if (!numberInput.trim().matches(AVAILABLE_NUMBER_PATTERN)) {
             throw new InputException(InputError.INVALID_FORMAT);
         }
     }
     public static void validateMoneyInput(String moneyInput) {
         validateNullOrEmpty(moneyInput);
-        if (!moneyInput.matches(AVAILABLE_MONEY_PATTERN)) {
+        if (!moneyInput.trim().matches(AVAILABLE_MONEY_PATTERN)) {
             throw new InputException(InputError.INVALID_FORMAT);
         }
     }
