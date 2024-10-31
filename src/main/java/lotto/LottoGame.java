@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class LottoGame {
 
-    private LottoStore lottoStore;
+    private final LottoStore lottoStore;
 
     public LottoGame() {
         this.lottoStore = new LottoStore();
