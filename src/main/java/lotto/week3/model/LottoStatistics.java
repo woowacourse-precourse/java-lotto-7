@@ -2,6 +2,7 @@ package lotto.week3.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.week3.dto.StatisticsRequestDto;
 
 public class LottoStatistics {
     private static final int FIRST_PRIZE = 2000000000;
@@ -10,35 +11,41 @@ public class LottoStatistics {
     private static final int FOURTH_PRIZE = 50000;
     private static final int FIFTH_PRIZE = 5000;
 
-    private final Map<String , Integer> resultMap = new HashMap<>();
+    private final Map<String , Integer> statisticsRequest;
 
     public LottoStatistics(){
-        resultMap.put("3개 맞춤", 0);
-        resultMap.put("4개 맞춤", 0);
-        resultMap.put("5개 맞춤", 0);
-        resultMap.put("5개 맞춤 + 보너스 맞춤", 0);
-        resultMap.put("6개 맞춤", 0);
+        statisticsRequest = new HashMap<>();
+        statisticsRequest.put("3개 일치", 0);
+        statisticsRequest.put("4개 일치", 0);
+        statisticsRequest.put("5개 일치", 0);
+        statisticsRequest.put("5개 일치 + 보너스 일치", 0);
+        statisticsRequest.put("6개 일치", 0);
     }
 
     public void calculatePrize(int matchCount, boolean bonusMatch){
         if (matchCount == 6){
-            resultMap.put("6개 맞춤", resultMap.get("6개 맞춤") + 1);
+            statisticsRequest.put("6개 일치", statisticsRequest.get("6개 일치") + 1);
         }else if (matchCount == 5 && bonusMatch) {
-            resultMap.put("5개 맞춤 + 보너스 맞춤", resultMap.get("5개 맞춤 + 보너스 맞춤") + 1);
+            statisticsRequest.put("5개 일치 + 보너스 일치", statisticsRequest.get("5개 일치 + 보너스 일치") + 1);
         }else if(matchCount == 5){
-            resultMap.put("5개 맞춤", resultMap.get("5개 맞춤") +1);
+            statisticsRequest.put("5개 일치", statisticsRequest.get("5개 일치") +1);
         }else if (matchCount == 4){
-            resultMap.put("4개 맟줌", resultMap.get("4개 맞춤") +1);
+            statisticsRequest.put("4개 일치", statisticsRequest.get("4개 일치") +1);
         } else if (matchCount == 3) {
-            resultMap.put("5개 맞춤", resultMap.get("5개 맞춤") + 1);
+            statisticsRequest.put("5개 일치", statisticsRequest.get("5개 일치") + 1);
         }
     }
 
     public int calculateTotalPrize() {
-        return resultMap.get("3개 맞춤") * FIFTH_PRIZE +
-                resultMap.get("4개 맞춤") * FOURTH_PRIZE +
-                resultMap.get("5개 맞춤") * THIRD_PRIZE +
-                resultMap.get("5개 맞춤 + 보너스 맞춤") * SECOND_PRIZE +
-                resultMap.get("6개 맞춤") * FIRST_PRIZE;
+        return statisticsRequest.get("3개 일치") * FIFTH_PRIZE +
+                statisticsRequest.get("4개 일치") * FOURTH_PRIZE +
+                statisticsRequest.get("5개 일치") * THIRD_PRIZE +
+                statisticsRequest.get("5개 일치 + 보너스 일치") * SECOND_PRIZE +
+                statisticsRequest.get("6개 일치") * FIRST_PRIZE;
     }
+
+    public StatisticsRequestDto getStatisticsRequestDto(){
+        return new StatisticsRequestDto(statisticsRequest);
+    }
+
 }
