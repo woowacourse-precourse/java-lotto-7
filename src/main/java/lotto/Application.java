@@ -32,8 +32,6 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        System.out.println(Math.round(5000.0 / 8000.0 * 100 * 10) / 10.0);
-        System.exit(0);
         LottoMachine lottoMachine = new LottoMachine();
         int amount = lottoMachine.parseAmount(readAmount());
         lottoMachine.issue(amount);
@@ -41,5 +39,6 @@ public class Application {
         Lotto winningNumbers = lottoMachine.parseWinningNumber(readWinningNumbers());
         int bonusNumber = lottoMachine.parseBonusNumber(winningNumbers, readBonusNumbers());
         lottoMachine.draw(winningNumbers, bonusNumber);
+        lottoMachine.printWinningStatistics(amount);
     }
 }

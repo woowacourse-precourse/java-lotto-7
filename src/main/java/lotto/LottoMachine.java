@@ -116,4 +116,14 @@ public class LottoMachine {
     public double getReturnRate(double totalPrize, double amount) {
         return Math.round(totalPrize / amount * 100 * 10) / 10.0;
     }
+
+    public void printWinningStatistics(int amount) {
+        System.out.print("\n당첨 통계\n---\n");
+        System.out.printf("%d개 일치 (%s) - %d개\n", 3, "5,000원", winningStatistics.getOrDefault(3, 0));
+        System.out.printf("%d개 일치 (%s) - %d개\n", 4, "50,000원", winningStatistics.getOrDefault(4, 0));
+        System.out.printf("%d개 일치 (%s) - %d개\n", 5, "1,500,000원", winningStatistics.getOrDefault(5, 0));
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", 5, "30,000,000원", winningStatistics.getOrDefault(7, 0));
+        System.out.printf("%d개 일치 (%s) - %d개\n", 6, "2,000,000,000원", winningStatistics.getOrDefault(6, 0));
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", getReturnRate(getTotalPrize(), amount));
+    }
 }
