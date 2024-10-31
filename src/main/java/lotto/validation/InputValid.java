@@ -1,5 +1,9 @@
 package lotto.validation;
 
+import java.util.*;
+
+import lotto.Lotto;
+
 public class InputValid {
     public static int checkMoney(String input) throws IllegalArgumentException {
         int m = checkInt(input);
@@ -12,8 +16,13 @@ public class InputValid {
         return m;
     }
 
-    public static void checkNumber(String input) {
-
+    public static Lotto checkNumber(String input) throws IllegalArgumentException {
+        String[] numstr = input.split(",");
+        HashSet<Integer> numbers = new HashSet<>();
+        for(String eachstr : numstr) {
+            numbers.add(checkEachNum(eachstr));
+        }
+        return new Lotto(new ArrayList<>(numbers));
     }
 
     public static int checkInt(String input) throws IllegalArgumentException {

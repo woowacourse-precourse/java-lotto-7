@@ -1,13 +1,12 @@
 package lotto;
 
 import java.util.*;
-import java.util.stream.StreamSupport;
 
 import lotto.io.*;
-import lotto.validation.*;
 
 public class LottoMachine {
     public int money;
+    public Lotto win;
     public int bonus;
 
     public void start() {
@@ -35,7 +34,7 @@ public class LottoMachine {
         while(true) {
             Output.number();
             try {
-                Input.number();
+                win = Input.number();
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
