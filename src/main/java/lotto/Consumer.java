@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Consumer {
-    private List<Lotto> lotto;
+    private List<Lotto> lottoTicket;
 
     public Consumer(String priceInput){
         int count = getCount(priceInput);
@@ -16,11 +16,11 @@ public class Consumer {
 
     private void setLotto(List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
-        this.lotto.add(lotto);
+        this.lottoTicket.add(lotto);
     }
 
     public List<Lotto> getLotto() {
-        return this.lotto;
+        return this.lottoTicket;
     }
 
     private int getCount(String priceInput) {
