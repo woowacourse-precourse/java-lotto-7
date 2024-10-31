@@ -52,4 +52,8 @@ public class LottoGenerator {
             System.out.println(lotto);
         }
     }
+
+    public Lotto[] getLotto() {
+        return lotto;
+    }
 }
