@@ -13,6 +13,7 @@ public class LottoProvider {
 	private static final int MIN_LOTTO_NUMBER = 1;
 	private static final int MAX_LOTTO_NUMBER = 45;
 	private static final int LOTTO_DRAW_COUNT = 6;
+	private static final String LOTTO_PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.";
 	private final int numberOfLottos;
 	private final int lottoPurchaseAmount;
 
@@ -35,5 +36,9 @@ public class LottoProvider {
 			List<Integer> pickedLottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_DRAW_COUNT);
 			pickedLottos.add(new Lotto(pickedLottoNumbers));
 		}
+	}
+
+	public void printPickedLottoResults() {
+		System.out.println(lottoPurchaseAmount + LOTTO_PURCHASE_AMOUNT_MESSAGE);
 	}
 }
