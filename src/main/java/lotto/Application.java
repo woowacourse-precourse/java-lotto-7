@@ -13,6 +13,16 @@ public class Application {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
+    public static void printStatistics(){
+        System.out.println("당첨통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - "+statistics[5]+"개");
+        System.out.println("4개 일치 (50,000원) - "+statistics[4]+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+statistics[3]+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+statistics[2]+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+statistics[1]+"개");
+    }
+
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
         int budget = Integer.parseInt(Console.readLine());
@@ -48,5 +58,6 @@ public class Application {
             statistics[rank]++;
         }
 
+        printStatistics();
     }
 }
