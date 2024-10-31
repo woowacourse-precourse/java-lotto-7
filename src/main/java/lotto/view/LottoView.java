@@ -46,5 +46,12 @@ public class LottoView {
 
     }
 
+    public void outputLottoNumbers(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
+
+    }
+
+
+
 
 }
