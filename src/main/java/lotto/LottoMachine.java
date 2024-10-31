@@ -47,14 +47,14 @@ public class LottoMachine {
 
     private void validatePayment(long payment) {
         if (payment < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액으로 음수는 입력할 수 없습니다.");
+            throw new BusinessException("구입 금액으로 음수는 입력할 수 없습니다.");
         }
         validateThousandUnitAmount(payment);
     }
 
     private void validateThousandUnitAmount(long payment) {
         if (payment % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000 단위로 입력해주세요.");
+            throw new BusinessException("구입 금액은 1,000 단위로 입력해주세요.");
         }
     }
 

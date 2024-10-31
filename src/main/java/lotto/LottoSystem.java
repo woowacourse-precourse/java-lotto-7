@@ -66,7 +66,7 @@ public class LottoSystem {
 
     private void validateDuplicate(int bonusNum) {
         if (winningLotto.contains(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new BusinessException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
@@ -76,7 +76,7 @@ public class LottoSystem {
 
     private void validateLottoNumRange(int num) {
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new BusinessException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }
