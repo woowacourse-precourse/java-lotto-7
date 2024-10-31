@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.generator;
 
 import static lotto.config.LottoInfo.LOTTO_NUMBER_SIZE;
 import static lotto.config.LottoInfo.MAXIMUM_LOTTO_NUMBER;
