@@ -17,4 +17,3 @@ public class LotteryDTO {
         this.numbers = numbers;
     }
 }
-}
