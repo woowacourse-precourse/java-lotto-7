@@ -1,20 +1,19 @@
 package lotto.domain.lotto.factory;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEntry;
 import lotto.domain.lotto.Number;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoFactoryImpl implements LottoFactory {
+public class NumberEntryLottoFactory implements LottoFactory {
 
     private final int startInclusive;
     private final int endInclusive;
     private final int lottoLength;
 
-    public LottoFactoryImpl(int startInclusive, int endInclusive, int lottoLength) {
+    public NumberEntryLottoFactory(int startInclusive, int endInclusive, int lottoLength) {
         this.startInclusive = startInclusive;
         this.endInclusive = endInclusive;
         this.lottoLength = lottoLength;
