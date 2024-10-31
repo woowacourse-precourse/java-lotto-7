@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.LottoPrize;
 
 public class View {
     public String getMoneyInput() {
@@ -24,6 +25,18 @@ public class View {
         for (List<Integer> lotto : lotties) {
             System.out.println(lotto.toString());
         }
+    }
+
+    public void printStatistic(String earnRate, List<Integer> winLottiesNumber) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        int index = 0;
+        for (LottoPrize prize : LottoPrize.values()) {
+            System.out.println(prize.getCondition() + " (" + prize.getStringPrize() + "원) - " + winLottiesNumber.get(index));
+            index++;
+        }
+        System.out.println("총 수익률은 "+earnRate+"%입니다.");
+
     }
 
 }

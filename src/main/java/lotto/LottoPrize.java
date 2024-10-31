@@ -3,16 +3,18 @@ package lotto;
 import static java.lang.Integer.parseInt;
 
 public enum LottoPrize {
-    FIRST("2,000,000,000"),
-    SECOND("30,000,000"),
-    THIRD("1,500,000"),
-    FOURTH("50,000"),
-    FIFTH("5,000");
+    FIFTH("5,000", "3개 일치"),
+    FOURTH("50,000", "4개 일치"),
+    THIRD("1,500,000", "5개 일치"),
+    SECOND("30,000,000", "5개 일치, 보너스 볼 일치"),
+    FIRST("2,000,000,000", "6개 일치");
 
     private final String price;
+    private final String condition;
 
-    LottoPrize(String price) {
+    LottoPrize(String price, String condition) {
         this.price = price;
+        this.condition = condition;
     }
 
     public String getStringPrize() {
@@ -21,5 +23,9 @@ public enum LottoPrize {
 
     public int getIntPrize() {
         return parseInt(price.replaceAll(",", ""));
+    }
+
+    public String getCondition() {
+        return condition;
     }
 }
