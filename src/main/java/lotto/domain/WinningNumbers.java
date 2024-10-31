@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import lotto.constant.ExceptionConstant;
 import lotto.constant.LottoConstant;
 
 public class WinningNumbers {
@@ -15,13 +17,26 @@ public class WinningNumbers {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionConstant.NUMBER_COUNT);
+        }
+        boolean allInRange = numbers.stream()
+                .allMatch(n -> n >= LottoConstant.LOTTO_NUMBER_MIN && n <= LottoConstant.LOTTO_NUMBER_MAX);
+        if (!allInRange) {
+            throw new IllegalArgumentException(ExceptionConstant.NUMBER_VALID_RANGE);
         }
         HashSet<Integer> checkNumbersCount = new HashSet<>(numbers);
-        if (checkNumbersCount.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 중복값 입력은 불가능합니다.");
+        if (checkNumbersCount.size() != numbers.size()) {
+            throw new IllegalArgumentException(ExceptionConstant.DUPLICATE_NUMBER);
         }
     }
+
+    public int calculateMatchingCount(Lotto lotto) {
+        Set<Integer> primarySet = new HashSet<>(primaryNumbers);
+        return (int) lotto.streamNumbers()
+                .filter(primarySet::contains)
+                .count();
+    }
+
 
     @Override
     public boolean equals(Object o) {

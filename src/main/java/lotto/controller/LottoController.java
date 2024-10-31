@@ -6,17 +6,18 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    public void run(){
+    public void run() {
         LottoTickets lottoTickets = buyLottoAndPrintTickets();
     }
-    private LottoTickets buyLottoAndPrintTickets(){
+
+    private LottoTickets buyLottoAndPrintTickets() {
         String inputPurchaseAmount = InputView.inputPurchaseAmount();
         LottoMachineService lottoMachineService = new LottoMachineService();
         try {
             LottoTickets lottoTickets = lottoMachineService.createLottoTickets(inputPurchaseAmount);
             OutputView.LottoTicketsOutCome(lottoTickets);
             return lottoTickets;
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return buyLottoAndPrintTickets();
         }

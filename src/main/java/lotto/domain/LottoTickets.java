@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoTickets {
     List<Lotto> tickets;
@@ -19,9 +20,13 @@ public class LottoTickets {
             throw new IllegalArgumentException("[ERROR] 정상적으로 로또 번호가 생성되지 못하였습니다.");
         }
     }
+    public Stream<Lotto> streamLotto() {
+        return tickets.stream();
+    }
 
-    public void LottoTicketsOutcome(){
-        for (Lotto lotto : this.tickets){
+
+    public void LottoTicketsOutcome() {
+        for (Lotto lotto : this.tickets) {
             lotto.lottoNumbersPrint();
         }
     }

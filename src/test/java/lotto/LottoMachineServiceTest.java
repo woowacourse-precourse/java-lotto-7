@@ -10,7 +10,7 @@ public class LottoMachineServiceTest {
     LottoMachineService lottoMachineService = new LottoMachineService();
 
     @Test
-    void 로또_리스트_발행(){
+    void 로또_리스트_발행() {
         String purchaseAmount = "8000";
         int expect = 8;
         LottoTickets lottoTickets = lottoMachineService.createLottoTickets(purchaseAmount);

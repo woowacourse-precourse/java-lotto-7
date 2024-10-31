@@ -7,7 +7,9 @@ import lotto.constant.LottoConstant;
 
 public class LottoService {
     public Lotto createLotto(){
-        return new Lotto(createLottoNumbers());
+        Lotto lotto = new Lotto(createLottoNumbers());
+        lotto.sort();
+        return lotto;
     }
 
     private List<Integer> createLottoNumbers(){
