@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.dto.PurchaseAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -9,6 +10,9 @@ public class Application {
         outputView.printPurchaseAmountMessage();
 
         InputView inputView = new InputView();
-        System.out.println(inputView.readPurchaseAmount());
+        PurchaseAmount purchaseAmount = inputView.readPurchaseAmount();
+
+        int amount = purchaseAmount.getValue();
+        System.out.println("입력된 금액: " + amount);
     }
 }

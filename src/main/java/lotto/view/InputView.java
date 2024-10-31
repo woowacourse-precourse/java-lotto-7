@@ -1,13 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.dto.PurchaseAmount;
 
 public class InputView {
 
-    public String readPurchaseAmount() {
-        String purchaseAmountInput = Console.readLine();
-        validateEmptyInput(purchaseAmountInput);
-        return purchaseAmountInput;
+    public PurchaseAmount readPurchaseAmount() {
+        String input = Console.readLine();
+        validateEmptyInput(input);
+        return new PurchaseAmount(input);
     }
 
     private void validateEmptyInput(String input) {
