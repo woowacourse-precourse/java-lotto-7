@@ -30,8 +30,7 @@ public class RandomLottos {
         StringBuilder printout = new StringBuilder();
 
         for (Lotto lotto : lottos) {
-            printout.append(lotto.toString());
-            System.out.println(lotto + "오룸차순확인");
+            printout.append(lotto);
             printout.append("\n");
         }
         return printout.toString();
