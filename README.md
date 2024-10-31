@@ -122,3 +122,15 @@
       - LottoStatistics 객체의 통계데이터(Map) 및 수익률 (Yield) 데이터 갱신 작업을 수행합니다.
   - **Controller**
     - Controller 클래스에서는, Model,View,Services 객체에 대한 기능 동작 요청만 수행하도록 변경합니다.
+    - Controller-Services 간 의존성 주입을 구현합니다.
+
+### 24.11.11.(금).2
+- **LottoStatistic**
+  - **LottoStatistics Interface**
+    - Service에서는 LottoStatistics 인터페이스의 `updateStatistics()`, `updateLottoYield()`만 호출하도록 변경합니다.
+      - 정보 은닉 : 내부 데이터 처리 로직을 담당하는 private 메소드와 Service에서 호출할 public 데이터를 명확히 구분합니다.
+      - 결합도 : Service에서 LottoStatistic 관련 요청 수행 시, 세부 구현 로직을 알 필요가 없도록 구현합니다.
+  - **LottoStatisticDTO**
+    - LottoStatistic-View 간 데이터 전송 시 데이터 직접참조 또는 getter/setter 없이 데이터를 참조할 수 있도록 합니다.
+  - **LottoController**
+    - LottoStatistic 인터페이스를 통해 LottoStatistics 객체에 대한 의존성을 주입하도록 변경합니다.

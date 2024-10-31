@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
-import lotto.services.LottoService;
 import lotto.model.LottoStatistics;
 import lotto.services.LottoServices;
 import lotto.view.LottoView;
@@ -37,7 +36,7 @@ public class LottoController {
 
         // 당첨 결과 확인 및 출력
         services.checkLottoResults(statistics, randomLotteries, userLotto, bonusNumber);
-        services.calculateLottoYield(statistics, amount);
+        services.checkLottoYield(statistics, amount);
         view.printLottoResult(statistics);
 
     }

@@ -1,11 +1,12 @@
 package lotto.view;
 
+import lotto.dto.LottoStatisticDTO;
 import lotto.model.Lotto;
-import lotto.model.LottoStatistics;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.LottoStatistics;
 
 public class LottoView {
     public void displayLottoCount(int count) {
@@ -40,12 +41,11 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public void printLottoResult(LottoStatistics lottoStatistics) {
+    public void printLottoResult(LottoStatistics lottoStatistic) {
+        LottoStatisticDTO lottoStatisticDTO = lottoStatistic.toDTO();
         System.out.println("당첨 통계\n---");
-        lottoStatistics.getStatistics().forEach((key, value) -> {
-            System.out.printf("%s - %d개%n", key, value);
-        });
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", lottoStatistics.getYield());
+        lottoStatisticDTO.statistics().forEach((key, value) -> System.out.printf("%s - %d개%n", key, value));
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", lottoStatisticDTO.yield());
     }
 
 }
