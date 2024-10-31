@@ -12,7 +12,7 @@ public class Lotto {
         validate(numbers);
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
         lottoNumbers.sort(Comparator.naturalOrder());
-        this.numbers = numbers;
+        this.numbers = lottoNumbers;
     }
 
     public boolean isContainsNumber(final int number) {
