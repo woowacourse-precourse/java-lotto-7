@@ -2,7 +2,8 @@ package lotto.config;
 
 import lotto.io.*;
 import lotto.io.impl.*;
-import lotto.validator.LottoInputValidator;
+import lotto.validator.*;
+import lotto.service.*;
 
 public class LottoConfig {
 
@@ -29,5 +30,9 @@ public class LottoConfig {
 
     public LottoInputValidator lottoInputValidator() {
         return LottoInputValidator.getInstance(output());
+    }
+
+    public LottoService lottoService() {
+        return LottoService.getInstance(config);
     }
 }

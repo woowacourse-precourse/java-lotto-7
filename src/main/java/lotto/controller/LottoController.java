@@ -2,30 +2,30 @@ package lotto.controller;
 
 import lotto.config.LottoConfig;
 import lotto.io.*;
+import lotto.service.LottoService;
 import lotto.validator.LottoInputValidator;
 
 public class LottoController {
 
-    private final Input input;
-    private final Output output;
-    private final LottoInputValidator lottoInputValidator;
+    private static LottoController controller;
+
+    private final LottoService service;
 
     private LottoController(LottoConfig config) {
-        this.input = config.input();
-        this.output = config.output();
-        this.lottoInputValidator = config.lottoInputValidator();
+        this.service = config.lottoService();
     }
 
     public static LottoController getInstance(LottoConfig config) {
-        return new LottoController(config);
+
+        if(controller == null)
+            controller = new LottoController(config);
+
+        return controller;
     }
 
     public void run() {
 
-        int money = LottoInputValidator.checkInputMoney(input.inputMoney());
-        if(money == -1)
-            return;
-
+        int money = service.inputMoney();
 
     }
 }
