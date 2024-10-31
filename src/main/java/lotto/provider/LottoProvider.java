@@ -5,7 +5,7 @@ public class LottoProvider {
 	private final int lottoPurchaseAmount;
 
 	public LottoProvider(int numberOfLottos, int lottoPurchaseAmount) {
-		this.numberOfLottos = numberOfLottos;
+		validateLottoPurchaseAmount(lottoPurchaseAmount);
 		this.lottoPurchaseAmount = lottoPurchaseAmount;
 	}
 
