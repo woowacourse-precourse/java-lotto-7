@@ -19,6 +19,7 @@ public class InputView {
 
     public Lotto readWinningNumber() {
         String input = Console.readLine();
+        InputValidator.validateWinningNumberFormat(input);
         return new Lotto(
                 Arrays.stream(input.split(COMMA))
                     .mapToInt(Integer::parseInt)
