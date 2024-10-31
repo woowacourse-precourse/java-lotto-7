@@ -23,6 +23,7 @@ public class OutputHandler {
     }
 
     public void showBonusNumberInstruction() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
