@@ -36,4 +36,11 @@ public class LottoValidator {
                 .collect(Collectors.toList());
     }
 
+    public static List<Integer> hasSixElements(List<Integer> targetList) {
+        if (targetList.size() == 6) {
+            return targetList;
+        }
+        throw new IllegalArgumentException("로또 번호가 6개가 아닙니다.");
+    }
+
 }
