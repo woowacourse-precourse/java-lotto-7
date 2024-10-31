@@ -7,6 +7,7 @@ import lotto.enums.PrintMessage;
 
 public class OutputView {
     public void printLottoList(List<Lotto> lotteries){
+        System.out.println();
         System.out.println(PrintMessage.OUTPUT_LOTTO_LIST.format(lotteries.size()));
         for(Lotto lotto : lotteries){
             System.out.println(lotto.getNumbers());
@@ -14,6 +15,7 @@ public class OutputView {
     }
 
     public void printLottoWinningResult(UserLotto userLotto, float profitRate){
+        System.out.println();
         System.out.println(PrintMessage.OUTPUT_TOTAL_RESULT.getMessage());
         System.out.println(PrintMessage.OUTPUT_FIFTH_PLACE_RESULT.format(userLotto.getWinningCount(5)));
         System.out.println(PrintMessage.OUTPUT_FOURTH_PLACE_RESULT.format(userLotto.getWinningCount(4)));

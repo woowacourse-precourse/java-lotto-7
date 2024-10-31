@@ -12,7 +12,7 @@ public enum PrintMessage {
     OUTPUT_THIRD_PLACE_RESULT("5개 일치 (1,500,000원) - 0개"),
     OUTPUT_SECOND_PLACE_RESULT("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개"),
     OUTPUT_FIRST_PLACE_RESULT("6개 일치 (2,000,000,000원) - 0개"),
-    OUTPUT_TOTAL_PROFIT_RATE("총 수익률은 %.2f%%입니다.");
+    OUTPUT_TOTAL_PROFIT_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 
