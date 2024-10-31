@@ -20,7 +20,9 @@ public class InputView {
     }
 
     public int getBonusNumberFromUser() {
-        return InputUtil.readInt();
+        int bonusNumber = InputUtil.readInt();
+        validateRange(bonusNumber);
+        return bonusNumber;
     }
 
     private void validateUnit(int convertedInput) {
@@ -31,6 +33,12 @@ public class InputView {
 
     private boolean isDividedUnit(int convertedInput) {
         return convertedInput % LottoGameConfig.LOTTO_PRICE_UNIT != 0;
+    }
+
+    private void validateRange(int bonusNumber) {
+        if (bonusNumber < LottoGameConfig.START_NUMBER || bonusNumber > LottoGameConfig.END_NUMBER) {
+            throw new LottoGameException(InputException.INVALID_RANGE);
+        }
     }
 
 }

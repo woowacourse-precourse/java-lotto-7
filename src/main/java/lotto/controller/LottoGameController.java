@@ -31,9 +31,10 @@ public class LottoGameController {
 
         outputView.getCommentForBonusNumber();
         int bonusNumber = getBonusNumberFromUser();
-        LottoResult lottoResult = LOTTO_MACHINE.getLottoResult(lottos, winningNumbers, bonusNumber);
 
+        LottoResult lottoResult = LOTTO_MACHINE.getLottoResult(lottos, winningNumbers, bonusNumber);
         outputView.getCommentForStatistics(lottoResult);
+
         double rateOfReturn = lottoResult.getRateOfReturn(userAmount);
         outputView.getCommentForRateOfReturn(rateOfReturn);
     }
