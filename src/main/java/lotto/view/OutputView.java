@@ -1,0 +1,29 @@
+package lotto.view;
+
+import lotto.model.Lotto;
+import lotto.model.Rank;
+
+import java.util.List;
+import java.util.Map;
+
+public class OutputView {
+    public static void printPurchasedLottos(List<Lotto> purchasedLottos){
+        System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
+        for(Lotto lotto : purchasedLottos){
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
+    public static void printLottoResult(Map<Rank, Integer> resultCountMap){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i = Rank.values().length - 1; i >= 0; i--) {
+            Rank rank = Rank.values()[i];
+            int count = resultCountMap.get(rank);
+
+            String bonusNumberText = "";
+            if(rank.getNeedToCheckBonus()) bonusNumberText = ", 보너스 볼 일치";
+            System.out.printf("%d개 일치%s (%d원) - %d개%n", rank.getMatchCount(), bonusNumberText, rank.getPrize(), count);
+        }
+    }
+}
