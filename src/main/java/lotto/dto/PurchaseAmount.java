@@ -1,5 +1,9 @@
 package lotto.dto;
 
+import static lotto.exception.ErrorMessage.*;
+
+import lotto.exception.CustomIllegalArgumentException;
+
 public record PurchaseAmount(int amount) {
 
     private static final int MAX_LIMIT = 100_000_000;
@@ -19,7 +23,7 @@ public record PurchaseAmount(int amount) {
 
     private static void validateIsNumeric(String input) {
         if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 입력된 금액이 숫자가 아닙니다.");
+            throw CustomIllegalArgumentException.from(NOT_NUMERIC);
         }
     }
 
@@ -31,19 +35,19 @@ public record PurchaseAmount(int amount) {
 
     private static void validatePositiveAmount(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 입력된 금액은 양수여야 합니다.");
+            throw CustomIllegalArgumentException.from(NOT_POSITIVE);
         }
     }
 
     private static void validateWithinLimit(int amount) {
         if (amount > MAX_LIMIT) {
-            throw new IllegalArgumentException("[ERROR] 입력된 금액이 너무 큽니다. 최대 금액은 " + MAX_LIMIT + "원입니다.");
+            throw CustomIllegalArgumentException.from(EXCEEDS_LIMIT);
         }
     }
 
     private static void validateMultipleOfUnit(int amount) {
         if (amount % UNIT_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw CustomIllegalArgumentException.from(NOT_MULTIPLE_OF_UNIT);
         }
     }
 }

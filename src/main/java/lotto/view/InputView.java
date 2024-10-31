@@ -1,7 +1,10 @@
 package lotto.view;
 
+import static lotto.exception.ErrorMessage.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.PurchaseAmount;
+import lotto.exception.CustomIllegalArgumentException;
 
 public class InputView {
 
@@ -13,7 +16,7 @@ public class InputView {
 
     private void validateEmptyInput(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 비었습니다.");
+            throw CustomIllegalArgumentException.from(EMPTY_INPUT);
         }
     }
 }
