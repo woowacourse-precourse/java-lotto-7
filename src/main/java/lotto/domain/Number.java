@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Number {
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
+    private static final String errorMessage = "1 ~ 45 사이의 정수만 입력 가능합니다";
 
     private final int number;
 
@@ -27,13 +28,13 @@ public class Number {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] String 에서 변환 중 오류 발생");
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
     private void validateNumberRange(int number) {
         if (number <= MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 범위 초과");
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 

@@ -35,7 +35,7 @@ class LottoResultTest {
         bonusNumber = 7;
     }
 
-    @DisplayName("발행된 로또들과 당첨 번호를 비교한다")
+    @DisplayName("발행된 로또들과 당첨 번호를 비교한다.")
     @Test
     void 발행된_로또들과_당첨_번호_비교() {
         lottoResult.calculateLottoResult(purchasedLotto, winNumbers, bonusNumber);
@@ -44,7 +44,7 @@ class LottoResultTest {
         Assertions.assertThat(calculatedResult.values()).containsExactly(1, 1, 1, 1, 1);
     }
 
-    @DisplayName("로또 당첨 결과에 따른 수익률을 계산한다")
+    @DisplayName("로또 당첨 결과에 따른 수익률을 계산한다.")
     @Test
     void 로또_당첨_결과에_따른_수익률_계산() {
         lottoResult.calculateLottoResult(purchasedLotto, winNumbers, bonusNumber);

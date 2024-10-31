@@ -13,7 +13,7 @@ class LottoStoreTest {
     void buyLotto() {
     }
 
-    @DisplayName("올바른 금액이 들어오면 로또가 정상 발급된다")
+    @DisplayName("올바른 금액이 들어오면 로또가 정상 발급된다.")
     @Test
     void 천원_이상_입력_시_로또_발행() {
         LottoStore lottoStore = new LottoStore();
