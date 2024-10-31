@@ -5,10 +5,8 @@ import domain.error.ErrorMessage;
 import domain.error.InputErrorMessage;
 
 public class Input {
-    private static final String ERROR = "[ERROR]";
-
     public static int purchaseLottoAndGetLottoCount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(OutputMessage.ENTER_PURCHASE_AMOUNT.getOutputMessage());
         while (true) {
             try {
                 return parseAndValidatePurchaseAmount(Console.readLine());
@@ -43,9 +41,5 @@ public class Input {
         if (input.isEmpty() || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_MESSAGE.getErrorMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        purchaseLottoAndGetLottoCount();
     }
 }
