@@ -29,4 +29,14 @@ public class ValidateTest {
         assertFalse(Validation.validateNumber(""));
         assertFalse(Validation.validateNumber("+"));
     }
+
+    @Test
+    void shouldReturnTrueWhenInputIsEmpty() {
+        assertTrue(Validation.isEmptyInput(""));
+    }
+
+    @Test
+    void shouldReturnFalseWhenInputIsNotEmpty() {
+        assertFalse(Validation.isEmptyInput("1"));
+    }
 }
