@@ -5,11 +5,14 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicates(numbers);
-        this.numbers = numbers;
+        validateRange(numbers);
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -24,7 +27,18 @@ public class Lotto {
         }
     }
 
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(n -> n < MIN_NUMBER || n > MAX_NUMBER)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
