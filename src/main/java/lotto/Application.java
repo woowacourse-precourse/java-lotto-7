@@ -87,7 +87,12 @@ public class Application {
 
         // 5. 보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber;
+        try {
+             bonusNumber = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
         validateBonusDuplicate(goals,bonusNumber);
         validateNumberRange(bonusNumber);
         System.out.println();
