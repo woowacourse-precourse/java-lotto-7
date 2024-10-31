@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 import static java.lang.Math.round;
 
 public class Application {
-    public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
-    public static final String LOTTO_COUNT_PHRASE = "개를 구매했습니다.";
     public static final String LOTTO_WINNING_INPUT = "당첨 번호를 입력해 주세요.";
     public static final String LOTTO_BONUS_INPUT = "보너스 번호를 입력해 주세요.";
     public static final String WIN_STATICS = "당첨 통계\n---";
@@ -18,18 +16,12 @@ public class Application {
     public static final String BLANK = "";
 
     public static void main(String[] args) {
-        System.out.println(LOTTO_AMOUNT_PHRASE);
-        String rawPurchasePrice = Console.readLine();
-        Integer purchasePrice = parseInt(rawPurchasePrice);
-        Integer lottoCount = countLotto(purchasePrice);
-        System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
+        View view = new View();
+        Integer purchasePrice = view.getPurchaseAmount();
+        Integer lottoCount = view.getLottoCount();
         List<Lotto> lottoList = new ArrayList<>();
-        //로또들 출력...
-        for(int i = 0; i < lottoCount; i++){
-            Lotto newLotto = Lotto.sortLotto(Lotto.getLotto());
-            lottoList.add(newLotto);
-            Lotto.printLotto(newLotto);
-        }
+        lottoList = Lotto.sortLottoList(lottoCount, lottoList);
+
         System.out.println(LOTTO_WINNING_INPUT);
         String rawWinningInput = Console.readLine();
         Lotto answer = new Lotto(checkWinNumber(rawWinningInput));
@@ -51,14 +43,14 @@ public class Application {
     }
 
     public static Integer parseInt(String input) {
-        return Integer.parseInt(input);
-    }
-
-    public static Integer countLotto(Integer input){
-        if(input % 1000 != 0){
-            throw new IllegalArgumentException("1000원으로 나누어 떨어지는 금액을 입력해주세요.");
+        int result = 0;
+        try{
+            result = Integer.parseInt(input);
         }
-        return input/1000;
+        catch(NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로만 기입해주세요.");
+        }
+        return result;
     }
 
     public static boolean checkLottoRange(Integer input){
