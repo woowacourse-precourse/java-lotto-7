@@ -2,8 +2,11 @@ package lotto;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lottos {
+
+    private static final String LINE_CHANGE = "\n";
 
     private final List<Lotto> lottos;
 
@@ -29,5 +32,12 @@ public class Lottos {
     @Override
     public int hashCode() {
         return Objects.hash(lottos);
+    }
+
+    @Override
+    public String toString() {
+        return lottos.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(LINE_CHANGE));
     }
 }
