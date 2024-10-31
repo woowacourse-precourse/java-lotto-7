@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.Handler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,9 +12,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     private Lotto lotto;
+    private Handler handler;
     @BeforeEach
     void setUp() {
-        lotto = new Lotto(lotto.generateLotto());
+        List<Integer> numbers = handler.generateLotto();
+        lotto = new Lotto(numbers);
 
     }
     @Test
@@ -36,11 +39,11 @@ class LottoTest {
     public void generateTest() throws Exception{
         //given
         List<Integer> given = List.of(1, 2, 3, 4, 5, 6);
-        List<Integer> generated = lotto.generateLotto();
 
         //when
         int expect = given.size();
-        int actual = generated.size();
+        List<Integer> numbers = handler.generateLotto();
+        int actual = numbers.size();
 
         //then
         Assertions.assertEquals(expect, actual);

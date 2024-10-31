@@ -22,14 +22,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    // 1~45 범위 정수 6개가 담긴 로또를 발행하여 전달한다
-    public List<Integer> generateLotto() {
-        int random = Randoms.pickNumberInRange(1, 45);
-        for (int i = START.getMagicNumber(); i < SIZE.getMagicNumber(); i++) {
-            numbers.add(random);
-        }
-        return numbers;
-    }
+
 
 
 }
