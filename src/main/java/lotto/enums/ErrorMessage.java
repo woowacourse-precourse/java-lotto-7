@@ -1,6 +1,8 @@
 package lotto.enums;
 
-public class ErrorMessage implements SystemMessage {
+public enum ErrorMessage implements SystemMessage {
+  INVALID_INT_NUMBER("숫자가 아닌 것이 입력 되었습니다.");
+  
   private final String ERROR_LOG_LEVEL = "[ERROR] ";
   private final String message;
 
