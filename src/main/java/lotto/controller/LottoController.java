@@ -22,7 +22,8 @@ public class LottoController {
     public void run() {
         lottoDto = purchaseLotto();
         outputView.printPurchaseLottoList(lottoDto);
-        receiveWinningNumbers();
+        List<Integer> winningNumbers = receiveWinningNumbers();
+        int bonusNumber = receiveBonusNumber(winningNumbers);
     }
 
     private LottoResultDto purchaseLotto() {
@@ -37,16 +38,28 @@ public class LottoController {
         }
     }
 
-    private void receiveWinningNumbers() {
+    private List<Integer> receiveWinningNumbers() {
         while (true) {
             try {
                 outputView.printWinningNumberInputMessage();
                 List<Integer> winningNumbers = inputView.readWinningNumbers();
-                lottoService.createWinningNumbers(winningNumbers);
+                return lottoService.createWinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
     }
 
+    private int receiveBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                outputView.printBonusNumberInputMessage();
+                int bonusNumber = inputView.readBonusNumber();
+                lottoService.checkBonusNumberValidity(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
 }

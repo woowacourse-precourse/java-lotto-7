@@ -48,7 +48,7 @@ class LottoTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 7000})
-    void 구입한금액만큼_로또장수가_맞는지_확인한다(int input){
+    void 구입한금액만큼_로또장수가_맞는지_확인한다(int input) {
         int purchaseQuantity = input / 1000;
 
         LottoService lottoService = new LottoService();
@@ -58,8 +58,8 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,15,26,27,30,41,44", "5,25,31,37,40","1,2,4,5,6,7,25", "35"})
-    void 당첨번호가_6개_이하_또는_이상일때(String input){
+    @ValueSource(strings = {"1,15,26,27,30,41,44", "5,25,31,37,40", "1,2,4,5,6,7,25", "35"})
+    void 당첨번호가_6개_이하_또는_이상일때(String input) {
         List<Integer> list = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -71,8 +71,8 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,1,4,16,25,30", "5,25,31,37,40,37","1,2,4,4,6,7"})
-    void 중복된_당첨번호가_있는지_확인한다(String input){
+    @ValueSource(strings = {"1,1,4,16,25,30", "5,25,31,37,40,37", "1,2,4,4,6,7"})
+    void 중복된_당첨번호가_있는지_확인한다(String input) {
         List<Integer> list = Arrays.stream(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -81,5 +81,29 @@ class LottoTest {
         AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(list))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_DUPLICATE_LOTTO_NUMBERS.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 5, 12, 15, 24, 36})
+    void 당첨번호와_보너스번호가_중복되는지_확인한다(int input) {
+        LottoService lottoService = new LottoService();
+        Lotto winningNumbers = new Lotto(List.of(1, 5, 12, 15, 24, 36));
+
+        AssertionsForClassTypes.assertThatThrownBy(() ->
+                        lottoService.checkBonusNumberValidity(input, winningNumbers.getNumbers()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_BONUS_NUMBER_MUST_BE_UNIQUE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -5, 46, 150, 124, 536})
+    void 당첨번호와_로또번호_범위인지_확인한다(int input) {
+        LottoService lottoService = new LottoService();
+        Lotto winningNumbers = new Lotto(List.of(1, 5, 12, 15, 24, 36));
+
+        AssertionsForClassTypes.assertThatThrownBy(() ->
+                        lottoService.checkBonusNumberValidity(input, winningNumbers.getNumbers()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_INVALID_LOTTO_NUMBER_RANGE.getMessage());
     }
 }

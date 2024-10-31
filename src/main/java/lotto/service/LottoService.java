@@ -22,6 +22,10 @@ public class LottoService {
         return new Lotto(winningNumbers).getNumbers();
     }
 
+    public void checkBonusNumberValidity(int bonusNumber, List<Integer> winningNumbers) {
+        LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
+    }
+
     private int calculatePurchaseQuantity(int price) {
         return price / LOTTO_PRICE;
     }

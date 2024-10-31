@@ -26,6 +26,11 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public int readBonusNumber() {
+        String input = readConsole().replaceAll(" ","");
+        InputValidator.validateInput(input);
+        return Integer.parseInt(input);
+    }
     private String readConsole() {
         return readLine();
     }
