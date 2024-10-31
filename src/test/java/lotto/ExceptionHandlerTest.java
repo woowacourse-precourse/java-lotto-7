@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ExceptionHandlerTest {
@@ -22,7 +23,7 @@ public class ExceptionHandlerTest {
         assertThatThrownBy(() -> ExceptionHandler.isThousandDivisible(10220))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
     @Test
     void 보너스_번호가_1보다_작으면_예외가_발생한다() {
         assertThatThrownBy(() -> ExceptionHandler.isLottoNumber(-1))
@@ -32,6 +33,27 @@ public class ExceptionHandlerTest {
     @Test
     void 보너스_번호가_45보다_크면_예외가_발생한다() {
         assertThatThrownBy(() -> ExceptionHandler.isLottoNumber(46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_1보다_작으면_예외가_발생한다() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 0);
+        assertThatThrownBy(() -> ExceptionHandler.validateLottoNumber(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_45보다_크면_예외가_발생한다() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 0);
+        assertThatThrownBy(() -> ExceptionHandler.validateLottoNumber(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_6개가_아니면_예외가_발생한다() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5);
+        assertThatThrownBy(() -> ExceptionHandler.validateLottoNumber(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
