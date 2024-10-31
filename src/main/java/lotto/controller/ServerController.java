@@ -6,13 +6,16 @@ import lotto.model.lotto.Lottos;
 import lotto.model.money.Money;
 import lotto.model.rank.DrawResultRankTable;
 import lotto.service.LottoService;
+import lotto.service.StatisticService;
 
 public class ServerController {
 
     private final LottoService lottoService;
+    private final StatisticService service;
 
-    public ServerController(final LottoService lottoService) {
+    public ServerController(final LottoService lottoService, final StatisticService service) {
         this.lottoService = lottoService;
+        this.service = service;
     }
 
     public void run() {

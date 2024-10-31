@@ -1,13 +1,13 @@
 package lotto.service;
 
-import static lotto.model.rank.Rank.enoughCountToBeSecondRank;
+import static lotto.model.rank.RankCondition.enoughCountToBeSecondRank;
 
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.generator.LottoGenerator;
 import lotto.model.money.Money;
 import lotto.model.rank.DrawResultRankTable;
-import lotto.model.rank.Rank;
+import lotto.model.rank.RankCondition;
 
 public class LottoService {
 
@@ -22,21 +22,20 @@ public class LottoService {
         return lottoGenerator.generate(count);
     }
 
-
     public DrawResultRankTable rankMyLottos(final Lottos lottos, final Lotto drawResult, final Integer bonusNumber) {
 
         DrawResultRankTable rankTable = DrawResultRankTable.initiate();
 
         lottos.initiateStream()
                 .forEach(lotto -> {
-                    Rank rank = rankEachLotto(lotto, drawResult, bonusNumber);
+                    RankCondition rank = rankEachLotto(lotto, drawResult, bonusNumber);
                     rankTable.updateResultRankTable(rank);
                 });
 
         return rankTable;
     }
 
-    private Rank rankEachLotto(final Lotto myLotto, final Lotto drawResult, final Integer bonusNumber) {
+    private RankCondition rankEachLotto(final Lotto myLotto, final Lotto drawResult, final Integer bonusNumber) {
 
         int matchedCount = myLotto.countMatchedNumbersFrom(drawResult);
         boolean hasBonusNumber = false;
@@ -45,7 +44,7 @@ public class LottoService {
             hasBonusNumber = myLotto.has(bonusNumber);
         }
 
-        return Rank.getRankBy(matchedCount, hasBonusNumber);
+        return RankCondition.getRankBy(matchedCount, hasBonusNumber);
     }
 
 }

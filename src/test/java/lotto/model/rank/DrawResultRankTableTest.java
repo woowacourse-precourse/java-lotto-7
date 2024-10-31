@@ -3,7 +3,7 @@ package lotto.model.rank;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import lotto.helper.ResultRankTableHelper;
+import lotto.helper.DrawResultRankTableHelper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,14 +13,14 @@ public class DrawResultRankTableTest {
     @DisplayName("결과 테이블 초기화")
     void initResultRankTable() {
         // given
-        DrawResultRankTable mock = ResultRankTableHelper.mock();
+        DrawResultRankTable mock = DrawResultRankTableHelper.initiate();
 
         // when
-        int rankValue1 = mock.getRankValue(Rank.FIRST);
-        int rankValue2 = mock.getRankValue(Rank.SECOND);
-        int rankValue3 = mock.getRankValue(Rank.THIRD);
-        int rankValue4 = mock.getRankValue(Rank.FOURTH);
-        int rankValue5 = mock.getRankValue(Rank.FIRST);
+        int rankValue1 = mock.getRankValue(RankCondition.FIRST);
+        int rankValue2 = mock.getRankValue(RankCondition.SECOND);
+        int rankValue3 = mock.getRankValue(RankCondition.THIRD);
+        int rankValue4 = mock.getRankValue(RankCondition.FOURTH);
+        int rankValue5 = mock.getRankValue(RankCondition.FIRST);
 
         // then
         int expected = 0;
@@ -37,11 +37,11 @@ public class DrawResultRankTableTest {
     @DisplayName("결과 테이블 수정/조회")
     void updateAndGetTest() {
         // given
-        DrawResultRankTable mock = ResultRankTableHelper.mock();
+        DrawResultRankTable mock = DrawResultRankTableHelper.initiate();
 
         // when
-        mock.updateResultRankTable(Rank.FIRST);
-        int actual = mock.getRankValue(Rank.FIRST);
+        mock.updateResultRankTable(RankCondition.FIRST);
+        int actual = mock.getRankValue(RankCondition.FIRST);
 
         // then
         int expected = 1;

@@ -2,11 +2,11 @@ package lotto.model.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.rank.Rank;
+import lotto.model.rank.RankCondition;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RankTest {
+public class RankConditionTest {
 
     @Test
     @DisplayName("2등")
@@ -16,10 +16,10 @@ public class RankTest {
         boolean bonusNumberMatched = true;
 
         // when
-        Rank actual = Rank.getRankBy(matchedCount, bonusNumberMatched);
+        RankCondition actual = RankCondition.getRankBy(matchedCount, bonusNumberMatched);
 
         // then
-        Rank expected = Rank.SECOND;
+        RankCondition expected = RankCondition.SECOND;
         assertThat(actual == expected).isTrue();
     }
 
@@ -31,10 +31,10 @@ public class RankTest {
         boolean bonusNumberMatched = false;
 
         // when
-        Rank actual = Rank.getRankBy(matchedCount, bonusNumberMatched);
+        RankCondition actual = RankCondition.getRankBy(matchedCount, bonusNumberMatched);
 
         // then
-        Rank expected = Rank.THIRD;
+        RankCondition expected = RankCondition.THIRD;
         assertThat(actual == expected).isTrue();
     }
 
@@ -46,10 +46,10 @@ public class RankTest {
         boolean bonusNumberMatched = false;
 
         // when
-        Rank actual = Rank.getRankBy(matchedCount, bonusNumberMatched);
+        RankCondition actual = RankCondition.getRankBy(matchedCount, bonusNumberMatched);
 
         // then
-        Rank expected = Rank.FOURTH;
+        RankCondition expected = RankCondition.FOURTH;
         assertThat(actual == expected).isTrue();
     }
 
