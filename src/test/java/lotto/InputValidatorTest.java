@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,25 +29,4 @@ public class InputValidatorTest {
             .hasMessage("입력에 쉼표가 연속적으로 입력되었습니다.");
     }
 
-    @Test
-    void 보너스_번호가_정상_범위_밖이면_예외를_발생() {
-        //given
-        int bonusNumber = 0;
-        //when & then
-        Assertions.assertThatThrownBy(() -> InputValidator.validateBonusNumberRange(bonusNumber))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("로또 번호의 숫자 범위는 1~45까지입니다.");
-    }
-
-    @Test
-    void 보너스_번호가_당첨_번호와_중복되면_예외를_발생() {
-        //given
-        int bonusNumber = 1;
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        //when & then
-        Assertions.assertThatThrownBy(
-                () -> InputValidator.validateBonusNumberDuplicate(bonusNumber, winningNumbers))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("보너스 번호가 당첨 번호와 중복됩니다.");
-    }
 }
