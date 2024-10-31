@@ -25,7 +25,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
     @DisplayName("주어진 당첨 번호에 대해 올바른 순위를 반환할 수 있다.")
     void 당첨_번호로_올바른_순위를_반환할_수_있다() {
