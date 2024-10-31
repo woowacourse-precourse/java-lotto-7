@@ -11,8 +11,8 @@ public class LottoStore {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public void buyLotto(int price) {
-        for (int i = 0; i < price/LOTTO_PRICE; i++) {
+    public void buyLotto(Price price) {
+        for (int i = 0; i < price.value()/LOTTO_PRICE; i++) {
             purchasedLottos.add(generateLottoByNumbers(generateRandomNumbers()));
         }
     }

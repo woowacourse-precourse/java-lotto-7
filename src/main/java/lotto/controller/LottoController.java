@@ -7,6 +7,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.LottoStore;
 import lotto.domain.Numbers;
 import lotto.domain.Number;
+import lotto.domain.Price;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,7 +15,7 @@ public class LottoController {
 
     public void run() {
 
-        int purchasePrice = Integer.parseInt(InputView.inputPurchasePrice());
+        Price purchasePrice = new Price(InputView.inputPurchasePrice());
 
         LottoStore lottoStore = new LottoStore();
         lottoStore.buyLotto(purchasePrice);

@@ -17,6 +17,7 @@ class LottoResultTest {
     private List<Lotto> purchasedLotto;
     private Numbers winNumbers;
     private Number bonusNumber;
+    private Price price;
 
     @BeforeEach
     void init() {
@@ -33,6 +34,8 @@ class LottoResultTest {
         winNumbers = new Numbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         bonusNumber = new Number(7);
+
+        price = new Price(6000);
     }
 
     @DisplayName("발행된 로또들과 당첨 번호를 비교한다.")
@@ -48,7 +51,7 @@ class LottoResultTest {
     @Test
     void 로또_당첨_결과에_따른_수익률_계산() {
         lottoResult.calculateLottoResult(purchasedLotto, winNumbers, bonusNumber);
-        lottoResult.calculateProfitRate(6_000);
+        lottoResult.calculateProfitRate(price);
         float profitRate = lottoResult.getProfitRate();
         Assertions.assertThat(profitRate).isEqualTo(33859250);
     }

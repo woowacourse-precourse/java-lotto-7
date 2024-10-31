@@ -34,14 +34,14 @@ public class LottoResult {
         }
     }
 
-    public void calculateProfitRate(int price) {
+    public void calculateProfitRate(Price price) {
         int profit = lottoResult.entrySet()
             .stream()
             .filter(e -> e.getValue() != 0)
             .mapToInt(e -> e.getKey().getPrize() * e.getValue())
             .sum();
 
-        profitRate = ((float) profit / price) * 100;
+        profitRate = ((float) profit / price.value()) * 100;
     }
 
     public Map<LottoRank, Integer> getLottoResult() {
