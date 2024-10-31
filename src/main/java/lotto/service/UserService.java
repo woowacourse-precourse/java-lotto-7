@@ -6,6 +6,7 @@ import lotto.view.ErrorOutputView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import static lotto.enums.LottoConstant.ACCESS_COUNT;
 import static lotto.view.OutputView.ENTER_PURCHASE_PRICE;
 import static lotto.view.OutputView.EXIT_APPLICATION;
 
@@ -26,7 +27,8 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public int inputPurchasePriceForUser(int accessCount) {
+    public int inputPurchasePriceForUser() {
+        int accessCount = ACCESS_COUNT.getValue();
         for(int count = 0; count < accessCount; count++) {
             String purchasePrice = inputPurchasePrice();
             try {

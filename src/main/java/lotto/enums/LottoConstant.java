@@ -1,6 +1,11 @@
 package lotto.enums;
 
 public enum LottoConstant {
+
+    // 프로그램 정보
+    ACCESS_COUNT(3),
+
+    // 로또 티켓 정보
     PRICE(1000),
     START_INCLUSIVE(1),
     END_INCLUSIVE(45),

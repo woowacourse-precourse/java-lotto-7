@@ -14,7 +14,7 @@ public class UserController {
         return instance;
     }
 
-    public int getUserIdByInputPurchasePrice(int accessCount) {
-        return userService.inputPurchasePriceForUser(accessCount);
+    public int getUserIdByInputPurchasePrice() {
+        return userService.inputPurchasePriceForUser();
     }
 }
