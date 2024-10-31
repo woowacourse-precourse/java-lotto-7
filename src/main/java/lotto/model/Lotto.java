@@ -33,7 +33,7 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    public boolean isSecondRank(Integer sameNumberCount, Integer bonusNumber) {
-        return sameNumberCount == 5 && contains(bonusNumber);
+    public boolean isSecondRank(final List<Integer> winningNumbers, final Integer bonusNumber) {
+        return countSameNumber(winningNumbers) == 5 && contains(bonusNumber);
     }
 }

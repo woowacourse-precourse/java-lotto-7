@@ -21,7 +21,7 @@ public class LottoStatistic {
     public Map<LottoRank, Integer> countByLottoRank(List<Lotto> purchased) {
         for (Lotto lotto : purchased) {
             int sameNumberCount = lotto.countSameNumber(winningNumbers);
-            boolean isSecondRank = lotto.isSecondRank(sameNumberCount, bonusNumber);
+            boolean isSecondRank = lotto.isSecondRank(winningNumbers, bonusNumber);
             LottoRank rank = LottoRank.findRank(sameNumberCount, isSecondRank);
 
             countResult.merge(rank, 1, Integer::sum);
