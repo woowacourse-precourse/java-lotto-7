@@ -15,7 +15,7 @@ public class OutputView {
     public static void printPurchasedLottoTickets(PurchaseLotto purchaseLotto) {
         StringBuilder lottoTickets = new StringBuilder();
         purchaseLotto.getTickets().stream()
-                .forEach(lotto -> lottoTickets.append("\n"));;
+                .forEach(lotto -> lottoTickets.append(lotto).append("\n"));
         System.out.println(lottoTickets);
     }
 }
