@@ -10,6 +10,7 @@ public class LottoStore {
 
     public static LottoTicket makeLottoTicket(String purchaseMoney) {
         validateInput(purchaseMoney);
+        int LottoTicketCount = Integer.parseInt(purchaseMoney) / LOTTO_PRICE;
         return null;
     }
 
