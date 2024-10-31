@@ -2,6 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.GameException;
+import lotto.io.request.WinningNumberRequest;
 
 public class InputHandler {
 
@@ -13,4 +14,7 @@ public class InputHandler {
         }
     }
 
+    public WinningNumberRequest getWinningNumbers() {
+        return new WinningNumberRequest(Console.readLine());
+    }
 }
