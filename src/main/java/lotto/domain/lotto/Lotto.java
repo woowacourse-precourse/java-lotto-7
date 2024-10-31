@@ -21,17 +21,32 @@ public class Lotto {
     }
 
     public Rank getRank(WinningLotto winningLotto) {
-        int match = 0;
-        int bonus = 0;
-        for (LottoNumber number : numbers) {
-            if (winningLotto.basicNumbers().contains(number.value())) {
-                match++;
-            }
-            if (winningLotto.bonusNumber() == number.value()) {
-                bonus++;
-            }
+        final int match = getMatch(winningLotto.basicNumbers());
+
+        if (match != 5) {
+            return Rank.of(match, 0);
         }
+
+        int bonus = getBonus(winningLotto.bonusNumber());
         return Rank.of(match, bonus);
+    }
+
+    private int getMatch(List<Integer> targetNumbers) {
+        return numbers.stream().map(LottoNumber::value).reduce(0, (total, number) -> {
+            if (targetNumbers.contains(number)) {
+                return total + 1;
+            }
+            return total;
+        });
+    }
+
+    private int getBonus(int bonusNumber) {
+        return numbers.stream().map(LottoNumber::value).reduce(0, (total, number) -> {
+            if (bonusNumber == number) {
+                return total + 1;
+            }
+            return total;
+        });
     }
 
     private void validateCount(List<Integer> numbers) {
