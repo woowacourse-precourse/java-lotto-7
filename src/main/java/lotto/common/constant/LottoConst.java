@@ -9,6 +9,7 @@ public class LottoConst {
 
 
     public static final String DELIMITER = ",";
+    public static final String JOINING_DELIMITER = ", ";
 
 
     public static final String ERROR_PREFIX = "[ERROR] ";

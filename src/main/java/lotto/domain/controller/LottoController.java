@@ -1,8 +1,9 @@
 package lotto.domain.controller;
 
-import lotto.domain.model.Lotto;
-import lotto.domain.model.LottoService;
-import lotto.domain.model.User;
+import lotto.domain.model.lotto.Lotto;
+import lotto.domain.model.lotto.LottoService;
+import lotto.domain.model.lotto.LottoSummary;
+import lotto.domain.model.user.User;
 import lotto.domain.view.InputView;
 import lotto.domain.view.OutputView;
 
@@ -27,10 +28,16 @@ public class LottoController {
 
         outputView.printLottos(user.getLottos());
 
-        Lotto winningNumber = inputView.getWinningNumber();
-        int bonusNumber = inputView.getBonusNumber();
-        lottoService.logic(user, winningNumber, bonusNumber);
+        LottoSummary summary = getWinningNumberAndTakeSummary(user);
+
+        outputView.printLottoSummary(summary);
+        outputView.printUserProfitRate(user);
     }
 
+    private LottoSummary getWinningNumberAndTakeSummary(User user) {
+        Lotto winningNumber = inputView.getWinningNumber();
+        int bonusNumber = inputView.getBonusNumber(winningNumber);
 
+        return lottoService.evaluateUserLotto(user, winningNumber, bonusNumber);
+    }
 }
