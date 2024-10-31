@@ -42,4 +42,10 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_NON_POSITIVE_PURCHASE_AMOUNT);
     }
+
+    @Test
+    void 구입_금액_입력_정상_테스트() {
+        int validAmount = 5000;
+        InputValidator.validatePurchaseAmount(validAmount);
+    }
 }
