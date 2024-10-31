@@ -16,11 +16,11 @@ public class LottoController {
 
     public void start() {
         PurchaseAmount amount = readPurchasePrice();
-        System.out.println(amount.getLottoCount());
+        outputView.printPurchaseAmount(amount.getLottoCount());
     }
 
     private PurchaseAmount readPurchasePrice() {
-        outputView.printPurchaseGuid();
+        outputView.printPurchaseGuide();
         return inputView.readPurchasePrice();
     }
 }
