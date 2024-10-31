@@ -56,12 +56,12 @@ public class Lotto {
     }
 
     private boolean isLottoCountValid(List<Integer> numbers) {
-        return numbers.size() == 6;
+        return numbers.size() == LottoRules.NUMBER_COUNT.getValue();
     }
 
 
     private boolean isLottoNumberInRange(int lottoNumber) {
-        return lottoNumber >= 1 && lottoNumber <= 45;
+        return lottoNumber >= LottoRules.MIN_NUMBER.getValue() && lottoNumber <= LottoRules.MAX_NUMBER.getValue();
     }
 
     private boolean hasNoDuplicates(List<Integer> numbers) {
