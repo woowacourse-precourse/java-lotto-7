@@ -12,6 +12,11 @@ public class Validator {
         return moneyInput;
     }
 
+    public static void validateWinningNumbers(List<Integer> numbers) {
+        validateLottoNumberRange(numbers);
+        validateNumberOfNumbers(numbers);
+    }
+
     public static int validateNumberInput(String userInput) {
         try {
             int userIntInput = Integer.parseInt(userInput);
