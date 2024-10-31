@@ -20,4 +20,14 @@ public class LottoService {
     public int calculateLottoQuantities(int purchaseAmount) {
         return purchaseAmount / 1000;
     }
+
+    public int matchingWinningNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer num : lottoNumbers) {
+            if (winningNumbers.contains(num)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
