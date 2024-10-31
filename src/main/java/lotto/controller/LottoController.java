@@ -13,6 +13,11 @@ public class LottoController {
     }
 
     public void play() {
-        System.out.println(inputView.getMoney());
+        System.out.println(getMoney());
+    }
+
+    private String getMoney() {
+        outputView.printMoneyRequest();
+        return inputView.getUserInput();
     }
 }
