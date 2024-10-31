@@ -24,6 +24,10 @@ public class OutputView {
         lottoGroup.forEach(lotto -> {
             System.out.println(lotto.getNumbers());
         });
-        System.out.printf(NEW_LINE);
+        printNewLine();
+    }
+
+    public static void printNewLine() {
+        System.out.print(NEW_LINE);
     }
 }
