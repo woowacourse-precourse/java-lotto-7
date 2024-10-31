@@ -30,18 +30,17 @@ LottoTest {
     @Test
     void 기능_테스트() {
         //BonusNumber Hit!
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 7, 4, 6);
-        int bonusNumber = 6;
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 6, 7));
+        List<Integer> winningLotto = Arrays.asList(1, 2, 3, 4, 5, 10, 7);
+        int bonusNumber = 7;
 
         //BonusNumber Dont Hit :(
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningLotto2 = Arrays.asList(1, 2, 3, 4, 5, 9);
+        List<Integer> winningLotto2 = Arrays.asList(1, 2, 3, 4, 5, 7, 9);
         int bonusNumber2 = 9;
 
         assertThat(lotto.checkWinningStatus(winningLotto, bonusNumber))
                 .isEqualTo(LottoRank.SECOND);
-
 
         assertThat(lotto.checkWinningStatus(winningLotto, bonusNumber2))
                 .isEqualTo(LottoRank.THIRD);
