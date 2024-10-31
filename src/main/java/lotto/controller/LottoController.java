@@ -28,8 +28,9 @@ public class LottoController {
 
     private WinningLotto readWinningNumber() {
         outputView.printReadWinningNumber();
-        String readLine = inputView.readLine();
-        return new WinningLotto(readLine);
+        String winningNumber = inputView.readLine();
+        outputView.printReadBonusNumber();
+        return new WinningLotto(winningNumber);
     }
 
     private void printLottoPurchaseResult(PurchaseAmount purchaseAmount, String lottosState) {

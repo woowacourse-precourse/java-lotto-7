@@ -21,6 +21,7 @@ public class OutputView {
     }
 
     public void printReadBonusNumber() {
+        System.out.println();
         System.out.println(Message.BONUS_NUMBER_INPUT_MESSAGE);
     }
 }
