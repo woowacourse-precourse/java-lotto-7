@@ -23,4 +23,8 @@ public class Lotto {
     private boolean hasDuplicates(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
