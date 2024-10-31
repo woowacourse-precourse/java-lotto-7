@@ -1,9 +1,9 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constants.LottoConstants;
 import lotto.validator.LottoValidator;
 
 public class Lotto {
@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -22,11 +22,27 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers;
+    }
+
+    public int getMatchCount(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean containsBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     public static List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_NUMBER, LottoConstants.MAX_NUMBER,
+                LottoConstants.LOTTO_NUMBER_COUNT);
     }
 
+    public String formatNumbers() {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 }
