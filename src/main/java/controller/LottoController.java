@@ -2,14 +2,12 @@ package controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.Prize;
 import view.InputHandler;
 import view.OutputHandler;
 
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoController {
     private InputHandler inputHandler;
@@ -21,16 +19,12 @@ public class LottoController {
 
     public void run(){
         List<Lotto> lottos = new ArrayList<>();
-        Map<Integer, Integer> prizes = new HashMap<>(Map.of(
-                0, 0,
-                1, 0,
-                2, 0,
-                3, 0,
-                4, 0,
-                5, 0,
-                6, 0,
-                7, 0
-        ));
+        EnumMap<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
+        for (Prize prize : Prize.values()){
+            prizeCount.put(prize, 0);
+        }
+
+
         outputHandler.promptForAmountInput();
         int amountInput = inputHandler.getAmountInput();
         int count = amountInput / 1000;
@@ -43,53 +37,33 @@ public class LottoController {
 
         outputHandler.promptForLottoNumber();
         List<Integer> lottoNumber = inputHandler.getLottoNumber();
-        Lotto winningLotto = new Lotto(lottoNumber);
+        Lotto winningLottoNumber = new Lotto(lottoNumber);
         outputHandler.promptForBonusNumber();
         int bonusNumber = inputHandler.getBonusNumber();
 
 
         for(Lotto lotto : lottos){
-            int winningCount = lotto.compareTo(winningLotto);
+            int matchCount = lotto.compareTo(winningLottoNumber);
 
-            if(winningCount == 5 && lotto.hasBonusNumber(bonusNumber)){
-                int winningLottoWithBonus = prizes.get(7);
-                prizes.put(7, ++winningLottoWithBonus);
+            for(Prize prize : Prize.values()){
+                if(matchCount == prize.getRanking()){
+                    if(lotto.hasBonusNumber(bonusNumber) && prize.equals(Prize.THIRD)){
+                       continue;
+                    }
 
-                continue;
+                    prizeCount.put(prize,prizeCount.get(prize) + 1);
+                }
             }
-            int winningLottoCount  = prizes.get(winningCount);
-            prizes.put(winningCount, ++winningLottoCount);
-
-
         }
-        outputHandler.displayPrizes(prizes);
-        outputHandler.displayWinningRate(calculateWinningRate(prizes, amountInput));
-
-
-
-
-
-
+        outputHandler.displayPrizes(prizeCount);
+        outputHandler.displayWinningRate(calculateWinningRate(prizeCount, amountInput));
     }
-    private double calculateWinningRate(Map<Integer, Integer> prizes , int amountInput){
+
+    private double calculateWinningRate(EnumMap<Prize, Integer> prizeCount, int amountInput){
         int winningRate = 0;
-        for(Map.Entry<Integer, Integer> count : prizes.entrySet()){
-            if(count.getKey() == 3){
-                winningRate += (count.getValue() * 5000);
-            }
-            if(count.getKey() == 4){
-                winningRate += (count.getValue() * 50000);
-            }
-            if(count.getKey() == 5){
-                winningRate += (count.getValue() * 1500000);
-            }
-            if(count.getKey() == 6){
-                winningRate += (count.getValue() * 30000000);
-            }
-            if(count.getKey() == 7){
-                winningRate += (count.getValue() * 2000000000);
-            }
+        for(Prize prize : prizeCount.keySet()){
+            winningRate += (int)(prize.getPrizeMoney() * prizeCount.get(prize));
         }
-        return (double) winningRate / amountInput * 100;
+        return (double) winningRate /amountInput * 100;
     }
 }

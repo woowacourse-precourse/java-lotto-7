@@ -1,5 +1,8 @@
 package view;
 
+import lotto.Prize;
+
+import java.util.EnumMap;
 import java.util.Map;
 
 public class OutputHandler {
@@ -17,17 +20,16 @@ public class OutputHandler {
         System.out.println("\n" + count + "개를 구매했습니다.");
     }
 
-    public void displayPrizes(Map<Integer, Integer> prizes){
+    public void displayPrizes(EnumMap<Prize, Integer> prizeCount) {
         System.out.println("당첨 통계" + "\n" + "---");
-        System.out.println("3개 일치 (5000원) - " + prizes.get(3) + "개");
-        System.out.println("4개 일치 (50000) - " + prizes.get(4) + "개");
-        System.out.println("5개 일치 (1500000) - " + prizes.get(5) + "개");
-        System.out.println("5개 일치 (30000000원) - " + prizes.get(7) + "개");
-        System.out.println("6개 일치 (2000000000원) - " + prizes.get(6) + "개");
+        for (Prize prize : Prize.values()) {
+            System.out.println(prize.getRanking() + "개 일치 " + "(" + prize.getPrizeMoney() + "원) - " + prizeCount.get(prize) + "개");
+        }
     }
 
     public void displayWinningRate(double winningRate) {
-        System.out.println("총 수익률은 " + winningRate + "%입니다.");
+        String formattedValue = String.format("%.1f", winningRate);
+        System.out.println("총 수익률은 " + formattedValue + "%입니다.");
     }
 
 }
