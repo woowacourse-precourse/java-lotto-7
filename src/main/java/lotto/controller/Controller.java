@@ -57,5 +57,6 @@ public class Controller {
 
     private void printLottoTicketStatus(LottoTicket lottoTicket) {
         LottoTicketStatus lottoTicketStatus =  lottoTicket.getLottoTicketStatus();
+        outputView.printLottoTicketStatus(lottoTicketStatus);
     }
 }
