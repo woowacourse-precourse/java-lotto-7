@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class InputValidator {
@@ -53,14 +54,14 @@ public class InputValidator {
         }
 
         for (String input : separatedInputs) {
-            int number = parseWinningNumber(input.trim());
+            int number = parseLottoNumber(input.trim());
             if (!winningNumbers.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 포함되어 있어요. 다시 입력해주세요.");
             }
         }
     }
 
-    private int parseWinningNumber(String rawInput) {
+    private int parseLottoNumber(String rawInput) {
         try {
             int number = Integer.parseInt(rawInput);
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
@@ -69,6 +70,19 @@ public class InputValidator {
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+        }
+    }
+
+    public void validateRawInputBonusNumber(String rawInput, List<Integer> winningNumbers) {
+        if (rawInput.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 입력되지 않았어요. 다시 입력해주세요.");
+        }
+
+        for (Integer winningNumber : winningNumbers) {
+            int number = parseLottoNumber(rawInput.trim());
+            if (number == winningNumber) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복될 수 없어요. 다시 입력해주세요.");
+            }
         }
     }
 }

@@ -23,6 +23,26 @@ public class LottoController {
         List<Lotto> lottoTickets = purchaseLotto(purchaseAmount);
         displayLotto(lottoTickets);
         List<Integer> winningNumbers = readWinningNumbers();
+        int bonusNumber = readBonusNumber(winningNumbers);
+    }
+
+    private int readBonusNumber(List<Integer> winningNumbers) {
+        String rawInputBonusNumber = inputView.requestBonusNumber();
+        validateBonusNumber(rawInputBonusNumber, winningNumbers);
+        return parseBonusNumber(rawInputBonusNumber);
+    }
+
+    private void validateBonusNumber(String rawInput, List<Integer> winningNumbers) {
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.validateRawInputBonusNumber(rawInput, winningNumbers);
+    }
+
+    private int parseBonusNumber(String rawInput) {
+        try {
+            return Integer.parseInt(rawInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+        }
     }
 
     private List<Integer> readWinningNumbers() {

@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,6 +25,16 @@ class InputValidatorTest {
     void shouldNotThrowException_WhenWinningNumbersAreValid(String winningNumbers) {
         InputValidator inputValidator = new InputValidator();
         assertDoesNotThrow(() -> inputValidator.validateRawInputWinningNumbers(winningNumbers));
+    }
+
+    @DisplayName("보너스 번호가 올바른 입력인 경우 예외가 발생하지 않는다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"45"})
+    void shouldNotThrowException_WhenBonusNumberIsValid(String bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        InputValidator inputValidator = new InputValidator();
+        assertDoesNotThrow(() -> inputValidator.validateRawInputBonusNumber(bonusNumber, winningNumbers));
     }
 
     @DisplayName("구입금액이 숫자가 아닌 경우 예외가 발생한다.")
@@ -86,6 +97,50 @@ class InputValidatorTest {
     void shouldThrowException_WhenWinningNumbersDuplicate(String winningNumbers) {
         InputValidator inputValidator = new InputValidator();
         assertThatThrownBy(() -> inputValidator.validateRawInputWinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호를 입력하지 않은 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {""})
+    void shouldThrowException_WhenBonusNumberIsEmpty(String bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        InputValidator inputValidator = new InputValidator();
+        assertThatThrownBy(() -> inputValidator.validateRawInputBonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아닌 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "가"})
+    void shouldThrowException_WhenBonusNumberIsNotNumeric(String bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        InputValidator inputValidator = new InputValidator();
+        assertThatThrownBy(() -> inputValidator.validateRawInputBonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 로또 번호 범위를 벗어나는 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "46"})
+    void shouldThrowException_WhenBonusNumberIsOutOfRange(String bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        InputValidator inputValidator = new InputValidator();
+        assertThatThrownBy(() -> inputValidator.validateRawInputBonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
+    void shouldThrowException_WhenBonusNumberIsDuplicate(String bonusNumber) {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        InputValidator inputValidator = new InputValidator();
+        assertThatThrownBy(() -> inputValidator.validateRawInputBonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
