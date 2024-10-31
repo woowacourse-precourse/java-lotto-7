@@ -27,7 +27,7 @@ public class OutputView {
 
             String bonusNumberText = "";
             if(rank.getNeedToCheckBonus()) bonusNumberText = ", 보너스 볼 일치";
-            System.out.printf("%d개 일치%s (%d원) - %d개%n", rank.getMatchCount(), bonusNumberText, rank.getPrize(), count);
+            System.out.printf("%d개 일치%s (%,d원) - %d개%n", rank.getMatchCount(), bonusNumberText, rank.getPrize(), count);
         }
     }
 
