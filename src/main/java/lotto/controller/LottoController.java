@@ -44,7 +44,7 @@ public class LottoController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 가능 합니다.");
         }
-        lottoService.createWinNum(winNum);
+        lottoService.inputWinNum(winNum);
     }
 
     public void inputBonusNum() {
@@ -54,6 +54,10 @@ public class LottoController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 가능 합니다.");
         }
-        lottoService.createBonusNum(bonusNum);
+        lottoService.inputBonusNum(bonusNum);
+    }
+
+    public void checkLottosWin() {
+        lottoService.checkLottosWin();
     }
 }
