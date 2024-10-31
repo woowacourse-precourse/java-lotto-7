@@ -38,7 +38,7 @@ public class WinningStatistics {
     }
 
     public double calculateRateOfReturn(int purchaseAmount) {
-        Long winningPrice = statistics.entrySet().stream()
+        long winningPrice = statistics.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
         return winningPrice / (double) purchaseAmount * 100;
