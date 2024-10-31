@@ -65,5 +65,11 @@ class HandlerTest {
 
   }
 
+  @DisplayName("비교한 결과를 토대로 총 수익률 계산한다")
+  @Test
+  void calculateRevenueTest() {
+
+  }
+
 
 }
