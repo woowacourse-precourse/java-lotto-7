@@ -18,7 +18,7 @@ public enum Output {
 
     final String message;
 
-    Output(String message) {
+    Output(final String message) {
         this.message = message;
     }
 }

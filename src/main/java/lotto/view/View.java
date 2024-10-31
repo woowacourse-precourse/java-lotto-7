@@ -8,4 +8,9 @@ public class View {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
+    public String inputMoney() {
+        outputView.printMessage(Output.INPUT_MONEY);
+        return inputView.userInput();
+    }
 }
