@@ -39,8 +39,7 @@ public class Lotto {
         }
     }
 
-    public int calculatePrize(List<Integer> winningNumbers, int bonusNumber) {
-        List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
+    public int getMatchingCount(List<Integer> winningNumbers, int bonusNumber) {
         int matchingCount = 0;
         for (int number : winningNumbers) {
             if (this.numbers.contains(number)) {
@@ -48,9 +47,9 @@ public class Lotto {
             }
         }
         if (matchingCount == 5 && this.numbers.contains(bonusNumber)) {
-            return WINNING_PRIZES.get(7);
+            return 7;
         }
-        return WINNING_PRIZES.get(matchingCount);
+        return matchingCount;
     }
     // TODO: 추가 기능 구현
 }
