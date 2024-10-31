@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class Lotto {
 
-    //Entries 라고 명명하고 싶으나 numbers 명을 바꿔도 되는지 모르겠어서 남겨둡니다.
+    //Components 라고 명명하고 싶으나 numbers 명을 바꿔도 되는지 모르겠어서 남겨둡니다.
     private final List<Component> numbers;
 
     //우테코 제공 테스트용(원래 필요없음)
