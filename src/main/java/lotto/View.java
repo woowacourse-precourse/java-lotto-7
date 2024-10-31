@@ -15,17 +15,32 @@ public class View {
     public static final String BLANK = "";
 
     public static Integer getPurchaseAmount(){
+        Integer purchasePrice = 0;
         try {
             System.out.println(LOTTO_AMOUNT_PHRASE);
             String rawPurchasePrice = Console.readLine();
-            Integer purchasePrice = parseInt(rawPurchasePrice);
-            return purchasePrice;
+            purchasePrice = parseInt(rawPurchasePrice);
         }
         catch(IllegalArgumentException e){
             System.out.println("[ERROR] 구입 금액은 오직 숫자로 이루어져야 합니다.");
             getPurchaseAmount();
         }
-        return null;
+        return purchasePrice;
+    }
+
+    public static Integer countLotto(Integer input){
+        Integer lottoCount = input/1000;
+        try {
+            if (input % 1000 != 0) {
+                throw new IllegalArgumentException("1000원으로 나누어 떨어지는 금액을 입력해주세요.");
+            }
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야합니다.");
+            getPurchaseAmount();
+        }
+        System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
+        return lottoCount;
     }
 
 
