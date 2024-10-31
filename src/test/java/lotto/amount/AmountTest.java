@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class AmountTest {
 
-    @DisplayName("입력한 구입 금액이 로또 가격(1,000원)의 배수라면 예외가 발생하지 않는다..")
+    @DisplayName("입력한 구입 금액이 로또 가격(1,000원)의 배수라면 예외가 발생하지 않는다.")
     @ValueSource(ints = {1000, 2000, 5000, 10000})
     @ParameterizedTest
     void newAmountWithLottoPurchaseUnitAmount(int validAmount) {
