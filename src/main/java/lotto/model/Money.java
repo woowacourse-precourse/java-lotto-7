@@ -8,4 +8,7 @@ public class Money {
     public void take(int price) {
         leftMoney -= price;
     }
+    public int getLeftMoney() {
+        return leftMoney;
+    }
 }
