@@ -31,6 +31,10 @@ public class WinningNumbers {
         return winningNumbers.getLottoNumbers();
     }
 
+    public int getBonusNumber() {
+        return bonusNumber.getBonusNumber();
+    }
+
 
     private String getWinningNumbersExceptionMessage(String message) {
         if (message.contains(LOTTO_NUMBER_LENGTH_EXCEPTION.message())) {

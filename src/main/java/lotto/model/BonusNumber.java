@@ -13,6 +13,10 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(int bonusNumber, List<Integer> winningNumbers) {
         validateNumbersRange(bonusNumber);
         validateNoDuplicateNumbers(bonusNumber, winningNumbers);

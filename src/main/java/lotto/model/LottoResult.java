@@ -11,8 +11,13 @@ public class LottoResult {
 
     public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers) {
         List<LottoDto> lottoDtos = lottos.getLottoDtos();
+
         for (LottoDto lottoDto : lottoDtos) {
-            int duplicateCount = getDuplicateNubers(lottoDto.numbers(), winningNumbers.getWinningNumbers());
+
+            List<Integer> lottoNumbers = lottoDto.numbers();
+
+            int duplicateCount = getDuplicateNubers(lottoNumbers, winningNumbers.getWinningNumbers());
+            boolean isBonusNumberDuplicated = isBonusNumberDuplicated(lottoNumbers, winningNumbers.getBonusNumber())
         }
     }
 
@@ -21,7 +26,11 @@ public class LottoResult {
         return lottoNumbers.size();
     }
 
-    private void saveLottoResult(int duplicateCount, boolean isBonusDuplicated) {
+    private boolean isBonusNumberDuplicated(List<Integer> lottoNumbers, int bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
+    }
+
+    private void saveLottoResult(int duplicateCount, boolean isBonusNumberDuplicated) {
 
     }
 }
