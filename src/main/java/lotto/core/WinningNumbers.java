@@ -13,16 +13,16 @@ public class WinningNumbers {
     private Lotto winningNumbers;
     private int bonusNumber;
 
+    public WinningNumbers() {
+        this.init();
+    }
+
     public List<Integer> getWinningNumbers() {
         return this.winningNumbers.getNumbers();
     }
 
     public int getBonusNumber() {
         return this.bonusNumber;
-    }
-
-    public WinningNumbers() {
-        this.init();
     }
 
     public void init() {
