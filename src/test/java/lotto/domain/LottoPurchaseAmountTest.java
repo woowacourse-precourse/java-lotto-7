@@ -2,6 +2,7 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,6 +25,16 @@ public class LottoPurchaseAmountTest {
         assertThatThrownBy(() -> LottoPurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("구입 금액은 1,000원 단위로 입력할 수 있습니다.");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"\n", "\t", "   ", "\r\n"})
+    @DisplayName("로또 구입 금액이 비어있는 경우 예외가 발생한다.")
+    void validatePurchaseAmountIsNotEmpty(String input) {
+        assertThatThrownBy(() -> LottoPurchaseAmount.from(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("구입 금액은 비어있을 수 없습니다.");
     }
 
 }
