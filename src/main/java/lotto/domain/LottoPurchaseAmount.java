@@ -22,8 +22,15 @@ public class LottoPurchaseAmount {
     private static class Validator {
 
         private static void validatePurchaseAmount(String purchaseAmount) {
+            validatePurchaseAmountIsNotEmpty(purchaseAmount);
             validatePurchaseAmountRegex(purchaseAmount);
             validatePurchaseAmountUnit(purchaseAmount);
+        }
+
+        private static void validatePurchaseAmountIsNotEmpty(String purchaseAmount) {
+            if (purchaseAmount == null || purchaseAmount.isBlank()) {
+                throw new IllegalArgumentException("구입 금액은 비어있을 수 없습니다.");
+            }
         }
 
         private static void validatePurchaseAmountRegex(String purchaseAmount) {
