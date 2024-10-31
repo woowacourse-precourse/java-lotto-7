@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.enums.ErrorMessage;
 import java.util.SimpleTimeZone;
+import lotto.enums.OutputViewEnum;
 import lotto.utils.Utils;
 import net.bytebuddy.dynamic.loading.ClassInjector.UsingInstrumentation;
 
@@ -18,15 +19,14 @@ public class InputView {
 
     //inputPurchasePrice 구현
     public static int inputPurchasePrice() {
-        String userInput;
-        int count;
+
 
         while (true) {
-            userInput = Console.readLine();
             try {
+                OutputView.printPrompt(OutputViewEnum.PURCHASE_AMOUNT_INPUT.getMessage());
+                String userInput = Console.readLine();
                 validatePurchase(userInput);
-                count = Utils.stringToInteger(userInput);
-                return count;
+                return Utils.stringToInteger(userInput);
             } catch (NumberFormatException e) {
                 OutputView.errorPrint(e.getMessage());
             } catch (IllegalArgumentException e) {
@@ -57,6 +57,7 @@ public class InputView {
 
         while (true) {
             try {
+                OutputView.printPrompt(OutputViewEnum.WINNING_NUMBER_INPUT.getMessage());
                 String userInput = Console.readLine();
                 validateWinningNumber(userInput);
                 String[] numbers = userInput.split(",");
@@ -92,6 +93,7 @@ public class InputView {
     public static int inputBonusNumber(List<Integer> winningNumber) {
         while (true) {
             try {
+                OutputView.printPrompt(OutputViewEnum.BONUS_NUMBER_INPUT.getMessage());
                 String userInput = Console.readLine();
                 validateBonusNumber(userInput, winningNumber);
                 return Integer.parseInt(userInput);
