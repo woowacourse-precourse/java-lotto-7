@@ -1,20 +1,39 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.factory.RandomLottoMachine;
+import lotto.domain.Wallet;
 import lotto.domain.lottos.Lotto;
 import lotto.domain.lottos.RandomLottos;
+import lotto.domain.number.NumbersMaker;
 
 public class RandomLottoFactory {
-    private final RandomLottoMachine lottoMachine;
+    private final NumbersMaker numbersMaker;
+    private final Wallet wallet;
 
-    public RandomLottoFactory(RandomLottoMachine lottoMachine) {
-        this.lottoMachine = lottoMachine;
+    public RandomLottoFactory(NumbersMaker randomNumberMaker, Wallet wallet) {
+        this.numbersMaker = randomNumberMaker;
+        this.wallet = wallet;
     }
 
-    public RandomLottos make() {
-        List<Lotto> lottos = lottoMachine.makeLottos();
+    public RandomLottos createRandomLottos() {
+        List<Lotto> lottos = makeLottos();
         return new RandomLottos(lottos);
+    }
+
+    public List<Lotto> makeLottos() {
+        List<Lotto> resultRandomLottos = new ArrayList<>();
+
+        while (!wallet.isRunOutTicket()) {
+            resultRandomLottos.add(makeLotto());
+            wallet.decreaseTicket();
+        }
+        return resultRandomLottos;
+    }
+
+    private Lotto makeLotto() {
+        List<Integer> randomNumbers = numbersMaker.make();
+        return new Lotto(randomNumbers);
     }
 
 }
