@@ -3,19 +3,16 @@ package lotto.validator;
 import lotto.exception.bonusNumber.BlankBonusNumberException;
 import lotto.exception.bonusNumber.InvalidRangeBonusNumberException;
 import lotto.exception.bonusNumber.NotNumberBonusNumberException;
-import lotto.exception.bonusNumber.NotOneBonusNumberException;
 
 public class BonusNumberValidator {
 
     private static final String REGEX_NUMBER = "^[0-9]+$";
-    private static final int INPUT_SIZE = 1;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
     public static void validate(final String input) {
         validateBlank(input);
         validateNumber(input);
-        validateSize(input);
         int number = convert(input);
         validateRange(number);
     }
@@ -29,12 +26,6 @@ public class BonusNumberValidator {
     private static void validateNumber(final String input) {
         if(!input.matches(REGEX_NUMBER)) {
             throw new NotNumberBonusNumberException();
-        }
-    }
-
-    private static void validateSize(final String input) {
-        if(input.length() != INPUT_SIZE) {
-            throw new NotOneBonusNumberException();
         }
     }
 
