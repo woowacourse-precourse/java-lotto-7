@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumbers;
 
 public class InputView {
     private final static String INPUT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
@@ -21,9 +23,15 @@ public class InputView {
         return new PurchaseAmount(validateNumber);
     }
 
-    public void readWinningNumbers() {
+    public WinningNumbers readWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
         final String input = Console.readLine();
+        inputHandler.checkNull(input);
+        List<Integer> numbers = inputHandler.parsedNumbers(input);
+        for (Integer number : numbers) {
+            inputHandler.checkNumberRange(number);
+        }
+        return new WinningNumbers(numbers);
     }
 
 //    public void readBonusNumber() {

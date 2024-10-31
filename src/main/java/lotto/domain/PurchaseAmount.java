@@ -23,7 +23,7 @@ public class PurchaseAmount {
 
     private void checkDivisible(int amount) {
         if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액이 로또 가격과 나누어 떨어지지 않습니다.");
+            throw new IllegalArgumentException("[ERROR] 금액이 로또 가격과 나누어 떨어져야 합니다.");
         }
     }
 }

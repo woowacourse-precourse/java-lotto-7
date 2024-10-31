@@ -1,8 +1,11 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
+    private static final String DELIMITER = ",";
+
     public int validateNumber(String input) {
         try {
             return Integer.parseInt(input);
@@ -17,7 +20,18 @@ public class InputHandler {
         }
     }
 
-//    public List<Integer> parsedNumbers(String input) {
-//
-//    }
+    public List<Integer> parsedNumbers(String input) {
+        List<Integer> parsedNumbers = new ArrayList<>();
+        String[] numbers = input.split(DELIMITER);
+        for (String number : numbers) {
+            parsedNumbers.add(validateNumber(number));
+        }
+        return parsedNumbers;
+    }
+
+    public void checkNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45이어야 합니다.");
+        }
+    }
 }

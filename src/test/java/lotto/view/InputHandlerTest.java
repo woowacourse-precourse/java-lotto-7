@@ -29,4 +29,11 @@ class InputHandlerTest {
     void testCheckNull(String input) {
         assertThatThrownBy(() -> inputHandler.checkNull(input)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @DisplayName("숫자의 범위가 1~45가 아니면 예외처리")
+    @CsvSource(value = {"0","46"})
+    void testCheckNumberRange(int number) {
+        assertThatThrownBy(() -> inputHandler.checkNumberRange(number)).isInstanceOf(IllegalArgumentException.class);
+    }
 }

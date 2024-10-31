@@ -18,7 +18,7 @@
     - LottoGenerator
     - LottoMachine
     - PurchaseAmount
-- vew
+- view
     - InputHandler
     - InputView
     - OutputView
@@ -38,13 +38,13 @@
     - [x] 구매 금액이 부족하면 예외처리 - PurchaseAmount#checkEnough()
     - [x] 구매 금액이 로또 가격과 나누어 떨어지지 않으면 예외처리 - PurchaseAmount#checkDivisible()
 - [ ] 당첨 번호 입력
-    - [ ] null이 들어오면 예외처리
+    - [x] null이 들어오면 예외처리 - InputHandler#checkNull()
     - [x] 입력 받은 값이 숫자가 아니면 예외처리 - InputHandler#validateNumber()
-    - [ ] 숫자의 범위가 1~45가 아니면 예외처리
+    - [x] 숫자의 범위가 1~45가 아니면 예외처리 - InputHandler#checkNumberRange()
     - [ ] 중복 되는 숫자가 있으면 예외처리
 - [ ] 보너스 번호 입력
     - [x] 입력 받은 값이 숫자가 아니면 예외처리 - InputHandler#validateNumber()
-    - [ ] 숫자의 범위가 1~45가 아니면 예외처리
+    - [x] 숫자의 범위가 1~45가 아니면 예외처리 - InputHandler#checkNumberRange()
     - [ ] 당첨 번호와 중복 되는 숫자가 있으면 예외처리
 
 ### 출력
