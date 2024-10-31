@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Result.*;
+
 public class Application {
-    static int profit = 0;
+    static double profit = 0;
     static int bonus = 0;
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해 주세요.");
@@ -30,6 +32,28 @@ public class Application {
 
         System.out.println("당첨 통계");
         System.out.println("---");
+        checkNumber(lottos, winningNumbers);
+    }
+    private static void checkNumber(List<Lotto> lottos, List<Integer> winningNumbers) {
+        int collect = 0;
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = lotto.getNumbers();
+            collect = lotto.countCollect(numbers, winningNumbers);
+            checkResult(collect, lotto, numbers);
+        }
+    }
+    private static void checkResult(int collect, Lotto lotto, List<Integer> numbers) {
+        Result result = null;
+        if (collect == 3) result = Result.Three;
+        if (collect == 4) result = Result.Four;
+        if (collect == 5) {
+            if (lotto.checkBonus(numbers,bonus)) result = Result.Bonus;
+            if (!lotto.checkBonus(numbers,bonus)) result = Result.Five;
+        }
+        if (collect == 6) result = Result.Six;
+        if (result != null) {
+            profit += result.getPrice();
+        }
     }
     private static List<Integer> winningNumbers(String[] input) {
         List<Integer> winningNumbers = new ArrayList<>();
