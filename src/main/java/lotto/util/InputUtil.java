@@ -28,7 +28,6 @@ public class InputUtil {
         try {
             int convertedInput = Integer.parseInt(input);
             validatePositiveNumber(convertedInput);
-            validateUnit(convertedInput);
             return convertedInput;
         } catch (NumberFormatException e) {
             throw new LottoGameException(InputException.INVALID_INTEGER);
@@ -46,16 +45,7 @@ public class InputUtil {
         return convertedInput <= 0;
     }
 
-    private static boolean validateUnit(int convertedInput) {
-        if (isDevidedUnit(convertedInput)) {
-            throw new LottoGameException(InputException.INVALID_UNIT);
-        }
-        return true;
-    }
 
-    private static boolean isDevidedUnit(int convertedInput) {
-        return convertedInput % LottoGameConfig.LOTTO_PRICE_UNIT != 0;
-    }
 
     private static void validateDelimiter(String input) {
         if (!input.contains(LottoGameConfig.DELIMITER_FOR_WINNING_NUMBER)) {
