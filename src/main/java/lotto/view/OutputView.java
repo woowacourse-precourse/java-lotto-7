@@ -1,9 +1,13 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 
 public class OutputView {
 
@@ -31,5 +35,18 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printLottoResults(Map<Ranking, Integer> lottoResults) {
+        Arrays.stream(Ranking.values()).sorted(Comparator.comparingInt(Ranking::getMatchCount))
+                .forEach(ranking -> printLottoResult(lottoResults, ranking));
+    }
+
+    public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
+        int count = lottoResults.getOrDefault(ranking, 0);
+        if (ranking.isRequireMatchBonus()) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", ranking.getMatchCount(), ranking.getPrize(), count);
+        } else {
+            System.out.printf("%d개 일치 (%,d원) - %d개\n", ranking.getMatchCount(), ranking.getPrize(), count);
+        }
+    }
 
 }

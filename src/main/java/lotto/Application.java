@@ -38,15 +38,12 @@ public class Application {
         String inputBonusNumber = inputView.inputBonusNumber();
         int bonusNumber = Integer.parseInt(inputBonusNumber);
 
-        Map<Ranking, Integer> rankings = lottos.stream()
+        Map<Ranking, Integer> lottoResults = lottos.stream()
                 .map(lotto -> lotto.compareWith(winningNumbers, bonusNumber))
                 .map(Ranking::findByMatch)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.groupingBy(
-                        ranking -> ranking,
-                        Collectors.summingInt(ranking -> 1)
-                ));
-        System.out.println(rankings);
+                .flatMap(Optional::stream)
+                .collect(Collectors.groupingBy(ranking -> ranking, Collectors.summingInt(r -> 1)));
+
+        outputView.printLottoResults(lottoResults);
     }
 }

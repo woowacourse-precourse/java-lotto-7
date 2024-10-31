@@ -33,4 +33,15 @@ public enum Ranking {
                 .findFirst();
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isRequireMatchBonus() {
+        return isRequireMatchBonus;
+    }
 }
