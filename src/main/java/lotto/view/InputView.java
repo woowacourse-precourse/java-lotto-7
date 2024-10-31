@@ -2,27 +2,31 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
 
     public static int getMoney() {
         OutputView.displayMoney();
-        return Integer.parseInt(Console.readLine());
+        int money = Integer.parseInt(Console.readLine());
+        getCount(money);
+        return money;
     }
 
-    public static int getCount() {
-        int count = Integer.parseInt(Console.readLine());
-        OutputView.displayCount();
-        return count;
+    public static void getCount(int money) {
+        int count = money / 1000;
+        OutputView.displayCount(count);
     }
 
-    public static int[] getWinningNumbers() {
+    public static List<Integer> getWinningNumbers() {
         OutputView.displayWinningNumbers();
-        String[] numbers = Console.readLine().trim().split(",");
-        int[] numberWinner = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            numberWinner[i] = Integer.parseInt(numbers[i]);
+        String[] inputWinningNumbers = Console.readLine().trim().split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (int i = 0; i < inputWinningNumbers.length; i++) {
+            winningNumbers.add(Integer.parseInt(inputWinningNumbers[i]));
         }
-        return numberWinner;
+        return winningNumbers;
     }
 
     public static int getBonusNumber() {
