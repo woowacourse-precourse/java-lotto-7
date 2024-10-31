@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,9 +13,28 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
+        }
+        numbers.stream()
+                .forEach(this::validateNumber);
+    }
+
+    private void validateNumber(int number) {
+        if (number < 0 || number > 46) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + String.join(", ",
+                numbers.stream()
+                        .map(String::valueOf)
+                        .toList()
+        ) + "]";
+    }
 }
