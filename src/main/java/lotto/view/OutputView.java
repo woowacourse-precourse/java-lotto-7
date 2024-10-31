@@ -18,4 +18,8 @@ public class OutputView {
     public void printLotto(List<Lotto> lottoes) {
         lottoes.forEach(lotto -> System.out.println(lotto.getScreen()));
     }
+
+    public void printWinningNumberGuide() {
+        System.out.println(OutputMessage.WINNING_NUMBER_GUIDE.getMessage());
+    }
 }
