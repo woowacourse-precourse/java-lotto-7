@@ -1,8 +1,9 @@
 package lotto;
 
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,9 +24,8 @@ public class Lotto {
         return Console.readLine();
     }
 
-
-
-
-
-
+    private int getLottoPurchaseCount(String userInput) {
+        int money = Validator.validateMoneyInput(userInput);
+        return money / 1000;
+    }
 }
