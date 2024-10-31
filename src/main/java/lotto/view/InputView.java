@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.InputValidator;
+import lotto.validator.InputValidator;
 
 public class InputView {
 
