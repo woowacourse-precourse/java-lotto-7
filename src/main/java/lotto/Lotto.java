@@ -47,4 +47,10 @@ public class Lotto {
 
         return new Lotto(winningNumbers);
     }
+
+    public static int getBonusNumber(List<Integer> winningNumbers, String userInput) {
+        int bonusNumber = Validator.validateLottoNumber(userInput);
+        Validator.validateBonusNumber(winningNumbers, bonusNumber);
+        return bonusNumber;
+    }
 }
