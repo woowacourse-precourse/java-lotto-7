@@ -16,6 +16,10 @@ public class Money {
         this.money = request.getMoney();
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private void validate(int money) {
         validateRange(money);
         validateUnit(money);

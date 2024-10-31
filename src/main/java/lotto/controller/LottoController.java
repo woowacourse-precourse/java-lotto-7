@@ -1,12 +1,14 @@
 package lotto.controller;
 
 import lotto.dto.PurchaseMoneyRequestDTO;
+import lotto.dto.PurchaseResultDTO;
+import lotto.dto.WinningNumberRequestDTO;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.Money;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.dto.PurchaseResultDTO;
 import lotto.view.Retryable;
 
 public class LottoController {
@@ -24,6 +26,7 @@ public class LottoController {
     public void run() {
         Money money = retryIfHasError(this::getMoney);
         Lottos lottos = buyLottos(money);
+        WinningNumbers winningNumbers = retryIfHasError(this::getWinningNumbers);
     }
 
     private Lottos buyLottos(Money money) {
@@ -35,6 +38,11 @@ public class LottoController {
     private Money getMoney() {
         PurchaseMoneyRequestDTO purchaseMoneyRequest = inputView.readMoneyInput();
         return new Money(purchaseMoneyRequest);
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        WinningNumberRequestDTO winningNumberInput = inputView.readWinningNumberInput();
+        return new WinningNumbers(winningNumberInput);
     }
 
     private <T> T retryIfHasError(Retryable<T> retryable) {
