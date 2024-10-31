@@ -8,15 +8,19 @@ import lotto.util.RandomUtil;
 public class Wallet {
 
     private int money;
+    private int originalMoney;
+    private List<Rank> ranks = new ArrayList<>();
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Wallet(int money) {
         validateMoney(money);
         this.money = money;
+        originalMoney = money;
     }
 
     public void buyLottoTickets() {
         int ticketCount = money / 1000;
+        money -= ticketCount * 1000;
         while (ticketCount-- > 0) {
             lottos.add(new Lotto(RandomUtil.getLottoNumbers()));
         }
@@ -30,5 +34,16 @@ public class Wallet {
 
     public int getLottoTicketCounts() {
         return lottos.size();
+    }
+
+    public void addRank(Rank rank) {
+        ranks.add(rank);
+    }
+
+    public double gain() {
+        int totalPrice = ranks.stream()
+            .mapToInt(Rank::getPrice)
+            .sum();
+        return totalPrice / originalMoney;
     }
 }

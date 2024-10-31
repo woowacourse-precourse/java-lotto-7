@@ -3,6 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,20 +28,21 @@ class LottoTest {
     @Test
     void 당첨_내역을_계산한다() {
         List<Integer> winningLottoNumbers = RandomUtil.getLottoNumbers();
-        List<Integer> numbers = winningLottoNumbers.subList(0, 5);
+        List<Integer> numbers = new ArrayList<>();
+        numbers.addAll(winningLottoNumbers);
+        numbers.removeLast();
         numbers.add(0);
         Lotto lotto = new Lotto(numbers);
-        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers);
-        int rank = winningLotto.getRank(lotto);
-        assertThat(rank).isEqualTo(3);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), 0);
+        Rank rank = winningLotto.getRank(lotto, 1);
+        assertThat(rank.get()).isEqualTo(3);
     }
 
     @Test
     void 수익률을_계산한다() {
         Wallet wallet = new Wallet(5000);
         wallet.buyLottoTickets();
-        Rank rank = new Rank();
-        rank.add(3);
-        assertThat(rank.getPrice()).isEqualTo(5_000 / 1_500_000);
+        wallet.addRank(new Rank(3));
+        assertThat(wallet.gain()).isEqualTo((double) 1_500_000 / 5_000 );
     }
 }
