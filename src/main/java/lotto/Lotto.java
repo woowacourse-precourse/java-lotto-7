@@ -32,17 +32,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    public static List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호 6개를 입력하세요 (예: 1,2,3,4,5,6):");
-        String input = Console.readLine();
-        String[] splitInput = input.split(","); // 쉼표로 구분하여 배열로 변환
-        List<Integer> winningNumbers = new ArrayList<>();
-
-        for (int i = 0; i < splitInput.length; i++) {
-            String num = splitInput[i];
-            winningNumbers.add(Integer.parseInt(num)); // 문자열을 정수로 변환하여 추가
-        }
-        return winningNumbers;
-    }
 }
