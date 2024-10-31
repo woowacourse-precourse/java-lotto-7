@@ -3,6 +3,7 @@ package lotto.core;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.core.constants.WinningStatistics;
+import lotto.util.InputValidationUtils;
 
 import java.util.*;
 
@@ -86,11 +87,9 @@ public class LottoRunner {
     private int getPurchaseAmount() {
         while (true) {
             try {
-                payment = Integer.parseInt(this.inputPayment());
+                payment = InputValidationUtils.parseInteger(this.inputPayment());
                 this.validatePayment(payment);
                 return this.calculatePurchaseAmount(payment);
-            } catch (NumberFormatException e) {
-                System.out.println(ERROR_PREFIX + "숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_PREFIX + e.getMessage());
             }

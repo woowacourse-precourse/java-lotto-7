@@ -40,7 +40,7 @@ public class WinningNumbers {
     private void setWinningNumbers() {
         List<Integer> numbers = Arrays.stream(this.numberString.split(DELIMITER))
             .map(String::trim)
-            .map(Integer::parseInt)
+            .map(InputValidationUtils::parseInteger)
             .toList();
         this.winningNumbers = new Lotto(numbers);
     }
