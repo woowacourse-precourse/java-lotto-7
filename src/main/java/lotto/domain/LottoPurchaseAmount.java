@@ -21,6 +21,9 @@ public class LottoPurchaseAmount {
 
     private static class Validator {
 
+        private static final int PURCHASE_AMOUNT_UNIT = 1000;
+        private static final int REMAINDER = 0;
+
         private static void validatePurchaseAmount(String purchaseAmount) {
             validatePurchaseAmountIsNotEmpty(purchaseAmount);
             validatePurchaseAmountRegex(purchaseAmount);
@@ -40,7 +43,7 @@ public class LottoPurchaseAmount {
         }
 
         private static void validatePurchaseAmountUnit(String purchaseAmount) {
-            if (Integer.parseInt(purchaseAmount) % 1000 != 0) {
+            if (Integer.parseInt(purchaseAmount) % PURCHASE_AMOUNT_UNIT != REMAINDER) {
                 throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력할 수 있습니다.");
             }
         }
