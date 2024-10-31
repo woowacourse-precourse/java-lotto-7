@@ -25,6 +25,18 @@ public class Won {
         return new Won(amount);
     }
 
+    public Won add(Integer amount) {
+        return add(new Won(amount));
+    }
+
+    public Won add(Won won) {
+        return new Won(amount.add(won.amount));
+    }
+
+    public Won reminder(Won won) {
+        return new Won(amount.remainder(won.amount));
+    }
+
     private static boolean isSmallerThanZero(BigInteger amount) {
         return amount.compareTo(BigInteger.ZERO) < 0;
     }
