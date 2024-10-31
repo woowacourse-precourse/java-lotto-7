@@ -26,13 +26,14 @@ public class LottoController {
         lottoService = new LottoService();
     }
 
-    public void start() {
+    public void byLotto() {
         readPurchaseAmount();
         lottoIssuance();
         printLottoPurchaseResult();
         WinningNumber winningNumber = readWinningNumber();
         Bonus bonus = readBouns();
         lottoService.readWinningLotto(winningNumber,bonus);
+        lottoService.judgeLotto();
     }
 
     private void lottoIssuance() {

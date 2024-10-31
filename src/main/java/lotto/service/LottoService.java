@@ -41,4 +41,8 @@ public class LottoService {
     public void readWinningLotto(WinningNumber winningNumber, Bonus bonus) {
         this.winningLotto = new WinningLotto(winningNumber, bonus);
     }
+
+    public void judgeLotto() {
+        lottoCollection.compareWinningLotto(winningLotto);
+    }
 }

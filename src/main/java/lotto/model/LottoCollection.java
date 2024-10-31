@@ -9,14 +9,14 @@
  */
 package lotto.model;
 
-import lotto.domain.Lotto;
-import lotto.domain.RandomNumbers;
+import lotto.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoCollection {
     private final List<Lotto> lottoList = new ArrayList<>();
+    private final List<WonLotto> resultList = new ArrayList<>();
 
     public LottoCollection(int numberOfLotto) {
         for (int i = 0; i < numberOfLotto; i++) {
@@ -39,5 +39,13 @@ public class LottoCollection {
             state.append("\n");
         }
         return state.toString();
+    }
+
+    public void compareWinningLotto(WinningLotto winningLotto) {
+        for(Lotto lotto : lottoList) {
+            Rank rank = lotto.getRank(winningLotto);
+            WonLotto wonLotto = new WonLotto(lotto, rank);
+            resultList.add(wonLotto);
+        }
     }
 }

@@ -30,8 +30,27 @@ public class WinningLotto {
 
     private void validateDuplication() {
         String state = winningLotto.getState();
-        if(state.contains(bonus.getBonus())) {
+        int bonus = this.bonus.getBonus();
+        String valueOfBonus = String.valueOf(bonus);
+        if(state.contains(valueOfBonus)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION_ERROR_MESSAGE);
         }
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public Bonus getBonus() {
+        return bonus;
+    }
+
+    public int getMatchingCount(List<Integer> numbers) {
+        return winningLotto.getMatchingCount(numbers);
+    }
+
+    public boolean getMatchingBonus(Bonus bonus) {
+        int number = bonus.getBonus();
+        return winningLotto.getMatchingBonus(number);
     }
 }
