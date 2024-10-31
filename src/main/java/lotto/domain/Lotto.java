@@ -41,14 +41,13 @@ public class Lotto {
         return numbers;
     }
 
-    public void addBonusNumber(int bonusNumber) {
+    public void validateBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
         }
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
         }
-        numbers.add(bonusNumber);
     }
 
     public int calculateMatchCount(Lotto winningLotto) {

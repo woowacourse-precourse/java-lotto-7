@@ -61,7 +61,7 @@ public class LottoController {
         return retryUntilValidInput(() -> {
             String bonusNumberInput = inputView.getBonusNumber();
             int bonusNumber = parseInt(bonusNumberInput);
-            winningLotto.addBonusNumber(bonusNumber);
+            winningLotto.validateBonusNumber(bonusNumber);
             return bonusNumber;
         });
     }
