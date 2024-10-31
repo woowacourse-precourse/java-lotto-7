@@ -3,7 +3,7 @@ package lotto.model;
 import static lotto.ErrorMessage.INVALID_PRICE;
 
 public class Money {
-    private int userInputMoney;
+    private final int userInputMoney;
 
     public Money(int userInputMoney){
         checkAmountWithinRange(userInputMoney);
@@ -14,8 +14,8 @@ public class Money {
             throw new IllegalArgumentException(INVALID_PRICE.format());
         }
     }
-
-
-
+    public int getUserInputMoney(){
+        return userInputMoney;
+    }
 
 }
