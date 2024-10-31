@@ -3,13 +3,9 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.rule.LottoRule;
 
 public class LottoMachine {
-
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_NUMBERS_COUNT = 6;
-    private static final int PURCHASE_AMOUNT_UNIT = 1000;
 
     public List<Lotto> purchase(int purchaseAmount) {
         int quantity = calculateLottoQuantity(purchaseAmount);
@@ -17,7 +13,7 @@ public class LottoMachine {
     }
 
     private int calculateLottoQuantity(int purchaseAmount) {
-        return purchaseAmount / PURCHASE_AMOUNT_UNIT;
+        return purchaseAmount / LottoRule.PURCHASE_AMOUNT_UNIT;
     }
 
     private List<Lotto> generateLottoTickets(int quantity) {
@@ -29,8 +25,10 @@ public class LottoMachine {
     }
 
     private List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_COUNT);
-        return sortLottoNumbers(numbers);
+        List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(
+                LottoRule.MIN_LOTTO_NUMBER, LottoRule.MAX_LOTTO_NUMBER, LottoRule.LOTTO_NUMBERS_COUNT
+        );
+        return sortLottoNumbers(uniqueNumbers);
     }
 
     private List<Integer> sortLottoNumbers(List<Integer> numbers) {

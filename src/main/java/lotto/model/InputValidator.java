@@ -4,15 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.error.InputError;
+import lotto.rule.LottoRule;
 import org.junit.platform.commons.util.StringUtils;
 
 public class InputValidator {
 
     private static final int ZERO = 0;
-    private static final int PURCHASE_BASE_AMOUNT = 1_000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_NUMBERS_COUNT = 6;
     private static final String SEPARATOR = ",";
     private static final String ONLY_NUMBERS_AND_SEPARATORS = "^[\\d" + SEPARATOR + "]+$";
 
@@ -34,13 +31,13 @@ public class InputValidator {
     }
 
     private void validateAboveBaseAmount(int purchaseAmount) {
-        if (purchaseAmount < PURCHASE_BASE_AMOUNT) {
+        if (purchaseAmount < LottoRule.PURCHASE_AMOUNT_UNIT) {
             throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_UNDER_BASE_LIMIT.getMessage());
         }
     }
 
     private void validateIsMultipleOfBaseAmount(int purchaseAmount) {
-        if (purchaseAmount % PURCHASE_BASE_AMOUNT != ZERO) {
+        if (purchaseAmount % LottoRule.PURCHASE_AMOUNT_UNIT != ZERO) {
             throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }
@@ -62,7 +59,7 @@ public class InputValidator {
     }
 
     private void validateCorrectCount(String[] separatedInputs) {
-        if (separatedInputs.length != LOTTO_NUMBERS_COUNT) {
+        if (separatedInputs.length != LottoRule.LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(InputError.WINNING_NUMBERS_COUNT.getMessage());
         }
     }
@@ -80,7 +77,7 @@ public class InputValidator {
     private int parseLottoNumber(String rawInput) {
         try {
             int number = Integer.parseInt(rawInput);
-            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            if (number < LottoRule.MIN_LOTTO_NUMBER || number > LottoRule.MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(InputError.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             }
             return number;
