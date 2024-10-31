@@ -4,23 +4,24 @@ import static lotto.util.LottoConstants.LOTTO_TICKET_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class LottoStore {
+public class LottoVendingMachine {
 
-    private final int lottoCount;
+    private final int totalCost;
     private final List<Lotto> purchased;
 
-    public LottoStore(int totalCost) {
-        this.lottoCount = totalCost/LOTTO_TICKET_PRICE;
+    public LottoVendingMachine(int totalCost) {
+        this.totalCost = totalCost;
         this.purchased = new ArrayList<>();
     }
 
     public List<Lotto> issueLotto() {
-        for (int i = 1; i <= lottoCount; i++) {
+        for (int i = 1; i <= totalCost/LOTTO_TICKET_PRICE; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
             purchased.add(new Lotto(numbers));
         }
-        return purchased;
+        return Collections.unmodifiableList(purchased);
     }
 }

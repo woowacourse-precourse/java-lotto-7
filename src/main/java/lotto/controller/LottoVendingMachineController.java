@@ -1,15 +1,15 @@
 package lotto.controller;
 
 import lotto.dto.PurchaseDTO;
-import lotto.model.LottoStore;
+import lotto.model.LottoVendingMachine;
 import lotto.view.InputView;
 
-public class LottoStoreController {
+public class LottoVendingMachineController {
 
     public static PurchaseDTO buy(InputView inputView) {
         Integer totalCost = inputView.inputSingleInteger(inputView::inputTotalCost);
 
-        LottoStore store = new LottoStore(totalCost);
+        LottoVendingMachine store = new LottoVendingMachine(totalCost);
 
         return new PurchaseDTO(totalCost, store.issueLotto());
     }
