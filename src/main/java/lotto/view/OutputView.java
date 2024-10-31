@@ -49,7 +49,7 @@ public class OutputView {
         }
     }
 
-    public static void displayMoneyRate(int moneyRate) {
+    public static void displayMoneyRate(double moneyRate) {
         DecimalFormat formatter = new DecimalFormat("#,##0.0");
         System.out.println("총 수익률은 "+ formatter.format(moneyRate) + "%입니다.");
     }

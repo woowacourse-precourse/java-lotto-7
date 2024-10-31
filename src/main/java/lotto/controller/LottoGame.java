@@ -45,7 +45,7 @@ public class LottoGame {
     private void calculateReturnMoneyRate(Map<String, Integer> result) {
         ReturnMoneyRate returnMoneyRate = new ReturnMoneyRate();
         int sum = returnMoneyRate.calculateSum(result);
-        int moneyRate = returnMoneyRate.calculateRate(sum, money);
+        double moneyRate = returnMoneyRate.calculateRate(sum, money);
 
         OutputView.displayMoneyRate(moneyRate);
     }

@@ -11,7 +11,7 @@ public class ReturnMoneyRate {
         return sum;
     }
 
-    public int calculateRate(int sum, int money) {
-        return (sum / money)* 100;
+    public double calculateRate(int sum, int money) {
+        return ((double) sum / money)* 100;
     }
 }
