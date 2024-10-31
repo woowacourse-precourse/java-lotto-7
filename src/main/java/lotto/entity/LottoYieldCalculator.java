@@ -1,4 +1,4 @@
-package lotto;
+package lotto.entity;
 
 public class LottoYieldCalculator { // 수익률 계산
 }

@@ -1,10 +1,9 @@
-package lotto.entity;
+package lotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.Randoms;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -12,8 +11,6 @@ public class Lotto {
     private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
     private final int bonusNumber;
-
-    // 기존 생성자
     public Lotto(List<Integer> numbers, int bonusNumber) {
         validate(numbers, bonusNumber);
         this.numbers = numbers;
@@ -24,7 +21,7 @@ public class Lotto {
     public static Lotto generateRandomLotto() {
         Set<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE + 1);
         List<Integer> numbersList = uniqueNumbers.stream().limit(LOTTO_SIZE).collect(Collectors.toList());
-        List<Integer> bonusList = uniqueNumbers.stream().skip(LOTTO_SIZE).limit(1).collect(Collectors.toList());
+        List<Integer> bonusList = uniqueNumbers.stream().skip(LOTTO_SIZE).limit(1).toList();
 
         return new Lotto(numbersList, bonusList.get(0));
     }
