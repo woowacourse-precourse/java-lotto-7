@@ -65,12 +65,12 @@ Lotto factory 만들어야 할듯
 
 Lotto 1급 컬렉션
 
-- [ ]  생성에 대한 부분을 Random 매서드에서 찿음
+- [x]  생성에 대한 부분을 Random 매서드에서 찿음
 - [x]  오름차순 정렬
 
 Lottos 만들 것
 
-- [ ]  add 기능 필요해 보임
+- [x]  lottoFactory를 통해서 확장성 증가
 
 enum을 통한 에러 코드 관리
 
@@ -88,7 +88,8 @@ NumberCombination 구현
 
 ✅ 
 
-Lotto에 들어가는 것을 숫자가 아닌 모든 것으로 하기 위해 필드를 interface화 해보자
+- [x] Lotto에 들어가는 것을 숫자가 아닌 모든 것으로 하기 위해 필드를 interface화 해보자 
+- [ ] validator 과 추가 입력 객체도 interface 로 해주어야해...
 
 입력의 그 부분부터 다시 시작 조심하세요
 
