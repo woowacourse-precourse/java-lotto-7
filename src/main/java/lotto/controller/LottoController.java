@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.view.InputView;
@@ -18,31 +20,45 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = readPurchaseAmount();
-        LottoMachine lottoMachine = new LottoMachine();
-        List<Lotto> lottoTickets = lottoMachine.purchase(purchaseAmount);
-        outputView.printPurchasedQuantity(lottoTickets.size());
-        outputView.printLottoTickets(getLottoTickets(lottoTickets));
+        List<Lotto> lottoTickets = purchaseLotto(purchaseAmount);
+        displayLotto(lottoTickets);
+        List<Integer> winningNumbers = readWinningNumbers();
     }
 
-    private List<List<Integer>> getLottoTickets(List<Lotto> lottoTickets) {
-        return lottoTickets.stream()
-                .map(Lotto::getNumbers)
-                .toList();
+    private List<Integer> readWinningNumbers() {
+        String rawInputWinningNumbers = inputView.requestWinningNumbers();
+        validateWinningNumbers(rawInputWinningNumbers);
+        return parseWinningNumbers(rawInputWinningNumbers);
+    }
+
+    private void validateWinningNumbers(String rawInput) {
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.validateRawInputWinningNumbers(rawInput);
+    }
+
+    private List<Integer> parseWinningNumbers(String rawInput) {
+        String[] separatedInputs = rawInput.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String input : separatedInputs) {
+            try {
+                winningNumbers.add(Integer.parseInt(input.trim()));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요.");
+            }
+        }
+        return winningNumbers;
     }
 
     private int readPurchaseAmount() {
         String rawInputPurchaseAmount = inputView.requestPurchaseAmount();
-        return validateAndParsePurchaseAmount(rawInputPurchaseAmount);
+        validatePurchaseAmount(rawInputPurchaseAmount);
+        return parsePurchaseAmount(rawInputPurchaseAmount);
     }
 
-    private int validateAndParsePurchaseAmount(String rawInput) {
-        if (rawInput.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 구입금액을 입력되지 않았어요. 다시 입력해주세요.");
-        }
-
-        int purchaseAmount = parsePurchaseAmount(rawInput);
-        validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+    private void validatePurchaseAmount(String rawInput) {
+        InputValidator inputValidator = new InputValidator();
+        inputValidator.validateRawInputPurchaseAmount(rawInput);
     }
 
     private int parsePurchaseAmount(String rawInput) {
@@ -53,16 +69,19 @@ public class LottoController {
         }
     }
 
-    private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액이 0보다 작아요. 다시 입력해주세요.");
-        }
-        if (purchaseAmount == 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액이 0이에요. 다시 입력해주세요.");
-        }
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 해요. 다시 입력해주세요.");
-        }
+    private List<Lotto> purchaseLotto(int purchaseAmount) {
+        LottoMachine lottoMachine = new LottoMachine();
+        return lottoMachine.purchase(purchaseAmount);
     }
 
+    private void displayLotto(List<Lotto> lottoTickets) {
+        outputView.printPurchasedQuantity(lottoTickets.size());
+        outputView.printLottoTickets(getLottoTickets(lottoTickets));
+    }
+
+    private List<List<Integer>> getLottoTickets(List<Lotto> lottoTickets) {
+        return lottoTickets.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }
