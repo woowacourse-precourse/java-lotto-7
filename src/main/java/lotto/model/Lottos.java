@@ -24,20 +24,20 @@ public class Lottos {
     }
 
     public Float calculateReturnRate(WinningBalls winningBalls, BonusBall bonusBall) {
-        EnumMap<Rank, Integer> result = calculateWinningResults(winningBalls, bonusBall);
-        Long winningAmount = Rank.calculateWinningAmount(result);
+        RankResult rankResult = calculateWinningResults(winningBalls, bonusBall);
+        Long winningAmount = rankResult.calculateWinningAmount();
         long totalPrice = getSize() * LOTTO_PRICE;
         return (Float.valueOf(winningAmount) / totalPrice) * 100;
     }
 
-    public EnumMap<Rank, Integer> calculateWinningResults(WinningBalls winningBalls, BonusBall bonusBall) {
+    public RankResult calculateWinningResults(WinningBalls winningBalls, BonusBall bonusBall) {
         EnumMap<Rank, Integer> ranks = initializeRanks();
 
         for (Lotto lotto : lottos) {
             Rank rank = calculateRankForLotto(lotto, winningBalls, bonusBall);
             ranks.put(rank, ranks.getOrDefault(rank, 0) + 1);
         }
-        return ranks;
+        return new RankResult(ranks);
     }
 
     private EnumMap<Rank, Integer> initializeRanks() {

@@ -4,7 +4,6 @@ package lotto.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,10 +26,10 @@ class LottosTest {
         WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
         BonusBall bonusBall = BonusBall.of(7, winningBalls);
 
-        Map<Rank, Integer> result = lottos.calculateWinningResults(winningBalls, bonusBall);
+        RankResult rankResult = lottos.calculateWinningResults(winningBalls, bonusBall);
 
-        assertEquals(1, result.get(Rank.SECOND));
-        assertEquals(1, result.get(Rank.THIRD));
+        assertEquals(1, rankResult.getMatchCount(Rank.SECOND));
+        assertEquals(1, rankResult.getMatchCount(Rank.THIRD));
     }
 
     @DisplayName("이천원 로또를 사고 당첨금 오천원의 수익률을 반환한다")

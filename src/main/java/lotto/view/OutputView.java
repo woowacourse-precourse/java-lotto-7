@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.List;
 import lotto.model.Lottos;
 import lotto.model.Rank;
+import lotto.model.RankResult;
 
 public class OutputView {
 
@@ -20,7 +21,7 @@ public class OutputView {
         System.out.println(lottos.toString());
     }
 
-    public void printResult(EnumMap<Rank, Integer> result) {
+    public void printResult(RankResult rankResult, EnumMap<Rank, Integer> result) {
         System.out.println();
         System.out.println(RESULT_HEADER);
 

@@ -6,6 +6,7 @@ import lotto.model.BonusBall;
 import lotto.model.LottoSellingMachine;
 import lotto.model.Lottos;
 import lotto.model.Rank;
+import lotto.model.RankResult;
 import lotto.model.WinningBalls;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -65,10 +66,10 @@ public class LottoController {
     }
 
     private void printResult(Lottos lottos, WinningBalls winningBalls, BonusBall bonusBall) {
-        EnumMap<Rank, Integer> rankIntegerEnumMap = lottos.calculateWinningResults(winningBalls, bonusBall);
+        RankResult rankResult = lottos.calculateWinningResults(winningBalls, bonusBall);
         Float returnRate1 = lottos.calculateReturnRate(winningBalls, bonusBall);
 
-        outputView.printResult(rankIntegerEnumMap);
+        outputView.printResult(rankResult, new EnumMap<>(Rank.class));
         outputView.printReturnRate(returnRate1);
     }
 }

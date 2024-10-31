@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.EnumMap;
-
 public enum Rank {
     FIRST(6, 0, 2_000_000_000),
     SECOND(5, 1, 30_000_000),
@@ -39,27 +37,15 @@ public enum Rank {
         return NONE;
     }
 
-    public static Long calculateWinningAmount(EnumMap<Rank, Integer> enumMap) {
-        Long sum = 0L;
-        Integer firstCount = enumMap.getOrDefault(Rank.FIRST, 0);
-        sum += firstCount * Rank.FIRST.prize;
-        Integer secondCount = enumMap.getOrDefault(Rank.SECOND, 0);
-        sum += secondCount * Rank.SECOND.prize;
-        Integer thirdCount = enumMap.getOrDefault(Rank.THIRD, 0);
-        sum += thirdCount * Rank.THIRD.prize;
-        Integer fourthCount = enumMap.getOrDefault(Rank.FOURTH, 0);
-        sum += fourthCount * Rank.FOURTH.prize;
-        Integer fifthCount = enumMap.getOrDefault(Rank.FIFTH, 0);
-        sum += fifthCount * Rank.FIFTH.prize;
-
-        return sum;
-    }
-
     public long getMoney() {
         return this.prize;
     }
 
     public int getMatchCount() {
         return this.matchCount;
+    }
+
+    public int getPrize() {
+        return this.prize;
     }
 }
