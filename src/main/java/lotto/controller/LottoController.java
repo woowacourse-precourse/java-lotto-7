@@ -46,4 +46,14 @@ public class LottoController {
         }
         lottoService.createWinNum(winNum);
     }
+
+    public void inputBonusNum() {
+        int bonusNum;
+        try {
+            bonusNum = Integer.parseInt(request.inputBonusNum());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 가능 합니다.");
+        }
+        lottoService.createBonusNum(bonusNum);
+    }
 }
