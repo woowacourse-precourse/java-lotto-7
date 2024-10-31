@@ -11,7 +11,7 @@ public class UserLottoNumberInput {
     public List<Integer> validation() {
         while (true) {
             try {
-                List<Integer> lottoNumbers = getLottoNumbers(createLottoNumberArray(getInput())); // 1차 Input 검증
+                List<Integer> lottoNumbers = parsingLottoNumbers((createLottoNumberArray(getInput())));
                 System.out.println();
                 return lottoNumbers;
             } catch (NumberFormatException e) {
@@ -31,7 +31,7 @@ public class UserLottoNumberInput {
         return new ArrayList<>(Arrays.asList(input.trim().split("\\s*,\\s*")));
     }
 
-    private List<Integer> getLottoNumbers(List<String> userLottoNumbers) {
+    private List<Integer> parsingLottoNumbers(List<String> userLottoNumbers) {
 
         List<Integer> lottoNumbers = new ArrayList<>();
 
