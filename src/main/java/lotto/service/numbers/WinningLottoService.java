@@ -9,7 +9,6 @@ public class WinningLottoService {
 
     public Lotto generateWinningLotto(String winningNumbers) {
         List<Integer> convertedWinningNumbers = Parser.parsingNumbers(winningNumbers);
-        LottoValidator.validateProcess(convertedWinningNumbers);
         return new Lotto(convertedWinningNumbers);
     }
 }
