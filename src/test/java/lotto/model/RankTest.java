@@ -2,6 +2,8 @@ package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Map;
 
@@ -33,4 +35,27 @@ class RankTest {
                     "3개 일치 (5,000원) - 5개\n"
             );
     }
+
+    @DisplayName("당첨 개수와 보너스 볼 일치 여부에 따라 순위를 반환한다.")
+    @ParameterizedTest
+    @CsvSource({
+        "6, true, FIRST",
+        "6, false, FIRST",
+        "5, true, SECOND",
+        "5, false, THIRD",
+        "4, false, FOURTH",
+        "4, true, FOURTH",
+        "3, false, FIFTH",
+        "3, true, FIFTH",
+        "2, false, NONE",
+        "1, false, NONE",
+    })
+    void createRank(int matchCount, boolean isBonusMatch, Rank expected) {
+        //given
+        //when
+        Rank rank = Rank.of(matchCount, isBonusMatch);
+        //then
+        assertThat(rank).isEqualTo(expected);
+    }
+
 }
