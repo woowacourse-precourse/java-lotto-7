@@ -17,6 +17,33 @@ public class Lotto {
         }
     }
 
+    public LottoRank checkRank(List<Integer> winnerNumbers, int bonus) {
+        int numOfMatch = (int) numbers.stream()
+                .filter(winnerNumbers::contains)
+                .count();
+
+        return determineRank(numOfMatch, bonus);
+    }
+
+    private LottoRank determineRank(int numOfMatch, int bonus) {
+        return switch (numOfMatch) {
+            case 6:
+                yield LottoRank.GRADE_1TH;
+            case 5:
+                if (numbers.contains(bonus)) {
+                    yield LottoRank.GRADE_2TH;
+                }
+
+                yield LottoRank.GRADE_3TH;
+            case 4:
+                yield LottoRank.GRADE_4TH;
+            case 3:
+                yield LottoRank.GRADE_5TH;
+            default:
+                yield LottoRank.NONE;
+        };
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
