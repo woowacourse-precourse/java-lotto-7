@@ -32,7 +32,7 @@
 - [ ] 구매 금액 입력
     - [x] 입력 받은 값이 숫자가 아니면 예외처리 - InputHandler#validateNumber()
     - [x] 구매 금액이 부족하면 예외처리 - PurchaseAmount#checkEnough()
-    - [ ] 구매 금액이 로또 가격과 나누어 떨어지지 않으면 예외처리
+    - [x] 구매 금액이 로또 가격과 나누어 떨어지지 않으면 예외처리 - PurchaseAmount#checkDivisible()
 - [ ] 당첨 번호 입력
     - [x] 입력 받은 값이 숫자가 아니면 예외처리 - InputHandler#validateNumber()
     - [ ] 숫자의 범위가 1~45가 아니면 예외처리

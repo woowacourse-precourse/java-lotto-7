@@ -11,4 +11,10 @@ class PurchaseAmountTest {
     void 금액이_부족한_경우_예외처리(int amount) {
         assertThatThrownBy(() -> new PurchaseAmount(amount)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1999", "1001"})
+    void 금액이_로또가격과_나누어_떨어지지_않으면_예외처리(int amount) {
+        assertThatThrownBy(() -> new PurchaseAmount(amount)).isInstanceOf(IllegalArgumentException.class);
+    }
 }
