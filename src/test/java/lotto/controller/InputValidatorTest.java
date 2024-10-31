@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import lotto.controller.ErrorMessages;
 import lotto.controller.InputValidator;
