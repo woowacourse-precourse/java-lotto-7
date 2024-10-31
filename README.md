@@ -68,7 +68,7 @@
 3, 4, 5, 6개의 일치 여부와 보너스 볼 일치 여부, 당첨 금액과 일치하는 개수를 출력한다.
 
 ### 11. 총 수익률 출력 기능
-"총 수익률은 n%입니다."라는 문장을 출력한다.
+총 수익률을 계산하고 "총 수익률은 n%입니다."라는 문장을 출력한다.
 
 
 ## 예외처리
@@ -78,6 +78,8 @@ IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요
 IllegalArgumentException("[ERROR] 금액은 숫자만 입력할 수 있습니다.");를 터트리고 금액 입력을 다시 받는다.
 ### - 구입 금액 입력 시 음수를 입력받을 경우
 IllegalArgumentException("[ERROR] 금액은 음수를 입력할 수 없습니다.");를 터트리고 금액 입력을 다시 받는다.
+### - 구입 금액 입력 시 0을 입력한 경우
+IllegalArgumentException("[ERROR] 금액을 입력해주세요.");를 터트리고 금액 입력을 다시 받는다.
 
 ### - 당첨 번호 입력 시 입력 숫자가 6개를 넘을 경우
 IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해주세요.");를 터트리고 당첨 번호 입력을 다시 받는다.
@@ -87,13 +89,17 @@ IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력할 수 있�
 IllegalArgumentException("[ERROR] 당첨 번호는 음수를 입력할 수 없습니다.");를 터트리고 당첨 번호 입력을 다시 받는다.
 ### - 당첨 번호 입력 시 1~45 숫자의 범위를 지키지 못 할 경우
 IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자를 입력해주세요.");를 터트리고 당첨 번호를 입력을 다시 받는다.
+### - 당첨 번호 입력 시 중복된 숫자를 입력한 경우
+IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안 됩니다.");를 터트리고 당첨 번호를 입력을 다시 받는다.
 
 ### - 보너스 번호 입력 시 숫자가 아닌 문자를 입력한 경우
 IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");를 터트리고 보너스 번호 입력을 다시 받는다.
 ### - 보너스 번호 입력 시 음수를 입력받을 경우
-IllegalArgumentException("[ERROR] 보너스 번호는 음수를 입력할 수 없습니다.");를 터트리고 보너스 번호를 다시 받는다.
+IllegalArgumentException("[ERROR] 보너스 번호는 음수를 입력할 수 없습니다.");를 터트리고 보너스 번호 입력을 다시 받는다.
 ### - 보너스 번호 입력 시 1~45 숫자의 범위를 지키지 못 할 경우
-IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");를 터트리고 보너스 번호를 다시 받는다.
+IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");를 터트리고 보너스 번호 입력을 다시 받는다.
+### - 보너스 번호 입력 시 당첨 번호와 중복된 경우
+IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");를 터트리고 보너스 번호 입력을 다시 받는다.
 
 
 ## 사용 예제
