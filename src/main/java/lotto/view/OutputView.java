@@ -26,4 +26,8 @@ public class OutputView {
             System.out.printf("%d개 일치%s (%d원) - %d개%n", rank.getMatchCount(), bonusNumberText, rank.getPrize(), count);
         }
     }
+
+    public static void printRateOfReturn(double rateOfReturn){
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    }
 }
