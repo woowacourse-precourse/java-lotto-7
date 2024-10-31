@@ -38,6 +38,7 @@ public class LottoResultEvaluator {
             getFifthRank(copyLotto);
         }
         this.profit = getProfitMoney(this.result);
+        this.returnRate = calculateRate(this.profit, purchase);
     }
 
     public Map<Integer, Integer> getResult() {
@@ -126,5 +127,9 @@ public class LottoResultEvaluator {
             return FIFTH.getNumber() * count;
         }
         return 0;
+    }
+
+    private double calculateRate(int profit, Purchase purchase) {
+        return Math.round((((double) profit / purchase.getPurchase() * 100) * 10) / 10.0);
     }
 }
