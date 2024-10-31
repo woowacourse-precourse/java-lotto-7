@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.domain.lotto.Bonus;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.player.Player;
 import lotto.domain.player.PlayerLotto;
 import lotto.util.RandomNumberGenerator;
@@ -11,10 +13,14 @@ public class PlayerService {
     private static int LOTTO_PRICE = 1000;
 
     private final Player player;
+    private final Lotto lotto;
+    private final Bonus bonus;
     private final RandomNumberGenerator numberGenerator;
 
-    public PlayerService(Player player) {
+    public PlayerService(Player player, Lotto lotto, Bonus bonus) {
         this.player = player;
+        this.lotto = lotto;
+        this.bonus = bonus;
         this.numberGenerator = new RandomNumberGenerator();
     }
 
@@ -32,5 +38,9 @@ public class PlayerService {
     private PlayerLotto createLotto() {
         List<Integer> lottoNumbers = numberGenerator.generateLottoNumbers();
         return new PlayerLotto(lottoNumbers);
+    }
+
+    public void calculateWinningCount(PlayerLotto playerLotto) {
+
     }
 }

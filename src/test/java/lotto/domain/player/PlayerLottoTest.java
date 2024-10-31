@@ -23,4 +23,33 @@ public class PlayerLottoTest {
         // then
         Assertions.assertThat(playerLotto.getLottoNumbers()).containsExactly(1, 2, 3, 4, 5,6);
     }
+
+    @Test
+    @DisplayName("당첨된 번호 개수를 저장할 수 있다.")
+    void 당첨_개수_저장_테스트() throws Exception {
+        // given
+        int winningCount = 3;
+        playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        playerLotto.updateWinningCount(winningCount);
+
+        // then
+        Assertions.assertThat(playerLotto.getWinningCount()).isEqualTo(winningCount);
+
+    }
+
+    @Test
+    @DisplayName("보너스 번호를 맞춘지 여부 저장할 수 있다.")
+    void 보너스_번호_테스트() throws Exception {
+        // given
+        int bonusCount = 1;
+        playerLotto = new PlayerLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        playerLotto.updateBonusCount(bonusCount);
+
+        // then
+        Assertions.assertThat(playerLotto.getWinningCount()).isEqualTo(bonusCount);
+    }
 }
