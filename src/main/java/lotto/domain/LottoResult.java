@@ -49,4 +49,5 @@ public class LottoResult {
     public Map<LottoRank, Integer> getRankCounts() {
         return Collections.unmodifiableMap(rankCnt);
     }
+
 }
