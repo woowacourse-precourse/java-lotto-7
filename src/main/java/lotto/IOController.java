@@ -8,11 +8,22 @@ import java.util.List;
 
 public class IOController {
 
+    Validator validator = new Validator();
+    public static final String COMMA = ",";
 
     public Integer inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String s = Console.readLine();
-        return Integer.parseInt(s);
+
+        Integer purchaseAmount = null;
+        while (purchaseAmount == null) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String purchaseAmountInput = Console.readLine();
+            try {
+                validator.purchaseAmountValidate(purchaseAmountInput);
+                purchaseAmount = Integer.parseInt(purchaseAmountInput);
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+        return purchaseAmount;
     }
 
     public void printLottoList(List<Lotto> lottoList) {
@@ -23,19 +34,35 @@ public class IOController {
     }
 
     public List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String s = Console.readLine();
-        List<Integer> winningNumbers = Arrays.stream(s.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
+
+        List<Integer> winningNumbers = null;
+        while (winningNumbers == null) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String winningNumbersString = Console.readLine();
+            List<String> winningNumbersStringList = Arrays.stream(winningNumbersString.split(COMMA))
+                    .map(String::trim).toList();
+            try {
+                validator.winningNumberValidate(winningNumbersStringList);
+                winningNumbers = winningNumbersStringList.stream().map(Integer::parseInt).toList();
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
         return winningNumbers;
     }
 
-    public Integer inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String s = Console.readLine();
-        return Integer.parseInt(s);
+    public Integer inputBonusNumber(List<Integer> winningNumbers) {
+
+        Integer bonusNumber = null;
+        while (bonusNumber == null) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusNumberInput = Console.readLine();
+            try {
+                validator.bonusNumberValidate(winningNumbers, bonusNumberInput);
+                bonusNumber = Integer.parseInt(bonusNumberInput);
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+        return bonusNumber;
     }
 
     public void printWinningStatistics(LottoStatistic lottoStatistic) {
