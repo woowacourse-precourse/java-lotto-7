@@ -1,4 +1,4 @@
-package lotto;
+package lotto.io;
 
 import java.util.Arrays;
 import lotto.exception.ExceptionMessages;
@@ -36,13 +36,13 @@ public class InputValidator {
     }
 
     public void validateEndsWithComma(String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(INPUT_DELIM)) {
             throw new IllegalArgumentException(ExceptionMessages.ENDS_WITH_COMMA.getMessage());
         }
     }
 
     public void validateExistNotDigitElems(String input) {
-        String[] elems = input.split(",");
+        String[] elems = input.split(INPUT_DELIM);
         Arrays.stream(elems).forEach(this::validateNonDigitInput);
     }
 }

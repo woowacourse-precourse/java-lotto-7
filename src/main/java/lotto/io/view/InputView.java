@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import lotto.InputValidator;
-import lotto.Lotto;
+import lotto.io.InputValidator;
+import lotto.domain.Lotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Money;
 
