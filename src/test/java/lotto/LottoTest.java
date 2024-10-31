@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -29,6 +30,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("반환된 로또 번호를 확인한다.")
+    @Test
+    void 반환된_로또_번호를_확인한다() {
+        List<Integer> expect = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(expect);
 
+        List<Integer> numbers = lotto.getNumbers();
+
+        assertEquals(numbers, expect);
+    }
 
 }
