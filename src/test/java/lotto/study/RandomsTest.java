@@ -11,8 +11,8 @@ public class RandomsTest {
     @Test
     @DisplayName("pickNumberInRange는 지정된 범위 내의 난수를 생성한다")
     void pickNumberInRangeShouldGenerateNumberWithinRange() {
-        int MIN_RANGE = -1;
-        int MAX_RANGE = 45;
+        int MIN_RANGE = -10;
+        int MAX_RANGE = 10;
         for (int i = 0; i < 100; i++) {
             int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
             assertThat(number).isGreaterThanOrEqualTo(MIN_RANGE)
@@ -23,8 +23,8 @@ public class RandomsTest {
     @Test
     @DisplayName("pickNumberInRange는 최솟값과 최댓값을 포함한다")
     void pickNumberInRangeShouldIncludeMaxOrMinNumber() {
-        int MIN_RANGE = 1;
-        int MAX_RANGE = 0;
+        int MIN_RANGE = 0;
+        int MAX_RANGE = 1;
         for (int i = 0; i < 10; i++) {
             int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
             assertThat(number).isGreaterThanOrEqualTo(MIN_RANGE)
@@ -44,7 +44,7 @@ public class RandomsTest {
     @Test
     @DisplayName("pickNumberInRange는 범위 지정이 잘못되면 예외가 발생한다")
     void pickNumberInRangeShouldExcpetWrongRange() {
-        int MIN_RANGE = 5;
+        int MIN_RANGE = 100;
         int MAX_RANGE = 0;
         assertThatThrownBy(() -> Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE))
             .isInstanceOf(IllegalArgumentException.class);

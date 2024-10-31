@@ -40,7 +40,7 @@
 - [x] | 잘못된 입력 시 재입력 요청
 - [x] | `구입 금액`에 해당하는 `로또` 구매
 - [x] | 발행된 `로또` 수량 및 번호를 출력
-- [ ] | `로또`의 `번호`를 오름차순으로 정렬
+- [x] | `로또`의 `번호`를 오름차순으로 정렬
 - [ ] | 로또 구입 테스트 코드 추가
 
 **Milestone 2: 당첨 번호 관리📂**
@@ -156,9 +156,9 @@
 - [x] | Record는 getter 메서드를 자동으로 생성한다
 - [x] | Record는 equals와 hashCode를 자동으로 구현한다
 
-## 📙 CollectionsTest
+## 📙 StreamTest
 
-- [ ] | Collections.sort()로 로또 번호를 정렬할 수 있다.
+- [x] | Stream의 sorted()로 리스트의 정수를 정렬할 수 있다
 
 ## 📗 RandomsTest
 

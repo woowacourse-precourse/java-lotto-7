@@ -11,12 +11,12 @@ import lotto.common.util.RandomsWrapper;
 
 public class Lotto {
     private static final int LENGTH = 6;
-    private static final String INCORRECT_LENGTH = ERROR_PREFIX + java.lang.String.format("로또 번호는 %d개여야 합니다.", LENGTH);
+    private static final String INCORRECT_LENGTH = ERROR_PREFIX + String.format("로또 번호는 %d개여야 합니다.", LENGTH);
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     public static Lotto from(List<Integer> numbers) {
@@ -47,6 +47,10 @@ public class Lotto {
         if (numbers.size() != LENGTH) {
             throw new IllegalArgumentException(INCORRECT_LENGTH);
         }
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
     }
 
     @Override
