@@ -9,6 +9,9 @@ import java.util.List;
 public class LottoShop {
     private static final int LOTTO_UNIT = 1000;
     private static final int ZERO_AMOUNT = 0;
+    private static final int DRAWN_MINIMUM_NUMBER = 1;
+    private static final int DRAWN_MAXIMUM_NUMBER = 45;
+    private static final int NUMBER_OF_DRAWS = 6;
 
     private final List<Lotto> purChasedLotto = new ArrayList<>();
 
@@ -53,7 +56,8 @@ public class LottoShop {
     }
 
     private List<Integer> drawNumberList(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(DRAWN_MINIMUM_NUMBER,DRAWN_MAXIMUM_NUMBER,
+                NUMBER_OF_DRAWS);
     }
 
     private int getLottoCount(int amount) {
