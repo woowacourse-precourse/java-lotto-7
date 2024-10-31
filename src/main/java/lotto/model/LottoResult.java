@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
-    private final Map<Rank, Integer> resultCount;
+    private final Map<Rank, Integer> resultCountMap;
 
-    public LottoResult(WinningNumbers winningNumbers, List<Lotto> purchasedLotto) {
-        this.resultCount = calculateResults(winningNumbers, purchasedLotto);
+    public LottoResult(WinningNumbers winningNumbers, List<Lotto> purchasedLottos) {
+        this.resultCountMap = calculateResults(winningNumbers, purchasedLottos);
     }
 
     private Map<Rank, Integer> calculateResults(WinningNumbers winningNumbers, List<Lotto> lottos) {
@@ -17,7 +17,7 @@ public class LottoResult {
             int matchCount = calculateMatchCount(lotto, winningNumbers);
             boolean hasBonus = lotto.getNumbers().contains(winningNumbers.getBonusNumber());
             Rank rank = Rank.getRank(matchCount, hasBonus);
-            resultMap.put(rank, resultMap.get(rank) + 1);
+            if (rank != null) resultMap.put(rank, resultMap.get(rank) + 1);
         }
         return resultMap;
     }
@@ -41,6 +41,6 @@ public class LottoResult {
     }
 
     public Map<Rank, Integer> getResultCount() {
-        return resultCount;
+        return resultCountMap;
     }
 }
