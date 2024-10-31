@@ -21,7 +21,7 @@ public enum LottoRank {
         this.matchBonus = matchBonus;
     }
 
-    public LottoRank by(int matchCount, boolean matchBonus) {
+    public static LottoRank by(int matchCount, boolean matchBonus) {
         if (matchCount < 3) {
             return LOSE;
         }
