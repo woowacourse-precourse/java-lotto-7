@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @Test
@@ -21,5 +22,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 뽑은_로또_번호_숫자의_범위는_1부터_45_사이이다() {
+        int number = RandomUtil.getLottoNumbers(1);
+        assertThat(number).isBetween(1, 45);
+    }
 }
