@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.ErrorCode.CONTIGIOUS_COMMA;
+import static lotto.ErrorCode.DUPLICATE_BONNUS_NUMBER;
 import static lotto.ErrorCode.DUPLICATE_WINNIG_NUMBER;
 import static lotto.ErrorCode.INVALID_NUMBER_RANGE;
 import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
@@ -32,14 +33,12 @@ public class InputValidator {
 
     public static void validateWinningNumberRange(final List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
-            if (winningNumber < MIN_LOTTO_NUMBER || winningNumber > MAX_LOTTO_NUMBER) {
-                throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
-            }
+            validateNumberRange(winningNumber);
         }
     }
 
     public static void validateWinningNumberDuplicate(final List<Integer> winningNumbers) {
-        if (winningNumbers.stream().distinct().count() != winningNumbers.size()) {
+        if (hasDuplicates(winningNumbers)) {
             throw new IllegalArgumentException(DUPLICATE_WINNIG_NUMBER.getMessage());
         }
     }
@@ -47,6 +46,28 @@ public class InputValidator {
     public static void validateWinningNumberCount(final List<Integer> winningNumbers) {
         if (winningNumbers.size() != VALID_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_WINNIG_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    //보너스 번호 검증
+    public static void validateBonusNumberRange(final int bonusNumber) {
+        validateNumberRange(bonusNumber);
+    }
+
+    public static void validateBonusNumberDuplicate(final int bonusNumber,final List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATE_BONNUS_NUMBER.getMessage());
+        }
+    }
+
+    //헬퍼 메소드
+    private static boolean hasDuplicates(final List<Integer> numbers) {
+        return numbers.stream().distinct().count() != numbers.size();
+    }
+
+    private static void validateNumberRange(final int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 }

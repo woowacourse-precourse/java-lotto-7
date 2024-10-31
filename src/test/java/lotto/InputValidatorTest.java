@@ -81,6 +81,6 @@ public class InputValidatorTest {
         //when & then
         Assertions.assertThatThrownBy(() -> InputValidator.validateBonusNumberDuplicate(bonusNumber, winningNumbers))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("보너스 번호가 로또 번호와 중복됩니다.");
+            .hasMessage("보너스 번호가 당첨 번호와 중복됩니다.");
     }
 }
