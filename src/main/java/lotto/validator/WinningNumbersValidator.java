@@ -17,10 +17,7 @@ public class WinningNumbersValidator {
         if (hasInvalidNumber(numbers)) {
             return true;
         }
-        if (isInValidNumberSize(numbers)) {
-            return true;
-        }
-        return false;
+        return isInValidNumberSize(numbers);
     }
 
     private boolean isNotParsableToNumbers(String userInput) {

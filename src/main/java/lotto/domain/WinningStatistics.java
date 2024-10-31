@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.domain.Rank.NO_PRIZE;
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
 import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.NO_PRIZE;
 import static lotto.domain.Rank.SECOND;
 import static lotto.domain.Rank.THIRD;
 

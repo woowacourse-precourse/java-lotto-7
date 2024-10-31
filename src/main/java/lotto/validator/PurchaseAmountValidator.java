@@ -11,10 +11,7 @@ public class PurchaseAmountValidator {
         if (isNotParsableToPurchaseAmount(userInput)) {
             return true;
         }
-        if (canNotPurchase(purchaseAmount)) {
-            return true;
-        }
-        return false;
+        return canNotPurchase(purchaseAmount);
     }
 
     private boolean isNotParsableToPurchaseAmount(String userInput) {

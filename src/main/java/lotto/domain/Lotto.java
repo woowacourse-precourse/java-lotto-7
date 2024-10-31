@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -29,16 +29,10 @@ public class Lotto {
     }
 
     public Rank getResult(Set<Integer> winningNumbers, int bonusNumber) {
-        boolean isBonusMatched = false;
-
         List<Integer> missedNumbers = numbers.stream()
                 .filter(number -> !winningNumbers.contains(number))
                 .toList();
-        int matchedNumberCount = LOTTO_SIZE - missedNumbers.size();
-        if (matchedNumberCount == 5 && missedNumbers.getFirst() == bonusNumber) {
-            isBonusMatched = true;
-        }
-        return Rank.getRank(matchedNumberCount, isBonusMatched);
+        return Rank.getRank(missedNumbers, bonusNumber);
     }
 
     private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
