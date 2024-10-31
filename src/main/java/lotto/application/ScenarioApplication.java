@@ -45,7 +45,6 @@ public class ScenarioApplication {
 
     private PurchasePrice doPurchase() {
         printer.print("구입금액을 입력해 주세요.");
-        PurchasePrice purchasePrice;
         String originPrice = reader.read();
         try {
             return PurchasePrice.validatePrice(originPrice);

@@ -18,4 +18,12 @@ public class Validator {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_COUNT_EXCEPTION.getMessage());
         }
     }
+
+    public static void validateNumberRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_RANGE_EXCEPTION.getMessage());
+            }
+        }
+    }
 }
