@@ -30,4 +30,11 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 로또 번호는 숫자와 구분자(,)로만 이루어져야 합니다.");
     }
 
+    @DisplayName("EXCEPTION_NULL_01: 입력값이 비어있을 경우 예외 발생")
+    @Test
+    void 비어있는_입력값이면_예외_발생() {
+        assertThatThrownBy(() -> validator.validateEmptyInput(""))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 빈 값은 입력될 수 없습니다.");
+    }
+
 }
