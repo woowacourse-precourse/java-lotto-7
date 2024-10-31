@@ -9,4 +9,8 @@ public class Utils {
         return Integer.parseInt(input);
     }
 
+    public static void print(String message){
+        System.out.println(message);
+    }
+
 }
