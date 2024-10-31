@@ -2,9 +2,8 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.User;
+import lotto.validate.LottoNumberValidate;
 import lotto.validate.PriceValidate;
-import lotto.view.OutputView;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -66,9 +65,31 @@ class LottoTest {
 
     @DisplayName("구매한 로또 수량이 맞는지 확인한다.")
     @Test
-    void aaa() {
+    void 로또_구매_수량_테스트() {
         User user = new User(10000);
         int lottoQuantity = user.getLottoQuantity();
         assertThat(lottoQuantity).isEqualTo(10);
+    }
+
+    @DisplayName("당첨 번호가 1 ~ 45 범위가 아닐 때 예외가 발생한다")
+    @Test
+    void 당첨_번호_범위_테스트() {
+        assertThatThrownBy(() -> new LottoNumberValidate("1,2,3,4,5,46"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호가 숫자가 아닐 때 예외가 발생한다")
+    @Test
+    void 당첨_번호_숫자_테스트() {
+        assertThatThrownBy(() -> new LottoNumberValidate("1,2,3,a,5,6"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호가 맞는지 확인한다.")
+    @Test
+    void 로또_당첨_번호_테스트() {
+        LottoNumberValidate validate = new LottoNumberValidate("1,2,3,4,5,6");
+
+        assertThat(validate.getLottoNumber()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 }

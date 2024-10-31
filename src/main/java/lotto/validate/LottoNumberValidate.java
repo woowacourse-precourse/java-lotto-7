@@ -27,7 +27,7 @@ public class LottoNumberValidate {
     }
 
     private void isRangeNumber(List<Integer> numberList) {
-        if (numberList.stream().allMatch((number) -> number < 1 || number > 45)) {
+        if (numberList.stream().anyMatch((number) -> number < 1 || number > 45)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 ~ 45 범위 안의 숫자여야 합니다.");
         }
     }
