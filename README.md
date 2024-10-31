@@ -15,7 +15,7 @@
         - 에러 메세지: `[ERROR] 구입 금액이 1,000원보다 작을 수 없습니다.`
         - 예시: `-100`, `0`
     - 구입 금액이 숫자가 아닐 경우, `IllegalArgumentException`을 발생시킨다.
-        - 에러 메세지: `[ERROR] 잘못된 구입 금액입니다.`
+        - 에러 메세지: `[ERROR] 잘못된 입력 값입니다.`
         - 예시: `abc`, `3000.10`
 2. 구입한 로또 개수와 번호 출력하기
     - `{개수}개를 구매했습니다.` 라는 메세지를 출력한다.
@@ -94,3 +94,55 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+
+## 프로젝트 구조
+
+```
+├── main
+│   └── java
+│       └── lotto
+│           ├── Application.java
+│           ├── common
+│           │   └── InputParser.java
+│           ├── constants
+│           │   └── LottoConstants.java
+│           ├── controller
+│           │   └── LottoController.java
+│           ├── domain
+│           │   ├── Lotto.java
+│           │   ├── LottoNumber.java
+│           │   ├── LottoResult.java
+│           │   ├── LottoRound.java
+│           │   ├── Money.java
+│           │   ├── RandomLottoGenerator.java
+│           │   ├── WinningLotto.java
+│           │   └── constants
+│           │       └── Rank.java
+│           ├── exception
+│           │   ├── LottoException.java
+│           │   └── constants
+│           │       └── ErrorMessage.java
+│           └── view
+│               ├── InputView.java
+│               ├── OutputView.java
+│               └── constants
+│                   └── ViewMessage.java
+└── test
+    └── java
+        └── lotto
+            ├── ApplicationTest.java
+            ├── common
+            │   └── InputParserTest.java
+            └── domain
+                ├── LottoNumberTest.java
+                ├── LottoResultTest.java
+                ├── LottoTest.java
+                ├── MoneyTest.java
+                ├── RandomLottoGeneratorTest.java
+                └── WinningLottoTest.java
+
+```
+
+## 테스트 커버리지
+
+![test_coverage.png](docs/test_coverage.png)
