@@ -8,18 +8,21 @@ import lotto.constant.LottoConstant;
 public class InputView {
 
     public int getMoneyInput() {
+        System.out.println("\n구입 금액을 입력해주세요.");
         String moneyInput = Console.readLine();
         validateMoneyInput(moneyInput);
         return Integer.parseInt(moneyInput);
     }
 
     public List<Integer> getWinnerNumbersInput() {
+        System.out.println("\n당첨 번호를 입력해주세요.");
         String winnerNumbersInput = Console.readLine();
         validateWinnerNumbersInput(winnerNumbersInput);
         return formatWinnerNumbers(winnerNumbersInput);
     }
 
     public int getBonusNumberInput() {
+        System.out.println("\n보너스 번호를 입력해주세요.");
         String bonusNumberInput = Console.readLine();
         validateBonusNumberInput(bonusNumberInput);
         return Integer.parseInt(bonusNumberInput);
