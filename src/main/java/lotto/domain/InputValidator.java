@@ -1,6 +1,21 @@
 package lotto.domain;
 
+import lotto.view.InputView;
+
 public class InputValidator {
+
+    /**
+     * 올바른 구입 금액 입력 받기
+     */
+    public static int getValidPurchaseMoney() {
+        try {
+            int purchaseMoney = convertInteger(InputView.getPurchaseMoney());
+            isValidUnit(purchaseMoney);
+            return purchaseMoney;
+        } catch (IllegalArgumentException e) {
+            return getValidPurchaseMoney();
+        }
+    }
 
     /**
      * 문자열을 정수형 숫자로 변환
