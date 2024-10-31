@@ -78,6 +78,38 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 당첨번호_구분자_쉼표_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2.3.4.5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_6개_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_숫자_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,six");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨번호_1이상_45이하_아닌_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,46,-1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
