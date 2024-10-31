@@ -2,10 +2,16 @@ package lotto.Controller;
 
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
+import lotto.View.OutputWinningTotalView;
 
 import java.util.*;
 
 public class WinningTotalController {
+    public void winningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
+        OutputWinningTotalView outputWinningTotalView = new OutputWinningTotalView(calculateWinningTotal(mylottos,winningLotto,bonusNumber));
+        outputWinningTotalView.printWinningTotal();
+    }
+
     public Map<String, Integer> calculateWinningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
         Set<Integer> comparingSet;
         Map<String, Integer> resultMap = makeResultMap();
