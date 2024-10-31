@@ -33,8 +33,12 @@ public class LottoService {
     public void purchaseLottos(Integer money) {
         this.money += money;
         LottoOutputView.printPurchase(money);
-        for (int i = 0; i < money / LottoConstant.LOTTO_PRICE; i++) {
-            lottos.add(generateLotto());
+        try {
+            for (int i = 0; i < money / LottoConstant.LOTTO_PRICE; i++) {
+                lottos.add(generateLotto());
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 

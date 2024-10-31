@@ -16,11 +16,9 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println(ExceptionMessage.INVALID_COUNT_NUMBERS.getMessage());
             throw new IllegalArgumentException(ExceptionMessage.INVALID_COUNT_NUMBERS.getMessage());
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
-            System.out.println(ExceptionMessage.NUMBER_DUPLICATED.getMessage());
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_DUPLICATED.getMessage());
         }
     }
