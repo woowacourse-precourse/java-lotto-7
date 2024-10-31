@@ -27,7 +27,7 @@ public class Result {
   public long calculateTotalPrize() {
     long total = 0;
     for (Rank rank : Rank.values()) {
-      total += (long) rank.getPrize() * rankCounts.get(rank);
+      total += rank.getPrize() * rankCounts.get(rank);
     }
     return total;
   }
