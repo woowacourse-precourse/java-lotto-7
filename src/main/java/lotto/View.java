@@ -26,7 +26,6 @@ public class View {
             this.lottoCount = this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 구입 금액은 1000으로 나누어 떨어지는 숫자로만 기입해주세요.");
             return getPurchaseAmount();
         }
         return purchasePrice;
@@ -35,7 +34,7 @@ public class View {
     public Integer countLotto(Integer input){
         Integer lottoCount = input/1000;
         if (input % 1000 != 0) {
-            throw new IllegalArgumentException("1000원으로 나누어 떨어지는 금액을 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어지는 숫자로만 기입해주세요.");
         }
         System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
         return lottoCount;
