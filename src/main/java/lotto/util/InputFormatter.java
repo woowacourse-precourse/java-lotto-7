@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
 
 public class InputFormatter {
@@ -27,15 +28,15 @@ public class InputFormatter {
         try {
             Integer.parseInt(moneyInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 정수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_FORMAT_WRONG.toString());
         }
 
         if (Integer.parseInt(moneyInput) <= 0) {
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 1원 이상이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_NEGATIVE.toString());
         }
 
         if ((Integer.parseInt(moneyInput) % LottoConstant.MONEY_UNIT.getNumber()) != 0) {
-            throw new IllegalArgumentException("[ERROR] 입력 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_WRONG.toString());
         }
     }
 
@@ -43,7 +44,7 @@ public class InputFormatter {
         try {
             formatWinningNumbers(winningNumbersInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력 양식이 잘못되었습니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_FORMAT_WRONG.toString());
         }
     }
 
@@ -51,7 +52,7 @@ public class InputFormatter {
         try {
             Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자의 형식이 잘못되었습니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_FORMAT_WRONG.toString());
         }
     }
 
