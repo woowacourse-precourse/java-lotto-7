@@ -17,4 +17,13 @@ public enum Rank {
         this.matchBonus = matchBonus;
         this.prize = prize;
     }
+
+    public static Rank valueOf(int matchCount, boolean matchBonus) {
+        for(Rank rank : Rank.values()) {
+            if(rank.matchCount == matchCount && (!rank.matchBonus || matchBonus)) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
 }
