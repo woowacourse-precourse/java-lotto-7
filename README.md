@@ -5,26 +5,27 @@
 ---
 
 ### 1. 입력
-- [X] 로또 구입 금액을 입력 받는다.
-- [X] 당첨 번호를 입력 받는다.
-- [X] 보너스 번호를 입력 받는다.
+- [X] 로또 구입 금액을 입력 받는다. - InputView#getPurchaseMoney
+- [X] 당첨 번호를 입력 받는다. - InputView#getPrizeNumber
+- [X] 보너스 번호를 입력 받는다. - InputView#getBonusNumber
 
 ---
 
 ### 2. 사용자 입력에 대한 유효성 검사
 #### 구입 금액
-- [ ] 구입 금액을 정수형 숫자로 변환
-- [ ] 구입 금액이 1000원 단위인지 검사
+- [X] 구입 금액을 정수형 숫자로 변환 - InputValidator#convertInteger
+- [X] 구입 금액이 1000원 단위인지 검사 - InputValidator#isValidUnit
+- [X] 올바른 구입 금액 입력 받기 - InputValidator#getValidPurchaseMoney
 
 #### 당첨 번호
-- [ ] 쉼표를 기준으로 문자열 분리
-- [ ] 분리된 문자열 배열을 정수형 숫자로 변환
-- [ ] 입력된 당첨 번호가 6개인지 검사
-- [ ] 중복되지 않는 번호인지 검사
+- [X] 쉼표를 기준으로 문자열 분리 - InputValidator#splitString
+- [X] 분리된 문자열 배열을 정수형 숫자로 변환 - InputValidator#convertIntegers
+- [X] 입력된 당첨 번호가 6개인지 검사 - InputValidator#isValidLength
+- [X] 중복되지 않는 번호인지 검사 - InputValidator#isDuplicate
 
 #### 보너스 번호
-- [ ] 보너스 번호를 정수형 숫자로 변환
-- [ ] 입력 받은 당첨 번호와 중복되지 않는지 검사
+- [X] 보너스 번호를 정수형 숫자로 변환 - InputValidator#convertInteger
+- [X] 입력 받은 당첨 번호와 중복되지 않는지 검사 - InputValidator#isDuplicateWithPrizeNumber
 
 ---
 
