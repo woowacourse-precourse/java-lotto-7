@@ -3,6 +3,7 @@ package lotto.custom;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.custom.common.ErrorMessages;
+import lotto.custom.constants.CustomErrorMessages;
 import lotto.custom.validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,5 +50,13 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput("2147483648")) // Integer.MAX_VALUE + 1
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INT_OUT_OF_BOUNDS);
+    }
+
+    @DisplayName("유효성검증_구입금액입력_1000원으로나누어떨어지지않을때_테스트")
+    @Test
+    void 유효성검증_구입금액입력_1000원으로나누어떨어지지않을때_테스트() {
+        assertThatThrownBy(() -> inputValidator.validatePurchaseAmountInput("5400"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(CustomErrorMessages.NOT_DIVISIBLE_BY_THOUSAND);
     }
 }
