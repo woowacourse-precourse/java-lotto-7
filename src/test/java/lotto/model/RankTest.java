@@ -11,7 +11,7 @@ class RankTest {
 
     @DisplayName("당첨 결과를 표기한다.")
     @Test
-    void test() {
+    void notateWinningResult() {
         //given
         WinningResult result = new WinningResult(Map.of(
             Rank.FIRST, 1,
