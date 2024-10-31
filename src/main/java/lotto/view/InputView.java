@@ -19,6 +19,7 @@ public class InputView {
             "^([1-9]|[1-3][0-9]|4[0-5])(,([1-9]|[1-3][0-9]|4[0-5])){5}$");
 
     public static LottoPrice inputLottoPrice() {
+        OutputView.printLottoPriceInputPrefix();
         String userInput = readLine();
         validateLottoPrice(userInput);
 
@@ -32,6 +33,7 @@ public class InputView {
     }
 
     public static Lotto wonLottoNumbers() {
+        OutputView.printLottoNumbersInputPrefix();
         String userInput = readLine();
         validateWonLottoNumbers(userInput);
 
@@ -49,6 +51,7 @@ public class InputView {
     }
 
     public static BonusNumber inputBonusNumber() {
+        OutputView.printLottoBonusNumberInputPrefix();
         return new BonusNumber(readLine());
     }
 }
