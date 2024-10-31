@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -23,6 +21,11 @@ public class Application {
             printPurchasedLottos(lottos);
 
             WinningLotto winningLotto = inputWinningNumbers();
+            Map<LottoRank, Integer> results = calculateResults(lottos, winningLotto);
+            double profitRate = calculateProfitRate(results, lottos.size());
+
+            printResults(results);
+            printProfitRate(profitRate);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -95,4 +98,43 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
         }
     }
+
+    private static Map<LottoRank, Integer> calculateResults(List<Lotto> lottos, WinningLotto winningLotto) {
+        Map<LottoRank, Integer> results = new EnumMap<>(LottoRank.class);
+        Arrays.stream(LottoRank.values()).forEach(rank -> results.put(rank, 0));
+
+        for (Lotto lotto : lottos) {
+            LottoRank rank = winningLotto.rank(lotto);
+            results.put(rank, results.get(rank) + 1);
+        }
+
+        return results;
+    }
+
+    private static double calculateProfitRate(Map<LottoRank, Integer> results, int totalCount) {
+        long totalPrize = results.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return (totalPrize * 100.0) / (totalCount * LOTTO_PRICE);
+    }
+
+    private static void printResults(Map<LottoRank, Integer> results) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.NONE && !rank.getDescription().isEmpty()) {
+                System.out.printf("%s (%,d원) - %d개%n",
+                        rank.getDescription(),
+                        rank.getPrize(),
+                        results.get(rank));
+            }
+        }
+    }
+
+    private static void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
+
 }

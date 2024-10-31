@@ -19,6 +19,12 @@ public class WinningLotto {
         }
     }
 
+    public LottoRank rank(Lotto userLotto) {
+        int matchCount = userLotto.matchCount(lotto.getNumbers());
+        boolean hasBonusMatch = matchCount == 5 && userLotto.containsNumber(bonusNumber);
+        return LottoRank.of(matchCount, hasBonusMatch);
+    }
+
     public Lotto getLotto() {
         return lotto;
     }
