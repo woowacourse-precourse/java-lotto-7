@@ -12,6 +12,8 @@ public class OutputView {
 
     public static void showAllLottos(List<Lotto> allLottos){
         for (Lotto lotto : allLottos) {
+            List<Integer> numbers = lotto.getNumbers();
+            Collections.sort(numbers);
             System.out.println(lotto.getNumbers());
         }
     }
