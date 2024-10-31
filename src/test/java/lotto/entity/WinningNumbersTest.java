@@ -1,12 +1,13 @@
 package lotto.entity;
 
-import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_DUPLICATE;
-import static lotto.exception.WinnerNumberExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
+import static lotto.exception.WinningNumbersExceptionMessage.BONUS_NUMBER_DUPLICATE;
+import static lotto.exception.WinningNumbersExceptionMessage.BONUS_NUMBER_OUT_OF_RANGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import lotto.exception.LottoExceptionMessage;
+import lotto.exception.WinningNumbersExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 public class WinningNumbersTest {
@@ -22,6 +23,20 @@ public class WinningNumbersTest {
 
         // then
         assertEquals(LottoExceptionMessage.INVALID_NUMBER_COUNT.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    @Test
+    void 로또_번호가_NULL() {
+        // given
+        List<Integer> integers = null;
+        int bonusNumber = 40;
+
+        // when
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(integers, bonusNumber));
+
+        // then
+        assertEquals(WinningNumbersExceptionMessage.NULL_NUMBERS.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
