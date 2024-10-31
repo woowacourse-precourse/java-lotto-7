@@ -22,43 +22,27 @@ public enum LottoRank {
     }
 
     public static void checkLottoPrize(int matchCount, boolean matchBonusNumber) {
-        if (matchCount == FIRST.getMatchCount()) {
-            FIRST.win();
-        } else if (matchCount == SECOND.getMatchCount() && matchBonusNumber) {
-            SECOND.win();
-        } else if (matchCount == THIRD.getMatchCount() && !matchBonusNumber) {
-            THIRD.win();
-        } else if (matchCount == FORTH.getMatchCount()) {
-            FORTH.win();
-        } else if (matchCount == FIFTH.getMatchCount()) {
-            FIFTH.win();
+        if (matchCount == FIRST.matchCount) {
+            FIRST.numberOfWins++;
+        } else if (matchCount == SECOND.matchCount && matchBonusNumber) {
+            SECOND.numberOfWins++;
+        } else if (matchCount == THIRD.matchCount && !matchBonusNumber) {
+            THIRD.numberOfWins++;
+        } else if (matchCount == FORTH.matchCount) {
+            FORTH.numberOfWins++;
+        } else if (matchCount == FIFTH.matchCount) {
+            FIFTH.numberOfWins++;
         }
-    }
-
-    private void win() {
-        this.numberOfWins++;
     }
 
     public static int getTotalPrize() {
         return Arrays.stream(LottoRank.values())
-                .mapToInt(lotto -> lotto.getNumberOfWins() * lotto.getPrize())
+                .mapToInt(lotto -> lotto.numberOfWins * lotto.prize)
                 .sum();
-    }
-
-    public int getPrize() {
-        return prize;
-    }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getNumberOfWins() {
-        return numberOfWins;
     }
 
     @Override
     public String toString() {
-        return this.winningMessage + " - " + getNumberOfWins() + "개";
+        return this.winningMessage + " - " + numberOfWins + "개";
     }
 }
