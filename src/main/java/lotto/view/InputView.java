@@ -3,12 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.LottoConstant;
 
 public class InputView {
-
-    private final static int MONEY_UNIT = 1000;
-    private final static int LOTTO_NUMBER_UPPER_BOUND = 45;
-    private final static int LOTTO_NUMBER_LOWER_BOUND = 1;
 
     public int getMoneyInput() {
         String moneyInput = Console.readLine();
@@ -60,7 +57,7 @@ public class InputView {
 
     private void validateMoneyUnit(String moneyInput) {
         int money = Integer.parseInt(moneyInput);
-        if ((money % MONEY_UNIT) != 0) {
+        if ((money % LottoConstant.MONEY_UNIT.getNumber()) != 0) {
             throw new IllegalArgumentException("[ERROR] 입력 금액은 1000원 단위여야 합니다.");
         }
     }
@@ -92,7 +89,7 @@ public class InputView {
 
     private void validateBonusNumberRange(String bonusNumberInput) {
         int bonusNumber = Integer.parseInt(bonusNumberInput);
-        if (bonusNumber < LOTTO_NUMBER_LOWER_BOUND || bonusNumber > LOTTO_NUMBER_UPPER_BOUND) {
+        if (bonusNumber < LottoConstant.LOTTO_NUMBER_LOWER_BOUND.getNumber() || bonusNumber > LottoConstant.LOTTO_NUMBER_UPPER_BOUND.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자의 범위가 1~45를 벗어납니다.");
         }
     }
