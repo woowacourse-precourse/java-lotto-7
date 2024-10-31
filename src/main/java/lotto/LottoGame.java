@@ -74,4 +74,23 @@ public class LottoGame {
 
         return lottoRanks;
     }
+
+    private void printRankBreakdown(Map<LottoRank, Integer> rankMap) {
+        List<LottoRank> printLottoRanks = List.of(
+                LottoRank.GRADE_5TH,
+                LottoRank.GRADE_4TH,
+                LottoRank.GRADE_3TH,
+                LottoRank.GRADE_2TH,
+                LottoRank.GRADE_1TH
+        );
+
+        for (LottoRank lottoRank : printLottoRanks) {
+            System.out.printf("%s (%,d%s) - %d개\n",
+                    lottoRank.getWinCondition(),
+                    lottoRank.getPrizeMoney(),
+                    LottoRank.UNIT,
+                    rankMap.get(lottoRank)
+            );
+        }
+    }
 }
