@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+    public final static Money LOTTO_PRICE = Money.from(1000L);
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

@@ -26,7 +26,7 @@ public class LottoController {
         String lottoPurchaseMoney = inputView.inputLottoPurchaseMoney();
         LottoSeller lottoSeller = new LottoSeller(new LottoMachine());
         Customer customer = new Customer(Money.from(lottoPurchaseMoney));
-        customer.buyLotto(lottoSeller);
+        lottoSeller.sellUntilNoMoneyTo(customer);
         List<Lotto> lottos = customer.getLottos();
         outputView.printPurchaseLottos(lottos);
 
@@ -34,12 +34,12 @@ public class LottoController {
         List<Integer> winningNumbers = Stream.of(winningNumber.split(","))
                 .map(Integer::valueOf)
                 .toList();
+        outputView.printEmptyLine();
         String inputBonusNumber = inputView.inputBonusNumber();
         int bonusNumber = Integer.parseInt(inputBonusNumber);
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         LottoResult lottoResult = customer.calculateLottoResult(winningLotto);
-        outputView.printEmptyLine();
         outputView.printLottoResults(lottoResult);
     }
 }

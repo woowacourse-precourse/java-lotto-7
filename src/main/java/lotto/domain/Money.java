@@ -19,31 +19,18 @@ public class Money {
         return new Money(amount);
     }
 
-    public Money divide(Money money) {
-        return new Money(this.amount / money.amount);
-    }
-
     public Money minus(Money money) {
         return new Money(this.amount - money.amount);
-    }
-
-    public Money multiply(Money money) {
-        return new Money(this.amount * money.amount);
     }
 
     public boolean isZero() {
         return amount == 0;
     }
 
-    public boolean isGreaterThan(long amount) {
-        return this.amount > amount;
+    public boolean isGreaterEqualThan(Money money) {
+        return this.amount >= money.amount;
     }
 
-    public long getAmount() {
-        return amount;
-    }
-
-    // 수익률을 계산하는 메서드 (예: 기준 금액 대비 수익률을 백분율로 반환)
     public double calculateRevenue(Money baseAmount) {
         if (baseAmount.isZero()) {
             throw new IllegalArgumentException("기준 금액은 0이 될 수 없습니다.");

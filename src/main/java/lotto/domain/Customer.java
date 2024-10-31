@@ -10,20 +10,24 @@ public class Customer {
 
     private final Money initialMoney;
     private Money money;
-    private List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public Customer(Money money) {
         this.initialMoney = money;
         this.money = money;
     }
 
-    public void buyLotto(LottoSeller lottoSeller) {
-        lottos = lottoSeller.buy(money);
-        minusMoney();
+    public boolean hasMoney(Money money) {
+        return this.money.isGreaterEqualThan(money);
     }
 
-    private void minusMoney() {
-        money = money.minus(LottoSeller.LOTTO_PRICE.multiply(Money.from(lottos.size())));
+    public void buy(Lotto lotto) {
+        lottos.add(lotto);
+        minusMoney(Lotto.LOTTO_PRICE);
+    }
+
+    private void minusMoney(Money money) {
+        this.money = this.money.minus(money);
     }
 
     public List<Lotto> getLottos() {
