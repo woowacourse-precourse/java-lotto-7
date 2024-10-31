@@ -31,7 +31,7 @@ class InputConverterTest {
     @DisplayName("입력받은 로또 번호 arrayList로 넣기")
     void convertLottoNumbers_shouldReturnListOfIntegers() {
         String input = "1, 2, 3, 4, 5, 6";
-        ArrayList<Integer> result = inputConverter.convertLottoNumbers(input);
+        ArrayList<Integer> result = inputConverter.convertWinningNumbers(input);
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
@@ -48,7 +48,7 @@ class InputConverterTest {
     @ValueSource(strings = {"1, 2, 3 ,4,5     , 6", "1,2,3,4,5,6", " 1 , 2 ,3, 4 ,5 ,6"})
     @DisplayName("숫자 분리 시 공백 삭제 처리")
     void convertLottoNumbers_withSpaces_shouldReturnTrimmedList(String input) {
-        ArrayList<Integer> result = inputConverter.convertLottoNumbers(input);
+        ArrayList<Integer> result = inputConverter.convertWinningNumbers(input);
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }

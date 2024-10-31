@@ -10,16 +10,13 @@ public class InputConverter {
         return Integer.parseInt(input);
     }
 
-    public static ArrayList<Integer> convertLottoNumbers(String input) {
+    public static ArrayList<Integer> convertWinningNumbers(String input) {
         ArrayList<Integer> lottoNumbers = new ArrayList<>();
-        Arrays.stream(input.split(DELIMITER))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .forEach(lottoNumbers::add);
+        Arrays.stream(input.split(DELIMITER)).map(String::trim).map(Integer::parseInt).forEach(lottoNumbers::add);
         return lottoNumbers;
     }
 
-    private static int convertBonusNumber (String input) {
+    private static int convertBonusNumber(String input) {
         return Integer.parseInt(input);
     }
 

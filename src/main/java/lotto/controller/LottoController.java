@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.View.InputView;
+import lotto.view.InputView;
 
 public class LottoController {
     private final LottoService;
