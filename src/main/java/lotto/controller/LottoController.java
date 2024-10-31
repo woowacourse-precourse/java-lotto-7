@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.LottoFormatter;
 import lotto.domain.Lottos;
+import lotto.dto.LottoBuyResponse;
 import lotto.dto.LottoRequest;
 import lotto.dto.LottoWinResult;
+import lotto.enums.LottoCriteria;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -13,8 +16,18 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public LottoWinResult buyLottos(LottoRequest lottoRequest) {
+    public LottoBuyResponse buyLottos(LottoRequest lottoRequest) {
+        StringBuilder responseStringBuilder = new StringBuilder();
         Lottos lottos = lottoService.buyLottos(lottoRequest);
-        return lottoService.calLottoResult(lottos,lottoRequest);
+        responseStringBuilder.append(LottoFormatter.getFormattedLottosSize(lottoRequest.buyMoney()));
+        responseStringBuilder.append(LottoFormatter.getFormattedLottos(lottos));
+        String buyLottoHistory = responseStringBuilder.toString();
+        return new LottoBuyResponse(buyLottoHistory,lottos);
+    }
+
+    public String calLottos(LottoRequest lottoRequest,Lottos lottos){
+        StringBuilder responseStringBuilder = new StringBuilder();
+        responseStringBuilder.append(lottoService.calLottoResult(lottos,lottoRequest));
+        return responseStringBuilder.toString();
     }
 }
