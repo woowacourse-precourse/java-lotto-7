@@ -19,19 +19,19 @@ public class Application {
     public static void printStatistics(){
         System.out.println("당첨통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - "+statistics[5]+"개");
-        System.out.println("4개 일치 (50,000원) - "+statistics[4]+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+statistics[3]+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+statistics[2]+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+statistics[1]+"개");
+        System.out.println("3개 일치 (5,000원) - "+statistics[Rank.FIFTH.ordinal()]+"개");
+        System.out.println("4개 일치 (50,000원) - "+statistics[Rank.FOURTH.ordinal()]+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+statistics[Rank.THIRD.ordinal()]+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+statistics[Rank.SECOND.ordinal()]+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+statistics[Rank.FIRST.ordinal()]+"개");
     }
 
     public static int calculateProfit(){
-        return (2000000000*statistics[1]
-                +30000000*statistics[2]
-                +1500000*statistics[3]
-                +50000*statistics[4]
-                +5000*statistics[5]);
+        return (Rank.FIRST.getPrize()*statistics[Rank.FIRST.ordinal()]
+                +Rank.SECOND.getPrize()*statistics[Rank.SECOND.ordinal()]
+                +Rank.THIRD.getPrize()*statistics[Rank.THIRD.ordinal()]
+                +Rank.FOURTH.getPrize()*statistics[Rank.FOURTH.ordinal()]
+                +Rank.FIFTH.getPrize()*statistics[Rank.FIFTH.ordinal()]);
     }
 
     public static void printProfitRate(){ // 수익률 = (당첨금액/구입금액)*100
@@ -120,8 +120,8 @@ public class Application {
         // 6. 등수 계산 및 출력
         statistics = new int[6];
         for(Lotto lotto : lottos){
-            int rank = lotto.getRank(goals,bonusNumber);
-            statistics[rank]++;
+            Rank rank = lotto.getRank(goals, bonusNumber);
+            statistics[rank.ordinal()]++;
         }
         printStatistics();
         printProfitRate();

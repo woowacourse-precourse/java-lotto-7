@@ -54,24 +54,10 @@ public class Lotto {
         return count;
     }
 
-    public int getRank(Lotto goals, int bonusNumber){
+    public Rank getRank(Lotto goals, int bonusNumber) {
         int count = countMatches(goals);
-
-        if(count==6){
-            return 1;
-        }
-        else if(count==5){
-            if(numbers.contains(bonusNumber)){
-                return 2;
-            }
-            return 3;
-        }
-        else if(count==4){
-            return 4;
-        }
-        else if(count==3){
-            return 5;
-        }
-        return 0;
+        boolean bonusMatch = numbers.contains(bonusNumber);
+        return Rank.valueOf(count, bonusMatch);
     }
+
 }
