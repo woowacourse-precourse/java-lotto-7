@@ -40,6 +40,12 @@ public class Lotto {
         }
     }
 
+    public int matchCount(Lotto winningTicket) {
+        return (int) numbers.stream()
+                .filter(winningTicket.numbers::contains)
+                .count();
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
