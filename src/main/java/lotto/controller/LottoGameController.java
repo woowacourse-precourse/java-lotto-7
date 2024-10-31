@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -8,6 +9,7 @@ public class LottoGameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
     private Money money;
+    private LottoTickets lottoTickets;
 
     public void run() {
         gameStart();
@@ -22,6 +24,11 @@ public class LottoGameController {
         // 기능 추가 예정
     }
 }
+    private void createLottoTickets(int ticket) {
+        lottoTickets = new LottoTickets(ticket);
+        outputView.printLottoTickets(lottoTickets.getLottoTickets());
+    }
+
     private void createMoney() {
         while (true) {
             try {
