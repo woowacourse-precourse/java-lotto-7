@@ -2,9 +2,9 @@ package lotto.util;
 
 import java.util.List;
 
+import static lotto.common.ExceptionMessage.INVALID_COUNT_NUMBERS;
 import static lotto.common.ExceptionMessage.MONEY_CANNOT_DIVIDE_BY_LOTTO_PRICE;
 import static lotto.common.ExceptionMessage.MONEY_INVALID_RANGE;
-import static lotto.common.ExceptionMessage.NOT_ENOUGH_NUMBERS;
 import static lotto.common.ExceptionMessage.NUMBER_DUPLICATED;
 import static lotto.common.ExceptionMessage.NUMBER_INVALID_RANGE;
 import static lotto.common.LottoConstant.LOTTO_PRICE;
@@ -37,7 +37,7 @@ public class Validator {
 
     private static void checkNumberSize(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
-            NOT_ENOUGH_NUMBERS.printException();
+            INVALID_COUNT_NUMBERS.printException();
             throw new IllegalArgumentException();
         }
     }
