@@ -28,7 +28,9 @@ public class UserView {
 
     public int inputBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonus = Integer.parseInt(Console.readLine());
+        validateBonusNumber(bonus);
+        return bonus;
     }
 
     public void displayCountOfLottos(int count) {
@@ -43,6 +45,7 @@ public class UserView {
 
     private List<Integer> convertInputWinningNumbersToOutput(String winningNumbers) {
         String[] inputWinningNumbers = winningNumbers.split(",");
+
         List<Integer> winningNumbersList = new ArrayList<>();
 
         for (String inputWinningNumber : inputWinningNumbers) {
@@ -50,5 +53,11 @@ public class UserView {
         }
 
         return winningNumbersList;
+    }
+
+    private void validateBonusNumber(int bonus) {
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 숫자만 허용됩니다.");
+        }
     }
 }
