@@ -12,7 +12,7 @@ import java.util.List;
 
 public class WinningNumbers {
     private final Lotto winningNumbers;
-    private final int bonusNumber;
+    private final BonusNumber bonusNumber;
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         try {
@@ -21,17 +21,16 @@ public class WinningNumbers {
             String winningNumbersExceptionMessage = getWinningNumbersExceptionMessage(e.getMessage());
             throw new IllegalArgumentException(winningNumbersExceptionMessage);
         }
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        this.bonusNumber = new BonusNumber(
+                bonusNumber,
+                this.winningNumbers.getLottoNumbers()
+        );
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getLottoNumbers();
     }
 
-    private void validateBonusNumber(int bonusNumber) {
-        
-    }
 
     private String getWinningNumbersExceptionMessage(String message) {
         if (message.contains(LOTTO_NUMBER_LENGTH_EXCEPTION.message())) {
