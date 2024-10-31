@@ -30,10 +30,10 @@ public class LottoMachineImpl implements LottoMachine {
         }
 
         for (Lotto lottoTicket : lottoTickets) {
-            //당첨 번호와 로또 용지 번호 비교
-            int matchCount = countMatchNumbers(lottoTicket, winningNumbers);
-            //카운트에 따른 등수 기록
-            checkRank(matchCount, lottoTicket, bonusNumber, winningCounts);
+            //당첨 개수를 센다.
+            int matchCount = getMatchNumbers(lottoTicket, winningNumbers);
+            //등수를 확인하고 업데이트 한다.
+            updateWinningResult(matchCount, lottoTicket, bonusNumber, winningCounts);
         }
         //당첨 결과 출력
         printWinningResult(winningCounts);
@@ -52,7 +52,7 @@ public class LottoMachineImpl implements LottoMachine {
         }
     }
 
-    private int countMatchNumbers(Lotto lottoTicket, List<Integer> winningNumbers) {
+    private int getMatchNumbers(Lotto lottoTicket, List<Integer> winningNumbers) {
         int count = 0;
         for (int j = 0; j < 6; j++) {
             if (lottoTicket.getNumbers().contains(winningNumbers.get(j))) {
@@ -62,7 +62,7 @@ public class LottoMachineImpl implements LottoMachine {
         return count;
     }
 
-    private void checkRank(int count, Lotto lottoTicket, int bonusNumber, HashMap<LottoRank, Integer> winningCounts) {
+    private void updateWinningResult(int count, Lotto lottoTicket, int bonusNumber, HashMap<LottoRank, Integer> winningCounts) {
         //1등
         if (count == 6) {
             LottoRank key = RANK_1;
@@ -104,6 +104,4 @@ public class LottoMachineImpl implements LottoMachine {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCounts.get(RANK_2) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + winningCounts.get(RANK_1) + "개");
     }
-
-
 }
