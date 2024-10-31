@@ -22,4 +22,8 @@ public class Utils {
     public static BigDecimal stringToNumber (String input) {
         return new BigDecimal(input);
     }
+
+    public static boolean isDivisibleByThousand (int num) {
+        return (num % 1000 == 0);
+    }
 }
