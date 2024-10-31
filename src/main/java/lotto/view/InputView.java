@@ -2,9 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputView {
+public class InputView implements Input {
 
-    public static String inputUser() {
+    @Override
+    public String inputUser() {
         return Console.readLine();
     }
 }
