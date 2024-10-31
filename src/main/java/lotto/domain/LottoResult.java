@@ -1,10 +1,15 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import static lotto.utils.Constant.LOTTO_WINNING_STATUS_MESSAGE;
+
+import java.util.Collections;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.StringJoiner;
+import java.util.TreeMap;
 
 public class LottoResult {
-    private final Map<LottoRanking, Integer> result = new HashMap<>();
+    private final Map<LottoRanking, Integer> result = new TreeMap<>(Collections.reverseOrder());
 
     public LottoResult() {
         for (LottoRanking rank : LottoRanking.values()) {
@@ -24,5 +29,21 @@ public class LottoResult {
         }
 
         return LottoRanking.NOTHING;
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner lottoRankingResult = new StringJoiner("\n");
+
+        for (Entry<LottoRanking, Integer> entry : result.entrySet()) {
+            LottoRanking rank = entry.getKey();
+            int matchCount = entry.getValue();
+
+            if (rank != LottoRanking.NOTHING) {
+                lottoRankingResult.add(String.format(LOTTO_WINNING_STATUS_MESSAGE, rank.getStatus(), matchCount));
+            }
+        }
+
+        return lottoRankingResult.toString();
     }
 }

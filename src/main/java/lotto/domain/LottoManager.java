@@ -56,4 +56,8 @@ public class LottoManager {
     public List<Lotto> getLottoNumbers() {
         return lottoNumbers;
     }
+
+    public LottoResult getLottoResult() {
+        return lottoResult;
+    }
 }

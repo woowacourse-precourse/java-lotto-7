@@ -6,6 +6,7 @@ import static lotto.utils.Constant.LOTTO_RESULT_MESSAGE;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 
 public class OutputView {
 
@@ -26,9 +27,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printLottoResult() {
+    public void printLottoResult(LottoResult lottoResult) {
         printEmptyLine();
         System.out.println(LOTTO_RESULT_MESSAGE);
         System.out.println(HORIZONTAL_DIVIDER_MESSAGE);
+        System.out.println(lottoResult.toString());
     }
 }
