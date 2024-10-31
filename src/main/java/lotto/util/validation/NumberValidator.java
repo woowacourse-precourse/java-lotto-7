@@ -10,12 +10,12 @@ public class NumberValidator extends AbstractValidator<String> {
     private static final Pattern NUMBER_PATTERN = Pattern.compile(NUMBER_REGEX);
 
     @Override
-    public void validate(final String target) {
+    public void validate(String target) {
         validateNotNull(target);
         validateDigit(target);
     }
 
-    private void validateDigit(final String target) {
+    private void validateDigit(String target) {
         final boolean isDigit = NUMBER_PATTERN.matcher(target).matches();
         if (!isDigit) {
             throwFail(MUST_BE_DIGIT.format());

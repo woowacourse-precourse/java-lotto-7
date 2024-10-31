@@ -15,7 +15,7 @@ public class LottoBuyer {
     private final List<Lotto> lottos;
     private final Map<LottoGrade, Integer> result = new EnumMap<>(LottoGrade.class);
 
-    public LottoBuyer(final int amount, final LottoManager lottoManager) {
+    public LottoBuyer(int amount, LottoManager lottoManager) {
         lottos = lottoManager.createLottoTickets(amount);
         initializeResult();
     }
@@ -57,7 +57,7 @@ public class LottoBuyer {
         return calculateReturnOnInvestment(amount);
     }
 
-    private double calculateReturnOnInvestment(final double amount) {
+    private double calculateReturnOnInvestment(double amount) {
         if (amount == 0) {
             return amount;
         }

@@ -11,12 +11,12 @@ public class LottoNumberValidator extends NumberValidator {
     private static final int MAX_LOTTO_NUMBER = LottoNumberRange.MAX_LOTTO_NUMBER.getValue();
 
     @Override
-    public void validate(final String target) {
+    public void validate(String target) {
         super.validate(target);
         validateLottoNumber(target);
     }
 
-    private void validateLottoNumber(final String target) {
+    private void validateLottoNumber(String target) {
         final int lottoNumber = Integer.parseInt(target);
         if ((lottoNumber < MIN_LOTTO_NUMBER) || (lottoNumber > MAX_LOTTO_NUMBER)) {
             throwFail(INVALID_LOTTO_NUMBER.format(lottoNumber));

@@ -22,12 +22,12 @@ public enum LottoGrade {
     private final String correct;
     private final int amount;
 
-    LottoGrade(final String correct, final int amount) {
+    LottoGrade(String correct, int amount) {
         this.correct = correct;
         this.amount = amount;
     }
 
-    public static LottoGrade from(final String correct) {
+    public static LottoGrade from(String correct) {
         return LottoGrade.valueOf(GRADE.get(correct));
     }
 
