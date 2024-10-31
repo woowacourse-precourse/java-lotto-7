@@ -3,7 +3,9 @@ package lotto.generator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,5 +26,12 @@ class LottoGeneratorTest {
     void 로또_번호_범위_테스트() {
         List<Integer> lottoNumbers = lottoGenerator.generate();
         assertThat(lottoNumbers).allMatch(number -> number >= 1 && number <= 45);
+    }
+
+    @Test
+    void 로또_번호_중복_테스트() {
+        List<Integer> lottoNumbers = lottoGenerator.generate();
+        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+        assertThat(uniqueNumbers).hasSize(6);
     }
 }
