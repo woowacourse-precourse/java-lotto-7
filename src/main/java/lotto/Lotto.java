@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.controller.LottoController;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +17,16 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public static void lottoStart() {
+        LottoController lottoController = new LottoController();
+        lottoController.buyLottos();
+        lottoController.displayLottos();
+        lottoController.inputLottoNumbers();
+        lottoController.inputBonusNumber();
+    }
+
 }
