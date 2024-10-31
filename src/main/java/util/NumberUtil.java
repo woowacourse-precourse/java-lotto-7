@@ -6,19 +6,19 @@ public class NumberUtil {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("양수를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
         }
     }
 
     public static void isNotPositive(int number) {
         if (number < 0) {
-            throw new IllegalArgumentException("양수를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
         }
     }
 
     public static void isZeroNumber(int number) {
         if (number == 0) {
-            throw new IllegalArgumentException("양수를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해주세요.");
         }
     }
 }
