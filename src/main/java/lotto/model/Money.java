@@ -18,4 +18,8 @@ public class Money {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_MONEY_INPUT.getMessage());
         }
     }
+
+    public int getQuantity() {
+        return money / MONEY_UNIT;
+    }
 }
