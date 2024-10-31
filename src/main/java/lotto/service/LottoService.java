@@ -4,13 +4,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
 
 public class LottoService {
-    private final int LOTTO_NUM_SIZE = 6;
-    private final int LOTTO_PRICE = 1000;
-    private final int LOTTO_NUM_START = 1;
-    private final int LOTTO_NUM_END = 45;
+    private final int LOTTO_NUM_SIZE = LottoConfig.LOTTO_NUM_SIZE.getValue();
+    private final int LOTTO_PRICE = LottoConfig.LOTTO_PRICE.getValue();
+    private final int LOTTO_NUM_START = LottoConfig.LOTTO_NUM_START.getValue();
+    private final int LOTTO_NUM_END = LottoConfig.LOTTO_NUM_END.getValue();
 
     private List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winNum = new ArrayList<>();

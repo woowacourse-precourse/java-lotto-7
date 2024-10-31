@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.enums.Win;
 
 public class Lotto {
     private final List<Integer> numbers;

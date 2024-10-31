@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.enums;
 
 public enum Win {
     LOTTO_1ST(6, false, 4, 2000000000),
@@ -21,7 +21,7 @@ public enum Win {
     }
 
     public static Win getWin(Integer containCount, Boolean containBonus) {
-        for(Win win : lotto.model.Win.values()) {
+        for(Win win : Win.values()) {
             if (win.containCount.equals(containCount) && win.containBonus.equals(containBonus)) {
                 return win;
             }

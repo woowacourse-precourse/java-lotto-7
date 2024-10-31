@@ -1,9 +1,10 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.service.LottoService;
+import lotto.validator.ControllerValidator;
 import lotto.view.Request;
 import lotto.view.Response;
 
@@ -12,17 +13,19 @@ public class LottoController {
     private final Request request = new Request();
     private final Response response = new Response();
     private final LottoService lottoService = new LottoService();
+    private final ControllerValidator controllerValidator = new ControllerValidator();
 
     public void buyLotto() {
-        int amount;
+        String inputAmount;
 
+        inputAmount = request.inputAmount();
         try {
-            amount = Integer.parseInt(request.inputAmount());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자만 가능 합니다.");
+            controllerValidator.amountIsNum(inputAmount);
+            lottoService.buyLotto(Integer.parseInt(inputAmount));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            buyLotto();
         }
-
-        lottoService.buyLotto(amount);
     }
 
     public void getLottos() {
@@ -37,25 +40,30 @@ public class LottoController {
     }
 
     public void inputWinNum() {
-        List<Integer> winNum;
+        List<String> inputWinNum = List.of(request.inputWinNum().split(","));
+
         try {
-            winNum = Arrays.stream(request.inputWinNum().split(","))
+            controllerValidator.winNumSize(inputWinNum);
+            controllerValidator.winNumIsNum(inputWinNum);
+            List<Integer> winNum = Stream.of(request.inputWinNum().split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 가능 합니다.");
+            lottoService.inputWinNum(winNum);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinNum();
         }
-        lottoService.inputWinNum(winNum);
     }
 
     public void inputBonusNum() {
-        int bonusNum;
         try {
-            bonusNum = Integer.parseInt(request.inputBonusNum());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 가능 합니다.");
+            String inputBonusNum = request.inputBonusNum();
+            controllerValidator.bonusNumIsNum(inputBonusNum);
+            lottoService.inputBonusNum(Integer.parseInt(inputBonusNum));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonusNum();
         }
-        lottoService.inputBonusNum(bonusNum);
     }
 
 
