@@ -20,6 +20,11 @@ public class LottoController {
 
     private PurchaseAmount receivePurchaseAmount() {
         outputView.print(OutputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-        return PurchaseAmount.from(inputView.readLine());
+        try {
+            return PurchaseAmount.from(inputView.readLine());
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return receivePurchaseAmount();
+        }
     }
 }

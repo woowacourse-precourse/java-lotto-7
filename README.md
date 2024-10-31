@@ -37,7 +37,7 @@
 - [x] | 입력된 `구입 금액` 을 객체로 저장
 - [x] | 공통 검증기들을 조합하여 입력값을 순차적으로 검증
 - [x] | 입력된 `구입 금액`이 1,000원으로 나누어 떨어지는지 검증
-- [ ] | 잘못된 입력 시 재입력 요청
+- [x] | 잘못된 입력 시 재입력 요청
 - [ ] | `구입 금액`에 해당하는 `로또` 생성
 - [ ] | 중복되지 않는`로또`의 `번호`를 생성
 - [ ] | `로또`의 `번호`를 오름차순으로 정렬
@@ -147,16 +147,21 @@
 
 # 학습 테스트 📚
 
-## 📗 StringTest
+## 📗 ParseIntTest
 
-- [ ] | String.split() 메서드로 쉼표 구분된 문자열을 분리할 수 있다.
-- [ ] | String.trim() 메서드로 문자열 앞뒤 공백을 제거할 수 있다.
+- [x] | Integer.parseInt는 문자열을 정수로 변환한다
+- [x] | Integer.parseInt는 숫자가 아닌 문자열에 대해 NumberFormatException을 발생시킨다
 
-## 📘 CollectionsTest
+## 📘 RecodeTest
+
+- [x] | Record는 getter 메서드를 자동으로 생성한다
+- [x] | Record는 equals와 hashCode를 자동으로 구현한다
+
+## 📙 CollectionsTest
 
 - [ ] | Collections.sort()로 로또 번호를 정렬할 수 있다.
 
-## 📙 RandomTest
+## 📗 RandomTest
 
 - [ ] | Random 클래스로 1~45 사이의 난수를 생성할 수 있다.
 - [ ] | Random 클래스로 중복되지 않는 6개의 번호를 생성할 수 있다.
