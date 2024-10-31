@@ -43,6 +43,10 @@ public class Lotto {
         };
     }
 
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
