@@ -13,12 +13,11 @@ public class LottoService {
     private List<Integer> winNum = new ArrayList<>();
     private Integer bonusNum;
 
-    public List<Lotto> buyLotto(int amount) {
+    public void buyLotto(int amount) {
         int lottoCount = amount/1000;
         for(int count = 0; count < lottoCount; count++) {
             createLottoNum();
         }
-        return lottos;
     }
 
     private void createLottoNum() {
