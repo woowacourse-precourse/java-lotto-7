@@ -5,6 +5,9 @@ import lotto.validator.InputValidator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputTest {
@@ -39,5 +42,29 @@ public class InputTest {
         assertThatThrownBy(() -> InputValidator.validateInput(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,5,6,h,5,6", "5,25,31,37,40,4a","1,2,ss,5,6,18", "4,10,15,30,test,35"})
+    void 당첨번호가_숫자인지_확인한다(String input){
+        List<String> list = Arrays.stream(input.split(","))
+                .map(String::trim)
+                .toList();
+
+        assertThatThrownBy(() -> InputValidator.validateWinningNumbers(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,-5,6,7,10,16", "-5,-25,-31,-37,-40,45","1,2,4,5,6,-18", "4,10,15,30,-1,35"})
+    void 당첨번호가_양수인지_확인한다(String input){
+        List<String> list = Arrays.stream(input.split(","))
+                .map(String::trim)
+                .toList();
+
+        assertThatThrownBy(() -> InputValidator.validateWinningNumbers(list))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ERROR_NEGATIVE_NUMBER.getMessage());
     }
 }
