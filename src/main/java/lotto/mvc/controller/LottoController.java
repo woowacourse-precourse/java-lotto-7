@@ -1,5 +1,9 @@
 package lotto.mvc.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.mvc.model.Lotto;
 import lotto.mvc.validation.PurchaseAmountValidator;
 import lotto.mvc.view.InputView;
 
@@ -20,6 +24,8 @@ public class LottoController {
         PurchaseAmountValidator.isValid(purchaseAmount);
 
         int count = extractLottoCount(purchaseAmount);
+
+        List<Lotto> lottos = makeLottos(count);
     }
 
     private String trimInput(String input) {
@@ -40,5 +46,16 @@ public class LottoController {
     private int extractLottoCount(String input) {
         Long count = Long.parseLong(input) / 1000;
         return count.intValue();
+    }
+
+    private List<Lotto> makeLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>(count);
+
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottos.add(lotto);
+        }
+
+        return lottos;
     }
 }
