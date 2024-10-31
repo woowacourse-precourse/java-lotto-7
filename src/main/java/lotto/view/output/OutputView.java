@@ -17,16 +17,17 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
-    public void displayStatistics(List<Integer> statistics) {
+    public void displayStatistics(List<String> result) {
         List<OutputMessage> messages = Arrays.asList(
                 OutputMessage.THREE_MATCHES,
                 OutputMessage.FOUR_MATCHES,
                 OutputMessage.FIVE_MATCHES,
                 OutputMessage.FIVE_MATCHES_PLUS_BONUS,
-                OutputMessage.SIX_MATCHES
+                OutputMessage.SIX_MATCHES,
+                OutputMessage.TOTAL_PROFIT
         );
         for (int i = 0; i < messages.size(); i++) {
-            System.out.printf(messages.get(i).getOutputMessage(), statistics.get(i));
+            System.out.printf(messages.get(i).getOutputMessage(), result.get(i));
         }
     }
     public void displayErrorMessage(LottoException lottoException) {
