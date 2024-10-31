@@ -111,6 +111,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 당첨번호_중복된_경우() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,7,7,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
     void 보너스번호_숫자_아닌_경우() {
         assertSimpleTest(() -> {
             runException("3000", "1,2,3,7,8,4", "k");
