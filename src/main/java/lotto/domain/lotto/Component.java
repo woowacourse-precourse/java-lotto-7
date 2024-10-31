@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-public interface LottoEntry {
+public interface Component {
 
     boolean equals(Object o);
     int hashCode();

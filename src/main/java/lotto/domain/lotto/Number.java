@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import static lotto.constants.value.LottoRule.MAXIMUM_NUMBER_RANGE;
 
-public class Number implements LottoEntry {
+public class Number implements Component {
 
     private final int number;
 
