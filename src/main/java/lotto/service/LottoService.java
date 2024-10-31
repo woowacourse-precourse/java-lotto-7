@@ -2,7 +2,9 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
     private static final List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
@@ -37,6 +39,21 @@ public class LottoService {
             }
         }
         return count;
+    }
+
+    public Map<Integer, Integer> getMatchingCounts(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Integer, Integer> matchingCounts = new HashMap<>() {{
+            put(3, 0);
+            put(4, 0);
+            put(5, 0);
+            put(6, 0);
+            put(7, 0);
+        }};
+        for (Lotto lotto : lottos) {
+            int matchingCount = lotto.getMatchingCount(winningNumbers, bonusNumber);
+            matchingCounts.put(matchingCount, matchingCounts.get(matchingCount) + 1);
+        }
+        return matchingCounts;
     }
 
     public int sumOfPrizes(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
