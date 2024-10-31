@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,35 +16,15 @@ public class LottoController {
     }
 
     public void run() {
-        int purchaseAmount = getPurchaseAmount();
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        int purchaseAmount = getValidatedInput(inputView::readPurchaseAmount);
+        List<Integer> winningNumbers = getValidatedInput(inputView::readWinningNumbers);
+        int bonusNumber = getValidatedInput(inputView::readBonusNumber);
     }
 
-    private int getBonusNumber() {
+    private <T> T getValidatedInput(Supplier<T> inputSupplier) {
         while (true) {
             try {
-                return inputView.readBonusNumber();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private List<Integer> getWinningNumbers() {
-        while (true) {
-            try {
-                return inputView.readWinningNumbers();
-            } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-            }
-        }
-    }
-
-    private int getPurchaseAmount() {
-        while (true) {
-            try {
-                return inputView.readPurchaseAmount();
+                return inputSupplier.get();
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
