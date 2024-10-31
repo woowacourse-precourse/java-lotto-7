@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,9 @@ public class LottoMachine {
         System.out.println(purchaseCount + "개를 구매했습니다.");
 
         for (int i = 0; i < purchaseCount; i++) {
-            lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            lottoNumbers.add(numbers);
             System.out.println(lottoNumbers.get(i));
         }
 
@@ -47,7 +50,6 @@ public class LottoMachine {
 
         System.out.println("당첨 통계");
         System.out.println("---");
-
 
     }
 }
