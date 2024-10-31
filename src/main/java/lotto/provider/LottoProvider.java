@@ -1,5 +1,7 @@
 package lotto.provider;
 
+import static lotto.exception.ExceptionMessage.*;
+
 public class LottoProvider {
 	private static final int THOUSAND = 1000;
 	private final int numberOfLottos;
@@ -13,7 +15,7 @@ public class LottoProvider {
 
 	private void validateLottoPurchaseAmount(int lottoPurchaseAmount) {
 		if (lottoPurchaseAmount % THOUSAND != 0) {
-			throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력 받습니다.");
+			throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_INPUT.getMessage());
 		}
 	}
 }
