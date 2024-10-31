@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.domain.calculators.TicketCalculator;
-import lotto.domain.calculators.TicketCalculatorImpl;
 import lotto.domain.calculators.YieldCalculator;
 
 public class Wallet {
@@ -13,13 +12,11 @@ public class Wallet {
     private int ticket;
     private float rateOfReturn = 0;
 
-    public Wallet(int money) {
+    public Wallet(int money, TicketCalculator ticketCalculator, YieldCalculator yieldCalculator) {
         validateMinAmount(money);
         validateUnit(money);
-
-        //todo 컨트롤러 의존성 주입
-        ticketCalculator = new TicketCalculatorImpl();
-        yieldCalculator = new YieldCalculator();
+        this.ticketCalculator = ticketCalculator;
+        this.yieldCalculator = yieldCalculator;
         this.amount = money;
     }
 
