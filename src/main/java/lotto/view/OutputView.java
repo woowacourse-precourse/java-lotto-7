@@ -9,12 +9,12 @@ public class OutputView {
 
     public void printLottos(Lottos lottos) {
         System.out.printf(System.lineSeparator() + BUY_LOTTOS_STATEMENT + System.lineSeparator(),
-                lottos.getLottos().size());
+                lottos.lottos().size());
 
-        lottos.getLottos().forEach(this::printEachLotto);
+        lottos.lottos().forEach(this::printEachLotto);
     }
 
     private void printEachLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+        System.out.println(lotto.numbers());
     }
 }
