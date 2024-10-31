@@ -30,6 +30,8 @@ public class Application {
             lottoList.add(lotto);
         }
         outputnumbers(lottoList);
+
+        Lotto.inputWinningNumbers();
     }
 
     private static int getMoney() {
