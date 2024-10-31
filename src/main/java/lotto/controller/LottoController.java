@@ -2,7 +2,7 @@ package lotto.controller;
 
 
 import java.util.Set;
-import lotto.LottoMachine;
+import lotto.domain.LottoMachine;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningStatistics;
 import lotto.generator.Generator;
@@ -30,16 +30,19 @@ public class LottoController {
         outputView.showRateOfReturn(rateOfReturn);
     }
 
-    private int getBonusNumber(Set<Integer> winningNumbers) {
-        outputView.showBonusNumberInputMessage();
-        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
-        return bonusNumber;
+    private int getPurchaseAmount() {
+        outputView.showPurchaseAmountInputMessage();
+        return inputView.inputPurchaseAmount();
     }
 
     private Set<Integer> getWinningNumbers() {
         outputView.showWinningNumbersInputMessage();
-        Set<Integer> winningNumbers = inputView.inputWinningNumbers();
-        return winningNumbers;
+        return inputView.inputWinningNumbers();
+    }
+
+    private int getBonusNumber(Set<Integer> winningNumbers) {
+        outputView.showBonusNumberInputMessage();
+        return inputView.inputBonusNumber(winningNumbers);
     }
 
     private LottoTickets issueLottoTickets(int purchaseAmount) {
@@ -47,10 +50,5 @@ public class LottoController {
         LottoTickets lottoTickets = lottoMachine.getLottoTickets(purchaseAmount);
         outputView.showLottoCountAndNumbers(lottoTickets);
         return lottoTickets;
-    }
-
-    private int getPurchaseAmount() {
-        outputView.showPurchaseAmountInputMessage();
-        return inputView.inputPurchaseAmount();
     }
 }

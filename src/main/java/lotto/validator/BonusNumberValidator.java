@@ -16,7 +16,10 @@ public class BonusNumberValidator {
         if (isInvalidNumber(bonusNumber)) {
             return true;
         }
-        return isDuplicateWinnerNumbers(bonusNumber, winningNumbers);
+        if (isDuplicateWinnerNumbers(bonusNumber, winningNumbers)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isNotParsableToBonusNumber(String userInput) {
