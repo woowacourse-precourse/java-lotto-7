@@ -14,4 +14,10 @@ public class LottoTicket {
     public int getLottosCount() {
         return lottos.size();
     }
+
+    public List<List<Integer>> getLottoTicketNumbers() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }
