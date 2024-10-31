@@ -3,7 +3,7 @@ package lotto;
 public class LottoPurchaseService {
 
     private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_PRICE = 0; // 최소 가격 상수
+    private static final int MIN_PRICE = 0;
     private static final String EMPTY_INPUT_ERROR = "[ERROR] 아무것도 입력되지 않았습니다.";
     private static final String NEGATIVE_INPUT_ERROR = "[ERROR] 구입 금액은 양수여야 합니다.";
     private static final String INVALID_INPUT_ERROR = "[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.";
