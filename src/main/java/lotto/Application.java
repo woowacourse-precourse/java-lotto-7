@@ -22,4 +22,13 @@ public class Application {
         System.out.println("로또 구매 금액을 입력하세요.");
         return Integer.parseInt(Console.readLine());
     }
+
+    private static void exception (int money) {
+        if (money <= 0) {
+            throw new IllegalArgumentException("금액이 0보다 커야 합니다.");
+        }
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("로또 금액이 1개당 1000원이므로 1000원 단위로 입력하세요.");
+        }
+    }
 }
