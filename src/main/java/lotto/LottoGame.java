@@ -18,6 +18,7 @@ public class LottoGame {
         printPurchaseBreakdown(lottos);
 
         List<Integer> winnerNumbers = inputWinnerNumbers();
+        int bonusNumber = inputBonusNumber(winnerNumbers);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -47,5 +48,13 @@ public class LottoGame {
                 .map(String::strip)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private int inputBonusNumber(List<Integer> winnerNumbers) {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String rawBonusNumber = Console.readLine();
+
+        return Integer.parseInt(rawBonusNumber);
     }
 }
