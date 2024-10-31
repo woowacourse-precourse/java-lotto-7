@@ -1,7 +1,9 @@
 package validator;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import static exception.LottoException.*;
 
@@ -35,6 +37,14 @@ public class LottoValidator {
                 .map(LottoValidator::isNumber)
                 .map(LottoValidator::isInLottoRange)
                 .collect(Collectors.toList());
+    }
+
+    public static List<Integer> isUniqueNumbers(List<Integer> targetList) {
+        Set<Integer> setList = new HashSet<>(targetList);
+        if (setList.size() != targetList.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
+        }
+        return targetList;
     }
 
     public static List<Integer> hasSixElements(List<Integer> targetList) {
