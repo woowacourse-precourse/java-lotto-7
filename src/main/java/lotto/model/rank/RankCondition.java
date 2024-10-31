@@ -27,7 +27,7 @@ public enum RankCondition {
                 .orElse(NONE);
     }
 
-    public static boolean enoughCountToBeSecondRank(int matchedCount) {
+    public static boolean hasEnoughCountToBeSecondRank(int matchedCount) {
         return SECOND.matchedCount == matchedCount;
     }
 }

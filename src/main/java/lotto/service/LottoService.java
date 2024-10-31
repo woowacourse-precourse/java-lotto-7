@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.model.rank.RankCondition.enoughCountToBeSecondRank;
+import static lotto.model.rank.RankCondition.hasEnoughCountToBeSecondRank;
 
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
@@ -40,7 +40,7 @@ public class LottoService {
         int matchedCount = myLotto.countMatchedNumbersFrom(drawResult);
         boolean hasBonusNumber = false;
 
-        if (enoughCountToBeSecondRank(matchedCount)) {
+        if (hasEnoughCountToBeSecondRank(matchedCount)) {
             hasBonusNumber = myLotto.has(bonusNumber);
         }
 

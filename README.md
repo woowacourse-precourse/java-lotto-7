@@ -163,7 +163,7 @@
 
 <br>
 
-### RankPolicy[Enum]
+### [Enum] RankPolicy
 
 - [TYPE] : FIRST / SECOND / THIRD / FOURTH / FIFTH
 
@@ -217,10 +217,10 @@
 
 ### [Enum] RankCondition
 
-| Method                    | Parameter        | Return Type | Implementation |
-|---------------------------|------------------|-------------|----------------|
-| getRankBy                 | Integer, Boolean | Rank        | ✅              |
-| enoughCountToBeSecondRank | int              | boolean     | ✅              |
+| Method                       | Parameter        | Return Type | Implementation |
+|------------------------------|------------------|-------------|----------------|
+| getRankBy                    | Integer, Boolean | Rank        | ✅              |
+| hasEnoughCountToBeSecondRank | int              | boolean     | ✅              |
 
 <br>
 
