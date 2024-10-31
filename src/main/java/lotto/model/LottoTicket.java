@@ -7,12 +7,8 @@ import java.util.List;
 public class LottoTicket {
     List<Lotto> lottos;
 
-    public LottoTicket(int lottoCount) {
-        ArrayList<Lotto> temp = new ArrayList<>();
-        for(int i = 0; i < lottoCount; i++) {
-            temp.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-        lottos = temp;
+    public LottoTicket(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public int getLottoCount() {

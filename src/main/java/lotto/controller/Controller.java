@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.model.LottoStore;
+import lotto.model.LottoTicket;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,9 +17,11 @@ public class Controller {
     }
 
     public void run() {
-        int purchaseAmount = getPurchaseAmount();
 
         // 로또 구매
+        LottoTicket lottoTicket = purchaseLottoTicket();
+
+        // 로또 상태 출력
 
         // 당첨번호 입력
 
@@ -28,8 +32,16 @@ public class Controller {
         // 결과 출력
     }
 
-
-
+    private LottoTicket purchaseLottoTicket() {
+        while (true) {
+            try {
+                int purchaseAmount = getPurchaseAmount();
+                return LottoStore.purchaseLottoTicket(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
 
     private int getPurchaseAmount() {
         while (true) {
@@ -42,4 +54,6 @@ public class Controller {
             }
         }
     }
+
+
 }

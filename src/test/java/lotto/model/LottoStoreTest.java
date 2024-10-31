@@ -1,10 +1,13 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoStoreTest {
@@ -27,5 +30,15 @@ class LottoStoreTest {
         assertThatThrownBy(() -> LottoStore.purchaseLottoTicket(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("한번 구매할때 10만원 이하로 구매할 수 있습니다. 다시 시도해 주세요.");
+    }
+
+    @DisplayName("구입금액 / 1000 만큼의 로또가 들어가있는 로또 티켓이 생성되어야 한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1000, 1", "12000, 12", "100000, 100"})
+    void purchaseLottoTicket(int purchaseAmount, int expected) {
+
+        LottoTicket lottoTicket = LottoStore.purchaseLottoTicket(purchaseAmount);
+
+        assertThat(lottoTicket.getLottoCount()).isEqualTo(expected);
     }
 }
