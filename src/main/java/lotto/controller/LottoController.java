@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoNumber;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,20 +18,17 @@ public class LottoController {
     }
 
     public void run() {
-        requestPurchaseAmount();
         String rawPurchaseAmount = receivePurchaseAmount();
         PurchaseAmount purchaseAmount = new PurchaseAmount(rawPurchaseAmount);
         Lottos lottos = drawLottoNumbers(purchaseAmount.calculateLottoCount());
         printLottoInformation(lottos.count(), lottos.information());
-        requestWinningNumbers();
-    }
-
-    private void requestPurchaseAmount() {
-        outputView.requestPurchaseAmount();
+        String rawWinningNumbers = receiveWinningNumbers();
+        WinningNumbers winningNumbers = new WinningNumbers(rawWinningNumbers);
     }
 
     private String receivePurchaseAmount() {
-        return inputView.receivePurchaseAmount();
+        outputView.requestPurchaseAmount();
+        return inputView.receiveString();
     }
 
     private Lottos drawLottoNumbers(int lottoCount) {
@@ -48,7 +46,8 @@ public class LottoController {
         outputView.printLottoInformation(lottoInformation);
     }
 
-    private void requestWinningNumbers() {
+    private String receiveWinningNumbers() {
         outputView.requestWinningNumbers();
+        return inputView.receiveString();
     }
 }

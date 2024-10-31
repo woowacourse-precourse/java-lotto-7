@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    public String receivePurchaseAmount() {
+    public String receiveString() {
         return Console.readLine();
     }
 }

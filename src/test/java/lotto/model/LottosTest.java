@@ -50,5 +50,4 @@ class LottosTest {
                 .contains("]")
                 .contains(",");
     }
-
 }
