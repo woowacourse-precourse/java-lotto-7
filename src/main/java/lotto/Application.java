@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import controller.LottoController;
+import factory.WinningLottoNumFactory;
 import model.LottoCollection;
 import view.InputView;
 import view.OutputView;

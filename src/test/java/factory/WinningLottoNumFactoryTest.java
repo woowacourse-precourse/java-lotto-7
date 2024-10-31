@@ -18,7 +18,7 @@ public class WinningLottoNumFactoryTest {
         WinningLottoNum winningLottoNum = winningLottoNumFactory.get();
 
         assertThat(winningLottoNum).isInstanceOf(WinningLottoNum.class);
-        assertThat(winningLottoNum.getLottoNums()
+        assertThat(winningLottoNum.getWinningNums()
             .stream().distinct().toList().size()).isEqualTo(6);
     }
 
@@ -31,7 +31,7 @@ public class WinningLottoNumFactoryTest {
         WinningLottoNum winningLottoNum = winningLottoNumFactory.get();
 
         assertThat(winningLottoNum).isInstanceOf(WinningLottoNum.class);
-        assertThat(winningLottoNum.getLottoNums()
+        assertThat(winningLottoNum.getWinningNums()
             .stream().distinct().toList().size()).isEqualTo(6);
     }
 
