@@ -32,13 +32,15 @@ public class Lotto {
         }
     }
 
+    public int countMatchingNumbers(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::contains)
+                .count();
+    }
+
     public boolean contains(int number) {
         return numbers.contains(number);
     }
-
-//    public List<Integer> getNumbers() {
-//        return numbers;
-//    }
 
     @Override
     public String toString() {

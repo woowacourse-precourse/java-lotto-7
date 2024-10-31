@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.constants.ExceptionMessage;
-
 public class LottoPurchase {
     private static final int LOTTO_PER_PRICE = 1000;
 

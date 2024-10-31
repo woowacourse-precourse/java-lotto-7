@@ -1,21 +1,26 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoResult;
 import lotto.domain.Numbers;
 import lotto.factory.LottoMakeFactory;
 import lotto.factory.LottoPurchaseFactory;
 import lotto.factory.NumbersMakeFactory;
-import lotto.view.InputView;
+import lotto.messages.WinningMessage;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final OutputView outputView;
+    private final LottoResult lottoResult;
 
     public LottoController() {
         outputView = new OutputView();
+        lottoResult = new LottoResult();
     }
+
 
     public void run() {
         LottoPurchase lottoPurchase = inputAmount();
@@ -27,6 +32,12 @@ public class LottoController {
         outputView.printLottoNumbers(lottoNumbers);
 
         Numbers numbers = getNumbers();
+        lottoResult.calculateWinningResult(lottoNumbers, numbers);
+
+        Map<WinningMessage, Integer> winningResult = lottoResult.getWinningResults();
+        outputView.printWinningResult(winningResult);
+
+
     }
 
     private List<Lotto> makeLotto(int purchaseAmount) {
