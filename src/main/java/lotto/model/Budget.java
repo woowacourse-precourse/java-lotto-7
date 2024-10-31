@@ -20,8 +20,8 @@ public class Budget {
         return true;
     }
 
-    public boolean isUnavailable() {
-        return budget >= Lotto.LOTTO_PRICE;
+    private boolean isUnavailable() {
+        return budget < Lotto.LOTTO_PRICE;
     }
 
     private void validateBudget(Integer budget) {
