@@ -35,6 +35,16 @@ public class LottoView {
         }
     }
 
+    public int getInputBonusNumber() {
+        try {
+            System.out.println("보너스 번호를  입력해주세요.");
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            return getInputBonusNumber();
+        }
+    }
+
     private List<Integer> parseNumbers(String input) {
         try {
             return Arrays.stream(input.split(","))
