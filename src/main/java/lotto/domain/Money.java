@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import lotto.validator.MoneyValidator;
+
 public class Money {
-    private int money;
+    private final int money;
 
     public Money(int money) {
+        MoneyValidator.validateProcess(money);
         this.money = money;
     }
 

@@ -3,7 +3,7 @@ package lotto.validator;
 import lotto.validator.exception.ErrorMessage;
 import lotto.validator.exception.LottoException;
 
-public class PurchaseValidator {
+public class MoneyValidator {
 
     private final static int THOUSAND = 1000;
     private final static int REMAIN = 0;
