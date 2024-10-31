@@ -13,7 +13,7 @@ public class Input {
 
     }
 
-    public static void bonus() {
-
+    public static int bonus() {
+        return InputValid.checkEachNum(Console.readLine());
     }
 }

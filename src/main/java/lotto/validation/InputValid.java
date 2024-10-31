@@ -1,14 +1,6 @@
 package lotto.validation;
 
 public class InputValid {
-    public static int checkInt(String input) throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력은 숫자여야 합니다.");
-        }
-    }
-
     public static int checkMoney(String input) throws IllegalArgumentException {
         int m = checkInt(input);
         if(m%1000 != 0) {
@@ -18,5 +10,25 @@ public class InputValid {
             throw new IllegalArgumentException("[ERROR] 금액은 0이 아닌 값이어야 합니다.");
         }
         return m;
+    }
+
+    public static void checkNumber(String input) {
+
+    }
+
+    public static int checkInt(String input) throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 입력은 숫자여야 합니다.");
+        }
+    }
+
+    public static int checkEachNum(String input) throws IllegalArgumentException {
+        int n = checkInt(input);
+        if(n<1 || n>45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45의 숫자여야 합니다.");
+        }
+        return n;
     }
 }

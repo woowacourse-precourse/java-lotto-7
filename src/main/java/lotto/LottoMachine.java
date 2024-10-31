@@ -8,19 +8,20 @@ import lotto.validation.*;
 
 public class LottoMachine {
     public int money;
+    public int bonus;
 
     public void start() {
-        money = inputMoney();
+        inputMoney();
         inputNum();
         inputBonus();
     }
 
-    public int inputMoney() {
+    public void inputMoney() {
         int m;
         while(true) {
             Output.money();
             try {
-                m = Input.money();
+                money = Input.money();
                 break;
             } catch(IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -28,14 +29,33 @@ public class LottoMachine {
                 System.out.println();
             }
         }
-        return m;
     }
 
     public void inputNum() {
-        Output.number();
+        while(true) {
+            Output.number();
+            try {
+                Input.number();
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } finally {
+                System.out.println();
+            }
+        }
     }
 
     public void inputBonus() {
-        Output.bonus();
+        while(true) {
+            Output.bonus();
+            try {
+                bonus = Input.bonus();
+                break;
+            } catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } finally {
+                System.out.println();
+            }
+        }
     }
 }
