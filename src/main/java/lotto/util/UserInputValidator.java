@@ -2,6 +2,7 @@ package lotto.util;
 
 import static lotto.constant.ErrorMessage.LESS_THAN_THOUSAND_PURCHASE_AMOUNT;
 import static lotto.constant.ErrorMessage.NOT_NUMBER_PURCHASE_AMOUNT;
+import static lotto.constant.ErrorMessage.NOT_PURCHASE_AMOUNT_FORMAT;
 import static lotto.constant.ErrorMessage.TOO_BIG_PURCHASE_AMOUNT;
 
 public class UserInputValidator {
@@ -9,6 +10,7 @@ public class UserInputValidator {
         isUserInputNumber(purchaseAmount);
         isPurchaseAmountTooBing(purchaseAmount);
         isPurchaseAmountLessThanThousand(purchaseAmount);
+        isPurchaseAmountMultipleOfThousand(purchaseAmount);
     }
 
     public void isUserInputNumber(String purchaseAmount) {
@@ -26,6 +28,12 @@ public class UserInputValidator {
     public void isPurchaseAmountLessThanThousand(String purchaseAmount) {
         if (Integer.parseInt(purchaseAmount) < 1000) {
             throw new IllegalArgumentException(LESS_THAN_THOUSAND_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    public void isPurchaseAmountMultipleOfThousand(String purchaseAmount) {
+        if (Integer.parseInt(purchaseAmount) % 1000 != 0) {
+            throw new IllegalArgumentException(NOT_PURCHASE_AMOUNT_FORMAT.getMessage());
         }
     }
 }
