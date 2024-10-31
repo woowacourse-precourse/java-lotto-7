@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.LottoManager;
+import lotto.manager.LottoManager;
 import lotto.domain.UserLotto;
 import lotto.util.LottoValidator;
 import lotto.util.MoneyValidator;

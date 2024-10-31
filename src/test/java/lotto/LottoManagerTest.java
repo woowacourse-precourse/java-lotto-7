@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.UserLotto;
+import lotto.manager.LottoManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
