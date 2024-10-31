@@ -25,6 +25,7 @@ public class Application {
         ArrayList<Lotto> lottos = new ArrayList<>();
         for(int i=0;i<count;i++){
             lottos.add(new Lotto(makeLotto()));
+            System.out.println(lottos.get(i).toString());
         }
     }
 }
