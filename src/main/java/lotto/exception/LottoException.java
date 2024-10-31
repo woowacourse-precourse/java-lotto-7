@@ -22,8 +22,8 @@ public class LottoException {
         }
     }
 
-    public static class MinLottoPriceException extends IllegalArgumentException {
-        public MinLottoPriceException() {
+    public static class LowThenMinLottoPriceException extends IllegalArgumentException {
+        public LowThenMinLottoPriceException() {
             super(MIN_LOTTO_PRICE_ERROR_MESSAGE.getMessage());
         }
     }
