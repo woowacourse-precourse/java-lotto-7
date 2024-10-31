@@ -2,11 +2,13 @@ package lotto.domain;
 
 import lotto.domain.calculators.TicketCalculator;
 import lotto.domain.calculators.TicketCalculatorImpl;
+import lotto.domain.calculators.YieldCalculator;
 
 public class Wallet {
     private final static int MIN_PRICE_PER_LOTTO_TICKET = 1000;
 
     private final TicketCalculator ticketCalculator;
+    private final YieldCalculator yieldCalculator;
     private final int amount;
     private int ticket;
     private float rateOfReturn = 0;
@@ -15,7 +17,9 @@ public class Wallet {
         validateMinAmount(money);
         validateUnit(money);
 
+        //todo 컨트롤러 의존성 주입
         ticketCalculator = new TicketCalculatorImpl();
+        yieldCalculator = new YieldCalculator();
         this.amount = money;
     }
 
@@ -31,15 +35,12 @@ public class Wallet {
         ticket--;
     }
 
+    public void calculateRateOfReturn(long finalPrizeAmount) {
+        rateOfReturn = yieldCalculator.calculate(finalPrizeAmount, amount);
+    }
 
     public float getRateOfReturn() {
         return rateOfReturn;
-    }
-
-
-    //todo 아 이 계산하는 로직을 서비스에서 시키는것보다 calculator를 이 객체 안에 의존해줘야하나?
-    public void calculateRateOfReturn(long totalPrizeMoney) {
-        rateOfReturn = (float) totalPrizeMoney / amount * 100;
     }
 
 
@@ -60,5 +61,6 @@ public class Wallet {
         int calculate = ticketCalculator.calculate(amount);
         return String.valueOf(calculate);
     }
+
 
 }
