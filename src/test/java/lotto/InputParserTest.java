@@ -6,20 +6,33 @@ import org.junit.jupiter.api.Test;
 
 public class InputParserTest {
     @Test
+    void 빈문자열_예외() {
+        assertThatThrownBy(() -> InputParser.parseInt(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
+    }
+
+    @Test
     void 숫자가_아닌_것이_입력된_예외() {
         assertThatThrownBy(() -> InputParser.parseInt("123 abc"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 숫자를 입력해야 합니다.");
     }
 
     @Test
     void 정수범위_벗어난_예외() {
         assertThatThrownBy(() -> InputParser.parseInt("10000000000"))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] "
+                        + String.valueOf(Integer.MIN_VALUE)
+                        + " ~ "
+                        + String.valueOf(Integer.MAX_VALUE)
+                        + " 사이의 숫자만 입력할 수 있습니다.");
     }
 
     @Test
     void 쉼표로_구분되지_않은_배열이_들어온_예외() {
-        assertThatThrownBy(() -> InputParser.parseIntList("1:3.4,7"))
+        assertThatThrownBy(() -> InputParser.parseIntList("1:3.4,7", ","))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
