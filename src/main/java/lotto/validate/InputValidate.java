@@ -16,6 +16,13 @@ public class InputValidate {
             if (!isNumeric(input)) {
                 throw new IllegalArgumentException(InputMessage.INVALID_INPUT_AMOUNT.getMessage());
             }
+
+            int money = Integer.parseInt(input);
+
+            if (!isLessThanFirstPrizeAmount(money)) {
+                throw new IllegalArgumentException(InputMessage.OUT_OF_RANGE_AMOUNT.getMessage());
+            }
+
         } catch (IllegalArgumentException e) {
             errorMessage = e.getMessage();
             System.err.println(errorMessage);
@@ -28,5 +35,9 @@ public class InputValidate {
     public static boolean isNumeric(String input) {
         Matcher matcher = pattern.matcher(input);
         return matcher.matches();
+    }
+
+    public static boolean isLessThanFirstPrizeAmount(int money) {
+        return money >= 0 && money <= 2000000000;
     }
 }
