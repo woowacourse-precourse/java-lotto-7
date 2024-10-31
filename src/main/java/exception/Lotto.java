@@ -1,4 +1,4 @@
-package lotto;
+package exception;
 
 import java.util.List;
 
