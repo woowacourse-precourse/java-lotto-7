@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class ProfitTest {
     @Test
-    void 총_수익금액을_계산한다() {
+    void 총_수익률을_계산한다() {
         Map<Rank, Integer> lottoResult = Map.of(
                 Rank.FIRST, 0,
                 Rank.SECOND, 0,
@@ -17,8 +17,9 @@ public class ProfitTest {
                 Rank.NONE, 100
         );
         long purchaseAmount = 210_000;
-        Profit profit = new Profit(lottoResult, purchaseAmount)
+        Profit profit = new Profit(lottoResult, purchaseAmount);
 
-        assertThat(profit.)
+        assertThat(purchaseAmount / profit.getProfitRate())
+                .isEqualTo(1_610_000);
     }
 }

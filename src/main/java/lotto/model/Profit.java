@@ -11,6 +11,10 @@ public class Profit {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public double getProfitRate() {
+        return (double) purchaseAmount / profit;
+    }
+
     private long calculateProfit(Map<Rank, Integer> lottoResult) {
         long profit = 0;
 
