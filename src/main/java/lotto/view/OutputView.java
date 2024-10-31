@@ -35,7 +35,7 @@ public class OutputView {
     }
 
     public static void displayResult(Map<String, Integer> result) {
-        DecimalFormat format = new DecimalFormat("###,###");
+        DecimalFormat formatter = new DecimalFormat("###,###");
 
         System.out.println();
         System.out.println("당첨 통계");
@@ -43,12 +43,15 @@ public class OutputView {
 
         for (Rank rank : Rank.values()) {
             String description = rank.getDescription();
-            String moneyResult = format.format(rank.getWinningMoney());
+            String moneyResult = formatter.format(rank.getWinningMoney());
             int countResult = result.get(description);
             System.out.println(description + " (" + moneyResult + "원) - " + countResult +"개");
         }
     }
 
-    
+    public static void displayMoneyRate(int moneyRate) {
+        DecimalFormat formatter = new DecimalFormat("#,##0.0");
+        System.out.println("총 수익률은 "+ formatter.format(moneyRate) + "%입니다.");
+    }
 
 }

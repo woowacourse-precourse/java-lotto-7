@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.LottoRanking;
+import lotto.domain.ReturnMoneyRate;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,9 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
+    private int money;
 
     public void initMoney() {
-        int money = InputView.getMoney();
+        money = InputView.getMoney();
         issueLotto(money);
     }
 
@@ -37,6 +39,14 @@ public class LottoGame {
 
         OutputView.displayResult(result);
 
+        calculateReturnMoneyRate(result);
     }
 
+    private void calculateReturnMoneyRate(Map<String, Integer> result) {
+        ReturnMoneyRate returnMoneyRate = new ReturnMoneyRate();
+        int sum = returnMoneyRate.calculateSum(result);
+        int moneyRate = returnMoneyRate.calculateRate(sum, money);
+
+        OutputView.displayMoneyRate(moneyRate);
+    }
 }
