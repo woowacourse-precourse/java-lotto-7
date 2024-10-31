@@ -41,5 +41,6 @@ public class LottoController {
 
 	private void getLottoBundle(int lottoCount) {
 		LottoBundle lottoBundle = lottoService.createLottoBundle(lottoCount);
+		OutputView.promptLottoNumbers(lottoBundle);
 	}
 }
