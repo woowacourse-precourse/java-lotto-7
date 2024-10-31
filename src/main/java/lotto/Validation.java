@@ -21,4 +21,11 @@ public class Validation {
     public static boolean isEmptyInput(String input) {
         return input.isEmpty();
     }
+
+    public static boolean isInRange1To45(List<Integer> numbers) {
+        for(int number:numbers) {
+            if(!(number<=45 && number >=1)) return false;
+        }
+        return true;
+    }
 }
