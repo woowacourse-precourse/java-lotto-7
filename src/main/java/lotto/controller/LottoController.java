@@ -15,6 +15,7 @@ public class LottoController {
 
     public void buyLotto() {
         int amount;
+
         try {
             amount = Integer.parseInt(request.inputAmount());
         } catch (NumberFormatException e) {
