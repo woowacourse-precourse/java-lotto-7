@@ -90,8 +90,20 @@ public class InputView {
 
     //inputBonusNumber 구현
     public static int inputBonusNumber() {
-        String userInput = Console.readLine();
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                validateBonusNumber(userInput);
+                return Integer.parseInt(userInput);
+            } catch (IllegalArgumentException e) {
+                OutputView.errorPrint(e.getMessage());
+            }
+        }
+    }
 
-        return Integer.parseInt(userInput);
+    private static void validateBonusNumber(String userInput) {
+        if (userInput.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage() + " : " + userInput);
+        }
     }
 }
