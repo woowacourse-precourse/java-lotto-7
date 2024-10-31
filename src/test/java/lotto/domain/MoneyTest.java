@@ -21,6 +21,17 @@ class MoneyTest {
     }
 
     @Test
+    void 예외_머니_값이_null일_경우() {
+        // given
+        Integer amount = null;
+
+        // when & then
+        assertThatThrownBy(() -> new Money(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 잘못된 번호 값입니다.");
+    }
+
+    @Test
     void 예외_머니가_1000원보다_작을_경우() {
         // given
         Integer amount = 800;
