@@ -2,8 +2,10 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lotto.enums.PrizeAmount;
 import lotto.model.Lotto;
@@ -26,24 +28,18 @@ public class LottoService {
     }
 
     // 당첨 여부 검사
-    public Set<PrizeAmount> lottoWinning(List<Lotto> newLotto, List<Integer> numbers, int bonus) {
-        Set<PrizeAmount> prizeAmounts = new HashSet<>();
-        for (Lotto lotto: newLotto) {
+    public Map<PrizeAmount, Integer> lottoWinning(List<Lotto> newLotto, List<Integer> numbers, int bonus) {
+        Map<PrizeAmount, Integer> prizeAmounts = new HashMap<>();
+        for (Lotto lotto : newLotto) {
             int count = lottoWinNumber(lotto, numbers);
-            boolean isBonus = isBounsWinnig(numbers, bonus);
-            prizeAmounts.add(countPrize(prizeAmounts, count, isBonus));
-        }
+            boolean isBonus = isBonusWinning(numbers, bonus);
+            PrizeAmount prizeA = cntPrizeAmount(count, isBonus);
 
+            if (prizeA != null) {
+                prizeAmounts.put(prizeA, prizeAmounts.getOrDefault(prizeA, 0) + 1);
+            }
+        }
         return prizeAmounts;
-    }
-
-    // 당첨 횟수 갱신
-    public PrizeAmount countPrize(Set<PrizeAmount> prizeAmounts, int count, boolean isBonus) {
-        PrizeAmount prizeA = cntPrizeAmount(count, isBonus);
-        if (prizeA != null && prizeAmounts.contains(prizeA)) {
-            prizeA.setCount(prizeA.getCount() + 1);
-        }
-        return prizeA;
     }
 
     // 로또 번호 두 개 비교하여 몇개 맞는지 반환
@@ -54,11 +50,8 @@ public class LottoService {
     }
 
     // Bonus 번호 맞는지 반환
-    public boolean isBounsWinnig(List<Integer> numbers, int bonus) {
-        for (int num: numbers) {
-            if (bonus == num) { return true; }
-        }
-        return false;
+    public boolean isBonusWinning(List<Integer> numbers, int bonus) {
+        return numbers.contains(bonus);
     }
 
     // count에 맞는 prizeAmount 반환

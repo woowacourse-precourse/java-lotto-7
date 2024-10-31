@@ -3,6 +3,7 @@ package lotto.view;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.util.*;
+import java.util.Map.Entry;
 import lotto.enums.PrizeAmount;
 import lotto.model.Lotto;
 
@@ -30,17 +31,18 @@ public class OutputHandler {
         }
     }
 
-    public void printWinning(Set<PrizeAmount> prizeAmounts) {
+    public void printWinning(Map<PrizeAmount, Integer> prizeAmounts) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for (PrizeAmount pr: prizeAmounts) {
-            printWinningAmounts(pr);
+        for (Entry<PrizeAmount, Integer> pr: prizeAmounts.entrySet()) {
+            printWinningAmounts(pr.getKey(), pr.getValue());
+            System.out.println(" - " + pr.getValue() + "개");
         }
     }
 
     // 설계 다시
-    public void printWinningAmounts(PrizeAmount pr) {
+    public void printWinningAmounts(PrizeAmount pr, int num) {
         DecimalFormat formatter = new DecimalFormat();
         StringBuilder sb = new StringBuilder();
 
@@ -50,8 +52,7 @@ public class OutputHandler {
         }
         String format = formatter.format(Long.valueOf(pr.getAmount()));
         sb.append(" (").append(format).append("원)");
-        sb.append(" - ").append(pr.getCount()).append("개");
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
     public void printRateOfReturn(Double rate) {

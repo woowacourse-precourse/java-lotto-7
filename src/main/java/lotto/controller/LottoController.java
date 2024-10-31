@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import lotto.enums.PrizeAmount;
 import lotto.model.Lotto;
@@ -41,7 +42,7 @@ public class LottoController {
 
         if (!validationCheck(numbers, bonusNum)) { return; }
 
-        Set<PrizeAmount> lottoWinnings = lottoService.lottoWinning(lottoService.lottoIssuance(money), numbers, bonusNum);
+        Map<PrizeAmount, Integer> lottoWinnings = lottoService.lottoWinning(lottoService.lottoIssuance(money), numbers, bonusNum);
         Double returnRate = incomeService.rateOfReturn(money, lottoWinnings);
 
         outputHandle(lottoWinnings, returnRate);
@@ -63,7 +64,7 @@ public class LottoController {
         return result;
     }
 
-    public void outputHandle(Set<PrizeAmount> prizeAmounts, Double rate) {
+    public void outputHandle(Map<PrizeAmount, Integer> prizeAmounts, Double rate) {
         outputHandler.printWinning(prizeAmounts);
         outputHandler.printRateOfReturn(rate);
     }
