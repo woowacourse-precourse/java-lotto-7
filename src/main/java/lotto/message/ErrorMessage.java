@@ -6,6 +6,9 @@ public enum ErrorMessage {
     NOT_INTEGER_RANGE_INPUT_MESSAGE("구입 금액은 정수형 범위의 숫자만 입력할 수 있습니다. 다시 시도해 주세요."),
     INVALID_UNIT_ERROR_MESSAGE("구입 금액은 반드시 천원 단위로 떨어져야 합니다. 다시 입력해 주세요."),
     UPPER_LIMIT_EXCEEDED_ERROR_MESSAGE("한번 구매할때 10만원 이하로 구매할 수 있습니다. 다시 시도해 주세요."),
+    INVALID_NUMBER_COUNT_ERROR_MESSAGE("로또 번호는 6개여야 합니다. 다시 입력해 주세요."),
+    DUPLICATED_NUMBER_ERROR_MESSAGE("로또 숫자는 중복될 수 없습니다. 다시 입력해 주세요."),
+    INVALID_NUMBER_RANGE_ERROR_MESSAGE("로또 숫자는 1 부터 45 까지 입력할 수 있습니다. 다시 입력해 주세요.")
     ;
 
     private final String content;
