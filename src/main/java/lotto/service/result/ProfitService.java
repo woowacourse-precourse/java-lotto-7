@@ -1,9 +1,27 @@
 package lotto.service.result;
 
+import java.util.Arrays;
+import java.util.List;
+import lotto.domain.User;
+
 public class ProfitService {
-    private static final int FIVE_THOUSAND = 5000;
-    private static final int FIFTY_THOUSAND = 50000;
-    private static final int ONE_MILLION_FIVE_HUNDRED_THOUSAND = 1500000;
-    private static final int THIRTY_MILLION = 30000000;
-    private static final int TWO_BILLION = 2000000000;
+    private final List<Integer> winnings = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
+
+    public double profitCalculator(User user, List<Integer> result) {
+        int totalWinnings = totalWinningCalculate(result);
+        return calculate(user, totalWinnings);
+    }
+
+    private double calculate(User user, int totalWinnings) {
+        int totalInvestment = user.getMoney().getMoney();
+        return ((double) totalWinnings / totalInvestment) * 100;
+    }
+
+    private int totalWinningCalculate(List<Integer> result) {
+        int totalWinnings = 0;
+        for(int i = 0; i < 5; i ++) {
+            totalWinnings += winnings.get(i) * result.get(i);
+        }
+        return totalWinnings;
+    }
 }
