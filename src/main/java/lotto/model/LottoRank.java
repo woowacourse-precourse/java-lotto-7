@@ -5,15 +5,12 @@ public enum LottoRank {
     RANK_2(30_000_000),
     RANK_3(1_500_000),
     RANK_4(50_000),
-    RANK_5(5_000);
+    RANK_5(5_000),
+    LOSE(0);
 
-    private final int prizeMoney;
+    final int prizeMoney;
 
     LottoRank(int prizeMoney) {
         this.prizeMoney = prizeMoney;
-    }
-
-    public int getPrizeMoney() {
-        return prizeMoney;
     }
 }
