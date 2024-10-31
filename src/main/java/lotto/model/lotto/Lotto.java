@@ -1,6 +1,8 @@
 package lotto.model.lotto;
 
+import static java.util.Objects.isNull;
 import static lotto.exception.DuplicatedNumberException.duplicatedLottoNumber;
+import static lotto.exception.ShouldNotBeNullException.nullArgument;
 
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +31,7 @@ public class Lotto {
     }
 
     public boolean has(Integer number) {
+        validateIsNull(number);
         return this.numbers.contains(number);
     }
 
@@ -38,6 +41,12 @@ public class Lotto {
                 .map(String::valueOf)
                 .toList();
         return String.join(", ", strNumbers);
+    }
+
+    public void validateIsNull(Integer source) {
+        if (isNull(source)) {
+            throw nullArgument();
+        }
     }
 
     private static void validateMaxLength(List<Integer> numbers) {
