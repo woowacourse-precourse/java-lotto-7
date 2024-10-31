@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.model.LottoTicket;
+import lotto.util.Validator;
 import lotto.view.LottoInputView;
 
 public class LottoController {
@@ -11,6 +13,20 @@ public class LottoController {
     }
 
     public void run() {
-        String PurchaseMoney = lottoInputView.getLottoPurchaseMoney();
+        buyLottoTicket();
+    }
+
+    private LottoTicket buyLottoTicket() {
+        while (true) {
+            try {
+                return createLottoTicket();
+            } catch (IllegalArgumentException exception) {
+            }
+        }
+    }
+
+    private LottoTicket createLottoTicket() {
+        String purchaseMoney = lottoInputView.getLottoPurchaseMoney();
+        return LottoTicket.makeLottoTicket(purchaseMoney);
     }
 }
