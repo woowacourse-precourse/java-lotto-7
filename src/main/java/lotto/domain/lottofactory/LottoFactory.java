@@ -1,6 +1,6 @@
-package lotto.domain.numberlotto.lottofactory;
+package lotto.domain.lottofactory;
 
-import lotto.domain.numberlotto.lotto.Lotto;
+import lotto.domain.lotto.Lotto;
 
 public interface LottoFactory {
 

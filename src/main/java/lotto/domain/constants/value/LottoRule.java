@@ -1,4 +1,4 @@
-package lotto.domain.numberlotto.constants.value;
+package lotto.domain.constants.value;
 
 public enum LottoRule {
     COMBINATION_LENGTH(6),
