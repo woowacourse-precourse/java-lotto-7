@@ -13,7 +13,7 @@ public class MoneyInputView {
             try {
                 CustomStringUtils.printStringLineFeed(FIRST_BUY_MONEY_INPUT.value());
                 return Money.from(Console.readLine());
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
