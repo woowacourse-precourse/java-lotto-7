@@ -45,9 +45,9 @@ public class LottoService {
     }
 
     private void calculateRankResults() {
-        for (Lotto lottoTicket : lottoTickets) {
-            int matchCount = lottoTicket.getMatchCount(winningNumbers);
-            int rank = determineRank(matchCount, lottoTicket);
+        for (Lotto ticket : lottoTickets) {
+            int matchCount = ticket.getMatchCount(winningNumbers);
+            int rank = determineRank(matchCount, ticket);
 
             if (rank > 0) {
                 winningRankCount.merge(rank, 1, Integer::sum);
@@ -55,15 +55,15 @@ public class LottoService {
         }
     }
 
-    private boolean isWinningSecondRank(int matchingCount, Lotto lottoTicket) {
-        return matchingCount == SECOND_PLACE_MATCH_COUNT && lottoTicket.isBonusNumberMatched(bonusNumber);
+    private boolean isSecondPlaceWinner(int matchCount, Lotto ticket) {
+        return matchCount == SECOND_PLACE_MATCH_COUNT && ticket.isBonusNumberMatched(bonusNumber);
     }
 
-    private int determineRank(int matchingCount, Lotto lottoTicket) {
-        if (isWinningSecondRank(matchingCount, lottoTicket)) {
+    private int determineRank(int matchCount, Lotto ticket) {
+        if (isSecondPlaceWinner(matchCount, ticket)) {
             return 2;
         }
-        return MATCH_COUNT_TO_RANK.getOrDefault(matchingCount, 0);
+        return MATCH_COUNT_TO_RANK.getOrDefault(matchCount, 0);
     }
 
 }
