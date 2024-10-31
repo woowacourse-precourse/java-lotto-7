@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class WinningResult {
             final Integer count = lottoRanks.getOrDefault(lottoRank, 0);
             lottoRanks.put(lottoRank, count + 1);
         }
-        return lottoRanks;
+        return Collections.unmodifiableMap(lottoRanks);
     }
 
     private Map<LottoRank, Integer> initializeLottoRanks() {
