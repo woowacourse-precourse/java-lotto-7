@@ -2,20 +2,13 @@ package lotto.domain;
 
 import lotto.exception.ErrorMessage;
 
-public class Money {
+public record Money(int money) {
 
     private static final int DIVIDE_STANDARD = 1000;
     private static final int ZERO = 0;
 
-    private final int money;
-
-    public Money(int money) {
+    public Money {
         validateMoney(money);
-        this.money = money;
-    }
-
-    public int getMoney() {
-        return money;
     }
 
     private void validateMoney(int money) {
