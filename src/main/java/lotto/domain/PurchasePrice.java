@@ -23,4 +23,8 @@ public class PurchasePrice {
             throw new IllegalArgumentException("[ERROR] 1000원 단위가 아닙니다.");
         }
     }
+
+    public int calculateLottoCount() {
+        return money / LOTTO_UNIT;
+    }
 }

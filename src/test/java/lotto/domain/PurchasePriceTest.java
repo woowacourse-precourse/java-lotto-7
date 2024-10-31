@@ -21,4 +21,10 @@ class PurchasePriceTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 로또_구입_개수_구하기() {
+        PurchasePrice purchasePrice = new PurchasePrice(4000);
+        assertThat(purchasePrice.calculateLottoCount()).isEqualTo(4);
+    }
+
 }
