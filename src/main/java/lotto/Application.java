@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         Input input = new Input();
@@ -7,11 +9,10 @@ public class Application {
 
         try {
             LottoNum lottoNum = new LottoNum(money);
-            input.numberInput();
-            input.bonusInput();
+            List<Integer> number = input.numberInput();
+            int bonus = input.bonusInput();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-
     }
 }

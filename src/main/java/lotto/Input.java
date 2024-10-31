@@ -12,7 +12,7 @@ public class Input {
         return Integer.parseInt(res);
     }
 
-    public void numberInput() {
+    public List<Integer> numberInput() {
         System.out.println();
         while (true) {
             try {
@@ -20,7 +20,7 @@ public class Input {
                 String input = Console.readLine();
                 List<Integer> numbers = changeInput(input);
                 Lotto lotto = new Lotto(numbers);
-                return;
+                return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -36,7 +36,7 @@ public class Input {
         return numbers;
     }
 
-    public void bonusInput() {
+    public int bonusInput() {
         System.out.println();
         while (true) {
             try {
@@ -47,7 +47,7 @@ public class Input {
                 if(bonusNum < 1 || bonusNum > 45) {
                     throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.");
                 }
-                return;
+                return bonusNum;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
