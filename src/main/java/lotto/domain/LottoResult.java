@@ -20,9 +20,18 @@ public class LottoResult {
         }
     }
 
-    private int countMatches(List<Integer> winningNumbers, List<Integer> numbers) {
-        return (int) numbers.stream()
+    private int countMatches(List<Integer> userNumbers, List<Integer> winningNumbers) {
+        return (int) userNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
+
+    public void addWinningResult(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
+        int matchCount = countMatches(userLotto.getNumbers(), winningLotto.getNumbers());
+        boolean hasBonus = matchCount == 5 && userLotto.getNumbers().contains(bonusNumber);
+
+        LottoRank rank = LottoRank.valueOf(matchCount, hasBonus);
+        rankCnt.put(rank, rankCnt.get(rank) + 1);
+    }
+
 }
