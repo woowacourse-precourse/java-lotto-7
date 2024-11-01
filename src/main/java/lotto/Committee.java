@@ -32,7 +32,8 @@ public class Committee {
                     bonusMatch++;
                 }
             }
-            user.setPrize(matchCount, bonusMatch);
+            Prize prize = Prize.getPrize(matchCount, bonusMatch);
+            user.setPrize(prize);
         }
     }
 }

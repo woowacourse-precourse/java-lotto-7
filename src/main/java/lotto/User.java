@@ -33,8 +33,7 @@ public class User {
         return this.lottos;
     }
 
-    public void setPrize(int matchCount, int bonusMatch) {
-        Prize prize = Prize.getPrize(matchCount, bonusMatch);
+    public void setPrize(Prize prize) {
         this.prizes.put(prize, this.prizes.get(prize) + 1);
     }
 

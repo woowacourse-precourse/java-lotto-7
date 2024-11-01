@@ -36,8 +36,8 @@ public class UserTest {
     void 수익률을_계산_확인() {
         int purchaseAmount = 8000;
         User user = new User(purchaseAmount);
-        user.setPrize(3, 0);
-        user.setPrize(5, 1);
+        user.setPrize(Prize.FIFTH);
+        user.setPrize(Prize.SECOND);
 
         double returnRate = user.getReturnRate();
 
