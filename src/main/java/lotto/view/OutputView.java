@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.constants.Constants.AMOUNT_UNIT;
 import static lotto.constants.Constants.ONE_HUNDRED;
 
 import java.util.List;
