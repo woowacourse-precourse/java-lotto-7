@@ -1,10 +1,14 @@
 package lotto;
 
-import java.util.List;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = InputView.inputPurchaseAmount();
+
+        LottoDraw lottoDraw = new LottoDraw(purchaseAmount);
+
         Lotto lotto = new Lotto(InputView.inputLottoPrizeNumbers());
         int bonusNumber = InputView.inputLottoBonusNumber();
     }
