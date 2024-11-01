@@ -22,13 +22,14 @@ public class OutputView {
         System.out.print(NEXT_LINE);
     }
 
-    public static void printWinStatistics(Map<Ranking, Integer> results) {
+    public static void printWinStatistics(double profit, Map<Ranking, Integer> results) {
         System.out.println(WIN_ALARM_MESSAGE);
         System.out.println(formatRank(Ranking.FIFTH, getCountOrDefault(Ranking.FIFTH, results)));
         System.out.println(formatRank(Ranking.FOURTH, getCountOrDefault(Ranking.FOURTH, results)));
         System.out.println(formatRank(Ranking.THIRD, getCountOrDefault(Ranking.THIRD, results)));
         System.out.println(formatRank(Ranking.SECOND, getCountOrDefault(Ranking.SECOND, results)));
         System.out.println(formatRank(Ranking.FIRST, getCountOrDefault(Ranking.FIRST, results)));
+        System.out.println(MessageFormat.format(TOTAL_PROFIT_MESSAGE, String.format("%.1f", profit)));
     }
 
     private static String formatRank(Ranking rank, int count) {
