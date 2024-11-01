@@ -84,8 +84,10 @@ public class InputView {
     }
 
     public static void validate1Numbers(String input) {
-        if (input.length() != 1) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개여야 합니다.");
+        try {
+            int number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
         }
     }
 }
