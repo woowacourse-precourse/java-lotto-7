@@ -27,4 +27,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,47)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 구매_금액이_숫자가_아니면_예외가_발생한다(){
+        assertThatThrownBy(() -> LottoGame.validateNumericNumber("1000j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구매_금액이_천단위가_아니면_예외가_발생한다(){
+        assertThatThrownBy(() -> LottoGame.validateThousandUnit(900))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

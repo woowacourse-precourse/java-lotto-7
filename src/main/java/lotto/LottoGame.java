@@ -14,7 +14,7 @@ public class LottoGame {
         return purchaseNumber;
     }
 
-    public void validateNumericNumber(String input){
+    public static void validateNumericNumber(String input){
         for (int i = 0; i < input.length(); i++) {
             if(!Character.isDigit(input.charAt(i))){
                 throw new IllegalArgumentException("[ERROR] 숫자 이외의 값은 입력할 수 없습니다.");
@@ -22,7 +22,7 @@ public class LottoGame {
         }
     }
 
-    public void validateThousandUnit(int purchaseNumber){
+    public static void validateThousandUnit(int purchaseNumber){
         if(purchaseNumber % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
         }
