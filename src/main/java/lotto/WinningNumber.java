@@ -2,27 +2,31 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.Lotto.NUMBER_COUNT;
+import static lotto.exception.ExceptionCode.DUPLICATED_NUMBER;
+import static lotto.exception.ExceptionCode.INCORRECT_NUMBER_COUNTS;
+
 public class WinningNumber {
 
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public WinningNumber(List<Integer> numbers, int bonusNumber) {
-        validate(numbers);
-        validate(bonusNumber);
-        this.numbers = numbers;
-        this.bonusNumber = bonusNumber;
+    public WinningNumber(List<Integer> numbers) {
+        validateCount(numbers);
+        validateDuplication(numbers);
+        this.numbers = numbers.subList(0, NUMBER_COUNT);
+        this.bonusNumber = numbers.get(NUMBER_COUNT);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 개수가 맞지 않습니다.");
+    private void validateCount(List<Integer> numbers) {
+        if (numbers.size() != NUMBER_COUNT+1) {
+            throw new IllegalArgumentException(INCORRECT_NUMBER_COUNTS.message());
         }
     }
 
-    private void validate(int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    private void validateDuplication(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.message());
         }
     }
 
