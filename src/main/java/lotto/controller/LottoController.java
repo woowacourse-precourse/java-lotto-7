@@ -1,9 +1,10 @@
 package lotto.controller;
 
 import lotto.config.LottoConfig;
-import lotto.io.*;
+import lotto.domain.Lotto;
 import lotto.service.LottoService;
-import lotto.validator.LottoInputValidator;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -25,7 +26,8 @@ public class LottoController {
 
     public void run() {
 
-        int money = service.inputMoney();
+        List<Lotto> lottos = service.buyLottos();
+
 
     }
 }

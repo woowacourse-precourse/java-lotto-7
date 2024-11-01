@@ -19,19 +19,17 @@ public class LottoInputValidator {
         return lottoInputValidator;
     }
 
-    public static int checkInputMoney(String input) {
+    public int checkInputMoney(String input) throws IllegalArgumentException {
 
         int money = -1;
         try {
             money = Integer.parseInt(input);
+            if(money % 1000 != 0)
+                throw new Exception();
+
         } catch (Exception e){
-            // System.out.println(LottoErrorMessage.MONEY_EXCEPTION.getMsg());
-
-        }
-
-        if(money % 1000 != 0) {
-            System.out.println(LottoErrorMessage.MONEY_EXCEPTION.getMsg());
-            return -1;
+            output.printErrorMsg(LottoErrorMessage.MONEY_EXCEPTION);
+            throw new IllegalArgumentException(LottoErrorMessage.MONEY_EXCEPTION.getMsg());
         }
 
         return money;

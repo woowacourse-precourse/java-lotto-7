@@ -1,5 +1,6 @@
 package lotto.io;
 
+import lotto.domain.Lotto;
 import lotto.error.LottoErrorMessage;
 import lotto.io.msg.LottoInquiryMessage;
 
@@ -11,7 +12,7 @@ public interface Output {
 
     void completePurchase(int num);
 
-    void printLotto(List<String> lottoNumbers);
+    void printLotto(Lotto lotto);
 
     void printWinningStatistics();
 

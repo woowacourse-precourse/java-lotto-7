@@ -1,5 +1,6 @@
 package lotto.io.impl;
 
+import lotto.domain.Lotto;
 import lotto.error.LottoErrorMessage;
 import lotto.io.msg.LottoInquiryMessage;
 import lotto.io.Output;
@@ -33,8 +34,16 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printLotto(List<String> lottoNumbers) {
+    public void printLotto(Lotto lotto) {
 
+        String[] intToStr = lotto.getNumbers().stream().map(String::valueOf)
+                        .toArray(String[]::new);
+
+        String printLotto = String.join(", ", intToStr);
+
+        System.out.print("[");
+        System.out.print(printLotto);
+        System.out.println("]");
     }
 
     @Override
