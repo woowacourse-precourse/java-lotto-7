@@ -19,6 +19,23 @@ public class ProfitReport {
         this.winningNumbers = winningNumbers;
     }
 
+    public long calculateProfit() {
+        List<Prize> collect = purchasedLottos.stream()
+                .map(lotto -> {
+                    int matchCount = (int) winningNumbers.getWinningNumbers().stream()
+                            .filter(lotto::contains).count();
+                    boolean matchBonus = lotto.contains(winningNumbers.getBonusNumber());
+                    return Prize.findPrize(matchCount, matchBonus);
+                }).toList();
+
+        long profit = collect.stream()
+                .map(prize -> (long) prize.getPrizeMoney())
+                .reduce(Long::sum)
+                .orElse(0L);
+
+        return profit;
+    }
+
     public int getPaymentAmount() {
         return purchasedLottos.size() * LottoConfiguration.LOTTO_PRICE.getValue();
     }
