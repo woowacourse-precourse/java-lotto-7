@@ -308,5 +308,15 @@ public class AdditionalApplicationTest {
         assertThat(winningResult.get(WinningRank.FAIL)).isEqualTo(3);
     }
 
+    @Test
+    void 수익률을_구한다() {
+        int earnings = 5000;
+        int expense = 8000;
+
+        double earningsRate = Application.calculateEarningsRate(earnings, expense);
+
+        assertThat(earningsRate).isEqualTo(62.5);
+    }
+
 
 }

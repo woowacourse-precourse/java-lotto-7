@@ -18,6 +18,9 @@ public class Application {
 
         Map<WinningRank, Integer> winningResult = drawLottos(lottos, winningNumbers, bonusNumber);
         printWinningRanks(winningResult);
+
+        double earningsRate = getEarningsRate(winningResult, lottoAmount * 1000);
+        printEarningsRate(earningsRate);
     }
 
     private static int purchaseLottos() {
@@ -101,6 +104,25 @@ public class Application {
                     , winningResult.get(winningRank)
             ));
         }
+    }
+
+    private static void printEarningsRate(double earningsRate) {
+        System.out.println(String.format(
+                "총 수익률은 %.1f%%입니다."
+                , Math.round(earningsRate * 10) / 10.0
+        ));
+    }
+
+    public static double getEarningsRate(Map<WinningRank, Integer> winningResult, int expense) {
+        int earnings = 0;
+        for (WinningRank winningRank : WinningRank.findWinningRanksInDescendingOrder()) {
+            earnings += winningRank.getPrice() * winningResult.get(winningRank);
+        }
+        return calculateEarningsRate(earnings, expense);
+    }
+
+    public static double calculateEarningsRate(int earnings, int expense) {
+        return ((double) earnings) / expense * 100;
     }
 
     private static Map<WinningRank, Integer> initializeWinningResult() {
