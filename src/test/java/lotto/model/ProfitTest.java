@@ -19,7 +19,7 @@ public class ProfitTest {
         long purchaseAmount = 210_000;
         Profit profit = new Profit(lottoResult, purchaseAmount);
 
-        assertThat(purchaseAmount / profit.getProfitRate())
-                .isEqualTo(1_610_000);
+        assertThat(profit.getProfitRate() * purchaseAmount)
+                .isEqualTo(161_000_000);
     }
 }

@@ -12,7 +12,7 @@ public class Profit {
     }
 
     public double getProfitRate() {
-        return (double) purchaseAmount / profit;
+        return profit * 100 / (double) purchaseAmount;
     }
 
     private long calculateProfit(Map<Rank, Integer> lottoResult) {
