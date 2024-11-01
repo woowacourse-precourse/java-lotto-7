@@ -6,6 +6,7 @@ import static lotto.constant.message.ErrorMessage.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.domain.Lotto;
 
 public class Parser {
 
@@ -25,6 +26,15 @@ public class Parser {
         return parsedInputs;
     }
 
+    public static List<String> formatLottoTickets(List<Lotto> lottoTickets, String joiner) {
+        List<String> formattedLottoTickets = new ArrayList<>();
+        for (Lotto lottoTicket : lottoTickets) {
+            String formattedLottoTicket = formatLottoTicket(lottoTicket, joiner);
+            formattedLottoTickets.add(formattedLottoTicket);
+        }
+        return formattedLottoTickets;
+    }
+
     private static String trimWhitespace(String input) {
         return input.trim();
     }
@@ -40,5 +50,10 @@ public class Parser {
     private static List<String> separateBySeparator(String inputs) {
         String[] separatedInputs = inputs.split(PLURAL_INPUT_SEPARATOR.getStringValue());
         return Arrays.asList(separatedInputs);
+    }
+
+    private static String formatLottoTicket(Lotto lottoTicket, String joiner) {
+        String joinedNumbers = String.join(joiner, lottoTicket.getStringNumbers());
+        return "[" + joinedNumbers + "]";
     }
 }
