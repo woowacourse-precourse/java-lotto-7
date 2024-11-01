@@ -11,7 +11,6 @@ public enum ExceptionMessage {
     INVALID_LOTTO_SIZE("로또 번호는 6개여야 합니다."),
     INVALID_BONUS_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
-    private static final String ERROR_FORMAT = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {
@@ -19,6 +18,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return ERROR_FORMAT + message;
+        return message;
     }
 }
