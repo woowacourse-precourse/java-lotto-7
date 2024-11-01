@@ -13,6 +13,7 @@ public class LottoController {
     private int getAttemptCount() {
         OutputView.printPurchaseAmountInputMessage();
         String purchaseAmount = InputView.UserInput();
-
+        PurchaseAmountValidation.validate(purchaseAmount);
+        return 0;
     }
 }
