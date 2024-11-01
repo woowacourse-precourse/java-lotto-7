@@ -5,40 +5,39 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.PrizeTier;
-import lotto.util.LottoTicketFactory;
-import lotto.util.PrizeCalculator;
+import lotto.util.LottoTicketGenerator;
 
 public class LottoService {
 
-    private final LottoTicketFactory ticketFactory;
+    private final LottoTicketGenerator ticketGenerator;
     private final PrizeCalculator prizeCalculator;
-    private List<Lotto> purchasedTickets;
-    private Lotto winningLotto;
+    private List<Lotto> lottoTickets;
+    private Lotto winningTicket;
 
-    public LottoService(LottoTicketFactory ticketFactory, PrizeCalculator prizeCalculator) {
-        this.ticketFactory = ticketFactory;
+    public LottoService(LottoTicketGenerator ticketGenerator, PrizeCalculator prizeCalculator) {
+        this.ticketGenerator = ticketGenerator;
         this.prizeCalculator = prizeCalculator;
     }
 
     public void generateLottoTickets(int purchaseAmount) {
-        this.purchasedTickets = ticketFactory.createTickets(purchaseAmount);
+        this.lottoTickets = ticketGenerator.createTickets(purchaseAmount);
     }
 
-    public List<Lotto> getPurchasedTickets() {
-        return purchasedTickets;
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningLotto = new Lotto(winningNumbers);
+        this.winningTicket = new Lotto(winningNumbers);
         this.prizeCalculator.setBonusNumber(bonusNumber);
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public Lotto getWinningTicket() {
+        return winningTicket;
     }
 
     public List<PrizeTier> calculateResults() {
-        return prizeCalculator.calculateResults(purchasedTickets, winningLotto);
+        return prizeCalculator.calculateResults(lottoTickets, winningTicket);
     }
 
     public double calculateProfitRate(List<PrizeTier> prizeResults, int purchaseAmount) {
@@ -53,5 +52,6 @@ public class LottoService {
                         Integer::sum
                 ));
     }
+
 
 }

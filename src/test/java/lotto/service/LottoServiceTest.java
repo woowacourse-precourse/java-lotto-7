@@ -1,83 +1,89 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constants.LottoConstants;
 import lotto.model.Lotto;
 import lotto.model.PrizeTier;
-import lotto.util.LottoTicketFactory;
-import lotto.util.PrizeCalculator;
+import lotto.util.LottoTicketGenerator;
+import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoServiceTest {
 
     private LottoService lottoService;
+    private static final int TICKET_PRICE = LottoConstants.LOTTO_PRICE;
+    private static final List<Integer> WINNING_NUMBERS = List.of(1, 2, 3, 4, 5, 6);
+    private static final int BONUS_NUMBER = 7;
 
     @BeforeEach
     void setUp() {
-        LottoTicketFactory ticketFactory = new LottoTicketFactory();
+        LottoTicketGenerator ticketFactory = new LottoTicketGenerator();
         PrizeCalculator prizeCalculator = new PrizeCalculator();
         lottoService = new LottoService(ticketFactory, prizeCalculator);
     }
 
     @Test
+    @DisplayName("구매 금액에 따른 올바른 로또 티켓 개수 생성")
     void generateLottoTickets_ShouldGenerateCorrectNumberOfTickets() {
-        // 주어진 금액에 따라 생성된 티켓 개수가 맞는지 확인
         int purchaseAmount = 5000;
 
-        // 로또 티켓 생성
         lottoService.generateLottoTickets(purchaseAmount);
-        List<Lotto> purchasedTickets = lottoService.getPurchasedTickets();
+        List<Lotto> purchasedTickets = lottoService.getLottoTickets();
 
-        // 티켓 개수와 각 티켓 번호의 개수 확인
-        assertThat(purchasedTickets).hasSize(5);
+        assertThat(purchasedTickets).hasSize(purchaseAmount / TICKET_PRICE);
         for (Lotto ticket : purchasedTickets) {
             assertThat(ticket.getNumbers()).hasSize(6);
         }
     }
 
     @Test
+    @DisplayName("당첨 번호와 보너스 번호 설정 확인")
     void setWinningNumbers_ShouldStoreWinningNumbersAndBonus() {
-        // 당첨 번호와 보너스 번호가 설정되는지 확인
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
+        Lotto winningLotto = lottoService.getWinningTicket();
 
-        // 당첨 번호 설정
-        lottoService.setWinningNumbers(winningNumbers, bonusNumber);
-        Lotto winningLotto = lottoService.getWinningLotto();
-
-        // 당첨 번호가 정확히 설정되었는지 확인
-        assertThat(winningLotto.getNumbers()).isEqualTo(winningNumbers);
+        assertThat(winningLotto.getNumbers()).isEqualTo(WINNING_NUMBERS);
     }
 
     @Test
+    @DisplayName("구매한 티켓의 당첨 결과 반환 확인")
     void calculateResults_ShouldReturnPrizeResultsForPurchasedTickets() {
-        // 구매한 티켓에 대해 당첨 결과가 올바른 개수로 반환되는지 확인
         lottoService.generateLottoTickets(2000);
-        lottoService.setWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        List<Lotto> purchasedTickets = lottoService.getPurchasedTickets();
+        lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
+        List<Lotto> purchasedTickets = lottoService.getLottoTickets();
 
-        // 당첨 결과 계산
         List<PrizeTier> prizeResults = lottoService.calculateResults();
 
-        // 당첨 결과 크기가 티켓 개수와 동일한지 확인
         assertThat(prizeResults).hasSize(purchasedTickets.size());
     }
 
     @Test
+    @DisplayName("올바른 수익률 계산 확인")
     void calculateProfitRate_ShouldReturnCorrectProfitRate() {
-        // 수익률 계산이 정상적으로 동작하는지 확인
         lottoService.generateLottoTickets(2000);
-        lottoService.setWinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        lottoService.setWinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
         List<PrizeTier> prizeResults = lottoService.calculateResults();
         int purchaseAmount = 2000;
 
-        // 수익률 계산
         double profitRate = lottoService.calculateProfitRate(prizeResults, purchaseAmount);
 
-        // 수익률이 0 이상인지 확인
         assertThat(profitRate).isGreaterThanOrEqualTo(0);
+    }
+
+
+    @Test
+    @DisplayName("중복된 당첨 번호 설정 시 예외 발생")
+    void setWinningNumbers_ShouldThrowException_WhenDuplicateWinningNumbers() {
+        List<Integer> duplicateWinningNumbers = List.of(1, 2, 3, 4, 5, 5); // 중복 번호 포함
+
+        assertThatThrownBy(() -> lottoService.setWinningNumbers(duplicateWinningNumbers, BONUS_NUMBER))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUMBER_DUPLICATE_INVALID.getMessage());
     }
 
 }
