@@ -12,5 +12,6 @@ public class LotteryController {
     public void startLottery() {
         lotteryService.getPurchaseAmount();
         lotteryService.getLottoWinningNumber();
+        lotteryService.getLottoBonusNumber();
     }
 }

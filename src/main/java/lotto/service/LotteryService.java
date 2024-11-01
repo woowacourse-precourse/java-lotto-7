@@ -30,7 +30,11 @@ public class LotteryService {
     }
 
     public void getLottoWinningNumber() {
-        String LottoWinningNumbers = Console.readLine();
+        String lottoWinningNumbers = Console.readLine();
+    }
+
+    public void getLottoBonusNumber() {
+        int lottoBonusNumber = Integer.parseInt(Console.readLine());
     }
 
     private void issueLottoTickets(final int lottoIssueNumber) {
