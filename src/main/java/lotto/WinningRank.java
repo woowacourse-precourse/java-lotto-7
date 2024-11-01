@@ -59,7 +59,7 @@ public enum WinningRank {
         successMatch = 0;
     }
 
-    public static WinningRank of(int requiredMatch, boolean hasBonus) {
+    public static WinningRank match(int requiredMatch, boolean hasBonus) {
         if (requiredMatch == 5 && hasBonus) {
             increase(WinningRank.SECOND);
             return WinningRank.SECOND;
