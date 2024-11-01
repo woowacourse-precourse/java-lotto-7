@@ -28,4 +28,8 @@ public class LottoNumber {
 			throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하이어야 합니다.");
 		}
 	}
+
+	public static LottoNumber from(int number) {
+		return lottoNumberCache.get(number);
+	}
 }
