@@ -17,8 +17,8 @@ public class LottoServiceTest {
     @DisplayName("유효한 금액을 입력하면 올바른 개수의 자동 로또가 생성된다")
     @Test
     void createAutoLottosByCorrectPrice() {
-        int totalLottoPrice = 5000;
-        int autoLottoCount = totalLottoPrice / LottoRules.AUTO_LOTTO_PRICE.getValue();
+        String totalLottoPrice = "5000";
+        int autoLottoCount = Integer.parseInt(totalLottoPrice) / LottoRules.AUTO_LOTTO_PRICE.getValue();
 
         List<AutoLotto> autoLottos = lottoService.createAutoLottosByLottoPrice(totalLottoPrice);
 
@@ -34,7 +34,7 @@ public class LottoServiceTest {
     @DisplayName("로또 구입 금액이 유효하지 않으면 예외가 발생한다 - 나누어떨어지지 않는 경우")
     @Test
     void IsNotDivisibleByLottoPriceThrowException() {
-        int invalidLottoPrice = 1500;
+        String invalidLottoPrice = "1500";
 
         assertThatThrownBy(() -> lottoService.createAutoLottosByLottoPrice(invalidLottoPrice))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -45,7 +45,7 @@ public class LottoServiceTest {
     @DisplayName("로또 구입 금액이 유효하지 않으면 예외가 발생한다 - 나누어떨어지지 않는 경우")
     @Test
     void LottoPriceIsZeroThrowException() {
-        int invalidLottoPrice = 0;
+        String invalidLottoPrice = "0";
 
         assertThatThrownBy(() -> lottoService.createAutoLottosByLottoPrice(invalidLottoPrice))
                 .isInstanceOf(IllegalArgumentException.class)
