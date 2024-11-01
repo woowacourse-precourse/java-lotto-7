@@ -2,7 +2,6 @@ package lotto;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,41 +9,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CommitteeTest {
     @Test
-    void 당첨_번호가_6개가_아니면_예외가_발생한다() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-        int bonusNumber = 45;
-
-        assertThatThrownBy(() -> new Committee(winningNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-
-        winningNumbers.add(6);
-        winningNumbers.add(7);
-
-        assertThatThrownBy(() -> new Committee(winningNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 5));
-        int bonusNumber = 45;
-
-        assertThatThrownBy(() -> new Committee(winningNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 당첨_번호가_1부터_45사이가_아니면_예외가_발생한다() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 46));
-        int bonusNumber = 45;
-
-        assertThatThrownBy(() -> new Committee(winningNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
 
         assertThatThrownBy(() -> new Committee(winningNumbers, bonusNumber))
@@ -53,7 +19,7 @@ public class CommitteeTest {
 
     @Test
     void 보너스_번호가_1부터_45사이가_아니면_예외가_발생한다() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 46;
 
         assertThatThrownBy(() -> new Committee(winningNumbers, bonusNumber))
@@ -62,7 +28,7 @@ public class CommitteeTest {
 
     @Test
     void 당첨_번호와_보너스_번호가_중복되지_않으면_정상적으로_생성된다() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         new Committee(winningNumbers, bonusNumber);
@@ -70,7 +36,7 @@ public class CommitteeTest {
 
     @Test
     void 사용자_로또_결과_체크기능_확인() {
-        ArrayList<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         Committee committee = new Committee(winningNumbers, bonusNumber);
         User user = new User(1000);

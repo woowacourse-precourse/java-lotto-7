@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -39,7 +40,7 @@ public class Application {
             String input = Console.readLine();
             String[] numbers = input.split(",");
 
-            ArrayList<Integer> winningNumbers = getWinningNumbers(numbers);
+            Lotto winningNumbers = getWinningNumbers(numbers);
 
             return inputBonusNumber(winningNumbers);
         } catch (NoSuchElementException e) {
@@ -50,7 +51,7 @@ public class Application {
         }
     }
 
-    private static Committee inputBonusNumber(ArrayList<Integer> winningNumbers) {
+    private static Committee inputBonusNumber(Lotto winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         int bonusNumber = validateStringToNumber(input);
@@ -76,12 +77,12 @@ public class Application {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
     }
 
-    private static ArrayList<Integer> getWinningNumbers(String[] numbers) {
-        ArrayList<Integer> winningNumbers = new ArrayList<>();
+    private static Lotto getWinningNumbers(String[] numbers) {
+        List<Integer> winningNumbers = new ArrayList<>();
         for (String number : numbers) {
-            winningNumbers.add(validateStringToNumber(number.trim()));
+            winningNumbers.add(validateStringToNumber(number));
         }
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
     private static int validateStringToNumber(String number) {
