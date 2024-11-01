@@ -16,14 +16,14 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 구입금액은 양수로 입력해 주세요.");
         }
 
-        int userPrice = Integer.parseInt(inputPrice);
+        long userPrice = Integer.parseInt(inputPrice);
         if (userPrice % lottoPrice != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 " + lottoPrice + "단위로 입력해 주세요.");
         }
         System.out.println();
 
 
-        int purchasedLottoCount = userPrice / lottoPrice;
+        long purchasedLottoCount = userPrice / lottoPrice;
         System.out.println(purchasedLottoCount + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchasedLottoCount; i++) {
@@ -101,8 +101,9 @@ public class Application {
         System.out.println(LottoResult.THIRD_PRIZE.getDescription() + " - " + lottoResultCounts[3] + "개");
         System.out.println(LottoResult.SECOND_PRIZE.getDescription() + " - " + lottoResultCounts[2] + "개");
         System.out.println(LottoResult.FIRST_PRIZE.getDescription() + " - " + lottoResultCounts[1] + "개");
-        System.out.println();
 
+        double yield = (double) profit / userPrice * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", yield) + "%입니다.");
     }
 
     private static boolean isNumeric(String inputPrice) {
