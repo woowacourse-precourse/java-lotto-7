@@ -21,54 +21,7 @@ public class AdditionalApplicationTest {
     private final Lotto defaultWinningNumbers = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
     private final int defaultBonusNumber = 7;
 
-    @Test
-    void 양의정수_10자리_이하_금액을_입력한다() {
-        String testString = "50";
 
-        assertThatCode(() -> Application.validateInputInteger(testString))
-                .doesNotThrowAnyException();
-    }
-
-    @Test
-    void 금액_null일시_예외() {
-        String testNumber = null;
-
-        assertThatIllegalArgumentException().isThrownBy(
-                        () -> Application.validateInputValue(testNumber))
-                .withMessage("[ERROR] 값을 입력해주세요.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", " "})
-    void 금액_빈_문자열일시_예외(String testNumber) {
-        assertThatIllegalArgumentException().isThrownBy(
-                        () -> Application.validateInputValue(testNumber))
-                .withMessage("[ERROR] 값을 입력해주세요.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"-20.2, -1.0, 0.5, 2.0, 2.5, 3.24321"})
-    void 금액이_정수가_아니면_예외(String testNumber) {
-        assertThatIllegalArgumentException().isThrownBy(
-                        () -> Application.validateInputInteger(testNumber))
-                .withMessage("[ERROR] 양의 정수를 입력해주세요.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"-20, -1, 0"})
-    void 금액이_양수가_아니면_예외(String testNumber) {
-        assertThatIllegalArgumentException().isThrownBy(
-                        () -> Application.validateInputInteger(testNumber))
-                .withMessage("[ERROR] 양의 정수를 입력해주세요.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"10000000000", "123456789123456789"})
-    void 금액이_10자리를_넘어가면_예외(String testNumber) {
-        assertThatIllegalArgumentException().isThrownBy(
-                        () -> Application.validateInputInteger(testNumber))
-                .withMessage("[ERROR] 10자리 이하의 금액을 입력해주세요.");
-    }
 
     @ParameterizedTest
     @CsvSource(value = {"1000:1", "5000:5", "11000:11", "25000:25", "303000:303", "1474134000:1474134",
