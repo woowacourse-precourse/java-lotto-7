@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-import static lotto.Lotto.NUMBER_COUNT;
+import static lotto.domain.Lotto.NUMBER_COUNT;
 import static lotto.exception.ExceptionCode.DUPLICATED_NUMBER;
 import static lotto.exception.ExceptionCode.INCORRECT_NUMBER_COUNTS;
 
