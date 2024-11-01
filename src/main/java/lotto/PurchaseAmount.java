@@ -4,8 +4,8 @@ import static lotto.constant.ErrorMessage.LESS_THAN_THOUSAND_PURCHASE_AMOUNT;
 import static lotto.constant.ErrorMessage.NOT_PURCHASE_AMOUNT_FORMAT;
 
 public class PurchaseAmount {
-    private final int PURCHASE_AMOUNT_UNIT = 1000;
-    private final int PURCHASE_AMOUNT_REMAIN = 0;
+    private static final int PURCHASE_AMOUNT_UNIT = 1000;
+    private static final int PURCHASE_AMOUNT_REMAIN = 0;
     private final int purchaseAmount;
 
     public PurchaseAmount(int purchasePrice) {

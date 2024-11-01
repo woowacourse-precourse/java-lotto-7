@@ -7,7 +7,7 @@ import java.util.List;
 import lotto.util.DuplicateWinningNumberException;
 
 public class Lotto {
-    private final int WINNING_NUMBERS_SIZE = 6;
+    private static final int WINNING_NUMBERS_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

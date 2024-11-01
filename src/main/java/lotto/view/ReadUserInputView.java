@@ -3,12 +3,17 @@ package lotto.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.constant.ExtraText.WINNING_NUMBER_SEPARATOR;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.util.UserInputValidator;
 
 public class ReadUserInputView {
-    private UserInputValidator validator;
     private static final int START_INDEX = 0;
     private static final int WINNING_NUMBERS_SIZE = 6;
+    private final String SPACE = " ";
+    private final String BLANK = "";
+
+    private final UserInputValidator validator;
 
     public ReadUserInputView(UserInputValidator validator) {
         this.validator = validator;
@@ -16,16 +21,18 @@ public class ReadUserInputView {
 
     public int readPurchaseAmount() {
         String userInput = readLine();
+        //System.out.println(userInput);
         validator.isValidPurchaseAmount(userInput);
         return Integer.parseInt(userInput);
     }
 
-    public int[] readWinningNumbers() {
-        String[] userInput = readLine().split(WINNING_NUMBER_SEPARATOR.getText());
+    public List<Integer> readWinningNumbers() {
+        String userInput = readLine();
         validator.isValidWinningNumbers(userInput);
-        int[] winningNumbers = new int[WINNING_NUMBERS_SIZE];
+        String[] split = userInput.split(WINNING_NUMBER_SEPARATOR.getText());
+        List<Integer> winningNumbers = new ArrayList<>();
         for (int i = START_INDEX; i < WINNING_NUMBERS_SIZE; i++) {
-            winningNumbers[i] = Integer.parseInt(userInput[i]);
+            winningNumbers.add(Integer.parseInt(split[i]));
         }
         return winningNumbers;
     }

@@ -3,7 +3,7 @@ package lotto;
 import lotto.util.DuplicateBonusNumberException;
 
 public class BonusNumber {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
