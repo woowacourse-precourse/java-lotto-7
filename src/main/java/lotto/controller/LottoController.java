@@ -1,17 +1,20 @@
 package lotto.controller;
 
 import lotto.model.*;
-import lotto.utils;
+import lotto.Utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
     private static final int PERCENTAGE = 100;
-    private static final List<Lotto> lottos = new ArrayList<>();
+    private static final List<Lotto> tickets = new ArrayList<>();
     private static final RandomLotto randomLotto = new RandomLotto();
 
     private List<Integer> numbers;
@@ -28,71 +31,62 @@ public class LottoController {
     }
 
     private void start() {
-        // Amount 설정
-        int amount = inputAmount();
+        int amount = getTicketCount();
+        generateTickets(amount);
+        Lotto winningNumber = getWinNumbers();
+        int bonusNumber = getBonusNum();
 
-        // 갯수만큼의 랜덤 복권 생성
-        setLottoNumbers(amount);
-
-        // WinningNumbers 입력
-        Lotto winningNumbers = inputWinningNum();
-
-        // BonusNumber 입력
-        int bonusNumber = inputBonusNumber();
-
-        LottoMatcher lottoMatcher = new LottoMatcher(winningNumbers, bonusNumber);
-
-        // LottoGame 시작
-        gameStart(lottos, lottoMatcher, amount);
+        LottoMatcher winningNumbers = new LottoMatcher(winningNumber, bonusNumber);
+        startGame(winningNumbers, amount);
     }
 
-    private int inputAmount() {
+    private int getTicketCount() {
         try {
             LottoAmount lottoAmount = new LottoAmount(InputView.inputAmount());
             OutputView.printAmount(lottoAmount.getAmount());
             return lottoAmount.getAmount();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputAmount();
+            return getTicketCount();
         }
     }
 
-    private void setLottoNumbers(int amount) {
+    private void generateTickets(int amount) {
         for (int i = 0; i < amount; i++) {
-            numbers = randomLotto.setRandNumbers();
+            numbers = randomLotto.getRandNumbers();
             Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
+            tickets.add(lotto);
             OutputView.printLottoNumber(lotto);
         }
     }
 
-    private Lotto inputWinningNum() {
+    private Lotto getWinNumbers() {
         try {
-            String str = InputView.inputWinningNum();
-            numbers = utils.StringToList(str);
+            String input = InputView.inputWinningNum();
+            numbers = Utils.parseToList(input);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinningNum();
+            return getWinNumbers();
         }
     }
 
-    private int inputBonusNumber() {
+    private int getBonusNum() {
         try {
             BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNum());
             return bonusNumber.getNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return getBonusNum();
         }
     }
 
-    private static void gameStart(List<Lotto> lottos, LottoMatcher playerLotto, int amount) {
-        Map<LottoRank, Integer> result = setResult();
+    private static void startGame(LottoMatcher winningNumbers, int amount) {
+        Map<LottoRank, Integer> result = initResults();
         LottoRank rank;
 
-        for (Lotto lotto : lottos) {
-            rank = playerLotto.determineRank(lotto);
+        for (Lotto lotto : tickets) {
+            rank = winningNumbers.determineRank(lotto);
             result.put(rank, result.get(rank) + 1);
         }
 
@@ -122,7 +116,7 @@ public class LottoController {
         OutputView.printRevenue(revenue);
     }
 
-    private static Map<LottoRank, Integer> setResult() {
+    private static Map<LottoRank, Integer> initResults() {
         Map<LottoRank, Integer> result = new EnumMap<>(LottoRank.class);
         for (LottoRank rank : LottoRank.values()) {
             result.put(rank, 0);
