@@ -7,8 +7,8 @@ public class PurchaseAmount {
     private final int purchaseAmount;
 
     public PurchaseAmount(String userInput) {
-        int purchaseAmount = validRange(userInput);
-        validDivisible(purchaseAmount);
+        int purchaseAmount = validateRange(userInput);
+        validateDivisible(purchaseAmount);
 
         this.purchaseAmount = purchaseAmount;
     }
@@ -17,7 +17,7 @@ public class PurchaseAmount {
         return purchaseAmount / 1000;
     }
 
-    private int validRange(String purchaseAmount) {
+    private int validateRange(String purchaseAmount) {
         try {
             int result = Integer.parseInt(purchaseAmount);
 
@@ -30,7 +30,7 @@ public class PurchaseAmount {
         }
     }
 
-    private void validDivisible(int purchaseAmount) {
+    private void validateDivisible(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException(PurchaseAmountErrorMessage.IS_NOT_DIVISIBLE.getMessage());
         }
