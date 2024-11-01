@@ -11,7 +11,6 @@ public class User {
 	private double rateOfReturn;
 
 	public void updateRank(LottoRank rank) {
-		lottoStats.put(rank, lottoStats.get(rank) + 1);
+		lottoStats.put(rank, lottoStats.getOrDefault(rank, 0) + 1);
 	}
-
 }
