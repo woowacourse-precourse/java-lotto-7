@@ -11,6 +11,7 @@ import lotto.util.message.ErrorMessage;
 public class InputParser {
     public int parsePurchaseAmount(String input) {
         try {
+            InputValidator.validateNonEmpty(input);
             int purchaseAmount = Integer.parseInt(input);
             InputValidator.validateNonNegativeAmount(purchaseAmount);
             InputValidator.validateAmountUnit(purchaseAmount);

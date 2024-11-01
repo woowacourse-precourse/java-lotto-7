@@ -28,6 +28,17 @@ public class InputParserTest {
     }
 
     @Test
+    public void 구입_금액으로_빈_문자열이_들어온_경우_예외_발생() {
+        String invalidInput = "";
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> inputParser.parsePurchaseAmount(invalidInput)
+        );
+        assertEquals(ErrorMessage.EMPTY_INPUT_ERROR, exception.getMessage());
+    }
+
+    @Test
     public void 구입_금액으로_문자가_들어온_경우_예외_발생() {
         String invalidInput = "abc";
 
