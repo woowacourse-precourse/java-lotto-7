@@ -1,9 +1,8 @@
-package lotto.domain.ticket;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.util.LottoNumberGenerator;
+import lotto.domain.util.LottoNumberGenerator;
 import lotto.global.common.Rank;
 
 public class Lotteries {
