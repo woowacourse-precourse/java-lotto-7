@@ -1,7 +1,9 @@
 package lotto.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.model.LottoPurchasePrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -39,6 +41,19 @@ class LottoTicketServiceTest {
 
         // when & then
         assertThrows(IllegalArgumentException.class, () -> lottoTicketService.getLottoPurchasePrice(input));
+    }
+
+    @DisplayName("로또 구입금액에 해당하는 만큼의 로또 구매 개수를 계산한다.")
+    @Test
+    void calculateLottoTicketCountByPurchasePrice() {
+        // given
+        LottoPurchasePrice purchaseAmount = new LottoPurchasePrice(5000);
+
+        // when
+        int ticketCount = lottoTicketService.calculateLottoTicketCount(purchaseAmount).ticketCount();
+
+        // then
+        assertEquals(5, ticketCount);
     }
 
 }
