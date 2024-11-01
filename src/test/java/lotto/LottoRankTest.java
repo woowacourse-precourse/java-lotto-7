@@ -11,8 +11,8 @@ class LottoRankTest {
 
     @Test
     void findByCorrectCountAndBonusBall() {
-        assertThat(LottoRank.findByCorrectCountAndBonusBall(1, TRUE)).isEqualTo(LottoRank.BLANK);
-        assertThat(LottoRank.findByCorrectCountAndBonusBall(2, TRUE)).isEqualTo(LottoRank.BLANK);
+        assertThat(LottoRank.findByCorrectCountAndBonusBall(1, TRUE)).isEqualTo(null);
+        assertThat(LottoRank.findByCorrectCountAndBonusBall(2, TRUE)).isEqualTo(null);
         assertThat(LottoRank.findByCorrectCountAndBonusBall(5, TRUE)).isEqualTo(LottoRank.SECOND);
         assertThat(LottoRank.findByCorrectCountAndBonusBall(6, FALSE)).isEqualTo(LottoRank.FIRST);
     }

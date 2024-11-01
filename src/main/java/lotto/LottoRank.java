@@ -1,14 +1,14 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum LottoRank {
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
-    FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    BLANK(2, 0);
+    FOURTH(4, 50_000),
+    THIRD(5, 1_500_000),
+    SECOND(5, 30_000_000),
+    FIRST(6, 2_000_000_000);
 
     private final int correctCount;
     private final int price;
@@ -22,10 +22,10 @@ public enum LottoRank {
         LottoRank rottoRank = Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.correctCount == correctCount)
                 .findAny()
-                .orElse(BLANK);
+                .orElse(null);
 
-        if (rottoRank == THIRD && bonusBall) {
-            return SECOND;
+        if (rottoRank == LottoRank.THIRD && bonusBall) {
+            return LottoRank.SECOND;
         }
         return rottoRank;
     }
@@ -33,7 +33,7 @@ public enum LottoRank {
     public String getCondition() {
         String condition = correctCount + "개 일치";
 
-        if (this == LottoRank.SECOND) {
+        if (this == SECOND) {
             condition += ", 보너스 볼 일치";
         }
         return condition;
