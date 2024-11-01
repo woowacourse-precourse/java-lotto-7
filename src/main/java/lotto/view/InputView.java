@@ -13,6 +13,7 @@ public class InputView {
 
     public int readPurchaseAmount() {
         String input = Console.readLine().replaceAll(" ", "");
+        validateEmptyInput(input);
         validateNumericInput(input);
 
         int purchaseAmount = Integer.parseInt(input);
@@ -41,6 +42,12 @@ public class InputView {
         validateNumberRange(bonusNumber);
 
         return bonusNumber;
+    }
+
+    private void validateEmptyInput(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_INPUT.getMessage());
+        }
     }
 
     private void validateNumericInput(String input) {
