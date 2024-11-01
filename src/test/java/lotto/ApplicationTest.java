@@ -1,13 +1,23 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.domain.Parser;
+import lotto.enums.ErrorMessage;
+import lotto.validation.Validator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static java.awt.SystemColor.text;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +62,37 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "    "})
+    @DisplayName("비어있는 입력값에 대해 예외를 발생시킨다")
+    void isInputBlank(String input) {
+        assertThatThrownBy(() -> {
+            Validator.isBlank(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INPUT_BLANK_ERROR.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"abc", "*", "1+2"})
+    @DisplayName("숫자가 아닌 입력값에 대해 예외를 발생시킨다")
+    void isInputPositiveNumber(String input) {
+        assertThatThrownBy(() -> {
+            Validator.isPositiveNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INPUT_NOT_NUMBER_ERROR.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"100", "1900"})
+    @DisplayName("1000으로 나뉘지 않는 입력값에 대해 예외를 발생시킨다")
+    void isDivisibleByThousand(String input) {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    int parsedInputToInt = Parser.parseStringToInt(input);
+                    Validator.isDivisibleByThousand(parsedInputToInt);
+                }).withMessageMatching("\\[ERROR\\] 1,000 단위로 입력해주세요\\.");
     }
 
     @Override
