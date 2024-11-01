@@ -100,7 +100,7 @@ class LottoMachineImplTest {
     @Test
     void 구입_개수와_당첨_결과_데이터가_주어지면_수익률을_계산한다() {
         //given
-        int purchaseNumber = 8;
+        String purchaseNumber = "8";
         HashMap<LottoRank, Integer> winningResult = new HashMap<>();
         winningResult.put(LottoRank.RANK_1, 0);
         winningResult.put(LottoRank.RANK_2, 0);
