@@ -38,10 +38,10 @@ public class InputView {
         return bonus;
     }
 
-    public static int parseInt(String input) {
+    public static int parseInt(String strNum) {
         int result = 0;
         try{
-            result = Integer.parseInt(input);
+            result = Integer.parseInt(strNum);
         }
         catch(NumberFormatException e){
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
@@ -49,15 +49,15 @@ public class InputView {
         return result;
     }
 
-    public static void checkBonus(int input, Lotto answer){
+    public static void checkBonus(int bonusNumber, Lotto answer){
         if(!(answer.getNumbers().stream()
-                .allMatch(number -> number != input))) {
+                .allMatch(number -> number != bonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE.getError());
         }
     }
 
-    public static void checkRange(int input){
-        if(!(input >= 1 && input <= 45)) {
+    public static void checkRange(int lottoNumber){
+        if(!(lottoNumber >= 1 && lottoNumber <= 45)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE.getError());
         }
     }
