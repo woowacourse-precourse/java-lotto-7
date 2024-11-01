@@ -38,7 +38,7 @@ public class Application {
     public static List<Lotto> issueLottos(int purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            lottos.add(issueOneLotto(pickSortedNumbers()));
+            lottos.add(issueOneLotto(pickAscendingNumbers()));
         }
         return lottos;
     }
@@ -94,8 +94,8 @@ public class Application {
     }
 
     private static void printWinningRanks(Map<WinningRank, Integer> winningResult) {
-        System.out.println("당첨 통계\n---");
-        for (WinningRank winningRank : WinningRank.findWinningRanksInDescendingOrder()) {
+        System.out.println("\n당첨 통계\n---");
+        for (WinningRank winningRank : WinningRank.findWinningRanksInAscendingOrder()) {
             String matchingAmountMessage = WinningRank.findMatchingAmountMessage(winningRank);
             System.out.println(String.format(
                     matchingAmountMessage + "(%s원) - %d개"
@@ -108,7 +108,7 @@ public class Application {
 
     public static int calculateEarnings(Map<WinningRank, Integer> winningResult) {
         int earnings = 0;
-        for (WinningRank winningRank : WinningRank.findWinningRanksInDescendingOrder()) {
+        for (WinningRank winningRank : WinningRank.findWinningRanksInAscendingOrder()) {
             earnings += winningRank.getPrice() * winningResult.get(winningRank);
         }
         return earnings;
@@ -120,7 +120,7 @@ public class Application {
 
     private static void printEarningsRate(double earningsRate) {
         System.out.println(String.format(
-                "총 수익률은 %.1f%%입니다."
+                "\n총 수익률은 %.1f%%입니다."
                 , Math.round(earningsRate * 10) / 10.0
         ));
     }
@@ -147,14 +147,14 @@ public class Application {
     }
 
     private static String inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumberInput = Console.readLine();
         validateInputInteger(bonusNumberInput);
         return bonusNumberInput;
     }
 
     private static String inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningNumbersInput = Console.readLine();
         validateInputValue(winningNumbersInput);
         return winningNumbersInput;
@@ -177,7 +177,7 @@ public class Application {
     }
 
     private static String inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println("\n구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         validateInputInteger(purchaseAmount);
         return purchaseAmount;
@@ -208,7 +208,7 @@ public class Application {
         return purchaseAmount / 1000;
     }
 
-    public static List<Integer> pickSortedNumbers() {
+    public static List<Integer> pickAscendingNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6)
                 .stream()
                 .sorted() // 오름차순 정렬

@@ -89,7 +89,7 @@ public class AdditionalApplicationTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 4})
     void 숫자를_뽑을_때_오름차순으로_정렬한다(int lottoNumbersIndex) {
-        List<Integer> testNumbers = Application.pickSortedNumbers();
+        List<Integer> testNumbers = Application.pickAscendingNumbers();
 
         assertThat(testNumbers.get(lottoNumbersIndex)).isLessThan(testNumbers.get(lottoNumbersIndex + 1));
     }

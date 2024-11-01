@@ -43,15 +43,15 @@ public enum WinningRank {
         return winningRank;
     }
 
-    public static List<WinningRank> findWinningRanksInDescendingOrder() {
+    public static List<WinningRank> findWinningRanksInAscendingOrder() {
         List<WinningRank> winningRanks = new ArrayList<>(List.of(WinningRank.values()));
         winningRanks.remove(WinningRank.FAIL);
-        winningRanks.sort(Comparator.comparingInt(WinningRank::getRank));
+        winningRanks.sort(Comparator.comparingInt(WinningRank::getRank).reversed());
         return winningRanks;
     }
 
     public static String findMatchingAmountMessage(WinningRank winningRank) {
-        if (winningRank == WinningRank.FIFTH) {
+        if (winningRank == WinningRank.SECOND) {
             return "%d개 일치, 보너스 볼 일치 ";
         }
         return "%d개 일치 ";
