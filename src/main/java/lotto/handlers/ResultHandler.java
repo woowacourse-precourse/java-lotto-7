@@ -31,7 +31,7 @@ public class ResultHandler {
     public void printResults(LottoHandler lottoHandler) {
         lottoHandler.findMatches(this.winningNumbers, this.bonusNumber, this.lottoResults);
         long totalRewards = this.lottoResults.calculateRewards();
-        double profit = (double) this.purchaseAmount / totalRewards;
+        double profit = (double) totalRewards / this.purchaseAmount * 100;
         double roundedProfit = Decimals.round(profit, 1);
 
         outputView.printLottoResults(this.lottoResults);
