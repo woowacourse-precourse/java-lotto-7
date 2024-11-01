@@ -7,7 +7,6 @@ import lotto.domain.LottoIssuer;
 import lotto.domain.Lottos;
 import lotto.domain.generator.LottoNumberGenerator;
 import lotto.domain.generator.RandomLottoNumberGenerator;
-import lotto.util.ParseUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,18 +23,18 @@ public class LottoController {
     }
 
     public void start() {
-        int purchaseAmount = inputPurchaseAmount();
+        String purchaseAmount = inputPurchaseAmount();
         Lottos lottos = issueLottos(purchaseAmount);
         printLottos(lottos);
 
         Console.close();
     }
 
-    private int inputPurchaseAmount() {
-        return ParseUtil.parseInt(inputView.inputPurchaseAmount());
+    private String inputPurchaseAmount() {
+        return inputView.inputPurchaseAmount();
     }
 
-    private Lottos issueLottos(int purchaseAmount) {
+    private Lottos issueLottos(String purchaseAmount) {
         return LottoIssuer.issue(purchaseAmount, lottoNumberGenerator);
     }
 
