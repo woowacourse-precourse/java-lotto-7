@@ -43,11 +43,11 @@ public class InputView {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 
-        Lotto winningLotto = new Lotto(winningNumbers); // 당첨 번호로 Lotto 객체 생성
+        Lotto winningLotto = new Lotto(winningNumbers);
         if (winningLotto.hasBonusNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
-
+        System.out.println();
         return bonusNumber;
     }
 }

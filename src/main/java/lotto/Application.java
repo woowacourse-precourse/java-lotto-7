@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.model.Lotto;
 import lotto.controller.LottoMachine;
+import lotto.model.Win;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,6 +20,9 @@ public class Application {
 
         List<Integer> winningNumbers = InputView.WinningNumbers();
         int bonusNumber = InputView.BonusNumber(winningNumbers);
+
+        Win win = new Win(purchasedLottos, winningNumbers, bonusNumber);
+        OutputView.printWinningStatistics(win, purchaseAmount);
 
     }
 }
