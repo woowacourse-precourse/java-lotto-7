@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -8,7 +9,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateRange(numbers);
         this.numbers = numbers;
     }
 
@@ -17,20 +17,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
     // TODO: 추가 기능 구현
-    private void validateRange(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 0 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 부터 45 사이 입니다.");
-            }
-        }
-    }
 
     @Override
     public String toString() {
         return numbers.toString();
     }
-
-
 
 }
