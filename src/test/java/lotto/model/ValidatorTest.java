@@ -103,4 +103,16 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("보너스 번호 유효성 검사 - 성공 테스트")
+    void validateBonusNumber_success() {
+        // given
+        List<Integer> winningTicket = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Integer bonusNumber = 7;
+
+        // when & then
+        assertThatCode(() -> Validator.validateBonusNumber(winningTicket, bonusNumber))
+                .doesNotThrowAnyException();
+    }
 }
