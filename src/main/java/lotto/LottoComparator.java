@@ -28,6 +28,10 @@ public class LottoComparator {
         }
     }
 
+    public Double calculateProfit(){
+        return (double) ((totalPrize / (customerTickets.size() * 1000)) * 100);
+    }
+
     public int getMatchCount(List<Integer> customerNumbers, List<Integer> winningNumbers){
         int count = 0;
         for (int i = 0; i < winningNumbers.size(); i++) {
