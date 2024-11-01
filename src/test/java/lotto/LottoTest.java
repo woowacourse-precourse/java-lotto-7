@@ -1,12 +1,13 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.ArrayList;
+import java.util.List;
 import lotto.domain.lottos.Lotto;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
@@ -22,5 +23,31 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호_개수_미달_예외_처리() {
+        List<Integer> result = new ArrayList<>(List.of(
+                1, 2, 3, 4, 5
+        ));
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(result))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호_개수_초과_예외_처리() {
+        List<Integer> result = new ArrayList<>(List.of(
+                1, 2, 3, 4, 5, 6, 7, 8
+        ));
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(result))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호_범위_예외_처리() {
+        List<Integer> result = new ArrayList<>(List.of(
+                48, 1, 2, 3, 4, 5
+        ));
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(result))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    
 }
