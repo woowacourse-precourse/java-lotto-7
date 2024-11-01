@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.FieldSource;
 
@@ -22,5 +23,13 @@ class MoneyTest {
     }
 
     static final List<BigInteger> invalidAmounts = Arrays.asList(null, BigInteger.ZERO, BigInteger.valueOf(-1));
+
+    @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void amountShouldBeDividedBy1000() {
+        assertThatThrownBy(() -> new Money(BigInteger.valueOf(1100)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+    }
 
 }
