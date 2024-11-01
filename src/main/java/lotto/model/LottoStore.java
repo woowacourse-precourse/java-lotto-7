@@ -9,9 +9,9 @@ import lotto.util.Validator;
 
 public class LottoStore {
 
-    private static final int MAX_BUY_PRICE = 100_000;
+    public static final int MAX_BUY_PRICE = 100_000;
 
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     public static final int LOTTO_NUMBER_MINIMUM = 1;
 
