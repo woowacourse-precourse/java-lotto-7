@@ -58,13 +58,15 @@ public class LottoController {
 
         saveHitLotto(hitLottoInput, bonusNumberInput);
 
-        HitLotto hitLotto = getInstance(null,0);
+        HitLottoDAO hitLottoDAO = new HitLottoDAO();
+        HitLottoDTO dto = hitLottoDAO.getAsDTO();
 
-        retainLotto(allLottos, hitLotto.getAllHitNumbers());
+        retainLotto(allLottos, dto.getAllHitNumbers());
 
         StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();
-        System.out.println(stats.getHitNumberFrequency());
-
+        for (int i=3;i<=6;i++){
+            outputView.statisticEnd(i,stats);
+        }
 
     }
 
@@ -88,6 +90,7 @@ public class LottoController {
 
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         getInstance(hitNumbers,bonusNumber);
+
 
     }
 
