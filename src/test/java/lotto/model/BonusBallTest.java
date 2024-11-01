@@ -14,4 +14,12 @@ class BonusBallTest {
         assertThatThrownBy(() ->  BonusBall.of(6, new WinningBalls(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("숫자가 1 ~ 45 가 아닐 시 예외 반환한다")
+    @Test
+    void test2() {
+        WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> BonusBall.of(1000, winningBalls))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
