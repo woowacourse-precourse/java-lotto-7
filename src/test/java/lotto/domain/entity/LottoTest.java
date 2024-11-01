@@ -23,19 +23,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
             .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    @DisplayName("로또 번호들을 자동으로 생성할 수 있다.")
-    void lottoNumbersShouldGenerateItself() {
-        Lotto lotto = Lotto.createAutoNumbers();
-        String lottoString = lotto.toString();
-        assertThat(lottoString)
-            .startsWith("[")
-            .endsWith("]")
-            .contains(", ")
-            .matches("\\[\\d+(?:,\\s\\d+){5}\\]");
-    }
-
+    
     @Test
     @DisplayName("로또 번호는 자동으로 오름차순 정렬된다")
     void lottoNumbersShouldBeSortedItself() {

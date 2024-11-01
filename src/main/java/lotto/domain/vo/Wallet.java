@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.factory.LottoFactory;
 
 /**
  * 구매한 로또들과 구매 금액을 관리하는 불변 객체(VO)입니다.
@@ -32,7 +33,7 @@ public record Wallet(PurchaseAmount amount, List<Lotto> lottos) {
     }
 
     private static List<Lotto> purchaseLotto(PurchaseAmount amount) {
-        return Stream.generate(Lotto::createAutoNumbers)
+        return Stream.generate(LottoFactory::createAutoLotto)
             .limit(amount.calculateRemainder())
             .toList();
     }

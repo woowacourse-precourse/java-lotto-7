@@ -2,6 +2,8 @@ package lotto.domain.validator;
 
 import static lotto.common.exception.ErrorMessages.*;
 
+import java.util.List;
+
 public class NumberFormatValidator implements InputValidator {
     private static final String NUMBER_REGULAR_EXPRESSION = "^[0-9]*$";
     private static final int NUMBER_ONE = 1;
@@ -10,6 +12,10 @@ public class NumberFormatValidator implements InputValidator {
     public void validate(String input) {
         validateNumber(input);
         validatePositive(input);
+    }
+
+    @Override
+    public void validate(List<Integer> numbers) {
     }
 
     public void validateNumber(String input) {

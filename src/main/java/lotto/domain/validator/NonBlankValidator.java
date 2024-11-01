@@ -2,6 +2,8 @@ package lotto.domain.validator;
 
 import static lotto.common.exception.ErrorMessages.BLANK_NOT_ALLOWED;
 
+import java.util.List;
+
 public class NonBlankValidator implements InputValidator {
 
     @Override
@@ -9,6 +11,10 @@ public class NonBlankValidator implements InputValidator {
         validateNull(input);
         String trimmedInput = input.trim();
         validateEmpty(trimmedInput);
+    }
+
+    @Override
+    public void validate(List<Integer> numbers) {
     }
 
     private void validateNull(String input) {

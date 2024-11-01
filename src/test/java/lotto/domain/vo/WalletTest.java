@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.factory.LottoFactory;
 
 public class WalletTest {
     @Test
@@ -24,7 +25,7 @@ public class WalletTest {
     @DisplayName("내부의 로또 리스트는 생성 시점에 불변 리스트로 복사되어 저장된다")
     void walletShouldManageLottosImmutably() {
         PurchaseAmount amount = PurchaseAmount.from("10000");
-        Lotto lotto = Lotto.createAutoNumbers();
+        Lotto lotto = LottoFactory.createAutoLotto();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(lotto);
 
