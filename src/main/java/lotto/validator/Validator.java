@@ -5,6 +5,7 @@ import lotto.constant.ErrorConstants;
 public class Validator {
     private final static int ZERO = 0;
     private final static int MINIMUM_PRICE_UNIT = 1000;
+    private final static String SEPARATOR = ",";
     private int price;
     public void validatePrice(String input){
         checkInputIsNotNull(input);
@@ -14,6 +15,10 @@ public class Validator {
 
         checkInputIsNotNegative();
         checkInputIsDivisableByThousand();
+    }
+
+    public void validateWinningNumber(String input){
+
     }
 
     private void checkInputIsNumber(String input){

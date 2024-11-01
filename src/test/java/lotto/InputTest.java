@@ -56,6 +56,15 @@ public class InputTest {
                 validator.validatePrice(input);
             });
         }
+
+        @DisplayName("숫자가 아닌 당첨번호 입력시 예외처리를 한다")
+        @ParameterizedTest()
+        @ValueSource(strings = {"1,2,3,a,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:"})
+        void 숫자가_아닌_당첨번호_예외(String input){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validatePrice(input);
+            });
+        }
     }
 
 }
