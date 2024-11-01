@@ -59,4 +59,8 @@ public class WinningStatistics {
         }
         return totalPrize;
     }
+
+    public double getRateOfReturn(Money money) {
+        return ((double) getTotalPrize() / money.getMoney()) * 100;
+    }
 }
