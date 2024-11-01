@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class WinningNumbers {
@@ -26,6 +27,7 @@ public class WinningNumbers {
             List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
             List<Integer> positiveWinningNumbers = validatePositiveWinningNumbers(delimitedWinningNumbers);
             validateWinningNumbersInRange(positiveWinningNumbers);
+            validateWinningNumbersDuplicate(positiveWinningNumbers);
             return positiveWinningNumbers;
         }
 
@@ -60,6 +62,14 @@ public class WinningNumbers {
 
             if (hasOutOfRangeNumber) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자만 가능합니다.");
+            }
+        }
+
+        private static void validateWinningNumbersDuplicate(List<Integer> positiveWinningNumbers) {
+            int positiveWinningNumbersSize = positiveWinningNumbers.size();
+            int uniqueWinningNumbersCount = new HashSet<>(positiveWinningNumbers).size();
+            if (positiveWinningNumbersSize != uniqueWinningNumbersCount) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
             }
         }
 
