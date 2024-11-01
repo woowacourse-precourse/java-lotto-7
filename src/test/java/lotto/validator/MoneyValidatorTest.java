@@ -42,7 +42,7 @@ public class MoneyValidatorTest {
 
     @VisibleForTesting
     @ParameterizedTest
-    @ValueSource(strings = {"0", "123", "01", "-49183921", "99999999999999999999999999999999999"})
+    @ValueSource(strings = {"0", "123", "01", "-0", "-49183921", "99999999999999999999999999999999999"})
     void 정수면_통과(String input) {
         validator = new MoneyValidator(input);
         validator.validateWholeNumber();
