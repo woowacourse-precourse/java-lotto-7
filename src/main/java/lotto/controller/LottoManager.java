@@ -26,6 +26,9 @@ public class LottoManager {
             lottoNumbers.add(NumberParser.stringToInt(num)); //정수로 변환 후 List로 전달
         }
         Lotto lotto = new Lotto(lottoNumbers); //당첨번호 검사 후 저장
-        
+
+        int bonusNum = NumberParser.stringToInt(inputView.bonusNumber()); //보너스 번호 입력 받기
+        BonusLotto bonusLotto = new BonusLotto(bonusNum); //보너스번호 숫자 범위 검사 후 저장
+        bonusLotto.bonusDuplicate(bonusNum, lotto.getLottoNumbers()); //중복 검사
     }
 }
