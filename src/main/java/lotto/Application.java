@@ -22,6 +22,7 @@ public class Application {
         output.printPurChasedLotto(purChasedLotto);
 
         output.requestWinningNumbers();
+        input.getWinningNumbers();
 
     }
 

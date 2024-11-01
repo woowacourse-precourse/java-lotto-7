@@ -16,11 +16,11 @@
 - [x] 구임 금액 입력
     - [x] 입력 값이 비어있는지 검증
       - [x] 예외인 경우 IllegalArgumentException 발생
-- [ ] 당첨 번호 입력
-    - [ ] 입력 값이 비어있는지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
-    - [ ] 올바른 구분자(,)를 포함하고 있는지 검증
-      - [ ] 예외인 경우 IllegalArgumentException 발생
+- [x] 당첨 번호 입력
+    - [x] 입력 값이 비어있는지 검증
+        - [x] 예외인 경우 IllegalArgumentException 발생
+    - [x] 올바른 구분자(,)를 포함하고 있는지 검증
+      - [x] 예외인 경우 IllegalArgumentException 발생
 - [ ] 보너스 번호 입력
     - [ ] 입력 값이 비어있는지 검증
       - [ ] 예외인 경우 IllegalArgumentException 발생
