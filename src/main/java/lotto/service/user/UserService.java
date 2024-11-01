@@ -7,25 +7,16 @@ import lotto.domain.User;
 public class UserService {
 
     private final MoneyService moneyService;
-    private final LottoGeneratorService lottoGeneratorService;
+    private final LottoService lottoService;
 
-    public UserService(MoneyService moneyService, LottoGeneratorService lottoGeneratorService) {
+    public UserService(MoneyService moneyService, LottoService lottoService) {
         this.moneyService = moneyService;
-        this.lottoGeneratorService = lottoGeneratorService;
+        this.lottoService = lottoService;
     }
-
     public User userProcess(String purchaseAmount) {
-        Money userMoney = userMoney(purchaseAmount);
-        Lottos userLottos = userLottos(userMoney);
+        Money userMoney = moneyService.generateMoney(purchaseAmount);
+        Lottos userLottos = lottoService.generateUserLottos(userMoney);
         return new User(userMoney, userLottos);
-    }
-
-    private Money userMoney(String purchaseAmount) {
-        return moneyService.generateMoney(purchaseAmount);
-    }
-
-    private Lottos userLottos(Money userMoney) {
-        return lottoGeneratorService.generateLottos(userMoney);
     }
 
 }
