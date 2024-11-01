@@ -29,12 +29,12 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
-    public static String readBonus(Lotto answer){
+    public static Integer readBonus(Lotto answer){
         String rawBonus = Console.readLine();
         Integer bonus = parseInt(rawBonus);
         checkBonus(bonus, answer);
         checkRange(bonus);
-        return rawBonus;
+        return bonus;
     }
 
     public static Integer parseInt(String input) {
@@ -43,7 +43,7 @@ public class InputView {
             result = Integer.parseInt(input);
         }
         catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로만 기입해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
         }
         return result;
     }
@@ -51,13 +51,13 @@ public class InputView {
     public static void checkBonus(Integer input, Lotto answer){
         if(!(answer.getNumbers().stream()
                 .allMatch(number -> number != input))) {
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 기존 당첨 번호들과 달라야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE.getError());
         }
     }
 
     public static void checkRange(Integer input){
         if(!(input >= 1 && input <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 정답은 1이상 45이하의 숫자이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE.getError());
         }
     }
 }
