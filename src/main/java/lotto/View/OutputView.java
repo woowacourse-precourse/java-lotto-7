@@ -23,7 +23,6 @@ public class OutputView {
     }
     public static void print_lotto_list(List<Lotto> lottoList) {
         for(int i=0;i<lottoList.size();i++) {
-            Collections.sort(lottoList.get(i).getNumbers());
             System.out.println(lottoList.get(i).getNumbers());
         }
         System.out.println();
