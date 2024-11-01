@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import lotto.model.lotto.generator.LottoGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +12,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = createLottoImmutable(numbers);
+    }
+
+    public static Lotto generateLotto(LottoGenerator generator) {
+        return new Lotto(generator.generateLotto());
     }
 
     public int getMatchCount(Lotto winnerNumbers) {
@@ -21,12 +26,6 @@ public class Lotto {
 
     public boolean hasBonus(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
-    }
-
-    private List<Integer> createLottoImmutable(List<Integer> numbers) {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -44,6 +43,12 @@ public class Lotto {
         if (numbers.stream().distinct().count() < numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다.");
         }
+    }
+
+    private List<Integer> createLottoImmutable(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     @Override

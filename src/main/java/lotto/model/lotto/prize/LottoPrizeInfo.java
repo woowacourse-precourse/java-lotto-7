@@ -22,6 +22,7 @@ public enum LottoPrizeInfo {
         return prizeAmount;
     }
 
+
     public static LottoPrizeInfo getPrizeByMatch(int matchCount, boolean bonusMatch) {
         for (LottoPrizeInfo prize : values()) {
             if (prize.matchCount == matchCount && prize.requiresBonus == bonusMatch) {
