@@ -25,6 +25,7 @@ public class LottoController {
         int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
 
         LottoGame lottoGame = new LottoGame(purchasedLottos, purchaseCost, winningNumbers, bonusNumber);
+        lottoGame.process();
     }
 
     public int inputPurchaseCost() {
