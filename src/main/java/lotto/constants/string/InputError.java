@@ -12,7 +12,8 @@ public enum InputError implements Constants<String> {
     CANNOT_START_OR_END_WITH_DELIMETER("[ERROR] 구분자로 시작하거나 끝날 수 없습니다."),
     NONE_INTEGER_BONUS_NUMBER("[ERROR] 보너스 숫자가 숫자가 아닙니다."),
     BLANK_WINNING_NUMBER("[ERROR] 로또 당첨 번호로 공백을 입력할 수 없습니다"),
-    BLANK_BONUS_NUMBER("[ERROR] 보너스 번호로 공백을 입력할 수 없습니다.");
+    BLANK_BONUS_NUMBER("[ERROR] 보너스 번호로 공백을 입력할 수 없습니다."),
+    NOT_DIVIDABLE_BY_LOTTO_PRICE("[ERROR] 구입 금액이 "+LottoRule.LOTTO_PRICE.getInstance()+"으로 나누어지지 않습니다.");
 
     private final String message;
 

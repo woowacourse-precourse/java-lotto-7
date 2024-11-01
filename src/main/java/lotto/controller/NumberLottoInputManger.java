@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class NumberLottoInputManger implements LottoInputManger{
+public class NumberLottoInputManger implements LottoInputManger {
 
     private final InputView inputView;
 
@@ -36,7 +36,7 @@ public class NumberLottoInputManger implements LottoInputManger{
     @Override
     public BonusComponent getInputBonusComponent(Lotto winningComponent) {
         String inputBonusComponent = inputView.getBonusComponent();
-        return validateInputBonusComponent(winningComponent,inputBonusComponent);
+        return validateInputBonusComponent(winningComponent, inputBonusComponent);
     }
 
 
@@ -45,7 +45,10 @@ public class NumberLottoInputManger implements LottoInputManger{
             throw new IllegalArgumentException(InputError.NONE_INTEGER_INPUT_PRICE.getInstance());
         }
         int inputMoney = Integer.parseInt(inputprice);
-        if( inputMoney < LottoRule.LOTTO_PRICE.getInstance()){
+        if (inputMoney % LottoRule.LOTTO_PRICE.getInstance() != 0) {
+            throw new IllegalArgumentException(InputError.NOT_DIVIDABLE_BY_LOTTO_PRICE.getInstance());
+        }
+        if (inputMoney < LottoRule.LOTTO_PRICE.getInstance()) {
             throw new IllegalArgumentException(InputError.NOT_ENOUGH_INPUT_PRICE.getInstance());
         }
         return inputMoney;
@@ -67,7 +70,7 @@ public class NumberLottoInputManger implements LottoInputManger{
         if (!onlyAllowedNoneInteger) {
             throw new IllegalArgumentException(InputError.NOT_ALLOWED_NONE_INTEGER.getInstance());
         }
-        if(winningNumber.startsWith(Delimiter.DEFAULT.getInstance()) || winningNumber.endsWith(Delimiter.DEFAULT.getInstance())){
+        if (winningNumber.startsWith(Delimiter.DEFAULT.getInstance()) || winningNumber.endsWith(Delimiter.DEFAULT.getInstance())) {
             throw new IllegalArgumentException(InputError.CANNOT_START_OR_END_WITH_DELIMETER.getInstance());
         }
 
@@ -78,22 +81,22 @@ public class NumberLottoInputManger implements LottoInputManger{
     }
 
     private BonusComponent validateInputBonusComponent(Lotto winningComponent, String inputBonusComponent) {
-        if(inputBonusComponent.isBlank()){
+        if (inputBonusComponent.isBlank()) {
             throw new IllegalArgumentException(InputError.BLANK_BONUS_NUMBER.getInstance());
         }
-        if(!isInteger(inputBonusComponent)){
+        if (!isInteger(inputBonusComponent)) {
             throw new IllegalArgumentException(InputError.NONE_INTEGER_BONUS_NUMBER.getInstance());
         }
         ComponentNumber number = new ComponentNumber(Integer.parseInt(inputBonusComponent));
-        return new BonusComponentNumber(winningComponent,number);
+        return new BonusComponentNumber(winningComponent, number);
     }
 
 
-    private  boolean isInteger(String input){
+    private boolean isInteger(String input) {
         try {
             Integer.parseInt(input);
             return true;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
