@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.exception.ErrorMessage.INVALID_LOTTO_COUNTS;
+
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -11,9 +14,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateCount(numbers);
+    }
+
+    private void validateCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoException(INVALID_LOTTO_COUNTS);
         }
+    }
+
     }
 
     // TODO: 추가 기능 구현
