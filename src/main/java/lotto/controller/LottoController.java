@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
+import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -12,26 +13,40 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public static void lotto() {
-        String inputAmount = InputView.getPurchaseAmount();
-        int purchaseAmount = validateAndParsePurchaseAmount(inputAmount);
+        int purchaseAmount = getPurchaseAmount();
         int count = getCount(purchaseAmount);
 
-        List<Lotto> lottoNumbers = createLottoNumbers(count);
-        OutputView.printLottoCount(count);
-        OutputView.printLottoNumbers(lottoNumbers);
-
-        String inputWinningNumbers = InputView.getWinningNumbers();
-        List<Integer> winningNumbers = convertWinningNumbers(inputWinningNumbers);
-
-        Integer bonus = convertBonusNumber(InputView.getBonusNumber());
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
+        Lottos lottoNumbers = generateAndDisplayLottoNumbers(count);
+        WinningLotto winningLotto = getWinningLotto();
 
         List<Integer> result = countWinnings(lottoNumbers, winningLotto);
-        OutputView.printWinningStats(result);
+        displayResults(result, purchaseAmount);
+    }
 
+    private static Lottos generateAndDisplayLottoNumbers(int count) {
+        Lottos lottoNumbers = createLottoNumbers(count);
+        OutputView.printLottoCount(count);
+        OutputView.printLottoNumbers(lottoNumbers);
+        return lottoNumbers;
+    }
+
+    private static void displayResults(List<Integer> result, int purchaseAmount) {
+        OutputView.printWinningStats(result);
         double totalEarnings = calculateTotalEarnings(result);
         double profitRate = calculateProfitRate(totalEarnings, purchaseAmount);
         OutputView.printProfitRate(profitRate);
+    }
+
+    private static int getPurchaseAmount() {
+        String inputAmount = InputView.getPurchaseAmount();
+        return validateAndParsePurchaseAmount(inputAmount);
+    }
+
+    private static WinningLotto getWinningLotto() {
+        String inputWinningNumbers = InputView.getWinningNumbers();
+        List<Integer> winningNumbers = convertWinningNumbers(inputWinningNumbers);
+        Integer bonus = convertBonusNumber(InputView.getBonusNumber());
+        return new WinningLotto(winningNumbers, bonus);
     }
 
     private static Integer convertBonusNumber(String inputBonusNumber) {
@@ -73,7 +88,7 @@ public class LottoController {
         }
     }
 
-    private static List<Lotto> createLottoNumbers(int count) {
+    private static Lottos createLottoNumbers(int count) {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -82,7 +97,7 @@ public class LottoController {
             Lotto lotto = new Lotto(createdLotto);
             lottos.add(lotto);
         }
-        return lottos;
+        return new Lottos(lottos);
     }
 
     private static int validateAndParsePurchaseAmount(String purchaseAmount) {
@@ -112,28 +127,29 @@ public class LottoController {
         return purchaseAmount / 1000;
     }
 
-    private static List<Integer> countWinnings(List<Lotto> lottos, WinningLotto winningLotto) {
+    private static List<Integer> countWinnings(Lottos lottos, WinningLotto winningLotto) {
         List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
             int matchCounts = countMatches(lotto.getNumbers(), winningLotto.getNumbers());
-            if (matchCounts == LottoRank.FIRST.getMatchingCount()) {
-                result.set(0, result.get(0) + 1);
-            } else if (matchCounts == LottoRank.SECOND.getMatchingCount() && bonusMatches(lotto.getNumbers(),
-                    winningLotto.getBonusNumber())) {
-                result.set(1, result.get(1) + 1);
-
-            } else if (matchCounts == LottoRank.THIRD.getMatchingCount()) {
-                result.set(2, result.get(2) + 1);
-
-            } else if (matchCounts == LottoRank.FOURTH.getMatchingCount()) {
-                result.set(3, result.get(3) + 1);
-
-            } else if (matchCounts == LottoRank.FIFTH.getMatchingCount()) {
-                result.set(4, result.get(4) + 1);
-            }
+            updateWinningCounts(result, matchCounts, lotto.getNumbers(), winningLotto.getBonusNumber());
         }
         return result;
+    }
+
+    private static void updateWinningCounts(List<Integer> result, int matchCounts, List<Integer> lottoNumbers,
+                                            Integer bonus) {
+        if (matchCounts == LottoRank.FIRST.getMatchingCount()) {
+            result.set(0, result.get(0) + 1);
+        } else if (matchCounts == LottoRank.SECOND.getMatchingCount() && bonusMatches(lottoNumbers, bonus)) {
+            result.set(1, result.get(1) + 1);
+        } else if (matchCounts == LottoRank.THIRD.getMatchingCount()) {
+            result.set(2, result.get(2) + 1);
+        } else if (matchCounts == LottoRank.FOURTH.getMatchingCount()) {
+            result.set(3, result.get(3) + 1);
+        } else if (matchCounts == LottoRank.FIFTH.getMatchingCount()) {
+            result.set(4, result.get(4) + 1);
+        }
     }
 
     private static int countMatches(List<Integer> numbers, List<Integer> winningLotto) {

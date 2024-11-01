@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningLotto {
     private final List<Integer> numbers;
@@ -20,6 +19,7 @@ public class WinningLotto {
     public Integer getBonusNumber() {
         return bonusNumber;
     }
+
     private void validate(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
