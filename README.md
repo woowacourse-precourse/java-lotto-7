@@ -79,7 +79,7 @@
 - [ ]  사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - [ ]  Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 - [ ]  구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
-- [ ]  로또 번호에 중복된 값이 있으면 IllegalArgumentException를 발생 시킨다.
+- [x]  로또 번호에 중복된 값이 있으면 IllegalArgumentException를 발생 시킨다.
 
 
 
