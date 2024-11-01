@@ -2,72 +2,62 @@ package lotto.view;
 
 import lotto.controller.LottoController;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.*;
-import static java.lang.Integer.parseInt;
+import static java.lang.Integer.*;
+import static lotto.view.InputTypeWithValidation.*;
 
 public class UserView {
     private static final LottoController lottoController = new LottoController();
 
     public static void run() {
         buyingProcess();
+        confirmWinningProcess();
     }
 
     private static void buyingProcess() {
-        List<String> buyResult = lottoController.buyLotto(printAndGetPurchaseMoney());
+        int parsedInt = parseInt(receive(MONEY));
+        List<String> buyResult = lottoController.buyLotto(parsedInt);
         print(buyResult);
     }
 
-    private static Integer printAndGetPurchaseMoney() {
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            return validateMoney(readLine());
+    private static void confirmWinningProcess() {
+        List<String> winning = Arrays.stream(receive(WINNING_NUMS).split(",")).toList();
+        String bonus = receive(BONUS_NUM);
+        checkDuplicateWithBonus(winning, bonus);
+        //TODO: bonus가 winning에 있을 때 winning을 다시 받는 오류 수정 - bonus만 다시 받아야함
+//        lottoController.confirmWinnings(winning, bonus);
+    }
 
+
+    // 타입에 따라 Integer (money, bonus), List<Integer> (winning nums) 반환
+    // 타입에 따라 입력 받은 값을 검증하고, 검증에 실패하면 재귀 호출(다시 입력)
+    private static String receive(InputTypeWithValidation type) {
+        System.out.println(type.getMessage());
+        try {
+            return type.validate(readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return printAndGetPurchaseMoney();
+            return receive(type);
         }
     }
 
-    private static Integer validateMoney(String s) {
-        checkParsing(s);
-        checkBlank(s);
-        checkRange(s);
-        checkChange(s);
-        return parseInt(s);
-    }
-
-    private static void checkRange(String s) {
-        if (parseInt(s) < 1000) {
-            throw new IllegalArgumentException("[ERROR] 최소 구입금액은 1000원입니다.");
-        }
-    }
-
-    private static void checkChange(String s) {
-        if (parseInt(s) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
-        }
-    }
-
-    private static void checkBlank(String s) {
-        if (s == null || s.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구입금액을 입력해주세요.");
-        }
-    }
-
-    private static void checkParsing(String s) {
+    private static void checkDuplicateWithBonus(List<String> winning, String bonus) {
         try {
-            parseInt(s);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 문자열이 아닌 숫자를 입력해주세요.");
+            if (winning.contains(bonus)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            confirmWinningProcess();
         }
     }
 
-    private static void print(List<String> buyResult) {
-        buyResult.forEach(System.out::println);
+    private static void print(List<String> result) {
+        result.forEach(System.out::println);
     }
-
 
 
 }
