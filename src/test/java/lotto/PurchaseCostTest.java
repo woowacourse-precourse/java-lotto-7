@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.Model.PurchaseCost;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -27,5 +28,11 @@ public class PurchaseCostTest {
     void 천으로_나누어_떨어지지_않는_구입금액은_예외를_발생시킨다(int inputtedCost) {
         assertThatThrownBy(() -> new PurchaseCost(inputtedCost))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 구입_가능한_로또의_개수를_출력한다() {
+        int buyableLottoCount = purchaseCost.calculateBuyableLottoCount();
+        assertThat(buyableLottoCount).isEqualTo(8);
     }
 }
