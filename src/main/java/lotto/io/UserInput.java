@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.LottoShop;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class UserInput {
     private static final String SEPARATOR = ",";
@@ -21,7 +23,7 @@ public class UserInput {
         validateContainsSeparator(input);
         return new Lotto(Arrays.stream(input.split(SEPARATOR))
                 .map(UserInput::validateNumber)
-                .toList());
+                .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     private void validateEmptyInput(String input) {
