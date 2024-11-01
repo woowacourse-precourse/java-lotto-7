@@ -2,16 +2,19 @@ package lotto.model;
 
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.policy.LottoNumberPolicy;
+import lotto.policy.LottoNumberScalePolicy;
+import lotto.service.PolicyService;
 
 public class LottoNumberGenerator {
-    private LottoPolicy policy;
+    private PolicyService policyService;
 
-    public LottoNumberGenerator(LottoPolicy policy) {
-        this.policy = policy;
+    public LottoNumberGenerator(PolicyService policyService) {
+        this.policyService = policyService;
     }
 
-    public List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange
-                (policy.minimumNumber(),policy.maximumNumber(),policy.lottoCompositionScale());
-    }
+//    public List<Integer> generateNumbers() {
+//        return Randoms.pickUniqueNumbersInRange
+//                (LottoNumberPolicy.MIN_NUMBER.number());
+//    }
 }

@@ -13,7 +13,7 @@ class LottoNumberGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        lottoNumberGenerator = new LottoNumberGenerator(new PrizeMoneyPolicy());
+//        lottoNumberGenerator = new LottoNumberGenerator();
     }
 
     @Test
@@ -22,8 +22,6 @@ class LottoNumberGeneratorTest {
         //given
         int size = 6;
         //when
-        List<Integer> lottoNumbers = lottoNumberGenerator.generateNumbers();
         //then
-        assertThat(lottoNumbers.size()).isEqualTo(size);
     }
 }

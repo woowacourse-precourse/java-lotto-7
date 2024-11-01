@@ -4,13 +4,13 @@ public enum LottoNumberPolicy {
     MAX_NUMBER(45),
     MIN_NUMBER(1);
 
-    private final int minOrMaxNumber;
+    private final int number;
 
     LottoNumberPolicy(int lottoNumber) {
-        this.minOrMaxNumber = lottoNumber;
+        this.number = lottoNumber;
     }
 
-    public int getMinOrMaxNumber() {
-        return minOrMaxNumber;
+    public int number() {
+        return number;
     }
 }
