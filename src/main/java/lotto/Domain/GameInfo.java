@@ -1,17 +1,20 @@
 package lotto.Domain;
 
+import java.util.ArrayList;
 import lotto.Constants.Error;
+import lotto.Lotto;
 
 public class GameInfo {
     public static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
+    private Lotto winningLotto;
+    private ArrayList<Lotto> purchasedLottos = new ArrayList<>();
     private int remainingAmount;
     private int bonusNumber;
 
-    public GameInfo(int purchaseAmount, int bonusNumber) {
+    public GameInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        this.remainingAmount = purchaseAmount % 1000;
-        this.bonusNumber = bonusNumber;
+        this.remainingAmount = purchaseAmount / 1000;
     }
 
     public static void validatePurchaseAmount(int amount) {
@@ -23,12 +26,32 @@ public class GameInfo {
         }
     }
 
+    public void addPurchasedLotto(Lotto lotto) {
+        purchasedLottos.add(lotto);
+    }
+
+    public void setWinningLotto(Lotto winningLotto) {
+        this.winningLotto = winningLotto;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
+
     public int getPurchaseAmount() {
         return purchaseAmount;
     }
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public ArrayList<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
     }
 
 }

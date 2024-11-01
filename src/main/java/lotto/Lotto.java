@@ -45,4 +45,8 @@ public class Lotto {
         numbers.forEach(this::numberInRange);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

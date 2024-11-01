@@ -1,14 +1,24 @@
 package lotto.Service;
 
+import lotto.Domain.GameInfo;
 import lotto.Domain.LottoResult;
 import lotto.Lotto;
 import java.util.List;
 
 public class LottoResultService {
-    private LottoResult lottoResult;
+    private final LottoResult lottoResult;
 
     public LottoResultService() {
         this.lottoResult = new LottoResult();
+    }
+
+    public void checkAllResult(GameInfo gameInfo) {
+        Lotto winningLotto = gameInfo.getWinningLotto();
+        int bonusNumber = gameInfo.getBonusNumber();
+
+        for (Lotto purchasedLotto : gameInfo.getPurchasedLottos()) {
+            checkLottoResult(winningLotto, purchasedLotto, bonusNumber);
+        }
     }
 
     public void checkLottoResult(Lotto winningLotto, Lotto generatedLotto, int bonusNumber) {
@@ -23,15 +33,15 @@ public class LottoResultService {
 
     public void evaluateResult(int numMatches, boolean hasBonusNumber) {
         if (numMatches == 6) {
-            lottoResult.addFirstPrize();
+            lottoResult.addFirstPrizeCnt();
         } else if (numMatches == 5 && hasBonusNumber) {
-            lottoResult.addSecondPrize();
+            lottoResult.addSecondPrizeCnt();
         } else if (numMatches == 5) {
-            lottoResult.addThirdPrize();
+            lottoResult.addThirdPrizeCnt();
         } else if (numMatches == 4) {
-            lottoResult.addFourthPrize();
+            lottoResult.addFourthPrizeCnt();
         } else if (numMatches == 3) {
-            lottoResult.addFifthPrize();
+            lottoResult.addFifthPrizeCnt();
         }
     }
 
@@ -41,7 +51,13 @@ public class LottoResultService {
             .count();
     }
 
+    public double calculateProfitRate(int purchaseAmount) {
+        long totalPrize = lottoResult.calculateTotalPrize();
+        return (double) totalPrize / purchaseAmount;
+    }
+
     public LottoResult getLottoResult() {
         return lottoResult;
     }
+
 }

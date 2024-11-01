@@ -1,58 +1,67 @@
 package lotto.Domain;
 
+import lotto.Constants.Prize;
+
 public class LottoResult {
-    private int firstPrize;
-    private int secondPrize;
-    private int thirdPrize;
-    private int fourthPrize;
-    private int fifthPrize;
+    private int firstPrizeCnt;
+    private int secondPrizeCnt;
+    private int thirdPrizeCnt;
+    private int fourthPrizeCnt;
+    private int fifthPrizeCnt;
 
     public LottoResult() {
-        this.firstPrize = 0;
-        this.secondPrize = 0;
-        this.thirdPrize = 0;
-        this.fourthPrize = 0;
-        this.fifthPrize = 0;
+        this.firstPrizeCnt = 0;
+        this.secondPrizeCnt = 0;
+        this.thirdPrizeCnt = 0;
+        this.fourthPrizeCnt = 0;
+        this.fifthPrizeCnt = 0;
     }
 
-    public void addFirstPrize() {
-        this.firstPrize++;
+    public long calculateTotalPrize() {
+        return (long) firstPrizeCnt * Prize.FIRST.getPrize()
+                + (long) secondPrizeCnt * Prize.SECOND.getPrize()
+                + (long) thirdPrizeCnt * Prize.THIRD.getPrize()
+                + (long) fourthPrizeCnt * Prize.FOURTH.getPrize()
+                + (long) fifthPrizeCnt * Prize.FIFTH.getPrize();
     }
 
-    public void addSecondPrize() {
-        this.secondPrize++;
+    public void addFirstPrizeCnt() {
+        this.firstPrizeCnt++;
     }
 
-    public void addThirdPrize() {
-        this.thirdPrize++;
+    public void addSecondPrizeCnt() {
+        this.secondPrizeCnt++;
     }
 
-    public void addFourthPrize() {
-        this.fourthPrize++;
+    public void addThirdPrizeCnt() {
+        this.thirdPrizeCnt++;
     }
 
-    public void addFifthPrize() {
-        this.fifthPrize++;
+    public void addFourthPrizeCnt() {
+        this.fourthPrizeCnt++;
     }
 
-    public int getFirstPrize() {
-        return firstPrize;
+    public void addFifthPrizeCnt() {
+        this.fifthPrizeCnt++;
     }
 
-    public int getSecondPrize() {
-        return secondPrize;
+    public int getFirstPrizeCnt() {
+        return firstPrizeCnt;
     }
 
-    public int getThirdPrize() {
-        return thirdPrize;
+    public int getSecondPrizeCnt() {
+        return secondPrizeCnt;
     }
 
-    public int getFourthPrize() {
-        return fourthPrize;
+    public int getThirdPrizeCnt() {
+        return thirdPrizeCnt;
     }
 
-    public int getFifthPrize() {
-        return fifthPrize;
+    public int getFourthPrizeCnt() {
+        return fourthPrizeCnt;
     }
 
+    public int getFifthPrizeCnt() {
+        return fifthPrizeCnt;
+    }
 }
