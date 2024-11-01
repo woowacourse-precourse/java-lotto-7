@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import lotto.constant.WinningType;
 
 public class LottoResult {
@@ -19,6 +20,14 @@ public class LottoResult {
     public void update(final CorrectCount correctCount) {
         final WinningType type = WinningType.getType(correctCount);
         result.put(type, result.getOrDefault(type, 0) + 1);
+    }
+
+    public double getIncomeRatio(int lottoCount) {
+        long totalIncome = 0L;
+        for (Entry<WinningType, Integer> entry : result.entrySet()) {
+            totalIncome += entry.getKey().getPrice() * entry.getValue();
+        }
+        return (double) totalIncome / lottoCount;
     }
 
     public Map<WinningType, Integer> getResult() {
