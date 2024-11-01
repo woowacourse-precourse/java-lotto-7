@@ -4,9 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputHandler {
     public int priceInput() {
-        int price = Integer.parseInt(Console.readLine());
-        priceInputValidator(price);
-        return price;
+        while(true) {
+            try {
+                int price = Integer.parseInt(Console.readLine());
+                priceInputValidator(price);
+                return price;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
     public void priceInputValidator(int price){
         if (price % 1000 != 0) {
