@@ -11,7 +11,10 @@ public class Input {
 
     public static int getPriceInput() {
         String priceAsString = Console.readLine();
+
+        InputValidator.hasInput(priceAsString);
         InputValidator.validateIsNumber(priceAsString);
+
         int price = Integer.parseInt(priceAsString);
 
         InputValidator.validatePriceIsInThousandUnit(price);
@@ -21,6 +24,7 @@ public class Input {
 
     public static List<Integer> getWinningNumbersInput() {
         String winningNumbers = Console.readLine();
+        InputValidator.hasInput(winningNumbers);
 
         return Arrays.stream(winningNumbers.split(","))
                 .peek(InputValidator::validateIsNumber)

@@ -15,4 +15,10 @@ public class InputValidator {
             throw new IllegalArgumentException("Input must be a number");
         }
     }
+
+    public static void hasInput(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("Input cannot be blank");
+        }
+    }
 }

@@ -47,4 +47,15 @@ class InputTest {
             InputValidator.validateIsNumber(number);
         });
     }
+
+    @Test
+    @DisplayName("입력이 되지 않은 경우 예외가 발생한다.")
+    void hasInput() {
+        // given
+        String input = null;
+
+        // expected
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> InputValidator.hasInput(input));
+    }
 }
