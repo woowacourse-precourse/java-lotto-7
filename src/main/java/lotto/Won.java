@@ -18,7 +18,7 @@ public class Won {
     }
 
     public double divide(Won value) {
-        return (double) this.amount / value.amount;
+        return this.amount / (double) value.amount;
     }
 
     @Override
