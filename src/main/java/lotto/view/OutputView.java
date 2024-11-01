@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.StatisticDto;
@@ -45,5 +46,6 @@ public class OutputView implements ViewManager{
         lineBreak();
         printMessage(STATISTIC_RESULT_MESSAGE);
         printMessage(DIVIDING_LINE);
+        Console.close();
     }
 }
