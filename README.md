@@ -96,9 +96,10 @@ int amount
     - [ ]  `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 당첨 번호 입력받기
 - [ ]  보너스 번호를 입력받는 기능
 
-### OutputView 클래스
-- [ ]  구매한 로또 번호를 출력하는 기능
-    - [ ]  `N개를 구매했습니다.` 출력
-    - [ ]  로또 번호 생성 메소드 호출
-    - [ ]  생성된 로또 번호 출력
+### OutputView
+- [ ] **public void printBoughtLottoNumbers(List<List\<Integer>> lottos)** \: 구매한 로또 번호를 출력하는 기능
+    - [x] `N개를 구매했습니다.` 출력
+    - [x] 생성된 로또 번호 출력
+
+
 - [ ]  당첨 통계를 출력하는 기능
