@@ -97,4 +97,18 @@ public class LottoServiceTest {
         // then
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    void 로또_당첨금_수익률_계산이_올바른지_태스트() {
+        // given
+        int sum = WINNING_PRIZES.get(5) + WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7);
+        int purchaseAmount = 3000;
+        int expected = sum / purchaseAmount * 100;
+
+        // when
+        int result = lottoService.calculateReturn(sum, purchaseAmount);
+
+        //then
+        assertThat(result).isEqualTo(expected);
+    }
 }
