@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.message.LottoErrorMessage;
+import lotto.domain.rule.LottoRules;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +16,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto createRandomLotto() {
+    public static AutoLotto createRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 LottoRules.MIN_NUMBER.getValue(),
                 LottoRules.MAX_NUMBER.getValue(),

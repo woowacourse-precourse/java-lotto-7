@@ -1,10 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoRules;
+import lotto.domain.message.LottoErrorMessage;
+import lotto.domain.rule.LottoRules;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lotto.domain.LottoErrorMessage;
 
 import java.util.List;
 

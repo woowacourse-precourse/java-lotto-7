@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.message;
+
+import lotto.domain.rule.LottoRules;
 
 public enum LottoErrorMessage {
     INVALID_LOTTO_NUMBER_IN_RANGE("[ERROR] 로또 번호는 " + LottoRules.MIN_NUMBER.getValue() + "~" + LottoRules.MAX_NUMBER.getValue() + " 사이의 정수여야 합니다."),
