@@ -34,5 +34,9 @@ public class BonusBall {
         }
         return 0;
     }
+
+    protected int getNumber() {
+        return this.number;
+    }
 }
 
