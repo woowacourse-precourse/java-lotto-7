@@ -4,12 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import domain.error.ErrorMessage;
 import domain.error.InputErrorMessage;
 import domain.lotto.Lotto;
+import domain.lotto.LottoCondition;
 import domain.lotto.LottoPrice;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Input {
 
-    public static int getMoneyFoPurchaseLotto() {
+    public static int getMoneyForPurchaseLotto() {
         System.out.println(OutputMessage.ENTER_PURCHASE_AMOUNT.getOutputMessage());
         while (true) {
             try {
@@ -21,24 +24,20 @@ public class Input {
     }
 
     public static Lotto inputWinningNumbers(String input) {
-        Output.println(OutputMessage.ENTER_WINNER_NUMBERS.getOutputMessage());
-        return new Lotto(
+        validateInputStringIsEmpty(input);
+        List<Integer> inputNumbers =
                 Arrays.stream(input.split(InputMessage.DELIMITER.getInputMessage()))
+                        .map(String::trim)
                         .map(Input::parseStringToInt)
-                        .toList()
-        );
+                        .collect(Collectors.toList());
+        return new Lotto(inputNumbers);
     }
 
     public static int inputBonusNumber(String input) {
-        Output.println(OutputMessage.ENTER_BONUS_NUMBER.getOutputMessage());
-        return parseStringToInt(input);
-    }
-
-    private static int parseAndValidatePurchaseAmount(String input) {
         validateInputStringIsEmpty(input);
-        int amount = parseStringToInt(input);
-        validateAmountForPurchaseConditions(amount);
-        return amount;
+        int bonusNumber = parseStringToInt(input);
+        validateBonusNumber(bonusNumber);
+        return bonusNumber;
     }
 
     private static int parseStringToInt(String input) {
@@ -47,6 +46,13 @@ public class Input {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(InputErrorMessage.ONLY_NUMBERS_ALLOWED.getErrorMessage());
         }
+    }
+
+    private static int parseAndValidatePurchaseAmount(String input) {
+        validateInputStringIsEmpty(input);
+        int amount = parseStringToInt(input);
+        validateAmountForPurchaseConditions(amount);
+        return amount;
     }
 
     private static void validateAmountForPurchaseConditions(int amount) {
@@ -58,6 +64,13 @@ public class Input {
     private static void validateInputStringIsEmpty(String input) {
         if (input.isEmpty() || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_MESSAGE.getErrorMessage());
+        }
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < LottoCondition.START_INCLUSIVE.getConditionNumber()
+                || bonusNumber > LottoCondition.END_INCLUSIVE.getConditionNumber()) {
+            throw new IllegalArgumentException(InputErrorMessage.WINNING_NUMBER_VALIDATION.getErrorMessage());
         }
     }
 }
