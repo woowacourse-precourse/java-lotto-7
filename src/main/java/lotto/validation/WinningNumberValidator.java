@@ -13,6 +13,10 @@ public class WinningNumberValidator {
         validateWinningNumberDuplicate(winningNumbers);
     }
 
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        validateBonusNumberRange(bonusNumber);
+    }
+
     private static void validateWinningNumberCount(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessageConstants.INVALID_WINNING_NUMBER_COUNT);
@@ -29,6 +33,12 @@ public class WinningNumberValidator {
         Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
         if (uniqueWinningNumbers.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessageConstants.INVALID_WINNING_NUMBER_DUPLICATE);
+        }
+    }
+
+    private static void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessageConstants.INVALID_BONUS_NUMBER_RANGE);
         }
     }
 }
