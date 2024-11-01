@@ -44,7 +44,7 @@ public class InputView {
             throw new InvalidWinningNumbersException(EMPTY_INPUT_IS_NOT_POSSIBLE.getMessage());
         }
 
-        if (!winningString.matches("^\\d+(,\\d+){5}")) {
+        if (!winningString.matches("^-?\\d+(,-?\\d+){5}")) {
             throw new InvalidWinningNumbersException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
     }
