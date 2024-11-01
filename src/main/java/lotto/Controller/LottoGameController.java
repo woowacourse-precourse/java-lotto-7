@@ -1,12 +1,12 @@
 package lotto.Controller;
 
-import lotto.Utils.InputRequest;
+import lotto.Utils.UserInput;
 
 public class LottoGameController {
-    private final InputRequest inputRequest;
+    private final UserInput userInput;
 
     public LottoGameController() {
-        inputRequest = new InputRequest();
+        userInput = new UserInput();
     }
 
     public void run() {
@@ -14,6 +14,7 @@ public class LottoGameController {
     }
 
     private void ready() {
-        String purchaseAmountInput = inputRequest.purchaseAmount();
+        String purchaseAmountInput = userInput.purchaseAmount();
     }
+
 }
