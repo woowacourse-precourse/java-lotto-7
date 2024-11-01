@@ -43,11 +43,12 @@ public class LottoController {
         printLottoNumbers(lotties);
 
         List<Integer> validWinningNumbers = getValidWinningNumbers(validateWinningNumbers());
-        int validBonusNumber = getValidInteger(validateBonusNumber());
+        int validBonusNumber = getValidInteger(validateBonusNumber(validWinningNumbers));
         WinLotto winLotto = new WinLotto(validWinningNumbers, validBonusNumber);
 
         LottoMatcher lottoMatcher = new LottoMatcher(lotties, winLotto);
         printLottoMatchResult(lottoMatcher);
+        printRatioOfBenefit();
     }
 
     private void printLottoMatchResult(LottoMatcher lottoMatcher) {
@@ -113,14 +114,18 @@ public class LottoController {
         outputView.newLine();
     }
 
-    private String validateBonusNumber() {
+    private String validateBonusNumber(List<Integer> validWinningNumbers) {
         boolean pass = false;
         String rawBonusNumber = "";
         while (!pass) {
             rawBonusNumber = inputView.getRequestBonusNumber();
-            pass = BonusNumberValidator.validate(rawBonusNumber);
+            pass = BonusNumberValidator.validate(rawBonusNumber, validWinningNumbers);
         }
         outputView.newLine();
         return rawBonusNumber;
+    }
+
+    private void printRatioOfBenefit() {
+
     }
 }

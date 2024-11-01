@@ -32,9 +32,7 @@ public enum InputError {
     //보너스 번호 예외
     BONUS_NUMBER_SHOULD_EXIST("보너스 번호를 입력하셔야 합니다."),
     BONUS_NUMBER_NOT_A_NUMBER("보너스 번호는 숫자를 입력하셔야 합니다."),
-    BONUS_NUMBER_NOT_EQUAL_COUNT("보너스 번호는 정확히 "
-            + LottoInteger.BONUS_NUMBER_COUNT
-            + " 개를 입력하셔야 합니다."),
+    BONUS_NUMBER_EXIST_IN_WINNING_NUMBERS("보너스 번호가 이미 당첨 번호에 존재합니다."),
     BONUS_NUMBER_NOT_IN_BETWEEN_START_AND_END("보너스 번호는 "
             + LottoInteger.LOTTO_START_NUMBER.getValue()
             + "~"
