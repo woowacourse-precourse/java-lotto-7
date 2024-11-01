@@ -20,7 +20,15 @@ class OutputViewTest extends NsTest {
         outputView.displayPurchasedLottoCount(count);
         assertTrue(output().contains(count + "개를 구매했습니다."));
     }
-    
+
+    @Test
+    @DisplayName("구매한 로또 번호 출력")
+    void displayLottoCount() {
+        List<List<Integer>> lottoTickets = List.of(List.of(1,2,3,4,5,6));
+        outputView.displayPurchasedLottoTickets(lottoTickets);
+        assertTrue(output().contains("[1, 2, 3, 4, 5, 6]"));
+    }
+
     @Override
     protected void runMain() {
 
