@@ -5,9 +5,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.model.Lotto.MAX_LOTTO_NUMBER;
+import static lotto.model.Lotto.MIN_LOTTO_NUMBER;
+
 public class PublishLotteries {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private static final int DRAW_NUMBER_COUNT = 6;
 
     private final List<Lotto> lotteries;
