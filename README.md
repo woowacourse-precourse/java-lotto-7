@@ -209,8 +209,8 @@
 
 **✅ 예외 테스트**
 
-- [ ] 예외 상황의 경우 `IllegalArgumentException`가 발생한다.
-- [ ] 예외 상황의 경우 `Exception Message`가 `[ERROR]`로 시작한다.
+- [x] 예외 상황의 경우 `IllegalArgumentException`가 발생한다.
+- [x] 예외 상황의 경우 `Exception Message`가 `[ERROR]`로 시작한다.
 
 ## 2. IoC(Inversion of Control), DI(Dependency Injection) 기능을 구현한다.
 
