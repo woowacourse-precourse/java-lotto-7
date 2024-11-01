@@ -26,4 +26,18 @@ class LottoTest {
         assertThat(lotto.getNumbers().get(4)).isEqualTo(5);
         assertThat(lotto.getNumbers().get(5)).isEqualTo(6);
     }
+
+    @Test
+    @DisplayName("getNumbers 호출 시 Lotto 번호 리스트 반환하는지 확인")
+    void getNumbers() {
+        // given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        // when
+        Lotto lotto = Lotto.of(numbers);
+        List<Integer> retrievedNumbers = lotto.getNumbers();
+
+        // then
+        assertThat(retrievedNumbers).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }
