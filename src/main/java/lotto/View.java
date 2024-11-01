@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.AppConstants.INPUT_NOT_INTEGER;
+import static lotto.AppConstants.INVALID_BONUS_NUMBERS_INPUT;
 import static lotto.AppConstants.INVALID_WINNING_NUMBERS_INPUT;
 import static lotto.AppConstants.LOTTO_NUMBER_MAX;
 import static lotto.AppConstants.LOTTO_NUMBER_MIN;
@@ -44,12 +45,14 @@ public class View {
                 String input = Console.readLine();
                 List<Integer> numbers = parseStr2Integers(input);
                 winningNumbers = checkValidLottoNumbers(numbers);
+                validInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return winningNumbers;
     }
+
 
         //쉼표로 시작하거나 끝날때. 쉼표와 쉼표 사이 공백이 있을때, 숫자와 공백이 같은 토큰에 있을때, 공백으로 시작할떄, 입력끝에 엔터 제외 다른 공백이 있을때
         //숫자 외에 다른게 있을떄. 연속되는 쉼표가 있을 떄.
@@ -90,8 +93,6 @@ public class View {
         }
         return verifiedNumbers;
     }
-
-
 
     private static void validatePurchaseCondition(int money) throws IllegalArgumentException {
         if (money < LOTTO_PRICE) {
