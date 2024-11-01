@@ -2,12 +2,14 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.BonusNumber;
 import lotto.model.LottoPurchase;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.Profit;
 import lotto.model.Rank;
 import lotto.model.WinningNumbers;
+import lotto.view.BonusNumberInputView;
 import lotto.view.LottoResultOutputView;
 import lotto.view.ProfitOutputView;
 import lotto.view.WinningNumbersInputView;
@@ -15,15 +17,24 @@ import lotto.view.WinningNumbersInputView;
 public class LottoDrawingController {
     private final Lottos lottos;
     private final LottoPurchase lottoPurchase;
+    private final WinningNumbersInputView winningNumbersInputView;
+    private final BonusNumberInputView bonusNumberInputView;
 
-    public LottoDrawingController(Lottos lottos, LottoPurchase lottoPurchase) {
+    public LottoDrawingController(Lottos lottos,
+                                  LottoPurchase lottoPurchase,
+                                  WinningNumbersInputView winningNumbersInputView,
+                                  BonusNumberInputView bonusNumberInputView) {
         this.lottos = lottos;
         this.lottoPurchase = lottoPurchase;
+        this.winningNumbersInputView = winningNumbersInputView;
+        this.bonusNumberInputView = bonusNumberInputView;
     }
 
     public void start() {
-        WinningNumbers winningNumbers = setWinningNumbers();
-        LottoResult lottoResult = new LottoResult(lottos, winningNumbers);
+        WinningNumbers winningNumbers = getWinningNumbers();
+        BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+
+        LottoResult lottoResult = new LottoResult(lottos, winningNumbers, bonusNumber);
 
         Map<Rank, Integer> result = lottoResult.getLottoResult();
         long purchaseAmount = lottoPurchase.getPurchaseAmount();
@@ -35,15 +46,26 @@ public class LottoDrawingController {
         printProfit(profit.getProfitRate());
     }
 
-    private WinningNumbers setWinningNumbers() {
-        WinningNumbersInputView winningNumbersInputView = new WinningNumbersInputView();
+    private WinningNumbers getWinningNumbers() {
         winningNumbersInputView.printWinningNumbersInputGuide();
-        List<Integer> winningNumbers = winningNumbersInputView.getWinningNumbers();
 
-        winningNumbersInputView.printBonusNumberInputGuide();
-        int bonusNumber = winningNumbersInputView.getBonusNumber();
+        WinningNumbers winningNumbers = new WinningNumbers(
+                winningNumbersInputView.getWinningNumbers()
+        );
 
-        return new WinningNumbers(winningNumbers, bonusNumber);
+
+        return winningNumbers;
+    }
+
+    private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
+        bonusNumberInputView.printBonusNumberInputGuide();
+
+        BonusNumber bonusNumber = new BonusNumber(
+                bonusNumberInputView.getBonusNumber(),
+                winningNumbers.getWinningNumbers()
+        );
+
+        return bonusNumber;
     }
 
     private void printLottoResult(Map<Rank, Integer> lottoResult) {

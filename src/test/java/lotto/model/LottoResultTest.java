@@ -19,12 +19,13 @@ public class LottoResultTest {
         lottos.saveLotto(lotto2);
         lottos.saveLotto(lotto3);
 
-        WinningNumbers winningNumbers = new WinningNumbers(
-                List.of(1, 2, 3, 4, 5, 6),
-                7
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(
+                7,
+                List.of(1, 2, 3, 4, 5, 6)
         );
 
-        LottoResult lottoResult = new LottoResult(lottos, winningNumbers);
+        LottoResult lottoResult = new LottoResult(lottos, winningNumbers, bonusNumber);
 
         assertThat(lottoResult.getLottoResult())
                 .isEqualTo(

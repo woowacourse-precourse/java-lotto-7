@@ -11,15 +11,15 @@ import lotto.dto.LottoDto;
 public class LottoResult {
     private final Map<Rank, Integer> lottoResult = new EnumMap<>(Rank.class);
 
-    public LottoResult(Lottos lottos, WinningNumbers winningNumbers) {
+    public LottoResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Rank rank : Rank.values()) {
             lottoResult.put(rank, 0);
         }
 
-        calculateLottosResult(lottos, winningNumbers);
+        calculateLottosResult(lottos, winningNumbers, bonusNumber);
     }
 
-    public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers) {
+    public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         List<LottoDto> lottoDtos = lottos.getLottoDtos();
 
         for (LottoDto lottoDto : lottoDtos) {
@@ -27,7 +27,7 @@ public class LottoResult {
             List<Integer> lottoNumbers = lottoDto.numbers();
 
             int duplicateCount = getDuplicateNubers(lottoNumbers, winningNumbers.getWinningNumbers());
-            boolean isBonusNumberDuplicated = isBonusNumberDuplicated(lottoNumbers, winningNumbers.getBonusNumber());
+            boolean isBonusNumberDuplicated = isBonusNumberDuplicated(lottoNumbers, bonusNumber.getBonusNumber());
             saveLottoResult(duplicateCount, isBonusNumberDuplicated);
         }
     }

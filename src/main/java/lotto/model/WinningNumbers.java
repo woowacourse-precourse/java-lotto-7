@@ -12,27 +12,19 @@ import java.util.List;
 
 public class WinningNumbers {
     private final Lotto winningNumbers;
-    private final BonusNumber bonusNumber;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningNumbers(List<Integer> winningNumbers) {
         try {
             this.winningNumbers = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             String winningNumbersExceptionMessage = getWinningNumbersExceptionMessage(e.getMessage());
             throw new IllegalArgumentException(winningNumbersExceptionMessage);
         }
-        this.bonusNumber = new BonusNumber(
-                bonusNumber,
-                this.winningNumbers.getLottoNumbers()
-        );
+
     }
 
     public List<Integer> getWinningNumbers() {
         return winningNumbers.getLottoNumbers();
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber.getBonusNumber();
     }
 
 
