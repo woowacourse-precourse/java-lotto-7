@@ -27,12 +27,19 @@ public enum Rank {
 
     public static Rank findRank(int matchingCount, boolean bonusMatch) {
         for (Rank rank : Rank.values()) {
-            if (rank.matchingCount == matchingCount &&
-                    (matchingCount != 5 || rank.requiresBonusMatch == bonusMatch)) {
+            if (rank.isMatchingRank(matchingCount, bonusMatch)) {
                 return rank;
             }
         }
         return OUT_OF_RANK;
+    }
+
+    private boolean isMatchingRank(int matchingCount, boolean bonusMatch) {
+        return this.matchingCount == matchingCount && (isBonusMatchConditionMet(bonusMatch));
+    }
+
+    private boolean isBonusMatchConditionMet(boolean bonusMatch) {
+        return this.matchingCount != 5 || this.requiresBonusMatch == bonusMatch;
     }
 
     public int getPrizeMoney() {
