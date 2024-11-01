@@ -1,7 +1,7 @@
-package lotto.lotto.infrastructure;
+package lotto.calculator.infrastructure;
 
 import lotto.money.domain.Money;
-import lotto.lotto.domain.Calculator;
+import lotto.calculator.domain.Calculator;
 
 public class DivideThousandCalculator implements Calculator {
     private final Long PRICE_PER_LOTTO = 1000L;

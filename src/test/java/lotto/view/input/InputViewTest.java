@@ -4,7 +4,7 @@ import lotto.buyer.domain.InsertMoneyService;
 import lotto.lotto.domain.*;
 import lotto.money.domain.Money;
 import lotto.buyer.infrastructure.InsertPurchaseMoney;
-import lotto.lotto.infrastructure.DivideThousandCalculator;
+import lotto.calculator.infrastructure.DivideThousandCalculator;
 import lotto.lotto.winning.domain.BonusNumber;
 import lotto.lotto.winning.domain.WinningLotto;
 import lotto.view.input.domain.InputService;

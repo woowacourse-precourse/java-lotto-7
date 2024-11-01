@@ -9,7 +9,7 @@ import lotto.lotto.infrastructure.LottoCreator;
 import lotto.lotto.infrastructure.PurchaseLottoTickets;
 import lotto.lotto.winning.domain.WinningAmountCalculator;
 import lotto.lotto.infrastructure.RandomNumberGenerate;
-import lotto.lotto.infrastructure.DivideThousandCalculator;
+import lotto.calculator.infrastructure.DivideThousandCalculator;
 import lotto.lotto.winning.infrastructure.BonusNumberCreator;
 import lotto.lotto.winning.infrastructure.WinningLottoCreator;
 import lotto.view.input.hanlder.infrastructure.BonusNumberHandler;
