@@ -5,4 +5,6 @@ public class AppConstant {
     public static int LOTTO_START_RANGE = 1;
     public static int LOTTO_END_RANGE = 45;
     public static int LOTTO_NUMBER_COUNT = 6;
+
+    public static String SPLIT_DELIMITER = ",";
 }

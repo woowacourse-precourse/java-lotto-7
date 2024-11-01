@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.common.AppConstant.SPLIT_DELIMITER;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.InputValidator;
@@ -60,7 +62,7 @@ public class LottoController {
         try {
             String rawWinningNumber = inputView.inputWinningNumber();
             inputValidator.validateInputWinningNumber(rawWinningNumber);
-            String[] splitWinningNumber = rawWinningNumber.split(",");
+            String[] splitWinningNumber = rawWinningNumber.split(SPLIT_DELIMITER);
 
             return Arrays.stream(splitWinningNumber).map(Integer::parseInt).toList();
         } catch (IllegalArgumentException exception) {
