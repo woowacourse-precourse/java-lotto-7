@@ -29,7 +29,16 @@ public class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a,b,c", "1,2,a", "-1,1,2", "0,1,5"})
+    @ValueSource(strings = {"1,2", "1,2,3", "1,2,3,4,5,6,7"})
+    @DisplayName("당첨 번호가 6개가 아니면 예외가 발생한다.")
+    void validateWinningNumbersCount(String condition) {
+        assertThatThrownBy(() -> WinningNumbers.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b,c,1,2,3", "1,2,a,3,4,5", "-1,1,2,3,4,5", "0,1,5,7,8,9"})
     @DisplayName("당첨 번호는 양수가 아니면 예외가 발생한다.")
     void validatePositiveWinningNumbers(String condition) {
         assertThatThrownBy(() -> WinningNumbers.from(condition))
@@ -38,7 +47,7 @@ public class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,46", "1,100,500"})
+    @ValueSource(strings = {"1,2,3,4,5,46", "1,2,3,50,100,500"})
     @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
     void validateWinningNumbersInRange(String condition) {
         assertThatThrownBy(() -> WinningNumbers.from(condition))
@@ -47,21 +56,12 @@ public class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,3", "1,1,1,1"})
+    @ValueSource(strings = {"1,2,3,3,4,5", "1,1,1,1,2,2"})
     @DisplayName("당첨 번호가 중복되면 예외가 발생한다.")
     void validateUniqueWinningNumbers(String condition) {
         assertThatThrownBy(() -> WinningNumbers.from(condition))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 중복될 수 없습니다.");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "1,2,3", "1,2,3,4,5,6,7"})
-    @DisplayName("당첨 번호가 6개가 아니면 예외가 발생한다.")
-    void validateWinningNumbersCount(String condition) {
-        assertThatThrownBy(() -> WinningNumbers.from(condition))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 
 }
