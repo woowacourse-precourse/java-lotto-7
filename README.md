@@ -61,32 +61,74 @@
 
 - [ ] **검증기 (Validator)**
 
-    - **역할**: 로또 구입 금액, 당첨 번호, 보너스 번호의 유효성을 검증하여 잘못된 입력 시 예외 처리합니다.
+    - **역할**: 로또 구입 금액, 당첨 번호, 보너스 번호의 유효성을 검증하여 잘못된 입력 시 `IllegalArgumentException`을 발생시킵니다.
     - **구현 기능**:
-        - `PurchaseAmountValidator`: 로또 구입 금액이 숫자이며, 1,000원 단위로 입력되었는지 검증합니다.
-            - **예외 메시지**: `ErrorMessage.PURCHASE_AMOUNT_INVALID` - `[ERROR] 구입 금액은 숫자이며 1,000원 단위여야 합니다.`
-        - `LottoNumberRangeValidator`: 로또 번호가 1~45 사이의 숫자인지 확인합니다.
-            - **예외 메시지**: `ErrorMessage.LOTTO_NUMBER_RANGE_INVALID` - `[ERROR] 로또 번호는 1부터 45 사이여야 합니다.`
-        - `LottoNumberCountValidator`: 로또 번호가 중복되지 않는 6개의 숫자로 구성되었는지 검증합니다.
-            - **예외 메시지**: `ErrorMessage.LOTTO_NUMBER_COUNT_INVALID` - `[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다.`
-        - `BonusNumberValidator`: 보너스 번호가 당첨 번호와 중복되지 않는 1~45 범위의 숫자인지 검증합니다.
-            - **예외 메시지**: `ErrorMessage.BONUS_NUMBER_DUPLICATE_INVALID` - `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.`
-        - `LottoNumbersFormatValidator`: 당첨 번호가 쉼표로 구분된 6개의 숫자 형식인지 확인합니다.
-            - **예외 메시지**: `ErrorMessage.LOTTO_NUMBERS_FORMAT_INVALID` - `[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자 형식이어야 합니다.`
-        - `EmptyInputValidator`: 입력값이 비어 있는지 확인합니다.
-            - **예외 메시지**: `ErrorMessage.EMPTY_INPUT_INVALID` - `[ERROR] 입력값은 비어 있을 수 없습니다.`
+    - `validateNotEmpty`: 입력 값이 비어 있거나 공백일 경우 검증하여, 해당 시 `IllegalArgumentException` 발생
+        - **입력값 예시**: `""`, `"   "`
+        - **예외 메시지**: `[ERROR] 입력값은 비어 있을 수 없습니다.`
+
+    - `validatePurchaseAmount`: 로또 구입 금액이 양수이며, `LOTTO_PRICE`의 배수인지 검증하여, 유효하지 않을 시`IllegalArgumentException` 발생
+        - **입력값 예시**: `1500`, `250`
+        - **예외 메시지**: `[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.`
+
+    - `validateLottoNumberCount`: 로또 번호가 정확히 6개인지 검증하여, 6개가 아닌 경우 `IllegalArgumentException` 발생
+        - **입력값 예시**: `[1, 2, 3, 4, 5]`, `[1, 2, 3, 4, 5, 6, 7]`
+        - **예외 메시지**: `[ERROR] 로또 번호는 6개의 숫자여야 합니다.`
+
+    - `validateLottoNumberRange`: 로또 번호가 1에서 45 사이의 숫자인지 검증하여, 범위 밖일 경우 `IllegalArgumentException` 발생
+        - **입력값 예시**: `[0, 1, 2, 3, 4, 5]`, `[1, 2, 3, 4, 5, 46]`
+        - **예외 메시지**: `[ERROR] 로또 번호는 1부터 45 사이여야 합니다.`
+
+    - `validateNoDuplicates`: 로또 번호에 중복이 없는지 검증하여, 중복이 있을 경우 `IllegalArgumentException` 발생
+        - **입력값 예시**: `[1, 2, 3, 4, 5, 5]`
+        - **예외 메시지**: `[ERROR] 로또 번호에는 중복된 숫자가 없어야 합니다.`
+
+    - `validateBonusNumberRange`: 보너스 번호가 1에서 45 사이의 숫자인지 검증하여, 범위 밖일 경우 `IllegalArgumentException` 발생
+        - **입력값 예시**: `0`
+        - **예외 메시지**: `[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.`
+
+    - `validateBonusNumberDuplication`: 보너스 번호가 당첨 번호와 중복되지 않는지 검증하여, 중복이 있을 경우 `IllegalArgumentException` 발생
+        - **입력값 예시**: `6` (당첨 번호: `[1, 2, 3, 4, 5, 6]`)
+        - **예외 메시지**: `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.`
+    - **ErrorMessage Enum**
+    - **역할**: 로또 프로그램의 입력 검증 중 발생하는 다양한 예외 메시지를 정의합니다.
+    - **구현 메시지**:
+        - `PURCHASE_AMOUNT_INVALID`: `[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.`
+            - **설명**: 구입 금액이 양수이고 1,000원 단위인지 확인합니다.
+        - `LOTTO_NUMBER_RANGE_INVALID`: `[ERROR] 로또 번호는 1부터 45 사이여야 합니다.`
+            - **설명**: 로또 번호가 1에서 45 사이의 범위인지 확인합니다.
+        - `LOTTO_NUMBER_COUNT_INVALID`: `[ERROR] 로또 번호는 6개의 숫자여야 합니다.`
+            - **설명**: 로또 번호가 6개의 숫자로 이루어졌는지 확인합니다.
+        - `LOTTO_NUMBER_DUPLICATE_INVALID`: `[ERROR] 로또 번호에는 중복된 숫자가 없어야 합니다.`
+            - **설명**: 로또 번호에 중복된 숫자가 있는지 확인합니다.
+        - `BONUS_NUMBER_DUPLICATE_INVALID`: `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.`
+            - **설명**: 보너스 번호가 당첨 번호와 중복되지 않는지 확인합니다.
+        - `BONUS_NUMBER_OUT_OF_RANGE`: `[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.`
+            - **설명**: 보너스 번호가 1에서 45 사이의 범위인지 확인합니다.
+        - `LOTTO_NUMBERS_FORMAT_INVALID`: `[ERROR] 당첨 번호는 쉼표로 구분된 6개의 숫자 형식이어야 합니다.`
+            - **설명**: 당첨 번호 형식이 올바르게 입력되었는지 확인합니다.
+        - `EMPTY_INPUT_INVALID`: `[ERROR] 입력값은 비어 있을 수 없습니다.`
+            - **설명**: 입력값이 비어 있지 않은지 확인합니다.
+        - `INVALID_NUMBER_FORMAT`: `[ERROR] 입력값은 숫자여야 합니다.`
+            - **설명**: 입력값이 숫자인지 확인합니다.
 
 - [ ] **Service (LottoService)**
-    - **역할**: 로또 발행 및 당첨 결과 계산, 수익률 계산을 수행합니다.
+    - **역할**: 로또 발행, 당첨 결과 및 수익률 계산을 수행합니다.
     - **구현 기능**:
         - **로또 번호 발행**:
             - `generateLottoTickets`: 구입 금액에 맞게 `Lotto` 객체 리스트를 생성하여 저장합니다.
             - **번호 생성 규칙**: 각 티켓은 1~45 범위에서 중복되지 않는 6개의 숫자로 구성됩니다.
-        - **당첨 번호 및 보너스 번호 설정**:
-            - `setWinningNumbers`: 당첨 번호와 보너스 번호를 저장합니다.
-        - **당첨 내역 및 수익률 계산**:
-            - `calculateResults`: 사용자가 구매한 티켓과 당첨 번호를 비교하여 당첨 결과를 계산합니다.
-            - `calculateProfitRate`: 총 당첨 금액과 구입 금액을 기준으로 수익률을 계산하고 소수 둘째 자리에서 반올림합니다.
+            - `getLottoTickets`: 생성된 로또 티켓 리스트를 반환합니다.
+
+    - **당첨 번호 및 보너스 번호 설정**:
+        - `setWinningNumbers`: 당첨 번호와 보너스 번호를 설정하여 `winningTicket` 객체에 저장합니다.
+        - `getWinningTicket`: 설정된 당첨 번호가 저장된 `winningTicket`을 반환합니다.
+
+    - **당첨 내역 및 수익률 계산**:
+        - `calculateResults`: 사용자 티켓과 당첨 번호를 비교하여 각 티켓의 당첨 등급(`PrizeTier`)을 계산합니다.
+        - `calculateProfitRate`: 당첨 금액과 구입 금액을 기준으로 수익률을 계산하고 소수 둘째 자리에서 반올림하여 반환합니다.
+        - `getWinningCounts`: 당첨 결과 리스트에서 각 당첨 등급별 티켓 수를 집계하여 반환합니다.
+        -
 
 - [ ] **Model (Lotto)**
     - **역할**: 로또 번호를 저장하고, 입력된 번호의 유효성을 검사합니다.
@@ -94,9 +136,11 @@
         - **번호 저장**: 로또 번호를 저장하는 `numbers` 필드를 관리합니다.
         - **유효성 검사**: 입력된 번호가 6개인지, 1부터 45 사이의 숫자인지를 검사하여 잘못된 입력에 대해서는 예외를 발생시킵니다.
         - **기능 구현**:
-            - **번호 출력**: `getNumbers`: 로또 번호 리스트를 반환합니다.
-            - **번호 일치 여부 확인**: `matches`: 당첨 번호와 사용자가 구매한 번호를 비교하여 일치하는 개수를 반환하는 기능을 추가합니다.
-            - **랜덤 번호 생성**: `generateRandomNumbers`: 중복되지 않는 6개의 랜덤 로또 번호를 생성하는 기능을 추가합니다.
+            - `getNumbers`: 저장된 로또 번호 리스트를 반환합니다.
+            - `getMatchCount`: 당첨 번호와 저장된 번호를 비교하여 일치하는 개수를 반환합니다.
+            - `containsBonus`: 보너스 번호가 로또 번호에 포함되는지 여부를 확인합니다.
+            - `generateRandomNumbers`: 중복되지 않는 6개의 랜덤 로또 번호를 생성하여 반환합니다.
+            - `formatNumbers`: 로또 번호를 `[1, 2, 3, 4, 5, 6]` 형식의 문자열로 변환하여 반환합니다.
 
 - [ ] **출력기 (OutputView)**
     - **역할**: 로또 구매 내역, 당첨 결과, 수익률 등을 출력합니다.
@@ -104,35 +148,102 @@
         - **로또 구매 내역 출력**:
             - `printLottoPurchase`: 구입한 로또 개수와 번호 목록을 출력합니다.
         - **당첨 결과 출력**:
-            - `printWinningResults`: 등수별 당첨 내역을 출력합니다.
+            - `printWinningResults`: 당첨 등수별로 당첨 개수를 출력합니다.
         - **수익률 출력**:
-            - `printProfitRate`: 총 수익률을 소수점 둘째 자리까지 반올림하여 출력합니다.
+            - `printProfitRate`: 총 수익률을 소수점 첫째 자리까지 반올림하여 출력합니다.
         - **에러 메시지 출력**:
-            - `printErrorMessage`: 예외 발생 시 "[ERROR]"로 시작하는 메시지를 출력합니다.
+            - `printErrorMessage`: 예외 발생 시 "[ERROR]"로 시작하는 에러 메시지를 출력합니다.
     - **ViewMessage 열거형**:
-        - `LOTTO_COUNT_PURCHASED`: 로또 구매 개수 출력 메시지 (예시: "8개를 구매했습니다.")
-        - `RESULT_HEADER`: 당첨 통계 시작 메시지 ("당첨 통계\n---")
+        - `LOTTO_COUNT_PURCHASED`: 로또 구매 개수 출력 메시지 ("8개를 구매했습니다.")
+        - `RESULT_HEADER`: 당첨 통계의 시작 메시지 ("당첨 통계\n---")
         - `PROFIT_RATE`: 총 수익률 출력 메시지 ("총 수익률은 %.1f%%입니다.")
-        - `THREE_MATCH`: 3개 일치 당첨 결과 메시지 (예시: “3개 일치 (5,000원) - 1개”)
-        - `FOUR_MATCH`: 4개 일치 당첨 결과 메시지 (예시: “4개 일치 (50,000원) - 0개”)
-        - `FIVE_MATCH`: 5개 일치 당첨 결과 메시지 (예시: “5개 일치 (1,500,000원) - 0개”)
-        - `FIVE_MATCH_BONUS`: 5개 일치, 보너스 볼 일치 당첨 결과 메시지 (예시: “5개 일치, 보너스 볼 일치 (30,000,000원) - 0개”)
-        - `SIX_MATCH`: 6개 일치 당첨 결과 메시지 (예시: “6개 일치 (2,000,000,000원) - 0개”)
+        - `THREE_MATCH`: 3개 일치 당첨 결과 메시지 (예: “3개 일치 (5,000원) - 1개”)
+        - `FOUR_MATCH`: 4개 일치 당첨 결과 메시지 (예: “4개 일치 (50,000원) - 0개”)
+        - `FIVE_MATCH`: 5개 일치 당첨 결과 메시지 (예: “5개 일치 (1,500,000원) - 0개”)
+        - `FIVE_MATCH_BONUS`: 5개 일치, 보너스 볼 일치 당첨 결과 메시지 (예: “5개 일치, 보너스 볼 일치 (30,000,000원) - 0개”)
+        - `SIX_MATCH`: 6개 일치 당첨 결과 메시지 (예: “6개 일치 (2,000,000,000원) - 0개”)
 
 - [ ] **Controller (LottoGameController)**
     - **역할**: 사용자 입력을 받아 서비스에 전달하고 로또 발행 및 결과 출력을 제어합니다.
     - **구현 기능**:
         - **사용자 입력 처리 및 검증**:
             - `getPurchaseAmount`: 로또 구입 금액을 입력받고 검증 후 반환합니다.
-            - `getWinningNumbers`: 당첨 번호와 보너스 번호를 입력받고 검증 후 반환합니다.
+            - `getWinningNumbers` 및 `getBonusNumber`: 당첨 번호와 보너스 번호를 입력받고 검증 후 반환합니다.
         - **로또 티켓 발행**:
-            - `generateLottoTickets`: 로또 티켓을 생성하고 결과를 출력합니다.
+            - `generateLottoTickets`: 구입 금액에 따라 로또 티켓을 생성하고, 생성된 티켓 목록을 출력합니다.
         - **당첨 결과 계산 및 출력**:
-            - `calculateResults` 및 `printProfitRate`: 당첨 결과 및 수익률을 계산하여 출력합니다.
+            - `calculateResults`: 생성된 로또 티켓과 당첨 번호를 비교하여 결과를 계산합니다.
+            - `printWinningResults`: 당첨 내역을 출력합니다.
+            - `printProfitRate`: 총 수익률을 계산하고 소수점 첫째 자리까지 반올림하여 출력합니다.
         - **에러 메시지 처리**:
-            - `printErrorMessage`로 잘못된 입력에 대한 에러 메시지를 출력하고 재입력을 받습니다.
+            - `printErrorMessage`: 잘못된 입력에 대한 에러 메시지를 출력하고 재입력을 받습니다.
         - **자원 해제**:
-            - `inputView.close`: 콘솔 자원을 해제하여 입력 스트림을 종료합니다.
+            - `inputHandler.close`: 콘솔 자원을 해제하여 입력 스트림을 종료합니다.
+
+- **PrizeTier Enum**
+
+    - **역할**: 당첨 일치 개수와 보너스 번호 일치 여부에 따라 각 당첨 등급을 정의하고, 해당 등급에 따른 상금을 제공합니다.
+    - **구현 메시지**:
+        - `NO_PRIZE`: 일치 번호 없음
+            - **매칭 조건**: `matchCount = 0`, `requiresBonusMatch = false`
+            - **상금**: `0원`
+        - `MATCH_THREE`: 3개 번호 일치
+            - **매칭 조건**: `matchCount = 3`, `requiresBonusMatch = false`
+            - **상금**: `5,000원`
+        - `MATCH_FOUR`: 4개 번호 일치
+            - **매칭 조건**: `matchCount = 4`, `requiresBonusMatch = false`
+            - **상금**: `50,000원`
+        - `MATCH_FIVE`: 5개 번호 일치
+            - **매칭 조건**: `matchCount = 5`, `requiresBonusMatch = false`
+            - **상금**: `1,500,000원`
+        - `MATCH_FIVE_WITH_BONUS`: 5개 번호 일치 + 보너스 번호 일치
+            - **매칭 조건**: `matchCount = 5`, `requiresBonusMatch = true`
+            - **상금**: `30,000,000원`
+        - `MATCH_SIX`: 6개 번호 일치
+            - **매칭 조건**: `matchCount = 6`, `requiresBonusMatch = false`
+            - **상금**: `2,000,000,000원`
+
+    - **구현 기능**:
+        - `findPrize`: 주어진 일치 번호 개수와 보너스 번호 일치 여부에 맞는 `PrizeTier`를 반환합니다.
+        - `getPrizeAmount`: 등급에 해당하는 상금을 반환합니다.
+- **LottoInputHandler**
+
+    - **역할**: 사용자로부터 로또 구입 금액, 당첨 번호, 보너스 번호를 입력받아 검증하고, 입력된 값을 반환합니다. 잘못된 입력 시 예외 메시지를 출력하여 재입력을 유도합니다.
+
+    - **구현 기능**:
+        - **구입 금액 입력 및 검증**:
+            - `getPurchaseAmount`: 사용자로부터 구입 금액을 입력받고, 숫자인지 확인하며, 유효한 단위(1,000원)인지 검증 후 반환합니다.
+            - **예외 메시지**: `[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.`
+
+        - **당첨 번호 입력 및 검증**:
+            - `getWinningNumbers`: 사용자로부터 당첨 번호(6개의 번호)를 입력받고, 쉼표로 구분된 숫자 형식인지와 유효한 범위(1~45)인지 검증 후 반환합니다.
+            - **예외 메시지**: `[ERROR] 로또 번호는 6개의 숫자여야 합니다.`, `[ERROR] 로또 번호는 1부터 45 사이여야 합니다.`
+
+        - **보너스 번호 입력 및 검증**:
+            - `getBonusNumber`: 사용자로부터 보너스 번호를 입력받고, 유효 범위(1~45)와 중복 여부(당첨 번호와 중복되지 않음)를 확인 후 반환합니다.
+            - **예외 메시지**: `[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.`, `[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.`
+
+        - **입력 및 예외 처리**:
+            - `getValidatedInput`: 공통된 입력 검증 메서드로, 입력을 받아 공백 검증, 파싱, 유효성 검증을 수행하고 예외 발생 시 재입력을 유도합니다.
+            - **예외 메시지**: 잘못된 입력 형식 시 `[ERROR] 입력값은 비어 있을 수 없습니다.` 또는 관련 검증 오류 메시지를 출력합니다.
+
+        - **자원 해제**:
+            - `close`: `inputView.close()`를 통해 콘솔 입력 자원을 해제하여 종료합니다.
+- **ResultHandler**
+
+    - **역할**: 로또 당첨 결과를 계산하고, 당첨 내역과 수익률을 출력합니다.
+
+    - **구현 기능**:
+        - **당첨 결과 계산**:
+            - `calculateResults`: `LottoService`의 `calculateResults` 메서드를 호출하여 사용자 로또 티켓의 당첨 결과를 계산하고 `prizeResults`에
+              저장합니다.
+
+        - **당첨 결과 출력**:
+            - `printWinningResults`: `LottoService`의 `getWinningCounts` 메서드를 통해 당첨 결과별 개수를 구한 후, `OutputView`를 통해 각 등수별
+              당첨 내역을 출력합니다.
+
+        - **수익률 계산 및 출력**:
+            - `printProfitRate`: `LottoService`의 `calculateProfitRate` 메서드를 호출하여 수익률을 계산하고, 이를 `OutputView`로 출력합니다.
 
 ----
 
