@@ -11,7 +11,7 @@ public class InputView {
     private static final String ERROR_INVALID_AMOUNT_UNIT = "[ERROR] 1,000원 단위로 입력해주세요.";
     private static final String ERROR_INVALID_NUMBER_FORMAT = "[ERROR] 정수값을 입력해주세요.";
     private static final String ERROR_INVALID_NUMBER_SIZE = "[ERROR] 각 번호는 1 이상 45 이하여야 합니다.";
-
+    private static final String ERROR_INVALID_NUMBER_DUPLICATION = "[ERROR] 중복된 번호가 있습니다.";
 
     public static int getPurchaseAmount() {
         System.out.println("구입 금액을 1,000원 단위로 입력해주세요");
@@ -40,11 +40,11 @@ public class InputView {
         }
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해주세요.");
         try {
             int number = Integer.parseInt(Console.readLine());
-            validateBonusNumber(number);
+            validateBonusNumber(number, winningNumbers);
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_INVALID_NUMBER_FORMAT);
@@ -62,6 +62,9 @@ public class InputView {
     }
 
     private static void validateWinningNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count())
+            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_DUPLICATION);
+
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ERROR_INVALID_NUMBER_SIZE);
@@ -69,9 +72,12 @@ public class InputView {
         }
     }
 
-    private static void validateBonusNumber(int number) {
+    private static void validateBonusNumber(int number, List<Integer> winningNumber) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ERROR_INVALID_NUMBER_SIZE);
+        }
+        if (winningNumber.contains(number)) {
+            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_DUPLICATION);
         }
     }
 }
