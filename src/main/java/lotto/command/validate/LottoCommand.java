@@ -1,5 +1,8 @@
 package lotto.command.validate;
 
+import static lotto.common.constant.Lotto.LOTTO_MAXIMUM_NUMBER;
+import static lotto.common.constant.Lotto.LOTTO_MINIMUM_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.common.exception.ExceptionEnum;
@@ -13,8 +16,6 @@ import lotto.view.exception.InputException;
  */
 public class LottoCommand implements ValidateCommand {
   private static final String DELIMITER = ", ";
-  private static final int LOTTO_MINIMUM_VALUE = 1;
-  private static final int LOTTO_MAXIMUM_VALUE = 45;
   private static final String ASK = "당첨 번호를 입력해 주세요.";
 
   @Override
@@ -43,7 +44,7 @@ public class LottoCommand implements ValidateCommand {
   private List<Integer> validateLottoNumbers(String[] rawNumbers) {
     List<Integer> numbers = new ArrayList<>();
     for (String rawNumber : rawNumbers) {
-      int value = validateIntegerRange(rawNumber, LOTTO_MINIMUM_VALUE, LOTTO_MAXIMUM_VALUE);
+      int value = validateIntegerRange(rawNumber, LOTTO_MINIMUM_NUMBER, LOTTO_MAXIMUM_NUMBER);
       numbers.add(value);
     }
     return numbers;
