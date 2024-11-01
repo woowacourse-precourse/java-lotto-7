@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.regex.Pattern;
+import lotto.util.Constants;
 import lotto.view.Errors;
 import lotto.view.Outputs;
 
@@ -20,6 +21,8 @@ public class MoneyValidator {
         validateNotEmpty();
         validateWholeNumber();
         validateLong();
+        validateRange();
+        validateNoRemainder();
     }
 
     private String combineMessages(String message) {
@@ -55,10 +58,16 @@ public class MoneyValidator {
         }
     }
 
-//    protected void validateRange() {
-//        if (Long.parseLong(money) < ConstantNumbers.MIN_MONEY.getNumber()
-//                || Long.parseLong(money) > ConstantNumbers.MAX_MONEY.getNumber()) {
-//            throw new IllegalArgumentException(combineMessages(Errors.NOT_IN_RANGE.getMessage()));
-//        }
-//    }
+    protected void validateRange() {
+        if (Long.parseLong(money) < Constants.MIN_MONEY.getNumber()
+                || Long.parseLong(money) > Constants.MAX_MONEY.getNumber()) {
+            throw new IllegalArgumentException(combineMessages(Errors.NOT_IN_RANGE.getMessage()));
+        }
+    }
+
+    protected void validateNoRemainder() {
+        if (Long.parseLong(money) % Constants.LOTTO_PRICE.getNumber() != 0) {
+            throw new IllegalArgumentException(combineMessages(Errors.REMAINDER_EXISTENT.getMessage()));
+        }
+    }
 }
