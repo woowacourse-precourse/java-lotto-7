@@ -43,4 +43,8 @@ public class Lotto {
         return numbers.stream().distinct().toList()
                 .size() != numbers.size();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class OutputView implements Output {
 
@@ -12,6 +13,13 @@ public class OutputView implements Output {
     @Override
     public void printBuyResult(Integer purchase) {
         System.out.printf(PrintMessage.LOTTO_PURCHASE_NUMBER.getMessage(), purchase);
+    }
+
+    @Override
+    public void printLotto(List<Lotto> lottos) {
+        lottos.stream()
+                .map(lotto -> lotto.getNumbers().toString())
+                .forEach(System.out::println);
     }
 
     @Override
