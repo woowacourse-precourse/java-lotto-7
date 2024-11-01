@@ -22,8 +22,6 @@ class LotteriesTest {
 
         //when
         List<Rank> ticketsResults = tickets.getTicketsResult(winningLotto, bonus);
-        System.out.println(ticketsResults);
-        System.out.println(tickets);
 
         //then
         Assertions.assertThat(ticketsResults).containsAnyOf(Rank.values());
