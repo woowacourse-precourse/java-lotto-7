@@ -1,5 +1,7 @@
 package lotto.service.impl;
 
+import static lotto.utils.ErrorMessage.NOT_SAVE_MONEY;
+
 import lotto.domain.LottoList;
 import lotto.domain.Money;
 import lotto.dto.LottoListDto;
@@ -29,7 +31,7 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public LottoListDto generateLottoList() {
         Money money = moneyRepository.get()
-                .orElseThrow(() -> new NullPointerException("돈이 저장되지 않았습니다!"));
+                .orElseThrow(() -> new NullPointerException(NOT_SAVE_MONEY.getMessage()));
 
         LottoList lottoList = LottoList.generate(money);
         lottoListRepository.save(lottoList);

@@ -1,10 +1,6 @@
 package lotto.domain;
 
-import static lotto.utils.Constants.FIFTH;
-import static lotto.utils.Constants.FIRST;
-import static lotto.utils.Constants.FOURTH;
-import static lotto.utils.Constants.SECOND;
-import static lotto.utils.Constants.THIRD;
+import lotto.utils.Reward;
 
 public class WinnerCount {
 
@@ -21,39 +17,9 @@ public class WinnerCount {
     }
 
     protected Integer calculateReward() {
-        if (matchedCount == 6) {
-            return FIRST;
-        }
+        Reward reward = Reward.getReward(matchedCount, hasBonus);
 
-        if (matchedCount == 5 && hasBonus) {
-            return SECOND;
-        }
-
-        int totalWins = calculateTotalWins();
-
-        if (totalWins == 5) {
-            return THIRD;
-        }
-
-        if (totalWins == 4) {
-            return FOURTH;
-        }
-
-        if (totalWins == 3) {
-            return FIFTH;
-        }
-
-        return 0;
-    }
-
-    private int calculateTotalWins() {
-        int matchedCountWithBonus = matchedCount;
-
-        if (hasBonus) {
-            matchedCountWithBonus += 1;
-        }
-
-        return matchedCountWithBonus;
+        return reward.getPrize();
     }
 
 }

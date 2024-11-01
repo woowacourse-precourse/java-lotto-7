@@ -1,6 +1,8 @@
 package lotto.service.impl;
 
 import static lotto.utils.ErrorMessage.NOT_HAVE_BONUS_NUM;
+import static lotto.utils.ErrorMessage.NOT_SAVE_LOTTO_LIST;
+import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_LOTTO;
 
 import lotto.domain.LottoList;
 import lotto.domain.LottoNum;
@@ -38,7 +40,7 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
         LottoNum lottoBonusNum = LottoNum.create(bonusNumber);
 
         WinnerLotto winnerLotto = winnerLottoRepository.get()
-                .orElseThrow(() -> new NullPointerException("당첨 번호를 입력하지 않았습니다!"));
+                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
         winnerLotto.addBonusNum(lottoBonusNum);
 
@@ -48,14 +50,14 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
     @Override
     public WinnerStatusDto calculateStatus() {
         WinnerLotto winnerLotto = winnerLottoRepository.get()
-                .orElseThrow(() -> new NullPointerException("당첨 번호를 입력하지 않았습니다!"));
+                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
         if (!winnerLotto.hasBonusNum()) {
             throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
         }
 
         LottoList lottoList = lottoListRepository.get()
-                .orElseThrow(() -> new NullPointerException("로또 번호들이 저장되지 않았습니다!"));
+                .orElseThrow(() -> new NullPointerException(NOT_SAVE_LOTTO_LIST.getMessage()));
 
         WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
         WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);

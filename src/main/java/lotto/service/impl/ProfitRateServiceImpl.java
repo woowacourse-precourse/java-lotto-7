@@ -1,5 +1,8 @@
 package lotto.service.impl;
 
+import static lotto.utils.ErrorMessage.NOT_SAVE_MONEY;
+import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_STATUS;
+
 import lotto.domain.Money;
 import lotto.domain.ProfitRate;
 import lotto.domain.WinnerStatus;
@@ -21,10 +24,10 @@ public class ProfitRateServiceImpl implements ProfitRateService {
     @Override
     public ProfitRateResultDto calculate() {
         Money money = moneyRepository.get()
-                .orElseThrow(() -> new NullPointerException("돈이 저장되지 않았습니다!"));
+                .orElseThrow(() -> new NullPointerException(NOT_SAVE_MONEY.getMessage()));
 
         WinnerStatus winnerStatus = winnerStatusRepository.get()
-                .orElseThrow(() -> new NullPointerException("당첨 정보들이 저장되지 않았습니다!"));
+                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_STATUS.getMessage()));
 
         ProfitRate profitRate = ProfitRate.create(money, winnerStatus);
         return profitRate.toDto();

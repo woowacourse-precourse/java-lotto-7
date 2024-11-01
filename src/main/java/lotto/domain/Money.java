@@ -11,6 +11,7 @@ import lotto.utils.DtoMapper;
 public class Money {
     private static final int LOTTO_PRICE = 1000;
     private static final int SCALE = 1;
+    private static final int ZERO = 0;
 
     private final Long amount;
     private long lottoCount;
@@ -46,7 +47,7 @@ public class Money {
     }
 
     private Long validateMoney(Long amount) {
-        if (amount <= 0 || amount % LOTTO_PRICE != 0) {
+        if (amount <= ZERO || amount % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
         }
 
@@ -58,7 +59,7 @@ public class Money {
     }
 
     public boolean lottoTry() {
-        if (lottoCount <= 0) {
+        if (lottoCount <= ZERO) {
             return false;
         }
         lottoCount--;
