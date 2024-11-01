@@ -12,7 +12,7 @@ public class LottoGameManager implements GameManager{
         List<Lottery> lotteries = new ArrayList<>();
         for (int i = 0; i < totalBuyCount; i++) {
             List<Integer> pickLottoNumber = Randoms.pickUniqueNumbersInRange(
-                    policy.getMinNumberLimit(), policy.getMaxNumberLimit(),policy.getPickedCount());
+                    policy.getMinNumberLimit(), policy.getMaxNumberLimit(),policy.getWinningNumberCount());
             Lotto lotto = new Lotto(pickLottoNumber);
             lotteries.add(lotto);
         }

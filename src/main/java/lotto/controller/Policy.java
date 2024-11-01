@@ -10,7 +10,7 @@ public interface Policy {
     int getMinNumberLimit();
     int getMaxNumberLimit();
 
-    int getPickedCount();
+    int getWinningNumberCount();
     String getDelimiter();
     String getIntegerRegex();
     int getZero();

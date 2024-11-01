@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.controller.view.InputView;
 import lotto.controller.view.OutputView;
 import lotto.controller.view.Validator;
@@ -33,6 +34,9 @@ public class LottoController {
         // 생성한 로또 객체 출력
         outputView.printLotteries(buyCount,lotteries);
         // 당첨번호 받기
+        List<Integer> integers = inputView.inputWinningNumber();
+        //보너스 번호 받기
+        int bonusNumber = inputView.inputBonusNumber();
         // 로또 추첨
         // 통계 출력
     }

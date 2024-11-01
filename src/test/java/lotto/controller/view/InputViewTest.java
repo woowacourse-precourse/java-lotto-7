@@ -1,9 +1,10 @@
-package lotto.view;
+package lotto.controller.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Scanner;
 import lotto.controller.view.InputView;
 import lotto.controller.LottoPolicy;
@@ -32,11 +33,28 @@ class InputViewTest {
         //when
         while (scanner.hasNextLine()) {
             int i = inputView.inputAmount();
-            System.out.println(i);
         }
         //then
-
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7","-1,2,3,4,5,6","q,1,2,3,4,5","0;1;2;3;4;5","1,2,3,3,4,5","1,2,3,0,4,5","1,2,3,4,5,6"})
+    @DisplayName("입력값이 잘못되었으면 input값을 다시 받는다.")
+    void inputWinningNumber(String input) {
+        //given
+        InputStream in = generateInput(input);
+        System.setIn(in);
+        Scanner scanner = new Scanner(System.in);
+        scanner.next();
+        InputView inputView = new InputView(Validator.newInstance(new LottoPolicy()));
+
+        //when
+        while (scanner.hasNextLine()) {
+            List<Integer> integers = inputView.inputWinningNumber();
+        }
+        //then
+    }
+
 
 
 }

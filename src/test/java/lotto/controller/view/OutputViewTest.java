@@ -3,6 +3,7 @@ package lotto.controller.view;
 import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.controller.LottoPolicy;
+import lotto.controller.view.OutputView;
 import lotto.domain.Lotteries;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGameManager;
