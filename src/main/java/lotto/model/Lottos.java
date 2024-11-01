@@ -1,5 +1,6 @@
 package lotto.model;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,5 +24,11 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public List<List<LottoNumber>> getAllLottoNumbers() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .collect(Collectors.toList());
     }
 }
