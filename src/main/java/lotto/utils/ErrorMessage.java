@@ -5,17 +5,13 @@ public enum ErrorMessage {
     INVALID_MONEY_INPUT("1000원 단위 이상의 돈을 입력해주세요!"),
     INVALID_LOTTO_NUM("1~45 사이의 숫자만 가능합니다!"),
     INVALID_WINNER_NUMBER("콤마로 구분한 로또 번호만 입력해주세요!"),
-    INVALID_BONUS_NUM("사용 불가능한 보너스 번호입니다!");
+    INVALID_BONUS_NUM("사용 불가능한 보너스 번호입니다!"),
+    NOT_HAVE_BONUS_NUM("보너스 번호가 들어가지 않았습니다.");
 
     private final String message;
 
     ErrorMessage(String message) {
         this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return message;
     }
 
     public String getMessage() {

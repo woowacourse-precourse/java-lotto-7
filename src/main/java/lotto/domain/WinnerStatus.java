@@ -9,11 +9,11 @@ import lotto.utils.DtoMapper;
 public class WinnerStatus {
 
     private final Map<Integer, Integer> rewardMap;
-    private final StatusMessage statusMessage;
+    private final RewardMessage rewardMessage;
 
     public WinnerStatus(WinnerCountList winnerCountList) {
         this.rewardMap = winnerCountList.calculateAllReward();
-        this.statusMessage = new StatusMessage();
+        this.rewardMessage = new RewardMessage();
     }
 
     public static WinnerStatus create(WinnerCountList winnerCountList) {
@@ -24,23 +24,8 @@ public class WinnerStatus {
         return DtoMapper.toWinnerStatusDto(this, createMessage());
     }
 
-    private String createMessage() {
-        StringJoiner joiner = new StringJoiner(System.lineSeparator());
-
-        for (Map.Entry<Integer, Integer> entry : rewardMap.entrySet()) {
-            Integer key = entry.getKey();
-            Integer value = entry.getValue();
-            String explainReward = statusMessage.explainReward(key);
-
-            joiner.add(explainReward + value + "개");
-        }
-
-        return joiner.toString();
-    }
-
     protected BigDecimal sum() {
-        return rewardMap.entrySet().stream()
-                .map(entry -> calculate(entry.getKey(), entry.getValue()))
+        return rewardMap.entrySet().stream().map(entry -> calculate(entry.getKey(), entry.getValue()))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -51,5 +36,18 @@ public class WinnerStatus {
         return bigKey.multiply(bigValue);
     }
 
+    private String createMessage() {
+        StringJoiner joiner = new StringJoiner(System.lineSeparator());
+
+        for (Map.Entry<Integer, Integer> entry : rewardMap.entrySet()) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+            String explainReward = rewardMessage.explainReward(key);
+
+            joiner.add(explainReward + value + "개");
+        }
+
+        return joiner.toString();
+    }
 
 }

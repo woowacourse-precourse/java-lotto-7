@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.Constants.END_NUM;
+import static lotto.utils.Constants.START_NUM;
 import static lotto.utils.ErrorMessage.INVALID_LOTTO_NUM;
 
 import java.util.Objects;
@@ -30,7 +32,7 @@ public class LottoNum implements Comparable<LottoNum> {
     }
 
     public Integer validateNum(Integer num) {
-        if (num == null || num <= 0 || num > 45) {
+        if (num == null || num < START_NUM || num > END_NUM) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUM.getMessage());
         }
         return num;

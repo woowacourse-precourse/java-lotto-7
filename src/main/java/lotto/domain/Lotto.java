@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.Constants.END_NUM;
+import static lotto.utils.Constants.START_NUM;
 import static lotto.utils.ErrorMessage.INVALID_BONUS_NUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -10,8 +12,7 @@ import java.util.Set;
 import java.util.StringJoiner;
 
 public class Lotto {
-    private static final int START_NUM = 1;
-    private static final int END_NUM = 45;
+
     private static final int LOTTO_COUNT = 6;
 
     private final List<LottoNum> numbers;

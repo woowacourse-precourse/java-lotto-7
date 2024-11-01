@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import static lotto.utils.Constants.FIFTH;
+import static lotto.utils.Constants.FIRST;
+import static lotto.utils.Constants.FOURTH;
+import static lotto.utils.Constants.SECOND;
+import static lotto.utils.Constants.THIRD;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +42,7 @@ public class WinnerCountList {
     }
 
     private TreeMap<Integer, Integer> init() {
-        List<Integer> reward = List.of(2000000000, 30000000, 1500000, 50000, 5000);
+        List<Integer> reward = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH);
         TreeMap<Integer, Integer> rewardMap = new TreeMap<>();
         for (Integer amount : reward) {
             rewardMap.put(amount, 0);

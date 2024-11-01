@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import static lotto.utils.Constants.FIFTH;
+import static lotto.utils.Constants.FIRST;
+import static lotto.utils.Constants.FOURTH;
+import static lotto.utils.Constants.SECOND;
+import static lotto.utils.Constants.THIRD;
+
 public class WinnerCount {
 
     private final int matchedCount;
@@ -16,25 +22,25 @@ public class WinnerCount {
 
     protected Integer calculateReward() {
         if (matchedCount == 6) {
-            return 2000000000;
+            return FIRST;
         }
 
         if (matchedCount == 5 && hasBonus) {
-            return 30000000;
+            return SECOND;
         }
 
         int totalWins = calculateTotalWins();
 
         if (totalWins == 5) {
-            return 1500000;
+            return THIRD;
         }
 
         if (totalWins == 4) {
-            return 50000;
+            return FOURTH;
         }
 
         if (totalWins == 3) {
-            return 5000;
+            return FIFTH;
         }
 
         return 0;

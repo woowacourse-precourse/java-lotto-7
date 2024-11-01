@@ -63,4 +63,6 @@ class WinnerLottoTest {
         assertThatThrownBy(() -> new WinnerLotto(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    // TODO 위너 넘버를 넣고 보너스 넘버 성공, 실패 테스트
 }

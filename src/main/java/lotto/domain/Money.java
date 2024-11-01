@@ -9,6 +9,9 @@ import lotto.dto.MoneyDto;
 import lotto.utils.DtoMapper;
 
 public class Money {
+    private static final int LOTTO_PRICE = 1000;
+    private static final int SCALE = 1;
+
     private final Long amount;
     private long lottoCount;
 
@@ -23,11 +26,11 @@ public class Money {
     }
 
     public MoneyDto toDto() {
-        return DtoMapper.toMoneyDto(this, amount / 1000);
+        return DtoMapper.toMoneyDto(this, calculateLottoCount(amount));
     }
 
     protected String calculateProfitRate(BigDecimal sumPercentage) {
-        return sumPercentage.divide(BigDecimal.valueOf(amount), 1, RoundingMode.HALF_UP).toString();
+        return sumPercentage.divide(BigDecimal.valueOf(amount), SCALE, RoundingMode.HALF_UP).toString();
     }
 
     private Long parseMoney(String money) {
@@ -43,7 +46,7 @@ public class Money {
     }
 
     private Long validateMoney(Long amount) {
-        if (amount <= 0 || amount % 1000 != 0) {
+        if (amount <= 0 || amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
         }
 
@@ -51,7 +54,7 @@ public class Money {
     }
 
     private Long calculateLottoCount(Long money) {
-        return money / 1000;
+        return money / LOTTO_PRICE;
     }
 
     public boolean lottoTry() {

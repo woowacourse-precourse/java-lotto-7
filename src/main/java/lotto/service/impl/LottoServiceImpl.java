@@ -1,5 +1,7 @@
 package lotto.service.impl;
 
+import static lotto.utils.ErrorMessage.NOT_HAVE_BONUS_NUM;
+
 import lotto.domain.LottoList;
 import lotto.domain.LottoNum;
 import lotto.domain.Money;
@@ -43,7 +45,7 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public WinnerStatusDto calculateWinnerStatus(LottoListDto lottoListDto, WinnerLotto winnerLotto) {
         if (!winnerLotto.hasBonusNum()) {
-            throw new IllegalStateException("보너스 번호가 들어가지 않았습니다.");
+            throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
         }
 
         LottoList lottoList = lottoListDto.lottoList();

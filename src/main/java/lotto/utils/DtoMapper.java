@@ -28,7 +28,7 @@ public class DtoMapper {
 
     public static WinnerStatusDto toWinnerStatusDto(WinnerStatus winnerStatus, String statusMessage) {
         StringJoiner joiner = new StringJoiner(ENTER);
-        joiner.add("")
+        joiner.add(ENTER + "당첨 통계")
                 .add("---")
                 .add(statusMessage);
 

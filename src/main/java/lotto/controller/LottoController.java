@@ -22,7 +22,7 @@ public class LottoController {
         this.viewer = viewer;
     }
 
-    public void run() {
+    public void executeLottoGame() {
         MoneyDto moneyDto = getMoney();
         LottoListDto lottoListDto = buyLotto(moneyDto);
         WinnerLotto winnerLotto = createWinnerLotto();
@@ -30,13 +30,13 @@ public class LottoController {
         calculateProfitRate(winnerStatus, moneyDto);
     }
 
-    public MoneyDto getMoney() {
+    protected MoneyDto getMoney() {
         viewer.printMessage("구입금액을 입력해 주세요.");
 
         return executeWithRetry(viewer::getInput, lottoService::covertToMoney);
     }
 
-    public LottoListDto buyLotto(MoneyDto moneyDto) {
+    protected LottoListDto buyLotto(MoneyDto moneyDto) {
         viewer.printMessage(moneyDto.lottoCount());
         LottoListDto lottoListDto = lottoService.generateLottoList(moneyDto);
         viewer.printMessage(lottoListDto.listMessage());
@@ -44,8 +44,7 @@ public class LottoController {
         return lottoListDto;
     }
 
-    // TODO DTO 필드 분리하여 만들기
-    public WinnerLotto createWinnerLotto() {
+    protected WinnerLotto createWinnerLotto() {
         viewer.printMessage(ENTER + "당첨 번호를 입력해주세요.");
         WinnerLotto winnerLotto = executeWithRetry(viewer::getInput, lottoService::addWinnerLotto);
 
@@ -53,18 +52,16 @@ public class LottoController {
         return executeWithRetry(viewer::getInput, bonus -> lottoService.addBonusNumber(winnerLotto, bonus));
     }
 
-    public WinnerStatusDto calculateWinnerStatus(LottoListDto lottoListDto, WinnerLotto winnerLotto) {
+    protected WinnerStatusDto calculateWinnerStatus(LottoListDto lottoListDto, WinnerLotto winnerLotto) {
         WinnerStatusDto winnerStatusDto = lottoService.calculateWinnerStatus(lottoListDto, winnerLotto);
         viewer.printMessage(winnerStatusDto.message());
 
         return winnerStatusDto;
     }
 
-    public ProfitRateResultDto calculateProfitRate(WinnerStatusDto winnerStatus, MoneyDto moneyDto) {
+    protected void calculateProfitRate(WinnerStatusDto winnerStatus, MoneyDto moneyDto) {
         ProfitRateResultDto profitRateResultDto = lottoService.calculateProfitRate(winnerStatus, moneyDto);
         viewer.printMessage(profitRateResultDto.resultMessage());
-
-        return profitRateResultDto;
     }
 
 
