@@ -1,10 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import org.junit.jupiter.params.provider.CsvSource;
+import lotto.Messages.ErrorMessage;
+import lotto.View.Controller;
+import lotto.View.InputView;
+import lotto.View.OutputView;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -18,12 +20,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            OutputView.printError(ErrorMessage.LOTTO_NUM.getError());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM.getError());
         }
-        boolean flage = numbers.stream()
-                .allMatch(number -> number >= 1 && number <= 45);
-        if(!flage){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하여야 합니다.");
+        if(!InputView.checkRangeList(numbers)){
+            OutputView.printError(ErrorMessage.LOTTO_RANGE.getError());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE.getError());
+        }
+        Set<Integer> numberSet = numbers.stream()
+                .collect(Collectors.toSet());
+        if(numberSet.size() != numbers.size()){
+            OutputView.printError(ErrorMessage.LOTTO_DUPLICATE.getError());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE.getError());
         }
     }
 
@@ -35,21 +43,23 @@ public class Lotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
     }
 
-    public static Lotto sortLotto(Lotto lotto){
-        Collections.sort(lotto.numbers);
-        return lotto;
+    public static Lotto sortLotto(Lotto lotto) {
+        List<Integer> sortedNumbers = new ArrayList<>(lotto.numbers);
+        Collections.sort(sortedNumbers);
+        return new Lotto(sortedNumbers);
     }
 
-    public static List<Lotto> sortLottoList(Integer lottoCount, List<Lotto> lottoList){
+
+    public static List<Lotto> sortLottoList(Integer lottoCount){
+        List<Lotto> lottoList = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++){
-            Lotto newLotto = Lotto.sortLotto(Lotto.getLotto());
+            Lotto newLotto = Lotto.getLotto();
+            newLotto = Lotto.sortLotto(newLotto);
             lottoList.add(newLotto);
-            View.printLotto(newLotto);
+            OutputView.printLotto(newLotto);
         }
         return lottoList;
     }
-
-
 
     public static MyResult gradeLotto(Lotto answer, Lotto target, Integer bonus){
         List<Integer> matchList = answer.numbers.stream().filter(num -> target.numbers.stream()
