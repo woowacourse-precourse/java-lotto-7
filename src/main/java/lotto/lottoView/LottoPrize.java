@@ -8,7 +8,7 @@ public enum LottoPrize {
     SIX(6, 2000000000);
 
     private final int matchCount;
-    private final int prizeMoney;
+    private final long prizeMoney;
 
     LottoPrize(int matchCount, int prizeMoney) {
         this.matchCount = matchCount;
@@ -16,7 +16,7 @@ public enum LottoPrize {
     }
 
     // 정수 값과 보너스 여부를 받아서 상금을 반환하는 메서드
-    public static int getPrize(int matchCount, boolean bonus) {
+    public static long getPrize(int matchCount, boolean bonus) {
         if (matchCount == 5 && bonus) {
             return FIVE_WITH_BONUS.prizeMoney; // 보너스 번호가 맞았을 때 상금
         }
