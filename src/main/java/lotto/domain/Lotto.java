@@ -29,7 +29,7 @@ public class Lotto {
 
         private static void validateLottoNumbers(List<Integer> numbers) {
             validateLottoNumberSize(numbers);
-            validateLottoNumberDuplicate(numbers);
+            validateUniqueLottoNumbers(numbers);
             validateLottoNumberRange(numbers);
         }
 
@@ -39,9 +39,9 @@ public class Lotto {
             }
         }
 
-        private static void validateLottoNumberDuplicate(List<Integer> numbers) {
-            Set<Integer> duplicateNumbers = new HashSet<>(numbers);
-            if (duplicateNumbers.size() != numbers.size()) {
+        private static void validateUniqueLottoNumbers(List<Integer> numbers) {
+            int uniqueLottoNumbers = new HashSet<>(numbers).size();
+            if (uniqueLottoNumbers != numbers.size()) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
             }
         }
