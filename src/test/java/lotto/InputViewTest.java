@@ -46,6 +46,27 @@ public class InputViewTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("입력된 보너스번호가 정수가 아닌경우")
+    public void NotNumberBonusnumber(){
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6","a"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(ErrorMessage.NOTNUMBERBONUSNUMBER.getMessage())
+        );
+    }
+
+    @Test
+    @DisplayName("입력된 보너스번호가 범위를 벗어나는경우")
+    public void OutofRangeBonusNumber(){
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6","46"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(ErrorMessage.OUTOFRANGEBONUSNUMBER.getMessage())
+        );
+    }
+
+
 
     @Override
     public void runMain() {
