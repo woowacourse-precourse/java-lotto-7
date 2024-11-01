@@ -6,7 +6,7 @@ import lotto.lotto.domain.Calculator;
 public class DivideThousandCalculator implements Calculator {
     private final Long PRICE_PER_LOTTO = 1000L;
     @Override
-    public int divideByThousand(Money money) {
+    public int calculate(Money money) {
         return (int) (money.getMoney() / PRICE_PER_LOTTO);
     }
 }
