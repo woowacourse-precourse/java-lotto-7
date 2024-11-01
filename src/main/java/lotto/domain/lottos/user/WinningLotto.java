@@ -3,7 +3,6 @@ package lotto.domain.lottos.user;
 import java.util.EnumMap;
 import java.util.Map;
 import lotto.domain.Rank;
-import lotto.domain.Wallet;
 
 public class WinningLotto {
     private final EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
@@ -12,27 +11,41 @@ public class WinningLotto {
         initRanks();
     }
 
-    public void addRank(Rank rank) {
+    public void addMatchedResultAsRank(Map<Integer, Boolean> matchedLottos) {
+        for (Map.Entry<Integer, Boolean> entry : matchedLottos.entrySet()) {
+            int matchCount = entry.getKey();
+            boolean isMatchedBonus = entry.getValue();
+            Rank rank = Rank.findRank(matchCount, isMatchedBonus);
+
+            addRank(rank);
+        }
+    }
+
+    private void addRank(Rank rank) {
         ranks.merge(rank, 1, Integer::sum);
     }
 
-    public void calculateRateOfReturn(Wallet wallet) {
-        wallet.calculateRateOfReturn(getFinalPrizeAmount());
+    public long getFinalPrizeAmount() {
+        return calculateTotalPrizeAmount();
     }
 
-    private long getFinalPrizeAmount() {
+    private long calculateTotalPrizeAmount() {
         long result = 0;
 
         for (Map.Entry<Rank, Integer> entry : ranks.entrySet()) {
             Rank rank = entry.getKey();
-            int count = entry.getValue();
+            int matchedCount = entry.getValue();
             long prizeMoney = rank.getPrizeMoney();
 
-            if (count > 0) {
-                result += prizeMoney * count;
+            if (isMatchedRank(matchedCount)) {
+                result += (prizeMoney * matchedCount);
             }
         }
         return result;
+    }
+
+    private boolean isMatchedRank(int matchedCount) {
+        return matchedCount > 0;
     }
 
     public EnumMap<Rank, Integer> getWinningStatistics() {
