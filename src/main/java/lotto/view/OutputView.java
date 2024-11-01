@@ -28,7 +28,7 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + map.get(Rank.ONE) + "개");
     }
 
-    public void printLottoYield(int yield) {
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+    public void printLottoYield(double yield) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
     }
 }
