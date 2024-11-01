@@ -3,9 +3,12 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -21,5 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    public void testLottoDefaultConstructor() {
+        Lotto lotto = new Lotto();
+        List<Integer> numbers = lotto.getNumbers();
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        assertEquals(numbers.size(), uniqueNumbers.size(), "생성된 로또에 중복된 숫자가 있음");
+    }
 }
