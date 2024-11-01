@@ -17,9 +17,11 @@ public class LottoController {
     public void run() {
 
         int numberOfPurchasedLotto = inputView.inputPrice() / 1000;
-
         List<Lotto> generatedLottos = LottoService.generateLotto(numberOfPurchasedLotto);
 
+        int[] winningNumbers = inputView.inputWinningNumbers();
+        int bonusNumber = inputView.inputBonusNumber();
+        
 
     }
 }

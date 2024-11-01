@@ -14,7 +14,7 @@ public class InputView {
         System.out.println(SystemMessage.Input_WinningNumbers.getMessage());
         String winningNumbers = Console.readLine();
 
-        return Arrays.stream(winningNumbers.split(",")) // ["1","2","3"] -> stream 으로 변경
+        return Arrays.stream(winningNumbers.split(","))
                 .mapToInt(Integer::parseInt)
                 .toArray();
     }
