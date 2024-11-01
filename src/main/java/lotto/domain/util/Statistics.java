@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.domain.Lotto;
 import lotto.global.common.Rank;
 
 public final class Statistics {
@@ -19,7 +20,7 @@ public final class Statistics {
     }
 
     public double calculateProfitRate() {
-        final double seed = TicketParser.TICKET_PRICE * rankMap.size();
+        final double seed = Lotto.TICKET_PRICE * rankMap.size();
         int profit = 0;
 
         for (Entry<Rank, Integer> entry : rankMap.entrySet()){

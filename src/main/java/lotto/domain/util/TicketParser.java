@@ -1,9 +1,10 @@
 package lotto.domain.util;
 
+import static lotto.domain.Lotto.TICKET_PRICE;
+
 public final class TicketParser {
 
     private final static String DECIMAL_COMMA = ",";
-    public final static int TICKET_PRICE = 1_000;
 
     private TicketParser() {}
 

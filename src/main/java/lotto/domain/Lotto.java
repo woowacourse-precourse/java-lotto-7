@@ -5,6 +5,8 @@ import lotto.global.common.Rank;
 
 public class Lotto {
 
+    public final static int TICKET_PRICE = 1_000;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
