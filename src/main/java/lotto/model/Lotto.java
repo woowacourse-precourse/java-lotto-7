@@ -1,12 +1,12 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 
 public class Lotto {
 
-    private static final int SIZE = 6;
-    private static final int MINIMUM_THRESHOLD = 1;
-    private static final int MAXIMUM_THRESHOLD = 45;
+    public static final int SIZE = 6;
+    public static final int MINIMUM_THRESHOLD = 1;
+    public static final int MAXIMUM_THRESHOLD = 45;
 
     private final List<Integer> numbers;
 
