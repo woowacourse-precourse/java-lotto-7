@@ -23,10 +23,22 @@ public class LottoControllerTest {
 
     @Test
     void 구입금액이_1000원_단위가_아닐_때_예외가_발생한다() {
-        int purchaseAmount = 10500;
-        assertThatThrownBy(() -> lottoController.validatePurchaseAmount(purchaseAmount))
+        int purchasePrice = 10500;
+        assertThatThrownBy(() -> lottoController.validatePurchaseAmount(purchasePrice))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("구입 금액은 1,000원 단위로만 가능합니다.");
+    }
+
+    @Test
+    void 구매_금액을_1000으로_나누어_발행_횟수를_구한다() {
+        //given
+        int purchasePrice = 100000;
+
+        //when
+        int countOfPublish = lottoController.getCountOfPublish(purchasePrice);
+
+        //then
+        assertEquals(countOfPublish, 100);
     }
 
     @Test
