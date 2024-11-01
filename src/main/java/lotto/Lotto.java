@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
+        validateUnderZero(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -17,7 +18,16 @@ public class Lotto {
         }
     }
 
-    public static void validateDuplicate(List<Integer> numbers) {
+    private void validateUnderZero(List<Integer> numbers) {
+        boolean hasZero = numbers.stream()
+                .anyMatch(num -> num <= 0);
+
+        if (hasZero) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에는 0이 포함될 수 없습니다.");
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
         long uniqueCount = numbers.stream()
                 .distinct()
                 .count();
