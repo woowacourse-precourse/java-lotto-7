@@ -6,12 +6,12 @@ import lotto.Model.Ranking;
 public class OutputView{
 
 
-    public void printSuccessResult(){
+    public static void printSuccessResult(){
         System.out.println("당첨 통계");
         System.out.println("---");
     }
     //각 Ranking 별 일치개수를 반환 로직
-    public void printResult(Map<Ranking,Integer> rankingCount){
+    public static void printResult(Map<Ranking,Integer> rankingCount){
         rankingCount.forEach((rank,count)->{
             if(rank==Ranking.MISS){
                 return;

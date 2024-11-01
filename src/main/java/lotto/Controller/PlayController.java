@@ -13,7 +13,6 @@ import lotto.View.OutputView;
 
 public class PlayController {
     private final InputController inputController;
-    private final OutputView outputView;
     private int gameNumber;
     private ArrayList<Integer> winningNumbers;
     private List<Lotto> lottoNumberList;
@@ -23,7 +22,6 @@ public class PlayController {
 
     public PlayController() {
         inputController = new InputController();
-        outputView = new OutputView();
         gameNumber = inputController.setPurchasePrice();
         lottoNumberList = LottoNumbers.makeLottoList(gameNumber);
         winningNumbers = inputController.setWinningNumber();
@@ -52,8 +50,8 @@ public class PlayController {
     }
 
     public void showResult() {
-        outputView.printSuccessResult();
-        outputView.printResult(resultSet);
-        outputView.printRevenueRate(EarningRate.returnEarningRate(gameNumber, resultSet));
+        OutputView.printSuccessResult();
+        OutputView.printResult(resultSet);
+        OutputView.printRevenueRate(EarningRate.returnEarningRate(gameNumber, resultSet));
     }
 }

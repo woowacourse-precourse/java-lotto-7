@@ -57,7 +57,7 @@ public class InputView {
                 validation.bonusNumberValidator(bonusNumber);
                 return bonusNumber;
             }catch(NumberFormatException e){
-                System.out.println(e.getMessage());
+                System.out.println(PARSING_INTEGER_ERROR.getMessage());
                 System.out.println(RETRY_MESSAGE.getMessage());
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
