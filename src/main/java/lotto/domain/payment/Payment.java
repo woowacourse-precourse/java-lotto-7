@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto.domain.payment;
 
-import static lotto.domain.PaymentStatus.COMPLETED;
-import static lotto.domain.PaymentStatus.PAYABLE;
-import static lotto.domain.PaymentStatus.PENDING;
+import static lotto.domain.payment.PaymentStatus.COMPLETED;
+import static lotto.domain.payment.PaymentStatus.PAYABLE;
+import static lotto.domain.payment.PaymentStatus.PENDING;
 
 import lotto.LottoCount;
 import lotto.ThousandWons;

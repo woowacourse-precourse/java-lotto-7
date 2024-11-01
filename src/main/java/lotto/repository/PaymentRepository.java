@@ -1,7 +1,7 @@
 package lotto.repository;
 
 import java.util.concurrent.ConcurrentHashMap;
-import lotto.domain.Payment;
+import lotto.domain.payment.Payment;
 
 public class PaymentRepository {
     private final ConcurrentHashMap repository = new ConcurrentHashMap<Long, Payment>();

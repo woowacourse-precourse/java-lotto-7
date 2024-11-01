@@ -2,9 +2,9 @@ package lotto.service;
 
 import lotto.LottoCount;
 import lotto.ThousandWons;
-import lotto.domain.LottoPrice;
-import lotto.domain.Payment;
-import lotto.domain.PaymentResult;
+import lotto.domain.payment.LottoPrice;
+import lotto.domain.payment.Payment;
+import lotto.domain.payment.PaymentResult;
 import lotto.repository.PaymentRepository;
 
 public class PaymentService {
