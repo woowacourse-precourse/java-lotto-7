@@ -57,18 +57,12 @@ public class Lotto {
 
     public int getMatchCountWinningLotto(WinningLotto winningLotto) {
         return numbers.stream()
-                .filter(number -> winningLotto.isContains(number))
-                .collect(Collectors.toList()).size();
+                .filter(winningLotto::isContains)
+                .collect(Collectors.toList())
+                .size();
     }
 
     public boolean isMatchBonusNumber(BonusNumber bonusNumber) {
-        int matchCount = numbers.stream()
-                .filter(number -> bonusNumber.isMatch(number))
-                .collect(Collectors.toList()).size();
-
-        if (matchCount == 1) {
-            return true;
-        }
-        return false;
+        return numbers.stream().anyMatch(bonusNumber::isMatch);
     }
 }
