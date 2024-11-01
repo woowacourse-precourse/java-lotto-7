@@ -16,7 +16,9 @@ import lotto.lottoModel.StatisticsLottoDAO;
 import lotto.lottoModel.StatisticsLottoDTO;
 import lotto.lottoModel.StatisticsLotto;
 import lotto.lottoView.InputView;
+import lotto.lottoView.LottoPrize;
 import lotto.lottoView.OutputView;
+import lotto.lottoService.LottoMainService;
 
 import lotto.Utility.LottoNumberGenerator;
 
@@ -30,22 +32,24 @@ public class LottoController {
     private HitLottoDTO hitLottoDTO;
     private StatisticsLottoDAO statisticsDAO;
     private StatisticsLottoDTO statisticsDTO;
+    private LottoMainService lottoMainService;
 
     public LottoController() {
-        this.lottoDAO = new LottoDAO();
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.hitLottoDAO = new HitLottoDAO();
-        this.statisticsDAO = new StatisticsLottoDAO();
 
+        this.lottoMainService = new LottoMainService(lottoDAO, hitLottoDAO,statisticsDAO);
     }
 
     public void run() {
-        String Cost = inputView.PrintStartMsg();
+        String cost = inputView.PrintStartMsg();
         //여기에 유효성 검증
 
-        buyLotto(Cost);
-        List<Lotto> allLottos = lottoDAO.getAll();
+        long calcCost = Long.parseLong(cost);
+        outputView.howManyBuy(calcCost / 1000);
+        lottoMainService.buyLotto(calcCost);
+
+        List<Lotto> allLottos = lottoDAO.getAll(); //todo: dto로 바꾸기
 
         for (Lotto lotto : allLottos) { //todo:추후 메서드로 빼낼것
             LottoDTO dto = new LottoDTO(lotto.getNumbers());
@@ -56,66 +60,20 @@ public class LottoController {
         String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
         //여기에 유효성 검증
 
-        saveHitLotto(hitLottoInput, bonusNumberInput);
+        lottoMainService.saveHitLotto(hitLottoInput, bonusNumberInput);
 
-        HitLottoDAO hitLottoDAO = new HitLottoDAO();
-        HitLottoDTO dto = hitLottoDAO.getAsDTO();
+        HitLottoDTO dto = hitLottoDAO.getAsDTO(); //?
 
-        retainLotto(allLottos, dto.getAllHitNumbers());
+        lottoMainService.retainLotto(allLottos, dto.getAllHitNumbers());
 
         StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();
         outputView.statisticStart(stats);
 
-
-    }
-
-
-    public void buyLotto(String cost) {
-        long calcCost = Long.parseLong(cost);
-        long numberOfBuy = calcCost/1000;
-        outputView.howManyBuy(numberOfBuy);
-
-        for (int i=0;i<numberOfBuy;i++){
-            Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
-            lottoDAO.save(lotto);
-        }
-
-    }
-
-    public void saveHitLotto(String hitLottoInput,String bonusNumberInput) {
-        List<Integer> hitNumbers = Arrays.stream(hitLottoInput.split(","))
-                .map(Integer::parseInt)
-                .toList();
-
-        int bonusNumber = Integer.parseInt(bonusNumberInput);
-        getInstance(hitNumbers,bonusNumber);
+        long sumPrize = lottoMainService.sumPrize(stats);
+        double profit = sumPrize / calcCost;
+        outputView.profitMessage(profit);
 
 
     }
-
-    public void retainLotto(List<Lotto> alllottos, List<Integer> hitLottos) {
-        for (Lotto lotto: alllottos ) {
-            Set<Integer> lottoNumber = new HashSet<>(lotto.getNumbers());
-            Set<Integer> hitLottoNumber = new HashSet<>(hitLottos);
-            lottoNumber.retainAll(hitLottoNumber); //두 세트의 공통 원소만 뽑아서 합친 세트
-            saveLottoStatistics(lottoNumber);
-        }
-
-    }
-
-    public void saveLottoStatistics(Set<Integer> lottoNumber) {
-        int hitSize = lottoNumber.size();
-        HitLotto hitLotto = HitLotto.getInstance(null,0);
-        //3~6까지 맞춘 횟수 빈도 추가
-        if (hitSize >= 3 && hitSize <= 6) {
-            statisticsDAO.updateSizeFrequency(hitSize);
-        }
-
-        // 5일 때 특정 값이 있는지 확인하고 있으면 추가
-        if (hitSize == 5 && lottoNumber.contains(hitLotto.getBonusNumber())) {
-            statisticsDAO.addSpecificValue();
-        }
-    }
-
 
 }
