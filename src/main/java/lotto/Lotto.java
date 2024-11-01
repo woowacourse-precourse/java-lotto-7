@@ -17,6 +17,12 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto createOfLotto(String numbers) {
+        ArrayList<LottoNumber> newNumbers = new ArrayList<>(Arrays.stream(numbers.trim().split(",")).map(LottoNumber::new).toList());
+        Collections.sort(newNumbers);
+        return new Lotto(newNumbers);
+    }
+
     public static Lotto createOfLotto(List<Integer> numbers) {
         List<LottoNumber> newNumbers = new ArrayList<>(numbers.stream().map(LottoNumber::new).toList());
         Collections.sort(newNumbers);
