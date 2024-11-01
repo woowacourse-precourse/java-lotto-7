@@ -23,7 +23,7 @@ public class InputView {
     }
 
     public static List<Integer> getInputWinLottoNumbers() {
-        System.out.println("당첨 번호를 입력해주세요 (예: 1,2,3,4,5,6)");
+        System.out.println("당첨 번호를 입력해주세요");
         List<Integer> inputLottoNumbers = new ArrayList<>();
         String input = Console.readLine();
         tokenizeInput(input, inputLottoNumbers);
@@ -34,7 +34,7 @@ public class InputView {
         return inputLottoNumbers;
     }
 
-    public static void plusBonusNumber2LottoNumber(List<Integer> inputLottoNumbers) {
+    public static int getInputBonusNumber(List<Integer> inputLottoNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         validateNumber(input);
@@ -42,7 +42,7 @@ public class InputView {
         int bonusNumber = Integer.parseInt(input);
         validateBonusNumber(bonusNumber, inputLottoNumbers);
 
-        inputLottoNumbers.add(bonusNumber);  // 보너스 번호 추가
+        return bonusNumber;
     }
 
     private static void tokenizeInput(String input, List<Integer> inputLottoNumbers) {
