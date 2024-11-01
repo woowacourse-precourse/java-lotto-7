@@ -15,7 +15,7 @@ public class ViewInput {
         String purchaseAmount = Console.readLine();
         validatorPurchaseAmount(Integer.parseInt(purchaseAmount));
         printPurchaseAmount(Integer.parseInt(purchaseAmount));
-        return Integer.parseInt(purchaseAmount);
+        return Integer.parseInt(purchaseAmount)/1000;
     }
 
     public void printPurchaseAmount(int purchaseAmount){

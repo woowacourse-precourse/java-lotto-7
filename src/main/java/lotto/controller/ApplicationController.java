@@ -1,7 +1,11 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Application;
+import lotto.model.Lotto;
 import lotto.view.ViewInput;
+
+import java.util.List;
 
 public class ApplicationController {
     private final ViewInput viewInput;
@@ -13,12 +17,14 @@ public class ApplicationController {
 
     public void run(){
         int purchaseAmount = viewInput.receivePurchaseAmount();
-
-
-
-
-
-
+        for(int i = 0; i < purchaseAmount; i++){
+            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(lottoNumber);
+            lotto.printLottoNumbers(lottoNumber);
+        }
 
     }
+
+
+
 }

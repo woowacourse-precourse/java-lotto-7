@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +20,17 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void printLottoNumbers(List<Integer> numbers){
+        Collections.sort(numbers);
+        StringBuilder sb = new StringBuilder("[");
+        for(int i  =0; i < numbers.size(); i++){
+            sb.append(numbers.get(i));
+            if(i != numbers.size() - 1){
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        System.out.println(sb);
+    }
+
 }
