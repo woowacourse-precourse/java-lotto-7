@@ -1,24 +1,23 @@
-package lotto.util;
+package lotto.model;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.config.LottoRank;
 
-public class StatisticCalculate {
-    private static final Integer INITIAL_COUNT = 0;
+public class Statistic {
     private static final Integer FIVE_MATCHES = 5;
     private static final Integer INCREMENT = 1;
 
     private final Map<LottoRank, Integer> statisticResult;
 
-    private StatisticCalculate(Map<LottoRank, Integer> statisticResult) {
+    private Statistic(Map<LottoRank, Integer> statisticResult) {
         this.statisticResult = statisticResult;
     }
 
-    public static StatisticCalculate createStatistic(final List<Integer> matchedNumberCount,
-                                                     final List<Boolean> containsBonusNumber) {
-        return new StatisticCalculate(compileStatistic(matchedNumberCount, containsBonusNumber));
+    public static Statistic createStatistic(final List<Integer> matchedNumberCount,
+                                            final List<Boolean> containsBonusNumber) {
+        return new Statistic(compileStatistic(matchedNumberCount, containsBonusNumber));
     }
 
     private static Map<LottoRank, Integer> compileStatistic(List<Integer> matchedCounts,

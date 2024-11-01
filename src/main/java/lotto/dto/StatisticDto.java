@@ -8,7 +8,7 @@ import static lotto.config.LottoRank.THIRD_RANK;
 
 import java.util.Map;
 import lotto.config.LottoRank;
-import lotto.util.StatisticCalculate;
+import lotto.model.Statistic;
 
 public class StatisticDto {
     private static final int INITIAL_COUNT = 0;
@@ -19,8 +19,8 @@ public class StatisticDto {
         this.statisticResult = statisticResult;
     }
 
-    public static StatisticDto from(final StatisticCalculate statisticCalculate) {
-        Map<LottoRank, Integer> statisticResult = statisticCalculate.getStatisticResult();
+    public static StatisticDto from(final Statistic statistic) {
+        Map<LottoRank, Integer> statisticResult = statistic.getStatisticResult();
 
         return new StatisticDto(Map.copyOf(statisticResult));
     }
