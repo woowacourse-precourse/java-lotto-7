@@ -6,7 +6,8 @@ public enum ErrorMessage {
     BUY_AMOUNT_LESS_THAN_THOUSAND("로또 구입 금액은 1000원 이상으로 가능합니다."),
     WINNING_NUMBERS_NOT_FIT_COUNT("당첨 번호는 6개를 입력해야 합니다."),
     WINNING_NUMBERS_HAS_DUPLICATE("당첨 번호는 중복될 수 없습니다."),
-    WINNING_NUMBERS_OUT_OF_RANGE("당첨 번호는 1 ~ 45 사이의 값만 입력할 수 있습니다.");
+    LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1 ~ 45 사이의 값만 입력할 수 있습니다."),
+    WINNING_NUMBERS_CONTAIN_BONUS_NUMBER("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
 
     private static final String ERROR_FLAG = "[ERROR] ";
 

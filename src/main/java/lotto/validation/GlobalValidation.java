@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import static lotto.Constants.LOTTO_MAX_NUM;
+import static lotto.Constants.LOTTO_MIN_NUM;
 import static lotto.message.ErrorMessage.*;
 
 public class GlobalValidation {
@@ -10,5 +12,10 @@ public class GlobalValidation {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR.getMessage());
         }
     }
+
+    public static boolean isLottoNumberOutOfRange(int number){
+        return number < LOTTO_MIN_NUM || number >= LOTTO_MAX_NUM;
+    }
+
 
 }
