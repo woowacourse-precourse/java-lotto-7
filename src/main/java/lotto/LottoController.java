@@ -1,16 +1,13 @@
 package lotto;
 
 import lotto.model.Purchase;
+import lotto.view.PurchaseView;
 
 public class LottoController {
-    private final LottoView lottoView;
-
-    public LottoController(LottoView lottoView) {
-        this.lottoView = lottoView;
-    }
-
     public void purchaseLotto() {
-        String payment = lottoView.getPayment();
+        PurchaseView purchaseView = new PurchaseView();
+        String payment = purchaseView.getPayment();
         Purchase purchase = new Purchase(payment);
+        purchaseView.displayPurchaseResult(purchase.getLottoCount(), purchase.getPurchasedLottoTickets());
     }
 }

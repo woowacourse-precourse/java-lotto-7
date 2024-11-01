@@ -1,19 +1,30 @@
 package lotto.model;
 
+import static lotto.LottoConstant.PRICE;
+
+import java.util.List;
+
 public class Purchase {
-    private static final int PRICE = 1000;
     private final int payment; // TODO 원시타입 포장 고민
     private final int lottoCount;
-    private final PurchasedLotto purchasedLotto;
+    private final LottoTickets purchasedLottoTickets;
 
     public Purchase(final String payment) {
         validate(payment);
         this.payment = Integer.parseInt(payment);
-        this.lottoCount = this.payment / PRICE;
-        this.purchasedLotto = new PurchasedLotto(this.lottoCount);
+        this.lottoCount = this.payment / PRICE.getNumber();
+        this.purchasedLottoTickets = new LottoTickets(this.lottoCount);
     }
 
-    private void validate(String payment) {
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
+    public List<Lotto> getPurchasedLottoTickets() {
+        return purchasedLottoTickets.getLottoTickets();
+    }
+
+    private void validate(final String payment) {
         // TODO 예외 처리
     }
 }

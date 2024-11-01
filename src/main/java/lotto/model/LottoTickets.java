@@ -1,27 +1,31 @@
 package lotto.model;
 
+import static lotto.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.LottoConstant.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class PurchasedLotto {
-    private final List<Lotto> purchasedLotto = new ArrayList<Lotto>();
+public class LottoTickets {
+    private final List<Lotto> lottoTickets = new ArrayList<Lotto>();
 
-    public PurchasedLotto(int purchasedLottoCount) {
-        purchaseLotto(purchasedLottoCount);
+    public LottoTickets(final int lottoCount) {
+        purchaseLottoTickets(lottoCount);
     }
 
-    private void purchaseLotto(int purchasedLottoCount) {
-        for (int i = 0; i < purchasedLottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            purchasedLotto.add(new Lotto(lottoNumbers));
+    private void purchaseLottoTickets(final int lottoCount) {
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getNumber(),
+                    MAX_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_COUNT.getNumber());
+            Collections.sort(lottoNumbers);
+            lottoTickets.add(new Lotto(lottoNumbers));
         }
     }
 
-    //    public List<Lotto> getPurchasedLotto() {
-//        return purchasedLotto;
-//    }
-    public List<Lotto> getLotto() {
-        return purchasedLotto;
+    public List<Lotto> getLottoTickets() {
+        return Collections.unmodifiableList(lottoTickets);
     }
 }
