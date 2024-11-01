@@ -1,4 +1,4 @@
-package lotto.domain.Random;
+package lotto.domain.random;
 
 import static lotto.resources.Constants.LOTTO_MAX_NUMBER;
 import static lotto.resources.Constants.LOTTO_MIN_NUMBER;
