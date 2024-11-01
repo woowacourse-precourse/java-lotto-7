@@ -6,6 +6,7 @@ import lotto.Service.LottoService;
 import lotto.View.InputView;
 import lotto.domain.Rank;
 import lotto.domain.RankResult;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -47,6 +48,19 @@ class LottoTest {
         int purchase_amount = 3000;
         int number=lottoService.LottoNumber(purchase_amount);
         assertThat(number).isEqualTo(3);
+    }
+    @Test
+    void 당첨_통계() {
+        List<Lotto> userLottos = Arrays.asList(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+        );
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        RankResult rankResult = lottoService.winning_statistics(userLottos, winningNumbers, bonusNumber);
+        assertThat(rankResult.getRank_Count().containsKey(Rank.FIRST)).isTrue();
+        assertThat(rankResult.getRank_Count().get(Rank.FIRST)).isEqualTo(1);
     }
 
 }
