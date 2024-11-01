@@ -78,10 +78,16 @@ public class InputTest {
         @ParameterizedTest()
         @ValueSource(strings = {"1,2,3,a,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:"})
         void 숫자가_아닌_당첨번호_예외(String input){
+
+            WinningNumberParser parser = new WinningNumberParser();
+            List<String> parsedInput = parser.parseWinningNumber(input);
+
+
             assertThrows(IllegalArgumentException.class, () -> {
-                validator.validateWinningNumber(input);
+                validator.validateWinningNumber(parsedInput);
             });
         }
+
     }
 
     @Nested
@@ -101,5 +107,7 @@ public class InputTest {
             assertThat(parsedInput).containsExactly("1","2","3","4","5","6");
         }
     }
+
+
 
 }
