@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
 import lotto.exception.LottoErrorMessage;
 
@@ -18,7 +19,8 @@ public class LottoAnswer extends Lotto {
     }
 
     private void validateBonusNumberDuplicated(int bonusNumber) {
-        var numbers = super.getNumbers();
+        var numbers = new HashSet<>(super.getNumbers());
+
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(LottoErrorMessage.LOTTO_BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
         }
