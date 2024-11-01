@@ -25,6 +25,7 @@ public class InputView {
     }
 
     public String getWinningComponent() {
+        System.out.println();
         System.out.println(InputMessage.WINNING_NUMBER.getInstance());
         return readLine();
     }
