@@ -4,24 +4,22 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        try {
-            int purchaseAmount = readPurchaseAmount();
-            System.out.println("Purchase amount: " + purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        int purchaseAmount = readValidPurchaseAmount();
+        System.out.println("Final purchase amount: " + purchaseAmount);
     }
 
-    private static int readPurchaseAmount() {
-        System.out.println("Enter the purchase amount:");
-        String input = Console.readLine();
+    private static int readValidPurchaseAmount() {
+        while (true) {
+            System.out.println("Enter the purchase amount:");
+            String input = Console.readLine();
 
-        try {
-            int amount = Integer.parseInt(input);
-            validateAmount(amount);  // 유효성 검증
-            return amount;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] The amount should be a valid integer.");
+            try {
+                int amount = Integer.parseInt(input);
+                validateAmount(amount);  // 유효성 검증
+                return amount;  // 유효한 금액이면 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());  // [ERROR] 메시지 출력 후 재입력
+            }
         }
     }
 
