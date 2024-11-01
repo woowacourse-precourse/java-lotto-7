@@ -11,6 +11,19 @@ public class LottoServiceTest {
     private final LottoService lottoService = new LottoService();
 
     @Test
+    void 발행한_로또의_수량이_올바른지_테스트() {
+        // given
+        int purchaseAmount = 5000;
+        int expected = purchaseAmount / 1000;
+
+        // when
+        int result = lottoService.calculateLottoQuantities(purchaseAmount);
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
     void 발행된_로또_번호의_범위_테스트() {
         List<Integer> result = lottoService.generateLottonumbers();
         assertThat(result.stream().allMatch(number -> number >= 1 && number <= 45)).isTrue();
@@ -24,19 +37,6 @@ public class LottoServiceTest {
 
         // when
         List<Integer> result = lottoService.sortLottoNumbersAscending(lottoNumber);
-
-        // then
-        assertThat(result).isEqualTo(expected);
-    }
-
-    @Test
-    void 발행한_로또의_수량이_올바른지_테스트() {
-        // given
-        int purchaseAmount = 5000;
-        int expected = purchaseAmount / 1000;
-
-        // when
-        int result = lottoService.calculateLottoQuantities(purchaseAmount);
 
         // then
         assertThat(result).isEqualTo(expected);
