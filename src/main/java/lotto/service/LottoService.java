@@ -2,20 +2,14 @@ package lotto.service;
 
 
 import static lotto.constant.LottoConstants.LOTTO_PRICE;
-import static lotto.constant.Winner.FIFTH_WINNER;
-import static lotto.constant.Winner.FIRST_WINNER;
-import static lotto.constant.Winner.FOURTH_WINNER;
-import static lotto.constant.Winner.SECOND_WINNER;
-import static lotto.constant.Winner.THIRD_WINNER;
 import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
+import lotto.domain.LottoResult;
 import lotto.dto.LottoResultDto;
 import lotto.error.exception.InvalidNumberFormatException;
 import lotto.generator.LottoGenerator;
@@ -49,44 +43,14 @@ public class LottoService {
     }
 
     public LottoResultDto getResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-        Map<Integer, Integer> result = new HashMap<>();
+        LottoResult lottoResult = new LottoResult(lottos.size());
         for (Lotto lotto : lottos) {
             int matchCount = lotto.calculateMatchCount(winningLotto);
             boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
-            updateMatchResult(result, matchCount, isBonusMatched);
+            lottoResult.updateLottoResult(matchCount, isBonusMatched);
         }
-        double revenue = calculateTotalRevenue(result, lottos);
 
-        return new LottoResultDto(result, revenue);
-    }
-
-    private void updateMatchResult(Map<Integer, Integer> result, int matchCount, boolean isBonusMatched) {
-        if (matchCount == FIRST_WINNER.getMatchCount()) {
-            int key = FIRST_WINNER.getRank();
-            if (isBonusMatched) {
-                key = SECOND_WINNER.getRank();
-            }
-            result.put(key, result.getOrDefault(key, 0) + 1);
-        } else if (matchCount == THIRD_WINNER.getMatchCount()) {
-            result.put(THIRD_WINNER.getRank(), result.getOrDefault(THIRD_WINNER.getRank(), 0) + 1);
-        } else if (matchCount == FOURTH_WINNER.getMatchCount()) {
-            result.put(FOURTH_WINNER.getRank(), result.getOrDefault(FOURTH_WINNER.getRank(), 0) + 1);
-        } else if (matchCount == FIFTH_WINNER.getMatchCount()) {
-            result.put(FIFTH_WINNER.getRank(), result.getOrDefault(FIFTH_WINNER.getRank(), 0) + 1);
-        }
-    }
-
-    private double calculateTotalRevenue(Map<Integer, Integer> result, List<Lotto> lottos) {
-        int count = lottos.size();
-        double totalRevenue = result.getOrDefault(FIFTH_WINNER.getRank(), 0) * FIRST_WINNER.getPrizeMoney()
-                + result.getOrDefault(SECOND_WINNER.getRank(), 0) * SECOND_WINNER.getPrizeMoney()
-                + result.getOrDefault(THIRD_WINNER.getRank(), 0) * THIRD_WINNER.getPrizeMoney()
-                + result.getOrDefault(FOURTH_WINNER.getRank(), 0) * FOURTH_WINNER.getPrizeMoney()
-                + result.getOrDefault(FIFTH_WINNER.getRank(), 0) * FIFTH_WINNER.getPrizeMoney();
-
-        int totalInvest = count * LOTTO_PRICE;
-        double rateOfReturn = (totalRevenue / totalInvest) * 100;
-        return Math.round(rateOfReturn * 100.0) / 100.0;
+        return LottoResultDto.of(lottoResult);
     }
 
     private int parseInt(String input) {

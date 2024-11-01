@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     public void printRevenueResult(LottoResultDto dto) {
-        System.out.printf(REVENUE_RESULT, dto.revenue());
+        System.out.printf(REVENUE_RESULT, dto.rateOfReturn());
     }
 
     public void printErrorMessage(String errorMessage) {
