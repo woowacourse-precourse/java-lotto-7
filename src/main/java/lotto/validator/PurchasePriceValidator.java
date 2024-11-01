@@ -1,7 +1,7 @@
 package lotto.validator;
 
 import static lotto.parser.InputParser.parseInteger;
-import static lotto.validator.ValidationMessage.INVALID_INPUT_FORMAT;
+import static lotto.validator.ValidationMessage.INVALID_PURCHASE_PRICE_FORMAT;
 
 import lotto.exception.InvalidInputException;
 
@@ -15,13 +15,13 @@ public class PurchasePriceValidator {
 
     private void validateNotNull(String inputPurchasePrice) {
         if (inputPurchasePrice == null) {
-            throw new InvalidInputException(INVALID_INPUT_FORMAT.getMessage());
+            throw new InvalidInputException(INVALID_PURCHASE_PRICE_FORMAT.getMessage());
         }
     }
 
     private void validateNotEmpty(String inputPurchasePrice) {
         if (inputPurchasePrice.isEmpty() || inputPurchasePrice.isBlank()) {
-            throw new InvalidInputException(INVALID_INPUT_FORMAT.getMessage());
+            throw new InvalidInputException(INVALID_PURCHASE_PRICE_FORMAT.getMessage());
         }
     }
 
@@ -29,7 +29,7 @@ public class PurchasePriceValidator {
         try {
             parseInteger(inputPurchasePrice);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException(INVALID_INPUT_FORMAT.getMessage());
+            throw new InvalidInputException(INVALID_PURCHASE_PRICE_FORMAT.getMessage());
         }
     }
 }
