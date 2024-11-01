@@ -23,6 +23,10 @@ public class LottoSummary {
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
 
+        return calculateProfitRate(totalPurchaseAmount, totalPrize);
+    }
+
+    private double calculateProfitRate(int totalPurchaseAmount, long totalPrize) {
         double profitRate = (double) totalPrize / totalPurchaseAmount * 100;
         return Math.round(profitRate * 10) / 10.0;
     }

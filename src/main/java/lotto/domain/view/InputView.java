@@ -6,36 +6,38 @@ import lotto.domain.model.lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static lotto.common.constant.LottoConst.*;
 import static lotto.common.exception.ErrorCode.*;
+import static lotto.domain.view.InputValidator.*;
 
 public class InputView {
 
+    private <T> T getInputUntilValid(InputValidator<T> validator) {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                return validator.validate(input);
+            } catch (BusinessException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    /**
+     * 구입 금액 받기
+     */
     public int getUserPurchaseAmount() {
         printRequestAmount();
-        return getAmountUntilValid();
+        return getInputUntilValid(this::validateAmount);
     }
 
     private void printRequestAmount() {
         System.out.println(LOTTO_AMOUNT_REQUEST);
     }
 
-    private int getAmountUntilValid() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                return amountExceptionThrower(input);
-            } catch (BusinessException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private int amountExceptionThrower(String input) {
+    private int validateAmount(String input) {
         int amount = parseAmountOrThrow(input);
-        isDivisableOrThrow(amount);
+        validateDivisibility(amount);
         return amount;
     }
 
@@ -47,44 +49,35 @@ public class InputView {
         }
     }
 
-    private void isDivisableOrThrow(int amount) {
-        if (amount % LOTTO_PRICE != 0) {
+    private void validateDivisibility(int amount) {
+        if (IS_NOT_DIVISABLE_BY_LOTTO_PRICE.test(amount)) {
             throw new BusinessException(CANT_DIVIDE);
         }
     }
 
+    /**
+     * 당첨 로또 번호 받기
+     */
     public Lotto getWinningNumber() {
         printRequestWinningNumber();
-        return getWinningNumberUntilValid();
+        return getInputUntilValid(this::validateWinningNumber);
     }
 
     private void printRequestWinningNumber() {
         System.out.println(LOTTO_WINNING_NUMBER_REQUEST);
     }
 
-    private Lotto getWinningNumberUntilValid() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                return winningNumberExceptionThrower(input);
-            } catch (BusinessException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private Lotto winningNumberExceptionThrower(String input) {
-        List<Integer> winningNumber = parseWinningNumberOrThrow(input);
-        isSixNumbersOrThrow(winningNumber);
-        return Lotto.create(winningNumber);
+    private Lotto validateWinningNumber(String input) {
+        List<Integer> winningNumbers = parseWinningNumberOrThrow(input);
+        validateSixNumbers(winningNumbers);
+        return Lotto.create(winningNumbers);
     }
 
     private List<Integer> parseWinningNumberOrThrow(String input) {
         try {
-            String[] numbers = input.split(DELIMITER);
-            return Arrays.stream(numbers)
+            return Arrays.stream(input.split(DELIMITER))
                     .map(Integer::parseInt)
-                    .filter(isWithinRangeCond())
+                    .filter(IS_IN_LOTTO_RANGE)
                     .sorted()
                     .toList();
         } catch (NumberFormatException e) {
@@ -92,52 +85,40 @@ public class InputView {
         }
     }
 
-    private static Predicate<Integer> isWithinRangeCond() {
-        return integer -> integer >= START_NUM && integer <= END_NUM;
-    }
-
-    private void isSixNumbersOrThrow(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateSixNumbers(List<Integer> numbers) {
+        if (IS_NOT_SIX_NUMBERS.test(numbers.size())) {
             throw new BusinessException(LOTTO_INVALID_QUANTITY);
         }
     }
 
+    /**
+     * 보너스 번호 받기
+     */
     public int getBonusNumber(Lotto winningNumber) {
         printRequestBonusNumber();
-        return getBonusNumberUntilValid(winningNumber);
+        return getInputUntilValid(input -> validateBonusNumber(input, winningNumber));
     }
 
     private void printRequestBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_REQUEST);
     }
 
-    private int getBonusNumberUntilValid(Lotto winningNumber) {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                return bonusNumberExceptionThrower(input, winningNumber);
-            } catch (BusinessException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private int bonusNumberExceptionThrower(String input, Lotto winningNumber) {
+    private int validateBonusNumber(String input, Lotto winningNumber) {
         int bonusNumber = parseAmountOrThrow(input);
-        isWithinLimitOrThrow(bonusNumber);
-        isUniqueNumberOrThrow(bonusNumber, winningNumber);
+        validateRange(bonusNumber);
+        validateUnique(bonusNumber, winningNumber);
         return bonusNumber;
     }
 
-    private void isUniqueNumberOrThrow(int amount, Lotto winningNumber) {
-        if (winningNumber.isContainingNumber(amount)) {
-            throw new BusinessException(DUPLICATE_BONUS_NUMBER);
+    private void validateRange(int number) {
+        if (!IS_IN_LOTTO_RANGE.test(number)) {
+            throw new BusinessException(INCORRECT_BONUS_NUMBER);
         }
     }
 
-    private void isWithinLimitOrThrow(int input) {
-        if (input < START_NUM || input > END_NUM) {
-            throw new BusinessException(INCORRECT_BONUS_NUMBER);
+    private void validateUnique(int number, Lotto winningNumber) {
+        if (winningNumber.isContainingNumber(number)) {
+            throw new BusinessException(DUPLICATE_BONUS_NUMBER);
         }
     }
 }
