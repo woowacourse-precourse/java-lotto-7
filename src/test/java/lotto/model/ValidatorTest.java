@@ -79,4 +79,16 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("당첨 번호 유효성 검사: 개수 초과 - 에외 테스트")
+    void validateWinningTicket_exceededCount() {
+        // given
+        List<Integer> winningTicket = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+
+        // when & then
+        assertThatThrownBy(() -> Validator.validateWinningTicket(winningTicket))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
