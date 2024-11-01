@@ -16,7 +16,7 @@ public class LottoController {
 
     public void run() {
         output.printStartMessage();
-        
+        inputProcessor.processPrice(input.readLine());
 
     }
 }
