@@ -152,18 +152,29 @@
 - [x] Purchase 클래스 TDD 작성
     - 구입 금액을 입력 받아 유효한 값인지 검증.
     - 구매하는 로또의 개수를 계산.
-- [ ] LottoMachine TDD 작성
+- [x] LottoMachine TDD 작성
     - WinningNumbers, Purchase 를 주입 받음.
     - 구입 금액에 따라 로또를 발급.
         - 로또 발급 상태 확인.
     - 결과 확인 가능.
+- [x] ProfitReport 클래스 TDD 작성
+    - 당첨 번호와 로또 번호를 비교하여 당첨 통계를 출력.
+    - 수익률을 계산하여 출력.
 
-### Entities 구현
+### Entities
 
 - [x] Lotto 클래스 구현
 - [x] WinningNumbers 클래스 구현
 - [x] Purchase 클래스 구현
+- [x] LottoMachine 클래스 구현
+- [x] ProfitReport 클래스 구현
 
+### Parser
+
+- [ ] InputParser 클래스 구현
+    - [ ] 구입 금액.
+    - [ ] 당첨 번호.
+    - [ ] 보너스 번호.
 
 
 
