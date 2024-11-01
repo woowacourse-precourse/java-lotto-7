@@ -2,8 +2,10 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.PurchaseCost;
+import lotto.model.WinningNumbers;
 import lotto.utility.PurchaseCostParser;
 import lotto.utility.RandomNumberCreator;
+import lotto.utility.WinningNumberParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,8 +20,10 @@ public class LottoController {
 
         int purchasedLottoCount = purchaseCost.calculateBuyableLottoCount();
         OutputView.outputPurchasedLottoCount(purchasedLottoCount);
-
         purchaseLotto(purchasedLottoCount);
+
+        List<Integer> parsedWinningNumbers = inputWinningNumbers();
+        WinningNumbers winningNumbers = new WinningNumbers(parsedWinningNumbers);
     }
 
     public int inputPurchaseCost() {
@@ -36,5 +40,10 @@ public class LottoController {
         }
 
         return purchasedLottos;
+    }
+
+    public List<Integer> inputWinningNumbers() {
+        String rawWinningNumbers = InputView.inputWinningNumbers();
+        return WinningNumberParser.parseWinningNumbers(rawWinningNumbers);
     }
 }
