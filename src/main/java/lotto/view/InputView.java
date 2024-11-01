@@ -5,25 +5,25 @@ import lotto.util.ErrorMessage;
 
 public class InputView {
 
-    public static final String ASK_MONEY_INPUT = "구입금액을 입력해 주세요.";
-    public static final String ASK_LOTTO_NUM_INPUT = "당첨 번호를 입력해 주세요.";
-    public static final String ASK_LOTTO_BONUS_NUM_INPUT = "보너스 번호를 입력해 주세요.";
+    public static final String ASK_MONEY_INPUT = "구입금액을 입력해 주세요.\n";
+    public static final String ASK_LOTTO_NUM_INPUT = "당첨 번호를 입력해 주세요.\n";
+    public static final String ASK_LOTTO_BONUS_NUM_INPUT = "보너스 번호를 입력해 주세요.\n";
 
     public int lottoMoneyInput() {
-        System.out.println(ASK_MONEY_INPUT);
+        System.out.printf(ASK_MONEY_INPUT);
         String rawMoney = Console.readLine();
         validateIsNumber(rawMoney);
         return Integer.parseInt(rawMoney);
     }
 
     public String lottoNumsInput() {
-        System.out.println(ASK_LOTTO_NUM_INPUT);
+        System.out.printf(ASK_LOTTO_NUM_INPUT);
         return Console.readLine();
     }
 
     public int lottoBonusNumInput() {
-        System.out.println();
-        System.out.println(ASK_LOTTO_BONUS_NUM_INPUT);
+        System.out.printf(System.lineSeparator());
+        System.out.printf(ASK_LOTTO_BONUS_NUM_INPUT);
         String rawNumber = Console.readLine();
         validateIsNumber(rawNumber);
         return Integer.parseInt(rawNumber);
