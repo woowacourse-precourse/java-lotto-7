@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.ExceptionMessage.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER;
+import static lotto.constant.ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +26,9 @@ public class WinningLotto {
     private void validateBonusNumber(int bonusNumber) {
         if (lotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.getMessage());
+        }
+        if (bonusNumber > 45 || bonusNumber < 1) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage(1, 45));
         }
     }
 

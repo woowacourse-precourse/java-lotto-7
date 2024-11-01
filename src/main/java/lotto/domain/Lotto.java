@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import static lotto.constant.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
-import static lotto.constant.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.constant.ExceptionMessage.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +22,12 @@ public class Lotto {
         filteredNumbers.addAll(numbers);
         if (filteredNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
+        }
+
+        boolean overRange = numbers.stream()
+            .anyMatch(number -> number > 45 || number < 1);
+        if (overRange) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage(1, 45));
         }
     }
 
