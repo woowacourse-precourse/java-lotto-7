@@ -21,9 +21,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
-    void 로또_번호가_1_이상_45_이하가_아니라면_예외가_발생한다() {
+    void 로또_번호가_1_미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, -23, 3, 4, 5, 6, 15)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_45_초과라면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 77)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
