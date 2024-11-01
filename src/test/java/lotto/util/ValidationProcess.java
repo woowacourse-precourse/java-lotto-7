@@ -1,8 +1,8 @@
 package lotto.util;
 
 import lotto.constant.ErrorMessage;
-import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.domain.BonusNumber;
+import lotto.lotto.domain.WinningLotto;
 
 import java.util.List;
 import java.util.function.BiConsumer;

@@ -2,9 +2,9 @@ package lotto.view.output.domain;
 
 import lotto.money.domain.Money;
 import lotto.money.domain.Benefit;
-import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.LottoTickets;
-import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.domain.WinningLotto;
 
 public interface ResultViewService {
     void viewByInsertMoney(Money money);

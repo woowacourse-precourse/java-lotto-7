@@ -1,8 +1,6 @@
 package lotto.lotto.domain;
 
 import lotto.calculator.domain.Calculator;
-import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningLotto;
 import lotto.money.domain.Money;
 import lotto.view.output.domain.PurchaseCountViewService;
 

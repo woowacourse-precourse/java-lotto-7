@@ -1,7 +1,9 @@
 package lotto.lotto.winning.domain;
 
+import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoTickets;
+import lotto.lotto.domain.WinningLotto;
 import lotto.money.domain.Benefit;
 import lotto.money.domain.BenefitCreatorService;
 import lotto.money.infrastructure.BenefitCreator;

@@ -2,10 +2,10 @@ package lotto.view.output.infrastructure;
 
 import lotto.money.domain.Money;
 import lotto.money.domain.Benefit;
-import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.LottoTickets;
-import lotto.lotto.winning.domain.WinningLotto;
-import lotto.lotto.winning.domain.WinningPlace;
+import lotto.lotto.domain.WinningLotto;
+import lotto.lotto.domain.WinningPlace;
 import lotto.view.output.domain.ResultViewService;
 
 public class CommonResultOutput implements ResultViewService {

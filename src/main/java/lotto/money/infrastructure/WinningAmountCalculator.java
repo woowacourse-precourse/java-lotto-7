@@ -1,8 +1,8 @@
 package lotto.money.infrastructure;
 
-import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningLotto;
-import lotto.lotto.winning.domain.WinningPlace;
+import lotto.lotto.domain.BonusNumber;
+import lotto.lotto.domain.WinningLotto;
+import lotto.lotto.domain.WinningPlace;
 import lotto.money.domain.Money;
 import lotto.lotto.domain.LottoTickets;
 

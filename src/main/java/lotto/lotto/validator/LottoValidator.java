@@ -2,8 +2,8 @@ package lotto.lotto.validator;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
-import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.domain.BonusNumber;
+import lotto.lotto.domain.WinningLotto;
 
 import java.util.HashSet;
 import java.util.List;

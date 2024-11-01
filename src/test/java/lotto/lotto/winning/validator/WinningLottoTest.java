@@ -1,7 +1,7 @@
 package lotto.lotto.winning.validator;
 
 import lotto.constant.ErrorMessage;
-import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.domain.WinningLotto;
 import lotto.util.ValidationProcess;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

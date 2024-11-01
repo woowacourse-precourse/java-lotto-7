@@ -3,9 +3,9 @@ package lotto.lotto.infrastructure;
 import lotto.lotto.domain.LottoCreatorService;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.PurchaseLottoTicketsService;
-import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.domain.BonusNumber;
 import lotto.lotto.domain.BonusNumberCreatorService;
-import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.domain.WinningLotto;
 import lotto.lotto.domain.WinningLottoCreatorService;
 
 public class LottoCreator implements LottoCreatorService {

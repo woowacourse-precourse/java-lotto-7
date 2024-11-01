@@ -2,8 +2,8 @@ package lotto.lotto.winning.validator;
 
 import lotto.constant.ErrorMessage;
 import lotto.lotto.validator.LottoValidator;
-import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningLotto;
+import lotto.lotto.domain.BonusNumber;
+import lotto.lotto.domain.WinningLotto;
 import lotto.util.ValidationProcess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,8 +1,7 @@
-package lotto.lotto.winning.domain;
+package lotto.lotto.domain;
 
 import lotto.money.domain.Money;
 import lotto.money.infrastructure.WinningAmount;
-import lotto.lotto.domain.Lotto;
 
 import java.util.Arrays;
 import java.util.Comparator;

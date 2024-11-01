@@ -1,4 +1,4 @@
-package lotto.lotto.winning.domain;
+package lotto.lotto.domain;
 
 import lotto.util.Convertor;
 
