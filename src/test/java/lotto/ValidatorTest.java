@@ -38,16 +38,16 @@ public class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "111"})
-    public void 문자열이_숫자만_있으면_True를_반환한다(String input) {
-        boolean result = Validator.isNumericString(input);
-        assertThat(result).isTrue();
+    public void 문자열이_숫자만_있으면_False를_반환한다(String input) {
+        boolean result = Validator.isNotNumeric(input);
+        assertThat(result).isFalse();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1원", "1.0", "", " "})
-    public void 문자열이_숫자아닌_문자가_있으면_False를_반환한다(String input) {
-        boolean result = Validator.isNumericString(input);
-        assertThat(result).isFalse();
+    public void 문자열이_숫자아닌_문자가_있으면_True를_반환한다(String input) {
+        boolean result = Validator.isNotNumeric(input);
+        assertThat(result).isTrue();
     }
 
 }

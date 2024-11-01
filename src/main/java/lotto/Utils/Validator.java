@@ -17,8 +17,8 @@ public class Validator {
         return input.isBlank();
     }
 
-    public static boolean isNumericString(String input) {
-        return input.matches("\\d+");
+    public static boolean isNotNumeric(String input) {
+        return !input.matches("\\d+");
     }
 
 }
