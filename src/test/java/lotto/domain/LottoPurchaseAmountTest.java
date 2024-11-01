@@ -15,7 +15,7 @@ public class LottoPurchaseAmountTest {
     void validatePurchaseAmount(String input) {
         assertThatThrownBy(() -> LottoPurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 양수만 입력 가능합니다.");
+                .hasMessage("[ERROR] 구입 금액은 양수만 입력 가능합니다.");
     }
 
     @ParameterizedTest
@@ -24,7 +24,7 @@ public class LottoPurchaseAmountTest {
     void validatePurchaseAmountUnit(String input) {
         assertThatThrownBy(() -> LottoPurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 1,000원 단위로 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 구입 금액은 1,000원 단위로 입력할 수 있습니다.");
     }
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class LottoPurchaseAmountTest {
     void validatePurchaseAmountIsNotEmpty(String input) {
         assertThatThrownBy(() -> LottoPurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 비어있을 수 없습니다.");
+                .hasMessage("[ERROR] 구입 금액은 비어있을 수 없습니다.");
     }
 
 }
