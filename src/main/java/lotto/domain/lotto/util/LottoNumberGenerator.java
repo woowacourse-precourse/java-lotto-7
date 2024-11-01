@@ -16,8 +16,4 @@ public final class LottoNumberGenerator {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
     }
 
-    public static int generateBonusNumber() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, BONUS_SIZE)
-                .getFirst();
-    }
 }
