@@ -7,9 +7,9 @@ import lotto.enums.Rank;
 
 public class LottoResultService {
 
-    public List<Rank> determineRanks(Guess guess, List<Lotto> lottos){
+    public List<Rank> determineRanks(Guess guess, List<Lotto> lottos) {
         return lottos.stream()
-                .map(lotto -> determineRank(guess,lotto))
+                .map(lotto -> determineRank(guess, lotto))
                 .toList();
     }
 
@@ -20,6 +20,22 @@ public class LottoResultService {
 
         boolean matchBonus = lotto.getLotto().contains(guess.getBonusNumber());
 
-        return Rank.findRank(matchCount,matchBonus);
+        if (matchCount == 6) {
+            return Rank.FIRST;
+        }
+        if (matchCount == 5 && matchBonus) {
+            return Rank.SECOND;
+        }
+        if (matchCount == 5) {
+            return Rank.THIRD;
+        }
+        if (matchCount == 4) {
+            return Rank.FOURTH;
+        }
+        if (matchCount == 3) {
+            return Rank.FIFTH;
+        }
+        return Rank.NONE;
     }
 }
+
