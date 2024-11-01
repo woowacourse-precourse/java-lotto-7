@@ -19,9 +19,11 @@ public class LottoMachine {
         final PurchaseAmount purchaseAmount = inputPurchaseAmount();
         final Lottos lottos = lottoGenerator.generateLottos(purchaseAmount.getQuantity());
         outputView.printLottos(lottos.get());
+
         final WinningNumbers winningNumbers = inputWinningNumbers();
         inputBonusNumber(winningNumbers);
-
+        final WinningResult winningResult = lottos.getWinningResult(winningNumbers);
+        outputView.printWinningResult(winningResult.get());
     }
 
     private PurchaseAmount inputPurchaseAmount() {

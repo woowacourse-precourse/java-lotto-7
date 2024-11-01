@@ -55,5 +55,5 @@
 ### 출력
 
 - [x] 구매한 로또 번호 출력 - OutputView#printLottos()
-- [ ] 당첨 통계 출력
+- [x] 당첨 통계 출력 - OutputView#printWinningResult()
 - [ ] 수익률 출력

@@ -11,7 +11,7 @@ class LottoRankTest {
         //given @CsvSource를 통해 주어짐
 
         //when
-        LottoRank lottoRank = LottoRank.get(matchCount, isBonus);
+        final LottoRank lottoRank = LottoRank.get(matchCount, isBonus);
 
         //then
         Assertions.assertThat(lottoRank).isEqualTo(excepted);

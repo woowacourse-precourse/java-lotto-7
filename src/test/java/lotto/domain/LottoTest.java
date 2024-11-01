@@ -36,7 +36,7 @@ class LottoTest {
         final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         //when
-        boolean contains = lotto.contains(number);
+        final boolean contains = lotto.contains(number);
 
         //then
         Assertions.assertThat(contains).isEqualTo(excepted);
@@ -46,10 +46,10 @@ class LottoTest {
     @MethodSource("provideTest")
     void 포함하고_있는_숫자의_개수_구하기(List<Integer> winningNumbers, int expected) {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        final Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        int matchCount = lotto.getMatchCount(winningNumbers);
+        final int matchCount = lotto.getMatchCount(winningNumbers);
 
         // then
         Assertions.assertThat(matchCount).isEqualTo(expected);
