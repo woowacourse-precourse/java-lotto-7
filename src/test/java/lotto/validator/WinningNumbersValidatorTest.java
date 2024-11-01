@@ -23,7 +23,7 @@ class WinningNumbersValidatorTest {
 
     @DisplayName("당첨 번호에 빈 문자열이 입력되면 예외를 발생시킨다.")
     @Test
-    void throwExceptionWhenInputIsNotNumeric() {
+    void throwExceptionWhenInputIsEmpty() {
         // given
         String input = "";
 
