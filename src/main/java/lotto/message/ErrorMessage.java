@@ -12,6 +12,7 @@ public enum ErrorMessage {
 
     EMPTY_INPUT_WINNING_NUMBERS_ERROR_MESSAGE("당첨 번호를 입력할 때 빈 문자열을 입력할 수 없습니다. 다시 시도해 주세요."),
     INVALID_CONTENT_WINNING_NUMBERS_ERROR_MESSAGE("당첨 번호를 입력할 때 숫자와 콤마만 입력할 수 있습니다. 다시 시도해 주세요."),
+    INVALID_INTEGER_RANGE_WINNING_NUMBERS_ERROR_MESSAGE("당첨 번호 입력시 정수형 범위를 넘어선 숫자가 포함된 문자열을 입력할 수 없습니다."),
     CHAINED_COMMA_WINNING_NUMBERS_ERROR_MESSAGE("당첨 번호를 입력할 때 콤마를 연속적으로 입력할 수 없습니다. 다시 시도해 주세요."),
     
     NOT_NUMERIC_BONUS_NUMBER_ERROR_MESSAGE("보너스 번호는 정수형 범위의 숫자만 입력 가능합니다."),
