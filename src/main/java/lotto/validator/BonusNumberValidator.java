@@ -5,11 +5,12 @@ import lotto.constant.ErrorConstants;
 public class BonusNumberValidator implements Validator{
 
     private static final String SPACE = " ";
+    private static final String REGEX = "^([1-9]|1[0-9]|2[0-9]|3[0-9]|4[0-5])";
     @Override
     public void validate(String input){
         checkIfNull(input);
         checkIfEmpty(input);
-        checkIfIsNumber(input);
+        checkIfMatchesRegex(input);
     }
 
     private void checkIfNull(String input){
@@ -24,13 +25,10 @@ public class BonusNumberValidator implements Validator{
         }
     }
 
-    private void checkIfIsNumber(String input){
-        try{
-            Integer.parseInt(input);
-        }catch(NumberFormatException e){
+    private void checkIfMatchesRegex(String input){
+        if(!input.matches(REGEX)){
             throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT.getMessage());
         }
     }
-
 
 }

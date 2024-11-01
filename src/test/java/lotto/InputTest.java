@@ -167,6 +167,14 @@ public class InputTest {
                 validator.validate(input);
             });
         }
-    }
 
+        @DisplayName("범위를 벗어난 숫자 예외")
+        @ParameterizedTest()
+        @ValueSource(strings = {"-1", "-999999999", "0", "46","9999999999"})
+        void 범위를_벗어난_숫자_예외(String input){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validate(input);
+            });
+        }
+    }
 }
