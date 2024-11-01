@@ -1,6 +1,6 @@
-package lotto.buyer.infrastructure;
+package lotto.money.infrastructure;
 
-import lotto.buyer.domain.Money;
+import lotto.money.domain.Money;
 import lotto.buyer.validator.MoneyValidator;
 import lotto.util.Convertor;
 
@@ -20,7 +20,7 @@ public class Won implements Money {
 
 
     @Override
-    public Long getMoney() {
+    public long getMoney() {
         return money;
     }
 
