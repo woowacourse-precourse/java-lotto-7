@@ -44,9 +44,11 @@ class LottoRankTest {
     void fourthRankTest() {
         LottoRank fourth = LottoRank.FOURTH;
 
-        LottoRank matched = LottoRank.getMatchedLotto(4, false);
+        LottoRank matched1 = LottoRank.getMatchedLotto(4, false);
+        LottoRank matched2 = LottoRank.getMatchedLotto(4, true);
 
-        Assertions.assertThat(matched).isEqualTo(fourth);
+        Assertions.assertThat(matched1).isEqualTo(fourth);
+        Assertions.assertThat(matched2).isEqualTo(fourth);
     }
 
     @Test
@@ -54,9 +56,11 @@ class LottoRankTest {
     void fifthRankTest() {
         LottoRank fifth = LottoRank.FIFTH;
 
-        LottoRank matched = LottoRank.getMatchedLotto(3, false);
+        LottoRank matched1 = LottoRank.getMatchedLotto(3, false);
+        LottoRank matched2 = LottoRank.getMatchedLotto(3, true);
 
-        Assertions.assertThat(matched).isEqualTo(fifth);
+        Assertions.assertThat(matched1).isEqualTo(fifth);
+        Assertions.assertThat(matched2).isEqualTo(fifth);
     }
 
     @Test
@@ -65,12 +69,16 @@ class LottoRankTest {
         LottoRank none = LottoRank.NONE;
 
         LottoRank matched1 = LottoRank.getMatchedLotto(2, false);
-        LottoRank matched2 = LottoRank.getMatchedLotto(1, false);
-        LottoRank matched3 = LottoRank.getMatchedLotto(0, false);
+        LottoRank matched2 = LottoRank.getMatchedLotto(2, true);
+        LottoRank matched3 = LottoRank.getMatchedLotto(1, false);
+        LottoRank matched4 = LottoRank.getMatchedLotto(1, true);
+        LottoRank matched5 = LottoRank.getMatchedLotto(0, false);
 
         Assertions.assertThat(matched1).isEqualTo(none);
         Assertions.assertThat(matched2).isEqualTo(none);
         Assertions.assertThat(matched3).isEqualTo(none);
+        Assertions.assertThat(matched4).isEqualTo(none);
+        Assertions.assertThat(matched5).isEqualTo(none);
     }
 
 }
