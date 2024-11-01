@@ -7,16 +7,22 @@ import java.util.List;
 
 public class OutputView {
 
+    private static final String AMOUNT_PURCHASE = "개를 구입했습니다.";
+    private static final String WINNING_STATICS = "당첨 통계";
+    private static final String DASH_LINE = "---";
+
     public void printLottoStatus(List<List<Integer>> Lottos) {
-        System.out.println("\n" + Lottos.size() + "개를 구입했습니다.");
+        System.out.println();
+        System.out.println(Lottos.size() + AMOUNT_PURCHASE);
         for (List<Integer> lotto : Lottos) {
             System.out.println(lotto);
         }
     }
 
     public void printWinningStatics(WinningStatics winningStatics) {
-        System.out.println("\n" + "당첨통계");
-        System.out.println("---");
+        System.out.println();
+        System.out.println(WINNING_STATICS);
+        System.out.println(DASH_LINE);
 
         for (WinningRank winningRank : winningStatics.getWinningStatics().keySet()) {
             if (winningRank.equals(winningRank.NONE)) {
