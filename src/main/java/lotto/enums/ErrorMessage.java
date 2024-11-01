@@ -6,13 +6,13 @@ public enum ErrorMessage {
     INVALID_NUMBERS("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     INVALID_DELIMITER("[ERROR] 구분자는 쉼표(,)여야 합니다.");
 
-    private final String errorMessage;
+    private final String message;
 
-    ErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    ErrorMessage(String message) {
+        this.message = message;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return message;
     }
 }
