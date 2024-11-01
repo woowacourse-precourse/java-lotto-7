@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     private List<Integer> sortLottoNumbers(List<Integer> numbers) {

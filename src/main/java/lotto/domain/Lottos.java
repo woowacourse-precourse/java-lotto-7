@@ -3,6 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -24,8 +25,8 @@ public class Lottos {
         return new Lottos(count);
     }
 
-    public int getLottoListSize() {
-        return lottoList.size();
+    public List<Lotto> getLottoList() {
+        return Collections.unmodifiableList(lottoList);
     }
 
     private void generateLottos(final int count) {

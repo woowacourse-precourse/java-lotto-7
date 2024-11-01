@@ -12,7 +12,7 @@ public class LottosTest {
     void validateLottoTotalCount() {
         int purchaseAmount = LottoPurchaseAmount.from("8000").getPurchaseAmount();
         int lottoCount = LottoCount.from(purchaseAmount).getLottoCount();
-        int lottoListSize = Lottos.from(lottoCount).getLottoListSize();
+        int lottoListSize = Lottos.from(lottoCount).getLottoList().size();
 
         assertThat(lottoListSize).isEqualTo(lottoCount);
     }
