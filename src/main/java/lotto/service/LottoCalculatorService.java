@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRanking;
 import lotto.domain.User;
 import lotto.domain.UserLotto;
+import lotto.view.OutputView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +48,7 @@ public class LottoCalculatorService {
                 }
             }
         }
+        OutputView.printWinningHistory(winningCount);
     }
 
     public void profitCalculate(User user) {
@@ -55,5 +57,6 @@ public class LottoCalculatorService {
                 user.addWinningPrice(lottoRanking.getPrice());
             }
         }
+        OutputView.printProfit(user.getProfit());
     }
 }
