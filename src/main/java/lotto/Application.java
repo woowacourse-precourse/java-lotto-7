@@ -2,22 +2,18 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입급액을 입력해 주세요.");
-        int purchaseAmount = 0;
-        try {
-            purchaseAmount = Integer.parseInt(Console.readLine());
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 금액 형식입니다.");
-        }
-
+        InputHandler inputHandler = new InputHandler();
         final int LOTTO_PRICE = 1000;
-        if (purchaseAmount % LOTTO_PRICE != 0)
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");
+
+        System.out.println("구입급액을 입력해 주세요.");
+        int purchaseAmount = (int)getInput(inputHandler::parsePurchaseAmount);
+
         int lottoAmount = purchaseAmount / LOTTO_PRICE;
 
         System.out.println();
@@ -27,23 +23,17 @@ public class Application {
         for (int i = 0; i < lottoAmount; i++) {
             lottos.add(machine.issue());
         }
-
         for (Lotto lotto : lottos) {
             System.out.println(lotto.describe());
         }
 
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumberInput = Console.readLine();
-        List<Integer> winningNumbers = new ArrayList<>(6);
-        String[] segments = winningNumberInput.split(",");
-        for (String segment : segments) {
-            winningNumbers.add(Integer.parseInt(segment));
-        }
+        List<Integer> winningNumbers = (List<Integer>)getInput(inputHandler::parseWinningNumbers);
 
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        int bonusNumber = (int)getInput(inputHandler::parseBonusNumber);
 
         // calculate prize
         int[] winningCount = new int[6];
@@ -80,5 +70,24 @@ public class Application {
             System.out.printf(winningPlaceDescriptionFormats[i], winningCount[i]);
         }
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
+
+    /**
+     * This function tries to parse input from the Console.
+     * If {@code IllegalArgumentException} is thrown during the process, print
+     * error message and retry. Repeatetion ends when there's no input remains.
+     * 
+     * @param <T> The type of return value
+     * @param parser The parser function reference
+     * @return Parsed value of type {@code T}
+     */
+    static <T> T getInput(Function<String, T> parser) {
+        while (true) {
+            try {
+                return parser.apply(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
