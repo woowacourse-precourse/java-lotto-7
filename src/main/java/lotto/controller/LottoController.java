@@ -1,24 +1,46 @@
 package lotto.controller;
 
+import lotto.domain.PurchaseLottos;
+import lotto.domain.WinningLotto;
+import lotto.dto.LottoGameDto;
+import lotto.service.LottoGameService;
 import lotto.viewHandler.ViewHandler;
 import lotto.viewHandler.api.Api;
-import lotto.viewHandler.api.dto.BonusNumberDto;
 import lotto.viewHandler.api.dto.InputDto;
 import lotto.viewHandler.api.dto.MoneyDto;
-import lotto.viewHandler.api.dto.WinningLottoNumbersDto;
+
+import java.util.List;
 
 public class LottoController {
+    private final LottoGameService lottoGameService;
     private final ViewHandler viewHandler;
 
-    public LottoController(ViewHandler viewHandler) {
+    public LottoController(LottoGameService lottoGameService, ViewHandler viewHandler) {
+        this.lottoGameService = lottoGameService;
         this.viewHandler = viewHandler;
     }
 
-    public void purchaseLotto() {
+    public void lottoStart() {
         Api<InputDto> inputDtoApi = viewHandler.inputHandler();
         InputDto inputDto = inputDtoApi.getData();
+        PurchaseLottos purchaseLottos = purchaseLotto(inputDto);
+        WinningLotto winningLotto = createWinningLottoDto(inputDto);
+
+        lottoGameService.game(createGameDto(purchaseLottos, winningLotto));
+    }
+
+    private PurchaseLottos purchaseLotto(InputDto inputDto) {
         MoneyDto moneyDto = inputDto.getMoneyDto();
-        WinningLottoNumbersDto winningLottoNumbersDto = inputDto.getWinningLottoNumbersDto();
-        BonusNumberDto bonusNumberDto = inputDto.getBonusNumberDto();
+        return PurchaseLottos.of(moneyDto.getMoney());
+    }
+
+    private WinningLotto createWinningLottoDto(InputDto inputDto) {
+        List<Integer> winningLotto = inputDto.getWinningLottoNumbersDto().getNumbers();
+        Integer bonusNumber = inputDto.getBonusNumberDto().getNumber();
+        return WinningLotto.of(winningLotto, bonusNumber);
+    }
+
+    private LottoGameDto createGameDto(PurchaseLottos purchaseLottos, WinningLotto winningLotto) {
+        return new LottoGameDto(purchaseLottos, winningLotto);
     }
 }
