@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,6 +17,8 @@ class LottoTest {
         assertEquals(numbers, lotto.getNumbers());
     }
 
+    //TODO
+    //디스플레이를 추가하고 테스트 메소드 명을 영어로 바꾼다
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))

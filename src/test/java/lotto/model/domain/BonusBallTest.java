@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

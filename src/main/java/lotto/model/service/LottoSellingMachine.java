@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.model.service;
+
+import lotto.model.ErrorMessage;
 
 public class LottoSellingMachine {
 

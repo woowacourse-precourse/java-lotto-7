@@ -1,10 +1,14 @@
-package lotto.model;
+package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.model.domain.BonusBall;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Rank;
+import lotto.model.domain.WinningBalls;
 
 public class Lottos {
     private static final Long LOTTO_PRICE = 1_000L;

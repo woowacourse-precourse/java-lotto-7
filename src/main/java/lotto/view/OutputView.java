@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.model.Lottos;
-import lotto.model.RankResult;
+import lotto.model.service.Lottos;
+import lotto.model.service.RankResult;
 
 public class OutputView {
 

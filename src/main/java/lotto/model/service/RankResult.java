@@ -1,9 +1,10 @@
-package lotto.model;
+package lotto.model.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.model.domain.Rank;
 
 public class RankResult {
 

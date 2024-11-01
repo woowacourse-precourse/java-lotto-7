@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.model.domain;
+
+import lotto.model.ErrorMessage;
 
 public class BonusBall {
 

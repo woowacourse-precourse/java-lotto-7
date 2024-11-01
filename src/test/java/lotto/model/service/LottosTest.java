@@ -1,9 +1,13 @@
-package lotto.model;
+package lotto.model.service;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.model.domain.BonusBall;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.Rank;
+import lotto.model.domain.WinningBalls;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
