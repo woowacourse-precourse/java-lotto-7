@@ -4,11 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = purchaseLottos();
         List<Lotto> lottos = issueLottos(purchaseAmount);
+        printIssuedLottos(lottos);
     }
 
     private static int purchaseLottos() {
@@ -25,9 +27,27 @@ public class Application {
     public static List<Lotto> issueLottos(int purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            lottos.add(issueOneLotto(pickNumbers()));
+            lottos.add(issueOneLotto(pickSortedNumbers()));
         }
         return lottos;
+    }
+
+    private static void printIssuedLottos(List<Lotto> lottos) {
+        System.out.println(String.format("\n%d개를 구매했습니다.", lottos.size()));
+        for (Lotto lotto : lottos) {
+            StringBuilder issuedLottos = new StringBuilder("[");
+            List<Integer> numbers = lotto.getNumbers();
+            for (int i = 0; i < 6; i++) {
+                issuedLottos.append(numbers.get(i));
+                if (i == 5) {
+                    issuedLottos.append("]");
+                    break;
+                }
+                issuedLottos.append(", ");
+            }
+            System.out.println(issuedLottos);
+        }
+
     }
 
     public static Lotto issueOneLotto(List<Integer> numbers) {
@@ -62,8 +82,11 @@ public class Application {
         return purchaseAmount / 1000;
     }
 
-    private static List<Integer> pickNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static List<Integer> pickSortedNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                .stream()
+                .sorted() // 오름차순 정렬
+                .collect(Collectors.toList());
     }
 
 

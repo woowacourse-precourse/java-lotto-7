@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -70,6 +69,14 @@ public class AdditionalApplicationTest {
     void 금액이_1000으로_나누어떨어지지_않으면_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(() -> Application.countLottoAmount(testNumber))
                 .withMessage("[ERROR] 1000 단위의 금액을 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4})
+    void 숫자를_뽑을_때_오름차순으로_정렬한다(int randomNumbersIndex) {
+        List<Integer> testNumbers = Application.pickSortedNumbers();
+
+        assertThat(testNumbers.get(randomNumbersIndex)).isLessThan(testNumbers.get(randomNumbersIndex + 1));
     }
 
     @ParameterizedTest
