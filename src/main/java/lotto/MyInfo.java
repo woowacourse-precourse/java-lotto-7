@@ -52,8 +52,8 @@ public class MyInfo {
     }
 
     public Lotto gainWinningInput(){
-        OutputView.printWinning();
         Lotto answer;
+        OutputView.printWinning();
         try {
             answer = InputView.readWinningNum();
         }
@@ -66,8 +66,8 @@ public class MyInfo {
     }
 
     public int gainBonusInput(Lotto answer){
-        OutputView.printBonus();
         int bonus = 0;
+        OutputView.printBonus();
         try{
             bonus  = InputView.readBonus(answer);
         }
