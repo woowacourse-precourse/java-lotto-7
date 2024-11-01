@@ -10,24 +10,23 @@ import lotto.common.LottoConstants;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public static Lotto createRandomLotto() {
-        List<Integer> lottoNumbers = generateUniqueRandomNumbers();
-        return new Lotto(lottoNumbers);
+    public Lotto(List<Integer> numbers) {
+        validateNumberCount(numbers);
+        validateNoDuplicateNumbers(numbers);
+        validateNumberRange(numbers);
+        this.numbers = sortNumbers(numbers);
     }
-    
+
+    public static Lotto from() {
+        return new Lotto(generateUniqueRandomNumbers());
+    }
+
     private static List<Integer> generateUniqueRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 LottoConstants.LOTTO_MIN_NUMBER,
                 LottoConstants.LOTTO_MAX_NUMBER,
                 LottoConstants.LOTTO_SIZE
         );
-    }
-
-    public Lotto(List<Integer> numbers) {
-        validateNumberCount(numbers);
-        validateNoDuplicateNumbers(numbers);
-        validateNumberRange(numbers);
-        this.numbers = sortNumbers(numbers);
     }
 
     private void validateNumberCount(List<Integer> numbers) {

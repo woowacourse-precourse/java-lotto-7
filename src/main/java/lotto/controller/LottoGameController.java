@@ -20,13 +20,13 @@ public class LottoGameController {
     public void start() {
         try {
             PurchaseAmount purchaseAmount = createPurchaseAmount();
-            LottoTicket lottoTicket = LottoTicket.createLottoTicket(purchaseAmount.getTicketCount());
+            LottoTicket lottoTicket = LottoTicket.from(purchaseAmount.getTicketCount());
             gameOutput.printPurchasedTickets(lottoTicket);
 
             WinningNumbers winningNumbers = createWinningNumbers();
             BonusNumber bonusNumber = createBonusNumber(winningNumbers);
 
-            Result result = Result.calculateResult(lottoTicket, winningNumbers, bonusNumber);
+            Result result = Result.from(lottoTicket, winningNumbers, bonusNumber);
             displayYield(purchaseAmount, result);
         } finally {
             gameOutput.close();

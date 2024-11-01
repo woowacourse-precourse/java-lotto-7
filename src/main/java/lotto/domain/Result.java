@@ -19,15 +19,8 @@ public class Result {
     private int totalPrize;
 
     public Result() {
-        matchResults = initializeMatchResults();
-        totalPrize = INITIAL_PRIZE;
-    }
-
-    public static Result calculateResult(LottoTicket lottoTicket, WinningNumbers winningNumbers,
-                                         BonusNumber bonusNumber) {
-        Result result = new Result();
-        result.calculateAndStoreResults(lottoTicket, winningNumbers, bonusNumber);
-        return result;
+        this.matchResults = initializeMatchResults();
+        this.totalPrize = INITIAL_PRIZE;
     }
 
     private Map<LottoRank, Integer> initializeMatchResults() {
@@ -38,19 +31,29 @@ public class Result {
         return results;
     }
 
-    private void calculateAndStoreResults(LottoTicket lottoTicket, WinningNumbers winningNumbers,
-                                          BonusNumber bonusNumber) {
+    public static Result from(LottoTicket lottoTicket, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        Result result = new Result();
+        result.storeResults(lottoTicket, winningNumbers, bonusNumber);
+        return result;
+    }
+
+    private void storeResults(LottoTicket lottoTicket, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Lotto lotto : lottoTicket.getTickets()) {
-            addMatchResult(winningNumbers.calculateRank(lotto, bonusNumber));
+            LottoRank rank = winningNumbers.calculateRank(lotto, bonusNumber);
+            recordMatchResult(rank);
         }
     }
 
-    private void addMatchResult(LottoRank rank) {
+    private void recordMatchResult(LottoRank rank) {
         if (rank == LottoRank.MISS) {
             return;
         }
-        matchResults.put(rank, matchResults.get(rank) + 1);
+        incrementMatchCount(rank);
         addPrize(rank.getPrize());
+    }
+
+    private void incrementMatchCount(LottoRank rank) {
+        matchResults.put(rank, matchResults.get(rank) + 1);
     }
 
     private void addPrize(int prize) {
@@ -83,9 +86,6 @@ public class Result {
     }
 
     private String getBonusMessage(LottoRank rank) {
-        if (rank == LottoRank.SECOND) {
-            return BONUS_BALL_MATCH;
-        }
-        return "";
+        return rank == LottoRank.SECOND ? BONUS_BALL_MATCH : "";
     }
 }

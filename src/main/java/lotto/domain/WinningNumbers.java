@@ -11,7 +11,7 @@ public class WinningNumbers {
     private final List<Integer> winningNumbers;
 
     public WinningNumbers(String input) {
-        this.winningNumbers = parseWinningNumbers(input);
+        this.winningNumbers = parseAndValidateWinningNumbers(input);
     }
 
     public LottoRank calculateRank(Lotto lotto, BonusNumber bonusNumber) {
@@ -20,11 +20,11 @@ public class WinningNumbers {
         return LottoRank.findByMatchCountAndBonus(matchCount, matchBonus);
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
+    private List<Integer> parseAndValidateWinningNumbers(String input) {
         validateInputIsNotNull(input);
         List<String> splitInput = splitInput(input);
-        validateNumberCount(splitInput);
         List<Integer> numbers = parseToIntegerList(splitInput);
+        validateNumberCount(splitInput);
         validateNoDuplicates(numbers);
         validateNumberRange(numbers);
         return numbers;

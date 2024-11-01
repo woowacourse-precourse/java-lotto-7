@@ -10,14 +10,13 @@ public class LottoTicket {
         this.tickets = new ArrayList<>(tickets);
     }
 
-    public static LottoTicket createLottoTicket(int ticketCount) {
+    public static LottoTicket from(int ticketCount) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            tickets.add(Lotto.createRandomLotto());
+            tickets.add(Lotto.from());
         }
         return new LottoTicket(tickets);
     }
-
 
     public List<Lotto> getTickets() {
         return tickets;
