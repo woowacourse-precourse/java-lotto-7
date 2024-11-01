@@ -13,6 +13,7 @@ public class LottoController {
     public void run(){
         buyAmount = InputView.inputBuyAmount();
         winNumbersStr = InputView.inputWinNumbers();
+        bonusNumber = InputView.inputBonusNumber();
     }
 
 }

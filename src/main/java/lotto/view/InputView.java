@@ -8,7 +8,7 @@ public class InputView {
 
     private static String DELIMITER = ",";
 
-    private InputView(){
+    private InputView() {
     }
 
     public static Integer inputBuyAmount() {
@@ -62,6 +62,39 @@ public class InputView {
 
     private static boolean validateWinNumbersNotDelimiter(String winNumbersStr) {
         if (!winNumbersStr.contains(DELIMITER)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static Integer inputBonusNumber() {
+        String inputBonus = Console.readLine();
+
+        if (validateBonusNumberNotNumber(inputBonus)) {
+            throw new IllegalArgumentException(ErrorMessage.NOTNUMBERBONUSNUMBER.getMessage());
+        }
+
+        if (validateBonusNumberOutOfRange(inputBonus)) {
+            throw new IllegalArgumentException(ErrorMessage.OUTOFRANGEBONUSNUMBER.getMessage());
+        }
+
+        return Integer.parseInt(inputBonus);
+    }
+
+    private static boolean validateBonusNumberNotNumber(String bonusNumberStr) {
+        try {
+            if (Integer.parseInt(bonusNumberStr) < 0) {
+                return true;
+            }
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
+
+    private static boolean validateBonusNumberOutOfRange(String bonusNumberStr) {
+        Integer bonusNumber = Integer.parseInt(bonusNumberStr);
+        if (bonusNumber > 45 || bonusNumber <= 0) {
             return true;
         }
         return false;
