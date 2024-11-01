@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.*;
@@ -128,5 +129,15 @@ public class LottoView {
 
     }
 
+    //당첨 통계 출력
+    public void outputWinnerStatistics(List<Integer> winningStatistics) {
+        int winningStatisticsIndex = 0;
+        WinnerPrice[] winnerPrices = WinnerPrice.values();
+        for (int i = winnerPrices.length - 1; i >= 0; i--) {
+            System.out.println(winnerPrices[i].getOutputMessage() + winningStatistics.get(winningStatisticsIndex++) + "개");
+
+        }
+
+    }
 
 }
