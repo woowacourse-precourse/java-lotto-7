@@ -26,4 +26,8 @@ public class OutputView {
             System.out.println(rank.getWinningMessage() + " - " + lottoPrizeCount.get(rank) + "개");
         }
     }
+
+    public void printLottoProfit(double lottoProfit) {
+        System.out.println("총 수익률은 " + String.format("%.1f", lottoProfit) + "%입니다.");
+    }
 }
