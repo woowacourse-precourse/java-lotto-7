@@ -34,8 +34,9 @@ public class Validator {
     }
 
     private static void validateRange(Integer number) {
-        if (number > MAX_LOTTO_NUMBER.getIntegerValue()) {
-            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage(MIN_LOTTO_NUMBER.getIntegerValue(), MAX_LOTTO_NUMBER.getIntegerValue()));
+        if ((number < MIN_LOTTO_NUMBER.getIntegerValue()) || (number > MAX_LOTTO_NUMBER.getIntegerValue())) {
+            throw new IllegalArgumentException(
+                    OUT_OF_RANGE.getMessage(MIN_LOTTO_NUMBER.getIntegerValue(), MAX_LOTTO_NUMBER.getIntegerValue()));
         }
     }
 }
