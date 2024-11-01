@@ -81,6 +81,17 @@ public class InputTest {
     }
 
     @Test
+    @DisplayName("로또 구입금액은 1000원단위만 가능하다.")
+    public void testPurchaseAmountDivisibleBy1000() {
+        assertTrue(InputValidate.isDivisibleBy1000(1000));
+        assertTrue(InputValidate.isDivisibleBy1000(25000));
+
+        assertFalse(InputValidate.isDivisibleBy1000(1500));
+        assertFalse(InputValidate.isDivisibleBy1000(31200));
+    }
+
+
+    @Test
     @DisplayName("검증 시, 숫자 문자열이라면 통과한다.")
     public void testNumberInputValidate() {
         assertTrue(InputValidate.run("0"));
