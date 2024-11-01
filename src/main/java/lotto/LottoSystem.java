@@ -1,12 +1,17 @@
 package lotto;
 
-import static lotto.StringPool.INVALID_WINNING_NUMBERS_INPUT;
-import static lotto.StringPool.MONEY_NOT_DIVIDED_BY_1000;
-import static lotto.StringPool.PRINT_SOLD_LOTTO_COUNT;
-import static lotto.StringPool.PRIZE_MATCH_RESULT_TEMPLATE;
-import static lotto.StringPool.RATE_OF_RETURN;
-import static lotto.StringPool.SEPARATION_LINE;
-import static lotto.StringPool.WINNING_STATISTICS;
+import static lotto.AppConstants.INVALID_WINNING_NUMBERS_INPUT;
+import static lotto.AppConstants.LOTTO_NUMBER_COUNT;
+import static lotto.AppConstants.LOTTO_NUMBER_MAX;
+import static lotto.AppConstants.LOTTO_NUMBER_MIN;
+import static lotto.AppConstants.MATCH_COUNT_FOR_SECOND_PRIZE;
+import static lotto.AppConstants.MATCH_COUNT_FOR_THIRD_PRIZE;
+import static lotto.AppConstants.MONEY_NOT_DIVIDED_BY_1000;
+import static lotto.AppConstants.PRINT_SOLD_LOTTO_COUNT;
+import static lotto.AppConstants.PRIZE_MATCH_RESULT_TEMPLATE;
+import static lotto.AppConstants.RATE_OF_RETURN;
+import static lotto.AppConstants.SEPARATION_LINE;
+import static lotto.AppConstants.WINNING_STATISTICS;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
@@ -16,24 +21,26 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class LottoSystem {
-    private HashMap<Integer, LottoRank> ranks = new HashMap<>();
+    private static final int MIN_MATCH_COUNT = 3;
+    private static final int LOTTO_PRICE = 1000;
+    private HashMap<Integer, LottoPrize> prizes = new HashMap<>();
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private int issuedLottoCount;
 
     public LottoSystem() {
-        int i = 3;
-        for (LottoRank rank : LottoRank.values()) {
-            ranks.put(i, rank);
-            ++i;
+        int matchCount = MIN_MATCH_COUNT;
+        for (LottoPrize prize : LottoPrize.values()) {
+            prizes.put(matchCount, prize);
+            ++matchCount;
         }
     }
 
     public List<Lotto> buyLotto(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(MONEY_NOT_DIVIDED_BY_1000);
         }
-        issuedLottoCount = money / 1000;
+        issuedLottoCount = money / LOTTO_PRICE;
         ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < issuedLottoCount; ++i) {
             lottos.add(createAutoLotto());
@@ -68,12 +75,12 @@ public class LottoSystem {
     public void processLottoResult(List<Lotto> lottos) {
         List<List<Integer>> eachLottos = lottos.stream().map(Lotto::getNumbers).toList();
         for (List<Integer> lottoPaper : eachLottos) {
-            int count = (int) lottoPaper.stream().filter(this.winningNumbers::contains).count();
-            if (count == 5 && !hasBonusNumber(lottoPaper)) {
-                count = 7;
+            int matchedCount = (int) lottoPaper.stream().filter(this.winningNumbers::contains).count();
+            if (matchedCount == MATCH_COUNT_FOR_THIRD_PRIZE && !hasBonusNumber(lottoPaper)) {
+                matchedCount = MATCH_COUNT_FOR_SECOND_PRIZE;
             }
-            if (count >= 3) {
-                LottoRank rank = ranks.get(count);
+            if (matchedCount >= MIN_MATCH_COUNT) {
+                LottoPrize rank = prizes.get(matchedCount);
                 rank.addWinningCount();
             }
         }
@@ -83,7 +90,7 @@ public class LottoSystem {
         DecimalFormat formatter = new DecimalFormat("###,###");
         System.out.println(WINNING_STATISTICS);
         System.out.println(SEPARATION_LINE);
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoPrize rank : LottoPrize.values()) {
             System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", rank.getMatchCount(), formatter.format(rank.getPrize()), rank.getWinningCount());
         }
         System.out.printf(RATE_OF_RETURN, calculateReturnRate());
@@ -95,20 +102,20 @@ public class LottoSystem {
 
     private double calculateReturnRate() {
         int totalReturn = 0;
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoPrize rank : LottoPrize.values()) {
             totalReturn += rank.getWinningCount() * rank.getPrize();
         }
-        return Math.round((double) totalReturn / (issuedLottoCount * 1000) * 100);
+        return Math.round((double) totalReturn / (issuedLottoCount * LOTTO_PRICE) * 100);
     }
     private boolean hasBonusNumber(List<Integer> lottoNumbers) {
         return lottoNumbers.contains(this.bonusNumber);
     }
 
     private boolean isNumberInRange(int num) {
-        return num >= 1 && num <= 45;
+        return num >= LOTTO_NUMBER_MIN && num <= LOTTO_NUMBER_MAX;
     }
 
     private Lotto createAutoLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT));
     }
 }
