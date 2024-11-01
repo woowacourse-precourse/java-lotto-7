@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Vaildator.InputValidator;
+import lotto.controller.CheckerController;
 
 public class LottoService {
     private final List<Lotto> lottos = new ArrayList<>();
@@ -41,5 +42,9 @@ public class LottoService {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public void checkResult() {
+        CheckerController.checkResult(lottos, winningNumbers, bonusNumber);
     }
 }

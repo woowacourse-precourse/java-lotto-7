@@ -13,6 +13,7 @@ public class LottoController {
         displayLottos();
         inputLottoNumbers();
         inputBonusNumber();
+        checkResult();
     }
 
     private static void buyLottos() {
@@ -39,5 +40,10 @@ public class LottoController {
         for (Lotto lotto : lottoService.getLottos()) {
             System.out.println(lotto);
         }
+    }
+
+    private static void checkResult() {
+        System.out.println("당첨 통계\n---");
+        lottoService.checkResult();
     }
 }
