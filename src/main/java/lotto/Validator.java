@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Validator {
     private static final String COMMON_ERROR_MESSAGE = "[ERROR] ";
     private static final String NUMBER_ERROR_MESSAGE = "입력은 숫자 형태여야 합니다.";
@@ -8,6 +11,8 @@ public class Validator {
 
     private static final int LOTTERY_NUM_RANGE_FIRST = 1;
     private static final int LOTTERY_NUM_RANGE_LAST = 45;
+
+    private static final String WINNING_NUMBER_OPERATOR = ",";
 
     private void checkIsNumber(String input) {
         try {
@@ -35,6 +40,23 @@ public class Validator {
             int num = Integer.parseInt(purchaseInput);
             checkIsPositiveNumber(num);
             checkIsLotteryRange(num);
+        } catch (IllegalArgumentException e) {
+            System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
+        }
+    }
+
+    public void validateWinningNumbers(String winningNumbersInput) {
+        String[] splitInputs = winningNumbersInput.split(WINNING_NUMBER_OPERATOR);
+        try {
+            Arrays.stream(splitInputs).forEach(this::checkIsNumber);
+
+            List<Integer> winningDigits = Arrays.stream(splitInputs)
+                .map(Integer::parseInt).toList();
+
+            for (Integer w : winningDigits) {
+                checkIsPositiveNumber(w);
+                checkIsLotteryRange(w);
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
         }
