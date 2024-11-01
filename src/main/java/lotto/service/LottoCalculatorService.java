@@ -19,7 +19,6 @@ public class LottoCalculatorService {
         }
     }
 
-    // 당첨번호 카운팅 (당첨결과 확인)
     public void calculateWinningResult(User user, Lotto lotto) {
         List<UserLotto> userLotto = user.getUserLotto();
         List<Integer> winningLotto = lotto.getNumbers();
@@ -46,6 +45,14 @@ public class LottoCalculatorService {
                 if (duplicateNumber != 5) {
                     winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
                 }
+            }
+        }
+    }
+
+    public void profitCalculate(User user) {
+        for (LottoRanking lottoRanking : winningCount.keySet()) {
+            if (winningCount.get(lottoRanking) != 0) {
+                user.addWinningPrice(lottoRanking.getPrice());
             }
         }
     }
