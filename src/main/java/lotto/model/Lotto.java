@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.view.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.view.ErrorMessage.NUMBER_OUT_OF_RANGE;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class Lotto {
     private void isNumberBetween1And45(List<Integer> numbers){
         for(Integer i : numbers){
             if(i < 1 || i > 45){
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.format());
             }
         }
     }
@@ -30,7 +33,7 @@ public class Lotto {
     private void checkForDuplicates(List<Integer> numbers){
         HashSet<Integer> setNumbers = new HashSet<>(numbers);
         if (setNumbers.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하지 마시오.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.format());
         }
     }
 
