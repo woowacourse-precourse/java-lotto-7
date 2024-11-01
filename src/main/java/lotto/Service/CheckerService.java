@@ -8,6 +8,7 @@ public class CheckerService {
     private int thirdPrizeCount = 0;
     private int fourthPrizeCount = 0;
     private int fifthPrizeCount = 0;
+    private boolean hasBonus;
 
     public int countMatches(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
@@ -19,11 +20,18 @@ public class CheckerService {
         return count;
     }
 
+    public void matchBonus(List<Integer> lotto, int bonusNumber) {
+        hasBonus = lotto.contains(bonusNumber);
+    }
+
     public void isDetermine(int matchCount) {
         if (matchCount == 6) {
             firstPrizeCount++;
         }
-        if (matchCount == 5) {
+        if (matchCount == 5 && hasBonus) {
+            secondPrizeCount++;
+        }
+        if (matchCount == 5 && !hasBonus) {
             thirdPrizeCount++;
         }
         if (matchCount == 4) {
@@ -32,7 +40,7 @@ public class CheckerService {
         if (matchCount == 3) {
             fifthPrizeCount++;
         }
-
+        hasBonus = false;
     }
 
     public void result() {
