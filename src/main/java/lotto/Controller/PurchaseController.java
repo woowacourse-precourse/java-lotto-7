@@ -40,7 +40,7 @@ public class PurchaseController extends Validate {
         return purchaseFlowWithInput(inputed);
     }
 
-    private Pair purchaseFlowWithInput(String inputed) {
+    public Pair purchaseFlowWithInput(String inputed) {
         Pair result = new Pair();
         if(!isInteger(inputed))
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");

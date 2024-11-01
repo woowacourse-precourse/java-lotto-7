@@ -18,16 +18,16 @@ public class WinningController extends Validate{
     WinningService winningService;
     List<Lotto> lottos;
 
-    public WinningController(List<Lotto> lottos) {
+    public WinningController() {
         winningView = new WinningView();
         bonusView = new BonusView();
         statisticsView = new StatisticsView();
         winningService = new WinningService();
-
-        this.lottos = lottos;
     }
 
-    public void getWinning() {
+    public void getWinning(List<Lotto> lottos) {
+        this.lottos = lottos;
+
         List<Integer> winningNumbers = getWinningInput();
         int bonusNumber = getBonusInput(winningNumbers);
         int[] result = winningService.getResult(lottos, winningNumbers, bonusNumber);
@@ -67,7 +67,7 @@ public class WinningController extends Validate{
         return bonusNumber;
     }
 
-    private Pair validateWinningInput(String input) {
+    public Pair validateWinningInput(String input) {
         String[] split = input.split(",");
         List<Integer> winningNumbers = new ArrayList<Integer>();
         for(int i = 0; i < split.length; i++) {
@@ -80,7 +80,7 @@ public class WinningController extends Validate{
         return new Pair(true, winningNumbers);
     }
 
-    private Pair validateBonusInput(String input, List<Integer> winningNumbers) {
+    public Pair validateBonusInput(String input, List<Integer> winningNumbers) {
         if(!isInteger(input)) throw new IllegalArgumentException("정수를 입력해 주세요");
         if(Integer.parseInt(input) < 0) throw new IllegalArgumentException("보너스 번호는 0보다 작을 수 없습니다.");
         if(Integer.parseInt(input) > 45) throw new IllegalArgumentException("보너스 번호는 45보다 클 수 없습니다.");

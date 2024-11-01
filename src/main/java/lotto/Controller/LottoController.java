@@ -10,11 +10,11 @@ public class LottoController {
 
     public LottoController() {
         purchaseController = new PurchaseController();
+        winningController = new WinningController();
     }
 
     public void start() {
         List<Lotto> lottos = purchaseController.purchase();
-        winningController = new WinningController(lottos);
-        winningController.getWinning();
+        winningController.getWinning(lottos);
     }
 }
