@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,6 +16,7 @@ public class Application {
        put(Rank.FOURTH, 0);
        put(Rank.FIFTH, 0);
     }};
+    static double lottoProfit;
 
     public static void generateLottoNumbers(int lottoAmount) {
         for (int i = 0; i < lottoAmount; i++) {
@@ -56,6 +56,16 @@ public class Application {
 
     public static boolean compareBonusNumber(List<Integer> userLottoNumber, int lottoBonusNumber) {
         return userLottoNumber.contains(lottoBonusNumber);
+    }
+
+    public static double calculateLottoProfit(int lottoPurchasePrice) {
+        int lottoTotalPrice = 0;
+        for (Rank rank : lottoPrizeCount.keySet()) {
+            if (lottoPrizeCount.get(rank) != 0) {
+                lottoTotalPrice += rank.getPrizeMoney() * lottoPrizeCount.get(rank);
+            }
+        }
+        return (double) lottoTotalPrice / lottoPurchasePrice * 100;
     }
 
     public static void main(String[] args) {
