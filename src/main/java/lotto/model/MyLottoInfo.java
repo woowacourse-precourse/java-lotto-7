@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.dto.PurchaseAmountDto;
-import lotto.properties.LottoProperties;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -16,12 +15,14 @@ public class MyLottoInfo {
     private final int purchaseAmount;
     private final int purchaseLottoCount;
     private final Map<Rank, Integer> myResult;
+    private final int revenue;
 
     public MyLottoInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
-        this.purchaseLottoCount = calculateQuantities(purchaseAmount);
-        this.myLotteries = generateLotto(this.purchaseLottoCount);
+        this.purchaseLottoCount = calculateQuantities();
+        this.myLotteries = generateLotto();
         this.myResult = initResult();
+        this.revenue = 0;
     }
 
     public static MyLottoInfo from(PurchaseAmountDto dto){
@@ -40,13 +41,13 @@ public class MyLottoInfo {
         return result;
     }
 
-    private int calculateQuantities(int purchaseLottoCount){
-        return purchaseLottoCount / LOTTO_PRICE;
+    private int calculateQuantities(){
+        return this.purchaseLottoCount / LOTTO_PRICE;
     }
 
-    private List<Lotto> generateLotto(int purchaseLottoCount){
+    private List<Lotto> generateLotto(){
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < purchaseLottoCount; i++){
+        for(int i = 0; i < this.purchaseLottoCount; i++){
             lottos.add(Lotto.generate());
         }
         return lottos;
