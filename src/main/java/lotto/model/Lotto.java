@@ -15,6 +15,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        for (int number : numbers) {
+            isInRange(number);
+            isDuplicate(number, numbers);
+        }
+    }
+
+    private void isInRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+        }
+    }
+
+    private void isDuplicate(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException("[ERROR] 각 로또 번호는 중복되지 않아야 합니다.");
+        }
     }
 
     public List<Integer> getNumbers() {
