@@ -8,13 +8,12 @@ import static lotto.Constants.*;
 import static lotto.message.ErrorMessage.*;
 public class User {
     int buyAmount;
+
     private List<Lotto> lottos = new ArrayList<>();
-    private HashMap<Rank, Integer> winningResultMap;
 
     public User(int buyAmount) {
         validateBuyAmount(buyAmount);
         this.buyAmount = buyAmount;
-        this.winningResultMap = Rank.initRank();
     }
 
     public int getBuyLottoCount(){
@@ -27,10 +26,6 @@ public class User {
 
     public List<Lotto> getLottos(){
         return lottos;
-    }
-
-    public HashMap<Rank, Integer> getWinningResultMap() {
-        return winningResultMap;
     }
 
     private void validateBuyAmount(int buyAmount){

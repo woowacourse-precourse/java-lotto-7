@@ -31,6 +31,8 @@ public enum Rank {
         return prize;
     }
 
+    public int getBonusCount() { return bonusCount; }
+
     public static HashMap<Rank, Integer> initRank(){
         HashMap<Rank, Integer> initHashMap = new HashMap<>();
         for(Rank rank: Rank.values()){

@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.model.Lotto;
-import lotto.model.LottoGame;
-import lotto.model.Rank;
-import lotto.model.User;
+import lotto.model.*;
 import lotto.utils.Utils;
 
 import java.util.HashMap;
@@ -29,13 +26,15 @@ public class LottoService {
     }
 
 
-    public void setWinningResult(LottoGame lottoGame, User user) {
-        HashMap<Rank, Integer> winningResultMap = user.getWinningResultMap();
+    public LottoResult setLottoResult(LottoGame lottoGame, User user) {
+        HashMap<Rank, Integer> lottoResultMap = Rank.initRank();
 
         for(Lotto lotto : user.getLottos()){
             Rank rank = getRank(lottoGame, lotto);
-            winningResultMap.put(rank, winningResultMap.get(rank) + 1);
+            lottoResultMap.put(rank, lottoResultMap.get(rank) + 1);
         }
+
+        return new LottoResult(lottoResultMap);
     }
 
     private Rank getRank(LottoGame lottoGame, Lotto lotto){

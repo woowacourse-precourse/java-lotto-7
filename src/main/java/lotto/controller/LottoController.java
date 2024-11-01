@@ -1,19 +1,15 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.LottoGame;
-import lotto.model.User;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.List;
 
 public class LottoController {
 
     private User user;
     private LottoGame lottoGame;
+    private LottoResult lottoResult;
     private LottoService lottoService;
 
     public LottoController(LottoService lottoService) {
@@ -49,7 +45,12 @@ public class LottoController {
     }
 
     private void startLotto(){
-        lottoService.setWinningResult(lottoGame, user);
+        lottoResult = lottoService.setLottoResult(lottoGame, user);
+    }
+
+    private void afterLotto(){
+        OutputView.printLottoResult(lottoResult);
+        OutputView.printReturnRate(lottoResult);
     }
 
 }
