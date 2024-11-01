@@ -19,7 +19,6 @@ public class LottoNumber {
 	private final int number;
 
 	private LottoNumber(int number) {
-		checkLottoNumberRange(number);
 		this.number = number;
 	}
 
