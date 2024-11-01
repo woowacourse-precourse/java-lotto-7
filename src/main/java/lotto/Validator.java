@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 
 public class Validator {
-    private static final String DELIMITER = ",";
+    public static final String DELIMITER = ",";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_COUNT = 6;
