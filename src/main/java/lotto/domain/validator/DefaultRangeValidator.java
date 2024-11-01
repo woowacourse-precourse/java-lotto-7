@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.validator;
 
 public class DefaultRangeValidator implements RangeValidator {
 
