@@ -15,5 +15,6 @@ public class Controller {
     public void run() {
         int thousandUnitCount = inputView.readPurchaseAmount();
         outputView.printUnitCount(thousandUnitCount);
+        outputView.printPurchaseLottos(thousandUnitCount);
     }
 }
