@@ -21,7 +21,8 @@
     - 당첨 번호가 6개가 아니면, IllegalArgumentException을 발생시킨다.
     - 당첨 번호 중 중복되는 것이 있다면, IllegalArgumentException을 발생시킨다.
     - 당첨 번호가 1~45까지가 아니면, IllegalArgumentException을 발생시킨다.
-- [ ] 보너스 번호를 입력받는다.
+- [x] 보너스 번호를 입력받는다.
+    - 보너스 번호를 입력받을 때 0 이상의 정수가 아니면 IllegalArgumentException을 발생시킨다.
     - 보넌스 번호가 1~45까지가 아니면, IllegalArgumentException을 발생시킨다.
 - [ ] 등수에 따른 금액을 명시한다
     - 1등: 2,000,000,000원
