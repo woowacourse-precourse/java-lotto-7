@@ -16,12 +16,12 @@ public class Ticket {
         return new Ticket(new Lotto(numbers), bonus);
     }
 
-    public Rank check(Lotto win, int winBonus) {
+    public Rank check(Ticket winningTicket) {
         List<Integer> numbers = lotto.getNumbers();
-        List<Integer> winningNumbers = win.getNumbers();
+        List<Integer> winningNumbers = winningTicket.getNumbers();
 
         int matchCount = getMatchCount(numbers, winningNumbers);
-        boolean matchBonus = isBonusMatch(winBonus);
+        boolean matchBonus = isBonusMatch(bonus);
 
         return Rank.valueOf(matchCount, matchBonus);
     }
