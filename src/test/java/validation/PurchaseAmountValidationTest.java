@@ -24,5 +24,14 @@ public class PurchaseAmountValidationTest {
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @ParameterizedTest
+    @ValueSource(strings = {"0"," 0 ","123"})
+    @DisplayName("구매 금액이 0이거나 빈 값, 또는 숫자가 아닐 때 에러 발생")
+    void validateZeroOrNotDivided(String input){
+        assertThatThrownBy(() -> {
+            PurchaseAmountValidation.validate(input);
+        })
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }
