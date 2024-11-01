@@ -24,4 +24,13 @@ public class LottoRequestParser {
             throw new CustomIllegalArgumentException("당첨 번호는 유효한 숫자로 입력해주세요.");
         }
     }
+
+    public static Integer parseBonusNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new CustomIllegalArgumentException("보너스 번호는 유효한 숫자로 입력해주세요.");
+        }
+    }
+
 }

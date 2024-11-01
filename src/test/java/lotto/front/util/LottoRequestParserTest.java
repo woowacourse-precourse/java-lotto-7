@@ -53,4 +53,26 @@ class LottoRequestParserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 보너스_번호_파싱() {
+        // given
+        String input = "7";
+
+        // when
+        int bonusNumber = LottoRequestParser.parseBonusNumber(input);
+
+        // then
+        assertEquals(7, bonusNumber);
+    }
+
+    @Test
+    void 보너스_번호_파싱_예외() {
+        // given
+        String input = "7j";
+
+        // when, then
+        assertThatThrownBy(() -> LottoRequestParser.parseBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
