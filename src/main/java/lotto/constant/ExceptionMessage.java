@@ -9,6 +9,7 @@ public enum ExceptionMessage {
     NOT_NUMBER_WINNING_NUMBER("당첨 번호는 숫자여야 합니다."),
     NOT_NUMBER_BONUS_NUMBER("보너스 번호는 숫자여야 합니다."),
     INVALID_MONEY_UNIT("로또 구입 금액은 %s원 단위로 입력해야 합니다."),
+    BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     ;
 
     private final String message;

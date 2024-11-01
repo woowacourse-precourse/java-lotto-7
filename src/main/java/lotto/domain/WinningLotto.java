@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +18,14 @@ public class WinningLotto {
     }
 
     public void setupBonusNumber(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.getMessage());
+        }
     }
 
     public RankPrice getRank(Lotto target) {
