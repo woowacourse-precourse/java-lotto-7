@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
 
@@ -9,5 +10,10 @@ public class OutputView {
         for(Lotto lotto : lottoTickets){
             System.out.println(lotto);
         }
+    }
+
+    public void printResult(int matchCount, int prizeMoney, int winningCount){
+        DecimalFormat df = new DecimalFormat("###,###");
+        System.out.println(matchCount + "개 일치 (" + df.format(prizeMoney) + "원) -" + winningCount + "개");
     }
 }
