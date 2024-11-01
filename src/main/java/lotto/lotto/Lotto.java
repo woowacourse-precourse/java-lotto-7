@@ -5,8 +5,6 @@ import lotto.exception.CustomException;
 import lotto.exception.ExceptionMessage;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-
     private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -33,7 +31,7 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstant.LOTTO_SIZE.getValue()) {
             throw new CustomException(ExceptionMessage.INVALID_LOTTO_SIZE_EXCEPTION);
         }
     }
