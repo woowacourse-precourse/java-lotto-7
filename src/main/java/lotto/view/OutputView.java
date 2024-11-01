@@ -13,13 +13,31 @@ public class OutputView {
             System.out.println(numbers);
         }
     }
+
     public static void printWinningStatistics(Map<LottoRank, Integer> rankCounts, double profitRate) {
         System.out.println("당첨 통계");
         System.out.println("--");
-        for (LottoRank rank : LottoRank.values()) {
-            int count = rankCounts.getOrDefault(rank, 0);
-            System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
+
+        LottoRank[] ranks = {
+                LottoRank.FIFTH,
+                LottoRank.FOURTH,
+                LottoRank.THIRD,
+                LottoRank.SECOND,
+                LottoRank.FIRST
+        };
+
+        for (LottoRank rank : ranks) {
+            printRankCount(rank, rankCounts);
         }
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
+    }
+
+    private static void printRankCount(LottoRank rank, Map<LottoRank, Integer> rankCounts) {
+        int count = rankCounts.getOrDefault(rank, 0);
+        if (rank == LottoRank.SECOND) {
+            System.out.println("5개 일치, 보너스 볼 일치 (" + rank.getPrize() + "원) - " + count + "개");
+            return;
+        }
+        System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
     }
 }
