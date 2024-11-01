@@ -23,7 +23,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 ## 기능 목록
 - [X] 구매 금액 입력 받기
   - [X] 구매 금액 입력 예외 처리(empty, NaN)
-- [ ] 로또 발행
+- [X] 로또 발행
   - [X] 로또 번호 생성
     - [X] 중복되지 않은 6개의 숫자를 뽑기
   - [X] 로또 객체 생성 시 검증(중복 숫자, 숫자 범위, 숫자 개수)
