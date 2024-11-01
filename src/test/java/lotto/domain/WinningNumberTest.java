@@ -18,7 +18,7 @@ class WinningNumberTest {
         String expected = "[1, 10, 20, 30, 40, 45]";
 
         //When
-        String actual = WinningNumber.parseWinningNumber(input).retrieveLottoNumber();
+        String actual = WinningNumber.parse(input).retrieveLottoNumber();
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
@@ -30,7 +30,7 @@ class WinningNumberTest {
         //Given
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> WinningNumber.parseWinningNumber(input))
+        Assertions.assertThatThrownBy(() -> WinningNumber.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
     }
@@ -41,7 +41,7 @@ class WinningNumberTest {
         String input = "1,2,3,4,6,6";
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> WinningNumber.parseWinningNumber(input))
+        Assertions.assertThatThrownBy(() -> WinningNumber.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_DUPLICATE_ERROR_MSG);
     }
@@ -52,7 +52,7 @@ class WinningNumberTest {
         //Given
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> WinningNumber.parseWinningNumber(input))
+        Assertions.assertThatThrownBy(() -> WinningNumber.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_SIZE_ERROR_MSG);
     }

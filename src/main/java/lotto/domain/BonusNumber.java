@@ -14,7 +14,7 @@ public class BonusNumber extends LottoNumber {
         validate(winningNumber);
     }
 
-    public static BonusNumber parseBonusNumber(String input, Lotto winningNumber) {
+    public static BonusNumber parse(String input, Lotto winningNumber) {
         return new BonusNumber(LottoNumber.parseLottoNumber(input), winningNumber);
     }
 

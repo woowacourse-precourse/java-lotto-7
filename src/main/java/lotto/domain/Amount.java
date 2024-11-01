@@ -13,7 +13,7 @@ public class Amount {
         this.value = value;
     }
 
-    public static Amount parseAmount(String input) {
+    public static Amount parse(String input) {
         try {
             return new Amount(Integer.parseInt(input));
         } catch (NumberFormatException e) {

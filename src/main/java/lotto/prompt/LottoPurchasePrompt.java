@@ -10,7 +10,7 @@ public class LottoPurchasePrompt {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
-                return Amount.parseAmount(Console.readLine());
+                return Amount.parse(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

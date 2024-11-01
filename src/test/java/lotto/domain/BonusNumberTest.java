@@ -43,7 +43,7 @@ class BonusNumberTest {
         int expected = Integer.parseInt(input);
 
         //When
-        int actual = BonusNumber.parseBonusNumber(input, winningNumbers).getNumber();
+        int actual = BonusNumber.parse(input, winningNumbers).getNumber();
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
@@ -56,7 +56,7 @@ class BonusNumberTest {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> BonusNumber.parseBonusNumber(input, winningNumbers))
+        Assertions.assertThatThrownBy(() -> BonusNumber.parse(input, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoMachine.BONUS_NUMBER_DUPLICATE_ERROR_MSG);
     }

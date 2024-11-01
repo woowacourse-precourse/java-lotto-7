@@ -61,7 +61,7 @@ class AmountTest {
         //Given
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> Amount.parseAmount(input))
+        Assertions.assertThatThrownBy(() -> Amount.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoMachine.AMOUNT_ERROR_MSG);
     }
@@ -72,7 +72,7 @@ class AmountTest {
         //Given
 
         //When, Then
-        Assertions.assertThatThrownBy(() -> Amount.parseAmount(input))
+        Assertions.assertThatThrownBy(() -> Amount.parse(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoMachine.AMOUNT_ERROR_MSG);
     }

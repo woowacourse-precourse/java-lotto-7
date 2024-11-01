@@ -9,7 +9,7 @@ public class WinningNumber extends Lotto {
         super(numbers);
     }
 
-    public static WinningNumber parseWinningNumber(String input) {
+    public static WinningNumber parse(String input) {
         List<String> inputItems = Arrays.asList(input.split(","));
         List<Integer> lottoNumbers = inputItems.stream()
                 .map(LottoNumber::parseLottoNumber)
