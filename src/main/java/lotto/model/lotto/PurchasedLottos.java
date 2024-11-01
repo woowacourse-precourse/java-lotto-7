@@ -17,4 +17,8 @@ public class PurchasedLottos {
   public static PurchasedLottos from (List<Lotto> lottos) {
     return new PurchasedLottos(lottos);
   }
+
+  public List<Lotto> getLottos() {
+    return lottos;
+  }
 }

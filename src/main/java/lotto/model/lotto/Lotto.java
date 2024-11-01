@@ -56,7 +56,8 @@ public class Lotto {
         .count();
   }
 
-
-
+  public List<Integer> getNumbers () {
+    return this.numbers;
+  }
     // TODO: 추가 기능 구현
 }
