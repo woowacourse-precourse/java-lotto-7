@@ -21,9 +21,15 @@ public enum LottoPrize {
     }
 
     public static Optional<LottoPrize> findByMatch(int matchCount, boolean bonusMatch) {
-        return Arrays.stream(LottoPrize.values())
-            .filter(prize -> prize.matchCount == matchCount && prize.bonusMatch == bonusMatch)
-            .findAny();
+        if(matchCount == 5 && bonusMatch) {
+            return Optional.of(FIVE_MATCH_WITH_BONUS);
+        }
+        if(matchCount == 5) {
+            return Optional.of(FIVE_MATCH);
+        }
+        return Arrays.stream(values())
+            .filter(prize -> prize.matchCount == matchCount)
+            .findFirst();
     }
 
     public int getMoney() {
