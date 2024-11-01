@@ -6,16 +6,19 @@ import lotto.error.LottoError;
 public class LottoInputValidator {
     private static final String INPUT_DIGIT_FORMAT_REGEX = "^\\d+$";
     private static final Pattern INPUT_DIGIT_FORMAT = Pattern.compile(INPUT_DIGIT_FORMAT_REGEX);
-
-    private static final String NUMBERS_FORMAT_REGEX =  "^\\d+(,\\d+)*$";
+    private static final String NUMBERS_FORMAT_REGEX = "^\\d+(,\\d+)*$";
     private static final Pattern NUMBERS_FORMAT = Pattern.compile(NUMBERS_FORMAT_REGEX);
 
-    public void validateLottoPurchasePrice(String purchasePrice){
+    public void validateLottoPurchasePrice(String purchasePrice) {
         validateDigit(purchasePrice);
     }
 
-    public void validateLottoWinningNumbers(String winningNumbers){
+    public void validateLottoWinningNumbers(String winningNumbers) {
         validateNumbers(winningNumbers);
+    }
+
+    public void validateLottoBonusNumber(String bonusNumber) {
+        validateNumbers(bonusNumber);
     }
 
     private void validateDigit(String number) {
@@ -24,8 +27,8 @@ public class LottoInputValidator {
         }
     }
 
-    private void validateNumbers(String numbers){
-        if(!NUMBERS_FORMAT.matcher(numbers).matches()){
+    private void validateNumbers(String numbers) {
+        if (!NUMBERS_FORMAT.matcher(numbers).matches()) {
             throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_INVALID_FORMAT.getMessage());
         }
     }

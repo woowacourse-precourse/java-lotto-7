@@ -24,7 +24,7 @@ public class LottoView {
     private static final String NUMBERS_DELIMITER = ",";
     private final LottoInputValidator lottoInputValidator;
 
-    public LottoView(LottoInputValidator lottoInputValidator){
+    public LottoView(LottoInputValidator lottoInputValidator) {
         this.lottoInputValidator = lottoInputValidator;
     }
 
@@ -42,9 +42,11 @@ public class LottoView {
         return parseNumbers(winningNumbers);
     }
 
-    public String requestLottoBonusNumber() {
+    public int requestLottoBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_REQUEST_MESSAGE);
-        return input();
+        String bonusNumber = input();
+        lottoInputValidator.validateLottoBonusNumber(bonusNumber);
+        return parseInt(bonusNumber);
     }
 
     public void printLottoBundle(LottoBundle lottoBundle) {
@@ -61,16 +63,15 @@ public class LottoView {
         return Console.readLine();
     }
 
-    private int parseInt(String number){
-        try{
+    private int parseInt(String number) {
+        try {
             return Integer.parseInt(number);
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoError.INVALID_NUMBER.getMessage());
         }
     }
 
-    private List<Integer> parseNumbers(String numbers){
+    private List<Integer> parseNumbers(String numbers) {
         return Arrays.stream(numbers.split(NUMBERS_DELIMITER))
                 .map(this::parseInt)
                 .collect(Collectors.toList());
@@ -106,7 +107,7 @@ public class LottoView {
                 .forEach(System.out::println);
     }
 
-    private void printLottoProfitRate(LottoProfit lottoProfit){
+    private void printLottoProfitRate(LottoProfit lottoProfit) {
         System.out.println(String.format(LOTTO_PROFIT_RATE_MESSAGE, lottoProfit.getProfitRate()));
     }
 }

@@ -10,21 +10,16 @@ import lotto.domain.LottoDispenser;
 import lotto.domain.LottoPurchasePrice;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
-import lotto.util.LottoParser;
-import lotto.validator.LottoBonusNumberValidator;
 import lotto.view.LottoView;
 
 public class LottoController {
 
     private final LottoView lottoView;
-    private final LottoBonusNumberValidator lottoBonusNumberValidator;
 
     public LottoController(
-            LottoView lottoView,
-            LottoBonusNumberValidator lottoBonusNumberValidator
+            LottoView lottoView
     ) {
         this.lottoView = lottoView;
-        this.lottoBonusNumberValidator = lottoBonusNumberValidator;
     }
 
     public void run() {
@@ -42,7 +37,7 @@ public class LottoController {
         return LottoPurchasePrice.from(lottoPurchasePrice);
     }
 
-    private LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice){
+    private LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
         LottoDispenser lottoDispenser = new LottoDispenser();
         return lottoDispenser.issueLottoBundle(lottoPurchasePrice);
     }
@@ -53,10 +48,8 @@ public class LottoController {
     }
 
     private BonusNumber requestLottoBonusNumber(WinningLotto winningLotto) {
-        String lottoBonusNumber = lottoView.requestLottoBonusNumber();
-        lottoBonusNumberValidator.validateBonusNumber(lottoBonusNumber, winningLotto);
-        int bonusNumber = LottoParser.parseInt(lottoBonusNumber);
-        return BonusNumber.of(bonusNumber);
+        int lottoBonusNumber = lottoView.requestLottoBonusNumber();
+        return BonusNumber.of(lottoBonusNumber, winningLotto);
     }
 
     private <T> T retry(Supplier<T> logic) {
