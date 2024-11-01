@@ -10,8 +10,12 @@ public class InputParser {
         StringTokenizer stringTokenizer = new StringTokenizer(input, ",");
         List<Integer> numbers = new ArrayList<>();
 
-        while (stringTokenizer.hasMoreElements()) {
-            numbers.add(Integer.parseInt(stringTokenizer.nextToken()));
+        try {
+            while (stringTokenizer.hasMoreElements()) {
+                numbers.add(Integer.parseInt(stringTokenizer.nextToken()));
+            }
+        } catch (NumberFormatException nfe) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
 
         return numbers;
