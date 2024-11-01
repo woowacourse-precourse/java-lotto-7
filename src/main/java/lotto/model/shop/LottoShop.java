@@ -1,5 +1,6 @@
-package lotto.model;
+package lotto.model.shop;
 
+import lotto.model.Lottos;
 import lotto.model.exception.PurchaseMoneyInvalidException;
 import lotto.model.number_generator.RandomNumberGenerator;
 

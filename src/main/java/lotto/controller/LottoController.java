@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.*;
 import lotto.model.number_generator.DefaultRandomNumberGenerator;
 import lotto.model.number_generator.RandomNumberGenerator;
+import lotto.model.shop.LottoShop;
 import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
