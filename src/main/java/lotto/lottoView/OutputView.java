@@ -1,6 +1,7 @@
 package lotto.lottoView;
 
 import java.util.List;
+import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.StatisticsLottoDTO;
 
 public class OutputView {
@@ -17,6 +18,11 @@ public class OutputView {
         System.out.printf(HOW_MANY_BUY, numberOfBuy);
         System.out.println();
     }
+
+    public void printLottoNumbers(LottoDTO lottoNumber) {
+        System.out.println(lottoNumber);
+    }
+
 
     public void statisticStart(StatisticsLottoDTO stats) {
         System.out.println(STATISTIC_START);

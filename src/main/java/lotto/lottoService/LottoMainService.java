@@ -1,5 +1,6 @@
 package lotto.lottoService;
 
+import java.util.stream.Collectors;
 import lotto.lottoModel.*;
 import lotto.lottoView.LottoPrize;
 import lotto.Utility.LottoNumberGenerator;
@@ -27,6 +28,13 @@ public class LottoMainService {
         }
     }
 
+    public List<LottoDTO> getAllLottosAsDTO() {
+        List<Lotto> allLottos = lottoDAO.getAll();
+        return allLottos.stream()
+                .map(lotto -> new LottoDTO(lotto.getNumbers()))
+                .collect(Collectors.toList());
+    }
+
     // 당첨 번호 저장
     public void saveHitLotto(String hitLottoInput, String bonusNumberInput) {
         List<Integer> hitNumbers = Arrays.stream(hitLottoInput.split(","))
@@ -37,8 +45,8 @@ public class LottoMainService {
     }
 
     // 로또 번호와 당첨 번호 비교 및 통계 저장
-    public void retainLotto(List<Lotto> allLottos, List<Integer> hitLottos) {
-        for (Lotto lotto : allLottos) {
+    public void retainLotto(List<LottoDTO> allLottos, List<Integer> hitLottos) {
+        for (LottoDTO lotto : allLottos) {
             Set<Integer> lottoNumber = new HashSet<>(lotto.getNumbers());
             Set<Integer> hitLottoNumber = new HashSet<>(hitLottos);
             lottoNumber.retainAll(hitLottoNumber); // 두 세트의 공통 원소만 뽑아서 합친 세트
@@ -67,7 +75,8 @@ public class LottoMainService {
         long sumPrize = 0;
         for (int i = 3; i <= 6; i++) {
             if (i == 5) {
-                sumPrize += LottoPrize.getPrize(i, false) * (stats.getHitNumberValue(i) - stats.getBonusNumberFrequency());
+                sumPrize +=
+                        LottoPrize.getPrize(i, false) * (stats.getHitNumberValue(i) - stats.getBonusNumberFrequency());
                 sumPrize += LottoPrize.getPrize(i, true) * stats.getBonusNumberFrequency();
             }
             sumPrize += LottoPrize.getPrize(i, false) * stats.getHitNumberValue(i);

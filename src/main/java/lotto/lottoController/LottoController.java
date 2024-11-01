@@ -1,12 +1,6 @@
 package lotto.lottoController;
 
-import static lotto.lottoModel.HitLotto.getInstance;
-
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.lottoModel.HitLotto;
 import lotto.lottoModel.HitLottoDAO;
 import lotto.lottoModel.HitLottoDTO;
 import lotto.lottoModel.LottoDAO;
@@ -14,9 +8,7 @@ import lotto.lottoModel.LottoDTO;
 import lotto.lottoModel.Lotto;
 import lotto.lottoModel.StatisticsLottoDAO;
 import lotto.lottoModel.StatisticsLottoDTO;
-import lotto.lottoModel.StatisticsLotto;
 import lotto.lottoView.InputView;
-import lotto.lottoView.LottoPrize;
 import lotto.lottoView.OutputView;
 import lotto.lottoService.LottoMainService;
 
@@ -25,20 +17,20 @@ import lotto.Utility.LottoNumberGenerator;
 public class LottoController {
     private LottoDAO lottoDAO;
     private LottoDTO lottoDTO;
-    private InputView inputView;
-    private OutputView outputView;
-    private LottoNumberGenerator lottoNumberGenerator;
+    private final InputView inputView;
+    private final OutputView outputView;
     private HitLottoDAO hitLottoDAO;
     private HitLottoDTO hitLottoDTO;
     private StatisticsLottoDAO statisticsDAO;
     private StatisticsLottoDTO statisticsDTO;
-    private LottoMainService lottoMainService;
+    private final LottoMainService lottoMainService;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
 
-        this.lottoMainService = new LottoMainService(lottoDAO, hitLottoDAO,statisticsDAO);
+
+        this.lottoMainService = new LottoMainService(lottoDAO, hitLottoDAO, statisticsDAO);
     }
 
     public void run() {
@@ -49,12 +41,11 @@ public class LottoController {
         outputView.howManyBuy(calcCost / 1000);
         lottoMainService.buyLotto(calcCost);
 
-        List<Lotto> allLottos = lottoDAO.getAll(); //todo: dto로 바꾸기
-
-        for (Lotto lotto : allLottos) { //todo:추후 메서드로 빼낼것
-            LottoDTO dto = new LottoDTO(lotto.getNumbers());
-            System.out.println(dto.getNumbers()); //todo 아웃뷰?
+        List<LottoDTO> allLottosAsDTO = lottoMainService.getAllLottosAsDTO();
+        for (LottoDTO dto : allLottosAsDTO) {
+            outputView.printLottoNumbers(dto);
         }
+
 
         String hitLottoInput = inputView.PrintLottoInputMsg();
         String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
@@ -64,7 +55,7 @@ public class LottoController {
 
         HitLottoDTO dto = hitLottoDAO.getAsDTO(); //?
 
-        lottoMainService.retainLotto(allLottos, dto.getAllHitNumbers());
+        lottoMainService.retainLotto(allLottosAsDTO, dto.getAllHitNumbers());
 
         StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();
         outputView.statisticStart(stats);
