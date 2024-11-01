@@ -2,10 +2,13 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @Test
@@ -20,6 +23,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    @DisplayName("로또 번호 오름차순 테스트")
+    @Test
+    void 로또_번호_오름차순_테스트(){
+        List<Integer> numbers = List.of(6, 5, 3, 4, 2, 1);
+        Lotto lotto = new Lotto(numbers);
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+        // when
+        List<Integer> result = lotto.getNumbers();
+
+        // then
+        assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }
