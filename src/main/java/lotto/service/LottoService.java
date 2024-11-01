@@ -34,8 +34,8 @@ public class LottoService {
         return lottos.stream().map(lotto -> new LottoDto(lotto.getNumbers())).toList();
     }
 
-    public WinningLotto registerWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        return new WinningLotto(winningNumbers, bonusNumber);
+    public WinningLotto registerWinningNumbers(Lotto lotto, int bonusNumber) {
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     public void determineRanks(Customer customer, WinningLotto winningLotto) {

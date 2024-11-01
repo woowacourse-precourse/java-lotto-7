@@ -6,6 +6,7 @@ import lotto.handler.InputHandler;
 import lotto.model.customer.Customer;
 import lotto.model.dto.LottoDto;
 import lotto.model.dto.ResultDto;
+import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
@@ -39,10 +40,10 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-        List<Integer> winningNumbers = InputHandler.getWinningNumbers();
+        Lotto lotto = new Lotto(InputHandler.getWinningNumbers());
         int bonusNumber = InputHandler.getBonusNumber();
 
-        return lottoService.registerWinningNumbers(winningNumbers, bonusNumber);
+        return lottoService.registerWinningNumbers(lotto, bonusNumber);
     }
 
     private void displayResult(Customer customer) {

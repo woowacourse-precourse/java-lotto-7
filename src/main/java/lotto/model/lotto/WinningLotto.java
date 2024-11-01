@@ -2,19 +2,20 @@ package lotto.model.lotto;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto {
+public class WinningLotto {
 
+    private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        super(numbers);
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
     public int countMatchingNumberWith(List<Integer> comparedNumbers) {
         int matchCount = 0;
         for (Integer number : comparedNumbers) {
-            if (this.numbers.contains(number)) {
+            if (this.lotto.numbers.contains(number)) {
                 matchCount++;
             }
         }

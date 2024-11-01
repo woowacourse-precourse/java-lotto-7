@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public class WinningLottoTest {
         // given
         List<Integer> numbers = createValidNumbers();
         int bonusNumber = numbers.getLast() + 1;
-        WinningLotto winningLotto = new WinningLotto(numbers, bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(numbers), bonusNumber);
 
         List<Integer> comparedNumbers = numbers;
 
