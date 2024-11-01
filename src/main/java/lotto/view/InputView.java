@@ -12,8 +12,9 @@ public final class InputView {
         System.out.println(message);
     }
 
-    public static void inputPrice() {
+    public static String inputPrice() {
         print(LOTTO_PAY_MONEY);
+        return Console.readLine();
     }
 
     public static void inputLottoNumber() {
