@@ -17,8 +17,10 @@
 
 ### model package
 - LottoTransform class
-    + [] 입력된 로또 반복 횟수 만큼 로또 생성 
-    + [] 랜덤한 숫자를 생성하는 기능 
+    + [0] 입력된 당첨 번호를 List로 변환하는 기능 - inputToWinningNumbers
+    + [0] 로또 구매 금액을 입력받아 로또 개수를 반환하는 기능 - getLottoCount
+    + [0] 입력된 로또 반복 횟수 만큼 로또 생성 - createLotto
+    + [0] 랜덤한 6개 숫자를 생성하는 기능 - createRandomNumbers
 
 
 - LottoValidation class

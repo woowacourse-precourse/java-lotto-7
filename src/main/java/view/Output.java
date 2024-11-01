@@ -1,8 +1,6 @@
 package view;
 
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import utils.WinningLotto;
 
 public class Output {
@@ -14,7 +12,7 @@ public class Output {
         System.out.printf(PURCHASE_AMOUNT_FORMAT, purchaseAmount);
     }
 
-    public void printLottoNumbers(List<TreeSet<Integer>> lottoNumbers) {
+    public void printLottoNumbers(List<List<Integer>> lottoNumbers) {
         lottoNumbers.forEach(System.out::println);
     }
 
