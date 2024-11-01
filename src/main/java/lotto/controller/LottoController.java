@@ -6,10 +6,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoBundle;
+import lotto.domain.LottoDispenser;
 import lotto.domain.LottoPurchasePrice;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
-import lotto.generator.LottoGenerator;
 import lotto.util.LottoParser;
 import lotto.validator.LottoBonusNumberValidator;
 import lotto.validator.LottoWinningNumbersValidator;
@@ -18,25 +18,22 @@ import lotto.view.LottoView;
 public class LottoController {
 
     private final LottoView lottoView;
-    private final LottoGenerator lottoGenerator;
     private final LottoWinningNumbersValidator lottoWinningNumbersValidator;
     private final LottoBonusNumberValidator lottoBonusNumberValidator;
 
     public LottoController(
             LottoView lottoView,
-            LottoGenerator lottoGenerator,
             LottoWinningNumbersValidator lottoWinningNumbersValidator,
             LottoBonusNumberValidator lottoBonusNumberValidator
     ) {
         this.lottoView = lottoView;
-        this.lottoGenerator = lottoGenerator;
         this.lottoWinningNumbersValidator = lottoWinningNumbersValidator;
         this.lottoBonusNumberValidator = lottoBonusNumberValidator;
     }
 
     public void run() {
         LottoPurchasePrice lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
-        LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(lottoPurchasePrice);
+        LottoBundle lottoBundle = issueLottoBundle(lottoPurchasePrice);
         lottoView.printLottoBundle(lottoBundle);
         WinningLotto winningLotto = retry(this::requestLottoWinningNumbers);
         BonusNumber bonusNumber = retry(this::requestLottoBonusNumber, winningLotto);
@@ -47,6 +44,11 @@ public class LottoController {
     private LottoPurchasePrice requestLottoPurchasePrice() {
         int lottoPurchasePrice = lottoView.requestLottoPurchasePrice();
         return LottoPurchasePrice.from(lottoPurchasePrice);
+    }
+
+    private LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice){
+        LottoDispenser lottoDispenser = new LottoDispenser();
+        return lottoDispenser.issueLottoBundle(lottoPurchasePrice);
     }
 
     private WinningLotto requestLottoWinningNumbers() {
