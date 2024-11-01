@@ -7,6 +7,8 @@ import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.response.LottoNumberResponse;
+import lotto.view.response.LottoScoreResponse;
+import lotto.view.response.LottoScoreResponses;
 import lotto.view.response.PurchaseLottoResponse;
 
 import java.util.LinkedHashMap;
@@ -30,10 +32,12 @@ public class LottoController {
 
         WinningLotto winningLotto = Retryer.retryOnCustomException(this::createWinningLotto);
 
-        Map<Score, Integer> scores = Retryer.retryOnCustomException(() -> calculateScores(lottos, winningLotto));
-        double profitRate = Retryer.retryOnCustomException(() -> calculateProfitRate(scores.keySet().stream().toList()));
+        List<Score> scores = Retryer.retryOnCustomException(() -> calculateScores(lottos, winningLotto));
+        double profitRate = Retryer.retryOnCustomException(() -> calculateProfitRate(scores));
 
-        printResult(scores, profitRate);
+        LottoScoreResponses lottoScoreResponses = getLottoScoreResponses(scores);
+
+        printResult(lottoScoreResponses, profitRate);
     }
 
     private Lottos purchaseLotto() {
@@ -51,23 +55,16 @@ public class LottoController {
         return new WinningLotto(new LottoNumbers(winningNumbers), bonusNumber);
     }
 
-    private Map<Score, Integer> calculateScores(Lottos lottos, WinningLotto winningLotto) {
-        List<Score> scores = lottos.calculateResult(winningLotto);
-
-        return scores.stream()
-                .collect(
-                        LinkedHashMap::new,
-                        (map, score) -> map.put(score, map.getOrDefault(score, 0) + 1),
-                        Map::putAll
-                );
+    private List<Score> calculateScores(Lottos lottos, WinningLotto winningLotto) {
+        return lottos.calculateScore(winningLotto);
     }
 
     private double calculateProfitRate(List<Score> scores) {
         return (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
     }
 
-    private void printResult(Map<Score, Integer> scores, double profitRate) {
-        outputView.printScores(scores);
+    private void printResult(LottoScoreResponses lottoScoreResponses, double profitRate) {
+        outputView.printScores(lottoScoreResponses);
         outputView.printProfitRate(profitRate);
     }
 
@@ -83,4 +80,35 @@ public class LottoController {
     private LottoNumberResponse getLottoNumberResponse(LottoNumbers lottoNumbers) {
         return LottoNumberResponse.from(lottoNumbers.mapToInt());
     }
+
+    private LottoScoreResponses getLottoScoreResponses(List<Score> scores) {
+        Map<LottoScoreResponse, Integer> lottoScoreResponses = initializeLottoScoreResponses();
+
+        mergeToLottoScoreResponses(scores, lottoScoreResponses);
+
+        return LottoScoreResponses.from(lottoScoreResponses);
+    }
+
+    private Map<LottoScoreResponse, Integer> initializeLottoScoreResponses() {
+        Map<LottoScoreResponse, Integer> lottoScoreResponseMap = new LinkedHashMap<>();
+
+        for (Score score : Score.values()) {
+            LottoScoreResponse response = getLottoScoreResponse(score);
+            lottoScoreResponseMap.put(response, 0);
+        }
+
+        return lottoScoreResponseMap;
+    }
+
+    private void mergeToLottoScoreResponses(List<Score> scores, Map<LottoScoreResponse, Integer> lottoScoreResponses) {
+        scores.forEach(score ->
+                lottoScoreResponses.merge(getLottoScoreResponse(score), 1, Integer::sum)
+        );
+
+    }
+
+    private LottoScoreResponse getLottoScoreResponse(Score score) {
+        return LottoScoreResponse.from(score.getMatchCount(), score.equals(Score.FIFTH_WITH_BONUS), score.getPrize());
+    }
+
 }
