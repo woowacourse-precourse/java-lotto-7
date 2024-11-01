@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Lotto;
 
 public class Client {
 

@@ -3,7 +3,7 @@ package handler;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import model.Lotto;
 
 public class ConsoleHandler {
 

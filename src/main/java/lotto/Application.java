@@ -3,13 +3,18 @@ package lotto;
 import handler.ConsoleHandler;
 import java.util.Arrays;
 import java.util.List;
+import model.Lotto;
+import service.LottoService;
 
 public class Application {
 
     private final Client client;
 
+    private final LottoService lottoService;
+
     public Application() {
         this.client = new Client();
+        this.lottoService = new LottoService();
     }
 
     public static void main(String[] args) {
@@ -27,8 +32,7 @@ public class Application {
         while (client.getLottos().isEmpty()) {
             try {
                 int buyAmount = ConsoleHandler.inputIntValue("구입금액을 입력해 주세요.");
-                LottoMachine lottoMachine = new LottoMachine();
-                List<Lotto> lottos = lottoMachine.getLottos(buyAmount);
+                List<Lotto> lottos = lottoService.buy(buyAmount);
                 client.addLotto(lottos);
             } catch (IllegalArgumentException exception) {
                 ConsoleHandler.announceError(exception.getMessage());
