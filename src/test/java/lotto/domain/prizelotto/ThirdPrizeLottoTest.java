@@ -1,7 +1,5 @@
 package lotto.domain.prizelotto;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import lotto.domain.WinNumbers;
 import org.assertj.core.api.Assertions;
