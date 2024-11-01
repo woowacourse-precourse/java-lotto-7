@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class WinningNumbersValidatorTest {
+public class NumberValidatorTest {
     private NumbersValidator winningNumbersValidator;
 
     @Test
@@ -32,5 +32,14 @@ public class WinningNumbersValidatorTest {
         assertThatThrownBy(() -> {
             winningNumbersValidator.validateBonusNumber();
         }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 보너스 번호는 1개이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 중복되었는지 확인")
+    void 로또_번호_중복_테스트() {
+        winningNumbersValidator = new NumbersValidator("1,1,1,1,1,1");
+        assertThatThrownBy(() -> {
+            winningNumbersValidator.validateWinningNumbers();
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호가 중복되었습니다.");
     }
 }
