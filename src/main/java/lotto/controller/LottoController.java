@@ -32,8 +32,7 @@ public class LottoController {
         int validPurchasePrice = getValidPurchasePrice(validatePurchasePrice());
         List<Lotto> lotties = lottoService.makeLottos(validPurchasePrice);
         printLottoNumbers(lotties);
-        String rawWinningNumbers = validateWinningNumbers();
-        List<Integer> validWinningNumbers = validWinningNumbers(rawWinningNumbers);
+        List<Integer> validWinningNumbers = validWinningNumbers(validateWinningNumbers());
     }
 
     private int getValidPurchasePrice(String rawPurchasePrice) {
@@ -67,11 +66,11 @@ public class LottoController {
     }
 
     private void printLottoNumbers(List<Lotto> lotties) {
-        outputView.println("");
+        outputView.newLine();
         outputView.println(lotties.size() + "개를 구매했습니다.");
         lotties.stream()
                 .map(Lotto::getNumbers)
                 .forEach(outputView::printList);
-        outputView.println("");
+        outputView.newLine();
     }
 }
