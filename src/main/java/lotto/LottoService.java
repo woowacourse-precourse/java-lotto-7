@@ -23,4 +23,16 @@ public class LottoService {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }
+
+    public static int calculateMatchCount(Lotto userLotto, Lotto winningLotto) {
+        int matchCount = 0;
+
+        for (int number : userLotto.getNumbers()) {
+            if (winningLotto.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
 }
