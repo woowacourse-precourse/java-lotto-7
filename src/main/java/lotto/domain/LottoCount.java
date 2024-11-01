@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static lotto.error.ErrorType.INVALID_PURCHASE_PRICE;
 
-import lotto.error.exception.InvalidLottoPurchaseAmount;
+import lotto.error.exception.InvalidLottoAmountException;
 
 public class LottoCount {
     private static final int LOTTO_PRICE = 1000;
@@ -15,7 +15,7 @@ public class LottoCount {
 
     private void validatePurchaseAmount(final int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new InvalidLottoPurchaseAmount(INVALID_PURCHASE_PRICE);
+            throw new InvalidLottoAmountException(INVALID_PURCHASE_PRICE);
         }
     }
 
