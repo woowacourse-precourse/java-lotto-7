@@ -16,7 +16,10 @@ public enum InputError {
             + LottoConstInteger.LOTTO_PRICE.getValue()
             + "으로 나눠지는 수를 입력하셔야 합니다."),
     // 로또 당첨 번호 예외
-    LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT("로또 당첨 번호에는 숫자와 구분자만을 입력하셔야 합니다."),
+    LOTTO_WINNING_NUMBER_SHOULD_EXIST("로또 당첨 번호를 입력하셔야 합니다."),
+    LOTTO_WINNING_NUMBER_CONTAIN_BAD_INPUT("로또 당첨 번호에는 숫자 "
+            + LottoConstInteger.LOTTO_NUMBER_COUNT.getValue()
+            + "개를 구분자를 이용해서 입력하셔야 합니다."),
     LOTTO_WINNING_NUMBER_NOT_EQUAL_COUNT("로또 당첨 번호는 정확히 "
             + LottoConstInteger.LOTTO_NUMBER_COUNT.getValue()
             + " 개를 입력하셔야 합니다."),
@@ -25,6 +28,7 @@ public enum InputError {
             + "~"
             + LottoConstInteger.LOTTO_END_NUMBER.getValue()
             + " 사이의 숫자를 입력하셔야 합니다."),
+    LOTTO_WINNING_NUMBER_NOT_DUPLICATED("로또 당첨 번호는 중복되면 안됩니다."),
     //보너스 번호 예외
     BONUS_NUMBER_NOT_A_NUMBER("보너스 번호는 숫자를 입력하셔야 합니다."),
     BONUS_NUMBER_NOT_EQUAL_COUNT("보너스 번호는 정확히 "

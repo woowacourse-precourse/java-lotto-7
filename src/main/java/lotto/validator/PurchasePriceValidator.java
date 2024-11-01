@@ -4,28 +4,31 @@ import lotto.constants.InputError;
 import lotto.constants.LottoConstInteger;
 import lotto.view.ErrorPrinter;
 
-public class PurchasePriceValidator {
+public class PurchasePriceValidator{
+    private static String rawPurchasePrice;
+    private static int intPurchasePrice;
     public static boolean validate(String rawPurchasePrice) {
-        if (!isExist(rawPurchasePrice)) {
+        PurchasePriceValidator.rawPurchasePrice = rawPurchasePrice;
+        if (!isExist()) {
             return false;
         }
-        if (!isNumber(rawPurchasePrice)) {
+        if (!isNumber()) {
             return false;
         }
-        if (!isNotOverFlow(rawPurchasePrice)) {
+        if (!isNotOverFlow()) {
             return false;
         }
-        int intPurchasePrice = Integer.parseInt(rawPurchasePrice);
-        if (!isReachAtLeastPrice(intPurchasePrice)) {
+        intPurchasePrice = Integer.parseInt(rawPurchasePrice);
+        if (!isReachAtLeastPrice()) {
             return false;
         }
-        if (!isDividedClearly(intPurchasePrice)) {
+        if (!isDividedClearly()) {
             return false;
         }
         return true;
     }
 
-    private static boolean isExist(String rawPurchasePrice) {
+    private static boolean isExist() {
         if (rawPurchasePrice.isBlank()) {
             ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_SHOULD_EXIST);
             return false;
@@ -33,7 +36,7 @@ public class PurchasePriceValidator {
         return true;
     }
 
-    private static boolean isNumber(String rawPurchasePrice) {
+    private static boolean isNumber() {
         boolean isDigit = rawPurchasePrice.chars()
                 .allMatch(Character::isDigit);
         if (isDigit) {
@@ -43,9 +46,9 @@ public class PurchasePriceValidator {
         return false;
     }
 
-    private static boolean isNotOverFlow(String rawPurchasePrice) {
+    private static boolean isNotOverFlow() {
         try {
-            Integer.parseInt(rawPurchasePrice);
+            intPurchasePrice = Integer.parseInt(rawPurchasePrice);
         } catch (NumberFormatException exception) {
             ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_OVER_PROGRAM_MAX);
             return false;
@@ -53,7 +56,7 @@ public class PurchasePriceValidator {
         return true;
     }
 
-    private static boolean isReachAtLeastPrice(int intPurchasePrice) {
+    private static boolean isReachAtLeastPrice() {
         if (intPurchasePrice >= LottoConstInteger.LOTTO_PRICE.getValue()) {
             return true;
         }
@@ -61,7 +64,7 @@ public class PurchasePriceValidator {
         return false;
     }
 
-    private static boolean isDividedClearly(int intPurchasePrice) {
+    private static boolean isDividedClearly() {
         if (intPurchasePrice % LottoConstInteger.LOTTO_PRICE.getValue() == 0) {
             return true;
         }
