@@ -16,14 +16,9 @@ public class LottoService {
     public static List<Lotto> generateLottos(int lottoTickets) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoTickets; i++) {
-            lottos.add(generateLottoNumbers());
+            lottos.add(LottoGenerator.generate());
         }
         return lottos;
-    }
-
-    private static Lotto generateLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numbers);
     }
 
     public static Map<LottoRank, Integer> calculateStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
@@ -33,29 +28,12 @@ public class LottoService {
         }
 
         for (Lotto userLotto : userLottos) {
-            int matchCount = calculateMatchCount(userLotto, winningLotto);
-            boolean matchBonus = checkBonusNumberMatch(userLotto, bonusNumber);
+            int matchCount = userLotto.countMatchingNumbers(winningLotto);
+            boolean matchBonus = userLotto.containsNumber(bonusNumber);
             LottoRank rank = LottoRank.findRank(matchCount, matchBonus);
             statistics.put(rank, statistics.get(rank) + 1);
         }
         return statistics;
-    }
-
-    public static int calculateMatchCount(Lotto userLotto, Lotto winningLotto) {
-        int matchCount = 0;
-
-        for (int number : userLotto.getNumbers()) {
-            if (winningLotto.getNumbers().contains(number)) {
-                matchCount++;
-            }
-        }
-
-        return matchCount;
-    }
-
-    public static boolean checkBonusNumberMatch(Lotto userLotto, int bonusNumber) {
-        List<Integer> userLottoNumbers = userLotto.getNumbers();
-        return userLottoNumbers.contains(bonusNumber);
     }
 
     public static long calculateTotalPrize(Map<LottoRank, Integer> statistics) {
@@ -72,6 +50,6 @@ public class LottoService {
 
     public static double calculateRateOfReturn(long totalPrize, int purchaseAmount) {
         double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
-        return Math.round(rateOfReturn * 100) / 100.0;
+        return Math.round(rateOfReturn * 10) / 10.0;
     }
 }
