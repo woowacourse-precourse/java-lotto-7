@@ -6,8 +6,6 @@ import lotto.service.numbers.LottoNumberService;
 import lotto.service.result.ProfitService;
 import lotto.service.result.ResultService;
 import lotto.service.result.StatisticService;
-import lotto.service.user.LottoService;
-import lotto.service.user.MoneyService;
 import lotto.service.user.UserService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -30,13 +28,7 @@ public class AppConfig {
     }
 
     private UserService userService() {
-        return new UserService(moneyService(), lottoService());
-    }
-    private MoneyService moneyService() {
-        return new MoneyService();
-    }
-    private LottoService lottoService() {
-        return new LottoService();
+        return new UserService();
     }
     private LottoNumberService lottoNumberService() {
         return new LottoNumberService();

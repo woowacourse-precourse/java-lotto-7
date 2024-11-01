@@ -20,7 +20,7 @@ public class SystemService {
     }
 
     public User generateUser(String purchaseAmount) {
-        return userService.userProcess(purchaseAmount);
+        return userService.generateUser(purchaseAmount);
     }
 
     public Lotto generateLotto(String number) {
