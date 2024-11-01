@@ -41,4 +41,8 @@ public class OutputView {
     private void printProfitRate(LottoResult result) {
         System.out.printf(PROFIT_RATE_MESSAGE + "%n", result.calculateProfitRate());
     }
+
+    public void printError(String message) {
+        System.out.println(message);
+    }
 }
