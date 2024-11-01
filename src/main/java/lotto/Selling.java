@@ -1,6 +1,7 @@
 package lotto;
 
-import java.util.ArrayList;
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.List;
 
 public class Selling {
@@ -12,16 +13,17 @@ public class Selling {
         }
     }
 
-    public List<Lotto> purchaseLottos(int purchase){
+    public Lotto[] purchaseLottos(int purchase){
         validatePrice(purchase);
         int lottoCount = purchase/PRICE;
-        List<Lotto> lottos = new ArrayList<Lotto>(lottoCount);
-        for(int i =0;i<lottoCount;i++){
-            lottos.add(new Lotto(generateRandomNumbers()));
+        Lotto[] lottos = new Lotto[lottoCount];
+        for(int i = 0; i < lottoCount; i++){
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+            lottos[i] = new Lotto(numbers);
         }
         return lottos;
     }
 
-    private List<Integer> generateRandomNumbers() {
+    private int generateRandomNumber() {
     }
 }
