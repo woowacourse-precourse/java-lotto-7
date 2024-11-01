@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.enums.LottoConfig;
 import lotto.handler.RetryHandler;
 import lotto.view.LottoInputValidator;
 import lotto.view.LottoInputView;
@@ -11,7 +12,8 @@ public class Application {
         LottoController controller = new LottoController(
                 new LottoInputView(new LottoInputValidator()),
                 new LottoOutputView(),
-                new RetryHandler()
+                new RetryHandler(),
+                LottoConfig.WOOWA_CONFIG
         );
         controller.run();
     }

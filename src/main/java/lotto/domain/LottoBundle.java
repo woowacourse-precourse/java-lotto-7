@@ -2,19 +2,20 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.enums.LottoConfig;
 import lotto.enums.LottoRank;
 
 public class LottoBundle {
     private final List<Lotto> lottos;
-    private final int lottoPrice;
+    private final LottoConfig lottoConfig;
 
-    private LottoBundle(List<Lotto> lottos, int lottoPrice) {
+    private LottoBundle(List<Lotto> lottos, LottoConfig lottoConfig) {
         this.lottos = lottos;
-        this.lottoPrice = lottoPrice;
+        this.lottoConfig = lottoConfig;
     }
 
-    public static LottoBundle from(List<Lotto> lottos, int lottoPrice) {
-        return new LottoBundle(lottos, lottoPrice);
+    public static LottoBundle from(List<Lotto> lottos, LottoConfig lottoConfig) {
+        return new LottoBundle(lottos, lottoConfig);
     }
 
     public List<Lotto> getLottos() {
@@ -25,7 +26,7 @@ public class LottoBundle {
         List<LottoRank> lottoRanks = checkLottoRank(winningLotto, bonusNumber);
         double totalPrizeMoney = sumLottoPrizeMoney(lottoRanks);
 
-        return new LottoResult(lottoRanks, lottoPrice, totalPrizeMoney);
+        return new LottoResult(lottoRanks, lottoConfig.getLottoPrice(), totalPrizeMoney);
     }
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {

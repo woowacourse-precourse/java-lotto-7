@@ -31,7 +31,7 @@ public class LottoResult {
         return rankCount;
     }
 
-    public LottoProfit getLottoProfit(){
+    public LottoProfit getLottoProfit() {
         return lottoProfit;
     }
 
