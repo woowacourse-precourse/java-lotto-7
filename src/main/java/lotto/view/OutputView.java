@@ -1,18 +1,20 @@
 package lotto.view;
 
+import lotto.enums.RequestMessage;
+
 public class OutputView {
     private static final String ERROR_FORMAT = "[ERROR] ";
 
     public static void requestLotteryPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(RequestMessage.LOTTO_AMOUNT.getMessage());
     }
 
     public static void requestLotteryWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(RequestMessage.WINNING_NUMBER.getMessage());
     }
 
     public static void requestLotteryBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(RequestMessage.BONUS_NUMBER.getMessage());
     }
 
     public void printErrorMessage(String errorMessage) {
