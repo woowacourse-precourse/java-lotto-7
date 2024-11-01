@@ -41,8 +41,7 @@ class AnswerNumbersTest {
     @DisplayName("당첨 번호와 로또 번호 비교 테스트")
     @ParameterizedTest(name = "{0}")
     @MethodSource("provide")
-    void 비교하기(String title, List<Integer> numbers, Rank expectedRank) {
-        Lotto lotto = generateLotto(numbers);
+    void 비교하기(String title, Lotto lotto, Rank expectedRank) {
         Rank rank = answerNumbers.compare(lotto);
 
         assertThat(rank).isNotNull();
@@ -52,24 +51,20 @@ class AnswerNumbersTest {
     static Stream<Arguments> provide() {
         return Stream.of(
                 Arguments.of("1등",
-                        List.of(1, 2, 3, 4, 5, 6),
+                        Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
                         Rank.FIRST),
                 Arguments.of("2등",
-                        List.of(1, 2, 3, 4, 5, 7),
+                        Lotto.of(List.of(1, 2, 3, 4, 5, 7)),
                         Rank.SECOND),
                 Arguments.of("3등",
-                        List.of(1, 2, 3, 4, 5, 8),
+                        Lotto.of(List.of(1, 2, 3, 4, 5, 8)),
                         Rank.THIRD),
                 Arguments.of("4등 보너스 포함",
-                        List.of(1, 2, 3, 4, 7, 8),
+                        Lotto.of(List.of(1, 2, 3, 4, 7, 8)),
                         Rank.FOURTH),
                 Arguments.of("4등 보너스 미포함",
-                        List.of(1, 2, 3, 4, 8, 9),
+                        Lotto.of(List.of(1, 2, 3, 4, 8, 9)),
                         Rank.FOURTH)
         );
-    }
-
-    private Lotto generateLotto(List<Integer> numbers) {
-        return Lotto.of(numbers);
     }
 }
