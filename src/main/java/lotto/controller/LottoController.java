@@ -27,6 +27,7 @@ public class LottoController {
         WinningLotto winningLotto = drawWinningNumbers();
         LottoStatistics lottoStatistics = calculateStatistics(lottoTickets, winningLotto);
         displayStatistics(lottoStatistics);
+        Console.close();
     }
 
     private LottoTickets purchaseLottoTickets() {
