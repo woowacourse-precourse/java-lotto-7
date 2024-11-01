@@ -1,27 +1,32 @@
 package lotto.usecase;
 
 import lotto.ThousandWons;
-import lotto.domain.payment.LottoCount;
+import lotto.domain.payment.LottoQuantity;
+import lotto.domain.ticket.Lottos;
+import lotto.service.LottoService;
 import lotto.service.PaymentService;
 import lotto.service.TicketService;
 
 public class CreateLottoTicketUsecase {
     private final PaymentService paymentService;
+    private final LottoService lottoService;
     private final TicketService ticketService;
 
     public CreateLottoTicketUsecase(PaymentService paymentService,
+                                    LottoService lottoService,
                                     TicketService ticketService) {
 
         this.paymentService = paymentService;
+        this.lottoService = lottoService;
         this.ticketService = ticketService;
     }
 
-    //TODO: PaymentService - 로또 금액을 지불하라 [x]
-    //TODO: TicketService - 로또 티켓을 생성하라
     public Long execute(ThousandWons krMoney) {
-        LottoCount lottoCount = paymentService.pay(krMoney);
-        Long ticketId = ticketService.create(lottoCount.getValue());
+        LottoQuantity lottoQuantity = paymentService.pay(krMoney);
+        Lottos lottos = lottoService.create(lottoQuantity);
+        Long ticketId = ticketService.create(lottos);
 
         return ticketId;
     }
+
 }
