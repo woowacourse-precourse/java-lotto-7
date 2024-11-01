@@ -24,4 +24,8 @@ public class Money {
     public int buyedLottosQuantity(){
         return money / MoneyConstants.MONEY_UNIT;
     }
+
+    public Integer getMoney(){
+        return this.money;
+    }
 }
