@@ -17,12 +17,20 @@ public class LottoController {
         displayLottos();
     }
     private void set(){
-        lottoAmount = InputController.setAmountOfLotto();
+        try{
+            lottoAmount = InputController.setAmountOfLotto();
+        }catch (IllegalArgumentException e){
+            set();
+        }
     }
     private void setLottos() {
-        lottos = IntStream.range(0, lottoAmount)
-                .mapToObj(i -> new Lotto(Utils.setLottoNums()))
-                .collect(Collectors.toList());
+        try{
+            lottos = IntStream.range(0, lottoAmount)
+                    .mapToObj(i -> new Lotto(Utils.setLottoNums()))
+                    .collect(Collectors.toList());
+        }catch (IllegalArgumentException e){
+            setLottos();
+        }
     }
     private void displayLottos() {
         System.out.printf("%d개를 구매했습니다.%n", lottoAmount);
