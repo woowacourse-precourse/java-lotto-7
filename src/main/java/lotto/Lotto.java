@@ -1,6 +1,6 @@
 package lotto;
 
-import exception.LottoArgumentException;
+import lotto.exception.LottoArgumentException;
 import java.util.List;
 
 public class Lotto {

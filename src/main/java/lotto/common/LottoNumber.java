@@ -1,4 +1,4 @@
-package common;
+package lotto.common;
 
 public enum LottoNumber {
     START(0),
