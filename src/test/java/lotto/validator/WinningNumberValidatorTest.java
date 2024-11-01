@@ -45,10 +45,19 @@ class WinningNumberValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0,1,2,3,43,45", "1,5,2,3,43,46"})
-    void 당첨번호가_1미만_45초과일때_에러_반환(String number) {
+    void 당첨번호가_1미만_45초과일때_에러_반환(String winningNumbers) {
         assertThatThrownBy(() -> {
-            winningNumberValidator.validate(number);
+            winningNumberValidator.validate(winningNumbers);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨번호는 1이상 45이하여야 합니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,1,1,1,1,1", "1,1,2,2,3,3", "1,1,2,3,4,5"})
+    void 당첨번호가_서로_중복될때_에러_반환(String winningNumbers) {
+        assertThatThrownBy(() -> {
+            winningNumberValidator.validate(winningNumbers);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨번호는 서로 중복될 수 없습니다.");
     }
 }
