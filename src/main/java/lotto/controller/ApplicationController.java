@@ -12,6 +12,13 @@ public class ApplicationController {
 
 
     public void run(){
-        System.out.println("구입 금액: " + viewInput.receivePurchaseAmount());
+        int purchaseAmount = viewInput.receivePurchaseAmount();
+
+
+
+
+
+
+
     }
 }
