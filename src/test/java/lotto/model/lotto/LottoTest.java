@@ -3,8 +3,11 @@ package lotto.model.lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
     @Test
@@ -18,5 +21,20 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @MethodSource("outOfRangeNumbers")
+    @DisplayName("로또 번호에 범위를 벗어나는 숫자가 있으면 예외가 발생한다.")
+    void outOfRangeNumber(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<List<Integer>> outOfRangeNumbers() {
+        return Stream.of(
+                List.of(1, 2, 46, 4, 5, 6),
+                List.of(1, 2, 0, 4, 5, 6)
+        );
     }
 }
