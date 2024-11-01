@@ -11,7 +11,8 @@ public class Application {
         LottoController lottoController = new LottoController(
                 new InputView(),
                 new OutputView(),
-                new InputValidator()
+                new InputValidator(),
+                new LottoMachine()
         );
 
         lottoController.run();
