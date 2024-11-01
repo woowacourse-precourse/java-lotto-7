@@ -1,6 +1,7 @@
 package lotto.utils.validator;
 
 import static lotto.exception.ErrorMessages.BEYOND_LIMIT;
+import static lotto.exception.ErrorMessages.NOT_DIVIDED_BY_LOTTO_PRICE;
 import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import static lotto.constants.LottoConstants.PURCHASE_LIMIT;
 
@@ -23,7 +24,7 @@ public class PurchaseAmountValidator implements Validator<String> {
 
     private void validateDividedByLottoPrice (int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE.getValue() != 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage());
         }
     }
 
