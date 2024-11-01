@@ -1,19 +1,18 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.LottoNumber;
-import lotto.model.Lottos;
 import lotto.model.Score;
+import lotto.view.response.LottoNumberResponse;
+import lotto.view.response.PurchaseLottoResponse;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
-    public void printPurchasedLottos(Lottos lottos) {
-        System.out.printf("\n%d개를 구매했습니다.%n", lottos.size());
+    public void printPurchasedLottos(PurchaseLottoResponse response) {
+        System.out.printf("\n%d개를 구매했습니다.%n", response.getPurchasedAmount());
 
-        lottos.getLottos().forEach(this::printLotto);
+        response.getLottoNumberResponses().forEach(this::printLotto);
     }
 
     public void printScores(Map<Score, Integer> scores) {
@@ -39,9 +38,8 @@ public class OutputView {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
-    private void printLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers().stream()
-                .map(LottoNumber::getNumber)
+    private void printLotto(LottoNumberResponse response) {
+        System.out.println(response.getLottoNumbers().stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]")));
     }

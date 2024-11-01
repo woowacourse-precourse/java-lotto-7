@@ -6,6 +6,8 @@ import lotto.model.number_generator.RandomLottoNumberGenerator;
 import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.response.LottoNumberResponse;
+import lotto.view.response.PurchaseLottoResponse;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,7 +25,8 @@ public class LottoController {
 
     public void run() {
         Lottos lottos = Retryer.retryOnCustomException(this::purchaseLotto);
-        outputView.printPurchasedLottos(lottos);
+
+        outputView.printPurchasedLottos(getPurchaseLottoResponse(lottos));
 
         WinningLotto winningLotto = Retryer.retryOnCustomException(this::createWinningLotto);
 
@@ -45,7 +48,7 @@ public class LottoController {
 
         LottoNumber bonusNumber = LottoNumber.from(inputView.inputBonusNumber());
 
-        return new WinningLotto(winningNumbers, bonusNumber);
+        return new WinningLotto(new LottoNumbers(winningNumbers), bonusNumber);
     }
 
     private Map<Score, Integer> calculateScores(Lottos lottos, WinningLotto winningLotto) {
@@ -66,5 +69,18 @@ public class LottoController {
     private void printResult(Map<Score, Integer> scores, double profitRate) {
         outputView.printScores(scores);
         outputView.printProfitRate(profitRate);
+    }
+
+    private PurchaseLottoResponse getPurchaseLottoResponse(Lottos lottos) {
+
+        List<LottoNumberResponse> lottoNumberResponses = lottos.getAllLottoNumbers().stream()
+                .map(this::getLottoNumberResponse)
+                .toList();
+
+        return PurchaseLottoResponse.from(lottoNumberResponses);
+    }
+
+    private LottoNumberResponse getLottoNumberResponse(LottoNumbers lottoNumbers) {
+        return LottoNumberResponse.from(lottoNumbers.mapToInt());
     }
 }
