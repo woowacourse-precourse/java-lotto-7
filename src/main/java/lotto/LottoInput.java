@@ -3,9 +3,7 @@ package lotto;
 import constants.Constants;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoInput {
@@ -17,7 +15,7 @@ public class LottoInput {
             if (purchasePrice % Constants.LOTTO_PRICE != 0) {
                 throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + Constants.LOTTO_PRICE + " 원 단위로 입력해 주세요.");
             }
-            if(purchasePrice < Constants.LOTTO_PRICE) {
+            if (purchasePrice < Constants.LOTTO_PRICE) {
                 throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + Constants.LOTTO_PRICE + " 원 이상이어야 합니다.");
             }
             return purchasePrice;
@@ -39,19 +37,6 @@ public class LottoInput {
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-
-            if (mainNumbers.size() != Constants.LOTTO_MAIN_COUNT) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + Constants.LOTTO_MAIN_COUNT + "개여야 합니다.");
-            }
-            Set<Integer> uniqueNumbers = new HashSet<>(mainNumbers);
-            if (uniqueNumbers.size() != mainNumbers.size()) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
-            }
-            for (int number : mainNumbers) {
-                if (number < Constants.LOTTO_MIN_NUMBER || number > Constants.LOTTO_MAX_NUMBER) {
-                    throw new IllegalArgumentException("[ERROR] 유효한 범위 내의 로또 번호를 입력하여야 합니다.");
-                }
-            }
 
             return new Lotto(mainNumbers);
         } catch (NumberFormatException e) {
