@@ -1,11 +1,36 @@
 package lotto.answer;
 
 public enum LottoRank {
-	FIRST(6, false, 2000000000),
-	SECOND(5, true, 30000000),
-	THIRD(5, false, 1500000),
-	FOURTH(4, false, 50000),
-	FIFTH(1, false, 5000); 
+	FIRST(6, false, 2000000000) {
+		@Override
+		void printInfo() {
+			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+		}
+	},
+	SECOND(5, true, 30000000) {
+		@Override
+		void printInfo() {
+			System.out.println(getMatchCount() + MATCH_MESSAGE + BONUS_MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+		}
+	},
+	THIRD(5, false, 1500000) {
+		@Override
+		void printInfo() {
+			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+		}
+	},
+	FOURTH(4, false, 50000) {
+		@Override
+		void printInfo() {
+			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+		}
+	},
+	FIFTH(1, false, 5000) {
+		@Override
+		void printInfo() {
+			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+		}
+	};
 	private static final String MATCH_MESSAGE = "개 일치";
 	private static final String BONUS_MATCH_MESSAGE = "보너스 볼 일치";
 	private static final String WON = "원";
@@ -36,4 +61,6 @@ public enum LottoRank {
 	public int getMatchCount() {
 		return matchCount;
 	}
+
+	abstract void printInfo();
 }
