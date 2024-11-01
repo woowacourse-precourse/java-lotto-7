@@ -21,6 +21,7 @@ public class InputHandler {
     private void validateInputAmount(String input) {
         if (InputValidator.isNullOrBlank(input)) {
             throw new IllegalArgumentException("[ERROR] 빈칸 없이 입력해주세요.");
+
         }
         if (!InputValidator.isValidFormatForMoney(input)) {
             throw new IllegalArgumentException("[ERROR] 천 이상의 숫자만 입력해 주세요.");
