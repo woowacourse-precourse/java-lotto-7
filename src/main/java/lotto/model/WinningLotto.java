@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.List;
+import 정java.util.List;
 import lotto.Lotto;
 import lotto.util.Validator;
 
@@ -37,7 +37,8 @@ public class WinningLotto extends Lotto {
         parsedNumbers.stream()
                 .peek(Validator::isDigitString)
                 .peek(Validator::isInteger)
-                .forEach(parsedNumber -> {});
+                .forEach(parsedNumber -> {
+                });
         Validator.isNotDuplicate(parsedNumbers);
     }
 }
