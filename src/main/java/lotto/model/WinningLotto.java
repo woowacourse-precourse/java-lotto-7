@@ -13,12 +13,6 @@ public class WinningLotto extends Lotto {
 
     private static final int WINNING_NUMBER_COUNT = 6;
 
-    public WinningLotto(List<Integer> nums, int bonusNum) {
-        super(nums);
-        this.bonusNum = bonusNum;
-        //validate();
-    }
-
     private WinningLotto(List<Integer> nums) {
         super(nums);
     }
