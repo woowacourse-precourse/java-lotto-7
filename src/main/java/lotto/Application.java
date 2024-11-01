@@ -23,5 +23,7 @@ public class Application {
             Prize prize = lottoMachine.checkPrize(lotto, winningNumbers, bonusNumber);
             lottoResult.recordPrize(prize);
         }
+        // 5.결과 출력
+        lottoResult.displayResults(amount);
     }
 }
