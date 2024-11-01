@@ -5,6 +5,7 @@ import java.util.List;
 public class Winning {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
+
     public Winning(List<Integer> winningNumbers, int bonusNumber) {
         if(winningNumbers.size() != 6){
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개입니다.");
@@ -24,6 +25,29 @@ public class Winning {
         int count = 0;
         for(int number : numbers) {
             if(number == target) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int checkLotto(Lotto lotto){
+        List<Integer> userNumbers = lotto.getNumbers();
+        int matchCount = countMatches(userNumbers, winningNumbers);
+        boolean hasBonus = userNumbers.contains(bonusNumber);
+
+        if(matchCount == 6) return 1;
+        if(matchCount == 5 && hasBonus) return 2;
+        if(matchCount == 4 && hasBonus) return 3;
+        if(matchCount == 3 && hasBonus) return 4;
+        if(matchCount == 2 && hasBonus) return 5;
+        return 0;
+    }
+
+    private int countMatches(List<Integer> userNumbers, List<Integer> winningNumbers) {
+        int count = 0;
+        for(int number : userNumbers) {
+            if(winningNumbers.contains(number)) {
                 count++;
             }
         }
