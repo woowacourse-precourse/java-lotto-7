@@ -11,7 +11,7 @@ public class OutputView {
     }
 
     public static void displayLottoNumbersOfCustomer(List<LottoDto> lottoDtos) {
-        String sizeOfLotto = OutputFormatter.formatSizeOfLotto(lottoDtos);
+        String sizeOfLotto = OutputFormatter.formatSizeOfLotto(lottoDtos.size());
         List<String> lottoNumbers = OutputFormatter.formatLottoNumbers(lottoDtos);
 
         System.out.println(sizeOfLotto);
@@ -19,6 +19,9 @@ public class OutputView {
     }
 
     public static void displayResult(ResultDto resultDto) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
         List<String> rankCounts = OutputFormatter.formatRankCount(resultDto.rankDtos());
         rankCounts.forEach(System.out::println);
 

@@ -10,8 +10,8 @@ public class OutputFormatter {
     private OutputFormatter() {
     }
 
-    public static String formatSizeOfLotto(List<LottoDto> lottoDtos) {
-        return lottoDtos.size() + "개를 구매했습니다.";
+    public static String formatSizeOfLotto(int sizeOfLotto) {
+        return sizeOfLotto + "개를 구매했습니다.";
     }
 
     public static List<String> formatLottoNumbers(List<LottoDto> lottoDtos) {
@@ -32,7 +32,7 @@ public class OutputFormatter {
         List<String> parsedRankCounts = new ArrayList<>();
 
         for (RankDto rankDto : rankDtos) {
-            System.out.println(rankDto.description() + " - " + rankDto.count() + "개");
+            parsedRankCounts.add(rankDto.description() + " - " + rankDto.count() + "개");
         }
 
         return parsedRankCounts;
