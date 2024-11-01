@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.amount.Amount;
+import lotto.lotto.Lottos;
 import lotto.lotto.Number;
 import lotto.lotto.WinningNumbers;
 import lotto.lotto.WinningResult;
@@ -22,7 +23,8 @@ public class LottoMachine {
         Amount purchaseAmount = inputView.getPurchaseAmount();
 
         int lottoCount = purchaseAmount.calculateLottoCount();
-        outputView.printPurchaseLottoNumbers(lottoCount);
+        Lottos lottos = new Lottos(lottoCount);
+        outputView.printPurchaseLottoNumbers(lottos);
 
         outputView.requestWinningNumbers();
         WinningNumbers winningNumbers = inputView.getWinningNumbers();

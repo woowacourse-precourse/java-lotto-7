@@ -22,10 +22,9 @@ public class OutputView {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public void printPurchaseLottoNumbers(int lottoCount) {
-        System.out.printf(SUCCESS_LOTTO_PURCHASE_MESSAGE, lottoCount);
+    public void printPurchaseLottoNumbers(Lottos lottos) {
+        System.out.printf(SUCCESS_LOTTO_PURCHASE_MESSAGE, lottos.getPurchaseLottoCount());
 
-        Lottos lottos = new Lottos(lottoCount);
         lottos.getLottos()
                 .forEach(this::printLottoNumbers);
     }

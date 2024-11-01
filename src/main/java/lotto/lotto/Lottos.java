@@ -22,6 +22,10 @@ public class Lottos {
         return lottos;
     }
 
+    public int getPurchaseLottoCount() {
+        return lottos.size();
+    }
+
     private void generateLottos(int count) {
         for (int currentCount = 0; currentCount < count; currentCount++) {
             List<Integer> numbers =
