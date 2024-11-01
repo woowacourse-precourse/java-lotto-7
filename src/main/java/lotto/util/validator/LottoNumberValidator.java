@@ -1,10 +1,10 @@
 package lotto.util.validator;
 
-import static lotto.util.LottoConstants.CONSECUTIVE_DELIMITER;
-import static lotto.util.LottoConstants.INPUT_DELIMITER;
-import static lotto.util.LottoConstants.LOTTO_NUMBER_LAST;
-import static lotto.util.LottoConstants.LOTTO_NUMBER_START;
-import static lotto.util.LottoConstants.NEEDED_LOTTO_NUMBER_COUNT;
+import static lotto.util.constants.LottoConstants.CONSECUTIVE_DELIMITER;
+import static lotto.util.constants.LottoConstants.INPUT_DELIMITER;
+import static lotto.util.constants.LottoConstants.LOTTO_NUMBER_END;
+import static lotto.util.constants.LottoConstants.LOTTO_NUMBER_START;
+import static lotto.util.constants.LottoConstants.NEEDED_LOTTO_NUMBER_COUNT;
 import static lotto.util.message.ExceptionMessage.DUPLICATED_BONUS_NUMBER;
 import static lotto.util.message.ExceptionMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.util.message.ExceptionMessage.ILLEGAL_DELIMITER_USE;
@@ -32,7 +32,7 @@ public class LottoNumberValidator extends InputValidator {
 
     public static Integer validateNumberInRange(String numberToken) {
         int number = validateInteger(numberToken);
-        if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_LAST) {
+        if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
             throw new IllegalArgumentException(WINNING_NUMBER_NOT_IN_RANGE.toString());
         }
         return number;

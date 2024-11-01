@@ -1,6 +1,6 @@
 package lotto.util.validator;
 
-import static lotto.util.LottoConstants.LOTTO_TICKET_PRICE;
+import static lotto.util.constants.LottoConstants.LOTTO_TICKET_PRICE;
 import static lotto.util.message.ExceptionMessage.NOT_DIVIDED_TO_LOTTO_PRICE;
 
 public class TotalCostValidator extends InputValidator {

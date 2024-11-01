@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.util.LottoConstants.INPUT_DELIMITER;
+import static lotto.util.constants.LottoConstants.INPUT_DELIMITER;
 import static lotto.util.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.util.message.InputMessage.INPUT_TOTAL_COST;
 import static lotto.util.message.InputMessage.INPUT_WINNING_LOTTO_NUMBER;

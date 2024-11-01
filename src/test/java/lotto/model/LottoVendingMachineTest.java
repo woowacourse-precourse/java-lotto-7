@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.util.LottoConstants.LOTTO_TICKET_PRICE;
+import static lotto.util.constants.LottoConstants.LOTTO_TICKET_PRICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
