@@ -4,7 +4,7 @@ import lotto.exception.lottoNumber.*;
 import lotto.exception.lottoPrice.InvalidThousandUnitException;
 import lotto.exception.lottoPrice.MinimumPriceException;
 import lotto.exception.lottoPrice.NullPriceException;
-
+import lotto.model.Lotto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,13 +35,54 @@ public class Validator {
             throw new NullLottoNumberException();
         }
         checkIsExistsDelimiter(input);
-        List<String> lottoNumbers = Arrays.stream(input.split(DELIMITER))
-                .map(String::trim)
-                .collect(Collectors.toList());
+        List<String>lottoNumbers = parseLottoNumbers(input);
         checkIsAllNumbers(lottoNumbers);
-        checkValidRange(lottoNumbers);
+        checkAllValidRange(lottoNumbers);
         checkLottoCount(lottoNumbers);
         checkIsDistinct(lottoNumbers);
+    }
+    public void isValidBonusLottoNumber(String input, Lotto winningNumbers){
+        if(input.isEmpty()){
+            throw new NullLottoNumberException();
+        }
+        checkIsSingleNumber(input);
+        checkIsNumber(input);
+        int bonusNumber = Integer.parseInt(input);
+        checkValidRange(bonusNumber);
+        checkIsDuplicatedWithWinningNumbers(bonusNumber,winningNumbers);
+    }
+
+    private void checkIsSingleNumber(String input) {
+        if(input.contains(DELIMITER)){
+            throw new InvalidSingleBonusNumberException();
+        }
+    }
+
+    private void checkIsDuplicatedWithWinningNumbers(int bonusNumber, Lotto winningNumbers) {
+        List<Integer>winningLottoNumbers = winningNumbers.getLotto();
+        if(winningLottoNumbers.contains(bonusNumber)){
+            throw new DuplicatedNumberException();
+        }
+    }
+
+    private void checkValidRange(int number) {
+        if(number < MIN_NUMBER || number > MAX_NUMBER){
+            throw new OutOfRangeNumberException();
+        }
+    }
+
+    private void checkIsNumber(String input) {
+        try{
+            Integer.parseInt(input);
+        } catch(NumberFormatException e){
+            throw new InvalidNumberException();
+        }
+    }
+
+    private List<String> parseLottoNumbers(String input) {
+        return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
+                .collect(Collectors.toList());
     }
 
     private void checkIsDistinct(List<String> lottoNumbers) {
@@ -56,22 +97,16 @@ public class Validator {
         }
     }
 
-    private void checkValidRange(List<String> lottoNumbers) {
+    private void checkAllValidRange(List<String> lottoNumbers) {
         for(String currentNumber : lottoNumbers){
             int number = Integer.parseInt(currentNumber);
-            if(number < MIN_NUMBER || number > MAX_NUMBER){
-                throw new OutOfRangeNumberException();
-            }
+            checkValidRange(number);
         }
     }
 
     private void checkIsAllNumbers(List<String> lottoNumbers) {
         for(String currentNumber : lottoNumbers){
-            try{
-                Integer.parseInt(currentNumber);
-            } catch (NumberFormatException e){
-                throw new InvalidNumberException();
-            }
+            checkIsNumber(currentNumber);
         }
     }
 

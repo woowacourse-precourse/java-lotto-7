@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.Validator;
+import lotto.model.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +35,18 @@ public class InputView {
                 String input = readLine();
                 validator.isValidLottoNumbers(input);
                 return input;
+            } catch (IllegalArgumentException e){
+                System.out.println(ERROR_PREFIX + e.getMessage());
+            }
+        }
+    }
+
+    public int getBonusLottoNumber(Lotto winningNumbers){
+        while(true){
+            try{
+                String input = readLine();
+                validator.isValidBonusLottoNumber(input, winningNumbers);
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e){
                 System.out.println(ERROR_PREFIX + e.getMessage());
             }
