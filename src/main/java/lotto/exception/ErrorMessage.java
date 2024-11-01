@@ -11,7 +11,7 @@ public enum ErrorMessage {
 
     // 구입 금액
     MONEY_NOT_DIVISIBLE("구입 금액은 %d원으로 나누어 떨어져야 합니다."),
-    MONEY_NOT_NUMBER("구입 금액은 숫자여야 합니다."),
+    MONEY_NOT_NUMBER("구입 금액은 int 범위 내의 숫자여야 합니다."),
     MONEY_OUT_OF_RANGE("구입 금액은 %d이상의 정수여야 합니다."),
 
     // 당첨 번호
