@@ -23,9 +23,9 @@ public class Controller {
         return purchasePrice;
     }
 
-    public int countLotto(Integer input){
-        int lottoCount = input/1000;
-        if (input % 1000 != 0) {
+    public int countLotto(Integer purchasePrice){
+        int lottoCount = purchasePrice/1000;
+        if (purchasePrice % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printCount(lottoCount);
