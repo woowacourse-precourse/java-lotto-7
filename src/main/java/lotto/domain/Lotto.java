@@ -1,10 +1,10 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.ErrorMessage;
+import lotto.util.ErrorMessage;
 import lotto.util.LottoValidator;
 
 public class Lotto {

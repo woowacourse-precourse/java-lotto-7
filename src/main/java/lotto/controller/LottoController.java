@@ -2,14 +2,15 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import lotto.ErrorMessage;
-import lotto.service.LottoService;
-import lotto.model.BonusBall;
-import lotto.model.Lotto;
-import lotto.model.WinningLotto;
+import lotto.domain.LottoResult;
+import lotto.util.ErrorMessage;
+import lotto.domain.Lotto;
+import lotto.domain.PurchasedLottos;
+import lotto.domain.WinningLotto;
 import lotto.util.NumberGenerate;
+import lotto.domain.BonusBall;
+import lotto.domain.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,57 +18,40 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
+    private final LottoMachine lottoMachine;
 
     public LottoController(InputView inputView, OutputView outputView, NumberGenerate lottoGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoService = new LottoService(lottoGenerator);
+        this.lottoMachine = new LottoMachine(lottoGenerator);
     }
 
     public void run() {
-        List<Lotto> purchasedLotto = lottoMoneyInput();
+        // 1. 구매 금액 입력 및 로또 발행
+        PurchasedLottos purchasedLotto = inputMoney();
 
+        // 2. 발행한 로또 출력
         outputView.showHowManyLotto(purchasedLotto);
         outputView.showAllLottoNums(purchasedLotto);
 
-        WinningLotto prizeWinningLotto = winningLottoInput();
+        // 3. 당첨 로또 번호 입력
+        Lotto lotto = inputWinningLotto();
+
+        // 4. 보너스 번호 입력
+        BonusBall bonusNumbers = inputBonusNumber(lotto);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumbers);
+
+        // 5. 당첨 결과 비교
+        LottoResult lottoResult = lottoMachine.winLotto(purchasedLotto, winningLotto);
+
+        outputView.showWinStatus(lottoResult);
+        outputView.showProfit(lottoResult.getWinner(), lottoMachine.inMoney());
     }
 
-    private List<Lotto> lottoMoneyInput() {
+    private BonusBall inputBonusNumber(Lotto lotto) {
         while (true) {
             try {
-                int money = inputView.lottoMoneyInput();
-                return lottoService.purchaseLotto(money);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private WinningLotto winningLottoInput() {
-        Lotto prizeLotto = prizeNumberInput();
-        BonusBall bonusBall = bonusBallInput(prizeLotto);
-        return new WinningLotto(prizeLotto, bonusBall);
-    }
-
-    private Lotto prizeNumberInput() {
-        while (true) {
-            try {
-                String rawNumbers = inputView.lottoNumsInput();
-                List<Integer> numbers = StringToIntList(rawNumbers);
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private BonusBall bonusBallInput(Lotto lotto) {
-        while (true) {
-            try {
-                int bonusNumbers = inputView.lottoBonusNumInput();
-                BonusBall bonusBall = new BonusBall(bonusNumbers);
+                BonusBall bonusBall = new BonusBall(inputView.lottoBonusNumInput());
                 validateBonusNumberDuplication(lotto, bonusBall);
                 return bonusBall;
             } catch (IllegalArgumentException e) {
@@ -76,13 +60,31 @@ public class LottoController {
         }
     }
 
-    private List<Integer> StringToIntList(String rawNumbers) {
-        return Arrays.stream(rawNumbers.split(","))
-                .map(Integer::parseInt)
-                .toList();
+    private Lotto inputWinningLotto() {
+        while (true) {
+            try {
+                String rawNumbers = inputView.lottoNumsInput();
+                return new Lotto(Arrays.stream(rawNumbers.split(","))
+                        .map(Integer::parseInt)
+                        .toList());
+            } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static void validateBonusNumberDuplication(Lotto lotto, BonusBall bonus) {
+    private PurchasedLottos inputMoney() {
+        while (true) {
+            try {
+                int money = inputView.lottoMoneyInput();
+                return lottoMachine.issueLotto(money);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumberDuplication(Lotto lotto, BonusBall bonus) {
         Set<Integer> duplication = new HashSet<>(lotto.lottoNums());
         duplication.add(bonus.getNum());
         if (duplication.size() != 7) {

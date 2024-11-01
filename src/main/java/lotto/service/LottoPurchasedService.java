@@ -2,9 +2,9 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.ErrorMessage;
+import lotto.util.ErrorMessage;
 import lotto.util.NumberGenerate;
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 
 public class LottoPurchasedService {
 

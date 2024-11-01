@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.ErrorMessage;
+import lotto.util.ErrorMessage;
 
 public class InputView {
 
@@ -22,6 +22,7 @@ public class InputView {
     }
 
     public int lottoBonusNumInput() {
+        System.out.println();
         System.out.println(ASK_LOTTO_BONUS_NUM_INPUT);
         String rawNumber = Console.readLine();
         validateIsNumber(rawNumber);

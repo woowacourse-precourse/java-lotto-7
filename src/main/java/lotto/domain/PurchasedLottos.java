@@ -1,13 +1,13 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
 
-public class Lottos {
+public class PurchasedLottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public PurchasedLottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
