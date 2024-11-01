@@ -29,4 +29,17 @@ class MoneyTest {
         assertThat(result).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("수익률을 반환한다.")
+    void getRateOfReturn() {
+        // given
+        Money money = Money.of(3000);
+
+        // when
+        double result = money.getRateOfReturn(30000);
+
+        // then
+        assertThat(result).isEqualTo(1000.0);
+    }
+
 }
