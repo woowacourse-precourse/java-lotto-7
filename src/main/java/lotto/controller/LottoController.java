@@ -23,6 +23,7 @@ public class LottoController {
     public void play() {
         int validAmount = handleAmountInputError();
         List<Integer> validLottoNumbers = handleLottoNumberInputError();
+        int validBonusNumber = handleBonusInputError();
     }
 
     public int handleAmountInputError() {
@@ -70,5 +71,28 @@ public class LottoController {
         }
 
         return validLottoNumbers;
+    }
+
+    public int handleBonusInputError() {
+        boolean validInput = false;
+        int bonusNumberInput = 0;
+
+        while (!validInput) {
+            try {
+                outputView.printRequest(OutputView.REQUEST_BONUS_MESSAGE);
+                String input = inputView.readInput();
+
+                validationManager.isNotEmptyInput(input);
+                validationManager.isNumber(input);
+                bonusNumberInput = TypeConverter.ToNumber(input);
+                validInput = validationManager.isRangeValid(bonusNumberInput);
+
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return bonusNumberInput;
     }
 }
