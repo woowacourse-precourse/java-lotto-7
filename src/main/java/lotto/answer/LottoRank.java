@@ -3,31 +3,31 @@ package lotto.answer;
 public enum LottoRank {
 	FIRST(6, false, 2000000000) {
 		@Override
-		void printInfo() {
+		public void printInfo() {
 			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
 		}
 	},
 	SECOND(5, true, 30000000) {
 		@Override
-		void printInfo() {
+		public void printInfo() {
 			System.out.println(getMatchCount() + MATCH_MESSAGE + BONUS_MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
 		}
 	},
 	THIRD(5, false, 1500000) {
 		@Override
-		void printInfo() {
+		public void printInfo() {
 			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
 		}
 	},
 	FOURTH(4, false, 50000) {
 		@Override
-		void printInfo() {
+		public void printInfo() {
 			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
 		}
 	},
 	FIFTH(1, false, 5000) {
 		@Override
-		void printInfo() {
+		public void printInfo() {
 			System.out.println(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
 		}
 	};
@@ -62,5 +62,5 @@ public enum LottoRank {
 		return matchCount;
 	}
 
-	abstract void printInfo();
+	public abstract void printInfo();
 }
