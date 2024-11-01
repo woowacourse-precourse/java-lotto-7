@@ -12,7 +12,7 @@ import lotto.utils.LottoNumbersGenerator;
 public class LottoService {
     public Lottos createLottos(int lottoQuantity) {
         List<Lotto> LottoGroup = generateLottoGroup(lottoQuantity);
-        return new Lottos(LottoGroup);
+        return new Lottos(LottoGroup, lottoQuantity);
     }
 
     public LottoGame createLottoGame(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
