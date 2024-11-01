@@ -11,7 +11,13 @@ import java.util.Map;
 
 public class LottoCalculatorService {
 
-    private Map<LottoRanking, Integer> winningCount = new HashMap<>();
+    private final Map<LottoRanking, Integer> winningCount = new HashMap<>();
+
+    public LottoCalculatorService() {
+        for (LottoRanking lottoRanking : LottoRanking.values()) {
+            winningCount.put(lottoRanking, 0);
+        }
+    }
 
     // 당첨번호 카운팅 (당첨결과 확인)
     public void calculateWinningResult(User user, Lotto lotto) {
