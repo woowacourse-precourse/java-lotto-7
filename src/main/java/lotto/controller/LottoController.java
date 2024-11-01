@@ -29,18 +29,43 @@ public class LottoController {
                 validateMoney(money);
                 return money;
             } catch (IllegalArgumentException e) {
-                //todo 에러 메세지 출력 (OutputView class 이용)
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
     private WinningLotto getValidWinningLotto() {
+        List<Integer> validWinningNumbers = getValidWinningNumbers();
+        int validBonusNumbers = getValidBonusNumber(validWinningNumbers);
+        return new WinningLotto(validWinningNumbers, validBonusNumbers);
+    }
+
+    private List<Integer> getValidWinningNumbers() {
         while (true) {
             try {
-                return new WinningLotto(InputView.getWinningNumbers(), InputView.getBonusNumber());
+                Lotto lotto = new Lotto(InputView.getWinningNumbers());
+                return lotto.getNumbers();
             } catch (IllegalArgumentException e) {
-                //todo 에러 메세지 출력 (OutputView class 이용)
+                OutputView.printErrorMessage(e.getMessage());
             }
+        }
+    }
+
+    private int getValidBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                int bonusNumber = InputView.getBonusNumber();
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45사이의 당첨번호와 중복되지 않는 번호여야 합니다.");
         }
     }
 
