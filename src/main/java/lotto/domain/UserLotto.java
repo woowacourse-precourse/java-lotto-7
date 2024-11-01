@@ -12,6 +12,14 @@ public class UserLotto {
         this.bonusBall = bonusBall;
     }
 
+    public Lotto getUserLotto() {
+        return userLotto;
+    }
+
+    public int getBonusBall() {
+        return bonusBall;
+    }
+
     private void validate(Lotto lotto, int number) {
         validateDuplication(lotto, number);
     }
