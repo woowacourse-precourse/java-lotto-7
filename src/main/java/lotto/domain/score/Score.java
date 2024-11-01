@@ -1,6 +1,5 @@
 package lotto.domain.score;
 
-import lotto.constants.ScoreSystem;
 import lotto.domain.BonusComponent;
 import lotto.domain.Component;
 import lotto.domain.Lotto;

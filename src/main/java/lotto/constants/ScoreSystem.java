@@ -21,7 +21,7 @@ public enum ScoreSystem {
     }
 
     //방어적 복사
-    public HashMap<List<Integer>, Integer> getScoringMap() {
+    public HashMap<List<Integer>, Integer> getMap() {
         return new HashMap<>(scoringMap);
     }
 
