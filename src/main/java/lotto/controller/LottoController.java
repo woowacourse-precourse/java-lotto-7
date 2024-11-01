@@ -18,9 +18,14 @@ public class LottoController {
 
     public void run() {
         Price price = inputBuyLotto();
+
         int ticketCount = price.convertToTicket();
         Lottos lottos = new Lottos(ticketCount);
         outputRandomLottoNumber(ticketCount, lottos);
+
+        inputWinningLotto();
+
+        inputView.closeConsole();
     }
 
     private Price inputBuyLotto() {
@@ -38,5 +43,16 @@ public class LottoController {
         outputView.printLottoTicket(ticketCount);
         String lottosNumber = lottos.getLottos();
         outputView.printResult(lottosNumber);
+    }
+
+    private void inputWinningLotto() {
+        while (true) {
+            try {
+                inputView.readWinningLottoNumber();
+                return;
+            } catch (IllegalArgumentException e) {
+                outputView.printResult(e.getMessage());
+            }
+        }
     }
 }

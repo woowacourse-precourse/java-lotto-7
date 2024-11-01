@@ -8,6 +8,11 @@ public class InputView {
         return Console.readLine();
     }
 
+    public String readWinningLottoNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
     public static void closeConsole() {
         Console.close();
     }
