@@ -30,6 +30,8 @@ public class LottoController {
 
         WinningLotto winningLotto = inputBonusNumber(WinningLottoNum);
 
+        outputView.printWinningStatistics();
+
         inputView.closeConsole();
     }
 
