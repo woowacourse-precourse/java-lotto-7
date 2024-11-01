@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -28,11 +25,13 @@ public class Application {
 
         int purchasedLottoCount = userPrice / lottoPrice;
         System.out.println(purchasedLottoCount + "개를 구매했습니다.");
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchasedLottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             Lotto lotto = Lotto.createLotto(numbers);
             System.out.println(lotto.printLotto());
+            lottos.add(lotto);
         }
         System.out.println();
 
@@ -82,6 +81,26 @@ public class Application {
         if (winningNumbers.size() != 7) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 기존의 당첨 번호들과 중복일 수 없습니다.");
         }
+        System.out.println();
+
+        System.out.println("당첨 통계");
+        String hyphen = "-";
+        System.out.println(hyphen.repeat(3));
+        winningNumbers.remove(bonusNumber);
+
+        long profit = 0;
+        int[] lottoResultCounts = new int[7];
+        for (Lotto lotto : lottos) {
+            LottoResult lottoResult = lotto.calculatePrize(winningNumbers, bonusNumber);
+            profit += lottoResult.getPrice();
+            lottoResultCounts[lottoResult.getRank()]++;
+        }
+
+        System.out.println(LottoResult.FIFTH_PRIZE.getDescription() + " - " + lottoResultCounts[5] + "개");
+        System.out.println(LottoResult.FOURTH_PRIZE.getDescription() + " - " + lottoResultCounts[4] + "개");
+        System.out.println(LottoResult.THIRD_PRIZE.getDescription() + " - " + lottoResultCounts[3] + "개");
+        System.out.println(LottoResult.SECOND_PRIZE.getDescription() + " - " + lottoResultCounts[2] + "개");
+        System.out.println(LottoResult.FIRST_PRIZE.getDescription() + " - " + lottoResultCounts[1] + "개");
         System.out.println();
 
     }

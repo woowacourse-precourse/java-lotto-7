@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,6 +22,36 @@ public class Lotto {
             .toList());
         return "[" + joinNumbers + "]";
     }
+
+    public LottoResult calculatePrize(Set<Integer> winningNumbers, int bonusNumber) {
+        int winningCount = 0;
+        int bonusCount = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                winningCount++;
+            }
+            if (number == bonusNumber) {
+                bonusCount++;
+            }
+        }
+        if (winningCount == 6) {
+            return LottoResult.FIRST_PRIZE;
+        }
+        if (winningCount == 5 && bonusCount == 1) {
+            return LottoResult.SECOND_PRIZE;
+        }
+        if (winningCount == 5) {
+            return LottoResult.THIRD_PRIZE;
+        }
+        if (winningCount == 4) {
+            return LottoResult.FOURTH_PRIZE;
+        }
+        if (winningCount == 3) {
+            return LottoResult.FIFTH_PRIZE;
+        }
+        return LottoResult.NO_PRIZE;
+    }
+
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
