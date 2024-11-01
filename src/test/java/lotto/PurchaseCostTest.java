@@ -21,4 +21,11 @@ public class PurchaseCostTest {
         assertThatThrownBy(() -> new PurchaseCost(inputtedCost))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {10, 100, 999, 1001, 1234, 12345678})
+    void 천으로_나누어_떨어지지_않는_구입금액은_예외를_발생시킨다(int inputtedCost) {
+        assertThatThrownBy(() -> new PurchaseCost(inputtedCost))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
