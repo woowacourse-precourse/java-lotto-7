@@ -1,7 +1,6 @@
 package lotto.service;
 
-import java.util.List;
-import lotto.domain.Rank;
+import java.util.Map;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.UserLotto;
 import lotto.domain.lottos.user.WinningLotto;
@@ -18,11 +17,8 @@ public class LottoMatchService {
     }
 
     public void matchLottos() {
-        List<Rank> ranksResult = randomLottos.findMatchedRank(userLotto);
-
-        for (Rank rank : ranksResult) {
-            winningLotto.addRank(rank);
-        }
+        Map<Integer, Boolean> matchedLottos = randomLottos.matchLotto(userLotto);
+        winningLotto.addMatchedResultAsRank(matchedLottos);
     }
 
 }

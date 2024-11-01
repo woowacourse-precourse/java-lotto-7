@@ -6,39 +6,30 @@ import lotto.domain.calculators.YieldCalculator;
 public class Wallet {
     private final static int MIN_PRICE_PER_LOTTO_TICKET = 1000;
 
-    private final TicketCalculator ticketCalculator;
-    private final YieldCalculator yieldCalculator;
-
     private final int amount;
     private int ticket;
     private float rateOfReturn = 0;
 
-    public Wallet(int money, TicketCalculator ticketCalculator, YieldCalculator yieldCalculator) {
+    public Wallet(int money) {
         validateMinAmount(money);
         validateUnit(money);
 
-        this.ticketCalculator = ticketCalculator;
-        this.yieldCalculator = yieldCalculator;
         this.amount = money;
     }
 
-    public void buyTicket() {
+    public void calculateNumberOfTicket(TicketCalculator ticketCalculator) {
         ticket = ticketCalculator.calculate(amount);
     }
 
-    public boolean isRunOutTicket() {
-        return ticket <= 0;
-    }
-
-    public void decreaseTicket() {
-        ticket--;
-    }
-
-    public void calculateRateOfReturn(long finalPrizeAmount) {
+    public void calculateRateOfReturn(YieldCalculator yieldCalculator, long finalPrizeAmount) {
         rateOfReturn = yieldCalculator.calculate(finalPrizeAmount, amount);
     }
 
-    
+
+    public int getTicket() {
+        return ticket;
+    }
+
     public float getRateOfReturn() {
         return rateOfReturn;
     }
@@ -55,12 +46,5 @@ public class Wallet {
             throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위로 입력해 주세요.");
         }
     }
-
-    @Override
-    public String toString() {
-        int calculate = ticketCalculator.calculate(amount);
-        return String.valueOf(calculate);
-    }
-
 
 }
