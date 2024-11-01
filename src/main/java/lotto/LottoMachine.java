@@ -26,7 +26,7 @@ public class LottoMachine {
         System.out.println(purchaseCount + "개를 구매했습니다.");
 
         for (int i = 0; i < purchaseCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             lottoNumbers.add(numbers);
             System.out.println(lottoNumbers.get(i));
@@ -42,7 +42,7 @@ public class LottoMachine {
 
         System.out.println("보너스 번호를 입력해주세요.");
 
-        bonusNumber = Integer.parseInt(Console.readLine().trim());
+        bonusNumber = requestBonusNumberInput();
 
         System.out.println();
 
@@ -102,6 +102,36 @@ public class LottoMachine {
 
     }
 
+    private int requestBonusNumberInput() {
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine().trim());
+
+            if (String.valueOf(bonusNumber).isBlank()) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해주세요.");
+            }
+
+            if (bonusNumber < 0) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 음수를 입력할 수 없습니다.");
+            }
+
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자를 입력해주세요.");
+            }
+
+            if (lotto.getNumbers().contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안 됩니다.");
+            }
+            return bonusNumber;
+
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");
+            return requestBonusNumberInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestBonusNumberInput();
+        }
+    }
+
     private Lotto requestLottoNumberInput() {
         try {
             return new Lotto(Arrays.stream(Console.readLine().trim().split(","))
@@ -113,7 +143,6 @@ public class LottoMachine {
         }
     }
 
-    // 금액 입력
     private void requestCostInput() {
         try {
             cost = Integer.parseInt(Console.readLine().trim());
