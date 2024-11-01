@@ -28,6 +28,12 @@ public class InputValidator {
         });
     }
 
+    public void validateInputBonusNumber(String input) {
+        validateParseNumber(input);
+        validatePositiveNumber(input);
+        validateRangeNumber(input);
+    }
+
     private void validateParseNumber(String input) {
         try {
             Integer.parseInt(input);

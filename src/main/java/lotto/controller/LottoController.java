@@ -75,6 +75,7 @@ public class LottoController {
     private Integer attemptWinningBonusNumber() {
         try {
             String rawWinningBonusNumber = inputView.inputWinningBonusNumber();
+            inputValidator.validateInputBonusNumber(rawWinningBonusNumber);
 
             return Integer.parseInt(rawWinningBonusNumber);
         } catch (IllegalArgumentException exception) {
