@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.view.ViewMessage.INPUT_PURCHASE_PRICE;
+import static lotto.view.ViewMessage.INPUT_WINNING_NUMBERS;
 import static lotto.view.ViewMessage.PRINT_TICKET_COUNT;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             printMessage(lotto.toString());
         }
+    }
+
+    public static void printInputWinningNumbers() {
+        printMessage();
+        printMessage(INPUT_WINNING_NUMBERS.getMessage());
     }
 
     private static void printMessage() {
