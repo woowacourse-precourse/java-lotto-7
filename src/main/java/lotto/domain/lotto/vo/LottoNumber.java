@@ -25,7 +25,7 @@ public record LottoNumber(int value) {
 
     private static void validate(final int number) {
         if (number > MAX || number < MIN) {
-            throw new CustomException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER(MIN, MAX));
+            throw new CustomException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
         }
     }
 }

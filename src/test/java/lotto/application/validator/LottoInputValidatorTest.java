@@ -89,7 +89,7 @@ class LottoInputValidatorTest {
         // when & then
         assertThatThrownBy(() -> lottoInputValidator.validateWinningLotto(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class)
-                .describedAs(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER(LottoNumber.MIN, LottoNumber.MAX));
+                .describedAs(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
     }
 
     @ParameterizedTest
@@ -122,7 +122,7 @@ class LottoInputValidatorTest {
         // when & then
         assertThatThrownBy(() -> lottoInputValidator.validateWinningLotto(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class)
-                .describedAs(ExceptionMessage.INVALID_LOTTO_COUNT(6));
+                .describedAs(ExceptionMessage.INVALID_LOTTO_COUNT);
     }
 
     @ParameterizedTest
@@ -133,7 +133,7 @@ class LottoInputValidatorTest {
         // when & then
         assertThatThrownBy(() -> lottoInputValidator.validateCost(costInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .describedAs(ExceptionMessage.INVALID_PURCHASE_UNIT(Cost.UNIT));
+                .describedAs(ExceptionMessage.INVALID_PURCHASE_UNIT);
     }
 
     @ParameterizedTest

@@ -25,7 +25,7 @@ public record Cost(int value) {
 
     private static void validateCostUnit(int cost) {
         if (cost % UNIT != 0) {
-            throw new CustomException(ExceptionMessage.INVALID_PURCHASE_UNIT(UNIT));
+            throw new CustomException(ExceptionMessage.INVALID_PURCHASE_UNIT);
         }
     }
 }

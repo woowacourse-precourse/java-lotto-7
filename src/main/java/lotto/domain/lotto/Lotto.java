@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import lotto.domain.lotto.vo.LottoNumber;
 import lotto.domain.rank.vo.Rank;
 import lotto.infrastructure.constant.ExceptionMessage;
+import lotto.infrastructure.constant.LottoLimit;
 import lotto.infrastructure.exception.CustomException;
 
 import java.util.HashSet;
@@ -50,8 +51,8 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new CustomException(ExceptionMessage.INVALID_LOTTO_COUNT(6));
+        if (numbers.size() != LottoLimit.COUNT) {
+            throw new CustomException(ExceptionMessage.INVALID_LOTTO_COUNT);
         }
     }
 
