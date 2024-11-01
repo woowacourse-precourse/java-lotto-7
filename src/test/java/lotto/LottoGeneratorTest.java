@@ -46,7 +46,7 @@ class LottoGeneratorTest {
         int invalidPrice = 1500;
 
         // when & then
-        assertThatThrownBy(()-> new LottoGenerator(invalidPrice))
+        assertThatThrownBy(() -> new LottoGenerator(invalidPrice))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
@@ -58,7 +58,7 @@ class LottoGeneratorTest {
         int invalidPrice = 0;
 
         // when & then
-        assertThatThrownBy(()-> new LottoGenerator(invalidPrice))
+        assertThatThrownBy(() -> new LottoGenerator(invalidPrice))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
