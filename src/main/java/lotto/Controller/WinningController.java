@@ -70,6 +70,8 @@ public class WinningController {
     public Pair validateWinningInput(String input) {
         String[] split = input.split(",");
         List<Integer> winningNumbers = new ArrayList<Integer>();
+        if(split.length != 6)
+            throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
         for(int i = 0; i < split.length; i++) {
             if(!Validate.isInteger(split[i])) throw new IllegalArgumentException("정수를 입력해 주세요.");
             if(Integer.parseInt(split[i]) < 0 || Integer.parseInt(split[i]) > 45) throw new IllegalArgumentException("당첨 번호는 1이상 45이하의 범위에서만 가능합니다.");
