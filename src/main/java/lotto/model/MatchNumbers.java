@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.model.constant.Match;
 
 public class MatchNumbers {
     private int threeMatch;
@@ -30,11 +31,11 @@ public class MatchNumbers {
     }
 
     private void updateMatchCounts(int matchCount, boolean bonusMatch) {
-        if (matchCount == 3) threeMatch++;
-        if (matchCount == 4) fourMatch++;
-        if (matchCount == 5 && !(bonusMatch)) fiveMatch++;
-        if (matchCount == 5 && bonusMatch) fiveAndBonusMatch++;
-        if (matchCount == 6) sixMatch++;
+        if (matchCount == Match.THREE.getMatchCount()) threeMatch++;
+        if (matchCount == Match.FOUR.getMatchCount()) fourMatch++;
+        if (matchCount == Match.FIVE.getMatchCount() && !(bonusMatch)) fiveMatch++;
+        if (matchCount == Match.BONUS.getMatchCount() && bonusMatch) fiveAndBonusMatch++;
+        if (matchCount == Match.SIX.getMatchCount()) sixMatch++;
     }
 
     public int getThreeMatch() {
