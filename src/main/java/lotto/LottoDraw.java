@@ -18,9 +18,15 @@ public class LottoDraw {
 
     private void randomLottoNumberDraw() {
         for (int i = 0; i < numberOfPurchases; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Lotto lotto = new Lotto(sortRandomNumbers());
             lottoDrawNumbers.add(lotto);
         }
+    }
+
+    private List<Integer> sortRandomNumbers() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(randomNumbers);
+        return randomNumbers;
     }
 
     public int getNumberOfPurchases() {
