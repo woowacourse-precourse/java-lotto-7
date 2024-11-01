@@ -31,4 +31,9 @@ public class Controller {
             System.out.println(lotto);
         }
     }
+
+    public void drawLotto() {
+        DrawLotto lotto = new DrawLotto(InputUI.winningNumber(), InputUI.bonusNumber());
+        lotto.getWinningNumbers();
+    }
 }
