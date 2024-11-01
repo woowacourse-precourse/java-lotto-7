@@ -1,5 +1,7 @@
 package lotto.validate;
 
+import static lotto.constants.Constants.*;
+
 public class BonusNumberValidate {
 
     private final int bonusNumber;
@@ -15,13 +17,13 @@ public class BonusNumberValidate {
         try {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR + BONUS_NUMBER_MUST_NUMBER);
         }
     }
 
     private void isRangeNumber(int bonusNumber) {
         if (!(1 <= bonusNumber && bonusNumber <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 범위 안의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR + BONUS_NUMBER_RANGE);
         }
     }
 

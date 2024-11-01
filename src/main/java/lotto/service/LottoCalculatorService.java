@@ -12,6 +12,11 @@ import java.util.Map;
 
 public class LottoCalculatorService {
 
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int BONUS_NUMBER_INDEX = 6;
+    private static final int THREE_MATHE_NUMBER = 3;
+    private static final int FIVE_MATHE_NUMBER = 3;
+
     private final Map<LottoRanking, Integer> winningCount = new HashMap<>();
 
     public LottoCalculatorService() {
@@ -35,7 +40,7 @@ public class LottoCalculatorService {
     }
 
     private int getDuplicateNumber(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LOTTO_NUMBER_COUNT; i++) {
             duplicateNumber = addDuplicateNumber(userLottoNumber, winningLotto, i, duplicateNumber);
         }
         return duplicateNumber;
@@ -55,22 +60,22 @@ public class LottoCalculatorService {
     }
 
     private void countDuplicateNumber(UserLotto userLottoNumber, LottoRanking ranking, int duplicateNumber, List<Integer> winningLotto) {
-        if (duplicateNumber < 3 || duplicateNumber != ranking.getMatchNumber()) {
+        if (duplicateNumber < THREE_MATHE_NUMBER || duplicateNumber != ranking.getMatchNumber()) {
             return;
         }
 
-        if (duplicateNumber == 5 && matchesBonusNumberCondition(userLottoNumber, ranking, winningLotto)) {
+        if (duplicateNumber == FIVE_MATHE_NUMBER && matchesBonusNumberCondition(userLottoNumber, ranking, winningLotto)) {
             addWinningCount(ranking);
             return;
         }
 
-        if (duplicateNumber != 5) {
+        if (duplicateNumber != FIVE_MATHE_NUMBER) {
             addWinningCount(ranking);
         }
     }
 
     private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, LottoRanking ranking, List<Integer> winningLotto) {
-        return userLottoNumber.getLottoNumber().contains(winningLotto.get(6)) == ranking.isBonusMatch();
+        return userLottoNumber.getLottoNumber().contains(winningLotto.get(BONUS_NUMBER_INDEX)) == ranking.isBonusMatch();
     }
 
     private void addWinningCount(LottoRanking ranking) {

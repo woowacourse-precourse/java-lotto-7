@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.constants.Constants.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -17,13 +19,13 @@ public class Lotto {
 
     private void numberCountValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호(보너스 번호 제외)는 6개여야 합니다.");
+            throw new IllegalArgumentException(ERROR + WINNING_NUMBER_SIZE_SIX);
         }
     }
 
     private void overlapValidate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복이 없어야 합니다.");
+            throw new IllegalArgumentException(ERROR + WINNING_NUMBER_NO_DUPLICATE);
         }
     }
 
@@ -34,7 +36,7 @@ public class Lotto {
 
     private void bonusNumberValidate(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호는 중복되면 안됩니다.");
+            throw new IllegalArgumentException(ERROR + BONUS_AND_WINNING_NUMBER_NO_DUPLICATE_);
         }
     }
 
