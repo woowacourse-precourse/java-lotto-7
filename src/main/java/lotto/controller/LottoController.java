@@ -15,5 +15,6 @@ public class LottoController {
 
 	public void run() {
 		LottoCreateController lottoCreateController = new LottoCreateController(inputView, outputView);
+		lottoCreateController.run();
 	}
 }
