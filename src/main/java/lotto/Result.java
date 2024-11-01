@@ -1,29 +1,12 @@
 package lotto;
 
-import java.util.LinkedHashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class Result {
-
-    private static final String MATCH_3 = "3개 일치 (5,000원)";
-    private static final String MATCH_4 = "4개 일치 (50,000원)";
-    private static final String MATCH_5 = "5개 일치 (1,500,000원)";
-    private static final String MATCH_5_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원)";
-    private static final String MATCH_6 = "6개 일치 (2,000,000,000원)";
-    private static final Map<String, Integer> PRIZE_MONEY;
-
-    static {
-        PRIZE_MONEY = new LinkedHashMap<>();
-        PRIZE_MONEY.put(MATCH_3, 5_000);
-        PRIZE_MONEY.put(MATCH_4, 50_000);
-        PRIZE_MONEY.put(MATCH_5, 1_500_000);
-        PRIZE_MONEY.put(MATCH_5_BONUS, 30_000_000);
-        PRIZE_MONEY.put(MATCH_6, 2_000_000_000);
-    }
-
-    private final Map<String, Integer> resultMap = new LinkedHashMap<>();
+    private final Map<PrizeLevel, Integer> resultMap = new EnumMap<>(PrizeLevel.class);
     private final List<Lotto> lottos;
     private final Set<Integer> winningNumbers;
     private final int bonusNumber;
@@ -36,8 +19,8 @@ public class Result {
     }
 
     private void initializeResultMap() {
-        for (String key : PRIZE_MONEY.keySet()) {
-            resultMap.put(key, 0);
+        for (PrizeLevel level : PrizeLevel.values()) {
+            resultMap.put(level, 0);
         }
     }
 
@@ -45,34 +28,21 @@ public class Result {
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCount(winningNumbers);
             boolean bonusMatch = lotto.hasBonusNumber(bonusNumber);
-            updateResult(matchCount, bonusMatch);
+            determinePrizeLevel(matchCount, bonusMatch);
         }
     }
 
-    private void updateResult(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) {
-            incrementResult(MATCH_6);
-            return;
-        }
-        if (matchCount == 5 && bonusMatch) {
-            incrementResult(MATCH_5_BONUS);
-            return;
-        }
-        if (matchCount == 5) {
-            incrementResult(MATCH_5);
-            return;
-        }
-        if (matchCount == 4) {
-            incrementResult(MATCH_4);
-            return;
-        }
-        if (matchCount == 3) {
-            incrementResult(MATCH_3);
+    private void determinePrizeLevel(int matchCount, boolean bonusMatch) {
+        for (PrizeLevel level : PrizeLevel.values()) {
+            if (level.getMatchCount() == matchCount && level.isBonusMatch() == bonusMatch) {
+                incrementResult(level);
+                return;
+            }
         }
     }
 
-    private void incrementResult(String key) {
-        resultMap.put(key, resultMap.get(key) + 1);
+    private void incrementResult(PrizeLevel level) {
+        resultMap.put(level, resultMap.get(level) + 1);
     }
 
     public void printResult(int purchaseAmount) {
@@ -87,18 +57,18 @@ public class Result {
 
     private long calculateTotalPrize() {
         long totalPrize = 0;
-        for (Map.Entry<String, Integer> entry : resultMap.entrySet()) {
-            String key = entry.getKey();
+        for (Map.Entry<PrizeLevel, Integer> entry : resultMap.entrySet()) {
+            PrizeLevel level = entry.getKey();
             int count = entry.getValue();
-            int prize = PRIZE_MONEY.get(key);
-            totalPrize += (long) prize * count;
+            totalPrize += level.getPrizeMoney() * count;
         }
         return totalPrize;
     }
 
     private void printResultCounts() {
-        for (Map.Entry<String, Integer> entry : resultMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue() + "개");
+        for (PrizeLevel level : PrizeLevel.values()) {
+            int count = resultMap.get(level);
+            System.out.println(level.getDisplayName() + " - " + count + "개");
         }
     }
 }
