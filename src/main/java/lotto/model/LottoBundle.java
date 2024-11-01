@@ -8,4 +8,8 @@ public class LottoBundle {
 
 	private final List<Lotto> lottos;
 	private final int count;
+
+	private int calculateCount(int price) {
+		return price / SINGLE_LOTTO_PRICE;
+	}
 }
