@@ -1,33 +1,32 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.LottoInputDto;
-
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class InputView {
 
-    public LottoInputDto enterInput() {
-        long purchaseAmount = enterPurchaseAmount();
-        List<Integer> winningNumber = enterWinningNumber();
-        int bonusNumber = enterBonusNumber();
+    private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
-        return new LottoInputDto(purchaseAmount, winningNumber, bonusNumber);
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public long enterPurchaseAmount() {
+        System.out.println(PURCHASE_AMOUNT_MESSAGE);
+        return Long.parseLong(scanner.nextLine());
     }
 
-    private long enterPurchaseAmount() {
-        return Long.parseLong(Console.readLine());
-    }
-
-    private List<Integer> enterWinningNumber() {
-        return Arrays.stream(Console.readLine().split(","))
+    public List<Integer> enterWinningNumber() {
+        System.out.println(WINNING_NUMBER_MESSAGE);
+        return Arrays.stream(scanner.nextLine().split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    private int enterBonusNumber() {
-        return Integer.parseInt(Console.readLine());
+    public int enterBonusNumber() {
+        System.out.println(BONUS_NUMBER_MESSAGE);
+        return Integer.parseInt(scanner.nextLine());
     }
 }

@@ -12,20 +12,25 @@ import lotto.dto.LottoOutputDto;
 
 public class LottoCheckService {
 
-    public LottoOutputDto checkLotto(final LottoInputDto lottoInputDto, final Lottos lottos) {
+    public LottoOutputDto checkLottos(final LottoInputDto lottoInputDto, final Lottos lottos) {
         LottoResult lottoResult = new LottoResult();
         Set<Integer> lottoChecker = new HashSet<>(lottoInputDto.winningNumber());
 
         for (Lotto lotto : lottos.getLottos()) {
-            Ranking ranking = Ranking.getRanking(checkLottoNumber(lottoChecker, lotto),
-                    checkBonusNumber(lottoInputDto.bonusNumber(), lotto));
-            if (ranking != null) {
-                lottoResult.addResult(ranking);
-            }
+            checkLotto(lottoChecker, lotto, lottoInputDto, lottoResult);
         }
         double rateOfReturn = calculateRateOfReturn(lottoInputDto.purchaseAmount(), lottoResult);
 
         return new LottoOutputDto(rateOfReturn, lottoResult);
+    }
+
+    private void checkLotto(Set<Integer> lottoChecker, Lotto lotto, LottoInputDto lottoInputDto,
+                            LottoResult lottoResult) {
+        Ranking ranking = Ranking.getRanking(checkLottoNumber(lottoChecker, lotto),
+                checkBonusNumber(lottoInputDto.bonusNumber(), lotto));
+        if (ranking != null) {
+            lottoResult.addResult(ranking);
+        }
     }
 
     private int checkLottoNumber(final Set<Integer> lottoChecker, final Lotto lotto) {
@@ -52,6 +57,6 @@ public class LottoCheckService {
             sumOfRevenue += (long) ranking.getWinningPrize() * results.get(ranking);
         }
 
-        return (double) Math.round((float) sumOfRevenue / purchaseAmount * 100) / 100;
+        return Math.round((double) sumOfRevenue / purchaseAmount * 100) / 100.0;
     }
 }

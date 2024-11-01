@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lottos;
 import lotto.dto.LottoInputDto;
 import lotto.dto.LottoOutputDto;
@@ -25,9 +26,17 @@ public class LottoController {
     }
 
     public void buyLotto() {
-        LottoInputDto lottoInputDto = inputView.enterInput();
-        Lottos lottos = lottoBuyService.buyLotto(lottoInputDto.purchaseAmount());
-        LottoOutputDto lottoOutputDto = lottoCheckService.checkLotto(lottoInputDto, lottos);
-        outputView.showResult(lottoOutputDto);
+        long purchaseAmount = inputView.enterPurchaseAmount();
+        Lottos lottos = lottoBuyService.buyLotto(purchaseAmount);
+
+        outputView.showLottos(lottos);
+
+        List<Integer> winningNumber = inputView.enterWinningNumber();
+        int bonusNumber = inputView.enterBonusNumber();
+
+        LottoOutputDto lottoOutputDto = lottoCheckService.checkLottos(
+                new LottoInputDto(purchaseAmount, winningNumber, bonusNumber), lottos);
+
+        outputView.showStatistics(lottoOutputDto);
     }
 }

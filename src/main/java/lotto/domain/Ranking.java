@@ -31,9 +31,11 @@ public enum Ranking {
     }
 
     public static Ranking getRanking(final int matchCount, final boolean isBonusMatched) {
-        for (Ranking ranking : values())
-            if (ranking.getMatchCount() == matchCount && ranking.isBonusMatched() == isBonusMatched)
+        for (Ranking ranking : values()) {
+            if (ranking.getMatchCount() == matchCount && ranking.isBonusMatched() == isBonusMatched) {
                 return ranking;
+            }
+        }
         return null;
     }
 }

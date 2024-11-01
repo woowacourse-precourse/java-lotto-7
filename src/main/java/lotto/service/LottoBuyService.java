@@ -1,11 +1,10 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
 public class LottoBuyService {
 
@@ -19,8 +18,9 @@ public class LottoBuyService {
         validate(purchaseAmount);
 
         Lottos lottos = new Lottos();
-        for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++)
+        for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++) {
             lottos.addLotto(selectLottoNumbers());
+        }
 
         return lottos;
     }

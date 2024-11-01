@@ -10,6 +10,9 @@ public class LottoResult {
 
     public LottoResult() {
         this.lottoResult = new EnumMap<Ranking, Integer>(Ranking.class);
+        for (Ranking ranking : Ranking.values()) {
+            this.lottoResult.put(ranking, 0);
+        }
     }
 
     public void addResult(final Ranking ranking) {
