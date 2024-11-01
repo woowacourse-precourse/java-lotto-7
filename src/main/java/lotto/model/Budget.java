@@ -1,4 +1,6 @@
-package lotto;
+package lotto.model;
+
+import lotto.common.ErrorMessage;
 
 public class Budget {
     private static final long LOTTO_PRICE = 1000L;

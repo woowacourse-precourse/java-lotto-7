@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Budget;
 
 public class LottiesFactory {
     private static final long LOTTO_PRICE = 1000L;

@@ -1,7 +1,8 @@
-package lotto;
+package lotto.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

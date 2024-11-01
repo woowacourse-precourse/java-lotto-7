@@ -1,4 +1,4 @@
-package lotto;
+package lotto.common;
 
 public enum ErrorMessage {
     // Budget 관련
