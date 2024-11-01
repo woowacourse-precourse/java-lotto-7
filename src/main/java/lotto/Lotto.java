@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Messages.ErrorMessage;
-import lotto.View.Controller;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -51,21 +50,21 @@ public class Lotto {
 
 
     public static List<Lotto> sortLottoList(Integer lottoCount){
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> myLottos = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++){
             Lotto newLotto = Lotto.getLotto();
             newLotto = Lotto.sortLotto(newLotto);
-            lottoList.add(newLotto);
+            myLottos.add(newLotto);
             OutputView.printLotto(newLotto);
         }
-        return lottoList;
+        return myLottos;
     }
 
     public static MyResult gradeLotto(Lotto answer, Lotto target, Integer bonus){
-        List<Integer> matchList = answer.numbers.stream().filter(num -> target.numbers.stream()
+        List<Integer> matchNums = answer.numbers.stream().filter(num -> target.numbers.stream()
                 .anyMatch(Predicate.isEqual(num))).collect(Collectors.toList());
         boolean bonusMatch = target.numbers.stream().anyMatch(Predicate.isEqual(bonus));
-        MyResult myresult = new MyResult(matchList.size(), bonusMatch);
+        MyResult myresult = new MyResult(matchNums.size(), bonusMatch);
 
         return myresult;
     }
