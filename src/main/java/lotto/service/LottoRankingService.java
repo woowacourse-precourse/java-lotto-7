@@ -29,26 +29,27 @@ public class LottoRankingService {
     }
 
     public static void updateRank(int[] rank, int matchCount, boolean hasBonus) {
+        if (matchCount < 3) return;
+
         if (matchCount == 3) {
             rank[0]++;
             return;
         }
+
         if (matchCount == 4) {
             rank[1]++;
             return;
         }
+
         if (matchCount == 5) {
-            if (hasBonus) {
-                rank[3]++;
-                return;
-            }
-            rank[2]++;
-            return;
+            rank[hasBonus ? 3 : 2]++;
         }
+
         if (matchCount == 6) {
             rank[4]++;
         }
     }
+
 
     public static double getTotalRate(int[] rank, int money) {
         int total = rank[0] * 5000 + rank[1] * 50000 + rank[2] * 1500000 + rank[3] * 30000000 + rank[4] * 2000000000;
