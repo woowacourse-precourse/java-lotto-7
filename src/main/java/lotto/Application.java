@@ -2,6 +2,8 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        // 1. 구입 금액 입력
+        int amount = InputPrice.getAmount();
+        System.out.println("price: "+ amount);
     }
 }
