@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.MatchCondition;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +32,13 @@ public class LottoTicket {
         return new Lotto(numbers);
     }
 
-    public List<Lotto> getTicket() {
-        return ticket;
+    public List<MatchCondition> gatherMatchCondition(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        return ticket.stream()
+                .map(lotto -> lotto.compareWithWinningNumbers(winningNumber, bonusNumber))
+                .toList();
     }
 
-    public void validateNonEmptyTicket(List<Lotto> lottos) {
+    private void validateNonEmptyTicket(List<Lotto> lottos) {
         if (lottos.isEmpty()) {
             throw new IllegalArgumentException("로또 티켓은 하나 이상의 로또를 포함해야 합니다.");
         }
