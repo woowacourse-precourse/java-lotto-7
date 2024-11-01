@@ -1,16 +1,16 @@
 package lotto.lotto.winning.domain;
 
-import lotto.buyer.domain.Money;
-import lotto.buyer.infrastructure.Won;
+import lotto.money.domain.Money;
 import lotto.lotto.domain.LottoTickets;
+import lotto.money.infrastructure.WinningAmount;
 
 public class WinningCalculator {
     public Benefit updateBenefit(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        Money benefitMoney = winningCalculate(lottoTickets, winningLotto, bonusNumber);
-        return new Benefit(benefitMoney);
+        Money winningAmount = winningCalculate(lottoTickets, winningLotto, bonusNumber);
+        return new Benefit(winningAmount);
     }
     private Money winningCalculate(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        return Won.of(lottoTickets.info().stream()
+        return new WinningAmount(lottoTickets.info().stream()
                 .map((lotto) -> WinningPlace.calculate(winningLotto, bonusNumber, lotto))
                 .mapToLong(Money::getMoney)
                 .sum());
