@@ -13,4 +13,12 @@ public class Lottos {
     public int countOfRank(Rank rank, WinningLotto winningLotto) {
         return (int) lottos.stream().filter(lotto -> rank.matches(winningLotto, lotto)).count();
     }
+
+    public int getTicketCount() {
+        return lottos.size();
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

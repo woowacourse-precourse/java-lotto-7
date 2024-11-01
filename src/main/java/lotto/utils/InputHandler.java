@@ -2,6 +2,7 @@ package lotto.utils;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.constants.ErrorMessage;
 
 public class InputHandler {
 
@@ -11,7 +12,7 @@ public class InputHandler {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_INPUT.getMessage());
         }
     }
 
@@ -21,7 +22,7 @@ public class InputHandler {
                     .map(number -> Integer.parseInt(number.trim()))
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.HAS_OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
 
@@ -29,7 +30,7 @@ public class InputHandler {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_INPUT.getMessage());
         }
     }
 }
