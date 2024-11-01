@@ -12,7 +12,7 @@ public class InputView {
     private static final String DELIMITER = ",";
 
     public static Integer readPurchaseAmount(){
-        Integer purchasePrice = 0;
+        int purchasePrice = 0;
         try {
             String rawPurchasePrice = Console.readLine();
             purchasePrice = parseInt(rawPurchasePrice);
@@ -30,15 +30,15 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
-    public static Integer readBonus(Lotto answer){
+    public static int readBonus(Lotto answer){
         String rawBonus = Console.readLine();
-        Integer bonus = parseInt(rawBonus);
+        int bonus = parseInt(rawBonus);
         checkBonus(bonus, answer);
         checkRange(bonus);
         return bonus;
     }
 
-    public static Integer parseInt(String input) {
+    public static int parseInt(String input) {
         int result = 0;
         try{
             result = Integer.parseInt(input);
@@ -49,14 +49,14 @@ public class InputView {
         return result;
     }
 
-    public static void checkBonus(Integer input, Lotto answer){
+    public static void checkBonus(int input, Lotto answer){
         if(!(answer.getNumbers().stream()
                 .allMatch(number -> number != input))) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE.getError());
         }
     }
 
-    public static void checkRange(Integer input){
+    public static void checkRange(int input){
         if(!(input >= 1 && input <= 45)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE.getError());
         }
