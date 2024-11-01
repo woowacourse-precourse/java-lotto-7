@@ -1,13 +1,15 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.view.LottoPurchaseInputView;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        LottoPurchaseInputView lottoPurchaseInputView = new LottoPurchaseInputView();
-        LottoController lottoController = new LottoController(lottoPurchaseInputView);
+        LottoOutputView lottoOutputView = new LottoOutputView();
+        LottoInputView lottoInputView = new LottoInputView();
+
+        LottoController lottoController = new LottoController(lottoOutputView, lottoInputView);
         lottoController.run();
     }
 }

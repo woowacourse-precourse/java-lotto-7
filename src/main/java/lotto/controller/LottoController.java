@@ -1,17 +1,27 @@
 package lotto.controller;
 
-import lotto.view.LottoPurchaseInputView;
+import java.util.List;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class LottoController {
-    private LottoPurchaseInputView lottoPurchaseInputView;
+    private LottoOutputView lottoOutputView;
+    private LottoInputView lottoInputView;
 
-    public LottoController(LottoPurchaseInputView lottoPurchaseInputView) {
-        this.lottoPurchaseInputView = lottoPurchaseInputView;
+    public LottoController(LottoOutputView lottoOutputView, LottoInputView lottoInputView) {
+        this.lottoOutputView = lottoOutputView;
+        this.lottoInputView = lottoInputView;
     }
 
     public void run() {
-        int lottoAmount = lottoPurchaseInputView.inputPurchaseAmount();
-        int numberOfTickets = lottoPurchaseInputView.numberOfLotto(lottoAmount);
-        lottoPurchaseInputView.makeRandomLottos(numberOfTickets);
+        int lottoAmount = lottoInputView.inputPurchaseAmount();
+        int numberOfTickets = lottoOutputView.numberOfLotto(lottoAmount);
+        lottoOutputView.makeRandomLottos(numberOfTickets);
+        List<Integer> winningNumbers = lottoInputView.inputWinningNumbers();
+        int bonusNumber = lottoInputView.inputBonusNumber();
+        // 테스트 삭제예정
+        System.out.println("winningNumbers : " + winningNumbers);
+        System.out.println("bonustNumber = " + bonusNumber);
+        // 테스트 삭제예정
     }
 }
