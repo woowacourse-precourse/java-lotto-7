@@ -51,4 +51,19 @@ public class PurchasedLottoTest {
 
         assertThat(purchasedLotto.getRateOfReturn()).isEqualTo(62.5);
     }
+
+    @Test
+    void 다중_1등_당첨_테스트(){
+        PurchasedLotto purchasedLotto = new PurchasedLotto();
+
+        purchasedLotto.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
+        purchasedLotto.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
+        purchasedLotto.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
+        purchasedLotto.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
+        purchasedLotto.addLotto(new Lotto(List.of(1,2,3,4,5,6)));
+
+        purchasedLotto.matchLotto(new WinningNumber(new Lotto(List.of(1,2,3,4,5,6)), 15));
+
+        assertThat(purchasedLotto.getRateOfReturn()).isEqualTo(200000000.0);
+    }
 }
