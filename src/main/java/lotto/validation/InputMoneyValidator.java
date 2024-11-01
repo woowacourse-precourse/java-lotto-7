@@ -14,19 +14,19 @@ public class InputMoneyValidator {
         return value;
     }
 
-    public int afterParseValidate(int money) {
+    public static int afterParseValidate(int money) {
         isZero(money);
         idValidateAmountUnit(money);
         return money;
     }
 
-    private void isZero(int money) {
+    private static void isZero(int money) {
         if (money == ZERO.getValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }
 
-    private void idValidateAmountUnit(int money) {
+    private static void idValidateAmountUnit(int money) {
         if (money % AMOUNT_UNIT.getValue() != ZERO.getValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }

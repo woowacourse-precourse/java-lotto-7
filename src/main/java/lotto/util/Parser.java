@@ -1,7 +1,5 @@
 package lotto.util;
 
-import static lotto.constants.ExceptionMessage.INVALID_INPUT;
-
 import lotto.validation.InputMoneyValidator;
 
 public class Parser {
