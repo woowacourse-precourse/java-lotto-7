@@ -1,7 +1,5 @@
 package lotto.domain.service;
 
-import lotto.domain.LottoGenerator;
-import lotto.domain.LottoStorage;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,17 +7,13 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoServiceTest {
-    private LottoGenerator lottoGenerator;
-    private LottoStorage lottoStorage;
     private LottoService lottoService;
 
 
 
     @BeforeEach
     void setUp() {
-        lottoGenerator = new LottoGenerator();
-        lottoStorage = new LottoStorage();
-        lottoService = new LottoService(lottoGenerator, lottoStorage);
+        lottoService = new LottoService();
     }
 
     @Test
