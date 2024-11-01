@@ -35,6 +35,14 @@ public class LottoResultChecker {
         return Ranking.valueOf(count, isMatchBonus);
     }
 
+    public static int calculateWinningPrize(Map<Ranking, Integer> rankingIntegerMap) {
+        int totalPrize = 0;
+        for (Ranking ranking : rankingIntegerMap.keySet()) {
+            totalPrize += ranking.getPrize() * rankingIntegerMap.get(ranking);
+        }
+        return totalPrize;
+    }
+
     public static double calculateProfit(int purchaseCount, int winningPrize) {
         double purchaseAmount = Lotto.LOTTO_PRICE * purchaseCount;
         double profitRate = (winningPrize / purchaseAmount) * 100;
