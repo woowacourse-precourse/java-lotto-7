@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static java.lang.Integer.parseInt;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +27,7 @@ public class InputValidation {
     private Long moneyCheck() {
         String moneyInput = view.getMoneyInput().replace(" ", "");
         checkInputNull(moneyInput);
-        checkMoneyForm(moneyInput);
+        checkNumberForm(moneyInput);
         Long money = Long.parseLong(moneyInput);
         checkUnitOfMoney(money);
         return money;
@@ -43,9 +45,9 @@ public class InputValidation {
         }
     }
 
-    public void checkMoneyForm(String input) {
+    public void checkNumberForm(String input) {
         if (!input.matches("\\d+")) { // 숫자로만 이루어졌는지 확인
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자(양수)만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자(양수)만 입력 가능합니다.");
         }
     }
 
@@ -90,4 +92,34 @@ public class InputValidation {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
         }
     }
+
+    public Integer getValidatedBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return bonusNumberCheck(winningNumbers);
+            } catch (Exception e) {
+                System.out.println(e.getMessage()); // 모든 예외를 한 번에 처리
+            }
+        }
+    }
+
+    private Integer bonusNumberCheck(List<Integer> winningNumbers) {
+        String bonusNumbersInput = view.getBonusNumber().replace(" ", "");
+        checkInputNull(bonusNumbersInput);
+        checkNumberForm(bonusNumbersInput);
+        Integer bonusNumber = parseInt(bonusNumbersInput);
+        checkNumbersRange(List.of(bonusNumber));
+        checkUniqueBetweenWinningAndBonus(winningNumbers, bonusNumber);
+        return bonusNumber;
+    }
+
+    public void checkUniqueBetweenWinningAndBonus(List<Integer> winningNumbers, int bonusNumber) {
+        for (int number : winningNumbers) {
+            if (number == bonusNumber) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 번호여야 합니다.");
+            }
+        }
+    }
 }
+
+
