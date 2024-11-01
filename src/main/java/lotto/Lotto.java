@@ -31,6 +31,10 @@ public class Lotto {
     public int checkLottoResult(Answer answer) {
         List<Integer> answerLotto = answer.getAnswerLotto().getNumbers();
         numbers.retainAll(answerLotto);
-        return numbers.size();  
+        return numbers.size();
+    }
+
+    public boolean hasBonusLotto(Answer answer) {
+        return numbers.contains(answer.getBonusLotto());
     }
 }
