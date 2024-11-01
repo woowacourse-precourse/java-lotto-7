@@ -12,7 +12,7 @@
   - 예외 상황: 순환 참조, bean이 존재하지 않는 경우, bean이 여러 개 존재하는 경우
 - [X] project scan, bean container 관리 기능
 - [ ] FrontController
-- [ ] front와 back의 통신 기능
+- [X] front와 back의 통신 기능
 
 ### INPUT
 - [ ] 로또 구입 금액 입력
