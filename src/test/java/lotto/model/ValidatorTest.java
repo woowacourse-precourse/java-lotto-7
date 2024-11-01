@@ -3,6 +3,8 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +31,16 @@ class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateLottoPurchaseAmount(lottoPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    @DisplayName("당첨 번호 유효성 검사 - 성공 테스트")
+    void validateWinningTicket_success() {
+        // given
+        List<Integer> winningTicket = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        // when & then
+        assertThatCode(() -> Validator.validateWinningTicket(winningTicket))
+                .doesNotThrowAnyException();
     }
 }
