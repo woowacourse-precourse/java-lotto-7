@@ -27,31 +27,29 @@ public class LottoController {
         //당첨 로직 구현
         int[] ans = new int[5];
         for (int i = 0; i < lottoCount; i++) {
-            int total = 0;
-            for (Integer winVal : winningNumber) {
-                if (lottoModel.getLottoNumbers(i).contains(winVal)) {
-                    total++;
-                }
-            }
-            if (total == 3) {
-                ans[0]++;
-            }
-            if (total == 4) {
-                ans[1]++;
-            }
-            if (total == 5) {
-                if (lottoModel.getLottoNumbers(i).contains(bonusNumber)) {
-                    ans[3]++;
-                    continue;
-                }
-                ans[2]++;
-            }
-            if (total == 6) {
-                ans[4]++;
-            }
+            winningCount(winningNumber, i, ans, bonusNumber);
         }
 
         lottoView.output.winningResult(ans, getRate(lottoCount, ans));
+    }
+
+    private void winningCount(List<Integer> winningNumber, int i, int[] ans, int bonusNumber) {
+        int total = 0;
+        for (Integer winVal : winningNumber) {
+            if (lottoModel.getLottoNumbers(i).contains(winVal)) {
+                total++;
+            }
+        }
+        if (total == 3) ans[0]++;
+        if (total == 4) ans[1]++;
+        if (total == 5) {
+            if (lottoModel.getLottoNumbers(i).contains(bonusNumber)) {
+                ans[3]++;
+                return;
+            }
+            ans[2]++;
+        }
+        if (total == 6) ans[4]++;
     }
 
     private static double getRate(int lottoCount, int[] ans) {
