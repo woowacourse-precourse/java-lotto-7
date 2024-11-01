@@ -2,10 +2,13 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -22,4 +25,12 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @ParameterizedTest
+    @CsvSource(value = {"1000:1", "10000:10", "15000:15", "9223372036854770000:9223372036854770"}, delimiter = ':')
+    void 구매한_로또_수량_반환_테스트(String purchaseAmount, long lottoCount) {
+        LottoPurchase lottoPurchase = new LottoPurchase(purchaseAmount);
+
+        assertEquals(lottoPurchase.getPurchasedLottoCount(), lottoCount);
+    }
 }
