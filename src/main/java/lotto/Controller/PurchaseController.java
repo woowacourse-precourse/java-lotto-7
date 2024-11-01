@@ -34,8 +34,14 @@ public class PurchaseController extends Validate {
     }
 
     private Pair purchaseFlow() {
-        Pair result = new Pair();
         String inputed = purchaseView.input();
+        if(!isInteger(inputed))
+            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
+        return purchaseFlowWithInput(inputed);
+    }
+
+    private Pair purchaseFlowWithInput(String inputed) {
+        Pair result = new Pair();
         if(!isInteger(inputed))
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
 
