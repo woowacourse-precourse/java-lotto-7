@@ -27,6 +27,12 @@ public class BuyPrice {
         }
     }
 
+    private void biggerThanThousand(String inpuString) {
+        Integer parsePrice = Integer.parseInt(inpuString);
+        if (parsePrice < 1000) {
+            throw new IllegalArgumentException("[ERROR] 천원 이상을 입금해주셔야합니다~!");
+        }
+    }
 
     public Integer getPrice() {
         return price;
