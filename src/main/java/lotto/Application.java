@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
-import lotto.model.LottoMachine;
+import lotto.controller.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
