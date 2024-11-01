@@ -3,7 +3,8 @@ package lotto.constant;
 public enum ErrorConstants {
 
     ERROR_MESSAGE_START("[ERROR] "),
-    INVALID_PRICE_FORMAT("구입 금액은 숫자여야 합니다.");
+    INVALID_PRICE_FORMAT("구입 금액은 숫자여야 합니다."),
+    NULL_NOT_ALLOWED("NULL 은 허용되지 않습니다.");
 
     private final String message;
 
