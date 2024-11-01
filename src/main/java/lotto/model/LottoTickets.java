@@ -17,4 +17,11 @@ public class PurchasedLotto {
             purchasedLotto.add(new Lotto(lottoNumbers));
         }
     }
+
+    //    public List<Lotto> getPurchasedLotto() {
+//        return purchasedLotto;
+//    }
+    public List<Lotto> getLotto() {
+        return purchasedLotto;
+    }
 }
