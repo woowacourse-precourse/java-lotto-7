@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.configuration.LottoConfiguration;
+import lotto.configuration.Prize;
 
 public class ProfitReport {
     private final List<Lotto> purchasedLottos;

@@ -2,6 +2,7 @@ package lotto.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import lotto.configuration.Prize;
 import org.junit.jupiter.api.Test;
 
 class PrizeTest {

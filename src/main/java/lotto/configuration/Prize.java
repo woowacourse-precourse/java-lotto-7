@@ -1,4 +1,4 @@
-package lotto.entity;
+package lotto.configuration;
 
 public enum Prize {
     FIRST(6, false, 2_000_000_000),
