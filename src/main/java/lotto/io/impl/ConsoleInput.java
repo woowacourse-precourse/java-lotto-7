@@ -1,9 +1,11 @@
 package lotto.io.impl;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.io.Input;
-import lotto.io.msg.LottoInquiryMessage;
-import lotto.io.Output;
+import lotto.domain.*;
+import lotto.io.*;
+import lotto.io.msg.*;
+
+import java.util.*;
 
 public class ConsoleInput implements Input {
 
@@ -23,23 +25,48 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public String inputMoney() {
+    public AmountOfLottos inputMoney() {
 
-        output.printInquiry(LottoInquiryMessage.PURCHASE_AMOUNT_INQUIRY);
-        return Console.readLine().trim();
+        output.printMsg(LottoInquiryMessage.PURCHASE_AMOUNT_INQUIRY.getMsg());
+
+        AmountOfLottos amountOfLottos = null;
+        try{
+            amountOfLottos = new AmountOfLottos(Console.readLine().trim());
+        } catch (IllegalArgumentException e){
+            output.printMsg(e.getMessage());
+            return inputMoney();
+        }
+
+        return amountOfLottos;
     }
 
     @Override
-    public String[] inputWinningNumbers() {
+    public WinningNumbers inputWinningNumbers() {
 
-        output.printInquiry(LottoInquiryMessage.BONUS_NUMBER_INQUERY);
-        return Console.readLine().trim().split(",");
+        output.printMsg(LottoInquiryMessage.BONUS_NUMBER_INQUERY.getMsg());
+        List<Integer> tempWinningNumbers = Arrays.stream(Console.readLine().trim().split(","))
+                .map(Integer::parseInt).toList();
+
+        WinningNumbers winningNumbers = null;
+        try{
+            winningNumbers = new WinningNumbers(tempWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            output.printMsg(e.getMessage());
+            return inputWinningNumbers();
+        }
+
+        return winningNumbers;
     }
 
     @Override
-    public String inputBonusNumber() {
+    public BonusNumber inputBonusNumber() {
 
-        output.printInquiry(LottoInquiryMessage.BONUS_NUMBER_INQUERY);
-        return "";
+        /*
+        output.printMsg(LottoInquiryMessage.BONUS_NUMBER_INQUERY.getMsg());
+        String a = Console.readLine().trim();
+
+        return new BonusNumber();
+         */
+        return null;
     }
 }

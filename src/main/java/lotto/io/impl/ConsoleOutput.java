@@ -21,12 +21,6 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printInquiry(LottoInquiryMessage msg) {
-
-        System.out.println(msg.getMsg());
-    }
-
-    @Override
     public void completePurchase(int num) {
         System.out.println(num+ "개를 구매했습니다.");
     }
@@ -35,7 +29,7 @@ public class ConsoleOutput implements Output {
     public void printLotto(Lotto lotto) {
 
         String[] intToStr = lotto.getNumbers().stream().map(String::valueOf)
-                        .toArray(String[]::new);
+                .toArray(String[]::new);
 
         String printLotto = String.join(", ", intToStr);
 
@@ -50,7 +44,7 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printErrorMsg(LottoErrorMessage msg) {
-        System.out.println(msg.getMsg());
+    public void printMsg(String msg) {
+        System.out.println(msg);
     }
 }

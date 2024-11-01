@@ -1,10 +1,12 @@
 package lotto.io;
 
+import lotto.domain.*;
+
 public interface Input {
 
-    String inputMoney();
+    AmountOfLottos inputMoney();
 
-    String[] inputWinningNumbers();
+    WinningNumbers inputWinningNumbers();
 
-    String inputBonusNumber();
+    BonusNumber inputBonusNumber();
 }

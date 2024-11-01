@@ -4,10 +4,11 @@ import lotto.error.LottoErrorMessage;
 
 import java.util.*;
 
-public class Lotto {
+public class WinningNumbers {
+
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public WinningNumbers(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -25,7 +26,6 @@ public class Lotto {
                 throw new IllegalArgumentException(LottoErrorMessage.LOTTO_RANGE_EXCEPTION.getMsg());
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }

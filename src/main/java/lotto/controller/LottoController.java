@@ -27,6 +27,8 @@ public class LottoController {
     public void run() {
 
         List<Lotto> lottos = service.buyLottos();
+        // service.setWinningNumbers();
+        // service.setBonusNumber();
 
 
     }
