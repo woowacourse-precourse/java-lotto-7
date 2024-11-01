@@ -6,6 +6,7 @@ import lotto.util.Parser;
 import lotto.view.InputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final InputView inputView;
@@ -23,6 +24,10 @@ public class LottoController {
         lottoMachine.initMachine();
         Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
         List<Integer> winningNums = parser.winningNumsParser(inputView.readWinningNums());
-        int Bonus = parser.bonusNumParser(inputView.readBonusNum());
+        lottoMachine.updateWinningNums(winningNums);
+        int bonusNum = parser.bonusNumParser(inputView.readBonusNum());
+        lottoMachine.updateBonusNum(bonusNum);
+        lottoMachine.updateWinningDetail(lottos);
+        Map<String, Integer> winningDetail = lottoMachine.getWinningDetail();
     }
 }

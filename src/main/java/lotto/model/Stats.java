@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Stats {
-    Map<Integer, Integer> winningDetail = new HashMap<>();
+    private Map<String, Integer> winningDetail = new HashMap<>();
 
-    public void initStats(int rankCount) {
-        for (int i = 1; i <= rankCount; i++) {
-            winningDetail.put(i, 0);
-        }
+    public Map<String, Integer> getWinningDetail() {
+        return winningDetail;
+    }
+
+    public void addWinningCount(String matchingState) {
+        winningDetail.put(matchingState, winningDetail.getOrDefault(matchingState, 0) + 1);
     }
 }

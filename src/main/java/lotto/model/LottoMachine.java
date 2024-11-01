@@ -11,14 +11,15 @@ public class LottoMachine {
     private static final int LOTTO_END_NUM = 45;
     private static final int LOTTO_PRICE = 1000;
 
-    private final List<Integer> lottoNums = new ArrayList<>();
+    private final List<Integer> allLottoNums = new ArrayList<>();
     private final Stats stats = new Stats();
+    private List<Integer> winningNums;
+    private int bonusNum;
 
     public void initMachine() {
         for (int i = LOTTO_START_NUM; i <= LOTTO_END_NUM; i++) {
-            lottoNums.add(i);
+            allLottoNums.add(i);
         }
-        stats.initStats(RANK_COUNT);
     }
 
     public Lottos issueLottos(int purchaseAmount) {
@@ -31,7 +32,40 @@ public class LottoMachine {
     }
 
     private Lotto issueLotto() {
-        Collections.shuffle(lottoNums);
-        return new Lotto(lottoNums.subList(0, 6));
+        Collections.shuffle(allLottoNums);
+        return new Lotto(allLottoNums.subList(0, 6));
+    }
+
+    public void updateWinningNums(List<Integer> winningNums) {
+        this.winningNums = winningNums;
+    }
+
+    public void updateBonusNum(int bonusNum) {
+        this.bonusNum = bonusNum;
+    }
+
+    public void updateWinningDetail(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            decideWin(lotto);
+        }
+    }
+
+    private void decideWin(Lotto lotto) {
+        List<Integer> lottoNums = lotto.getNumbers();
+        lottoNums.retainAll(winningNums);
+        int matchingCount = lottoNums.size();
+
+        if (matchingCount < 3) {
+            return;
+        }
+        if (matchingCount == 5 && lottoNums.contains(bonusNum)) {
+            stats.addWinningCount(matchingCount + "+");
+            return;
+        }
+        stats.addWinningCount(String.valueOf(matchingCount));
+    }
+
+    public Map<String, Integer> getWinningDetail() {
+        return stats.getWinningDetail();
     }
 }
