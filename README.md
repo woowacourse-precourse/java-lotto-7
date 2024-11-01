@@ -28,7 +28,7 @@
     - [ ]  setWinningNumbers() 호출해 당첨 번호와 보너스 번호 설정
     - [ ]  showResult() 호출해 당첨 결과 확인
 - [ ]  private void buyLottos()
-    - [ ]  LottoNumberController.issueLottos() 호출해 구매 액수만큼의 로또 발행
+    - [ ]  LottoNumberGenerator.issueLottos() 호출해 구매 액수만큼의 로또 발행
     - [ ]  boughtNumbers의 setter 호출해 발행한 로또 번호 정보 set
 - [ ]  private void setWinningNumbers()
 
@@ -37,7 +37,7 @@
 
 - [ ]  몇 등 당첨인지 확인하는 기능
 
-### LottoNumberController
+### LottoNumberGenerator
 - [x] **public List\<Lotto> issueLottos(int amount)** \: 주어진 수량만큼 로또를 발행하는 기능
     - [x] for (int i = 0; i < amount; i++)
         - [x] `getRandomLottoNumbers()` 호출해 로또 번호 6개 추출
