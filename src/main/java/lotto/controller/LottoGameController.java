@@ -16,6 +16,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Revenue;
 import lotto.domain.WinningNumbers;
 import lotto.dto.WinningStat;
+import lotto.dto.WinningSummary;
 import lotto.exception.LottoException;
 import lotto.service.BuyerService;
 import lotto.service.LottoService;
@@ -35,12 +36,23 @@ public class LottoGameController {
     }
 
     public void run() {
-        final int lottoQuantity = getLottoQuantity();
-        final Lottos lottos = getLottos(lottoQuantity);
+        final LottoGame lottoGame = setLottoGame();
+        final WinningSummary winningSummary = getWinningSummary(lottoGame);
+
+        getReturnRate(lottoGame, winningSummary);
+    }
+
+    private LottoGame setLottoGame() {
+        final Lottos lottos = purchaseLotto();
         final WinningNumbers winningNumbers = getWinningNumbers();
         final BonusNumber bonusNumber = getBonusNumber(winningNumbers);
-        final LottoGame lottoGame = getLottoGame(lottos, winningNumbers, bonusNumber);
-        getWinningSummary(lottoQuantity, lottoGame);
+
+        return lottoService.createLottoGame(lottos, winningNumbers, bonusNumber);
+    }
+
+    private Lottos purchaseLotto() {
+        final int lottoQuantity = getLottoQuantity();
+        return getLottos(lottoQuantity);
     }
 
     private int getLottoQuantity() {
@@ -97,19 +109,25 @@ public class LottoGameController {
         }
     }
 
-    private LottoGame getLottoGame(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return lottoService.createLottoGame(lottos, winningNumbers, bonusNumber);
-    }
-
-    private void getWinningSummary(int lottoQuantity, LottoGame lottoGame) {
+    private WinningSummary getWinningSummary(LottoGame lottoGame) {
         printWinningStatsTitle();
 
+        return calculateStats(lottoGame);
+    }
+
+    private WinningSummary calculateStats(LottoGame lottoGame) {
         List<WinningStat> winningStats = statService.getWinningStats(lottoGame);
+        WinningSummary winningSummary = WinningSummaryGenerator.generate(winningStats);
 
-        printWinningSummary(WinningSummaryGenerator.generate(winningStats));
+        printWinningSummary(winningSummary);
 
-        Revenue revenue = statService.createRevenue(lottoQuantity, winningStats);
+        return winningSummary;
+    }
+
+    private void getReturnRate(LottoGame lottoGame, WinningSummary winningSummary) {
+        Revenue revenue = statService.createRevenue(lottoGame.getLottos(), winningSummary.WinningStats());
 
         printReturnRate(revenue);
     }
+
 }
