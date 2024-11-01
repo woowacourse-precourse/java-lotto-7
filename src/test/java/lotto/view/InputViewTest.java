@@ -25,10 +25,8 @@ class InputViewTest {
     void testLottoNumberInput() {
         // given
         System.setIn(new ByteArrayInputStream((NORMAL_LOTTO_INPUT).getBytes()));
-
         // when
         List<Integer> result = InputView.getLottoNumber();
-
         // then
         assertThat(result).isEqualTo(NORMAL_LOTTO_NUMBERS);
     }
@@ -40,10 +38,8 @@ class InputViewTest {
         // Scanner의 nextLine()은 줄바꿈까지 전까지 읽고 다시 읽을 때 그 이후 부터 읽음
         String combinedInput = ZERO_LOTTO_INPUT + "\n" + NORMAL_LOTTO_INPUT;
         System.setIn(new ByteArrayInputStream(combinedInput.getBytes()));
-
         // when
         List<Integer> result = InputView.getLottoNumber();
-
         // then
         assertThat(result).isEqualTo(NORMAL_LOTTO_NUMBERS);
     }
