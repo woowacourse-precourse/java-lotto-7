@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.BonusBall;
+import lotto.domain.Lotto;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,6 +21,7 @@ public class Application {
         printLotto(lottoNumbers);
 
         Lotto lotto = new Lotto(splitWinningNumbers(inputWinningNumbers()));
+        BonusBall bonusNumber = new BonusBall(parseToInt(inputBonusNumber()), lotto.getNumbers());
     }
 
     private static String readLine() {
@@ -78,6 +81,11 @@ public class Application {
                 .filter(num -> !num.trim().isEmpty())
                 .map(num -> parseToInt(num.trim()))
                 .collect(Collectors.toList());
+    }
+
+    private static String inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해주세요.");
+        return Console.readLine();
     }
 
 }
