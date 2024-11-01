@@ -25,7 +25,7 @@ public enum LottoRank {
 			System.out.print(getMatchCount() +  MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	},
-	FIFTH(1, false, 5000) {
+	FIFTH(3, false, 5000) {
 		@Override
 		public void printInfo() {
 			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
