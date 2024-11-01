@@ -34,4 +34,13 @@ class InputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"11100", "9990", "8800", "99100"})
+    void 구입금액이_천원단위인지_검증한다(String amount) {
+        assertThatThrownBy(() -> {
+            inputValidator.PurchaseAmountValidate(amount);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액은 1000원 단위어야 합니다.");
+    }
 }
