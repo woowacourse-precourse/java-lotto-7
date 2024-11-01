@@ -30,7 +30,7 @@ public class InputValiationTest {
     @ParameterizedTest
     @CsvSource({"한글", "123h45","-123"})
     void 금액_양식_확인(String input) {
-        assertThatThrownBy(() -> inputValidation.checkMoneyForm(input))
+        assertThatThrownBy(() -> inputValidation.checkNumberForm(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -54,6 +54,14 @@ public class InputValiationTest {
     void 당첨번호_중복_검증(String input) {
         List<Integer> testNumbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
         assertThatThrownBy(() -> inputValidation.checkUniqueNumbers(testNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,2,13,7,8,4;4", "1,2,3,32,35,15;15"}, delimiter =';')
+    void 보너스번호_중복_검증(String winningNumbers, int bonusNumber) {
+        List<Integer> testWinningNumbers = Arrays.stream(winningNumbers.split(",")).map(Integer::parseInt).toList();
+        assertThatThrownBy(() -> inputValidation.checkUniqueBetweenWinningAndBonus(testWinningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
