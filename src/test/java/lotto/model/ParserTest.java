@@ -163,6 +163,21 @@ class ParserTest {
     }
 
     @Test
+    @DisplayName("입력 문자열 정수 리스트로 변환: 오른쪽 공백 제거 - 성공 테스트")
+    void parseInputsToIntList_trimRightWhiteSpace() {
+        // given
+        String inputs = "1 ,2 ,3 ";
+
+        // when
+        List<Integer> parsedInputs = Parser.parseInputsToIntList(inputs);
+
+        // then
+        assertThat(parsedInputs.get(0)).isEqualTo(1);
+        assertThat(parsedInputs.get(1)).isEqualTo(2);
+        assertThat(parsedInputs.get(2)).isEqualTo(3);
+    }
+
+    @Test
     @DisplayName("입력 문자열 정수 리스트로 변환: 문자 포함 - 예외 테스트")
     void parseInputsToIntList_includeString() {
         // given
