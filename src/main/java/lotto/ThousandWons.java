@@ -15,8 +15,16 @@ public class ThousandWons {
         return ThousandWons.of(money);
     }
 
+    public boolean isMuchThanOrEqual(int target) {
+        return value >= target;
+    }
+
     public int getValue() {
         return value;
+    }
+
+    public int divide(int target) {
+        return value / target;
     }
 
     private static void validate(int value) {
@@ -24,5 +32,6 @@ public class ThousandWons {
             throw new IllegalArgumentException("1000원 단위로 입력 가능 합니다.");
         }
     }
+
 }
 
