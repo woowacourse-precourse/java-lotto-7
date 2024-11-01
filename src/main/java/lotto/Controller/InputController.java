@@ -1,11 +1,10 @@
 package lotto.Controller;
 
-import lotto.Model.LottoAmount;
 import lotto.Model.LottoAmountValidator;
 import lotto.View.InputView;
 
 public class InputController {
-    public static LottoAmount setAmountOfLotto(){
+    public static int setAmountOfLotto(){
         LottoAmountValidator validator = new LottoAmountValidator(InputView.inputAmountOfLotto());
         return validator.lottoAmount;
     }
