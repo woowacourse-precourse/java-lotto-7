@@ -1,6 +1,5 @@
 package lotto.filter.impl.filter;
 
-
 import static lotto.common.ErrorConstants.ERROR_HEADER;
 
 import lotto.filter.Filter;

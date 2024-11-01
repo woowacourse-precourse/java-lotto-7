@@ -31,11 +31,21 @@ public enum LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {
-        if (matchCount == FIRST.matchCount) return FIRST;
-        if (matchCount == SECOND.matchCount && matchBonus) return SECOND;
-        if (matchCount == THIRD.matchCount) return THIRD;
-        if (matchCount == FOURTH.matchCount) return FOURTH;
-        if (matchCount == FIFTH.matchCount) return FIFTH;
+        if (matchCount == FIRST.matchCount) {
+            return FIRST;
+        }
+        if (matchCount == SECOND.matchCount && matchBonus) {
+            return SECOND;
+        }
+        if (matchCount == THIRD.matchCount) {
+            return THIRD;
+        }
+        if (matchCount == FOURTH.matchCount) {
+            return FOURTH;
+        }
+        if (matchCount == FIFTH.matchCount) {
+            return FIFTH;
+        }
         return NONE;
     }
 }
