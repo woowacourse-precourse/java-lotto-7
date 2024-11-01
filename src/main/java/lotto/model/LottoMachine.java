@@ -6,15 +6,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class LottoVendingMachine {
+public class LottoMachine {
 
-    private final Integer totalCost;
-
-    public LottoVendingMachine(Integer totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public List<Lotto> issueLotto() {
+    public List<Lotto> issueLotto(Integer totalCost) {
         int lottoCount = totalCost/LOTTO_TICKET_PRICE;
 
         return IntStream.rangeClosed(1, lottoCount)
