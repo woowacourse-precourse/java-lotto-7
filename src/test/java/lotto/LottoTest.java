@@ -22,4 +22,13 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호는 1에서 45 사이의 숫자여야 한다.")
+    @Test
+    void 로또_번호는_1에서_45사이의_숫자여야_한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 45, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
