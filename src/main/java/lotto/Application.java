@@ -108,6 +108,7 @@ public class Application {
         sb.append("5개 일치 (1,500,000원) - " + matchCount[5] + "개\n");
         sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCount[7] + "개\n");
         sb.append("6개 일치 (2,000,000,000원) - " + matchCount[6] + "개\n");
+        sb.append("총 수익률은 " + revenueRate + "%입니다.");
         System.out.println(sb);
     }
 
