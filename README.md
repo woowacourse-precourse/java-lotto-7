@@ -8,7 +8,7 @@
 ### CONFIG
 - [ ] bean 등록을 위한 project scan 기능
 - [X] bean 등록 대상으로 지정하기 위한 annotation
-- [ ] IoC를 위한 DI 기능
+- [X] IoC를 위한 DI 기능
   - 예외 상황: 순환 참조, bean이 존재하지 않는 경우, bean이 여러 개 존재하는 경우
 - [ ] FrontController
 - [ ] front와 back의 통신 기능
