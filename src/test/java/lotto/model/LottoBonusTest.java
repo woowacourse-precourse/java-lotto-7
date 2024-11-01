@@ -33,6 +33,6 @@ class LottoBonusTest {
 	@DisplayName("보너스 번호가 로또 번호와 중복되는 숫자라면 예외가 발생한다.")
 	void should_ThrowException_When_BonusNumberIsDuplicateWithLottoNumbers() {
 		assertThatThrownBy(() -> new LottoBonus(5, List.of(1, 2, 3, 4, 5, 6)))
-				.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+				.isInstanceOf(IllegalArgumentException.class).hasMessageContaining("보너스 번호는 로또 번호와 중복될 수 없습니다.");
 	}
 }
