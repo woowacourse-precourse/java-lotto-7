@@ -98,7 +98,19 @@ public class InputTest {
                 validator.validateWinningNumber(parsedInput);
             });
         }
-        
+
+        @DisplayName("콤마 외의 구분자 예외 처리")
+        @ParameterizedTest()
+        @ValueSource(strings = {"1.2.3.4.5.6", "1:2:3:4:5:6", "1;2;3;4;5;6"})
+        void 콤마_외의_구분자_예외_처리(String input){
+            WinningNumberParser parser = new WinningNumberParser();
+            List<String> parsedInput = parser.parseWinningNumber(input);
+            
+            System.out.println(parsedInput);
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validateWinningNumber(parsedInput);
+            });
+        }
     }
 
     @Nested
