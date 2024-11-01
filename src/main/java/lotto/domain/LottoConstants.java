@@ -3,6 +3,12 @@ package lotto.domain;
 import java.util.Map;
 
 class LottoConstants {
+    // LottoGenerator 클래스
+    static final int NUMBER_OF_NUMBERS = 6;
+    static final int RANDOM_MIN = 1;
+    static final int RANDOM_MAX = 45;
+
+    // LottoService 클래스
     static final long LOTTO_PRICE = 1000L;
     static final int PERCENT = 100;
     static final int PLACE_TO_ROUND_TO = 1;
