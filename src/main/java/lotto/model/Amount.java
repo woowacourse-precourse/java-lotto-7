@@ -25,4 +25,8 @@ public class Amount {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액을 숫자로 입력해주세요.");
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }
