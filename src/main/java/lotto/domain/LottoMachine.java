@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.common.ErrorConstants.ERROR_HEADER;
 import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.common.LottoConstants.LOTTO_NUMBER_MIN;
 import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX_COUNT;
@@ -10,6 +11,8 @@ import java.util.stream.IntStream;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
+    private static final String ERROR_MESSAGE_PURCHASE_AMOUNT_MISSING = ERROR_HEADER + "구입 금액을 넣지 않았습니다.";
+    private static final String ERROR_MESSAGE_PURCHASE_AMOUNT_UNIT = ERROR_HEADER + "구입 금액은 1,000원 단위여야 합니다.";
 
     private int inputAmount = 0;
 
@@ -36,10 +39,10 @@ public class LottoMachine {
 
     private void validate(Integer inputAmount) {
         if (inputAmount == 0) {
-            throw new IllegalStateException("[ERROR] 구입 금액을 넣지 않았습니다. 구입 금액: " + inputAmount);
+            throw new IllegalStateException(ERROR_MESSAGE_PURCHASE_AMOUNT_MISSING);
         }
         if (inputAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_PURCHASE_AMOUNT_UNIT);
         }
     }
 
