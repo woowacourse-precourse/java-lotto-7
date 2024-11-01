@@ -1,7 +1,5 @@
 package lotto;
 
-import lotto.exception.ExceptionCode;
-
 import java.util.List;
 
 import static lotto.exception.ExceptionCode.*;
