@@ -25,4 +25,9 @@ public class OutputView {
         System.out.println(PROMPT_MESSAGE_FOR_BONUS_NUMBER.getPromptMessage());
     }
 
+    public static void printPromptMessageForWinningResult() {
+        System.out.println(PROMPT_MESSAGE_FOR_WINNING_RESULT.getPromptMessage());
+    }
+
+
 }
