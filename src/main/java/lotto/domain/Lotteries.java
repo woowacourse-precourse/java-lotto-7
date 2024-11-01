@@ -2,27 +2,28 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.util.LottoNumberGenerator;
 import lotto.global.common.Rank;
 
 public class Lotteries {
 
-    private final List<Lotto> lotto;
+    private final List<Lotto> lotteries;
 
     private Lotteries(final List<Lotto> lotto) {
-        this.lotto = lotto;
+        this.lotteries = lotto;
     }
 
     public static Lotteries of(final int count) {
         return new Lotteries(generateTicketList(count));
     }
 
-    public List<Lotto> getLotto() {
-        return List.copyOf(lotto);
+    public List<Lotto> getLotteries() {
+        return List.copyOf(lotteries);
     }
 
     public List<Rank> getTicketsResult(Lotto winningLotto, int bonus) {
-        return lotto.stream()
+        return lotteries.stream()
                 .map(ticket -> ticket.check(winningLotto, bonus))
                 .toList();
     }
@@ -37,5 +38,12 @@ public class Lotteries {
         }
 
         return ticketList;
+    }
+
+    @Override
+    public String toString() {
+        return lotteries.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
