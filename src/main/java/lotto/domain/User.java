@@ -9,13 +9,11 @@ import static lotto.util.CreateLottoNumber.createLotto;
 public class User {
 
     private final int buyingPrice; // 수익률 계산할 때 필요함
-    private int winningPrice;
-    private final List<UserLotto> userLotto;
+    private int winningPrice = 0;
+    private final List<UserLotto> userLotto = new ArrayList<>();
 
     public User(int buyingPrice) {
         this.buyingPrice = buyingPrice;
-        this.winningPrice = 0;
-        this.userLotto = new ArrayList<>();
 
         addLottoNumber();
     }
@@ -32,5 +30,13 @@ public class User {
 
     public int getLottoQuantity() {
         return buyingPrice / LOTTO_PRICE;
+    }
+
+    public void addWinningPrice(int price) {
+        winningPrice += price;
+    }
+
+    public double getProfit() {
+        return Math.round((double) winningPrice / buyingPrice * 1000) / 10.0;
     }
 }
