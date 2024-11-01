@@ -1,7 +1,9 @@
 package lotto.controller;
 
-public class LottoController {
-    public void purchaseLotto() {
+import lotto.view.InputView;
 
+public class LottoController {
+
+    public void purchaseLotto() {
     }
 }
