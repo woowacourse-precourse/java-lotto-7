@@ -8,8 +8,8 @@ public class Lottos {
 
     private final List<Lotto> lottoGroup;
 
-    public Lottos(List<Lotto> lottos) {
-        this.lottoGroup = lottos;
+    public Lottos(List<Lotto> lottoGroup) {
+        this.lottoGroup = lottoGroup;
     }
 
     public int size() {
@@ -21,10 +21,10 @@ public class Lottos {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Lottos lottos1)) {
+        if (!(object instanceof Lottos lottos)) {
             return false;
         }
-        return Objects.equals(lottoGroup, lottos1.lottoGroup);
+        return Objects.equals(lottoGroup, lottos.lottoGroup);
     }
 
     @Override

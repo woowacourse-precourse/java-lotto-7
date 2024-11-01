@@ -33,6 +33,14 @@ public class Lotto {
         }
     }
 
+    public Long matchNumbers(WinningLotto winningLotto) {
+        return winningLotto.countWinnings(numbers);
+    }
+
+    public boolean matchBonus(WinningLotto winningLotto) {
+        return winningLotto.containsBonus(numbers);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -42,14 +50,6 @@ public class Lotto {
             return false;
         }
         return Objects.equals(numbers, lotto.numbers);
-    }
-
-    public Long matchNumbers(WinningLotto winningLotto) {
-        return winningLotto.countWinnings(numbers);
-    }
-
-    public boolean matchBonus(WinningLotto winningLotto) {
-        return winningLotto.containsBonus(numbers);
     }
 
     @Override

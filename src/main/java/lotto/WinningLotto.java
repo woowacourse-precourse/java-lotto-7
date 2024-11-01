@@ -41,10 +41,10 @@ public class WinningLotto {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof WinningLotto that)) {
+        if (!(object instanceof WinningLotto winningLotto)) {
             return false;
         }
-        return bonusNumber == that.bonusNumber && Objects.equals(winningNumbers, that.winningNumbers);
+        return bonusNumber == winningLotto.bonusNumber && Objects.equals(winningNumbers, winningLotto.winningNumbers);
     }
 
     @Override
