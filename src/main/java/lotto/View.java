@@ -15,22 +15,26 @@ public class View {
     public static final String LOTTO_BONUS_INPUT = "보너스 번호를 입력해 주세요.";
     public static final String WIN_STATICS = "당첨 통계\n---";
     public static final String COMMA = ",";
-    public static final String BLANK = "";
+    public static final String THREE = "3개 일치 (5,000원) - ";
+    public static final String FOUR = "4개 일치 (50,000원) - ";
+    public static final String FIVE = "5개 일치 (1,500,000원) - ";
+    public static final String FIVE_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    public static final String SIX = "6개 일치 (2,000,000,000원) - ";
+    public static final String NUM = "개";
 
-    private Integer purchasePrice;
     private Integer lottoCount;
-    private Lotto answer;
-    private String rawWinningInput;
 
     public Integer getPurchaseAmount(){
         Integer purchasePrice = 0;
         try {
             System.out.println(LOTTO_AMOUNT_PHRASE);
             String rawPurchasePrice = Console.readLine();
+            System.out.println();
             purchasePrice = parseInt(rawPurchasePrice);
             this.lottoCount = this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
+            System.out.println(ErrorMessage.ONLY_NUMBER.getError());
             return getPurchaseAmount();
         }
         return purchasePrice;
@@ -39,22 +43,20 @@ public class View {
     public Integer countLotto(Integer input){
         Integer lottoCount = input/1000;
         if (input % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000으로 나누어 떨어지는 숫자로만 기입해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
         return lottoCount;
     }
 
     public static void printLotto(Lotto lotto){
-        String joinString = "[";
-        joinString = String.join(", ", lotto.getNumbers().toString());
-        joinString = joinString + "]";
-        System.out.println(joinString);
+        System.out.println(lotto.getNumbers());
     }
 
     public Lotto getWinningInput(){
         System.out.println(LOTTO_WINNING_INPUT);
         String rawWinningInput = Console.readLine();
+        System.out.println();
         Lotto answer;
         try {
             answer = new Lotto(Arrays.asList(rawWinningInput.split(COMMA)).stream()
@@ -62,6 +64,7 @@ public class View {
                     .collect(Collectors.toList()));
         }
         catch (IllegalArgumentException e){
+            System.out.println(ErrorMessage.WIN_INPUT.getError());
             return getWinningInput();
         }
         return answer;
@@ -70,6 +73,7 @@ public class View {
     public Integer getBonusInput(Lotto answer){
         System.out.println(LOTTO_BONUS_INPUT);
         String rawBonus  = Console.readLine();
+        System.out.println();
         Integer bonus = 0;
         try{
             bonus = parseInt(rawBonus);
@@ -77,16 +81,22 @@ public class View {
             checkRange(bonus);
         }
         catch (IllegalArgumentException e){
+            System.out.println(ErrorMessage.BONUS.getError());
             return getBonusInput(answer);
         }
         return bonus;
     }
 
-    public Integer getLottoCount(){
-        return this.lottoCount;
+    public void printResults(WinningDetails grades){
+        System.out.println(WIN_STATICS);
+        System.out.println(THREE + grades.getThird() + NUM);
+        System.out.println(FOUR + grades.getFourth() + NUM);
+        System.out.println(FIVE + grades.getFifth() + NUM);
+        System.out.println(FIVE_BONUS +grades.getFifthBonus() + NUM);
+        System.out.println(SIX + grades.getSixth() + NUM);
     }
 
-    public Integer getPurchasePrice(){
-        return this.purchasePrice;
+    public Integer getLottoCount(){
+        return this.lottoCount;
     }
 }
