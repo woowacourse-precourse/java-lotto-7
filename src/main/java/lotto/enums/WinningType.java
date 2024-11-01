@@ -5,6 +5,5 @@ public enum WinningType {
   SECOND_PLACE,
   THIRD_PLACE,
   FOURTH_PLACE,
-  FIFTH_PLACE,
-  SIXTH_PLACE;
+  FIFTH_PLACE;
 }
