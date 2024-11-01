@@ -3,14 +3,14 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GradeSaver {
+public class WinningDetails {
     private Integer third = 0;
     private Integer fourth = 0;
     private Integer fifth = 0;
     private Integer fifthBonus = 0;
     private Integer sixth = 0;
 
-    public GradeSaver sumUpGrades(List<MyResult> resultList){
+    public WinningDetails sumUpGrades(List<MyResult> resultList){
         for(MyResult result : resultList){
             if(result.getMatches() == 3) this.third++;
             else if(result.getMatches() == 4) this.fourth++;
