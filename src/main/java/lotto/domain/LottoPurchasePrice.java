@@ -13,7 +13,7 @@ public class LottoPurchasePrice {
         this.lottoCount = purchasePrice / lottoConfig.getLottoPrice();
     }
 
-    public static LottoPurchasePrice of(int purchasePrice, LottoConfig lottoConfig) {
+    public static LottoPurchasePrice ofPurchasePriceAndConfig(int purchasePrice, LottoConfig lottoConfig) {
         return new LottoPurchasePrice(purchasePrice, lottoConfig);
     }
 

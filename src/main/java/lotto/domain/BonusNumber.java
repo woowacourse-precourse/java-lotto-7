@@ -11,7 +11,8 @@ public class BonusNumber {
         this.number = number;
     }
 
-    public static BonusNumber of(int number, WinningLotto winningLotto, LottoConfig lottoConfig) {
+    public static BonusNumber ofNumberAndWinningLottoAndConfig(
+            int number, WinningLotto winningLotto, LottoConfig lottoConfig) {
         return new BonusNumber(number, winningLotto, lottoConfig);
     }
 

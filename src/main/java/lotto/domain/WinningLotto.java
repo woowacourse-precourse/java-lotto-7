@@ -12,7 +12,7 @@ public class WinningLotto {
         this.numbers = numbers;
     }
 
-    public static WinningLotto of(List<Integer> numbers, LottoConfig lottoConfig) {
+    public static WinningLotto ofNumbersAndConfig(List<Integer> numbers, LottoConfig lottoConfig) {
         return new WinningLotto(numbers, lottoConfig);
     }
 

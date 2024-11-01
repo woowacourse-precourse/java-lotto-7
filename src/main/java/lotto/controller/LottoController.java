@@ -44,24 +44,24 @@ public class LottoController {
     private LottoPurchasePrice requestLottoPurchasePrice() {
         lottoOutputView.printLottoPurchasePrice();
         int lottoPurchasePrice = lottoInputView.readLottoPurchasePrice();
-        return LottoPurchasePrice.of(lottoPurchasePrice, lottoConfig);
+        return LottoPurchasePrice.ofPurchasePriceAndConfig(lottoPurchasePrice, lottoConfig);
     }
 
     private LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
-        LottoDispenser lottoDispenser = new LottoDispenser(lottoConfig);
+        LottoDispenser lottoDispenser = LottoDispenser.fromConfig(lottoConfig);
         return lottoDispenser.issueLottoBundle(lottoPurchasePrice);
     }
 
     private WinningLotto requestLottoWinningNumbers() {
         lottoOutputView.printLottoWinningNumbers();
         List<Integer> lottoWinningNumbers = lottoInputView.readLottoWinningNumbers();
-        return WinningLotto.of(lottoWinningNumbers, lottoConfig);
+        return WinningLotto.ofNumbersAndConfig(lottoWinningNumbers, lottoConfig);
     }
 
     private BonusNumber requestLottoBonusNumber(WinningLotto winningLotto) {
         lottoOutputView.printLottoBonusNumber();
         int lottoBonusNumber = lottoInputView.readLottoBonusNumber();
-        return BonusNumber.of(lottoBonusNumber, winningLotto, lottoConfig);
+        return BonusNumber.ofNumberAndWinningLottoAndConfig(lottoBonusNumber, winningLotto, lottoConfig);
     }
 
 }

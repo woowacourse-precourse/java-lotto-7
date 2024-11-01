@@ -9,12 +9,16 @@ import lotto.enums.LottoConfig;
 public class LottoDispenser {
     private final LottoConfig lottoConfig;
 
-    public LottoDispenser(LottoConfig lottoConfig) {
+    private LottoDispenser(LottoConfig lottoConfig) {
         this.lottoConfig = lottoConfig;
     }
 
+    public static LottoDispenser fromConfig(LottoConfig lottoConfig) {
+        return new LottoDispenser(lottoConfig);
+    }
+
     public LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
-        return LottoBundle.from(issueLottos(lottoPurchasePrice.getLottoCount()), lottoConfig);
+        return LottoBundle.ofLottosAndConfig(issueLottos(lottoPurchasePrice.getLottoCount()), lottoConfig);
     }
 
     private List<Lotto> issueLottos(int lottoCount) {

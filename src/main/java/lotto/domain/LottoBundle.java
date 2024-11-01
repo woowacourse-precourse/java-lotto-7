@@ -14,7 +14,7 @@ public class LottoBundle {
         this.lottoConfig = lottoConfig;
     }
 
-    public static LottoBundle from(List<Lotto> lottos, LottoConfig lottoConfig) {
+    public static LottoBundle ofLottosAndConfig(List<Lotto> lottos, LottoConfig lottoConfig) {
         return new LottoBundle(lottos, lottoConfig);
     }
 
@@ -26,7 +26,8 @@ public class LottoBundle {
         List<LottoRank> lottoRanks = checkLottoRank(winningLotto, bonusNumber);
         double totalPrizeMoney = sumLottoPrizeMoney(lottoRanks);
 
-        return new LottoResult(lottoRanks, lottoConfig.getLottoPrice(), totalPrizeMoney);
+        return LottoResult.ofLottoRanksAndLottoPriceAndTotalPrizeMoney(
+                lottoRanks, lottoConfig.getLottoPrice(), totalPrizeMoney);
     }
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {

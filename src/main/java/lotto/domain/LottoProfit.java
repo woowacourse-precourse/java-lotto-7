@@ -4,9 +4,13 @@ public class LottoProfit {
     private final double profit;
     private final int lottoPurchasePrice;
 
-    public LottoProfit(double profit, int lottoPurchasePrice){
+    private LottoProfit(double profit, int lottoPurchasePrice){
         this.profit = profit;
         this.lottoPurchasePrice = lottoPurchasePrice;
+    }
+
+    public static LottoProfit ofProfitAndLottoPurchasePrice(double profit, int lottoPurchasePrice){
+        return new LottoProfit(profit, lottoPurchasePrice);
     }
 
     public double getProfitRate(){
