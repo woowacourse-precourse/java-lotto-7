@@ -44,4 +44,8 @@ public class Lotto {
     public static Lotto createLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -45,4 +45,14 @@ public class WinningNumbers {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public CorrectCount check(final List<Integer> lottoNumbers) {
+        int correctCount = 0;
+        for (Integer lottoNumber : lottoNumbers) {
+            if (this.numbers.contains(lottoNumber)) {
+                correctCount++;
+            };
+        }
+        return CorrectCount.of(correctCount);
+    }
 }

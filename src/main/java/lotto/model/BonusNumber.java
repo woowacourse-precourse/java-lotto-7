@@ -29,4 +29,11 @@ public class BonusNumber {
             );
         }
     }
+
+    public CorrectCount check(final List<Integer> lottoNumbers, final CorrectCount correctCount) {
+        if (lottoNumbers.contains(number)) {
+            correctCount.updateBonus();
+        }
+        return correctCount;
+    }
 }
