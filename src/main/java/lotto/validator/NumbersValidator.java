@@ -7,12 +7,17 @@ import static lotto.constants.LottoConstants.*;
 
 public class NumbersValidator {
     private enum ErrorMessage {
-        MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다.");
+        MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다."),
+        MUST_BE_NUMBER("%s 로또 번호는 숫자 형식이어야 합니다.");
 
         private final String message;
 
         ErrorMessage(String message) {
             this.message = message;
+        }
+
+        public String getMessage() {
+            return String.format(message, ERROR_MESSAGE_BEGINNING);
         }
 
         public String getMessage(String type, int length) {
@@ -28,6 +33,7 @@ public class NumbersValidator {
 
     private void parseNumbersToList(String numbersInput) {
         for (String number : numbersInput.split(",")) {
+            validateIsNumber(number);
             numbers.add(Integer.parseInt(number));
         }
     }
@@ -44,6 +50,14 @@ public class NumbersValidator {
         int targetLength = LENGTH_BY_NUMBER_TYPE.get(type);
         if (numbers.size() != targetLength) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_TARGET_LENGTH.getMessage(type, targetLength));
+        }
+    }
+
+    private void validateIsNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NUMBER.getMessage());
         }
     }
 }
