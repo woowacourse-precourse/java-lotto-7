@@ -6,7 +6,24 @@ import java.util.List;
 
 public class User {
 
+    public int money;
+
     public List<List<Integer>> lotteryTickets = new ArrayList<>();
+
+    public User(int money) {
+        validate(money);
+        this.money = money;
+    }
+
+    private void validate(int money) {
+        if (money < 0 || (money % 1000) != 0) {
+            throw new IllegalArgumentException("[ERROR] 0원 이상의 1000원 단위로 나누어 떨어지는 금액을 입력해야합니다.");
+        }
+    }
+
+    public void moneyToTicket(int money) {
+        publishLotto(money / 1000);
+    }
 
     public void publishLotto(int count) {
         for (int i = 0; i < count; i++) {
