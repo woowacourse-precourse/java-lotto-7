@@ -30,4 +30,12 @@ public class LottoStatistics {
             updateResultCount(result);
         }
     }
+
+    public int calculateTotalPrize(){
+        int totalPrize = 0;
+        for(LottoResult result : LottoResult.values()){
+            totalPrize += result.getWinningAmount() * resultCounts.get(result);
+        }
+        return totalPrize;
+    }
 }
