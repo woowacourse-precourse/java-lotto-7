@@ -1,4 +1,4 @@
-package lotto.javaEnum;
+package lotto.validation;
 
 public enum ErrorMessage {
     INVALID_AMOUNT("[ERROR] 가격은 1000원 단위로 입력 가능합니다."),
