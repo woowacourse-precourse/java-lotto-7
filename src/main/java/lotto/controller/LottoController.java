@@ -9,11 +9,11 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoIssuer lottoIssuer;
-    private final InputController inputController;
+    private final InputHandler inputController;
     private final OutputView outputView;
 
     public LottoController(LottoIssuer lottoIssuer,
-                           InputController inputController, OutputView outputView) {
+                           InputHandler inputController, OutputView outputView) {
         this.lottoIssuer = lottoIssuer;
         this.inputController = inputController;
         this.outputView = outputView;

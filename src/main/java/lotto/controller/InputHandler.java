@@ -9,10 +9,10 @@ import lotto.Validator.AmountValidator;
 import lotto.util.InputParser;
 import lotto.util.NumberConverter;
 
-public class InputController {
+public class InputHandler {
     private final InputView inputView;
 
-    public InputController(InputView inputView) {
+    public InputHandler(InputView inputView) {
         this.inputView = inputView;
     }
 
