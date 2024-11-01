@@ -62,20 +62,14 @@ public class InputView {
     }
 
     //inputBonusNumber 구현
-    public static int inputBonusNumber(List<Integer> winningNumber) {
-        while (true) {
-            try {
-                OutputView.printPrompt(OutputViewEnum.BONUS_NUMBER_INPUT.getMessage());
-                String userInput = Console.readLine();
-                validateBonusNumber(userInput, winningNumber);
-                return Integer.parseInt(userInput);
-            } catch (IllegalArgumentException e) {
-                OutputView.errorPrint(e.getMessage());
-            }
-        }
+    public static int inputBonusNumber() {
+        OutputView.printPrompt(OutputViewEnum.BONUS_NUMBER_INPUT.getMessage());
+        String userInput = Console.readLine();
+        validateBonusNumberInput(userInput);
+        return Integer.parseInt(userInput);
     }
 
-    private static void validateBonusNumber(String userInput, List<Integer> winningNumber) {
+    private static void validateBonusNumberInput(String userInput) {
         if (userInput.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage() + " : " + userInput);
         }

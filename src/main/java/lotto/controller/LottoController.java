@@ -14,12 +14,12 @@ public class LottoController {
     LottoMachine lottoMachine = new LottoMachine();
 
     public void run() {
-        List<Lotto> Tickets = buyLotto();
-        List<Integer> winningNumber = InputView.inputWinningNumber();
-        InputView.inputBonusNumber(winningNumber);
         List<Lotto> tickets = buyLotto();
         OutputView.printTickets(tickets);
         List<Integer> winningNumberData = getWinningNumber();
+        int bonusNum = getBonusNumber();
+        WinningNumber winningNumber = new WinningNumber(winningNumberData, bonusNum);
+        WinningResult winningResult = getWinningResult(tickets, winningNumber);
     }
 
     private List<Lotto> buyLotto() {
@@ -53,4 +53,21 @@ public class LottoController {
             }
         }
     }
+
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                int bonus_number;
+
+                bonus_number = InputView.inputBonusNumber();
+                return bonus_number;
+            } catch (NumberFormatException e) {
+                OutputView.errorPrint(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                OutputView.errorPrint(e.getMessage());
+            }
+            return 0;
+        }
+    }
+
 }
