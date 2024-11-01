@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.View.OutputView;
 import lotto.domain.Lotto;
 import lotto.Service.LottoService;
 import lotto.View.InputView;
@@ -9,16 +10,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     LottoService lottoService = new LottoService();
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -31,6 +31,16 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 로또_발행시_장수가_구매금액에서_1000을_나눈_개수만큼_발행된다() {
+        LottoService lottoService = new LottoService();
+        int purchase_amount = 6000;
+        List<Lotto> lotto = lottoService.purchaseLotto(purchase_amount);
+        assertThat(lotto.size()).isEqualTo(6);
+    }
+
+
 }
 
 
