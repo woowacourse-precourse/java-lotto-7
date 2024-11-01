@@ -1,6 +1,8 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.*;
+
+import lotto.Utility.RandomNumberCreator;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
