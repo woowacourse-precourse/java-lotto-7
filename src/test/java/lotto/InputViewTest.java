@@ -21,4 +21,12 @@ class InputViewTest {
         assertThatThrownBy(() -> inputView.checkAmount(input)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageMatching("\\[ERROR] 구입금액은 1000원 단위로 입력해 주세요.");
     }
+
+    @ParameterizedTest
+    @DisplayName("당첨 번호 입력 예외 발생")
+    @ValueSource(strings = {"0", "46", "a", "-1"})
+    void checkInputLottoNumbers(String input) {
+        assertThatThrownBy(() -> inputView.checkInputLottoNumbers(input)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageMatching("\\[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }
