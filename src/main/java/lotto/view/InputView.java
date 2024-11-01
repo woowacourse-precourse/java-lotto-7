@@ -1,11 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.console.ConsoleManager;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.InputException;
 import lotto.model.Amount;
+import lotto.model.Lotto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import static lotto.console.ConsoleManager.*;
@@ -16,7 +18,30 @@ public class InputView {
         return new Amount(
                 Validator.validateAmount(Console.readLine()));
     }
+    public Lotto getWinning(){
+        println("당첨 번호를 입력해 주세요.");
+        String line = Validator.validateWinning(Console.readLine());
+        List<Integer> numbers = lineToNumbers(line);
+        return new Lotto(numbers);
+    }
+
+    private static List<Integer> lineToNumbers(String line) {
+        String[] splitLine = line.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String num : splitLine) {
+            numbers.add(Integer.parseInt(num));
+        }
+        return numbers;
+    }
+
     private static class Validator{
+        static String validateWinning(String input){
+            String[] splitNumber = input.split(",");
+            for (String number : splitNumber) {
+                isNotNumeric(number);
+            }
+            return input;
+        }
         static String validateAmount(String input){
             isNotNumeric(input);
             isMinus(input);
