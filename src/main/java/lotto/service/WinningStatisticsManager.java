@@ -56,33 +56,38 @@ public class WinningStatisticsManager {
         return winningStatistics;
     }
 
-    public void increaseThree(Lotto lotto){
+    public WinningStatisticsManager increaseThree(Lotto lotto){
         if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==3)
             statistics.set(0, statistics.getFirst() + 1);
+        return this;
     }
 
-    public void increaseFour(Lotto lotto){
+    public WinningStatisticsManager increaseFour(Lotto lotto){
         if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==4)
             statistics.set(1, statistics.get(1) + 1);
+        return this;
     }
 
-    public void increaseFiveAndBonus(Lotto lotto){
+    public WinningStatisticsManager increaseFiveAndBonus(Lotto lotto){
         if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==5&&checker.doesContainBonusNumber(lotto))
             statistics.set(3, statistics.get(3) + 1);
         if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==5&&!checker.doesContainBonusNumber(lotto))
             statistics.set(2, statistics.get(2) + 1);
+        return this;
     }
 
-    public void increaseSix(Lotto lotto){
+    public WinningStatisticsManager increaseSix(Lotto lotto){
         if(checker.countMatchingNumbers(converter.LottoIntoNumber(lotto))==6)
             statistics.set(4, statistics.get(4) + 1);
+        return this;
     }
 
-    public void increaseAll(Lotto lotto){
+    public WinningStatisticsManager increaseAll(Lotto lotto){
         increaseThree(lotto);
         increaseFour(lotto);
         increaseFiveAndBonus(lotto);
         increaseSix(lotto);
+        return this;
     }
 
     public BigDecimal getEarningRate(BigInteger money) {
@@ -97,5 +102,4 @@ public class WinningStatisticsManager {
                 .multiply(BigDecimal.valueOf(100))
                 .setScale(2, RoundingMode.HALF_UP); // doubleValue() 제거하여 BigDecimal 반환
     }
-
 }

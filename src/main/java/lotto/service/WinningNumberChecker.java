@@ -32,4 +32,8 @@ public class WinningNumberChecker {
     public boolean doesContainBonusNumber(Lotto lotto){
         return new LottoConverter().LottoIntoNumber(lotto).contains(bonusNumber);
     }
+
+    public List<Integer> getWinningNumbers(){
+        return winningSet;
+    }
 }

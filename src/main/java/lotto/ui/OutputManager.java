@@ -44,7 +44,6 @@ public class OutputManager {
                     results.getOrDefault(tier, 0)
             );
         }
-        // `toPlainString()`으로 지수 표기법 없이 출력
         System.out.println("총 수익률은 " + earningRate.toPlainString() + "%입니다.");
     }
 

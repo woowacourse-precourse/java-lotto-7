@@ -19,14 +19,12 @@ public class LottoGame {
     public void start(){
         outputManager.requestMoney();
         BigInteger money =inputManager.validateMoney(inputManager.validateEmptyAndReturnInput());
-        lottoPool.makeRandomLotto(new LottoConverter().MoneyToLotto(money));
-        OutputManager.printPurchasedLotto(lottoPool.getLottosDrawn());
+        OutputManager.printPurchasedLotto(lottoPool.makeRandomLotto(new LottoConverter().MoneyToLotto(money)).getLottosDrawn());
         outputManager.requestWinningNumber();
         winningNumberChecker.setWinningNumber(inputManager.validateAndReturnNumbers(inputManager.validateEmptyAndReturnInput()));
         outputManager.requestBonusNumber();
-        winningNumberChecker.setBonusNumber(inputManager.validateBonusNumber(inputManager.validateEmptyAndReturnInput()));
+        winningNumberChecker.setBonusNumber(inputManager.validateBonusNumber(inputManager.validateEmptyAndReturnInput(),winningNumberChecker.getWinningNumbers()));
         lottoPool.getLottosDrawn().forEach(winningStatisticsManager::increaseAll);
-        outputManager.printStatistics(winningStatisticsManager.getWinningStatistics(),
-                winningStatisticsManager.getEarningRate(money));
+        outputManager.printStatistics(winningStatisticsManager.getWinningStatistics(), winningStatisticsManager.getEarningRate(money));
     }
 }

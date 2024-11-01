@@ -14,7 +14,6 @@ public class InputManager {
                 System.out.println("[ERROR] 빈 입력은 허용되지 않습니다.");
                 throw new IllegalArgumentException();
             }
-
         return input;
     }
 
@@ -24,10 +23,14 @@ public class InputManager {
         return new BigInteger(money);
     }
 
-    public int validateBonusNumber(String number){
+    public int validateBonusNumber(String number,List<Integer> winningNumbers){
         ValidChecker checker = new ValidChecker();
         checker.notInt(number);
         checker.checkUnderMaximum(Integer.parseInt(number));
+        if(winningNumbers.contains(number)) {
+            System.out.println("[ERROR] 보너스 번호는 당첨 번호 6개와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호 6개와 중복될 수 없습니다.");
+        }
         return Integer.parseInt(number);
     }
 

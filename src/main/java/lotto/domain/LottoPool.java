@@ -9,10 +9,11 @@ import java.util.List;
 public class LottoPool {
     private List<Lotto> lottosDrawn = new ArrayList<Lotto>();
 
-    public void makeRandomLotto(BigInteger numberOfLottos) {
+    public LottoPool makeRandomLotto(BigInteger numberOfLottos) {
         for(BigInteger i = BigInteger.ZERO;!i.equals(numberOfLottos); i= i.add(BigInteger.ONE)) {
             addToDrawnLottos(new Lotto(new DrawNumber().draw()));
         }
+        return this;
     }
 
     public List<Lotto> getLottosDrawn(){
