@@ -1,6 +1,7 @@
 package lotto.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -35,5 +36,13 @@ public class LottoNumbersTest {
     void test_4() {
         LottoNumbers lottoNumbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
         assertTrue(lottoNumbers.hasNumber(6));
+    }
+
+    @DisplayName("숫자모음들끼리 몇 개 같은지 반환한다")
+    @Test
+    void test_5() {
+        LottoNumbers lottoNumbers1 = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> numbers = List.of(1, 2, 3, 41, 42, 43);
+        assertEquals(3, lottoNumbers1.countDuplicatingNumbers(numbers));
     }
 }

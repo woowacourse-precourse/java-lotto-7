@@ -14,13 +14,11 @@ public class WinningBalls {
        return lottoNumbers.hasNumber(number);
     }
 
-    public int getSameNumberCount(Lotto lotto) {
-        return (int) this.lottoNumbers.getNumbers().stream()
-                .filter(lotto::hasNumber)
-                .count();
-    }
-
     protected List<Integer> getNumbers() {
         return this.lottoNumbers.getNumbers();
+    }
+
+    public LottoNumbers getLottoNumbers() {
+        return this.lottoNumbers;
     }
 }

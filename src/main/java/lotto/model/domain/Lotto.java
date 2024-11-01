@@ -10,6 +10,8 @@ public class Lotto {
         this.lottoNumbers = new LottoNumbers(numbers);
     }
 
+
+
     public boolean hasNumber(int number) {
         return lottoNumbers.hasNumber(number);
     }
@@ -25,5 +27,9 @@ public class Lotto {
 
     protected List<Integer> getNumbers() {
         return lottoNumbers.getNumbers();
+    }
+
+    public int countDuplicatingCount(LottoNumbers lottoNumbers) {
+        return this.lottoNumbers.countDuplicatingNumbers(lottoNumbers.getNumbers());
     }
 }

@@ -58,4 +58,10 @@ public class LottoNumbers {
     public boolean hasNumber(int number) {
         return this.numbers.contains(number);
     }
+
+    public int countDuplicatingNumbers(List<Integer> other) {
+        return (int) this.numbers.stream()
+                .filter(other::contains)
+                .count();
+    }
 }

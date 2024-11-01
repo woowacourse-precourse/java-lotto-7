@@ -37,12 +37,4 @@ class WinningBallsTest {
         assertThatThrownBy(() -> new WinningBalls(List.of(1, 2, 3, 4, 5, 10000)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @DisplayName("당첨 번호와 몇 개가 똑같은지 반환한다")
-    @Test
-    void test5() {
-        WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertEquals(6, winningBalls.getSameNumberCount(lotto));
-    }
 }

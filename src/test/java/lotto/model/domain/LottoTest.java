@@ -13,7 +13,7 @@ class LottoTest {
     @Test
     void createLotto() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertEquals(numbers, lotto.getNumbers());
     }
 
@@ -37,5 +37,13 @@ class LottoTest {
     void validateLottoNumberRange2() {
         assertThatThrownBy(() -> new Lotto(List.of(0)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호와 다른 로또 번호가 몇 개 일치하는지 반환한다")
+    @Test
+    void test_5() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumbers lottoNumbers = new LottoNumbers(List.of(1, 2, 3, 41, 42, 43));
+        assertEquals(3, lotto.countDuplicatingCount(lottoNumbers));
     }
 }

@@ -46,7 +46,7 @@ public class Lottos {
     }
 
     private Rank calculateRankForLotto(Lotto lotto, WinningBalls winningBalls, BonusBall bonusBall) {
-        int sameWinningCount = winningBalls.getSameNumberCount(lotto);
+        int sameWinningCount= lotto.countDuplicatingCount(winningBalls.getLottoNumbers());
         int sameBonusCount = bonusBall.getSameNumberCount(lotto);
         return Rank.valueOf(sameWinningCount, sameBonusCount);
     }
