@@ -21,6 +21,7 @@ public class Application {
         // 당첨번호 입력기능
         Lotto lotto = inputWinningNumbers();
 
+        
     }
 
     private static Lotto inputWinningNumbers() {
