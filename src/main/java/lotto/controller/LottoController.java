@@ -66,13 +66,11 @@ public class LottoController {
     }
 
     public void run() {
-
         inputPurchaseProcess();
         buyLottosProcess();
         inputWinningNumbersProcess();
         inputBonusNumberProcess();
         winningStatisticsProcess();
-
     }
 
 }

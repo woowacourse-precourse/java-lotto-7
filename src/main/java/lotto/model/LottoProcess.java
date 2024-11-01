@@ -25,7 +25,8 @@ public class LottoProcess {
     }
 
     public List<Integer> getRandomLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> immutableLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(immutableLottoNumbers);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
