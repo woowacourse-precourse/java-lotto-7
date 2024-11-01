@@ -24,6 +24,7 @@ public class InputValidation {
     private Long getValidatedMoney() {
         String moneyInput = view.getMoneyInput();
         checkInputNull(moneyInput);
+        checkMoneyForm(moneyInput);
         Long money = Long.parseLong(moneyInput);
         checkUnitOfMoney(money);
         return money;
@@ -42,6 +43,10 @@ public class InputValidation {
         }
     }
 
-
+    private void checkMoneyForm(String input) {
+        if (!input.matches("\\d+")) { // 숫자로만 이루어졌는지 확인
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자(양수)만 입력 가능합니다.");
+        }
+    }
 
 }
