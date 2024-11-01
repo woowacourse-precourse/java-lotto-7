@@ -8,6 +8,17 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningNumbersTest {
+    @Test
+    @DisplayName("빈 문자열을 입력할 경우 예외가 발생한다.")
+    void 빈_문자열을_입력할_경우_예외가_발생한다() {
+        // given
+        String emptyNumbers = "";
+
+        // when, then
+        assertThatThrownBy(() -> new WinningNumbers(emptyNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(WinningNumbersErrorMessages.INVALID_EMPTY.getMessage());
+    }
 
     @Test
     @DisplayName("당첨 번호가 6개가 아닐 경우 예외가 발생한다.")
