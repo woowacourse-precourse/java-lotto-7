@@ -23,10 +23,15 @@ public class Lottos {
     public static Lottos from(int amount) {
         List<Lotto> lottos = new ArrayList<>(amount);
         for (int i = 0; i < amount; i++) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lotto.sort(Integer::compareTo);
             lottos.add(new Lotto(lotto));
         }
         return new Lottos(lottos);
+    }
+
+    public static Lottos from(Budget budget) {
+        int amount = budget.getBudget() / 1000;
+        return from(amount);
     }
 }
