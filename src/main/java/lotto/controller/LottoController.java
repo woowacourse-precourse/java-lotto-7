@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Number;
 import lotto.model.Price;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,9 +26,9 @@ public class LottoController {
         Lottos lottos = new Lottos(ticketCount);
         outputRandomLottoNumber(ticketCount, lottos);
 
-        Lotto WinningLotto = inputWinningLotto();
+        Lotto WinningLottoNum = inputWinningLotto();
 
-        inputBonusNumber();
+        WinningLotto winningLotto = inputBonusNumber(WinningLottoNum);
 
         inputView.closeConsole();
     }
@@ -60,13 +61,13 @@ public class LottoController {
         }
     }
 
-    private void inputBonusNumber(){
-        while(true){
-            try{
+    private WinningLotto inputBonusNumber(Lotto WinningLottoNum) {
+        while (true) {
+            try {
                 String rawBonusNum = inputView.readBonusNumber();
-                Number number = new Number(rawBonusNum);
-                return;
-            }catch(IllegalArgumentException e){
+                Number bonusNum = new Number(rawBonusNum);
+                return new WinningLotto(WinningLottoNum, bonusNum);
+            } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }
         }
