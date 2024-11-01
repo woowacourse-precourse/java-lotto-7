@@ -1,5 +1,7 @@
 package lotto;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.machine.LottoMachine;
@@ -13,7 +15,8 @@ import lotto.domain.winning.WinningStatistics;
 public class Application {
 
     public static void main(String[] args) {
-        int count = new Ticket(2_100_000_000).getCount();
+        int money = 2100000000;
+        int count = new Ticket(money).getCount();
         LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
         List<Lotto> lottos = lottoMachine.issueLottos(count);
 
@@ -39,7 +42,7 @@ public class Application {
                 continue;
             }
             if (value == Rank.SECOND) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
                         value.getMatchCount(),
                         value.getPrizeMoney(),
                         winningStatistics.getCountByRank(value));
@@ -51,6 +54,11 @@ public class Application {
             }
         }
 
+        BigDecimal earningRate = winningStatistics.getTotalPrize()
+                .divide(BigDecimal.valueOf(money), 2, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100));
+
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
     }
 
 }

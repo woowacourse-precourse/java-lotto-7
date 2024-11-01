@@ -1,5 +1,6 @@
 package lotto.domain.winning;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,19 @@ public class WinningStatistics {
 
     public int getCountByRank(Rank rank) {
         return result.get(rank);
+    }
+
+    public BigDecimal getTotalPrize() {
+        BigDecimal total = BigDecimal.ZERO;
+        for (Rank rank : result.keySet()) {
+            total = total.add(calculateTotalPrizeByRank(rank));
+        }
+        return total;
+    }
+
+    private BigDecimal calculateTotalPrizeByRank(Rank rank) {
+        return BigDecimal.valueOf(rank.getPrizeMoney())
+                .multiply(BigDecimal.valueOf(getCountByRank(rank)));
     }
 
 }

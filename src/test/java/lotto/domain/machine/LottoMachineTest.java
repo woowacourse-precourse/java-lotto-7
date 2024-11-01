@@ -1,9 +1,9 @@
-package lotto.domain.lotto;
+package lotto.domain.machine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.domain.machine.LottoMachine;
+import lotto.domain.lotto.Lotto;
 import lotto.fake.FakeRandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
