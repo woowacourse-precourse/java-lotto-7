@@ -7,12 +7,11 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
 
 import static lotto.domain.PurchasePrice.LOTTO_PRICE;
+import static lotto.domain.Lotto.MIN_LOTTO_NUMBER;
+import static lotto.domain.Lotto.MAX_LOTTO_NUMBER;
+import static lotto.domain.Lotto.SIZE_OF_LOTTO;
 
 public class LottoGenerator {
-
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int MAX_LOTTO_NUMBER = 45;
-    public static final int SIZE_OF_LOTTO = 6;
 
     List<Lotto> generatedLottoNumbers = new ArrayList<>();
 
