@@ -14,6 +14,12 @@ public class PurchaseAmount {
         return purchaseAmountInstance;
     }
 
+    public static void resetInstance() {
+        if ("true".equals(System.getProperty("IS_TEST_ENV"))) {
+            purchaseAmountInstance = null;
+        }
+    }
+
 
     public int getPurchaseAmount() {
         return purchaseAmount;
