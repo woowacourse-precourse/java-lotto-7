@@ -21,6 +21,24 @@ public enum LottoRanking {
         this.message = message;
     }
 
+    public static LottoRanking valueOf(int countOfMatch, boolean matchBonus) {
+        if (countOfMatch < 3) {
+            return MISS;
+        }
+
+        if (countOfMatch == 5 && matchBonus) {
+            return SECOND;
+        }
+
+        for (LottoRanking ranking : values()) {
+            if (countOfMatch == ranking.getCountOfMatch() && ranking != SECOND) {
+                return ranking;
+            }
+        }
+
+        throw new IllegalArgumentException(ERROR_MESSAGE);
+    }
+
     public int getCountOfMatch() {
         return countOfMatch;
     }
