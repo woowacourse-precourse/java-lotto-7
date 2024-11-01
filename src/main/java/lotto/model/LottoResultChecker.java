@@ -30,7 +30,6 @@ public class LottoResultChecker {
         return getPrizeResult();
     }
 
-
     private Integer getPrizeCount(Lotto purchaseLotto, Lotto prizeLotto) {
         Integer prize = 0;
         for (int i = 0; i < 6; i++) {
@@ -56,8 +55,5 @@ public class LottoResultChecker {
         }
         return false;
     }
-
-
-
 
 }
