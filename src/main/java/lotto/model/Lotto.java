@@ -1,13 +1,13 @@
 package lotto.model;
 
-import lotto.utils.LottoValidator;
-import lotto.utils.Validator;
+import lotto.utils.validator.LottoValidator;
+import lotto.utils.validator.Validator;
 
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    Validator<List<Integer>> validator;
+    public Validator<List<Integer>> validator;
 
     public Lotto(List<Integer> numbers) {
         validator = new LottoValidator();
@@ -19,5 +19,8 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

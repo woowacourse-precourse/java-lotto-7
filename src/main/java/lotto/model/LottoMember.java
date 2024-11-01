@@ -1,10 +1,29 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoMember {
-    /**
-     * 로또 구매자라 생각
-     * 로또 랜덤 넘버들을 받아와야 함
-     * 로또 당첨 여부를 받아와야 함
-     * 로또 수익률을 받아와야 함
-     */
+
+    private final List<Lotto> purchasedLotto;
+    List<Integer> purchasedLottoNumbers = new ArrayList<>();
+
+    public LottoMember() {
+        this.purchasedLotto = new ArrayList<>();
+    }
+
+    public List<Lotto> getPurchasedLotto() {
+        for (Lotto lotto : purchasedLotto) {
+            purchasedLottoNumbers.addAll(lotto.getLottoNumbers());
+        }
+        return purchasedLotto;
+    }
+
+    public void setPurchasedLotto(Lotto lotto) {
+        purchasedLotto.add(lotto);
+    }
+
+    public void setLottoResult() {
+    }
+
 }

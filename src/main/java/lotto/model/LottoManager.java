@@ -1,13 +1,43 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.utils.validator.LottoValidator;
+import lotto.utils.validator.Validator;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LottoManager {
-    /**
-     * 로또 매니저
-     * 로또 수익률 계산 기능
-     * 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는 기능
-     * 당첨 번호를 저장
-     * 로또의 번호들을 받고 당첨을 확인하는 기능
-     * 당첨된 내역들의 당첨 통계를 계산하는 기능
-     * 당첨된 통계를 통해 총 수익률을 계산하는 가능
-     */
+    private final Integer price;
+    private final List<Lotto> purchasedLotto = new ArrayList<>();
+    public Validator<List<Integer>> validator;
+
+    public LottoManager(Integer price) {
+        this.price = price;
+        this.validator = new LottoValidator();
+    }
+
+    public Integer purchaseLotto() {
+        int numberOfLotto = price / 1000;
+        for (int i = 0; i < numberOfLotto; i++) {
+            purchasedLotto.add(generateRandomLotto());
+        }
+        return numberOfLotto;
+    }
+
+    public List<Lotto> getPurchasedLotto() {
+        return purchasedLotto;
+    }
+
+    private Lotto generateRandomLotto() {
+        List<Integer> randomLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(randomLottoNumber);
+        return new Lotto(randomLottoNumber);
+    }
+
+    public void isLottoResult(List<Integer> lottoResult, Integer bonusNumber) {
+        validator.validate(lottoResult);
+    }
+
 }
