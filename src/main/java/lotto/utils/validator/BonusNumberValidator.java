@@ -4,7 +4,7 @@ import java.util.List;
 
 import static lotto.exception.ErrorMessages.NUMBER_DUPLICATION;
 
-public class BonusNumberValidator implements Validator<String> {
+public class BonusNumberValidator implements ComparisonValidator {
     private final Validator<String> positiveIntValidator;
     private final Validator<Integer> lottoNumberValidator;
 
@@ -16,6 +16,7 @@ public class BonusNumberValidator implements Validator<String> {
         this.lottoNumberValidator = lottoNumberValidator;
     }
 
+    @Override
     public void validateWithComparison(String rawBonusNumber,  List<Integer> winningNumbers){
         validate(rawBonusNumber);
         int bonusNumber = Integer.parseInt(rawBonusNumber);
