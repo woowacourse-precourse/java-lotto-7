@@ -25,6 +25,19 @@ public class LottoGameController {
     }
 
     public void run (){
+
+        LottosDto lottosDto = executeLottoPurchase();
+        consoleOutputView.outputPurchaseLottoList(lottosDto);
+
+        handleWinningNumbersInput();
+        handleBonusNumberInput();
+
+
+
+
+    }
+
+    private LottosDto executeLottoPurchase(){
         while (true) {
             try{
                 String rawPurchaseAmount =  consoleInputView.inputPurchaseAmount();
@@ -36,10 +49,10 @@ public class LottoGameController {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }
+        return lottoPurchaseServiceImpl.getLottosDto();
+    }
 
-        LottosDto lottosDto = lottoPurchaseServiceImpl.getLottosDto();
-        consoleOutputView.outputPurchaseLottoList(lottosDto);
-
+    private void handleWinningNumbersInput(){
         while (true){
             try {
                 String rawWinningNumbers =  consoleInputView.inputWinningNumbers();
@@ -51,7 +64,9 @@ public class LottoGameController {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }
+    }
 
+    private void handleBonusNumberInput(){
         while (true){
             try{
                 String rawBonusNumber =  consoleInputView.inputBonusNumber();
@@ -63,9 +78,5 @@ public class LottoGameController {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }
-
-
-
-
     }
 }
