@@ -1,6 +1,6 @@
 package lotto.model;
 
-import 정java.util.List;
+import java.util.List;
 import lotto.Lotto;
 import lotto.util.Validator;
 
