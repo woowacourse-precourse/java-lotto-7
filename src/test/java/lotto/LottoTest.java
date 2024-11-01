@@ -54,4 +54,16 @@ class LottoTest {
         assertThat(lotto.numbersToString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
+    @Test
+    void 몇등인지(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winner = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(LottoRank.getRank(lotto, winner,7)).isEqualTo(LottoRank.FIRST);
+    }
+
+    @Test
+    void 정렬(){
+        assertThat(new Lotto(List.of(6,5,4,3,2,1)).getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+    }
+
 }
