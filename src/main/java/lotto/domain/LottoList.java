@@ -29,7 +29,7 @@ public class LottoList {
     }
 
     public LottoListDto toDto() {
-        return DtoMapper.toLottoListDto(this, this.toString());
+        return DtoMapper.toLottoListDto(this.toString());
     }
 
     public WinnerCountList countWinnerMatches(WinnerLotto winnerLotto) {

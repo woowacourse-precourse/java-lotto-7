@@ -26,7 +26,7 @@ public class Money {
     }
 
     public MoneyDto toDto() {
-        return DtoMapper.toMoneyDto(this, calculateLottoCount(amount));
+        return DtoMapper.toMoneyDto(calculateLottoCount(amount));
     }
 
     protected String calculateProfitRate(BigDecimal sumPercentage) {

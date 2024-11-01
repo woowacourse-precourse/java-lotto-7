@@ -1,6 +1,4 @@
 package lotto.dto;
 
-import lotto.domain.Money;
-
-public record MoneyDto(Money money, String lottoCount) {
+public record MoneyDto(String lottoCount) {
 }

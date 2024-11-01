@@ -13,21 +13,39 @@ import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 import lotto.dto.ProfitRateResultDto;
 import lotto.dto.WinnerStatusDto;
+import lotto.repository.SingleRepository;
 import lotto.service.LottoService;
 
 public class LottoServiceImpl implements LottoService {
-    @Override
-    public MoneyDto covertToMoney(String input) {
-        return Money.create(input)
-                .toDto();
+
+    private final SingleRepository<Money> moneyRepository;
+    private final SingleRepository<LottoList> lottoListRepository;
+    private final SingleRepository<WinnerStatus> winnerStatusRepository;
+
+    public LottoServiceImpl(SingleRepository<Money> moneyRepository, SingleRepository<LottoList> lottoListRepository,
+                            SingleRepository<WinnerStatus> winnerStatusRepository) {
+        this.moneyRepository = moneyRepository;
+        this.lottoListRepository = lottoListRepository;
+        this.winnerStatusRepository = winnerStatusRepository;
     }
 
     @Override
-    public LottoListDto generateLottoList(MoneyDto moneyDto) {
-        Money money = moneyDto.money();
+    public MoneyDto createMoney(String input) {
+        Money money = Money.create(input);
+        moneyRepository.save(money);
 
-        return LottoList.generate(money)
-                .toDto();
+        return money.toDto();
+    }
+
+    @Override
+    public LottoListDto generateLottoList() {
+        Money money = moneyRepository.get()
+                .orElseThrow(() -> new NullPointerException("돈이 저장되지 않았습니다!"));
+
+        LottoList lottoList = LottoList.generate(money);
+        lottoListRepository.save(lottoList);
+
+        return lottoList.toDto();
     }
 
     @Override
@@ -48,18 +66,23 @@ public class LottoServiceImpl implements LottoService {
             throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
         }
 
-        LottoList lottoList = lottoListDto.lottoList();
+        LottoList lottoList = lottoListRepository.get()
+                .orElseThrow(() -> new NullPointerException("로또 번호들이 저장되지 않았습니다!"));
 
         WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
         WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);
+        winnerStatusRepository.save(winnerStatus);
 
         return winnerStatus.toDto();
     }
 
     @Override
     public ProfitRateResultDto calculateProfitRate(WinnerStatusDto winnerStatusDto, MoneyDto moneyDto) {
-        Money money = moneyDto.money();
-        WinnerStatus winnerStatus = winnerStatusDto.winnerStatus();
+        Money money = moneyRepository.get()
+                .orElseThrow(() -> new NullPointerException("돈이 저장되지 않았습니다!"));
+
+        WinnerStatus winnerStatus = winnerStatusRepository.get()
+                .orElseThrow(() -> new NullPointerException("당첨 정보들이 저장되지 않았습니다!"));
 
         ProfitRate profitRate = ProfitRate.create(money, winnerStatus);
         return profitRate.toDto();

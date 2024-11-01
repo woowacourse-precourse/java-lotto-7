@@ -33,12 +33,12 @@ public class LottoController {
     protected MoneyDto getMoney() {
         viewer.printMessage("구입금액을 입력해 주세요.");
 
-        return executeWithRetry(viewer::getInput, lottoService::covertToMoney);
+        return executeWithRetry(viewer::getInput, lottoService::createMoney);
     }
 
     protected LottoListDto buyLotto(MoneyDto moneyDto) {
         viewer.printMessage(moneyDto.lottoCount());
-        LottoListDto lottoListDto = lottoService.generateLottoList(moneyDto);
+        LottoListDto lottoListDto = lottoService.generateLottoList();
         viewer.printMessage(lottoListDto.listMessage());
 
         return lottoListDto;

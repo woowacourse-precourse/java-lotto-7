@@ -8,9 +8,9 @@ import lotto.dto.WinnerStatusDto;
 
 public interface LottoService {
 
-    MoneyDto covertToMoney(String money);
+    MoneyDto createMoney(String money);
 
-    LottoListDto generateLottoList(MoneyDto money);
+    LottoListDto generateLottoList();
 
     WinnerLotto addWinnerLotto(String winnerNumber);
 

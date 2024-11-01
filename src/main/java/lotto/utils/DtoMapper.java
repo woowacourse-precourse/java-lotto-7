@@ -3,8 +3,6 @@ package lotto.utils;
 import static lotto.utils.Constants.ENTER;
 
 import java.util.StringJoiner;
-import lotto.domain.LottoList;
-import lotto.domain.Money;
 import lotto.domain.WinnerStatus;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
@@ -22,20 +20,20 @@ public class DtoMapper {
         return new ProfitRateResultDto(message);
     }
 
-    public static MoneyDto toMoneyDto(Money money, long lottoCount) {
-        return new MoneyDto(money, ENTER + lottoCount + "개를 구매했습니다.");
+    public static MoneyDto toMoneyDto(long lottoCount) {
+        return new MoneyDto(ENTER + lottoCount + "개를 구매했습니다.");
     }
 
-    public static WinnerStatusDto toWinnerStatusDto(WinnerStatus winnerStatus, String statusMessage) {
+    public static WinnerStatusDto toWinnerStatusDto(String statusMessage) {
         StringJoiner joiner = new StringJoiner(ENTER);
         joiner.add(ENTER + "당첨 통계")
                 .add("---")
                 .add(statusMessage);
 
-        return new WinnerStatusDto(winnerStatus, joiner.toString());
+        return new WinnerStatusDto(joiner.toString());
     }
 
-    public static LottoListDto toLottoListDto(LottoList lottoList, String listMessage) {
-        return new LottoListDto(lottoList, listMessage);
+    public static LottoListDto toLottoListDto(String listMessage) {
+        return new LottoListDto(listMessage);
     }
 }

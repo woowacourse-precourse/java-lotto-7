@@ -21,7 +21,7 @@ public class WinnerStatus {
     }
 
     public WinnerStatusDto toDto() {
-        return DtoMapper.toWinnerStatusDto(this, createMessage());
+        return DtoMapper.toWinnerStatusDto(createMessage());
     }
 
     protected BigDecimal sum() {
