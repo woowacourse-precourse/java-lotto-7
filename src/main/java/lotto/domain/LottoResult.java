@@ -8,13 +8,9 @@ public class LottoResult {
     private int bonusNumber;
 
     public LottoResult(List<Integer> resultNumbers, int bonusNumber) {
-        resultNumbersValidate(resultNumbers);
         this.winningNumbers = new Lotto(resultNumbers);
         bonusNumberValidate(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    void resultNumbersValidate(List<Integer> resultNumbers) {
     }
 
     private void bonusNumberValidate(int bonusNumber) {
