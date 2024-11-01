@@ -60,7 +60,7 @@ public class Validator {
         ValidatorException.throwIfValueIsNotNumber(bonusNumber);
         ValidatorException.throwIfValueIsOutOfRange(bonusNumber);
         ValidatorException.throwIfBonusNumberIsDuplicate(winningNumbers,bonusNumber);
+        ValidatorException.throwIfValueIsOutOfRange(bonusNumber);
     }
-
 
 }

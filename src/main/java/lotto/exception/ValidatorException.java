@@ -19,8 +19,9 @@ public class ValidatorException {
     }
 
     public static void throwIfValueIsOutOfRange(String value) {
-        int purchaseAmount = Integer.parseInt(value);
-        if (purchaseAmount <= 0) {
+        int purchasePrice = Integer.parseInt(value);
+        if (purchasePrice < LottoConstant.START_INCLUSIVE.getValue() ||
+                purchasePrice > LottoConstant.END_INCLUSIVE.getValue()) {
             throw new IllegalArgumentException(ErrorCause.OUT_OF_RANGE.getMessage());
         }
     }
