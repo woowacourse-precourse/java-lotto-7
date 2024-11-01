@@ -33,7 +33,6 @@ public class LottoService {
         Map<PrizeAmount, Integer> prizeAmounts = initPrizeAmounts();
         for (Lotto lotto : newLotto) {
             int count = lottoWinNumber(lotto, numbers);
-
             boolean isBonus = isBonusWinning(numbers, bonus);
             PrizeAmount prizeA = cntPrizeAmount(count, isBonus);
 
@@ -56,7 +55,7 @@ public class LottoService {
 
     // 로또 번호 두 개 비교하여 몇개 맞는지 반환
     public int lottoWinNumber(Lotto lotto, List<Integer> numbers) {
-        List<Integer> common = new ArrayList<>(lotto.getNumbers());
+        List<Integer> common = lotto.getNumbers();
         common.retainAll(numbers);
         return common.size();
     }

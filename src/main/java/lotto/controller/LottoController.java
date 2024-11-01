@@ -34,7 +34,8 @@ public class LottoController {
         // 1. 돈 입력 받고 유효하면 몇개 구매 했는지 출력, 발행 번호도 출력
         int money = inputMoneyHandler();
         outputHandler.printOK(money / 1000);
-        outputHandler.printLottoS(lottoService.lottoIssuance(money));
+        List<Lotto> lottoIns = lottoService.lottoIssuance(money);
+        outputHandler.printLottoS(lottoIns);
 
         String[] result = inputHandle();
         List<Integer> numbers = inputParser.parseNumbers(result[0]);
@@ -42,7 +43,7 @@ public class LottoController {
 
         if (!validationCheck(numbers, bonusNum)) { return; }
 
-        Map<PrizeAmount, Integer> lottoWinnings = lottoService.lottoWinning(lottoService.lottoIssuance(money), numbers, bonusNum);
+        Map<PrizeAmount, Integer> lottoWinnings = lottoService.lottoWinning(lottoIns, numbers, bonusNum);
         Double returnRate = incomeService.rateOfReturn(money, lottoWinnings);
 
         outputHandle(lottoWinnings, returnRate);
