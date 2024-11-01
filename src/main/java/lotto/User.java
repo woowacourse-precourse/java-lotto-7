@@ -39,7 +39,11 @@ public class User {
     }
 
     public Map<Prize, Integer> getPrizes() {
-        if (this.prizes.isEmpty()) {
+        int prizeCount = 0;
+        for (Prize prize : Prize.values()) {
+            prizeCount += this.prizes.get(prize);
+        }
+        if (prizeCount == 0) {
             throw new IllegalStateException("당첨 번호를 확인해야 당첨 통계를 확인할 수 있습니다.");
         }
         return this.prizes;
