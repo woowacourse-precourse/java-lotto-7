@@ -12,12 +12,4 @@ public class LottoPurchaseService {
     }
 
 
-
-
-
-
-
-
-
-
 }

@@ -2,6 +2,8 @@ package study;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class StringTest {
 
 
@@ -13,6 +15,21 @@ public class StringTest {
 
     @Test
     void split테스트(){
-
+        String value = "1,2";
+        String[] split = value.split(",");
+        assertThat(split).contains("1", "2");
     }
+
+
+    @Test
+    void split단위테스트(){
+        String value = "1";
+        String[] split = value.split(",");
+        assertThat(split).containsExactly("1");
+    }
+
+
+
+
+
 }

@@ -7,7 +7,25 @@ public class LottoDAO {
         private ArrayList<Lotto> LottoDatabase = new ArrayList<>();
         private int cost;
         private int purchaseRound;
+        private Lotto lottoSelect;
+        private int bonusNumber;
 
+
+    public Lotto getLottoSelect() {
+        return lottoSelect;
+    }
+
+    public void setLottoSelect(Lotto lottoSelect) {
+        this.lottoSelect = lottoSelect;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
 
     public int getPurchaseRound() {
         return purchaseRound;
