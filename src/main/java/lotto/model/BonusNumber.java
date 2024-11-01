@@ -35,4 +35,14 @@ public class BonusNumber {
         }
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public boolean checkBonusNumber(List<Integer> numbers) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
 }

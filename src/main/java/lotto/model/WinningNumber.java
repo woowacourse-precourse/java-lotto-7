@@ -46,9 +46,9 @@ public class WinningNumber {
 
     }
 
-    public int checkSameCount(List<Integer> list) {
-        list.retainAll(numberList);
-        return list.size();
+    public int checkSameCount(List<Integer> numbers) {
+        numbers.retainAll(numberList);
+        return numbers.size();
     }
 
     public List<Integer> getNumberList() {

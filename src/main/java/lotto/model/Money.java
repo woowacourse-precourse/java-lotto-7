@@ -28,6 +28,10 @@ public class Money {
         }
     }
 
+    public Long getMoney() {
+        return money;
+    }
+
     public Long getTickets() {
         return money / TICKET_PRICE;
     }

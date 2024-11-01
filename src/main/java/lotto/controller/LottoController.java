@@ -2,10 +2,12 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.BonusNumber;
+import lotto.model.CalculatePrize;
 import lotto.model.Lotto;
 import lotto.model.LottoArchive;
 import lotto.model.LottoMaker;
 import lotto.model.Money;
+import lotto.model.NumberMatchCounter;
 import lotto.model.WinningNumber;
 import lotto.view.BonusNumberInputView;
 import lotto.view.MoneyInputView;
@@ -19,11 +21,14 @@ public class LottoController {
     public void start() {
 
         Money money = userMoneyInput();
-        LottoArchive lottoArchive = buyLottos(money.getTickets());
-        printLottoList(lottoArchive.getLottoList());
-        WinningNumber winningNumber = winningNumberInput();
-        BonusNumber bonusNumber = bonusNumberInput(winningNumber.getNumberList());
+        LottoArchive lottoArchive = buyLotto(money.getTickets());
+        displayLottoList(lottoArchive.getLottoList());
 
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber.getNumberList());
+
+        NumberMatchCounter numberMatchCounter = new NumberMatchCounter(lottoArchive, winningNumber, bonusNumber);
+        CalculatePrize calculatePrize = new CalculatePrize(numberMatchCounter.getPrizeCounts(), money.getMoney());
     }
 
     public Money userMoneyInput() {
@@ -39,19 +44,19 @@ public class LottoController {
         }
     }
 
-    public LottoArchive buyLottos(Long ticket) {
+    public LottoArchive buyLotto(Long ticket) {
         List<Lotto> lottoList = LottoMaker.makeLottos(ticket);
         return new LottoArchive(lottoList);
     }
 
-    public void printLottoList(List<Lotto> lottoList) {
+    public void displayLottoList(List<Lotto> lottoList) {
         outView.printLottoCount(lottoList.size());
         for (Lotto lotto : lottoList) {
             outView.printLottoNumbers(lotto.getNumbers());
         }
     }
 
-    public WinningNumber winningNumberInput() {
+    public WinningNumber getWinningNumber() {
         outView.printWinningNumberInputMessage();
         while (true) {
             try {
@@ -63,7 +68,7 @@ public class LottoController {
         }
     }
 
-    public BonusNumber bonusNumberInput(List<Integer> winningNumber) {
+    public BonusNumber getBonusNumber(List<Integer> winningNumber) {
         outView.printBonusNumberInputMessage();
         while (true) {
             try {
@@ -74,4 +79,5 @@ public class LottoController {
             }
         }
     }
+
 }
