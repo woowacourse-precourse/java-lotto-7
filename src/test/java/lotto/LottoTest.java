@@ -2,7 +2,9 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,5 +26,28 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 티켓_당_당첨_갯수_증가_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<List<Integer>> lotteryTickets = new ArrayList<>();
+        lotteryTickets.add(List.of(1, 2, 3, 4, 5, 6));      // 1등
+        lotteryTickets.add(List.of(1, 2, 3, 4, 5, 30));     // 3등
+        lotteryTickets.add(List.of(1, 2, 3, 4, 31, 30));    // 4등
+        lotteryTickets.add(List.of(1, 2, 3, 32, 31, 30));   // 5등
+
+        lotto.matcheNumber(lotteryTickets);
+
+        // 1등 ~ 5등 카운트
+        List<Integer> actual = new ArrayList<>();
+        for (Result result : Result.values()) {
+            actual.add(result.getCount());
+        }
+
+        List<Integer> expect = new ArrayList<>(List.of(1, 0, 1, 1, 1));
+
+        Assertions.assertThat(actual).isEqualTo(expect);
+
     }
 }
