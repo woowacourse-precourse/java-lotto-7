@@ -5,6 +5,7 @@ import static java.lang.String.format;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Revenue;
+import lotto.dto.WinningSummary;
 import lotto.exception.LottoException;
 
 public class OutputView {
@@ -39,8 +40,9 @@ public class OutputView {
         System.out.println(SEPARATOR);
     }
 
-    public static void printWinningSummary(List<String> winningSummary) {
-        winningSummary.forEach(System.out::println);
+    public static void printWinningSummary(WinningSummary winningSummary) {
+        winningSummary.winningDetails()
+                .forEach(System.out::println);
     }
 
     public static void printReturnRate(Revenue revenue) {
