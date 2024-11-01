@@ -1,10 +1,9 @@
-package lotto.custom;
+package lotto.custom.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.custom.common.ErrorMessages;
 import lotto.custom.constants.CustomErrorMessages;
-import lotto.custom.validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
