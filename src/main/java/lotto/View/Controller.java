@@ -12,13 +12,13 @@ public class Controller {
         try {
             OutputView.printPurchaseAmount();
             purchasePrice = InputView.readPurchaseAmount();
-            OutputView.printBlank();
             this.lottoCount = this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
             return gainPurchaseAmount();
         }
+        OutputView.printBlank();
         return purchasePrice;
     }
 
@@ -49,7 +49,7 @@ public class Controller {
         OutputView.printBonus();
         Integer bonus = 0;
         try{
-            String rawBonus  = InputView.readBonus(answer);
+            bonus  = InputView.readBonus(answer);
         }
         catch (IllegalArgumentException e){
             OutputView.printError(ErrorMessage.BONUS.getError());
