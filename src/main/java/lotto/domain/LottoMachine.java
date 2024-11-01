@@ -11,20 +11,20 @@ public class LottoMachine {
     private final Score score;
     private Lottos lottos;
 
-    public LottoMachine(LottoFactory lottoFactory,Score score) {
-        this.lottoFactory=lottoFactory;
-        this.score=score;
+    public LottoMachine(LottoFactory lottoFactory, Score score) {
+        this.lottoFactory = lottoFactory;
+        this.score = score;
     }
 
-    public void buyNumberOfLottos(int amount){
-        lottos = new Lottos(amount,lottoFactory);
+    public void buyNumberOfLottos(int amount) {
+        lottos = new Lottos(amount, lottoFactory);
     }
 
-    public LottosDto getLottos(){
+    public LottosDto getLottos() {
         return new LottosDto(lottos);
     }
 
-    public ScoreDto getScore(Lotto winningLotto, BonusComponent bonusComponent){
-        return score.printScore(lottos,winningLotto,bonusComponent);
+    public ScoreDto getScore(Lotto winningLotto, BonusComponent bonusComponent) {
+        return score.printScore(lottos, winningLotto, bonusComponent);
     }
 }
