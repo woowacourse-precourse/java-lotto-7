@@ -1,4 +1,4 @@
-package lotto.lotto.winning.validator;
+package lotto.lotto.validator;
 
 import lotto.constant.ErrorMessage;
 import lotto.lotto.validator.LottoValidator;
