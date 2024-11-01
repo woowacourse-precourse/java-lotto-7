@@ -6,6 +6,9 @@ public class LottoGame {
 
     public void start() {
         int purchaseAmount = getValidatePurchaseAmount();
+
+        int lottoCount = calculateLottoCount(purchaseAmount);
+        printLottoCount(lottoCount);
     }
 
     private int getValidatePurchaseAmount() {
@@ -36,4 +39,11 @@ public class LottoGame {
         return true;
     }
 
+    private int calculateLottoCount(int amount) {
+        return amount / LOTTO_PRICE;
+    }
+
+    private void printLottoCount(int count) {
+        System.out.printf("%d개를 구매했습니다.%n", count);
+    }
 }
