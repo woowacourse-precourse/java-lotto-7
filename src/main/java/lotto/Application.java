@@ -9,9 +9,9 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         LottoController lottoController = new LottoController();
-
+        lottoController.run();
         int payment = lottoController.getPayment();
-        List<Lotto> lottos = lottoController.initLotto(payment);
+        List<Lotto> lottos = lottoController.issueLottos(payment);
 
         List<Integer> winningNumbers = lottoController.getWinningNumbers();
         int bonus = lottoController.getBonus();

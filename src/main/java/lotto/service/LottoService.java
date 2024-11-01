@@ -10,7 +10,7 @@ import lotto.Lotto;
 import lotto.common.Winning;
 
 public class LottoService {
-    public List<Lotto> initLotto(int payment) {
+    public List<Lotto> issueLottos(int payment) {
         int lottoCount = payment / 1000;
 
         List<Lotto> lottos = new ArrayList<>();

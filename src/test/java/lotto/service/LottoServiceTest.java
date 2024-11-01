@@ -21,11 +21,11 @@ class LottoServiceTest {
 
     @ParameterizedTest
     @ValueSource(ints = {3, 4, 5})
-    void initLotto(int payCount) {
+    void issueLottos(int payCount) {
         // given
 
         // when
-        List<Lotto> lottos = lottoService.initLotto(payCount);
+        List<Lotto> lottos = lottoService.issueLottos(payCount);
         List<Lotto> distintLottos = lottos.stream().distinct().toList();
 
         // then

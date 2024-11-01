@@ -26,51 +26,57 @@ public class LottoController {
         this.outputView = new OutputView();
     }
 
-    public int getPayment() {
-        int payment;
-        try {
-            String inputPayment = inputView.readPayment();
-            payment = parser.parsePayment(inputPayment);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            payment = getPayment();
-        }
+    public void run() {
+        int payment = getPayment();
+        List<Lotto> lottos = issueLottos(payment);
 
-        return payment;
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonus = getBonus();
+
+        Map<Winning, Integer> winnings = getWinnings(lottos, winningNumbers, bonus);
+        double yield = getYield(winnings, payment);
+
+        printResult(winnings, yield);
     }
 
-    public List<Lotto> initLotto(int payment) {
-        List<Lotto> lottos = lottoService.initLotto(payment);
+    public int getPayment() {
+        while (true) {
+            try {
+                String inputPayment = inputView.readPayment();
+                return parser.parsePayment(inputPayment);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<Lotto> issueLottos(int payment) {
+        List<Lotto> lottos = lottoService.issueLottos(payment);
         outputView.printLotto(lottos);
 
         return lottos;
     }
 
     public List<Integer> getWinningNumbers() {
-        List<Integer> winningNumbers;
-        try {
-            String inputWinningNumbers = inputView.readWinningNumbers();
-            winningNumbers = parser.parseWinningNumbers(inputWinningNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            winningNumbers = getWinningNumbers();
+        while (true) {
+            try {
+                String inputWinningNumbers = inputView.readWinningNumbers();
+                return parser.parseWinningNumbers(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return winningNumbers;
     }
 
     public int getBonus() {
-        int bonus;
-
-        try {
-            String inputBonus = inputView.readBonus();
-            bonus = parser.parseBonus(inputBonus);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bonus = getBonus();
+        while (true) {
+            try {
+                String inputBonus = inputView.readBonus();
+                return parser.parseBonus(inputBonus);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return bonus;
     }
 
     public Map<Winning, Integer> getWinnings(List<Lotto> lottos, List<Integer> winningNumbers, int bonus) {
