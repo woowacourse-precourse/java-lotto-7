@@ -19,7 +19,7 @@ public class Input {
 
     public static String inputWinningNumber() {
         String winningNumber = Console.readLine();
-        try{
+        try {
             validateWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
             return inputWinningNumber();
@@ -29,7 +29,7 @@ public class Input {
 
     public static String inputBonusNumber() {
         String bonusNumber = Console.readLine();
-        try{
+        try {
             validateBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             return inputBonusNumber();
@@ -54,27 +54,27 @@ public class Input {
     }
 
     private static void validateInputNumeric(String price) {
-        try{
+        try {
             Integer.parseInt(price);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new NumberFormatException("[ERROR] Price must be an integer");
         }
     }
 
     private static void validatePriceDivisible(Integer price) {
-        if(price % 1000 != 0){
+        if (price % 1000 != 0) {
             throw new NumberFormatException("[ERROR] Price must be divisible by 1000");
         }
     }
 
-    private static void isWinningNumberFormat(String input){
-        if(!isWinningNumberPattern.matcher(input).matches()){
+    private static void isWinningNumberFormat(String input) {
+        if (!isWinningNumberPattern.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] Winning number must be a right format");
         }
     }
 
-    private static void validateBonusNumberInRange(Integer bonusNumber){
-        if(!(bonusNumber > 0 && bonusNumber < 46)){
+    private static void validateBonusNumberInRange(Integer bonusNumber) {
+        if (!(bonusNumber > 0 && bonusNumber < 46)) {
             throw new IllegalArgumentException("[ERROR] Bonus number must be between 0 and 46");
         }
     }
