@@ -7,10 +7,12 @@ import static java.lang.Integer.parseInt;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
 
+    private List<Integer> inputNumber;
+
+    // TODO: 구조가 비슷한 함수 있음, 합치기 고려
     public int getInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = readLine();
@@ -30,9 +32,23 @@ public class InputView {
             System.out.println("옳바른 당첨 번호를 입력해 주세요.");
             number = readLine();
         }
-        return Arrays.stream(number.split(","))
+
+        inputNumber = Arrays.stream(number.split(","))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .toList();
+
+        return inputNumber;
+    }
+
+    public int getInputBonus() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonus = readLine();
+
+        while (!validateBonus(bonus)) {
+            System.out.println("옳바른 보너스 번호를 입력해 주세요.");
+            bonus = readLine();
+        }
+        return parseInt(bonus);
     }
 
     public void closeScanner() {
@@ -68,4 +84,18 @@ public class InputView {
         }
     }
 
+    private boolean validateBonus(String bonus) {
+        try {
+            if (parseInt(bonus) >= 1 && parseInt(bonus) <= 45 && !inputNumber.contains(parseInt(bonus))) {
+                return true;
+            }
+            System.out.println("[ERROR] 보너스번호는 1부터 45까지의 수 중 1개를 선택해야합니다.");
+            return false;
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 보너스번호는 1부터 45까지의 수 중 1개를 선택해야합니다.");
+            return false;
+        }
+    }
+
 }
+

@@ -37,6 +37,15 @@ class InputViewTest {
 
     @Test
     void 보너스_번호_입력_테스트() {
+        String simulatedInput = "14\n";
+        InputStream in = new ByteArrayInputStream(simulatedInput.getBytes());
+        System.setIn(in);
 
+        InputView inputView = new InputView();
+        int bonus = inputView.getInputBonus();
+        inputView.closeScanner();
+
+        assertThat(bonus).isEqualTo(14);
     }
+
 }

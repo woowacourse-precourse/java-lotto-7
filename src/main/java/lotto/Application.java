@@ -29,6 +29,7 @@ public class Application {
         List<Integer> inputNumber = inputView.getInputNumber();
 
         // 6. 보너스 번호 입력
+        int bonusNumber = inputView.getInputBonus();
 
         // 7. 당첨된 로또 확인
 
