@@ -40,7 +40,7 @@ public class LottoService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private BigDecimal calculatePrizeAmount(int rank, int count) {
+    private static BigDecimal calculatePrizeAmount(int rank, int count) {
         BigDecimal prizeAmount = BigDecimal.valueOf(PRIZE_AMOUNT_BY_RANK.get(rank));
         return prizeAmount.multiply(BigDecimal.valueOf(count));
     }
