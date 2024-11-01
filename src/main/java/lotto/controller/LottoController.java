@@ -22,15 +22,15 @@ public class LottoController {
     }
 
     public void start() {
-        LottoTickets lottoTickets = purchaseLottoTickets();
+        LottoTickets lottoTickets = getPurchasedLottoTickets();
         displayPurchasedTickets(lottoTickets);
-        WinningLotto winningLotto = drawWinningNumbers();
-        LottoStatistics lottoStatistics = calculateStatistics(lottoTickets, winningLotto);
+        WinningLotto winningLotto = getWinningLotto();
+        LottoStatistics lottoStatistics = calculateLottoStatistics(lottoTickets, winningLotto);
         displayStatistics(lottoStatistics);
         Console.close();
     }
 
-    private LottoTickets purchaseLottoTickets() {
+    private LottoTickets getPurchasedLottoTickets() {
         outputView.printInputAmount();
         int amount = Integer.parseInt(Console.readLine());
         return lottoService.purchaseTickets(amount);
@@ -40,7 +40,7 @@ public class LottoController {
         outputView.printBuyingLotto(lottoTickets);
     }
 
-    private WinningLotto drawWinningNumbers() {
+    private WinningLotto getWinningLotto() {
         outputView.printInputWinningLotto();
         List<Integer> winningNumbers = validate(Console.readLine());
         outputView.printInputBonusNumber();
@@ -48,7 +48,7 @@ public class LottoController {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private LottoStatistics calculateStatistics(LottoTickets lottoTickets, WinningLotto winningLotto) {
+    private LottoStatistics calculateLottoStatistics(LottoTickets lottoTickets, WinningLotto winningLotto) {
         return lottoService.checkResults(lottoTickets, winningLotto);
     }
 
