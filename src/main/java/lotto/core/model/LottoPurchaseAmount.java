@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.core.model;
 
 public class LottoPurchaseAmount {
 

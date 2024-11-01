@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.core.view;
 
 public class InputLottoPurchaseAmountView implements View {
 

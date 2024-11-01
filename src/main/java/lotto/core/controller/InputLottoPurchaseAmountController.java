@@ -1,8 +1,8 @@
-package lotto.controller;
+package lotto.core.controller;
 
 import lotto.commons.logger.Logger;
-import lotto.model.LottoPurchaseAmount;
-import lotto.view.View;
+import lotto.core.model.LottoPurchaseAmount;
+import lotto.core.view.View;
 
 public class InputLottoPurchaseAmountController implements RequestController<LottoPurchaseAmount> {
 
