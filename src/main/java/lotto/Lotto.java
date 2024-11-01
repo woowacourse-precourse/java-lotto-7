@@ -29,8 +29,15 @@ public class Lotto {
         }
     }
 
+    private void bonusNumberDistinctValidate(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복 되지 않는 보너스 번호를 사용 해야 합니다.");
+        }
+    }
+
     // TODO: 추가 기능 구현
     public void matcheNumber(List<List<Integer>> lotteryTickets, int bonusNumber) {
+        bonusNumberDistinctValidate(bonusNumber);
         for (List<Integer> lts : lotteryTickets) {
             int count = matchCount(lts, bonusNumber);
             resultCountUp(count);
