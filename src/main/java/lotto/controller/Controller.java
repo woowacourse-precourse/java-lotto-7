@@ -30,7 +30,7 @@ public class Controller {
 
     public void playLotto() {
         outputView.showMoneyInputMessage();
-        int money = UntilValidPurchaseMoney();
+        int money = untilValidPurchaseMoney();
         int ticket = LottoExchanger.divideByThousand(money);
 
         outputView.showPurchaseAmount(ticket);
@@ -38,38 +38,38 @@ public class Controller {
         outputView.printLotto(lottoNumbers);
 
         outputView.showWinningNumberInputMessage();
-        Lotto lotto = UntilValidWinningNumber();
+        Lotto lotto = untilValidWinningNumber();
         outputView.showBonusBallInputMessage();
-        BonusBall bonusNumber = UntilValidBonusBall(lotto);
+        BonusBall bonusNumber = untilValidBonusBall(lotto);
 
         int[] results = calculateResult.calculateStatistics(lotto.getNumbers(), bonusNumber.getBonusNumber(), lottoNumbers);
         outputView.printStatistics(results, ticket);
     }
 
-    private int UntilValidPurchaseMoney() {
+    private int untilValidPurchaseMoney() {
         try {
             return inputMoneyValidator.validate(Parser.parseNumber(inputView.readInputLine()));
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
-            return (UntilValidPurchaseMoney());
+            return (untilValidPurchaseMoney());
         }
     }
 
-    private Lotto UntilValidWinningNumber() {
+    private Lotto untilValidWinningNumber() {
         try {
             return new Lotto(Splitter.splitWinningNumbers(inputView.readInputLine()));
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
-            return (UntilValidWinningNumber());
+            return (untilValidWinningNumber());
         }
     }
 
-    private BonusBall UntilValidBonusBall(Lotto lotto) {
+    private BonusBall untilValidBonusBall(Lotto lotto) {
         try {
             return new BonusBall(Parser.parseNumber(inputView.readInputLine()), lotto.getNumbers());
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
-            return (UntilValidBonusBall(lotto));
+            return (untilValidBonusBall(lotto));
         }
     }
 }

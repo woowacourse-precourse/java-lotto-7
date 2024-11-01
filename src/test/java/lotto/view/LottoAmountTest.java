@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;

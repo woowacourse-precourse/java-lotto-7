@@ -20,4 +20,3 @@ public class LottoMachine {
                 .collect(Collectors.toList());
     }
 }
-
