@@ -7,6 +7,8 @@ import java.util.List;
 import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class WinningNumbersTest {
 
@@ -60,5 +62,27 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> WinningNumbers.of(Lotto.of(numbers)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFIX);
+    }
+
+    @DisplayName("당첨 번호에 번호가 포함")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    void 포함_테스트(int number) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        WinningNumbers winningNumbers = WinningNumbers.of(Lotto.of(numbers));
+
+        assertThat(winningNumbers.contains(Number.of(number))).isTrue();
+    }
+
+    @DisplayName("당첨 번호에 번호가 미포함")
+    @ParameterizedTest
+    @ValueSource(ints = {11, 12, 13})
+    void 미포함_테스트(int number) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        WinningNumbers winningNumbers = WinningNumbers.of(Lotto.of(numbers));
+
+        assertThat(winningNumbers.contains(Number.of(number))).isFalse();
     }
 }
