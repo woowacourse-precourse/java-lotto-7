@@ -11,16 +11,18 @@ public class WinningNumbers {
     }
 
     public static WinningNumbers from(String input) {
-        validateInputEmpty(input.strip());
+        validateInputEmpty(input);
         List<String> splitInput = List.of(input.split(",", -1));
         validateNumeric(splitInput);
-        List<Integer> numbers = splitInput.stream().map(Integer::parseInt).toList();
-        Lotto lotto = new Lotto(numbers);
-        return new WinningNumbers(lotto);
+        List<Integer> numbers = splitInput.stream()
+                .map(number ->
+                        Integer.parseInt(number.strip())
+                ).toList();
+        return new WinningNumbers(new Lotto(numbers));
     }
 
     private static void validateInputEmpty(String input) {
-        if ( input == null || input.isEmpty()) {
+        if ( input == null || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호가 빈 값입니다.");
         }
     }
@@ -33,7 +35,12 @@ public class WinningNumbers {
         }
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public boolean isContain(int number) {
+        return winningLotto.isContain(number);
+    }
+
+    @Override
+    public String toString() {
+        return winningLotto.toString();
     }
 }

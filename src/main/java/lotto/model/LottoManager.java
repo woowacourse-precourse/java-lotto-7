@@ -23,6 +23,9 @@ public class LottoManager {
         outputView.printLottoTicket(lottoTicket, purchaseAmount.getPurchasableLottoAmount());
 
         WinningNumbers winningNumbers = receiveWinningNumbers();
+
+        BonusNumber bonusNumber = receiveBonusNumber(winningNumbers);
+
     }
 
     public PurchaseAmount receivePurchaseAmount() {
@@ -39,6 +42,18 @@ public class LottoManager {
         while (true) {
             try {
                 return WinningNumbers.from(inputView.enterWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                outputView.printMessage(e.getMessage());
+            }
+        }
+    }
+
+    public BonusNumber receiveBonusNumber(WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                BonusNumber bonusNumber = BonusNumber.from(inputView.enterBonusNumbers());
+                bonusNumber.checkDuplicationNumber(winningNumbers);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
