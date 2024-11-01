@@ -4,11 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import static lotto.message.ErrorMessage.*;
+import static lotto.util.LottoConfig.*;
 
 public class ValidateNumbers {
-    private static final int MIN_LOTTO = 1;
-    private static final int MAX_LOTTO = 45;
-    private static final int LOTTO_LENGTH = 6;
     public ValidateNumbers(int number, List<Integer> winningNumbers){
         validateLottoRange(number);
         validateNoDuplicateBonus(number, winningNumbers);
@@ -21,12 +19,12 @@ public class ValidateNumbers {
         }
     }
     private static void validateLottoRange(int number){
-        if(number < MIN_LOTTO || number > MAX_LOTTO){
+        if(number < LOTTO_MIN.getNumber() || number > LOTTO_MAX.getNumber()){
             throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
         }
     }
     private static void validateLottoLength(List<Integer> numbers){
-        if(numbers.size() != LOTTO_LENGTH){
+        if(numbers.size() != LOTTO_LENGTH.getNumber()){
             throw new IllegalArgumentException(INVALID_LOTTO_LENGTH.getMessage());
         }
     }
