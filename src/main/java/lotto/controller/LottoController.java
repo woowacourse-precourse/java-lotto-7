@@ -6,6 +6,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -24,6 +25,13 @@ public class LottoController {
         outputView.printPurchaseLottoList(lottoDto);
         List<Integer> winningNumbers = receiveWinningNumbers();
         int bonusNumber = receiveBonusNumber(winningNumbers);
+        setLottoResultDto(bonusNumber, winningNumbers);
+        List<Map<Integer, Boolean>> resultList = lottoService.getLottoWinningResults(lottoDto);
+    }
+
+    private void setLottoResultDto(int bonusNumber, List<Integer> winningNumbers) {
+        lottoDto.setBonusNumber(bonusNumber);
+        lottoDto.setWinningNumbers(winningNumbers);
     }
 
     private LottoResultDto purchaseLotto() {

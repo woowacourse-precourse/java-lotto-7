@@ -10,11 +10,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -105,5 +108,28 @@ class LottoTest {
                         lottoService.checkBonusNumberValidity(input, winningNumbers.getNumbers()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ERROR_INVALID_LOTTO_NUMBER_RANGE.getMessage());
+    }
+
+    @Test
+    void 당첨번호_맞춘개수_확인한다() {
+        List<Integer> winningList = List.of(1, 2, 3, 4, 5, 6);
+        Lotto userNumber1 = new Lotto(List.of(1, 2, 3, 15, 24, 36));
+        Lotto userNumber2 = new Lotto(List.of(1, 13, 15, 25, 34, 42));
+        List<Lotto> userNumbers = new ArrayList<>();
+        userNumbers.add(userNumber1);
+        userNumbers.add(userNumber2);
+
+        LottoResultDto resultDto = new LottoResultDto(2, userNumbers);
+        resultDto.setWinningNumbers(winningList);
+        LottoService lottoService = new LottoService();
+        List<Map<Integer, Boolean>> list = lottoService.getLottoWinningResults(resultDto);
+
+        int expectedCount1 = 3;
+        int expectedCount2 = 1;
+
+        assertEquals(expectedCount1, list.get(0).keySet().stream().findFirst().orElse(0));
+        assertEquals(false, list.get(0).values().stream().findFirst().orElse(false));
+        assertEquals(expectedCount2, list.get(1).keySet().stream().findFirst().orElse(0));
+        assertEquals(false, list.get(1).values().stream().findFirst().orElse(false));
     }
 }
