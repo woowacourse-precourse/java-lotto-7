@@ -4,6 +4,7 @@ import lotto.Lotto;
 import service.LottoManager;
 import lotto.Prize;
 import lotto.WinningLotto;
+import service.PrizeCalculator;
 import view.InputHandler;
 import view.OutputHandler;
 
@@ -14,11 +15,13 @@ public class LottoController {
     private OutputHandler outputHandler;
     private LottoManager lottoManager;
     private WinningLotto winningLotto;
+    private PrizeCalculator prizeCalculator;
 
     public LottoController() {
         this.inputHandler = new InputHandler();
         this.outputHandler = new OutputHandler();
         this.lottoManager = new LottoManager();
+        this.prizeCalculator = new PrizeCalculator();
 
     }
 
@@ -34,29 +37,19 @@ public class LottoController {
 
         winningLotto = generateWinningLotto();
 
-        EnumMap<Prize, Integer> prizeResult = calculatePrizes(initPrizes(), generatedLottos, winningLotto);
+        EnumMap<Prize, Integer> prizeResult = calculatePrizes(generatedLottos, winningLotto);
 
         outputHandler.displayPrizes(prizeResult);
 
-        outputHandler.displayWinningRate(calculateWinningRate(prizeResult, amountInput));
+        outputHandler.displayWinningRate(calculateWinningRate(amountInput));
 
 
     }
 
-    private EnumMap<Prize, Integer> initPrizes() {
-        EnumMap<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
-        for (Prize prize : Prize.values()) {
-            prizeCount.put(prize, 0);
-        }
-        return prizeCount;
-    }
 
-    private double calculateWinningRate(EnumMap<Prize, Integer> prizeCount, int amountInput) {
-        int winningRate = 0;
-        for (Prize prize : prizeCount.keySet()) {
-            winningRate += (int) (prize.getPrizeMoney() * prizeCount.get(prize));
-        }
-        return (double) winningRate / amountInput * 100;
+
+    private double calculateWinningRate(int amountInput) {
+        return prizeCalculator.calculateWinningRate(amountInput);
     }
 
     private int getInputAmount() {
@@ -116,22 +109,10 @@ public class LottoController {
         }
     }
 
-    private EnumMap<Prize, Integer> calculatePrizes(EnumMap<Prize, Integer> prizeCount, List<Lotto> lottos, WinningLotto winningLotto) {
-        for (Lotto lotto : lottos) {
-            int matchCount = lotto.compareTo(winningLotto.getNumber());
+    private EnumMap<Prize, Integer> calculatePrizes(List<Lotto> lottos, WinningLotto winningLotto) {
+        prizeCalculator.calculatePrizes(lottos, winningLotto);
 
-            for (Prize prize : Prize.values()) {
-                if (matchCount == prize.getRanking()) {
-                    if (lotto.hasBonusNumber(winningLotto.getBonusNumber()) && prize.equals(Prize.THIRD)) {
-                        continue;
-                    }
-
-                    prizeCount.put(prize, prizeCount.get(prize) + 1);
-                }
-            }
-        }
-        return prizeCount;
+        return prizeCalculator.getPrizeCount();
     }
-
 
 }
