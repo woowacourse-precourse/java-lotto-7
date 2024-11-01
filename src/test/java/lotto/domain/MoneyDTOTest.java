@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MoneyDTOTest {
@@ -48,7 +49,7 @@ public class MoneyDTOTest {
         exception = assertThrows(IllegalArgumentException.class, () -> {
             moneyDTO.setMoney(500);
         });
-        assertEquals("[ERROR] 금액은 1000원 단위여야 합니다.",exception.getMessage());
+        assertEquals("[ERROR] 금액은 1000원 단위여야 합니다.", exception.getMessage());
     }
 
 

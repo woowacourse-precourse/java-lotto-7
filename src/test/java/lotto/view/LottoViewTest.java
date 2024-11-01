@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.MoneyDTO;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LottoViewTest {

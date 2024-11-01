@@ -11,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkForDuplicates(numbers);
         this.numbers = numbers;
     }
 
