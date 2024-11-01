@@ -7,7 +7,7 @@ import static lotto.view.OutputView.*;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.LottoNumberGenerator;
+import camp.nextstep.edu.missionutils.Randoms;
 
 
 public class LottoController {
@@ -15,16 +15,17 @@ public class LottoController {
 
     public void run() {
         int attemptCount = getAttemptCount();
-        lottoTickets = initLottos(attemptCount);
+        printPurchaseLottoCount(attemptCount);
+        lottoTickets = generateLotto(attemptCount);
     }
 
-    private List<Lotto> initLottos(int attemptCount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 1; i <= attemptCount; i++) {
-            List<Integer> numbers = LottoNumberGenerator.generate();
-            lottos.add(new Lotto(numbers));
+    private List<Lotto> generateLotto(int attemptCount) {
+        List<Lotto> lotto = new ArrayList<>();
+        for (int count = 1; count <= attemptCount; count++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+            lotto.add(new Lotto(numbers));
         }
-        return lottos;
+        return lotto;
     }
 
     private int getAttemptCount() {
