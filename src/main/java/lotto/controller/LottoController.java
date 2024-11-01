@@ -35,7 +35,7 @@ public class LottoController {
 
     private Money getMoney() {
         InputHandler inputHandler = new InputHandler(new Validator());
-        int givenMoney = inputHandler.getInputForPurchaseMoney();
+        long givenMoney = inputHandler.getInputForPurchaseMoney();
         return new Money(givenMoney);
     }
 

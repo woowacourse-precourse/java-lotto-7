@@ -18,13 +18,13 @@ public class InputHandler {
         this.validator = validator;
     }
 
-    public int getInputForPurchaseMoney() {
+    public long getInputForPurchaseMoney() {
         while (true) {
             try {
                 print(ENTER_PURCHASE_MONEY_MESSAGE);
                 String input = Console.readLine();
                 validator.checkPurchaseMoney(input);
-                return Integer.parseInt(input);
+                return Long.parseLong(input);
             } catch (IllegalArgumentException e) {
                 print(e.getMessage());
             }

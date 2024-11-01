@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
+    private final List<Integer> numbers;
+
     private static final String LOTTO_NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 서로 중복될 수 없습니다.";
-    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -34,5 +35,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
 }
