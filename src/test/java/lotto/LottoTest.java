@@ -1,11 +1,15 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.error.ErrorMessage;
 import lotto.model.lotto.Lotto;
+import lotto.model.lotto.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -20,6 +24,17 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또 번호 발행기능 테스트")
+    public void createLotto(){
+
+        Lottos lottos = new Lottos(List.of("1","2","3","4","5","6"),2000);
+
+        lottos.generateLotto();
+
+        assertThat(lottos.getLotto().size()).isEqualTo(2);
     }
 
 
