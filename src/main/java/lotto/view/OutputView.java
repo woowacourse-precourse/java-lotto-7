@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.*;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class OutputView {
@@ -15,7 +14,7 @@ public class OutputView {
     }
 
     public void showResults(Results results, Money money) {
-        System.out.println("\n당첨 통계\n" + "---\n");
+        System.out.println("\n당첨 통계\n" + "---");
 
         int[] o = new int[6];
         results.forEach(result -> {

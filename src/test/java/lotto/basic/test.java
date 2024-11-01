@@ -1,23 +1,20 @@
 package lotto.basic;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.Application;
 import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class test  {
+public class test {
 
     @AfterEach
     void closeConsole() {
@@ -27,7 +24,7 @@ public class test  {
     @Test
     void 금액_입력_테스트() {
         // given
-        InputView inputView =  new InputView();
+        InputView inputView = new InputView();
         Money expectInput = new Money("14000");
 
         // when
@@ -55,149 +52,169 @@ public class test  {
     @Test
     void 당첨_번호_입력_테스트() {
         // given
-        InputView inputView = new InputView();
         List<Integer> expectedValues = List.of(1, 2, 3, 4, 5, 6); // 정수형으로 변경
 
         // when
-        System.setIn(new ByteArrayInputStream("1,2,3,4,5,6".getBytes()));
-        WinningNumbers actualInput = inputView.getWinningNumbers();
+        WinningNumbers actualInput = new WinningNumbers("1,2,3,4,5,6");
 
         // then
-        assertThat(actualInput.stream().toList()).isEqualTo(expectedValues); // getNumbers() 메서드 사용
+        assertThat(actualInput.stream().toList())
+                .isEqualTo(expectedValues); // getNumbers() 메서드 사용
     }
 
 
     @Test
     void 당첨_번호_오류_공백_입력_테스트() {
         // given
-        InputView inputView = new InputView();
+        String errorInput = "1,2,3,4, ,6";
 
         // when
-        System.setIn(new ByteArrayInputStream("1, ,3,4,5,6".getBytes()));
 
         // then
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(inputView::getWinningNumbers);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
     @Test
     void 당첨_번호_오류_음수_입력_테스트() {
         // given
-        InputView inputView = new InputView();
+        String errorInput = "1,2,3,4,-1,6";
 
         // when
-        System.setIn(new ByteArrayInputStream("-1,2,3,4,5,6".getBytes()));
 
         // then
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(inputView::getWinningNumbers);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
     @Test
     void 당첨_번호_오류_문자_입력_테스트() {
         // given
-        InputView inputView = new InputView();
+        String errorInput = "1,2,3,4,일,6";
 
         // when
-        System.setIn(new ByteArrayInputStream("1,일,3,4,5,6".getBytes()));
 
         // then
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(inputView::getWinningNumbers);
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
     @Test
     void 당첨_번호_오류_짧은_길이_입력_테스트() {
-
         // given
-        InputView inputView = new InputView();
+        String errorInput = "1,2,3,4,5";
 
         // when
-        System.setIn(new ByteArrayInputStream("1,2,3,4,5".getBytes()));
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(inputView::getWinningNumbers);
+                .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
     @Test
     void 당첨_번호_오류_긴_길이_입력_테스트() {
-
         // given
-        InputView inputView = new InputView();
+        String errorInput = "1,2,3,4,5,6,7";
 
         // when
-        System.setIn(new ByteArrayInputStream("1,2,3,4,5,6,7".getBytes()));
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(inputView::getWinningNumbers);
+                .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
     @Test
     void 당첨_번호_오류_범위_입력_테스트() {
-
         // given
-        InputView inputView = new InputView();
+        String errorInput = "1,2,3,4,5,46";
 
         // when
-        System.setIn(new ByteArrayInputStream("1,2,3,4,46, 6".getBytes()));
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(inputView::getWinningNumbers);
+                .isThrownBy(() -> new WinningNumbers(errorInput));
+    }
+
+    @Test
+    void 당첨_번호_오류_중복_입력_테스트() {
+        // given
+        String errorInput = "1,2,3,4,5,1";
+
+        // when
+
+        // then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new WinningNumbers(errorInput));
     }
 
 
     @Test
     void 보너스_번호_입력_테스트() {
         // given
-        InputView inputView = new InputView();
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        String correctInput = "12";
         Integer expectedValues = 12;
 
         // when
-        System.setIn(new ByteArrayInputStream("12".getBytes()));
-        BonusNumber actualInput = inputView.getBonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(correctInput, winningNumbers);
 
         // then
-        assertThat(actualInput.value()).isEqualTo(expectedValues);
+        assertThat(bonusNumber.value())
+                .isEqualTo(expectedValues);
     }
 
     @Test
     void 보너스_번호_공백_입력_테스트() {
-        // given
-        InputView inputView = new InputView();
+        //given
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        String errorInput = "";
 
         // when
-        System.setIn(new ByteArrayInputStream("\n".getBytes()));
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(inputView::getBonusNumber);
+                .isThrownBy(() -> new BonusNumber(errorInput, winningNumbers));
     }
 
     @Test
     void 보너스_번호_음수_입력_테스트() {
-        // given
-        InputView inputView = new InputView();
+        //given
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        String errorInput = "-1";
 
         // when
-        System.setIn(new ByteArrayInputStream("-1\n".getBytes()));
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(inputView::getBonusNumber);
+                .isThrownBy(() -> new BonusNumber(errorInput, winningNumbers));
     }
 
     @Test
     void 보너스_번호_문자_입력_테스트() {
-        // given
-        InputView inputView = new InputView();
+        //given
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        String errorInput = "일";
 
         // when
-        System.setIn(new ByteArrayInputStream("일".getBytes()));
 
         // then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(inputView::getBonusNumber);
+                .isThrownBy(() -> new BonusNumber(errorInput, winningNumbers));
     }
+
+    @Test
+    void 보너스_번호_중복_입력_테스트() {
+        //given
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,3,4,5,6");
+        String errorInput = "1";
+
+        // when
+
+        // then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> new BonusNumber(errorInput, winningNumbers));
+    }
+
 
     @Test
     void 번호_맞추기_당첨번호_테스트() {
@@ -213,7 +230,8 @@ public class test  {
         Integer actualValue = lottoService.countWinningNumber(winningNumbers, lotto);
 
         // then
-        assertThat(actualValue).isEqualTo(expectedValues);
+        assertThat(actualValue)
+                .isEqualTo(expectedValues);
     }
 
     @Test
@@ -222,7 +240,8 @@ public class test  {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         LottoService lottoService = new LottoService(inputView, outputView);
-        BonusNumber bonusNumber = new BonusNumber("7");
+        WinningNumbers winningNumbers = new WinningNumbers("31, 32, 33, 34, 35, 36");
+        BonusNumber bonusNumber = new BonusNumber("7", winningNumbers);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 43, 44, 7));
         Integer expectedValues = 1;
 
@@ -230,25 +249,23 @@ public class test  {
         Integer actualValue = lottoService.countBonusNumber(bonusNumber.value(), lotto);
 
         // then
-        assertThat(actualValue).isEqualTo(expectedValues);
+        assertThat(actualValue)
+                .isEqualTo(expectedValues);
     }
 
-//    @Test
-//    void 수익률_계산_테스트() {
-//        // given
-//        InputView inputView = new InputView();
-//        OutputView outputView = new OutputView();
-//        LottoService lottoService = new LottoService(inputView, outputView);
-//        Money money = new Money("1000");
-//        String expectedValues = "500.0";
-//
-//        // when
-//        String actualValue = lottoService.fge(money, Result.FIFTH);
-//
-//        // then
-//        assertThat(actualValue).isEqualTo(expectedValues);
-//    }
+    @Test
+    void 수익률_계산_테스트() {
+        // given
+        Money money = new Money("1000");
+        Result result = Result.FIFTH;
+        double expectedValues = 500.0;
 
+        // when
+        double actualValue = result.getROI(money);
+
+        // then
+        assertThat(actualValue).isEqualTo(expectedValues);
+    }
 
 
 }

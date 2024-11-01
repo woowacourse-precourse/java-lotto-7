@@ -1,5 +1,6 @@
 package lotto.domain;
 
+
 import static lotto.common.ErrorMessage.ERROR_MESSAGE;
 
 public abstract class NumberImpl implements Number {
@@ -21,6 +22,8 @@ public abstract class NumberImpl implements Number {
         throw new IllegalArgumentException(ERROR_MESSAGE + " " +message +"는 1~45 사이의 숫자여야 합니다.");
     }
 
+
+
     public boolean hasContent(String number ) {
         return number != null && !number.isEmpty();
     }
@@ -32,6 +35,8 @@ public abstract class NumberImpl implements Number {
     public boolean isInRange(Integer number) {
         return number >= 1 && number <= 45;
     }
+
+
 
     abstract String getDomain();
 }

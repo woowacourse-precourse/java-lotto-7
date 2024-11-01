@@ -20,7 +20,7 @@ public class LottoService {
         Lottos lottos = getLotto(fortuneMachine, money);
         showLotto(lottos);
         WinningNumbers winningNumbers = inputView.getWinningNumbers();
-        BonusNumber bonusNumber = inputView.getBonusNumber();
+        BonusNumber bonusNumber = inputView.getBonusNumber(winningNumbers);
         Results results = new Results(lottos.stream()
                 .map(lotto -> getResult(winningNumbers, bonusNumber, lotto))
                 .toList());

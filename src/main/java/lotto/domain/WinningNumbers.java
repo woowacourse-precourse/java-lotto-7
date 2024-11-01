@@ -16,7 +16,9 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
         validateBlank(trimWinningNumbers, getDomain());
         List<String> splitWinningNumbers = split(trimWinningNumbers);
         validateSize(splitWinningNumbers);
-        List<Integer> winningNumbers = validateNumbers(splitWinningNumbers);;
+        List<Integer> winningNumbers = validateNumbers(splitWinningNumbers);
+        ;
+        validateDuplicate(winningNumbers, getDomain());
         validateRange(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
@@ -34,9 +36,16 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
                 .toList();
     }
 
+    public void validateDuplicate(List<Integer> numbers, String message) {
+        List<Integer> duplicateNumbers = new HashSet<>(numbers).stream()
+                .toList();
+        if (hasCorrectSize(duplicateNumbers, numbers.size())) return;
+        throw new IllegalArgumentException(ERROR_MESSAGE + " " + message + "에 중복된 번호가 있습니다.");
+    }
+
     private void validateSize(List<String> numbers) {
         if (hasCorrectSize(numbers)) return;
-        throw new IllegalArgumentException(ERROR_MESSAGE + " " +getDomain() + "는 길이가 6여야 합니다.");
+        throw new IllegalArgumentException(ERROR_MESSAGE + " " + getDomain() + "는 길이가 6여야 합니다.");
     }
 
     private void validateRange(List<Integer> numbers) {
@@ -49,10 +58,15 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
         return numbers.size() == LOTTO_LENGTH;
     }
 
+    private boolean hasCorrectSize(List<Integer> numbers, int originLength) {
+        return numbers.size() == originLength;
+    }
+
     public Map<Integer, Boolean> toMap() {
         return winningNumbers.stream()
                 .collect(Collectors.toMap(number -> number, number -> true));
     }
+
 
     public Set<Integer> getKeySet() {
         return toMap().keySet();

@@ -1,25 +1,30 @@
 package lotto.domain;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static lotto.common.ErrorMessage.ERROR_MESSAGE;
 import static lotto.common.NumberConstants.LOTTO_LENGTH;
 
-public class Lotto implements Iterable<Integer> {
+public final class Lotto implements Iterable<Integer> {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLength(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLength(List<Integer> numbers) {
         if (hasCorrectSize(numbers)) return;
         throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 번호는 6개여야 합니다.");
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        List<Integer> duplicateNumbers = new HashSet<>(numbers).stream()
+                .toList();
+        if (hasCorrectSize(duplicateNumbers)) return;
+        throw new IllegalArgumentException(ERROR_MESSAGE + "에 중복된 번호가 있습니다.");
     }
 
     private boolean hasCorrectSize(List<Integer> numbers) {
