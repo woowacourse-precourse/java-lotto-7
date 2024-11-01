@@ -1,7 +1,7 @@
 package lotto.validation;
 
 public enum ErrorMessage {
-    LOTTO_ERROR_PAY_MORE("로또 구매 금액은 1000원 이상이여야 합니다."),
+    LOTTO_ERROR_PAY_UNDER("로또 구매 금액은 1000원 이상이여야 합니다."),
     LOTTO_ERROR_PAY_OVER("로또 구매 금액은 1인당 10만원 이하로 구매 가능합니다."),
     LOTTO_ERROR_ONLY_NUMBER("숫자를 입력해주세요."),
     LOTTO_ERROR_WRONG_LOTTO_RANGE("로또 번호는 1 ~ 45 사이 번호입니다."),
