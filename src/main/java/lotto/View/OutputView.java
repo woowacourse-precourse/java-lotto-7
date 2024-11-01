@@ -1,5 +1,6 @@
 package lotto.View;
 
+import lotto.Lotto;
 import lotto.Messages.StateMessage;
 import lotto.MyResult;
 import lotto.WinningDetails;
@@ -15,8 +16,8 @@ public class OutputView {
         System.out.println(LOTTO_AMOUNT_PHRASE);
     }
 
-    public static void printCount(){
-        System.out.println(LOTTO_COUNT_PHRASE);
+    public static void printCount(Integer lottoCount){
+        System.out.println(lottoCount + LOTTO_COUNT_PHRASE);
     }
 
     public static void printWinning(){
@@ -33,6 +34,14 @@ public class OutputView {
 
     public static void printReturn(Integer purchasePrice, Integer revenue){
         System.out.println("총 수익률은 " + MyResult.getReturn(purchasePrice, revenue) + "%입니다.");
+    }
+
+    public static void printError(String error){
+        System.out.println(error);
+    }
+
+    public static void printLotto(Lotto lotto){
+        System.out.println(lotto.getNumbers());
     }
 
     public static void printResults(WinningDetails grades){
