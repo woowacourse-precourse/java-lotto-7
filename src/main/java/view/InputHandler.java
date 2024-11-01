@@ -10,17 +10,14 @@ import java.util.stream.Collectors;
 
 public class InputHandler {
 
-    public int getAmountInput() {
-
+    public int getAmountInput() throws IllegalArgumentException {
         String input = Console.readLine();
         validateInputAmount(input);
-
         return Integer.parseInt(input);
     }
 
 
-
-    private void validateInputAmount(String input) {
+    public void validateInputAmount(String input) throws IllegalArgumentException {
         if (InputValidator.isNullOrBlank(input)) {
             throw new IllegalArgumentException("[ERROR] 빈칸 없이 입력해주세요.");
 

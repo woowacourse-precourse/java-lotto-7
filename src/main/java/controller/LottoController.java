@@ -1,5 +1,6 @@
 package controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import service.LottoManager;
 import lotto.Prize;
@@ -57,7 +58,8 @@ public class LottoController {
             try {
                 outputHandler.promptForAmountInput();
                 return inputHandler.getAmountInput();
-            } catch (RuntimeException e) {
+
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -91,7 +93,7 @@ public class LottoController {
                 int bonusNumber = getInputBonusNumber(winningLottoWithoutBonusNumber);
                 return new WinningLotto(winningLottoWithoutBonusNumber, bonusNumber);
 
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -103,7 +105,7 @@ public class LottoController {
                 outputHandler.promptForBonusNumber();
                 List<Integer> winningLottoNumbers = winningLotto.getNumbers();
                 return inputHandler.getBonusNumber(winningLottoNumbers);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
