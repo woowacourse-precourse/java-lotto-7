@@ -5,14 +5,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constants.ErrorMessages;
 
 public class InputView {
-    private static final String ERROR_NON_POSITIVE_AMOUNT = "[ERROR] 0초과 값을 입력해주세요.";
-    private static final String ERROR_INVALID_AMOUNT_UNIT = "[ERROR] 1,000원 단위로 입력해주세요.";
-    private static final String ERROR_INVALID_NUMBER_FORMAT = "[ERROR] 정수값을 입력해주세요.";
-    private static final String ERROR_INVALID_NUMBER_SIZE = "[ERROR] 각 번호는 1 이상 45 이하여야 합니다.";
-    private static final String ERROR_INVALID_NUMBER_DUPLICATION = "[ERROR] 중복된 번호가 있습니다.";
-    private static final String ERROR_INVALID_WINNING_NUMBER_COUNT = "[ERROR] 당첨 번호는 6개여야 합니다";
 
     public static int getPurchaseAmount() {
         System.out.println("구입 금액을 1,000원 단위로 입력해주세요");
@@ -21,7 +16,7 @@ public class InputView {
                 validatePurchaseAmount(amount);
                 return amount;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_INVALID_NUMBER_FORMAT);
+                throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
             }
 
     }
@@ -37,7 +32,7 @@ public class InputView {
             return numbers;
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_FORMAT);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
         }
     }
 
@@ -48,40 +43,40 @@ public class InputView {
             validateBonusNumber(number, winningNumbers);
             return number;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_FORMAT);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
         }
     }
 
     private static void validatePurchaseAmount(int amount) {
             if (amount <= 0) {
-                throw new IllegalArgumentException(ERROR_NON_POSITIVE_AMOUNT);
+                throw new IllegalArgumentException(ErrorMessages.ERROR_NON_POSITIVE_AMOUNT);
             }
 
             if (amount % 1000 != 0) {
-                throw new IllegalArgumentException(ERROR_INVALID_AMOUNT_UNIT);
+                throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_AMOUNT_UNIT);
             }
     }
 
     private static void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_INVALID_WINNING_NUMBER_COUNT);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_WINNING_NUMBER_COUNT);
         }
         if (numbers.size() != numbers.stream().distinct().count())
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_DUPLICATION);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_DUPLICATION);
 
         for (int number : numbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(ERROR_INVALID_NUMBER_SIZE);
+                throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_SIZE);
             }
         }
     }
 
     private static void validateBonusNumber(int number, List<Integer> winningNumber) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_SIZE);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_SIZE);
         }
         if (winningNumber.contains(number)) {
-            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_DUPLICATION);
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_DUPLICATION);
         }
     }
 }
