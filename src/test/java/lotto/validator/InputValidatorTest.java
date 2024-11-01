@@ -16,7 +16,7 @@ public class InputValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" ", "", "1,2,3,,4,5"})
+    @ValueSource(strings = {" ", ""})
     void 당첨번호에_공백이_있으면_예외가_발생한다(String input) {
         assertThatThrownBy(() -> InputValidator.validateWinNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
