@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.earning.Earning;
 import lotto.domain.winning.WinningRank;
 import lotto.domain.winning.WinningStatics;
 
@@ -31,5 +32,9 @@ public class OutputView {
 
             System.out.printf(winningRank.getWinningString(), winningStatics.getWinningCount(winningRank));
         }
+    }
+
+    public void printEarning(Earning earning) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", earning.getEarning());
     }
 }

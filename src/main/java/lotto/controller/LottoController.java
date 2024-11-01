@@ -35,7 +35,7 @@ public class LottoController {
         outputView.printWinningStatics(winningStatics);
 
         int purchaseAmount = purchase.getAmount();
-        Earning earning = new Earning();
-        System.out.printf("총 수익률은 %.1f%%입니다.", earning.getEarning(purchaseAmount, winningStatics.getWinningStatics()));
+        Earning earning = new Earning(purchaseAmount, winningStatics.getWinningStatics());
+        outputView.printEarning(earning);
     }
 }
