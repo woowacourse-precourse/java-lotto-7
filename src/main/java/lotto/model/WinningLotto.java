@@ -20,6 +20,14 @@ public class WinningLotto {
     }
 
     private boolean hasDuplicateNumber(Lotto lotto, BonusNumber bonusNumber) {
-        return lotto.contains(bonusNumber);
+        return lotto.containsBonusNumber(bonusNumber);
+    }
+
+    public int countMatchingNumbers(Lotto lotto) {
+        return this.lotto.countMatchingNumbers(lotto);
+    }
+
+    public boolean hasBonusNumber(Lotto lotto) {
+        return lotto.containsBonusNumber(bonusNumber);
     }
 }

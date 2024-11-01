@@ -45,13 +45,14 @@ public class Lotto {
         return number < NUMBER_RANGE_MINIMUM || number > NUMBER_RANGE_MAXIMUM;
     }
 
-    public boolean contains(BonusNumber bonusNumber) {
-        int number = bonusNumber.getNumber();
-        return numbers.contains(number);
+    public int countMatchingNumbers(Lotto lotto) {
+        return (int) this.numbers.stream()
+                .filter(lotto.numbers::contains)
+                .count();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return bonusNumber.matches(numbers);
     }
 
     @Override

@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.constants.LottoConfig.NUMBER_RANGE_MAXIMUM;
 import static lotto.constants.LottoConfig.NUMBER_RANGE_MINIMUM;
 
+import java.util.List;
 import lotto.constants.ErrorMessage;
 
 public class BonusNumber {
@@ -24,7 +25,7 @@ public class BonusNumber {
         return number < NUMBER_RANGE_MINIMUM || number > NUMBER_RANGE_MAXIMUM;
     }
 
-    public int getNumber() {
-        return number;
+    public boolean matches(List<Integer> numbers) {
+        return numbers.contains(number);
     }
 }
