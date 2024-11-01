@@ -12,8 +12,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+
+        if (!validateSizeLottoNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
+        }
+        if (!validateDuplicateLottoNumbers(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
+        if (!validateRangeLottoNumbers(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -21,5 +28,29 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public boolean validateRangeLottoNumbers (List<Integer> numbers) {
+        // 1 ~ 45 사이 수 체크
+        for (int num: numbers) {
+            if (num < 1 || num > 45) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean validateSizeLottoNumbers (List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateDuplicateLottoNumbers (List<Integer> numbers) {
+        // 중복 수 체크
+        long distinctCount = numbers.stream().distinct().count();
+        if (distinctCount != numbers.size()) {
+            return false;
+        }
+        return true;
+    }
 }

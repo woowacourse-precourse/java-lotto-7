@@ -41,7 +41,7 @@ public class LottoController {
         List<Integer> numbers = inputParser.parseNumbers(result[0]);
         int bonusNum = inputParser.parseBonus(result[1]);
 
-        if (!validationCheck(numbers, bonusNum)) { return; }
+        if (!validateService.validateBonus(bonusNum)) { return; }
 
         Map<PrizeAmount, Integer> lottoWinnings = lottoService.lottoWinning(lottoIns, numbers, bonusNum);
         Double returnRate = incomeService.rateOfReturn(money, lottoWinnings);
@@ -68,15 +68,6 @@ public class LottoController {
     public void outputHandle(Map<PrizeAmount, Integer> prizeAmounts, Double rate) {
         outputHandler.printWinning(prizeAmounts);
         outputHandler.printRateOfReturn(rate);
-    }
-
-    public boolean validationCheck(List<Integer> numbers, int bonusNum) {
-        if (validateService.validateRangeLottoNumbers(numbers)
-            && validateService.validateDuplicateLottoNumbers(numbers)
-            && validateService.validateBonus(bonusNum)) {
-            return true;
-        }
-        return false;
     }
 
 }
