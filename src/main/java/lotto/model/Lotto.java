@@ -27,4 +27,8 @@ public class Lotto {
     public List<LottoNumber> getNumbers() {
         return numbers;
     }
+
+    public boolean containsLottoNumber(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
 }
