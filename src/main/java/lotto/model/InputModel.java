@@ -1,6 +1,8 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 // Input에 필요한 메서드 모음
 public class InputModel {
@@ -18,6 +20,43 @@ public class InputModel {
         return price;
     }
 
+    // 당첨번호 입력 받은 후 Lotto 객체로 반환
+    public Lotto getWinningNumbers() {
+        Lotto winningNumbers;
+        List<Integer> numbers;
+
+        try {
+            numbers = convertText(Console.readLine());
+            winningNumbers = new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            System.out.println("당첨 번호를 다시 입력해 주세요.");
+            winningNumbers = getWinningNumbers();
+        }
+        return winningNumbers;
+    }
+
+    // 당첨번호 문자열을 체크하고 List<Integer>로 반환
+    static List<Integer> convertText(String text) {
+        List<Integer> inputNumbers;
+        isEmptyOrNull(text);
+        text = text.replaceAll(" ", "");
+        try {
+            inputNumbers = addInputNumbers(text.split(","));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 각 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.");
+        }
+        return inputNumbers;
+    }
+
+    private static List<Integer> addInputNumbers(String[] numbers) {
+        List<Integer> inputNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            inputNumbers.add(Integer.parseInt(number));
+        }
+        return inputNumbers;
+    }
+
     // 구입금액 입력 유효성 검사
     static int validatePrice(String inputPriceText) {
         int price;
@@ -28,8 +67,9 @@ public class InputModel {
         return price;
     }
 
-    private static void isEmptyOrNull(String priceText) {
-        if (priceText == null || priceText.isEmpty()) {
+    // 구입금액, 당첨 번호 입력 시 공유
+    private static void isEmptyOrNull(String inputText) {
+        if (inputText == null || inputText.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 빈 입력입니다.");
         }
     }
