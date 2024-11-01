@@ -1,10 +1,15 @@
-package lotto;
+package lotto.model;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.model.Lotto;
+import org.assertj.core.util.CheckReturnValue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,5 +27,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @DisplayName("로또 번호 범위가 1~45을 벗어나면 예외가 발생한다.")
+    @CsvSource({
+            "0,1,2,3,4,5",
+            "1,2,3,4,5,46"
+    })
+    void throwExceptionIfLottoNumberIsNotInRange(String numberString){
+        assertThatThrownBy(() -> new Lotto(Stream.of(numberString.split(","))
+                .map(Integer::parseInt).toList()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
