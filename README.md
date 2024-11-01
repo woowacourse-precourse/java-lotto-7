@@ -21,14 +21,7 @@
 - 입력받은 보너스 번호가 당첨 번호 중 하나와 중복되는 경우
 
 ## 기능 목록
-### LottoGame 클래스
-int 구입 금액
-
-List\<Lotto> 구매한 로또 번호
-
-Lotto 당첨 번호
-
-int 보너스 번호
+### Purchase
 
 - [ ]  public void process()
     - [ ]  buyLottos() 호출해 로또 구매
