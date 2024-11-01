@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.service.LottoService;
+import lotto.utils.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,13 +14,8 @@ public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final LottoService lottoService = new LottoService();
+    private final Validator validator = new Validator();
 
-//    1 사용자에게 로또 구입 금액을 입력받기.
-//    2 입력받은 금액으로 로또 티켓 생성.
-//    3 로또 티켓을 출력하기.
-//    4 당첨 번호와 보너스 번호 입력받기.
-//    5 사용자가 구매한 로또와 당첨 번호를 비교하여 당첨 통계 계산.
-//    6 당첨 결과와 수익률 출력.
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
@@ -63,12 +59,9 @@ public class LottoController {
     private int getBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                String inputBonusNuber = inputView.inputBonusNumber();
-                int bonusNumber = Integer.parseInt(inputBonusNuber);
-                if (winningNumbers.contains(bonusNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-                }
-                return bonusNumber;
+                String inputBonusNumber = inputView.inputBonusNumber();
+                validator.validateInputBonusNumber(inputBonusNumber, winningNumbers);
+                return Integer.parseInt(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

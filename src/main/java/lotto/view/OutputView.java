@@ -22,15 +22,12 @@ public class OutputView {
             if (rank == LottoRank.NONE) {
                 return;
             }
-
             String formattedPrizeMoney = prizeMoneyFormat.format(rank.getPrizeMoney());
-
             if (rank == LottoRank.SECOND) {
                 System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
                         rank.getMatchCount(), formattedPrizeMoney, count);
                 return;
             }
-
             System.out.printf("%d개 일치 (%s원) - %d개%n",
                     rank.getMatchCount(), formattedPrizeMoney, count);
         });
