@@ -29,7 +29,7 @@ public class BonusNumber {
     }
 
     private void validateNoDuplicateNumbers(int bonusNumber, List<Integer> winningNumbers) {
-        if(winningNumbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION.message());
         }
     }

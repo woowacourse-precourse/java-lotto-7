@@ -19,7 +19,7 @@ public enum Rank {
 
     public static Rank from(int duplicateCount, boolean isBonusNumberDuplicated) {
         if (duplicateCount == 5) {
-            if(isBonusNumberDuplicated) {
+            if (isBonusNumberDuplicated) {
                 return SECOND;
             }
             return THIRD;

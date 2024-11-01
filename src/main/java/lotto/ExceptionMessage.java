@@ -18,9 +18,8 @@ public enum ExceptionMessage {
     BONUS_NUMBER_DUPLICATE_EXCEPTION("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
 
 
-
-    private String exceptionMessagePrefix = "[ERROR] ";
-    private String exceptionMessage;
+    private final String exceptionMessagePrefix = "[ERROR] ";
+    private final String exceptionMessage;
 
     ExceptionMessage(String exceptionMessage) {
         this.exceptionMessage = exceptionMessagePrefix + exceptionMessage;

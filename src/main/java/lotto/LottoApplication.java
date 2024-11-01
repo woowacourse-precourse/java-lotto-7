@@ -15,7 +15,8 @@ public class LottoApplication {
 
         PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
 
-        LottoPurchaseController lottoPurchaseController = new LottoPurchaseController(lottos, lottoPurchase, purchaseAmountInputView);
+        LottoPurchaseController lottoPurchaseController = new LottoPurchaseController(lottos, lottoPurchase,
+                purchaseAmountInputView);
         lottoPurchaseController.start();
 
         WinningNumbersInputView winningNumbersInputView = new WinningNumbersInputView();

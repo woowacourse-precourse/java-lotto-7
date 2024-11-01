@@ -10,7 +10,7 @@ public class LottoResultOutputView {
     private static final String LOTTO_RESULT_WITH_BONUS_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private static final String NUMBER_WITH_COMMA_PATTERN = "#,###";
 
-    private DecimalFormat decimalFormat = new DecimalFormat(NUMBER_WITH_COMMA_PATTERN);
+    private final DecimalFormat decimalFormat = new DecimalFormat(NUMBER_WITH_COMMA_PATTERN);
 
     public void printLottoResultOutputGuide() {
 
