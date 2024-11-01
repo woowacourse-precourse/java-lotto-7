@@ -23,6 +23,10 @@ public class WinningNumber {
                 .allMatch(num -> Integer.parseInt(num) >= 1 && Integer.parseInt(num) <= 45)) {
             reject();
         }
+
+        if (Arrays.stream(separateWinningNumber).distinct().count() != separateWinningNumber.length) {
+            reject();
+        }
     }
 
     public void setNumbers(String input) {
