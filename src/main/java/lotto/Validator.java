@@ -59,9 +59,9 @@ public class Validator {
                 winningDigits.add(parseInt);
             }
 
-            for (Integer w : winningDigits) {
-                checkIsPositiveNumber(w);
-                checkIsLotteryRange(w);
+            for (Integer winningDigit : winningDigits) {
+                checkIsPositiveNumber(winningDigit);
+                checkIsLotteryRange(winningDigit);
             }
             if (winningDigits.size() != WINNING_NUMBER_COUNT) {
                 throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
