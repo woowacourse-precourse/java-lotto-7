@@ -1,19 +1,16 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import lotto.exception.lotto.LottoErrorMessages;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
