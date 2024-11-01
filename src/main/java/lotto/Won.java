@@ -7,16 +7,12 @@ public class Won {
         this.amount = amount;
     }
 
-    public int value() {
-        return this.amount;
+    public boolean isLessThan(Won won) {
+        return won.amount < this.amount;
     }
 
     @Override
     public String toString() {
         return String.format("%d원", amount);
-    }
-
-    public boolean isLessThan(Won won) {
-        return won.amount < this.amount;
     }
 }
