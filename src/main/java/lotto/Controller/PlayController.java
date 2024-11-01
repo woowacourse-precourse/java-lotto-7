@@ -32,16 +32,16 @@ public class PlayController {
         initializeResultSet();
     }
 
+    public void play() {
+        matchingNumber = playLottoGame.play();
+        updateResultSet();
+    }
+
     private void initializeResultSet() {
         resultSet = new HashMap<>();
         for (Ranking rank : Ranking.values()) {
             resultSet.put(rank, 0);
         }
-    }
-
-    public void play() {
-        matchingNumber = playLottoGame.play();
-        updateResultSet();
     }
 
     private void updateResultSet() {
