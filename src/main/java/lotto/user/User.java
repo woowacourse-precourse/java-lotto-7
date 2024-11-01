@@ -13,4 +13,12 @@ public class User {
 	public void updateRank(LottoRank rank) {
 		lottoStats.put(rank, lottoStats.getOrDefault(rank, 0) + 1);
 	}
+
+	public void calculateRateOfReturns(int lottoPurchaseAmount) {
+		int totals = 0;
+		for (Map.Entry<LottoRank, Integer> lottoRankEntry : lottoStats.entrySet()) {
+			totals += lottoRankEntry.getKey().getPrizeAmount() * lottoRankEntry.getValue();
+		}
+		rateOfReturn = (double) totals / lottoPurchaseAmount * 100;
+	}
 }
