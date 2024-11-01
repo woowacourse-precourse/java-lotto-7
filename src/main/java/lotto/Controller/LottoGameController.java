@@ -2,10 +2,10 @@ package lotto.Controller;
 
 import lotto.Utils.InputRequest;
 
-public class LottoGameContoller {
+public class LottoGameController {
     private final InputRequest inputRequest;
 
-    public LottoGameContoller() {
+    public LottoGameController() {
         inputRequest = new InputRequest();
     }
 

@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.Controller.LottoGameContoller;
+import lotto.Controller.LottoGameController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoGameContoller lottoGameContoller = new LottoGameContoller();
-        lottoGameContoller.run();
+        LottoGameController lottoGameController = new LottoGameController();
+        lottoGameController.run();
     }
 }
