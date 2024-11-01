@@ -2,8 +2,11 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.utils.LottoNumbersGenerator;
 
 public class LottoService {
@@ -12,8 +15,8 @@ public class LottoService {
         return new Lottos(LottoGroup);
     }
 
-    public List<Lotto> convertToLottoGroup(Lottos lottos) {
-        return lottos.getLottoGroup();
+    public LottoGame createLottoGame(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return new LottoGame(lottos, winningNumbers, bonusNumber);
     }
 
     private static List<Lotto> generateLottoGroup(int lottoQuantity) {
