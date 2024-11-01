@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Price;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,6 +15,12 @@ public class LottoCreateController {
 	}
 
 	public void run() {
-		outputView.printPurchasePriceInputMessage();
+	}
+
+	private Price getPurchasePrice() {
+		try {
+		} catch (IllegalArgumentException exception) {
+			outputView.printErrorMessage(exception.getMessage());
+		}
 	}
 }
