@@ -3,14 +3,10 @@ package lotto.entity;
 import java.util.List;
 
 public class ProfitReport {
-    private final int paymentAmount;
     private final List<Lotto> purchasedLottos;
     private final WinningNumbers winningNumbers;
 
-    public ProfitReport(int paymentAmount, List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
-        if (paymentAmount <= 0) {
-            throw new IllegalArgumentException("투자 금액은 0 이상이어야 합니다.");
-        }
+    public ProfitReport(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
         if (purchasedLottos == null || purchasedLottos.isEmpty()) {
             throw new IllegalArgumentException("구매한 로또는 null 또는 비어있을 수 없습니다.");
         }
@@ -18,7 +14,6 @@ public class ProfitReport {
             throw new IllegalArgumentException("당첨 번호는 null일 수 없습니다.");
         }
 
-        this.paymentAmount = paymentAmount;
         this.purchasedLottos = purchasedLottos;
         this.winningNumbers = winningNumbers;
     }
