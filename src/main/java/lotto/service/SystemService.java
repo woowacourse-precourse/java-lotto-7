@@ -4,40 +4,35 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.User;
-import lotto.service.numbers.NumberService;
+import lotto.service.numbers.LottoNumberService;
 import lotto.service.result.ResultService;
 import lotto.service.user.UserService;
 
 public class SystemService {
-    private final NumberService numberService;
+    private final LottoNumberService lottoNumberService;
     private final ResultService resultService;
     private final UserService userService;
 
-    private User user;
-    private Lotto winningLotto;
-    private BonusNumber bonusNumber;
-
-    public SystemService(NumberService numberService, ResultService resultService, UserService userService) {
-        this.numberService = numberService;
+    public SystemService(LottoNumberService lottoNumberService, ResultService resultService, UserService userService) {
+        this.lottoNumberService = lottoNumberService;
         this.resultService = resultService;
         this.userService = userService;
     }
 
-    public User userProcess(String purchaseAmount) {
-        user = userService.userProcess(purchaseAmount);
-        return user;
+    public User generateUser(String purchaseAmount) {
+        return userService.userProcess(purchaseAmount);
     }
 
-    public void winningLottoProcess(String number) {
-        winningLotto = numberService.winningLotto(number);
+    public Lotto generateLotto(String number) {
+        return lottoNumberService.generateWinningLotto(number);
     }
 
-    public void bonusNumberProcess(String number) {
-        bonusNumber = numberService.winningBonusNumber(number, winningLotto);
+    public BonusNumber generateBonusNumber(String number, Lotto winningLotto) {
+        return lottoNumberService.generateBonusNumber(number, winningLotto);
     }
 
-    public List<String> result() {
-        return resultService.resultProcess(user,winningLotto,bonusNumber);
+    public List<String> generateResult(User user, Lotto winningLotto, BonusNumber bonusNumber) {
+        return resultService.resultProcess(user, winningLotto, bonusNumber);
     }
-
 }
+

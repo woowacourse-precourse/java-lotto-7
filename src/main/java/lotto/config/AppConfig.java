@@ -2,14 +2,12 @@ package lotto.config;
 
 import lotto.controller.LottoController;
 import lotto.service.SystemService;
-import lotto.service.numbers.BonusNumberService;
+import lotto.service.numbers.LottoNumberService;
 import lotto.service.result.ProfitService;
 import lotto.service.result.ResultService;
 import lotto.service.result.StatisticService;
-import lotto.service.user.LottoGeneratorService;
-import lotto.service.numbers.NumberService;
+import lotto.service.user.LottoService;
 import lotto.service.user.MoneyService;
-import lotto.service.numbers.WinningLottoService;
 import lotto.service.user.UserService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -28,27 +26,20 @@ public class AppConfig {
         return new OutputView();
     }
     private SystemService systemService() {
-        return new SystemService(lottoService(), resultService(), userService());
+        return new SystemService(lottoNumberService(), resultService(), userService());
     }
 
     private UserService userService() {
-        return new UserService(moneyService(), lottoGeneratorService());
+        return new UserService(moneyService(), lottoService());
     }
     private MoneyService moneyService() {
         return new MoneyService();
     }
-    private LottoGeneratorService lottoGeneratorService() {
-        return new LottoGeneratorService();
+    private LottoService lottoService() {
+        return new LottoService();
     }
-    private NumberService lottoService() {
-        return new NumberService(winningLottoService(), bonusNumberService());
-    }
-    private BonusNumberService bonusNumberService() {
-        return new BonusNumberService();
-    }
-
-    private WinningLottoService winningLottoService() {
-        return new WinningLottoService();
+    private LottoNumberService lottoNumberService() {
+        return new LottoNumberService();
     }
     private ResultService resultService() {
         return new ResultService(statisticService(), profitService());

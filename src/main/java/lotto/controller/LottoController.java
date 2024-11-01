@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.User;
 import lotto.service.SystemService;
 import lotto.validator.exception.LottoException;
 import lotto.view.input.InputView;
@@ -18,50 +21,50 @@ public class LottoController {
     }
 
     public void startLottoSimulation() {
-        purchaseLotto();
-        inputWinningNumbers();
-        inputBonusNumber();
-        outputResult();
+        User user = purchaseLotto();
+        Lotto winningLotto = inputWinningNumbers();
+        BonusNumber bonusNumber = inputBonusNumber(winningLotto);
+        outputResult(user, winningLotto, bonusNumber);
     }
 
-    private void purchaseLotto() {
+    private User purchaseLotto() {
         while (true) {
             try {
                 String purchaseAmount = inputView.inputPurchaseAmount();
-                outputView.displayLottos(systemService.userProcess(purchaseAmount));
-                break;
+                User user = systemService.generateUser(purchaseAmount);
+                outputView.displayLottos(user);
+                return user;
             } catch (LottoException e) {
                 outputView.displayErrorMessage(e);
             }
         }
     }
 
-    private void inputWinningNumbers() {
-        while(true) {
+    private Lotto inputWinningNumbers() {
+        while (true) {
             try {
                 String winningNumbers = inputView.inputWinningNumbers();
-                systemService.winningLottoProcess(winningNumbers);
-                break;
+                return systemService.generateLotto(winningNumbers);
             } catch (LottoException e) {
                 outputView.displayErrorMessage(e);
             }
         }
     }
 
-    private void inputBonusNumber() {
-        while(true) {
+    private BonusNumber inputBonusNumber(Lotto winningLotto) {
+        while (true) {
             try {
                 String bonusNumber = inputView.inputBonusNumber();
-                systemService.bonusNumberProcess(bonusNumber);
-                break;
+                return systemService.generateBonusNumber(bonusNumber, winningLotto);
             } catch (LottoException e) {
                 outputView.displayErrorMessage(e);
             }
         }
     }
-    private void outputResult() {
+
+    private void outputResult(User user, Lotto winningLotto, BonusNumber bonusNumber) {
         outputView.displayMessage(OutputMessage.WINNING_STATISTICS.getOutputMessage());
         outputView.displayMessage(OutputMessage.HYPHEN.getOutputMessage());
-        outputView.displayStatistics(systemService.result());
+        outputView.displayStatistics(systemService.generateResult(user, winningLotto, bonusNumber));
     }
 }
