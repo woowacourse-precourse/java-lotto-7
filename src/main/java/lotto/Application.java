@@ -74,11 +74,16 @@ public class Application {
         }
     }
 
-    public static void drawLottos(List<Lotto> lottos, Lotto winningNumbers) {
+    public static void drawLottos(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
         for (Lotto lotto : lottos) {
             int matchingAmount = winningNumbers.drawEachLotto(lotto);
+            boolean matchesBonusNumber = drawBonusNumber(lotto, bonusNumber);
 
         }
+    }
+
+    public static boolean drawBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     public static int registerBonusNumber(String bonusNumberInput, Lotto winningNumbers) {
