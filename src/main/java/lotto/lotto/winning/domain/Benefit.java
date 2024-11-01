@@ -1,15 +1,15 @@
 package lotto.lotto.winning.domain;
 
-import lotto.buyer.domain.Money;
+import lotto.money.domain.Money;
 import java.text.DecimalFormat;
 
 public class Benefit {
     private static final double PERCENTAGE = 100.0;
     private static final DecimalFormat decimalFormatter = new DecimalFormat("#,##0.0");
-    private final Money benefit;
+    private final Money winningAmount;
 
-    public Benefit(Money benefit) {
-        this.benefit = benefit;
+    public Benefit(Money winningAmount) {
+        this.winningAmount = winningAmount;
     }
 
     public String getDecimalFormatByRateOfReturn(Money money) {
@@ -17,13 +17,13 @@ public class Benefit {
         return decimalFormatter.format(rateOfReturn);
 
     }
-    private double calculateRateOfReturn(Money money) {
-        return (((double) benefit.getMoney() / money.getMoney()) * PERCENTAGE);
+    private double calculateRateOfReturn(Money purchaseAmount) {
+        return (((double) winningAmount.getMoney() / purchaseAmount.getMoney()) * PERCENTAGE);
 
     }
 
     @Override
     public String toString() {
-        return String.valueOf(benefit.getMoney());
+        return String.valueOf(winningAmount.getMoney());
     }
 }
