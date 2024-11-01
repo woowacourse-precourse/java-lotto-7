@@ -16,6 +16,10 @@ public class LottoPurchase {
         return purchaseAmount;
     }
 
+    public long getPurchasedLottoCount() {
+        return purchaseAmount / LOTTO_PRICE;
+    }
+
     private long validate(String inputAmount) {
         long amount;
         try {
