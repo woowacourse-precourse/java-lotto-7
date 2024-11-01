@@ -17,7 +17,7 @@ public class LottoServiceTest {
         int invalidAmount = -1000;
 
         // when, then
-        assertThatThrownBy(() -> lottoService.validateInput(invalidAmount))
+        assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
     }
@@ -29,7 +29,7 @@ public class LottoServiceTest {
         int invalidAmount = 800;
 
         // when, then
-        assertThatThrownBy(() -> lottoService.validateInput(invalidAmount))
+        assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
     }
@@ -41,7 +41,7 @@ public class LottoServiceTest {
         int invalidAmount = 2500;
 
         // when, then
-        assertThatThrownBy(() -> lottoService.validateInput(invalidAmount))
+        assertThatThrownBy(() -> lottoService.validateAmount(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LottoErrorMessages.INVALID_AMOUNT_NOT_DIVISIBLE_BY_1000.getMessage());
     }
@@ -53,6 +53,6 @@ public class LottoServiceTest {
         int validAmount = 3000;
 
         // when, then
-        assertThat(lottoService.validateInput(validAmount)).isTrue();
+        assertThat(lottoService.validateAmount(validAmount)).isTrue();
     }
 }

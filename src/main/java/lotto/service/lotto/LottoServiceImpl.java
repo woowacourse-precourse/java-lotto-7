@@ -4,7 +4,7 @@ import lotto.exception.lotto.LottoErrorMessages;
 
 public class LottoServiceImpl implements LottoService {
     @Override
-    public boolean validateInput(int amount) {
+    public boolean validateAmount(int amount) {
         if (amount <= 0) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_POSITIVE.getMessage());
         }
