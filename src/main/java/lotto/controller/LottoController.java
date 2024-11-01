@@ -27,7 +27,10 @@ public class LottoController {
 
     public void setUp() {
         printEnterPurChasePriceMessage();
-        publishCount = PublishCount.from(parseInt(readLine()));
+        int purchasePrice = parseInt(readLine());
+        validatePurchaseAmount(purchasePrice);
+        int countOfPublish = getCountOfPublish(purchasePrice);
+        publishCount = PublishCount.from(countOfPublish);;
         lotto = new Lotto(stringListToIntList(splitByComma(readLine())),lottoValidator);
     }
 
@@ -36,6 +39,10 @@ public class LottoController {
         if (purchaseAmount % TICKET_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
         }
+    }
+
+    public int getCountOfPublish(final int purchasePrice) {
+        return purchasePrice / TICKET_PRICE;
     }
 
     //당첨 번호 검증
