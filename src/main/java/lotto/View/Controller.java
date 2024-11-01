@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import static lotto.View.InputView.*;
 
 public class Controller {
-    public static final String DELIMITER = ",";
 
     private Integer lottoCount;
 
@@ -42,18 +41,15 @@ public class Controller {
 
     public Lotto getWinningInput(){
         OutputView.printWinning();
-        String rawWinningInput = Console.readLine();
-        OutputView.printBlank();
         Lotto answer;
         try {
-            answer = new Lotto(Arrays.asList(rawWinningInput.split(DELIMITER)).stream()
-                    .map(InputView::parseInt)
-                    .collect(Collectors.toList()));
+            answer = InputView.readWinningNum();
         }
         catch (IllegalArgumentException e){
             OutputView.printError(ErrorMessage.WIN_INPUT.getError());
             return getWinningInput();
         }
+        OutputView.printBlank();
         return answer;
     }
 

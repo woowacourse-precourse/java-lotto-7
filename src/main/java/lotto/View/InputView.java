@@ -4,7 +4,12 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.Messages.ErrorMessage;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class InputView {
+    public static final String DELIMITER = ",";
+
     public static Integer readPurchaseAmount(){
         Integer purchasePrice = 0;
         try {
@@ -15,6 +20,13 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.ONLY_NUMBER.getError());
         }
         return purchasePrice;
+    }
+
+    public static Lotto readWinningNum(){
+        String rawWinningInput = Console.readLine();
+        return new Lotto(Arrays.asList(rawWinningInput.split(DELIMITER)).stream()
+                .map(InputView::parseInt)
+                .collect(Collectors.toList()));
     }
 
     public static Integer parseInt(String input) {
