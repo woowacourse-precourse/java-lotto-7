@@ -26,7 +26,7 @@ public class Validator {
         return validateNumberInput(userInput);
     }
 
-    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public static void validateBonusNumber(Lotto winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
         }
