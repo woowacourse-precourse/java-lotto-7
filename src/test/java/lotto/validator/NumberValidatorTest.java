@@ -9,6 +9,14 @@ public class NumberValidatorTest {
     private NumbersValidator winningNumbersValidator;
 
     @Test
+    @DisplayName("번호에 공백이 포함되었는지 확인")
+    void 로또_번호_공백_테스트() {
+        assertThatThrownBy(() -> {
+            winningNumbersValidator = new NumbersValidator("1, 2, 3, 4, 5");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 공백은 허용되지 않습니다.");
+    }
+
+    @Test
     @DisplayName("로또 번호가 숫자인지 확인")
     void 로또_번호_숫자_테스트() {
         assertThatThrownBy(() -> {
