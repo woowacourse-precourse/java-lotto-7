@@ -1,10 +1,7 @@
 package lotto.Controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.*;
 import lotto.view.InputView;
-import lotto.domain.RandomLotto;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -23,6 +20,8 @@ public class LottoController {
         PlayerAmount(amount_str);
         String number_str =InputView.sixLottoNumber();
         lottoNum(number_str);
+        String bonusnum_str=InputView.bonusLottoNumber();
+        bonusNum(bonusnum_str);
     }
     public void PlayerAmount(String amount_str){
         purchaseAmount = new PurchaseAmount(amount_str);
@@ -40,5 +39,8 @@ public class LottoController {
     public void lottoNum(String number_str){
         List<Integer> lottoNumber =new ArrayList<>(LottoNumber.winLottoNumber(number_str));
         Lotto lotto =new Lotto(lottoNumber);
+    }
+    public void bonusNum(String bonusNum_str){
+        BonusNumber bonusNumber=new BonusNumber(bonusNum_str);
     }
 }
