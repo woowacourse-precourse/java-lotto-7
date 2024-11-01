@@ -4,17 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoPrize;
+import lotto.domain.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     public static void run() {
         LottoMachine lottoMachine = inputPrice();
-        OutputView.getLottoList(lottoMachine);
+        OutputView.lottoList(lottoMachine);
 
         Lotto winnerLotto = inputWinnerLotto();
         int bonus = inputBonus(winnerLotto);
+
+        User user = new User(lottoMachine.getLottoTickets(), winnerLotto);
+        long prize = calculatePrizeMoeny(user);
+
     }
+
+    private static long calculatePrizeMoeny(User user) {
+        long prize = 0;
+
+        for (Lotto lotto : user.getLottoTickets()) {
+            int matchCount = getMatchingNumbers(user.getWinnerLotto(), lotto);
+            prize += totalPrizeMoney(matchCount);
+        }
+
+        return prize;
+    }
+
+    private static int getMatchingNumbers(Lotto winnerLotto, Lotto lotto) {
+        int matchCount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winnerLotto.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    private static long totalPrizeMoney(int matchCount) {
+        long totalPrizeMoney = 0;
+
+        for (LottoPrize value : LottoPrize.values()) {
+            totalPrizeMoney += value.getPrizeByRank(matchCount);
+        }
+
+        return totalPrizeMoney;
+    }
+
 
     private static LottoMachine inputPrice() {
         try {

@@ -1,16 +1,14 @@
 package lotto.domain;
 
 public enum LottoPrize {
-    FIRST(6, 2000000000),
-    THIRD(5, 30000000),
-    SECOND(5, 1500000),
-    FOURTH(4, 50000),
     FIFTH(3, 5000),
-    NONE(0, 0);
+    FOURTH(4, 50000),
+    SECOND(5, 1500000),
+    THIRD(5, 30000000),
+    FIRST(6, 2000000000);
 
     private final int match;
     private final long prize;
-
     private int count;
 
     LottoPrize(int match, long prize) {
@@ -18,14 +16,18 @@ public enum LottoPrize {
         this.prize = prize;
     }
 
-    public static long getPrizeByRank(int match) {
+    public long getPrizeByRank(int matchCount) {
         for (LottoPrize value : values()) {
-            if (value.getMatch() == match) {
+            if (value.getMatch() == matchCount) {
                 value.incrementCount();
                 return value.prize;
             }
         }
-        return NONE.prize;
+        return 0;
+    }
+
+    public void getWinningStatistics(int match) {
+
     }
 
     public void incrementCount() {
@@ -38,6 +40,10 @@ public enum LottoPrize {
 
     public long getPrize() {
         return prize;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
     
