@@ -9,6 +9,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.LottoSeller;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
+import lotto.view.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,16 +17,19 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final InputValidator inputValidator;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, InputValidator inputValidator) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.inputValidator = inputValidator;
     }
 
     public void process() {
-        String lottoPurchaseMoney = inputView.inputLottoPurchaseMoney();
+        String lottoPurchaseAmount = inputView.inputLottoPurchaseAmount();
+        inputValidator.validatePurchaseAmount(lottoPurchaseAmount);
         LottoSeller lottoSeller = new LottoSeller(new LottoMachine());
-        Customer customer = new Customer(Money.from(lottoPurchaseMoney));
+        Customer customer = new Customer(Money.from(lottoPurchaseAmount));
         lottoSeller.sellUntilNoMoneyTo(customer);
         List<Lotto> lottos = customer.getLottos();
         outputView.printPurchaseLottos(lottos);
