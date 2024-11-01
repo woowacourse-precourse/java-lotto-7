@@ -1,8 +1,11 @@
 package lotto;
 
 import static lotto.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
+import static lotto.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.LottoConstants.MIN_LOTTO_NUMBER;
 import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
 import static lotto.MessageContainer.DUPLICATE_NUMBER_ERROR;
+import static lotto.MessageContainer.OUT_OF_RANGE_NUMBER_ERROR;
 
 import java.util.List;
 
@@ -12,6 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSizeOf(numbers);
         validateNoDuplicatesIn(numbers);
+        validateRangeOfNumbersIn(numbers);
         this.numbers = numbers;
     }
 
@@ -26,5 +30,15 @@ public class Lotto {
         if (numbers.size() != sizeExcludingDuplicateNumbers) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
         }
+    }
+
+    private void validateRangeOfNumbersIn(List<Integer> numbers) {
+        if (!numbers.stream().allMatch(this::verifyInLottoNumberRange)) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER_ERROR);
+        }
+    }
+
+    private boolean verifyInLottoNumberRange(Integer number) {
+        return (number >= MIN_LOTTO_NUMBER) && (number <= MAX_LOTTO_NUMBER);
     }
 }
