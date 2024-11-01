@@ -6,11 +6,11 @@ import lotto.global.ErrorMessage;
 
 public class LottoProvider {
     private static final int MONEY_THRESHOLD = 1000;
-    private final int trialCount;
+    private final int inputMoney;
 
-    public LottoProvider(int money) {
-        validate(money);
-        this.trialCount = convertToCount(money);
+    public LottoProvider(int inputMoney) {
+        validate(inputMoney);
+        this.inputMoney = inputMoney;
     }
 
     private void validate(int money){
@@ -24,7 +24,7 @@ public class LottoProvider {
     }
 
     public List<Lotto> generateLottos(LottoGenerateStrategy lottoGenerateStrategy) {
-        return IntStream.range(0, trialCount)
+        return IntStream.range(0, convertToCount(inputMoney))
                 .mapToObj(i -> generateSingleLotto(lottoGenerateStrategy))
                 .toList();
     }
