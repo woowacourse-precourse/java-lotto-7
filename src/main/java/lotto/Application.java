@@ -18,7 +18,7 @@ public class Application {
         OutputView.printPurchasedLottos(purchasedLottos);
 
         List<Integer> winningNumbers = InputView.WinningNumbers();
-        int bonusNumber = InputView.BonusNumber();
+        int bonusNumber = InputView.BonusNumber(winningNumbers);
 
     }
 }

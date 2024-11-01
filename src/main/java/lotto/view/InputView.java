@@ -39,8 +39,15 @@ public class InputView {
         return winNumbers;
     }
 
-    public static int BonusNumber(){
+    public static int BonusNumber(List<Integer> winningNumbers){
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
+        Lotto winningLotto = new Lotto(winningNumbers); // 당첨 번호로 Lotto 객체 생성
+        if (winningLotto.hasBonusNumber(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+
+        return bonusNumber;
     }
 }
