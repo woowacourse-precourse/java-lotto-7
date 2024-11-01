@@ -11,14 +11,12 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoIssuer lottoIssuer;
-    private final WinningResultCalculator winningResultCalculator;
     private final InputController inputController;
     private final OutputView outputView;
 
-    public LottoController(LottoIssuer lottoIssuer, WinningResultCalculator winningResultCalculator,
+    public LottoController(LottoIssuer lottoIssuer,
                            InputController inputController, OutputView outputView) {
         this.lottoIssuer = lottoIssuer;
-        this.winningResultCalculator = winningResultCalculator;
         this.inputController = inputController;
         this.outputView = outputView;
     }
@@ -35,11 +33,10 @@ public class LottoController {
         List<Integer> winningNumbers = inputController.getWinningNumbers();
         int bonusNumber = inputController.getBonusNumber(winningNumbers);
 
-        List<LottoResult> results = winningResultCalculator.calculateResults(issuedLottos, winningNumbers, bonusNumber);
-        int totalWinnings = winningResultCalculator.calculateTotalWinnings(results);
-        double profitRate = ProfitCalculator.calculateProfitRate(totalWinnings, purchaseAmount);
+        WinningResultCalculator resultsCalculator = WinningResultCalculator.from(issuedLottos, winningNumbers, bonusNumber);
+        outputView.printResults(resultsCalculator.getResults());
 
-        outputView.printResults(results);
+        double profitRate = resultsCalculator.calculateProfitRate(purchaseAmount);
         outputView.printProfitRate(profitRate);
     }
 
