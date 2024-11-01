@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,10 +35,10 @@ public class SellerTest {
     @Test
     @DisplayName("Lotto 발행 테스트")
     void testGetLottoTickets() {
-        seller.createLottoTickets(8000);
+        List<Lotto> lottos = seller.createLottoTickets(8000);
 
-        for (int i = 0; i < seller.getLottoTickets().size(); i++) {
-            Lotto lotto = seller.getLottoTickets().get(i);
+        for (int i = 0; i < lottos.size(); i++) {
+            Lotto lotto = lottos.get(i);
 
             assertThat(lotto.getNumbers().size()).isEqualTo(6);
             assertThat(lotto.getNumbers().stream().allMatch(num -> num >= 1 && num <= 45)).isTrue();
