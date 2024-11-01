@@ -7,6 +7,10 @@ public class LottoCount {
         this.value = value;
     }
 
+    public static LottoCount of(int count) {
+        return new LottoCount(count);
+    }
+
     public int getValue() {
         return value;
     }
