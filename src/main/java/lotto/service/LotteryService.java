@@ -23,7 +23,7 @@ public class LotteryService {
         final int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
 
         lotteryValidator.validatePurchaseAmount(purchaseAmount);
-        // 구매 개수 ->
+
         int lottoPurchaseAmount = purchaseAmount / 1000;
         outputView.printPurchaseAmount(lottoPurchaseAmount);
 
@@ -44,6 +44,14 @@ public class LotteryService {
 
     public void getLottoBonusNumber() {
         int lottoBonusNumber = Integer.parseInt(Console.readLine());
+    }
+
+    public void getLottoWinningStatistics() {
+        outputView.printWinningStatistics();
+    }
+
+    public void getLotteryYield() {
+        System.out.println("총 수익률은 " + "%입니다.");
     }
 
     private void issueLottoTickets(final int lottoIssueNumber) {

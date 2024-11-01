@@ -13,5 +13,7 @@ public class LotteryController {
         lotteryService.getPurchaseAmount();
         lotteryService.getLottoWinningNumber();
         lotteryService.getLottoBonusNumber();
+        lotteryService.getLottoWinningStatistics();
+        lotteryService.getLotteryYield();
     }
 }
