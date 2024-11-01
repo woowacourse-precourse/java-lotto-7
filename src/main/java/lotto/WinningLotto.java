@@ -28,7 +28,7 @@ public class WinningLotto {
         return Integer.parseInt(bonusNumber);
     }
 
-    public Long match(List<Integer> numbers) {
+    public Long countWinnings(List<Integer> numbers) {
         return winningNumbers.stream().filter(numbers::contains).count();
     }
 

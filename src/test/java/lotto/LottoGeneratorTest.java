@@ -10,8 +10,15 @@ public class LottoGeneratorTest {
     @Test
     void 로또_숫자_리스트_생성() {
         LottoGenerator lottoGenerator = new LottoGenerator();
-        assertThat(lottoGenerator.createLottoNumbers()).isSorted();
+        assertThat(lottoGenerator.createNumbers()).isNotNull();
     }
+
+    @Test
+    void 로또_숫자_리스트_정렬() {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        assertThat(lottoGenerator.createNumbers()).isSorted();
+    }
+
 
     @Test
     void 로또_하나_생성() {

@@ -1,11 +1,12 @@
 package lotto;
 
 public class LottoMatch {
-    public static Long calculateMatchCount(Lotto lotto, WinningLotto winningLotto) {
-        return lotto.matchCount(winningLotto);
+
+    public static Long calculateWinnings(Lotto lotto, WinningLotto winningLotto) {
+        return lotto.matchNumbers(winningLotto);
     }
 
-    public static boolean isMatchBonus(Lotto lotto, WinningLotto winningLotto) {
+    public static boolean hasBonusMatch(Lotto lotto, WinningLotto winningLotto) {
         return lotto.matchBonus(winningLotto);
     }
 }

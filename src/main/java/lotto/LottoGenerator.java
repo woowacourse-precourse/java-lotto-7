@@ -14,26 +14,22 @@ public class LottoGenerator {
     private static final int LOTTO_PICK_COUNT = 6;
 
     public Lottos createLottos(int purchaseCount) {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottoGroup = new ArrayList<>();
 
         IntStream.range(0, purchaseCount)
-                .forEach(count -> lottos.add(createLotto(createLottoNumbers())));
+                .forEach(count -> lottoGroup.add(createLotto(createNumbers())));
 
-        return new Lottos(lottos);
+        return new Lottos(lottoGroup);
     }
 
     public Lotto createLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 
-    public List<Integer> createLottoNumbers() {
+    public List<Integer> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_LOWER_BOUND, NUMBER_UPPER_BOUND,
                 LOTTO_PICK_COUNT);
-        sortNumbers(numbers);
-        return numbers;
-    }
-
-    private void sortNumbers(List<Integer> numbers) {
         sort(numbers);
+        return numbers;
     }
 }

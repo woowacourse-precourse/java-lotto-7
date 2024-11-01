@@ -17,17 +17,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateNumbersSize(numbers);
-        checkDuplicateNumber(numbers);
+        validateSize(numbers);
+        checkDuplicate(numbers);
     }
 
-    private void validateNumbersSize(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
         }
     }
 
-    private void checkDuplicateNumber(List<Integer> numbers) {
+    private void checkDuplicate(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() < numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
         }
@@ -44,8 +44,8 @@ public class Lotto {
         return Objects.equals(numbers, lotto.numbers);
     }
 
-    public Long matchCount(WinningLotto winningLotto) {
-        return winningLotto.match(numbers);
+    public Long matchNumbers(WinningLotto winningLotto) {
+        return winningLotto.countWinnings(numbers);
     }
 
     public boolean matchBonus(WinningLotto winningLotto) {

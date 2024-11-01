@@ -9,8 +9,8 @@ public class RevenueCalculator {
     }
 
     private static int totalRevenue() {
-        return Arrays.stream(LottoRank.values())
-                .mapToInt(LottoRank::calculateRevenue)
+        return Arrays.stream(WinningRank.values())
+                .mapToInt(WinningRank::calculateRevenue)
                 .sum();
     }
 }
