@@ -11,7 +11,7 @@ public class OutputView {
     private static final NumberFormat numberFormat = NumberFormat.getInstance();
 
     public void printLottoPurchase(List<Lotto> purchasedTickets) {
-        System.out.println(String.format(ViewMessage.LOTTO_COUNT_PURCHASED.getMessage(), purchasedTickets.size()));
+        System.out.printf(ViewMessage.LOTTO_COUNT_PURCHASED.getMessage(), purchasedTickets.size());
         purchasedTickets.forEach(ticket -> System.out.println(ticket.formatNumbers()));
     }
 
@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.println(String.format(ViewMessage.PROFIT_RATE.getMessage(), profitRate));
+        System.out.printf(ViewMessage.PROFIT_RATE.getMessage(), profitRate);
     }
 
     public void printErrorMessage(String errorMessage) {
@@ -34,9 +34,7 @@ public class OutputView {
 
     private void printPrizeCount(ViewMessage message, PrizeTier tier, Map<PrizeTier, Integer> prizeCounts) {
         int count = prizeCounts.getOrDefault(tier, 0);
-        String formattedMessage = String.format(message.getMessage(), numberFormat.format(tier.getPrizeAmount()),
-                count);
-        System.out.print(formattedMessage);
+        System.out.printf(message.getMessage(), numberFormat.format(tier.getPrizeAmount()), count);
     }
 
 }
