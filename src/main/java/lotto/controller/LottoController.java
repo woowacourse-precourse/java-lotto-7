@@ -50,7 +50,12 @@ public class LottoController {
     private Game createGame(Lottos lottos) {
         List<Integer> winningNumbers = getWinningNumbers();
         Integer bonusNumbers = getBonusNumber();
-        return new Game(lottos, winningNumbers, bonusNumbers);
+        try {
+            return new Game(lottos, winningNumbers, bonusNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            return createGame(lottos);
+        }
     }
 
     private List<Integer> getWinningNumbers() {

@@ -8,6 +8,8 @@ import java.text.MessageFormat;
 import java.util.List;
 
 public class OutputView {
+    private static final int START_INDEX = 1;
+    private static final int END_INDEX = 6;
     private static OutputView instance;
 
     public static OutputView getInstance() {
@@ -39,7 +41,7 @@ public class OutputView {
 
     public void printWinningResult(WinningCountDTO winningCountDTO) {
         List<Integer> winningCount = winningCountDTO.getWinningCount();
-        String message = formattingMessage(PrintMessage.WINNING_RESULT, winningCount.subList(1, 6).toArray());
+        String message = formattingMessage(PrintMessage.WINNING_RESULT, winningCount.subList(START_INDEX, END_INDEX).toArray());
         printMessage(message);
     }
 

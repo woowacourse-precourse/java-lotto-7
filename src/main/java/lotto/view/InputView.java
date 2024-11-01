@@ -7,6 +7,7 @@ import java.util.List;
 
 public class InputView {
     private static final int MONEY = 1000;
+    private static final String SEPARATOR = ",";
     private static InputView instance;
 
     public static InputView getInstance() {
@@ -31,7 +32,7 @@ public class InputView {
     }
 
     private List<Integer> getWinningNumbers(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(SEPARATOR))
                 .map(String::trim).map(Integer::parseInt).toList();
     }
 

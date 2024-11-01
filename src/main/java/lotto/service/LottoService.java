@@ -14,7 +14,12 @@ public class LottoService {
 
     public Lotto createLotto() {
         List<Integer> lottoNumbers = randomGenerator.generate();
-        return new Lotto(lottoNumbers);
+        try {
+            return new Lotto(lottoNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            return createLotto();
+        }
     }
 
     public void run(Game game) {
@@ -52,9 +57,9 @@ public class LottoService {
 
     public void calculateRateOfReturn(WinningCountDTO winningCountDTO) {
         List<Integer> winningCounts = winningCountDTO.getWinningCount();
-        float size = winningCounts.stream().mapToInt(i->i).sum();
+        float size = winningCounts.stream().mapToInt(i -> i).sum();
         float profit = winningCounts.get(1) * 5 + winningCounts.get(2) * 50 + winningCounts.get(3) * 1500 + winningCounts.get(4) * 30000 + winningCounts.get(5) * 2000000;
-        double rateOfReturn = Math.round(profit /size*100);
+        double rateOfReturn = Math.round(profit / size * 100);
         outputView.printRateOfReturn(rateOfReturn);
     }
 }
