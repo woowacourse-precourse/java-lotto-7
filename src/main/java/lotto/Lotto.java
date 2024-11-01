@@ -35,4 +35,21 @@ public class Lotto {
 
         System.out.println(sortedNumbers);
     }
+
+    public static PointResult compareLotto(Lotto winningLotto, Integer bonusNumber, Lotto purchasedLotto) {
+        int point = 0;
+        int bonusPoint = 0;
+
+        for (Integer number : purchasedLotto.numbers) {
+            if (winningLotto.numbers.contains(number)) {
+                point += 1;
+            }
+            if (number.equals(bonusNumber)) {  // 객체 비교 시 equals() 사용
+                bonusPoint = 1;
+            }
+        }
+
+        PointResult pointResult = new PointResult(point, bonusPoint);
+        return pointResult;
+    }
 }

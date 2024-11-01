@@ -30,8 +30,9 @@ public class Application {
             }
         }
 
-        var purchasedLottos = buyLottos(purchaseMoney);
+        var purchasedLottos = buyLotto(purchaseMoney);
         Lotto winningLotto = null;
+
         Integer bonusNumber = null;
 
         while (true) {
@@ -60,7 +61,14 @@ public class Application {
 
             }
         }
+
+        List<PointResult> pointResults = new ArrayList<>();
+
         // TODO: 추가 기능 구현
+        for (Lotto purchasedLotto : purchasedLottos) {
+            var pointResult = Lotto.compareLotto(winningLotto, bonusNumber, purchasedLotto);
+            pointResults.add(pointResult);
+        }
     }
 
     public static Integer validateNumberRange(Integer number) {
@@ -84,7 +92,7 @@ public class Application {
         }
     }
 
-    private static List<Lotto> buyLottos(Integer purchaseMoney) {
+    private static List<Lotto> buyLotto(Integer purchaseMoney) {
         var lottoCount = purchaseMoney / 1000;
         List<Lotto> purchasedLottos = new ArrayList<>();
         System.out.println(lottoCount + "개를 구매했습니다.");
