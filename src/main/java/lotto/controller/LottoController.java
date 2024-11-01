@@ -15,32 +15,40 @@ public class LottoController {
     }
 
     public void run() {
-        inputMoney();
-        buyTickets();
-        inputWinningNumbers();
-        result();
+        process(this::inputMoney);
+        process(this::inputWinningNumbers);
+        process(this::inputBonusNumber);
+        process(this::result);
     }
 
     private void inputMoney() {
         OutputView.inputMoney();
         lottoService.setupMoney(InputView.money());
-    }
-
-    private void buyTickets() {
         OutputView.buyLottoTickets(lottoService.buyTickets());
     }
 
     private void inputWinningNumbers() {
         OutputView.inputWinningNumbers();
         List<Integer> winningNumbers = InputView.winningNumbers();
+        lottoService.setupWinningNumbers(winningNumbers);
+    }
 
+    private void inputBonusNumber() {
         OutputView.bonusNumber();
         int bonusNumber = InputView.bonusNumber();
-
-        lottoService.setupWinningNumbers(winningNumbers, bonusNumber);
+        lottoService.setupBonusNumber(bonusNumber);
     }
 
     private void result() {
         OutputView.result(lottoService.result());
+    }
+
+    private void process(Runnable action) {
+        try {
+            action.run();
+        } catch (IllegalArgumentException e) {
+            OutputView.exception(e.getMessage());
+            process(action);
+        }
     }
 }

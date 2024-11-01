@@ -40,6 +40,10 @@ public class OutputView {
         print(RETURN_RESULT.getMessage(wallet.gain() * 100));
     }
 
+    public static void exception(String message) {
+        print(EXCEPTION.getMessage(message));
+    }
+
     private static void print(String content) {
         System.out.print(content);
     }

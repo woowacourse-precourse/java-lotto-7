@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import lotto.constant.RankPrice;
 import lotto.util.RandomUtil;
@@ -34,7 +34,8 @@ class LottoTest {
         numbers.removeLast();
         numbers.add(0);
         Lotto lotto = new Lotto(numbers);
-        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), 46);
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers));
+        winningLotto.setupBonusNumber(46);
         RankPrice rankPrice = winningLotto.getRank(lotto);
         assertThat(rankPrice.getRank()).isEqualTo(3);
     }

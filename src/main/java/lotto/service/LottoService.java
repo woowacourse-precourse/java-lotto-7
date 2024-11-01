@@ -20,8 +20,12 @@ public class LottoService {
         return wallet.getTickets();
     }
 
-    public void setupWinningNumbers(List<Integer> numbers, int bonusNumber) {
-        winningLotto = new WinningLotto(new Lotto(numbers), bonusNumber);
+    public void setupWinningNumbers(List<Integer> numbers) {
+        winningLotto = new WinningLotto(new Lotto(numbers));
+    }
+
+    public void setupBonusNumber(int bonusNumber) {
+        winningLotto.setupBonusNumber(bonusNumber);
     }
 
     public Wallet result() {

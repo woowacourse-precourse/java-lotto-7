@@ -16,6 +16,7 @@ public enum OutputMessage {
     RANK_RESULT("%d개 일치 (%s원) - %d개%n"),
     RANK_RESULT_SECOND("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n"),
     RETURN_RESULT("총 수익률은 %.1f%%입니다."),
+    EXCEPTION("%n[ERROR] %s%n%n"),
     ;
 
     private final String message;
@@ -33,6 +34,10 @@ public enum OutputMessage {
     }
 
     public String getMessage(double content) {
+        return String.format(message, content);
+    }
+
+    public String getMessage(String content) {
         return String.format(message, content);
     }
 
