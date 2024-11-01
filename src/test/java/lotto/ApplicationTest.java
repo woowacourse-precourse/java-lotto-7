@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.model.BonusNumber;
 import lotto.model.Money;
 import lotto.validation.Parser;
 import org.junit.jupiter.api.Assertions;
@@ -76,10 +77,9 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 예외_메시지_테스트_1부터_45까지_숫자만_입력() {
-        Application application = new Application();
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            application.isNumberBetween1And45(46);
+            BonusNumber bonusNumber = new BonusNumber(46);
         });
 
         Assertions.assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
