@@ -9,6 +9,8 @@
  */
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -24,9 +26,18 @@ public class WinningNumber {
             Stream<Integer> integerStream = stream.map(Integer::parseInt);
             list = integerStream.toList();
         } catch (Exception e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
         }
+        validateLotto(list);
         winningNumbers = list;
+    }
+
+    private static void validateLotto(List<Integer> list) {
+        try {
+            new Lotto(list);
+        }catch (Exception exception) {
+            throw exception;
+        }
     }
 
     public List<Integer> getList() {

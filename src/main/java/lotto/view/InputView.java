@@ -10,10 +10,25 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.ErrorMessage;
+
+import java.util.NoSuchElementException;
 
 public class InputView {
     public String readLine() {
         String readLine = Console.readLine();
         return readLine.trim();
+    }
+
+    public double readDouble() {
+        try {
+            String input = Console.readLine();
+            return Double.parseDouble(input);
+        }catch(Exception e) {
+            if (e instanceof NoSuchElementException) {
+                throw e;
+            }
+            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
+        }
     }
 }

@@ -9,6 +9,6 @@ public class Application {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView();
         LottoController lottoController = new LottoController(outputView,inputView);
-        lottoController.byLotto();
+        lottoController.buyLotto();
     }
 }

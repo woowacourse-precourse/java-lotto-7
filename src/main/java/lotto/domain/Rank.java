@@ -34,14 +34,6 @@ public enum Rank {
         this.function = function;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public boolean isBonus() {
-        return bonus;
-    }
-
     public int getReward() {
         return reward;
     }

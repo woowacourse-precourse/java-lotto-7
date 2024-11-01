@@ -10,16 +10,12 @@
 package lotto.view;
 
 import lotto.constant.Message;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 
 public class OutputView {
     public void printReadPurchaseAmount() {
         System.out.println(Message.PURCHASE_AMOUNT_INPUT_MESSAGE);
-    }
-
-    public void printLottoPurchaseResult(int numberOfLotto) {
-        System.out.println();
-        System.out.println(numberOfLotto + Message.PURCHASE_RESULT_MESSAGE);
     }
 
     public void printLottoState(String lottosState) {
@@ -56,5 +52,9 @@ public class OutputView {
 
     public void printExceptionMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printPurchaseAmount(int purchaseAmount) {
+        System.out.println(purchaseAmount + Message.PURCHASE_RESULT_MESSAGE);
     }
 }

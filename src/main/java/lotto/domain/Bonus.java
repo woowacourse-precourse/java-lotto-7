@@ -11,8 +11,6 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 
-import java.util.List;
-
 public class Bonus {
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
