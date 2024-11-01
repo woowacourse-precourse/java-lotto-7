@@ -1,9 +1,9 @@
 package lotto.validator;
 
 public class LottoPurchaseAmountValidator {
-    private static String LOTTO_PURCHASE_AMOUNT_REGEX = "^[0-9]+$";
-    private static int LOTTO_PURCHASE_AMOUNT_UNIT = 1000;
-    private static int REMAINDER = 0;
+    private static final String LOTTO_PURCHASE_AMOUNT_REGEX = "^[0-9]+$";
+    private static final int LOTTO_PURCHASE_AMOUNT_UNIT = 1000;
+    private static final int REMAINDER = 0;
 
     private LottoPurchaseAmountValidator() {
     }
