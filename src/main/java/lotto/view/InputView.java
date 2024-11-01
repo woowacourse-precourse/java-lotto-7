@@ -10,7 +10,6 @@ import java.util.List;
 import lotto.domain.Guess;
 import lotto.enums.ErrorCode;
 import lotto.exception.CommonException;
-import lotto.exception.FormatException;
 import lotto.service.LottoService;
 import lotto.service.ValidatorService;
 
@@ -31,8 +30,11 @@ public class InputView {
                 int amount = Integer.parseInt(Console.readLine());
                 validatorService.validatePurchaseAmount(amount);
                 return amount;
-            } catch (FormatException e) {
-                System.err.println(new CommonException(ErrorCode.PARSING_INTEGER_ERROR).getMessage());
+            } catch (CommonException e) {
+                System.out.println(e.getMessage());
+                System.out.println(INPUT_PROMPT_RETYPE);
+            } catch (NumberFormatException ne) {
+                System.out.println("[ERROR] " + ErrorCode.PARSING_INTEGER_ERROR.getMessage());
                 System.out.println(INPUT_PROMPT_RETYPE);
             }
         }
@@ -43,9 +45,12 @@ public class InputView {
         while (true) {
             try {
                 String lotto = Console.readLine();
-                return lottoService.generateLotto(lotto);
+                validatorService.validateParsing(lotto);
+                List<Integer> lottoNumbers = lottoService.generateLotto(lotto);
+                validatorService.validateLottoNumbers(lottoNumbers);
+                return lottoNumbers;
             } catch (CommonException e) {
-                System.err.println(new CommonException(ErrorCode.INVALID_NUMBER_RANGE).getMessage());
+                System.out.println(e.getMessage());
                 System.out.println(INPUT_PROMPT_RETYPE);
             }
         }
@@ -58,7 +63,7 @@ public class InputView {
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 return new Guess(winningNumbers, bonusNumber);
             } catch (CommonException e) {
-                System.err.println(new CommonException(ErrorCode.PARSING_INTEGER_ERROR).getMessage());
+                System.out.println(e.getMessage());
                 System.out.println(INPUT_PROMPT_RETYPE);
             }
         }
