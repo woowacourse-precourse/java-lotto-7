@@ -57,7 +57,7 @@ public class LottoController {
 
         LottoNumber bonusNumber = LottoNumber.from(inputView.inputBonusNumber());
 
-        return new WinningLotto(new LottoNumbers(winningNumbers), bonusNumber);
+        return new WinningLotto(LottoNumbers.from(winningNumbers), bonusNumber);
     }
 
     private List<Score> calculateScores(Lottos lottos, WinningLotto winningLotto) {
