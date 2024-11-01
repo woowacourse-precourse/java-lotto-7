@@ -16,7 +16,7 @@ public class WinningLotto extends Lotto {
         //validate();
     }
 
-    private WinningLotto(List<Integer> nums){
+    private WinningLotto(List<Integer> nums) {
         super(nums);
     }
 
@@ -29,7 +29,6 @@ public class WinningLotto extends Lotto {
                 .collect(Collectors.toList());
         return new WinningLotto(numbers);
     }
-
 
     private static List<String> parseEachNumber(String winningNumber) {
         String[] numbers = winningNumber.split(",");

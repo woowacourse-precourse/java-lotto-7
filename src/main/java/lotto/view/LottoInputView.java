@@ -20,4 +20,13 @@ public class LottoInputView {
     private void printWinningNumberMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
+
+    public String getBonusNumber() {
+        printBonusNumberMessage();
+        return null;
+    }
+
+    private void printBonusNumberMessage() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }
