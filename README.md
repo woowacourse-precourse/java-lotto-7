@@ -5,7 +5,7 @@
 2. 로또 번호를 생성하는 기능이 올바른지 검증한다.
    - [x] 리스트의 크기가 6이 넘으면 'IllegalArgumentException' 을 발생시킨다.
    - [x] 리스트에 중복된 숫자가 존재하면 'IllegalArgumentException' 을 발생시킨다.
-   - [ ] 로또 번호가 1 ~ 45 이내의 수가 아니면 'IllegalArgumentException' 을 발생시킨다.
+   - [x] 로또 번호가 1 ~ 45 이내의 수가 아니면 'IllegalArgumentException' 을 발생시킨다.
 3. 로또 번호는 오름차순으로 생성한다.
 4. 구매한 로또 번호와 당첨 번호가 몇 개 일치하는지 확인하는 기능을 구현한다.
 5. 구매한 모든 로또를 돌면서 각 로또가 당첨 번호와 몇 개 일치하는지 count 한 후 반환한다.
