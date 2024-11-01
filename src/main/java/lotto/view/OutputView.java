@@ -1,10 +1,12 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoNumber;
 import lotto.model.Lottos;
 import lotto.model.Score;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -38,6 +40,9 @@ public class OutputView {
     }
 
     private void printLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+        System.out.println(lotto.getNumbers().stream()
+                .map(LottoNumber::getNumber)
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]")));
     }
 }

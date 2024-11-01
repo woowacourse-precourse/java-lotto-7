@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.LottoMaker;
-import lotto.model.Lottos;
-import lotto.model.Score;
-import lotto.model.WinningLotto;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,8 +20,8 @@ public class LottoController {
         Lottos lottos = purchaseLotto();
         outputView.printPurchasedLottos(lottos);
 
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusNumber();
+        List<LottoNumber> winningNumbers = inputView.inputWinningNumbers().stream().map(LottoNumber::from).toList();
+        LottoNumber bonusNumber = LottoNumber.from(inputView.inputBonusNumber());
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
         List<Score> scores = lottos.getLottos().stream().map(lotto -> Score.calculateScore(lotto, winningLotto)).toList();

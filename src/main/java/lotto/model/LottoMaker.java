@@ -26,8 +26,11 @@ public class LottoMaker {
         return new Lotto(makeLottoNumbers());
     }
 
-    private List<Integer> makeLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_SIZE).stream().sorted().toList();
+    private List<LottoNumber> makeLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_SIZE).stream()
+                .sorted()
+                .map(LottoNumber::from)
+                .toList();
     }
 
     private void validateMoney(int money) {
