@@ -8,6 +8,4 @@ public interface LottoFactory {
 
     List<Component> randomCreate();
 
-    int getLottoLength();
-
 }

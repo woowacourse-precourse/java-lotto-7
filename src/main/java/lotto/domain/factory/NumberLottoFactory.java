@@ -29,8 +29,4 @@ public class NumberLottoFactory implements LottoFactory {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public int getLottoLength() {
-        return lottoLength;
-    }
 }
