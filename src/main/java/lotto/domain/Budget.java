@@ -5,13 +5,13 @@ import java.math.BigInteger;
 import static lotto.exception.ExceptionCode.MONEY_TOO_SMALL;
 import static lotto.exception.ExceptionCode.REMAINDER_EXISTED;
 
-public class Money {
+public class Budget {
 
     private final BigInteger value;
     private final BigInteger numberOfLotto;
     public static final BigInteger LOTTO_PRICE = new BigInteger("1000");
 
-    public Money(BigInteger value) {
+    public Budget(BigInteger value) {
         validate(value);
         this.value = value;
         this.numberOfLotto = value.divide(LOTTO_PRICE);
