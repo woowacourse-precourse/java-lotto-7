@@ -20,13 +20,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public List<Lotto> createLotto(int count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-        return lottos;
-    }
+
 
 
 }
