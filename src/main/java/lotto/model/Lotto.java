@@ -17,4 +17,8 @@ public class Lotto {
                 .sorted()
                 .toList();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
