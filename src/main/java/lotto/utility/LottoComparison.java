@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoComparison {
 
@@ -34,6 +35,14 @@ public class LottoComparison {
             return LottoRank.FIFTH;
         }
         return LottoRank.NONE;
+    }
+    public static double calculateProfitRate(Map<LottoRank, Integer> rankCounts, int purchaseAmount) {
+        int totalPrize = rankCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(profitRate * 100.0) / 100.0;
     }
 }
 

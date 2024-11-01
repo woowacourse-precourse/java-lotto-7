@@ -13,10 +13,11 @@ public class OutputView {
             System.out.println(numbers);
         }
     }
-    public static void displayRankCounts(Map<LottoRank, Integer> rankCounts) {
+    public static void printWinningStatistics(Map<LottoRank, Integer> rankCounts, double profitRate) {
         for (LottoRank rank : LottoRank.values()) {
             int count = rankCounts.getOrDefault(rank, 0);
             System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
         }
+        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }
 }
