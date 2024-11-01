@@ -26,7 +26,8 @@ public class Application {
                 lottoNumbers.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
                 System.out.println(lottoNumbers.get(i).getNumbers());
             }
-
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String winningNumberInput = Console.readLine();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
