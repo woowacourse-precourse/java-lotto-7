@@ -2,9 +2,16 @@ package lotto.service;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.List;
+import java.util.stream.Stream;
+import lotto.policy.PrizeMoneyPolicy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PolicyServiceTest {
 
@@ -48,4 +55,35 @@ class PolicyServiceTest {
         assertThat(expectation).isEqualTo(lottoMaxNumber);
     }
 
+    @Test
+    @DisplayName("로또 티켓값(1,000원) 테스트")
+    public void 로또_티켓값_테스트(){
+        //given
+        int expectation = 1000;
+        //then
+        int ticketPrice = policyService.getLottoTicketPrice();
+        //when
+        assertThat(expectation).isEqualTo(ticketPrice);
+    }
+
+    @ParameterizedTest(name = "로또 숫자 일치 개수 : {0}, 상금 : {1} ")
+    @DisplayName("4개 일치_50,000원 테스트")
+    @MethodSource("matchedNumberAndMoney")
+    public void 일치_테스트(int number, int money){
+        //given
+        //then
+        List<PrizeMoneyPolicy> results = policyService.getPrizeMoney(number);
+        PrizeMoneyPolicy result = results.getFirst();
+        //when
+        assertThat(number).isEqualTo(result.getMatchedNumberCount());
+        assertThat(money).isEqualTo(result.getPriceMoney());
+    }
+
+    static Stream<Arguments> matchedNumberAndMoney(){
+        return Stream.of(
+                Arguments.arguments(6, 2_000_000_000),
+                Arguments.arguments(4, 50_000),
+                Arguments.arguments(3, 5_000)
+        );
+    }
 }
