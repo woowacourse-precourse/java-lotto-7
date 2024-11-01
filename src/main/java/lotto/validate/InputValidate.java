@@ -27,6 +27,10 @@ public class InputValidate {
                 throw new IllegalArgumentException(InputMessage.OUT_OF_RANGE_AMOUNT.getMessage());
             }
 
+            if (isDivisibleBy1000(money)) {
+                throw new IllegalArgumentException(InputMessage.IS_NOT_DIVISIBLE_BY_1000.getMessage());
+            }
+
         } catch (IllegalArgumentException e) {
             errorMessage = e.getMessage();
             System.err.println(errorMessage);
@@ -53,5 +57,9 @@ public class InputValidate {
 
     public static boolean isLessThanFirstPrizeAmount(int money) {
         return money >= 0 && money <= 2000000000;
+    }
+
+    public static boolean isDivisibleBy1000(int money) {
+        return money % 1000 == 0;
     }
 }
