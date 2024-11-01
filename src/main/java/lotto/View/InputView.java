@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import lotto.Constants.Message;
 import lotto.Constants.Error;
-import lotto.Domain.LottoMachine;
+import lotto.Domain.GameInfo;
 import lotto.Lotto;
 import lotto.Utils.NumberUtils;
 
@@ -21,7 +21,7 @@ public class InputView {
             try {
                 String s = promptForInput(Message.PURCHASE_AMOUNT.getText());
                 int amount = NumberUtils.parseStringToInt(s);
-                LottoMachine.validatePurchaseAmount(amount);
+                GameInfo.validatePurchaseAmount(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

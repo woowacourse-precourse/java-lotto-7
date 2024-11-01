@@ -25,7 +25,7 @@ public class Lotto {
         numberInRange(bonusNumber);
     }
 
-    public List<Integer> getLottoNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
