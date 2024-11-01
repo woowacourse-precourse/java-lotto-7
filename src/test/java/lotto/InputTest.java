@@ -79,11 +79,8 @@ public class InputTest {
         @ValueSource(strings = {"1,2,a,4,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:", "1,,2,3,4,5,6"})
         void 숫자가_아닌_당첨번호_예외(String input){
 
-            WinningNumberParser parser = new WinningNumberParser();
-            List<String> parsedInput = parser.parseWinningNumber(input);
-
             assertThrows(IllegalArgumentException.class, () -> {
-                validator.validateWinningNumber(parsedInput);
+                validator.validateWinningNumber(input);
             });
         }
 
@@ -91,11 +88,9 @@ public class InputTest {
         @ParameterizedTest()
         @ValueSource(strings = {" ", "1, ,3,4,5", ""})
         void 비었거나_널_당첨번호_예외(String input){
-            WinningNumberParser parser = new WinningNumberParser();
-            List<String> parsedInput = parser.parseWinningNumber(input);
 
             assertThrows(IllegalArgumentException.class, () -> {
-                validator.validateWinningNumber(parsedInput);
+                validator.validateWinningNumber(input);
             });
         }
 
@@ -103,11 +98,9 @@ public class InputTest {
         @ParameterizedTest()
         @ValueSource(strings = {"1.2.3.4.5.6", "1:2:3:4:5:6", "1;2;3;4;5;6"})
         void 콤마_외의_구분자_예외_처리(String input){
-            WinningNumberParser parser = new WinningNumberParser();
-            List<String> parsedInput = parser.parseWinningNumber(input);
 
             assertThrows(IllegalArgumentException.class, () -> {
-                validator.validateWinningNumber(parsedInput);
+                validator.validateWinningNumber(input);
             });
         }
 
@@ -115,11 +108,9 @@ public class InputTest {
         @ParameterizedTest()
         @ValueSource(strings = {"1,2,3,4,5,46", "0,1,2,3,4,5", "1,2,3,-4,5,6"})
         void 범위_외의_숫자_예외(String input){
-            WinningNumberParser parser = new WinningNumberParser();
-            List<String> parsedInput = parser.parseWinningNumber(input);
 
             assertThrows(IllegalArgumentException.class, () -> {
-                validator.validateWinningNumber(parsedInput);
+                validator.validateWinningNumber(input);
             });
         }
     }
