@@ -55,18 +55,15 @@ public class Controller {
 
     public Integer gainBonusInput(Lotto answer){
         OutputView.printBonus();
-        String rawBonus  = Console.readLine();
-        OutputView.printBlank();
         Integer bonus = 0;
         try{
-            bonus = parseInt(rawBonus);
-            checkBonus(bonus, answer);
-            checkRange(bonus);
+            String rawBonus  = InputView.readBonus(answer);
         }
         catch (IllegalArgumentException e){
             OutputView.printError(ErrorMessage.BONUS.getError());
             return gainBonusInput(answer);
         }
+        OutputView.printBlank();
         return bonus;
     }
 

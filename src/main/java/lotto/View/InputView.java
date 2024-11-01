@@ -29,6 +29,14 @@ public class InputView {
                 .collect(Collectors.toList()));
     }
 
+    public static String readBonus(Lotto answer){
+        String rawBonus = Console.readLine();
+        Integer bonus = parseInt(rawBonus);
+        checkBonus(bonus, answer);
+        checkRange(bonus);
+        return rawBonus;
+    }
+
     public static Integer parseInt(String input) {
         int result = 0;
         try{
