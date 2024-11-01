@@ -53,7 +53,7 @@ public class LottoController {
 
     private WinningLotto inputWinningLotto() {
         List<Integer> winningNumberList = attemptWinningNumber();
-        Integer winningBonusNumber = attemptWinningBonusNumberExclude(winningNumberList);
+        Integer winningBonusNumber = attemptWinningBonusNumberExcluding(winningNumberList);
 
         return lottoMachine.generateWinningLotto(winningNumberList, winningBonusNumber);
     }
