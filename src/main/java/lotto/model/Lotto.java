@@ -34,11 +34,17 @@ public class Lotto {
     public List<String> toSortedStrings() {
         return numbers.stream()
                 .sorted()
-                .map(number -> number + "")
+                .map(String::valueOf)
                 .toList();
     }
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public long countMatch(Lotto toCheck) {
+        return numbers.stream()
+                .filter(toCheck::contains)
+                .count();
     }
 }

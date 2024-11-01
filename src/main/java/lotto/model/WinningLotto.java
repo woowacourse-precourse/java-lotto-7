@@ -4,17 +4,25 @@ import static lotto.constant.ErrorMessage.DUPLICATED_BONUS;
 
 public class WinningLotto {
     private final Lotto lotto;
-    private final int bonus;
+    private final int bonusNumber;
 
-    public WinningLotto(Lotto lotto, int bonus) {
-        validate(lotto, bonus);
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        validate(lotto, bonusNumber);
         this.lotto = lotto;
-        this.bonus = bonus;
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto lotto, int bonus) {
-        if (lotto.contains(bonus)) {
+    private void validate(Lotto lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_BONUS.getMessage());
         }
+    }
+
+    public long countMatch(Lotto toCheck) {
+        return lotto.countMatch(toCheck);
+    }
+
+    public boolean hasBonusNumberIn(Lotto toCheck) {
+        return toCheck.contains(bonusNumber);
     }
 }
