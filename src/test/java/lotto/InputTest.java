@@ -119,6 +119,15 @@ public class InputTest {
                 validator.validateWinningNumber(input);
             });
         }
+
+        @DisplayName("6개 미만의 당첨 번호")
+        @ParameterizedTest()
+        @ValueSource(strings = {"1,2,3,4,5", "", " ", "1", "1,2,3"})
+        void 당첨_번호_기준_미만(String input){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validateWinningNumber(input);
+            });
+        }
     }
 
 }
