@@ -49,7 +49,7 @@ public class LottoController {
         return new WinningLotto(winningNumbers, bonus);
     }
 
-    private static Integer convertBonusNumber(String inputBonusNumber) {
+    static Integer convertBonusNumber(String inputBonusNumber) {
         try {
             Integer bonus = Integer.parseInt(inputBonusNumber);
             if (bonus < 1 || bonus > 45) {
@@ -61,12 +61,15 @@ public class LottoController {
         }
     }
 
-    private static List<Integer> convertWinningNumbers(String inputWinningNumbers) {
+    static List<Integer> convertWinningNumbers(String inputWinningNumbers) {
         String[] inputNumbers = inputWinningNumbers.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String number : inputNumbers) {
             int parsedNumber = parseWinningNumber(number.trim());
+            if (winningNumbers.contains(parsedNumber)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
             winningNumbers.add(parsedNumber);
         }
 
@@ -84,7 +87,7 @@ public class LottoController {
             }
             return winningNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
 
@@ -127,7 +130,7 @@ public class LottoController {
         return purchaseAmount / 1000;
     }
 
-    private static List<Integer> countWinnings(Lottos lottos, WinningLotto winningLotto) {
+    static List<Integer> countWinnings(Lottos lottos, WinningLotto winningLotto) {
         List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
 
         for (Lotto lotto : lottos.getLottos()) {
@@ -166,7 +169,7 @@ public class LottoController {
         return numbers.contains(bonus);
     }
 
-    private static double calculateTotalEarnings(List<Integer> result) {
+    static double calculateTotalEarnings(List<Integer> result) {
         double totalEarnings = 0;
         for (int i = 0; i < result.size(); i++) {
             totalEarnings += result.get(result.size() - 1 - i) * LottoRank.values()[i].getPrizeAmount();
@@ -174,7 +177,7 @@ public class LottoController {
         return totalEarnings;
     }
 
-    private static double calculateProfitRate(double totalEarnings, int purchaseAmount) {
+    static double calculateProfitRate(double totalEarnings, int purchaseAmount) {
         return (totalEarnings / purchaseAmount) * 100;
     }
 }
