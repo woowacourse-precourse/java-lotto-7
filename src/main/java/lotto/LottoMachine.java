@@ -19,22 +19,39 @@ public class LottoMachine {
     }
 
     public void run() {
-        outputView.requestPurchaseAmount();
-        Amount purchaseAmount = inputView.getPurchaseAmount();
+        Amount purchaseAmount = getPurchaseAmount();
 
-        int lottoCount = purchaseAmount.calculateLottoCount();
-        Lottos lottos = new Lottos(lottoCount);
-        outputView.printPurchaseLottoNumbers(lottos);
+        Lottos lottos = getLottos(purchaseAmount);
 
-        outputView.requestWinningNumbers();
-        WinningNumbers winningNumbers = inputView.getWinningNumbers();
+        WinningNumbers winningNumbers = getWinningNumbers();
 
-        outputView.requestBonusNumber();
-        Number bonusNumber = inputView.getBonusNumber();
+        Number bonusNumber = getBonusNumber();
 
         WinningResult winningResult = new WinningResult(winningNumbers, bonusNumber);
         winningResult.calculateResult(lottos);
 
         outputView.printWinningStatistics(winningResult);
+    }
+
+    private Amount getPurchaseAmount() {
+        outputView.requestPurchaseAmount();
+        return inputView.getPurchaseAmount();
+    }
+
+    private Lottos getLottos(Amount purchaseAmount) {
+        int lottoCount = purchaseAmount.calculateLottoCount();
+        Lottos lottos = new Lottos(lottoCount);
+        outputView.printPurchaseLottoNumbers(lottos);
+        return lottos;
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        outputView.requestWinningNumbers();
+        return inputView.getWinningNumbers();
+    }
+
+    private Number getBonusNumber() {
+        outputView.requestBonusNumber();
+        return inputView.getBonusNumber();
     }
 }
