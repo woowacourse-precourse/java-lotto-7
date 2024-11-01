@@ -40,4 +40,10 @@ class LottoTest {
         assertThat(lotto.isBonusBallMatch(7)).isFalse();
     }
 
+    @Test
+    void 스트링_변환(){
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.numbersToString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
 }

@@ -43,5 +43,8 @@ public class Lotto {
         }
         return lottos;
     }
-    // TODO: 추가 기능 구현
+
+    public String numbersToString() {
+        return numbers.toString();
+    }
 }
