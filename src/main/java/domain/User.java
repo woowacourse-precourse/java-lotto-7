@@ -14,4 +14,12 @@ public class User {
         this.rateOfReturn = 0.0;
         this.lottos = new ArrayList<>();
     }
+
+    public int getPurchaseCount() {
+        return this.amount / 1_000;
+    }
+
+    public void updateLottos(List<Lotto> lottos){
+        this.lottos =  lottos;
+    }
 }
