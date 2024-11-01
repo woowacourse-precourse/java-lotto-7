@@ -23,10 +23,11 @@ public class LottoInputView {
 
     public String getBonusNumber() {
         printBonusNumberMessage();
-        return null;
+        return Console.readLine();
     }
 
     private void printBonusNumberMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
 }
