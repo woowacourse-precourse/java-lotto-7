@@ -24,4 +24,8 @@ public class OutputView {
     public static void printWinningNumberInputMessage() {
         System.out.println(System.lineSeparator() + WINNING_NUMBER_INPUT);
     }
+
+    public static void printBonusNumberInputMessage() {
+        System.out.println(System.lineSeparator() + BONUS_NUMBER_INPUT);
+    }
 }
