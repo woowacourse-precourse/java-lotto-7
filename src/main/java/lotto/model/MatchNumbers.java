@@ -19,9 +19,7 @@ public class MatchNumbers {
 
     public void count(List<List<Integer>> lottoNumbers, List<Integer> userNumbers, int bonusNumber) {
         for (List<Integer> number : lottoNumbers) {
-            int matchCount = getMatchCount(number, userNumbers);
-            boolean bonusMatch = number.contains(bonusNumber);
-            updateMatchCounts(matchCount, bonusMatch);
+            updateMatchCounts(getMatchCount(number, userNumbers), number.contains(bonusNumber));
         }
     }
 

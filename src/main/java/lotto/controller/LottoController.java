@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
@@ -52,7 +53,10 @@ public class LottoController {
 
     private Lotto initUserNumbers() {
         try {
-            return new Lotto(Sorter.sort(Convertor.arrayToList(Splitter.split(inputView.inputWinningNumbers()))));
+            String[] input = Splitter.split(inputView.inputWinningNumbers());
+            Convertor.validateNull(input);
+            Convertor.validateNumberFormat(input);
+            return new Lotto(Sorter.sort(Convertor.arrayToList(input)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initUserNumbers();
