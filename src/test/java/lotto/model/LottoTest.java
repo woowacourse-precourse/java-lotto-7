@@ -35,9 +35,9 @@ class LottoTest {
         });
     }
 
-    @DisplayName("로또 번호에 보너스 번호가 포함되어 있다면 true 를 반환한다.")
+    @DisplayName("당첨 로또 번호와 보너스 번호가 중복된다면 true 를 반환한다.")
     @Test
-    void containsBonusNumber() {
+    void duplicateBonusNumber() {
         //given
         Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 3;
@@ -47,5 +47,19 @@ class LottoTest {
 
         //then
         assertThat(result).isTrue();
+    }
+
+    @DisplayName("로또 번호와 당첨 번호의 일치 개수를 계산할 수 있다.")
+    @Test
+    void countMatches() {
+        //given
+        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+
+        //when
+        int matchCount = winningNumbers.countMatches(lotto);
+
+        //then
+        assertThat(matchCount).isEqualTo(6);
     }
 }
