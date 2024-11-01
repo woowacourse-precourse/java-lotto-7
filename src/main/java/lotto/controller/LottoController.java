@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Lottos;
 import lotto.dto.LottoInputDto;
 import lotto.dto.LottoOutputDto;
@@ -27,16 +26,17 @@ public class LottoController {
     }
 
     public void buyLotto() {
-        long purchaseAmount = inputView.enterPurchaseAmount();
+        String purchaseAmount = inputView.enterPurchaseAmount();
         Lottos lottos = lottoBuyService.buyLotto(purchaseAmount);
 
         outputView.showLottos(lottos);
 
-        List<Integer> winningNumber = WinningNumberParser.parseWinningNumber(inputView.enterWinningNumber());
+        String winningNumber = inputView.enterWinningNumber();
         int bonusNumber = inputView.enterBonusNumber();
 
         LottoOutputDto lottoOutputDto = lottoCheckService.checkLottos(
-                new LottoInputDto(purchaseAmount, winningNumber, bonusNumber),
+                new LottoInputDto(Long.parseLong(purchaseAmount), WinningNumberParser.parseWinningNumber(winningNumber),
+                        bonusNumber),
                 lottos);
 
         outputView.showStatistics(lottoOutputDto);

@@ -9,9 +9,9 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public long enterPurchaseAmount() {
+    public String enterPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
-        return Long.parseLong(scanner.nextLine());
+        return scanner.nextLine();
     }
 
     public String enterWinningNumber() {
