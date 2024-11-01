@@ -10,18 +10,5 @@ public class WinningLotto {
         this.winNumbers = winNumbers;
         this.bonus = bonus;
     }
-
-    private int countMatchingNumbers(Lotto lotto){
-        int count = 0;
-        for(int number : lotto.getNumbers()){
-            if(winNumbers.contains(number)){
-                count++;
-            }
-        }
-        return count;
-    }
-    private boolean isBonusMatched(Lotto lotto){
-        return lotto.getNumbers().contains(bonus);
-    }
 }
 
