@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import lotto.domain.User;
 import lotto.message.InputMessage;
+import lotto.service.InputService;
 import lotto.validate.InputValidate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -114,5 +116,17 @@ public class InputTest {
         assertFalse(InputValidate.run("100000000000")); // isParsableAsInteger
         assertFalse(InputValidate.run("2500000000"));   // isLessThanFirstPrizeAmount
         assertFalse(InputValidate.run("1500"));// isDivisibleBy1000
+    }
+
+    @Test
+    @DisplayName("구입금액으로 구매할 수 있는 로또 갯수를 출력한다.")
+    public void testPurchasableQuantityBasedOnMoney() {
+        // given
+        User user = new User();
+        user.setMoney("10000");
+        int lottoCount = InputService.getLottoPurchaseAmount(user);
+
+        // then
+        assertEquals(lottoCount, 10);
     }
 }

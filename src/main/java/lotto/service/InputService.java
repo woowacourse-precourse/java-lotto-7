@@ -22,7 +22,7 @@ public class InputService {
         setLottoPurchaseAmount(lottoPurchaseAmount, user);
     }
 
-    public int getLottoPurchaseAmount(User user) {
+    public static int getLottoPurchaseAmount(User user) {
         return user.getMoney() / 1000;
     }
 
