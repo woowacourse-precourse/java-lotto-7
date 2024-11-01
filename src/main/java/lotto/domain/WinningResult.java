@@ -13,4 +13,12 @@ public class WinningResult {
     public List<LottoRank> get() {
         return Collections.unmodifiableList(result);
     }
+
+    public double calculateProfitRate(int purchaseAmount) {
+        double totalWinning = 0.0;
+        for (final LottoRank lottoRank : result) {
+            totalWinning += lottoRank.getWinnings();
+        }
+        return totalWinning / purchaseAmount * 100.0;
+    }
 }

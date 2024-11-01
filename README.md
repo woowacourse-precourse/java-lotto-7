@@ -34,7 +34,7 @@
 - [x] 로또 번호중에 숫자가 포함되어 있는지 확인 - Lotto#contains()
 - [x] 포함되어 있는 숫자의 개수 구하기 - Lotto#getMatchCount()
 - [x] 로또 등수 구하기 -LottoRank#get()
-- [ ] 수악률을 계산
+- [x] 수악률을 계산 - WinningResult#calculateProfitRate()
 
 ### 입력
 
@@ -55,5 +55,5 @@
 ### 출력
 
 - [x] 구매한 로또 번호 출력 - OutputView#printLottos()
-- [x] 당첨 통계 출력 - OutputView#printWinningResult()
+- [x] 당첨 결과 출력 - OutputView#printWinningResult()
 - [ ] 수익률 출력

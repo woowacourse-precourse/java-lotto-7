@@ -24,4 +24,8 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] 금액이 로또 가격과 나누어 떨어져야 합니다.");
         }
     }
+
+    public int get() {
+        return amount;
+    }
 }
