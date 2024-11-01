@@ -1,15 +1,25 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.lottos.Lotto;
 import org.assertj.core.api.AssertionsForClassTypes;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
+    private Lotto lotto;
+
+    @BeforeEach
+    void setUp() {
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -48,6 +58,21 @@ class LottoTest {
         ));
         AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(result))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_숫자_1개_포함_확인() {
+        assertTrue(lotto.isContainNumber(1));
+    }
+
+    @Test
+    void 동일한_로또_숫자_개수_반환_확인() {
+        Lotto randomLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        int actual = lotto.getMatchedCount(randomLotto);
+        int expected = 5;
+
+        assertEquals(expected, actual);
     }
     
 }
