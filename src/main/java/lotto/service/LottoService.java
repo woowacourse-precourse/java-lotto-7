@@ -7,34 +7,37 @@ import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.random.LottoRandom;
 import lotto.random.LottoRandomStrategy;
+import lotto.repository.WalletRepository;
+import lotto.repository.WinningLottoRepository;
 
 public class LottoService {
 
-    private Wallet wallet;
-    private WinningLotto winningLotto;
     private final LottoRandom lottoRandom = new LottoRandomStrategy();
+    private final WalletRepository walletRepository = new WalletRepository();
+    private final WinningLottoRepository winningLottoRepository = new WinningLottoRepository();
 
     public void setupMoney(long money) {
-        wallet = new Wallet(money);
+        walletRepository.create(money);
     }
 
-    public List<Lotto> buyTickets() {
-        wallet.buyLottoTickets(lottoRandom);
-        return wallet.getTickets();
+    public List<Lotto> buyLottos() {
+        return walletRepository.buyLottos(lottoRandom);
     }
 
     public void setupWinningNumbers(List<Integer> numbers) {
-        winningLotto = new WinningLotto(new Lotto(numbers));
+        winningLottoRepository.createLotto(new Lotto(numbers));
     }
 
     public void setupBonusNumber(int bonusNumber) {
-        winningLotto.setupBonusNumber(bonusNumber);
+        winningLottoRepository.createBonusNumber(bonusNumber);
     }
 
     public Wallet result() {
-        wallet.getTickets().stream()
-            .map((lotto) -> winningLotto.getRank(lotto))
-            .forEach(rank -> wallet.addRank(rank));
+        Wallet wallet = walletRepository.get();
+        WinningLotto winningLotto = winningLottoRepository.get();
+        wallet.getLottos().stream()
+            .map(winningLotto::getRank)
+            .forEach(wallet::addRank);
         return wallet;
     }
 }

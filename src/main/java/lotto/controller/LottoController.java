@@ -24,7 +24,7 @@ public class LottoController {
     private void inputMoney() {
         OutputView.inputMoney();
         lottoService.setupMoney(InputView.money());
-        OutputView.buyLottoTickets(lottoService.buyTickets());
+        OutputView.buyLottoTickets(lottoService.buyLottos());
     }
 
     private void inputWinningNumbers() {

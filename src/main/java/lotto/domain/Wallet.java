@@ -7,7 +7,6 @@ import java.util.List;
 
 import lotto.constant.RankPrice;
 import lotto.random.LottoRandom;
-import lotto.random.LottoRandomStrategy;
 
 public class Wallet {
 
@@ -36,7 +35,7 @@ public class Wallet {
         }
     }
 
-    public List<Lotto> getTickets() {
+    public List<Lotto> getLottos() {
         return lottos;
     }
 

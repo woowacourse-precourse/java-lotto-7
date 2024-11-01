@@ -34,7 +34,7 @@
 ## 리팩토링 목록
 
 - [x] 테스트용 랜덤 추출 로직 분리
-- [ ] repository 계층 추가
+- [x] repository 계층 추가
 - [ ] dto mapping 계층 추가
 - [ ] dto에 validate 추가
 - [ ] 출력문 모아서 한 번에 출력하기 (like 쿼리 최적화)
