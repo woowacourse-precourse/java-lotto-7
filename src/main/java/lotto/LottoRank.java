@@ -28,4 +28,13 @@ public enum LottoRank {
     public String getMessage() {
         return message;
     }
+
+    public static LottoRank getLottoRank(int matchCount, boolean bonusMatch){
+        for (LottoRank rank : LottoRank.values()){
+            if(matchCount == rank.count && bonusMatch == rank.bonusMatch){
+                return rank;
+            }
+        }
+        return NONE_MATCH;
+    }
 }
