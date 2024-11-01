@@ -1,8 +1,9 @@
 package lotto.winner;
 
-import lotto.LottoNumber;
+import lotto.number.LottoNumber;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,10 @@ public class WinnerLottoNumber {
     }
 
     public static WinnerLottoNumber createOfWinnerLottoNumber(String input) {
-        return new WinnerLottoNumber(Arrays.stream(isValid(parse(input))).map(LottoNumber::new).collect(Collectors.toList()));
+        return new WinnerLottoNumber(Arrays.stream(isValid(parse(input)))
+                .map(LottoNumber::new)
+                .sorted()
+                .collect(Collectors.toList()));
     }
 
     private static String[] parse(String input) {
@@ -30,7 +34,7 @@ public class WinnerLottoNumber {
     }
 
     public List<LottoNumber> getLottoNumbers() {
-        return lottoNumbers;
+        return Collections.unmodifiableList(lottoNumbers);
     }
 
     public boolean contains(LottoNumber priceLottoNumber) {

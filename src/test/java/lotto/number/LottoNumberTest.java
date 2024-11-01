@@ -1,4 +1,4 @@
-package lotto;
+package lotto.number;
 
 import lotto.number.LottoNumber;
 import org.junit.jupiter.api.Test;

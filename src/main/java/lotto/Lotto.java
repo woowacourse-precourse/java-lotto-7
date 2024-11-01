@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.number.LottoNumber;
 import lotto.winner.WinnerLottoNumber;
 
 import java.util.*;
@@ -7,7 +8,7 @@ import java.util.*;
 public class Lotto {
     private static final String LOTTO_SIZE_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String LOTTO_DUPLICATE_ERROR = "[ERROR] 로또 번호 중복이 있습니다.";
-    private static int MIN_NUMBER = 3;
+    private static final int MIN_NUMBER = 3;
 
     private final List<LottoNumber> numbers;
 
@@ -61,6 +62,20 @@ public class Lotto {
     }
 
     public List<LottoNumber> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
+    }
+
 }

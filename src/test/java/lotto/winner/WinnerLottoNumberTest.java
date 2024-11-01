@@ -1,6 +1,6 @@
 package lotto.winner;
 
-import lotto.LottoNumber;
+import lotto.number.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 import static lotto.winner.WinnerLottoNumber.createOfWinnerLottoNumber;
