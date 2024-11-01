@@ -1,19 +1,21 @@
 package lotto.service.domain.lotto;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<LottoNumber> numbers;
+    private final Set<LottoNumber> lottoticket;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = makeLotto(numbers);
+        this.lottoticket = makeLotto(numbers);
     }
 
-    private List<LottoNumber> makeLotto(List<Integer> numbers) {
+    private Set<LottoNumber> makeLotto(List<Integer> numbers) {
         return numbers.stream()
                 .map(number -> new LottoNumber(number))
-                .toList();
+                .collect(Collectors.toSet());
     }
 
     private void validate(List<Integer> numbers) {

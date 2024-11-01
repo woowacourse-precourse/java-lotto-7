@@ -1,5 +1,7 @@
 package lotto.service.domain.lotto;
 
+import java.util.Objects;
+
 public class LottoNumber {
     private static final int MINIMUM_NUMBER_RANGE = 1;
     private static final int MAXIMUM_NUMBER_RANGE = 45;
@@ -18,5 +20,22 @@ public class LottoNumber {
         if(number > MAXIMUM_NUMBER_RANGE || number < MINIMUM_NUMBER_RANGE){
             throw new IllegalArgumentException("[ERROR] 로또 번호 범위(1~45)에 맞지 않는 숫자입니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }
