@@ -17,6 +17,14 @@ public class Lotto {
         }
     }
 
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.stream()
