@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+
+import lotto.answer.Answer;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,5 +21,9 @@ public class Lotto {
 
     public void printLottoNumbers() {
         System.out.println(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
