@@ -18,30 +18,32 @@ public class LottoController {
         int bonus = inputBonus(winnerLotto);
 
         User user = new User(lottoMachine.getLottoTickets(), winnerLotto);
-        long prize = calculatePrizeMoeny(user);
-        double totalReturn = totalReturn(user, prize);
+        long prizeMoney = calculatePrizeMoeny(user);
+        double totalReturn = totalReturn(user, prizeMoney);
         OutputView.winningStatistics(totalReturn);
 
     }
 
     private static double totalReturn(User user, long prize) {
-        int purchaseMoney = user.getLottoTickets().size() * 100;
-        return (double) prize / purchaseMoney;
+        int purchaseMoney = user.getLottoTickets().size() * 10;
+
+        return Math.round(prize * 100.0 / purchaseMoney) / 100.0;
     }
 
     private static long calculatePrizeMoeny(User user) {
-        long prize = 0;
+        long prizeMoney = 0;
 
         for (Lotto lotto : user.getLottoTickets()) {
             int matchCount = getMatchingNumbers(user.getWinnerLotto(), lotto);
-            prize += totalPrizeMoney(matchCount);
+            prizeMoney += prizeMoney(matchCount);
         }
 
-        return prize;
+        return prizeMoney;
     }
 
     private static int getMatchingNumbers(Lotto winnerLotto, Lotto lotto) {
         int matchCount = 0;
+
         for (int number : lotto.getNumbers()) {
             if (winnerLotto.getNumbers().contains(number)) {
                 matchCount++;
@@ -51,16 +53,9 @@ public class LottoController {
         return matchCount;
     }
 
-    private static long totalPrizeMoney(int matchCount) {
-        long totalPrizeMoney = 0;
-
-        for (LottoPrize value : LottoPrize.values()) {
-            totalPrizeMoney += value.getPrizeByRank(matchCount);
-        }
-
-        return totalPrizeMoney;
+    private static long prizeMoney(int matchCount) {
+        return LottoPrize.getPrizeByRank(matchCount);
     }
-
 
     private static LottoMachine inputPrice() {
         try {
