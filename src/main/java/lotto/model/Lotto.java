@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,6 +31,13 @@ public class Lotto {
 
     public static List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     @Override
