@@ -7,7 +7,13 @@ public class Price {
 	private final int price;
 
 	public Price(int price) {
+		validatePrice(price);
 		this.price = price;
+	}
+
+	private void validatePrice(int price) {
+		isDivisibleByThousand(price);
+		isPositive(price);
 	}
 
 	private void isDivisibleByThousand(int price) {
