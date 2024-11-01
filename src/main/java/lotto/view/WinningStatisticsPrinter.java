@@ -6,15 +6,15 @@ import java.util.Map.Entry;
 import lotto.domain.Rank;
 import lotto.domain.lottos.user.WinningLotto;
 
-public class WinningStatisticPrinter {
+public class WinningStatisticsPrinter {
     private final static String PRINT_RANK_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private final static String PRINT_SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private final static String PRIZE_MONEY_FORMAT = "%,d";
 
     public static void print(WinningLotto winningLotto) {
-        System.out.println(getPrintout(winningLotto));
+        System.out.print(getPrintout(winningLotto));
     }
-    
+
     public static String getPrintout(WinningLotto winningLotto) {
         StringBuilder printout = new StringBuilder();
         EnumMap<Rank, Integer> ranks = winningLotto.getWinningStatistics();
