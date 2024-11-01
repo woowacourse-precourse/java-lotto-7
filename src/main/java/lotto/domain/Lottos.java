@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoCalculateRequest;
 import lotto.dto.LottoWinResult;
-import lotto.enums.LottoCriteria;
 import lotto.enums.LottoErrorMessage;
 import lotto.exception.LottoInputException;
 import lotto.validator.LottosValidator;
@@ -30,7 +29,7 @@ public class Lottos {
         List<Integer> winningNumbers = lottoCalculateRequest.winningNumbers();
         int bonusNumber = lottoCalculateRequest.bonusNumber();
         for(Lotto lotto : lottos){
-            LottoWinResult lottoWinResult = lotto.getResult(winningNumbers, bonusNumber);
+            LottoWinResult lottoWinResult = lotto.calculateWinResult(winningNumbers, bonusNumber);
             lottoWinResultList.add(lottoWinResult);
         }
         return lottoWinResultList;
@@ -38,7 +37,7 @@ public class Lottos {
 
     public String getLottosNumbersStr(){
         return lottos.stream()
-                .map((lotto) -> lotto.getLottoNumberStr())
+                .map((lotto) -> lotto.getLottoNumbersStr())
                 .collect(Collectors.joining());
     }
 }
