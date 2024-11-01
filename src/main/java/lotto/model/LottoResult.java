@@ -21,11 +21,16 @@ public class LottoResult {
             int matchCount = (int) lottoNumbers.stream()
                     .filter(winningLotto.getNumbers()::contains)
                     .count();
-
             boolean hasBonus = lottoNumbers.contains(winningLotto.getBonusNum());
-            LottoRank rank = LottoRank.valueOfMatchCount(matchCount, hasBonus);
+            if (matchCount >= 3) {
+                LottoRank rank = LottoRank.valueOfMatchCount(matchCount, hasBonus);
 
-            rankResults.put(rank, rankResults.get(rank) + 1);
+                rankResults.put(rank, rankResults.get(rank) + 1);
+            }
         }
+    }
+
+    public Map<LottoRank, Integer> getRankResults() {
+        return rankResults;
     }
 }
