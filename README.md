@@ -133,14 +133,14 @@ View
             <td>✅`LottoTest` 통과 하기 위한 검증 로직 추가</td> </tr><tr>
     <td rowspan="4">당첨 번호 입력</td>
         <td rowspan="1"><b><em>LottoCommand</em></b></td>
-        <td>⬜ `Lotto` 당첨 번호 유효성 검증</td> 
-                <td rowspan="4"></td></tr><tr> 
+        <td>✅ `Lotto` 당첨 번호 유효성 검증</td> 
+                <td rowspan="4">feat/winning-lotto-input</td></tr><tr> 
         <td rowspan="1">View</td>
-            <td>⬜ `WinningLottoUserInput`  당첨 번호 사용자 입력 처리 </td> </tr><tr> 
-        <td rowspan="1">WinningLottoCommand</td>
-            <td>⬜ `WinningLottoUserInput` 당첨 번호 반환</td> </tr><tr>
+            <td>✅ `WinningLottoUserInput`  당첨 번호 사용자 입력 처리 </td> </tr><tr> 
+        <td rowspan="1">LottoCommand</td>
+            <td>✅ `WinningLottoUserInput` 당첨 번호 반환</td> </tr><tr>
         <td rowspan="1">LottoService</td>
-            <td>⬜ `WinningLottoUserInput`를 `WinningLotto`로 변환</td> </tr><tr> 
+            <td>✅ `WinningLottoUserInput`를 `WinningLotto`로 변환</td> </tr><tr> 
     <td rowspan="4">보너스 번호 입력</td>
         <td rowspan="1"><b><em>BonusCommand</em></b></td>
             <td>⬜ `Bonus` 보너스 번호 유효성 검증</td> 
