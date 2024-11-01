@@ -54,7 +54,7 @@ public class Application {
                 bonusNumber = inputBonusNumber(winningNumbers);
                 break;
             } catch (NumberFormatException error) {
-                System.out.println("[ERROR]" + " 숫자만 입력하세요.");
+                System.out.println("[ERROR]" + " 1개의 숫자 이외의 문자는 입력이 안됩니다.");
             } catch (IllegalArgumentException error) {
                 System.out.println("[ERROR]" + error.getMessage());
             }
