@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constants.LottoConstants.MIN_NUMBER;
 import static lotto.constants.LottoErrorMessage.INVALID_NUMBER_SIZE;
 import static lotto.constants.LottoErrorMessage.NUMBER_OUT_OF_RANGE;
 
 public class Lotto {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

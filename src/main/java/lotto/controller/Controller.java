@@ -2,10 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
-import lotto.util.JackpotNumbersValidator;
-import lotto.util.PurchaseAmountValidator;
-import lotto.util.StringParser;
-import lotto.util.Validator;
+import lotto.util.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,12 +28,7 @@ public class Controller {
         }
 
         int lottoCount = totalAmount / 1000;
-        List<Lotto> purchasedLottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            purchasedLottos.add(new Lotto(numbers));
-        }
+        List<Lotto> purchasedLottos = LottoListGenerator.generateLottos(lottoCount);
         OutputView.printPurchasedLottos(lottoCount, purchasedLottos);
 
         while (true) {
