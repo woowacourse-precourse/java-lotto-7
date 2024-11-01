@@ -37,4 +37,13 @@ public class WinningNumbersTest {
                 .hasMessage("[ERROR] 당첨 번호는 양수만 가능합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2", "1,2,46", "1,100,500"})
+    @DisplayName("당첨 번호가 1~45 사이의 숫자가 아니면 예외가 발생한다.")
+    void validateWinningNumbersInRange(String condition) {
+        assertThatThrownBy(() -> WinningNumbers.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 1~45 사이의 숫자만 가능합니다.");
+    }
+
 }
