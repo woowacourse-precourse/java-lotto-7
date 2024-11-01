@@ -16,5 +16,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (!(number > 0 && number <= 45)) {
+                throw new IllegalArgumentException("[ERROR] 번호는 0~45사이의 숫자여야 합니다.");
+            }
+        }
+    }
 }
