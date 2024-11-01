@@ -1,12 +1,11 @@
 package lotto.util;
 
 import lotto.domain.Lotto;
-import lotto.policy.LottoNumberPolicy;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static lotto.policy.LottoNumberPolicy.*;
+import static lotto.policy.LottoNumberPolicy.SORTED_RANDOM_NUMBERS;
 
 public abstract class LottoListGenerator {
 

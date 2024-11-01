@@ -2,11 +2,14 @@ package lotto.domain;
 
 public class JackpotNumbers {
 
-    private final Lotto lotto;
-    private final int bonusNumber;
+    private Lotto lotto;
+    private int bonusNumber;
 
-    public JackpotNumbers(Lotto lotto, int bonusNumber) {
+    public void setLotto(Lotto lotto) {
         this.lotto = lotto;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 }
