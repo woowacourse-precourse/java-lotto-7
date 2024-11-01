@@ -1,8 +1,11 @@
 package lotto.controller;
 
 import lotto.model.LottoMachine;
+import lotto.model.Lottos;
 import lotto.util.Parser;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -18,6 +21,7 @@ public class LottoController {
     public void run() {
         int purchaseAmount = parser.purchaseAmountParser(inputView.readPurchaseAmount());
         lottoMachine.initMachine();
-        lottoMachine.issueLottos(purchaseAmount);
+        Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
+        List<Integer> winningNums = parser.winningNumsParser(inputView.readWinningNums());
     }
 }
