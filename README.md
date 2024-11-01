@@ -97,3 +97,5 @@ NumberCombination 구현
 
 
 interface를 적극 활용
+
+-> InputManager needs refactoring 함수가 너무 길어요
