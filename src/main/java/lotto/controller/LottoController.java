@@ -30,6 +30,7 @@ public class LottoController {
                 outputHandler.showLottoPrice();
                 String price = inputHandler.price();
                 int lottoCount = lottoManager.getLottoCount(price);
+
                 matchStatistics.setTotalSpent(Double.parseDouble(price));
                 outputHandler.showLottoCount(lottoCount);
 
@@ -48,7 +49,6 @@ public class LottoController {
                 int bonusNumber = Integer.parseInt(inputHandler.bonusNumber());
 
                 WinningNumber winningNumber = new WinningNumber(winNumbers, bonusNumber);
-
                 matchStatistics.calculateMatches(lottoNumbers, winningNumber);
 
                 outputHandler.showMatchResult(matchStatistics.getMatchResults(), matchStatistics.getProfitRate());

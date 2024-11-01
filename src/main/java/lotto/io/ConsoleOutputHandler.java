@@ -36,5 +36,6 @@ public class ConsoleOutputHandler implements OutputHandler {
         for (String result : matchResults.keySet()) {
             System.out.printf("%s - %d개%n", result, matchResults.get(result));
         }
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }
