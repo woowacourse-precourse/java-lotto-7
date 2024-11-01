@@ -15,6 +15,7 @@ public class WinningNumberValidator {
 
     public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
+        validateBonusNumberDuplicate(winningNumbers, bonusNumber);
     }
 
     private static void validateWinningNumberCount(List<Integer> winningNumbers) {
@@ -39,6 +40,12 @@ public class WinningNumberValidator {
     private static void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorMessageConstants.INVALID_BONUS_NUMBER_RANGE);
+        }
+    }
+
+    private static void validateBonusNumberDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessageConstants.INVALID_BONUS_NUMBER_DUPLICATE);
         }
     }
 }
