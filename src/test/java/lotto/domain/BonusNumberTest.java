@@ -48,7 +48,7 @@ public class BonusNumberTest {
         List<Integer> winningNumbers = WinningNumbers.from("1,2,3,4,5,6").getNumbers();
         assertThatThrownBy(() -> BonusNumber.of(winningNumbers, "6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+                .hasMessage("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
     }
 
     @Test
