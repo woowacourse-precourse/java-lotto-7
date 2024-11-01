@@ -96,7 +96,7 @@
 
   - 로또 번호 범위 내의 숫자 중 하나를 무작위로 생성한다.
 
-  ### Numbers
+### Numbers
 
 - [x] Numbers 객체를 생성하는 기능 (createNumbers)
 - [x] 랜덤 숫자 6개를 생성하는 기능 (generateSixRandomNumbers)
