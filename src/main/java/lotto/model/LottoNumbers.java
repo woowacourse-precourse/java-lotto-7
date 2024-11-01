@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.number_generator.RandomNumberGenerator;
+
 import java.util.List;
 
 public class LottoNumbers {
@@ -8,6 +10,14 @@ public class LottoNumbers {
 
     public LottoNumbers(List<LottoNumber> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
+    }
+
+    public static LottoNumbers generateBy(int size, RandomNumberGenerator randomNumberGenerator) {
+        List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, size);
+
+        return new LottoNumbers(numbers.stream()
+                .map(LottoNumber::new)
+                .toList());
     }
 
     public List<Integer> mapToInt() {
