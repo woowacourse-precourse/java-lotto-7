@@ -35,4 +35,9 @@ class LottoGeneratorTest {
     void 번호_중복_검증() {
         assertThat(lottoGenerator.lottoNumbers()).doesNotHaveDuplicates();
     }
+
+    @Test
+    void 번호_오름차순_검증() {
+        assertThat(lottoGenerator.lottoNumbers()).isSorted();
+    }
 }
