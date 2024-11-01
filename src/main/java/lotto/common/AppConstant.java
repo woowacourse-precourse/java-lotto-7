@@ -2,4 +2,7 @@ package lotto.common;
 
 public class AppConstant {
     public static int LOTTO_UNIT_PRICE = 1000;
+    public static int LOTTO_START_RANGE = 1;
+    public static int LOTTO_END_RANGE = 45;
+    public static int LOTTO_NUMBER_COUNT = 6;
 }

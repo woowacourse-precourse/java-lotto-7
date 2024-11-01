@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_END_RANGE;
+import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
 
 public class InputValidator {
@@ -49,8 +51,8 @@ public class InputValidator {
     private void validateRangeNumber(String input) {
         int parsedInt = Integer.parseInt(input);
 
-        if (1 > parsedInt && parsedInt > 45) {
-            throw new IllegalArgumentException(1 + "에서 " + 45 + "사이의 값을 입력해주세요.");
+        if (LOTTO_START_RANGE > parsedInt || parsedInt > LOTTO_END_RANGE) {
+            throw new IllegalArgumentException(LOTTO_START_RANGE + "에서 " + LOTTO_END_RANGE + "사이의 값을 입력해주세요.");
         }
     }
 }
