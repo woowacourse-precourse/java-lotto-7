@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
@@ -29,6 +30,7 @@ public class LottoController {
         addBunusNumber(winningLotto);
 
         LottoResult lottoResult = compareLottoTicketWithWinningLotto(lottoTicket, winningLotto);
+        lottoOutputView.printLottoResult(lottoResult.getRankResults());
     }
 
     private LottoResult compareLottoTicketWithWinningLotto(LottoTicket lottoTicket, WinningLotto winningLotto) {
