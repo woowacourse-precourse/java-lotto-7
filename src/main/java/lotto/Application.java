@@ -59,6 +59,9 @@ public class Application {
                 System.out.println("[ERROR]" + error.getMessage());
             }
         }
+
+        LottoResult result = calculateResult(lottoList, winningNumbers, bonusNumber);
+        outputResult(result);
     }
 
 
