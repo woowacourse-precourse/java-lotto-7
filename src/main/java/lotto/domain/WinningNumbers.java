@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,8 +8,7 @@ public class WinningNumbers {
     private final List<Integer> numbers;
 
     private WinningNumbers(String numbers) {
-        Validator.validateWinningNumbers(numbers);
-        this.numbers = new ArrayList<>();
+        this.numbers = Validator.validateWinningNumbers(numbers);
     }
 
     public static WinningNumbers from(String numbers) {
@@ -23,10 +21,12 @@ public class WinningNumbers {
 
     private static class Validator {
 
-        private static void validateWinningNumbers(String numbers) {
+        private static List<Integer> validateWinningNumbers(String numbers) {
             validateWinningNumbersIsNotEmpty(numbers);
             List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
-            validatePositiveWinningNumbers(delimitedWinningNumbers);
+            List<Integer> positiveWinningNumbers = validatePositiveWinningNumbers(delimitedWinningNumbers);
+            validateWinningNumbersInRange(positiveWinningNumbers);
+            return positiveWinningNumbers;
         }
 
         private static void validateWinningNumbersIsNotEmpty(String numbers) {
@@ -52,6 +52,15 @@ public class WinningNumbers {
             return delimitedWinningNumbers.stream()
                     .map(Integer::parseInt)
                     .toList();
+        }
+
+        private static void validateWinningNumbersInRange(List<Integer> positiveWinningNumbers) {
+            boolean hasOutOfRangeNumber = positiveWinningNumbers.stream()
+                    .anyMatch(lottoNumber -> lottoNumber < 1 || lottoNumber > 45);
+
+            if (hasOutOfRangeNumber) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자만 가능합니다.");
+            }
         }
 
     }
