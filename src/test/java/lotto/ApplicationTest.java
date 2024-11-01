@@ -120,6 +120,60 @@ class ApplicationTest extends NsTest {
         }
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4", "1", "1,2,3,4,5,6,7,8,9"})
+    void 당첨_번호_6개_아닌_경우(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,3,3,6", "11,12,11,13,41,45"})
+    void 당첨_번호_내_중복된_값_존재(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0,2,3,11,31,45", "1,12,37,25,41,99", "1,12,1000,25,41,99"})
+    void 당첨_번호_허용_범위_외_값이_존재(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3.11.31$45", "1*12*37*25**41*45"})
+    void 당첨_번호_쉼표_외_구분자_사용(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,,,3,4,5,6", "11,12,13,18,41,,45"})
+    void 당첨_번호_내_쉼표_연속_존재(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",11,12,13,18,41,45", "1,2,3,4,5,6,"})
+    void 당첨_번호_쉼표로_시작하거나_끝나는_경우(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"\n", "   "})
+    void 당첨_번호가_빈_값_혹은_공백(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"11,1   2,13,18,4   1,45", " 1, 2  2 ,3, 4  2,5,6"})
+    void 당첨_번호_내_공백_존재(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isFalse();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" 11,12 , 13 ,18,41 , 45", "   1,2,3,4   ,5,6   "})
+    void 당첨_번호_앞뒤_공백_허용_검증(String winningNumbers) {
+        assertThat(Application.isValidwinningNumbers(winningNumbers)).isTrue();
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
