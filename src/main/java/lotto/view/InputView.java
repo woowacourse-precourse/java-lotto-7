@@ -1,6 +1,5 @@
 package lotto.view;
 
-
 import lotto.constants.string.InputMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;

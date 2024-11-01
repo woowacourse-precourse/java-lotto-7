@@ -17,7 +17,7 @@ public class OutputView {
 
     public static OutputView getInstance() {
         if (instance == null) {
-            instance= new OutputView();
+            instance = new OutputView();
         }
         return instance;
     }
@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println();
         List<Lotto> lottos = lottosDto.lottos().getLottos();
         int boughtAmount = lottos.size();
-        System.out.println(String.format(OutputMessage.BOUGHT_AMOUNT.getInstance(),boughtAmount));
+        System.out.println(String.format(OutputMessage.BOUGHT_AMOUNT.getInstance(), boughtAmount));
         for (int i = 0; i < boughtAmount; i++) {
             System.out.println(lottos.get(i));
         }
