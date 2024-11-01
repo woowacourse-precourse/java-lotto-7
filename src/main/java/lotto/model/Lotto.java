@@ -2,8 +2,9 @@ package lotto.model;
 
 import static lotto.constants.ErrorMessage.DUPLICATE_NUMBER_MESSAGE;
 import static lotto.constants.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
-import static lotto.constants.ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE;
+import static lotto.constants.ErrorMessage.INPUT_LOTTO_NUMBER_OUT_OF_RANGE;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Lotto {
         validateNumberCount(numbers);
         validateNumberRange(numbers);
         validateDuplicatedNumber(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
         this.numbers.sort(Comparator.naturalOrder());
     }
 
@@ -34,7 +35,7 @@ public class Lotto {
     private void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (!(1 <= number && number <= 45)) {
-                throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+                throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
     }
