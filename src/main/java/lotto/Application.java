@@ -44,5 +44,6 @@ public class Application {
                 lottoMachine,
                 OutputView.getInstance());
 
+        lottoController.play();
     }
 }

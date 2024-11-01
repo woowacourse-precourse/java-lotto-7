@@ -27,13 +27,13 @@ public class Lottos {
 
         while (lottos.size() < buyAmount) {
             Lotto lotto = Lotto.from(lottoFactory);
-            addUnduplicateLotto(lotto);
+            addUnduplicateLotto(lottos,lotto);
         }
         return lottos;
     }
 
 
-    private void addUnduplicateLotto(Lotto lotto) {
+    private void addUnduplicateLotto(List<Lotto> lottos,Lotto lotto) {
 
         if (!lottos.contains(lotto)) {
             lottos.add(lotto);
