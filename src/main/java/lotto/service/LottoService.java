@@ -12,7 +12,6 @@ public class LottoService {
     }
 
     public LottoRateInfo getLottoRateInfo(WinningLotto winningLotto, UserLottoInfo userLottoInfo) {
-
-        return null;
+        return userLottoInfo.calculateReturnRate(winningLotto);
     }
 }

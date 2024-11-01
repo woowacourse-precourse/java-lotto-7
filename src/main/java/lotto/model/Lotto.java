@@ -1,4 +1,6 @@
-package lotto;
+package lotto.model;
+
+import lotto.dto.MatchInfo;
 
 import java.util.*;
 
@@ -8,6 +10,23 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public MatchInfo makeMatchInfo(Lotto userLotto, int bonusNumber) {
+        int matchCount = 0;
+        boolean isMatchBonusNumber = false;
+
+        for (Integer userLottoNumber : userLotto.numbers) {
+            if (this.numbers.contains(userLottoNumber)) {
+                matchCount++;
+            }
+        }
+
+        if (this.numbers.contains(bonusNumber)) {
+            isMatchBonusNumber = true;
+        }
+
+        return new MatchInfo(matchCount, isMatchBonusNumber);
     }
 
     public String getLottoNumbers() {
@@ -55,5 +74,4 @@ public class Lotto {
     private void sortLottoNumbers() {
         numbers.sort(Comparator.naturalOrder());
     }
-
 }

@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.Lotto;
 import lotto.dto.WinningLottoInfo;
 
 import java.util.ArrayList;
@@ -15,6 +14,10 @@ public class WinningLotto {
 
         validateBonusNumber(winningLottoInfo.bonusNum());
         this.bonusNumber = winningLottoInfo.bonusNum();
+    }
+
+    public Ranking calculateRank(Lotto userLotto) {
+        return Ranking.calculateRanking(winningLotto.makeMatchInfo(userLotto, bonusNumber));
     }
 
     private List<Integer> parseLottoNumbers(String rawLottoNumbers) {

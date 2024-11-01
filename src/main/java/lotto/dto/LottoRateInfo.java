@@ -1,11 +1,11 @@
 package lotto.dto;
 
-import lotto.model.LottoInfo;
+import lotto.model.Ranking;
 
 import java.util.EnumMap;
 
 public record LottoRateInfo(
-        EnumMap<LottoInfo, Integer> winningLottoCount,
+        EnumMap<Ranking, Integer> winningLottoCount,
         double returnRate
 ) {
 }

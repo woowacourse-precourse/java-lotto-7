@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
 import lotto.dto.CreateLottoInfo;
 
 import java.util.ArrayList;
@@ -27,6 +26,13 @@ public class Lottos {
 
     public long getUserLottoCount() {
         return userLottos.size();
+    }
+
+    public void makeWinningInfo(WinningLotto winningLotto, RankingStatus rankingStatus) {
+        for (Lotto userLotto : userLottos) {
+            Ranking ranking = winningLotto.calculateRank(userLotto);
+            rankingStatus.updateRankStatus(ranking);
+        }
     }
 
     private List<Integer> createRandomLotto() {
