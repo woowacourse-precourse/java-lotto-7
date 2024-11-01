@@ -40,6 +40,10 @@ public class Lotteries {
         return ticketList;
     }
 
+    public int size() {
+        return lotteries.size();
+    }
+
     @Override
     public String toString() {
         return lotteries.stream()
