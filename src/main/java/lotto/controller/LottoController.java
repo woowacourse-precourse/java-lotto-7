@@ -13,7 +13,7 @@ public class LottoController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final LottoMaker lottoMaker = new LottoMaker();
+    private final LottoShop lottoShop = new LottoShop();
 
     private int purchaseMoney;
 
@@ -31,7 +31,7 @@ public class LottoController {
 
     private Lottos purchaseLotto() {
         purchaseMoney = inputView.inputPurchaseMoney();
-        return lottoMaker.makeLottos(purchaseMoney);
+        return lottoShop.purchaseLottos(purchaseMoney);
     }
 
     private WinningLotto createWinningLotto() {
