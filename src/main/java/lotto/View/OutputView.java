@@ -1,6 +1,8 @@
 package lotto.View;
 
 import lotto.Model.Lotto;
+import lotto.Model.LottoResult;
+import lotto.Model.LottoStatistics;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,4 +19,16 @@ public class OutputView {
             System.out.println(lotto.getNumbers());
         }
     }
+
+    public static void showStatistics(LottoStatistics statistics){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (LottoResult result : LottoResult.values()) {
+            System.out.printf("%개 일치 (%d원) - %d개%n",
+                    result.getMatchCount(),
+                    result.getWinningAmount(),
+                    statistics.getResultCounts().get(result));
+        }
+    }
+
 }
