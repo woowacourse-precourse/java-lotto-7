@@ -105,4 +105,20 @@ class LottoMachineImplTest {
         //then
         Assertions.assertThat(winningNumber).isEqualTo(1);
     }
+
+    @Test
+    void 구입_개수와_당첨_결과_데이터가_주어지면_수익률을_계산한다() {
+        //given
+        int purchaseNumber = 8;
+        HashMap<LottoRank, Integer> winningResult = new HashMap<>();
+        winningResult.put(LottoRank.RANK_1, 0);
+        winningResult.put(LottoRank.RANK_2, 0);
+        winningResult.put(LottoRank.RANK_3, 0);
+        winningResult.put(LottoRank.RANK_4, 0);
+        winningResult.put(LottoRank.RANK_5, 1);
+        //then
+        Double profitRate = lottoMachine.calculateProfitRate(winningResult, purchaseNumber);
+        //when
+        Assertions.assertThat(profitRate).isEqualTo(62.5);
+    }
 }
