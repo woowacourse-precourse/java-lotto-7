@@ -134,5 +134,15 @@
       </td><td style="padding: 10px;">
       </td>
     </tr>
+    <!-----------------------새로운 대분류----------------------------><tr>
+      <td rowspan="1" style="padding: 10px;">데이터 자료형 변경<br>(ChangeDataType)</td>
+      <td style="padding: 10px;">문자열 배열을 정수형 리스트로 변환<br>(stringArrayToIntegerList)</td>
+      <td style="padding: 10px;">
+        <ul>
+            <li>문자열 배열을 입력받은 후, 정수형 리스트로 변환 후 반환</li>
+        </ul>
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
   </tbody>
 </table>
