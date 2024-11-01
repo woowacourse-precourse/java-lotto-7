@@ -35,6 +35,8 @@
     - [x] 로또 생성
       - [x] 로또 6자리 검증
         - [x] 예외인 경우 IllegalArgumentException 발생
+      - [x] 로또 숫자 중복 검증
+        - [x] 예외인 경우 IllegalArgumentException 발생
       - [x] 로또 번호 오름차순 정렬
 
 ### 4) 당첨번호 및 보너스 번호 생성
