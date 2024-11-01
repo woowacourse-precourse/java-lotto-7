@@ -109,24 +109,22 @@ public class Lotto {
     }
 
     public static List<Integer> countRank(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
-        List<Integer> counter = new ArrayList<>(List.of(0, 0, 0, 0, 0));
-        for (Lotto lotto: lottos) {
-            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.FIRST)) {
-                counter.set(0, counter.get(0) + 1);
-            }
-            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.SECOND)) {
-                counter.set(1, counter.get(1) + 1);
-            }
-            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.THIRD)) {
-                counter.set(2, counter.get(2) + 1);
-            }
-            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.FOURTH)) {
-                counter.set(3, counter.get(3) + 1);
-            }
-            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.FIFTH)) {
-                counter.set(4, counter.get(4) + 1);
-            }
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            Rank rank = getRank(lotto, winningLotto, bonusNumber);
+            ranks.add(rank);
         }
+        List<Integer> counter = new ArrayList<>();
+        counter.add(ranks.stream().filter(x -> x.equals(Rank.FIRST)).toList().size());
+        counter.add(ranks.stream().filter(x -> x.equals(Rank.SECOND)).toList().size());
+        counter.add(ranks.stream().filter(x -> x.equals(Rank.THIRD)).toList().size());
+        counter.add(ranks.stream().filter(x -> x.equals(Rank.FOURTH)).toList().size());
+        counter.add(ranks.stream().filter(x -> x.equals(Rank.FIFTH)).toList().size());
         return counter;
     }
+
+    public static final List<Integer> value = List.of(2000000000, 30000000, 1500000, 50000, 5000);
+
+    public static final List<String> valueWithComma = lotto.Lotto.value.stream().map(x -> String.format("%,d", x))
+            .toList();
 }

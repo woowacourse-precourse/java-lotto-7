@@ -1,7 +1,5 @@
 package exception;
 
-import lotto.Lotto;
-
 public class Handler {
     public static int getMoney(io.Input input) {
         String inputString = input.getInput();
@@ -40,7 +38,7 @@ public class Handler {
             }
 
         }
-        return money / 1000;
+        return money / lotto.Lotto.Price.PRICE;
     }
 
     public static void handleException(String inputString, String exceptionMessage) {
