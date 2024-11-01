@@ -34,7 +34,7 @@ public class LottoGame {
     // 금액에 맞게 로또를 발급하는 메서드
     public void LottoIssuance(int purchaseAmount) {
         int numberOfLottoPurchases = purchaseAmount / LOTTO_PRICE;
-        System.out.println(numberOfLottoPurchases + "개를 구매했습니다.");
+        System.out.println("\n" + numberOfLottoPurchases + "개를 구매했습니다.");
 
         for (int i = 0; i < numberOfLottoPurchases; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
