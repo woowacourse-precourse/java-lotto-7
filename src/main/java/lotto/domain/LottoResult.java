@@ -20,6 +20,9 @@ public class LottoResult {
     }
 
     public void updateLottoResult(int matchCount, boolean isBonusMatched) {
+        if (isBonusMatched) {
+            matchCount++;
+        }
         if (matchCount == FIRST_WINNER.getMatchCount()) {
             int key = FIRST_WINNER.getRank();
             if (isBonusMatched) {
