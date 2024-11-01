@@ -21,6 +21,8 @@ public class Application {
         List<Lotto> purChasedLotto = new LottoShop(amount).getPurChasedLotto();
         output.printPurChasedLotto(purChasedLotto);
 
+        output.requestWinningNumbers();
+
     }
 
     public static void main(String[] args) {
