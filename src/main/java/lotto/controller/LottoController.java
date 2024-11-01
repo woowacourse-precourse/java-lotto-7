@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.PurchaseCost;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import lotto.utility.NumberParser;
 import lotto.utility.RandomNumberCreator;
 import lotto.utility.WinningNumberParser;
@@ -20,13 +18,13 @@ public class LottoController {
 
         int purchasedLottoCount = purchaseCost.calculateBuyableLottoCount();
         OutputView.outputPurchasedLottoCount(purchasedLottoCount);
-        purchaseLotto(purchasedLottoCount);
+        PurchasedLottos purchasedLottos = new PurchasedLottos(purchaseLotto(purchasedLottoCount));
 
         List<Integer> parsedWinningNumbers = inputWinningNumbers();
         WinningNumbers winningNumbers = new WinningNumbers(parsedWinningNumbers);
         int bonusNumber = NumberParser.parseToInteger(InputView.inputBonusNumber());
 
-
+        LottoGame lottoGame = new LottoGame(purchasedLottos, purchaseCost, winningNumbers, bonusNumber);
     }
 
     public int inputPurchaseCost() {
