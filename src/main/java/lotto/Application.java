@@ -43,6 +43,7 @@ public class Application {
         for (Lotto lotto : lottos) {
             matchTest(lotto);
         }
+        printResult();
     }
 
     public static int checkCredit(int credit) throws IllegalArgumentException {
@@ -89,6 +90,18 @@ public class Application {
 
     public static boolean bonusMatchTest(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public static void printResult() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("당첨 통계\n");
+        sb.append("---\n");
+        sb.append("3개 일치 (5,000원) - " + matchCount[3] + "개\n");
+        sb.append("4개 일치 (50,000원) - " + matchCount[4] + "개\n");
+        sb.append("5개 일치 (1,500,000원) - " + matchCount[5] + "개\n");
+        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCount[7] + "개\n");
+        sb.append("6개 일치 (2,000,000,000원) - " + matchCount[6] + "개\n");
+        System.out.println(sb);
     }
 
 }
