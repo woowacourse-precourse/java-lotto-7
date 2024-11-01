@@ -23,17 +23,29 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 당첨번호의 구분자는 쉼표여야 합니다.");
         }
         String[] splitWinningNumbers = winningNumbers.split(",");
+        if (splitWinningNumbers.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개여야 합니다.");
+        }
         for (String number : splitWinningNumbers) {
             if (!isNumeric(number.trim())) {
                 throw new IllegalArgumentException("[ERROR] 당첨번호는 정수여야 합니다.");
             }
-        }
-        if (splitWinningNumbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개여야 합니다.");
+            if (!isOutOfRange(number)) {
+                throw new IllegalArgumentException("[ERROR] 당첨번호는 1이상 45이하여야 합니다.");
+            }
         }
     }
 
     private boolean isNumeric(String number) {
         return number.matches("\\d+");
+    }
+
+    private boolean isOutOfRange(String number) {
+        int parseNumber = Integer.parseInt(number);
+        return parseNumber >= 1 && parseNumber <= 45;
+    }
+
+    public void validateBonusNumber(String bonusNumber) {
+
     }
 }
