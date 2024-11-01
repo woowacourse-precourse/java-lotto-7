@@ -37,8 +37,8 @@ public class LottoController {
 
         WinningLotto winningLotto = Retryer.retryOnCustomException(this::createWinningLotto);
 
-        List<Score> scores = Retryer.retryOnCustomException(() -> calculateScores(lottos, winningLotto));
-        double profitRate = Retryer.retryOnCustomException(() -> calculateProfitRate(scores));
+        List<Score> scores = calculateScores(lottos, winningLotto);
+        double profitRate = calculateProfitRate(scores);
 
         LottoScoreResponses lottoScoreResponses = getLottoScoreResponses(scores);
 
