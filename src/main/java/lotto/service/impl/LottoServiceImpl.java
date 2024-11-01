@@ -29,9 +29,6 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public LottoStatistics checkResults(LottoTickets tickets, WinningLotto winningLotto) {
-        if (winningLotto == null) {
-            throw new IllegalStateException("[ERROR] 당첨 번호가 설정되지 않았습니다.");
-        }
         LottoStatistics statistics = new LottoStatistics();
         for (Lotto ticket : tickets.getLottoTickets()) {
             LottoRank rank = winningLotto.determineRank(ticket);
