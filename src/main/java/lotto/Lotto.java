@@ -32,6 +32,12 @@ public class Lotto {
         }
     }
 
+    public void validateDuplicationWithBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 값입니다.");
+        }
+    }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

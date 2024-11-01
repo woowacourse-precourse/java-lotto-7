@@ -12,7 +12,7 @@ public class Application {
         List<Lotto> lottos = issueLottos(purchaseAmount);
         printIssuedLottos(lottos);
         Lotto winningNumbers = pickWinningNumbers();
-        String bonusNumber = pickBonusNumber();
+        int bonusNumber = pickBonusNumber(winningNumbers);
     }
 
     private static int purchaseLottos() {
@@ -62,16 +62,26 @@ public class Application {
         }
     }
 
-    private static String pickBonusNumber() {
+    private static int pickBonusNumber(Lotto winningNumbers) {
         try {
-            return inputBonusNumbers();
+            String bonusNumberInput = inputBonusNumber();
+            return registerBonusNumber(bonusNumberInput, winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return pickBonusNumber();
+            return pickBonusNumber(winningNumbers);
         }
     }
 
-    private static String inputBonusNumbers() {
+    public static int registerBonusNumber(String bonusNumberInput, Lotto winningNumbers) {
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
+        }
+        winningNumbers.validateDuplicationWithBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private static String inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberInput = Console.readLine();
         validateInputInteger(bonusNumberInput);

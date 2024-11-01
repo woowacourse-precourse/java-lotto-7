@@ -196,4 +196,31 @@ public class AdditionalApplicationTest {
                 .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
+    @Test
+    void 보너스번호를_저장한다() {
+        Lotto defaultLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        String testNumber = "7";
+
+        assertThatCode(() -> Application.registerBonusNumber(testNumber, defaultLotto))
+                .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "46"})
+    void 보너스번호_1이상_45이하가_아니면_예외(String testNumber) {
+        Lotto defaultLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.registerBonusNumber(testNumber, defaultLotto))
+                .withMessage("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
+    }
+
+    @Test
+    void 보너스번호_당첨번호와_중복되면_예외() {
+        Lotto defaultLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        int testNumber = 1;
+        assertThatIllegalArgumentException().isThrownBy(() -> defaultLotto.validateDuplicationWithBonusNumber(testNumber))
+                .withMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 값입니다.");
+    }
+
+
+
 }
