@@ -14,7 +14,15 @@ public class LottoGame {
         System.out.println("구입금액을 입력해 주세요.");
         purchaseAmount = Integer.parseInt(checkPositiveNumber(Console.readLine()));
         checkUnitOfPurchaseAmount(purchaseAmount);
+        checkPurchasedAmountExceeded(purchaseAmount);
         System.out.println(purchaseAmount);
+    }
+
+    // 100,000원을 초과했는지 확인하는 메서드
+    private void checkPurchasedAmountExceeded(int purchaseAmount) {
+        if (purchaseAmount > 100000) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1인당 100,000원을 넘길 수 없습니다.");
+        }
     }
 
     // 1,000원 단위인지 확인하는 메서드
