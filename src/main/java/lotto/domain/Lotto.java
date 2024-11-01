@@ -37,8 +37,9 @@ public class Lotto {
                 break;
             case 5:
                 rank = WinRank.SECOND;
-                if(!matchBonus)
+                if (!matchBonus) {
                     rank = WinRank.THIRD;
+                }
                 break;
             case 4:
                 rank = WinRank.FOURTH;

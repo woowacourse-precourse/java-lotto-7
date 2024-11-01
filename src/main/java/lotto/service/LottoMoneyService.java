@@ -7,23 +7,25 @@ import lotto.constants.WinRank;
 
 public class LottoMoneyService {
     private final Map<WinRank, WinMoney> rankWithMoneyMap;
-    public LottoMoneyService(){
+
+    public LottoMoneyService() {
         this.rankWithMoneyMap = new EnumMap<>(WinRank.class);
-        rankWithMoneyMap.put(WinRank.FIRST,WinMoney.FIRST_MONEY);
-        rankWithMoneyMap.put(WinRank.SECOND,WinMoney.SECOND_MONEY);
-        rankWithMoneyMap.put(WinRank.THIRD,WinMoney.THIRD_MONEY);
-        rankWithMoneyMap.put(WinRank.FOURTH,WinMoney.FOURTH_MONEY);
-        rankWithMoneyMap.put(WinRank.FIFTH,WinMoney.FIFTH_MONEY);
+        rankWithMoneyMap.put(WinRank.FIRST, WinMoney.FIRST_MONEY);
+        rankWithMoneyMap.put(WinRank.SECOND, WinMoney.SECOND_MONEY);
+        rankWithMoneyMap.put(WinRank.THIRD, WinMoney.THIRD_MONEY);
+        rankWithMoneyMap.put(WinRank.FOURTH, WinMoney.FOURTH_MONEY);
+        rankWithMoneyMap.put(WinRank.FIFTH, WinMoney.FIFTH_MONEY);
     }
-    public long getMoney(WinRank winRank){
+
+    public long getMoney(WinRank winRank) {
         return rankWithMoneyMap.get(winRank).getValue();
     }
 
-    public double getRatioOfBenefit(LottoMatcher lottoMatcher, int validPurchasePrice){
+    public double getRatioOfBenefit(LottoMatcher lottoMatcher, int validPurchasePrice) {
         long sum = 0;
-        for(WinRank w:rankWithMoneyMap.keySet()){
-            sum +=lottoMatcher.getResult(w) * rankWithMoneyMap.get(w).getValue();
+        for (WinRank w : rankWithMoneyMap.keySet()) {
+            sum += lottoMatcher.getResult(w) * rankWithMoneyMap.get(w).getValue();
         }
-        return (double )sum / validPurchasePrice;
+        return (double) sum / validPurchasePrice;
     }
 }

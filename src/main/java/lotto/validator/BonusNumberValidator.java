@@ -17,7 +17,7 @@ public class BonusNumberValidator {
         if (!isDigit()) {
             return false;
         }
-        if (!isOnlyOne(validWinningNumbers)){
+        if (!isOnlyOne(validWinningNumbers)) {
             return false;
         }
         if (!isValidRange()) {
@@ -44,9 +44,10 @@ public class BonusNumberValidator {
         return false;
     }
 
-    private static boolean isOnlyOne(List<Integer> validWinningNumbers){
-        if(!validWinningNumbers.contains(intBonusNumber))
+    private static boolean isOnlyOne(List<Integer> validWinningNumbers) {
+        if (!validWinningNumbers.contains(intBonusNumber)) {
             return true;
+        }
         ErrorPrinter.errorPrint(InputError.BONUS_NUMBER_EXIST_IN_WINNING_NUMBERS);
         return false;
     }
