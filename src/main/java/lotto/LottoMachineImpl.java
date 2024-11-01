@@ -22,8 +22,9 @@ public class LottoMachineImpl implements LottoMachine {
     }
 
     @Override
-    public HashMap<LottoRank, Integer> getWinningResult(
-            List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers, int bonusNumber) {
+        List<Integer> winningNumbers = InputValidater.validateWiningNumbers(inputWinningNumbers);
+
         HashMap<LottoRank, Integer> winningResult = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             winningResult.put(rank, 0);
