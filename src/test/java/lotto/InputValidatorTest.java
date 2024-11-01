@@ -11,7 +11,6 @@ public class InputValidatorTest {
 
     @Test
     @DisplayName("로또 구매 금액이 숫자가 아니라면 예외가 발생한다.")
-
     void 실패_로또구입_숫자아님(){
         // given
         InputValidator validator = new InputValidator();
@@ -20,5 +19,17 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> validator.validateInput("이천원"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자만 입력 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("구매 금액이 0 이하이면 예외가 발생한다.")
+    void 실패_로또구입_0원이하(){
+        // given
+        InputValidator validator = new InputValidator();
+
+        // when & then
+        assertThatThrownBy(() -> validator.validateInput("0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("구입 금액은 0보다 커야 합니다.");
     }
 }
