@@ -10,31 +10,14 @@ public enum money {
 
         private final int matchCount;           // 일치하는 번호 수
         private final boolean bonusMatch;       // 보너스 번호 일치 여부
-        private final int prize;                // 상금
 
         // 생성자
         money(int matchCount, boolean bonusMatch, int prize) {
             this.matchCount = matchCount;
             this.bonusMatch = bonusMatch;
-            this.prize = prize;
         }
 
-        // 일치하는 번호 수를 반환하는 메서드
-        public int getMatchCount() {
-            return matchCount;
-        }
-
-        // 보너스 번호 일치 여부를 반환하는 메서드
-        public boolean isBonusMatch() {
-            return bonusMatch;
-        }
-
-        // 상금을 반환하는 메서드
-        public int getPrize() {
-            return prize;
-        }
-
-        // 특정 일치 개수와 보너스 번호 여부에 따라 등수를 반환하는 정적 메서드
+        // 특정 일치 개수와 보너스 번호 여부에 따라 등수를 반환하는 메서드
         public static money valueOf(int matchCount, boolean bonusMatch) {
             for (money money : values()) {
                 if (money.matchCount == matchCount && money.bonusMatch == bonusMatch) {
