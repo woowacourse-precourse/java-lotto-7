@@ -12,7 +12,7 @@ public class LottoMachineImpl implements LottoMachine {
     public List<Lotto> createLottoTickets(String inputMoney) {
         List<Lotto> lottoTickets = new ArrayList<>();
         int money = InputValidater.validateMoney(inputMoney);
-        int count = money % 1000;
+        int count = money / 1000;
 
         for (int i = 0; i < count; i++) {
             Lotto newLottoTicket = new Lotto(pickLottoNumbers());
