@@ -6,9 +6,8 @@ import lotto.view.ErrorView;
 
 public class Application {
     public static void main(String[] args) {
-        ErrorView lottoView = new ErrorView();
         LottoServices lottoServices = new LottoService();
-        LottoController controller = new LottoController(lottoView, lottoServices);
+        LottoController controller = new LottoController(lottoServices);
         controller.start();
     }
 }

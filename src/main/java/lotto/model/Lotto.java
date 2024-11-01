@@ -21,7 +21,7 @@ public class Lotto {
             throw new LottoInvalidCountException();
         }
 
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers); // 중복 체크를 위한 Set
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
             throw new LottoDuplicateNumberException();

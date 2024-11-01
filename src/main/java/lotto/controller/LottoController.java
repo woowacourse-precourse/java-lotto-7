@@ -6,21 +6,17 @@ import lotto.services.LottoServices;
 import lotto.view.InputView;
 import lotto.view.ErrorView;
 import lotto.view.OutputView;
-
 import java.util.List;
 
 public class LottoController {
-    private final ErrorView view;
     private final LottoServices services;
     private LottoStatistics statistics;
     private Lotto userLotto;
     private List<Lotto> randomLotteries;
     private int bonusNumber;
 
-    public LottoController(ErrorView view, LottoServices services) {
-        this.view = view;
+    public LottoController(LottoServices services) {
         this.services = services;
-
     }
 
     public void start() {
@@ -28,7 +24,6 @@ public class LottoController {
         printInitState();
         startLottoCheck();
         printLottoResult();
-
     }
 
     private void initLottoGame() {
@@ -45,7 +40,6 @@ public class LottoController {
 
     private void initRandomLotteries() {
         randomLotteries = services.createRandomLotteries(statistics);
-        printInitState();
     }
 
     private void initUserLotto() {
@@ -54,8 +48,7 @@ public class LottoController {
     }
 
     private void printInitState() {
-        OutputView.displayLottoCount(statistics.toDTO());
-        OutputView.displayLottos(randomLotteries);
+        OutputView.printLottoInitSummary(statistics.toDTO(), randomLotteries);
     }
 
     private void startLottoCheck() {
@@ -67,7 +60,7 @@ public class LottoController {
         OutputView.printLottoResult(statistics);
     }
 
-    public int readValidPurchaseAmount() {
+    private int readValidPurchaseAmount() {
         LottoValidator validator = new LottoValidator();
         while (true) {
             try {
@@ -80,7 +73,7 @@ public class LottoController {
         }
     }
 
-    public int readValidBonusNumber() {
+    private int readValidBonusNumber() {
         LottoValidator validator = new LottoValidator();
         while (true) {
             try {
