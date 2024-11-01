@@ -28,4 +28,13 @@ public class BonusNumberTest {
                 .hasMessage("[ERROR] 보너스 번호는 숫자만 가능합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"-1", "0", "46"})
+    @DisplayName("보너스 번호가 1~45 사이가 아니면 예외가 발생한다.")
+    void validateBonusNumberInRange(String condition) {
+        assertThatThrownBy(() -> BonusNumber.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 1~45 사이의 숫자가 입력 가능합니다.");
+    }
+
 }
