@@ -26,6 +26,7 @@ public class WinningNumbers {
         private static void validateWinningNumbers(String numbers) {
             validateWinningNumbersIsNotEmpty(numbers);
             List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
+            validatePositiveWinningNumbers(delimitedWinningNumbers);
         }
 
         private static void validateWinningNumbersIsNotEmpty(String numbers) {
@@ -40,6 +41,17 @@ public class WinningNumbers {
                         .toList();
             }
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다.");
+        }
+
+        private static List<Integer> validatePositiveWinningNumbers(List<String> delimitedWinningNumbers) {
+            for (String delimitedWinningNumber : delimitedWinningNumbers) {
+                if (!delimitedWinningNumber.matches("^[1-9]\\d*$")) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 양수만 가능합니다.");
+                }
+            }
+            return delimitedWinningNumbers.stream()
+                    .map(Integer::parseInt)
+                    .toList();
         }
 
     }
