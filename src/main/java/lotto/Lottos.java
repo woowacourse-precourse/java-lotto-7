@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 public class Lottos {
 
-    private static final String LINE_CHANGE = "\n";
-
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -38,6 +36,6 @@ public class Lottos {
     public String toString() {
         return lottos.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(LINE_CHANGE));
+                .collect(Collectors.joining("\n"));
     }
 }

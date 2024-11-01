@@ -1,5 +1,6 @@
 package lotto;
 
+import constants.ErrorMessage;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -22,13 +23,13 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
         }
     }
 
     private void checkDuplicateNumber(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() < numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
         }
     }
 

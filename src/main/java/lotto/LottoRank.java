@@ -37,6 +37,10 @@ public enum LottoRank {
         }
     };
 
+    private static final DecimalFormat WINNING_AMOUNT_FORMAT = new DecimalFormat("#,###");
+    private static final String BONUS_STATISTICS_FORMAT = "%d개 일치, 보너스 번호 일치 (%s원) - %d개";
+    private static final String BASIC_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개";
+
     private final int matchCount;
     private final int reward;
     private int match;
@@ -79,15 +83,14 @@ public enum LottoRank {
     abstract int calculateRevenue();
 
     public static String winningStatus() {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
-
         return Arrays.stream(LottoRank.values())
                 .map(rank -> {
+                    String reward = WINNING_AMOUNT_FORMAT.format(rank.reward);
+
                     if (rank == LottoRank.SECOND) {
-                        return rank.matchCount + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.reward) + "원) - "
-                                + rank.match + "개";
+                        return String.format(BONUS_STATISTICS_FORMAT, rank.matchCount, reward, rank.match);
                     }
-                    return rank.matchCount + "개 일치 (" + decimalFormat.format(rank.reward) + "원) - " + rank.match + "개";
+                    return String.format(BASIC_STATISTICS_FORMAT, rank.matchCount, reward, rank.match);
                 })
                 .collect(Collectors.joining("\n"));
     }
