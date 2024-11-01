@@ -110,7 +110,7 @@
   - View, Model 객체를 생성하여 Controller에 전달합니다.
   - Controller 내부 로직에 따라 View, Model 객체 제어를 통해 로또 게임을 수행합니다.
 
-### 24.11.11.(금)
+### 24.11.01.(금)
 - **Model-View-Controller + Services**
   - **Model**
     -  한 장의 로또를 표현하는 Lotto 클래스, 로또 게임의 전체 로또 통계 데이터를 표현하는 LottoStatistics 클래스를 갖도록 수정합니다.
@@ -124,7 +124,7 @@
     - Controller 클래스에서는, Model,View,Services 객체에 대한 기능 동작 요청만 수행하도록 변경합니다.
     - Controller-Services 간 의존성 주입을 구현합니다.
 
-### 24.11.11.(금).2
+### 24.11.01.(금).2
 - **LottoStatistic**
   - **LottoStatistics Interface**
     - Service에서는 LottoStatistics 인터페이스의 `updateStatistics()`, `updateLottoYield()`만 호출하도록 변경합니다.
@@ -134,3 +134,12 @@
     - LottoStatistic-View 간 데이터 전송 시 데이터 직접참조 또는 getter/setter 없이 데이터를 참조할 수 있도록 합니다.
   - **LottoController**
     - LottoStatistic 인터페이스를 통해 LottoStatistics 객체에 대한 의존성을 주입하도록 변경합니다.
+
+### 24.11.02.(토)
+- **LottoValidator 추가**
+  - 사용자 입력 데이터의 유효성을 검사하는 로직을 별도 Validator 클래스로 분리합니다.
+- **Controller.start() 로직 분리**
+  - 사용자 입력, 모델 객체 생성, 로또 결과 확인 세 단계를 각 단일 메서드로 분리하고, start()에서 `initLottoGame()`, `startLottoCheck()`만 호출하도록 변경합니다.
+- **LottoStatistic 인스턴스 변수 추가**
+  - 로또 구입 금액 purchaseAmount 및 로또 수량 quantity 필드를 추가하여, 통계 클래스에 필요한 데이터로 종속시킵니다.
+  - 랜덤로또 N장 생성 시 로또 수량 데이터가 필요한 경우, statistics의 DTO 객체를 통해 불변값을 전달받도록 수정합니다.
