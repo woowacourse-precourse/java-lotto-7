@@ -20,4 +20,8 @@ public class PurchaseCost {
             throw new IllegalArgumentException("[ERROR]: 1,000으로 나누어 떨어지지 않는 수는 입력하실 수 없습니다.");
         }
     }
+
+    public int calculateBuyableLottoCount() {
+        return this.purchaseCost / 1000;
+    }
 }
