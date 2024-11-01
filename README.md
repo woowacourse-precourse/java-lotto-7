@@ -73,6 +73,23 @@
     - [x] 나누어 떨어지지 않는다면 예외 발생
 
 ### WinningNumberValidator
+- [x] **public List\<Integer> validateWinningNumbers(String input)** \: 당첨 번호 검증 기능
+    - [x] `validteQuantity()` 호출해 input을 쉼표 기준으로 분할 후, 개수가 6개인지 확인
+      - [x] 6개로 분할되지 않았다면 예외 발생
+    - [x] 분할된 각각의 로또 번호들에 대해 `validateFormat()` 호출해 int로 파싱 및 검증 수행
+      - [x] 1 이상 45 이하의 정수 형태가 아닌 로또 번호가 있다면 예외 발생
+      - [x] 모든 로또 번호가 유효하다면 리스트에 추가
+    - [x] `validateUniqueness()` 호출해 중복 검사 수행
+      - [x] 중복되는 로또 번호가 있다면 예외 발생
+    - [x] 검증 완료된 당첨 번호 리스트를 리턴
+
+- [x] **public int validateBonusNumber(List\<Integer> winningNums, String input)** \: 보너스 번호 검증 기능
+  - `validateFormat()` 호출해 input을 int 타입으로 파싱한 후 검증 수행
+    - [x] 보너스 번호가 1 이상 45 이하의 정수 형태가 아니라면 예외 발생
+    - [x] 맞다면 파싱된 보너스 번호를 리턴
+  - [x] `validateUniqueness()` 호출해 보너스 번호가 당첨 번호와 중복되는지 확인
+    - [x] 중복된다면 예외 발생
+    - [x] 중복되지 않는다면 보너스 번호를 리턴
 
 ### enum WinningPrize
 int standard
