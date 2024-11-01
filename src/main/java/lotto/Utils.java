@@ -39,7 +39,7 @@ public class Utils {
         for (LottoWinner winner : LottoWinner.values()) {
             profit += winner.calculateProfit();
         }
-        double profitRate = (double) profit / purchaseAmount;
-        return String.format("%.2f", profitRate);
+        double profitRate = (double) profit / purchaseAmount * 100;
+        return String.format("%.1f", profitRate);
     }
 }
