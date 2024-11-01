@@ -12,8 +12,6 @@ public enum ErrorMessage {
     LOTTO_RANGE("로또 번호는 1 이상 45 이하여야 합니다."),
     LOTTO_DUPLICATE("로또 번호끼리는 중복이 되면 안 됩니다.");
 
-
-
     private String message;
 
     private ErrorMessage(String message) {
