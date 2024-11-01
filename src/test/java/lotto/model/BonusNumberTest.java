@@ -3,6 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,5 +33,19 @@ class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.from(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getErrorMessage());
+    }
+
+    @DisplayName("보너스 번호가 로또 번호와 일치하면 true를 반환한다.")
+    @Test
+    void isContains() {
+        //given
+        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = BonusNumber.from(3);
+
+        //when
+        boolean result = bonusNumber.isMatches(lotto);
+
+        //then
+        assertThat(result).isTrue();
     }
 }
