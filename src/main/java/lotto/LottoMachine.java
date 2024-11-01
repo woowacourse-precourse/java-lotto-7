@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoMachine {
 
@@ -37,9 +36,7 @@ public class LottoMachine {
 
         System.out.println("당첨 번호를 입력해 주세요.");
 
-        lotto = new Lotto(Arrays.stream(Console.readLine().trim().split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList()));
+        lotto = requestLottoNumberInput();
 
         System.out.println();
 
@@ -103,6 +100,17 @@ public class LottoMachine {
         String formatEarningRatio = String.format("%,.1f", earningRatio);
         System.out.println("총 수익률은 " + formatEarningRatio + "%입니다.");
 
+    }
+
+    private Lotto requestLottoNumberInput() {
+        try {
+            return new Lotto(Arrays.stream(Console.readLine().trim().split(","))
+                    .map(Integer::parseInt)
+                    .toList());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestLottoNumberInput();
+        }
     }
 
     // 금액 입력
