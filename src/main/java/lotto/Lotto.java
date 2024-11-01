@@ -15,6 +15,13 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public String printLotto() {
+        String joinNumbers = String.join(", ", numbers.stream()
+            .map(String::valueOf)
+            .toList());
+        return "[" + joinNumbers + "]";
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -31,6 +38,4 @@ public class Lotto {
             }
         }
     }
-
-
 }
