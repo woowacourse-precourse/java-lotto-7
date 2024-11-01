@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.dto.Lottos;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
+import lotto.validator.BonusNumValidator;
 import lotto.validator.ServiceValidator;
 import lotto.validator.WinNumValidator;
 
@@ -28,7 +29,8 @@ public class WinService {
     }
 
     public void inputBonusNum(Integer bonusNum) {
-        serviceValidator.bonusNumDup(winNum, bonusNum);
+        BonusNumValidator.bonusNumDup(winNum, bonusNum);
+        BonusNumValidator.bonusNumRange(bonusNum);
         this.bonusNum = bonusNum;
     }
 

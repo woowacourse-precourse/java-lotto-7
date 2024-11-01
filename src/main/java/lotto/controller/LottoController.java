@@ -7,6 +7,7 @@ import lotto.dto.Lottos;
 import lotto.service.LottoService;
 import lotto.service.WinService;
 import lotto.validator.AmountValidator;
+import lotto.validator.BonusNumValidator;
 import lotto.validator.ControllerValidator;
 import lotto.validator.ServiceValidator;
 import lotto.validator.WinNumValidator;
@@ -72,7 +73,7 @@ public class LottoController {
     public void inputBonusNum() {
         try {
             String inputBonusNum = request.inputBonusNum();
-            controllerValidator.bonusNumIsNum(inputBonusNum);
+            BonusNumValidator.bonusNumIsNum(inputBonusNum);
             winService.inputBonusNum(Integer.parseInt(inputBonusNum));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
