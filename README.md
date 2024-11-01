@@ -115,6 +115,24 @@
     - 당첨금보다 많이 로또를 구매할 수 없게 1등 당첨금을 최대 구매 가능 액수로 제한했다.
 - isDivisibleBy1000 
   - 1000으로 나누어 떨어지는 숫자인지 확인한다.
+- getLottoPurchaseAmount
+  - 구매할 로또 수량을 구한다.
+- makeLottos
+  - Lotto 객체의 정보를 저장할 ArrayList를 생성한다.
+- makeLottoNumber
+  - Lotto 번호를 저장할 Lotto 객체를 생성한다.
+- getRandomNumber
+  - 1~45 사이의 임의의 수를 얻는다.
+- isDuplicateNumber
+  - 동일한 Lotto 객체 내에 동일한 수가 있는지 확인한다.
+- hasSixNumber
+  - Lotto 번호의 갯수가 6개인지 확인한다.
+- isLottoSizeSix
+  - Lotto 객체의 크기가 6인지 확인한다.
+- sortAscending
+  - Lotto 번호를 오름차순 정렬한다.
+- printLottoNumbers
+  - Lotto 번호를 출력한다.
 
 ## 로직
 
