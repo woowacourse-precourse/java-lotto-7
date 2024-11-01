@@ -8,7 +8,6 @@ import lotto.error.ExceptionMessage;
 public class InputService {
     private final String NUMBER_REGEX = "^(-[1-9][0-9]*|[1-9][0-9]*|0)$";
     private final int LOTTO_PRICE = 1000;
-    private final int LOTTO_NUMBER_COUNT = 6;
 
     public boolean isNumber(String number) {
         return number.matches(NUMBER_REGEX);
@@ -52,9 +51,6 @@ public class InputService {
         if (!isLottoRange(number)) {
             throw new CustomException(ExceptionMessage.ERROR_MESSAGE_IS_NOT_IN_LOTTO_NUMBER_RANGE);
         }
-        if (winningNumbers.contains(number)) {
-            throw new CustomException(ExceptionMessage.ERROR_MESSAGE_DUPLICATED_LOTTO_NUMBER);
-        }
         return number;
     }
 
@@ -64,9 +60,6 @@ public class InputService {
         for (String element : parsedElements) {
             int number = validateWinningNumber(winningNumbers, element);
             winningNumbers.add(number);
-        }
-        if (winningNumbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new CustomException(ExceptionMessage.ERROR_MESSAGE_IS_NOT_VALID_LOTTO_NUMBERS);
         }
         return winningNumbers;
     }

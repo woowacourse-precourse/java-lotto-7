@@ -147,15 +147,6 @@ public class InputServiceTest {
                 .hasMessage(ExceptionMessage.ERROR_MESSAGE_IS_NOT_IN_LOTTO_NUMBER_RANGE.toString());
     }
 
-    @DisplayName("당첨 번호 요소가 중복이면 예외가 발생한다. ")
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "10", "20"})
-    void 당첨_번호_요소가_중복이면_예외가_발생한다(String element) {
-        List<Integer> testWinningNumbers = new ArrayList<>(Arrays.asList(1, 10, 20));
-        assertThatThrownBy(() -> inputService.validateWinningNumber(testWinningNumbers, element))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_MESSAGE_DUPLICATED_LOTTO_NUMBER.toString());
-    }
 
     @DisplayName("유효한 당첨 번호 문자열이 들어온 경우 정상적으로 당첨 번호들을 추출한다.")
     @Test
