@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -37,7 +39,8 @@ public class LottoController {
         LottoDrawMachine lottoDrawMachine = lottoService.makeLottoDrawMachine(lottos, winningNumbers, bonusNumber);
         lottoService.compareWinning(lottoDrawMachine);
 
-        announceLottoResult(lottoDrawMachine);
+        announceLottoPrize(lottoDrawMachine);
+        announceEarningsRate(lottoDrawMachine);
     }
 
     private int getPriceFromUser() {
@@ -75,15 +78,19 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private void announceLottoResult(LottoDrawMachine lottoDrawMachine) {
+    private void announceLottoPrize(LottoDrawMachine lottoDrawMachine) {
         outputView.printResultMessage();
-
         Map<Rank, Integer> winningResult = lottoService.getWinningResult(lottoDrawMachine);
-        for (Rank rank : Rank.values()) {
-            if (rank.equals(Rank.NONE)) continue;
-            String formattedPrice = rank.getFormattedPrice();
-            outputView.printLottoPrize(rank.count(), rank.hasBonus(), formattedPrice, winningResult.getOrDefault(rank, 0));
-        }
+        Arrays.stream(Rank.values())
+                .sorted(Collections.reverseOrder())
+                .forEach(rank -> {
+                    if (rank.equals(Rank.NONE)) return;
+                    String formattedPrice = rank.getFormattedPrice();
+                    outputView.printLottoPrize(rank.count(), rank.hasBonus(), formattedPrice, winningResult.getOrDefault(rank, 0));
+                });
+    }
+
+    private void announceEarningsRate(LottoDrawMachine lottoDrawMachine) {
         Double earningsRate = lottoService.generateEarningsRate(lottoDrawMachine);
         outputView.printLottoRate(earningsRate);
     }

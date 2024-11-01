@@ -26,6 +26,7 @@ public class InputView {
     }
 
     public void printLottoQuantity(int quantity) {
+        System.out.println();
         System.out.println(quantity + QUANTITY_MESSAGE);
     }
 
@@ -34,6 +35,7 @@ public class InputView {
     }
 
     public List<Integer> getWinningNumber() {
+        System.out.println();
         System.out.println(WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
         String trimmedInput = input.replaceAll(" ", "");
@@ -51,6 +53,7 @@ public class InputView {
     }
 
     public String getBonusNumber() {
+        System.out.println();
         System.out.println(BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         return input.replaceAll(" ", "");

@@ -64,7 +64,8 @@ class LottoDrawMachineTest {
         // given
         List<Lotto> lottos = List.of(
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)));
+                new Lotto(List.of(1, 2, 3, 4, 5, 7))
+        );
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 7;
         LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
@@ -76,6 +77,24 @@ class LottoDrawMachineTest {
 
         // then
         assertThat(earningsRate).isEqualTo(result);
+    }
+
+    @Test
+    void 발행한_로또가_2장이고_일치하는_번호가_3개면_5등_당첨에_추가된다() {
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(3, 14, 26, 36, 37, 44)),
+                new Lotto(List.of(2, 4, 5, 19, 35, 38))
+        );
+        List<Integer> winningNumbers = List.of(3, 14, 26, 19, 35, 38);
+        int bonus = 1;
+        LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
+
+        // when
+        lottoDrawMachine.compareLottoToWinning();
+        Map<Rank, Integer> result = lottoDrawMachine.prizeWinningResult();
+
+        // then
+        assertThat(result.get(Rank.FIFTH)).isEqualTo(2);
     }
 
 
