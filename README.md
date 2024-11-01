@@ -14,6 +14,61 @@
   - [x] 로또 당첨 번호기 6개가 아닌 경우
 - [x] 예외 발생 시 그 부분부터 입력을 다시 받게하기
 
+## 클래스 다이어그램
+```mermaid
+classDiagram
+    class Lotto {
+    -List~Integer~ numbers
+    +Lotto(List~Integer~ numbers)
+    +validate(List~Integer~ numbers)
+    +getNumbers() List~Integer~
+    +contains(int number) boolean
+    +size() int
+    +distinctSize() int
+    }
+
+    class User {
+        -int purchaseAmount
+        -ArrayList~Lotto~ lottos
+        -Map~Prize, Integer~ prizes
+        +User(int purchaseAmount)
+        +validate(int purchaseAmount)
+        +getLottos() ArrayList~Lotto~
+        +setPrize(int matchCount, int bonusMatch)
+        +getPrizes() Map~Prize, Integer~
+        +getReturnRate() double
+    }
+
+    class Committee {
+        -Lotto winningNumbers
+        -int bonusNumber
+        +Committee(Lotto winningNumbers, int bonusNumber)
+        +validate(Lotto winningNumbers, int bonusNumber)
+        +checkLottos(User user)
+    }
+
+    class Prize {
+        <<enumeration>>
+        FIRST
+        SECOND
+        THIRD
+        FOURTH
+        FIFTH
+        FAIL
+        -int matchCount
+        -int bonusMatch
+        -int prizeAmount
+        +getPrizeAmount() int
+        +getPrize(int matchCount, int bonusMatch) Prize
+        +getDescription() String
+    }
+
+    User "1" --> "many" Lotto : lottos
+    User "1" --> "many" Prize : prizes
+    Committee "1" --> "1" Lotto : winningNumbers
+    Committee "1" --> "1" Prize : checkLottos()
+```
+
 ## 정리
 
 #### 새롭게 배운 점
