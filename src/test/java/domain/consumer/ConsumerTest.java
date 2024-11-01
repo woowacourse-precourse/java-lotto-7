@@ -2,7 +2,6 @@ package domain.consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import domain.lotto.LottoMachin;
 import io.Input;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

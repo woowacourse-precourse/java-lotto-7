@@ -11,10 +11,6 @@ import java.util.List;
 
 public class LottoMachin {
 
-    private final int START_INCLUSIVE = 1;
-    private final int END_INCLUSIVE = 45;
-    private final int COUNT = 6;
-
     public void sellTo(Consumer consumer) {
         int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyFoPurchaseLotto());
         List<Lotto> generatedLotto = generateLottoBy(quantity);
@@ -24,7 +20,11 @@ public class LottoMachin {
     private List<Lotto> generateLottoBy(int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoQuantity; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT)));
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(
+                    LottoCondition.START_INCLUSIVE.getConditionNumber(),
+                    LottoCondition.END_INCLUSIVE.getConditionNumber(),
+                    LottoCondition.COUNT.getConditionNumber()))
+            );
         }
         lottos.forEach(Lotto::sortLottoNumbers);
         return lottos;
@@ -40,9 +40,17 @@ public class LottoMachin {
         consumer.getPurchasedLottos().forEach(Output::println);
     }
 
-    public void inputWinningNumbers() {
-        Input.inputWinningNumbers(Console.readLine());
+    public void inputWinningNumbersTo(Consumer consumer) {
+        Lotto selectWinnerLotto = Input.inputWinningNumbers(Console.readLine());
+        selectWinnerLotto.sortLottoNumbers();
+        consumer.selectWinnerNumbers(selectWinnerLotto);
     }
+
+    public void inputBonusNumbersTo(Consumer consumer) {
+        int selectedBonusNumber = Input.inputBonusNumber(Console.readLine());
+        consumer.selectBonusNumber(selectedBonusNumber);
+    }
+
     /**
      * 머신은 사용자에게 번호를 입력받는다.
      * 머신은 사용자에게 보너스 번호를 입력받는다.

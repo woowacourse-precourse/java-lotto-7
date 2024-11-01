@@ -1,6 +1,8 @@
 package domain.lotto;
 
+import domain.error.InputErrorMessage;
 import domain.error.LottoErrorMessage;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateWinnerNumberRangeAndCount(numbers);
         this.numbers = numbers;
     }
 
@@ -35,5 +38,10 @@ public class Lotto {
         return numbers.toString();
     }
 
-    // TODO: 추가 기능 구현
+    public void validateWinnerNumberRangeAndCount(List<Integer> numbers) {
+        if (Collections.min(numbers) < LottoCondition.START_INCLUSIVE.getConditionNumber()
+                || Collections.max(numbers) > LottoCondition.END_INCLUSIVE.getConditionNumber()) {
+            throw new IllegalArgumentException(InputErrorMessage.WINNING_NUMBER_VALIDATION.getErrorMessage());
+        }
+    }
 }

@@ -3,9 +3,12 @@ package io;
 import camp.nextstep.edu.missionutils.Console;
 import domain.error.ErrorMessage;
 import domain.error.InputErrorMessage;
+import domain.lotto.Lotto;
 import domain.lotto.LottoPrice;
+import java.util.Arrays;
 
 public class Input {
+
     public static int getMoneyFoPurchaseLotto() {
         System.out.println(OutputMessage.ENTER_PURCHASE_AMOUNT.getOutputMessage());
         while (true) {
@@ -15,6 +18,20 @@ public class Input {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static Lotto inputWinningNumbers(String input) {
+        Output.println(OutputMessage.ENTER_WINNER_NUMBERS.getOutputMessage());
+        return new Lotto(
+                Arrays.stream(input.split(InputMessage.DELIMITER.getInputMessage()))
+                        .map(Input::parseStringToInt)
+                        .toList()
+        );
+    }
+
+    public static int inputBonusNumber(String input) {
+        Output.println(OutputMessage.ENTER_BONUS_NUMBER.getOutputMessage());
+        return parseStringToInt(input);
     }
 
     private static int parseAndValidatePurchaseAmount(String input) {
@@ -42,10 +59,5 @@ public class Input {
         if (input.isEmpty() || input.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_MESSAGE.getErrorMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        int count = getMoneyFoPurchaseLotto();
-        System.out.println(count);
     }
 }

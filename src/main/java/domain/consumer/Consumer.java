@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Consumer {
     private List<Lotto> purchasedLottos;
+    private Lotto selectWinnerLotto;
+    private int bonusNumber;
 
     public int getQuantityPurchaseLottoBy(int money) {
         return money / LottoPrice.LOTTO_PRICE.getPrice();
@@ -19,6 +21,13 @@ public class Consumer {
         return purchasedLottos;
     }
 
+    public void selectWinnerNumbers(Lotto selectedWinnersNumbers) {
+        this.selectWinnerLotto = selectedWinnersNumbers;
+    }
+
+    public void selectBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
     /**
      * 소비자는 돈을 소지하고 있는다.
      * 소비자는 로또를 저장할 수 있다.
