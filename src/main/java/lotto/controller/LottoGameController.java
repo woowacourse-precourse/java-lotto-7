@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoGame;
+import lotto.validator.Validator;
 import lotto.view.LottoGameView;
 
 public final class LottoGameController {
@@ -11,7 +12,7 @@ public final class LottoGameController {
         this.lottoGameView = lottoGameView;
     }
 
-    public void run(){
+    public void run() {
         setupLottoTickets();
     }
 
@@ -21,6 +22,8 @@ public final class LottoGameController {
 
     private int readMoney() {
         String moneyInput = lottoGameView.getMoneyInput();
+
+        Validator.validateMoneyInput(moneyInput);
 
         return Integer.parseInt(moneyInput);
     }
