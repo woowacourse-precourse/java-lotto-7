@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumberValidator {
+public class WinningNumberValidator implements Validator{
 
     private static final String REGEX = "^([1-9]|1[0-9]|2[0-9]|3[0-9]|4[0-5])";
     private static final String REGEX_WITH_SEPARATOR = "(,([1-9]|1[0-9]|2[0-9]|3[0-9]|4[0-5]))";
@@ -15,7 +15,8 @@ public class WinningNumberValidator {
     private static final int NUMBER_OF_ELEMENTS = 6;
     private static final String COMBINED_REGEX = REGEX + REGEX_WITH_SEPARATOR + NUMBER_OF_REPEATS;
 
-    public void validateWinningNumber(String input){
+    @Override
+    public void validate(String input){
         checkElementIsEmpty(input);
         checkElementIsNull(input);
         checkElementMatchesRegex(input);

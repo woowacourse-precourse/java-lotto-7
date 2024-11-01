@@ -2,17 +2,16 @@ package lotto.validator;
 
 import lotto.constant.ErrorConstants;
 
-public class PriceValidator {
+public class PriceValidator implements Validator {
     private final static int ZERO = 0;
     private final static int MINIMUM_PRICE_UNIT = 1000;
-    private final static String SEPARATOR = ",";
     private int price;
-    public void validatePrice(String input){
+
+    @Override
+    public void validate(String input){
         checkInputIsNotNull(input);
         checkInputIsNumber(input);
-
         parseInputToNumber(input);
-
         checkInputIsNotNegative();
         checkInputIsDivisableByThousand();
     }
