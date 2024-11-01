@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.config.FilterConfig;
 import lotto.domain.LottoStatistics;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningLotto;
@@ -15,6 +16,7 @@ public class LottoController {
 
     private final LottoService lottoService;
     private final OutputView outputView;
+    private final FilterConfig filterConfig = FilterConfig.getInstance();
 
     public LottoController(LottoService lottoService, OutputView outputView) {
         this.lottoService = lottoService;
@@ -32,7 +34,9 @@ public class LottoController {
 
     private LottoTickets getPurchasedLottoTickets() {
         outputView.printInputAmountNotice();
-        int amount = Integer.parseInt(Console.readLine());
+        String amountInput = Console.readLine();
+        filterConfig.getPositiveIntegerFilterChain().doFilter(amountInput);
+        int amount = Integer.parseInt(amountInput);
         return lottoService.purchaseTickets(amount);
     }
 
@@ -42,9 +46,13 @@ public class LottoController {
 
     private WinningLotto getWinningLotto() {
         outputView.printInputWinningLottoNotice();
-        List<Integer> winningNumbers = validate(Console.readLine());
+        String winningLottoInput = Console.readLine();
+        filterConfig.getCommaSeparatedNumberFilterChain().doFilter(winningLottoInput);
+        List<Integer> winningNumbers = separateInputWinningLotto(winningLottoInput);
         outputView.printInputBonusNumberNotice();
-        int bonusNumber = Integer.parseInt(Console.readLine());
+        String bonusNumberInput = Console.readLine();
+        filterConfig.getPositiveIntegerFilterChain().doFilter(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
@@ -57,14 +65,10 @@ public class LottoController {
         outputView.printLottoStatistics(lottoStatistics, returnRate);
     }
 
-    private List<Integer> validate(String winningLottoNumbers) {
-        try {
-            return Arrays.stream(winningLottoNumbers.split(DELIMITER))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자와 구분자(,)로 이루어진 문자열을 입력해 주세요.");
-        }
+    private List<Integer> separateInputWinningLotto(String winningLottoNumbersInput) {
+        return Arrays.stream(winningLottoNumbersInput.split(DELIMITER))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }
