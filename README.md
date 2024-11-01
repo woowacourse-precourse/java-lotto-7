@@ -117,6 +117,8 @@
   - 1000으로 나누어 떨어지는 숫자인지 확인한다.
 - getLottoPurchaseAmount
   - 구매할 로또 수량을 구한다.
+- setLottoPurchaseAmount
+  - 구매할 로또 수량을 저장한다.
 - makeLottos
   - Lotto 객체의 정보를 저장할 ArrayList를 생성한다.
 - makeLottoNumber
