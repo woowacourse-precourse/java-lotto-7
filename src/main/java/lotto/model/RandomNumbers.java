@@ -9,12 +9,20 @@ public class RandomNumbers {
     public RandomNumbers(){
     }
 
+    public static ArrayList<List<Integer>> generateSortedRandomLottoSets(int times){
+        ArrayList<List<Integer>> randomNumbers = new ArrayList<>();
+        for (int i = 0; i < times; i++) {
+            randomNumbers.add(generateSortedLottoNumbers());
+        }
+        return randomNumbers;
+    }
+
     public static List<Integer> generateSortedLottoNumbers(){
-        List<Integer> randomNumbers = new ArrayList<>(randomNumberGenerator());
+        List<Integer> randomNumbers = new ArrayList<>(generateLottoNumbers());
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
-    public static List<Integer> randomNumberGenerator(){
+    public static List<Integer> generateLottoNumbers(){
         return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 }
