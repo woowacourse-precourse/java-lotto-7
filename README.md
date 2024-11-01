@@ -75,7 +75,7 @@
 ### - 구입 금액 입력 시 금액이 1000원 단위로 나누어 떨어지지 않는 경우
 IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.");를 터트리고 금액 입력을 다시 받는다.
 ### - 구입 금액 입력 시 숫자가 아닌 문자를 입력한 경우
-IllegalArgumentException("[ERROR] 금액은 숫자만 입력할 수 있습니다.");를 터트리고 금액 입력을 다시 받는다.
+NumberFormatException을 터트린 후 "[ERROR] 금액은 숫자만 입력할 수 있습니다."라는 메시지를 출력하고 금액 입력을 다시 받는다.
 ### - 구입 금액 입력 시 음수를 입력받을 경우
 IllegalArgumentException("[ERROR] 금액은 음수를 입력할 수 없습니다.");를 터트리고 금액 입력을 다시 받는다.
 ### - 구입 금액 입력 시 0이나 공백을 입력한 경우
@@ -84,7 +84,7 @@ IllegalArgumentException("[ERROR] 금액을 입력해주세요.");를 터트리�
 ### - 당첨 번호 입력 시 입력 숫자가 6개를 넘을 경우
 IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");를 터트리고 당첨 번호 입력을 다시 받는다.
 ### - 당첨 번호 입력 시 숫자가 아닌 문자를 입력한 경우
-IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력할 수 있습니다.");를 터트리고 당첨 번호 입력을 다시 받는다.
+NumberFormatException을 터트린 후 "[ERROR] 당첨 번호는 숫자만 입력할 수 있습니다." 라는 메시지를 출력하고 당첨 번호 입력을 다시 받는다.
 ### - 당첨 번호 입력 시 음수를 입력받을 경우
 IllegalArgumentException("[ERROR] 당첨 번호는 음수를 입력할 수 없습니다.");를 터트리고 당첨 번호 입력을 다시 받는다.
 ### - 당첨 번호 입력 시 1~45 숫자의 범위를 지키지 못 할 경우
@@ -95,7 +95,7 @@ IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안 됩니다.")
 IllegalArgumentException("[ERROR] 당첨 번호를 입력해주세요.");를 터트리고 당첨 번호 입력을 다시 받는다.
 
 ### - 보너스 번호 입력 시 숫자가 아닌 문자를 입력한 경우
-IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");를 터트리고 보너스 번호 입력을 다시 받는다.
+NumberFormatException을 터트린 후 "[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다." 라는 메시지를 출력하고 보너스 번호 입력을 다시 받는다.
 ### - 보너스 번호 입력 시 음수를 입력받을 경우
 IllegalArgumentException("[ERROR] 보너스 번호는 음수를 입력할 수 없습니다.");를 터트리고 보너스 번호 입력을 다시 받는다.
 ### - 보너스 번호 입력 시 1~45 숫자의 범위를 지키지 못 할 경우
