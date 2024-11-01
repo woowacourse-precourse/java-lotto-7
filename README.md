@@ -1,5 +1,4 @@
 # java-lotto-precourse
-# java-lotto-precourse
 # 구현할 기능 목록
 
 | 구분  |    기능    | 기능 설명                                                                                                                                    |
