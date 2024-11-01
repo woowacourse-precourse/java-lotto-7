@@ -3,96 +3,38 @@ package lotto.model;
 import java.util.List;
 import lotto.dto.MatchInfo;
 import lotto.dto.WinningResult;
+import lotto.model.match.MatchCounter;
+import lotto.model.match.SetBasedLottoNumbersMatchCounter;
 
 public class LottoResultEvaluator {
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
-    private int threeMatchesCount = 0;
-    private int fourMatchesCount = 0;
-    private int fiveMatchesCount = 0;
-    private int fiveWithBonusCount = 0;
-    private int sixMatchesCount = 0;
+    private final MatchCounter<Integer> matchCounter;
+    private final LottoResultCounter lottoResultCounter;
 
     public LottoResultEvaluator(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+        this.matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        this.lottoResultCounter = new LottoResultCounter();
     }
 
     public WinningResult evaluate(LottoTickets lottoTickets) {
-        for (List<Integer> lotto : lottoTickets.getAllNumbers()) {
-            MatchInfo matchInfo = countMatches(lotto);
-            count(matchInfo);
+        for (List<Integer> lottoNumbers : lottoTickets.getAllNumbers()) {
+            MatchInfo matchInfo = evaluateMatch(lottoNumbers);
+            lottoResultCounter.increment(matchInfo);
         }
-        double totalYield = calculateTotalYield(lottoTickets.getAllNumbers());
-        return new WinningResult(
-                threeMatchesCount,
-                fourMatchesCount,
-                fiveMatchesCount,
-                fiveWithBonusCount,
-                sixMatchesCount,
-                totalYield
-        );
+        return lottoResultCounter.createWinningResult(lottoTickets.getCount());
     }
 
-    private double calculateTotalYield(List<List<Integer>> lottoTickets) {
-        double purchaseAmount = lottoTickets.size() * 1_000;
-        double winningAmount = calculateWinningAmount();
-        return (winningAmount / purchaseAmount) * 100;
+    private MatchInfo evaluateMatch(List<Integer> lottoNumbers) {
+        int matchesCount = matchCounter.countMatches(winningNumbers, lottoNumbers);
+        boolean bonusMatch = isBonusNumberMatched(lottoNumbers, matchesCount);
+        return new MatchInfo(matchesCount, bonusMatch);
     }
 
-    private int calculateWinningAmount() {
-        int amount = 0;
-        amount += threeMatchesCount * 5_000;
-        amount += fourMatchesCount * 50_000;
-        amount += fiveMatchesCount * 1_500_000;
-        amount += fiveWithBonusCount * 30_000_000;
-        amount += sixMatchesCount * 2_000_000_000;
-        return amount;
-    }
-
-    private void count(MatchInfo matchInfo) {
-        if (matchInfo.matchesCount() == 3) {
-            threeMatchesCount++;
-            return;
-        }
-        if (matchInfo.matchesCount() == 4) {
-            fourMatchesCount++;
-            return;
-        }
-        if (matchInfo.matchesCount() == 5 && matchInfo.isBonusNumberMatch()) {
-            fiveWithBonusCount++;
-            return;
-        }
-        if (matchInfo.matchesCount() == 5) {
-            fiveMatchesCount++;
-            return;
-        }
-        if (matchInfo.matchesCount() == 6) {
-            sixMatchesCount++;
-        }
-    }
-
-    private MatchInfo countMatches(List<Integer> numbers) {
-        int matchesCount = 0;
-        for (Integer number : numbers) {
-            if (isMatch(number)) {
-                matchesCount++;
-            }
-        }
-
-        if (matchesCount == 5) {
-            return new MatchInfo(matchesCount, numbers.contains(bonusNumber));
-        }
-        return new MatchInfo(matchesCount, false);
-    }
-
-    private boolean isMatch(Integer number) {
-        for (Integer winningNumber : winningNumbers) {
-            if (number.equals(winningNumber)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean isBonusNumberMatched(List<Integer> lottoNumbers, int matchesCount) {
+        return matchesCount == 5 && lottoNumbers.contains(bonusNumber);
     }
 }
