@@ -7,7 +7,7 @@ public enum Result {
     FOURTH(50000, 0, 4),
     FIFTH(5000, 0, 3);
 
-    private final int money;
+    private final double money;
     private int count;
     private final int matches;
 
@@ -15,6 +15,10 @@ public enum Result {
         this.money = money;
         this.count = count;
         this.matches = matches;
+    }
+
+    public double getMoney() {
+        return money;
     }
 
     public int getCount() {

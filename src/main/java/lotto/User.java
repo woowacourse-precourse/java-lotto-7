@@ -43,4 +43,12 @@ public class User {
             lotteryTickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         }
     }
+
+    public Double lateOfReturn() {
+        double returnMoney = 0;
+        for (Result result : Result.values()) {
+            returnMoney += result.getMoney() * result.getCount();
+        }
+        return (returnMoney / money) * 100;
+    }
 }

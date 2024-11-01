@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,5 +32,27 @@ public class UserTest {
         User user = new User(1000);
         assertThatThrownBy(() -> user.specifyBonusNumber(47))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 수익률() {
+        User user = new User(8000); // 8장 발행 한다고 치고
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
+        user.lotteryTickets.add(List.of(1, 2, 3, 11, 12, 13));      //이거 5등 당첨 = 5000원
+
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        user.bonusNumber = 7;
+
+        // 일치 확인
+        lotto.matcheNumber(user.lotteryTickets, user.bonusNumber);
+        double expected = 62.5;
+
+        Assertions.assertThat(user.lateOfReturn()).isEqualTo(expected);
     }
 }
