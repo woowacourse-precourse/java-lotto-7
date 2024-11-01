@@ -9,5 +9,5 @@ public interface LottoInputManger {
 
     Lotto getInputWinningComponent();
 
-    BonusComponent getInputBonusComponent();
+    BonusComponent getInputBonusComponent(Lotto WinningComponent);
 }
