@@ -1,15 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.console.ConsoleManager;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.InputException;
 import lotto.model.Amount;
 
 import java.util.regex.Pattern;
 
+import static lotto.console.ConsoleManager.*;
+
 public class InputView {
     public Amount getAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
+        println("구입금액을 입력해 주세요.");
         return new Amount(
                 Validator.validateAmount(Console.readLine()));
     }

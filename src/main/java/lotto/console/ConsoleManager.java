@@ -7,4 +7,7 @@ public class ConsoleManager {
     public static void println(String input){
         System.out.println(input);
     }
+    public static void println(){
+        System.out.println();
+    }
 }
