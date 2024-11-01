@@ -24,7 +24,12 @@ public class LottoController {
     }
 
     private PurchasePrice initPurchasePrice() {
-        return new PurchasePrice(Convertor.stringToInt(inputView.inputPurchasePrice()));
+        try {
+            return new PurchasePrice(Convertor.stringToInt(inputView.inputPurchasePrice()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initPurchasePrice();
+        }
     }
 
     private LottoAmount calculateLottoAmount(PurchasePrice purchasePrice) {
@@ -46,11 +51,21 @@ public class LottoController {
     }
 
     private Lotto initUserNumbers() {
-        return new Lotto(Sorter.sort(Convertor.arrayToList(Splitter.split(inputView.inputWinningNumbers()))));
+        try {
+            return new Lotto(Sorter.sort(Convertor.arrayToList(Splitter.split(inputView.inputWinningNumbers()))));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initUserNumbers();
+        }
     }
 
     private BonusNumber initBonusNumber(Lotto lotto) {
-        return new BonusNumber(lotto.get(), Convertor.stringToInt(inputView.inputBonusNumber()));
+        try {
+            return new BonusNumber(lotto.get(), Convertor.stringToInt(inputView.inputBonusNumber()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return initBonusNumber(lotto);
+        }
     }
 
     private void printMatchResult(MatchNumbers matchNumbers) {
@@ -95,5 +110,7 @@ public class LottoController {
         Profit profit = createProfit(purchasePrice);
         calculateProfit(profit, matchNumbers);
         printProfit(profit);
+
+        inputView.close();
     }
 }
