@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUniqueNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -15,6 +16,14 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+
+    private void validateUniqueNumber(List<Integer> numbers) {
+        boolean hasDuplicate = numbers.stream().distinct().count() != numbers.size();
+        if (hasDuplicate) {
+            throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 있습니다.");
+        }
+    }
+
 
     public List<Integer> getNumbers() {
         return numbers;
