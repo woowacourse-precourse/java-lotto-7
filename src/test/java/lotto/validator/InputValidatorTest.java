@@ -73,4 +73,13 @@ class InputValidatorTest {
                 .hasMessage("[ERROR] 당첨번호는 6개여야 합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"0,1,2,3,43,45", "1,5,2,3,43,46"})
+    void 당첨번호가_1미만_45초과일때_에러_반환(String number) {
+        assertThatThrownBy(() -> {
+            inputValidator.validateWinningNumbers(number);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨번호는 1이상 45이하여야 합니다.");
+    }
+
 }
