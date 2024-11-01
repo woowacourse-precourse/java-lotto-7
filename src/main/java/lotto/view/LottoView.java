@@ -22,43 +22,28 @@ public class LottoView {
     }
 
     public BuyLottoAmount promptBuyAmount() {
-        while (true) {
-            try {
-                String amount = inputView.inputBuyAmount();
-                InputValidator.validateBuyLotteriesAmount(amount);
-                return new BuyLottoAmount(Integer.parseInt(amount));
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-            }
-        }
+        String amount = inputView.inputBuyAmount();
+        InputValidator.validateBuyLotteriesAmount(amount);
+
+        return new BuyLottoAmount(Integer.parseInt(amount));
     }
 
     public List<Integer> promptWinningLotto() {
-        while (true) {
-            try {
-                String numbers = inputView.inputWinningNumber();
-                InputValidator.validateWinningNumbers(numbers);
-                return Converter.convertToIntgerList(numbers);
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-            }
-        }
+        String numbers = inputView.inputWinningNumber();
+        InputValidator.validateWinningNumbers(numbers);
+
+        return Converter.convertToIntgerList(numbers);
     }
 
     public BonusNumber promptBonusNumber(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                String number = inputView.inputBonusNumber();
-                InputValidator.validateBonusNumber(number);
-                int bonusNumber = Integer.parseInt(number);
-                if (winningNumbers.contains(bonusNumber)) {
-                    throw new BonusNumberAlreadyIncludedWinningNumberException();
-                }
-                return new BonusNumber(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
-            }
+        String number = inputView.inputBonusNumber();
+        InputValidator.validateBonusNumber(number);
+        int bonusNumber = Integer.parseInt(number);
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new BonusNumberAlreadyIncludedWinningNumberException();
         }
+
+        return new BonusNumber(bonusNumber);
     }
 
     public void displayTicketCount(TicketCount ticketCount) {
