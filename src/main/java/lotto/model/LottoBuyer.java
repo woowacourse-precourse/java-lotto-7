@@ -22,7 +22,7 @@ public class LottoBuyer {
     }
 
     private void initializeResult() {
-        for (final LottoGrade lottoGrade : LottoGrade.values()) {
+        for (LottoGrade lottoGrade : LottoGrade.values()) {
             result.put(lottoGrade, 0);
         }
     }
@@ -49,8 +49,8 @@ public class LottoBuyer {
 
     public double returnOnInvestment() {
         double amount = 0;
-        for (final Map.Entry<LottoGrade, Integer> entry : result.entrySet()) {
-            final Integer winningCount = entry.getValue();
+        for (Map.Entry<LottoGrade, Integer> entry : result.entrySet()) {
+            Integer winningCount = entry.getValue();
             if (winningCount > 0) {
                 amount += entry.getKey().getAmount() * winningCount;
             }

@@ -15,14 +15,14 @@ public class AmountValidator extends NumberValidator {
     }
 
     private void validateZero(String target) {
-        final int amount = Integer.parseInt(target);
+        int amount = Integer.parseInt(target);
         if (amount == 0) {
             throwFail(INVALID_AMOUNT_ZERO.format());
         }
     }
 
     private void validateAmountUnit(String target) {
-        final int amount = Integer.parseInt(target);
+        int amount = Integer.parseInt(target);
         if (amount % AMOUNT_UNIT != 0) {
             throwFail(INVALID_AMOUNT_UNIT.format(target, AMOUNT_UNIT));
         }

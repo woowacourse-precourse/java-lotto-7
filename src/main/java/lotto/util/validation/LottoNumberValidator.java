@@ -19,7 +19,7 @@ public class LottoNumberValidator extends NumberValidator {
     }
 
     private void validateLottoNumber(String target) {
-        final int lottoNumber = Integer.parseInt(target);
+        int lottoNumber = Integer.parseInt(target);
         if ((lottoNumber < MIN_LOTTO_NUMBER) || (lottoNumber > MAX_LOTTO_NUMBER)) {
             throwFail(INVALID_LOTTO_NUMBER.format(lottoNumber));
         }

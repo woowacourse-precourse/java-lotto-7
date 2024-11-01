@@ -16,7 +16,7 @@ public class NumberValidator extends AbstractValidator<String> {
     }
 
     private void validateDigit(String target) {
-        final boolean isDigit = NUMBER_PATTERN.matcher(target).matches();
+        boolean isDigit = NUMBER_PATTERN.matcher(target).matches();
         if (!isDigit) {
             throwFail(MUST_BE_DIGIT.format());
         }

@@ -7,12 +7,12 @@ public class LottoManager {
     public static final int AMOUNT_UNIT = 1000;
     private final LottoMachine lottoMachine;
 
-    public LottoManager(final LottoMachine lottoMachine) {
+    public LottoManager(LottoMachine lottoMachine) {
         this.lottoMachine = lottoMachine;
     }
 
     public List<Lotto> createLottoTickets(int amount) {
-        final int purchaseQuantity = amount / AMOUNT_UNIT;
+        int purchaseQuantity = amount / AMOUNT_UNIT;
 
         return lottoMachine.createLotto(purchaseQuantity);
     }
