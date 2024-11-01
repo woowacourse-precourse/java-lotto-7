@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoTicket {
     private final List<Lotto> ticket;
@@ -20,5 +21,12 @@ public class LottoTicket {
 
     public List<Lotto> getTicket() {
         return ticket;
+    }
+
+    @Override
+    public String toString() {
+        return ticket.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
     }
 }
