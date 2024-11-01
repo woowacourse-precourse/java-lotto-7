@@ -67,4 +67,21 @@ public class NumberListTest {
         }
     }
 
+    @RepeatedTest(value = 10000)
+    @DisplayName("Test generate random number list sorted in ascending")
+    void testGenerateSortedNumberList(){
+
+        NumberList numberList = new NumberList();
+
+        numberList.generateRandomNumberList();
+        assertThat(numberList.size()).isEqualTo(6);
+        int prev = 0;
+
+        for(int num : numberList){
+            assertThat(num).as("Each element should be greater than the previous idx element").isGreaterThan(prev);
+            prev = num;
+
+        }
+    }
+
 }

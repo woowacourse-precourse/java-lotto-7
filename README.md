@@ -13,4 +13,4 @@
    - [x] generate random number from 1 to 45
    - [x] generate randomly 6 numbers
    - [x] validate numbers **whether number is duplicated or not** 
-   - [ ] sort numbers in ascending order
+   - [x] sort numbers in ascending order
