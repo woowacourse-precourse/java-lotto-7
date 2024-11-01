@@ -32,4 +32,9 @@ public class OutputView {
         System.out.println(FIVE_MATCHING_BONUS_OUTPUT_MESSAGE + winningDetail.getOrDefault("5+", 0) + "개");
         System.out.println(SIX_MATCHING_OUTPUT_MESSAGE + winningDetail.getOrDefault("6", 0) + "개");
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.2f", profitRate);
+        System.out.println("% 입니다.");
+    }
 }
