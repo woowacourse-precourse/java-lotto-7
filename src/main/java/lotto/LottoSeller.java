@@ -1,14 +1,20 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoSeller {
     private int cash;
     private int lottoNumber = 0;
+    private List<Lotto> customerLottos = new ArrayList<Lotto>();
 
     public void initLottoNumber(){
         System.out.println(Message.GET_INPUT_MESSAGE.getMessage());
         cashValidate(getInput());
+        buyLotto();
+        System.out.println(printLotto());
     }
 
     private static String getInput(){
@@ -36,6 +42,23 @@ public class LottoSeller {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_DIVISIBLE_BY_THOUSAND.getErrorMessage());
         }
         lottoNumber = (cash / LOTTO_PRICE);
+    }
+
+    protected void buyLotto(){
+        List<Integer> customerLotto;
+        for(int i=0; i< lottoNumber; i++){
+            customerLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            customerLottos.add(new Lotto(customerLotto));
+        }
+    }
+
+    protected String printLotto(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(lottoNumber + Message.GET_LOTTO_MESSAGE.getMessage());
+        for(Lotto curlotto: customerLottos){
+            stringBuilder.append(curlotto.getLottoNumber());
+        }
+        return stringBuilder.toString();
     }
 
     protected int getLottoNumber(){
