@@ -23,7 +23,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @ParameterizedTest
     @CsvSource({"-1", "46", "100", "0"})
     void 로또_번호_1이상_45이하의_숫자가_아니라면_예외가_발생한다(int input) {
