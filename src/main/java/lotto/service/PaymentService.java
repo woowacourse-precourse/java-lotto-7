@@ -1,8 +1,8 @@
 package lotto.service;
 
 import lotto.ThousandWons;
-import lotto.domain.payment.LottoCount;
 import lotto.domain.payment.LottoPrice;
+import lotto.domain.payment.LottoQuantity;
 import lotto.domain.payment.Payment;
 import lotto.domain.payment.PaymentResult;
 import lotto.repository.PaymentRepository;
@@ -18,7 +18,7 @@ public class PaymentService {
         this.idGenerator = idGenerator;
     }
 
-    public LottoCount pay(ThousandWons money) {
+    public LottoQuantity pay(ThousandWons money) {
         Payment payment = initialize(money);
 
         Payment validatedPayment = payment.validate();

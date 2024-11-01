@@ -2,18 +2,18 @@ package lotto.domain.payment;
 
 public class PaymentResult {
     private final Payment completedPayment;
-    private final LottoCount lottoCount;
+    private final LottoQuantity lottoQuantity;
 
-    public PaymentResult(Payment completedPayment, LottoCount lottoCount) {
+    public PaymentResult(Payment completedPayment, LottoQuantity lottoQuantity) {
         this.completedPayment = completedPayment;
-        this.lottoCount = lottoCount;
+        this.lottoQuantity = lottoQuantity;
     }
 
     public Payment getCompletedPayment() {
         return completedPayment;
     }
 
-    public LottoCount getLottoCount() {
-        return lottoCount;
+    public LottoQuantity getLottoCount() {
+        return lottoQuantity;
     }
 }

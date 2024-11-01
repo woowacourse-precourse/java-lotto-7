@@ -1,20 +1,24 @@
 package lotto.domain.ticket;
 
 public class Ticket {
-    public static Ticket of(Long generate, int lottoCount) {
-        return null;
+    private final Long id;
+    private final Lottos lottos;
+
+    private Ticket(Long id, Lottos lottos) {
+        this.id = id;
+        this.lottos = lottos;
     }
 
-    public Ticket validate() {
-        return null;
-    }
-
-    public PublishedTicket publish() {
-
-        return null;
+    public static Ticket issue(Long id, Lottos lottos) {
+        return new Ticket(id, lottos);
     }
 
     public Long getId() {
-        return null;
+        return id;
     }
+
+    public Lottos getLottos() {
+        return lottos;
+    }
+    
 }

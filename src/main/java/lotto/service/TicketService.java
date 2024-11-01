@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.ticket.PublishedTicket;
+import lotto.domain.ticket.Lottos;
 import lotto.domain.ticket.Ticket;
 import lotto.repository.TicketRepository;
 
@@ -14,17 +14,14 @@ public class TicketService {
         this.idGenerator = idGenerator;
     }
 
-    public Long create(int lottoCount) {
-        Ticket ticket = createTicket(lottoCount);
-
-        Ticket validatedTicket = ticket.validate();
-        PublishedTicket publishedTicket = validatedTicket.publish();
-
-        return repository.save(publishedTicket.getTicket());
+    public Long create(Lottos lottos) {
+        Ticket ticket = issue(lottos);
+        
+        return repository.save(ticket);
     }
 
-    private Ticket createTicket(int lottoCount) {
-        return Ticket.of(idGenerator.generate(), lottoCount);
+    private Ticket issue(Lottos lottos) {
+        return Ticket.issue(idGenerator.generate(), lottos);
     }
 
 }

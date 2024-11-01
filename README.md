@@ -108,8 +108,8 @@ InputView-당첨 통계
 - TicketService - 로또 티켓을 생성하라
 
 ```java
-LottoCount lottoCount=PaymentService.pay(ThousandWons money);
-        Long ticketId=TicketService.create(LottoCount lottoCount);
+LottoCount lottoQuantity=PaymentService.pay(ThousandWons money);
+        Long ticketId=TicketService.create(LottoCount lottoQuantity);
 ```
 
 ### GetLottoTicketUsecase - 로또티켓을 조회하라(Long ticketId);
@@ -173,7 +173,7 @@ Payment payment=Payment.pay(ThousandWodns money);
 - Long LottoTicketService.pay(ThousandWons money);
 
 ```java
-Ticket ticketResponse=Ticket.of(LottoCount lottoCount);
+Ticket ticketResponse=Ticket.of(LottoCount lottoQuantity);
         Long savedId=TicketRepository.save(ticketResponse);
 ```
 

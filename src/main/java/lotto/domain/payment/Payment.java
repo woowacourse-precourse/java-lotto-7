@@ -7,6 +7,7 @@ import static lotto.domain.payment.PaymentStatus.PENDING;
 import lotto.ThousandWons;
 
 public class Payment {
+    
     private final Long id;
     private final ThousandWons money;
     private final PaymentStatus status;
@@ -34,7 +35,7 @@ public class Payment {
         int count = lottoPrice.calculateLottoCount(money);
         Payment completedPayment = new Payment(id, money, lottoPrice, COMPLETED);
 
-        return new PaymentResult(completedPayment, LottoCount.of(count));
+        return new PaymentResult(completedPayment, LottoQuantity.of(count));
     }
 
     public Long getId() {

@@ -1,17 +1,19 @@
 package lotto.domain.payment;
 
-public class LottoCount {
+public class LottoQuantity {
+
     private final int value;
 
-    public LottoCount(int value) {
+    public LottoQuantity(int value) {
         this.value = value;
     }
 
-    public static LottoCount of(int count) {
-        return new LottoCount(count);
+    public static LottoQuantity of(int count) {
+        return new LottoQuantity(count);
     }
 
     public int getValue() {
         return value;
     }
+
 }
