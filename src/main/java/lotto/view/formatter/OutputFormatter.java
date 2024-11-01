@@ -1,0 +1,45 @@
+package lotto.view.formatter;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import lotto.model.dto.LottoDto;
+import lotto.model.dto.ResultDto.RankDto;
+
+public class OutputFormatter {
+    private OutputFormatter() {
+    }
+
+    public static String formatSizeOfLotto(List<LottoDto> lottoDtos) {
+        return lottoDtos.size() + "개를 구매했습니다.";
+    }
+
+    public static List<String> formatLottoNumbers(List<LottoDto> lottoDtos) {
+        List<String> parsedLottoNumbers = new ArrayList<>();
+
+        for (LottoDto lottoDto : lottoDtos) {
+            List<Integer> numbers = new ArrayList<>(lottoDto.numbers());
+            Collections.sort(numbers);
+
+            String result = String.join(", ", numbers.stream().map(String::valueOf).toList());
+            parsedLottoNumbers.add("[" + result + "]");
+        }
+
+        return parsedLottoNumbers;
+    }
+
+    public static List<String> formatRankCount(List<RankDto> rankDtos) {
+        List<String> parsedRankCounts = new ArrayList<>();
+
+        for (RankDto rankDto : rankDtos) {
+            System.out.println(rankDto.description() + " - " + rankDto.count() + "개");
+        }
+
+        return parsedRankCounts;
+    }
+
+    public static String formatProfitRate(double profitRate) {
+        return String.format("총 수익률은 %.1f%%입니다.", Math.round(profitRate * 10) / 10.0);
+    }
+
+}

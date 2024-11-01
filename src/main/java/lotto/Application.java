@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.config.AppConfig;
 import lotto.controller.LottoController;
-import lotto.handler.InputHandler;
 import lotto.service.LottoService;
 
 public class Application {
