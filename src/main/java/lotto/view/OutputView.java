@@ -1,17 +1,17 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.model.Score;
 
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
 
-    public void printPurchasedLottos(List<Lotto> lottos) {
+    public void printPurchasedLottos(Lottos lottos) {
         System.out.printf("\n%d개를 구매했습니다.%n", lottos.size());
 
-        lottos.forEach(this::printLotto);
+        lottos.getLottos().forEach(this::printLotto);
     }
 
     public void printScores(Map<Score, Integer> scores) {

@@ -12,14 +12,14 @@ public class LottoMaker {
     private static final int LOTTO_MIN = 1;
     private static final int LOTTO_MAX = 45;
 
-    public List<Lotto> makeLottos(int money) {
+    public Lottos makeLottos(int money) {
 
         validateMoney(money);
         int lottoCount = money / PRICE;
 
-        return IntStream.range(0, lottoCount)
-                .mapToObj(count -> makeLotto())
-                .toList();
+        return new Lottos(IntStream.range(0, lottoCount)
+                .mapToObj(i -> makeLotto())
+                .toList());
     }
 
     private Lotto makeLotto() {

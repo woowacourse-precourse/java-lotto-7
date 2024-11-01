@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
 import lotto.model.LottoMaker;
+import lotto.model.Lottos;
 import lotto.model.Score;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -20,14 +20,14 @@ public class LottoController {
     private int purchaseMoney;
 
     public void run() {
-        List<Lotto> lottos = purchaseLotto();
+        Lottos lottos = purchaseLotto();
         outputView.printPurchasedLottos(lottos);
 
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
         int bonusNumber = inputView.inputBonusNumber();
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        List<Score> scores = lottos.stream().map(lotto -> Score.calculateScore(lotto, winningLotto)).toList();
+        List<Score> scores = lottos.getLottos().stream().map(lotto -> Score.calculateScore(lotto, winningLotto)).toList();
 
         double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
 
@@ -40,7 +40,7 @@ public class LottoController {
         outputView.printProfitRate(profitRate);
     }
 
-    public List<Lotto> purchaseLotto() {
+    public Lottos purchaseLotto() {
         try {
             purchaseMoney = inputView.inputPurchaseMoney();
             return lottoMaker.makeLottos(purchaseMoney);
