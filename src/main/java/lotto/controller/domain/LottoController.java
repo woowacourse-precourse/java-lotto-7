@@ -14,20 +14,17 @@ public class LottoController {
     private final Buyer buyer;
     private final LottoMachine lottoMachine;
     private final ResultViewService resultViewService;
-    private final WinningLottoController winningLottoController;
     private final WinningAmountCalculator winningAmountCalculator;
 
     public LottoController(
             Buyer buyer,
             LottoMachine lottoMachine,
-            ResultViewService resultViewService,
-            WinningLottoController winningLottoController,
-            WinningAmountCalculator winningAmountCalculator) {
+            WinningAmountCalculator winningAmountCalculator,
+            ResultViewService resultViewService) {
         this.buyer = buyer;
         this.lottoMachine = lottoMachine;
-        this.resultViewService = resultViewService;
-        this.winningLottoController = winningLottoController;
         this.winningAmountCalculator = winningAmountCalculator;
+        this.resultViewService = resultViewService;
     }
 
     public void run() {
@@ -52,13 +49,13 @@ public class LottoController {
     }
 
     private BonusNumber createBonusNumber(WinningLotto winningLotto) {
-        BonusNumber bonusNumber = winningLottoController.createBonusNumber(winningLotto);
+        BonusNumber bonusNumber = lottoMachine.createBonusNumber(winningLotto);
         resultViewService.viewByBonusNumber(bonusNumber);
         return bonusNumber;
     }
 
     private WinningLotto createWinningLotto() {
-        WinningLotto winningLotto = winningLottoController.createWinningLotto();
+        WinningLotto winningLotto = lottoMachine.createWinningLotto();
         resultViewService.viewByWinningLotto(winningLotto);
         return winningLotto;
 
