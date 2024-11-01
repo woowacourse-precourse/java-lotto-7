@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.service;
 
 import java.util.List;
 import lotto.model.Lotto;
@@ -19,21 +19,27 @@ public class PrizeCalculator {
                 .toList();
     }
 
+    // 티켓 별 당첨 등급 확인
     private PrizeTier determinePrize(Lotto ticket, Lotto winningLotto) {
         int matchCount = ticket.getMatchCount(winningLotto.getNumbers());
         boolean bonusMatch = ticket.containsBonus(bonusNumber);
-        return PrizeTier.findPrize(matchCount, bonusMatch).orElse(PrizeTier.NONE);
+        return PrizeTier.findPrize(matchCount, bonusMatch);
     }
 
     public double calculateProfitRate(List<PrizeTier> prizeResults, int purchaseAmount) {
         int totalPrize = calculateTotalPrize(prizeResults);
-        return roundToTwoDecimalPlaces((double) totalPrize / purchaseAmount * 100);
+        return calculateRoundedProfitRate(totalPrize, purchaseAmount);
     }
 
     private int calculateTotalPrize(List<PrizeTier> prizeResults) {
         return prizeResults.stream()
                 .mapToInt(PrizeTier::getPrizeAmount)
                 .sum();
+    }
+
+    private double calculateRoundedProfitRate(int totalPrize, int purchaseAmount) {
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        return roundToTwoDecimalPlaces(profitRate);
     }
 
     private double roundToTwoDecimalPlaces(double value) {

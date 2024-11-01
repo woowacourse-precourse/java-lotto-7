@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
@@ -38,9 +38,9 @@ public class PrizeCalculatorTest {
 
         // 기대하는 당첨 등급 확인
         assertThat(results).containsExactly(
-                PrizeTier.FIRST,
-                PrizeTier.SECOND,
-                PrizeTier.THIRD
+                PrizeTier.MATCH_SIX,
+                PrizeTier.MATCH_FIVE_WITH_BONUS,
+                PrizeTier.MATCH_FIVE
         );
     }
 
@@ -48,19 +48,20 @@ public class PrizeCalculatorTest {
     @DisplayName("올바른 수익률 계산 테스트")
     void calculateProfitRate_ShouldReturnCorrectProfitRate() {
         List<PrizeTier> prizeResults = List.of(
-                PrizeTier.FIRST,
-                PrizeTier.SECOND,
-                PrizeTier.THIRD
+                PrizeTier.MATCH_SIX,
+                PrizeTier.MATCH_FIVE_WITH_BONUS,
+                PrizeTier.MATCH_FIVE
         );
         int purchaseAmount = 3000;
 
         double profitRate = prizeCalculator.calculateProfitRate(prizeResults, purchaseAmount);
 
         // 기대 수익률 계산
-        double expectedProfitRate = (PrizeTier.FIRST.getPrizeAmount() +
-                PrizeTier.SECOND.getPrizeAmount() +
-                PrizeTier.THIRD.getPrizeAmount()) / (double) purchaseAmount * 100;
+        double expectedProfitRate = (PrizeTier.MATCH_SIX.getPrizeAmount() +
+                PrizeTier.MATCH_FIVE_WITH_BONUS.getPrizeAmount() +
+                PrizeTier.MATCH_FIVE.getPrizeAmount()) / (double) purchaseAmount * 100;
 
         assertThat(profitRate).isCloseTo(expectedProfitRate, within(0.01));
     }
+
 }
