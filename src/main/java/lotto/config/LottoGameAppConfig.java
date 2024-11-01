@@ -19,4 +19,3 @@ public class LottoGameAppConfig {
         return new OutputConsole();
     }
 }
-

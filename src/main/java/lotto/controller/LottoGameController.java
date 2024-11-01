@@ -68,4 +68,3 @@ public class LottoGameController {
         gameOutput.printResults(result, yield);
     }
 }
-
