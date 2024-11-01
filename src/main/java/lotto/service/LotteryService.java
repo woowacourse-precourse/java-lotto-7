@@ -29,6 +29,10 @@ public class LotteryService {
         issueLottoTickets(lottoPurchaseAmount);
     }
 
+    public void getLottoWinningNumber() {
+        String LottoWinningNumbers = Console.readLine();
+    }
+
     private void issueLottoTickets(final int lottoIssueNumber) {
         for (int i = 0; i < lottoIssueNumber; i++) {
             System.out.println(getTicketNumbers());
