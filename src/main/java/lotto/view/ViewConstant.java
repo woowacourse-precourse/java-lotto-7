@@ -7,7 +7,7 @@ public class ViewConstant {
 
     public static final String BOUGHT_COUNT_FORMAT = "%n%d개를 구매했습니다.%n";
     public static final String LOTTO_STATISTIC_PREFIX = "\n당첨 통계\n---";
-    public static final String TOTAL_PROFIT_RATIO_FORMAT = "총 수익률은 %.1f%%입니다.%n";
+    public static final String TOTAL_PROFIT_RATIO_FORMAT = "총 수익률은 %s%%입니다.%n";
 
     public static final String MATCH_COUNT_SUFFIX = "개 일치";
     public static final String MATCH_BONUS_NUMBER_COMMENT = ", 보너스 볼 일치";

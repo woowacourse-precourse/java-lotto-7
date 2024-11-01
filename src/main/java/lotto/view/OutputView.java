@@ -31,10 +31,12 @@ public class OutputView {
     public void printLottoStatistic(LottoStatistic lottoStatistic) {
         HashMap<LottoRank, Integer> winningResult = lottoStatistic.getWinningResult();
         double profitRatio = lottoStatistic.getProfitRatio();
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        String roundedProfitRatio = decimalFormat.format(profitRatio);
 
         System.out.println(LOTTO_STATISTIC_PREFIX);
         printEachResult(winningResult);
-        System.out.printf(TOTAL_PROFIT_RATIO_FORMAT, profitRatio);
+        System.out.printf(TOTAL_PROFIT_RATIO_FORMAT, roundedProfitRatio);
     }
 
     private void printEachResult(HashMap<LottoRank, Integer> winningResult) {
