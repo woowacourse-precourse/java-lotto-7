@@ -19,6 +19,10 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static void printRequestingMoneyInput() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
@@ -53,9 +57,9 @@ public class Lotto {
         return new Lotto(winningNumbers);
     }
 
-    public static int getBonusNumber(Lotto winningNumbers, String userInput) {
+    public static int getBonusNumber(Lotto numbers,String userInput) {
         int bonusNumber = Validator.validateLottoNumber(userInput);
-        Validator.validateBonusNumber(winningNumbers, bonusNumber);
+        Validator.validateBonusNumber(numbers, bonusNumber);
 
         return bonusNumber;
     }
@@ -64,10 +68,10 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public int numberMatchCount(List<Integer> winningNumbers, List<Integer> randomLotto) {
+    public static int numberMatchCount(Lotto numbers, List<Integer> randomLotto) {
         int numberMatch = 0;
 
-        for (int winningNumber : winningNumbers) {
+        for (int winningNumber : numbers.getNumbers()) {
             if (randomLotto.contains(winningNumber)) {
                 numberMatch += 1;
             }
