@@ -10,13 +10,21 @@ public class InputView {
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public String readPurchaseAmount() {
-        System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
-        String purchaseAmount = Console.readLine().strip();
-        validateInput(purchaseAmount);
-        return purchaseAmount;
+        return getValidatedInput(PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
 
-     private void validateInput(String input) {
+    public String readWinningNumber() {
+        return getValidatedInput(WINNING_NUMBER_INPUT_MESSAGE);
+    }
+
+    private String getValidatedInput(String message) {
+        System.out.println(message);
+        String input = Console.readLine().strip();
+        validateInput(input);
+        return input;
+    }
+
+    private void validateInput(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(INPUT_BLANK.getMessage());
         }
