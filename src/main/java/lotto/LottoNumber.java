@@ -24,11 +24,11 @@ public class LottoNumber {
 
     public static LottoNumber valueOf(final int number) {
         validate(number);
-        return cache.get(number);
+        return cache.get(number - 1);
     }
 
     private static void validate(final int number) {
-        if(number < LOTTO_NUM_MIN_VALUE || number >LOTTO_NUM_MAX_VALUE) {
+        if (number < LOTTO_NUM_MIN_VALUE || number > LOTTO_NUM_MAX_VALUE) {
             throw new IllegalArgumentException("[ERROR] 존재하지 않는 로또 번호입니다.");
         }
     }
