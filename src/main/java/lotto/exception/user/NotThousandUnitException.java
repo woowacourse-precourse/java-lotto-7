@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.user;
 
 public class NotThousandUnitException extends IllegalArgumentException {
     public NotThousandUnitException() {

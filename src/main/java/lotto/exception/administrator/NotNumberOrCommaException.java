@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.administrator;
 
 public class NotNumberOrCommaException extends IllegalArgumentException {
     public NotNumberOrCommaException() {
