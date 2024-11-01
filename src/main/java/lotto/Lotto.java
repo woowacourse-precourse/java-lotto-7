@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -38,5 +40,11 @@ public class Lotto {
         if (matchCount == 4) return 50_000;
         if (matchCount == 3) return 5_000;
         return 0;
+    }
+
+    public String describe() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 }

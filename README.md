@@ -9,7 +9,7 @@
         - [ ] throw error when bonus number is invalid
         - [ ] continue accepting input
     - [ ] get the number of lottery to publish
-    - [ ] print lottery numbers in ascending order
+    - [x] print lottery numbers in ascending order
         - [x] pick 6 numbers in range 1~45
     - [ ] get winning numbers and bonus number
     - [x] calculate each lottery prize
