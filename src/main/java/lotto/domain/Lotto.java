@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstants.LOTTO_RANGE_MAX;
+import static lotto.constant.LottoConstants.LOTTO_RANGE_MIN;
+import static lotto.constant.LottoConstants.LOTTO_SIZE;
 import static lotto.error.ErrorType.DUPLICATION_NUM;
 import static lotto.error.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
 import static lotto.error.ErrorType.INVALID_BONUS_NUM;
@@ -13,9 +16,6 @@ import lotto.error.exception.InvalidLottoNumberException;
 import lotto.generator.LottoGenerator;
 
 public class Lotto {
-    private final static int SIZE = 6;
-    private final static int RANGE_MIN = 1;
-    private final static int RANGE_MAX = 45;
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
@@ -63,7 +63,7 @@ public class Lotto {
     }
 
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new InvalidLottoNumberException(INSUFFICIENT_OR_EXCESSIVE_NUMBERS);
         }
     }
@@ -76,7 +76,7 @@ public class Lotto {
     }
 
     private void validateNumberRange(final int number) {
-        if (number < RANGE_MIN || number > RANGE_MAX) {
+        if (number < LOTTO_RANGE_MIN || number > LOTTO_RANGE_MAX) {
             throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
         }
     }

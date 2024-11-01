@@ -1,10 +1,13 @@
 package lotto.generator;
 
+import static lotto.constant.LottoConstants.LOTTO_RANGE_MAX;
+import static lotto.constant.LottoConstants.LOTTO_RANGE_MIN;
+import static lotto.constant.LottoConstants.LOTTO_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class RandomLottoGenerator implements LottoGenerator {
-
     private RandomLottoGenerator() {
     }
 
@@ -18,6 +21,6 @@ public class RandomLottoGenerator implements LottoGenerator {
 
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_SIZE);
     }
 }

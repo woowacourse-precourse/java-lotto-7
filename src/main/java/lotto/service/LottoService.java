@@ -1,6 +1,7 @@
 package lotto.service;
 
 
+import static lotto.constant.LottoConstants.LOTTO_PRICE;
 import static lotto.constant.Winner.FIFTH_WINNER;
 import static lotto.constant.Winner.FIRST_WINNER;
 import static lotto.constant.Winner.FOURTH_WINNER;
@@ -21,7 +22,6 @@ import lotto.generator.LottoGenerator;
 
 public class LottoService {
     private final static String WINNING_NUMBER_SEPARATOR = ",";
-    private static final int LOTTO_PRICE = 1000;
 
     public LottoService(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
