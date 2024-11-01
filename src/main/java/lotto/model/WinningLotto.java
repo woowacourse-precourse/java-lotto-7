@@ -18,11 +18,13 @@ public class WinningLotto {
     }
 
     public int getMatchCount(Lotto lotto) {
-        return (int) lotto.getNumbers().stream().filter(numbers::contains).count();
+        return (int) numbers.stream()
+                .filter(lotto::containsLottoNumber)
+                .count();
     }
 
     public boolean isBonusNumberMatches(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber);
+        return lotto.containsLottoNumber(bonusNumber);
     }
 
     private void validate(List<LottoNumber> numbers, LottoNumber bonusNumber) {
