@@ -1,6 +1,6 @@
 package lotto.lotto.domain;
 
-import lotto.buyer.domain.Money;
+import lotto.money.domain.Money;
 import lotto.view.output.domain.PurchaseCountViewService;
 
 import java.util.stream.Stream;
@@ -8,11 +8,11 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 public class LottoMachine {
-    private final Calculator calculator;
+    private final Calculator divideThousandCalculator;
     private final NumberGenerator numberGenerator;
     private final PurchaseCountViewService purchaseCountOutput;
-    public LottoMachine(Calculator calculator, NumberGenerator numberGenerator, PurchaseCountViewService purchaseCountOutput) {
-        this.calculator = calculator;
+    public LottoMachine(Calculator divideThousandCalculator, NumberGenerator numberGenerator, PurchaseCountViewService purchaseCountOutput) {
+        this.divideThousandCalculator = divideThousandCalculator;
         this.numberGenerator = numberGenerator;
         this.purchaseCountOutput =purchaseCountOutput;
     }
@@ -26,7 +26,7 @@ public class LottoMachine {
         return new Lotto(numberGenerator.generate());
     }
     private int purchaseCount(Money money) {
-        int count = calculator.divideByThousand(money);
+        int count = divideThousandCalculator.calculate(money);
         purchaseCountOutput.view(count);
         return count;
     }
