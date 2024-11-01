@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import lotto.Prize;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Prize.*;
 
 
 public class Application {
@@ -47,10 +47,10 @@ public class Application {
             }
         }
 
-        System.out.println("3개 일치 (" + Prize.fifth + "원) - " + match_count.get(3) +"개");
-        System.out.println("4개 일치 (" + Prize.forth + "원) - " + match_count.get(4) +"개");
-        System.out.println("5개 일치 (" + Prize.third + "원) - " + (match_count.get(5) - bonus_match) +"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (" + Prize.second + "원) - " + bonus_match +"개");
-        System.out.println("6개 일치 (" + Prize.first + "원) - " + match_count.get(6) +"개");
+        System.out.println("3개 일치 (" + fifth.prize + "원) - " + match_count.get(3) +"개");
+        System.out.println("4개 일치 (" + forth.prize + "원) - " + match_count.get(4) +"개");
+        System.out.println("5개 일치 (" + third.prize + "원) - " + (match_count.get(5) - bonus_match) +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + second.prize + "원) - " + bonus_match +"개");
+        System.out.println("6개 일치 (" + first.prize + "원) - " + match_count.get(6) +"개");
     }
 }
