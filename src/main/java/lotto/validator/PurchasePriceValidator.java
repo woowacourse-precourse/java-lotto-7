@@ -26,7 +26,7 @@ public class PurchasePriceValidator {
     }
 
     private void validPurchasePrice(int purchasePrice) {
-        if (purchasePrice < 0) {
+        if (purchasePrice <= 0) {
             throw new InvalidInputException(INVALID_NEGATIVE_PRICE.getMessage());
         }
     }

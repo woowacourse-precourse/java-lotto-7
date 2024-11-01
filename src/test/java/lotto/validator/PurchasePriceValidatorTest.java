@@ -41,4 +41,24 @@ class PurchasePriceValidatorTest {
         assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
     }
 
+    @DisplayName("로또 구입금액에 0이 입력되면 예외를 발생시킨다.")
+    @Test
+    void throwExceptionWhenInputIsZero() {
+        // given
+        String input = "0";
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
+    }
+
+    @DisplayName("로또 구입금액에 null이 입력되면 예외를 발생시킨다.")
+    @Test
+    void throwExceptionWhenInputIsNull() {
+        // given
+        String input = null;
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> validator.validate(input));
+    }
+
 }
