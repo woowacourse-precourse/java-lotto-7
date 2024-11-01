@@ -20,5 +20,6 @@ public class LottoController {
         LottoResult lottoResult = new LottoResult();
         lottoResult.checkResults(lottos, winningNumbers, bonusNumber);
         lottoResult.printResults();
+        lottoResult.calculateReturnOnInvestment(purchaseAmount);
     }
 }

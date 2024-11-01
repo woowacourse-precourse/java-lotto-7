@@ -68,7 +68,23 @@ public class LottoResult {
         System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", SECOND_PRIZE_COUNT, SECOND_PRIZE_AMOUNT, results.get(SECOND_PRIZE_COUNT));
         System.out.printf("%d개 일치 (%,d원) - %d개\n", FIRST_PRIZE_COUNT, FIRST_PRIZE_AMOUNT, results.get(FIRST_PRIZE_COUNT));
     }
-    public Map<Integer, Integer> getResults() {
-        return results; // 외부에서 결과를 조회할 수 있도록 getter 메서드 제공
+
+    public void calculateReturnOnInvestment(long totalInvestment) {
+        long totalPrize = calculateTotalPrize();
+        double returnOnInvestment = (double) (totalPrize - totalInvestment) / totalInvestment * 100;
+
+        returnOnInvestment = Math.round(returnOnInvestment * 10.0) / 10.0;
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnOnInvestment);
+    }
+
+    private long calculateTotalPrize() {
+        long totalPrize = 0;
+        totalPrize += results.get(FIFTH_PRIZE_COUNT) * FIFTH_PRIZE_AMOUNT;
+        totalPrize += results.get(FOURTH_PRIZE_COUNT) * FOURTH_PRIZE_AMOUNT;
+        totalPrize += results.get(THIRD_PRIZE_COUNT) * THIRD_PRIZE_AMOUNT;
+        totalPrize += results.get(SECOND_PRIZE_COUNT) * SECOND_PRIZE_AMOUNT;
+        totalPrize += results.get(FIRST_PRIZE_COUNT) * FIRST_PRIZE_AMOUNT;
+        return totalPrize;
     }
 }
