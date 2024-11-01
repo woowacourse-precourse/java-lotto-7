@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -43,5 +45,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 지정된 형식대로 출력돼야 한다.")
+    @Test
+    void 로또_번호가_지정된_형식대로_출력돼야_한다() {
+        Lotto lotto = Lotto.quickPick();
+        assertTrue(lotto.toString().matches("\\[\\d+, \\d+, \\d+, \\d+, \\d+, \\d+\\]"),
+                "toString() 결과가 '[숫자, 숫자, 숫자, 숫자, 숫자, 숫자]' 형식이어야 합니다.");
+        ;
+    }
 
 }
