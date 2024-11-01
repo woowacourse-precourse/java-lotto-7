@@ -16,7 +16,7 @@ public class LottoQuickPick {
       Lotto lotto = new Lotto(randomNumbers);
       randomPicks.add(lotto);
     }
-    //messagePrint(randomPicks, amount);
+    messagePrint(randomPicks, amount);
     return randomPicks;
   }
 
@@ -27,4 +27,10 @@ public class LottoQuickPick {
         .toList();
   }
 
+  private void messagePrint(List<Lotto> randomPicks, int amount) {
+    System.out.printf("%d개를 구매했습니다.\n", amount);
+    for (Lotto lotto : randomPicks) {
+      System.out.println(lotto);
+    }
+  }
 }
