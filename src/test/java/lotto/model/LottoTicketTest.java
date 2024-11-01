@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -9,8 +9,7 @@ class LottoTicketTest {
 
     @Test
     void 로또_티켓_발행() {
-        assertSimpleTest(
-                () -> {
+        assertSimpleTest(() -> {
                     LottoTicket ticket = LottoTicket.of(3);
                     assertThat(ticket.getTicket().size()).isEqualTo(3);
                 }

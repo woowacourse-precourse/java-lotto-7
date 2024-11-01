@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,8 +12,7 @@ class LottoTest {
 
     @Test
     void 로또_번호_발행() {
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
+        assertRandomUniqueNumbersInRangeTest(() -> {
                     Lotto lotto = new Lotto(Lotto.generate());
                     assertThat(lotto).isEqualTo(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
                 },
