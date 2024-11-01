@@ -1,6 +1,8 @@
 package lotto.domain.score;
 
 import lotto.constants.collection.ScoreSystem;
+import lotto.constants.collection.ScoreSystemReward;
+import lotto.constants.value.LottoRule;
 import lotto.domain.BonusComponent;
 import lotto.domain.Component;
 import lotto.domain.Lotto;
@@ -8,14 +10,17 @@ import lotto.domain.Lottos;
 import lotto.dto.ScoreDto;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 
 public class Score {
 
     private final LinkedHashMap<List<Integer>, Integer> scoreSystem ;
+    private final List<Integer> scoreSystemReward;
 
-    public Score(ScoreSystem scoreSystem) {
-        this.scoreSystem = scoreSystem.getInstance();
+    public Score(LinkedHashMap<List<Integer>, Integer> scoreSystem, List<Integer> scoreSystemReward) {
+        this.scoreSystem = scoreSystem;
+        this.scoreSystemReward = scoreSystemReward;
     }
 
     public ScoreDto printScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
@@ -26,7 +31,16 @@ public class Score {
 
         scoring(bonusComponent, mylottos, winningComponent);
 
-        return new ScoreDto(scoreSystem);
+        List<Integer> scoreValues = new ArrayList<>(scoreSystem.values());
+        int amountOfLottos = lottos.getLottos().size();
+        int totalUsedPrice = LottoRule.LOTTO_PRICE.getInstance()* amountOfLottos;
+        int totalSum = IntStream.range(0, scoreValues.size())
+                .map(i -> scoreValues.get(i) * scoreSystemReward.get(i))
+                .sum();
+        float rateOfReturn = (float) totalSum / totalUsedPrice;
+
+
+        return new ScoreDto(new ArrayList<>(scoreValues),rateOfReturn);
     }
 
     private void scoring(BonusComponent bonusComponent, List<Lotto> mylottos, List<Component> winningComponent) {
