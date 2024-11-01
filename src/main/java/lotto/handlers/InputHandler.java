@@ -8,29 +8,29 @@ import lotto.validators.PurchaseAmountValidator;
 
 public class InputHandler {
     private final InputView inputView;
-    private final LottoHandler lottoHandler;
     private String lottoNumbers;
 
-    public InputHandler(InputView inputView, LottoHandler lottoHandler) {
+    public InputHandler(InputView inputView) {
         this.inputView = inputView;
-        this.lottoHandler = lottoHandler;
     }
 
-    public String handlePurchaseAmountInput() {
+    public void handlePurchaseAmountInput(LottoHandler lottoHandler,  ResultHandler resultHandler) {
         PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-        String input = "";
+        String input;
 
         inputView.printPurchasePrompt();
         do {
             input = Console.readLine().strip();
         } while (!purchaseAmountValidator.isValid(input));
 
-        return input;
+        int purchaseAmount = Integer.parseInt(input);
+        lottoHandler.generateTickets(purchaseAmount);
+        resultHandler.setPurchaseAmount(purchaseAmount);
     }
 
-    public String handleLottoNumberInput() {
+    public void handleLottoNumberInput() {
         LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-        String input = "";
+        String input;
 
         inputView.printLottoNumberPrompt();
         do {
@@ -38,18 +38,17 @@ public class InputHandler {
         } while (!lottoNumberValidator.isValid(input));
 
         this.lottoNumbers = input;
-        return input;
     }
 
-    public String handleBonusNumberInput() {
+    public void handleBonusNumberInput(ResultHandler resultHandler) {
         BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
-        String input = "";
+        String input;
 
         inputView.printBonusNumberPrompt();
         do {
             input = Console.readLine().strip();
         } while (!bonusNumberValidator.isValid(input + ":" + this.lottoNumbers));
 
-        return input;
+        resultHandler.setWinningTicket(this.lottoNumbers, input);
     }
 }

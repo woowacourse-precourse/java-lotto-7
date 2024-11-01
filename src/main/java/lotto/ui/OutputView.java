@@ -1,17 +1,19 @@
 package lotto.ui;
 
-import lotto.Observer;
+import lotto.ui.constants.ResultText;
 
 import java.util.List;
 
-public class OutputView implements Observer {
-    @Override
-    public void update(int lottoCount) {
-        System.out.println(lottoCount + ResultText.PURCHASED.getText());
+public class OutputView {
+    public void printPurchasedMessage(int amount) {
+        System.out.println("\n" + amount + ResultText.PURCHASED.getText());
     }
 
-    @Override
-    public void update(List<Integer> numbers) {
-        System.out.println(numbers);
+    public void printString(String message) {
+        System.out.println(message);
+    }
+
+    public void printIntegerList(List<Integer> list) {
+        System.out.println(list);
     }
 }

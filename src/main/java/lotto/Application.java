@@ -2,22 +2,21 @@ package lotto;
 
 import lotto.handlers.InputHandler;
 import lotto.handlers.LottoHandler;
-import lotto.models.Lottos;
+import lotto.handlers.ResultHandler;
+import lotto.models.LottoResults;
 import lotto.ui.InputView;
+import lotto.ui.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        InputHandler inputHandler = new InputHandler(new InputView(), new LottoHandler());
+        LottoHandler lottoHandler = new LottoHandler(new OutputView());
+        InputHandler inputHandler = new InputHandler(new InputView());
+        ResultHandler resultHandler = new ResultHandler(new LottoResults());
 
-        String purchaseInput = inputHandler.handlePurchaseAmountInput();
-        String lottoNumbers = inputHandler.handleLottoNumberInput();
-        String bonusNumber = inputHandler.handleBonusNumberInput();
+        inputHandler.handlePurchaseAmountInput(lottoHandler, resultHandler);
+        inputHandler.handleLottoNumberInput();
+        inputHandler.handleBonusNumberInput(resultHandler);
 
-        int purchaseAmount = Integer.parseInt(purchaseInput);
-        Lottos lottos = new Lottos(purchaseAmount);
-        lottos.generateLottos();
-
-        lottos.getResults(lottoNumbers, bonusNumber);
-        lottos.getProfit(purchaseAmount);
+        resultHandler.printResults(lottoHandler);
     }
 }
