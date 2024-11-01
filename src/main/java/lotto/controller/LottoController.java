@@ -24,6 +24,7 @@ public class LottoController {
     public void run() {
         Integer purchaseAmount = getPurchaseAmount();
         List<Integer> winningNumber = getWinningNumber();
+        Integer bonusNumber = getBonusNumber();
     }
 
     public Integer getPurchaseAmount() {
@@ -41,6 +42,10 @@ public class LottoController {
             outputView.printError(e.getMessage());
             return getWinningNumber();
         }
+    }
+
+    public Integer getBonusNumber() {
+        return getValidatedInput(inputView::readBonusNumber);
     }
 
     private Integer getValidatedInput(Supplier<String> inputReader) {

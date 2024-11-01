@@ -17,6 +17,10 @@ public class InputView {
         return getValidatedInput(WINNING_NUMBER_INPUT_MESSAGE);
     }
 
+    public String readBonusNumber() {
+        return getValidatedInput(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
     private String getValidatedInput(String message) {
         System.out.println(message);
         String input = Console.readLine().strip();
