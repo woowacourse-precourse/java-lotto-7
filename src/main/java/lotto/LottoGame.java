@@ -32,7 +32,7 @@ public class LottoGame {
         for (int i = 0; i < ticket; i++) {
             lottos.add(Lotto.generate());
         }
-        System.out.println(ticket + "개를 구매하였습니다.");
+        System.out.println("\n" + ticket + "개를 구매하였습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
@@ -40,14 +40,14 @@ public class LottoGame {
     }
 
     public Lotto getWinningNumbers(){
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<Integer> winningNumbers = parseWinningNumbers(input);
         return new Lotto(winningNumbers);
     }
 
     public int getBonusNumber(List<Integer> winningNumbers){
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
 
         Integer bonusNumber = Integer.valueOf(input);

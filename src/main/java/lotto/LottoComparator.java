@@ -19,7 +19,7 @@ public class LottoComparator {
     }
 
     public void printResult(){
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
         for (LottoRank lottoRank : LottoRank.values()) {
             if(lottoRank != LottoRank.NONE_MATCH){
