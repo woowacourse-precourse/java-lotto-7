@@ -2,7 +2,9 @@ package lotto.service;
 
 import lotto.LottoCount;
 import lotto.ThousandWons;
+import lotto.domain.LottoPrice;
 import lotto.domain.Payment;
+import lotto.domain.PaymentResult;
 import lotto.repository.PaymentRepository;
 
 public class PaymentService {
@@ -16,23 +18,18 @@ public class PaymentService {
         this.idGenerator = idGenerator;
     }
 
-    //TODO: Payment - 지불하라
-    //TODO: PaymentRepository - 저장하라
-    public LottoCount pay(ThousandWons krMoney) {
-        Payment payment = createPayment(idGenerator.generate(), krMoney);
-        processPayment(payment);
-        return calculateLottoCount(payment);
+    public LottoCount pay(ThousandWons money) {
+        Payment payment = initialize(money);
+
+        Payment validatedPayment = payment.validate();
+        PaymentResult result = validatedPayment.execute();
+        paymentRepository.save(result.getCompletedPayment());
+
+        return result.getLottoCount();
     }
 
-    private Payment createPayment(Long paymentId, ThousandWons krMoney) {
-        return Payment.of(paymentId, krMoney);
+    private Payment initialize(ThousandWons money) {
+        return Payment.initialize(idGenerator.generate(), money, LottoPrice.basic());
     }
 
-    private void processPayment(Payment payment) {
-        paymentRepository.save(payment);
-    }
-
-    private LottoCount calculateLottoCount(Payment payment) {
-        return payment.success();
-    }
 }
