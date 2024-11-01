@@ -11,12 +11,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    public List<Integer> inputWinningNumber() {
+    public String inputWinningNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        String[] splitInput = input.split(",");
 
-        return Arrays.stream(splitInput).map(Integer::parseInt).toList();
+        return Console.readLine();
     }
 
     public int inputWinningBonusNumber() {
