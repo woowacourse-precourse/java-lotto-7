@@ -21,4 +21,13 @@ public class Lotto {
         return numbers;
     }
 
+    private int countOccurrences(List<Integer> numbers, int target) {
+        int count = 0;
+        for(int number : numbers) {
+            if(number == target) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
