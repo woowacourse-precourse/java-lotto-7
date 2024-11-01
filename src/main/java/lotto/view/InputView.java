@@ -1,5 +1,7 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class InputView implements ViewManager{
 
     private static final String INPUT_BUY_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -8,16 +10,16 @@ public class InputView implements ViewManager{
 
     protected String inputBuyAmount() {
         printMessage(INPUT_BUY_AMOUNT_MESSAGE);
-        return System.console().readLine();
+        return Console.readLine();
     }
 
     protected String inputWinningNumber() {
         printMessage(INPUT_WINNING_NUMBER_MESSAGE);
-        return System.console().readLine();
+        return Console.readLine();
     }
 
     protected String inputBonusNumber() {
         printMessage(INPUT_BONUS_NUMBER_MESSAGE);
-        return System.console().readLine();
+        return Console.readLine();
     }
 }
