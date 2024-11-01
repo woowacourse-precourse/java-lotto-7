@@ -41,7 +41,6 @@ public class LottoController {
     private List<Integer> getWinningNumber() {
         printWinningNumberInputMessage();
         String winningNumber = UserInput();
-        System.out.println(winningNumber);
         return List.of(1, 2, 3);
     }
 }
