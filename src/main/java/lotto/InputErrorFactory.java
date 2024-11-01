@@ -15,7 +15,7 @@ public class InputErrorFactory {
      * @param invalidType 오류 타입
      * @return 메세지가 담긴 IllegalArgumentException
      */
-    public static IllegalArgumentException getErrorWithMessage(InvalidInputType invalidType) {
+    public static RuntimeException getErrorWithMessage(InvalidInputType invalidType) {
         if (invalidType == InvalidInputType.PURCHASE_COST_NOT_NUMBER) {
             return new IllegalArgumentException(MESSAGE_PURCHASE_COST_NOT_NUMBER);
         }
@@ -26,6 +26,6 @@ public class InputErrorFactory {
             return new IllegalArgumentException(MESSAGE_PURCHASE_COST_NOT_THOUSANDS);
         }
         
-        return null;
+        return new UnsupportedOperationException(invalidType.toString() + " 오류의 처리는 아직 구현되지 않았습니다!");
     }
 }
