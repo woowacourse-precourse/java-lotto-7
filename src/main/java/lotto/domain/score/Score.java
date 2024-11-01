@@ -37,7 +37,7 @@ public class Score {
         int totalSum = IntStream.range(0, scoreValues.size())
                 .map(i -> scoreValues.get(i) * scoreSystemReward.get(i))
                 .sum();
-        float rateOfReturn = (float) totalSum / totalUsedPrice;
+        float rateOfReturn = (float) totalSum / totalUsedPrice *100;
 
 
         return new ScoreDto(new ArrayList<>(scoreValues),rateOfReturn);
@@ -54,7 +54,8 @@ public class Score {
                 bonusMatch ++;
             }
             List<Integer> key = Arrays.asList(matches, bonusMatch);
-
+            System.out.println("key = "+key.get(0)+"과 "+key.get(1));
+            System.out.println("키를 포함하는지 여부"+scoreSystem.containsValue(key));
             if (scoreSystem.containsKey(key)) {
                 scoreSystem.put(key, scoreSystem.get(key) + 1);
             }
