@@ -14,15 +14,16 @@ import static lotto.message.ErrorMessage.ERROR_WINNING_NUMBERS_SIZE_MORE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.ParseUtil;
 import org.junit.platform.commons.util.StringUtils;
 
 public class WinningNumbersValidator {
 
-    public static void validateWinningNumbers(String inputWinningNumbers) {
+    public static void validateInputWinningNumbers(String inputWinningNumbers) {
         validateSeparator(inputWinningNumbers);
         validateNotEmpty(inputWinningNumbers);
-        List<Integer> winningNumbers = ParseUtil.parseToList(inputWinningNumbers);
+    }
+
+    public static void validateWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumbersCount(winningNumbers);
         validateNumbersRange(winningNumbers);
         validateDuplicateNumbers(winningNumbers);

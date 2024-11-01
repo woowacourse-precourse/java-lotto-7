@@ -7,17 +7,18 @@ import static lotto.message.ErrorMessage.ERROR_INPUT_PURCHASE_AMOUNT;
 import static lotto.message.ErrorMessage.ERROR_INVALID_UNIT;
 import static lotto.message.ErrorMessage.ERROR_NEGATIVE_PRICE;
 
-import lotto.util.ParseUtil;
 import org.junit.platform.commons.util.StringUtils;
 
 public class PurchaseAmountValidator {
 
-    public static void validatePurchaseAmount(String purchaseAmount) {
-        validateBlankInput(purchaseAmount);
-        int amount = ParseUtil.parseInt(purchaseAmount);
-        validateNegativeAmount(amount);
-        validateInvalidUnit(amount);
-        validateBelowMinimumAmount(amount);
+    public static void validateInputPurchaseAmount(String inputPurchaseAmount) {
+        validateBlankInput(inputPurchaseAmount);
+    }
+
+    public static void validatePurchaseAmount(int purchaseAmount) {
+        validateNegativeAmount(purchaseAmount);
+        validateInvalidUnit(purchaseAmount);
+        validateBelowMinimumAmount(purchaseAmount);
     }
 
     private static void validateBlankInput(String input) {

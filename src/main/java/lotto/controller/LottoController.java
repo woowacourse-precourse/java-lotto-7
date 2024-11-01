@@ -2,9 +2,11 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.Lottos;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningRank;
 import lotto.domain.WinningStatistics;
 import lotto.domain.WinningStatisticsCalculator;
@@ -27,22 +29,28 @@ public class LottoController {
     }
 
     public void start() {
-        String purchaseAmount = inputPurchaseAmount();
-        Lottos lottos = issueLottos(purchaseAmount);
+        PurchaseAmount purchaseAmount = inputPurchaseAmount();
+        Lottos lottos = getIssueLottos(purchaseAmount);
         printLottos(lottos);
 
         Lotto winningLotto = createWinningLotto();
-        int bonusNumber = createBonusNumber(winningLotto.getNumbers());
-        processStatistics(lottos, winningLotto, bonusNumber, purchaseAmount);
+        BonusNumber bonusNumber = createBonusNumber(winningLotto.getNumbers());
+        processStatistics(lottos, winningLotto, bonusNumber.getBonusNumber(), purchaseAmount.getPurchaseAmount());
 
         Console.close();
     }
 
-    private String inputPurchaseAmount() {
-        return inputView.inputPurchaseAmount();
+    private PurchaseAmount inputPurchaseAmount() {
+        try {
+            String inputPurchaseAmount = inputView.inputPurchaseAmount();
+            return PurchaseAmount.createPurchaseAmount(inputPurchaseAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return inputPurchaseAmount();
+        }
     }
 
-    private Lottos issueLottos(String purchaseAmount) {
+    private Lottos getIssueLottos(PurchaseAmount purchaseAmount) {
         return LottoIssuer.issue(purchaseAmount, lottoNumberGenerator);
     }
 
@@ -56,22 +64,30 @@ public class LottoController {
     }
 
     private Lotto createWinningLotto() {
-        String inputWinningNumbers = inputView.inputWinningNumbers();
-        return Lotto.createLotto(inputWinningNumbers);
+        try {
+            String inputWinningNumbers = inputView.inputWinningNumbers();
+            return Lotto.createLotto(inputWinningNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return createWinningLotto();
+        }
     }
 
-    private int createBonusNumber(List<Integer> winningNumbers) {
-        return inputView.inputBonusNumber(winningNumbers);
+    private BonusNumber createBonusNumber(List<Integer> winningNumbers) {
+        try {
+            String bonusNumber = inputView.inputBonusNumber();
+            return BonusNumber.createBonusNumber(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return createBonusNumber(winningNumbers);
+        }
     }
 
-    private void processStatistics(Lottos lottos, Lotto winningLotto, int bonusNumber, String purchaseAmount) {
-        WinningStatistics winningStatistics = calculateStatistics(lottos, winningLotto, bonusNumber);
+    private void processStatistics(Lottos lottos, Lotto winningLotto, int bonusNumber, int purchaseAmount) {
+        WinningStatistics winningStatistics =
+                WinningStatisticsCalculator.calculateStatistics(lottos, winningLotto, bonusNumber);
         printStatistics(winningStatistics);
         calculateAndPrintReturnRate(winningStatistics, purchaseAmount);
-    }
-
-    private WinningStatistics calculateStatistics(Lottos lottos, Lotto winningLotto, int bonusNumber) {
-        return WinningStatisticsCalculator.calculateStatistics(lottos, winningLotto, bonusNumber);
     }
 
     private void printStatistics(WinningStatistics winningStatistics) {
@@ -85,12 +101,8 @@ public class LottoController {
         outputView.printWinningStatisticsMessage(winningRank.getMessage(), winningRank.getPrizeMoney(), count);
     }
 
-    private void calculateAndPrintReturnRate(WinningStatistics winningStatistics, String purchaseAmount) {
+    private void calculateAndPrintReturnRate(WinningStatistics winningStatistics, int purchaseAmount) {
         double returnRate = WinningStatisticsCalculator.calculateReturnRate(winningStatistics, purchaseAmount);
-        printReturnRate(returnRate);
-    }
-
-    private void printReturnRate(double returnRate) {
         outputView.printReturnRate(returnRate);
     }
 

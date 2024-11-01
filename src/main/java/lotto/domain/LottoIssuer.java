@@ -7,12 +7,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.util.ParseUtil;
 
 public class LottoIssuer {
 
-    public static Lottos issue(String purchaseAmount, LottoNumberGenerator lottoNumberGenerator) {
-        int lottoCount = ParseUtil.parseInt(purchaseAmount) / LOTTO_PRICE;
+    public static Lottos issue(PurchaseAmount purchaseAmount, LottoNumberGenerator lottoNumberGenerator) {
+        int lottoCount = purchaseAmount.getPurchaseAmount() / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = ZERO; i < lottoCount; i++) {

@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.util.ParseUtil;
-
 public class WinningStatisticsCalculator {
 
     public static WinningStatistics calculateStatistics(Lottos lottos, Lotto winningNumbers, int bonusNumber) {
@@ -34,10 +32,9 @@ public class WinningStatisticsCalculator {
         }
     }
 
-    public static double calculateReturnRate(WinningStatistics winningStatistics, String purchaseAmount) {
+    public static double calculateReturnRate(WinningStatistics winningStatistics, int purchaseAmount) {
         int totalPrizeMoney = calculateTotalPrizeMoney(winningStatistics);
-        System.out.println(totalPrizeMoney);
-        return (double) totalPrizeMoney / ParseUtil.parseInt(purchaseAmount) * 100;
+        return ((double) totalPrizeMoney / purchaseAmount) * 100;
     }
 
     private static int calculateTotalPrizeMoney(WinningStatistics winningStatistics) {

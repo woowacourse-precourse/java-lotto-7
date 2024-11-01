@@ -7,14 +7,15 @@ import static lotto.message.ErrorMessage.ERROR_DUPLICATE_BONUS_NUMBER;
 import static lotto.message.ErrorMessage.ERROR_EMPTY_BONUS_NUMBER;
 
 import java.util.List;
-import lotto.util.ParseUtil;
 import org.junit.platform.commons.util.StringUtils;
 
 public class BonusNumberValidator {
 
-    public static void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+    public static void validateInputBonusNumber(String inputBonusNumber) {
         validateNotEmpty(inputBonusNumber);
-        int bonusNumber = ParseUtil.parseInt(inputBonusNumber);
+    }
+
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         validateRange(bonusNumber);
         validateDuplicateNumber(winningNumbers, bonusNumber);
     }

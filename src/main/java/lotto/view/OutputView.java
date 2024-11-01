@@ -8,6 +8,10 @@ import java.util.List;
 
 public class OutputView {
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     public void printLottoPurchaseCountMessage(int lottoCount) {
         System.out.printf(OUTPUT_PURCHASE_COUNT_MESSAGE, lottoCount);
     }
