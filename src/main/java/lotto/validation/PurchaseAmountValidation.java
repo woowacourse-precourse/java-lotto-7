@@ -5,7 +5,7 @@ public class PurchaseAmountValidation {
     private final static String INVALID_PRICE_INPUT = "[ERROR]올바른 금액을 입력해 주시기 바랍니다.";
     private final static String NUMBER_REGEX = "\\d+";
 
-    public static void validate(String input) {
+    public static int parseValidatedLottoCount(String input) {
         if (input == null || input.isBlank() || !input.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException(INVALID_PRICE_INPUT);
         }
@@ -13,6 +13,7 @@ public class PurchaseAmountValidation {
         if (parsedInput == 0 || parsedInput % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException(INVALID_PRICE_INPUT);
         }
+        return parsedInput/PRICE_PER_LOTTO;
     }
 
     private static int parseInput(String input) {

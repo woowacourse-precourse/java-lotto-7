@@ -20,7 +20,7 @@ public class PurchaseAmountValidationTest {
     @DisplayName("구매 금액이 null이거나 빈 값, 또는 숫자가 아닐 때 에러 발생")
     void validateNullOrEmpty(String input){
         assertThatThrownBy(() -> {
-            PurchaseAmountValidation.validate(input);
+            PurchaseAmountValidation.parseValidatedLottoCount(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -29,7 +29,7 @@ public class PurchaseAmountValidationTest {
     @DisplayName("구매 금액이 0이거나 빈 값, 또는 숫자가 아닐 때 에러 발생")
     void validateZeroOrNotDivided(String input){
         assertThatThrownBy(() -> {
-            PurchaseAmountValidation.validate(input);
+            PurchaseAmountValidation.parseValidatedLottoCount(input);
         })
                 .isInstanceOf(IllegalArgumentException.class);
     }
