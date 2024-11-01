@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Stats {
-    private Map<String, Integer> winningDetail = new HashMap<>();
+    private final Map<String, Integer> winningDetail = new HashMap<>();
 
     public Map<String, Integer> getWinningDetail() {
         return winningDetail;

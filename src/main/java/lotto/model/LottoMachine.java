@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoMachine {
-    private static final int RANK_COUNT = 6;
     private static final int LOTTO_START_NUM = 1;
     private static final int LOTTO_END_NUM = 45;
     private static final int LOTTO_PRICE = 1000;
@@ -26,14 +25,20 @@ public class LottoMachine {
         int purchaseCount = (purchaseAmount / LOTTO_PRICE);
         Lottos lottos = new Lottos();
         for (int i = purchaseCount; i > 0; i--) {
-            lottos.addLotto(issueLotto());
+            Lotto lotto = issueLotto();
+            for (Lotto l : lottos.getLottos()) {
+                System.out.println(l.toString());
+            }
+            lottos.addLotto(lotto);
         }
         return lottos;
     }
 
     private Lotto issueLotto() {
         Collections.shuffle(allLottoNums);
-        return new Lotto(allLottoNums.subList(0, 6));
+        List<Integer> nums = new ArrayList<>(List.copyOf(allLottoNums.subList(0, 6)));
+        nums.sort(Integer::compareTo);
+        return new Lotto(nums);
     }
 
     public void updateWinningNums(List<Integer> winningNums) {
