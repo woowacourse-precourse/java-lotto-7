@@ -1,17 +1,17 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-
-import java.util.List;
+import lotto.domain.LottoTickets;
 
 public class OutputView {
 
-    public void printIssuedLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+    public void printIssuedLottos(LottoTickets lottoTickets) {
+        System.out.println(lottoTickets.getAmount() + "개를 구매했습니다.");
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoTickets.getLottos()) {
             System.out.println(lotto.toString());
         }
+        System.out.println();
     }
 
 }
