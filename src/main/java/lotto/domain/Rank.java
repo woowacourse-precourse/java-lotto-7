@@ -32,5 +32,15 @@ public enum Rank {
         return Arrays.stream(values()).filter(rank -> rank.matchCount == matchCount).findAny().orElse(Rank.NONE);
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
 
+    public long getPrize() {
+        return prize;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
 }
