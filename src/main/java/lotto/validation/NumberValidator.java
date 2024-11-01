@@ -14,10 +14,10 @@ public class NumberValidator {
                 throw new IllegalArgumentException(ValidateMessage.NUMBER_RANGE_ERROR.getMessage());
             }
             if (isEqualOrLessThanZero(number)) {
-                throw new IllegalArgumentException(ValidateMessage.NUMBER_RANGE_ERROR.getMessage());
+                throw new IllegalArgumentException(ValidateMessage.POSITIVE_NUMBER_ERROR.getMessage());
             }
             if (isDouble(number)) {
-                throw new IllegalArgumentException(ValidateMessage.NUMBER_SIZE_ERROR.getMessage());
+                throw new IllegalArgumentException(ValidateMessage.DOUBLE_ERROR.getMessage());
             }
         });
     }
