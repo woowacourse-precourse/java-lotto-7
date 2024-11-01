@@ -22,13 +22,14 @@ public class LottoNumber {
 		this.number = number;
 	}
 
-	private void checkLottoNumberRange(int number) {
+	public static LottoNumber from(int number) {
+		checkLottoNumberRange(number);
+		return lottoNumberCache.get(number);
+	}
+
+	private static void checkLottoNumberRange(int number) {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
 			throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하이어야 합니다.");
 		}
-	}
-
-	public static LottoNumber from(int number) {
-		return lottoNumberCache.get(number);
 	}
 }
