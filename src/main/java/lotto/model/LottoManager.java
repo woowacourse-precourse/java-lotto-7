@@ -10,12 +10,12 @@ import lotto.LottoPrize;
 
 public class LottoManager {
     private final List<Lotto> lotties = new ArrayList<>();
-    private Integer money;
+    private Long money;
     private List<Integer> winLottiesCount = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));; //Enum 에 대응되는 당첨 로또 개수
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
 
-    public LottoManager(Integer money) {
+    public LottoManager(Long money) {
         this.money = money;
         for (int i = 0; i<(money/1000);i++){
             this.lotties.add(this.issueLotto());
@@ -129,11 +129,11 @@ public class LottoManager {
         return winLottiesCount;
     }
 
-    public Integer getMoney() {
+    public Long getMoney() {
         return money;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(Long money) {
         this.money = money;
     }
 
