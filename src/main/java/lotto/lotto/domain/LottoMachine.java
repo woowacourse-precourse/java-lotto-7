@@ -1,33 +1,32 @@
 package lotto.lotto.domain;
 
+import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.winning.domain.WinningLotto;
 import lotto.money.domain.Money;
 import lotto.view.output.domain.PurchaseCountViewService;
 
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
-
 public class LottoMachine {
     private final Calculator divideThousandCalculator;
-    private final NumberGenerator numberGenerator;
+    private final LottoCreatorService lottoCreator;
     private final PurchaseCountViewService purchaseCountOutput;
-    public LottoMachine(Calculator divideThousandCalculator, NumberGenerator numberGenerator, PurchaseCountViewService purchaseCountOutput) {
+    public LottoMachine(Calculator divideThousandCalculator, LottoCreatorService lottoCreator, PurchaseCountViewService purchaseCountOutput) {
         this.divideThousandCalculator = divideThousandCalculator;
-        this.numberGenerator = numberGenerator;
+        this.lottoCreator = lottoCreator;
         this.purchaseCountOutput =purchaseCountOutput;
-    }
-    public LottoTickets purchaseLottoTickets(Money money) {
-        int count = purchaseCount(money);
-        return LottoTickets.of(Stream.generate(this::createLotto)
-                .limit(count)
-                .collect(toList()));
-    }
-    private Lotto createLotto() {
-        return new Lotto(numberGenerator.generate());
     }
     private int purchaseCount(Money money) {
         int count = divideThousandCalculator.calculate(money);
         purchaseCountOutput.view(count);
         return count;
+    }
+    public LottoTickets purchaseLottoTickets(Money money) {
+        int count = purchaseCount(money);
+        return lottoCreator.createLottoTickets(count);
+    }
+    public WinningLotto createWinningLotto() {
+        return lottoCreator.createWinningLotto();
+    }
+    public BonusNumber createBonusNumber(WinningLotto winningLotto) {
+        return lottoCreator.createBonusNumber(winningLotto);
     }
 }
