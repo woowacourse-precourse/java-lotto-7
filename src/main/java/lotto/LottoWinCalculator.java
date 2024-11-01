@@ -87,6 +87,6 @@ public class LottoWinCalculator {
             }
             totalReward += count * LottoWinningInfo.getReward(type);
         }
-        return totalReward / totalPrice;
+        return totalReward / totalPrice * 100.0;
     }
 }

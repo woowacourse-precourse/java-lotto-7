@@ -64,7 +64,7 @@ public class Application {
     }
     
     private static void printGeneratedLotto(List<Lotto> lottos) {
-        System.out.println(purchaseCount + "개를 구입했습니다.");
+        System.out.println(purchaseCount + "개를 구매했습니다.");
         for (Lotto l : lottos) {
             System.out.println(l.toString());
         }
