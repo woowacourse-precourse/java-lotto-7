@@ -1,26 +1,24 @@
 package lotto;
 
 public enum Prize {
-    FIFTH("5등", 3, 5_000),
-    FOURTH("4등", 4, 50_000),
-    THIRD("3등", 5, 1_500_000, false),
-    SECOND("2등", 5, 30_000_000, true),
-    FIRST("1등", 6, 2_000_000_000);
+    FIFTH(3, 5_000),
+    FOURTH(4, 50_000),
+    THIRD(5, 1_500_000, false),
+    SECOND(5, 30_000_000, true),
+    FIRST(6, 2_000_000_000);
 
-    private final String explain;
     private final int matchedCount;
     private final int prizeMoney;
     private final boolean bonus;
 
-    Prize(String explain, int matchedCount, int prizeMoney, boolean bonus) {
-        this.explain = explain;
+    Prize(int matchedCount, int prizeMoney, boolean bonus) {
         this.matchedCount = matchedCount;
         this.prizeMoney = prizeMoney;
         this.bonus = bonus;
     }
 
-    Prize(String explain, int matchedCount, int prizeMoney) {
-        this(explain, matchedCount, prizeMoney, false);
+    Prize(int matchedCount, int prizeMoney) {
+        this(matchedCount, prizeMoney, false);
     }
 
     @Override
