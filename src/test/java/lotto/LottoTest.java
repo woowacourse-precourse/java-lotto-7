@@ -1,10 +1,12 @@
 package lotto;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,4 +24,20 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @DisplayName("보너스 번호에 로또 번호에 해당하는 숫자가 있으면, 예외가 발생한다.")
+    @Test
+    void duplicateLottoNumberAndBonusNumber(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)).setBonus(6))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 45 이상 1 이하의 값은 없음")
+    @Test
+    void notGenerateNumberNotInValidRange(){
+        for(int i = 0; i<1000000; i++){
+            Assertions.assertDoesNotThrow(() -> LottoGenerator.generateRandom().getNumbers());
+        }
+    }
+
 }

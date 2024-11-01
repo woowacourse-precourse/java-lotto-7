@@ -42,7 +42,7 @@ public class Application {
         return targetLotto;
     }
 
-    private static List<Lotto> buyLottos() {
+    public static List<Lotto> buyLottos() {
         List<Lotto> lottos;
         try {
             int price;
@@ -67,7 +67,7 @@ public class Application {
         return price;
     }
 
-    private static Lotto inputTargetLottoNumber() {
+    public static Lotto inputTargetLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         Lotto targetLotto;
         try {
