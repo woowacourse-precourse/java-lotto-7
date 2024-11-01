@@ -4,12 +4,12 @@ import lotto.domain.LottoGroups;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoSeller;
 import lotto.domain.Money;
-import lotto.domain.strategy.LottoNumberGenerationStrategy;
+import lotto.domain.strategy.NumberGenerationStrategy;
 
 public class LottoService {
     public LottoGroups purchaseLottos(Money lottoPurchaseMoney,
-                                      LottoNumberGenerationStrategy lottoNumberGenerationStrategy) {
+                                      NumberGenerationStrategy numberGenerationStrategy) {
         LottoSeller lottoSeller = new LottoSeller(new LottoMachine());
-        return lottoSeller.sellUntilNoMoney(lottoPurchaseMoney, lottoNumberGenerationStrategy);
+        return lottoSeller.sellUntilNoMoney(lottoPurchaseMoney, numberGenerationStrategy);
     }
 }

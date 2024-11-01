@@ -4,7 +4,7 @@ import static lotto.domain.Lotto.LOTTO_PRICE;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.strategy.LottoNumberGenerationStrategy;
+import lotto.domain.strategy.NumberGenerationStrategy;
 
 public class LottoSeller {
 
@@ -14,10 +14,10 @@ public class LottoSeller {
         this.lottoMachine = lottoMachine;
     }
 
-    public LottoGroups sellUntilNoMoney(Money money, LottoNumberGenerationStrategy lottoNumberGenerationStrategy) {
+    public LottoGroups sellUntilNoMoney(Money money, NumberGenerationStrategy numberGenerationStrategy) {
         List<Lotto> lottos = new ArrayList<>();
         while (money.isGreaterEqualThan(LOTTO_PRICE)) {
-            lottos.add(lottoMachine.issueLotto(lottoNumberGenerationStrategy));
+            lottos.add(lottoMachine.issueLotto(numberGenerationStrategy));
             money = money.minus(LOTTO_PRICE);
         }
 

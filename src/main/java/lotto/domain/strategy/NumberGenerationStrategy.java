@@ -2,6 +2,6 @@ package lotto.domain.strategy;
 
 import java.util.List;
 
-public interface LottoNumberGenerationStrategy {
+public interface NumberGenerationStrategy {
     List<Integer> generate(int min, int max, int size);
 }
