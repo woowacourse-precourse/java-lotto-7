@@ -1,11 +1,14 @@
 package lotto;
 
+import static lotto.AppConstants.INSERT_MONEY;
 import static lotto.AppConstants.INVALID_WINNING_NUMBERS_INPUT;
 import static lotto.AppConstants.LOTTO_NUMBER_COUNT;
 import static lotto.AppConstants.LOTTO_NUMBER_MAX;
 import static lotto.AppConstants.LOTTO_NUMBER_MIN;
+import static lotto.AppConstants.LOTTO_PRICE;
 import static lotto.AppConstants.MATCH_COUNT_FOR_SECOND_PRIZE;
 import static lotto.AppConstants.MATCH_COUNT_FOR_THIRD_PRIZE;
+import static lotto.AppConstants.MONEY_LESS_THAN_1000;
 import static lotto.AppConstants.MONEY_NOT_DIVIDED_BY_1000;
 import static lotto.AppConstants.PRINT_SOLD_LOTTO_COUNT;
 import static lotto.AppConstants.PRIZE_MATCH_RESULT_TEMPLATE;
@@ -22,7 +25,7 @@ import java.util.StringTokenizer;
 
 public class LottoSystem {
     private static final int MIN_MATCH_COUNT = 3;
-    private static final int LOTTO_PRICE = 1000;
+
     private HashMap<Integer, LottoPrize> prizes = new HashMap<>();
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -37,9 +40,6 @@ public class LottoSystem {
     }
 
     public List<Lotto> buyLotto(int money) {
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(MONEY_NOT_DIVIDED_BY_1000);
-        }
         issuedLottoCount = money / LOTTO_PRICE;
         ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < issuedLottoCount; ++i) {

@@ -11,11 +11,10 @@ public class Application {
     public static void main(String[] args) {
         LottoSystem lottoMachine = new LottoSystem();
 
-        System.out.println(INSERT_MONEY);
-        List<Lotto> boughtLottos = lottoMachine.buyLotto(Integer.parseInt(Console.readLine()));
+        int money = View.inputLottoPurchaseMoney(INSERT_MONEY);
+        List<Lotto> boughtLottos = lottoMachine.buyLotto(money);
 
         System.out.printf("%n");
-
         lottoMachine.printSoldLottos(boughtLottos);
 
         System.out.printf("%n");
