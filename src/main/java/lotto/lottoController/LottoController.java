@@ -64,9 +64,8 @@ public class LottoController {
         retainLotto(allLottos, dto.getAllHitNumbers());
 
         StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();
-        for (int i=3;i<=6;i++){
-            outputView.statisticEnd(i,stats);
-        }
+        outputView.statisticStart(stats);
+
 
     }
 
