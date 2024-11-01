@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.utils.Constant.MAX_LOTTO_NUMBER_COUNT;
 import static lotto.utils.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 
 import java.util.HashSet;
@@ -16,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MAX_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MESSAGE.toString());
         }
     }
