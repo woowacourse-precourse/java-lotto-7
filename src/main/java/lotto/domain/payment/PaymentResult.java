@@ -1,7 +1,5 @@
 package lotto.domain.payment;
 
-import lotto.LottoCount;
-
 public class PaymentResult {
     private final Payment completedPayment;
     private final LottoCount lottoCount;

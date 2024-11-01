@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain.payment;
 
 public class LottoCount {
     private final int value;

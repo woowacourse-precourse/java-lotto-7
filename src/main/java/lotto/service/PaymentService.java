@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.LottoCount;
 import lotto.ThousandWons;
+import lotto.domain.payment.LottoCount;
 import lotto.domain.payment.LottoPrice;
 import lotto.domain.payment.Payment;
 import lotto.domain.payment.PaymentResult;
