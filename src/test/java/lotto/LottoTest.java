@@ -1,11 +1,15 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
     @Test
@@ -21,5 +25,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @ParameterizedTest
+    @MethodSource("provideLottoNumbersInWrongRange")
+    void 범위에서_벗어난_로또_번호가_있으면_예외가_발생한다(List<Integer> wrongNumbers) {
+        assertThatThrownBy(() -> new Lotto(wrongNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> provideLottoNumbersInWrongRange() {
+        return Stream.of(
+                Arguments.of(List.of(0, 2, 3, 4, 5, 6)),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 46))
+        );
+    }
 }
