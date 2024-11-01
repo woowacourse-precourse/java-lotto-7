@@ -2,7 +2,6 @@ package lotto.validator;
 
 import java.util.regex.Pattern;
 import lotto.util.Constants;
-import lotto.view.Errors;
 import lotto.view.Outputs;
 
 public class MoneyValidator {
