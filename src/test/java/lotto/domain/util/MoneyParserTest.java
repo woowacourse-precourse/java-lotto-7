@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(ReplaceUnderscores.class)
-class TicketParserTest {
+class MoneyParserTest {
 
     @Test
     void 변환_성공() {
@@ -17,7 +17,7 @@ class TicketParserTest {
         int expected = Integer.parseInt(input) / Lotto.TICKET_PRICE;
 
         //when
-        Integer parsed = TicketParser.parse(input);
+        Integer parsed = MoneyParser.parse(input);
 
         //then
         assertThat(parsed).isEqualTo(expected);
