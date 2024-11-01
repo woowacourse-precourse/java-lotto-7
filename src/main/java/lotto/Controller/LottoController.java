@@ -3,18 +3,27 @@ package lotto.Controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.Constants;
 import lotto.Model.Lotto;
 import lotto.Utils;
 
 public class LottoController {
     private int lottoAmount;
     private List<Lotto> lottos;
+    private List<Integer> winningNums;
 
     public LottoController() {
         set();
         setLottos();
         displayLottos();
+        setWinningNums();
+    }
+
+    private void setWinningNums() {
+        try{
+            winningNums = InputController.setWinningNums();
+        }catch (IllegalArgumentException e){
+            setWinningNums();
+        }
     }
 
     private void set() {
