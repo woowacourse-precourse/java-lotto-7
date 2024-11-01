@@ -2,8 +2,9 @@ package lotto.model;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.dto.LottoDTO;
+import java.util.stream.Collectors;
 import lotto.common.ExceptionCode;
+import lotto.dto.LottoDTO;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -33,5 +34,16 @@ public class Lotto {
         if (numbers.size() != unique.size()) {
             throw new IllegalArgumentException(ExceptionCode.LOTTO_DOES_NOT_UNIQUE.message());
         }
+    }
+
+    public List<Integer> compareNumbersToWinningNumbers(List<Integer> winning) {
+        return winning.stream()
+                .filter(numbers::contains)
+                .collect(Collectors.toList());
+    }
+
+    public boolean hasBonusNumber(Integer bonusNumber) {
+        return numbers.stream()
+                .anyMatch(bonusNumber::equals);
     }
 }
