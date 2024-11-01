@@ -1,6 +1,8 @@
 package lotto.entity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.configuration.LottoConfiguration;
 
 public class ProfitReport {
@@ -42,6 +44,22 @@ public class ProfitReport {
 
         double rate = (double) profit / paymentAmount * 100;
         return Math.round(rate * 10) / 10.0;
+    }
+
+    public Map<Prize, Integer> calculateWinningCountsByRank() {
+        List<Prize> prizes = purchasedLottos.stream()
+                .map(lotto -> {
+                    int matchCount = (int) winningNumbers.getWinningNumbers().stream()
+                            .filter(lotto::contains).count();
+                    boolean matchBonus = lotto.contains(winningNumbers.getBonusNumber());
+                    return Prize.findPrize(matchCount, matchBonus);
+                }).toList();
+
+        Map<Prize, Integer> counter = new HashMap<>();
+        for (Prize prize : prizes) {
+            counter.put(prize, counter.getOrDefault(prize, 0) + 1);
+        }
+        return counter;
     }
 
     public int getPaymentAmount() {
