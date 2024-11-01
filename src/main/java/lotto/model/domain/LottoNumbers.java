@@ -54,4 +54,8 @@ public class LottoNumbers {
         LottoNumbers other = (LottoNumbers) obj;
         return this.numbers.equals(other.numbers);
     }
+
+    public boolean hasNumber(int number) {
+        return this.numbers.contains(number);
+    }
 }

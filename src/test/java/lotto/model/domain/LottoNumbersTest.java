@@ -1,6 +1,7 @@
 package lotto.model.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -27,5 +28,12 @@ public class LottoNumbersTest {
     void test3() {
         assertThatThrownBy(() -> new LottoNumbers(List.of(1, 2, 3, 4, 5, 10000)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 넘버에 특정 숫자가 포함되어있는지 확인한다")
+    @Test
+    void test_4() {
+        LottoNumbers lottoNumbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
+        assertTrue(lottoNumbers.hasNumber(6));
     }
 }

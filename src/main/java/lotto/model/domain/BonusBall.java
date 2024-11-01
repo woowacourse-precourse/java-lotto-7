@@ -19,7 +19,7 @@ public class BonusBall {
     }
 
     private static void validateDuplicate(int number, WinningBalls winningBalls) {
-        if (!winningBalls.isDistinct(number)) {
+        if (winningBalls.hasNumber(number)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }

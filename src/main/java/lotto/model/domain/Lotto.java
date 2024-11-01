@@ -11,7 +11,7 @@ public class Lotto {
     }
 
     public boolean hasNumber(int number) {
-        return lottoNumbers.getNumbers().contains(number);
+        return lottoNumbers.hasNumber(number);
     }
 
     @Override

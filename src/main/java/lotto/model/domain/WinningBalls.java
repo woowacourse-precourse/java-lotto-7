@@ -10,12 +10,8 @@ public class WinningBalls {
         this.lottoNumbers = new LottoNumbers(lottoNumbers);
     }
 
-    public boolean isDistinct(int number) {
-        long duplicatingCount = lottoNumbers.getNumbers().stream()
-                .filter(num -> num == number)
-                .count();
-
-        return duplicatingCount == 0;
+    public boolean hasNumber(int number) {
+       return lottoNumbers.hasNumber(number);
     }
 
     public int getSameNumberCount(Lotto lotto) {
