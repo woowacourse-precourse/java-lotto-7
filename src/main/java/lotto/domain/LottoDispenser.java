@@ -24,7 +24,7 @@ public class LottoDispenser {
 
     private List<Lotto> issueLottos(int lottoCount) {
         return IntStream.range(0, lottoCount)
-                .mapToObj(i -> new Lotto(generateRandomNumbers()))
+                .mapToObj(i -> Lotto.ofNumbersAndConfig(generateRandomNumbers(), lottoConfig))
                 .collect(Collectors.toList());
     }
 
