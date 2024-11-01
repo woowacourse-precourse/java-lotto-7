@@ -43,6 +43,14 @@ public class Lotto {
         return Objects.equals(numbers, lotto.numbers);
     }
 
+    public Long matchCount(WinningLotto winningLotto) {
+        return winningLotto.match(numbers);
+    }
+
+    public boolean matchBonus(WinningLotto winningLotto) {
+        return winningLotto.containsBonus(numbers);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(numbers);

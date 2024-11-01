@@ -8,11 +8,11 @@ public class WinningLotto {
 
     private static final String SEPARATOR = ",";
 
-    private final Lotto lotto;
+    private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
     public WinningLotto(String winningNumbers, String bonusNumber) {
-        this.lotto = new Lotto(parse(winningNumbers));
+        this.winningNumbers = parse(winningNumbers);
         this.bonusNumber = toInt(bonusNumber);
     }
 
@@ -28,6 +28,14 @@ public class WinningLotto {
         return Integer.parseInt(bonusNumber);
     }
 
+    public Long match(List<Integer> numbers) {
+        return winningNumbers.stream().filter(numbers::contains).count();
+    }
+
+    public boolean containsBonus(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -36,11 +44,11 @@ public class WinningLotto {
         if (!(object instanceof WinningLotto that)) {
             return false;
         }
-        return bonusNumber == that.bonusNumber && Objects.equals(lotto, that.lotto);
+        return bonusNumber == that.bonusNumber && Objects.equals(winningNumbers, that.winningNumbers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(lotto, bonusNumber);
+        return Objects.hash(winningNumbers, bonusNumber);
     }
 }
