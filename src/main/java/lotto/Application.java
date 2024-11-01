@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -28,6 +30,12 @@ public class Application {
             }
             System.out.println("당첨 번호를 입력해 주세요.");
             String winningNumberInput = Console.readLine();
+
+            List<Integer> winningNumbers = List.of(winningNumberInput.split(","))
+                    .stream()
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
