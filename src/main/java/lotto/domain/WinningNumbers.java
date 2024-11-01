@@ -20,7 +20,7 @@ public class WinningNumbers {
 
     public void setBonusNumber(int number) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 번호가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.CONTAINS_NUMBER.getMessage());
         }
         bonusNumber = number;
     }

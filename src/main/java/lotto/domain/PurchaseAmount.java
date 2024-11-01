@@ -15,13 +15,13 @@ public class PurchaseAmount {
 
     private void checkEnough(int amount) {
         if (amount < LottoConfig.PRICE.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 금액이 부족합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_AMOUNT.getMessage());
         }
     }
 
     private void checkDivisible(int amount) {
         if (amount % LottoConfig.PRICE.getValue() != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액이 로또 가격과 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE.getMessage());
         }
     }
 

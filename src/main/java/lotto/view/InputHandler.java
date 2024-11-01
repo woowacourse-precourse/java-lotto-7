@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.ErrorMessage;
 import lotto.domain.LottoConfig;
 
 public class InputHandler {
@@ -11,13 +12,13 @@ public class InputHandler {
         try {
             return Integer.parseInt(input);
         } catch (Exception exception) {
-            throw new IllegalArgumentException("[ERROR] 입력받은 값이 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
 
     public void checkNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("[ERROR] null이 입력되었습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NULL_INPUT.getMessage());
         }
     }
 
@@ -32,7 +33,7 @@ public class InputHandler {
 
     public void checkNumberRange(int number) {
         if (number < LottoConfig.MINIMUM.getValue() || number > LottoConfig.MAXIMUM.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
         }
     }
 }
