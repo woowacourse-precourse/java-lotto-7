@@ -20,14 +20,14 @@ public class LottoFormatter {
     public static String getLottoResultStr(double lottoWinMoneyRate, Map<Integer, List<LottoWinResult>> winLottoResultMap) {
         StringBuilder lottoResultStringBuilder = new StringBuilder(WIN_LOTTO_RESULT_START_MSG);
         for(LottoCalEnum lottoCalEnum : LottoCalEnum.values()){
-            lottoResultStringBuilder.append(getFormattedLottoResult(lottoCalEnum,winLottoResultMap));
+            lottoResultStringBuilder.append(formattingLottoWinResult(lottoCalEnum,winLottoResultMap));
         }
         String formattedWinRate = String.format(WIN_MONEY_RATE_FORMAT,lottoWinMoneyRate);
         lottoResultStringBuilder.append(formattedWinRate);
         return lottoResultStringBuilder.toString();
     }
 
-    private static String getFormattedLottoResult(LottoCalEnum lottoCalEnum, Map<Integer, List<LottoWinResult>> winLottoResultMap) {
+    private static String formattingLottoWinResult(LottoCalEnum lottoCalEnum, Map<Integer, List<LottoWinResult>> winLottoResultMap) {
         int winCount = lottoCalEnum.getWinCount();
         int winMoney = lottoCalEnum.getWinMoney();
         int winLottoCount = winLottoResultMap.getOrDefault(winCount,new ArrayList<>()).size();

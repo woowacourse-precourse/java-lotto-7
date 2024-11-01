@@ -26,7 +26,7 @@ public class LottoController {
 
     public String calLottos(LottoCalculateRequest lottoCalculateRequest, Lottos lottos){
         StringBuilder responseStringBuilder = new StringBuilder();
-        responseStringBuilder.append(lottoService.calLottoResult(lottos, lottoCalculateRequest));
+        responseStringBuilder.append(lottoService.calculateLottoResult(lottos, lottoCalculateRequest));
         return responseStringBuilder.toString();
     }
 }

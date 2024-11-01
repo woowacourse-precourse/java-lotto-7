@@ -23,9 +23,9 @@ public class LottoService {
         return new Lottos(lottoList);
     }
 
-    public String calLottoResult(Lottos lottos, LottoCalculateRequest lottoCalculateRequest) {
-        List<LottoWinResult> lottoWinResultList = lottos.getWinResult(lottoCalculateRequest.winningNumbers(), lottoCalculateRequest.bonusNumber());
-        double lottoWinMoneyRate = LottoCalculator.getStatisticResult(lottoWinResultList, lottoCalculateRequest.buyMoney());
+    public String calculateLottoResult(Lottos lottos, LottoCalculateRequest lottoCalculateRequest) {
+        List<LottoWinResult> lottoWinResultList = lottos.getWinResult(lottoCalculateRequest);
+        double lottoWinMoneyRate = LottoCalculator.caluateWinMoneyRate(lottoWinResultList, lottoCalculateRequest.buyMoney());
         Map<Integer, List<LottoWinResult>> winLottoResultMap = LottoCalculator.getWinLottoResultMap(lottoWinResultList);
         return LottoFormatter.getLottoResultStr(lottoWinMoneyRate,winLottoResultMap);
     }

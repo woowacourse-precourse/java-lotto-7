@@ -36,7 +36,7 @@ public class LottoCalculator {
         return winCount == LottoCriteria.BONUS_LOTTO_NUM.getCriteriaVal() && isBonus;
     }
 
-    public static double getStatisticResult(List<LottoWinResult> lottoWinResultList, int buyMoney) {
+    public static double caluateWinMoneyRate(List<LottoWinResult> lottoWinResultList, int buyMoney) {
         int winMoneySum = lottoWinResultList.stream()
                 .mapToInt((winResult) -> winResult.winMoney())
                 .sum();
@@ -44,13 +44,13 @@ public class LottoCalculator {
     }
 
     public static Map<Integer,List<LottoWinResult>> getWinLottoResultMap(List<LottoWinResult> lottoWinResultList) {
-        Map<Integer,List<LottoWinResult>> winLottoResultMap = new HashMap<>();
+        Map<Integer,List<LottoWinResult>> lottoWinCountResultMap = new HashMap<>();
 
         for(LottoWinResult lottoWinResult : lottoWinResultList){
-            List<LottoWinResult> winResultList = winLottoResultMap.getOrDefault(lottoWinResult.winCount(),new ArrayList<>());
+            List<LottoWinResult> winResultList = lottoWinCountResultMap.getOrDefault(lottoWinResult.winCount(),new ArrayList<>());
             winResultList.add(lottoWinResult);
-            winLottoResultMap.put(lottoWinResult.winCount(),winResultList);
+            lottoWinCountResultMap.put(lottoWinResult.winCount(),winResultList);
         }
-        return winLottoResultMap;
+        return lottoWinCountResultMap;
     }
 }
