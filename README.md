@@ -67,3 +67,21 @@
        ```
   - 수익률 출력(소수점 둘째 자리에서 반올림)
     - "총 수익률은 nn.n%입니다.
+   
+## 설계
+```text
+  com.lotto
+  ├── domain
+  │   ├── Lotto.java           // 로또 번호를 관리하는 도메인 객체
+  │   ├── LottoMachine.java     // 로또를 발행하고 관리하는 도메인 객체
+  │   ├── Purchase.java        // 구매 정보를 관리하는 도메인 객체
+  │   └── WinningNumbers.java   // 당첨 번호를 관리하는 도메인 객체
+  ├── service
+  │   ├── LottoService.java      // 비즈니스 로직을 처리하는 서비스 클래스
+  │   └── PurchaseService.java   // 구매 관련 비즈니스 로직을 처리하는 서비스 클래스
+  ├── controller
+  │   └── LottoController.java   // 사용자 입력을 처리하고 결과를 반환
+  └── View
+      ├── InputView.java    // 사용자 입력 관련 처리
+      └── OutputView.java  // 콘솔 출력 관련 처리
+```
