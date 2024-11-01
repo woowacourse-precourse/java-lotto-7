@@ -39,27 +39,58 @@ public class NumberLottoInputManger implements LottoInputManger {
         return validateInputBonusComponent(winningComponent, inputBonusComponent);
     }
 
+    /**
+     * @param inputprice 투입 가격에 대한 검증입니다.
+     */
 
     private int validateInputPrice(String inputprice) {
-        if (!isInteger(inputprice)) {
-            throw new IllegalArgumentException(InputError.NONE_INTEGER_INPUT_PRICE.getInstance());
-        }
+        inputPriceIsInteger(inputprice);
         int inputMoney = Integer.parseInt(inputprice);
-        if (inputMoney < LottoRule.LOTTO_PRICE.getInstance()) {
-            throw new IllegalArgumentException(InputError.NOT_ENOUGH_INPUT_PRICE.getInstance());
-        }
-        if (inputMoney % LottoRule.LOTTO_PRICE.getInstance() != 0) {
-            throw new IllegalArgumentException(InputError.NOT_DIVIDABLE_BY_LOTTO_PRICE.getInstance());
-        }
+        validateEnoughPrice(inputMoney);
+        validateDividableByLottoPrice(inputMoney);
         return inputMoney;
     }
 
+    private static void validateDividableByLottoPrice(int inputMoney) {
+        if (inputMoney % LottoRule.LOTTO_PRICE.getInstance() != 0) {
+            throw new IllegalArgumentException(InputError.NOT_DIVIDABLE_BY_LOTTO_PRICE.getInstance());
+        }
+    }
+
+    private static void validateEnoughPrice(int inputMoney) {
+        if (inputMoney < LottoRule.LOTTO_PRICE.getInstance()) {
+            throw new IllegalArgumentException(InputError.NOT_ENOUGH_INPUT_PRICE.getInstance());
+        }
+    }
+
+    private void inputPriceIsInteger(String inputprice) {
+        if (!isInteger(inputprice)) {
+            throw new IllegalArgumentException(InputError.NONE_INTEGER_INPUT_PRICE.getInstance());
+        }
+    }
+
+    /**
+     * @param winningNumber 투입한 당첨 번호에 대한 검증입니다.
+     */
     public Lotto validateInputWinningNubmer(String winningNumber) {
 
-        if (winningNumber.isBlank()) {
-            throw new IllegalArgumentException(InputError.BLANK_WINNING_NUMBER.getInstance());
-        }
+        winningNumberisNotBlanck(winningNumber);
+        validateNotAllowedNoneInteger(winningNumber);
+        validateStartOrEndsWithDelimeter(winningNumber);
 
+        return new Lotto(Arrays.stream(winningNumber.split(Delimiter.DEFAULT.getInstance()))
+                .map(Integer::parseInt)
+                .map(ComponentNumber::new)
+                .collect(Collectors.toList()));
+    }
+
+    private static void validateStartOrEndsWithDelimeter(String winningNumber) {
+        if (winningNumber.startsWith(Delimiter.DEFAULT.getInstance()) || winningNumber.endsWith(Delimiter.DEFAULT.getInstance())) {
+            throw new IllegalArgumentException(InputError.CANNOT_START_OR_END_WITH_DELIMETER.getInstance());
+        }
+    }
+
+    private void validateNotAllowedNoneInteger(String winningNumber) {
         boolean onlyAllowedNoneInteger = IntStream.range(0, winningNumber.length())
                 .allMatch(i -> {
                     char currentChar = winningNumber.charAt(i);
@@ -70,25 +101,35 @@ public class NumberLottoInputManger implements LottoInputManger {
         if (!onlyAllowedNoneInteger) {
             throw new IllegalArgumentException(InputError.NOT_ALLOWED_NONE_INTEGER.getInstance());
         }
-        if (winningNumber.startsWith(Delimiter.DEFAULT.getInstance()) || winningNumber.endsWith(Delimiter.DEFAULT.getInstance())) {
-            throw new IllegalArgumentException(InputError.CANNOT_START_OR_END_WITH_DELIMETER.getInstance());
-        }
-
-        return new Lotto(Arrays.stream(winningNumber.split(Delimiter.DEFAULT.getInstance()))
-                .map(Integer::parseInt)
-                .map(ComponentNumber::new)
-                .collect(Collectors.toList()));
     }
 
-    private BonusComponent validateInputBonusComponent(Lotto winningComponent, String inputBonusComponent) {
-        if (inputBonusComponent.isBlank()) {
-            throw new IllegalArgumentException(InputError.BLANK_BONUS_NUMBER.getInstance());
+    private static void winningNumberisNotBlanck(String winningNumber) {
+        if (winningNumber.isBlank()) {
+            throw new IllegalArgumentException(InputError.BLANK_WINNING_NUMBER.getInstance());
         }
+    }
+
+    /**
+     * @param winningComponent
+     * @param inputBonusComponent 보너스 숫자에 대한 검증입니다.
+     */
+    private BonusComponent validateInputBonusComponent(Lotto winningComponent, String inputBonusComponent) {
+        bonusNumberIsNotBlank(inputBonusComponent);
+        bonusNumberIsInteger(inputBonusComponent);
+        ComponentNumber number = new ComponentNumber(Integer.parseInt(inputBonusComponent));
+        return new BonusComponentNumber(winningComponent, number);
+    }
+
+    private void bonusNumberIsInteger(String inputBonusComponent) {
         if (!isInteger(inputBonusComponent)) {
             throw new IllegalArgumentException(InputError.NONE_INTEGER_BONUS_NUMBER.getInstance());
         }
-        ComponentNumber number = new ComponentNumber(Integer.parseInt(inputBonusComponent));
-        return new BonusComponentNumber(winningComponent, number);
+    }
+
+    private static void bonusNumberIsNotBlank(String inputBonusComponent) {
+        if (inputBonusComponent.isBlank()) {
+            throw new IllegalArgumentException(InputError.BLANK_BONUS_NUMBER.getInstance());
+        }
     }
 
 
