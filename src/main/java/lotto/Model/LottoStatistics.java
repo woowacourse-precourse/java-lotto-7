@@ -42,7 +42,9 @@ public class LottoStatistics {
 
     public double calculateProfitRate(){
         int totalPrize = calculateTotalPrize();
-        return ((double) totalPrize / purchaseAmount) * 100;
+        double profitRate = ((double) totalPrize / purchaseAmount) * 100;
+        String formattedProfitRate = String.format("%.1f", profitRate);
+        return Double.parseDouble(formattedProfitRate);
     }
 
     public Map<LottoResult, Integer> getResultCounts() {
