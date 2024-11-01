@@ -23,7 +23,7 @@ public class Lotto {
         }
     }
 
-    private void validateNumbersRange(List<Integer> numbers){
+    private void validateNumbersRange(List<Integer> numbers) {
         numbers.stream().forEach(number -> validateNumberRange(number));
     }
 
@@ -35,10 +35,12 @@ public class Lotto {
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         long distinctNumbersSize = numbers.stream().distinct().count();
-        if(distinctNumbersSize != LOTTO_SIZE){
+        if (distinctNumbersSize != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DISTINCT.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers.stream().toList();
+    }
 }
