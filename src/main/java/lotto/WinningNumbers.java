@@ -2,18 +2,21 @@ package lotto;
 
 import static lotto.constant.ErrorMessage.NOT_SIX_WINNING_NUMBER;
 
-import java.util.Collections;
 import java.util.List;
 import lotto.util.DuplicateWinningNumberException;
 
-public class Lotto {
+public class WinningNumbers {
     private final int WINNING_NUMBERS_SIZE = 6;
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-        Collections.sort(this.numbers);
+    private final List<Integer> winningNumbers;
+
+    public WinningNumbers(List<Integer> winningNumbers) {
+        validate(winningNumbers);
+        this.winningNumbers = winningNumbers;
+    }
+
+    public boolean containsBonusNumber(int bonusNumber) {
+        return winningNumbers.contains(bonusNumber);
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,10 +26,5 @@ public class Lotto {
         if (numbers.size() != numbers.stream().distinct().toList().size()) {
             throw new DuplicateWinningNumberException();
         }
-    }
-
-
-    public String printLottoNumbers() {
-        return numbers.toString();
     }
 }
