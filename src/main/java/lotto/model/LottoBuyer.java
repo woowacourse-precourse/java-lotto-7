@@ -13,11 +13,19 @@ import lotto.dto.LottoResultDto;
 
 public class LottoBuyer {
 
+    private static final double ZERO = 0.0;
+    private static final double PERCENTAGE_CONVERSION = 100.0;
     private final List<Lotto> lottos;
     private final Map<LottoGrade, Integer> result = new EnumMap<>(LottoGrade.class);
+    private final int amountUnit;
 
     public LottoBuyer(int amount, LottoManager lottoManager) {
-        lottos = lottoManager.createLottoTickets(amount);
+        this(amount, lottoManager, AMOUNT_UNIT);
+    }
+
+    public LottoBuyer(int amount, LottoManager lottoManager, int amountUnit) {
+        this.lottos = lottoManager.createLottoTickets(amount);
+        this.amountUnit = amountUnit;
         initializeResult();
     }
 
@@ -30,7 +38,6 @@ public class LottoBuyer {
     public List<LottoResultDto> calculateResult(LottoResult lottoResult) {
         for (Lotto lotto : lottos) {
             LottoDto lottoDto = lotto.toDto();
-
             LottoGrade lottoGrade = lottoResult.calculateGrade(lottoDto);
 
             if (lottoGrade != LottoGrade.NONE) {
@@ -48,21 +55,22 @@ public class LottoBuyer {
     }
 
     public double returnOnInvestment() {
-        double amount = 0;
-        for (Map.Entry<LottoGrade, Integer> entry : result.entrySet()) {
-            Integer winningCount = entry.getValue();
-            if (winningCount > 0) {
-                amount += entry.getKey().getAmount() * winningCount;
-            }
-        }
-        return calculateReturnOnInvestment(amount);
+        double totalAmount = calculateTotalWinnings();
+        return calculateReturnOnInvestment(totalAmount);
+    }
+
+    private double calculateTotalWinnings() {
+        return result.entrySet()
+                .stream()
+                .mapToDouble(entry -> entry.getKey().getAmount() * entry.getValue())
+                .sum();
     }
 
     private double calculateReturnOnInvestment(double amount) {
-        if (amount == 0) {
-            return amount;
+        if (amount == ZERO) {
+            return ZERO;
         }
-        return (amount / (lottos.size() * AMOUNT_UNIT)) * 100;
+        return (amount / (lottos.size() * amountUnit)) * PERCENTAGE_CONVERSION;
     }
 
     public List<LottoNumberListDto> getLottos() {

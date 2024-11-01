@@ -8,6 +8,7 @@ import lotto.util.generator.NumberGenerator;
 public class LottoMachine {
 
     private final NumberGenerator<List<Integer>> numberGenerator;
+    private static final int ZERO = 0;
 
     public LottoMachine(NumberGenerator<List<Integer>> numberGenerator) {
         this.numberGenerator = numberGenerator;
@@ -16,7 +17,7 @@ public class LottoMachine {
     public List<Lotto> createLotto(int count) {
         List<Lotto> lottos = new ArrayList<>(count);
 
-        for (int i = 0; i < count; i++) {
+        for (int i = ZERO; i < count; i++) {
             List<Integer> numbers = numberGenerator.generate();
             lottos.add(new Lotto(numbers));
         }
