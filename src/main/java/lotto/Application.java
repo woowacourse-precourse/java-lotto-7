@@ -16,5 +16,7 @@ public class Application {
         Budget budget = inputView.readBudget();
         Lotties lotties = LottiesFactory.purchaseLotties(budget);
         outputView.printNumberOfLotto(lotties.size());
+        outputView.printLotties(lotties);
+
     }
 }
