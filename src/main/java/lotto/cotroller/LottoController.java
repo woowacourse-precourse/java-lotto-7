@@ -11,11 +11,15 @@ public class LottoController {
     private final LottoCalculatorService lottoCalculatorService = new LottoCalculatorService();
 
     public void run() {
-        User user = setUser();
-        Lotto lotto = setWinningLotto();
+        try {
+            User user = setUser();
+            Lotto lotto = setWinningLotto();
 
-        getCalculateResult(user, lotto);
-        getProfit(user);
+            getCalculateResult(user, lotto);
+            getProfit(user);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void getProfit(User user) {
