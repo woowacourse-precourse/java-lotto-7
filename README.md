@@ -99,3 +99,4 @@ NumberCombination 구현
 interface를 적극 활용
 
 -> InputManager needs refactoring 함수가 너무 길어요
+-> Output 가격을 좀 더 잘 출력할 수 있는 부분 refactoring 대상.
