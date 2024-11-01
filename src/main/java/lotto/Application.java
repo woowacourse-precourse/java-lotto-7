@@ -1,10 +1,14 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = purchaseLottos();
+        List<Lotto> lottos = issueLottos(purchaseAmount);
     }
 
     private static int purchaseLottos() {
@@ -16,6 +20,18 @@ public class Application {
             System.out.println(e.getMessage());
             return purchaseLottos();
         }
+    }
+
+    public static List<Lotto> issueLottos(int purchaseAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount; i++) {
+            lottos.add(issueOneLotto(pickNumbers()));
+        }
+        return lottos;
+    }
+
+    public static Lotto issueOneLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private static String inputPurchaseAmount() {
@@ -45,4 +61,10 @@ public class Application {
         }
         return purchaseAmount / 1000;
     }
+
+    private static List<Integer> pickNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+
 }

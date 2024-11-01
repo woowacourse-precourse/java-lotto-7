@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -69,6 +72,23 @@ public class AdditionalApplicationTest {
                 .withMessage("[ERROR] 1000 단위의 금액을 입력해주세요.");
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 4 ,5})
+    void 랜덤넘버_6개를_뽑아_로또를_한장_발행한다(int randomNumbersIndex) {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Lotto lotto = Application.issueOneLotto(randomNumbers);
+
+        assertThat(lotto.getNumbers()).contains(randomNumbers.get(randomNumbersIndex));
+    }
+
+    @Test
+    void 구매_개수만큼_로또를_발행한다() {
+        int testNumber = 2;
+
+        List<Lotto> lottos = Application.issueLottos(testNumber);
+
+        assertThat(lottos.size()).isEqualTo(testNumber);
+    }
 
 
 }
