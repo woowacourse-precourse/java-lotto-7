@@ -5,6 +5,7 @@ import lotto.Lotto;
 import lotto.Messages.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -59,5 +60,10 @@ public class InputView {
         if(!(input >= 1 && input <= 45)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE.getError());
         }
+    }
+
+    public static boolean checkRangeList(List<Integer> numbers){
+        return numbers.stream()
+                .allMatch(number -> number >= 1 && number <= 45);
     }
 }
