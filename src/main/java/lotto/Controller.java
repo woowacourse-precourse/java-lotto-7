@@ -38,17 +38,21 @@ public class Controller {
 
     private static Lotto getWinningLotto() {
         while (true) {
+            String input = InputView.readWinningNumbers();
             try {
-                String input = InputView.readWinningNumbers();
-                Lotto lotto = Arrays.stream(input.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.collectingAndThen(Collectors.toList(), Lotto::new));
-                return lotto;
+                List<Integer> winningNumbers = parseWinningNumbers(input);
+                return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private static int getBonusNumber(Lotto winningLotto) {
