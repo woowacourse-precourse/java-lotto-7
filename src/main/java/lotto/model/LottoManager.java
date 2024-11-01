@@ -16,6 +16,8 @@ public class LottoManager {
         this.purchaseQuantity = purchaseQuantity;
     }
 
+    public PurchaseQuantity getPurchaseQuantity(){return this.purchaseQuantity;}
+
     public void setWinningLotto(Lotto winnigLotto){
         this.winnigLotto = winnigLotto;
     }
@@ -25,7 +27,7 @@ public class LottoManager {
         this.bonusNumber = bonusNumber;
     }
 
-    public void validateBonus(BonusNumber bonusNumber){
+    private void validateBonus(BonusNumber bonusNumber){
         if(winnigLotto.getNumbers().contains(bonusNumber.getBonus())) throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WINNING_NUM.getMessage());
     }
 

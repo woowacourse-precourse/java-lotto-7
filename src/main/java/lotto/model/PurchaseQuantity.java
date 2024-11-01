@@ -19,4 +19,6 @@ public class PurchaseQuantity {
         if(Integer.parseInt(price)<=Constants.Zero.getConstant()) throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
         if(Integer.parseInt(price)%Constants.DIVISOR.getConstant()!=Constants.Zero.getConstant()) throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_PRICE.getMessage());
     }
+
+    public Integer getPurchaseQuantity(){return this.purchaseQuantity;}
 }

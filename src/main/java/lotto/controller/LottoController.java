@@ -32,6 +32,7 @@ public class LottoController {
             String price = inputView.inputValue();
             try {
                 lottoManager.setPurchaseQuantity(new PurchaseQuantity(price));
+                outputView.printPurchaseLottoQuantity(lottoManager.getPurchaseQuantity().getPurchaseQuantity());
                 check = true;
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -69,5 +70,9 @@ public class LottoController {
                 System.out.println();
             }
         }
+    }
+
+    public void purchaseLotto(){ //로또 구매(발행)
+
     }
 }
