@@ -14,6 +14,6 @@ public class LottoCreateController {
 	}
 
 	public void run() {
-		
+		outputView.printPurchasePriceInputMessage();
 	}
 }
