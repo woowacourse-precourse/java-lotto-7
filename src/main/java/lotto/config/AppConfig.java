@@ -21,6 +21,7 @@ public class AppConfig {
     private OutputView outputView() {
         return new OutputView();
     }
+
     private SystemService systemService() {
         return new SystemService(lottoNumberService(), resultService(), userService());
     }
@@ -28,9 +29,11 @@ public class AppConfig {
     private UserService userService() {
         return new UserService();
     }
+
     private LottoNumberService lottoNumberService() {
         return new LottoNumberService();
     }
+
     private ResultService resultService() {
         return new ResultService();
     }
