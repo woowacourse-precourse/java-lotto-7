@@ -9,7 +9,7 @@ import java.util.List;
 public class Utils {
 
     public static int changeStringToInt(String number) {
-        Validation.checkStringToInteger(number);
+        Validation.checkInputTypeNumber(number);
         return Integer.parseInt(number);
     }
 

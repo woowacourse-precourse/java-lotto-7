@@ -1,18 +1,14 @@
 package lotto;
 
-import lotto.util.Util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static lotto.util.Util.*;
+import static lotto.util.Utils.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class UtilTest {
+class UtilsTest {
 
     private final static Integer LOTTO_NUMBER_START = 1;
     private final static Integer LOTTO_NUMBER_END = 45;
