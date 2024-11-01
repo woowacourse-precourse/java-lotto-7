@@ -13,13 +13,13 @@ public class WinningLotto {
     }
 
     private void validate(Lotto lotto, Bonus bonus) {
-        if (lotto.contains(bonus.getNumber())) {
+        if (lotto.contains(bonus.number())) {
             throw new IllegalArgumentException("중복된 번호가 존재합니다.");
         }
     }
 
     public Optional<Ranking> calculateRanking(Lotto lotto) {
         int count = this.lotto.countCommonElements(lotto);
-        return Ranking.findBy(count, lotto.contains(bonus.getNumber()));
+        return Ranking.findBy(count, lotto.contains(bonus.number()));
     }
 }
