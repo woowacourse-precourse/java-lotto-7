@@ -57,7 +57,7 @@ public class Application {
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         printPurchaseCountInputMessage(money);
         for (int i = 0; i < money; i++) {
-            List<Integer> singleLotto = Randoms.pickUniqueNumbersInRange(1,45,6);
+            List<Integer> singleLotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(singleLotto);
             lottoNumbers.add(singleLotto);
         }
