@@ -10,14 +10,16 @@ import lotto.exception.LottoException;
 import lotto.utils.Parser;
 
 public class BonusNumber {
-    private final WinningNumbers winningNumbers;
     private final int number;
 
     public BonusNumber(WinningNumbers winningNumbers, String input) {
         int number = Parser.parseBonusNumber(input);
         validateNumber(winningNumbers, number);
-        this.winningNumbers = winningNumbers;
         this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     private static void validateNumber(WinningNumbers winningNumbers, int number) {
