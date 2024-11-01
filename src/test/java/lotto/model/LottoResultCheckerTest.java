@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,9 +30,10 @@ public class LottoResultCheckerTest {
         int bonusNumber = 7;
         List<Lotto> issuedLotto = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
-        Ranking matchCount = LottoResultChecker.matchCount(winningLotto, issuedLotto, bonusNumber);
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(winningLotto, issuedLotto, bonusNumber);
+        Ranking ranking = rankingCountMap.keySet().iterator().next();
 
-        assertThat(matchCount).isEqualTo(Ranking.FIRST);
+        assertThat(ranking).isEqualTo(Ranking.FIRST);
     }
 
     @Test
@@ -41,9 +43,10 @@ public class LottoResultCheckerTest {
         int bonusNumber = 7;
         List<Lotto> issuedLotto = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
 
-        Ranking matchCount = LottoResultChecker.matchCount(winningLotto, issuedLotto, bonusNumber);
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(winningLotto, issuedLotto, bonusNumber);
+        Ranking ranking = rankingCountMap.keySet().iterator().next();
 
-        assertThat(matchCount).isEqualTo(Ranking.SECOND);
+        assertThat(ranking).isEqualTo(Ranking.SECOND);
     }
 
     @Test
@@ -53,9 +56,10 @@ public class LottoResultCheckerTest {
         int bonusNumber = 7;
         List<Lotto> issuedLotto = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
 
-        Ranking matchCount = LottoResultChecker.matchCount(winningLotto, issuedLotto, bonusNumber);
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(winningLotto, issuedLotto, bonusNumber);
+        Ranking ranking = rankingCountMap.keySet().iterator().next();
 
-        assertThat(matchCount).isEqualTo(Ranking.THIRD);
+        assertThat(ranking).isEqualTo(Ranking.THIRD);
     }
 
     @Test
@@ -65,9 +69,10 @@ public class LottoResultCheckerTest {
         int bonusNumber = 7;
         List<Lotto> issuedLotto = List.of(new Lotto(List.of(1, 2, 3, 4, 8, 9)));
 
-        Ranking matchCount = LottoResultChecker.matchCount(winningLotto, issuedLotto, bonusNumber);
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(winningLotto, issuedLotto, bonusNumber);
+        Ranking ranking = rankingCountMap.keySet().iterator().next();
 
-        assertThat(matchCount).isEqualTo(Ranking.FOURTH);
+        assertThat(ranking).isEqualTo(Ranking.FOURTH);
     }
 
     @Test
@@ -77,9 +82,10 @@ public class LottoResultCheckerTest {
         int bonusNumber = 7;
         List<Lotto> issuedLotto = List.of(new Lotto(List.of(1, 2, 3, 8, 9, 10)));
 
-        Ranking matchCount = LottoResultChecker.matchCount(winningLotto, issuedLotto, bonusNumber);
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(winningLotto, issuedLotto, bonusNumber);
+        Ranking ranking = rankingCountMap.keySet().iterator().next();
 
-        assertThat(matchCount).isEqualTo(Ranking.FIFTH);
+        assertThat(ranking).isEqualTo(Ranking.FIFTH);
     }
 
     @Test
@@ -89,8 +95,9 @@ public class LottoResultCheckerTest {
         int bonusNumber = 7;
         List<Lotto> issuedLotto = List.of(new Lotto(List.of(1, 2, 8, 9, 10, 11)));
 
-        Ranking matchCount = LottoResultChecker.matchCount(winningLotto, issuedLotto, bonusNumber);
+        Map<Ranking, Integer> rankingCountMap = LottoResultChecker.calculateRankingCount(winningLotto, issuedLotto, bonusNumber);
+        Ranking ranking = rankingCountMap.keySet().iterator().next();
 
-        assertThat(matchCount).isEqualTo(Ranking.NONE);
+        assertThat(ranking).isEqualTo(Ranking.NONE);
     }
 }
