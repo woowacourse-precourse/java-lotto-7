@@ -1,7 +1,8 @@
 package lotto.utils.validator;
 
 import static lotto.exception.ErrorMessages.EMPTY_INPUT;
-import static lotto.exception.ErrorMessages.NOT_SIX_NUMBERS;
+import static lotto.exception.ErrorMessages.NUMBER_COUNT_MISMATCH;
+import static lotto.constants.LottoConstants.NUMBERS_PER_LOTTO;
 
 public class WinningNumbersValidator implements Validator<String> {
     private final String DELIMITER = ",";
@@ -35,8 +36,8 @@ public class WinningNumbersValidator implements Validator<String> {
             validateEachRawWinningNumber(rawWinningNumber);
         }
 
-        if (rawWinningNumberList.length != 6) {
-            throw new IllegalArgumentException(NOT_SIX_NUMBERS.getMessage());
+        if (rawWinningNumberList.length != NUMBERS_PER_LOTTO.getValue()) {
+            throw new IllegalArgumentException(String.format(NUMBER_COUNT_MISMATCH.getMessage(), NUMBERS_PER_LOTTO.getValue()));
         }
     }
 

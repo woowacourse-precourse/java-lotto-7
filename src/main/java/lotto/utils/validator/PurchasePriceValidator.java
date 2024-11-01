@@ -1,10 +1,11 @@
 package lotto.utils.validator;
 
 import static lotto.exception.ErrorMessages.BEYOND_LIMIT;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.PURCHASE_LIMIT;
 
 public class PurchasePriceValidator implements Validator<String> {
-    private final int LOTTO_PRICE = 1000;
-    private final int PURCHASE_LIMIT = 100000;
+
     private final Validator<String> positiveIntValidator;
 
     public PurchasePriceValidator(Validator<String> positiveIntValidator) {
@@ -21,13 +22,13 @@ public class PurchasePriceValidator implements Validator<String> {
     }
 
     private void validateDividedByLottoPrice (int purchasePrice) {
-        if (purchasePrice % LOTTO_PRICE != 0){
+        if (purchasePrice % LOTTO_PRICE.getValue() != 0){
             throw new IllegalArgumentException();
         }
     }
 
     private void validateNotBeyondPurchaseLimit (int purchasePrice) {
-        if (purchasePrice > PURCHASE_LIMIT){
+        if (purchasePrice > PURCHASE_LIMIT.getValue()){
             throw new IllegalArgumentException(String.format(BEYOND_LIMIT.getMessage(), PURCHASE_LIMIT));
         }
     }
