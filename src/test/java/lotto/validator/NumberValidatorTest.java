@@ -50,4 +50,13 @@ public class NumberValidatorTest {
             winningNumbersValidator.validateWinningNumbers();
         }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호가 중복되었습니다.");
     }
+
+    @Test
+    @DisplayName("로또 번호가 1 ~ 45 사이인지 확인하는 함수")
+    void 로또_번호_범위_테스트() {
+        winningNumbersValidator = new NumbersValidator("1,45,-1,50,100,2");
+        assertThatThrownBy(() -> {
+            winningNumbersValidator.validateWinningNumbers();
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호는 1 ~ 45 사이 숫자이어야 합니다.");
+    }
 }
