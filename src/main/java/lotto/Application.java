@@ -1,9 +1,14 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
+
 public class Application {
     public static final String CREDIT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     public static int pieces;
+    public static List<Lotto> lottos;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println(CREDIT_MESSAGE);
@@ -16,6 +21,7 @@ public class Application {
             int newCredit = Integer.parseInt(Console.readLine());
             pieces = checkCredit(newCredit);
         }
+        publishLotto();
     }
 
     public static int checkCredit(int credit) throws IllegalArgumentException {
@@ -23,5 +29,13 @@ public class Application {
             throw new IllegalArgumentException(NOT_MULTIPLE_1000);
         }
         return credit / 1000;
+    }
+
+    public static void publishLotto() throws IllegalArgumentException {
+        for(int i=0; i<pieces; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
     }
 }

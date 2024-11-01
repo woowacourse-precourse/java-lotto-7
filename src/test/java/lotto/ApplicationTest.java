@@ -69,7 +69,6 @@ class ApplicationTest extends NsTest {
         assertThat(Application.checkCredit(8000)).isEqualTo(8);
     }
 
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
