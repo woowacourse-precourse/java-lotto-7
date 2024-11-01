@@ -1,10 +1,13 @@
 package domain;
 
-import common.ErrorMessage;
+import java.util.Arrays;
+import common.validate.ErrorMessage;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (isNonSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_SIZE_ERROR_MESSAGE.toString());
         }
 
@@ -41,8 +44,18 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    private boolean isNonSize(List<Integer> numbers) {
+        return numbers.size() != LOTTO_SIZE;
+    }
+
     private boolean isDuplicate(List<Integer> numbers) {
         HashSet<Integer> duplicate = new HashSet<>(numbers);
-        return duplicate.size() < 6;
+        return duplicate.size() < LOTTO_SIZE;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(
+                numbers.stream().sorted().toArray());
     }
 }
