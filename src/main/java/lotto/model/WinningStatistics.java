@@ -23,4 +23,8 @@ public class WinningStatistics {
                 .filter(winningNumbers::contains)
                 .count();
     }
+
+    public boolean checkBonusMatch(Lotto lotto, WinningNumbers winningNumbers) {
+        return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+    }
 }
