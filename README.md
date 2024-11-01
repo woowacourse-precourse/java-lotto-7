@@ -68,13 +68,13 @@ int 보너스 번호
 ### BuyingAmountValidator
 - [x] **public int validateBuyingAmount(String input)**
 \: 구입 금액 입력 검증 기능 
-  - [x] validateLength()를 호출해 입력의 길이 검증 (입력 값이 int 범위를 초과해 Integer.parseInt() 호출 시 오버 플로우가 발생하는 경우를 막기 위함)
+  - [x] `validateLength()`를 호출해 입력의 길이 검증 (입력 값이 int 범위를 초과해 `Integer.parseInt()` 호출 시 오버 플로우가 발생하는 경우를 막기 위함)
     - [x] 길이가 6보다 큰 경우 10만원 이내일 수 없으므로 예외 발생
-  - [x] validateFormat()을 호출해 입력이 숫자 형태인지 여부 검증
-  - [x] validateRange()를 호출해 입력이 1000원 이상, 10만원 이하인지 검증
+  - [x] `validateFormat()`을 호출해 입력이 숫자 형태인지 여부 검증
+  - [x] `validateRange()`를 호출해 입력이 1000원 이상, 10만원 이하인지 검증
     - [x] 입력이 1000원 이상 10만원 이하라면 이를 int 타입으로 파싱해 반환
     - [x] 입력이 범위 밖이라면 예외 발생
-  - [x] validateDivisionIntoThousand()를 호출해 입력이 1000으로 나누어 떨어지는지 검증
+  - [x] `validateDivisionIntoThousand()`를 호출해 입력이 1000으로 나누어 떨어지는지 검증
     - [x] 나누어 떨어지지 않는다면 예외 발생
 
 ### enum WinningPrize
@@ -83,9 +83,12 @@ int standard
 int amount
 
 ### InputView
-- [ ]  구입 금액을 입력받는 기능
-    - [ ]  `구입금액을 입력해 주세요.` 출력
-    - [ ]  `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 구입 금액 입력받기
+- [x]  **public int getBuyingAmount()** \: 구입 금액을 입력받는 기능
+    - [x] `구입금액을 입력해 주세요.` 출력
+    - [x] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 구입 금액 입력받기
+    - [x] `BuyingAmountValidator.validateBuyingAmount()`를 호출하여 입력 값 검증
+      - [x] 검증 결과 유효하지 않은 입력인 경우 재귀 호출하여 금액을 다시 입력받기
+      - [x] 유효한 입력인 경우 해당 입력을 int 타입으로 파싱한 결과를 리턴
 - [ ]  당첨 번호를 입력받는 기능
     - [ ]  `당첨 번호를 입력해 주세요.` 출력
     - [ ]  `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 당첨 번호 입력받기
