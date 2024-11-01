@@ -25,17 +25,9 @@ public class Generate {
     }
 
     public List<Integer> getSubGame() {
-        List<Integer> list = new ArrayList<>();
+        List<Integer> subGame = Randoms.pickUniqueNumbersInRange(Constant.LOTTO_START, Constant.LOTTO_END, 6);
+        Collections.sort(subGame);
 
-        while (list.size() < Constant.LOTTO_ONE_LINE) {
-            int randomNum = Randoms.pickNumberInRange(Constant.LOTTO_START, Constant.LOTTO_END);
-            if (!list.contains(randomNum)) {
-                list.add(randomNum);
-            }
-        }
-
-        Collections.sort(list);
-
-        return list;
+        return subGame;
     }
 }
