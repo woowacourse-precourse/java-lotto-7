@@ -21,4 +21,8 @@ public enum Rank {
         this.prize = prize;
         this.checkRank = checkRank;
     }
+
+    public boolean checkRank(int matchCount, boolean isBonusMatch) {
+        return checkRank.apply(matchCount, isBonusMatch);
+    }
 }
