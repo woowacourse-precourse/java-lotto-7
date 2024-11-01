@@ -11,19 +11,19 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class InputValidatorTest {
 
-    @DisplayName("입력값이 비어 있거나 공백일 때 예외 발생")
+    @DisplayName("[ERROR] 입력값은 비어 있을 수 없습니다.")
     @ParameterizedTest
     @CsvSource({
-            "'', EMPTY_INPUT_INVALID",    // 빈 문자열
-            "'   ', EMPTY_INPUT_INVALID"  // 공백 문자열
+            "'', '[ERROR] 입력값은 비어 있을 수 없습니다.'",    // 빈 문자열
+            "'   ', '[ERROR] 입력값은 비어 있을 수 없습니다.'"  // 공백 문자열
     })
-    void validateNotEmpty_WhenInputEmptyOrBlank_ShouldThrowException(String input, String errorMessage) {
+    void validateNotEmpty_WhenInputEmptyOrBlank_ShouldThrowException(String input, String expectedMessage) {
         assertThatThrownBy(() -> InputValidator.validateNotEmpty(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.valueOf(errorMessage).getMessage());
+                .hasMessage(expectedMessage);
     }
 
-    @DisplayName("입력값이 null일 때 예외 발생")
+    @DisplayName("[ERROR] 입력값은 비어 있을 수 없습니다.")
     @Test
     void validateNotEmpty_WhenInputIsNull_ShouldThrowException() {
         assertThatThrownBy(() -> InputValidator.validateNotEmpty(null))
@@ -41,16 +41,16 @@ public class InputValidatorTest {
         assertThatNoException().isThrownBy(() -> InputValidator.validateNotEmpty(input));
     }
 
-    @DisplayName("구매 금액이 1,000원 단위가 아닐 때 예외 발생")
+    @DisplayName("[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.")
     @ParameterizedTest
     @CsvSource({
-            "1500, PURCHASE_AMOUNT_INVALID",  // 1,000원으로 나누어떨어지지 않음
-            "250, PURCHASE_AMOUNT_INVALID"    // 1,000원 단위가 아님
+            "1500, '[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.'",  // 1,000원으로 나누어떨어지지 않음
+            "250, '[ERROR] 구입 금액은 양수이며 1,000원 단위여야 합니다.'"    // 1,000원 단위가 아님
     })
-    void validatePurchaseAmount_WhenNotThousandUnit_ShouldThrowException(int amount, String errorMessage) {
+    void validatePurchaseAmount_WhenNotThousandUnit_ShouldThrowException(int amount, String expectedMessage) {
         assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.valueOf(errorMessage).getMessage());
+                .hasMessage(expectedMessage);
     }
 
     @DisplayName("구매 금액이 1,000원 단위일 때 예외 발생하지 않음")
