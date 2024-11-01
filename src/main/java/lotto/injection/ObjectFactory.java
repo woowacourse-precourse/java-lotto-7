@@ -13,6 +13,7 @@ import lotto.view.OutputView;
 public class ObjectFactory {
 
     private final InputValidator inputValidator = new InputValidator();
+    private final InputParser inputParser = new InputParser();
 
     public final PurchaseAmountController purchaseAmountController() {
         InputView inputView = new InputView();
@@ -26,12 +27,11 @@ public class ObjectFactory {
     }
 
     public final PurchaseAmountService purchaseAmountService() {
-        InputParser inputParser = new InputParser();
         LotteryMachineModel lotteryMachineModel = new LotteryMachineModel();
         return new PurchaseAmountService(inputValidator, inputParser, lotteryMachineModel);
     }
 
     public final WinnerNumberService winnerNumberService() {
-        return new WinnerNumberService(inputValidator);
+        return new WinnerNumberService(inputValidator, inputParser);
     }
 }
