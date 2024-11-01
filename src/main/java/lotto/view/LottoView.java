@@ -18,6 +18,8 @@ public class LottoView {
 
     //구입금액 입력
     public int inputPurchaseAmountProcess() {
+        System.out.println(PURCHASE_AMOUNT_MESSAGE);
+
         while (true) {
             try {
                 int purchaseAmount = inputAndValidateNumberForm();
@@ -47,8 +49,34 @@ public class LottoView {
 
     }
 
+    public void outputBuyLottoMessage(int purchaseAmount) {
+        int amountCount = purchaseAmount / 1000;
+        System.out.println();
+        System.out.println(amountCount + "개를 구매했습니다.");
+
+    }
+
     public void outputLottoNumbers(Lotto lotto) {
         System.out.println(lotto.getNumbers());
+
+    }
+
+    public void outputWinningNumbersMessage() {
+        System.out.println();
+        System.out.println(WINNING_NUMBER_MESSAGE);
+
+    }
+
+    public void outputBonusNumberInputMessage() {
+        System.out.println();
+        System.out.println(BONUS_NUMBER_MESSAGE);
+
+    }
+
+    public void outputWinningStatisticsStart() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
 
     }
 
@@ -117,7 +145,7 @@ public class LottoView {
             if (bonusNumber < 1 || bonusNumber > 45) throw new IllegalArgumentException("1부터 45사이의 숫자가 아닙니다.");
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 아닙니다.");
+            throw new IllegalArgumentException("자연수가 아닙니다.");
         }
     }
 

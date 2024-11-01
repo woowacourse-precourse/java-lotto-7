@@ -33,4 +33,7 @@ public class Lotto {
         return this.numbers;
     }
 
+    public boolean isBonusNumInLotto(int bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
 }
