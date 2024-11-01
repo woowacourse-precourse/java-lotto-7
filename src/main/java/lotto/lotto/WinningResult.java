@@ -3,6 +3,8 @@ package lotto.lotto;
 import static lotto.lotto.Rank.initializeRankCounts;
 
 import java.util.EnumMap;
+import lotto.exception.CustomException;
+import lotto.exception.ExceptionMessage;
 
 public class WinningResult {
 
@@ -11,6 +13,7 @@ public class WinningResult {
     private final EnumMap<Rank, Integer> rankCounts;
 
     public WinningResult(WinningNumbers winningNumbers, Number bonusNumber) {
+        validateBonusNumber(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.rankCounts = initializeRankCounts();
@@ -32,5 +35,11 @@ public class WinningResult {
 
     public EnumMap<Rank, Integer> getRankCounts() {
         return rankCounts;
+    }
+
+    private void validateBonusNumber(WinningNumbers winningNumbers, Number bonusNumber) {
+        if (winningNumbers.containsNumber(bonusNumber)) {
+            throw new CustomException(ExceptionMessage.DUPLICATE_BONUS_NUMBER);
+        }
     }
 }

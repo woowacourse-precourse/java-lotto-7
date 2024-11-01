@@ -15,4 +15,8 @@ public class WinningNumbers {
                 .filter(number -> winningNumbers.getNumbers().contains(number))
                 .count();
     }
+
+    public boolean containsNumber(Number number) {
+        return winningNumbers.containsNumber(number);
+    }
 }
