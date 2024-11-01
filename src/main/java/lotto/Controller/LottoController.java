@@ -15,7 +15,6 @@ public class LottoController {
         List<Lotto> lottos=purchase_Lotto();
         UserLotto userLotto=UserLotto();
 
-
     }
 
     private List<Lotto> purchase_Lotto(){

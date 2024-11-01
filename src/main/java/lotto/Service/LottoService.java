@@ -1,6 +1,7 @@
 package lotto.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.View.OutputView;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.RankResult;
@@ -18,6 +19,7 @@ public class LottoService {
         purchase_amount=purchase_amount;
         List<Lotto> lottos = new ArrayList<>();
         int lotto_count=LottoNumber(purchase_amount);
+        OutputView.print_purchase_count(lotto_count);
         for(int i=0;i<lotto_count;i++){
             lottos.add(getGenerateLotto());
         }
