@@ -5,6 +5,7 @@ import java.util.List;
 
 import lotto.Lotto;
 import lotto.answer.Answer;
+import lotto.answer.LottoRank;
 import lotto.provider.LottoProvider;
 import lotto.user.User;
 
@@ -25,6 +26,10 @@ public class Validator {
 		for (Lotto lotto : pickedLottos) {
 			int matchCounts = lotto.checkLottoResult(answer);
 			boolean hasBonus = lotto.hasBonusLotto(answer);
+			LottoRank rankByMatch = LottoRank.findRankByMatch(matchCounts, hasBonus);
+			if (rankByMatch != null) {
+				user.updateRank(rankByMatch);
+			}
 		}
 	}
 }
