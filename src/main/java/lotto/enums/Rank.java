@@ -31,13 +31,4 @@ public enum Rank {
     public int getAmount() {
         return amount;
     }
-
-    public static Rank findRank(int matchCount, boolean matchBonus) {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank != NONE)
-                .filter(rank -> rank.correctCount == matchCount)
-                .filter(rank -> !rank.bonusCheck || (rank.bonusCheck && matchBonus))
-                .findFirst()
-                .orElse(NONE);
-    }
 }
