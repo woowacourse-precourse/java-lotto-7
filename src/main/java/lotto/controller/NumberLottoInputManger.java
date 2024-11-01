@@ -45,11 +45,11 @@ public class NumberLottoInputManger implements LottoInputManger {
             throw new IllegalArgumentException(InputError.NONE_INTEGER_INPUT_PRICE.getInstance());
         }
         int inputMoney = Integer.parseInt(inputprice);
-        if (inputMoney % LottoRule.LOTTO_PRICE.getInstance() != 0) {
-            throw new IllegalArgumentException(InputError.NOT_DIVIDABLE_BY_LOTTO_PRICE.getInstance());
-        }
         if (inputMoney < LottoRule.LOTTO_PRICE.getInstance()) {
             throw new IllegalArgumentException(InputError.NOT_ENOUGH_INPUT_PRICE.getInstance());
+        }
+        if (inputMoney % LottoRule.LOTTO_PRICE.getInstance() != 0) {
+            throw new IllegalArgumentException(InputError.NOT_DIVIDABLE_BY_LOTTO_PRICE.getInstance());
         }
         return inputMoney;
     }
