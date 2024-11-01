@@ -26,7 +26,7 @@ class InputViewTest {
     @Test
     @DisplayName("구입 금액 입력 - 1000원 단위의 입력을 정상적으로 받아 처리한다.")
     void inputPurchaseAmount_Valid() {
-        provideInput("8000\n"); // Mocking user input of 8000
+        provideInput("8000\n");
         int amount = InputView.inputPurchaseAmount();
         assertThat(amount).isEqualTo(8000);
     }
@@ -34,7 +34,7 @@ class InputViewTest {
     @Test
     @DisplayName("구입 금액 입력 - 1000원 단위가 아닌 경우 예외를 발생시킨다.")
     void inputPurchaseAmount_Invalid() {
-        provideInput("7500\n"); // Mocking user input of 7500
+        provideInput("7500\n");
         assertThatThrownBy(InputView::inputPurchaseAmount)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT);
@@ -43,7 +43,7 @@ class InputViewTest {
     @Test
     @DisplayName("당첨 번호 입력 - 6개의 유효한 당첨 번호를 입력받아 처리한다.")
     void inputWinningNumbers_Valid() {
-        provideInput("1,2,3,4,5,6\n"); // Mocking user input of "1,2,3,4,5,6"
+        provideInput("1,2,3,4,5,6\n");
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
         assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
@@ -60,7 +60,7 @@ class InputViewTest {
     @Test
     @DisplayName("당첨 번호 입력 - 1~45의 범위를 벗어난 숫자를 입력 시 예외를 발생시킨다.")
     void inputWinningNumbers_OutOfRange() {
-        provideInput("1,2,3,4,5,46\n"); // Mocking user input of "1,2,3,4,5,46"
+        provideInput("1,2,3,4,5,46\n");
         assertThatThrownBy(InputView::inputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE);
@@ -69,16 +69,18 @@ class InputViewTest {
     @Test
     @DisplayName("보너스 번호 입력 - 1~45 사이의 보너스 번호를 정상적으로 입력받아 처리한다.")
     void inputBonusNumber_Valid() {
-        provideInput("7\n"); // Mocking user input of 7
-        int bonusNumber = InputView.inputBonusNumber();
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        provideInput("7\n");
+        int bonusNumber = InputView.inputBonusNumber(winningNumbers);
         assertThat(bonusNumber).isEqualTo(7);
     }
 
     @Test
     @DisplayName("보너스 번호 입력 - 1~45 범위를 벗어난 경우 예외를 발생시킨다.")
     void inputBonusNumber_OutOfRange() {
-        provideInput("50\n"); // Mocking user input of 50 (out of range)
-        assertThatThrownBy(InputView::inputBonusNumber)
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        provideInput("50\n");
+        assertThatThrownBy(() -> InputView.inputBonusNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NUMBER_OUT_OF_RANGE);
     }
@@ -86,9 +88,21 @@ class InputViewTest {
     @Test
     @DisplayName("보너스 번호 입력 - 보너스 번호가 1개 이상 입력된 경우 예외를 발생시킨다.")
     void inputBonusNumber_MultipleNumbers() {
-        provideInput("7,8\n"); // Mocking user input of "7,8" (more than one number)
-        assertThatThrownBy(InputView::inputBonusNumber)
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6); // 예시 당첨 번호
+        provideInput("7,8\n");
+        assertThatThrownBy(() -> InputView.inputBonusNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_BONUS_NUMBER);
     }
+    @Test
+    @DisplayName("보너스 번호 입력 - 당첨 번호와 중복되는 경우 예외를 발생시킨다.")
+    void inputBonusNumber_Duplicate() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6); // 예시 당첨 번호
+        provideInput("3\n"); // Mocking user input of "3" (duplicate)
+
+        assertThatThrownBy(() -> InputView.inputBonusNumber(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+    }
+
 }

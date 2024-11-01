@@ -43,7 +43,7 @@ public class InputView {
     }
 
     // 1-3. 보너스 번호 입력 메서드
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = Console.readLine();
         String[] numbers = input.split(",");
@@ -56,6 +56,12 @@ public class InputView {
         if (bonusNumber < 1 || bonusNumber > 45) { // 1 ~ 45 범위를 벗어나면 예외 발생
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE);
         }
+        validateBonusNumber(winningNumbers, bonusNumber);
         return bonusNumber;
+    }
+    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+        }
     }
 }
