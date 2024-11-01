@@ -23,6 +23,9 @@ public class Application {
 
         Lotto lotto = new Lotto(splitWinningNumbers(inputWinningNumbers()));
         BonusBall bonusNumber = new BonusBall(parseToInt(inputBonusNumber()), lotto.getNumbers());
+
+        int[] results = calculateStatistics(lotto.getNumbers() , bonusNumber.getBonusNumber(), lottoNumbers);
+        printStatistics(results, money);
     }
 
     private static String readLine() {
@@ -72,7 +75,7 @@ public class Application {
     }
 
     private static String inputWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
@@ -85,7 +88,7 @@ public class Application {
     }
 
     private static String inputBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
@@ -119,6 +122,21 @@ public class Application {
             }
         }
         return matchCount;
+    }
+
+    private static void printStatistics(int[] results, int moneySpent) {
+        int totalPrize = 0;
+        System.out.println("\n당첨 통계\n---");
+
+        for (PrizeType prizeType : PrizeType.values()) {
+            int count = results[prizeType.ordinal()];
+            int prizeAmount = prizeType.getPrizeMoney();
+            totalPrize += count * prizeAmount;
+            System.out.printf("%s%s - %d개\n", prizeType.getMatching(), prizeType.getPrize(), count);
+        }
+
+        double profitRate = ((double) totalPrize / (moneySpent * 1000)) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
 }
