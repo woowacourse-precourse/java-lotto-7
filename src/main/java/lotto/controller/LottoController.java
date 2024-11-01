@@ -23,9 +23,9 @@ public class LottoController {
         LottoTicket lottoTicket = buyLottoTicket();
         lottoOutputView.printLottoCount(lottoTicket.getLottosCount());
         lottoOutputView.printLottoTicket(lottoTicket.getLottoTicketNumbers());
+
         WinningLotto winningLotto = makeWinningNumber();
         addBunusNumber(winningLotto);
-
     }
 
     private void addBunusNumber(WinningLotto winningLotto) {

@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.model.LottoStore.LOTTO_NUMBER_MAXIMUM;
+import static lotto.model.LottoStore.LOTTO_NUMBER_MINIMUM;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
@@ -28,6 +31,23 @@ public class WinningLotto extends Lotto {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         return new WinningLotto(numbers);
+    }
+
+    public void addBonusNumber(String bonusNum) {
+        int bonusNumber = validateBonusNumber(bonusNum);
+        this.bonusNum = bonusNumber;
+    }
+
+
+    private int validateBonusNumber(String bonusNumber) {
+        Validator.isEmptyInput(bonusNumber);
+        Validator.isDigitString(bonusNumber);
+        Validator.isInteger(bonusNumber);
+
+        int bonusNumberInt = Integer.parseInt(bonusNumber);
+        Validator.isNumberWithinRange(bonusNumberInt, LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM);
+        Validator.isNotInList(super.getNumbers(), bonusNumberInt);
+        return bonusNumberInt;
     }
 
     private static List<String> parseEachNumber(String winningNumber) {
