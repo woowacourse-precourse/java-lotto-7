@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.domain.LottoInfo.END_NUMBER;
+import static lotto.domain.LottoInfo.PICK_COUNT;
 import static lotto.domain.LottoInfo.START_NUMBER;
 
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final String NUMBER_COUNT_NOT_VALID = "[ERROR] 로또 번호 개수가 일치하지 않습니다.";
     private static final String NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호의 숫자 범위를 벗어납니다.";
     private static final String NUMBER_DUPLICATED = "[ERROR] 번호에 중복이 존재합니다.";
 
@@ -19,9 +21,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        checkNumberCount(numbers);
         for (int number : numbers) {
             checkNumberRange(number);
         }
@@ -31,6 +31,12 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public void showNumbers() {
         System.out.println(numbers);
+    }
+
+    private void checkNumberCount(List<Integer> numbers) {
+        if (numbers.size() != PICK_COUNT) {
+            throw new IllegalArgumentException(NUMBER_COUNT_NOT_VALID);
+        }
     }
 
     public static void checkNumberRange(int number) {
