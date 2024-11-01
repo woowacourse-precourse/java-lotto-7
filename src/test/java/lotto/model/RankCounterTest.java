@@ -34,4 +34,23 @@ class RankCounterTest {
         // then
         assertThat(rankCounter.getRankCount(rank)).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("RankCounter의 count가 1씩 증가하는지 확인: 복수 Rank")
+    void increaseRankCount_multipleRanks() {
+        // given
+        RankCounter rankCounter = RankCounter.create();
+        Rank firstRank = Rank.FIRST_PLACE;
+        Rank secondRank = Rank.SECOND_PLACE;
+        Rank thirdRank = Rank.THIRD_PLACE;
+
+        // when
+        rankCounter.increaseRankCount(firstRank);
+        rankCounter.increaseRankCount(secondRank);
+
+        // then
+        assertThat(rankCounter.getRankCount(firstRank)).isEqualTo(1);
+        assertThat(rankCounter.getRankCount(secondRank)).isEqualTo(1);
+        assertThat(rankCounter.getRankCount(thirdRank)).isEqualTo(0);
+    }
 }
