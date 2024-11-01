@@ -17,25 +17,27 @@ public class LottoController {
     }
 
     public void play(){
-        handleUserInputError();
+        String amountInput = handleAmountError();
     }
 
-    public void handleUserInputError(){
+    public String handleAmountError(){
         boolean validInput = false;
-
+        String amount="";
         while (!validInput) {
             try {
                 outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
-                String amount= inputView.readInput();
+                amount= inputView.readInput();
 
-                validInput=validationManager.isEmptyInput(amount, validationManager.NON_NUMERIC_ERROR);
-                validInput=validationManager.isNumber(amount,validationManager.EMPTY_INPUT_ERROR);
+                validationManager.isEmptyInput(amount, validationManager.NON_NUMERIC_ERROR);
+                validationManager.isNumber(amount,validationManager.EMPTY_INPUT_ERROR);
                 validInput=validationManager.isDivideByThousand(amount,validationManager.NOT_DIVISIBLE_BY_THOUSAND_ERROR);
 
             } catch (IllegalArgumentException e) {
-                // 잘못된 입력에 대한 예외를 처리하고 다시 입력을 요청
                 System.out.println(e.getMessage());
             }
         }
+
+        return amount;
+
     }
 }
