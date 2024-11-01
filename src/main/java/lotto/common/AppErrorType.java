@@ -1,4 +1,4 @@
-package lotto.common.error;
+package lotto.common;
 
 import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
@@ -6,7 +6,7 @@ import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
 import static lotto.common.AppConstant.SPLIT_DELIMITER;
 
-public enum InputErrorType {
+public enum AppErrorType {
     BONUS_NUMBER_DUPLICATE_ERROR("당첨 번호와 중복되지 않는 번호를 입력해주세요."),
     PARSE_NUMBER_ERROR("정수를 입력해주세요."),
     NEGATIVE_NUMBER_ERROR("양수 값을 입력해주세요."),
@@ -18,7 +18,7 @@ public enum InputErrorType {
 
     private final String message;
 
-    InputErrorType(String message) {
+    AppErrorType(String message) {
         this.message = message;
     }
 

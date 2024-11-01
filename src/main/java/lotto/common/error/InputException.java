@@ -1,9 +1,11 @@
 package lotto.common.error;
 
-public class InputException extends IllegalArgumentException {
-    private final InputErrorType inputError;
+import lotto.common.AppErrorType;
 
-    public InputException(InputErrorType inputError) {
+public class InputException extends IllegalArgumentException {
+    private final AppErrorType inputError;
+
+    public InputException(AppErrorType inputError) {
         this.inputError = inputError;
     }
 
