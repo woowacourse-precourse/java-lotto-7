@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import lotto.domain.lotto.vo.LottoNumber;
-import lotto.domain.rank.Rank;
+import lotto.domain.rank.vo.Rank;
 import lotto.infrastructure.constant.ExceptionMessage;
 import lotto.infrastructure.constant.LottoLimit;
 import lotto.infrastructure.exception.CustomException;
