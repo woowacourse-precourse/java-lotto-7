@@ -8,6 +8,7 @@ public enum ValidateMessage {
     DUPLICATE_ERROR("서로 다른 숫자를 입력해주세요.")
     ;
 
+    private static final String PREFIX = "[ERROR] ";
     private final String message;
 
     ValidateMessage(String message) {
@@ -15,8 +16,6 @@ public enum ValidateMessage {
     }
 
     public String getMessage() {
-        //Enum class 에서는 static final 쓸 수 없나?
-        String prefix = "[ERROR] ";
-        return prefix + message;
+        return PREFIX + message;
     }
 }
