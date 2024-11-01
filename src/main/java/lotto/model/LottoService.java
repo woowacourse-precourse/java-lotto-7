@@ -11,7 +11,8 @@ import java.util.List;
 public class LottoService {
     private List<Lotto> lottos = new ArrayList<>();
 
-    public LottoService() {}
+    public LottoService() {
+    }
 
     public List<Lotto> getLottos(int numOfTickets) {
         for (int i = 0; i < numOfTickets; i++) {
