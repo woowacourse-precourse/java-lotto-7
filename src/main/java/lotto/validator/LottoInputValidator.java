@@ -21,7 +21,7 @@ public class LottoInputValidator {
 
     public int checkInputMoney(String input) throws IllegalArgumentException {
 
-        int money = -1;
+        int money;
         try {
             money = Integer.parseInt(input);
             if(money % 1000 != 0)
