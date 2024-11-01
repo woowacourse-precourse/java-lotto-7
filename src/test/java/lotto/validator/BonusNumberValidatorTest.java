@@ -6,9 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumberValidatorTest {
@@ -34,6 +32,6 @@ class BonusNumberValidatorTest {
 
         assertThatThrownBy(() -> BonusNumberValidator.validate(winningLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다..");
+                .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 }
