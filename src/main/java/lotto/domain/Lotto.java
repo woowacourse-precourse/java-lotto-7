@@ -23,6 +23,10 @@ public class Lotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
+    public boolean hasBonusNumber(BonusNumber number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);

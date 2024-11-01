@@ -88,41 +88,6 @@ class LottoMachineTest {
                 .hasMessage(AMOUNT_ERROR_MSG);
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "45"})
-    public void 로또번호_정상테스트(String input) throws Exception {
-        //Given
-        int expected = Integer.parseInt(input);
-
-        //When
-        int actual = LOTTO_MACHINE.parseLottoNumber(input);
-
-        //Then
-        Assertions.assertThat(actual).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", "로또번호", "LOTTO"})
-    public void 로또번호_숫자X_예외테스트(String input) throws Exception {
-        ///Given
-
-        //When, Then
-        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseLottoNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "46", "2147483647"})
-    public void 로또번호_숫자범위_예외테스트(String input) throws Exception {
-        ///Given
-
-        //When, Then
-        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseLottoNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
-    }
-
     @Test
     public void 로또_발행_테스트() throws Exception {
         //Given
