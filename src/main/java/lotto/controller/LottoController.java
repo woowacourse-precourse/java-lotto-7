@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoTicket;
+import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
@@ -22,13 +23,14 @@ public class LottoController {
         LottoTicket lottoTicket = buyLottoTicket();
         lottoOutputView.printLottoCount(lottoTicket.getLottosCount());
         lottoOutputView.printLottoTicket(lottoTicket.getLottoTicketNumbers());
-        makeWinnigNumber();
+        makeWinningNumber();
     }
 
-    private void makeWinnigNumber() {
+    private WinningLotto makeWinningNumber() {
         while (true) {
             try {
                 String winningNumber = lottoInputView.getWinningNumber();
+                return lottoService.createWinningLotto(winningNumber);
             } catch (IllegalArgumentException exception) {
             }
         }
