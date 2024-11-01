@@ -25,7 +25,6 @@ public class Lottos {
 
     public List<Integer> createLottoNumber() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6); // TODO: 클래스분리?
-        Collections.sort(lottoNumber);
         return lottoNumber;
     }
 

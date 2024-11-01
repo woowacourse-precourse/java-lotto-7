@@ -1,12 +1,10 @@
 package lotto.model;
 
-import lotto.model.Lotto;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @Test
@@ -19,5 +17,14 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호는_오름차순으로_정렬_되어야_한다() {
+        Lotto lotto = new Lotto(List.of(1, 5, 3, 2, 6, 4));
+
+        List<Integer> numbers = lotto.getNumbers();
+
+        assertThat(numbers).isSorted();
     }
 }
