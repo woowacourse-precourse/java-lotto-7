@@ -22,4 +22,9 @@ class LottoRulesTest {
         assertEquals(LottoRules.LOTTO_NUMBER_SIZE, numbers.size());
     }
 
+    @Test
+    @DisplayName("로또 가격은 0이 아닌 양의 정수 값")
+    void lottoPrice() {
+        assertTrue(LottoRules.LOTTO_PRICE > 0);
+    }
 }
