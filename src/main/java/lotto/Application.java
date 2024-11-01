@@ -139,4 +139,24 @@ public class Application {
         }
         return bonusNumber;
     }
+
+
+    private static LottoResult calculateResult(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber) {
+        LottoResult result = new LottoResult();
+
+        for (int i = 0; i < lottoList.size(); i++) {
+            Lotto lotto = lottoList.get(i);
+
+            int matchCount = 0;
+            for (int j = 0; j < lotto.getNumbers().size(); j++) {
+                if (winningNumbers.contains(lotto.getNumbers().get(j))) {
+                    matchCount++;
+                }
+            }
+
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+            result.winningResult(matchCount, bonusMatch);
+        }
+        return result;
+    }
 }
