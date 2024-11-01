@@ -28,7 +28,7 @@ public class Lotto {
     }
 
     private void validateNumberRange(Integer number) {
-        if(number < MIN || number > MAX){
+        if (number < MIN || number > MAX) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
