@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.domain;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,8 +16,8 @@ public class WinningNumberValidator {
         }
     }
 
-    private void validateWinningNumberCount(List<Integer> winningNumber) {
-        if (winningNumber.size() != 6) {
+    private void validateWinningNumberCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
         }
     }

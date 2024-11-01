@@ -14,6 +14,7 @@ public class LottoController {
     public void run() {
         initPurchaseAmount();
         initWinningNumber();
+        initBonusNumber();
     }
 
     private void initPurchaseAmount() {
@@ -22,5 +23,9 @@ public class LottoController {
 
     private void initWinningNumber() {
         this.winningNumber = inputController.initWinningNumber();
+    }
+
+    private void initBonusNumber() {
+        this.winningNumber = inputController.initBonusNumber(winningNumber);
     }
 }
