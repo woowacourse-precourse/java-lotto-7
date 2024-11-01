@@ -1,6 +1,7 @@
 package lotto.injection;
 
 import lotto.controller.PurchaseAmountController;
+import lotto.model.LotteryMachineModel;
 import lotto.parse.InputParser;
 import lotto.service.PurchaseAmountService;
 import lotto.validation.InputValidator;
@@ -18,6 +19,7 @@ public class ObjectFactory {
     public PurchaseAmountService purchaseAmountService() {
         InputValidator inputValidator = new InputValidator();
         InputParser inputParser = new InputParser();
-        return new PurchaseAmountService(inputValidator, inputParser);
+        LotteryMachineModel lotteryMachineModel = new LotteryMachineModel();
+        return new PurchaseAmountService(inputValidator, inputParser, lotteryMachineModel);
     }
 }

@@ -22,7 +22,7 @@ public class PurchaseAmountController {
         while (true) {
             try {
                 inputView.printPurchaseAmountInput();
-                purchaseAmountService.processPurchaseAmount(inputView.getInput());
+                purchaseAmountService.save(inputView.getInput());
 
                 break;
             } catch (IllegalArgumentException e) {
