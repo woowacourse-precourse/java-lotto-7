@@ -26,5 +26,17 @@ public class Numbers {
         }
     }
 
+    public int matchCount(Numbers otherNumbers) {
+        int count = 0;
+        for (LottoNumber number : this.numbers) {
+            if (otherNumbers.numbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    public boolean matchBonusNumber(LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }
