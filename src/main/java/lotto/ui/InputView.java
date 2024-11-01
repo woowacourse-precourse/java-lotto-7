@@ -15,6 +15,7 @@ public class InputView {
                 int amount = Integer.parseInt(Console.readLine());
                 validatePurchaseAmount(amount);
                 return amount;
+
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
             }
@@ -42,6 +43,7 @@ public class InputView {
             int number = Integer.parseInt(Console.readLine());
             validateBonusNumber(number, winningNumbers);
             return number;
+
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_FORMAT);
         }
@@ -51,7 +53,6 @@ public class InputView {
             if (amount <= 0) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_NON_POSITIVE_AMOUNT);
             }
-
             if (amount % 1000 != 0) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_AMOUNT_UNIT);
             }
@@ -61,9 +62,9 @@ public class InputView {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_WINNING_NUMBER_COUNT);
         }
-        if (numbers.size() != numbers.stream().distinct().count())
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_DUPLICATION);
-
+        }
         for (int number : numbers) {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_NUMBER_SIZE);
