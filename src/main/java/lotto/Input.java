@@ -2,12 +2,10 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 public class Input {
-    protected static int money() {
-        String input = Console.readLine();
-
+    protected static int parseMoney(String input) {
         if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
@@ -19,14 +17,14 @@ public class Input {
         return money;
     }
 
-    public static <T> T read(Supplier<T> inputFunction) {
+    public static <T> T validate(Function<String, T> inputFunction) {
         while (true) {
             try {
-                return inputFunction.get();
+                String input = Console.readLine();
+                return inputFunction.apply(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
-
 }

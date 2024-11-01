@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,8 @@ public class Application {
     public static void main(String[] args) {
 
         System.out.println("구입금액을 입력해 주세요.");
-        int money = Input.read(Input::money);
+        int money = Input.validate(Input::parseMoney);
+        System.out.println();
 
         int N = money / 1000;
 
@@ -21,7 +20,7 @@ public class Application {
             lotto.printNumbers();
             lottos.add(lotto);
         }
-
+        System.out.println();
     }
 
 }
