@@ -12,7 +12,7 @@ public class PurchasePrice {
         this.price = price;
     }
 
-    public static void validatePurchasePrice(final int price) {
+    private static void validatePurchasePrice(final int price) {
         if (price % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException(INVALID_PRICE_ERROR_MESSAGE);
         }

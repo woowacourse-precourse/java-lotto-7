@@ -7,7 +7,7 @@ public class Profit {
     public static final int FIVE_AND_BONUS_MATCH_PRIZE = 30_000_000;
     public static final int SIX_MATCH_PRIZE = 2_000_000_000;
 
-    private int purchasePrice;
+    private final int purchasePrice;
     private int totalMoney;
     private double rate;
 
