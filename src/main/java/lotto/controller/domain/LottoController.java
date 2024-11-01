@@ -1,12 +1,12 @@
 package lotto.controller.domain;
 
 import lotto.buyer.domain.Buyer;
-import lotto.buyer.domain.Money;
+import lotto.money.domain.Money;
 import lotto.lotto.domain.LottoMachine;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.winning.domain.Benefit;
 import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningCalculator;
+import lotto.lotto.winning.domain.WinningAmountCalculator;
 import lotto.lotto.winning.domain.WinningLotto;
 import lotto.view.output.domain.ResultViewService;
 
@@ -15,19 +15,19 @@ public class LottoController {
     private final LottoMachine lottoMachine;
     private final ResultViewService resultViewService;
     private final WinningLottoController winningLottoController;
-    private final WinningCalculator winningCalculator;
+    private final WinningAmountCalculator winningAmountCalculator;
 
     public LottoController(
             Buyer buyer,
             LottoMachine lottoMachine,
             ResultViewService resultViewService,
             WinningLottoController winningLottoController,
-            WinningCalculator winningCalculator) {
+            WinningAmountCalculator winningAmountCalculator) {
         this.buyer = buyer;
         this.lottoMachine = lottoMachine;
         this.resultViewService = resultViewService;
         this.winningLottoController = winningLottoController;
-        this.winningCalculator = winningCalculator;
+        this.winningAmountCalculator = winningAmountCalculator;
     }
 
     public void run() {
@@ -65,7 +65,7 @@ public class LottoController {
     }
 
     private Benefit updateBenefit(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        return winningCalculator.updateBenefit(lottoTickets, winningLotto, bonusNumber);
+        return winningAmountCalculator.updateBenefit(lottoTickets, winningLotto, bonusNumber);
 
     }
 }

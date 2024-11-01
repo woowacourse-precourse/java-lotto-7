@@ -2,13 +2,13 @@ package lotto.controller.service;
 
 import lotto.buyer.domain.Buyer;
 import lotto.buyer.domain.InsertMoneyService;
-import lotto.buyer.infrastructure.InsertWon;
+import lotto.buyer.infrastructure.InsertPurchaseMoney;
 import lotto.controller.domain.LottoController;
 import lotto.controller.domain.WinningLottoController;
 import lotto.lotto.domain.LottoMachine;
-import lotto.lotto.winning.domain.WinningCalculator;
+import lotto.lotto.winning.domain.WinningAmountCalculator;
 import lotto.lotto.infrastructure.RandomNumberGenerate;
-import lotto.lotto.infrastructure.WonCalculator;
+import lotto.lotto.infrastructure.DivideThousandCalculator;
 import lotto.view.input.hanlder.infrastructure.MoneyHandler;
 import lotto.view.input.infrastructure.MoneyInput;
 import lotto.view.output.domain.ResultViewService;
@@ -21,12 +21,12 @@ public class LottoControllerFactory {
         LottoMachine lottoMachine = createLottoMachine();
         ResultViewService resultViewService = createResultViewService();
         WinningLottoController winningLottoController = WinningLottoControllerFactory.create();
-        WinningCalculator winningCalculator = createWinningCalculator();
-        return new LottoController(buyer, lottoMachine, resultViewService, winningLottoController, winningCalculator);
+        WinningAmountCalculator winningAmountCalculator = createWinningCalculator();
+        return new LottoController(buyer, lottoMachine, resultViewService, winningLottoController, winningAmountCalculator);
     }
 
     private static InsertMoneyService createInsertMoneyService() {
-        return new InsertWon(new MoneyHandler(new MoneyInput(new MoneyOutput())));
+        return new InsertPurchaseMoney(new MoneyHandler(new MoneyInput(new MoneyOutput())));
     }
 
     private static Buyer createBuyer(InsertMoneyService insertMoneyService) {
@@ -34,14 +34,14 @@ public class LottoControllerFactory {
     }
 
     private static LottoMachine createLottoMachine() {
-        return new LottoMachine(new WonCalculator(), new RandomNumberGenerate(), new PurchaseOutput());
+        return new LottoMachine(new DivideThousandCalculator(), new RandomNumberGenerate(), new PurchaseOutput());
     }
 
     private static ResultViewService createResultViewService() {
         return new CommonResultOutput();
     }
 
-    private static WinningCalculator createWinningCalculator() {
-        return new WinningCalculator();
+    private static WinningAmountCalculator createWinningCalculator() {
+        return new WinningAmountCalculator();
     }
 }
