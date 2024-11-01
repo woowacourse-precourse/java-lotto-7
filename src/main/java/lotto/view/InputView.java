@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
@@ -7,7 +10,7 @@ public class InputView {
         String input = readLine();
         try {
             return convertInputToMoney(input);
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             //Todo: 입력 요구 메시지 추가
             return readMoney();
         }
@@ -15,9 +18,28 @@ public class InputView {
 
     private static int convertInputToMoney(String input) throws IllegalArgumentException {
         int money = Integer.parseInt(input);
-        if(money < 0) {
+        if (money < 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 0원 이상을 입력해주세요.");
         }
         return money;
+    }
+
+    public static List<Integer> readNumbers() {
+        String input = readLine();
+        try {
+            return convertInputToNumbers(input);
+        } catch(IllegalArgumentException e) {
+            //Todo: 입력 요구 메시지 추가
+            return readNumbers();
+        }
+    }
+
+    private static List<Integer> convertInputToNumbers(String input) throws IllegalArgumentException {
+        String trimmedInput = input.replaceAll(" ", "");
+        List<Integer> Numbers = new ArrayList<>();
+        for (String rawNumber : trimmedInput.split(",")) {
+            Numbers.add(Integer.parseInt(rawNumber));
+        }
+        return Numbers;
     }
 }

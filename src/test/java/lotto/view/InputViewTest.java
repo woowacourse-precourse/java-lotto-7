@@ -9,6 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 
 class InputViewTest {
@@ -31,6 +33,24 @@ class InputViewTest {
 
         int money = InputView.readMoney();
         assertEquals(money, 1000);
+    }
+
+    @DisplayName("잘못된 당첨 번호를 입력하면 예외가 발생한다.")
+    @Test
+    void 잘못된_당첨_번호를_입력하면_예외가_발생한다() {
+        String input = "1,2,3,4,5,a\n1,2,3,4,5,6";
+        setInput(input);
+        List<Integer> expect = new ArrayList<>();
+        expect.add(1);
+        expect.add(2);
+        expect.add(3);
+        expect.add(4);
+        expect.add(5);
+        expect.add(6);
+
+        List<Integer> winningNumbers = InputView.readNumbers();
+
+        assertEquals(winningNumbers,expect);
     }
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
