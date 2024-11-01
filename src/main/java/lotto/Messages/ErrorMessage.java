@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Messages;
 
 public enum ErrorMessage {
     ERROR_PREFIX("[ERROR] "),

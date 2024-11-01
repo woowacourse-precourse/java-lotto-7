@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Messages;
 
 public enum StateMessage {
     WIN_STATICS("당첨 통계\n---"),
