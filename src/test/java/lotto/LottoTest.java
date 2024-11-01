@@ -22,4 +22,9 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호가_지정된_범위를_넘으면_예외가_발생한다(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,47)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
