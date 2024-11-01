@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println();
         List<Lotto> lottos = lottosDto.lottos().getLottos();
         int boughtAmount = lottos.size();
-        System.out.println(String.format(OutputMessage.BOUGHT_AMOUNT.getInstance(), boughtAmount));
+        System.out.printf((OutputMessage.BOUGHT_AMOUNT.getInstance()) + "%n", boughtAmount);
         for (int i = 0; i < boughtAmount; i++) {
             System.out.println(lottos.get(i));
         }
@@ -38,9 +38,9 @@ public class OutputView {
         List<String> scoreSystemFormat = ScoreSystemPrintForm.DEFAULT.getInstance();
         List<Integer> scores = scoreDto.scores();
         for (int i = 0; i < scores.size(); i++) {
-            System.out.println(String.format(scoreSystemFormat.get(i), scores.get(i)));
+            System.out.printf((scoreSystemFormat.get(i)) + "%n", scores.get(i));
         }
         float rateOfReturn = scoreDto.rateOfReturn();
-        System.out.println(String.format(OutputMessage.RATE_OF_RETURN.getInstance(), rateOfReturn));
+        System.out.printf((OutputMessage.RATE_OF_RETURN.getInstance()) + "%n", rateOfReturn);
     }
 }
