@@ -4,11 +4,11 @@ import static lotto.constants.PrintMessage.BONUS_NUMBER_MESSAGE;
 import static lotto.constants.PrintMessage.PURCHASE_MESSAGE;
 import static lotto.constants.PrintMessage.WINNING_NUMBERS_MESSAGE;
 import static lotto.parse.InputParser.parseBonusNumber;
-import static lotto.parse.InputParser.parsePurchasedAmount;
+import static lotto.parse.InputParser.parsePurchaseAmount;
 import static lotto.parse.InputParser.parseWinningNumber;
-import static lotto.validate.BonusNumberValidator.validateBonusNumber;
-import static lotto.validate.PurchaseAmountValidator.validatePurchaseAmount;
-import static lotto.validate.WinningNumbersValidator.validateWinningNumbers;
+import static lotto.validate.Validator.validateBonusNumber;
+import static lotto.validate.Validator.validatePurchaseAmount;
+import static lotto.validate.Validator.validateWinningNumbers;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -20,7 +20,7 @@ public class ConsoleInputView implements InputView {
         PURCHASE_MESSAGE.display();
         String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
-        return parsePurchasedAmount(purchaseAmount);
+        return parsePurchaseAmount(purchaseAmount);
     }
 
     @Override

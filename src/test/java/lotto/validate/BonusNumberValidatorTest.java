@@ -1,6 +1,6 @@
 package lotto.validate;
 
-import static lotto.validate.BonusNumberValidator.validateBonusNumber;
+import static lotto.validate.Validator.validateBonusNumber;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +21,7 @@ class BonusNumberValidatorTest {
     void 잘못된_보너스_번호_타입_검증(String bonusNumber) {
         assertThatThrownBy(() -> validateBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.BONUS_NUMBER_TYPE.getMessage());
+                .hasMessage(ErrorMessage.INTEGER_TYPE.getMessage());
     }
 
     @ParameterizedTest
@@ -29,6 +29,6 @@ class BonusNumberValidatorTest {
     void 잘못된_보너스_번호_범위_검증(String bonusNumber) {
         assertThatThrownBy(() -> validateBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.BONUS_NUMBER_RANGE.getMessage());
+                .hasMessage(ErrorMessage.NUMBER_RANGE.getMessage());
     }
 }

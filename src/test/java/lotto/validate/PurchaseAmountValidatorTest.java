@@ -1,6 +1,6 @@
 package lotto.validate;
 
-import static lotto.validate.PurchaseAmountValidator.validatePurchaseAmount;
+import static lotto.validate.Validator.validatePurchaseAmount;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -29,6 +29,6 @@ class PurchaseAmountValidatorTest {
     void 잘못된_타입_입력_테스트(String input) {
         assertThatThrownBy(() -> validatePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.PURCHASE_TYPE.getMessage());
+                .hasMessage(ErrorMessage.INTEGER_TYPE.getMessage());
     }
 }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputParser {
 
-    public static int parsePurchasedAmount(String purchaseAmount) {
+    public static int parsePurchaseAmount(String purchaseAmount) {
         return Integer.parseInt(purchaseAmount) / PURCHASE_UNIT_WON;
     }
 
