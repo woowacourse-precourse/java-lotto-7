@@ -1,5 +1,6 @@
 package lotto.dto;
 
+import java.util.Collections;
 import java.util.Map;
 import lotto.model.LottoRank;
 
@@ -14,7 +15,7 @@ public class LottoResultDTO {
     }
 
     public Map<LottoRank, Integer> getResult() {
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 
     public Double getProfitPercentage() {

@@ -24,9 +24,10 @@ public class Lotto {
     }
 
     public Integer countSameNumber(final List<Integer> winningNumber) {
-        return (int) numbers.stream()
+        return numbers.stream()
                 .filter(winningNumber::contains)
-                .count();
+                .map(number -> 1)
+                .reduce(0, Integer::sum);
     }
 
     public Boolean contains(Integer bonusNumber) {
@@ -34,6 +35,6 @@ public class Lotto {
     }
 
     public Boolean isSecondRank(final List<Integer> winningNumbers, final Integer bonusNumber) {
-        return countSameNumber(winningNumbers) == 5 && contains(bonusNumber);
+        return this.countSameNumber(winningNumbers) == 5 && this.contains(bonusNumber);
     }
 }

@@ -41,7 +41,7 @@ public enum LottoRank {
     }
 
     private Boolean isMatched(Integer sameNumberCount, Boolean isSecondRank) {
-        return this.sameNumberCount == (int) sameNumberCount
+        return this.sameNumberCount == sameNumberCount.intValue()
                 && this.isSecondRank == isSecondRank;
     }
 }
