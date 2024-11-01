@@ -24,6 +24,8 @@ public class Application {
         output.requestWinningNumbers();
         Lotto winningLotto = input.getWinningNumbers();
 
+        output.requestBonusNumber();
+
 
     }
 
