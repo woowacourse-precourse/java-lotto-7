@@ -7,24 +7,43 @@ import static lotto.constants.LottoConfig.NUMBER_RANGE_MINIMUM;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedList;
 import java.util.List;
+import lotto.constants.ErrorMessage;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
 public class LottoMachine {
 
+    private static final int TICKET_PRICE = 1000;
+    private static final int PRICE_MINIMUM = TICKET_PRICE;
+    private static final int PRICE_MAXIMUM = 100_000;
+
     public static List<Lotto> purchaseLottos(Money money) {
+        validate(money);
         List<Lotto> lottos = new LinkedList<>();
-        while (money.isPurchasable(lottos.size())) {
+        while (money.isPurchasable(lottos, TICKET_PRICE)) {
             generateLotto(lottos);
         }
         return lottos;
     }
 
+    private static void validate(Money money) {
+        if (money.isOutOfRange(PRICE_MINIMUM, PRICE_MAXIMUM)) {
+            throw new IllegalArgumentException(ErrorMessage.IS_INVALID_PRICE.getMessage());
+        }
+        if (money.isIndivisibleBy(TICKET_PRICE)) {
+            throw new IllegalArgumentException(ErrorMessage.IS_INVALID_PRICE.getMessage());
+        }
+    }
+
     private static void generateLotto(List<Lotto> lottos) {
         Lotto lotto = new Lotto(generateNumbers());
-        if (!lottos.contains(lotto)) {
+        if (isNotDuplicatedNumbers(lottos, lotto)) {
             lottos.add(lotto);
         }
+    }
+
+    private static boolean isNotDuplicatedNumbers(List<Lotto> lottos, Lotto lotto) {
+        return !lottos.contains(lotto);
     }
 
     private static List<Integer> generateNumbers() {

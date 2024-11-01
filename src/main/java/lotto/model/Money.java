@@ -1,29 +1,25 @@
 package lotto.model;
 
-import lotto.constants.ErrorMessage;
+import java.util.List;
 
 public class Money {
 
-    private static final int PRICE_MINIMUM = 0;
-    private static final int TICKET_PRICE = 1000;
+    private static final int PRICE_MINIMUM = 1;
     private final int price;
 
     public Money(int price) {
-        validate(price);
         this.price = price;
     }
 
-    private void validate(int price) {
-        if (isInvalid(price)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_INVALID_PRICE.getMessage());
-        }
+    public boolean isOutOfRange(int minimum, int maximum) {
+        return price < minimum || price > maximum;
     }
 
-    private boolean isInvalid(int price) {
-        return price <= PRICE_MINIMUM || price % TICKET_PRICE != 0;
+    public boolean isIndivisibleBy(int ticketPrice) {
+        return price % ticketPrice != 0;
     }
 
-    public boolean isPurchasable(int size) {
-        return size < price / TICKET_PRICE;
+    public boolean isPurchasable(List<Lotto> lottos, int ticketPrice) {
+        return lottos.size() < price / ticketPrice;
     }
 }
