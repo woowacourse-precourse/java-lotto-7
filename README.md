@@ -177,12 +177,22 @@
 
 ### View
 
-- [ ] ConsoleInputView 클래스 구현
-    - [ ] 구입 금액을 입력 받는 기능.
-    - [ ] 당첨 번호를 입력 받는 기능.
-    - [ ] 보너스 번호를 입력 받는 기능.
-- [ ] ConsoleOutputView 클래스 구현
-    - [ ] 당첨 통계를 출력하는 기능.
+- [x] ConsoleInputView 클래스 구현
+    - [x] 구입 금액을 입력 받는 기능.
+    - [x] 당첨 번호를 입력 받는 기능.
+    - [x] 보너스 번호를 입력 받는 기능.
+- [x] ConsoleOutputView 클래스 구현
+    - [x] 당첨 통계를 출력하는 기능.
+    - [x] 발급한 로또를 출력하는 기능.
+
+### Controller
+
+- [ ] LottoController 클래스 구현
+    - [ ] ConsoleInputView, ConsoleOutputView을 주입 받음.
+    - [ ] 입력을 처리함.
+    - [ ] LottoMachine 을 생성.
+    - [ ] ProfitReport 를 생성.
+    - [ ] 결과를 출력.
 
 
 
