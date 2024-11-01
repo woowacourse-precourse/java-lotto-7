@@ -11,6 +11,10 @@ public class BonusNumber {
         this.bonus = bonus;
     }
 
+    protected boolean isEqual(final int number) {
+        return bonus == number;
+    }
+
     protected void validateDuplicated(final Lotto lotto) {
         if (lotto.isContain(bonus)) {
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");

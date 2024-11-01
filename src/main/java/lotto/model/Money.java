@@ -27,4 +27,8 @@ public class Money {
     public int calculateLottoCount() {
         return amount / UNIT_AMOUNT;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
