@@ -7,7 +7,9 @@ import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
 import static lotto.common.AppConstant.SPLIT_DELIMITER;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputValidator {
     public void validateInputMoney(String input) {
@@ -20,6 +22,7 @@ public class InputValidator {
     public void validateInputWinningNumber(String input) {
         List<String> splitWinningNumber = Arrays.stream(input.split(SPLIT_DELIMITER)).toList();
         validateNumberListSize(splitWinningNumber);
+        validateDistinctNumberList(splitWinningNumber);
 
         splitWinningNumber.forEach(number -> {
             validateParseNumber(number);
@@ -79,6 +82,14 @@ public class InputValidator {
 
         if (LOTTO_START_RANGE > parsedInt || parsedInt > LOTTO_END_RANGE) {
             throw new IllegalArgumentException(LOTTO_START_RANGE + "에서 " + LOTTO_END_RANGE + "사이의 값을 입력해주세요.");
+        }
+    }
+
+    private void validateDistinctNumberList(List<String> winningNumberList) {
+        Set<String> distinctWinningNumber = new HashSet<>(winningNumberList);
+
+        if (distinctWinningNumber.size() != winningNumberList.size()) {
+            throw new IllegalArgumentException("중복되지 않은 값을 입력해주세요");
         }
     }
 }
