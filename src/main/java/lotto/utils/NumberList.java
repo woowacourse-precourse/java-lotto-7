@@ -2,6 +2,7 @@ package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
 
@@ -39,7 +40,7 @@ public class NumberList extends ArrayList<Integer> {
             this.add(newNumber);
         }
 
-        return this;
+        return sortAscending();
     }
 
     public boolean isAlreadyNumberAdded(int newNumber){
@@ -64,8 +65,16 @@ public class NumberList extends ArrayList<Integer> {
             addNewNumber(newNumber);
         }
 
+        sortAscending();
+
         return this;
 
+    }
+
+    public NumberList sortAscending() {
+        this.sort(Comparator.naturalOrder());
+
+        return this;
     }
 
 
