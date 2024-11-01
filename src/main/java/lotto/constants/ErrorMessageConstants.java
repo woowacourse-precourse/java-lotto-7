@@ -7,4 +7,5 @@ public class ErrorMessageConstants {
     public static final String INVALID_LOTTO_AMOUNT_UNIT = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
 
     public static final String INVALID_WINNING_NUMBER_COUNT = "[ERROR] 당첨 번호는 6개를 입력해야 합니다.";
+    public static final String INVALID_WINNING_NUMBER_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자를 입력해야 합니다.";
 }
