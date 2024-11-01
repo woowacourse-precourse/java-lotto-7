@@ -3,9 +3,16 @@ package lotto.validator;
 import static lotto.constants.LottoConstants.*;
 
 public class PurchaseAmountValidator {
+    private int purchaseAmount;
+
     public PurchaseAmountValidator(String input) {
+        this.purchaseAmount = parsePurchaseAmount(input);
+    }
+
+    private int parsePurchaseAmount(String input) {
         validateNoSpace(input);
         validateIsNumber(input);
+        return Integer.parseInt(input);
     }
 
     private void validateIsNumber(String input) {
