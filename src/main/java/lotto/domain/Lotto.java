@@ -26,6 +26,11 @@ public class Lotto {
     }
 
 
+    public int getAutoTicketCount(){
+
+    }
+
+
     public void validateTicketCount(int ticketCount) {
         if (!isPurchasable(ticketCount)) {
             throw new IllegalArgumentException(REQUEST_UNIT_OF_1000_MESSAGE);
