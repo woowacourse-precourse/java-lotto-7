@@ -11,7 +11,8 @@ public class NumbersValidator {
         MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다."),
         MUST_BE_NUMBER("%s 로또 번호는 숫자 형식이어야 합니다."),
         MUST_BE_UNIQUE("%s 로또 번호가 중복되었습니다."),
-        MUST_BE_NO_SPACE("%s 공백은 허용되지 않습니다.");
+        MUST_BE_NO_SPACE("%s 공백은 허용되지 않습니다."),
+        MUST_BE_BETWEEN("%s 로또 번호는 1 ~ 45 사이 숫자이어야 합니다.");
 
         private final String message;
 
@@ -53,10 +54,12 @@ public class NumbersValidator {
     public void validateWinningNumbers() {
         validateLength("당첨");
         validateUnique();
+        validateBetweenList();
     }
 
     public void validateBonusNumber() {
         validateLength("보너스");
+        validateBetweenList();
     }
 
     private void validateLength(String type) {
@@ -81,6 +84,18 @@ public class NumbersValidator {
 
         if (beforeLength != afterLength) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage());
+        }
+    }
+
+    private void validateBetweenList() {
+        for (int number : numbers) {
+            validateBetween(number);
+        }
+    }
+
+    private void validateBetween(int number) {
+        if (number < RANDOM_MIN || RANDOM_MAX < number) {
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_BETWEEN.getMessage());
         }
     }
 
