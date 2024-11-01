@@ -1,9 +1,13 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.InvalidPurchaseAmountException;
 
+import java.util.*;
+
 public class InputService {
+    private static List<Lotto> lottos = new ArrayList<>();
     private static final String CONVERT_ERROR_MESSAGE = "[ERROR] 잘못된 입력값입니다. 입력값은 숫자여야합니다.";
     private static final String AMOUNT_ERROR_MESSAGE = "[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.";
 
@@ -28,5 +32,16 @@ public class InputService {
             System.out.println(CONVERT_ERROR_MESSAGE);
             throw new IllegalArgumentException(CONVERT_ERROR_MESSAGE);
         }
+    }
+
+    public List<Lotto> lottoNumbersValue(int ticket) {
+        for (int i = 0; i < ticket; i++) {
+            List<Integer> lottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(lottoNumber);
+            Lotto lotto = new Lotto(lottoNumber);
+            lottos.add(lotto);
+        }
+
+        return lottos;
     }
 }
