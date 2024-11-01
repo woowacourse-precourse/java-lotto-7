@@ -10,7 +10,7 @@ public class Payment {
     private final Wallet wallet;
 
     public Payment(String money) {
-        this.wallet = WalletFactory.createWallet(validateMoney(money));
+        this.wallet = WalletFactory.create(validateMoney(money));
     }
 
     private Integer validateMoney(String money) {

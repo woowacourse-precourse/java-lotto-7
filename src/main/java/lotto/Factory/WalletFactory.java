@@ -4,7 +4,7 @@ import lotto.domain.Wallet;
 
 public class WalletFactory {
 
-    public static Wallet createWallet(Integer money) {
+    public static Wallet create(Integer money) {
         return new Wallet(money);
     }
 }
