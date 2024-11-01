@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import static lotto.ErrorMessage.NON_NUMERIC_INPUT;
+import static lotto.view.ErrorMessage.NON_NUMERIC_INPUT;
 
 public class Parser {
     public Parser(){
