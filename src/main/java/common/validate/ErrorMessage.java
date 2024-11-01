@@ -1,4 +1,4 @@
-package common;
+package common.validate;
 
 public enum ErrorMessage {
     PURCHASE_AMOUNT_ERROR_MESSAGE("[ERROR] 구입 금액은 %d원 단위여야 합니다."),
@@ -11,6 +11,10 @@ public enum ErrorMessage {
 
     ErrorMessage(String message) {
         this.message = message;
+    }
+
+    public String format(Object... args) {
+        return String.format(message, args);
     }
 
     @Override

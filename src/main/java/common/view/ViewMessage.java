@@ -1,4 +1,4 @@
-package view;
+package common.view;
 
 public enum ViewMessage {
     ENTER_PURCHASE_AMOUNT_MESSAGE("구입 금액을 입력해 주세요."),
