@@ -7,7 +7,7 @@ import lotto.rule.LottoRule;
 
 public class LottoMachine {
 
-    public List<Lotto> purchase(int purchaseAmount) {
+    public LottoTickets purchase(int purchaseAmount) {
         int quantity = calculateLottoQuantity(purchaseAmount);
         return generateLottoTickets(quantity);
     }
@@ -16,12 +16,12 @@ public class LottoMachine {
         return purchaseAmount / LottoRule.PURCHASE_AMOUNT_UNIT;
     }
 
-    private List<Lotto> generateLottoTickets(int quantity) {
+    private LottoTickets generateLottoTickets(int quantity) {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             lottoTickets.add(new Lotto(generateLottoNumbers()));
         }
-        return lottoTickets;
+        return new LottoTickets(lottoTickets);
     }
 
     private List<Integer> generateLottoNumbers() {

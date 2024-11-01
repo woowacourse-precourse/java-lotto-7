@@ -7,6 +7,7 @@ import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoResultEvaluator;
+import lotto.model.LottoTickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,7 +23,7 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = readPurchaseAmount();
-        List<Lotto> lottoTickets = purchaseLotto(purchaseAmount);
+        LottoTickets lottoTickets = purchaseLotto(purchaseAmount);
         displayLotto(lottoTickets);
         List<Integer> winningNumbers = readWinningNumbers();
         int bonusNumber = readBonusNumber(winningNumbers);
@@ -46,7 +47,7 @@ public class LottoController {
         inputValidator.validatePurchaseAmount(rawInput);
     }
 
-    private List<Lotto> purchaseLotto(int purchaseAmount) {
+    private LottoTickets purchaseLotto(int purchaseAmount) {
         try {
             LottoMachine lottoMachine = new LottoMachine();
             return lottoMachine.purchase(purchaseAmount);
@@ -56,9 +57,9 @@ public class LottoController {
         }
     }
 
-    private void displayLotto(List<Lotto> lottoTickets) {
-        outputView.printPurchasedQuantity(lottoTickets.size());
-        outputView.printLottoTickets(getLottoTickets(lottoTickets));
+    private void displayLotto(LottoTickets lottoTickets) {
+        outputView.printPurchasedQuantity(lottoTickets.getCount());
+        outputView.printLottoTickets(lottoTickets.getAllNumbers());
     }
 
     private List<List<Integer>> getLottoTickets(List<Lotto> lottoTickets) {
@@ -109,7 +110,7 @@ public class LottoController {
         inputValidator.validateBonusNumber(rawInput, winningNumbers);
     }
 
-    private WinningResult evaluateLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoTickets) {
+    private WinningResult evaluateLotto(List<Integer> winningNumbers, int bonusNumber, LottoTickets lottoTickets) {
         LottoResultEvaluator lottoResultEvaluator = new LottoResultEvaluator(winningNumbers, bonusNumber);
         return lottoResultEvaluator.evaluate(lottoTickets);
     }

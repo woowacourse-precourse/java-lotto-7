@@ -19,13 +19,12 @@ public class LottoResultEvaluator {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningResult evaluate(List<Lotto> lottoTickets) {
-        for (Lotto lotto : lottoTickets) {
-            List<Integer> numbers = lotto.getNumbers();
-            MatchInfo matchInfo = countMatches(numbers);
+    public WinningResult evaluate(LottoTickets lottoTickets) {
+        for (List<Integer> lotto : lottoTickets.getAllNumbers()) {
+            MatchInfo matchInfo = countMatches(lotto);
             count(matchInfo);
         }
-        double totalYield = calculateTotalYield(lottoTickets);
+        double totalYield = calculateTotalYield(lottoTickets.getAllNumbers());
         return new WinningResult(
                 threeMatchesCount,
                 fourMatchesCount,
@@ -36,7 +35,7 @@ public class LottoResultEvaluator {
         );
     }
 
-    private double calculateTotalYield(List<Lotto> lottoTickets) {
+    private double calculateTotalYield(List<List<Integer>> lottoTickets) {
         double purchaseAmount = lottoTickets.size() * 1_000;
         double winningAmount = calculateWinningAmount();
         return (winningAmount / purchaseAmount) * 100;
