@@ -1,7 +1,7 @@
 package lotto.lotto.domain;
 
-import lotto.buyer.domain.Money;
+import lotto.money.domain.Money;
 
 public interface Calculator {
-    int divideByThousand(Money money);
+    int calculate(Money money);
 }

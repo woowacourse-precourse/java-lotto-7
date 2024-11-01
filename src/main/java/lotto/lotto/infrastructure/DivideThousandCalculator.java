@@ -1,9 +1,9 @@
 package lotto.lotto.infrastructure;
 
-import lotto.buyer.domain.Money;
+import lotto.money.domain.Money;
 import lotto.lotto.domain.Calculator;
 
-public class WonCalculator implements Calculator {
+public class DivideThousandCalculator implements Calculator {
     private final Long PRICE_PER_LOTTO = 1000L;
     @Override
     public int divideByThousand(Money money) {
