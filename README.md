@@ -144,5 +144,27 @@
       </td><td style="padding: 10px;">
       </td>
     </tr>
+    <!-----------------------새로운 대분류----------------------------><tr>
+      <td rowspan="4" style="padding: 10px;">입력값 테스트<br>(InputTest)</td>
+      <td style="padding: 10px;">반복적으로 사용되는 검증 메서드 모음 테스트<br>(CommonValidationTest)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">구매 금액 관련 검증 메서드 모음 테스트<br>(MoneyValidationTest)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">당첨 번호 6개 관련 검증 메서드 모음 테스트<br>(WinningNumberValidationTest)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr><!-------------------------------------------------><tr>
+      <td style="padding: 10px;">보너스 번호 관련 검증 메서드 모음 테스트<br>(BonusNumberValidationTest)</td>
+      <td style="padding: 10px;">
+      </td><td style="padding: 10px;">
+      </td>
+    </tr>
   </tbody>
 </table>
