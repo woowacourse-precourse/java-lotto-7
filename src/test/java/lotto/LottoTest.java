@@ -46,4 +46,10 @@ class LottoTest {
         long matchedCount = lotto.getMatchedNumbersCount(List.of(6, 5, 4, 3, 2, 1));
         assertThat(matchedCount).isEqualTo(6);
     }
+
+    @Test
+    void 로또_보너스_숫자_당첨_여부를_반환한다() {
+        assertThat(lotto.checkBonusNumberMathced(6)).isTrue();
+        assertThat(lotto.checkBonusNumberMathced(7)).isFalse();
+    }
 }
