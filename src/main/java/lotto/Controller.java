@@ -1,14 +1,15 @@
-package lotto.View;
+package lotto;
 
-import lotto.Lotto;
 import lotto.Messages.ErrorMessage;
+import lotto.View.InputView;
+import lotto.View.OutputView;
 
 public class Controller {
 
     private Integer lottoCount;
 
-    public Integer gainPurchaseAmount(){
-        Integer purchasePrice = 0;
+    public int gainPurchaseAmount(){
+        int purchasePrice = 0;
         try {
             OutputView.printPurchaseAmount();
             purchasePrice = InputView.readPurchaseAmount();
@@ -22,8 +23,8 @@ public class Controller {
         return purchasePrice;
     }
 
-    public Integer countLotto(Integer input){
-        Integer lottoCount = input/1000;
+    public int countLotto(Integer input){
+        int lottoCount = input/1000;
         if (input % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
@@ -45,9 +46,9 @@ public class Controller {
         return answer;
     }
 
-    public Integer gainBonusInput(Lotto answer){
+    public int gainBonusInput(Lotto answer){
         OutputView.printBonus();
-        Integer bonus = 0;
+        int bonus = 0;
         try{
             bonus  = InputView.readBonus(answer);
         }
