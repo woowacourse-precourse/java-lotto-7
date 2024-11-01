@@ -39,6 +39,7 @@ public class NumberLottoInputManger implements LottoInputManger{
         return validateInputBonusComponent(winningComponent,inputBonusComponent);
     }
 
+
     private int validateInputPrice(String inputprice) {
         if (!isInteger(inputprice)) {
             throw new IllegalArgumentException(InputError.NONE_INTEGER_INPUT_PRICE.getInstance());
