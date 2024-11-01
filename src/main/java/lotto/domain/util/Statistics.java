@@ -1,9 +1,11 @@
 package lotto.domain.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.global.common.Rank;
 
@@ -38,5 +40,13 @@ public final class Statistics {
         }
 
         return statistics;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NONE)
+                .map(rank -> String.format("%s - %d개", rank, rankMap.get(rank)))
+                .collect(Collectors.joining("\n"));
     }
 }
