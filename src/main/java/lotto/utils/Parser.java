@@ -6,11 +6,12 @@ import lotto.validator.exception.ErrorMessage;
 import lotto.validator.exception.LottoException;
 
 public class Parser {
+    private final static String COMMA = ",";
 
     public static List<Integer> parsingNumbers(String winningNumbers) {
         List<Integer> convertedWinningNumbers = new ArrayList<>();
-        List<String> splitWinningNumbers = List.of(winningNumbers.split(","));
-        for(String number : splitWinningNumbers) {
+        List<String> splitWinningNumbers = List.of(winningNumbers.split(COMMA));
+        for (String number : splitWinningNumbers) {
             try {
                 convertedWinningNumbers.add(Integer.parseInt(number));
             } catch (NumberFormatException e) {
@@ -35,9 +36,10 @@ public class Parser {
             throw LottoException.from(ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER);
         }
     }
+
     public static List<String> parsingResult(List<Integer> result, double profit) {
         List<String> convertedResult = new ArrayList<>();
-        for(int accordCount : result) {
+        for (int accordCount : result) {
             convertedResult.add(String.valueOf(accordCount));
         }
         convertedResult.add(String.format("%.1f", profit));
