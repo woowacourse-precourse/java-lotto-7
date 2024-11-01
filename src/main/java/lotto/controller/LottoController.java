@@ -4,9 +4,14 @@ package lotto.controller;
 import lotto.view.InputView;
 
 public class LottoController {
+    private final InputView inputView;
+
+    public LottoController(InputView inputView) {
+        this.inputView = inputView;
+    }
 
     public void handle() {
-        int price = InputView.getInput();
+        int price = inputView.getInput();
 
         // 로또 발행하기
 
