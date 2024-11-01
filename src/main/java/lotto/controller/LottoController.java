@@ -1,17 +1,17 @@
 package lotto.controller;
 
-import lotto.view.LottoView;
+import lotto.view.LottoPurchaseInputView;
 
 public class LottoController {
-    private LottoView lottoView;
+    private LottoPurchaseInputView lottoPurchaseInputView;
 
-    public LottoController(LottoView lottoView) {
-        this.lottoView = lottoView;
+    public LottoController(LottoPurchaseInputView lottoPurchaseInputView) {
+        this.lottoPurchaseInputView = lottoPurchaseInputView;
     }
 
     public void run() {
-        int lottoAmount = lottoView.inputPurchaseAmount();
-        int numberOfTickets = lottoView.numberOfLotto(lottoAmount);
-        lottoView.makeRandomLottos(numberOfTickets);
+        int lottoAmount = lottoPurchaseInputView.inputPurchaseAmount();
+        int numberOfTickets = lottoPurchaseInputView.numberOfLotto(lottoAmount);
+        lottoPurchaseInputView.makeRandomLottos(numberOfTickets);
     }
 }

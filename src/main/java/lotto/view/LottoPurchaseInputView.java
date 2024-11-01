@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.validator.LottoValidator;
 import lotto.model.Lotto;
 
-public class LottoView {
+public class LottoPurchaseInputView {
     public int inputPurchaseAmount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
