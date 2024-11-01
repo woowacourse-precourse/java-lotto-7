@@ -10,16 +10,22 @@ public class UserInputView {
 
     public static String inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
-        return Console.readLine();
+        String purchaseAmount = Console.readLine();
+        System.out.println();
+        return purchaseAmount;
     }
 
     public static String inputWinningNumbers() {
         System.out.println(WINNING_NUMBERS_MESSAGE);
-        return Console.readLine();
+        String winningNumbers = Console.readLine();
+        System.out.println();
+        return winningNumbers;
     }
 
     public static String inputBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
-        return Console.readLine();
+        String bonusNumber = Console.readLine();
+        System.out.println();
+        return bonusNumber;
     }
 }
