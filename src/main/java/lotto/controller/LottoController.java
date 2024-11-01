@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 import lotto.domain.AnswerNumbers;
 import lotto.domain.BonusNumber;
 import lotto.domain.Payment;
+import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lotto.Lottos;
 import lotto.view.InputView;
@@ -23,6 +24,7 @@ public class LottoController {
         Payment payment = retry(inputView::readPrice);
         Lottos lottos = purchase(payment);
         AnswerNumbers answerNumbers = create();
+        result(lottos, answerNumbers);
     }
 
     private Lottos purchase(Payment payment) {
@@ -35,6 +37,11 @@ public class LottoController {
         WinningNumbers winningNumbers = retry(inputView::readWinningNumbers);
         BonusNumber bonusNumber = retry(() -> inputView.readBonusNumber(winningNumbers));
         return AnswerNumbers.from(winningNumbers, bonusNumber);
+    }
+
+    private void result(Lottos lottos, AnswerNumbers answerNumbers) {
+        Result result = Result.of(lottos, answerNumbers);
+        outputView.printResult(result);
     }
 
     private <T> T retry(Supplier<T> supplier) {
