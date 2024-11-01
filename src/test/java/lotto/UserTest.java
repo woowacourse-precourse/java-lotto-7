@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class UserTest {
 
@@ -17,9 +19,10 @@ public class UserTest {
         Assertions.assertThat(actual).isEqualTo(8);
     }
 
-    @Test
-    void 구입_금액이_음수이면_예외가_발생한다() {
-        assertThatThrownBy(() -> new User(-1000))
+    @ParameterizedTest
+    @ValueSource(ints = {-1000, 1234, 18009})
+    void 구입_금액이_음수일때와_1000원_으로_나누어_떨어지지_않으면_예외가_발생한다(int value) {
+        assertThatThrownBy(() -> new User(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
