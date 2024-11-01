@@ -1,5 +1,6 @@
 package lotto.model.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -11,5 +12,9 @@ public class Lotto {
 
     public static Lotto of(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 }
