@@ -35,8 +35,8 @@ public class LottoMachine {
 
     private List<Integer> getRandomLottoNumbers() {
         return pickUniqueNumbersInRange(
-                Lotto.MIN_LOTTO_NUMBER,
-                Lotto.MAX_LOTTO_NUMBER,
+                LottoNumber.MIN_VALUE,
+                LottoNumber.MAX_VALUE,
                 Lotto.NUMBER_SIZE
         );
     }

@@ -22,6 +22,14 @@ public class ConsoleHandler {
         }
     }
 
+    public static String inputStringValue(String message) {
+        output(message + "\n");
+        final String input = Console.readLine();
+        output("\n");
+
+        return input;
+    }
+
     public static void announceBuyLottos(List<Lotto> lottos) {
         final String lottoCountAnnounceMessage = lottos.size() + "개를 구매했습니다.";
         final String lottosInfo = lottos.stream()

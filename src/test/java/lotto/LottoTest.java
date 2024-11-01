@@ -25,6 +25,35 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("생성자는 지정 사이즈의 리스트가 아닌 경우 지정한 메세지와 함께 IllegalArgumentException을 발생한다.")
+    void constructor_WithInvalidSize_ThrowIllegalExceptionWithExpectedMessage() {
+        // given
+        List<Integer> numbers1 = List.of(1, 2, 3, 4, 5);
+        List<Integer> numbers2 = List.of(1, 2, 3, 4, 6);
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(numbers1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Lotto.SIZE_ERROR_MESSAGE);
+
+        assertThatThrownBy(() -> new Lotto(numbers2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Lotto.SIZE_ERROR_MESSAGE);
+    }
+
+    @Test
+    @DisplayName("생성자는 중복되는 숫자가 있는 경우 지정한 메세지와 함께 IllegalArgumentException을 발생한다.")
+    void constructor_WithDuplicatedNumber_ThrowIllegalExceptionWithExpectedMessage() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        // when & then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(Lotto.DUPLICATED_NUMBER_ERROR_MESSAGE);
+    }
+
+    @Test
     @DisplayName("toString은 의도한 String을 반환한다.")
     void toString_ReturnCorrectly() {
         // given
