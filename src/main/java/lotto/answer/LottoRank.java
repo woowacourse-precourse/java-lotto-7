@@ -4,31 +4,31 @@ public enum LottoRank {
 	FIRST(6, false, 2000000000) {
 		@Override
 		public void printInfo() {
-			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	},
 	SECOND(5, true, 30000000) {
 		@Override
 		public void printInfo() {
-			System.out.print(getMatchCount() + MATCH_MESSAGE + BONUS_MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+			System.out.print(getMatchCount() +  MATCH_MESSAGE + "," + BONUS_MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	},
 	THIRD(5, false, 1500000) {
 		@Override
 		public void printInfo() {
-			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	},
 	FOURTH(4, false, 50000) {
 		@Override
 		public void printInfo() {
-			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+			System.out.print(getMatchCount() +  MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	},
 	FIFTH(1, false, 5000) {
 		@Override
 		public void printInfo() {
-			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + "-");
+			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	};
 	private static final String MATCH_MESSAGE = "개 일치";
