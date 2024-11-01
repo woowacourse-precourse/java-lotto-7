@@ -22,9 +22,4 @@ public enum ViewMessage {
     public String getMessage() {
         return message;
     }
-
-    public String formatProfitRate(double rate) {
-        return String.format(PROFIT_RATE.message, rate);
-    }
-
 }

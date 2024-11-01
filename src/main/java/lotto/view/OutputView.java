@@ -11,35 +11,32 @@ public class OutputView {
     private static final NumberFormat numberFormat = NumberFormat.getInstance();
 
     public void printLottoPurchase(List<Lotto> purchasedTickets) {
-        System.out.printf(ViewMessage.LOTTO_COUNT_PURCHASED.getMessage(), purchasedTickets.size());
-        System.out.println();
+        System.out.println(String.format(ViewMessage.LOTTO_COUNT_PURCHASED.getMessage(), purchasedTickets.size()));
         purchasedTickets.forEach(ticket -> System.out.println(ticket.formatNumbers()));
     }
 
     public void printWinningResults(Map<PrizeTier, Integer> prizeCounts) {
         System.out.println(ViewMessage.RESULT_HEADER.getMessage());
-
-        System.out.print(formatPrizeMessage(ViewMessage.SIX_MATCH, prizeCounts.getOrDefault(PrizeTier.FIRST, 0),
-                PrizeTier.FIRST.getPrizeAmount()));
-        System.out.print(formatPrizeMessage(ViewMessage.FIVE_MATCH_BONUS, prizeCounts.getOrDefault(PrizeTier.SECOND, 0),
-                PrizeTier.SECOND.getPrizeAmount()));
-        System.out.print(formatPrizeMessage(ViewMessage.FIVE_MATCH, prizeCounts.getOrDefault(PrizeTier.THIRD, 0),
-                PrizeTier.THIRD.getPrizeAmount()));
-        System.out.print(formatPrizeMessage(ViewMessage.FOUR_MATCH, prizeCounts.getOrDefault(PrizeTier.FOURTH, 0),
-                PrizeTier.FOURTH.getPrizeAmount()));
-        System.out.print(formatPrizeMessage(ViewMessage.THREE_MATCH, prizeCounts.getOrDefault(PrizeTier.FIFTH, 0),
-                PrizeTier.FIFTH.getPrizeAmount()));
+        printPrizeCount(ViewMessage.SIX_MATCH, PrizeTier.MATCH_SIX, prizeCounts);
+        printPrizeCount(ViewMessage.FIVE_MATCH_BONUS, PrizeTier.MATCH_FIVE_WITH_BONUS, prizeCounts);
+        printPrizeCount(ViewMessage.FIVE_MATCH, PrizeTier.MATCH_FIVE, prizeCounts);
+        printPrizeCount(ViewMessage.FOUR_MATCH, PrizeTier.MATCH_FOUR, prizeCounts);
+        printPrizeCount(ViewMessage.THREE_MATCH, PrizeTier.MATCH_THREE, prizeCounts);
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.println(ViewMessage.PROFIT_RATE.formatProfitRate(profitRate));
+        System.out.println(String.format(ViewMessage.PROFIT_RATE.getMessage(), profitRate));
     }
 
     public void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    private String formatPrizeMessage(ViewMessage message, int count, int prizeAmount) {
-        return String.format(message.getMessage(), numberFormat.format(prizeAmount), count);
+    private void printPrizeCount(ViewMessage message, PrizeTier tier, Map<PrizeTier, Integer> prizeCounts) {
+        int count = prizeCounts.getOrDefault(tier, 0);
+        String formattedMessage = String.format(message.getMessage(), numberFormat.format(tier.getPrizeAmount()),
+                count);
+        System.out.print(formattedMessage);
     }
+
 }
