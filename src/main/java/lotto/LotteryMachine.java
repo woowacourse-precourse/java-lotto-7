@@ -12,7 +12,8 @@ public class LotteryMachine {
     public void purchaseLottoTickets(Bag bag) {
         int purchaseAmount = bag.getPurchaseAmount();
         validatePurchaseAmount(purchaseAmount);
-        IntStream.range(0,purchaseAmount/LOTTO_TICKET_PRICE).forEach(i -> purchaseLotto(bag));
+        int numberOfPurchase = purchaseAmount/LOTTO_TICKET_PRICE;
+        IntStream.range(0,numberOfPurchase).forEach(i -> purchaseLotto(bag));
     }
 
     private void purchaseLotto(Bag bag) {

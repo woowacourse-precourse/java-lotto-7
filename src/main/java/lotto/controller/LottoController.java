@@ -13,7 +13,6 @@ public class LottoController {
     }
     public void run() {
         startLottoPurchase();
-
     }
 
     public void startLottoPurchase() {
