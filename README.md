@@ -87,6 +87,15 @@
     - 로또 번호로 6개의 숫자로 이루어있는지 검증한다. (validateNumbersSize)
     - 로또 번호 내 중복이 있는지 검증한다. (validateDuplicateNumbers)
 
+### Number
+
+- [x] 숫자를 생성한다.
+  - 숫자를 검증한다. (validateNumber)
+    - 생성한 숫자가 로또 번호의 최소 숫자인 1보다 큰거나 같은지 검증한다. (validateNumberBiggerThanMinNumber)
+    - 생성한 숫자가 로또 번호의 최대 숫자인 45보다 작거나 같은지 검증한다. (validateNumberSmallerThanMaxNumber)
+  - 랜덤 숫자를 생성한다. (generateRandomNumber)
+    - 로또 번호 범위 내의 숫자 중 하나를 무작위로 생성한다.
+
 ---
 
 # 예외 목록
@@ -95,3 +104,7 @@
 
 - 로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.
 - 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.
+
+### Number
+
+- 숫자가 로또번호 범위를 벗어나면 예외가 발생한다.
