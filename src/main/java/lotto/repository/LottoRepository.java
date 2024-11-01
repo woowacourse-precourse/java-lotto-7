@@ -28,4 +28,8 @@ public class LottoRepository {
         return lottos;
     }
 
+    public Integer getLottoCount() {
+        return lottos.size();
+    }
+
 }
