@@ -54,6 +54,10 @@ public class LottoController {
             int parsedNumber = parseWinningNumber(number.trim());
             winningNumbers.add(parsedNumber);
         }
+
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
         return winningNumbers;
     }
 
@@ -155,7 +159,6 @@ public class LottoController {
     }
 
     private static double calculateProfitRate(double totalEarnings, int purchaseAmount) {
-        System.out.println(totalEarnings);
         return (totalEarnings / purchaseAmount) * 100;
     }
 }
