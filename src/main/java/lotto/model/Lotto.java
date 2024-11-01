@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+
     private final List<LottoNumber> numbers;
 
     private Lotto(List<LottoNumber> numbers) {
@@ -16,6 +17,10 @@ public class Lotto {
 
     public static Lotto from(List<LottoNumber> numbers) {
         return new Lotto(numbers);
+    }
+
+    public List<LottoNumber> numbers() {
+        return List.copyOf(numbers);
     }
 
     private void validate(List<LottoNumber> numbers) {
@@ -35,5 +40,22 @@ public class Lotto {
         if (distinctCount != numbers.size()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION_ERROR.message());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lotto lotto = (Lotto) o;
+        return numbers.equals(lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return numbers.hashCode();
     }
 }
