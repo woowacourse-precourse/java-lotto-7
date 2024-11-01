@@ -1,6 +1,6 @@
 package lotto.util;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Validator {
 
@@ -34,6 +34,12 @@ public class Validator {
 
     public static void isDivisibleBy(int number, int divisor) {
         if ((number % divisor) != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static <T> void isEqualListSize(List<T> list, int winningNumberCount) {
+        if (list.size() != winningNumberCount) {
             throw new IllegalArgumentException();
         }
     }

@@ -7,6 +7,8 @@ import lotto.util.Validator;
 public class WinningLotto extends Lotto {
     private int bonusNum;
 
+    private static final int WINNING_NUMBER_COUNT = 6;
+
     public WinningLotto(List<Integer> nums, int bonusNum) {
         super(nums);
         this.bonusNum = bonusNum;
@@ -14,11 +16,23 @@ public class WinningLotto extends Lotto {
     }
 
     public static WinningLotto create(String winningNumber) {
-        validateWinningNumber(winningNumber);
+        basicValidateWinningNumber(winningNumber);
+        List<String> parsedNumber = parseEachNumber(winningNumber);
+        validateWinningNumber(parsedNumber);
         return null;
     }
 
-    private static void validateWinningNumber(String winningNumber) {
+
+    private static List<String> parseEachNumber(String winningNumber) {
+        String[] numbers = winningNumber.split(",");
+        return List.of(numbers);
+    }
+
+    private static void basicValidateWinningNumber(String winningNumber) {
         Validator.isEmptyInput(winningNumber);
+    }
+
+    private static void validateWinningNumber(List<String> parsedNumber) {
+        Validator.isEqualListSize(parsedNumber, WINNING_NUMBER_COUNT);
     }
 }
