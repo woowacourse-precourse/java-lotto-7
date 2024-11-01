@@ -33,14 +33,14 @@ public class BonusNumber {
 
         private static int validateBonusNumberIsNumeric(String bonusNumber) {
             if (!bonusNumber.matches("-?\\d+")) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 가능합니다.");
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
             }
             return Integer.parseInt(bonusNumber);
         }
 
         private static void validateBonusNumberInRange(int bonusNumber) {
             if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자가 입력 가능합니다.");
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
             }
         }
 

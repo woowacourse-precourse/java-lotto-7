@@ -25,7 +25,7 @@ public class BonusNumberTest {
     void validateBonusNumberIsNumeric(String condition) {
         assertThatThrownBy(() -> BonusNumber.from(condition))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 숫자만 가능합니다.");
+                .hasMessage("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
     }
 
     @ParameterizedTest
@@ -34,7 +34,7 @@ public class BonusNumberTest {
     void validateBonusNumberInRange(String condition) {
         assertThatThrownBy(() -> BonusNumber.from(condition))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 1~45 사이의 숫자가 입력 가능합니다.");
+                .hasMessage("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
     }
 
 }
