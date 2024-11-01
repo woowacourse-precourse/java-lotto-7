@@ -1,25 +1,25 @@
 package lotto.lotto.winning.domain;
 
-import lotto.buyer.domain.Money;
-import lotto.buyer.infrastructure.Won;
+import lotto.money.domain.Money;
+import lotto.money.infrastructure.WinningAmount;
 import lotto.lotto.domain.Lotto;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
 public enum WinningPlace {
-    FIRST_PLACE(6, Won.of(2_000_000_000L), 0, "6개 일치 (2,000,000,000원)", 5),
-    SECOND_PLACE(6, Won.of(30_000_000L), 0, "5개 일치, 보너스 볼 일치 (30,000,000원)",4) {
+    FIRST_PLACE(6, new WinningAmount(2_000_000_000L), 0, "6개 일치 (2,000,000,000원)", 5),
+    SECOND_PLACE(6, new WinningAmount(30_000_000L), 0, "5개 일치, 보너스 볼 일치 (30,000,000원)",4) {
         @Override
         public boolean isWinning(WinningLotto winningLotto, BonusNumber bonusNumber, Lotto lotto) {
             int matchCount = lotto.getMatchWinningCountAndBonusNumber(winningLotto, bonusNumber);
             return matchesWinningCount(matchCount);
         }
     },
-    THIRD_PLACE(5, Won.of(1_500_000L), 0, "5개 일치 (1,500,000원)",3),
-    FOURTH_PLACE(4, Won.of(50_000L), 0, "4개 일치 (50,000원)",2),
-    FIFTH_PLACE(3, Won.of(5_000L), 0,"3개 일치 (5,000원)",1),
-    LAST_PLACE(0, Won.of(0L), 0, "", 0);
+    THIRD_PLACE(5, new WinningAmount(1_500_000L), 0, "5개 일치 (1,500,000원)",3),
+    FOURTH_PLACE(4, new WinningAmount(50_000L), 0, "4개 일치 (50,000원)",2),
+    FIFTH_PLACE(3, new WinningAmount(5_000L), 0,"3개 일치 (5,000원)",1),
+    LAST_PLACE(0, new WinningAmount(0L), 0, "", 0);
     private static final WinningPlace[] WINNING_PLACES = values();
     private final int winningNumber;
     private final Money money;
