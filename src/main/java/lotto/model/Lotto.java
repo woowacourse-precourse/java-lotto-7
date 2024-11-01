@@ -12,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = sorted(numbers);
         this.numbers = numbers;
     }
 
@@ -43,5 +44,11 @@ public class Lotto {
         if (numbers.stream().distinct().count() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 }
