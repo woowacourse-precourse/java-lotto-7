@@ -30,4 +30,8 @@ public enum LottoPrize {
     private static boolean isMatch(LottoPrize prize, int matches, int bonus) {
         return prize.matches == matches && prize.bonus <= bonus;
     }
+
+    public long getPrizeMoney() {
+        return prizeMoney;
+    }
 }
