@@ -10,24 +10,23 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningNumber;
 import lotto.view.InputHandler;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoManager {
-  private final InputView inputView;
   private final OutputView outputView;
   private final LottoMachine lottoMachine;
   private final LottoCalculator lottoCalculator;
   private final LottoEvaluator lottoEvaluator;
   private final InputHandler inputHandler;
 
-  public LottoManager() {
-    this.inputView = new InputView();
-    this.outputView = new OutputView();
-    this.lottoMachine = new LottoMachine();
-    this.lottoCalculator = new LottoCalculator();
-    this.lottoEvaluator = new LottoEvaluator();
-    this.inputHandler = new InputHandler(inputView);
+
+  public LottoManager(OutputView outputView, LottoMachine lottoMachine,
+      LottoCalculator lottoCalculator, LottoEvaluator lottoEvaluator, InputHandler inputHandler) {
+    this.outputView = outputView;
+    this.lottoMachine = lottoMachine;
+    this.lottoCalculator = lottoCalculator;
+    this.lottoEvaluator = lottoEvaluator;
+    this.inputHandler = inputHandler;
   }
 
   public void run() {
@@ -35,7 +34,7 @@ public class LottoManager {
     int ticketCount = lottoCalculator.calculateNumberOfTickets(purchaseAmount);
     List<Lotto> lottos = lottoMachine.generateLottoTickets(ticketCount);
 
-    outputView.printLottoTickets(lottos);
+    outputView.printLottos(lottos);
 
     WinningNumber winningNumber = inputHandler.getWinningNumber();
     BonusNumber bonusNumber = inputHandler.getBonusNumber(winningNumber);

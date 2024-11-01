@@ -24,7 +24,7 @@ class PurchaseAmountTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new PurchaseAmount(amount);
     });
-    assertEquals("[ERROR] 구입 금액은 1000원 이상이어야 합니다.", exception.getMessage());
+    assertEquals("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.", exception.getMessage());
   }
 
   @DisplayName("1,000원 단위로 나누어 떨어지지 않는 금액 입력 시 예외가 발생한다")
@@ -44,6 +44,6 @@ class PurchaseAmountTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new PurchaseAmount(amount);
     });
-    assertEquals("[ERROR] 구입 금액은 1000원 이상이어야 합니다.", exception.getMessage());
+    assertEquals("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.", exception.getMessage());
   }
 }

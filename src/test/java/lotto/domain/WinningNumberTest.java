@@ -26,7 +26,7 @@ class WinningNumberTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new WinningNumber(numbers);
     });
-    assertEquals("[ERROR] 당첨 번호는 6개여야 합니다.", exception.getMessage());
+    assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", exception.getMessage());
   }
 
   @DisplayName("당첨 번호 개수가 6개 초과이면 예외가 발생한다")
@@ -36,7 +36,7 @@ class WinningNumberTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new WinningNumber(numbers);
     });
-    assertEquals("[ERROR] 당첨 번호는 6개여야 합니다.", exception.getMessage());
+    assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", exception.getMessage());
   }
 
   @DisplayName("당첨 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다")
@@ -46,7 +46,7 @@ class WinningNumberTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new WinningNumber(numbers);
     });
-    assertEquals("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+    assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
   }
 
   @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다")
@@ -56,6 +56,6 @@ class WinningNumberTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new WinningNumber(numbers);
     });
-    assertEquals("[ERROR] 당첨 번호는 중복될 수 없습니다.", exception.getMessage());
+    assertEquals("[ERROR] 로또 번호는 중복될 수 없습니다.", exception.getMessage());
   }
 }

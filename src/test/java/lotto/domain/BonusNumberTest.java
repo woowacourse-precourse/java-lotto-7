@@ -24,7 +24,7 @@ class BonusNumberTest {
     IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
       new BonusNumber(46, winningNumber);
     });
-    assertEquals("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
+    assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
   }
 
   @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다")

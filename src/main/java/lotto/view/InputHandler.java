@@ -1,11 +1,12 @@
 package lotto.view;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumber;
+import lotto.util.ErrorMessages;
 
 public class InputHandler {
   private final InputView inputView;
@@ -19,10 +20,10 @@ public class InputHandler {
       try {
         String input = inputView.readPurchaseAmount();
         BigDecimal amount = new BigDecimal(input);
-        PurchaseAmount purchaseAmount = new PurchaseAmount(amount); // Validation inside domain class
+        PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
         return purchaseAmount.getAmount();
       } catch (NumberFormatException e) {
-        System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+        System.out.printf((ErrorMessages.NUMBER_REQUIRED) + "%n", "구입 금액");
       } catch (IllegalArgumentException e) {
         System.out.println(e.getMessage());
       }
@@ -34,7 +35,7 @@ public class InputHandler {
       try {
         String input = inputView.readWinningNumbers();
         List<Integer> numbers = parseNumbers(input);
-        return new WinningNumber(numbers); // Validation inside domain class
+        return new WinningNumber(numbers);
       } catch (IllegalArgumentException e) {
         System.out.println(e.getMessage());
       }
@@ -46,9 +47,9 @@ public class InputHandler {
       try {
         String input = inputView.readBonusNumber();
         int number = Integer.parseInt(input);
-        return new BonusNumber(number, winningNumber); // Validation inside domain class
+        return new BonusNumber(number, winningNumber);
       } catch (NumberFormatException e) {
-        System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        System.out.printf((ErrorMessages.NUMBER_REQUIRED) + "%n", "보너스 번호");
       } catch (IllegalArgumentException e) {
         System.out.println(e.getMessage());
       }
@@ -56,16 +57,13 @@ public class InputHandler {
   }
 
   private List<Integer> parseNumbers(String input) {
-    String[] tokens = input.split(",");
-    List<Integer> numbers = new ArrayList<>();
-    for (String token : tokens) {
-      try {
-        numbers.add(Integer.parseInt(token.trim()));
-      } catch (NumberFormatException e) {
-        throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
-      }
+    try {
+      return Arrays.stream(input.split(","))
+          .map(String::trim)
+          .map(Integer::parseInt)
+          .toList();
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException(String.format(ErrorMessages.NUMBER_REQUIRED, "당첨 번호"));
     }
-    return numbers;
   }
-
 }

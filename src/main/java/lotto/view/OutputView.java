@@ -1,25 +1,20 @@
 package lotto.view;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.Result;
+import lotto.util.LottoConstants;
 
 public class OutputView {
 
-  public void printLottoTickets(List<Lotto> lottos) {
+  public void printLottos(List<Lotto> lottos) {
     System.out.println();
-    System.out.println(formatPurchaseMessage(lottos.size()));
+    System.out.printf((LottoConstants.MESSAGE_PURCHASED_TICKETS) + "%n", lottos.size());
     for (Lotto lotto : lottos) {
       System.out.println(formatLottoNumbers(lotto));
     }
-  }
-
-  private String formatPurchaseMessage(int ticketCount) {
-    return ticketCount + "개를 구매했습니다.";
   }
 
   private String formatLottoNumbers(Lotto lotto) {
@@ -28,50 +23,27 @@ public class OutputView {
 
   public void printResult(Result result, BigDecimal profitRate) {
     System.out.println();
-    System.out.println("당첨 통계");
-    System.out.println("---");
+    System.out.println(LottoConstants.MESSAGE_RESULT_STATISTICS);
+    System.out.println(LottoConstants.MESSAGE_DIVIDER);
 
-    printRankCounts(result.getRankCounts());
+    printRankCounts(result);
 
     printProfitRate(profitRate);
   }
 
-  private void printRankCounts(Map<Rank, Integer> rankCounts) {
-    System.out.println(formatRankCountMessage(Rank.FIFTH, rankCounts.getOrDefault(Rank.FIFTH, 0)));
-    System.out.println(formatRankCountMessage(Rank.FOURTH, rankCounts.getOrDefault(Rank.FOURTH, 0)));
-    System.out.println(formatRankCountMessage(Rank.THIRD, rankCounts.getOrDefault(Rank.THIRD, 0)));
-    System.out.println(formatRankCountMessage(Rank.SECOND, rankCounts.getOrDefault(Rank.SECOND, 0)));
-    System.out.println(formatRankCountMessage(Rank.FIRST, rankCounts.getOrDefault(Rank.FIRST, 0)));
-  }
-
-  private String formatRankCountMessage(Rank rank, int count) {
-    String matchMessage = getMatchMessage(rank);
-    String prize = formatPrize(rank.getPrize());
-    return matchMessage + " (" + prize + ") - " + count + "개";
-  }
-
-  private String getMatchMessage(Rank rank) {
-    switch (rank) {
-      case FIRST:
-        return "6개 일치";
-      case SECOND:
-        return "5개 일치, 보너스 볼 일치";
-      case THIRD:
-        return "5개 일치";
-      case FOURTH:
-        return "4개 일치";
-      case FIFTH:
-        return "3개 일치";
-      default:
-        return "";
+  private void printRankCounts(Result result) {
+    for (Rank rank : Rank.getWinningRanks()) {
+      System.out.println(formatRankCountMessage(rank, result.getRankCount(rank)));
     }
   }
 
-  private String formatPrize(long prize) {
-    return String.format("%,d원", prize);
+  private String formatRankCountMessage(Rank rank, int count) {
+    String matchMessage = rank.getMatchMessage();
+    String prize = String.format(LottoConstants.FORMAT_CURRENCY, rank.getPrize());
+    return String.format(LottoConstants.FORMAT_RANK_COUNT, matchMessage, prize, count);
   }
 
   private void printProfitRate(BigDecimal profitRate) {
-    System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    System.out.printf((LottoConstants.MESSAGE_TOTAL_PROFIT_RATE) + "%n", profitRate);
   }
 }

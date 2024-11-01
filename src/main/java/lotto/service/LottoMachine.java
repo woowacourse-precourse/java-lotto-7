@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.util.LottoConstants;
 
 public class LottoMachine {
-  private static final int LOTTO_NUMBER_COUNT = 6;
-  private static final int LOTTO_MIN_NUMBER = 1;
-  private static final int LOTTO_MAX_NUMBER = 45;
-
   public List<Lotto> generateLottoTickets(int ticketCount) {
     List<Lotto> lottoTickets = new ArrayList<>();
 
@@ -24,8 +21,11 @@ public class LottoMachine {
 
   private List<Integer> pickUniqueNumbersInRange() {
     List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-        LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT
+        LottoConstants.MIN_LOTTO_NUMBER,
+        LottoConstants.MAX_LOTTO_NUMBER,
+        LottoConstants.LOTTO_NUMBER_COUNT
     );
+
     List<Integer> mutableNumbers = new ArrayList<>(numbers);
     Collections.sort(mutableNumbers);
     return mutableNumbers;

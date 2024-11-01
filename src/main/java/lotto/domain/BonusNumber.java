@@ -1,23 +1,22 @@
 package lotto.domain;
 
-public class BonusNumber {
+import lotto.util.ErrorMessages;
+import lotto.util.LottoConstants;
+import lotto.util.LottoNumberValidator;
 
-  private static final int MIN_NUMBER = 1;
-  private static final int MAX_NUMBER = 45;
+public class BonusNumber {
 
   private final int number;
 
   public BonusNumber(int number, WinningNumber winningNumber) {
-    validate(number, winningNumber);
+    LottoNumberValidator.validateNumber(number);
+    validateNotDuplicate(number, winningNumber);
     this.number = number;
   }
 
-  private void validate(int number, WinningNumber winningNumber) {
-    if (number < MIN_NUMBER || number > MAX_NUMBER) {
-      throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-    }
+  private void validateNotDuplicate(int number, WinningNumber winningNumber) {
     if (winningNumber.contains(number)) {
-      throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_DUPLICATE);
     }
   }
 

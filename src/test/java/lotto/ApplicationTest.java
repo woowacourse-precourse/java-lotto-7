@@ -1,9 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,8 +8,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
 
@@ -54,7 +49,7 @@ class ApplicationTest extends NsTest {
   void 구입_금액_최소_미만_입력_테스트() {
     assertSimpleTest(() -> {
       runException("500", "1,2,3,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+      assertThat(output()).contains("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
     });
   }
 
@@ -70,7 +65,7 @@ class ApplicationTest extends NsTest {
   void 구입_금액_제로_입력_테스트() {
     assertSimpleTest(() -> {
       runException("0", "1,2,3,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+      assertThat(output()).contains("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
     });
   }
 
@@ -78,7 +73,7 @@ class ApplicationTest extends NsTest {
   void 구입_금액_음수_입력_테스트() {
     assertSimpleTest(() -> {
       runException("-5000", "1,2,3,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+      assertThat(output()).contains("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
     });
   }
 
@@ -86,7 +81,7 @@ class ApplicationTest extends NsTest {
   void 구입_금액_숫자_아님_입력_테스트() {
     assertSimpleTest(() -> {
       runException("만원", "1,2,3,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 구입 금액은 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 구입 금액은(는) 숫자여야 합니다.");
     });
   }
 
@@ -103,7 +98,7 @@ class ApplicationTest extends NsTest {
   void 구입_금액_빈값_입력_테스트() {
     assertSimpleTest(() -> {
       runException("", "1,2,3,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 구입 금액은 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 입력이 필요합니다.");
     });
   }
 
@@ -127,7 +122,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_중복_숫자_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,3,3,5,6", "7");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+      assertThat(output()).contains("[ERROR] 로또 번호는 중복될 수 없습니다.");
     });
   }
 
@@ -135,7 +130,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_범위_벗어난_숫자_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "0,2,3,4,5,46", "7");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     });
   }
 
@@ -143,7 +138,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_숫자_아닌_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,삼,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 당첨 번호은(는) 숫자여야 합니다.");
     });
   }
 
@@ -151,7 +146,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_숫자_부족_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,3,4,5", "7");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 6개여야 합니다.");
+      assertThat(output()).contains("[ERROR] 로또 번호는 6개여야 합니다.");
     });
   }
 
@@ -159,7 +154,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_숫자_초과_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,3,4,5,6,7", "8");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 6개여야 합니다.");
+      assertThat(output()).contains("[ERROR] 로또 번호는 6개여야 합니다.");
     });
   }
 
@@ -183,7 +178,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_특수문자_포함_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,3,4,5,@", "7");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 당첨 번호은(는) 숫자여야 합니다.");
     });
   }
 
@@ -191,7 +186,7 @@ class ApplicationTest extends NsTest {
   void 당첨번호_소수_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1.5,2,3,4,5,6", "7");
-      assertThat(output()).contains("[ERROR] 당첨 번호는 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 당첨 번호은(는) 숫자여야 합니다.");
     });
   }
 
@@ -215,7 +210,7 @@ class ApplicationTest extends NsTest {
   void 보너스번호_범위_벗어난_숫자_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,3,4,5,6", "0");
-      assertThat(output()).contains("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     });
   }
 
@@ -223,7 +218,7 @@ class ApplicationTest extends NsTest {
   void 보너스번호_숫자_아닌_입력_테스트() {
     assertSimpleTest(() -> {
       runException("8000", "1,2,3,4,5,6", "보너스");
-      assertThat(output()).contains("[ERROR] 보너스 번호는 숫자여야 합니다.");
+      assertThat(output()).contains("[ERROR] 보너스 번호은(는) 숫자여야 합니다.");
     });
   }
 

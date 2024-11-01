@@ -36,7 +36,7 @@ public class OutputViewTest {
     PrintStream originalOut = System.out;
     System.setOut(new PrintStream(outputStreamCaptor));
 
-    outputView.printLottoTickets(lottos);
+    outputView.printLottos(lottos);
 
     System.setOut(originalOut);
 

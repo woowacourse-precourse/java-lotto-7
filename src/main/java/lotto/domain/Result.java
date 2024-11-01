@@ -20,10 +20,6 @@ public class Result {
     return rankCounts.get(rank);
   }
 
-  public Map<Rank, Integer> getRankCounts() {
-    return rankCounts;
-  }
-
   public long calculateTotalPrize() {
     long total = 0;
     for (Rank rank : Rank.values()) {
