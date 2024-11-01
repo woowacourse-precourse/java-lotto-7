@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.util.MoneyParser;
+import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,11 +15,14 @@ public class LottoController {
     }
 
     public void play() {
-        System.out.println(getMoney());
+        long test = getMoney();
     }
 
-    private String getMoney() {
+    private long getMoney() {
         outputView.printMoneyRequest();
-        return inputView.getUserInput();
+        MoneyValidator validator = new MoneyValidator(inputView.getUserInput());
+        validator.validate();
+
+        return MoneyParser.parseLong(validator.getMoney());
     }
 }

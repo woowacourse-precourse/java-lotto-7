@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.view.InputView;
-import lotto.view.OutputMessages;
 import lotto.view.OutputView;
 
 public class Application {
