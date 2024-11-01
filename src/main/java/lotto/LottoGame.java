@@ -17,5 +17,9 @@ public class LottoGame {
         int purchaseAmount = inputView.inputPurchaseAmount();
         List<Lotto> lottos = lottoPurchase.purchase(purchaseAmount);
         outputView.printLottos(lottos);
+
+        LottoPrize lottoPrize = inputView.inputLottoPrize();
+        LottoResult lottoResult = new LottoResult(lottos, lottoPrize, purchaseAmount);
+        outputView.printLottoResult(lottoResult);
     }
 }

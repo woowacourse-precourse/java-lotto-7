@@ -23,11 +23,11 @@ public class InputView {
     public LottoPrize inputLottoPrize() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println("\n당첨 번호를 입력해 주세요.");
                 String inputPrizeNumbers = Console.readLine();
                 List<Integer> prizeNumbers = validateAndParseLottoNumbers(inputPrizeNumbers);
 
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 String inputBonusNumber = Console.readLine();
                 int bonusNumber = validateAndParseNumber(inputBonusNumber);
 
@@ -52,10 +52,10 @@ public class InputView {
         }
 
         if (money < PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 "+PURCHASE_AMOUNT+"원 이상이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + PURCHASE_AMOUNT + "원 이상이어야 합니다.");
         }
         if (money % PURCHASE_AMOUNT != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 "+PURCHASE_AMOUNT+" 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + PURCHASE_AMOUNT + " 단위로 입력해야 합니다.");
         }
         return money;
     }
@@ -72,6 +72,10 @@ public class InputView {
     }
 
     private int validateAndParseNumber(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 공백으로 입력되었습니다.");
+        }
+
         int number = 0;
         try {
             number = Integer.parseInt(input);
@@ -80,5 +84,4 @@ public class InputView {
         }
         return number;
     }
-
 }

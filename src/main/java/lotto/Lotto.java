@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    protected final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -25,5 +25,9 @@ public class Lotto {
             throw new IllegalArgumentException(
                     "[ERROR] 로또 번호는 " + LOTTO_MIN_NUMBER + "부터 " + LOTTO_MAX_NUMBER + " 사이여야 합니다.");
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
