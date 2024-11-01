@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 
-import static lotto.common.ErrorMessage.*;
+import static lotto.common.constant.ErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LOTTO_SHOULD_BE_SIX.getMessage());
+            throw new IllegalArgumentException(LOTTO_SHOULD_BE_SIX.getErrorMessage());
         }
     }
 
