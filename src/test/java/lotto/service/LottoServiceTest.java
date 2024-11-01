@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +9,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoServiceTest {
     private final LottoService lottoService = new LottoService();
+
+    @Test
+    void 발행된_로또_번호의_범위_테스트() {
+        List<Integer> result = lottoService.generateLottonumbers();
+        assertThat(result.stream().allMatch(number -> number >= 1 && number <= 45)).isTrue();
+    }
 
     @Test
     void 로또_번호는_오름차순으로_정렬되어야_한다() {
