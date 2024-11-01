@@ -3,7 +3,7 @@ package lotto.service;
 import static lotto.util.ExceptionMessage.INVALID_INPUT;
 
 public class Parser {
-    public static int toInt(String stringValue) {
+    public static int parseNumber(String stringValue) {
         int intValue;
         try {
             intValue = Integer.parseInt(stringValue);

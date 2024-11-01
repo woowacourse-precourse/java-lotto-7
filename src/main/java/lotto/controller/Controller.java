@@ -48,7 +48,7 @@ public class Controller {
 
     private int UntilValidPurchaseMoney() {
         try {
-            return inputValidator.validate(Parser.toInt(inputView.readInputLine()));
+            return inputValidator.validate(Parser.parseNumber(inputView.readInputLine()));
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             return (UntilValidPurchaseMoney());
@@ -66,7 +66,7 @@ public class Controller {
 
     private BonusBall UntilValidBonusBall(Lotto lotto) {
         try {
-            return new BonusBall(Parser.toInt(inputView.readInputLine()), lotto.getNumbers());
+            return new BonusBall(Parser.parseNumber(inputView.readInputLine()), lotto.getNumbers());
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             return (UntilValidBonusBall(lotto));

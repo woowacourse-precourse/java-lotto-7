@@ -11,7 +11,7 @@ public class Splitter {
         String[] numbers = winningNumbers.split(DELIMITER.getStringValue());
         return Arrays.stream(numbers)
                 .filter(num -> !num.trim().isEmpty())
-                .map(num -> Parser.toInt(num.trim()))
+                .map(num -> Parser.parseNumber(num.trim()))
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.util.ExceptionMessage.INVALID_LOTTO_NUMBER;
+import static lotto.util.ExceptionMessage.INVALID_WINNING_NUMBERS;
 import static lotto.util.ExceptionMessage.INVALID_RANGE;
 
 import static lotto.util.Constants.MIN_LOTTO_NUMBER;
@@ -23,7 +23,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE.getIntValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.format());
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS.format());
         }
     }
 
@@ -40,7 +40,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.format());
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS.format());
         }
     }
 
