@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constants.string.InputError;
 import lotto.constants.string.RangeError;
+import lotto.constants.value.LottoRule;
 import lotto.domain.factory.LottoFactory;
 
 import java.util.*;
@@ -12,13 +13,15 @@ public class Lotto {
     private final List<Component> numbers;
 
     public Lotto(List<Component> components){
+        validateLength(components);
+        validateDuplicate(components);
         this.numbers = components;
     }
 
     private Lotto(LottoFactory lottoFactory) {
 
         this.numbers = lottoFactory.randomCreate();
-        validateLength(numbers,lottoFactory.getLottoLength());
+        validateLength(numbers);
         validateDuplicate(numbers);
 
     }
@@ -31,8 +34,8 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    private void validateLength(List<Component> numbers, int lottoLength) {
-        if (numbers.size() != lottoLength) {
+    private void validateLength(List<Component> numbers) {
+        if (numbers.size() != LottoRule.COMBINATION_LENGTH.getInstance()) {
             throw new IllegalArgumentException(RangeError.LOTTO.getInstance());
         }
     }
