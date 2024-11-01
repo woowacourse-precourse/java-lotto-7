@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import lotto.Lotto;
 import lotto.LottoPrize;
 
@@ -15,6 +14,7 @@ public class LottoManager {
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
 
+    // 금액만큼 로또 발권 진행
     public LottoManager(Long money) {
         this.money = money;
         for (int i = 0; i<(money/1000);i++){
@@ -26,6 +26,7 @@ public class LottoManager {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
+    // 로또들의 당첨 여부 확인
     public void checkLottiesWin() {
         for (Lotto lotto : this.lotties) {
             this.isLottoWin(lotto);
