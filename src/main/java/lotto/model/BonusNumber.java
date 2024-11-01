@@ -10,7 +10,7 @@ public class BonusNumber {
 
     public BonusNumber(String input) {
         int bonusNumber = validateNumber(input);
-        validNumberRange(bonusNumber);
+        validateRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -18,13 +18,13 @@ public class BonusNumber {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.toString());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_NUMBER.toString());
         }
     }
 
-    private void validNumberRange(int bonusNumber) {
+    private void validateRange(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE.toString());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OUT_OF_RANGE.toString());
         }
     }
 
