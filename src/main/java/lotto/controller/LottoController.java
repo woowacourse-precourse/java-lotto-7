@@ -3,14 +3,14 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import lotto.domain.LottoResult;
+import lotto.service.LottoResult;
 import lotto.util.ErrorMessage;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
 import lotto.util.NumberGenerate;
 import lotto.domain.BonusBall;
-import lotto.domain.LottoMachine;
+import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,21 +27,16 @@ public class LottoController {
     }
 
     public void run() {
-        // 1. 구매 금액 입력 및 로또 발행
         PurchasedLottos purchasedLotto = inputMoney();
 
-        // 2. 발행한 로또 출력
         outputView.showHowManyLotto(purchasedLotto);
         outputView.showAllLottoNums(purchasedLotto);
 
-        // 3. 당첨 로또 번호 입력
         Lotto lotto = inputWinningLotto();
 
-        // 4. 보너스 번호 입력
         BonusBall bonusNumbers = inputBonusNumber(lotto);
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumbers);
 
-        // 5. 당첨 결과 비교
         LottoResult lottoResult = lottoMachine.winLotto(purchasedLotto, winningLotto);
 
         outputView.showWinStatus(lottoResult);

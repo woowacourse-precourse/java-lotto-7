@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.domain.Rank;
 
 public class LottoResult {
 

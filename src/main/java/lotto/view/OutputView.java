@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
+import lotto.service.LottoResult;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.Rank;
 

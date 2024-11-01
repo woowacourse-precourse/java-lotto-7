@@ -1,7 +1,5 @@
 package lotto.util;
 
-import lotto.ErrorMessage;
-
 public class LottoValidator {
 
     public static void validateNumberRange(int number) {

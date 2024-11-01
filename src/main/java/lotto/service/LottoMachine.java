@@ -1,9 +1,13 @@
-package lotto.domain;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
+import lotto.domain.PurchasedLottos;
+import lotto.domain.Rank;
+import lotto.domain.WinningLotto;
 import lotto.util.NumberGenerate;
 
 public class LottoMachine {
