@@ -15,19 +15,17 @@ public class LottoController {
         int lottoCount = getLottoCount();
         lottoView.output.lottoCount(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
+            lottoModel.makeRandomLottoNumbers();
             lottoView.output.lottoNumber(lottoModel.getLottoNumbers(i));
         }
 
-//        String[] inputWinningNumber = lottoView.input.winningNumber().split(",");
         List<Integer> winningNumber = getWinningNumber();
 
-        int bonusNumber = getBonusNumber();
+        int bonusNumber = getBonusNumber(winningNumber);
 
         //당첨 로직 구현
         int[] ans = new int[5];
         for (int i = 0; i < lottoCount; i++) {
-            System.out.println("당첨 로직");
-            System.out.println(lottoModel.getLottoNumbers(i));
             int total = 0;
             for (Integer winVal : winningNumber) {
                 if (lottoModel.getLottoNumbers(i).contains(winVal)) {
@@ -50,8 +48,6 @@ public class LottoController {
             if (total == 6) {
                 ans[4]++;
             }
-            System.out.println(Arrays.toString(ans));
-            System.out.println("total = " + total + " bonus = " + bonusNumber);
         }
 
         //수익률 로직 구현
@@ -60,9 +56,6 @@ public class LottoController {
         sum = ans[0] * 5000L + ans[1] * 50000L + ans[2] * 1500000L
                 + ans[3] * 30000000L + ans[4] * 2000000000L;
         double rate = ((double)sum / price) * 100;
-        System.out.println(rate);
-
-
         lottoView.output.winningResult(ans,rate);
     }
 
@@ -120,7 +113,7 @@ public class LottoController {
         return winningNumber;
     }
 
-    private int getBonusNumber() {
+    private int getBonusNumber(List<Integer> winningNumber) {
         int bonusNumber;
         while (true) {
             try {
