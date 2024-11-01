@@ -6,15 +6,25 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import java.util.Arrays;
 import java.util.List;
 import lotto.common.LottoRank;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
+
+    private Lotto winningLottoWithoutBonusNumber;
+
+    @BeforeEach
+    void setUp() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        this.winningLottoWithoutBonusNumber = Lotto.create(winningNumbers);
+    }
+
     @Test
     void testWinningLottoCreation_validInput() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber);
 
         assertThat(winningLotto).isNotNull();
     }
@@ -25,7 +35,7 @@ class WinningLottoTest {
         int bonusNumber = 46;
 
         assertSoftly(softly -> {
-            softly.assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
+            softly.assertThatThrownBy(() -> new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         });
@@ -37,7 +47,7 @@ class WinningLottoTest {
         int bonusNumber = 6;
 
         assertSoftly(softly -> {
-            softly.assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
+            softly.assertThatThrownBy(() -> new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         });
@@ -47,7 +57,7 @@ class WinningLottoTest {
     void testDetermineRank() {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = new WinningLotto(this.winningLottoWithoutBonusNumber, bonusNumber);
 
         Lotto firstTicket = Lotto.create(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto secondTicket = Lotto.create(Arrays.asList(1, 2, 3, 4, 5, 7));
