@@ -18,10 +18,6 @@ public enum LottoRank {
         this.message = message;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -31,19 +27,27 @@ public enum LottoRank {
         return message;
     }
 
-    public static LottoRank getRank(int matchCount, boolean isBonusNumber) {
-        if (SECOND.matchCount(matchCount) && isBonusNumber) {
+    public static LottoRank getRank(int matchCount, boolean isBonusMatched) {
+        if (isSecondRank(matchCount, isBonusMatched)) {
             return SECOND;
         }
+        return getMatchCount(matchCount);
+    }
+
+    private static boolean isSecondRank(int matchCount, boolean isBonusMatched) {
+        return SECOND.isMatchCount(matchCount) && isBonusMatched;
+    }
+
+    private static LottoRank getMatchCount(int matchCount) {
         for (LottoRank rank : values()) {
-            if (rank.matchCount(matchCount) && rank != SECOND) {
+            if (rank.isMatchCount(matchCount) && rank != SECOND) {
                 return rank;
             }
         }
         return MISS;
     }
 
-    public boolean matchCount(int number) {
+    public boolean isMatchCount(int number) {
         return this.matchCount == number;
     }
 }
