@@ -22,12 +22,12 @@ public enum LottoPrizeInfo {
         return prizeAmount;
     }
 
-    public static long calculatePrize(int matchCount, boolean bonusMatch) {
+    public static LottoPrizeInfo getPrizeByMatch(int matchCount, boolean bonusMatch) {
         for (LottoPrizeInfo prize : values()) {
             if (prize.matchCount == matchCount && prize.requiresBonus == bonusMatch) {
-                return prize.prizeAmount;
+                return prize;
             }
         }
-        return NONE.prizeAmount;
+        return NONE;
     }
 }

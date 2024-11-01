@@ -17,7 +17,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
@@ -31,5 +30,21 @@ class LottoTest {
         Lotto sortedLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(sortedLotto).isEqualTo(lotto);
+    }
+
+    @Test
+    void 보너스_번호를_포함하면_true를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 6;
+
+        assertThat(lotto.hasBonus(bonusNumber)).isTrue();
+    }
+
+    @Test
+    void 보너스_번호를_포함하지_않으면_false를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Integer bonusNumber = 7;
+
+        assertThat(lotto.hasBonus(bonusNumber)).isFalse();
     }
 }

@@ -1,6 +1,5 @@
 package lotto.model.lotto;
 
-import lotto.model.lotto.LottoPrizeInfo;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -10,21 +9,21 @@ class LottoPrizeInfoTest {
 
     @ParameterizedTest
     @CsvSource({
-            "6, false, 2000000000",
-            "5, true, 30000000",
-            "5, false, 1500000",
-            "4, false, 50000",
-            "3, false, 5000",
-            "2, false, 0",
-            "0, false, 0"
+            "6, false, FIRST_PRIZE",
+            "5, true, SECOND_PRIZE",
+            "5, false, THIRD_PRIZE",
+            "4, false, FOURTH_PRIZE",
+            "3, false, FIFTH_PRIZE",
+            "2, false, NONE",
+            "0, false, NONE"
     })
-    void calculatePrize_정확한_상금이_반환된다(int matchCount, boolean bonusMatch, long expectedPrize) {
+    void 정확한_상금이_반환된다(int matchCount, boolean bonusMatch, LottoPrizeInfo expectedPrize) {
         // Act
-        long prize = LottoPrizeInfo.calculatePrize(matchCount, bonusMatch);
+        LottoPrizeInfo prizeInfo = LottoPrizeInfo.getPrizeByMatch(matchCount, bonusMatch);
 
         // Assert
-        assertEquals(expectedPrize, prize,
+        assertEquals(expectedPrize, prizeInfo,
                 () -> String.format("matchCount=%d, bonusMatch=%b일 때 예상 상금 %d와 실제 상금 %d가 일치하지 않습니다.",
-                        matchCount, bonusMatch, expectedPrize, prize));
+                        matchCount, bonusMatch, expectedPrize, prizeInfo));
     }
 }
