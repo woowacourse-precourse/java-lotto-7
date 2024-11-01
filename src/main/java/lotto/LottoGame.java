@@ -33,7 +33,7 @@ public class LottoGame {
         for (int i = 0; i < ticket; i++) {
             lottos.add(Lotto.generate());
         }
-        System.out.println("\n" + ticket + "개를 구매하였습니다.");
+        System.out.println("\n" + ticket + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
