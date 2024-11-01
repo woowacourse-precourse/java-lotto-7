@@ -32,7 +32,7 @@ public class LottoManager {
         }
     }
 
-    private void isLottoWin(Lotto lotto) {
+    public void isLottoWin(Lotto lotto) {
         int count = 0;
         for (Integer number : lotto.getNumbers()) {
             if (this.isNumberMatch(number)){
@@ -106,16 +106,16 @@ public class LottoManager {
         }
     }
 
-    public Long calculateEarnRate() {
-        double earnRate = (this.sumOfLotto() / this.money)*100;
-        return Math.round(earnRate * 10) / 10;
+    public Double calculateEarnRate() {
+        double earnRate = ((double) this.sumOfLotto() / (double) this.money)*100;
+        return (double) (Math.round(earnRate * 10) / 10.0);
     }
 
-    private Double sumOfLotto() {
+    private int sumOfLotto() {
         int index=0;
-        double sum = 0L;
+        int sum = 0;
         for (LottoPrize prize : LottoPrize.values()){
-            sum += ((double) prize.getIntPrize() * this.winLottiesCount.get(index));
+            sum += ( prize.getIntPrize() * this.winLottiesCount.get(index));
             index++;
         }
         return sum;
@@ -143,5 +143,9 @@ public class LottoManager {
 
     public void setWinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
+    }
+
+    public List<Integer> getWinLottiesCount() {
+        return winLottiesCount;
     }
 }
