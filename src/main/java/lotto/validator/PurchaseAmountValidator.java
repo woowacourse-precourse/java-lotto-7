@@ -3,11 +3,12 @@ package lotto.validator;
 import static lotto.constants.LottoConstants.*;
 
 public class PurchaseAmountValidator {
-    private int purchaseAmount;
+    private final int purchaseAmount;
 
     public PurchaseAmountValidator(String input) {
         this.purchaseAmount = parsePurchaseAmount(input);
-        validateZeroOrMore();
+        validateOverThreshold();
+        validateUnit();
     }
 
     private int parsePurchaseAmount(String input) {
@@ -30,9 +31,15 @@ public class PurchaseAmountValidator {
         }
     }
 
-    private void validateZeroOrMore() {
+    private void validateOverThreshold() {
         if (purchaseAmount < PURCHASE_AMOUNT_THRESHOLD) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_ZERO_OR_MORE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_OVER_THRESHOLD.getMessage());
+        }
+    }
+
+    private void validateUnit() {
+        if (purchaseAmount % PURCHASE_AMOUNT_UNIT != 0) {
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_UNIT.getMessage());
         }
     }
 }
