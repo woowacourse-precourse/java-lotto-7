@@ -5,6 +5,8 @@ public final class ExceptionMessage {
 
     public static final String PURCHASE_LESS_THAN_ONE = "구입 금액은 양의 정수만 입력할 수 있습니다.";
 
+    public static final String INVALID_INTEGER = "올바른 정수 값이 아닙니다.";
+
     public static String INVALID_LOTTO_COUNT(int count) {
         return String.format("로또 번호는 %d개여야 합니다.", count);
     }
