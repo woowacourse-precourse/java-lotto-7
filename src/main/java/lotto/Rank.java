@@ -24,6 +24,10 @@ public enum Rank {
         return prize;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public static Rank calculateRank(int matchCount, boolean matchBonus) {
         for (Rank rank : values()) {
             if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {

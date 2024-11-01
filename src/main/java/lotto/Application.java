@@ -51,6 +51,14 @@ public class Application {
                 rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
                 totalPrize += rank.getPrize();
             }
+
+            System.out.println("\n당첨 통계\n---");
+            for (Rank rank : Rank.values()) {
+                if (rank != Rank.NONE) {
+                    System.out.println(rank.getDescription() + " - " + rankCount.getOrDefault(rank, 0) + "개");
+                }
+            }
+
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
