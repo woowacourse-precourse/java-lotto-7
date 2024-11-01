@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static lotto.constants.LottoValue.MAX_LOTTO_NUMBER_RANGE;
-import static lotto.constants.LottoValue.MIN_LOTTO_NUMBER_RANGE;
 
 public class LottoNumber {
     private static final List<LottoNumber> CACHE = new ArrayList<>();
@@ -15,7 +14,7 @@ public class LottoNumber {
     private final int number;
 
     static {
-        IntStream.rangeClosed(MIN_LOTTO_NUMBER_RANGE.getValue(), MAX_LOTTO_NUMBER_RANGE.getValue() + 1)
+        IntStream.rangeClosed(0, MAX_LOTTO_NUMBER_RANGE.getValue())
                 .mapToObj(LottoNumber::new)
                 .forEach(CACHE::add);
     }
