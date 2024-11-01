@@ -10,7 +10,10 @@ public class TotalPrice {
   public static final int THIRD_PLACE_PRICE = 1500000;
   public static final int FOURTH_PLACE_PRICE = 50000;
   public static final int FIFTH_PLACE_PRICE = 5000;
-  public static final int PERCENTAGE_FOR_CALCULATION = 100;
+
+  private static final int DECIMAL_ROUNDING_PLACE = 100;
+  private static final double PERCENTAGE_FOR_CALCULATION = 100.0;
+
   private static final Map<WinningType, Integer> prizeMap =
       Map.of(
           WinningType.FIFTH_PLACE, FIFTH_PLACE_PRICE,
@@ -34,7 +37,10 @@ public class TotalPrice {
   }
 
   public double calculateReturnRate(Money money) {
-    return Math.round((this.totalPrice % money.getMoney()) * PERCENTAGE_FOR_CALCULATION * 100) / 100.0;
+    return Math.round(
+            (this.totalPrice / (double) money.getMoney())
+                * PERCENTAGE_FOR_CALCULATION
+                * DECIMAL_ROUNDING_PLACE)
+        / (double) DECIMAL_ROUNDING_PLACE;
   }
-
 }
