@@ -1,20 +1,50 @@
-package lotto;
+package lotto.model;
 
+import static lotto.constants.ErrorMessage.DUPLICATE_NUMBER_MESSAGE;
+import static lotto.constants.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.constants.ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE;
+
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.dto.LottoNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumberCount(numbers);
+        validateNumberRange(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
+        this.numbers.sort(Comparator.naturalOrder());
     }
 
-    private void validate(List<Integer> numbers) {
+    public LottoNumbers getLottoNumbers() {
+        return new LottoNumbers(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateNumberRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (!(1 <= number && number <= 45)) {
+                throw new IllegalArgumentException(WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+            }
+        }
+    }
+
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+
+        if (nonDuplicateNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_MESSAGE.getMessage());
+        }
+    }
+
 }
