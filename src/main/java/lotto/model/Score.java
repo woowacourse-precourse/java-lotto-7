@@ -2,18 +2,16 @@ package lotto.model;
 
 public enum Score {
 
-    ZERO("꽝", 0),
-    THREE("3개 일치", 5_000),
-    FOURTH("4개 일치", 50_000),
-    FIFTH("5개 일치", 1_500_000),
-    FIFTH_WITH_BONUS("5개 일치, 보너스 볼 일치", 30000_000),
-    SIX("6개 일치", 2_000_000_000);
+    ZERO(0),
+    THREE(5_000),
+    FOURTH(50_000),
+    FIFTH(1_500_000),
+    FIFTH_WITH_BONUS(30000_000),
+    SIX(2_000_000_000);
 
-    private final String message;
     private final int prize;
 
-    Score(String name, int prize) {
-        this.message = name;
+    Score(int prize) {
         this.prize = prize;
     }
 
@@ -28,10 +26,6 @@ public enum Score {
             case 3 -> THREE;
             default -> ZERO;
         };
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public int getPrize() {
