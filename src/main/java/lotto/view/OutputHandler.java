@@ -59,5 +59,6 @@ public class OutputHandler {
         StringBuilder sb = new StringBuilder();
         String str = String.format("%.1f", rate);
         sb.append("총 수익률은 ").append(str).append("%입니다.");
+        System.out.println(sb);
     }
 }

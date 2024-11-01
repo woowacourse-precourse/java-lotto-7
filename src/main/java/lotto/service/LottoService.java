@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,9 +30,10 @@ public class LottoService {
 
     // 당첨 여부 검사
     public Map<PrizeAmount, Integer> lottoWinning(List<Lotto> newLotto, List<Integer> numbers, int bonus) {
-        Map<PrizeAmount, Integer> prizeAmounts = new HashMap<>();
+        Map<PrizeAmount, Integer> prizeAmounts = initPrizeAmounts();
         for (Lotto lotto : newLotto) {
             int count = lottoWinNumber(lotto, numbers);
+
             boolean isBonus = isBonusWinning(numbers, bonus);
             PrizeAmount prizeA = cntPrizeAmount(count, isBonus);
 
@@ -39,6 +41,16 @@ public class LottoService {
                 prizeAmounts.put(prizeA, prizeAmounts.getOrDefault(prizeA, 0) + 1);
             }
         }
+        return prizeAmounts;
+    }
+
+    public Map<PrizeAmount, Integer> initPrizeAmounts() {
+        Map<PrizeAmount, Integer> prizeAmounts = new LinkedHashMap<>();
+        prizeAmounts.put(PrizeAmount.THREE_MATCH, 0);
+        prizeAmounts.put(PrizeAmount.FOUR_MATCH, 0);
+        prizeAmounts.put(PrizeAmount.FIVE_MATCH, 0);
+        prizeAmounts.put(PrizeAmount.FIVE_BONUS_MATCH, 0);
+        prizeAmounts.put(PrizeAmount.SIX_MATCH, 0);
         return prizeAmounts;
     }
 
