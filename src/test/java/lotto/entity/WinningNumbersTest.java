@@ -38,7 +38,8 @@ public class WinningNumbersTest {
                 () -> new WinningNumbers(integers, bonusNumber));
 
         // then
-        assertEquals(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertEquals(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS.getMessage(),
+                illegalArgumentException.getMessage());
     }
 
     @Test
@@ -52,7 +53,8 @@ public class WinningNumbersTest {
                 () -> new WinningNumbers(integers, bonusNumber));
 
         // then
-        assertEquals(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS.getMessage(), illegalArgumentException.getMessage());
+        assertEquals(WinningNumbersExceptionMessage.NULL_OR_EMPTY_NUMBERS.getMessage(),
+                illegalArgumentException.getMessage());
     }
 
     @Test
@@ -137,5 +139,53 @@ public class WinningNumbersTest {
 
         // then
         assertEquals(BONUS_NUMBER_DUPLICATE.getMessage(), illegalArgumentException.getMessage());
+    }
+
+    // getter 메서드
+
+    @Test
+    void 성공__당첨번호_반환() {
+        // given
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 40;
+        WinningNumbers winningNumbers = new WinningNumbers(integers, bonusNumber);
+
+        // when
+        List<Integer> result = winningNumbers.getWinningNumbers();
+
+        // then
+        assertEquals(integers, result);
+    }
+
+    @Test
+    void 성공__보너스_번호_반환() {
+        // given
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 40;
+        WinningNumbers winningNumbers = new WinningNumbers(integers, bonusNumber);
+
+        // when
+        int result = winningNumbers.getBonusNumber();
+
+        // then
+        assertEquals(bonusNumber, result);
+    }
+
+    // getter 리스트 불변성 테스트
+
+    @Test
+    void 성공__당첨번호_반환_후_수정불가() {
+        // given
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 40;
+        WinningNumbers winningNumbers = new WinningNumbers(integers, bonusNumber);
+
+        // when
+        List<Integer> result = winningNumbers.getWinningNumbers();
+        UnsupportedOperationException exception = assertThrows(UnsupportedOperationException.class,
+                () -> result.add(7));
+
+        // then
+        assertEquals(integers, result);
     }
 }
