@@ -15,7 +15,7 @@ public class LottoStore {
 
     public static final int LOTTO_NUMBER_MINIMUM = 1;
 
-    public static final int LOTTO_NUMBER_MAXIMUM = 25;
+    public static final int LOTTO_NUMBER_MAXIMUM = 45;
 
     public static LottoTicket makeLottoTicket(String purchaseMoney) {
         validateInput(purchaseMoney);
