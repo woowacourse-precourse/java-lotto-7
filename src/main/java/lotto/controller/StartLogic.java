@@ -8,9 +8,8 @@ public class StartLogic {
 
     public void start(){
 
-        //User가 여러명일 경우 여기서 실행
-        //while();
         lottoService.userInput();
+        lottoService.lotResult();
 
     }
 

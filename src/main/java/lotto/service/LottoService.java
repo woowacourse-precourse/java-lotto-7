@@ -30,7 +30,7 @@ public class LottoService{
 
         //Calculate Lotto Papers
         integerData = inputParser.calculatePapers( integerData );
-        userData.setLottoPapes(integerData);
+        userData.setLottoPapers(integerData);
         PrintMessages.printBuyMsg(integerData);
 
         //WinNumber Input
@@ -60,7 +60,7 @@ public class LottoService{
 
 
     public void createPapers(){
-        lotto = new Lotto[ userData.getLottoPapes() ];
+        lotto = new Lotto[ userData.getLottoPapers() ];
         for ( int i = 0; i < lotto.length; i++ ) {
             lotto[i] = new Lotto( inputParser.sortArray(createRandomNumber()) );
         }
