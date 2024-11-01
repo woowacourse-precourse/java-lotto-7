@@ -34,6 +34,15 @@ public class InputHandlerTest {
     }
 
     @Test
+    void throw_exception_on_wrong_amount_is_given() {
+        String input = "1523";
+
+        Throwable result = catchThrowable(() -> inputHandler.parsePurchaseAmount(input));
+
+        assertIllegalArgumentException(result);
+    }
+
+    @Test
     void parse_winning_numbers() {
         String input = "1,2,3,4,5,6";
 
@@ -75,6 +84,15 @@ public class InputHandlerTest {
     }
 
     @Test
+    void throw_exception_when_number_is_out_of_range() {
+        String outOfRange = "100,2,3,1,2,3";
+
+        Throwable result = catchThrowable(() -> inputHandler.parseWinningNumbers(outOfRange));
+
+        assertIllegalArgumentException(result);
+    }
+
+    @Test
     void parse_bonus_number() {
         String input = "7";
 
@@ -88,6 +106,15 @@ public class InputHandlerTest {
         String notANumber = "5h3l";
 
         Throwable result = catchThrowable(() -> inputHandler.parseBonusNumber(notANumber));
+
+        assertIllegalArgumentException(result);
+    }
+
+    @Test
+    void throw_exception_when_bonus_number_is_out_of_range() {
+        String outOfRange = "395";
+
+        Throwable result = catchThrowable(() -> inputHandler.parseBonusNumber(outOfRange));
 
         assertIllegalArgumentException(result);
     }
