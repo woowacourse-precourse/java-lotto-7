@@ -32,5 +32,7 @@ public class LottoMachine {
 
         WinningResult winningResult =
                 new WinningResult(winningNumbers, bonusNumber);
+
+        outputView.printWinningStatistics(winningResult);
     }
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.stream.Collectors;
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
+import lotto.lotto.WinningResult;
 
 public class OutputView {
 
@@ -11,6 +12,7 @@ public class OutputView {
     private static final String SUCCESS_LOTTO_PURCHASE_MESSAGE = NEW_LINE + "%d개를 구매했습니다." + NEW_LINE;
     private static final String REQUEST_WINNING_NUMBERS_MESSAGE = NEW_LINE + "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUMBER_MESSAGE = NEW_LINE + "보너스 번호를 입력해 주세요.";
+    public static final String WINNING_RESULT_STATISTICS_TITLE = NEW_LINE + "당첨 통계" + NEW_LINE + "---";
 
     private static final String LOTTO_NUMBERS_SEPARATOR = ", ";
     private static final String LOTTO_NUMBERS_PREFIX = "[";
@@ -34,6 +36,10 @@ public class OutputView {
 
     public void requestBonusNumber() {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
+    }
+
+    public void printWinningStatistics(WinningResult winningResult) {
+        System.out.println(WINNING_RESULT_STATISTICS_TITLE);
     }
 
     private void printLottoNumbers(Lotto lotto) {
