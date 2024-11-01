@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.common.constants.ErrorMessages;
 import lotto.common.Winning;
 
 public class Lotto {
@@ -13,17 +14,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INCORRECT_WINNING_NUMBER_COUNT);
         }
 
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하지 말아주십시오.");
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_FOUND);
         }
     }
 
     private boolean hasDuplicates(List<Integer> numbers) {
         List<Integer> after = numbers.stream().distinct().toList();
-
         return numbers.size() != after.size();
     }
 

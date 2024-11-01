@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import lotto.common.constants.Constants;
+import lotto.common.constants.ErrorMessages;
+import lotto.common.constants.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.common.Winning;
 import lotto.validator.Validator;
@@ -24,12 +27,12 @@ public class LottoService {
             validator.validatePayment(payment);
             return payment;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_NUMERIC_FORMAT);
         }
     }
 
     public List<Integer> parseWinningNumbers(String input) {
-        String[] splitNumbers = input.split(",");
+        String[] splitNumbers = split(input);
         try {
             List<Integer> winningNumbers = Arrays.stream(splitNumbers)
                     .map(Integer::parseInt)
@@ -37,7 +40,7 @@ public class LottoService {
             validator.validateWinningNumbers(winningNumbers);
             return winningNumbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_NUMERIC_FORMAT);
         }
     }
 
@@ -47,17 +50,21 @@ public class LottoService {
             validator.validateLottoNumber(bonus);
             return bonus;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_NUMERIC_FORMAT);
         }
     }
 
     public List<Lotto> issueLottos(int payment) {
-        int lottoCount = payment / 1000;
+        int lottoCount = payment / LottoConstants.PRICE;
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> rawLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> lottoNumbers = new ArrayList<>(rawLottoNumbers);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+                    LottoConstants.NUMBER_START,
+                    LottoConstants.NUMBER_END,
+                    LottoConstants.SIZE);
+
+            List<Integer> lottoNumbers = new ArrayList<>(randomNumbers);
             lottoNumbers.sort(Integer::compareTo);
             lottos.add(new Lotto(lottoNumbers));
         }
@@ -91,5 +98,9 @@ public class LottoService {
         }
 
         return totalWinnings;
+    }
+
+    private String[] split(String input) {
+        return input.replaceAll(Constants.SPACE, Constants.EMPTY_STRING).split(Constants.DELIMITER);
     }
 }

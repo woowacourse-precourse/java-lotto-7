@@ -6,23 +6,26 @@ import lotto.domain.Lotto;
 import lotto.common.Winning;
 
 public class OutputView {
+    private final static String RESULT_TITLE = "\n당첨 통계";
+    private final static String DIVIDER = "---";
+    private final static String ISSUE_LOTTO_TITLE = "\n%d개를 구매했습니다.\n";
+    private final static String YIELD_PRINT = "총 수익률은 %.1f%%입니다.";
+
     public void printLotto(List<Lotto> lottos) {
-        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
-        for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            System.out.printf("[%d, %d, %d, %d, %d, %d]\n", numbers.get(0), numbers.get(1), numbers.get(2),
-                    numbers.get(3), numbers.get(4), numbers.get(5));
-        }
+        System.out.printf(ISSUE_LOTTO_TITLE, lottos.size());
+        lottos.stream()
+                .map(Lotto::getNumbers)
+                .forEach(System.out::println);
     }
 
     public void printResult(Map<Winning, Integer> winnings, double yield) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개\n", winnings.getOrDefault(Winning.THREE, 0));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", winnings.getOrDefault(Winning.FOUR, 0));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", winnings.getOrDefault(Winning.FIVE, 0));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", winnings.getOrDefault(Winning.FIVE_BONUS, 0));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", winnings.getOrDefault(Winning.SIX, 0));
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+        System.out.println(RESULT_TITLE);
+        System.out.println(DIVIDER);
+        System.out.printf(Winning.THREE.getPrompt(), winnings.getOrDefault(Winning.THREE, 0));
+        System.out.printf(Winning.FOUR.getPrompt(), winnings.getOrDefault(Winning.FOUR, 0));
+        System.out.printf(Winning.FIVE.getPrompt(), winnings.getOrDefault(Winning.FIVE, 0));
+        System.out.printf(Winning.FIVE_BONUS.getPrompt(), winnings.getOrDefault(Winning.FIVE_BONUS, 0));
+        System.out.printf(Winning.SIX.getPrompt(), winnings.getOrDefault(Winning.SIX, 0));
+        System.out.printf(YIELD_PRINT, yield);
     }
 }

@@ -1,13 +1,15 @@
 package lotto.validator;
 
 import java.util.List;
+import lotto.common.constants.ErrorMessages;
+import lotto.common.constants.LottoConstants;
 
 public class Validator {
     public void validatePayment(int value) {
         isPositive(value);
 
-        if (value % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지도록 입력해주십시오.");
+        if (value % LottoConstants.PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_PAYMENT);
         }
     }
 
@@ -15,25 +17,25 @@ public class Validator {
         List<Integer> after = numbers.stream().distinct().toList();
 
         if (numbers.size() != after.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하지 말아주십시오.");
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_FOUND);
         }
 
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입력해주십시오.");
+        if (numbers.size() != LottoConstants.SIZE) {
+            throw new IllegalArgumentException(ErrorMessages.INCORRECT_WINNING_NUMBER_COUNT);
         }
 
         numbers.forEach(this::validateLottoNumber);
     }
 
     public void validateLottoNumber(int value) {
-        if (value < 1 || value > 45) {
-            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력해주십시오.");
+        if (value < LottoConstants.NUMBER_START || value > LottoConstants.NUMBER_END) {
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 
     private void isPositive(int value) {
         if (value < 0) {
-            throw new IllegalArgumentException("[ERROR] 양수를 입력해주십시오.");
+            throw new IllegalArgumentException(ErrorMessages.NON_POSITIVE_NUMBER);
         }
     }
 }
