@@ -3,7 +3,6 @@ package lotto.validator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static lotto.constants.LottoConstants.*;
 
@@ -11,7 +10,8 @@ public class NumbersValidator {
     private enum ErrorMessage {
         MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다."),
         MUST_BE_NUMBER("%s 로또 번호는 숫자 형식이어야 합니다."),
-        MUST_BE_UNIQUE("%s 로또 번호가 중복되었습니다.");
+        MUST_BE_UNIQUE("%s 로또 번호가 중복되었습니다."),
+        MUST_BE_NO_SPACE("%s 공백은 허용되지 않습니다.");
 
         private final String message;
 
@@ -36,6 +36,7 @@ public class NumbersValidator {
 
     private void parseNumbersToList(String numbersInput) {
         for (String number : numbersInput.split(",")) {
+            validateNoSpace(number);
             validateIsNumber(number);
             numbers.add(Integer.parseInt(number));
         }
@@ -71,6 +72,15 @@ public class NumbersValidator {
 
         if (beforeSize != afterSize) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_UNIQUE.getMessage());
+        }
+    }
+
+    private void validateNoSpace(String number) {
+        int beforeLength = number.length();
+        int afterLength = number.strip().length();
+
+        if (beforeLength != afterLength) {
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage());
         }
     }
 
