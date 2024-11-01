@@ -42,4 +42,13 @@ class InputValidatorTest {
             inputValidator.validateInputMoney(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력된 값이 양수이지만 단위 가격 미만일 경우 에러가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"10", "100", "999", "500"})
+    public void 입력된_값이_양수이지만_단위_가격_미만일_경우_에러가_발생한다(String input) {
+        assertThatThrownBy(() -> {
+            inputValidator.validateInputMoney(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
