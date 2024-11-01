@@ -1,8 +1,10 @@
 package lotto.domain.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 import java.util.List;
+import lotto.domain.util.parser.DelimitedNumberParser;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Nested;
@@ -19,9 +21,10 @@ class DelimitedNumberParserTest {
             //given
             String input = "1,2,3,4,5,6";
             List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+            DelimitedNumberParser parser = DelimitedNumberParser.getInstance();
 
             //when
-            List<Integer> parse = DelimitedNumberParser.parse(input);
+            List<Integer> parse = parser.parse(input);
 
             //then
             assertThat(parse).isEqualTo(expected);
@@ -32,9 +35,10 @@ class DelimitedNumberParserTest {
             //given
             String input = "1, 2, 3, 4, 5, 6";
             List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+            DelimitedNumberParser parser = DelimitedNumberParser.getInstance();
 
             //when
-            List<Integer> parse = DelimitedNumberParser.parse(input);
+            List<Integer> parse = parser.parse(input);
 
             //then
             assertThat(parse).isEqualTo(expected);
