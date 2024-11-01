@@ -7,10 +7,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
+    private static final String ERROR_NON_POSITIVE_AMOUNT = "[ERROR] 0초과 값을 입력해주세요.";
+    private static final String ERROR_INVALID_AMOUNT_UNIT = "[ERROR] 1,000원 단위로 입력해주세요.";
+    private static final String ERROR_INVALID_NUMBER_FORMAT = "[ERROR] 정수값을 입력해주세요.";
+
 
     public static int getPurchaseAmount() {
         System.out.println("구입 금액을 1,000원 단위로 입력해주세요");
-        return Integer.parseInt(Console.readLine());
+            try {
+                int amount = Integer.parseInt(Console.readLine());
+                validatePurchaseAmount(amount);
+                return amount;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ERROR_INVALID_NUMBER_FORMAT);
+            }
+
     }
 
     public static List<Integer> getWinningNumbers() {
@@ -24,5 +35,15 @@ public class InputView {
     public static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해주세요.");
         return Integer.parseInt(Console.readLine());
+    }
+
+    private static void validatePurchaseAmount(int amount) {
+            if (amount <= 0) {
+                throw new IllegalArgumentException(ERROR_NON_POSITIVE_AMOUNT);
+            }
+
+            if (amount % 1000 != 0) {
+                throw new IllegalArgumentException(ERROR_INVALID_AMOUNT_UNIT);
+            }
     }
 }
