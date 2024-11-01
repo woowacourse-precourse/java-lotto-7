@@ -12,7 +12,7 @@ public class Application {
         final int LOTTO_PRICE = 1000;
 
         System.out.println("구입급액을 입력해 주세요.");
-        int purchaseAmount = (int)getInput(inputHandler::parsePurchaseAmount);
+        int purchaseAmount = getInput(inputHandler::parsePurchaseAmount);
 
         int lottoAmount = purchaseAmount / LOTTO_PRICE;
 
@@ -29,11 +29,11 @@ public class Application {
 
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = (List<Integer>)getInput(inputHandler::parseWinningNumbers);
+        List<Integer> winningNumbers = getInput(inputHandler::parseWinningNumbers);
 
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = (int)getInput(inputHandler::parseBonusNumber);
+        int bonusNumber = getInput(inputHandler::parseBonusNumber);
 
         // calculate prize
         int[] winningCount = new int[6];
@@ -78,7 +78,7 @@ public class Application {
      * error message and retry. Repeatetion ends when there's no input remains.
      * 
      * @param <T> The type of return value
-     * @param parser The parser function reference
+     * @param parser The parser function
      * @return Parsed value of type {@code T}
      */
     static <T> T getInput(Function<String, T> parser) {
