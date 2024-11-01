@@ -19,7 +19,6 @@ public class MyInfo {
         this.myLottos = new ArrayList<>();
     }
 
-
     public void gainPurchaseAmount(){
         int purchasePrice = 0;
         try {
@@ -31,7 +30,6 @@ public class MyInfo {
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
             gainPurchaseAmount();
         }
-        OutputView.printBlank();
         this.purchasePrice = purchasePrice;
     }
 
@@ -41,6 +39,7 @@ public class MyInfo {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printCount(lottoCount);
+        OutputView.printBlank();
         this.lottoCount = lottoCount;
     }
 
