@@ -4,6 +4,11 @@ public class Money {
     private int money;
     private int spentMoney;
     private int earnedMoney;
+    private static final int ZER0_MONEY = 0;
+
+    public Money() {
+        this(ZER0_MONEY);
+    }
 
     public Money(int money) {
         this.money = money;
