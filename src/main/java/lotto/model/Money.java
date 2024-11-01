@@ -1,27 +1,15 @@
 package lotto.model;
 
-import static lotto.constant.ErrorMessage.INVALID_LOTTO_MONEY_UNIT;
-import static lotto.constant.LottoInfo.LOTTO_PRICE;
-
 public class Money {
-    private final int money;
+    private static final double TO_PERCENTAGE = 100.0;
 
-    public Money(int money) {
-        validate(money);
+    protected final int money;
+
+    public Money(final int money) {
         this.money = money;
     }
 
-    private void validate(int money) {
-        if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(INVALID_LOTTO_MONEY_UNIT.getMessage());
-        }
-    }
-
-    public int toLottoCount() {
-        return this.money / LOTTO_PRICE;
-    }
-
     public double getEarningRate(Money earned) {
-        return (double) earned.money / this.money * 100;
+        return TO_PERCENTAGE * earned.money / this.money;
     }
 }
