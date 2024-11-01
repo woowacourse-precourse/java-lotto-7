@@ -30,7 +30,7 @@ public class LottoController {
         WinningNumbers winningNumbers = inputView.receiveWinningNumbers();
 
         // 보너스 번호 입력
-        BonusNumber bonusNumber = inputView.receiveBonusNumber();
+        BonusNumber bonusNumber = inputView.receiveBonusNumber(winningNumbers);
 
     }
 }

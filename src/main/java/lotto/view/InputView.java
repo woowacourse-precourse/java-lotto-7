@@ -35,7 +35,7 @@ public class InputView {
                         .toList();
                 return new WinningNumbers(receivedLottoNumbers);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
+                System.out.println(ErrorMessage.NOT_A_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -43,13 +43,13 @@ public class InputView {
 
     }
 
-    public BonusNumber receiveBonusNumber() {
+    public BonusNumber receiveBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
 //            System.out.println("\n보너스 번호를 입력해 주세요.");
                 System.out.println("\nplease input the bonus number");
                 int bonusNumber = Integer.parseInt(Console.readLine().trim());
-                return new BonusNumber(bonusNumber);
+                return new BonusNumber(bonusNumber, winningNumbers.getReceivedLottoNumbers());
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessage.NOT_A_SINGLE.getMessage());
             } catch (IllegalArgumentException e) {
