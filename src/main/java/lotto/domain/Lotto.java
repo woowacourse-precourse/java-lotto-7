@@ -22,8 +22,8 @@ public class Lotto {
             throw ErrorCode.INVALID_LOTTO_NUMBER_COUNT.exception();
         }
 
-        Set<Integer> integerSet = new HashSet<>(numbers);
-        if (numbers.size() > integerSet.size()) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if (numbers.size() > nonDuplicateNumbers.size()) {
             throw ErrorCode.DUPLICATE_LOTTO_NUMBER.exception();
         }
     }
