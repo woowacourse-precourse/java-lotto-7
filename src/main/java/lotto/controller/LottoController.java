@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import model.ValidationManager;
+import lotto.model.ValidationManager;
 
 public class LottoController {
 
@@ -16,28 +16,49 @@ public class LottoController {
         this.validationManager = validationManager;
     }
 
-    public void play(){
-        String amountInput = handleAmountError();
+    public void play() {
+        String validAmount = handleAmountInputError();
+        String validLottoNumbers = handleLottoNumberInputError();
     }
 
-    public String handleAmountError(){
+    public String handleAmountInputError() {
         boolean validInput = false;
-        String amount="";
+        String amountInput = "";
+
         while (!validInput) {
             try {
                 outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
-                amount= inputView.readInput();
+                amountInput = inputView.readInput();
 
-                validationManager.isEmptyInput(amount, validationManager.NON_NUMERIC_ERROR);
-                validationManager.isNumber(amount,validationManager.EMPTY_INPUT_ERROR);
-                validInput=validationManager.isDivideByThousand(amount,validationManager.NOT_DIVISIBLE_BY_THOUSAND_ERROR);
+                validationManager.isEmptyInput(amountInput);
+                validationManager.isNumber(amountInput);
+                validInput = validationManager.isDivideByThousand(amountInput);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        return amount;
+        return amountInput;
+    }
 
+    public String handleLottoNumberInputError() {
+        boolean validInput = false;
+        String lottoInput = "";
+
+        while (!validInput) {
+            try {
+                outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
+                lottoInput = inputView.readInput();
+
+                validationManager.isEmptyInput(lottoInput);
+                validInput = validationManager.isNumber(lottoInput);
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return lottoInput;
     }
 }
