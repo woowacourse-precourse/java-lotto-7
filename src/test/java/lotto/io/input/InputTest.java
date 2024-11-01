@@ -1,7 +1,6 @@
 package lotto.io.input;
 
 import java.io.ByteArrayInputStream;
-import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

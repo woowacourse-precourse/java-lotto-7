@@ -1,7 +1,6 @@
 package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
