@@ -28,16 +28,26 @@ public class Purchase {
     }
 
     private void validate(int purchasePrice) {
-        if (purchasePrice % ONE_TICKET_PRICE != 0) {
-            throw new InvalidPurchaseAmountException(INVALID_PRICE_OF_PURCHASE.getMessage());
-        }
+        checkPriceLessThanMaxTicketPrice(purchasePrice);
+        checkPriceLessThanZero(purchasePrice);
+        checkPriceDivisibleByOneTicketPrice(purchasePrice);
+    }
 
+    private void checkPriceLessThanMaxTicketPrice(int purchasePrice) {
         if (purchasePrice > MAX_TICKET_PRICE) {
             throw new InvalidPurchaseAmountException(INVALID_COUNT_OF_PURCHASE.getMessage());
         }
+    }
 
+    private void checkPriceLessThanZero(int purchasePrice) {
         if (purchasePrice <= 0) {
             throw new InvalidPurchaseAmountException(INVALID_SIZE_OF_PURCHASE.getMessage());
+        }
+    }
+
+    private void checkPriceDivisibleByOneTicketPrice(int purchasePrice) {
+        if (purchasePrice % ONE_TICKET_PRICE != 0) {
+            throw new InvalidPurchaseAmountException(INVALID_PRICE_OF_PURCHASE.getMessage());
         }
     }
 }
