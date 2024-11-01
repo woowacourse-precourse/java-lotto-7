@@ -22,5 +22,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 로또_번호는_1부터_45사이의_숫자여야_한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 45, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
