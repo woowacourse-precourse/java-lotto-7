@@ -24,6 +24,10 @@ public class Application {
         lottoResult.calculate(lottos);
         lottoResult.calculateTotalBenefit();
 
+        printResults(lottos, lottoResult);
+    }
+
+    private static void printResults(Lottos lottos,LottoResult lottoResult) {
         View view = new View();
         view.printLotto(lottos.getLottoCount(), lottos.toString());
         view.printWinningResult(lottoResult.toString());
