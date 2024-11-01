@@ -81,7 +81,14 @@ public class Application {
     public static void matchTest(Lotto lotto) {
         List<Integer> intersection = new ArrayList<>(winningNumbers);
         intersection.retainAll(lotto.getNumbers());
+        if( intersection.size() == 5 && bonusMatchTest(lotto)) {
+            matchCount[7]++;
+        }
         matchCount[intersection.size()]++;
+    }
+
+    public static boolean bonusMatchTest(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
 }
