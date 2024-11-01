@@ -3,6 +3,9 @@ package lotto.lotto.winning.domain;
 import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoTickets;
 import lotto.money.domain.Benefit;
+import lotto.money.domain.BenefitCreatorService;
+import lotto.money.infrastructure.BenefitCreator;
+import lotto.money.infrastructure.WinningAmountCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,13 +15,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class WinningCalculatorTest {
-    private WinningAmountCalculator winningCalculator;
+    private BenefitCreatorService benefitCreator;
     private LottoTickets lottoTickets;
     private Lotto lotto;
 
     @BeforeEach
     void init() {
-        winningCalculator = new WinningAmountCalculator();
+        benefitCreator = new BenefitCreator(new WinningAmountCalculator());
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
     }
@@ -67,13 +70,13 @@ public class WinningCalculatorTest {
     private void verifyBenefit(String winningNumbers, String bonusNumber, String expectedBenefit) {
         WinningLotto winningLotto = WinningLotto.of(winningNumbers);
         BonusNumber bonus = BonusNumber.of(bonusNumber);
-        Benefit benefit = winningCalculator.updateBenefit(lottoTickets, winningLotto, bonus);
+        Benefit benefit = benefitCreator.create(lottoTickets, winningLotto, bonus);
         assertThat(benefit.toString()).isEqualTo(expectedBenefit);
     }
 
     private void verifyBenefit(WinningLotto winningLotto, String bonusNumber, String expectedBenefit) {
         BonusNumber bonus = BonusNumber.of(bonusNumber);
-        Benefit benefit = winningCalculator.updateBenefit(lottoTickets, winningLotto, bonus);
+        Benefit benefit = benefitCreator.create(lottoTickets, winningLotto, bonus);
         assertThat(benefit.toString()).isEqualTo(expectedBenefit);
     }
 }
