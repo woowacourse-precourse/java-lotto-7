@@ -21,4 +21,11 @@ public class User {
 		}
 		rateOfReturn = (double) totals / lottoPurchaseAmount * 100;
 	}
+
+	public void printResult() {
+		for (Map.Entry<LottoRank, Integer> lottoRankEntry : lottoStats.entrySet()) {
+			lottoRankEntry.getKey().printInfo();
+			System.out.println(lottoRankEntry.getValue() + "개");
+		}
+	}
 }
