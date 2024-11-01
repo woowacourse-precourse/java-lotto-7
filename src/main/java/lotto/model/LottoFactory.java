@@ -6,10 +6,9 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoFactory {
-    public static LottoBundle makeLottosByWalletMoney(Wallet wallet) {
+    public static LottoBundle makeLottosByWalletMoney(Integer amount) {
         List<Lotto> lottos = new ArrayList<>();
-        int theNumberOfLottos = wallet.getAffordableLottoAmount();
-        for (int i = 0; i < theNumberOfLottos; i++) {
+        for (int i = 0; i < amount; i++) {
             lottos.add(makeALotto());
         }
 
