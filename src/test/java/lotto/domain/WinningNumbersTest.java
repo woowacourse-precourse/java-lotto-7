@@ -46,4 +46,13 @@ public class WinningNumbersTest {
                 .hasMessage("[ERROR] 당첨 번호는 1~45 사이의 숫자만 가능합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,3", "1,1,1,1"})
+    @DisplayName("당첨 번호가 중복되면 예외가 발생한다.")
+    void validateWinningNumbersDuplicate(String condition) {
+        assertThatThrownBy(() -> WinningNumbers.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+    }
+
 }
