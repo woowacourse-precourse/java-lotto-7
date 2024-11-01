@@ -6,10 +6,11 @@ import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.model.lotto.Lotto;
 
 public class RandomLottoGenerator implements LottoGenerator{
     @Override
-    public List<Integer> generateLotto() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBERS_COUNT);
+    public Lotto generateLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBERS_COUNT));
     }
 }

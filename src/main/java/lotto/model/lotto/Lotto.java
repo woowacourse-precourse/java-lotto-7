@@ -49,8 +49,7 @@ public class Lotto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Lotto)) return false;
-        Lotto lotto = (Lotto) o;
+        if (!(o instanceof Lotto lotto)) return false;
         return Objects.equals(numbers, lotto.numbers);
     }
 

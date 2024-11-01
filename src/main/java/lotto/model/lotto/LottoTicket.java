@@ -18,17 +18,6 @@ public class LottoTicket {
         generateLottos(count);
     }
 
-    public long calculateTotalPrize(Lotto winnerNumbers, int bonusNumber) {
-        long totalPrize = 0;
-        for (Lotto lotto : lottos) {
-            int matchCount = lotto.getMatchCount(winnerNumbers);
-            boolean bonusMatch = lotto.hasBonus(bonusNumber);
-            LottoPrizeInfo prizeInfo = LottoPrizeInfo.getPrizeByMatch(matchCount, bonusMatch);
-            totalPrize += prizeInfo.getPrizeAmount();
-        }
-        return totalPrize;
-    }
-
     private void generateLottos(int count) {
         for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
@@ -36,6 +25,6 @@ public class LottoTicket {
     }
 
     private Lotto generateLotto() {
-        return new Lotto(lottoGenerator.generateLotto());
+        return lottoGenerator.generateLotto();
     }
 }

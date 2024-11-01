@@ -1,4 +1,4 @@
-package lotto.model.lotto;
+package lotto.model.lotto.prize;
 
 public enum LottoPrizeInfo {
     FIRST_PRIZE(6, false, 2_000_000_000L),
