@@ -26,4 +26,10 @@ public class Lotto {
     public boolean contains(Integer number) {
         return numbers.contains(number);
     }
+
+    public int countCommonElements(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
 }

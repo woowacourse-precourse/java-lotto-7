@@ -67,4 +67,8 @@ public class OutputView {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", lottoResult.getRevenue());
     }
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
+
 }

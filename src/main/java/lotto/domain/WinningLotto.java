@@ -1,25 +1,18 @@
 package lotto.domain;
 
-import java.util.List;
 import java.util.Optional;
 
 public class WinningLotto {
-    private final List<Integer> numbers;
+    private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        this.numbers = numbers;
+    public WinningLotto(Lotto lotto, int bonusNumber) {
+        this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
 
     public Optional<Ranking> calculateRanking(Lotto lotto) {
-        int count = 0;
-        for (Integer number : numbers) {
-            if (lotto.contains(number)) {
-                count++;
-            }
-        }
-
+        int count = this.lotto.countCommonElements(lotto);
         return Ranking.findBy(count, lotto.contains(bonusNumber));
     }
 }

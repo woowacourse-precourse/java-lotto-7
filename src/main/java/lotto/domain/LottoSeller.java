@@ -1,8 +1,11 @@
 package lotto.domain;
 
-public class LottoSeller {
+import static lotto.domain.Lotto.LOTTO_PRICE;
 
-    public final static Money LOTTO_PRICE = Money.from(1000L);
+import java.util.ArrayList;
+import java.util.List;
+
+public class LottoSeller {
 
     private final LottoMachine lottoMachine;
 
@@ -14,5 +17,15 @@ public class LottoSeller {
         while (customer.hasMoney(LOTTO_PRICE)) {
             customer.buy(lottoMachine.issueLotto());
         }
+    }
+
+    public LottoGroups sellUntilNoMoney(Money money) {
+        List<Lotto> lottos = new ArrayList<>();
+        while (money.isGreaterEqualThan(LOTTO_PRICE)) {
+            lottos.add(lottoMachine.issueLotto());
+            money = money.minus(LOTTO_PRICE);
+        }
+
+        return LottoGroups.from(lottos);
     }
 }
