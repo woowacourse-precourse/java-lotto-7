@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.view.InputTest;
 import lotto.view.Input;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,6 +58,16 @@ class HandlerTest {
   @DisplayName("입력받은 당첨번호를 쉼표, 공백 구분자와 정수를 분리한다")
   @Test
   void generateWinningTest() throws Exception{
+    String given = "1,2,3,4,5,6";
+    // split으로 두번 잘라서 배열에서 조회한다 (On²)
+    // 스트림을 활용한다
+    List<Integer> actual = Arrays.stream(given.split(",\\s"))
+        .map(Integer::parseInt)
+        .collect(Collectors.toList()); // NumberFormatException
+
+    List<Integer> expect = List.of(1, 2, 3, 4, 5, 6);
+
+    assertEquals(expect, actual);
 
   }
 
