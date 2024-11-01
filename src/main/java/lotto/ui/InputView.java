@@ -42,7 +42,13 @@ public class InputView {
 
     public static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해주세요.");
-        return Integer.parseInt(Console.readLine());
+        try {
+            int number = Integer.parseInt(Console.readLine());
+            validateBonusNumber(number);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_FORMAT);
+        }
     }
 
     private static void validatePurchaseAmount(int amount) {
@@ -61,6 +67,11 @@ public class InputView {
                 throw new IllegalArgumentException(ERROR_INVALID_NUMBER_SIZE);
             }
         }
+    }
 
+    private static void validateBonusNumber(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ERROR_INVALID_NUMBER_SIZE);
+        }
     }
 }
