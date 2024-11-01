@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.ValidationManager;
@@ -54,8 +55,9 @@ public class LottoController {
                 lottoInput = inputView.readInput();
 
                 validationManager.isNotEmptyInput(lottoInput);
-                validInput = validationManager.isNumbersDividedByComma(lottoInput);
-                List<String> lottoNumbrs = TypeConverter.ToList(lottoInput);
+                validInput = validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
+                List<Integer> lottoNumbrs = TypeConverter.ToNumberList(lottoInput);
+                Lotto lotto = new Lotto(lottoNumbrs); //6자 이상인지 확인후 객체 생성
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
