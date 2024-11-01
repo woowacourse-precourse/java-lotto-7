@@ -1,6 +1,7 @@
 package lotto.adapter.in.console;
 
 import lotto.adapter.in.console.dto.BonusNumberReq;
+import lotto.adapter.in.console.dto.LottoResultRes;
 import lotto.adapter.in.console.dto.PurchaseAmountReq;
 import lotto.adapter.in.console.dto.WinningNumberReq;
 import lotto.application.in.LottoUseCase;
@@ -21,6 +22,11 @@ public class LottoConsoleHandler {
         LottoRound round = lottoUseCase.buyLotto(PurchaseAmountReq.read());
         LottoRoundResult result = lottoUseCase.checkResult(round, WinningNumberReq.read(), BonusNumberReq.read());
 
-        /* Todo: 추후 출력 기능 추가 */
+        LottoResultRes.of(result)
+                .printEnter()
+                .printPurchased(round)
+                .printEnter()
+                .printResult()
+                .printProfit();
     }
 }
