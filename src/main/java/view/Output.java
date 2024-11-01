@@ -1,6 +1,9 @@
 package view;
 
+import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
+import utils.WinningLotto;
 
 public class Output {
     private static final String PURCHASE_AMOUNT_FORMAT = "%d개를 구매했습니다.\n";
@@ -11,13 +14,17 @@ public class Output {
         System.out.printf(PURCHASE_AMOUNT_FORMAT, purchaseAmount);
     }
 
-    public void printLottoNumbers(Set<Set<Integer>>lottoNumbers) {
+    public void printLottoNumbers(List<TreeSet<Integer>> lottoNumbers) {
         lottoNumbers.forEach(System.out::println);
     }
 
-    public void printWinningResult(int matchCount, boolean matchBonus) {
-        System.out.println("WINNING_RESULT_FORMAT");
-        //추후 lotto 관련 enum과 연계 구현할 것
+    public void printWinningResult(List<Integer> winningResult) {
+        System.out.println(WINNING_RESULT_FORMAT);
+        System.out.printf(WinningLotto.FIRST_REWARD.getFormat(), winningResult.get(0));
+        System.out.printf(WinningLotto.SECOND_REWARD.getFormat(), winningResult.get(1));
+        System.out.printf(WinningLotto.THIRD_REWARD.getFormat(), winningResult.get(2));
+        System.out.printf(WinningLotto.FOURTH_REWARD.getFormat(), winningResult.get(3));
+        System.out.printf(WinningLotto.FIFTH_REWARD.getFormat(), winningResult.get(4));
     }
 
     public void printProfitRate(double profitRate) {
