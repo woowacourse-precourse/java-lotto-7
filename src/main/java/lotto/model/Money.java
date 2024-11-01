@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.constants.LottoConfig.PRICE_MAXIMUM;
+import static lotto.constants.LottoConfig.PRICE_MINIMUM;
 import static lotto.constants.LottoConfig.TICKET_PRICE;
 
 import java.util.List;
@@ -8,7 +9,6 @@ import lotto.constants.ErrorMessage;
 
 public class Money {
 
-    private static final int PRICE_MINIMUM = 1;
     private final int price;
 
     public Money(int price) {

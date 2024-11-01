@@ -27,7 +27,7 @@ public class Controller {
             try {
                 return new Money(InputView.inputMoney());
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.printException(e);
             }
         }
     }
@@ -37,7 +37,7 @@ public class Controller {
             try {
                 return new Lottos(LottoMachine.purchaseLottos(money));
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.printException(e);
             }
         }
     }
@@ -47,7 +47,7 @@ public class Controller {
             try {
                 return new Lotto(InputView.inputWinningNumbers());
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.printException(e);
             }
         }
     }
@@ -57,7 +57,7 @@ public class Controller {
             try {
                 return new BonusNumber(InputView.inputBonusNumber());
             } catch (IllegalArgumentException e) {
-                OutputView.printErrorMessage(e.getMessage());
+                OutputView.printException(e);
             }
         }
     }

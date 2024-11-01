@@ -21,10 +21,10 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(Result result) {
-        System.out.printf(RATE_OF_RETURN_MESSAGE, OutputHandler.formatRateOfReturn(result));
+        System.out.printf(RATE_OF_RETURN_MESSAGE, result.getRateOfReturn());
     }
 
-    public static void printErrorMessage(String message) {
-        System.out.println(message);
+    public static void printException(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

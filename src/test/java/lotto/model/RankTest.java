@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -24,6 +25,7 @@ class RankTest {
         );
     }
 
+    @DisplayName("랭크가 올바르게 구분되는 지 확인한다.")
     @ParameterizedTest
     @MethodSource("provideForShouldReturnTrue")
     void shouldReturnTrue(Rank rank, Lotto lotto, boolean result) {

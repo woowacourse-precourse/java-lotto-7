@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -34,9 +35,10 @@ class LottosTest {
         );
     }
 
+    @DisplayName("랭크의 개수를 정확히 리턴한다.")
     @ParameterizedTest
     @MethodSource("provideForCountOfRank")
-    void countOfRank(Rank rank, int count) {
+    void shouldReturnCorrectCountOfRank(Rank rank, int count) {
         Assertions.assertThat(lottos.countOfRank(rank, winningLotto))
                 .isEqualTo(count);
     }

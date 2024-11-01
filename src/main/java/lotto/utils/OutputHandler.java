@@ -40,8 +40,4 @@ public class OutputHandler {
         sb.append(RANK_FORMAT_END);
         return String.format(sb.toString(), rank.getMatchingNumbersCount(), rank.getPrize(), count);
     }
-
-    public static float formatRateOfReturn(Result result) {
-        return result.getRateOfReturn();
-    }
 }
