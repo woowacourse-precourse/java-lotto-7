@@ -19,4 +19,5 @@ public class InputHandler {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위만 가능합니다.");
         }
     }
+
 }
