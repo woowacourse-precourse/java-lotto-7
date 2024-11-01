@@ -57,6 +57,12 @@ public class WinningNumberTest {
 
         assertThatThrownBy(() -> winningNumber.validate("46,2,3,4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> winningNumber.validate("1,2,3,3,5,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> winningNumber.validate("1,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
