@@ -15,12 +15,14 @@ public class InputHandler {
     public static int getPaidAmount() {
         String rawPaidAmount = InputView.getPaidAmount();
         InputValidator.validatePaidAmount(rawPaidAmount);
+
         return Integer.parseInt(rawPaidAmount);
     }
 
     public static List<Integer> getWinningNumbers() {
         String rawWinningNumbers = InputView.getWinningNumbers();
         InputValidator.validateWinningNumbers(rawWinningNumbers);
+
         return Arrays.stream(rawWinningNumbers.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
@@ -29,6 +31,7 @@ public class InputHandler {
     public static int getBonusNumber() {
         String rawBonusNumber = InputView.getBonusNumber();
         InputValidator.validateWinningNumbers(rawBonusNumber);
+
         return Integer.parseInt(rawBonusNumber);
     }
 }

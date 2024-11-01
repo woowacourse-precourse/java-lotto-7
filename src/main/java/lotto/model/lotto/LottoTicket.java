@@ -17,7 +17,8 @@ public class LottoTicket {
     }
 
     public void determineRank(WinningLotto winningLotto) {
-        this.rank = Rank.findRank(lotto.countMatchingNumber(winningLotto), lotto.isBonusMatched(winningLotto));
+        this.rank = Rank.findRank(lotto.countMatchingNumberWith(winningLotto),
+                lotto.isBonusNumberMatchedWith(winningLotto));
     }
 
     public int getProfit() {

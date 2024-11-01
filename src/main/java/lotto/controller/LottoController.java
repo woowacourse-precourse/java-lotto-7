@@ -3,10 +3,9 @@ package lotto.controller;
 import java.util.List;
 import lotto.handler.InputHandler;
 import lotto.model.customer.Customer;
-import lotto.model.lotto.LottoTicket;
-import lotto.model.lotto.WinningLotto;
 import lotto.model.dto.LottoDto;
 import lotto.model.dto.ResultDto;
+import lotto.model.lotto.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
 
@@ -20,19 +19,28 @@ public class LottoController {
 
     public void run() {
         int paidAmount = InputHandler.getPaidAmount();
+        Customer customer = lottoService.sellLottoToNewCustomer(paidAmount);
+        displayLottoTickets(customer);
 
-        List<LottoTicket> lottoTickets = lottoService.purchase(paidAmount);
-        Customer customer = new Customer(paidAmount, lottoTickets);
+        WinningLotto winningLotto = createWinningLotto();
 
-        List<LottoDto> lottoNumbersOfCustomer = lottoService.getLottoNumbersOfCustomer(customer);
-        OutputView.displayLottoNumbersOfCustomer(lottoNumbersOfCustomer);
+        lottoService.determineRanks(customer, winningLotto);
+        displayResult(customer);
+    }
 
+    private void displayLottoTickets(Customer customer) {
+        List<LottoDto> lottoNumbersOfCustomer = lottoService.getIssuedLottoNumbersOf(customer);
+        OutputView.displayLottoNumbers(lottoNumbersOfCustomer);
+    }
+
+    private WinningLotto createWinningLotto() {
         List<Integer> winningNumbers = InputHandler.getWinningNumbers();
         int bonusNumber = InputHandler.getBonusNumber();
 
-        WinningLotto winningLotto = lottoService.registerWinningNumbers(winningNumbers, bonusNumber);
+        return lottoService.registerWinningNumbers(winningNumbers, bonusNumber);
+    }
 
-        lottoService.determineRanks(customer, winningLotto);
+    private void displayResult(Customer customer) {
         ResultDto result = lottoService.getResult(customer);
         OutputView.displayResult(result);
     }

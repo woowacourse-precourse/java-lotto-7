@@ -3,7 +3,6 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.controller.ErrorMessages;
-import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ public class LottoServiceTest {
         int invalidUnitInput = PRICE_OF_LOTTO_TICKET + 1;
 
         // when & then
-        assertThatThrownBy(() -> lottoService.purchase(invalidUnitInput))
+        assertThatThrownBy(() -> lottoService.sellLottoToNewCustomer(invalidUnitInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_UNIT_OF_PAID_AMOUNT);
     }

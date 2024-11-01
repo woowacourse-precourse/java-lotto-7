@@ -10,7 +10,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void displayLottoNumbersOfCustomer(List<LottoDto> lottoDtos) {
+    public static void displayLottoNumbers(List<LottoDto> lottoDtos) {
         String sizeOfLotto = OutputFormatter.formatSizeOfLotto(lottoDtos.size());
         List<String> lottoNumbers = OutputFormatter.formatLottoNumbers(lottoDtos);
 

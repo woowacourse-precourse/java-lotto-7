@@ -19,15 +19,15 @@ public class Customer {
         return lottoTickets;
     }
 
-    public void determineRanks(WinningLotto winningLotto) {
+    public void determineRanksOfLottoTickets(WinningLotto winningLotto) {
         this.lottoTickets.forEach(lottoTicket -> lottoTicket.determineRank(winningLotto));
     }
 
     public double calculateProfitRate() {
-        return ((double) (getTotalProfit()) / paidAmount) * 100;
+        return ((double) (calculateTotalProfit()) / paidAmount) * 100;
     }
 
-    private int getTotalProfit() {
+    private int calculateTotalProfit() {
         int totalProfit = 0;
 
         for (LottoTicket lottoTicket : lottoTickets) {

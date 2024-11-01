@@ -18,14 +18,19 @@ public class OutputFormatter {
         List<String> parsedLottoNumbers = new ArrayList<>();
 
         for (LottoDto lottoDto : lottoDtos) {
-            List<Integer> numbers = new ArrayList<>(lottoDto.numbers());
-            Collections.sort(numbers);
+            List<Integer> sortedNumbers = sortNumbers(lottoDto.numbers());
 
-            String result = String.join(", ", numbers.stream().map(String::valueOf).toList());
+            String result = String.join(", ", sortedNumbers.stream().map(String::valueOf).toList());
             parsedLottoNumbers.add("[" + result + "]");
         }
 
         return parsedLottoNumbers;
+    }
+
+    private static List<Integer> sortNumbers(List<Integer> originNumbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(originNumbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     public static List<String> formatRankCount(List<RankDto> rankDtos) {

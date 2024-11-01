@@ -24,7 +24,7 @@ public class WinningLottoTest {
         List<Integer> comparedNumbers = numbers;
 
         // when
-        int matchingNumber = winningLotto.countMatchingNumber(comparedNumbers);
+        int matchingNumber = winningLotto.countMatchingNumberWith(comparedNumbers);
 
         // then
         assertThat(matchingNumber).isEqualTo(numbers.size());
