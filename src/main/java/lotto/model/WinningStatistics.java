@@ -18,6 +18,12 @@ public class WinningStatistics {
         }
     }
 
+    public void createStatistics(List<Lotto> lottoTicket, WinningNumbers winningNumbers) {
+        for (Lotto lotto : lottoTicket) {
+            process(lotto, winningNumbers);
+        }
+    }
+
     public void process(Lotto lotto, WinningNumbers winningNumbers) {
         int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers.getWinningNumbers());
         boolean isBonusMatch = checkBonusMatch(lotto, winningNumbers);
