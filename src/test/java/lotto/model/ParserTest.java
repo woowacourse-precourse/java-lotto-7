@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -129,5 +130,20 @@ class ParserTest {
         assertThatThrownBy(() -> Parser.parseInputToInt(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    @DisplayName("입력 문자열 정수 리스트로 변환 - 성공 테스트")
+    void parseInputsToIntList_success() {
+        // given
+        String inputs = "1,2,3";
+
+        // when
+        List<Integer> parsedInputs = Parser.parseInputsToIntList(inputs);
+
+        // then
+        assertThat(parsedInputs.get(0)).isEqualTo(1);
+        assertThat(parsedInputs.get(1)).isEqualTo(2);
+        assertThat(parsedInputs.get(2)).isEqualTo(3);
     }
 }
