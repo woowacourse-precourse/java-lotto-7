@@ -1,7 +1,8 @@
 package lotto.dto;
 
-import lotto.exception.LottoExceptionStatus;
-import lotto.properties.LottoProperties;
+
+import static lotto.exception.LottoExceptionStatus.INVALID_LOTTO_PURCHASE_AMOUNT;
+import static lotto.properties.LottoProperties.LOTTO_PRICE;
 
 public record PurchaseAmountDto(
         int purchaseAmount
@@ -13,12 +14,12 @@ public record PurchaseAmountDto(
 
     private void validate(int purchaseAmount) {
         if (isAmountInvalid(purchaseAmount)) {
-            throw new IllegalArgumentException(LottoExceptionStatus.INVALID_LOTTO_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     private boolean isAmountInvalid(int purchaseAmount){
-        return purchaseAmount % LottoProperties.LOTTO_PRICE != 0;
+        return purchaseAmount % LOTTO_PRICE != 0;
     }
 
     public static PurchaseAmountDto from(String input) {

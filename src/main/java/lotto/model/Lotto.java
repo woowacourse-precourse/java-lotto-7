@@ -1,13 +1,15 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.exception.LottoExceptionStatus;
-import lotto.properties.LottoProperties;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.exception.LottoExceptionStatus.*;
+import static lotto.exception.LottoExceptionStatus.INVALID_WINNING_NUMBER_DUPLICATE;
+import static lotto.properties.LottoProperties.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,31 +20,40 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (isGeneratedSixNumbers(numbers) || isDuplicate(numbers)) {
-            throw new IllegalArgumentException(
-                    LottoExceptionStatus.INVALID_GENERATED_LOTTO_NUMBERS_SIZE.getMessage()
-            );
-        }
+        isGeneratedSixNumbers(numbers);
+        isDuplicate(numbers);
+        isOutOfRange(numbers);
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    private boolean isGeneratedSixNumbers(List<Integer> numbers){
-        return numbers.size() != 6;
+    private void isOutOfRange(List<Integer> winningLottery){
+        winningLottery.forEach(number -> {
+            if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END)
+                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+        });
     }
 
-    private boolean isDuplicate(List<Integer> numbers) {
+    private void isGeneratedSixNumbers(List<Integer> numbers){
+        if(numbers.size() != 6){
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_SIZE.getMessage());
+        }
+    }
+
+    private void isDuplicate(List<Integer> numbers) {
         Set<Integer> checkDuplicate = new HashSet<>(numbers);
-        return checkDuplicate.size() != 6;
+        if(checkDuplicate.size() != 6){
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_DUPLICATE.getMessage());
+        }
     }
 
     public static Lotto generate(){
         List<Integer> numbers =  Randoms.pickUniqueNumbersInRange(
-                LottoProperties.LOTTO_NUMBER_START,
-                LottoProperties.LOTTO_NUMBER_END,
-                LottoProperties.LOTTO_NUMBER_QUANTITY
+                LOTTO_NUMBER_START,
+                LOTTO_NUMBER_END,
+                LOTTO_NUMBER_QUANTITY
         );
         Collections.sort(numbers);
         return new Lotto(numbers);

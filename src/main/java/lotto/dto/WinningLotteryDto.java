@@ -3,7 +3,13 @@ package lotto.dto;
 import lotto.exception.LottoExceptionStatus;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.exception.LottoExceptionStatus.*;
+import static lotto.properties.LottoProperties.LOTTO_NUMBER_END;
+import static lotto.properties.LottoProperties.LOTTO_NUMBER_START;
 
 public record WinningLotteryDto(
         List<Integer> winningLottery
@@ -14,14 +20,29 @@ public record WinningLotteryDto(
     }
 
     private void validate(List<Integer> winningLottery){
-        winningLottery.forEach( number -> {
-                    if(isOutOfRange(number))
-                        throw new IllegalArgumentException(LottoExceptionStatus.INVALID_WINNING_NUMBER_RANGE.getMessage());
-                });
+        isGeneratedSixNumbers(winningLottery);
+        isDuplicate(winningLottery);
+        isOutOfRange(winningLottery);
     }
 
-    private boolean isOutOfRange(int number){
-        return number < 1 || number > 45;
+    private void isOutOfRange(List<Integer> winningLottery){
+        winningLottery.forEach(number -> {
+            if(number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END)
+                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+        });
+    }
+
+    private void isGeneratedSixNumbers(List<Integer> numbers){
+        if(numbers.size() != 6){
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_SIZE.getMessage());
+        }
+    }
+
+    private void isDuplicate(List<Integer> numbers) {
+        Set<Integer> checkDuplicate = new HashSet<>(numbers);
+        if(checkDuplicate.size() != 6){
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_DUPLICATE.getMessage());
+        }
     }
 
     public static WinningLotteryDto from(String winningLottery){

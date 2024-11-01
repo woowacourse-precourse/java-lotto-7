@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.properties.LottoProperties.LOTTO_PRICE;
+
 public class MyLottoInfo {
 
     private final List<Lotto> myLotteries;
@@ -39,7 +41,7 @@ public class MyLottoInfo {
     }
 
     private int calculateQuantities(int purchaseLottoCount){
-        return purchaseLottoCount / LottoProperties.LOTTO_PRICE;
+        return purchaseLottoCount / LOTTO_PRICE;
     }
 
     private List<Lotto> generateLotto(int purchaseLottoCount){
