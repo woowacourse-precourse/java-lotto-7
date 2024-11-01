@@ -1,4 +1,3 @@
-// lotto/view/InputView.java
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
