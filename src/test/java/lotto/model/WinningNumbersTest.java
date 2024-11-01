@@ -6,6 +6,7 @@ import static lotto.constants.ErrorMessage.INPUT_VALUE_MUST_BE_NUMERIC;
 import static lotto.constants.ErrorMessage.INVALID_NUMBER_RANGE;
 import static lotto.constants.ErrorMessage.INVALID_WINNING_NUMBER_COUNT;
 import static lotto.constants.ErrorMessage.NOT_ALLOWED_BLANK_AT_EDGES;
+import static lotto.constants.ErrorMessage.NOT_ALLOWED_DUPLICATED_NUMBERS;
 import static lotto.constants.ErrorMessage.NOT_ALLOWED_STARTING_WITH_COMMA;
 import static lotto.constants.ErrorMessage.WINNING_NUMBERS_MUST_CONTAIN_COMMA;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -108,5 +109,16 @@ class WinningNumbersTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinningNumbers(rawWinningNumbers))
                 .withMessage(INVALID_NUMBER_RANGE);
+    }
+
+    @Test
+    void 중복되는_정수가_입력_된_경우_예외가_발생한다() {
+        // given
+        String rawWinningNumbers = "1,2,3,4,5,5";
+
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new WinningNumbers(rawWinningNumbers))
+                .withMessage(NOT_ALLOWED_DUPLICATED_NUMBERS);
     }
 }

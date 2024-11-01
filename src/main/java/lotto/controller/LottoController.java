@@ -78,7 +78,7 @@ public class LottoController {
                 String input = inputView.receiveString();
                 return creationFunction.apply(input);
             } catch (IllegalArgumentException e) {
-                outputView.printMessage(e.getMessage());
+                outputView.printErrorMessage(e.getMessage());
             }
         }
     }
