@@ -1,6 +1,5 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +9,8 @@ import lotto.domain.LottoBundle;
 import lotto.domain.LottoProfit;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
-import lotto.error.LottoError;
 
-public class LottoView {
+public class LottoOutputView {
     private static final String LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String GENERATED_LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
     private static final String GENERATED_LOTTO_NUMBERS_MESSAGE = "[%s]";
@@ -21,32 +19,17 @@ public class LottoView {
     private static final String LOTTO_BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final String NUMBERS_DELIMITER = ",";
-    private final LottoInputValidator lottoInputValidator;
 
-    public LottoView(LottoInputValidator lottoInputValidator) {
-        this.lottoInputValidator = lottoInputValidator;
-    }
-
-    public int requestLottoPurchasePrice() {
+    public void printLottoPurchasePrice() {
         System.out.println(LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE);
-        String lottoPurchasePrice = input();
-        lottoInputValidator.validateLottoPurchasePrice(lottoPurchasePrice);
-        return parseInt(lottoPurchasePrice);
     }
 
-    public List<Integer> requestLottoWinningNumbers() {
+    public void printLottoWinningNumbers() {
         System.out.println(LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE);
-        String winningNumbers = input();
-        lottoInputValidator.validateLottoWinningNumbers(winningNumbers);
-        return parseNumbers(winningNumbers);
     }
 
-    public int requestLottoBonusNumber() {
+    public void printLottoBonusNumber() {
         System.out.println(LOTTO_BONUS_NUMBER_REQUEST_MESSAGE);
-        String bonusNumber = input();
-        lottoInputValidator.validateLottoBonusNumber(bonusNumber);
-        return parseInt(bonusNumber);
     }
 
     public void printLottoBundle(LottoBundle lottoBundle) {
@@ -57,24 +40,6 @@ public class LottoView {
         System.out.println(LOTTO_RESULT_MESSAGE);
         printLottoRankCount(lottoResult.getRankCount());
         printLottoProfitRate(lottoResult.getLottoProfit());
-    }
-
-    private String input() {
-        return Console.readLine();
-    }
-
-    private int parseInt(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LottoError.INVALID_NUMBER.getMessage());
-        }
-    }
-
-    private List<Integer> parseNumbers(String numbers) {
-        return Arrays.stream(numbers.split(NUMBERS_DELIMITER))
-                .map(this::parseInt)
-                .collect(Collectors.toList());
     }
 
     private void printLottos(List<Lotto> lottos) {

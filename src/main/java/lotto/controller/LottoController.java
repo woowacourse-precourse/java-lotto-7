@@ -10,30 +10,34 @@ import lotto.domain.LottoDispenser;
 import lotto.domain.LottoPurchasePrice;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
-import lotto.view.LottoView;
+import lotto.view.LottoInputView;
+import lotto.view.LottoOutputView;
 
 public class LottoController {
-
-    private final LottoView lottoView;
+    private final LottoInputView lottoInputView;
+    private final LottoOutputView lottoOutputView;
 
     public LottoController(
-            LottoView lottoView
+            LottoInputView lottoInputView,
+            LottoOutputView lottoOutputView
     ) {
-        this.lottoView = lottoView;
+        this.lottoInputView = lottoInputView;
+        this.lottoOutputView = lottoOutputView;
     }
 
     public void run() {
         LottoPurchasePrice lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
         LottoBundle lottoBundle = issueLottoBundle(lottoPurchasePrice);
-        lottoView.printLottoBundle(lottoBundle);
+        lottoOutputView.printLottoBundle(lottoBundle);
         WinningLotto winningLotto = retry(this::requestLottoWinningNumbers);
         BonusNumber bonusNumber = retry(this::requestLottoBonusNumber, winningLotto);
         LottoResult lottoResult = lottoBundle.makeLottoResult(winningLotto, bonusNumber);
-        lottoView.printLottoResult(lottoResult);
+        lottoOutputView.printLottoResult(lottoResult);
     }
 
     private LottoPurchasePrice requestLottoPurchasePrice() {
-        int lottoPurchasePrice = lottoView.requestLottoPurchasePrice();
+        lottoOutputView.printLottoPurchasePrice();
+        int lottoPurchasePrice = lottoInputView.readLottoPurchasePrice();
         return LottoPurchasePrice.from(lottoPurchasePrice);
     }
 
@@ -43,12 +47,14 @@ public class LottoController {
     }
 
     private WinningLotto requestLottoWinningNumbers() {
-        List<Integer> lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
+        lottoOutputView.printLottoWinningNumbers();
+        List<Integer> lottoWinningNumbers = lottoInputView.readLottoWinningNumbers();
         return WinningLotto.from(lottoWinningNumbers);
     }
 
     private BonusNumber requestLottoBonusNumber(WinningLotto winningLotto) {
-        int lottoBonusNumber = lottoView.requestLottoBonusNumber();
+        lottoOutputView.printLottoBonusNumber();
+        int lottoBonusNumber = lottoInputView.readLottoBonusNumber();
         return BonusNumber.of(lottoBonusNumber, winningLotto);
     }
 
