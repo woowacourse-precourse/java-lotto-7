@@ -38,5 +38,9 @@ public class Lotto {
         }
     }
 
+    public boolean checkBonusDuplicate(LottoNumber bonusNumber) {
+        return lottoticket.contains(bonusNumber);
+    }
+
     // TODO: 추가 기능 구현
 }
