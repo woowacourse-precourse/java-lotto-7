@@ -9,7 +9,7 @@ public class LottoController {
         this.lottoView = lottoView;
     }
 
-    public void getPayment() {
+    public void purchaseLotto() {
         String payment = lottoView.getPayment();
         Purchase purchase = new Purchase(payment);
     }
