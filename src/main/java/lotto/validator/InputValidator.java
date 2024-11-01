@@ -16,11 +16,6 @@ public class InputValidator {
         }
     }
 
-    /*
-    번호 6개
-    1 ~ 45
-    중복 번호
-    */
     public static void validateWinningNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
@@ -33,10 +28,6 @@ public class InputValidator {
         }
     }
 
-    /*
-    1 ~ 45
-    당첨번호와 중복
-    */
     public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이어야 합니다.");
