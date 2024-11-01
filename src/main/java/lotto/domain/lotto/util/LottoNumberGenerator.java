@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -12,11 +12,11 @@ public final class LottoNumberGenerator {
 
     private LottoNumberGenerator() {}
 
-    static List<Integer> generateWinningNumbers() {
+    public static List<Integer> generateWinningNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
     }
 
-    static int generateBonusNumber() {
+    public static int generateBonusNumber() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, BONUS_SIZE)
                 .getFirst();
     }

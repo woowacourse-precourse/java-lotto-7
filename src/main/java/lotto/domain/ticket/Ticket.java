@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
 import java.util.List;
+import lotto.domain.lotto.Lotto;
+import lotto.global.common.Rank;
 
 public class Ticket {
 

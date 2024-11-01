@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.domain.ticket.util;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.global.common.Rank;
 
 public final class Statistics {
 
