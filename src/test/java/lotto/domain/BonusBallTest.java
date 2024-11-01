@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.view;
 
-import org.junit.jupiter.api.DisplayName;
+import lotto.domain.BonusBall;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
