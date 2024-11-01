@@ -29,6 +29,8 @@ public class LottoIssueTest {
             // 로또 번호가 중복되지 않는지
             Set<Integer> numbersSet = new HashSet<>(numbers);
             assertThat(numbersSet.size()).isEqualTo(numbers.size());
+            // 로또 번호가 오름차순으로 정렬되어 있는지
+            assertThat(numbers).isSorted();
         }
     }
 }
