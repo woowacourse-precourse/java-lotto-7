@@ -1,15 +1,7 @@
 package lotto.View;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
 import lotto.Messages.ErrorMessage;
-import lotto.Messages.StateMessage;
-import lotto.WinningDetails;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static lotto.View.InputView.*;
 
 public class Controller {
 
