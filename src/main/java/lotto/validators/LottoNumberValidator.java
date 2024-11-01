@@ -13,7 +13,7 @@ public class LottoNumberValidator implements NumberInputValidator {
 
     @Override
     public boolean isValid(String input) {
-        boolean isValid = false;
+        boolean isValid = true;
         List<String> numbers = List.of(input.split(SPLIT_DELIMITER));
 
         try {
@@ -24,8 +24,8 @@ public class LottoNumberValidator implements NumberInputValidator {
                 checkInputType(number);
                 checkValueRange(number);
             }
-            isValid = true;
         } catch (IllegalArgumentException e) {
+            isValid = false;
             System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
         }
         return isValid;

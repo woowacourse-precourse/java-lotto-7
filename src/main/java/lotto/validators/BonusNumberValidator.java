@@ -11,7 +11,7 @@ public class BonusNumberValidator implements NumberInputValidator {
 
     @Override
     public boolean isValid(String input) {
-        boolean isValid = false;
+        boolean isValid = true;
         List<String> splitValues = List.of(input.split(":"));
         String bonusNumber = splitValues.get(0);
         String lottoNumbers = splitValues.get(1);
@@ -20,8 +20,8 @@ public class BonusNumberValidator implements NumberInputValidator {
             checkInputType(bonusNumber);
             checkValueRange(bonusNumber);
             checkDuplicate(bonusNumber, lottoNumbers);
-            isValid = true;
         } catch (IllegalArgumentException e) {
+            isValid = false;
             System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
         }
         return isValid;
