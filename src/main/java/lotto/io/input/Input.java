@@ -10,10 +10,13 @@ public class Input {
     private Input() {
     }
 
-    public static BigDecimal getPriceInput() {
-        long price = Long.parseLong(Console.readLine());
+    public static int getPriceInput() {
+        String priceAsString = Console.readLine();
+        int price = Integer.parseInt(priceAsString);
 
-        return new BigDecimal(price);
+        InputValidator.validatePriceIsInThousandUnit(price);
+
+        return price;
     }
 
     public static List<Integer> getWinningNumbersInput() {

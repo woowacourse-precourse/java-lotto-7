@@ -1,6 +1,7 @@
 package lotto.io.input;
 
 import java.io.ByteArrayInputStream;
+import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,5 +21,19 @@ class InputTest {
 
         // then
         Assertions.assertEquals(winningNumbers, List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
+    @DisplayName("구입 가격은 1000원으로 나누어진다.")
+    void getPriceInput() {
+        // given
+        ByteArrayInputStream in = new ByteArrayInputStream("3000".getBytes());
+        System.setIn(in);
+
+        // when
+        int priceInput = Input.getPriceInput();
+
+        // then
+        Assertions.assertEquals(priceInput, 3000);
     }
 }
