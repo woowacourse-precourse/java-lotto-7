@@ -59,6 +59,7 @@ public class Application {
                 }
             }
 
+            System.out.println("총 수익률은 " + ((double) totalPrize / buyAmount) * 100 + "%입니다.");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
