@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,6 +19,10 @@ public class Lotto {
 
     public int getMatchedCount(List<Integer> inputNumbers) {
         return countMatchingNumbers(inputNumbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
