@@ -47,6 +47,16 @@ public class InputViewTest extends NsTest {
     }
 
     @Test
+    @DisplayName("입력된 당첨번호가 숫자가 아닌경우")
+    public void NotNumberWinnumber(){
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("1000", "1,2,3,4,a,6","1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(ErrorMessage.NOTNUMBERWINNUMBERS.getMessage())
+        );
+    }
+
+    @Test
     @DisplayName("입력된 보너스번호가 정수가 아닌경우")
     public void NotNumberBonusnumber(){
         assertSimpleTest(() ->
