@@ -46,4 +46,14 @@ class WinningNumberValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_BONUS_NUMBER_RANGE);
     }
+
+    @Test
+    void 보너스_번호_중복_검증_테스트() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int duplicateBonusNumber = 6;
+
+        assertThatThrownBy(() -> WinningNumberValidator.validateBonusNumber(winningNumbers, duplicateBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessageConstants.INVALID_BONUS_NUMBER_DUPLICATE);
+    }
 }
