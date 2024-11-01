@@ -29,26 +29,34 @@
     - InputView
     - OutputView
 - Exception
+    - InvalidDuplicateNumberException
+    - InvalidDuplicateBonusNumberException
     - InvalidLottoNumberException
     - InvalidNumberCountException
     - InvalidPurchaseAmountException
     - InvalidProfitRateFormatException
+    - InvalidBonusNumberException
 
 ## 🚀 기능 구현
-- [ ] 랜덤번호 6개 생성
-- [ ] 입력금액 / 1000 개만큼 랜덤번호 생성
-- [ ] 당첨번호와 랜덤번호 비교
-- [ ] enum으로 당첨순위 관리
+- [x] 랜덤번호 6개 생성
+- [x] 입력금액 / 1000 개만큼 랜덤번호 생성
+- [x] 당첨번호와 랜덤번호 비교
+- [x] enum으로 당첨순위 관리
+- [x] 당첨번호에 따른 가격 수익률 계산
 
 ## 🚀 예외 처리
 - 당첨 번호가 6개가 아닌 경우
     - IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.”);
 - 당첨 번호가 1~45사이의 번호가 아닌 경우
-    - InvalidLottoNumberException(“[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.”);
+    - InvalidLottoNumberException(“[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.”); 
+- 당첨 번호가 중복된 경우
+    - InvalidDuplicateNumberException("[ERROR] 로또 번호에 중복된 숫자가 있습니다."); 
 - 보너스 번호가 1개가 아닌 경우
     - InvalidNumberCountException("[ERROR] 보너스 번호는 1개여야 합니다.”);
 - 보너스 번호가 1~45사이의 번호가 아닌 경우
-    - InvalidLottoNumberException(“[ERROR] 보너스 번호는 1~45사이의 숫자여야 합니다.”);
+    - InvalidBonusNumberException(“[ERROR] 보너스 번호는 1~45사이의 숫자여야 합니다.”);
+- 보너스 번호가 당첨 번호와 중복된 경우
+    - InvalidDuplicateBonusNumberException("[ERROR] 당첨 번호가 중복될 수 없습니다.");
 - 구입금액이 1000으로 나누어 떨어지지 않는 경우
     - InvalidPurchaseAmountException(“[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.”);
 - 수익률이 소수점 한자리까지가 아닌 경우
