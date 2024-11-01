@@ -26,6 +26,9 @@ public class LottoManager {
             this.lottos.add(lotto);
         }
     }
+    public Lotto generateLottoWithNumbers(List<Integer> numbers){
+        return new Lotto(numbers);
+    }
 
     public List<Lotto> getLottos(){
         return this.lottos;

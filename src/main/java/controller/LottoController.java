@@ -32,11 +32,7 @@ public class LottoController {
 
         displayLottos(generatedLottos);
 
-        Lotto winningLottoWithoutBonusNumber = generateWinningLotto();
-
-        int bonusNumber = getInputBonusNumber(winningLottoWithoutBonusNumber);
-
-        winningLotto = new WinningLotto(winningLottoWithoutBonusNumber, bonusNumber);
+        winningLotto = generateWinningLotto();
 
         EnumMap<Prize, Integer> prizeResult = calculatePrizes(initPrizes(), generatedLottos, winningLotto);
 
@@ -93,13 +89,15 @@ public class LottoController {
         }
     }
 
-    private Lotto generateWinningLotto() {
+    private WinningLotto generateWinningLotto() {
         while (true) {
             try {
                 outputHandler.promptForLottoNumber();
                 List<Integer> lottoNumbers = inputHandler.getLottoNumber();
-                Lotto winningLotto = new Lotto(lottoNumbers);
-                return winningLotto;
+                Lotto winningLottoWithoutBonusNumber = lottoManager.generateLottoWithNumbers(lottoNumbers);
+                int bonusNumber = getInputBonusNumber(winningLottoWithoutBonusNumber);
+                return new WinningLotto(winningLottoWithoutBonusNumber, bonusNumber);
+
             } catch (RuntimeException e) {
                 System.out.println(e.getMessage());
             }
