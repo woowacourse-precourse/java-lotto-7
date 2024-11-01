@@ -3,6 +3,8 @@ package lotto.application.out;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
+import lotto.Application;
+import lotto.config.context.ApplicationContext;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,8 +14,8 @@ class LottoGeneratorPortTest {
     private final LottoGeneratorPort lottoGeneratorPort;
 
     public LottoGeneratorPortTest() {
-        /* Todo: 추후 구현체로 변경 */
-        lottoGeneratorPort = null;
+        lottoGeneratorPort = ApplicationContext.getInstance(Application.class)
+                .getBean(LottoGeneratorPort.class);
     }
 
     @Test
