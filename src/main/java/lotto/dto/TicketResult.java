@@ -7,4 +7,7 @@ public record TicketResult(
         List<List<Integer>> ticket
 ) {
 
+    public TicketResult getId() {
+        return null;
+    }
 }
