@@ -1,6 +1,7 @@
 package lotto.config;
 
 
+import java.util.List;
 import lotto.controller.LottoGameController;
 import lotto.domain.DefaultLottoFactory;
 import lotto.domain.LottoFactory;
@@ -10,6 +11,9 @@ import lotto.dto.LottosDto;
 import lotto.service.DtoMapper;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoPurchaseServiceImpl;
+import lotto.utils.parser.Parser;
+import lotto.utils.parser.StringToIntListParser;
+import lotto.utils.parser.StringToIntParser;
 import lotto.utils.validator.Validator;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
@@ -37,10 +41,18 @@ public class AppConfig implements Config{
         return new ConsoleInputView();
     }
 
+    public Parser<Integer> stringToIntparser(){
+        return new StringToIntParser();
+    }
+
+    public Parser<List<Integer>> stringToIntListParser(){
+        return new StringToIntListParser();
+    }
+
     public LottoPurchaseService lottoPurchaseService() {
         DtoMapper<Lottos, LottosDto> lottosDtoMapper = dtoMapperConfig.lottosDtoMapper();
         Validator<String> purchaseAmountValidator = validatorConfig.purchaseAmountValidator();
-        return new LottoPurchaseServiceImpl(lottoFactory(),lottosDtoMapper,purchaseAmountValidator);
+        return new LottoPurchaseServiceImpl(lottoFactory(),lottosDtoMapper,purchaseAmountValidator,stringToIntparser());
     }
 
     public LottoGameController lottoGameController() {

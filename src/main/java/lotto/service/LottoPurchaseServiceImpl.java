@@ -5,29 +5,33 @@ import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import lotto.domain.LottoFactory;
 import lotto.domain.Lottos;
 import lotto.dto.LottosDto;
+import lotto.utils.parser.Parser;
 import lotto.utils.validator.Validator;
 
 public class LottoPurchaseServiceImpl implements LottoPurchaseService {
     private final DtoMapper<Lottos, LottosDto> lottosDtoMapper;
     private final LottoFactory defaultLottoFactory;
     private final Validator<String> purchaseAmountValidator;
+    private final Parser<Integer> stringToIntParser;
     private Lottos lottos;
 
     public LottoPurchaseServiceImpl(
             LottoFactory defaultLottoFactory
             , DtoMapper<Lottos, LottosDto> lottosDtoMapper
-            , Validator<String> purchaseAmountValidator) {
+            , Validator<String> purchaseAmountValidator
+            , Parser<Integer> stringToIntParser) {
 
         this.defaultLottoFactory = defaultLottoFactory;
         this.lottosDtoMapper = lottosDtoMapper;
         this.purchaseAmountValidator = purchaseAmountValidator;
+        this.stringToIntParser = stringToIntParser;
     }
 
 
     @Override
     public void purchaseLottos(String rawPurchaseAmount) {
         purchaseAmountValidator.validate(rawPurchaseAmount);
-        int purchaseAmount = Integer.parseInt(rawPurchaseAmount);
+        int purchaseAmount = stringToIntParser.parse(rawPurchaseAmount);
 
         int purchasedLottoCount = getLottoCount(purchaseAmount);
         lottos = Lottos.createLottos(purchasedLottoCount, defaultLottoFactory);
