@@ -13,10 +13,18 @@ public class JackpotNumbersValidator implements Validator {
 
     @Override
     public void validate(String input) {
-        List<Integer> intList = StringParser.toIntList(input);
+        List<Integer> intList = validateNumber(input);
 
         validateUniqueNumbers(intList);
         Lotto lotto = new Lotto(intList);
+    }
+
+    private static List<Integer> validateNumber(String input) {
+        try {
+            return StringParser.toIntList(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
+        }
     }
 
     private static void validateUniqueNumbers(List<Integer> intList) {
