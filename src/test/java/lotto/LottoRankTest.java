@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -15,7 +16,7 @@ public class LottoRankTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"0:FIRST", "1:SECOND", "2:THIRD", "3:FOURTH", "4:FIFTH"}, delimiter = ':')
+    @CsvSource(value = {"0:FIFTH", "1:FOURTH", "2:THIRD", "3:SECOND", "4:FIRST"}, delimiter = ':')
     void 이름을_통한_당첨_등수_생성_확인(int index, String name) {
         assertThat(LottoRank.values()[index].name()).isEqualTo(name);
     }
@@ -45,5 +46,17 @@ public class LottoRankTest {
         LottoRank rank = LottoRank.matchRank(matchCount, isMatchedBonus);
 
         assertThat(rank.calculateRevenue()).isEqualTo(expectedRevenue);
+    }
+
+    @Test
+    void 당첨_현황() {
+        LottoRank.matchRank(3, false);
+        LottoRank.matchRank(5, true);
+
+        assertThat(LottoRank.winningStatus()).isEqualTo("3개 일치 (5,000원) - 1개\n"
+                + "4개 일치 (50,000원) - 0개\n"
+                + "5개 일치 (1,500,000원) - 0개\n"
+                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
+                + "6개 일치 (2,000,000,000원) - 0개");
     }
 }

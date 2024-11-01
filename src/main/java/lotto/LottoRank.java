@@ -1,24 +1,15 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public enum LottoRank {
-    FIRST(6, 2_000_000_000) {
+
+    FIFTH(3, 5_000) {
         @Override
         int calculateRevenue() {
-            return FIRST.reward * FIRST.match;
-        }
-    },
-    SECOND(5, 30_000_000) {
-        @Override
-        int calculateRevenue() {
-            return SECOND.reward * SECOND.match;
-        }
-    },
-    THIRD(5, 1_500_000) {
-        @Override
-        int calculateRevenue() {
-            return THIRD.reward * THIRD.match;
+            return FIFTH.reward * FIFTH.match;
         }
     },
     FOURTH(4, 50_000) {
@@ -27,10 +18,22 @@ public enum LottoRank {
             return FOURTH.reward * FOURTH.match;
         }
     },
-    FIFTH(3, 5_000) {
+    THIRD(5, 1_500_000) {
         @Override
         int calculateRevenue() {
-            return FIFTH.reward * FIFTH.match;
+            return THIRD.reward * THIRD.match;
+        }
+    },
+    SECOND(5, 30_000_000) {
+        @Override
+        int calculateRevenue() {
+            return SECOND.reward * SECOND.match;
+        }
+    },
+    FIRST(6, 2_000_000_000) {
+        @Override
+        int calculateRevenue() {
+            return FIRST.reward * FIRST.match;
         }
     };
 
@@ -74,4 +77,18 @@ public enum LottoRank {
     }
 
     abstract int calculateRevenue();
+
+    public static String winningStatus() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+        return Arrays.stream(LottoRank.values())
+                .map(rank -> {
+                    if (rank == LottoRank.SECOND) {
+                        return rank.matchCount + "개 일치, 보너스 볼 일치 (" + decimalFormat.format(rank.reward) + "원) - "
+                                + rank.match + "개";
+                    }
+                    return rank.matchCount + "개 일치 (" + decimalFormat.format(rank.reward) + "원) - " + rank.match + "개";
+                })
+                .collect(Collectors.joining("\n"));
+    }
 }

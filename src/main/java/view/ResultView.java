@@ -1,5 +1,6 @@
 package view;
 
+import lotto.LottoRank;
 import lotto.Lottos;
 
 public class ResultView {
@@ -12,5 +13,11 @@ public class ResultView {
 
     public static void showCreatedLotto(Lottos lottos) {
         System.out.println(lottos);
+    }
+
+    public static void showWinningStatistics(double revenueRate) {
+        System.out.println("당첨 통계\n" + "-".repeat(3));
+        System.out.println(LottoRank.winningStatus());
+        System.out.println("총 수익률은 " + revenueRate + "%입니다.");
     }
 }
