@@ -32,11 +32,11 @@ public enum Rank {
     }
 
     public static HashMap<Rank, Integer> initRank(){
-        HashMap<Rank, Integer> inithashMap = new HashMap<>();
+        HashMap<Rank, Integer> initHashMap = new HashMap<>();
         for(Rank rank: Rank.values()){
-            inithashMap.put(rank, 0);
+            initHashMap.put(rank, 0);
         }
-        return inithashMap;
+        return initHashMap;
     }
 
     public static Rank getRank(int correctCount, int bonusCount){

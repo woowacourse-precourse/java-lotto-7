@@ -22,19 +22,34 @@ public class LottoController {
 
     public void run(){
         beforeLotto();
-        //startLotto();
+        startLotto();
         //afterLotto();
     }
 
-    public void beforeLotto(){
+    private void beforeLotto(){
+        initUser();
+        buyLottos();
+        initLottoGame();
+    }
+
+    private void initUser(){
         int buyAmount = InputView.inputBuyAmount();
         user = new User(buyAmount);
-        lottoService.buyLottos(user);
-        OutputView.printBuyLottos(user);
+    }
 
+    private void initLottoGame(){
         WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber());
         lottoGame = new LottoGame(winningNumbers, bonusNumber);
-
     }
+
+    private void buyLottos(){
+        lottoService.buyLottos(user);
+        OutputView.printBuyLottos(user);
+    }
+
+    private void startLotto(){
+        lottoService.setWinningResult(lottoGame, user);
+    }
+
 }
