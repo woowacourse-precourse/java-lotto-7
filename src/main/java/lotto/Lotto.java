@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Lotto {
@@ -9,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        isDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -18,11 +21,24 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void isDuplicate(List<Integer> numbers) {
+        Set<Integer> unique = new HashSet<>();
+        for (Integer number : numbers) {
+            if(!unique.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+            }
+        }
 
+    }
+
+    // TODO: 추가 기능 구현
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public static void main(String[] args) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6, 70));
     }
 
 }
