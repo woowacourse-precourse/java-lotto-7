@@ -14,4 +14,10 @@ public class RankResult {
     public RankResult(Map<Rank, Integer> rankResult) {
         this.Rank_Count = rankResult;
     }
+    public Map<Rank, Integer> getRank_Count() {
+        return Rank_Count;
+    }
+    public int getTotal_Price() {
+        return Total_Price;
+    }
 }
