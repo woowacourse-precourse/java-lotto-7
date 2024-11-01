@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.common.Constants.LOTTO_NUMBER_MAX;
-import static lotto.common.Constants.LOTTO_NUMBER_MIN;
-import static lotto.common.Constants.LOTTO_NUMBER_MAX_COUNT;
+import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX;
+import static lotto.common.LottoConstants.LOTTO_NUMBER_MIN;
+import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -27,7 +27,6 @@ public class LottoMachine {
 
     private Lotto generateLotto() {
         List<Integer> lottoNumbers = getLottoNumbers();
-        consumeAmount();
         return Lotto.create(lottoNumbers);
     }
 
@@ -44,15 +43,15 @@ public class LottoMachine {
         }
     }
 
-    private void consumeAmount() {
-        this.inputAmount -= LOTTO_PRICE;
-    }
-
     private List<Integer> getLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_MIN,
                 LOTTO_NUMBER_MAX,
                 LOTTO_NUMBER_MAX_COUNT
         );
+    }
+
+    public int getInputAmount() {
+        return inputAmount;
     }
 }

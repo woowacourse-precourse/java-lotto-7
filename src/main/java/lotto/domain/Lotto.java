@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.common.Constants.LOTTO_NUMBER_MAX;
-import static lotto.common.Constants.LOTTO_NUMBER_MIN;
-import static lotto.common.Constants.LOTTO_NUMBER_MAX_COUNT;
+import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX;
+import static lotto.common.LottoConstants.LOTTO_NUMBER_MIN;
+import static lotto.common.LottoConstants.LOTTO_NUMBER_MAX_COUNT;
 
 import java.util.HashSet;
 import java.util.List;
