@@ -2,7 +2,7 @@ package lotto.controller;
 
 public class InputParser {
 
-    public static int[] parseNumbers(String input) {
+    public static int[] parseIntegers(String input) {
         return new int[0];
     }
 
