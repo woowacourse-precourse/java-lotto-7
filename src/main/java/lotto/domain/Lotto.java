@@ -16,6 +16,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int getMatchNumbersCount(WinningNumbers winningNumbers) {
+        return (int) numbers.stream()
+                .filter(number -> winningNumbers.getReceivedLottoNumbers().contains(number))
+                .count();
+    }
+
+    public boolean hasBonus(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getBonusNumber());
+    }
+
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkRange(numbers);
