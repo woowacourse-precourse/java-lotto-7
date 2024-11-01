@@ -1,9 +1,11 @@
 package lotto.domain.score;
 
+import lotto.constants.ScoreSystem;
 import lotto.domain.BonusComponent;
 import lotto.domain.Component;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.dto.ScoreDto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,13 +15,13 @@ import java.util.List;
 
 public class Score {
 
-    private HashMap<List<Integer>, Integer> scoreSystem ;
+    private final HashMap<List<Integer>, Integer> scoreSystem ;
 
-    public Score(HashMap<List<Integer>, Integer> scoreSystem) {
-        this.scoreSystem = scoreSystem;
+    public Score(ScoreSystem scoreSystem) {
+        this.scoreSystem = new HashMap<>(scoreSystem.getMap());
     }
 
-    public HashMap<List<Integer>, Integer> checkScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
+    public ScoreDto printScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
         scoreSystem.replaceAll((key, value) -> 0);
 
         List<Lotto> mylottos = new ArrayList<>(lottos.getLottos());
@@ -27,7 +29,7 @@ public class Score {
 
         scoring(bonusComponent, mylottos, winningComponent);
 
-        return new HashMap<>(scoreSystem);
+        return new ScoreDto(scoreSystem);
     }
 
     private void scoring(BonusComponent bonusComponent, List<Lotto> mylottos, List<Component> winningComponent) {
