@@ -93,15 +93,17 @@ public class LottoView {
     }
 
     //보너스 번호 입력
-    public int inputBonusNumberProcess() {
+    public int inputBonusNumberProcess(List<Integer> winnerNumbers) {
         while (true) {
             try {
                 String inputBonusNumber = readLine();
                 int bonusNumber = validateBonusNumber(inputBonusNumber);
+                validateBonusNumberInWinnerNumbers(bonusNumber, winnerNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
-                System.out.println(ERROR_MESSAGE + " " + "1부터 45사이의 숫자를 입력해주세요.");
+                System.out.println(ERROR_MESSAGE + " " + "1부터 45사이의 당첨번호에 포함되지 않는 번호를 입력해주세요!");
+
             }
         }
 
@@ -115,6 +117,13 @@ public class LottoView {
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("숫자가 아닙니다.");
+        }
+    }
+
+    public void validateBonusNumberInWinnerNumbers(int bonusNumber, List<Integer> winnerNumbers) {
+        boolean result = winnerNumbers.contains(bonusNumber);
+        if (result) {
+            throw new IllegalArgumentException("당첨 번호 중 보너스 번호가 이미 포함되어 있습니다.");
         }
 
     }
