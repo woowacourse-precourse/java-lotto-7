@@ -1,0 +1,53 @@
+package lotto.domain;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+class LottoStoreTest {
+    LottoStore lottoStore;
+
+    @BeforeEach
+    void setUp() {
+        lottoStore = new LottoStore();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1000, 1", "7000, 7", "50000, 50", "100000, 100"})
+    void 구입금액에_맞는_로또_구매_개수를_반환한다(int amount, int tickets) {
+        //given
+        Money money = Money.won(amount);
+        //when
+        int lottoTickets = lottoStore.calculateLottoTicket(money);
+        //then
+        assertThat(lottoTickets).isEqualTo(tickets);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {999, 1001, 10010, 50500})
+    void 구입금액이_천원단위가_아니면_예외가_발생한다(int amount) {
+        //given
+        Money money = Money.won(amount);
+        //when
+        //then
+        assertThatThrownBy(() -> lottoStore.calculateLottoTicket(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 1000원 단위로 구매해주세요.");
+    }
+
+    @Test
+    void 구입금액이_최대금액을_넘어가면_예외가_발생한다() {
+        //given
+        Money money = Money.won(101000);
+        //when
+        //then
+        assertThatThrownBy(() -> lottoStore.calculateLottoTicket(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 최대 100000원까지 구매 가능합니다.");
+    }
+}
