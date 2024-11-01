@@ -9,8 +9,11 @@ public class PaymentService {
 
     private final PaymentRepository paymentRepository;
 
-    public PaymentService(PaymentRepository paymentRepository) {
+    private final IdGenerator idGenerator;
+
+    public PaymentService(PaymentRepository paymentRepository, IdGenerator idGenerator) {
         this.paymentRepository = paymentRepository;
+        this.idGenerator = idGenerator;
     }
 
     //TODO: Payment - 지불하라
