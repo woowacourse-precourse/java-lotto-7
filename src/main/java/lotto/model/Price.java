@@ -15,4 +15,10 @@ public class Price {
 			throw new IllegalArgumentException("[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.");
 		}
 	}
+
+	private void isPositive(int price) {
+		if (price <= 0) {
+			throw new IllegalArgumentException("[ERROR] 구입금액은 0보다 커야 합니다.");
+		}
+	}
 }
