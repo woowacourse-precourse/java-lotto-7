@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.Factory.WalletFactory;
 import lotto.domain.Wallet;
 
 public class Payment {
@@ -8,8 +9,16 @@ public class Payment {
 
     private final Wallet wallet;
 
-    public Payment(Wallet wallet) {
-        this.wallet = wallet;
+    public Payment(String money) {
+        this.wallet = WalletFactory.createWallet(validateMoney(money));
+    }
+
+    private Integer validateMoney(String money) {
+        try {
+            return Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw  new IllegalArgumentException();
+        }
     }
 
     public Integer getLottoCount() {
