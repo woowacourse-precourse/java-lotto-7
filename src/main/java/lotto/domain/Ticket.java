@@ -26,6 +26,14 @@ public class Ticket {
         return Rank.valueOf(matchCount, matchBonus);
     }
 
+    public List<Integer> getNumbers() {
+        return lotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonus;
+    }
+
     private int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
