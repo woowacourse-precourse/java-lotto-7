@@ -166,4 +166,15 @@ public class InputServiceTest {
                 .isEqualTo(expected);
     }
 
+    @DisplayName("유효한 보너스 번호 문자가 들어온 경우 정상적으로 보너스 번호를 반환한다.")
+    @Test
+    void 유효한_보너스_번호_문자가_들어온_경우_정상적으로_번호를_반환한다() {
+        List<Integer> testWinningNumbers = new ArrayList<>(Arrays.asList(1, 10, 20, 34, 40, 45));
+        String testValue = "25";
+        int expected = Integer.parseInt(testValue);
+
+        assertThat(inputService.validateBonusNumber(testWinningNumbers, testValue))
+                .isEqualTo(expected);
+    }
+
 }
