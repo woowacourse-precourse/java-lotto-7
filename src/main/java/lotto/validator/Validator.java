@@ -3,10 +3,12 @@ package lotto.validator;
 import lotto.constant.ErrorConstants;
 
 public class Validator {
-
+    private final static int ZERO = 0;
     public void validatePrice(String input){
         checkInputIsNotNull(input);
         checkInputIsNumber(input);
+
+        checkInputIsNotNegative(input);
     }
 
     private void checkInputIsNumber(String input){
@@ -22,6 +24,13 @@ public class Validator {
             throw new IllegalArgumentException(ErrorConstants.NULL_NOT_ALLOWED.getMessage());
         }
     }
+
+    private void checkInputIsNotNegative(String input){
+        if(Integer.parseInt(input) <= ZERO){
+            throw new IllegalArgumentException(ErrorConstants.NEGATIVE_PRICE_NOT_ALLOWED.getMessage());
+        }
+    }
+
 
 
 }
