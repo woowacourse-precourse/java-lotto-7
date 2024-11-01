@@ -32,7 +32,6 @@ public class LottoService {
 
     private Lotto buyLotto(){
         List<Integer> lottoRandomNumbers = LottoRandomNumber.lottoRandomNumber();
-        Lotto lotto = new Lotto(lottoRandomNumbers);
-        return lotto;
+        return new Lotto(lottoRandomNumbers);
     }
 }

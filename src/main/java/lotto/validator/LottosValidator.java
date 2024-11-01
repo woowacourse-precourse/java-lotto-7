@@ -9,10 +9,7 @@ import lotto.exception.LottoInputException;
 public class LottosValidator {
 
     private static boolean isValidLottoCount(int lottoBuyMoney) {
-        if(lottoBuyMoney % LottoCriteria.BUY_MONEY_UNIT.getCriteriaVal() != 0) {
-            return false;
-        }
-        return true;
+        return lottoBuyMoney % LottoCriteria.BUY_MONEY_UNIT.getCriteriaVal() == 0;
     }
 
     public static boolean isValidLottosCount(List<Lotto> lottos) {

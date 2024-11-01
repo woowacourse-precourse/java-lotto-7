@@ -41,10 +41,8 @@ public class LottoWinningNumberValidator {
     }
 
     private static boolean isLottoWinningNumberInRange(int number){
-        if(number >= LottoCriteria.MIN_LOTTO_NUM.getCriteriaVal() && number <= LottoCriteria.MAX_LOTTO_NUM.getCriteriaVal()){
-            return true;
-        }
-        return false;
+        return number >= LottoCriteria.MIN_LOTTO_NUM.getCriteriaVal()
+                && number <= LottoCriteria.MAX_LOTTO_NUM.getCriteriaVal();
     }
 
     public static void validateLottoBonusNumber(String bonusNumber) {
@@ -61,10 +59,7 @@ public class LottoWinningNumberValidator {
     }
 
     private static boolean isValidBonusNumberSize(List<String> lottoBonusNumberList) {
-        if(lottoBonusNumberList.size() != LottoCriteria.BONUS_NUMBER_SIZE.getCriteriaVal()){
-            return false;
-        }
-        return true;
+        return lottoBonusNumberList.size() == LottoCriteria.BONUS_NUMBER_SIZE.getCriteriaVal();
     }
 }
 
