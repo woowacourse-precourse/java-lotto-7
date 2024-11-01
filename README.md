@@ -46,8 +46,8 @@
 
 ### ▪️ 출력 기능
 
-- [] 로또 수량 출력: `n개를 구매했습니다.`
-- [] 구매한 개수만큼 발행한 로또 번호 출력 (번호 오름차순)
+- [x] 로또 수량 출력: `n개를 구매했습니다.`
+- [x] 구매한 개수만큼 발행한 로또 번호 출력 (번호 오름차순)
     ```
     [8, 21, 23, 41, 42, 43]\n  x구매한 개수만큼
     ```
@@ -77,7 +77,7 @@
 - [] IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리하였는지 확인
 - [] 예외 상황 에러 문구 "[ERROR]"로 시작하는지 확인
 - [] `./gradlew clean test` 명령어로 테스트 모두 통과되는지 확인
-- [] camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현했는지 확인
+- [x] camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현했는지 확인
     - Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용
     - 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용
 

@@ -28,6 +28,7 @@ public class LottoController {
 
     public void run() {
         LottosResponse lottosResponse = getPurchasedLottos();
+        outputView.printPurchasedLottos(lottosResponse);
         List<Integer> winningNumber = getWinningNumber();
         Integer bonusNumber = getBonusNumber();
     }
