@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class Input {
-    protected static int parseMoney(String input) {
+    public static int parseMoney(String input) {
         if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
