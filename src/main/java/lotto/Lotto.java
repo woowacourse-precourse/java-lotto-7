@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 
 public class Lotto {
@@ -35,7 +36,7 @@ public class Lotto {
         return money / 1000;
     }
 
-    public static Lotto getWinningNumbers(String userInput) {
+    public Lotto getWinningNumbers(String userInput) {
         List<Integer> winningNumbers = new ArrayList<Integer>();
 
         String[] numbers = userInput.split(",", -1);
@@ -51,6 +52,23 @@ public class Lotto {
     public static int getBonusNumber(List<Integer> winningNumbers, String userInput) {
         int bonusNumber = Validator.validateLottoNumber(userInput);
         Validator.validateBonusNumber(winningNumbers, bonusNumber);
+
         return bonusNumber;
+    }
+
+    public static List<Integer> getOneRandomLotto() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public int numberMatchCount(List<Integer> winningNumbers, List<Integer> randomLotto) {
+        int numberMatch = 0;
+
+        for (int winningNumber : winningNumbers) {
+            if (randomLotto.contains(winningNumber)) {
+                numberMatch += 1;
+            }
+        }
+
+        return numberMatch;
     }
 }
