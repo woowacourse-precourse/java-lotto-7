@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import lotto.common.LottoConstants;
 import lotto.exception.lotto.LottoErrorMessages;
 
 import java.util.*;
@@ -33,7 +34,7 @@ public class Lotto {
     }
 
     private void checkRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < LottoConstants.MIN_LOTTO_NUMBER || num > LottoConstants.MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(LottoErrorMessages.OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
         }
     }

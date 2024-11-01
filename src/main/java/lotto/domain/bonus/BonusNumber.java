@@ -1,5 +1,6 @@
 package lotto.domain.bonus;
 
+import lotto.common.LottoConstants;
 import lotto.exception.bonus.BonusErrorMessages;
 
 import java.util.List;
@@ -27,8 +28,8 @@ public class BonusNumber {
         }
     }
 
-    private void checkRange(int number) {
-        if (number < 1 || number > 45) {
+    private void checkRange(int num) {
+        if (num < LottoConstants.MIN_LOTTO_NUMBER || num > LottoConstants.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(BonusErrorMessages.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }
