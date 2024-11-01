@@ -39,4 +39,8 @@ public class Lotto {
         System.out.println(numbers.stream().sorted().toList());
     }
 
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
 }
