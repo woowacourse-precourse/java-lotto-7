@@ -12,4 +12,12 @@ public class LottoMachine {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
 }
