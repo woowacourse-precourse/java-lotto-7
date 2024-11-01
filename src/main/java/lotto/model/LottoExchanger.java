@@ -1,6 +1,6 @@
-package lotto.service;
+package lotto.model;
 
-import static lotto.util.Constants.AMOUNT_UNIT;
+import static lotto.constants.Constants.AMOUNT_UNIT;
 
 public class LottoExchanger {
     public static int divideByThousand(int money) {

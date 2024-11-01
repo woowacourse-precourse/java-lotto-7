@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.util.Constants.ZERO;
+import static lotto.constants.Constants.ZERO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

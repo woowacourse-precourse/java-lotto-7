@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.util.ExceptionMessage.INVALID_WINNING_NUMBERS;
-import static lotto.util.ExceptionMessage.INVALID_RANGE;
+import static lotto.constants.ExceptionMessage.INVALID_WINNING_NUMBERS;
+import static lotto.constants.ExceptionMessage.INVALID_RANGE;
 
-import static lotto.util.Constants.MIN_LOTTO_NUMBER;
-import static lotto.util.Constants.MAX_LOTTO_NUMBER;
-import static lotto.util.Constants.LOTTO_NUMBER_SIZE;
+import static lotto.constants.Constants.MIN_LOTTO_NUMBER;
+import static lotto.constants.Constants.MAX_LOTTO_NUMBER;
+import static lotto.constants.Constants.LOTTO_NUMBER_SIZE;
 
 import java.util.HashSet;
 import java.util.List;

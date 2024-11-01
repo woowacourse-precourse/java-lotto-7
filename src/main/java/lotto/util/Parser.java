@@ -1,6 +1,6 @@
-package lotto.service;
+package lotto.util;
 
-import static lotto.util.ExceptionMessage.INVALID_INPUT;
+import static lotto.constants.ExceptionMessage.INVALID_INPUT;
 
 public class Parser {
     public static int parseNumber(String stringValue) {

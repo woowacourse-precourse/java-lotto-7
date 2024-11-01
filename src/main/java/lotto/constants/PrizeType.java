@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.constants;
 
 public enum PrizeType {
     MATCHING_3("3개 일치 ", "(5,000원)", 5000),

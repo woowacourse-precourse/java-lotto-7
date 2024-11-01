@@ -1,14 +1,14 @@
 package lotto.controller;
 
-import lotto.service.LottoExchanger;
-import lotto.service.Parser;
-import lotto.service.Splitter;
+import lotto.model.LottoExchanger;
+import lotto.util.Parser;
+import lotto.util.Splitter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.domain.LottoMachine;
-import lotto.domain.BonusBall;
-import lotto.domain.Lotto;
-import lotto.domain.CalculateResult;
+import lotto.model.LottoMachine;
+import lotto.model.BonusBall;
+import lotto.model.Lotto;
+import lotto.model.CalculateResult;
 import lotto.validation.InputMoneyValidator;
 
 import java.util.List;

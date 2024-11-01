@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.constants;
 
 public enum ExceptionMessage {
     INVALID_INPUT("잘못된 입력입니다."),

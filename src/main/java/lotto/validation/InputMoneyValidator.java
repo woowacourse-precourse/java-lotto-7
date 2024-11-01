@@ -1,9 +1,9 @@
 package lotto.validation;
 
-import static lotto.util.Constants.AMOUNT_UNIT;
-import static lotto.util.Constants.ZERO;
+import static lotto.constants.Constants.AMOUNT_UNIT;
+import static lotto.constants.Constants.ZERO;
 
-import static lotto.util.ExceptionMessage.INVALID_AMOUNT_UNIT;
+import static lotto.constants.ExceptionMessage.INVALID_AMOUNT_UNIT;
 
 public class InputMoneyValidator {
     public int validate(int value) {

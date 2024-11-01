@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.model;
 
 import java.util.List;
-import lotto.util.PrizeType;
+import lotto.constants.PrizeType;
 
 public class CalculateResult {
     private final int PLACE_OF_1ST = 6;

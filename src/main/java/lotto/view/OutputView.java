@@ -1,10 +1,10 @@
 package lotto.view;
 
-import static lotto.util.Constants.AMOUNT_UNIT;
-import static lotto.util.Constants.ONE_HUNDRED;
+import static lotto.constants.Constants.AMOUNT_UNIT;
+import static lotto.constants.Constants.ONE_HUNDRED;
 
 import java.util.List;
-import lotto.util.PrizeType;
+import lotto.constants.PrizeType;
 
 public class OutputView {
     private static final String AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
