@@ -64,11 +64,14 @@ public class LottoController {
 
     public Map<Result,Integer> compareLottoWithWinningNumber(List<Lotto> userLottos, List<Integer> winningLotto, int bonusNumber){
         Map<Result,Integer> results = new LinkedHashMap<>();
-        for(int i = Result.values().length -2; i >= 0; i--){
+        for(int i = 1; i < Result.values().length ; i++){
             results.put(Result.values()[i], 0);
         }
         for(Lotto userLotto : userLottos) {
             Result result = userLotto.compareWithWinningLotto(winningLotto, bonusNumber);
+            if(result == Result.NOTHING){
+                continue;
+            }
             results.put(result, results.get(result)+1);
         }
         printResults(results);

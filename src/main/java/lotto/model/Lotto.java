@@ -20,12 +20,16 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public Result compareWithWinningLotto(List<Integer> winningLotto, int bonusNumber){
         boolean isBonusMatch = false;
-        List<Integer> duplicateNumber = numbers.stream().filter(o -> winningLotto.stream()
-                .noneMatch(Predicate.isEqual(o))).toList();
-        if(numbers.contains(bonusNumber)){
+        int duplicateNumber = 0;
+        for(Integer number : winningLotto){
+            if(numbers.contains(number)){
+                duplicateNumber ++;
+            }
+        }
+        if(duplicateNumber == 5 && numbers.contains(bonusNumber)){
             isBonusMatch = true;
         }
-        return Result.findResult(duplicateNumber.size(),isBonusMatch);
+        return Result.findResult(duplicateNumber,isBonusMatch);
     }
 
     public List<Integer> getNumbers(){
