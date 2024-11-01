@@ -6,7 +6,6 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
 import lotto.utils.LottoNumbersGenerator;
 
 public class LottoService {
@@ -15,8 +14,8 @@ public class LottoService {
         return new Lottos(LottoGroup, lottoQuantity);
     }
 
-    public LottoGame createLottoGame(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        return new LottoGame(lottos, winningNumbers, bonusNumber);
+    public LottoGame createLottoGame(Lottos lottos, Lotto winningLotto, BonusNumber bonusNumber) {
+        return new LottoGame(lottos, winningLotto, bonusNumber);
     }
 
     private static List<Lotto> generateLottoGroup(int lottoQuantity) {

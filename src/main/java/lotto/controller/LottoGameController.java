@@ -15,7 +15,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.Lottos;
 import lotto.domain.Revenue;
-import lotto.domain.WinningNumbers;
 import lotto.dto.WinningStat;
 import lotto.dto.WinningSummary;
 import lotto.exception.LottoException;
@@ -45,12 +44,12 @@ public class LottoGameController {
 
     private LottoGame setLottoGame() {
         final Lottos lottos = purchaseLotto();
-        final WinningNumbers winningNumbers = getWinningNumbers();
-        final BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+        final Lotto winningLotto = getWinningLotto();
+        final BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
         Console.close();
 
-        return lottoService.createLottoGame(lottos, winningNumbers, bonusNumber);
+        return lottoService.createLottoGame(lottos, winningLotto, bonusNumber);
     }
 
     private Lottos purchaseLotto() {
@@ -82,33 +81,33 @@ public class LottoGameController {
         return lottos;
     }
 
-    private WinningNumbers getWinningNumbers() {
+    private Lotto getWinningLotto() {
         String input = InputView.inputWinningNumbers();
 
         try {
-            WinningNumbers winningNumbers = buyerService.createWinningNumbers(input);
+            Lotto winningLotto = buyerService.createWinningLotto(input);
             printNewLine();
 
-            return winningNumbers;
+            return winningLotto;
         } catch (LottoException e) {
             printLottoExceptionMessage(e);
 
-            return getWinningNumbers();
+            return getWinningLotto();
         }
     }
 
-    private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
+    private BonusNumber getBonusNumber(Lotto winningLotto) {
         String input = InputView.inputBonusNumbers();
 
         try {
-            BonusNumber bonusNumber =  buyerService.createBonusNumber(winningNumbers, input);
+            BonusNumber bonusNumber =  buyerService.createBonusNumber(winningLotto, input);
             printNewLine();
 
             return bonusNumber;
         } catch (LottoException e) {
             printLottoExceptionMessage(e);
 
-            return getBonusNumber(winningNumbers);
+            return getBonusNumber(winningLotto);
         }
     }
 

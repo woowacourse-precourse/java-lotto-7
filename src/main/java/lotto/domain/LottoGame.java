@@ -2,12 +2,12 @@ package lotto.domain;
 
 public class LottoGame {
     private final Lottos lottos;
-    private final WinningNumbers winningNumbers;
+    private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    public LottoGame(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoGame(Lottos lottos, Lotto winningLotto, BonusNumber bonusNumber) {
         this.lottos = lottos;
-        this.winningNumbers = winningNumbers;
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -15,8 +15,8 @@ public class LottoGame {
         return lottos;
     }
 
-    public WinningNumbers getWinningNumbers() {
-        return winningNumbers;
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     public BonusNumber getBonusNumber() {

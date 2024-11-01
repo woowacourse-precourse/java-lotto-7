@@ -12,9 +12,9 @@ import lotto.utils.Parser;
 public class BonusNumber {
     private final int number;
 
-    public BonusNumber(WinningNumbers winningNumbers, String input) {
+    public BonusNumber(Lotto winningLotto, String input) {
         int number = Parser.parseBonusNumber(input);
-        validateNumber(winningNumbers, number);
+        validateNumber(winningLotto, number);
         this.number = number;
     }
 
@@ -22,9 +22,9 @@ public class BonusNumber {
         return number;
     }
 
-    private static void validateNumber(WinningNumbers winningNumbers, int number) {
+    private static void validateNumber(Lotto winningLotto, int number) {
         validateRange(number);
-        validateDuplicate(winningNumbers.getNumbers(), number);
+        validateDuplicate(winningLotto.getNumbers(), number);
     }
 
     private static void validateRange(int number) {

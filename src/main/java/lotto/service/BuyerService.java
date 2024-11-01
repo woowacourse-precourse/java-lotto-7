@@ -3,8 +3,9 @@ package lotto.service;
 import static lotto.constant.LottoGameRule.LOTTO_COST;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
+import lotto.utils.Parser;
 
 public class BuyerService {
     public int calculateLottoQuantity(String input) {
@@ -14,12 +15,12 @@ public class BuyerService {
         return price / LOTTO_COST.getValue();
     }
 
-    public WinningNumbers createWinningNumbers(String input) {
-        return new WinningNumbers(input);
+    public Lotto createWinningLotto(String input) {
+        return new Lotto(Parser.parseNumbers(input));
     }
 
-    public BonusNumber createBonusNumber(WinningNumbers winningNumbers, String input) {
-        return new BonusNumber(winningNumbers, input);
+    public BonusNumber createBonusNumber(Lotto winningLotto, String input) {
+        return new BonusNumber(winningLotto, input);
     }
 
     private Money createMoney(String input) {

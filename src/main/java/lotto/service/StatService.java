@@ -18,7 +18,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.Lottos;
 import lotto.domain.Revenue;
-import lotto.domain.WinningNumbers;
 import lotto.dto.WinningStat;
 
 public class StatService {
@@ -47,7 +46,7 @@ public class StatService {
         Lottos lottos = lottoGame.getLottos();
 
         for (Lotto lotto : lottos.getLottoGroup()) {
-            WinningPrize prize = getWinningPrize(lotto, lottoGame.getWinningNumbers(), lottoGame.getBonusNumber());
+            WinningPrize prize = getWinningPrize(lotto, lottoGame.getWinningLotto(), lottoGame.getBonusNumber());
             prizeCountMap.put(prize, prizeCountMap.get(prize) + 1);
         }
 
@@ -64,9 +63,9 @@ public class StatService {
         return prizeCountMap;
     }
 
-    private static WinningPrize getWinningPrize(Lotto lotto, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        int matchingCount = getMatchingCount(lotto.getNumbers(), winningNumbers.getNumbers());
-        boolean bonusMatch = isBonusMatch(lotto.getNumbers(), bonusNumber.getNumber());
+    private static WinningPrize getWinningPrize(Lotto pickedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
+        int matchingCount = getMatchingCount(pickedLotto.getNumbers(), winningLotto.getNumbers());
+        boolean bonusMatch = isBonusMatch(pickedLotto.getNumbers(), bonusNumber.getNumber());
 
         if (matchingCount == FIRST_PRIZE.getMatchingCount()) return FIRST_PRIZE;
         if (matchingCount == SECOND_PRIZE.getMatchingCount() && bonusMatch) return SECOND_PRIZE;
