@@ -27,5 +27,6 @@ public class User {
 			lottoRankEntry.getKey().printInfo();
 			System.out.println(lottoRankEntry.getValue() + "개");
 		}
+		System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
 	}
 }
