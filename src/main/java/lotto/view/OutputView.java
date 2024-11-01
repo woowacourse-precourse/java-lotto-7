@@ -27,4 +27,8 @@ public class OutputView {
 
         System.out.println(OutputFormatter.formatProfitRate(resultDto.profitRate()));
     }
+
+    public static void displayErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
 }

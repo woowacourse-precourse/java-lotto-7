@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.handler.InputHandler;
 import lotto.model.customer.Customer;
 import lotto.model.dto.LottoDto;
@@ -18,17 +19,21 @@ public class LottoController {
     }
 
     public void run() {
-        int paidAmount = InputHandler.getPaidAmount();
-        Customer customer = lottoService.sellLottoToNewCustomer(paidAmount);
-        displayLottoTickets(customer);
+        Customer customer = retryOnInvalidInput(this::sellLottoToNewCustomer);
+        displayLottoTicketsOf(customer);
 
-        WinningLotto winningLotto = createWinningLotto();
+        WinningLotto winningLotto = retryOnInvalidInput(this::createWinningLotto);
 
         lottoService.determineRanks(customer, winningLotto);
         displayResult(customer);
     }
 
-    private void displayLottoTickets(Customer customer) {
+    private Customer sellLottoToNewCustomer() {
+        int paidAmount = InputHandler.getPaidAmount();
+        return lottoService.sellLottoToNewCustomer(paidAmount);
+    }
+
+    private void displayLottoTicketsOf(Customer customer) {
         List<LottoDto> lottoNumbersOfCustomer = lottoService.getIssuedLottoNumbersOf(customer);
         OutputView.displayLottoNumbers(lottoNumbersOfCustomer);
     }
@@ -43,5 +48,16 @@ public class LottoController {
     private void displayResult(Customer customer) {
         ResultDto result = lottoService.getResult(customer);
         OutputView.displayResult(result);
+    }
+
+
+    private <T> T retryOnInvalidInput(Supplier<T> inputSupplier) {
+        while (true) {
+            try {
+                return inputSupplier.get();
+            } catch (IllegalArgumentException e) {
+                OutputView.displayErrorMessage(e.getMessage());
+            }
+        }
     }
 }
