@@ -8,11 +8,11 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoGeneratorTest {
-    private LottoGenerator lottoGenerator;
+    private RandomValueGenerator lottoGenerator;
 
     @BeforeEach
     void setUp() {
-        lottoGenerator = new LottoGeneratorImpl();
+        lottoGenerator = new RandomLottoNumberGenerator();
     }
     @Test
     void 로또_번호_6개_생성_테스트() {

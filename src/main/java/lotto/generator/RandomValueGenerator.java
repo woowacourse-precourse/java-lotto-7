@@ -2,6 +2,6 @@ package lotto.generator;
 
 import java.util.List;
 
-public interface LottoGenerator {
+public interface RandomValueGenerator {
     List<Integer> generate();
 }
