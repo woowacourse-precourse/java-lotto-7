@@ -79,4 +79,16 @@ class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("입력 문자열 정수로 변환: 개행 문자 - 예외 테스트")
+    void parseInputToInt_newLine() {
+        // given
+        String input = "\n";
+
+        // when & then
+        assertThatThrownBy(() -> Parser.parseInputToInt(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
