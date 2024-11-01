@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import java.util.Map;
 import lotto.model.BonusNumber;
 import lotto.model.LottoPurchase;
@@ -10,6 +9,7 @@ import lotto.model.Profit;
 import lotto.model.Rank;
 import lotto.model.WinningNumbers;
 import lotto.view.BonusNumberInputView;
+import lotto.view.ErrorOutputView;
 import lotto.view.LottoResultOutputView;
 import lotto.view.ProfitOutputView;
 import lotto.view.WinningNumbersInputView;
@@ -49,10 +49,17 @@ public class LottoDrawingController {
     private WinningNumbers getWinningNumbers() {
         winningNumbersInputView.printWinningNumbersInputGuide();
 
-        WinningNumbers winningNumbers = new WinningNumbers(
-                winningNumbersInputView.getWinningNumbers()
-        );
+        WinningNumbers winningNumbers;
 
+        try {
+            winningNumbers = new WinningNumbers(winningNumbersInputView.getWinningNumbers());
+
+        } catch (IllegalArgumentException e) {
+
+            ErrorOutputView.printErrorMessage(e);
+
+            return getWinningNumbers();
+        }
 
         return winningNumbers;
     }

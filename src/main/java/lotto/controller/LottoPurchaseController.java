@@ -37,7 +37,7 @@ public class LottoPurchaseController {
             lottoPurchase.calculateLottoPurchaseCount(purchaseAmountInputView.getPurchaseAmount());
         } catch (IllegalArgumentException e) {
 
-            ErrorOutputView.printErrorMessage(e.getMessage());
+            ErrorOutputView.printErrorMessage(e);
 
             setLottoPurchaseFromInput();
         }
