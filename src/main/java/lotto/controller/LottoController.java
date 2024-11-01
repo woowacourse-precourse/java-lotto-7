@@ -3,13 +3,11 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.RandomLotto;
+import lotto.utils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class LottoController {
     private static final List<Lotto> lottos = new ArrayList<>();
@@ -32,6 +30,10 @@ public class LottoController {
         // 갯수만큼의 랜덤 복권 생성
         setLottoNumbers(amount);
         OutputView.printLottoNumbers(lottos);
+
+        // WinningNumbers 입력
+        Lotto winningNumbers = inputWinningNum();
+        OutputView.printLottoNumber(winningNumbers);
     }
 
     private int inputAmount() {
@@ -48,6 +50,17 @@ public class LottoController {
         for (int i = 0; i < amount; i++) {
             numbers = randomLotto.setRandNumbers();
             lottos.add(new Lotto(numbers));
+        }
+    }
+
+    private Lotto inputWinningNum() {
+        try {
+            String str = InputView.inputWinningNum();
+            numbers = utils.StringToList(str);
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNum();
         }
     }
 }
