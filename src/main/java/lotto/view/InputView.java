@@ -10,4 +10,9 @@ public class InputView {
         System.out.println(LOTTO_PURCHASE_AMOUNT_INPUT_MESSAGE.getMessage());
         return Console.readLine();
     }
+
+    public static String getWinningTicketInput() {
+        System.out.println(WINNING_TICKET_INPUT_MESSAGE.getMessage());
+        return Console.readLine();
+    }
 }
