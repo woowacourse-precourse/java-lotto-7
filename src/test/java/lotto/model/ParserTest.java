@@ -55,4 +55,16 @@ class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("입력 문자열 정수로 변환: 공백 - 예외 테스트")
+    void parseInputToInt_whiteSpace() {
+        // given
+        String input = " ";
+
+        // when & then
+        assertThatThrownBy(() -> Parser.parseInputToInt(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
