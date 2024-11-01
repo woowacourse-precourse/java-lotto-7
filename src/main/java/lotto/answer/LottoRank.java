@@ -1,19 +1,7 @@
 package lotto.answer;
 
 public enum LottoRank {
-	FIRST(6, false, 2000000000) {
-		@Override
-		public void printInfo() {
-			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
-		}
-	},
-	SECOND(5, true, 30000000) {
-		@Override
-		public void printInfo() {
-			System.out.print(getMatchCount() +  MATCH_MESSAGE + "," + BONUS_MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
-		}
-	},
-	THIRD(5, false, 1500000) {
+	FIFTH(3, false, 5000) {
 		@Override
 		public void printInfo() {
 			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
@@ -25,7 +13,19 @@ public enum LottoRank {
 			System.out.print(getMatchCount() +  MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
 		}
 	},
-	FIFTH(3, false, 5000) {
+	THIRD(5, false, 1500000) {
+		@Override
+		public void printInfo() {
+			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
+		}
+	},
+	SECOND(5, true, 30000000) {
+		@Override
+		public void printInfo() {
+			System.out.print(getMatchCount() +  MATCH_MESSAGE + "," + BONUS_MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
+		}
+	},
+	FIRST(6, false, 2000000000) {
 		@Override
 		public void printInfo() {
 			System.out.print(getMatchCount() + MATCH_MESSAGE + "(" + getPrizeAmount() + ")" + WON + "-");
