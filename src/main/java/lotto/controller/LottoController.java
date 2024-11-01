@@ -83,7 +83,7 @@ public class LottoController {
         System.out.println("---");
 
         for(Result result : results.keySet()){
-            output.printResult(result.getMatchCount(), result.getPrizeMoney(), results.get(result));
+            output.printResult(result.getMatchCount(), result.getPrizeMoney(), result.getIsBonusMatch(), results.get(result));
         }
     }
 }

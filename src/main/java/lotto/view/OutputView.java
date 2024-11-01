@@ -12,8 +12,12 @@ public class OutputView {
         }
     }
 
-    public void printResult(int matchCount, int prizeMoney, int winningCount){
+    public void printResult(int matchCount, int prizeMoney, boolean isBonusMatch ,int winningCount){
         DecimalFormat df = new DecimalFormat("###,###");
+        if(isBonusMatch){
+            System.out.println(matchCount + "개 일치, 보너스 볼 일치 (" + df.format(prizeMoney) + "원) - " + winningCount + "개");
+            return;
+        }
         System.out.println(matchCount + "개 일치 (" + df.format(prizeMoney) + "원) - " + winningCount + "개");
     }
 
