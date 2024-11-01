@@ -11,7 +11,7 @@ public class Application {
     public static void main(String[] args) {
         LottoHandler lottoHandler = new LottoHandler(new OutputView());
         InputHandler inputHandler = new InputHandler(new InputView());
-        ResultHandler resultHandler = new ResultHandler(new LottoResults());
+        ResultHandler resultHandler = new ResultHandler(new OutputView(), new LottoResults());
 
         inputHandler.handlePurchaseAmountInput(lottoHandler, resultHandler);
         inputHandler.handleLottoNumberInput();

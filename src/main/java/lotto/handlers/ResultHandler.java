@@ -1,6 +1,7 @@
 package lotto.handlers;
 
 import lotto.models.LottoResults;
+import lotto.ui.OutputView;
 import lotto.utils.Decimals;
 
 import java.util.List;
@@ -8,11 +9,13 @@ import java.util.stream.Stream;
 
 public class ResultHandler {
     private final LottoResults lottoResults;
+    private final OutputView outputView;
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private int purchaseAmount;
 
-    public ResultHandler(LottoResults lottoResults) {
+    public ResultHandler(OutputView outputView, LottoResults lottoResults) {
+        this.outputView = outputView;
         this.lottoResults = lottoResults;
     }
 
@@ -30,5 +33,7 @@ public class ResultHandler {
         long totalRewards = this.lottoResults.calculateRewards();
         double profit = (double) this.purchaseAmount / totalRewards;
         double roundedProfit = Decimals.round(profit, 1);
+
+        outputView.printLottoResults(this.lottoResults);
     }
 }

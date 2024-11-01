@@ -1,5 +1,7 @@
 package lotto.ui;
 
+import lotto.models.LottoResults;
+import lotto.models.constants.RewardTable;
 import lotto.ui.constants.ResultText;
 
 import java.util.List;
@@ -9,8 +11,13 @@ public class OutputView {
         System.out.println("\n" + amount + ResultText.PURCHASED.getText());
     }
 
-    public void printString(String message) {
-        System.out.println(message);
+    public void printLottoResults(LottoResults lottoResults) {
+        System.out.println(ResultText.RESULT_HEADER.getText());
+        RewardTable[] rewardTableKeys = RewardTable.values();
+        for (RewardTable key : rewardTableKeys) {
+            int value = lottoResults.getMatchValue(key);
+            System.out.println(key.getLabel() + value + ResultText.COUNT_SUFFIX.getText());
+        }
     }
 
     public void printIntegerList(List<Integer> list) {

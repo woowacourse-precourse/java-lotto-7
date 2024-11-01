@@ -36,4 +36,11 @@ public class LottoResults {
         }
         return rewardSum;
     }
+
+    public int getMatchValue(RewardTable key) {
+        if (matches.containsKey(key)) {
+            return matches.get(key);
+        }
+        return 0;
+    }
 }
