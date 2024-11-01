@@ -38,7 +38,6 @@ public class LottoController {
        return rankResult;
     }
     private double profit_rate(RankResult rankResult){
-        double profit_rate=0;
         return lottoService.profit_rate(rankResult);
     }
 }
