@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,10 @@ public class Result {
         for(WinningCondition winningCondition : WinningCondition.values()) {
             winningDetails.put(winningCondition, 0);
         }
+    }
+
+    public Map<WinningCondition, Integer> getWinningDetails() {
+        return Collections.unmodifiableMap(winningDetails);
     }
 
     public String getFormattedWinningDetails() {
