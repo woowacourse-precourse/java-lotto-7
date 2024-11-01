@@ -1,21 +1,28 @@
 package lotto.Domain;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import lotto.Enum.LottoRange;
 
 public class LottoNumber {
-    private static final int LOTTO_LOWEST_NUMBER = 1;
-    private static final int LOTTO_HIGHEST_NUMBER = 46;
+    private List<Integer> numbers;
+    private int bonusNumber;
 
     public List<Integer> generateNumbers() {
         return new Random()
-                .ints(LOTTO_LOWEST_NUMBER, LOTTO_HIGHEST_NUMBER)
+                .ints(LottoRange.LOTTO_LOWEST_NUMBER,
+                        LottoRange.LOTTO_HIGHEST_NUMBER)
                 .distinct()
-                .limit(6)
+                .limit(7)
                 .boxed()
                 .collect(Collectors.toList());
+
+
+
+
     }
 }
 
