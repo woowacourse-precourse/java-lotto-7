@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class PurchasePriceTest {
     @Test

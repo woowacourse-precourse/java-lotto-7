@@ -1,9 +1,9 @@
 package lotto.view.validator;
 
-import static lotto.util.Splitter.DELIMITER;
-
 import lotto.util.Convertor;
 import lotto.util.ExceptionHelper;
+
+import static lotto.util.Splitter.DELIMITER;
 
 public class InputValidator {
     private static final String EMPTY_INPUT_ERROR_MESSAGE = "공백은 입력할 수 없습니다.";

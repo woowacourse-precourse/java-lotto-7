@@ -1,12 +1,12 @@
 package lotto.model;
 
+import java.util.List;
+import lotto.util.ExceptionHelper;
+
 import static lotto.model.BonusNumber.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
 import static lotto.model.constant.Lotto.GENERATE_COUNT;
 import static lotto.model.constant.Lotto.MAX_NUMBER;
 import static lotto.model.constant.Lotto.MIN_NUMBER;
-
-import java.util.List;
-import lotto.util.ExceptionHelper;
 
 public class Lotto {
     private final static String NUMBER_AMOUNT_ERROR_MESSAGE = "로또 번호는 6개여야 합니다.";

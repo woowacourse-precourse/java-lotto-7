@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.model.constant.Lotto.PRICE_PER_LOTTO;
-
 import lotto.util.ExceptionHelper;
+
+import static lotto.model.constant.Lotto.PRICE_PER_LOTTO;
 
 public class PurchasePrice {
     private static final String INVALID_PRICE_ERROR_MESSAGE = "구입 금액은 1,000원 단위로 입력해주세요.";
