@@ -10,12 +10,24 @@ import java.util.List;
 
 public class OutputView {
 
-    public void printBoughtLottos(LottosDto lottosDto,int boughtAmount) {
+    private static OutputView instance;
+
+    private OutputView() {
+    }
+
+    public static OutputView getInstance() {
+        if (instance == null) {
+            instance= new OutputView();
+        }
+        return instance;
+    }
+
+    public void printBoughtLottos(LottosDto lottosDto, int boughtAmount) {
         System.out.println();
-        System.out.println(boughtAmount+ OutputMessage.BOUGHT_AMOUNT.getInstance());
+        System.out.println(boughtAmount + OutputMessage.BOUGHT_AMOUNT.getInstance());
         List<Lotto> lottos = lottosDto.lottos().getLottos();
 
-        for(int i=0; i<boughtAmount; i++) {
+        for (int i = 0; i < boughtAmount; i++) {
             System.out.println(lottos.get(i));
         }
     }
@@ -24,9 +36,9 @@ public class OutputView {
         System.out.println();
         System.out.println(OutputMessage.RESULT_START_LINE);
         List<String> scoreSystemFormat = ScoreSystemPrintForm.DEFAULT_PRINT.getInstance();
-        for(int i=0; i<scores.size();i++){
-            System.out.println(String.format(scoreSystemFormat.get(i),scores.get(i)));
+        for (int i = 0; i < scores.size(); i++) {
+            System.out.println(String.format(scoreSystemFormat.get(i), scores.get(i)));
         }
-        System.out.println(String.format(OutputMessage.RATE_OF_RETURN.getInstance(),rateOfReturn));
+        System.out.println(String.format(OutputMessage.RATE_OF_RETURN.getInstance(), rateOfReturn));
     }
 }
