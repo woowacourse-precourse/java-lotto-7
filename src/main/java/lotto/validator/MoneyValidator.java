@@ -19,7 +19,7 @@ public class MoneyValidator {
         validateInteger();
     }
 
-    private void validateInteger() {
+    protected void validateInteger() {
         if (!Pattern.matches("-?\\d+", money)) {
             throw new IllegalArgumentException(String.join(Outputs.SPACE.getMessage(),
                     Errors.ERROR.getMessage(),
