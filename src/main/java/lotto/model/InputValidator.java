@@ -5,11 +5,20 @@ import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
 import static lotto.common.AppConstant.SPLIT_DELIMITER;
+import static lotto.common.error.InputErrorType.BONUS_NUMBER_DUPLICATE_ERROR;
+import static lotto.common.error.InputErrorType.DIVIDED_BY_PRICE_ERROR;
+import static lotto.common.error.InputErrorType.LOTTO_PRICE_ERROR;
+import static lotto.common.error.InputErrorType.NEGATIVE_NUMBER_ERROR;
+import static lotto.common.error.InputErrorType.NUMBER_DUPLICATE_ERROR;
+import static lotto.common.error.InputErrorType.NUMBER_RANGE_ERROR;
+import static lotto.common.error.InputErrorType.PARSE_NUMBER_ERROR;
+import static lotto.common.error.InputErrorType.WINNING_NUMBER_SIZE_ERROR;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.common.error.InputException;
 
 public class InputValidator {
     public void validateInputMoney(String input) {
@@ -39,7 +48,7 @@ public class InputValidator {
 
     public void validateBonusNumberExcluding(int bonusNumber, List<Integer> numberList) {
         if (numberList.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 중복되지 않는 번호를 입력해주세요.");
+            throw new InputException(BONUS_NUMBER_DUPLICATE_ERROR);
         }
     }
 
@@ -47,7 +56,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (Exception exception) {
-            throw new IllegalArgumentException("정수를 입력해주세요.");
+            throw new InputException(PARSE_NUMBER_ERROR);
         }
     }
 
@@ -55,7 +64,7 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput < 0) {
-            throw new IllegalArgumentException("양수 값을 입력해주세요.");
+            throw new InputException(NEGATIVE_NUMBER_ERROR);
         }
     }
 
@@ -63,7 +72,7 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput < LOTTO_UNIT_PRICE) {
-            throw new IllegalArgumentException(LOTTO_UNIT_PRICE + "원 이상의 값을 입력해주세요.");
+            throw new InputException(LOTTO_PRICE_ERROR);
         }
     }
 
@@ -71,15 +80,14 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput % LOTTO_UNIT_PRICE != 0) {
-            throw new IllegalArgumentException(LOTTO_UNIT_PRICE + "원 단위의 값을 입력해주세요.");
+            throw new InputException(DIVIDED_BY_PRICE_ERROR);
         }
     }
 
     private void validateNumberListSize(List<String> numberList) {
         if (numberList.size() != LOTTO_NUMBER_COUNT) {
-            String errorMessage = "(" + SPLIT_DELIMITER + ")로 구분된 " + LOTTO_NUMBER_COUNT + "개의 숫자를 입력해주세요.";
 
-            throw new IllegalArgumentException(errorMessage);
+            throw new InputException(WINNING_NUMBER_SIZE_ERROR);
         }
     }
 
@@ -87,7 +95,7 @@ public class InputValidator {
         int parsedInt = Integer.parseInt(input);
 
         if (LOTTO_START_RANGE > parsedInt || parsedInt > LOTTO_END_RANGE) {
-            throw new IllegalArgumentException(LOTTO_START_RANGE + "에서 " + LOTTO_END_RANGE + "사이의 값을 입력해주세요.");
+            throw new InputException(NUMBER_RANGE_ERROR);
         }
     }
 
@@ -95,7 +103,7 @@ public class InputValidator {
         Set<String> distinctWinningNumber = new HashSet<>(winningNumberList);
 
         if (distinctWinningNumber.size() != winningNumberList.size()) {
-            throw new IllegalArgumentException("중복되지 않은 값을 입력해주세요");
+            throw new InputException(NUMBER_DUPLICATE_ERROR);
         }
     }
 }
