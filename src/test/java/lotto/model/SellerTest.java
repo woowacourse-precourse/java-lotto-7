@@ -6,11 +6,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class SellerTest {
+    private final Seller seller = new Seller();
+
     @Test
     @DisplayName("Customer로부터 받은 돈이 올바른 금액인지 검사")
     void testValidate() {
-        Seller seller = new Seller();
-
         assertThatThrownBy(() -> seller.validate("1"))
                 .isInstanceOf(IllegalArgumentException.class);
 
