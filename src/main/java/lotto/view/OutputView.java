@@ -10,7 +10,7 @@ public class OutputView {
     private static final String REQUEST_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
 
     public void printMessage(String message) {
-        System.out.print(message);
+        System.out.println(message);
     }
 
     public void requestPurchaseAmount() {

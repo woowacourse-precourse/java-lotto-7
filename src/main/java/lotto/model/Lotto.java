@@ -56,12 +56,15 @@ public class Lotto {
 
     public void calculateMatchingNumberCount(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         int count = 0;
-        boolean hasBonus = numbers.contains(bonusNumber.toInteger());
+        int bonus = Integer.parseInt(bonusNumber.display());
+        boolean hasBonus = numbers.contains(bonus);
+
         for (int number : numbers) {
             if (winningNumbers.contains(number)) {
                 count++;
             }
         }
+
         updateCountStatus(count, hasBonus);
     }
 

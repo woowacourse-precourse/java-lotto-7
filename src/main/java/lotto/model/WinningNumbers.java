@@ -15,19 +15,14 @@ public class WinningNumbers {
     private static final int RANGE_END = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
-    private final String rawWinningNumbers;
+    private final List<Integer> winningNumbers;
 
     public WinningNumbers(String rawWinningNumbers) {
         validate(rawWinningNumbers);
-        this.rawWinningNumbers = rawWinningNumbers;
+        this.winningNumbers = parseNumeric(rawWinningNumbers);
     }
 
     public boolean contains(int number) {
-        List<Integer> winningNumbers = splitByComma(rawWinningNumbers).stream()
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .toList();
-
         return winningNumbers.contains(number);
     }
 
@@ -35,9 +30,6 @@ public class WinningNumbers {
         validateStrip(rawWinningNumbers);
         validateComma(rawWinningNumbers);
         validateStartingWithComma(rawWinningNumbers);
-        validateNumeric(rawWinningNumbers);
-        validateNumberCount(rawWinningNumbers);
-        validateNumbersInRange(rawWinningNumbers);
     }
 
     private void validateStrip(String rawWinningNumbers) {
@@ -62,29 +54,32 @@ public class WinningNumbers {
         }
     }
 
-    private void validateNumeric(String rawWinningNumbers) {
+    private List<Integer> parseNumeric(String rawWinningNumbers) {
         try {
-            List<String> winningNumbers = splitByComma(rawWinningNumbers);
-            winningNumbers.forEach(Integer::parseInt);
+            List<Integer> winningNumbers = Arrays.stream(rawWinningNumbers.split(","))
+                    .mapToInt(Integer::parseInt)
+                    .boxed()
+                    .toList();
+            validateAfterParsing(winningNumbers);
+            return winningNumbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_VALUE_MUST_BE_NUMERIC);
         }
     }
 
-    private void validateNumberCount(String rawWinningNumbers) {
-        List<String> winningNumbers = splitByComma(rawWinningNumbers);
+    private void validateAfterParsing(List<Integer> winningNumbers) {
+        validateNumberCount(winningNumbers);
+        validateNumbersInRange(winningNumbers);
+    }
+
+    private void validateNumberCount(List<Integer> winningNumbers) {
         if (winningNumbers.size() == LOTTO_NUMBER_COUNT) {
             return;
         }
         throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT);
     }
 
-    private void validateNumbersInRange(String rawWinningNumbers) {
-        List<Integer> winningNumbers = splitByComma(rawWinningNumbers).stream()
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .toList();
-
+    private void validateNumbersInRange(List<Integer> winningNumbers) {
         winningNumbers.forEach((number) -> {
             if (isInRange(number)) {
                 return;
@@ -95,9 +90,5 @@ public class WinningNumbers {
 
     private boolean isInRange(Integer number) {
         return RANGE_START <= number && number <= RANGE_END;
-    }
-
-    private List<String> splitByComma(String rawWinningNumbers) {
-        return Arrays.stream(rawWinningNumbers.split(",")).toList();
     }
 }

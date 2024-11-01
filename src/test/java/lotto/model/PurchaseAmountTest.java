@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static lotto.constants.ErrorMessage.INPUT_VALUE_MUST_BE_NUMERIC;
 import static lotto.constants.ErrorMessage.NOT_ALLOWED_BLANK_AT_EDGES;
+import static lotto.constants.ErrorMessage.NOT_ALLOWED_MINUS;
 import static lotto.constants.ErrorMessage.NOT_ALLOWED_ZERO_VALUE;
 import static lotto.constants.ErrorMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_1000;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -77,6 +78,17 @@ class PurchaseAmountTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PurchaseAmount(rawPurchaseAmount))
                 .withMessage(NOT_ALLOWED_ZERO_VALUE);
+    }
+
+    @Test
+    void 입력된_값이_음수인_경우_예외가_발생한다() {
+        // given
+        String rawPurchaseAmount = "-1";
+
+        // when & then
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> new PurchaseAmount(rawPurchaseAmount))
+                .withMessage(NOT_ALLOWED_MINUS);
     }
 
     @Test

@@ -8,21 +8,19 @@ public class BonusNumber {
     private static final int RANGE_START = 1;
     private static final int RANGE_END = 45;
 
-    private final String rawBonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(String rawBonusNumber) {
         validate(rawBonusNumber);
-        this.rawBonusNumber = rawBonusNumber;
+        this.bonusNumber = parseNumeric(rawBonusNumber);
     }
 
-    public int toInteger() {
-        return Integer.parseInt(rawBonusNumber);
+    public String display() {
+        return String.valueOf(bonusNumber);
     }
 
     private void validate(String rawBonusNumber) {
         validateStrip(rawBonusNumber);
-        validateNumeric(rawBonusNumber);
-        validateNumberInRange(rawBonusNumber);
     }
 
     private void validateStrip(String rawBonusNumber) {
@@ -33,16 +31,21 @@ public class BonusNumber {
         throw new IllegalArgumentException(NOT_ALLOWED_BLANK_AT_EDGES);
     }
 
-    private void validateNumeric(String rawBonusNumber) {
+    private int parseNumeric(String rawBonusNumber) {
         try {
-            Integer.parseInt(rawBonusNumber);
+            int bonusNumber = Integer.parseInt(rawBonusNumber);
+            validateAfterParsing(bonusNumber);
+            return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_VALUE_MUST_BE_NUMERIC);
         }
     }
 
-    private void validateNumberInRange(String rawBonusNumber) {
-        int bonusNumber = Integer.parseInt(rawBonusNumber);
+    private void validateAfterParsing(int bonusNumber) {
+        validateNumberInRange(bonusNumber);
+    }
+
+    private void validateNumberInRange(int bonusNumber) {
         if (isInRange(bonusNumber)) {
             return;
         }
