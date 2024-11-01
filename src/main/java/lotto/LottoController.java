@@ -28,5 +28,41 @@ public class LottoController {
         return lottos;
     }
 
+    public static void printLotto(Lotto lotto) {
+        System.out.println(lotto.numbersToString());
+    }
+
+    public static void printLottos(List<Lotto> lottos) {
+        lottos.forEach(LottoController::printLotto);
+    }
+
+    public static void printPurchase(int n) {
+        List<Lotto> lottos = getRandoms(n);
+
+        System.out.println(n + "개를 구매했습니다.");
+        printLottos(lottos);
+    }
+
+    public static void printStatistics(List<Lotto> lottos, Lotto winner, Integer bonusBall) {
+        List<LottoRank> ranks = LottoRank.getRanks(lottos, winner, bonusBall);
+
+        System.out.println("당첨통계");
+        System.out.println("---");
+
+        for (LottoRank rank : LottoRank.values()) {
+            System.out.println(rank.getCondition() + " (" + formatter.format(rank.getPrice()) + "원) - " + getRankCount(ranks, rank) + "개");
+        }
+    }
+
+    private static int getRankCount(List<LottoRank> ranks, LottoRank rank) {
+        int count = 0;
+        for (LottoRank r : ranks) {
+            if (rank.equals(r)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
 
 
