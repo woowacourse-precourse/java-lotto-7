@@ -28,8 +28,9 @@ public class InputView {
         return inputConvertor.convertInputWinningNumbers(inputWinningNumbers);
     }
 
-    public String InputBonusNumberMsg() {
+    public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MSG);
-        return Console.readLine();
+        String inputBonusNumber = Console.readLine();
+        return inputConvertor.convertInputBonusNumber(inputBonusNumber);
     }
 }
