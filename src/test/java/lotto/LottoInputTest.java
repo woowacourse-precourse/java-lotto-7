@@ -2,11 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.View.InputView;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,8 +43,9 @@ public class LottoInputTest {
     void 당첨_번호_입력(){
         String input = "1,2,3,4,5,6";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        List<Integer> result= InputView.input_winningNumber();
-        assertArrayEquals(new Integer[]{1,2,3,4,5,6},result.toArray());
+        Lotto result= InputView.input_winningNumber();
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
+        assertEquals(expected,result.getNumbers());
 
     }
 

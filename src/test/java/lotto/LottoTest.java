@@ -3,11 +3,16 @@ package lotto;
 import lotto.domain.Lotto;
 import lotto.Service.LottoService;
 import lotto.View.InputView;
+import lotto.domain.Rank;
+import lotto.domain.RankResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,5 +31,6 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
+
+
