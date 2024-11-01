@@ -11,10 +11,11 @@ public class UserOutputView {
     private static final String STATISTICS_DIVIDER = "---";
 
     public static void outputLottos(List<Lotto> lottos) {
-        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+        System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public static void outputWinningStatistics(Map<String, Integer> statistics) {
