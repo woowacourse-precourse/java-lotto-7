@@ -1,14 +1,51 @@
 package lotto.domain;
 
+import static lotto.domain.PaymentStatus.COMPLETED;
+import static lotto.domain.PaymentStatus.PAYABLE;
+import static lotto.domain.PaymentStatus.PENDING;
+
 import lotto.LottoCount;
 import lotto.ThousandWons;
 
 public class Payment {
-    public static Payment of(Long paymentId, ThousandWons krMoney) {
-        return null;
+    private final Long id;
+    private final ThousandWons money;
+    private final PaymentStatus status;
+    private final LottoPrice lottoPrice;
+
+    public Payment(Long id, ThousandWons money, LottoPrice lottoPrice, PaymentStatus status) {
+        this.id = id;
+        this.money = money;
+        this.lottoPrice = lottoPrice;
+        this.status = status;
     }
 
-    public LottoCount success() {
-        return null;
+    public static Payment initialize(Long id, ThousandWons money, LottoPrice lottoPrice) {
+        return new Payment(id, money, lottoPrice, PENDING);
     }
+
+    public Payment validate() {
+        validatePayable();
+        return new Payment(id, money, lottoPrice, PAYABLE);
+    }
+
+    public PaymentResult execute() {
+        validatePayable();
+
+        int count = lottoPrice.calculateLottoCount(money);
+        Payment completedPayment = new Payment(id, money, lottoPrice, COMPLETED);
+
+        return new PaymentResult(completedPayment, LottoCount.of(count));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    private void validatePayable() {
+        if (!lottoPrice.isAffordable(money)) {
+            throw new IllegalArgumentException("구매 금액이 부족합니다.");
+        }
+    }
+
 }
