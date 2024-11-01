@@ -1,15 +1,17 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.TreeMap;
 import lotto.common.LottoRank;
 
 public class LottoStatistics {
-    private final Map<LottoRank, Integer> results = new HashMap<>();
+    private final Map<LottoRank, Integer> results;
 
     public LottoStatistics() {
-        Arrays.stream(LottoRank.values()).forEachOrdered(rank -> results.put(rank, 0));
+        results = new TreeMap<>(Comparator.comparingInt(LottoRank::getPrize));
+        Arrays.stream(LottoRank.values()).forEach(rank -> results.put(rank, 0));
     }
 
     public void recordResult(LottoRank rank) {
