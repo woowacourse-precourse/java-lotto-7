@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Sorter {
-    public static List<Integer> ascendingOrder(List<Integer> list) {
+    public static List<Integer> ascendingOrder(final List<Integer> list) {
         List<Integer> mutableList = new ArrayList<>(list);
         Collections.sort(mutableList);
         return mutableList;

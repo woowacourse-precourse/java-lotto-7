@@ -11,12 +11,12 @@ public class Profit {
     private int totalMoney;
     private double rate;
 
-    public Profit(int purchasePrice) {
+    public Profit(final int purchasePrice) {
         this.purchasePrice = purchasePrice;
         totalMoney = 0;
     }
 
-    public void calculateTotalPrize(MatchNumbers matchNumbers) {
+    public void calculateTotalPrize(final MatchNumbers matchNumbers) {
         totalMoney = matchNumbers.getThreeMatch() * THREE_MATCH_PRIZE
         + matchNumbers.getFourMatch() * FOUR_MATCH_PRIZE
         + matchNumbers.getFiveMatch() * FIVE_MATCH_PRIZE

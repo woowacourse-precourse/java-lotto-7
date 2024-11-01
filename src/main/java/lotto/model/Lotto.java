@@ -5,7 +5,6 @@ import static lotto.model.constant.Lotto.GENERATE_COUNT;
 import static lotto.model.constant.Lotto.MAX_NUMBER;
 import static lotto.model.constant.Lotto.MIN_NUMBER;
 
-
 import java.util.List;
 
 public class Lotto {
@@ -14,21 +13,21 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateAmount(numbers);
         validateNumberRange(numbers);
         validateDuplicate(numbers);
         this.numbers =numbers;
     }
 
-    private void validateAmount(List<Integer> numbers) {
+    private void validateAmount(final List<Integer> numbers) {
         if (numbers.size() != GENERATE_COUNT) {
             throw new IllegalArgumentException(NUMBER_AMOUNT_ERROR_MESSAGE);
         }
     }
 
     // TODO: 추가 기능 구현
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         if (numbers.size() != numbers.stream()
                 .distinct()
                 .count()) {
@@ -36,7 +35,7 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
+    private void validateNumberRange(final List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);

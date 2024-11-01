@@ -41,7 +41,7 @@ public class InputView {
         System.out.println();
     }
 
-    private void printMessage(String message) {
+    private void printMessage(final String message) {
         System.out.println(message);
     }
 

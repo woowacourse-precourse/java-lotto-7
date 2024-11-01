@@ -11,19 +11,19 @@ public class BonusNumber {
 
     private final int bonus;
 
-    public BonusNumber(List<Integer> numbers, int bonus) {
+    public BonusNumber(final List<Integer> numbers, final int bonus) {
         validateNumberRange(bonus);
         validateDuplicate(numbers, bonus);
         this.bonus = bonus;
     }
 
-    private void validateDuplicate(List<Integer> numbers, int bonus) {
+    private void validateDuplicate(final List<Integer> numbers, final int bonus) {
         if (numbers.contains(bonus)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
     }
 
-    private void validateNumberRange(int bonus) {
+    private void validateNumberRange(final int bonus) {
         if (!(MIN_NUMBER <= bonus && bonus <= MAX_NUMBER)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
         }

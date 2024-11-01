@@ -9,19 +9,19 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printBuyLotto(int amount) {
+    public static void printBuyLotto(final int amount) {
         printEnter();
         System.out.println(amount + "개를 구매했습니다.");
     }
 
-    public static void printLottoNumber(List<List<Integer>> numbers) {
+    public static void printLottoNumber(final List<List<Integer>> numbers) {
         for (List<Integer> number : numbers) {
             System.out.println(number);
         }
         printEnter();
     }
 
-    public static void printMatchNumbers(int three, int four, int five, int fiveAndBonus, int six) {
+    public static void printMatchNumbers(final int three, final int four, final int five, final int fiveAndBonus, final int six) {
         printResult();
         System.out.println(Match.THREE.getMatchCount() + "개 일치 (" + Match.THREE.getReward() + ") - " + three + "개");
         System.out.println(Match.FOUR.getMatchCount() + "개 일치 (" + Match.FOUR.getReward() + ") - " + four + "개");
@@ -36,7 +36,7 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public static void printProfit(double rate) {
+    public static void printProfit(final double rate) {
         System.out.println("총 수익률은 " + rate +"%입니다.");
     }
 }

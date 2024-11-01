@@ -32,21 +32,21 @@ public class LottoController {
         }
     }
 
-    private LottoAmount calculateLottoAmount(PurchasePrice purchasePrice) {
+    private LottoAmount calculateLottoAmount(final PurchasePrice purchasePrice) {
         return new LottoAmount(purchasePrice.get());
     }
 
-    private void printLottoAmount(LottoAmount lottoAmount) {
+    private void printLottoAmount(final LottoAmount lottoAmount) {
         outputView.printBuyLotto(lottoAmount.get());
     }
 
-    private LottoNumber createLottoNumber(LottoAmount lottoAmount, RandomNumber randomNumber) {
-        LottoNumber lottoNumber = new LottoNumber();
+    private LottoNumber createLottoNumber(final LottoAmount lottoAmount, final RandomNumber randomNumber) {
+        final LottoNumber lottoNumber = new LottoNumber();
         lottoNumber.add(lottoAmount, randomNumber);
         return lottoNumber;
     }
 
-    private void printLottoNumber(LottoNumber lottoNumber) {
+    private void printLottoNumber(final LottoNumber lottoNumber) {
         outputView.printLottoNumber(lottoNumber.get());
     }
 
@@ -62,7 +62,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber initBonusNumber(Lotto lotto) {
+    private BonusNumber initBonusNumber(final Lotto lotto) {
         try {
             return new BonusNumber(lotto.get(), Convertor.stringToInt(inputView.inputBonusNumber()));
         } catch (IllegalArgumentException e) {
@@ -71,7 +71,7 @@ public class LottoController {
         }
     }
 
-    private void printMatchResult(MatchNumbers matchNumbers) {
+    private void printMatchResult(final MatchNumbers matchNumbers) {
         outputView.printMatchNumbers(
                 matchNumbers.getThreeMatch(),
                 matchNumbers.getFourMatch(),
@@ -81,11 +81,11 @@ public class LottoController {
         );
     }
 
-    private Profit createProfit(PurchasePrice purchasePrice) {
+    private Profit createProfit(final PurchasePrice purchasePrice) {
         return new Profit(purchasePrice.get());
     }
 
-    private void calculateProfit(Profit profit, MatchNumbers matchNumbers) {
+    private void calculateProfit(final Profit profit, final MatchNumbers matchNumbers) {
         profit.calculateTotalPrize(matchNumbers);
         profit.calculateRate();
     }

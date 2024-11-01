@@ -10,7 +10,7 @@ public class LottoNumber {
         numbers = new ArrayList<>();
     }
 
-    public void add(LottoAmount lottoAmount, RandomNumber randomNumber) {
+    public void add(final LottoAmount lottoAmount, final RandomNumber randomNumber) {
         for (int i = 0; i < lottoAmount.get(); ++i) {
             numbers.add(randomNumber.generate());
         }

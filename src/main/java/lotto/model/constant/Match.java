@@ -10,7 +10,7 @@ public enum Match {
     private final int matchCount;
     private final String reward;
 
-    Match(int matchCount, String reward) {
+    Match(final int matchCount, final String reward) {
         this.matchCount = matchCount;
         this.reward = reward;
     }
