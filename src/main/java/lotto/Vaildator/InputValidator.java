@@ -1,7 +1,9 @@
 package lotto.Vaildator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputValidator {
 
@@ -19,8 +21,7 @@ public class InputValidator {
 
     public static void validInput(String input) {
         validEmpty(input);
-        List<Integer> numbers = parseNumbers(input);
-        valid(numbers);
+        validDuplicate(input);
     }
 
     private static void validEmpty(String input) {
@@ -36,13 +37,16 @@ public class InputValidator {
         }
     }
 
-    private static List<Integer> parseNumbers(String input) {
+    private static void validDuplicate(String input) {
         String[] splitNumbers = input.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (String number : splitNumbers) {
             numbers.add(Integer.parseInt(number.trim()));
         }
-        return numbers;
+        Set<Integer> uniqueNumber = new HashSet<>(numbers);
+        if (uniqueNumber.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 포함되어 있습니다.");
+        }
     }
 
     private static void validPositive(List<Integer> numbers) {

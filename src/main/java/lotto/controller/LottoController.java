@@ -1,15 +1,12 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Service.LottoService;
 
 public class LottoController {
-    private static final List<Lotto> lottos = new ArrayList<>();
     private static final LottoService lottoService = new LottoService();
-    private static int bonusNum;
 
     public static void lottoStart() {
         buyLottos();
