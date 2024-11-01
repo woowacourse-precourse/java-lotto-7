@@ -17,4 +17,8 @@ public class OutputView {
         System.out.println(numberOfLotto + messageOfNumberOfLottoSuffix);
     }
 
+    public static void printPromptMessageForWinningLotto() {
+        System.out.println(PROMPT_MESSAGE_FOR_WINNING_LOTTO.getPromptMessage());
+    }
+
 }
