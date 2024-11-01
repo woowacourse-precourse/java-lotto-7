@@ -3,7 +3,9 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinLotto;
 import lotto.service.LottoService;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
@@ -29,14 +31,16 @@ public class LottoController {
     }
 
     public void run() {
-        int validPurchasePrice = getValidPurchasePrice(validatePurchasePrice());
+        int validPurchasePrice = getValidInteger(validatePurchasePrice());
         List<Lotto> lotties = lottoService.makeLottos(validPurchasePrice);
         printLottoNumbers(lotties);
-        List<Integer> validWinningNumbers = validWinningNumbers(validateWinningNumbers());
+        List<Integer> validWinningNumbers = getValidWinningNumbers(validateWinningNumbers());
+        int validBonusNumber = getValidInteger(validateBonusNumber());
+        WinLotto winLotto = new WinLotto(validWinningNumbers, validBonusNumber);
     }
 
-    private int getValidPurchasePrice(String rawPurchasePrice) {
-        return Integer.parseInt(rawPurchasePrice);
+    private int getValidInteger(String validatedInteger) {
+        return Integer.parseInt(validatedInteger);
     }
 
     private String validateWinningNumbers() {
@@ -49,7 +53,7 @@ public class LottoController {
         return rawWinningNumber;
     }
 
-    private List<Integer> validWinningNumbers(String rawWinningNumber) {
+    private List<Integer> getValidWinningNumbers(String rawWinningNumber) {
         return Arrays.stream(rawWinningNumber.split(","))
                 .map(Integer::parseInt)
                 .toList();
@@ -72,5 +76,15 @@ public class LottoController {
                 .map(Lotto::getNumbers)
                 .forEach(outputView::printList);
         outputView.newLine();
+    }
+
+    private String validateBonusNumber(){
+        boolean pass = false;
+        String rawBonusNumber = "";
+        while(!pass){
+            rawBonusNumber = inputView.getRequestBonusNumber();
+            pass = BonusNumberValidator.validate(rawBonusNumber);
+        }
+        return rawBonusNumber;
     }
 }

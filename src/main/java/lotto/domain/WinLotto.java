@@ -4,8 +4,12 @@ import java.util.List;
 
 public class WinLotto {
     private final List<Integer> numbers;
+    private final int bonusNumber;
 
-    public WinLotto(List<Integer> numbers) {
+    public WinLotto(List<Integer> numbers, int bonusNumber) {
         this.numbers = numbers;
+        this.bonusNumber = bonusNumber;
     }
+
+
 }

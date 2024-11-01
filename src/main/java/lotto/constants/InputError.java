@@ -30,6 +30,7 @@ public enum InputError {
             + " 사이의 숫자를 입력하셔야 합니다."),
     LOTTO_WINNING_NUMBER_NOT_DUPLICATED("로또 당첨 번호는 중복되면 안됩니다."),
     //보너스 번호 예외
+    BONUS_NUMBER_SHOULD_EXIST("보너스 번호를 입력하셔야 합니다."),
     BONUS_NUMBER_NOT_A_NUMBER("보너스 번호는 숫자를 입력하셔야 합니다."),
     BONUS_NUMBER_NOT_EQUAL_COUNT("보너스 번호는 정확히 "
             + LottoConstInteger.BONUS_NUMBER_COUNT

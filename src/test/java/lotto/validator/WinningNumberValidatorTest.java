@@ -63,5 +63,11 @@ class WinningNumberValidatorTest {
         assertThat(WinningNumberValidator.validate("a,1,2,3,4,5"))
                 .isFalse();
     }
+    @Test
+    @DisplayName("6개를 초과한 값 입력 검사")
+    void overSixIntegerTest() {
+        assertThat(WinningNumberValidator.validate("1,2,3,4,5,6,7"))
+                .isFalse();
+    }
 
 }
