@@ -11,23 +11,23 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateNumberCount(numbers);
         validateNumberDuplicate(numbers);
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return this.numbers.stream().toList();
     }
 
-    private void validateNumberCount(List<Integer> numbers) {
+    private void validateNumberCount(final List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT);
         }
     }
 
-    private void validateNumberDuplicate(List<Integer> numbers) {
+    private void validateNumberDuplicate(final List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE);

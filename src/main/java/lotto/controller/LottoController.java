@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import lotto.converter.WinningNumberConverter;
-import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.dto.LottoInputDto;
+import lotto.dto.LottoOutputDto;
 import lotto.service.LottoBuyService;
 import lotto.service.LottoCheckService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
 
 public class LottoController {
 
@@ -17,7 +16,8 @@ public class LottoController {
     private final LottoBuyService lottoBuyService;
     private final LottoCheckService lottoCheckService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoBuyService lottoBuyService, LottoCheckService lottoCheckService) {
+    public LottoController(InputView inputView, OutputView outputView, LottoBuyService lottoBuyService,
+                           LottoCheckService lottoCheckService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoBuyService = lottoBuyService;
@@ -26,11 +26,8 @@ public class LottoController {
 
     public void buyLotto() {
         LottoInputDto lottoInputDto = inputView.enterInput();
-        List<Lotto> lottos = lottoBuyService.buyLotto(lottoInputDto.purchaseAmount());
-        checkLotto(lottoInputDto, lottos);
-    }
-
-    public void checkLotto(final LottoInputDto lottoInputDto, final List<Lotto> lottos) {
-        lottoCheckService.checkLotto(WinningNumberConverter.toWinningNumber(lottoInputDto), lottos);
+        Lottos lottos = lottoBuyService.buyLotto(lottoInputDto.purchaseAmount());
+        LottoOutputDto lottoOutputDto = lottoCheckService.checkLotto(lottoInputDto, lottos);
+        outputView.showResult(lottoOutputDto);
     }
 }

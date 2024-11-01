@@ -20,6 +20,14 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getWinningNumber() {
+        return this.winningNumber.stream().toList();
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
+
     private void validateWinningNumberDuplicate(final List<Integer> winningNumber) {
         Set<Integer> winningNumberSet = new HashSet<>(winningNumber);
         if (winningNumberSet.size() != winningNumber.size()) {

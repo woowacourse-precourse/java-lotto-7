@@ -2,8 +2,9 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoBuyService {
@@ -14,21 +15,20 @@ public class LottoBuyService {
     private static final int LOTTO_PRICE = 1000;
     private static final String INVALID_PURCHASE_AMOUNT = "[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.";
 
-    public List<Lotto> buyLotto(final long purchaseAmount) {
+    public Lottos buyLotto(final long purchaseAmount) {
         validate(purchaseAmount);
-        List<Lotto> lottos = new ArrayList<>();
 
+        Lottos lottos = new Lottos();
         for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++)
-            selectLottoNumbers(lottos);
+            lottos.addLotto(selectLottoNumbers());
 
-        return lottos.stream()
-                .map(lotto -> new Lotto(lotto.getNumbers()))
-                .toList();
+        return lottos;
     }
 
-    public void selectLottoNumbers(final List<Lotto> lottos) {
+    public Lotto selectLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT);
-        lottos.add(new Lotto(numbers));
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
     private void validate(final long purchaseAmount) {
