@@ -19,6 +19,14 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return mainNumbers.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(List<Integer> mainNumbers, int bonusNumber) {
         if (mainNumbers == null || mainNumbers.isEmpty() || mainNumbers.stream().anyMatch(Objects::isNull)) {
             throw new LottoValidationException(NULL_OR_EMPTY_NUMBERS);
