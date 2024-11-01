@@ -19,7 +19,7 @@ public class OutputView {
         }
     }
 
-    public void printLottoWinningDetails(Map<String, Integer> map) {
+    public void printLottoWinningDetails(Map<Rank, Integer> map) {
         System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + map.get(Rank.FIVE) + "개");
         System.out.println("4개 일치 (50,000원) - " + map.get(Rank.FOUR) + "개");
