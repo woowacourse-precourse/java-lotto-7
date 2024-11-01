@@ -54,7 +54,7 @@ public class PurchaseTest {
         Purchase purchase = new Purchase(money);
 
         // then
-        Assertions.assertEquals(1000, purchase.getAmount());
+        Assertions.assertEquals(1000, purchase.getPaymentAmount());
     }
 
     // 예외 테스트들
@@ -133,7 +133,7 @@ public class PurchaseTest {
         Purchase purchase = new Purchase(money);
 
         // then
-        Assertions.assertEquals(1000, purchase.getAmount());
+        Assertions.assertEquals(1000, purchase.getPaymentAmount());
     }
 
 }

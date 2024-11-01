@@ -5,20 +5,20 @@ import lotto.exception.LottoValidationException;
 import lotto.exception.PurchaseExceptionMessage;
 
 public class Purchase {
-    private final int amount;
+    private final int paymentAmount;
 
-    public Purchase(int amount) {
-        validate(amount);
-        this.amount = amount;
+    public Purchase(int paymentAmount) {
+        validate(paymentAmount);
+        this.paymentAmount = paymentAmount;
     }
 
     public int calculateTicketCount() {
-        return amount / LottoConfiguration.LOTTO_PRICE.getValue();
+        return paymentAmount / LottoConfiguration.LOTTO_PRICE.getValue();
     }
 
 
-    public int getAmount() {
-        return amount;
+    public int getPaymentAmount() {
+        return paymentAmount;
     }
 
     private void validate(int amount) {

@@ -19,7 +19,7 @@ public class LottoMachine {
     }
 
     public int getPurchasedAmount() {
-        return purchase.getAmount();
+        return purchase.getPaymentAmount();
     }
 
     private List<Lotto> createLottos() {
