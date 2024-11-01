@@ -3,6 +3,8 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.Rank;
+import lotto.model.WinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +37,35 @@ public class LottoService {
         }
     }
 
-    // 당첨 결과 계산
-    public LottoResult calculateResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+    /*// 당첨 결과 계산
+    public LottoResult calculateResult(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
         LottoResult result = new LottoResult();
 
-        for (Lotto lotto : purchasedLottos) {
-            int matchCount = countMatchingNumbers(lotto, winningLotto);
-            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
-            result.updateRank(matchCount, hasBonus);
+        for (Lotto userLotto : purchasedLottos) {
+            result.updateRankCounts(userLotto.getNumbers(), winningNumbers);
         }
 
         return result;
+    }*/
+    // 당첨 결과 계산
+    public LottoResult calculateResult(List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
+        LottoResult lottoResult = new LottoResult();
+        int bonusNumber = winningNumbers.getBonusNumber();
+        List<Integer> winningNumbersList = winningNumbers.getWinningNumbers();
+
+        for (Lotto purchasedLotto : purchasedLottos) {
+            int matchCount = (int) purchasedLotto.getNumbers().stream()
+                    .filter(winningNumbersList::contains)
+                    .count();
+
+            boolean isBonusMatched = purchasedLotto.getNumbers().contains(bonusNumber);
+            Rank rank = Rank.of(matchCount, isBonusMatched);
+            lottoResult.incrementRankCount(rank);
+        }
+
+        return lottoResult;
     }
+
 
     // 두 로또 간 일치하는 번호 개수 계산
     private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
@@ -56,9 +75,23 @@ public class LottoService {
                 .count();
     }
 
-    // 수익률 계산
+    /*// 수익률 계산
     public double calculateProfitRate(int purchaseAmount, int totalPrize) {
         double profitRate = (double) totalPrize / purchaseAmount * 100;
         return Math.round(profitRate * 100) / 100.0;  // 소수점 둘째 자리까지 반올림
+    }*/
+
+    // 수익률 계산
+    public double calculateProfitRate(int purchaseAmount, int totalPrize) {
+        if (purchaseAmount <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+        }
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(profitRate * 100) / 100.0;  // 소수점 둘째 자리까지 반올림
+    }
+
+    // 결과 출력 메서드 추가
+    public void printResults(LottoResult result) {
+        result.printResult();
     }
 }
