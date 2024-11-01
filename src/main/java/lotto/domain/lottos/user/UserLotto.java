@@ -1,5 +1,7 @@
 package lotto.domain.lottos.user;
 
+import static lotto.domain.InputErrorMessage.BONUS_LOTTO_DUPLICATE_SIX_LOTTO;
+
 import lotto.domain.lottos.Lotto;
 
 public class UserLotto {
@@ -21,10 +23,10 @@ public class UserLotto {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(mainLotto);
-        sb.append(bonusLotto);
-        return sb.toString();
+        StringBuilder printout = new StringBuilder();
+        printout.append(mainLotto);
+        printout.append(bonusLotto);
+        return printout.toString();
     }
 
 
@@ -41,7 +43,7 @@ public class UserLotto {
 
         public void bonusLotto(int bonusLotto) {
             if (mainLotto.isContainNumber(bonusLotto)) {
-                throw new IllegalArgumentException("보너스 로또 번호가 6자리 로또 번호와 중복됩니다.");
+                throw new IllegalArgumentException(BONUS_LOTTO_DUPLICATE_SIX_LOTTO.getMessage());
             }
             this.bonusLotto = new BonusLotto(bonusLotto);
         }
