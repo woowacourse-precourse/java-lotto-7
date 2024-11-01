@@ -5,8 +5,6 @@ import lotto.error.LottoErrorMessage;
 import lotto.io.msg.LottoInquiryMessage;
 import lotto.io.Output;
 
-import java.util.List;
-
 public class ConsoleOutput implements Output {
 
     private static ConsoleOutput output;
@@ -53,6 +51,6 @@ public class ConsoleOutput implements Output {
 
     @Override
     public void printErrorMsg(LottoErrorMessage msg) {
-        System.out.println("[ERROR] " + msg.getMsg());
+        System.out.println(msg.getMsg());
     }
 }
