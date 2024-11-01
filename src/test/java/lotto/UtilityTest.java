@@ -25,4 +25,11 @@ public class UtilityTest {
         List<Integer> result = WinningNumberParser.parseWinningNumbers(inputtedNumbers);
         assertThat(result).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,가", "-1,2,3,4,5,6", "0,1,2,3,4,5", "1.3,2,3,4,5,6", "2147483650,2,3,4,5,6"})
+    void 유효하지_않은_당첨_번호를_파싱할_경우_예외가_발생한다(String inputtedNumbers) {
+        assertThatThrownBy(() -> WinningNumberParser.parseWinningNumbers(inputtedNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
