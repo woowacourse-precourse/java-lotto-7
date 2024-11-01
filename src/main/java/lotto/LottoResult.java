@@ -14,9 +14,11 @@ public class LottoResult {
         } else if (matchCount == 4) {
             countOf4Match++;
         } else if (matchCount == 5) {
-            countOf5Match++;
-        } else if (bonusMatch) {
-            countOf5MatchAndBonus++;
+            if (bonusMatch) { // 보너스 번호와 일치하는 경우
+                countOf5MatchAndBonus++;
+            } else { // 보너스 번호와 일치하지 않는 경우
+                countOf5Match++;
+            }
         } else if (matchCount == 6) {
             countOf6Match++;
         }
