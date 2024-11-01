@@ -11,7 +11,7 @@ public class WinningCountDTO {
     List<Integer> winningCount;
 
     public WinningCountDTO() {
-        winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
     }
 
     public void increaseWinningCount(int index) {

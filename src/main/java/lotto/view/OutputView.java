@@ -27,10 +27,14 @@ public class OutputView {
         printMessage("당첨 통계");
         printMessage("---");
         List<Integer> winningCount = winningCountDTO.getWinningCount();
-        printMessage("3개 일치 (5,000원) - " + winningCount.get(0) + "개");
-        printMessage("4개 일치 (50,000원) - " + winningCount.get(1) + "개");
-        printMessage("5개 일치 (1,500,000원) - " + winningCount.get(2) + "개");
-        printMessage("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCount.get(3) + "개");
-        printMessage("6개 일치 (2,000,000,000원) - " + winningCount.get(4) + "개");
+        printMessage("3개 일치 (5,000원) - " + winningCount.get(1) + "개");
+        printMessage("4개 일치 (50,000원) - " + winningCount.get(2) + "개");
+        printMessage("5개 일치 (1,500,000원) - " + winningCount.get(3) + "개");
+        printMessage("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCount.get(4) + "개");
+        printMessage("6개 일치 (2,000,000,000원) - " + winningCount.get(5) + "개");
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        printMessage("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }
