@@ -42,12 +42,12 @@ public class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a,b,c,1,2,3", "1,2,a,3,4,5", "-1,1,2,3,4,5", "0,1,5,7,8,9"})
-    @DisplayName("당첨 번호는 양수가 아니면 예외가 발생한다.")
+    @ValueSource(strings = {"a,b,c,1,2,3", "1,2,a,3,4,5", "-1,1,2,3,4,-", "0,1,5,7,8,||"})
+    @DisplayName("당첨 번호가 숫자가 아니면 예외가 발생한다.")
     void validatePositiveWinningNumbers(String condition) {
         assertThatThrownBy(() -> WinningNumbers.from(condition))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 양수만 가능합니다.");
+                .hasMessage("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
     }
 
     @ParameterizedTest

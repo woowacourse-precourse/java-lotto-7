@@ -24,7 +24,7 @@ public class WinningNumbers {
     private static class Validator {
 
         private static final String COMMA = ",";
-        private static final String WINNING_NUMBERS_POSITIVE_REGEX = "^[1-9]\\d*$";
+        private static final String BONUS_NUMBER_NUMERIC_REGEX = "-?\\d+";
         private static final int WINNING_NUMBERS_SIZE = 6;
         private static final int MINIMUM_WINNING_NUMBER = 1;
         private static final int MAXIMUM_WINNING_NUMBER = 45;
@@ -33,7 +33,7 @@ public class WinningNumbers {
             validateWinningNumbersIsNotEmpty(numbers);
             List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
             validateWinningNumbersCount(delimitedWinningNumbers);
-            List<Integer> positiveWinningNumbers = validatePositiveWinningNumbers(delimitedWinningNumbers);
+            List<Integer> positiveWinningNumbers = validateWinningNumbersIsNumeric(delimitedWinningNumbers);
             validateWinningNumbersInRange(positiveWinningNumbers);
             validateUniqueWinningNumbers(positiveWinningNumbers);
             return positiveWinningNumbers;
@@ -59,10 +59,10 @@ public class WinningNumbers {
             }
         }
 
-        private static List<Integer> validatePositiveWinningNumbers(List<String> delimitedWinningNumbers) {
+        private static List<Integer> validateWinningNumbersIsNumeric(List<String> delimitedWinningNumbers) {
             for (String delimitedWinningNumber : delimitedWinningNumbers) {
-                if (!delimitedWinningNumber.matches(WINNING_NUMBERS_POSITIVE_REGEX)) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 양수만 가능합니다.");
+                if (!delimitedWinningNumber.matches(BONUS_NUMBER_NUMERIC_REGEX)) {
+                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
                 }
             }
             return delimitedWinningNumbers.stream()
