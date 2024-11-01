@@ -11,6 +11,7 @@ public class Application {
         int purchaseAmount = purchaseLottos();
         List<Lotto> lottos = issueLottos(purchaseAmount);
         printIssuedLottos(lottos);
+        String winningNumbers = inputWinningNumbers();
     }
 
     private static int purchaseLottos() {
@@ -50,6 +51,18 @@ public class Application {
 
     }
 
+    private static String inputWinningNumbers() {
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String winningNumbersInput = Console.readLine();
+            validateInputValue(winningNumbersInput);
+            return winningNumbersInput;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
     public static Lotto issueOneLotto(List<Integer> numbers) {
         return new Lotto(numbers);
     }
@@ -57,20 +70,24 @@ public class Application {
     private static String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
+        validateInputValue(purchaseAmount);
         validateInputInteger(purchaseAmount);
         return purchaseAmount;
     }
 
     public static void validateInputInteger(String inputInteger) {
-        if (inputInteger == null
-                || inputInteger.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
-        }
         if (!inputInteger.matches("^[1-9]\\d*$")) {
             throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해주세요.");
         }
         if (inputInteger.length() > 10) {
             throw new IllegalArgumentException("[ERROR] 10자리 이하의 금액을 입력해주세요.");
+        }
+    }
+
+    public static void validateInputValue(String inputValue) {
+        if (inputValue == null
+                || inputValue.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 값을 입력해주세요.");
         }
     }
 

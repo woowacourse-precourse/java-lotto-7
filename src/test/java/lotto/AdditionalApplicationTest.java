@@ -24,15 +24,15 @@ public class AdditionalApplicationTest {
     void 금액_null일시_예외() {
         String testNumber = null;
 
-        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputInteger(testNumber))
-                .withMessage("[ERROR] 금액을 입력해주세요.");
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     void 금액_빈_문자열일시_예외(String testNumber) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputInteger(testNumber))
-                .withMessage("[ERROR] 금액을 입력해주세요.");
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
     @ParameterizedTest
@@ -95,6 +95,21 @@ public class AdditionalApplicationTest {
         List<Lotto> lottos = Application.issueLottos(testNumber);
 
         assertThat(lottos.size()).isEqualTo(testNumber);
+    }
+
+    @Test
+    void 당첨번호_null일시_예외() {
+        String testNumber = null;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void 당첨번호_빈_문자열일시_예외(String testNumber) {
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
 
