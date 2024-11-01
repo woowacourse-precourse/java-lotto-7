@@ -23,7 +23,7 @@ public class InputValidation {
     }
 
     private Long moneyCheck() {
-        String moneyInput = view.getMoneyInput();
+        String moneyInput = view.getMoneyInput().replace(" ", "");
         checkInputNull(moneyInput);
         checkMoneyForm(moneyInput);
         Long money = Long.parseLong(moneyInput);
@@ -61,9 +61,11 @@ public class InputValidation {
     }
 
     private List<Integer> winningNumbersCheck() {
-        String winningNumbersInput = view.getWinningNumbers();
+        String winningNumbersInput = view.getWinningNumbers().replace(" ", "");
+        checkInputNull(winningNumbersInput);
         checkWinningNumbersForm(winningNumbersInput);
         List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(",")).map(Integer::parseInt).toList();
+        checkNumbersRange(winningNumbers);
         return winningNumbers;
     }
 
@@ -72,4 +74,13 @@ public class InputValidation {
             throw new IllegalArgumentException("[ERROR] 입력은 쉼표로 구분된 6개의 양수로 이루어져야 합니다.");
         }
     }
+
+    public void checkNumbersRange(List<Integer> inputNumbers) {
+        for (int number : inputNumbers) {
+            if (number<1 || number>45) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 번호여야 합니다.");
+            }
+        }
+    }
+
 }
