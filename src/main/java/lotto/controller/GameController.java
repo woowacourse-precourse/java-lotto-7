@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.controller.InputValidator.SPLITTER;
+
 public class GameController {
 
     private final InputView inputView;
@@ -41,6 +43,6 @@ public class GameController {
             outputView.printErrorMessage(e);
             return getWinningNumbers();
         }
-        return Arrays.stream(numbersInput.split(",")).map(Integer::parseInt).toList();
+        return Arrays.stream(numbersInput.split(SPLITTER)).map(Integer::parseInt).toList();
     }
 }
