@@ -33,8 +33,7 @@ public class Lotteries {
 
         for (int i = 0; i < count; i++) {
             ticketList.add(
-                    new Lotto(LottoNumberGenerator.generateWinningNumbers())
-            );
+                    new Lotto(LottoNumberGenerator.generateWinningNumbers()));
         }
 
         return ticketList;
