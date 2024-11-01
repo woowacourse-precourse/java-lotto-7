@@ -30,10 +30,13 @@ public class Lottos {
                 .collect(Collectors.toList());
     }
 
-    public String getLottos() {
+    public String getLottosToString() {
         StringBuilder result = new StringBuilder();
-        for (Lotto lotto : lottos) {
-            result.append(lotto).append("\n");
+        for (int i = 0; i < lottos.size(); i++) {
+            result.append(lottos.get(i));
+            if (i < lottos.size() - 1) { // 마지막 요소가 아니면 줄바꿈 추가
+                result.append("\n");
+            }
         }
         return result.toString();
     }
