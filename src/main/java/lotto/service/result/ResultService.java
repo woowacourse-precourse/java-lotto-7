@@ -5,27 +5,22 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.utils.Parser;
+import lotto.utils.ProfitCalculator;
+import lotto.utils.StatisticCalculator;
 
 public class ResultService {
-    private final StatisticService statisticService;
-    private final ProfitService profitService;
-
-    public ResultService(StatisticService statisticService, ProfitService profitService) {
-        this.statisticService = statisticService;
-        this.profitService = profitService;
-    }
 
     public List<String> resultProcess(User user, Lotto winningLotto, BonusNumber bonusNumber) {
-        List<Integer> result = statisticProcess(user,winningLotto,bonusNumber);
-        double profit = profitProcess(user, result);
+        List<Integer> result = statisticsCalculator(user, winningLotto, bonusNumber);
+        double profit = profitCalculator(user, result);
         return Parser.parsingResult(result, profit);
     }
 
-    private List<Integer> statisticProcess(User user, Lotto winningLotto, BonusNumber bonusNumber) {
-        return statisticService.statisticsCalculator(user, winningLotto, bonusNumber);
+    private List<Integer> statisticsCalculator(User user, Lotto winningLotto, BonusNumber bonusNumber) {
+        return StatisticCalculator.calculateStatistics(user, winningLotto, bonusNumber);
     }
 
-    private double profitProcess(User user, List<Integer> result) {
-        return profitService.profitCalculator(user, result);
+    private double profitCalculator(User user, List<Integer> result) {
+        return ProfitCalculator.calculateProfit(user, result);
     }
 }

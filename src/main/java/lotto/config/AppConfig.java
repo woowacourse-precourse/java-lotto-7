@@ -3,9 +3,7 @@ package lotto.config;
 import lotto.controller.LottoController;
 import lotto.service.SystemService;
 import lotto.service.numbers.LottoNumberService;
-import lotto.service.result.ProfitService;
 import lotto.service.result.ResultService;
-import lotto.service.result.StatisticService;
 import lotto.service.user.UserService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -34,13 +32,7 @@ public class AppConfig {
         return new LottoNumberService();
     }
     private ResultService resultService() {
-        return new ResultService(statisticService(), profitService());
-    }
-    private ProfitService profitService() {
-        return new ProfitService();
-    }
-    private StatisticService statisticService() {
-        return new StatisticService();
+        return new ResultService();
     }
 
 }
