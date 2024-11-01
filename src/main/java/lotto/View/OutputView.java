@@ -4,6 +4,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.RankResult;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,7 @@ public class OutputView {
     }
     public static void print_lotto_list(List<Lotto> lottoList) {
         for(int i=0;i<lottoList.size();i++) {
+            Collections.sort(lottoList.get(i).getNumbers());
             System.out.println(lottoList.get(i).getNumbers());
         }
         System.out.println();
