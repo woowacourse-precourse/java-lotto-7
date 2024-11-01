@@ -17,9 +17,11 @@ public class Application {
         List<Integer> winningNumbers = InputPrice.getWinningNumbers();
         int bonusNumber = InputPrice.getBonusNumber();
 
-        //확인
-        System.out.println("win num: "+ winningNumbers);
-        System.out.println("bonus num: "+ bonusNumber);
-
+        // 4. 당첨 확인 및 통계
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto lotto : lottos) {
+            Prize prize = lottoMachine.checkPrize(lotto, winningNumbers, bonusNumber);
+            lottoResult.recordPrize(prize);
+        }
     }
 }

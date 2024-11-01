@@ -21,4 +21,11 @@ public class LottoMachine {
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
+    public Prize checkPrize(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+        return Prize.valueOf(matchCount, matchBonus);
+    }
 }
