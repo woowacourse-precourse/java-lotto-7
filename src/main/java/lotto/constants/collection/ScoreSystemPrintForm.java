@@ -7,7 +7,7 @@ import java.util.List;
 
 public enum ScoreSystemPrintForm implements Constants<List> {
 
-    DEFAULT_PRINT(List.of("3개 일치 (5,000원) - %d개",
+    DEFAULT(List.of("3개 일치 (5,000원) - %d개",
             "4개 일치 (50,000원) - %d개",
             "5개 일치 (1,500,000원) - %d개",
             "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개",
