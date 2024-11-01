@@ -33,9 +33,10 @@ public class LottoController {
     }
 
     public void setWinningNumbers () {
+        List<Integer> winningNumbers = initializeWinningNumbers();
         lottoWinningNumbers = new LottoWinningNumbers(
-                initializeWinningNumbers(),
-                initializeBonusNumber());
+                winningNumbers,
+                initializeBonusNumber(winningNumbers));
     }
     private List<Integer> initializeWinningNumbers () {
         while (true) {
@@ -48,12 +49,12 @@ public class LottoController {
             }
         }
     }
-    private int initializeBonusNumber () {
+    private int initializeBonusNumber (List<Integer> winningNumbers) {
         while (true) {
             try {
                 outputView.printMessage(RequestMessage.ENTER_BONUS_NUMBER.getMessage());
                 String bonusNumberInput = inputView.readLine();
-                return validate.validateBonusNumber(bonusNumberInput);
+                return validate.validateBonusNumber(bonusNumberInput, winningNumbers);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
