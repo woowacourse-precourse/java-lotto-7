@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import lotto.constant.ExceptionConstant;
+import lotto.constant.InputConstant;
 import lotto.constant.LottoConstant;
 
 public class WinningNumbers {
@@ -36,7 +37,6 @@ public class WinningNumbers {
                 .filter(primarySet::contains)
                 .count();
     }
-
 
     @Override
     public boolean equals(Object o) {

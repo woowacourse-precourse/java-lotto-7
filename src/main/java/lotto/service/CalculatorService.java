@@ -14,6 +14,9 @@ public class CalculatorService {
     }
 
     public String profitCalculate(double lottoPrice, double profit) {
+        if (profit == 0){
+            return "0%";
+        }
         double rateOfReturn = profit / lottoPrice * 100;
         return String.format("%.1f%%", rateOfReturn);
     }

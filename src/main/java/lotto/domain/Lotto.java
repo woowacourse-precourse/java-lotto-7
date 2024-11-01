@@ -32,10 +32,6 @@ public class Lotto {
         }
     }
 
-    public void sort(){
-        Collections.sort(numbers);
-    }
-
     public Stream<Integer> streamNumbers() {
         return numbers.stream();
     }

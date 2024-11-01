@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.constant.ExceptionConstant;
 import lotto.domain.Lotto;
@@ -32,7 +31,8 @@ public class LottoMachineService {
 
     private int convertToInt(String input) {
         validatePurchaseAmount(input);
-        return Integer.parseInt(input);
+        LottoConstant.purchase = Integer.parseInt(input);
+        return LottoConstant.purchase;
     }
 
     private void validatePurchaseAmount(String input) {
