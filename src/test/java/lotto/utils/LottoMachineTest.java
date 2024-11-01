@@ -1,7 +1,6 @@
-package lotto;
+package lotto.utils;
 
 import lotto.model.Money;
-import lotto.utils.LottoMachine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

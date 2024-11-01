@@ -28,10 +28,10 @@ public class LottoMachine {
 
     private static void validate(Money money) {
         if (money.isOutOfRange(PRICE_MINIMUM, PRICE_MAXIMUM)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_INVALID_PRICE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.IS_OUT_OF_RANGE_PRICE.getMessage());
         }
         if (money.isIndivisibleBy(TICKET_PRICE)) {
-            throw new IllegalArgumentException(ErrorMessage.IS_INVALID_PRICE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.IS_INDIVISIBLE_PRICE.getMessage());
         }
     }
 

@@ -1,11 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.Rank;
-import lotto.model.WinningLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
