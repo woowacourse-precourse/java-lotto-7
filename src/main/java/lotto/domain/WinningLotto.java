@@ -2,8 +2,11 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.domain.message.LottoErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.domain.message.LottoErrorMessage.INVALID_LOTTO_NUMBER_IN_RANGE;
 import static lotto.domain.rule.LottoRules.*;
+import static lotto.utils.DefaultErrorMessage.INVALID_INTEGER_FORMAT;
+import static lotto.utils.DefaultErrorMessage.NULL_OR_EMPTY_INPUT;
 
 public class WinningLotto extends Lotto {
 
@@ -33,7 +36,7 @@ public class WinningLotto extends Lotto {
 
     private void validateNullOrEmpty(String bonusNumber) {
         if (!isNotNullOrEmpty(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 입력 값이 유효하지 않습니다. 빈 값이나 공백만 입력할 수 없습니다.");
+            throw new IllegalArgumentException(NULL_OR_EMPTY_INPUT.getMessage());
         }
     }
 
@@ -51,7 +54,7 @@ public class WinningLotto extends Lotto {
         try {
             Integer.parseInt(bonusNumber);
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 정수형식이 아니거나, 너무 큰 숫자입니다.");
+            throw new IllegalArgumentException(INVALID_INTEGER_FORMAT.getMessage());
         }
     }
 
@@ -61,7 +64,7 @@ public class WinningLotto extends Lotto {
 
     private void checkDuplicateWithNumbers(int bonusNumber) {
         if (getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 }
