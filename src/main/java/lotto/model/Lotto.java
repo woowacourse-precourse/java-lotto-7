@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,9 +17,38 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 6개의 번호를 입력해야 합니다");
+        }
+        for (int inputNumber : numbers) {
+            if ( inputNumber > 45 || inputNumber < 1 ) {
+                throw new IllegalArgumentException(ErrorMessage.WITHIN_NUMBERS_RANGE.getMessage());
+            }
+        }
+        for ( int i = 0; i < numbers.size(); i++ ) {
+            for ( int j = i + 1; j < numbers.size(); j++ ) {
+                if ( numbers.get(i).equals(numbers.get(j)) ) {
+                    throw new IllegalArgumentException(ErrorMessage.CANNOT_DUPLICATE.getMessage());
+                }
+            }
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static int[] stringArrayToIntArray(String[] arr) {
+        int[] result = new int[arr.length];
+        for ( int i = 0; i < arr.length; i++ ) {
+            result[i] = Integer.parseInt(arr[i]);
+        }
+
+        return result;
+    }
+
+    public static List<Integer> stringArrayToIntList(String[] arr) {
+        List<Integer> list = new ArrayList<>();
+        int[] intArray = stringArrayToIntArray(arr);
+        for (int j : intArray) {
+            list.add(j);
+        }
+
+        return list;
+    }
 }

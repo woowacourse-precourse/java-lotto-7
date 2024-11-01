@@ -1,10 +1,25 @@
 package lotto.service;
 
-public class InputHandler {
-    public static int purchaseAmountHandle(String input) {
-        Validator.purchaseAmountValidate(input);
-        int purchaseAmount = Integer.parseInt(input);
+import lotto.model.Lotto;
 
-        return purchaseAmount/1000;
+import java.util.List;
+
+public class InputHandler {
+    public static int purchaseLottoHandle(String input) {
+        Validator.purchaseLottoValidate(input);
+
+        return Integer.parseInt(input);
+    }
+
+    public static List<Integer> enterWinningNumbersHandle(String input) {
+        Validator.enterWinningNumberValidate(input);
+
+        return Lotto.stringArrayToIntList(input.split(","));
+    }
+
+    public static int enterBonusNumberHandle(String input) {
+        Validator.enterBonusNumberValidate(input);
+
+        return Integer.parseInt(input);
     }
 }

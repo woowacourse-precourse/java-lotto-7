@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PurchasedLottos implements Iterable<Lotto> {
-    List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public PurchasedLottos() {
         lottos = new ArrayList<>();
