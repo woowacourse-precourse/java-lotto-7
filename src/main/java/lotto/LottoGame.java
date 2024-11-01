@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoGame {
     
@@ -17,28 +16,28 @@ public class LottoGame {
         // 구매 금액에 맞는 수량의 로또 발행
         List<Lotto> generatedLottos = generateLottos(money);
         
-        // 유저의 로또 번호들 입력 받기
-        Lotto userLotto = generateUserLotto();
+        // 당첨 로또 번호 입력 받기
+        Lotto winningLottoNumbers = generateUserLotto();
         
     }
     
     public Lotto generateUserLotto() {
-        List<Integer> userLottoNumbers = new ArrayList<>();
+        List<Integer> winningLottoNumbers = new ArrayList<>();
         
         System.out.println("당첨 번호를 입력해 주세요.");
         
-        while (userLottoNumbers.size() != 6) {
+        while (winningLottoNumbers.size() != 6) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String inputLottoNumbers = Console.readLine();
-                userLottoNumbers = validateInputLottoNumbers(inputLottoNumbers);
+                winningLottoNumbers = validateInputLottoNumbers(inputLottoNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("다시 입력해 주세요.");
             }
         }
         
-        return new Lotto(userLottoNumbers);
+        return new Lotto(winningLottoNumbers);
     }
     
     private List<Integer> validateInputLottoNumbers(String inputLottoNumbers) {
