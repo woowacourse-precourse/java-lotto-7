@@ -21,7 +21,7 @@ public class OutputView {
                 System.out.printf(
                         "%d개 일치, 보너스 볼 일치 (%s원) - %d개%n",
                         rank.getMatchCount(),
-                        rank.getPrizeAmount(),
+                        formatPrize(rank.getPrizeAmount()),
                         statistics.getOrDefault(rank, 0)
                 );
                 continue;
@@ -30,9 +30,17 @@ public class OutputView {
             System.out.printf(
                     "%d개 일치 (%s원) - %d개%n",
                     rank.getMatchCount(),
-                    rank.getPrizeAmount(),
+                    formatPrize(rank.getPrizeAmount()),
                     statistics.getOrDefault(rank, 0)
             );
         }
+    }
+
+    private static String formatPrize(int prizeAmount) {
+        return String.format("%,d", prizeAmount); // 상금을 1,000 단위로 콤마 추가
+    }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.printf("총 수익률은 %.2f%%입니다.%n", rateOfReturn);
     }
 }

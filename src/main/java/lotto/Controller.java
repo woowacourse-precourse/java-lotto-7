@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Controller {
@@ -13,6 +14,11 @@ public class Controller {
         OutputView.printLottos(lottoTickets);
         Lotto winningLotto = getWinningLotto();
         int BonusLottoNumber = getBonusNumber(winningLotto);
+        Map<LottoRank, Integer> LottoStatistics = LottoService.calculateStatistics(lottoTickets, winningLotto, BonusLottoNumber);
+        OutputView.printWinningStatistics(LottoStatistics);
+        long totalPrize = LottoService.calculateTotalPrize(LottoStatistics);
+        double rateOfRetirn = LottoService.calculateRateOfReturn(totalPrize,money);
+        OutputView.printRateOfReturn(rateOfRetirn);
     }
 
     private static int getPurchaseAmount() {
