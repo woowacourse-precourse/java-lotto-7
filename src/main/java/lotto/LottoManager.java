@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Input.inputBonusNumber;
 import static lotto.Input.inputPurchaseAmount;
 import static lotto.Input.inputWinningNumber;
 import static lotto.InputParser.parseInt;
@@ -16,6 +17,7 @@ public class LottoManager {
         Output.printPurchaseMessage(lottoes.size());
         lottoes.forEach(Output::printLotto);
         List<Integer> winningNumber = parseWinningNumber(inputWinningNumber());
+        int bonusNumber = parseInt(inputBonusNumber());
     }
 
     private List<Lotto> purchaseLottoes(final int purchaseAmount) {
