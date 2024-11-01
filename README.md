@@ -7,11 +7,12 @@
     + [] 로또 구매 개수와 구매한 로또 번호를 출력하는 기능 - 
     + [] 당첨 통계를 출력하는 기능 -
     + [] 수익률을 출력하는 기능 - 
+    + [] 개행 문자 출력 기능 -
 
 - input class
-    + [] 구입 금액을 입력받는 기능 - 
-    + [] 당첨 번호를 입력받는 기능 - 
-    + [] 보너스 번호를 입력받는 기능
+    + [0] 구입 금액을 입력받는 기능 - getPurchaseAmount
+    + [0] 당첨 번호를 입력받는 기능 - getWinningNumbers
+    + [0] 보너스 번호를 입력받는 기능 - getBonusNumber
 
 ### model package
 - LottoTransform class
