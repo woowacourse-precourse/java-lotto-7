@@ -3,7 +3,7 @@ package lotto.model;
 import lotto.policy.LottoNumberPolicy;
 
 public class Bonus {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public Bonus(int bonusNumber) {
         validateBonusNumber(bonusNumber);

@@ -11,8 +11,8 @@ public enum PrizeMoneyPolicy {
     FIFTH(3, 5_000),
     NOTHING(0,0);
 
-    private int matchedNumberCount;
-    private long priceMoney;
+    private final int matchedNumberCount;
+    private final long priceMoney;
 
     PrizeMoneyPolicy(int matchedNumberCount, long priceMoney){
         this.matchedNumberCount = matchedNumberCount;

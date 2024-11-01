@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.service.PolicyService;
 
 public class LottoNumberGenerator {
-    private PolicyService policyService;
+    private final PolicyService policyService;
 
     public LottoNumberGenerator(PolicyService policyService) {
         this.policyService = policyService;
