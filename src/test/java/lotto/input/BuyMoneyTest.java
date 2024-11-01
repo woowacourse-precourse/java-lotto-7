@@ -24,7 +24,7 @@ class BuyMoneyTest extends NsTest {
     @Test
     void 구매_금액으로_공백을_입력할_수_없다() {
         assertSimpleTest(() -> {
-            runException("100", "1,2,3,4,5,6", "7");
+            runException(" ", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
