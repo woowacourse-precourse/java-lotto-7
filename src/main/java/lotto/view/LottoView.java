@@ -33,13 +33,12 @@ public class LottoView {
         }
     }
 
-    public Lotto promptWinningLotto() {
+    public List<Integer> promptWinningLotto() {
         while (true) {
             try {
                 String numbers = inputView.inputWinningNumber();
                 InputValidator.validateWinningNumbers(numbers);
-                List<Integer> winningNumbers = Converter.convertToIntgerList(numbers);
-                return Lotto.createWinningLotto(winningNumbers);
+                return Converter.convertToIntgerList(numbers);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
