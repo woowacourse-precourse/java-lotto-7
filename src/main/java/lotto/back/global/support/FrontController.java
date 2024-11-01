@@ -1,8 +1,10 @@
 package lotto.back.global.support;
 
+import lotto.back.lotto.controller.LottoController;
 import lotto.global.communication.CustomCommunicationCode;
 import lotto.global.communication.CustomCommunicationData;
 import lotto.global.communication.Telecommunication;
+import lotto.global.dto.request.PurchaseLottoRequestDTO;
 import lotto.global.exception.CustomIllegalArgumentException;
 
 public class FrontController {
@@ -26,6 +28,12 @@ public class FrontController {
 
     //TODO 로직 구현 시 각 메서드로 redirect되도록 구현
     private static Object lottoRequestHandling(Object requestObject) {
-        return null;
+        LottoController lottoController = BeanConfig.getBean(LottoController.class);
+
+        if (requestObject instanceof PurchaseLottoRequestDTO purchaseLottoRequestDTO) {
+            return lottoController.purchase(purchaseLottoRequestDTO);
+        }
+
+        throw new RuntimeException("잘못된 요청입니다.");
     }
 }
