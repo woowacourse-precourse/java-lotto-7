@@ -13,6 +13,7 @@ public class InputParser {
 
     public static List<Integer> parseNumbers(String input) {
         return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
