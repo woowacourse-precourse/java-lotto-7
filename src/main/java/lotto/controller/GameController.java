@@ -20,19 +20,19 @@ public class GameController {
     }
 
     public void run() {
-        BigInteger money = getMoney();
+        BigInteger budget = getBudget();
         List<Integer> winningNumbers = getWinningNumbers();
     }
 
-    private BigInteger getMoney() {
-        String moneyInput = inputView.readMoney();
+    private BigInteger getBudget() {
+        String budgetInput = inputView.readBudget();
         try {
-            InputValidator.validateMoneyInput(moneyInput);
+            InputValidator.validateBudgetInput(budgetInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getMoney();
+            return getBudget();
         }
-        return new BigInteger(moneyInput);
+        return new BigInteger(budgetInput);
     }
 
     private List<Integer> getWinningNumbers() {

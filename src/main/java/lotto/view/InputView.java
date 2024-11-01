@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public String readMoney() {
-        InputPrompt.printMoneyInPutMessage();
+    public String readBudget() {
+        InputPrompt.printBudgetInputMessage();
         return readInput();
     }
 

@@ -9,9 +9,9 @@ public class InputValidator {
 
     public static final String SPLITTER = ",";
 
-    public static void validateMoneyInput(String moneyInput) {
+    public static void validateBudgetInput(String budgetInput) {
         try {
-            new BigInteger(moneyInput);
+            new BigInteger(budgetInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(IS_NOT_NUMBER.message());
         }

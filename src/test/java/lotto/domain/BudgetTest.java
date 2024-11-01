@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigInteger;
 
 import static lotto.domain.Budget.LOTTO_PRICE;
-import static lotto.exception.ExceptionCode.MONEY_TOO_SMALL;
-import static lotto.exception.ExceptionCode.REMAINDER_EXISTED;
+import static lotto.exception.ExceptionCode.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -18,7 +17,7 @@ class BudgetTest {
     void TooSmallException() {
         assertThatThrownBy(() -> new Budget(new BigInteger("120")))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(MONEY_TOO_SMALL.message());
+                .hasMessageContaining(BUDGET_TOO_SMALL.message());
     }
 
     @DisplayName("구매 금액이 로또 금액으로 나누어 떨어지지 않으면 예외가 발생한다.")

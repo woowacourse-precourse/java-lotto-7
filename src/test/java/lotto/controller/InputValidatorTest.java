@@ -10,8 +10,8 @@ class InputValidatorTest {
 
     @DisplayName("입력이 수가 아닐 경우 예외가 발생한다.")
     @Test
-    void validateMoneyInput() {
-        assertThatThrownBy(() -> InputValidator.validateMoneyInput("l  s"))
+    void validateBudgetInput() {
+        assertThatThrownBy(() -> InputValidator.validateBudgetInput("l  s"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(IS_NOT_NUMBER.message());
     }

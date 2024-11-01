@@ -2,8 +2,7 @@ package lotto.domain;
 
 import java.math.BigInteger;
 
-import static lotto.exception.ExceptionCode.MONEY_TOO_SMALL;
-import static lotto.exception.ExceptionCode.REMAINDER_EXISTED;
+import static lotto.exception.ExceptionCode.*;
 
 public class Budget {
 
@@ -19,7 +18,7 @@ public class Budget {
 
     private void validate(BigInteger value) {
         if (value.compareTo(LOTTO_PRICE) < 0) {
-            throw new IllegalArgumentException(MONEY_TOO_SMALL.message());
+            throw new IllegalArgumentException(BUDGET_TOO_SMALL.message());
         }
 
         if (!value.remainder(LOTTO_PRICE).equals(BigInteger.ZERO)) {

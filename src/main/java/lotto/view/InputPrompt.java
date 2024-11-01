@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class InputPrompt {
 
-    public static void printMoneyInPutMessage() {
+    public static void printBudgetInputMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
