@@ -32,4 +32,9 @@ public class Lotto {
             throw new LottoException(DUPLICATE_NUMBERS.getMessage());
         }
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
