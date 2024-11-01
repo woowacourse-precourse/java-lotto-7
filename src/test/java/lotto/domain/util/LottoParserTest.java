@@ -21,7 +21,7 @@ class LottoParserTest {
             List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
 
             //when
-            List<Integer> parse = LottoParser.parseBallNumbers(input);
+            List<Integer> parse = LottoParser.parseNumbers(input);
 
             //then
             assertThat(parse).isEqualTo(expected);
@@ -34,7 +34,7 @@ class LottoParserTest {
             List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
 
             //when
-            List<Integer> parse = LottoParser.parseBallNumbers(input);
+            List<Integer> parse = LottoParser.parseNumbers(input);
 
             //then
             assertThat(parse).isEqualTo(expected);
