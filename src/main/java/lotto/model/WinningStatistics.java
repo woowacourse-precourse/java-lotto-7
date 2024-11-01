@@ -18,6 +18,12 @@ public class WinningStatistics {
         }
     }
 
+    public void process(Lotto lotto, WinningNumbers winningNumbers) {
+        int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers.getWinningNumbers());
+        boolean isBonusMatch = checkBonusMatch(lotto, winningNumbers);
+        updateWinningStatistics(matchCount, isBonusMatch);
+    }
+
     public int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
