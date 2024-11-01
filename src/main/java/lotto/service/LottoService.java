@@ -42,18 +42,8 @@ public class LottoService {
         return count;
     }
 
-    public Map<Integer, Integer> getMatchingCounts() {
+    public int sumOfPrizes() {
         throw new IllegalArgumentException("아직 구현되지 않았습니다.");
-    }
-
-    public int sumOfPrizes(Map<Integer, Integer> matchingCounts) {
-        int sum = 0;
-        for (Map.Entry<Integer, Integer> entry : matchingCounts.entrySet()) {
-            int matchCount = entry.getKey();
-            int prizeCount = entry.getValue();
-            sum += WINNING_PRIZES.get(matchCount) * prizeCount;
-        }
-        return sum;
     }
 
     public double calculateReturn(int sum, int purchaseAmount) {

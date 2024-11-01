@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -52,27 +53,18 @@ public class LottoServiceTest {
     }
 
     @Test
-    void 숫자_일치_개수에_따른_로또_장수_계산_테스트() {
-
-    }
-
-    /**
-     * 여기서부터 수정 hashmap을 입력받아 총합을 계산하기
-     */
-    @Test
     void 로또_당첨금_총합_계산이_올바른지_테스트() {
         // given
-        Map<Integer, Integer> matchingCounts = new HashMap<>() {{
-            put(3, 0);
-            put(4, 0);
-            put(5, 1);
-            put(6, 1);
-            put(7, 1);
-        }};
-        int expected = WINNING_PRIZES.get(5) + WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7);
+        List<Rank> ranks = new ArrayList<>(List.of(
+                Rank.FIRST,
+                Rank.SECOND,
+                Rank.THIRD,
+                Rank.NONE
+        ));
+        int expected = Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.THIRD.getPrize();
 
         // when
-        int result = lottoService.sumOfPrizes(matchingCounts);
+        int result = lottoService.sumOfPrizes(ranks);
 
         // then
         assertThat(result).isEqualTo(expected);
