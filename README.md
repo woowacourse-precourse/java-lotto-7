@@ -34,7 +34,7 @@ classDiagram
         +User(int purchaseAmount)
         +validate(int purchaseAmount)
         +getLottos() ArrayList~Lotto~
-        +setPrize(int matchCount, int bonusMatch)
+        +setPrize(Prize prize)
         +getPrizes() Map~Prize, Integer~
         +getReturnRate() double
     }
