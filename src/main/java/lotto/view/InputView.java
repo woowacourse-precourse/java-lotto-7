@@ -171,7 +171,7 @@ public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, �
     }
 
     // 보너스 번호 유효성 검증
-    private void validateBonusNumber(int number) {
+    public static void validateBonusNumber(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
