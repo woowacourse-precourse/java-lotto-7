@@ -33,11 +33,14 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<List<Integer>> lotteryTickets = new ArrayList<>();
         lotteryTickets.add(List.of(1, 2, 3, 4, 5, 6));      // 1등
+        lotteryTickets.add(List.of(1, 2, 3, 4, 5, 7));      // 2등
         lotteryTickets.add(List.of(1, 2, 3, 4, 5, 30));     // 3등
         lotteryTickets.add(List.of(1, 2, 3, 4, 31, 30));    // 4등
         lotteryTickets.add(List.of(1, 2, 3, 32, 31, 30));   // 5등
 
-        lotto.matcheNumber(lotteryTickets);
+        int bonusNumber = 7;
+
+        lotto.matcheNumber(lotteryTickets, bonusNumber);
 
         // 1등 ~ 5등 카운트
         List<Integer> actual = new ArrayList<>();
@@ -45,7 +48,7 @@ class LottoTest {
             actual.add(result.getCount());
         }
 
-        List<Integer> expect = new ArrayList<>(List.of(1, 0, 1, 1, 1));
+        List<Integer> expect = new ArrayList<>(List.of(1, 1, 1, 1, 1));
 
         Assertions.assertThat(actual).isEqualTo(expect);
 

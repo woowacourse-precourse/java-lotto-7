@@ -30,26 +30,30 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public void matcheNumber(List<List<Integer>> lotteryTickets) {
+    public void matcheNumber(List<List<Integer>> lotteryTickets, int bonusNumber) {
         for (List<Integer> lts : lotteryTickets) {
-            int count = matchCount(lts);
+            int count = matchCount(lts, bonusNumber);
             resultCountUp(count);
         }
     }
 
-    private int matchCount(List<Integer> lts) {
+    private int matchCount(List<Integer> lts, int bonusNumber) {
         int count = 0;
         for (Integer n : lts) {
             if (numbers.contains(n)) {
                 count++;
             }
         }
+
+        if (count == 5 && lts.contains(bonusNumber)) {
+            count += 2;
+        }
         return count;
     }
 
     private void resultCountUp(int count) {
         for (Result result : Result.values()) {
-            if (result.getMatches() == count && !result.getContainBonus()) {
+            if (result.getMatches() == count) {
                 result.increamentCount();
             }
         }
