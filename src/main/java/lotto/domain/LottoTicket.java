@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.constants.Ranking;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,10 +13,12 @@ public class LottoTicket {
         this.lottos = lottos;
     }
 
-    public List<Ranking> checkRanking(WinningLotto winningLotto){
-        return lottos.stream()
+    public EnumMap<Ranking, Integer> checkRanking(WinningLotto winningLotto) {
+        EnumMap<Ranking, Integer> rankingMap = new EnumMap<>(Ranking.class);
+        lottos.stream()
                 .map(lotto -> lotto.checkRanking(winningLotto))
-                .collect(Collectors.toList());
+                .forEach(ranking -> rankingMap.merge(ranking, 1, Integer::sum));
+        return rankingMap;
     }
 
     public List<List<Integer>> getAllLottoNumbers() {

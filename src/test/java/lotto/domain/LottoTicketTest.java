@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 
 public class LottoTicketTest {
@@ -14,13 +15,12 @@ public class LottoTicketTest {
         LottoTicket lottoTicket = new LottoTicket(providerLottos());
         WinningLotto winningLotto = WinningLotto.of(List.of(1,2,3,4,5,6), 7);
 
-        List<Ranking> rankings = lottoTicket.checkRanking(winningLotto);
-        for(Ranking ranking : rankings){
-            System.out.println(ranking);
-        }
+        EnumMap<Ranking, Integer> rankings = lottoTicket.checkRanking(winningLotto);
 
         Assertions.assertThat(rankings)
-                .containsExactly(Ranking.FIRST, Ranking.SECOND, Ranking.FOURTH);
+                .containsEntry(Ranking.FIRST, 1)
+                .containsEntry(Ranking.SECOND, 1)
+                .containsEntry(Ranking.FOURTH, 1);
     }
 
     private List<Lotto> providerLottos() {
