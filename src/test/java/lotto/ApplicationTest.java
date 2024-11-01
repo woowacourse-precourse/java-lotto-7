@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.NoSuchElementException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -44,6 +47,15 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
+    }
+
+    @DisplayName("로또 구입금액이 1000원 단위로 나누어 떨어지지 않는 입력이 들어오면 예외가 발생한다.")
+    @Test
+    void 로또_구입금액이_1000원_단위로_나누어_떨어지지_않는_입력이_들어오면_예외() {
+        assertSimpleTest(() -> {
+            runException("1100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
     @Test
