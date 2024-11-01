@@ -20,13 +20,25 @@ public class WinningNumbers {
     }
 
     public int compareAt(Lotto lotto) {
-        HashSet<Integer> lottoSet = new HashSet<>(lotto.getLotto());
-        HashSet<Integer> winningNumberSet = new HashSet<>(numbers);
-        lottoSet.retainAll(winningNumberSet);
+        HashSet<Integer> lottoSet = initializeSet(lotto.getLotto());
+        HashSet<Integer> winningNumberSet = initializeSet(numbers);
+        getCommonNumber(lottoSet, winningNumberSet);
         return lottoSet.size();
     }
 
     public boolean containAt(int bonusNumber) {
+        return isContained(bonusNumber);
+    }
+
+    private void getCommonNumber(HashSet<Integer> lottoSet, HashSet<Integer> winningNumberSet) {
+        lottoSet.retainAll(winningNumberSet);
+    }
+
+    private HashSet<Integer> initializeSet(List<Integer> lotto) {
+        return new HashSet<>(lotto);
+    }
+
+    private boolean isContained(int bonusNumber) {
         return numbers.stream()
                 .anyMatch(number -> isBonusNumber(bonusNumber, number));
     }
