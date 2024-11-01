@@ -14,4 +14,12 @@ public class LottoResult {
     public static LottoResult of(Rank rank, int matchCount) {
         return new LottoResult(rank, matchCount);
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
 }
