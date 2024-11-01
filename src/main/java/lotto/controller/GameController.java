@@ -1,16 +1,20 @@
 package lotto.controller;
 
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameController {
 
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public GameController(InputView inputView) {
+    public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -23,7 +27,7 @@ public class GameController {
         try {
             InputValidator.validateMoneyInput(moneyInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             return getMoney();
         }
         return new BigInteger(moneyInput);
@@ -34,8 +38,9 @@ public class GameController {
         try {
             InputValidator.validateWinningNumbers(numbersInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e);
             return getWinningNumbers();
         }
+        return Arrays.stream(numbersInput.split(",")).map(Integer::parseInt).toList();
     }
 }
