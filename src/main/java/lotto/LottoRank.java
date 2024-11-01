@@ -3,11 +3,36 @@ package lotto;
 import java.util.Arrays;
 
 public enum LottoRank {
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
-    FOURTH(4, 50_000),
-    FIFTH(3, 5_000);
+    FIRST(6, 2_000_000_000) {
+        @Override
+        int calculateRevenue() {
+            return FIRST.reward * FIRST.match;
+        }
+    },
+    SECOND(5, 30_000_000) {
+        @Override
+        int calculateRevenue() {
+            return SECOND.reward * SECOND.match;
+        }
+    },
+    THIRD(5, 1_500_000) {
+        @Override
+        int calculateRevenue() {
+            return THIRD.reward * THIRD.match;
+        }
+    },
+    FOURTH(4, 50_000) {
+        @Override
+        int calculateRevenue() {
+            return FOURTH.reward * FOURTH.match;
+        }
+    },
+    FIFTH(3, 5_000) {
+        @Override
+        int calculateRevenue() {
+            return FIFTH.reward * FIFTH.match;
+        }
+    };
 
     private final int matchCount;
     private final int reward;
@@ -29,7 +54,7 @@ public enum LottoRank {
 
     public static LottoRank matchRank(int matchCount, boolean isMatchedBonus) {
         if (matchCount == 5 && isMatchedBonus) {
-            LottoRank.SECOND.match++;
+            increaseMatch(LottoRank.SECOND);
             return LottoRank.SECOND;
         }
 
@@ -47,4 +72,6 @@ public enum LottoRank {
     private static void increaseMatch(LottoRank rank) {
         rank.match++;
     }
+
+    abstract int calculateRevenue();
 }

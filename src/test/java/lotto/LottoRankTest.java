@@ -37,4 +37,13 @@ public class LottoRankTest {
 
         assertThat(rank.getMatch()).isEqualTo(1);
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"6:true:2000000000", "5:true:30000000", "5:false:1500000", "4:true:50000",
+            "3:false:5000"}, delimiter = ':')
+    void 등수별_수익_계산(int matchCount, boolean isMatchedBonus, int expectedRevenue) {
+        LottoRank rank = LottoRank.matchRank(matchCount, isMatchedBonus);
+
+        assertThat(rank.calculateRevenue()).isEqualTo(expectedRevenue);
+    }
 }
