@@ -1,10 +1,21 @@
-package lotto.validation;
+package lotto.model;
 
 import java.util.List;
 
-import static lotto.message.ErrorMessage.*;
 import static lotto.Constants.*;
-public class LottoGameValidation {
+import static lotto.message.ErrorMessage.*;
+
+public class WinningNumbers {
+    private List<Integer> winningNumbers;
+
+    public WinningNumbers(List<Integer> winningNumbers) {
+        validateWinningNumbers(winningNumbers);
+        this.winningNumbers = winningNumbers;
+    }
+
+    public List<Integer> getWinningNumbers(){
+        return winningNumbers;
+    }
 
     public static void validateWinningNumbers(List<Integer> winningNumbers){
         validateWinningNumbersCount(winningNumbers);
@@ -43,5 +54,4 @@ public class LottoGameValidation {
             }
         }
     }
-
 }

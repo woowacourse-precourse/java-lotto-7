@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.LottoGame;
 import lotto.model.User;
+import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 
@@ -23,8 +25,8 @@ public class LottoController {
         int buyAmount = InputView.inputBuyAmount();
         user = new User(buyAmount);
         lottoService.buyLottos(user);
-        List<Integer> winningNumbers = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusNumber();
+        WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers());
+        BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber());
         lottoGame = new LottoGame(winningNumbers, bonusNumber);
     }
 }
