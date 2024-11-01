@@ -14,6 +14,10 @@ public class Lottos {
         generateLottos(count);
     }
 
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }
