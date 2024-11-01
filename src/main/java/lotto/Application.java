@@ -11,7 +11,7 @@ public class Application {
         int purchaseAmount = purchaseLottos();
         List<Lotto> lottos = issueLottos(purchaseAmount);
         printIssuedLottos(lottos);
-        String winningNumbers = inputWinningNumbers();
+        Lotto winningNumbers = pickWinningNumbers();
     }
 
     private static int purchaseLottos() {
@@ -51,15 +51,32 @@ public class Application {
 
     }
 
-    private static String inputWinningNumbers() {
+    private static Lotto pickWinningNumbers() {
         try {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String winningNumbersInput = Console.readLine();
-            validateInputValue(winningNumbersInput);
-            return winningNumbersInput;
+            String winningNumbersInput = inputWinningNumbers();
+            return registerWinningNumbers(winningNumbersInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinningNumbers();
+            return pickWinningNumbers();
+        }
+    }
+
+    private static String inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbersInput = Console.readLine();
+        validateInputValue(winningNumbersInput);
+        return winningNumbersInput;
+    }
+
+    public static Lotto registerWinningNumbers(String winningNumbersInput) {
+        try {
+            List<Integer> winningNumbers = new ArrayList<>();
+            for (String winningNumber : winningNumbersInput.split(",", -1)) {
+                winningNumbers.add(Integer.parseInt(winningNumber.trim()));
+            }
+            return new Lotto(winningNumbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자값만 입력해주세요.");
         }
     }
 
@@ -105,6 +122,4 @@ public class Application {
                 .sorted() // 오름차순 정렬
                 .collect(Collectors.toList());
     }
-
-
 }
