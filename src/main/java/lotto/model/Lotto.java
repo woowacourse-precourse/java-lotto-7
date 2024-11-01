@@ -22,7 +22,8 @@ public class Lotto {
 
     private void validate(LottoNumbers numbers) {
         if (!numbers.hasSize(LOTTO_NUMBER_SIZE)) {
-            throw LottoNumberInvalidException.lottoNumberSize();
+            String detail = String.format("로또 번호의 개수는 %d 개여야 합니다.", LOTTO_NUMBER_SIZE);
+            throw LottoNumberInvalidException.lottoNumberSize(detail);
         }
         if (!numbers.hasUniqueElements()) {
             throw LottoNumberInvalidException.lottoNumberDuplicate();

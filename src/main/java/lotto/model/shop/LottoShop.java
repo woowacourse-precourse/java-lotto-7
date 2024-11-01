@@ -18,11 +18,13 @@ public class LottoShop {
 
     private void validateMoney(int money) {
         if (money < LOTTO_PRICE) {
-            throw PurchaseMoneyInvalidException.lottoMoneyTooSmall();
+            String detail = String.format("로또 구매 금액은 %d원 이상이어야 합니다.", LOTTO_PRICE);
+            throw PurchaseMoneyInvalidException.lottoMoneyTooSmall(detail);
         }
 
         if (money % LOTTO_PRICE != 0) {
-            throw PurchaseMoneyInvalidException.lottoMoneyNotDivisible();
+            String detail = String.format("로또 구매는 %d원 단위로만 가능합니다.", LOTTO_PRICE);
+            throw PurchaseMoneyInvalidException.lottoMoneyNotDivisible(detail);
         }
     }
 }

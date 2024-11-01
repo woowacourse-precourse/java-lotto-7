@@ -20,7 +20,8 @@ public class LottoNumber {
 
     private static void validate(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw LottoNumberInvalidException.lottoNumberRange();
+            String detail = String.format("로또 번호의 범위는 %d부터 %d까지 입니다.", MIN_NUMBER, MAX_NUMBER);
+            throw LottoNumberInvalidException.lottoNumberRange(detail);
         }
     }
 

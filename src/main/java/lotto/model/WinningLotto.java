@@ -32,7 +32,8 @@ public class WinningLotto {
 
     private void validateNumbers(LottoNumbers numbers) {
         if (!numbers.hasSize(WINNING_LOTTO_NUMBER_SIZE)) {
-            throw LottoNumberInvalidException.lottoNumberSize();
+            String detail = String.format("당첨 로또 번호의 개수는 %d 개여야 합니다.", WINNING_LOTTO_NUMBER_SIZE);
+            throw LottoNumberInvalidException.lottoNumberSize(detail);
         }
         if (!numbers.hasUniqueElements()) {
             throw LottoNumberInvalidException.lottoNumberDuplicate();
