@@ -37,4 +37,9 @@ public class Lotto {
         }
     }
 
+    public long getMatchedNumbersCount(List<Integer> winningNumbers) {
+        return numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
 }
