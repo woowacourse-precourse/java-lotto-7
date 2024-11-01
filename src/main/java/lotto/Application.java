@@ -9,9 +9,11 @@ public class Application {
     public static final String CREDIT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     public static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static int pieces;
     public static List<Lotto> lottos = new ArrayList<>();
     public static List<Integer> winningNumbers = new ArrayList<>();
+    public static int bonusNumber;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println(CREDIT_MESSAGE);
@@ -24,13 +26,18 @@ public class Application {
             int newCredit = Integer.parseInt(Console.readLine());
             pieces = checkCredit(newCredit);
         }
+        System.out.println();
         System.out.println(pieces + "개를 구매했습니다.");
         publishLotto();
         for(Lotto lotto : lottos) {
             printLottos(lotto);
         }
+        System.out.println();
         System.out.println(WINNING_NUMBER_MESSAGE);
         getWinningNumbers(Console.readLine());
+        System.out.println();
+        System.out.println(BONUS_NUMBER_MESSAGE);
+        bonusNumber = Integer.parseInt(Console.readLine());
     }
 
     public static int checkCredit(int credit) throws IllegalArgumentException {
