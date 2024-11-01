@@ -38,4 +38,17 @@ public class InputView {
             }
         }
     }
+
+    private List<Integer> getInputBonusNumber() {
+        while (true) {
+            promptBonusNumber();
+            String bonusNumberInput = getInput();
+            try {
+                numbersValidator.validateBonusNumber(bonusNumberInput);
+                return numbersValidator.getBonusNumber();
+            } catch (IllegalArgumentException e) {
+                print(e.getMessage());
+            }
+        }
+    }
 }
