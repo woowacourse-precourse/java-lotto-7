@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,7 +33,7 @@ public class AdditionalApplicationTest {
         String testNumber = null;
 
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.validateInputValue(testNumber))
+                        () -> Application.validateInputValue(testNumber))
                 .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
@@ -40,7 +41,7 @@ public class AdditionalApplicationTest {
     @ValueSource(strings = {"", " "})
     void 금액_빈_문자열일시_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.validateInputValue(testNumber))
+                        () -> Application.validateInputValue(testNumber))
                 .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
@@ -48,7 +49,7 @@ public class AdditionalApplicationTest {
     @ValueSource(strings = {"-20.2, -1.0, 0.5, 2.0, 2.5, 3.24321"})
     void 금액이_정수가_아니면_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.validateInputInteger(testNumber))
+                        () -> Application.validateInputInteger(testNumber))
                 .withMessage("[ERROR] 양의 정수를 입력해주세요.");
     }
 
@@ -56,7 +57,7 @@ public class AdditionalApplicationTest {
     @ValueSource(strings = {"-20, -1, 0"})
     void 금액이_양수가_아니면_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.validateInputInteger(testNumber))
+                        () -> Application.validateInputInteger(testNumber))
                 .withMessage("[ERROR] 양의 정수를 입력해주세요.");
     }
 
@@ -64,12 +65,13 @@ public class AdditionalApplicationTest {
     @ValueSource(strings = {"10000000000", "123456789123456789"})
     void 금액이_10자리를_넘어가면_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.validateInputInteger(testNumber))
+                        () -> Application.validateInputInteger(testNumber))
                 .withMessage("[ERROR] 10자리 이하의 금액을 입력해주세요.");
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"1000:1", "5000:5", "11000:11", "25000:25", "303000:303", "1474134000:1474134", "1000000000:1000000"}, delimiter = ':')
+    @CsvSource(value = {"1000:1", "5000:5", "11000:11", "25000:25", "303000:303", "1474134000:1474134",
+            "1000000000:1000000"}, delimiter = ':')
     void 금액을_1000으로_나누어_개수를_구한다(String testNumber, int expected) {
         int lottoAmount = Application.countLottoAmount(testNumber);
 
@@ -80,7 +82,7 @@ public class AdditionalApplicationTest {
     @ValueSource(strings = {"1", "10", "1002", "2524", "100001", "100020"})
     void 금액이_1000으로_나누어떨어지지_않으면_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.countLottoAmount(testNumber))
+                        () -> Application.countLottoAmount(testNumber))
                 .withMessage("[ERROR] 1000 단위의 금액을 입력해주세요.");
     }
 
@@ -93,7 +95,7 @@ public class AdditionalApplicationTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4 ,5})
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5})
     void 랜덤넘버_6개를_뽑아_로또를_한장_발행한다(int lottoNumbersIndex) {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Lotto lotto = Application.issueOneLotto(randomNumbers);
@@ -122,7 +124,7 @@ public class AdditionalApplicationTest {
     @ValueSource(strings = {"", " "})
     void 당첨번호_빈_문자열일시_예외(String testNumber) {
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Application.validateInputValue(testNumber))
+                        () -> Application.validateInputValue(testNumber))
                 .withMessage("[ERROR] 값을 입력해주세요.");
     }
 
@@ -211,26 +213,28 @@ public class AdditionalApplicationTest {
     @ParameterizedTest
     @ValueSource(strings = {"-1", "0", "46"})
     void 보너스번호_1이상_45이하가_아니면_예외(String testNumber) {
-        assertThatIllegalArgumentException().isThrownBy(() -> Application.registerBonusNumber(testNumber, defaultWinningNumbers))
+        assertThatIllegalArgumentException().isThrownBy(
+                        () -> Application.registerBonusNumber(testNumber, defaultWinningNumbers))
                 .withMessage("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
     }
 
     @Test
     void 보너스번호_당첨번호와_중복되면_예외() {
         int testNumber = 1;
-        assertThatIllegalArgumentException().isThrownBy(() -> defaultWinningNumbers.validateDuplicationWithBonusNumber(testNumber))
+        assertThatIllegalArgumentException().isThrownBy(
+                        () -> defaultWinningNumbers.validateDuplicationWithBonusNumber(testNumber))
                 .withMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 값입니다.");
     }
 
     @ParameterizedTest
-    @MethodSource("lottoProvider")
-    void 당첨번호와_로또의_일치개수를_확인한다(int matchingAmount, List<Integer> numbers) {
+    @MethodSource("lottoWithMatchingNumberProvider")
+    void 당첨번호와_로또의_일치개수를_확인한다(int expectedMatchingAmount, List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
 
-        assertThat(defaultWinningNumbers.drawEachLotto(lotto)).isEqualTo(matchingAmount);
+        assertThat(defaultWinningNumbers.drawEachLotto(lotto)).isEqualTo(expectedMatchingAmount);
     }
 
-    static Stream<Object[]> lottoProvider() {
+    static Stream<Object[]> lottoWithMatchingNumberProvider() {
         return Stream.of(
                 new Object[]{6, Arrays.asList(1, 2, 3, 4, 5, 6)}, //6개 일치
                 new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 7)}, //5개 일치
@@ -238,7 +242,8 @@ public class AdditionalApplicationTest {
                 new Object[]{4, Arrays.asList(1, 2, 3, 4, 8, 9)}, //4개 일치
                 new Object[]{3, Arrays.asList(1, 2, 3, 8, 9, 10)}, //3개 일치
                 new Object[]{2, Arrays.asList(1, 2, 8, 9, 10, 11)}, //2개 일치
-                new Object[]{1, Arrays.asList(1, 8, 9, 10, 11, 12)}
+                new Object[]{1, Arrays.asList(1, 8, 9, 10, 11, 12)}, //1개 일치
+                new Object[]{0, Arrays.asList(8, 9, 10, 11, 12, 13)} //0개 일치
         );
     }
 
@@ -256,7 +261,52 @@ public class AdditionalApplicationTest {
         assertThat(Application.drawBonusNumber(lotto, defaultBonusNumber)).isFalse();
     }
 
+    @ParameterizedTest
+    @MethodSource("lottoWithWinningRankProvider")
+    void 로또의_당첨_등수를_확인한다(WinningRank expectedWinningRank, int matchingAmount, List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        boolean matchesBonusNumber = numbers.contains(defaultBonusNumber);
 
+        assertThat(WinningRank.findWinningStatusByMatchingAmount(matchingAmount, matchesBonusNumber))
+                .isEqualTo(expectedWinningRank);
+    }
+
+    static Stream<Object[]> lottoWithWinningRankProvider() {
+        return Stream.of(
+                new Object[]{WinningRank.FIRST, 6, Arrays.asList(1, 2, 3, 4, 5, 6)}, //6개 일치
+                new Object[]{WinningRank.SECOND, 5, Arrays.asList(1, 2, 3, 4, 5, 7)}, //5개 일치
+                new Object[]{WinningRank.THIRD, 5, Arrays.asList(1, 2, 3, 4, 5, 8)}, //5개 일치
+                new Object[]{WinningRank.FOURTH, 4, Arrays.asList(1, 2, 3, 4, 8, 9)}, //4개 일치
+                new Object[]{WinningRank.FIFTH, 3, Arrays.asList(1, 2, 3, 8, 9, 10)}, //3개 일치
+                new Object[]{WinningRank.FAIL, 2, Arrays.asList(1, 2, 8, 9, 10, 11)}, //2개 일치
+                new Object[]{WinningRank.FAIL, 1, Arrays.asList(1, 8, 9, 10, 11, 12)}, //1개 일치
+                new Object[]{WinningRank.FAIL, 0, Arrays.asList(8, 9, 10, 11, 12, 13)} //0개 일치
+        );
+    }
+
+    @Test
+    void 등수별_당첨된_로또_개수를_구한다() {
+        List<Lotto> lottos = new ArrayList<>(Arrays.asList(
+                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))),
+                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7))),
+                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 8))),
+                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 8, 9))),
+                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 8, 9, 10))),
+                new Lotto(new ArrayList<>(Arrays.asList(1, 2, 8, 9, 10, 11))),
+                new Lotto(new ArrayList<>(Arrays.asList(1, 8, 9, 10, 11, 12))),
+                new Lotto(new ArrayList<>(Arrays.asList(8, 9, 10, 11, 12, 13)))
+        ));
+
+        Map<WinningRank, Integer> winningResult = Application.drawLottos(lottos, defaultWinningNumbers,
+                defaultBonusNumber);
+
+        assertThat(winningResult.get(WinningRank.FIRST)).isEqualTo(1);
+        assertThat(winningResult.get(WinningRank.SECOND)).isEqualTo(1);
+        assertThat(winningResult.get(WinningRank.THIRD)).isEqualTo(1);
+        assertThat(winningResult.get(WinningRank.FOURTH)).isEqualTo(1);
+        assertThat(winningResult.get(WinningRank.FIFTH)).isEqualTo(1);
+        assertThat(winningResult.get(WinningRank.FAIL)).isEqualTo(3);
+    }
 
 
 }

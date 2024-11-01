@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -74,12 +76,25 @@ public class Application {
         }
     }
 
-    public static void drawLottos(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+    public static Map<WinningRank, Integer> drawLottos(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+        Map<WinningRank, Integer> winningResult = initializeWinningResult();
         for (Lotto lotto : lottos) {
             int matchingAmount = winningNumbers.drawEachLotto(lotto);
             boolean matchesBonusNumber = drawBonusNumber(lotto, bonusNumber);
+            WinningRank winningRank = WinningRank.findWinningStatusByMatchingAmount(matchingAmount, matchesBonusNumber);
 
+            int lastWinningLottoAmount = winningResult.get(winningRank);
+            winningResult.replace(winningRank, lastWinningLottoAmount + 1);
         }
+        return winningResult;
+    }
+
+    private static Map<WinningRank, Integer> initializeWinningResult() {
+        Map<WinningRank, Integer> winningResult = new HashMap<>();
+        for (WinningRank winningRank : WinningRank.values()) {
+            winningResult.put(winningRank, 0);
+        }
+        return winningResult;
     }
 
     public static boolean drawBonusNumber(Lotto lotto, int bonusNumber) {
