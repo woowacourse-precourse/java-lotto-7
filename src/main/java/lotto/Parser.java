@@ -14,4 +14,8 @@ public class Parser {
             .stream(winningNumbers.split(WINNING_NUMBER_OPERATOR))
             .mapToInt(Integer::parseInt).toArray();
     }
+
+    int bonusNumber(String bonusNumberInput) {
+        return Integer.parseInt(bonusNumberInput);
+    }
 }
