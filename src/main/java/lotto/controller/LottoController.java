@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.function.Supplier;
+import lotto.model.Money;
 import lotto.util.MoneyParser;
 import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
@@ -15,7 +17,19 @@ public class LottoController {
     }
 
     public void play() {
-        long test = getMoney();
+        Money money = new Money(tryUntilSuccess(this::getMoney));
+
+
+    }
+
+    private <T> T tryUntilSuccess(Supplier<T> function) {
+        while (true) {
+            try {
+                return function.get();
+            } catch (IllegalArgumentException errorMessage) {
+                outputView.print(String.valueOf(errorMessage));
+            }
+        }
     }
 
     private long getMoney() {
