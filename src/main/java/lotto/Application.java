@@ -25,6 +25,10 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         Lotto winningLotto = Input.validate(Input::parseWinningLotto);
         System.out.println();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Input.validate(Input::parseBonusNumber);
+        System.out.println();
     }
 
 }

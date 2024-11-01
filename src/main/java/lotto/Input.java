@@ -44,6 +44,23 @@ public class Input {
         return new Lotto(numbers);
     }
 
+    public static int parseBonusNumber(String input) {
+        if (input.length() > 2) { // 최대 길이 : 두자리 수 일때 2
+            throw new IllegalArgumentException("[ERROR] 입력이 너무 깁니다.");
+        }
+        for (int i = 0; i < input.length(); i++) {
+            if (!Character.isDigit(input.charAt(i))) {
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
+            }
+        }
+        int bonusNumber = Integer.parseInt(input);
+        if (bonusNumber > 45 || bonusNumber < 1){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+        }
+
+        return bonusNumber;
+    }
+
     public static <T> T validate(Function<String, T> inputFunction) {
         while (true) {
             try {
