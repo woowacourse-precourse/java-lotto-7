@@ -1,6 +1,6 @@
 package lotto.domain.validator;
 
-import static lotto.common.exception.ErrorMessages.*;
+import static lotto.common.constant.ErrorMessages.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;

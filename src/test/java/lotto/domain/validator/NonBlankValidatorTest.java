@@ -1,6 +1,6 @@
 package lotto.domain.validator;
 
-import static lotto.common.exception.ErrorMessages.BLANK_NOT_ALLOWED;
+import static lotto.common.constant.ErrorMessages.BLANK_NOT_ALLOWED;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;

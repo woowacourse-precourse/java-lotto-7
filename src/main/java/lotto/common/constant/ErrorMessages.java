@@ -1,4 +1,4 @@
-package lotto.common.exception;
+package lotto.common.constant;
 
 import static lotto.common.constant.LottoConstant.*;
 

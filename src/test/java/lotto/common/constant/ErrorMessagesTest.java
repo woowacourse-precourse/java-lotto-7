@@ -1,6 +1,6 @@
-package lotto.common.exception;
+package lotto.common.constant;
 
-import static lotto.common.exception.ErrorMessages.*;
+import static lotto.common.constant.ErrorMessages.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;

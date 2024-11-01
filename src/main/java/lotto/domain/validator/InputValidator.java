@@ -3,8 +3,7 @@ package lotto.domain.validator;
 import java.util.List;
 
 public interface InputValidator {
-    default void validate(String input) {
-    }
+    void validate(String input);
 
     void validate(List<Integer> numbers);
 }

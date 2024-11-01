@@ -1,5 +1,7 @@
 package lotto.domain.factory;
 
+import static lotto.common.constant.LottoConstant.*;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,7 +11,6 @@ import lotto.common.util.RandomsWrapper;
 import lotto.domain.entity.Lotto;
 
 public class LottoFactory {
-    private static final int LOTTO_NUMBER_LENGTH = 6;
 
     public static Lotto createAutoLotto() {
         return new Lotto(generateNumbers());
@@ -17,7 +18,7 @@ public class LottoFactory {
 
     private static List<Integer> generateNumbers() {
         Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < LOTTO_NUMBER_LENGTH) {
+        while (numbers.size() < LENGTH.getValue()) {
             numbers.add(generateRandomNumber());
         }
         return new ArrayList<>(numbers);
@@ -25,5 +26,9 @@ public class LottoFactory {
 
     private static Integer generateRandomNumber() {
         return RandomsWrapper.getInt();
+    }
+
+    public static Lotto from(String input) {
+        return new Lotto(input);
     }
 }

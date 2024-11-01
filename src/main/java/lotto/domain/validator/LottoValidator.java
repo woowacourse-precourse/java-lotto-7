@@ -1,7 +1,7 @@
 package lotto.domain.validator;
 
 import static lotto.common.constant.LottoConstant.*;
-import static lotto.common.exception.ErrorMessages.*;
+import static lotto.common.constant.ErrorMessages.*;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package lotto.domain.validator;
 
-import static lotto.common.exception.ErrorMessages.BLANK_NOT_ALLOWED;
+import static lotto.common.constant.ErrorMessages.BLANK_NOT_ALLOWED;
 
 import java.util.List;
 

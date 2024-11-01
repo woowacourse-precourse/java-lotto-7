@@ -12,6 +12,7 @@ import lotto.domain.vo.LottoNumbers;
 public class Lotto {
     private static final InputValidator nonBlankValidator = new NonBlankValidator();
     private static final InputValidator validator = new LottoValidator();
+    private static final String SHOULD_NOT_BE_END_SEPARATOR = "마지막 글자로 구분자는 허용되지 않습니다";
     private static final String SEPARATOR = ",";
 
     private final List<Integer> numbers;
@@ -21,12 +22,26 @@ public class Lotto {
         this.numbers = sortNumbers(numbers);
     }
 
-    public static Lotto from(String input) {
-        nonBlankValidator.validate(input);
-        return new Lotto(parseInputNumbers(input));
+    public Lotto(String input) {
+        List<Integer> numbers = validateInputNumbers(input);
+        this.numbers = sortNumbers(numbers);
     }
 
-    private static List<Integer> parseInputNumbers(String input) {
+    private List<Integer> validateInputNumbers(String input) {
+        nonBlankValidator.validate(input);
+        validateEndingSeparator(input);
+        List<Integer> numbers = parseInputNumbers(input);
+        validator.validate(numbers);
+        return numbers;
+    }
+
+    private void validateEndingSeparator(String input) {
+        if (input.endsWith(SEPARATOR)) {
+            throw new IllegalArgumentException(SHOULD_NOT_BE_END_SEPARATOR);
+        }
+    }
+
+    private List<Integer> parseInputNumbers(String input) {
         return Arrays.stream(input.trim().split(SEPARATOR))
             .map(String::trim)
             .peek(Lotto::validateEachNumber)

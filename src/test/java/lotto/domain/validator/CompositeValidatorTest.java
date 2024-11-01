@@ -10,6 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class CompositeValidatorTest {
+    private static class TestValidator implements InputValidator {
+
+        @Override
+        public void validate(String input) {
+            throw new IllegalArgumentException("Input is wrong");
+        }
+
+        @Override
+        public void validate(List<Integer> numbers) {
+        }
+    }
+
     @Test
     @DisplayName("모든 validator가 검증을 통과하면 예외가 발생하지 않는다")
     void validateShouldPassWhenAllValidatorsPass() {
@@ -29,16 +41,14 @@ class CompositeValidatorTest {
     void validateShouldThrowExceptionWhenAnyValidatorFails() {
         List<InputValidator> validators = Arrays.asList(
             new NonBlankValidator(),
-            input -> {
-                throw new IllegalArgumentException("Custom validation failed");
-            }
+            new TestValidator()
         );
         CompositeValidator compositeValidator = new CompositeValidator(validators);
-        String input = "valid input";
+        String input = "wrong input";
 
         assertThatThrownBy(() -> compositeValidator.validate(input))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("Custom validation failed");
+            .hasMessage("Input is wrong");
     }
 
     @Test

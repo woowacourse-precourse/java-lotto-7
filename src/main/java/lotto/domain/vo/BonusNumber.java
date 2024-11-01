@@ -1,13 +1,17 @@
 package lotto.domain.vo;
 
 import static lotto.common.constant.LottoConstant.*;
-import static lotto.common.exception.ErrorMessages.*;
+import static lotto.common.constant.ErrorMessages.*;
 
 import lotto.domain.validator.InputValidator;
 import lotto.domain.validator.LottoValidator;
 
 public record BonusNumber(int number) {
     private static final InputValidator validator = new LottoValidator();
+
+    public BonusNumber {
+        validateRange(number);
+    }
 
     public BonusNumber(String input) {
         this(parseAndValidate(input));

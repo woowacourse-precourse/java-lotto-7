@@ -1,6 +1,6 @@
 package lotto.domain.vo;
 
-import static lotto.common.exception.ErrorMessages.ERROR_TAG;
+import static lotto.common.constant.ErrorMessages.ERROR_TAG;
 
 import java.util.List;
 

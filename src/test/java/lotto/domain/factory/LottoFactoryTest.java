@@ -1,5 +1,6 @@
 package lotto.domain.factory;
 
+import static lotto.common.constant.ErrorMessages.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,4 +22,12 @@ class LottoFactoryTest {
             .matches("\\[\\d+(?:,\\s\\d+){5}\\]");
     }
 
+    @Test
+    @DisplayName("문자열로 로또를 생성한다")
+    void WinningLottoShouldBeValidOnBlank() {
+        String input = "1,2,3,4,5,6";
+        Lotto lotto = new Lotto(input);
+        String lottoString = lotto.toString();
+        assertThat(lottoString).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }
