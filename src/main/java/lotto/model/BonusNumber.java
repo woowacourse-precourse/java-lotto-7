@@ -17,4 +17,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
+
+    public Integer getNumber() {
+        return number;
+    }
 }
