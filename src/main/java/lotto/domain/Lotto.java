@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.StringJoiner;
 
 public class Lotto {
@@ -11,6 +14,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicateNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -20,9 +24,18 @@ public class Lotto {
         }
     }
 
-    // 오름차순으로 정렬
-    public void sortNumbers() {
-        Collections.sort(numbers);
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    // 오름차순으로 정렬한 리스트를 새로 반환
+    public List<Integer> sortedNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     // 당첨번호 리스트를 입력받아 맞춘 갯수 반환
