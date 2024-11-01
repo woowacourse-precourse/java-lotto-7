@@ -1,0 +1,35 @@
+package lotto.model;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class WinningLotto {
+    private final List<Integer> numbers;
+    private final Integer bonusNumber;
+
+    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
+
+        this.numbers = numbers;
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateLotto(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+            }
+        }
+    }
+
+    private void validateBonus(Integer bonusNumber) {
+        if (bonusNumber == null || !numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함되지 않아야 합니다.");
+        }
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
+        }
+    }
+}

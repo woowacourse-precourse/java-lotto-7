@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,11 +21,27 @@ public class LottoController {
         OutputView.printLottoNumbers(lottoNumbers);
 
         String inputWinningNumbers = InputView.getWinningNumbers();
-        validateWinningNumbers(inputWinningNumbers);
+        List<Integer> winningNumbers = convertWinningNumbers(inputWinningNumbers);
+
+        String inputBonusNumber = InputView.getBonusNumber();
+        Integer bonus = convertBonusNumber(inputBonusNumber);
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
 
     }
 
-    private static Lotto validateWinningNumbers(String inputWinningNumbers) {
+    private static Integer convertBonusNumber(String inputBonusNumber) {
+        try {
+            Integer bonus = Integer.parseInt(inputBonusNumber);
+            if (bonus < 1 || bonus > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자만 가능합니다.");
+            }
+            return bonus;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static List<Integer> convertWinningNumbers(String inputWinningNumbers) {
         String[] inputNumbers = inputWinningNumbers.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 
@@ -32,7 +49,7 @@ public class LottoController {
             int parsedNumber = parseWinningNumber(number.trim());
             winningNumbers.add(parsedNumber);
         }
-        return new Lotto(winningNumbers);
+        return winningNumbers;
     }
 
     private static int parseWinningNumber(String number) {
