@@ -11,20 +11,26 @@ public class LottoView {
     public int getInputPurchaseAmount() {
         try {
             System.out.println("구매금액을 입력해 주세요.");
-            int amount = Integer.parseInt(Console.readLine());
+            String amount = Console.readLine();
             validateAmount(amount);
-            return amount;
+            return Integer.parseInt(amount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getInputPurchaseAmount();
         }
     }
 
-    private void validateAmount(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+    private void validateAmount(String input) {
+        try {
+            int amount = Integer.parseInt(input);
+            if (amount % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
         }
     }
+
 
     public List<Integer> getInputWinningNumbers() {
         try {
