@@ -7,6 +7,18 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumberValidator {
+    public static void validateWinningNumbersInput(String winningNumbersInput) {
+        ValidationUtils.validateNotBlank(winningNumbersInput, ErrorMessageConstants.EMPTY_WINNING_NUMBERS);
+
+        List<String> numbers = List.of(winningNumbersInput.split(","));
+        numbers.stream()
+                .map(String::trim)
+                .forEach(number -> {
+                    ValidationUtils.validateNotBlank(number, ErrorMessageConstants.EMPTY_WINNING_NUMBERS);
+                    ValidationUtils.validateIsNumber(number, ErrorMessageConstants.INVALID_WINNING_NUMBER_FORMAT);
+                });
+    }
+
     public static void validateWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumberCount(winningNumbers);
         validateWinningNumberRange(winningNumbers);

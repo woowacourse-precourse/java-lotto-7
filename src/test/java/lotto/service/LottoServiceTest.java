@@ -1,6 +1,8 @@
 package lotto.service;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -19,9 +21,10 @@ class LottoServiceTest {
         assertThat(lottoCount).isEqualTo(expectedLottoCount);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6", "1, 2, 3, 4, 5, 6", " 1 , 2 , 3 , 4 , 5 , 6 "})
     void 당첨_번호_입력값_파싱_테스트() {
-        String winningNumbersInput = "1, 2, 3, 4, 5, 6";
+        String winningNumbersInput = "1,2,3,4,5,6";
         List<Integer> expectedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
         List<Integer> parsedWinningNumbers = lottoService.parseWinningNumbers(winningNumbersInput);

@@ -4,27 +4,13 @@ import lotto.constants.ErrorMessageConstants;
 
 public class PurchaseAmountValidator {
     public static void validatePurchaseAmountInput(String purchaseAmountInput) {
-        validateNotBlank(purchaseAmountInput);
-        validateIsNumber(purchaseAmountInput);
+        ValidationUtils.validateNotBlank(purchaseAmountInput, ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
+        ValidationUtils.validateIsNumber(purchaseAmountInput, ErrorMessageConstants.INVALID_NUMBER_FORMAT);
     }
 
     public static void validatePurchaseAmount(int purchaseAmount) {
         validatePositiveAmount(purchaseAmount);
         validateLottoAmountUnit(purchaseAmount);
-    }
-
-    private static void validateNotBlank(String purchaseAmountInput) {
-        if (purchaseAmountInput == null || purchaseAmountInput.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
-        }
-    }
-
-    private static void validateIsNumber(String purchaseAmountInput) {
-        try {
-            Integer.parseInt(purchaseAmountInput);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessageConstants.INVALID_NUMBER_FORMAT);
-        }
     }
 
     private static void validatePositiveAmount(int purchaseAmount) {
