@@ -38,6 +38,9 @@ public class WinningLotto extends Lotto {
         this.bonusNum = bonusNumber;
     }
 
+    public int getBonusNum() {
+        return bonusNum;
+    }
 
     private int validateBonusNumber(String bonusNumber) {
         Validator.isEmptyInput(bonusNumber);

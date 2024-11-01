@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
 import lotto.service.LottoService;
@@ -26,6 +27,12 @@ public class LottoController {
 
         WinningLotto winningLotto = makeWinningNumber();
         addBunusNumber(winningLotto);
+
+        LottoResult lottoResult = compareLottoTicketWithWinningLotto(lottoTicket, winningLotto);
+    }
+
+    private LottoResult compareLottoTicketWithWinningLotto(LottoTicket lottoTicket, WinningLotto winningLotto) {
+        return lottoService.compareLotto(lottoTicket, winningLotto);
     }
 
     private void addBunusNumber(WinningLotto winningLotto) {
