@@ -26,7 +26,7 @@ public class OutputView {
         double profitRatio = lottoStatistic.getProfitRatio();
         String roundedRatio = String.format("%.1f", profitRatio);
 
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         printEachResult(winningResult);
         System.out.println("총 수익률은 " + roundedRatio + "%입니다.");
     }
