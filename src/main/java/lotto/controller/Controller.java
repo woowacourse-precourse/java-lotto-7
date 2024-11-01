@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.service.LottoService;
+import lotto.service.LottoExchanger;
 import lotto.service.Parser;
 import lotto.service.Splitter;
 import lotto.view.InputView;
@@ -30,19 +30,46 @@ public class Controller {
 
     public void playLotto() {
         outputView.showMoneyInputMessage();
-        int money = inputValidator.validate(Parser.toInt(inputView.readLine()));
-        int ticket = LottoService.divideByThousand(money);
+        int money = UntilValidPurchaseMoney();
+        int ticket = LottoExchanger.divideByThousand(money);
 
         outputView.showPurchaseAmount(ticket);
         List<List<Integer>> lottoNumbers = lottoMachine.generateLottoNumbers(ticket);
         outputView.printLotto(lottoNumbers);
 
         outputView.showWinningNumberInputMessage();
-        Lotto lotto = new Lotto(Splitter.splitWinningNumbers(inputView.readLine()));
+        Lotto lotto = UntilValidWinningNumber();
         outputView.showBonusBallInputMessage();
-        BonusBall bonusNumber = new BonusBall(Parser.toInt(inputView.readLine()), lotto.getNumbers());
+        BonusBall bonusNumber = UntilValidBonusBall(lotto);
 
         int[] results = calculateResult.calculateStatistics(lotto.getNumbers(), bonusNumber.getBonusNumber(), lottoNumbers);
         outputView.printStatistics(results, ticket);
+    }
+
+    private int UntilValidPurchaseMoney() {
+        try {
+            return inputValidator.validate(Parser.toInt(inputView.readLine()));
+        } catch (IllegalArgumentException e) {
+            outputView.showErrorMessage(e.getMessage());
+            return (UntilValidPurchaseMoney());
+        }
+    }
+
+    private Lotto UntilValidWinningNumber() {
+        try {
+            return new Lotto(Splitter.splitWinningNumbers(inputView.readLine()));
+        } catch (IllegalArgumentException e) {
+            outputView.showErrorMessage(e.getMessage());
+            return (UntilValidWinningNumber());
+        }
+    }
+
+    private BonusBall UntilValidBonusBall(Lotto lotto) {
+        try {
+            return new BonusBall(Parser.toInt(inputView.readLine()), lotto.getNumbers());
+        } catch (IllegalArgumentException e) {
+            outputView.showErrorMessage(e.getMessage());
+            return (UntilValidBonusBall(lotto));
+        }
     }
 }
