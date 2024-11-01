@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 
 public class InputView {
+
     public static int Purchase(){
-        System.out.println("구입금액을 입력해 주세요.");
         int amount = getPurchaseAmount();
         validatePurchaseAmount(amount);
+        System.out.println();
         return amount;
     }
 
@@ -34,6 +35,7 @@ public class InputView {
                 .collect(Collectors.toList());
 
         new Lotto(winNumbers);
+        System.out.println();
         return winNumbers;
     }
 
