@@ -30,7 +30,7 @@ public class LottoService {
     private final LottoGenerator lottoGenerator;
 
     public int getLottoCountByAmount(int purchaseAmount) {
-        LottoCount lottoCount = new LottoCount(purchaseAmount);
+        LottoCount lottoCount = new LottoCount(purchaseAmount, LOTTO_PRICE);
         return lottoCount.getCount();
     }
 
