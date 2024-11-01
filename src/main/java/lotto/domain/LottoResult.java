@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.WINNERS;
 import static lotto.constants.WinnerConstants.FIFTH_WINNER;
 import static lotto.constants.WinnerConstants.FIRST_WINNER;
 import static lotto.constants.WinnerConstants.FOURTH_WINNER;
@@ -39,11 +40,9 @@ public class LottoResult {
     }
 
     public double calculateRateOfReturn() {
-        double totalRevenue = result.getOrDefault(FIRST_WINNER.getRank(), 0) * FIRST_WINNER.getPrizeMoney()
-                + result.getOrDefault(SECOND_WINNER.getRank(), 0) * SECOND_WINNER.getPrizeMoney()
-                + result.getOrDefault(THIRD_WINNER.getRank(), 0) * THIRD_WINNER.getPrizeMoney()
-                + result.getOrDefault(FOURTH_WINNER.getRank(), 0) * FOURTH_WINNER.getPrizeMoney()
-                + result.getOrDefault(FIFTH_WINNER.getRank(), 0) * FIFTH_WINNER.getPrizeMoney();
+        double totalRevenue = WINNERS.stream()
+                .mapToDouble(winner -> result.getOrDefault(winner.getRank(), 0) * winner.getPrizeMoney())
+                .sum();
 
         int totalInvest = count * LOTTO_PRICE;
         double rateOfReturn = (totalRevenue / totalInvest) * 100;

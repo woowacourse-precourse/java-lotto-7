@@ -1,10 +1,6 @@
 package lotto.view;
 
-import static lotto.constants.WinnerConstants.FIFTH_WINNER;
-import static lotto.constants.WinnerConstants.FIRST_WINNER;
-import static lotto.constants.WinnerConstants.FOURTH_WINNER;
-import static lotto.constants.WinnerConstants.SECOND_WINNER;
-import static lotto.constants.WinnerConstants.THIRD_WINNER;
+import static lotto.constants.LottoConstants.WINNERS;
 
 import java.util.List;
 import lotto.dto.LottoDto;
@@ -27,16 +23,15 @@ public class OutputView {
 
     public void printWinningDetail(LottoResultDto dto) {
         System.out.println(WINNING_STATISTICS);
-        System.out.printf(PRIZE_DETAIL, FIFTH_WINNER.getMatchCount(), FIFTH_WINNER.getPrizeMoney(),
-                dto.result().getOrDefault(FIFTH_WINNER.getRank(), 0));
-        System.out.printf(PRIZE_DETAIL, FOURTH_WINNER.getMatchCount(), FOURTH_WINNER.getPrizeMoney(),
-                dto.result().getOrDefault(FOURTH_WINNER.getRank(), 0));
-        System.out.printf(PRIZE_DETAIL, THIRD_WINNER.getMatchCount(), THIRD_WINNER.getPrizeMoney(),
-                dto.result().getOrDefault(THIRD_WINNER.getRank(), 0));
-        System.out.printf(PRIZE_DETAIL, SECOND_WINNER.getMatchCount(), SECOND_WINNER.getPrizeMoney(),
-                dto.result().getOrDefault(SECOND_WINNER.getRank(), 0));
-        System.out.printf(PRIZE_DETAIL, FIRST_WINNER.getMatchCount(), FIRST_WINNER.getPrizeMoney(),
-                dto.result().getOrDefault(FIRST_WINNER.getRank(), 0));
+
+        WINNERS.forEach(winner -> {
+            System.out.printf(
+                    PRIZE_DETAIL,
+                    winner.getMatchCount(),
+                    winner.getPrizeMoney(),
+                    dto.result().getOrDefault(winner.getRank(), 0)
+            );
+        });
     }
 
     public void printRevenueResult(LottoResultDto dto) {
