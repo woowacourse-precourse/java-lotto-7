@@ -8,10 +8,10 @@ import java.util.List;
 
 public class PurchasedLottos {
 
-    private final List<Lotto> lottos;
+    private final List<Lotto> purchaseLottos;
 
     private PurchasedLottos(final int count) {
-        lottos = new ArrayList<>();
+        purchaseLottos = new ArrayList<>();
 
     }
 
@@ -26,7 +26,7 @@ public class PurchasedLottos {
                     LottoConstant.MAX_LOTTO_NUMBER,
                     LottoConstant.LOTTO_SIZE
             );
-            lottos.add(Lotto.from(numbers));
+            purchaseLottos.add(Lotto.from(numbers));
         }
     }
 }
