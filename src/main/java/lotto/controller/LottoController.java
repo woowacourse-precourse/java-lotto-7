@@ -39,16 +39,16 @@ public class LottoController {
         return new Money(givenMoney);
     }
 
+    private Lottos getLottos(Money money) {
+        LottoShop lottoShop = new LottoShop();
+        return lottoShop.buyLottos(money.getTicket());
+    }
+
     private WinningLotto getWinningLotto() {
         InputHandler inputHandler = new InputHandler(new Validator());
         List<Integer> winningLottoNumbers = inputHandler.getInputForWinningNumber();
         Integer bonusNumber = inputHandler.getInputForBonusNumber();
         return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
-    }
-
-    private Lottos getLottos(Money money) {
-        LottoShop lottoShop = new LottoShop();
-        return lottoShop.buyLottos(money.getTicket());
     }
 
     private double calculateRateOfReturn(long earnedMoney, long spentMoney) {
