@@ -100,3 +100,4 @@ interface를 적극 활용
 
 -> InputManager needs refactoring 함수가 너무 길어요
 -> Output 가격을 좀 더 잘 출력할 수 있는 부분 refactoring 대상.
+-> (6,1) 케이스가 잘못 나올 텐데 그 부분을 고칠 필요가 있어요
