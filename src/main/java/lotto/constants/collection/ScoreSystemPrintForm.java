@@ -5,7 +5,7 @@ import lotto.constants.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum ScoreSystemPrintForm implements Constants<List> {
+public enum ScoreSystemPrintForm implements Constants<List<String>> {
 
     DEFAULT(List.of("3개 일치 (5,000원) - %d개",
             "4개 일치 (50,000원) - %d개",
