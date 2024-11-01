@@ -23,6 +23,12 @@ public class InputModelTest {
         assertThat(InputModel.convertText("1,2,3,4,5,6")).isEqualTo(numbers);
     }
 
+    @Test
+    void 조건에_맞는_보너스번호_문자열을_입력하면_보너스번호를_숫자로_반환한다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThat(InputModel.validateBonusNumber("7", numbers)).isEqualTo(7);
+    }
+
     @ParameterizedTest
     @CsvSource(value = {
             "990:[ERROR] 구입금액은 1000원 이상이어야 합니다.",
@@ -56,6 +62,29 @@ public class InputModelTest {
     @NullSource
     void 당첨번호에_빈_값을_입력했을_경우_예외_테스트(String input) {
         assertThatThrownBy(() -> InputModel.convertText(input)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 빈 입력입니다.");
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "6:[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.",
+            "47:[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.",
+            "n:[ERROR] 숫자를 입력해야 합니다."
+    }, delimiter = ':')
+    void 보너스번호의_입력조건을_맞추지_않은_경우_예외_테스트(String input, String errorMessage) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> InputModel.validateBonusNumber(input, numbers)
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(errorMessage);
+    }
+
+    @ParameterizedTest
+    @EmptySource
+    @NullSource
+    void 보너스번호에_빈_값을_입력했을_경우_예외_테스트(String input) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> InputModel.validateBonusNumber(input, numbers)
         ).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 빈 입력입니다.");
     }
