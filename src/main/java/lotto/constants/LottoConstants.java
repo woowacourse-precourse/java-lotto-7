@@ -36,9 +36,11 @@ public class LottoConstants {
 
     // NumbersValidator 클래스
     public static final String ERROR_MESSAGE_BEGINNING = "[ERROR]";
+    public static final String INPUT_DELIMITER = ",";
+    public static final String WINNING = "당첨";
+    public static final String BONUS = "보너스";
     public static final Map<String, Integer> LENGTH_BY_NUMBER_TYPE = Map.of(
-            "당첨", 6,
-            "보너스", 1
+            WINNING, 6,
+            BONUS, 1
     );
-
 }
