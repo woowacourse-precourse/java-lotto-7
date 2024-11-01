@@ -7,7 +7,9 @@ import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -28,6 +30,13 @@ public class LottoController {
         List<Score> scores = lottos.stream().map(lotto -> Score.calculateScore(lotto, winningLotto)).toList();
 
         double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
+
+        Map<Score, Integer> scoreMap = new LinkedHashMap<>();
+        scores.forEach(score -> {
+            scoreMap.put(score, scoreMap.getOrDefault(score, 0) + 1);
+        });
+
+        outputView.printScores(scoreMap);
     }
 
     public List<Lotto> purchaseLotto() {
