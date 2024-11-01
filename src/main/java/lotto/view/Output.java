@@ -13,14 +13,15 @@ public class Output {
 
     public static void printPurchasedLottoList(Wallet wallet, RandomLottos randomLottos) {
         System.out.println();
-        System.out.printf("%s개를 구매했습니다.\n", wallet);
-        System.out.println(randomLottos);
+        System.out.printf("%s개를 구매했습니다.\n", wallet.getTicket());
+        System.out.print(randomLottos);
     }
 
     public static void printLottoWinningStatistics(WinningLotto winningLottos) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        WinningStatisticPrinter.print(winningLottos);
+        WinningStatisticsPrinter.print(winningLottos);
     }
 
     public static void printRateOfReturn(Wallet wallet) {
