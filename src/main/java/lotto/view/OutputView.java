@@ -9,16 +9,16 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public static void printPurchasedLottos(List<Lotto> purchasedLottos){
+    public static void printPurchasedLottos(List<Lotto> purchasedLottos) {
         System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
-        for(Lotto lotto : purchasedLottos){
+        for (Lotto lotto : purchasedLottos) {
             List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
             Collections.sort(sortedLotto);
             System.out.println(sortedLotto);
         }
     }
 
-    public static void printLottoResult(Map<Rank, Integer> resultCountMap){
+    public static void printLottoResult(Map<Rank, Integer> resultCountMap) {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (int i = Rank.values().length - 1; i >= 0; i--) {
@@ -26,12 +26,16 @@ public class OutputView {
             int count = resultCountMap.get(rank);
 
             String bonusNumberText = "";
-            if(rank.getNeedToCheckBonus()) bonusNumberText = ", 보너스 볼 일치";
+            if (rank.getNeedToCheckBonus()) bonusNumberText = ", 보너스 볼 일치";
             System.out.printf("%d개 일치%s (%,d원) - %d개%n", rank.getMatchCount(), bonusNumberText, rank.getPrize(), count);
         }
     }
 
-    public static void printRateOfReturn(double rateOfReturn){
+    public static void printRateOfReturn(double rateOfReturn) {
         System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
