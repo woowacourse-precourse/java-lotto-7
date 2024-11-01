@@ -3,6 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.UserLotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,8 +18,9 @@ public class CreateLottoNumber {
     }
 
     private static List<Integer> sortNumber(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> numberList = new ArrayList<>(numbers);
+        Collections.sort(numberList);
+        return numberList;
     }
 
     public static UserLotto createLotto() {
