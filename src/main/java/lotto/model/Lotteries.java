@@ -34,4 +34,8 @@ public class Lotteries {
                 .map(lotto -> lotto.checkBonusNumberContain(bonusNumber))
                 .toList();
     }
+
+    public List<Lotto> getLotteries() {
+        return List.copyOf(lotteries);
+    }
 }
