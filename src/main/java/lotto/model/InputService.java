@@ -74,6 +74,18 @@ public class InputService {
         return winningNumbers;
     }
 
+    public int bonusNumberValue() {
+        String value = Console.readLine();
+        int convertValue = convertToInt(value);
+        if(convertValue < 1 || convertValue > 45){
+            throw new InvalidBonusNumberException(BONUS_NUMBER_ERROR_MESSAGE);
+        }
+        if (checkDuplicateNumber(convertValue)) {
+            throw new InvalidDuplicateBonusNumberException(DUPLICATE_ERROR_MESSAGE);
+        }
+        return convertValue;
+    }
+
     public boolean checkDuplicateNumber(int number) {
         if (!winningNumberSet.add(number)) {
             return true;
