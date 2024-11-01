@@ -25,4 +25,10 @@ class LottoTest {
     void 로또_번호를_문자로_생성한다() {
         assertThat(Lotto.fromString("1,2,3,4,5,6")).isEqualTo(Lotto.fromIntegers(List.of(1, 2, 3, 4, 5, 6)));
     }
+
+    @Test
+    void 일치하는_로또번호의_개수를_반환한다() {
+        Lotto lotto = Lotto.fromIntegers(List.of(1, 2, 3, 4, 7, 8));
+        assertThat(lotto.matchCount(Lotto.fromIntegers(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(4);
+    }
 }

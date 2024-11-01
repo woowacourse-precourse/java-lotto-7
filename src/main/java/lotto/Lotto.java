@@ -49,6 +49,10 @@ public class Lotto {
         return new Lotto(new IntegersToLottoNumbersConverter(value));
     }
 
+    public int matchCount(Lotto lotto) {
+        return (int) lotto.numbers.stream().filter(this.numbers::contains).count();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
