@@ -24,6 +24,7 @@ public class LottoStatistics {
             resultCounts.put(result, resultCounts.get(result) + 1);
         }
     }
+
     public void processTickets(List<Lotto> allLotto, WinningLotto winningLotto){
         for(Lotto ticket : allLotto){
             LottoResult result = winningLotto.getMatchResult(ticket);
@@ -42,5 +43,9 @@ public class LottoStatistics {
     public double calculateProfitRate(){
         int totalPrize = calculateTotalPrize();
         return ((double) totalPrize / purchaseAmount) * 100;
+    }
+
+    public Map<LottoResult, Integer> getResultCounts() {
+        return resultCounts;
     }
 }
