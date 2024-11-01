@@ -12,22 +12,18 @@ import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.util.LottoParser;
 import lotto.validator.LottoBonusNumberValidator;
-import lotto.validator.LottoWinningNumbersValidator;
 import lotto.view.LottoView;
 
 public class LottoController {
 
     private final LottoView lottoView;
-    private final LottoWinningNumbersValidator lottoWinningNumbersValidator;
     private final LottoBonusNumberValidator lottoBonusNumberValidator;
 
     public LottoController(
             LottoView lottoView,
-            LottoWinningNumbersValidator lottoWinningNumbersValidator,
             LottoBonusNumberValidator lottoBonusNumberValidator
     ) {
         this.lottoView = lottoView;
-        this.lottoWinningNumbersValidator = lottoWinningNumbersValidator;
         this.lottoBonusNumberValidator = lottoBonusNumberValidator;
     }
 
@@ -52,10 +48,8 @@ public class LottoController {
     }
 
     private WinningLotto requestLottoWinningNumbers() {
-        String lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
-        lottoWinningNumbersValidator.validateLottoWinningNumbers(lottoWinningNumbers);
-        List<Integer> winningNumbers = LottoParser.parseNumbers(lottoWinningNumbers);
-        return WinningLotto.of(winningNumbers);
+        List<Integer> lottoWinningNumbers = lottoView.requestLottoWinningNumbers();
+        return WinningLotto.from(lottoWinningNumbers);
     }
 
     private BonusNumber requestLottoBonusNumber(WinningLotto winningLotto) {

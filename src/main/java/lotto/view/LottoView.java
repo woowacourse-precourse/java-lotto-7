@@ -21,6 +21,7 @@ public class LottoView {
     private static final String LOTTO_BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String NUMBERS_DELIMITER = ",";
     private final LottoInputValidator lottoInputValidator;
 
     public LottoView(LottoInputValidator lottoInputValidator){
@@ -34,9 +35,11 @@ public class LottoView {
         return parseInt(lottoPurchasePrice);
     }
 
-    public String requestLottoWinningNumbers() {
+    public List<Integer> requestLottoWinningNumbers() {
         System.out.println(LOTTO_WINNING_NUMBERS_REQUEST_MESSAGE);
-        return input();
+        String winningNumbers = input();
+        lottoInputValidator.validateLottoWinningNumbers(winningNumbers);
+        return parseNumbers(winningNumbers);
     }
 
     public String requestLottoBonusNumber() {
@@ -65,6 +68,12 @@ public class LottoView {
         catch (NumberFormatException e){
             throw new IllegalArgumentException(LottoError.INVALID_NUMBER.getMessage());
         }
+    }
+
+    private List<Integer> parseNumbers(String numbers){
+        return Arrays.stream(numbers.split(NUMBERS_DELIMITER))
+                .map(this::parseInt)
+                .collect(Collectors.toList());
     }
 
     private void printLottos(List<Lotto> lottos) {
