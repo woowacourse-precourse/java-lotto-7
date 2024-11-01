@@ -22,11 +22,12 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 ## 기능 목록
 - [X] 구매 금액 입력 받기
-  - [ ] 구매 금액 입력 예외 처리
-- [ ] 구매 금액에 해당하는 만큼 로또 발행하기
+  - [X] 구매 금액 입력 예외 처리(empty, NaN)
 - [ ] 로또 발행
   - [ ] 중복되지 않은 6개의 숫자를 뽑기
   - [ ] 정렬해서, 로또에 6개의 숫자를 기입
+- [ ] 구매 금액에 해당하는 만큼 로또 발행하기
+  - [ ] 구매 금액 입력 예외 처리(range, unit)
 - [ ] 구매한 로또 수 출력
 - [ ] 구매한 로또 번호 출력
 - [ ] 당첨 번호 입력 받기
@@ -111,3 +112,11 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
   - Negative
   - Duplicate
   - Range(로또 숫자 범위)
+
+
+MVC + Service 형태 책임
+----
+- Model : 데이터의 상태를 나타냄
+- View : Controller를 통해, 데이터를 받아, 이를 표현
+- Controller : 요청의 흐름에 집중
+- Service : Model을 통한, 비지니스 로직 담당
