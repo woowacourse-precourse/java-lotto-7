@@ -28,12 +28,23 @@ public class InputView {
         System.out.println("당첨 번호를 입력해주세요");
         List<Integer> inputLottoNumbers = new ArrayList<>();
         String input = Console.readLine();
-        List<String> str2list = Arrays.asList(input.split(DELIMITER));
-        for (String s : str2list) {
-            inputLottoNumbers.add(Integer.parseInt(s));
-        }
+        tokenizeInput(input, inputLottoNumbers);
         return inputLottoNumbers;
 
+    }
+
+    private static void tokenizeInput(String input, List<Integer> inputLottoNumbers) {
+        validateDelimiter(input);
+        StringTokenizer tokenizer = new StringTokenizer(input, DELIMITER);
+        while (tokenizer.hasMoreTokens()) {
+            inputLottoNumbers.add(Integer.parseInt(tokenizer.nextToken()));
+        }
+    }
+
+    private static void validateDelimiter(String input) {
+        if(!input.contains(DELIMITER)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + " 잘못된 구분자를 포함하고 있습니다.");
+        }
     }
 
 
