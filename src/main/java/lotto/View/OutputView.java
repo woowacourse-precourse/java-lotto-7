@@ -30,5 +30,7 @@ public class OutputView {
                     statistics.getResultCounts().get(result));
         }
     }
-
+    public static void showProfitRate(LottoStatistics statistics){
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", statistics.calculateProfitRate());
+    }
 }
