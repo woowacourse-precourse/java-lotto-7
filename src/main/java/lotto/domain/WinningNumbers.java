@@ -27,7 +27,7 @@ public class WinningNumbers {
             List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
             List<Integer> positiveWinningNumbers = validatePositiveWinningNumbers(delimitedWinningNumbers);
             validateWinningNumbersInRange(positiveWinningNumbers);
-            validateWinningNumbersDuplicate(positiveWinningNumbers);
+            validateUniqueWinningNumbers(positiveWinningNumbers);
             return positiveWinningNumbers;
         }
 
@@ -65,10 +65,9 @@ public class WinningNumbers {
             }
         }
 
-        private static void validateWinningNumbersDuplicate(List<Integer> positiveWinningNumbers) {
-            int positiveWinningNumbersSize = positiveWinningNumbers.size();
-            int uniqueWinningNumbersCount = new HashSet<>(positiveWinningNumbers).size();
-            if (positiveWinningNumbersSize != uniqueWinningNumbersCount) {
+        private static void validateUniqueWinningNumbers(List<Integer> positiveWinningNumbers) {
+            int positiveWinningNumbersSize = new HashSet<>(positiveWinningNumbers).size();
+            if (positiveWinningNumbersSize != positiveWinningNumbers.size()) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
             }
         }
