@@ -1,6 +1,7 @@
 package lotto.io.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,8 +10,10 @@ public class Input {
     private Input() {
     }
 
-    public static String getPriceInput() {
-        return Console.readLine();
+    public static BigDecimal getPriceInput() {
+        long price = Long.parseLong(Console.readLine());
+
+        return new BigDecimal(price);
     }
 
     public static List<Integer> getWinningNumbersInput() {
