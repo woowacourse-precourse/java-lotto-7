@@ -8,4 +8,8 @@ public class InputView {
         System.out.println(Constants.LOTTO_AMOUNT_INPUT);
         return Console.readLine();
     }
+    public static String inputWinningNums(){
+        System.out.println(Constants.LOTTO_WINNING_NUMS_INPUT);
+        return Console.readLine();
+    }
 }
