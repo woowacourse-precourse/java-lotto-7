@@ -20,7 +20,10 @@ public class LottoCalculator {
             }
         }
         return LottoRank.findRank(matchCount, bonusMatch);
+    }
 
-
+    public static double calculateReturn(int totalPrizeAmount, int purchaseAmount) {
+        double result = (double) totalPrizeAmount / purchaseAmount;
+        return Math.round(result * 100.0) / 100.0;
     }
 }
