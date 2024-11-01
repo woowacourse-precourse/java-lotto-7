@@ -29,7 +29,7 @@ public class Money {
         return DtoMapper.toMoneyDto(calculateLottoCount(amount));
     }
 
-    protected String calculateProfitRate(BigDecimal sumPercentage) {
+    public String calculateProfitRate(BigDecimal sumPercentage) {
         return sumPercentage.divide(BigDecimal.valueOf(amount), SCALE, RoundingMode.HALF_UP).toString();
     }
 

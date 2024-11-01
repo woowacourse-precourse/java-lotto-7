@@ -2,19 +2,26 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.LottoConfig;
-import lotto.controller.LottoController;
+import lotto.controller.LottoBuyController;
+import lotto.controller.ProfitRateController;
+import lotto.controller.StatusController;
+import lotto.controller.WinnerLottoController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottoController = LottoConfig.getLottoController();
+        LottoBuyController lottoBuyController = LottoConfig.getLottoBuyController();
+        WinnerLottoController winnerLottoController = LottoConfig.getWinnerLottoController();
+        StatusController statusController = LottoConfig.getStatusController();
+        ProfitRateController profitRateController = LottoConfig.getProfitRateController();
+
         try {
-            lottoController.buyLotto();
+            lottoBuyController.process();
 
-            lottoController.createWinnerLotto();
+            winnerLottoController.create();
 
-            lottoController.calculateWinnerStatus();
+            statusController.print();
 
-            lottoController.calculateProfitRate();
+            profitRateController.print();
         } catch (OutOfMemoryError e) {
             throw new IllegalArgumentException("구입 금액이 크거나 처리할 수 없는 당첨 금액입니다!");
         } finally {
