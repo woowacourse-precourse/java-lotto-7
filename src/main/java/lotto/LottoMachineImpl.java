@@ -42,6 +42,17 @@ public class LottoMachineImpl implements LottoMachine {
         return winningResult;
     }
 
+    @Override
+    public Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber) {
+        int totalPrizeMoney = 0;
+        for (LottoRank rank: values()) {
+            totalPrizeMoney += rank.getPrizeMoney() * winningResult.get(rank);
+        }
+        int totalSpent = purchaseNumber * 1000;
+
+        return  ((double)totalPrizeMoney / totalSpent) * 100;
+    }
+
     private List<Integer> pickLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }

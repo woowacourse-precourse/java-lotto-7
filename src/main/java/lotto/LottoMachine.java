@@ -7,4 +7,6 @@ public interface LottoMachine {
     List<Lotto> createLottoTickets(int count);
 
     HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber);
+
+    Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber);
 }
