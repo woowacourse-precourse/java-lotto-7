@@ -2,14 +2,14 @@ package lotto.view;
 
 import java.math.BigInteger;
 
-public class InputPrompt {
+public class PromptMessage {
 
     public static void printBudgetInputMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
     public static void printLottoCount(BigInteger count) {
-        System.out.printf("%d개를 구매했습니다.\n", count);
+        System.out.printf("\n%d개를 구매했습니다.\n", count);
     }
 
     public static void printWinningNumbersInputMessage() {

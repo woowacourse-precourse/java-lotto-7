@@ -5,17 +5,17 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public String readBudget() {
-        InputPrompt.printBudgetInputMessage();
+        PromptMessage.printBudgetInputMessage();
         return readInput();
     }
 
     public String readWinningNumbers() {
-        InputPrompt.printWinningNumbersInputMessage();
+        PromptMessage.printWinningNumbersInputMessage();
         return readInput();
     }
 
     public String readBonusNumber() {
-        InputPrompt.printBonusNumberInputMessage();
+        PromptMessage.printBonusNumberInputMessage();
         return readInput();
     }
 

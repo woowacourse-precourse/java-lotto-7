@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Budget;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,17 +21,19 @@ public class GameController {
     }
 
     public void run() {
-        BigInteger budget = getBudget();
+        Budget budget = new Budget(readValidBudget());
+        BigInteger numberOfLotto = budget.numberOfLotto();
+        outputView.printNumberOfLotto(numberOfLotto);
         List<Integer> winningNumbers = getWinningNumbers();
     }
 
-    private BigInteger getBudget() {
+    private BigInteger readValidBudget() {
         String budgetInput = inputView.readBudget();
         try {
             InputValidator.validateBudgetInput(budgetInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
-            return getBudget();
+            return readValidBudget();
         }
         return new BigInteger(budgetInput);
     }
