@@ -45,4 +45,19 @@ public class InputConvertor {
             winningNumbers.add(winningNumber);
         }
     }
+
+    public int convertInputBonusNumber(String inputBonusNumber) {
+        Validate.isNumber(inputBonusNumber);
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        validateBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        // TODO : 당첨 번호와 다른지 검증하기
+//        Validate.isNotInWinningNumbers();
+        Validate.isOneBetweenFortyFive(bonusNumber);
+    }
+
+
 }
