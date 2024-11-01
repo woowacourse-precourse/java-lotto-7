@@ -19,7 +19,7 @@ public class RevenueCalculatorTest {
         WinningRank.match(3, false);
         WinningRank.match(5, true);
 
-        assertThat(RevenueCalculator.revenueRate(purchaseAmount)).isEqualTo(60010);
+        assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isEqualTo(60010);
     }
 
     @Test
@@ -27,6 +27,6 @@ public class RevenueCalculatorTest {
         int purchaseAmount = 160_000;
         WinningRank.match(3, false);
 
-        assertThat(RevenueCalculator.revenueRate(purchaseAmount)).isEqualTo(3.13);
+        assertThat(RevenueCalculator.calculateRevenue(purchaseAmount)).isEqualTo(3.13);
     }
 }
