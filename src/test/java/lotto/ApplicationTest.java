@@ -89,7 +89,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 보너스_번호가_범위를_벗어난_입력이_들어오면_예외() {
         assertSimpleTest(() -> {
-            runException("1000", "1,2,3,4,5,6", "1");
+            runException("1000", "1,2,3,4,5,6", "50");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
