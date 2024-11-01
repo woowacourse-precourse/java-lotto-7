@@ -1,7 +1,11 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.Result;
 import lotto.util.Calculator;
 import lotto.validator.Validator;
 import lotto.view.InputView;
@@ -20,8 +24,8 @@ public class LottoController {
     public void proceed(){
         int lottoAmount = inputLottoAmount();
         int lottoTicketNumber = Calculator.calculateLottoTicketNumber(lottoAmount);
-        List<Lotto> userLotto = LottoMachineController.issueLotto(lottoTicketNumber);
-        output.printLottoTicket(userLotto,lottoTicketNumber);
+        List<Lotto> userLottos = LottoMachineController.issueLotto(lottoTicketNumber);
+        output.printLottoTicket(userLottos,lottoTicketNumber);
 
         List<Integer> winningLotto = inputWinningNumber();
         int bonusNumber = inputBonusNumber(winningLotto);
@@ -56,5 +60,28 @@ public class LottoController {
             System.out.println(e.getMessage());
             return inputBonusNumber(winningLotto);
         }
+    }
+
+    public void compareLottoWithWinningNumber(List<Lotto> userLottos, List<Integer> winningLotto, int bonusNumber){
+        Map<Result,Integer> results = new HashMap<>();
+        for(Result result : Result.values()){
+            results.put(result,0);
+        }
+        for(Lotto userLotto : userLottos) {
+            Result result = userLotto.compareWithWinningLotto(winningLotto, bonusNumber);
+            results.put(result, results.get(result)+1);
+        }
+        printResults(results);
+    }
+
+    public void printResults(Map<Result,Integer> results){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for(Result result : results.keySet()){
+            output.printResult(result.getMatchCount(), result.getPrizeMoney(), results.get(result));
+        }
+
+        //수익률 출력
     }
 }
