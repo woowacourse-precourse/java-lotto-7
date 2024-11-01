@@ -32,4 +32,16 @@ public class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("구입 금액은 0보다 커야 합니다.");
     }
+
+    @Test
+    @DisplayName("구매 금액이 1,000원 단위가 아니면 예외가 발생한다")
+    void 실패_로또구입_1000원단위_아님() {
+        // given
+        InputValidator validator = new InputValidator();
+
+        // when & then
+        assertThatThrownBy(() -> validator.validateInput("2500"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("구입 금액은 1000원 단위여야 합니다.");
+    }
 }
