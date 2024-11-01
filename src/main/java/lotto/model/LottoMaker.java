@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.exception.PurchaseMoneyInvalidException;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -35,7 +36,7 @@ public class LottoMaker {
 
     private void validateMoney(int money) {
         if (money < PRICE) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원 이상이어야 합니다.");
+            throw PurchaseMoneyInvalidException.lottoMoneyTooSmall();
         }
 
         if (money % PRICE != 0) {

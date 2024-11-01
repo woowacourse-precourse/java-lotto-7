@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.exception.InvalidInputException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +13,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("올바른 숫자를 입력해 주세요.");
-            return inputPurchaseMoney();
+            throw InvalidInputException.invalidNumber();
         }
     }
 
@@ -25,8 +25,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            System.out.println("올바른 숫자를 입력해 주세요.");
-            return inputWinningNumbers();
+            throw InvalidInputException.invalidNumber();
         }
     }
 
@@ -35,8 +34,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("올바른 숫자를 입력해 주세요.");
-            return inputBonusNumber();
+            throw InvalidInputException.invalidNumber();
         }
     }
 }

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.exception.LottoNumberInvalidException;
+
 import java.util.List;
 
 public class WinningLotto {
@@ -30,10 +32,10 @@ public class WinningLotto {
 
     private void validateNumbers(List<LottoNumber> numbers) {
         if (numbers.size() != NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw LottoNumberInvalidException.lottoNumberSize();
         }
         if (numbers.stream().distinct().count() != NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw LottoNumberInvalidException.lottoNumberDuplicate();
         }
     }
 
