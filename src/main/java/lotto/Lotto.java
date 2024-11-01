@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import lotto.exception.LottoArgumentException;
 import java.util.List;
 
@@ -38,5 +39,13 @@ public class Lotto {
         if (outOfRange) {
             throw new LottoArgumentException("로또 숫자 범위를 벗어났습니다.");
         }
+    }
+
+    public boolean containsNumber(final int number) {
+        return this.numbers.contains(number);
+    }
+
+    protected List<Integer> getNumbers() {
+        return Collections.unmodifiableList(this.numbers);
     }
 }
