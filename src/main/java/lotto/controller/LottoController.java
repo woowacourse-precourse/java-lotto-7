@@ -1,13 +1,13 @@
 package lotto.controller;
 
-import static lotto.exception.ErrorType.INVALID_NUMBER_FORMAT;
+import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
-import lotto.exception.InvalidNumberFormatException;
+import lotto.error.exception.InvalidNumberFormatException;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

@@ -1,15 +1,15 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorType.DUPLICATION_NUM;
-import static lotto.exception.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
-import static lotto.exception.ErrorType.INVALID_BONUS_NUM;
-import static lotto.exception.ErrorType.OUT_OF_RANGE_NUMBER;
+import static lotto.error.ErrorType.DUPLICATION_NUM;
+import static lotto.error.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
+import static lotto.error.ErrorType.INVALID_BONUS_NUM;
+import static lotto.error.ErrorType.OUT_OF_RANGE_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.InvalidBonusNumberException;
-import lotto.exception.InvalidLottoNumberException;
+import lotto.error.exception.InvalidBonusNumberException;
+import lotto.error.exception.InvalidLottoNumberException;
 import lotto.generator.LottoGenerator;
 
 public class Lotto {

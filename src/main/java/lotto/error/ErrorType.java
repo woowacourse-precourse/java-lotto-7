@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.error;
 
 public enum ErrorType {
     INVALID_PURCHASE_PRICE("원 단위로 입력해주세요."),

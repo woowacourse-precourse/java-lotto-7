@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorType.INVALID_PURCHASE_PRICE;
+import static lotto.error.ErrorType.INVALID_PURCHASE_PRICE;
 
-import lotto.exception.InvalidLottoPurchaseAmount;
+import lotto.error.exception.InvalidLottoPurchaseAmount;
 
 public class LottoCount {
     private static final int LOTTO_PRICE = 1000;

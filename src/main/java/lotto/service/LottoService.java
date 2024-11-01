@@ -6,7 +6,7 @@ import static lotto.constant.Winner.FIRST_WINNER;
 import static lotto.constant.Winner.FOURTH_WINNER;
 import static lotto.constant.Winner.SECOND_WINNER;
 import static lotto.constant.Winner.THIRD_WINNER;
-import static lotto.exception.ErrorType.INVALID_NUMBER_FORMAT;
+import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.dto.LottoResultDto;
-import lotto.exception.InvalidNumberFormatException;
+import lotto.error.exception.InvalidNumberFormatException;
 import lotto.generator.LottoGenerator;
 
 public class LottoService {

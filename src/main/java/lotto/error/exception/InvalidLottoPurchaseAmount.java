@@ -1,4 +1,6 @@
-package lotto.exception;
+package lotto.error.exception;
+
+import lotto.error.ErrorType;
 
 public class InvalidLottoPurchaseAmount extends GeneralException {
 
