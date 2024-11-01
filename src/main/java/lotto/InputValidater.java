@@ -41,6 +41,19 @@ public class InputValidater {
         return bonusNumber;
     }
 
+    public static int validateMoney(String inputMoney) {
+        int money = Integer.parseInt(inputMoney);
+
+        if (money < 1000) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 최소 1000원 이상이어야 합니다.");
+        }
+        if (!(money % 1000 == 0)) {
+            throw new IllegalArgumentException("[ERROR] 입력 금액은 1000원 단위만 가능합니다.");
+        }
+
+        return money;
+    }
+
     private static void validateNumberRange(int number) {
         if (number > 45 || number < 1) {
             throw new IllegalArgumentException("[ERROR] 번호는 1 ~ 45 사이의 숫자여야 합니다.");
