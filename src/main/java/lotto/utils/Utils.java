@@ -35,4 +35,8 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
+    public static void print(String message){
+        System.out.println(message);
+    }
+
 }

@@ -6,6 +6,7 @@ import lotto.model.User;
 import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class LottoController {
     private User user;
     private LottoGame lottoGame;
     private LottoService lottoService;
+
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
+    }
 
     public void run(){
         beforeLotto();
@@ -25,8 +30,11 @@ public class LottoController {
         int buyAmount = InputView.inputBuyAmount();
         user = new User(buyAmount);
         lottoService.buyLottos(user);
+        OutputView.printBuyLottos(user);
+
         WinningNumbers winningNumbers = new WinningNumbers(InputView.inputWinningNumbers());
         BonusNumber bonusNumber = new BonusNumber(InputView.inputBonusNumber());
         lottoGame = new LottoGame(winningNumbers, bonusNumber);
+
     }
 }

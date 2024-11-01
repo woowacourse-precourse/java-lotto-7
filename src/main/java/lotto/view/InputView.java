@@ -5,10 +5,10 @@ import lotto.utils.Utils;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.message.LottoMessage.*;
-
+import static lotto.message.InputMessage.*;
+import static lotto.utils.Utils.*;
+import static lotto.Constants.*;
 public class InputView {
-    private static final String DELIMITER = ",";
 
     public static int inputBuyAmount(){
         print(INPUT_BUY_AMOUNT.getMessage());
@@ -25,7 +25,4 @@ public class InputView {
         return Utils.stringToInteger(readLine());
     }
 
-    private static void print(String message){
-        System.out.println(message);
-    }
 }
