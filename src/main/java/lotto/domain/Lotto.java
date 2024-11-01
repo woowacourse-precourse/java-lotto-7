@@ -10,7 +10,6 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         Collections.sort(numbers);
@@ -18,13 +17,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        checkSize(numbers);
+        checkForDuplicates(numbers);
+        checkRange(numbers);
+    }
+
+    private void checkSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_LOTTO_SIZE.getMessage());
         }
-        Set<Integer> changeNumbers = new HashSet<>(numbers);
-        if (changeNumbers.size() != numbers.size()) {
+    }
+
+    private void checkForDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(LottoErrorMessages.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    private void checkRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
             throw new IllegalArgumentException(LottoErrorMessages.OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
         }
