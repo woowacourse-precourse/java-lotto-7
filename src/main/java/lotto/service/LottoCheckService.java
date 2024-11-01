@@ -12,7 +12,7 @@ import lotto.dto.LottoOutputDto;
 
 public class LottoCheckService {
 
-    public LottoOutputDto checkLottos(final Long purchaseAmount, final WinningNumber winningNumber,
+    public LottoOutputDto checkLottos(final String purchaseAmount, final WinningNumber winningNumber,
                                       final Lottos lottos) {
         LottoResult lottoResult = new LottoResult();
         Set<Integer> lottoChecker = new HashSet<>(winningNumber.getWinningNumber());
@@ -20,7 +20,7 @@ public class LottoCheckService {
         for (Lotto lotto : lottos.getLottos()) {
             checkLotto(lottoChecker, lotto, winningNumber.getBonusNumber(), lottoResult);
         }
-        double rateOfReturn = calculateRateOfReturn(purchaseAmount, lottoResult);
+        double rateOfReturn = calculateRateOfReturn(Long.parseLong(purchaseAmount), lottoResult);
 
         return new LottoOutputDto(rateOfReturn, lottoResult);
     }
