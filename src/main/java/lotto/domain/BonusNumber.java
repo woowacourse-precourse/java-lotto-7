@@ -14,7 +14,7 @@ public class BonusNumber {
 
     public BonusNumber(Lotto winningLotto, String input) {
         int number = Parser.parseBonusNumber(input);
-        validateNumber(winningLotto, number);
+        validate(winningLotto, number);
         this.number = number;
     }
 
@@ -22,7 +22,7 @@ public class BonusNumber {
         return number;
     }
 
-    private static void validateNumber(Lotto winningLotto, int number) {
+    private static void validate(Lotto winningLotto, int number) {
         validateRange(number);
         validateDuplicate(winningLotto.getNumbers(), number);
     }
