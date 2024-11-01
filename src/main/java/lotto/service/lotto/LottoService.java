@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.lotto;
 
 import lotto.domain.Lotto;
 
@@ -10,6 +10,7 @@ public interface LottoService {
     int LOTTO_END = 45;
     int LOTTO_TOTAL_COUNT = 6;
 
-    List<Lotto> purchaseLottoBundle(int purchaseCount);
+    List<Lotto> createLottoBundle(int purchaseCount);
+    Lotto createLotto(List<Integer> numbers);
 
 }
