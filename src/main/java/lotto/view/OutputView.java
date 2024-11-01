@@ -4,10 +4,6 @@ import lotto.Message.ViewMessage;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 public class OutputView {
 
