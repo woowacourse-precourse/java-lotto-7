@@ -46,7 +46,7 @@ public class LottoPurchasePrice {
     }
 
     public LottoProfit calculateProfit(double totalPrizeMoney){
-        return LottoProfit.ofProfitAndLottoPurchasePrice(totalPrizeMoney, purchasePrice);
+        return LottoProfit.ofProfitAndPurchasePrice(totalPrizeMoney, purchasePrice);
     }
 
 }
