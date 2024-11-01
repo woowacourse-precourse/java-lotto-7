@@ -1,6 +1,7 @@
 package lotto.entity;
 
 import java.util.List;
+import lotto.configuration.LottoConfiguration;
 
 public class ProfitReport {
     private final List<Lotto> purchasedLottos;
@@ -18,15 +19,15 @@ public class ProfitReport {
         this.winningNumbers = winningNumbers;
     }
 
-    /**
-     * Feature TODO
-     * - [ ] 수익률 계산
-     * - [ ] 수익 계산
-     * - [ ] 각 등수 별 당첨 횟수 계산
-     *
-     * - [ ] 투자 금액 (gettter)
-     * - [ ] 당첨 번호 (getter)
-     * - [ ] 구매한 로또 (getter)
-     * - [ ] 각 로또별 당첨 여부 (getter)
-     */
+    public int getPaymentAmount() {
+        return purchasedLottos.size() * LottoConfiguration.LOTTO_PRICE.getValue();
+    }
+
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
+
+    public WinningNumbers getWinningNumbers() {
+        return winningNumbers;
+    }
 }
