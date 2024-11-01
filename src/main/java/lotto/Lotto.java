@@ -16,5 +16,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int getWinningNumberCount(List<Integer> inputNumbers) {
+        int count = 0;
+        for (Integer inputNumber : inputNumbers) {
+            if(numbers.contains(inputNumber)) count++;
+        }
+        return count;
+    }
 }
