@@ -4,10 +4,15 @@ import lotto.buyer.domain.Buyer;
 import lotto.buyer.domain.InsertMoneyService;
 import lotto.buyer.infrastructure.InsertPurchaseMoney;
 import lotto.controller.domain.LottoController;
+import lotto.lotto.domain.BonusNumberCreatorService;
 import lotto.lotto.domain.LottoMachine;
+import lotto.lotto.domain.PurchaseLottoTicketsService;
+import lotto.lotto.domain.WinningLottoCreatorService;
 import lotto.lotto.infrastructure.LottoCreator;
 import lotto.lotto.infrastructure.PurchaseLottoTickets;
-import lotto.lotto.winning.domain.WinningAmountCalculator;
+import lotto.money.domain.BenefitCreatorService;
+import lotto.money.infrastructure.BenefitCreator;
+import lotto.money.infrastructure.WinningAmountCalculator;
 import lotto.lotto.infrastructure.RandomNumberGenerate;
 import lotto.calculator.infrastructure.DivideThousandCalculator;
 import lotto.lotto.winning.infrastructure.BonusNumberCreator;
@@ -26,9 +31,9 @@ public class LottoControllerFactory {
         InsertMoneyService insertMoneyService = createInsertMoneyService();
         Buyer buyer = createBuyer(insertMoneyService);
         LottoMachine lottoMachine = createLottoMachine();
-        WinningAmountCalculator winningAmountCalculator = createWinningCalculator();
+        BenefitCreatorService benefitCreator = createBenefitCreator();
         ResultViewService resultViewService = createResultViewService();
-        return new LottoController(buyer, lottoMachine, winningAmountCalculator, resultViewService);
+        return new LottoController(buyer, lottoMachine, benefitCreator, resultViewService);
     }
 
     private static InsertMoneyService createInsertMoneyService() {
@@ -49,9 +54,9 @@ public class LottoControllerFactory {
         return new PurchaseLottoTickets(new RandomNumberGenerate());
     }
     private static LottoCreator createLottoCreator() {
-        PurchaseLottoTickets lottoTicketsCreator = createLottoTicketsCreator();
-        WinningLottoCreator winningLottoCreator = createWinningLottoCreator();
-        BonusNumberCreator bonusNumberCreator = createBonusNumberCreator();
+        PurchaseLottoTicketsService lottoTicketsCreator = createLottoTicketsCreator();
+        WinningLottoCreatorService winningLottoCreator = createWinningLottoCreator();
+        BonusNumberCreatorService bonusNumberCreator = createBonusNumberCreator();
         return new LottoCreator(lottoTicketsCreator, winningLottoCreator, bonusNumberCreator);
     }
     private static LottoMachine createLottoMachine() {
@@ -63,7 +68,7 @@ public class LottoControllerFactory {
         return new CommonResultOutput();
     }
 
-    private static WinningAmountCalculator createWinningCalculator() {
-        return new WinningAmountCalculator();
+    private static BenefitCreator createBenefitCreator() {
+        return new BenefitCreator(new WinningAmountCalculator());
     }
 }
