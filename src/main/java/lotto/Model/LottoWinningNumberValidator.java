@@ -24,13 +24,14 @@ public class LottoWinningNumberValidator {
     }
 
     private void validateSize() {
-        if(this.winningNums.size() != 6){
+        if (this.winningNums.size() != 6) {
             System.out.println(Constants.WINNING_NUMS_SIZE_ERROR);
             throw new IllegalArgumentException(Constants.WINNING_NUMS_SIZE_ERROR);
         }
     }
-    private void validateDuplicate(){
-        if(this.winningNums.size() != this.winningNums.stream().distinct().count()){
+
+    private void validateDuplicate() {
+        if (this.winningNums.size() != this.winningNums.stream().distinct().count()) {
             System.out.println(Constants.WINNING_NUMS_DUPLICATE_ERROR);
             throw new IllegalArgumentException(Constants.WINNING_NUMS_DUPLICATE_ERROR);
         }

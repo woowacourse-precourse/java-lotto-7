@@ -15,7 +15,7 @@ public enum Rank {
     private final Long prize;
     private final BiPredicate<Integer, Boolean> rankCriteria;
 
-    Rank(int matchCount, boolean bonusMatch, Long prize, BiPredicate<Integer,Boolean> rankCriteria){
+    Rank(int matchCount, boolean bonusMatch, Long prize, BiPredicate<Integer, Boolean> rankCriteria) {
         this.matchCount = matchCount;
         this.bonusMatch = bonusMatch;
         this.prize = prize;
@@ -26,21 +26,23 @@ public enum Rank {
         return matchCount;
     }
 
-    public boolean getBonusMatch(){
+    public boolean getBonusMatch() {
         return bonusMatch;
     }
 
-    public Long getPrize(){
+    public Long getPrize() {
         return prize;
     }
 
-    public boolean matchs(int matchCount, boolean bonusMatch){
-        return rankCriteria.test(matchCount,bonusMatch);
+    public boolean matchs(int matchCount, boolean bonusMatch) {
+        return rankCriteria.test(matchCount, bonusMatch);
     }
 
-    public static Rank getRank(int matchCount, boolean bonusMatch){
-        for(Rank rank : values()){
-            if(rank.matchs(matchCount,bonusMatch)) return rank;
+    public static Rank getRank(int matchCount, boolean bonusMatch) {
+        for (Rank rank : values()) {
+            if (rank.matchs(matchCount, bonusMatch)) {
+                return rank;
+            }
         }
 
         return NONE;

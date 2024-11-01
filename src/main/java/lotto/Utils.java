@@ -11,18 +11,20 @@ import lotto.Model.Rank;
 import java.text.NumberFormat;
 
 public class Utils {
-    public static List<Integer> setLottoNums(){
+    public static List<Integer> setLottoNums() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
-    public static void printLottos(List<Lotto> lottos){
+
+    public static void printLottos(List<Lotto> lottos) {
         System.out.println();
-        System.out.println(lottos.size()+Constants.LOTTO_AMOUNT_OUTPUT);
+        System.out.println(lottos.size() + Constants.LOTTO_AMOUNT_OUTPUT);
         lottos.stream().forEach(lotto -> lotto.printLotto());
     }
-    public static ArrayList<Integer> toArrayList(String nums){
-       return Arrays.stream(nums.split(Constants.DELIMITER))
-               .map(Integer::parseInt)
-               .collect(Collectors.toCollection(ArrayList::new));
+
+    public static ArrayList<Integer> toArrayList(String nums) {
+        return Arrays.stream(nums.split(Constants.DELIMITER))
+                .map(Integer::parseInt)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
 

@@ -21,21 +21,23 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void validateDuplicate(List<Integer> numbers){
-        if(numbers.size() != numbers.stream().distinct().count()){
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
             System.out.println(Constants.LOTTO_NUMS_DUPLICATE_ERROR);
             throw new IllegalArgumentException(Constants.LOTTO_NUMS_DUPLICATE_ERROR);
         }
     }
+
     public void printLotto() {
         System.out.print("[");
         System.out.print(numbers.stream()
-                        .sorted()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ")));
         System.out.println("]");
     }
-    public List<Integer> getNumbers(){
+
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 }

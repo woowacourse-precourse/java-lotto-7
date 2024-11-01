@@ -29,15 +29,15 @@ public class LottoController {
     private void calculateWinning() {
         OutputView.printResult();
         Result result = new Result();
-        result.compareLottos(lottos,winningNums,bonusNum);
+        result.compareLottos(lottos, winningNums, bonusNum);
         result.calcRevenue(lottoAmount);
 
     }
 
     private void setWinningNums() {
-        try{
+        try {
             winningNums = InputController.setWinningNums();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             setWinningNums();
         }
     }
@@ -64,10 +64,10 @@ public class LottoController {
         Utils.printLottos(lottos);
     }
 
-    private void setBonusNum(){
-        try{
+    private void setBonusNum() {
+        try {
             bonusNum = InputController.setBonusNum(winningNums);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             setBonusNum();
         }
     }
