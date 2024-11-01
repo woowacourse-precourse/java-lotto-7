@@ -5,7 +5,7 @@ import lotto.exception.InvalidPurchasePriceException;
 
 public class PurchasePrice {
 
-    public static final int LOTTO_UNIT_PRICE = 1000;
+    public static final BigDecimal LOTTO_UNIT_PRICE = BigDecimal.valueOf(1000);
 
     private final BigDecimal price;
 
@@ -15,6 +15,10 @@ public class PurchasePrice {
         BigDecimal price = parse(input);
         validateNumber(price);
         this.price = price;
+    }
+
+    public Quantity calculateQuantity() {
+        return new Quantity(price.divide(LOTTO_UNIT_PRICE));
     }
 
     private void validateLength(final String input) {
@@ -47,6 +51,6 @@ public class PurchasePrice {
     }
 
     private boolean isNotDivisible(final BigDecimal price) {
-        return !price.remainder(BigDecimal.valueOf(LOTTO_UNIT_PRICE)).equals(BigDecimal.ZERO);
+        return !price.remainder(LOTTO_UNIT_PRICE).equals(BigDecimal.ZERO);
     }
 }

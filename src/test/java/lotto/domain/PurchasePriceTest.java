@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.math.BigDecimal;
+import lotto.exception.InvalidPurchasePriceException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -46,6 +49,7 @@ public class PurchasePriceTest {
             // When & Then
             assertThatThrownBy(() -> new PurchasePrice("500"))
                     .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액이 1000원 단위가 아닙니다");
         }
 
@@ -58,6 +62,7 @@ public class PurchasePriceTest {
             // When & Then
             assertThatThrownBy(() -> new PurchasePrice(input))
                     .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 자연수여야 합니다");
         }
 
@@ -70,6 +75,7 @@ public class PurchasePriceTest {
             // When & Then
             assertThatThrownBy(() -> new PurchasePrice(input))
                     .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 숫자로만 이루어져야 합니다");
         }
 
@@ -81,6 +87,7 @@ public class PurchasePriceTest {
             // When & Then
             assertThatThrownBy(() -> new PurchasePrice(""))
                     .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 비어있거나 공백일 수 없습니다");
         }
 
@@ -92,6 +99,7 @@ public class PurchasePriceTest {
             // When & Then
             assertThatThrownBy(() -> new PurchasePrice(" "))
                     .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 비어있거나 공백일 수 없습니다");
         }
 
@@ -103,7 +111,27 @@ public class PurchasePriceTest {
             // When & Then
             assertThatThrownBy(() -> new PurchasePrice(null))
                     .isInstanceOf(IllegalArgumentException.class)
+                    .isExactlyInstanceOf(InvalidPurchasePriceException.class)
                     .hasMessageContaining("구입 금액은 null이 될 수 없습니다");
         }
     }
+
+    @Nested
+    @DisplayName("로또 수량 계산 테스트")
+    class 로또_수량_계산_테스트 {
+
+        @Test
+        @DisplayName("로또 수량을 계산한다")
+        void 성공_로또수량계산() {
+            // Given
+            PurchasePrice price = new PurchasePrice("10000");
+
+            // When
+            Quantity quantity = price.calculateQuantity();
+
+            // Then
+            assertThat(quantity).isEqualTo(new Quantity(BigDecimal.TEN));
+        }
+    }
+
 }
