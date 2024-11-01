@@ -27,4 +27,8 @@ public class LottoBundle {
         }
         return lottoNumbers;
     }
+
+    public int getBundleSize() {
+        return bundle.size();
+    }
 }
