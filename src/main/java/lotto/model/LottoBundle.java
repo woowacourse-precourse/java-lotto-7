@@ -9,6 +9,11 @@ public class LottoBundle {
 	private final List<Lotto> lottos;
 	private final int count;
 
+	public LottoBundle(List<Lotto> lottos, Price price) {
+		this.lottos = lottos;
+		this.count = calculateCount(price.getPrice());
+	}
+
 	private int calculateCount(int price) {
 		return price / SINGLE_LOTTO_PRICE;
 	}
