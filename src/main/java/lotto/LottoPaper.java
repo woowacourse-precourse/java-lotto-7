@@ -1,22 +1,32 @@
 package lotto;
 
+import java.util.List;
+import java.util.Objects;
+
 public class LottoPaper {
-    private static final Won BASE_AMOUNT = new Won(1000);
 
-    public LottoPaper(Won fee) {
-        validateMinimumAmount(fee);
-        validateAmountIsInBaseUnit(fee);
+    private final Won purchasePrice;
+    private final List<Lotto> lottos;
+
+    public LottoPaper(Won purchasePrice, List<Lotto> lottos) {
+        this.purchasePrice = purchasePrice;
+        this.lottos = lottos;
     }
 
-    private void validateMinimumAmount(Won won) {
-        if (BASE_AMOUNT.isLessThan(won)) {
-            throw new IllegalArgumentException(String.format("금액이 %s보다 낮을 수 없습니다.", BASE_AMOUNT));
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoPaper that = (LottoPaper) o;
+        return Objects.equals(purchasePrice, that.purchasePrice) && Objects.equals(lottos, that.lottos);
     }
 
-    private void validateAmountIsInBaseUnit(Won fee) {
-        if (fee.hasChange(BASE_AMOUNT)) {
-            throw new IllegalArgumentException(String.format("금액은 %s단위 여야합니다.", BASE_AMOUNT));
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(purchasePrice, lottos);
     }
 }

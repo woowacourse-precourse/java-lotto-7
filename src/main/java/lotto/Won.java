@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Objects;
+
 public class Won {
     private final int amount;
 
@@ -13,6 +15,27 @@ public class Won {
 
     public boolean hasChange(Won value) {
         return this.amount % value.amount != 0;
+    }
+
+    public double divide(Won value) {
+        return (double) this.amount / value.amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Won won = (Won) o;
+        return amount == won.amount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount);
     }
 
     @Override
