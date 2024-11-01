@@ -13,6 +13,7 @@ public class Input {
         try {
             validatePrice(price);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return inputPrice();
         }
         return price;
@@ -24,6 +25,7 @@ public class Input {
         try {
             validateWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return inputWinningNumber();
         }
         return winningNumber;
@@ -35,6 +37,7 @@ public class Input {
         try {
             validateBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return inputBonusNumber();
         }
         return bonusNumber;
