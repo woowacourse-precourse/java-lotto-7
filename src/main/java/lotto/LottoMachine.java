@@ -1,9 +1,9 @@
 package lotto;
 
-import java.util.List;
 import lotto.amount.Amount;
 import lotto.lotto.Number;
 import lotto.lotto.WinningNumbers;
+import lotto.lotto.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,5 +29,8 @@ public class LottoMachine {
 
         outputView.requestBonusNumber();
         Number bonusNumber = inputView.getBonusNumber();
+
+        WinningResult winningResult =
+                new WinningResult(winningNumbers, bonusNumber);
     }
 }
