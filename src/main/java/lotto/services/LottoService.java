@@ -10,8 +10,10 @@ public class LottoService {
     private final OutputView outputView;
     private final LottoModel lottoModel;
 
-    public LottoService(InputView inputView) {
+    public LottoService(InputView inputView, OutputView outputView, LottoModel lottoModel) {
         this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoModel = lottoModel;
     }
 
 
