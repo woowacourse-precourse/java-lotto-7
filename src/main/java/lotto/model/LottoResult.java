@@ -59,19 +59,7 @@ public class LottoResult {
         matchedCount.put("sixMatched", currentCount+1);
     }
 
-    public int getMatchThreeNumberCount() {
-        return matchedCount.get("threeMatched");
-    }
-    public int getMatchFourNumberCount() {
-        return matchedCount.get("fourMatched");
-    }
-    public int getMatchFiveNumberCount() {
-        return matchedCount.get("fiveMatched");
-    }
-    public int getMatchFiveNumberAndBonusCount() {
-        return matchedCount.get("fiveWithBonusMatched");
-    }
-    public int getMatchSixNumberCount() {
-        return matchedCount.get("sixMatched");
+    public Map<String, Integer> getMatchedCount() {
+        return this.matchedCount;
     }
 }

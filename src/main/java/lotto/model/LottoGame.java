@@ -3,6 +3,7 @@ package lotto.model;
 import lotto.dto.WinningLottoDto;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
     private PurchasedLottos purchasedLottos;
@@ -27,5 +28,9 @@ public class LottoGame {
         winningLottoDtos.forEach(dto ->
                 lottoResult.increaseCountByNumberMatchedAndBonusMatched(
                         (int) dto.getMatchedCount(), dto.getIsBonusMatched()));
+    }
+
+    public Map<String, Integer> getLottoMatchedCount() {
+        return this.lottoResult.getMatchedCount();
     }
 }

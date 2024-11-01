@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.*;
 import lotto.utility.NumberParser;
+import lotto.utility.ProfitCalculator;
 import lotto.utility.RandomNumberCreator;
 import lotto.utility.WinningNumberParser;
 import lotto.view.InputView;
@@ -9,6 +10,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -26,14 +28,17 @@ public class LottoController {
 
         LottoGame lottoGame = new LottoGame(purchasedLottos, purchaseCost, winningNumbers, bonusNumber);
         lottoGame.process();
+
+        OutputView.outputMatchedCount(lottoGame.getLottoMatchedCount());
+        outputProfitRate(inputtedCost, lottoGame.getLottoMatchedCount());
     }
 
-    public int inputPurchaseCost() {
+    private int inputPurchaseCost() {
         String rawPurchaseCost = InputView.inputPurchaseCost();
         return NumberParser.parseToInteger(rawPurchaseCost);
     }
 
-    public List<Lotto> purchaseLotto(int purchaseCount) {
+    private List<Lotto> purchaseLotto(int purchaseCount) {
         List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i=0; i<purchaseCount; i++) {
             List<Integer> randomlyGeneratedNumbers = RandomNumberCreator.generateRandomNumbers();
@@ -44,8 +49,13 @@ public class LottoController {
         return purchasedLottos;
     }
 
-    public List<Integer> inputWinningNumbers() {
+    private List<Integer> inputWinningNumbers() {
         String rawWinningNumbers = InputView.inputWinningNumbers();
         return WinningNumberParser.parseWinningNumbers(rawWinningNumbers);
+    }
+
+    private void outputProfitRate(int purchaseCost, Map<String, Integer> matchedCount) {
+        double profitRate = ProfitCalculator.calculate(purchaseCost, matchedCount);
+        OutputView.outputProfitRate(profitRate);
     }
 }
