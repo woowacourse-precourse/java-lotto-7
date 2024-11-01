@@ -1,4 +1,4 @@
-package lotto;
+package domain;
 
 import java.util.List;
 import lotto.validator.LottoValidator;

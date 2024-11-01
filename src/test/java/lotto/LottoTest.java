@@ -1,11 +1,10 @@
 package lotto;
 
+import domain.Lotto;
 import java.util.stream.Stream;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
