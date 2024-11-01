@@ -1,10 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.error.LottoError;
-import lotto.io.InputHandler;
 import lotto.util.RandomNumberGenerator;
 
 public class LottoPurchaseCalculator {

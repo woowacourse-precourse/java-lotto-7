@@ -8,4 +8,13 @@ public class ConsoleInputHandler implements InputHandler {
         return Console.readLine();
     }
 
+    @Override
+    public String winningNumbers() {
+        return Console.readLine();
+    }
+
+    @Override
+    public String bonusNumber() {
+        return Console.readLine();
+    }
 }
