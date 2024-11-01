@@ -1,8 +1,9 @@
 package lotto;
 
 import java.util.Collections;
-import lotto.exception.LottoArgumentException;
 import java.util.List;
+import lotto.common.LottoNumber;
+import lotto.exception.LottoArgumentException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,8 +20,8 @@ public class Lotto {
     }
 
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new LottoArgumentException("로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoNumber.SIZE.getNumber()) {
+            throw new LottoArgumentException("로또 번호는 " + LottoNumber.SIZE.getNumber() + "개여야 합니다.");
         }
     }
 
@@ -35,7 +36,7 @@ public class Lotto {
 
     private void validateNumberRange(final List<Integer> range) {
         final boolean outOfRange = range.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < LottoNumber.START.getNumber() || number > LottoNumber.END.getNumber());
         if (outOfRange) {
             throw new LottoArgumentException("로또 숫자 범위를 벗어났습니다.");
         }
