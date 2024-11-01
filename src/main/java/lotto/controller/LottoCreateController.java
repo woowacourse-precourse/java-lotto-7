@@ -20,6 +20,7 @@ public class LottoCreateController {
 	private Price getPurchasePrice() {
 		try {
 			outputView.printPurchasePriceInputMessage();
+			int purchasePriceInput = inputView.getPurchasePriceInput();
 		} catch (IllegalArgumentException exception) {
 			outputView.printErrorMessage(exception.getMessage());
 			return getPurchasePrice();
