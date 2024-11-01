@@ -19,4 +19,13 @@ public class WinningNumbersTest {
                 .hasMessage("[ERROR] 당첨 번호는 비어있을 수 없습니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1;2;3", "1a2a3", "1.2.3"})
+    @DisplayName("당첨 번호의 구분자가 쉼표가 아니면 예외가 발생한다.")
+    void validateWinningNumbersDelimiter(String condition) {
+        assertThatThrownBy(() -> WinningNumbers.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다.");
+    }
+
 }
