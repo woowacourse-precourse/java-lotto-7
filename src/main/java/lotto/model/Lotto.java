@@ -14,19 +14,19 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validNumberCounts(numbers);
-        validDuplicate(numbers);
+        validateNumberCount(numbers);
+        validateNoDuplicate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
 
-    private void validNumberCounts(List<Integer> numbers) {
+    private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNTS.getValue()) {
             throw new LottoException(INVALID_NUMBER_COUNTS.getMessage());
         }
     }
 
-    private void validDuplicate(List<Integer> numbers) {
+    private void validateNoDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new LottoException(DUPLICATE_NUMBERS.getMessage());

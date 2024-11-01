@@ -11,17 +11,17 @@ public record LottoPurchasePrice(int price) {
     private static final int REMAINDER = 0;
 
     public LottoPurchasePrice {
-        validPurchasePrice(price);
-        validDivisibleByLottoPrice(price);
+        validateNonNegativePrice(price);
+        validateDivisibilityByLottoPrice(price);
     }
 
-    private void validPurchasePrice(int price) {
+    private void validateNonNegativePrice(int price) {
         if (price <= 0) {
             throw new InvalidInputException(INVALID_NEGATIVE_PRICE.getMessage());
         }
     }
 
-    private void validDivisibleByLottoPrice(int price) {
+    private void validateDivisibilityByLottoPrice(int price) {
         if (price % LOTTO_PRICE.getValue() != REMAINDER) {
             throw new InvalidInputException(INVALID_PURCHASE_PRICE.getMessage());
         }

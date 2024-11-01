@@ -8,24 +8,24 @@ import lotto.exception.InvalidInputException;
 public class PurchasePriceValidator {
 
     public void validate(String inputPurchasePrice) {
-        validInputIsNotNull(inputPurchasePrice);
-        validInputIsNotEmpty(inputPurchasePrice);
-        validInput(inputPurchasePrice);
+        validateNotNull(inputPurchasePrice);
+        validateNotEmpty(inputPurchasePrice);
+        validateIsInteger(inputPurchasePrice);
     }
 
-    private void validInputIsNotNull(String inputPurchasePrice) {
+    private void validateNotNull(String inputPurchasePrice) {
         if (inputPurchasePrice == null) {
             throw new InvalidInputException(INVALID_INPUT_FORMAT.getMessage());
         }
     }
 
-    private void validInputIsNotEmpty(String inputPurchasePrice) {
+    private void validateNotEmpty(String inputPurchasePrice) {
         if (inputPurchasePrice.isEmpty() || inputPurchasePrice.isBlank()) {
             throw new InvalidInputException(INVALID_INPUT_FORMAT.getMessage());
         }
     }
 
-    private void validInput(String inputPurchasePrice) {
+    private void validateIsInteger(String inputPurchasePrice) {
         try {
             parseInteger(inputPurchasePrice);
         } catch (NumberFormatException e) {
