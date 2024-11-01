@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.mvc.model.Lotto;
+import lotto.mvc.validation.LottoNumberValidator;
 import lotto.mvc.validation.PurchaseAmountValidator;
 import lotto.mvc.view.InputView;
 
@@ -26,6 +27,12 @@ public class LottoController {
         int count = extractLottoCount(purchaseAmount);
 
         List<Lotto> lottos = makeLottos(count);
+
+        inputView.showLottoWinningNumberMsg();
+        String winningNumber = inputView.getUserInput();
+        winningNumber = trimInput(winningNumber);
+
+        Lotto winningLotto = new Lotto(extractLottoNumber(winningNumber));
     }
 
     private String trimInput(String input) {
@@ -57,5 +64,18 @@ public class LottoController {
         }
 
         return lottos;
+    }
+
+    private List<Integer> extractLottoNumber(String winningNumber) {
+        List<Integer> numbers = new ArrayList<>();
+
+        LottoNumberValidator.isValid(winningNumber);
+
+        for (String number : winningNumber.split(",")) {
+            number = number.trim();
+            numbers.add(Integer.parseInt(number));
+        }
+
+        return numbers;
     }
 }
