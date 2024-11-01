@@ -10,6 +10,10 @@ public class LottoView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
+    public void printTicketNumber(MoneyDTO moneyDTO){
+        System.out.println(moneyDTO.getTicketNumber()+"개를 구매했습니다.");
+    }
+
     public MoneyDTO getMoneyInput(){
 
         //제대로 된 값이 입력받을 때까지 반복
