@@ -19,4 +19,16 @@ class ParserTest {
         // then
         assertThat(parsedInput).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("입력 문자열 정수로 변환: 문자 - 예외 테스트")
+    void parseInputToInt_string() {
+        // given
+        String input = "a";
+
+        // when & then
+        assertThatThrownBy(() -> Parser.parseInputToInt(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
