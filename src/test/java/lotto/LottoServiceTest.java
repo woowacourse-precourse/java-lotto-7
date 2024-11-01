@@ -34,7 +34,10 @@ public class LottoServiceTest {
         Map<Rank, Integer> expectedResults = Map.of(
                 Rank.FIRST, 1,
                 Rank.SECOND, 1,
-                Rank.THIRD, 1
+                Rank.THIRD, 1,
+                Rank.FOURTH, 0,
+                Rank.FIFTH, 0,
+                Rank.MISS, 0
         );
         assertEquals(expectedResults, results.getResultMap());
     }
