@@ -17,7 +17,9 @@ public class Lotto {
         }
         for (int number : numbers) {
             isInRange(number);
-            isDuplicate(number, numbers);
+        }
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            isDuplicate(i, numbers.subList(i + 1, numbers.size()));
         }
     }
 
@@ -27,8 +29,8 @@ public class Lotto {
         }
     }
 
-    private void isDuplicate(int number, List<Integer> numbers) {
-        if (numbers.contains(number)) {
+    private void isDuplicate(int index, List<Integer> numbers) {
+        if (numbers.contains(index)) {
             throw new IllegalArgumentException("[ERROR] 각 로또 번호는 중복되지 않아야 합니다.");
         }
     }
