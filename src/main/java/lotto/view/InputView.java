@@ -9,9 +9,7 @@ public class InputView {
 
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        String amount = Console.readLine().trim();
-        InputValidator.validatePurchaseAmount(amount);
-        return Integer.parseInt(amount);
+        return readValidatedInteger();
     }
 
     public static List<Integer> inputWinningNumbers() {
@@ -19,5 +17,16 @@ public class InputView {
         String winningNumbers = Console.readLine().trim();
         InputValidator.validateWinningNumbers(winningNumbers);
         return InputParser.parseToNumbers(winningNumbers);
+    }
+
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return readValidatedInteger();
+    }
+
+    private static int readValidatedInteger() {
+        String input = Console.readLine().trim();
+        InputValidator.validateNotBlankAndInteger(input);
+        return Integer.parseInt(input);
     }
 }
