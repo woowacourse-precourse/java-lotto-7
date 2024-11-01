@@ -14,9 +14,17 @@ public class InputView {
     }
 
     public String readRawWinningNumbers() {
+        printNewLine();
         printGuideMessage(WINNING_NUMBER_REQUEST_MESSAGE);
         String rawWinningNumbers = Console.readLine();
         return rawWinningNumbers.trim();
+    }
+
+    public String readRawBonusNumber() {
+        printNewLine();
+        printGuideMessage(BONUS_NUMBER_REQUEST_MESSAGE);
+        String rawBonusNumber = Console.readLine();
+        return rawBonusNumber.trim();
     }
 
     public void close() {
@@ -25,5 +33,9 @@ public class InputView {
 
     private void printGuideMessage(GuideMessage guideMessage) {
         System.out.println(guideMessage.getContent());
+    }
+
+    private void printNewLine() {
+        System.out.println();
     }
 }
