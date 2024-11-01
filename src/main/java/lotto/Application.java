@@ -28,18 +28,16 @@ public class Application {
             }
         }
 
-        System.out.println(purchaseAmount + "개를 구매했습니다.");
+        System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         List<Lotto> myLottos = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
             myLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
+        printLottos(myLottos);
 
-        for (Lotto lotto : myLottos) {
-            lotto.printLotto();
-        }
 
         while (true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println("\n당첨 번호를 입력해 주세요.");
             String[] winningNumbersInput = Console.readLine().split(",");
             List<Integer> winningNumbers = new ArrayList<>();
             try{
@@ -74,6 +72,11 @@ public class Application {
             return Integer.parseInt(numberInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
+        }
+    }
+    static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            lotto.printLotto();
         }
     }
 }
