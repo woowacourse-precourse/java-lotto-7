@@ -20,10 +20,18 @@ public class WinningNumber {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
         }
         for (Integer number : winNumbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
-            }
+            validateWinningNumberRange(number);
         }
+        validateBonusNumber(bonusNumber, winNumbers);
+    }
+
+    private void validateWinningNumberRange(Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winNumbers) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
         }
@@ -33,23 +41,30 @@ public class WinningNumber {
     }
 
     public static List<Integer> parseWinningNumbers(String winningInput) {
+        validateWinningInputFormat(winningInput);
+        String[] numberStrings = winningInput.split(",");
+        return parseWinningNumbersArray(numberStrings);
+    }
+
+    private static void validateWinningInputFormat(String winningInput) {
         if (!winningInput.matches("\\d+(,\\s*\\d+){5}")) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_DELIMITER.getMessage());
         }
+    }
 
-        String[] numberStrings = winningInput.split(",");
-        List<Integer> winNumbers = Arrays.stream(numberStrings)
+    private static List<Integer> parseWinningNumbersArray(String[] numberStrings) {
+        return Arrays.stream(numberStrings)
                 .map(String::trim)
-                .map(numberString -> {
-                    try {
-                        return Integer.parseInt(numberString);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
-                    }
-                })
+                .map(WinningNumber::parseWinningNumber)
                 .toList();
+    }
 
-        return winNumbers;
+    private static Integer parseWinningNumber(String numberString) {
+        try {
+            return Integer.parseInt(numberString);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER.getMessage());
+        }
     }
 
     public List<Integer> getWinNumbers() {

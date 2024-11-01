@@ -44,13 +44,17 @@ public class MatchStatistics {
 
     public void calculateMatches(List<Lotto> tickets, WinningNumber winningNumber) {
         for (Lotto ticket : tickets) {
-            int matchCount = (int) ticket.getNumbers().stream()
-                    .filter(winningNumber.getWinNumbers()::contains)
-                    .count();
+            int matchCount = countMatches(ticket, winningNumber);
             boolean bonusMatch = ticket.getNumbers().contains(winningNumber.getBonusNumber());
 
             addMatchResultBasedOnCount(matchCount, bonusMatch);
         }
+    }
+
+    private int countMatches(Lotto ticket, WinningNumber winningNumber) {
+        return (int) ticket.getNumbers().stream()
+                .filter(winningNumber.getWinNumbers()::contains)
+                .count();
     }
 
     private void addMatchResultBasedOnCount(int matchCount, boolean bonusMatch) {
@@ -59,11 +63,7 @@ public class MatchStatistics {
             return;
         }
         if (matchCount == MatchResult.FIVE_MATCH.getMatchCount()) {
-            if (bonusMatch) {
-                addMatchResult(MatchResult.FIVE_MATCH_WITH_BONUS, 1);
-                return;
-            }
-            addMatchResult(MatchResult.FIVE_MATCH, 1);
+            addMatchResultForFiveMatch(bonusMatch);
             return;
         }
         if (matchCount == MatchResult.FOUR_MATCH.getMatchCount()) {
@@ -73,5 +73,13 @@ public class MatchStatistics {
         if (matchCount == MatchResult.THREE_MATCH.getMatchCount()) {
             addMatchResult(MatchResult.THREE_MATCH, 1);
         }
+    }
+
+    private void addMatchResultForFiveMatch(boolean bonusMatch) {
+        if (bonusMatch) {
+            addMatchResult(MatchResult.FIVE_MATCH_WITH_BONUS, 1);
+            return;
+        }
+        addMatchResult(MatchResult.FIVE_MATCH, 1);
     }
 }
