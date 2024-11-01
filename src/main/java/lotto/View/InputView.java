@@ -2,13 +2,9 @@ package lotto.View;
 
 import lotto.Model.Exception;
 
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
-
-    private List<Integer> winNumbers;
 
     public int getPurchaseCount() {
 
