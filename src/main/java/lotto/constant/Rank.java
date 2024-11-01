@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public enum RankPrice {
+public enum Rank {
     FIRST(6, null, 2_000_000_000),
     SECOND(5, true, 30_000_000),
     THIRD(5, false, 1_500_000),
@@ -17,34 +17,34 @@ public enum RankPrice {
     private Boolean matchBonus;
     private long price;
 
-    RankPrice(int matchCount, Boolean matchBonus, long price) {
+    Rank(int matchCount, Boolean matchBonus, long price) {
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
         this.price = price;
     }
 
-    public static RankPrice of(int matchCount, boolean matchBonus) {
-        List<RankPrice> rankPrices = Arrays.stream(values())
+    public static Rank of(int matchCount, boolean matchBonus) {
+        List<Rank> ranks = Arrays.stream(values())
             .filter(rankPrice -> rankPrice.matchCount == matchCount)
             .toList();
-        if (rankPrices.size() > 1) {
-            return rankPrices.stream()
+        if (ranks.size() > 1) {
+            return ranks.stream()
                 .filter(rankPrice -> rankPrice.matchBonus == matchBonus)
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException("[ERROR] 존재하지 않는 등수입니다."));
         }
-        if (rankPrices.size() == 1) {
-            return rankPrices.getFirst();
+        if (ranks.size() == 1) {
+            return ranks.getFirst();
         }
         return NONE;
     }
 
-    public static List<RankPrice> values(Comparator<RankPrice> comparator) {
-        List<RankPrice> rankPrices = Arrays.asList(values());
+    public static List<Rank> values(Comparator<Rank> comparator) {
+        List<Rank> ranks = Arrays.asList(values());
         if (comparator != null) {
-            rankPrices.sort(comparator);
+            ranks.sort(comparator);
         }
-        return rankPrices;
+        return ranks;
     }
 
     public int getMatchCount() {

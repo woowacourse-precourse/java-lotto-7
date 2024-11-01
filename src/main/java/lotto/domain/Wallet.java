@@ -5,14 +5,14 @@ import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
 import java.util.ArrayList;
 import java.util.List;
 
-import lotto.constant.RankPrice;
+import lotto.constant.Rank;
 import lotto.random.LottoRandom;
 
 public class Wallet {
 
     private long money;
     private long originalMoney;
-    private List<RankPrice> ranks = new ArrayList<>();
+    private List<Rank> ranks = new ArrayList<>();
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Wallet(long money) {
@@ -43,20 +43,18 @@ public class Wallet {
         return lottos.size();
     }
 
-    public void addRank(RankPrice rankPrice) {
-        ranks.add(rankPrice);
+    public void addRank(Rank rank) {
+        ranks.add(rank);
     }
 
     public double gain() {
         long totalPrice = ranks.stream()
-            .mapToLong(RankPrice::getPrice)
+            .mapToLong(Rank::getPrice)
             .sum();
         return (double)totalPrice / originalMoney;
     }
 
-    public int getRankCount(int rank) {
-        return (int)ranks.stream()
-            .filter((rank1 -> rank1.getRank() == rank))
-            .count();
+    public List<Rank> getRanks() {
+        return ranks;
     }
 }

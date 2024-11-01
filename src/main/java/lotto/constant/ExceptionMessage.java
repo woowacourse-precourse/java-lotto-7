@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import lotto.random.LottoRandom;
 
 public enum ExceptionMessage {
+    /* IllegalArgumentException */
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 %d개여야 합니다."),
     DUPLICATED_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
     NOT_NUMBER_MONEY("구입금액은 숫자여야 합니다."),
@@ -15,6 +16,9 @@ public enum ExceptionMessage {
         String.format("로또 번호는 %d에서 %d 이내의 숫자여야 합니다.",
             LottoRandom.LOTTO_NUMBER_START_INCLUSIVE,
             LottoRandom.LOTTO_NUMBER_END_INCLUSIVE)),
+
+    /* IllegalStateException */
+    NOT_EXIST_RANK("존재하지 않는 등수입니다."),
     ;
 
     private final String message;

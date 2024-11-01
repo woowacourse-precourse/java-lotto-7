@@ -10,9 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.constant.RankPrice;
+import lotto.constant.Rank;
 import lotto.random.LottoRandom;
-import lotto.random.LottoRandomStrategy;
 
 class LottoTest {
 
@@ -46,15 +45,15 @@ class LottoTest {
         Lotto lotto = new Lotto(numbers);
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers));
         winningLotto.setupBonusNumber(8);
-        RankPrice rankPrice = winningLotto.getRank(lotto);
-        assertThat(rankPrice.getRank()).isEqualTo(3);
+        Rank rank = winningLotto.getRank(lotto);
+        assertThat(rank.getRank()).isEqualTo(3);
     }
 
     @Test
     void 수익률을_계산한다() {
         Wallet wallet = new Wallet(5000);
         wallet.buyLottoTickets(lottoRandom);
-        wallet.addRank(RankPrice.THIRD);
+        wallet.addRank(Rank.THIRD);
         assertThat(wallet.gain()).isEqualTo((double) 1_500_000 / 5_000 );
     }
 }

@@ -1,13 +1,13 @@
 package lotto.service;
 
-import java.util.List;
-
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.dto.request.BonusNumberRequest;
 import lotto.dto.request.MoneyRequest;
 import lotto.dto.request.WinningNumbersRequest;
+import lotto.dto.response.LottosResponse;
+import lotto.dto.response.ResultResponse;
 import lotto.random.LottoRandom;
 import lotto.random.LottoRandomStrategy;
 import lotto.repository.WalletRepository;
@@ -23,8 +23,8 @@ public class LottoService {
         walletRepository.create(request.money());
     }
 
-    public List<Lotto> buyLottos() {
-        return walletRepository.buyLottos(lottoRandom);
+    public LottosResponse buyLottos() {
+        return LottosResponse.of(walletRepository.buyLottos(lottoRandom));
     }
 
     public void setupWinningNumbers(WinningNumbersRequest request) {
@@ -35,12 +35,13 @@ public class LottoService {
         winningLottoRepository.createBonusNumber(request.bonusNumber());
     }
 
-    public Wallet result() {
+    public ResultResponse result() {
         Wallet wallet = walletRepository.get();
         WinningLotto winningLotto = winningLottoRepository.get();
         wallet.getLottos().stream()
             .map(winningLotto::getRank)
             .forEach(wallet::addRank);
-        return wallet;
+
+        return ResultResponse.of(wallet.getRanks(), wallet.gain());
     }
 }

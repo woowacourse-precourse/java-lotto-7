@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lotto.constant.RankPrice;
+import lotto.constant.Rank;
 
 public enum OutputMessage {
     INPUT_MONEY("구입금액을 입력해 주세요.%n"),
@@ -52,20 +52,20 @@ public enum OutputMessage {
         return String.format(message);
     }
 
-    public String getMessage(RankPrice rankPrice, int rankCount) {
+    public String getMessage(Rank rank, int rankCount) {
         if (equals(RANK_RESULT)) {
-            if (rankPrice.equals(RankPrice.SECOND)) {
+            if (rank.equals(Rank.SECOND)) {
                 return String.format(
                     RANK_RESULT_SECOND.message,
-                    rankPrice.getMatchCount(),
-                    new DecimalFormat("###,###").format(rankPrice.getPrice()),
+                    rank.getMatchCount(),
+                    new DecimalFormat("###,###").format(rank.getPrice()),
                     rankCount
                 );
             }
             return String.format(
                 message,
-                rankPrice.getMatchCount(),
-                new DecimalFormat("###,###").format(rankPrice.getPrice()),
+                rank.getMatchCount(),
+                new DecimalFormat("###,###").format(rank.getPrice()),
                 rankCount
             );
         }

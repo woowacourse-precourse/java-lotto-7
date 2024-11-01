@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import lotto.constant.RankPrice;
+import lotto.constant.Rank;
 
 public class WinningLotto {
 
@@ -32,7 +32,7 @@ public class WinningLotto {
         }
     }
 
-    public RankPrice getRank(Lotto target) {
+    public Rank getRank(Lotto target) {
         List<Integer> targetNumbers = target.getNumbers();
         boolean matchBonus = false;
         Set<Integer> set = new HashSet<>();
@@ -43,6 +43,6 @@ public class WinningLotto {
         if (!set.add(bonusNumber)) {
             matchBonus = true;
         }
-        return RankPrice.of(matchCount, matchBonus);
+        return Rank.of(matchCount, matchBonus);
     }
 }
