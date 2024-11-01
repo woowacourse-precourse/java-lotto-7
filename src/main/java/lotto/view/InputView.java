@@ -7,7 +7,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입금액을 확인해주세요.");
         }
     }
 }
