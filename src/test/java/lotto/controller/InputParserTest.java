@@ -38,4 +38,29 @@ class InputParserTest {
 
     // parseInteger() 메서드에 대한 테스트 코드 작성
 
+    @Test
+    void 성공__parseInteger() {
+        // given
+        String input = "1";
+        int expected = 1;
+
+        // when
+        int actual = InputParser.parseInteger(input);
+
+        // then
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void 실패__parseInteger() {
+        // given
+        String input = "a";
+
+        // when
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
+                () -> InputParser.parseInteger(input));
+
+        // then
+        assertEquals("숫자만 입력 가능합니다.", exception.getMessage());
+    }
 }
