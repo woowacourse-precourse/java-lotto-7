@@ -1,10 +1,20 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.dto.LottoInputDTO;
 import lotto.utils.Validator;
 
 public class InputView {
     private final OutputView outputView = new OutputView();
+
+    public LottoInputDTO inputLottoData() {
+        String purchaseAmount = inputPurchaseAmount();
+        String[] winningNumbers = inputWinningLotto();
+        String bonusNumber = inputBonusNumber(winningNumbers);
+
+        // 모든 입력 값을 담아 DTO로 생성
+        return new LottoInputDTO(Integer.parseInt(purchaseAmount), winningNumbers, bonusNumber);
+    }
 
     public String inputPurchaseAmount() {
         while (true) {
@@ -35,13 +45,13 @@ public class InputView {
         }
     }
 
-    public String inputBonusNumber() {
+    public String inputBonusNumber(String[] winningNumbers) {
         while (true) {
             try {
                 System.out.println("보너스 볼을 입력해 주세요.");
                 String bonusNumber = Console.readLine();
                 // 유효성 검증
-                Validator.checkBonusNumber(bonusNumber, "보너스 번호를 입력해주세요.");
+                Validator.checkBonusNumber(bonusNumber, winningNumbers, "보너스 번호를 입력해주세요.");
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.displayError(e.getMessage());
