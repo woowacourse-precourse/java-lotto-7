@@ -3,46 +3,19 @@ package lotto.utils.validator;
 public class PurchasePriceValidator implements Validator<String> {
     private final int LOTTO_PRICE = 1000;
     private final int PURCHASE_LIMIT = 100000;
+    private final Validator<String> positiveIntValidator;
+
+    public PurchasePriceValidator(Validator<String> positiveIntValidator) {
+        this.positiveIntValidator = positiveIntValidator;
+    }
 
     @Override
     public void validate(String rawPurchasePrice) {
-        validateNotEmpty(rawPurchasePrice);
-        validateNumber(rawPurchasePrice);
-        validateInt(rawPurchasePrice);
+        positiveIntValidator.validate(rawPurchasePrice);
 
         int purchasePrice = Integer.parseInt(rawPurchasePrice);
-        validatePositiveInt(purchasePrice);
         validateDividedByLottoPrice(purchasePrice);
         validateNotBeyondPurchaseLimit(purchasePrice);
-    }
-
-    private void validateNotEmpty(String rawPurchasePrice) {
-        if (rawPurchasePrice.trim().isEmpty()) {
-            throw new IllegalArgumentException("입력값이 비어있습니다.");
-        }
-    }
-
-    private void validateNumber(String rawPurchasePrice) {
-        try{
-            Double.parseDouble(rawPurchasePrice);
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 숫자가 아닙니다");
-        }
-    }
-
-
-    private void validateInt (String rawPurchasePrice) {
-        try{
-            Integer.parseInt(rawPurchasePrice);
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 정수가 아닙니다");
-        }
-    }
-
-    private void validatePositiveInt (int purchasePrice) {
-        if (purchasePrice <= 0) {
-            throw new IllegalArgumentException("입력값이 양의 정수가 아닙니다");
-        }
     }
 
     private void validateDividedByLottoPrice (int purchasePrice) {
