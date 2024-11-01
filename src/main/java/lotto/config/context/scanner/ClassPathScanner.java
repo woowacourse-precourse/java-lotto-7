@@ -1,4 +1,4 @@
-package lotto.config.context;
+package lotto.config.context.scanner;
 
 import java.io.File;
 import java.util.Arrays;
@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -56,32 +57,29 @@ public class ClassPathScanner {
 
     private List<Class<?>> findClass(File base) {
         if (base.exists() && base.isDirectory()) {
-            List<File> children = findFilesFromDirectory(base);
-
-            return children.stream()
-                    .map(this::findClass)
-                    .flatMap(List::stream)
-                    .collect(Collectors.toList());
+            return findFromDirectory(base);
         }
-
+        
         if (base.exists() && base.isFile()) {
             Class<?> cls = extractClassFromFile(base).orElse(null);
             if (cls != null) {
                 return List.of(cls);
             }
-            return List.of();
         }
 
         return List.of();
     }
 
-    private List<File> findFilesFromDirectory(File directory) {
+    private List<Class<?>> findFromDirectory(File directory) {
         File[] files = directory.listFiles();
         if (files == null) {
             return List.of();
         }
 
-        return List.of(files);
+        return Stream.of(files)
+                .map(this::findClass)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 
     private Optional<Class<?>> extractClassFromFile(File file) {
