@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.dto.LottoWinResult;
 import lotto.enums.LottoCalEnum;
 import lotto.enums.LottoCriteria;
 
 public class LottoFormatter {
 
+    private static final String PRINT_NUMBERS_PREFIX = "[";
+    private static final String PRINT_NUMBERS_POSTFIX = "]" + System.lineSeparator();
     private final static String LOTTOS_NUM_BUY_MESSAGE = "%d개를 구매했습니다." + System.lineSeparator();
     private final static String WIN_LOTTO_RESULT_START_MSG = "당첨 통계" + System.lineSeparator() + "---" + System.lineSeparator();
     private final static String WIN_LOTTO_WIN_COUNT = "%d개 일치 (%s원) - %d개" + System.lineSeparator();
@@ -51,5 +54,12 @@ public class LottoFormatter {
     public static String getFormattedLottosSize(int buyMoney) {
         int lottosSize = buyMoney / LottoCriteria.BUY_MONEY_UNIT.getCriteriaVal();
         return String.format(LOTTOS_NUM_BUY_MESSAGE,lottosSize);
+    }
+
+    public static String lottoNumbersToStr(List<Integer> numbers) {
+        String numbersStr=  numbers.stream()
+                .map((number) -> number + "")
+                .collect(Collectors.joining(", "));
+        return PRINT_NUMBERS_PREFIX + numbersStr + PRINT_NUMBERS_POSTFIX;
     }
 }

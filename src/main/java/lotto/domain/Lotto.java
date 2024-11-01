@@ -12,8 +12,6 @@ import lotto.validator.LottoValidator;
 public class Lotto {
 
     private final List<Integer> numbers;
-    private static final String PRINT_NUMBERS_PREFIX = "[";
-    private static final String PRINT_NUMBERS_POSTFIX = "]" + System.lineSeparator();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -32,7 +30,7 @@ public class Lotto {
         }
     }
 
-    public LottoWinResult getResult(List<Integer> winningNumbers, int bonusNumber) {
+    public LottoWinResult calculateWinResult(List<Integer> winningNumbers, int bonusNumber) {
         int winCount = getWinningCount(winningNumbers);
         boolean isBonus = isBonus(bonusNumber);
         if(winCount == LottoCriteria.BONUS_LOTTO_NUM.getCriteriaVal() && isBonus){
@@ -58,10 +56,7 @@ public class Lotto {
         return winCount;
     }
 
-    public String getLottoNumberStr(){
-        String numbersStr=  numbers.stream()
-                .map((number) -> number + "")
-                .collect(Collectors.joining(", "));
-        return PRINT_NUMBERS_PREFIX + numbersStr + PRINT_NUMBERS_POSTFIX;
+    public String getLottoNumbersStr(){
+        return LottoFormatter.lottoNumbersToStr(numbers);
     }
 }
