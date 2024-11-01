@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.view.InputView;
@@ -21,7 +22,7 @@ public class LottoController {
 
     public void play() {
         String validAmount = handleAmountInputError();
-        String validLottoNumbers = handleLottoNumberInputError();
+        List<Integer> validLottoNumbers = handleLottoNumberInputError();
     }
 
     public String handleAmountInputError() {
@@ -45,25 +46,27 @@ public class LottoController {
         return amountInput;
     }
 
-    public String handleLottoNumberInputError() {
+    public List<Integer> handleLottoNumberInputError() {
         boolean validInput = false;
-        String lottoInput = "";
+        List<Integer> validLottoNumbers = new ArrayList<>();
 
         while (!validInput) {
             try {
                 outputView.printRequest(OutputView.REQUEST_NUMBER_MESSAGE);
-                lottoInput = inputView.readInput();
+                String lottoInput = inputView.readInput();
 
-                validationManager.isNotEmptyInput(lottoInput);
                 validInput = validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
                 List<Integer> lottoNumbrs = TypeConverter.ToNumberList(lottoInput);
-                Lotto lotto = new Lotto(lottoNumbrs); //6자 이상인지 확인후 객체 생성
+
+                Lotto lotto = new Lotto(lottoNumbrs);//6자 이상인지 1-45안에 있는지 확인후 객체 생성
+                validLottoNumbers = lotto.getLottoNumbers();
+
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        return lottoInput;
+        return validLottoNumbers;
     }
 }
