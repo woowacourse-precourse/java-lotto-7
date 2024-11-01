@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public class PurchaseAmount {
 
@@ -15,19 +15,6 @@ public class PurchaseAmount {
         return new PurchaseAmount(Integer.parseInt(amount));
     }
 
-    private static void validateNumeric(String amount) {
-        try {
-            Integer.parseInt(amount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력 가능합니다.");
-        }
-    }
-
-    private static void validateEmpty(String amount) {
-        if (amount == null || amount.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액이 빈 값입니다.");
-        }
-    }
 
     private void validate(int amount) {
         validateMinAmount(amount);
@@ -45,4 +32,19 @@ public class PurchaseAmount {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력 가능합니다.");
         }
     }
+
+    private static void validateNumeric(String amount) {
+        try {
+            Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static void validateEmpty(String amount) {
+        if (amount == null || amount.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액이 빈 값입니다.");
+        }
+    }
+
 }
