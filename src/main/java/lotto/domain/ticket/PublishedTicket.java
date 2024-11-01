@@ -2,7 +2,7 @@ package lotto.domain.ticket;
 
 public class PublishedTicket {
 
-    Ticket ticket;
+    private final Ticket ticket;
 
     private PublishedTicket(Ticket ticket) {
         this.ticket = ticket;
