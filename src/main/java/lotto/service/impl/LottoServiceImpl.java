@@ -21,12 +21,15 @@ public class LottoServiceImpl implements LottoService {
     private final SingleRepository<Money> moneyRepository;
     private final SingleRepository<LottoList> lottoListRepository;
     private final SingleRepository<WinnerStatus> winnerStatusRepository;
+    private final SingleRepository<WinnerLotto> winnerLottoRepository;
 
     public LottoServiceImpl(SingleRepository<Money> moneyRepository, SingleRepository<LottoList> lottoListRepository,
-                            SingleRepository<WinnerStatus> winnerStatusRepository) {
+                            SingleRepository<WinnerStatus> winnerStatusRepository,
+                            SingleRepository<WinnerLotto> winnerLottoRepository) {
         this.moneyRepository = moneyRepository;
         this.lottoListRepository = lottoListRepository;
         this.winnerStatusRepository = winnerStatusRepository;
+        this.winnerLottoRepository = winnerLottoRepository;
     }
 
     @Override
@@ -49,19 +52,28 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public WinnerLotto addWinnerLotto(String input) {
-        return WinnerLotto.create(input);
+    public void addWinnerLotto(String input) {
+        WinnerLotto winnerLotto = WinnerLotto.create(input);
+
+        winnerLottoRepository.save(winnerLotto);
     }
 
     @Override
-    public WinnerLotto addBonusNumber(WinnerLotto winnerLotto, String input) {
+    public void addBonusNumber(String input) {
         LottoNum bonusNumber = LottoNum.create(input);
+        WinnerLotto winnerLotto = winnerLottoRepository.get()
+                .orElseThrow(() -> new NullPointerException("당첨 번호를 입력하지 않았습니다!"));
 
-        return winnerLotto.addBonusNum(bonusNumber);
+        winnerLotto.addBonusNum(bonusNumber);
+
+        winnerLottoRepository.save(winnerLotto);
     }
 
     @Override
-    public WinnerStatusDto calculateWinnerStatus(LottoListDto lottoListDto, WinnerLotto winnerLotto) {
+    public WinnerStatusDto calculateWinnerStatus() {
+        WinnerLotto winnerLotto = winnerLottoRepository.get()
+                .orElseThrow(() -> new NullPointerException("당첨 번호를 입력하지 않았습니다!"));
+
         if (!winnerLotto.hasBonusNum()) {
             throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
         }
@@ -77,7 +89,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public ProfitRateResultDto calculateProfitRate(WinnerStatusDto winnerStatusDto, MoneyDto moneyDto) {
+    public ProfitRateResultDto calculateProfitRate() {
         Money money = moneyRepository.get()
                 .orElseThrow(() -> new NullPointerException("돈이 저장되지 않았습니다!"));
 

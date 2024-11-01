@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.domain.WinnerLotto;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 import lotto.dto.ProfitRateResultDto;
@@ -12,11 +11,11 @@ public interface LottoService {
 
     LottoListDto generateLottoList();
 
-    WinnerLotto addWinnerLotto(String winnerNumber);
+    void addWinnerLotto(String winnerNumber);
 
-    WinnerLotto addBonusNumber(WinnerLotto winnerLotto, String input);
+    void addBonusNumber(String input);
 
-    WinnerStatusDto calculateWinnerStatus(LottoListDto lottoListDto, WinnerLotto winnerLotto);
+    WinnerStatusDto calculateWinnerStatus();
 
-    ProfitRateResultDto calculateProfitRate(WinnerStatusDto winnerStatus, MoneyDto moneyDto);
+    ProfitRateResultDto calculateProfitRate();
 }
