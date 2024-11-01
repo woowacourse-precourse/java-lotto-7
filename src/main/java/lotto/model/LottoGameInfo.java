@@ -1,11 +1,14 @@
 package lotto.model;
 
+import lotto.ui.InputView;
+
 import java.util.List;
 
 public class LottoGameInfo {
     private int purchaseAmount;
     private List<Integer> winningNumber;
     private int bonusNumber;
+    private int lottotickets;
 
     public int getPurchaseAmount() {
         return purchaseAmount;
@@ -29,6 +32,14 @@ public class LottoGameInfo {
 
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    public int getLottotickets() {
+        return lottotickets;
+    }
+
+    public void setLottotickets(int amount) {
+        this.lottotickets = amount / 1000;
     }
 
 
