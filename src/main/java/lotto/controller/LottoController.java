@@ -36,5 +36,6 @@ public class LottoController {
         lottoMachine.updateWinningDetail(lottos);
         Map<String, Integer> winningDetail = lottoMachine.getWinningDetail();
         outputView.printWinningDetail(winningDetail);
+        double profitRate = lottoMachine.getProfitRate(purchaseAmount);
     }
 }

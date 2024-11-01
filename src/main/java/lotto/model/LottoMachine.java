@@ -70,4 +70,8 @@ public class LottoMachine {
     public Map<String, Integer> getWinningDetail() {
         return stats.getWinningDetail();
     }
+
+    public double getProfitRate(int purchaseAmount) {
+        return stats.getProfitRate(purchaseAmount);
+    }
 }
