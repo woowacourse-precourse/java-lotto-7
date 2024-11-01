@@ -70,9 +70,4 @@ public class LottoCompany {
         int bonusNumber = winningLotto.getBonusNumber();
         return lottoNumbers.stream().anyMatch(number -> number == bonusNumber);
     }
-
-    /* TODO: 로또 회사의 역할
-     * 1. 당첨 번호를 갖고 있다. (실세계에서는 직접 당첨 번호를 뽑지만, 여기선 외부에서 주입받는다고 가정)
-     * 2. 번호가 주어지면 그 번호의 당첨 여부를 반환한다.
-     */
 }
