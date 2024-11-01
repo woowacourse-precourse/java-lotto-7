@@ -11,7 +11,9 @@ public enum ErrorMessage {
     INVALID_WINNING_NUMBERS_COUNT("6개의 숫자를 입력해 주세요."),
     INVALID_NUMBER_RANGE("1 ~ 45 사이의 숫자만 입력할 수 있어요."),
     INVALID_WINNING_NUMBERS_FORMAT("1,2,3,4,5,6과 같이 숫자와 콤마로 이루어진 문자열을 입력해 주세요."),
-    DUPLICATE_NUMBER_IS_NOT_ALLOWED("중복된 숫자는 입력할 수 없어요.");
+    DUPLICATE_NUMBER_IS_NOT_ALLOWED("중복된 숫자는 입력할 수 없어요."),
+
+    ALREADY_EXIST_IN_WINNING_NUMBERS("당첨 번호에 있는 숫자는 입력할 수 없어요.");
 
     private final String message;
 
