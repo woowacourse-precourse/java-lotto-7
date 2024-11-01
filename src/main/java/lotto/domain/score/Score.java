@@ -38,8 +38,7 @@ public class Score {
         int totalSum = IntStream.range(0, scoreValues.size())
                 .map(i -> scoreValues.get(i) * scoreSystemReward.get(i))
                 .sum();
-        float rateOfReturn = (float) totalSum / totalUsedPrice * 100;
-        return rateOfReturn;
+        return (float) totalSum / totalUsedPrice * 100;
     }
 
     private void initializeScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
