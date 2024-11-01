@@ -58,8 +58,9 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("로또 구입 금액이 숫자가 아닌 입력이 들어오면 예외가 발생한다.")
     @Test
-    void 예외_테스트() {
+    void 로또_구입금액이_숫자가_아닌_입력이_들어오면_예외() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
