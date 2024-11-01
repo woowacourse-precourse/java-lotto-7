@@ -1,5 +1,9 @@
 package lotto.validator;
 
+import java.util.HashSet;
+import java.util.List;
+
+import lotto.Lotto;
 import lotto.answer.Answer;
 import lotto.provider.LottoProvider;
 import lotto.user.User;
@@ -14,5 +18,13 @@ public class Validator {
 		this.provider = provider;
 		this.user = user;
 		this.answer = answer;
+	}
+
+	public void validateLotto() {
+		List<Lotto> pickedLottos = provider.getPickedLottos();
+		for (Lotto lotto : pickedLottos) {
+			int matchCounts = lotto.checkLottoResult(answer);
+			boolean hasBonus = lotto.hasBonusLotto(answer);
+		}
 	}
 }
