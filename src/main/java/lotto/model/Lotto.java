@@ -17,6 +17,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         isDuplicated(numbers);
         hasLengthSix(numbers);
+        isOutofRange(numbers);
     }
 
     private static void isDuplicated(List<Integer> numbers) {
@@ -31,9 +32,16 @@ public class Lotto {
             throw new InputException(ExceptionMessage.INVALID_COUNT_ERROR);
         }
     }
+
+    private static void isOutofRange(List<Integer> numbers){
+        for (Integer number : numbers) {
+            if(number < 1 || number > 45){
+                throw new InputException(ExceptionMessage.NUMBER_RANGE_ERROR);
+            }
+        }
+    }
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
 }
