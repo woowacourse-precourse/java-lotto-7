@@ -8,6 +8,7 @@ import java.util.Set;
 public class InputProcessor {
     private int tryCount;
     private List<Integer> victoryNumbers;
+    private int bonusNumber;
 
     public InputProcessor() {
         this.tryCount = 0;
@@ -29,6 +30,36 @@ public class InputProcessor {
         arrayToList(split);
         validateVictoryNumbers(victoryNumbers);
         victoryNumbers.sort(Integer::compareTo);
+    }
+
+    public void processBonusNumber(String readLine) {
+        try {
+            Integer.parseInt(readLine);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자를 입력해주세요.");
+        }
+        int tmpBonus = Integer.parseInt(readLine.trim());
+        validateBonus(tmpBonus);
+        this.bonusNumber = tmpBonus;
+    }
+
+    private void validateBonus(int tmpBonus) {
+        validateBonusRange(tmpBonus);
+        validateDuplicate(tmpBonus, victoryNumbers);
+    }
+
+    private void validateDuplicate(int tmpBonus, List<Integer> victoryNumbers) {
+        for (int i : victoryNumbers) {
+            if (tmpBonus == i) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호는 중복되어서 안됩니다.");
+            }
+        }
+    }
+
+    private void validateBonusRange(int tmpBonus) {
+        if (tmpBonus < 1 || tmpBonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45사이의 숫자여야 합니다.");
+        }
     }
 
     private void validateVictoryNumbers(List<Integer> victoryNumbers) {

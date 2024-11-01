@@ -28,6 +28,7 @@ public class LottoController {
         output.printTicket(inputProcessor.getTryCount(), lottoManager.getLottoTicket());
         output.printVictoryNumber();
         inputProcessor.processVictoryNumber(input.readLine());
-        System.out.println(inputProcessor.getVictoryNumbers());
+        output.printBonusNumber();
+        inputProcessor.processBonusNumber(input.readLine());
     }
 }
