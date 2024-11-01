@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    public static final String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
     public static Integer readPurchaseAmount(){
         Integer purchasePrice = 0;
