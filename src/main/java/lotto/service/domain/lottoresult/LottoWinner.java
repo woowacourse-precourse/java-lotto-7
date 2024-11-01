@@ -9,14 +9,14 @@ public class LottoWinner {
     private final LottoNumber bonusNumber;
 
     public LottoWinner(Lotto winnerLotto, LottoNumber bonusNumber) {
-        validate(winnerLotto, bonusNumber);
+        validateBounusNumberDuplicate(winnerLotto, bonusNumber);
         this.winnerLotto = winnerLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto winnerLotto, LottoNumber bonusNumber) {
-        if(winnerLotto.checkBonusDuplicate(bonusNumber)){
-
+    private void validateBounusNumberDuplicate(Lotto winnerLotto, LottoNumber bonusNumber) {
+        if(winnerLotto.checkBonusNumberDuplicate(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
         }
     }
 }

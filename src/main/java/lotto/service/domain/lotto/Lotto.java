@@ -38,7 +38,7 @@ public class Lotto {
         }
     }
 
-    public boolean checkBonusDuplicate(LottoNumber bonusNumber) {
+    public boolean checkBonusNumberDuplicate(LottoNumber bonusNumber) {
         return lottoticket.contains(bonusNumber);
     }
 
