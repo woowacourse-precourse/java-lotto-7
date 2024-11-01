@@ -21,11 +21,20 @@ public class OutputView {
 
     public static void printWinningHistory(Map<LottoRanking, Integer> map) {
         for (LottoRanking ranking : LottoRanking.values()) {
+            StringBuilder message = new StringBuilder();
+            message.append(ranking.getMatchNumber()).append("개 일치");
+
             if (ranking.isBonusMatch()) {
-                System.out.println(ranking.getMatchNumber() + "개 일치, 보너스 볼 일치 (" + String.format("%,d", ranking.getPrice()) + "원) - " + map.get(ranking) +"개");
-                continue;
+                message.append(", 보너스 볼 일치");
             }
-            System.out.println(ranking.getMatchNumber() + "개 일치 (" + String.format("%,d", ranking.getPrice()) + "원) - " + map.get(ranking) +"개");
+
+            message.append(" (")
+                .append(String.format("%,d", ranking.getPrice()))
+                .append("원) - ")
+                .append(map.get(ranking))
+                .append("개");
+
+            System.out.println(message);
         }
     }
 
