@@ -8,16 +8,15 @@ public class PurchaseAmountValidator implements NumberInputValidator {
 
     @Override
     public boolean isValid(String input) {
-        boolean isValid = true;
         try {
             checkInputType(input);
             checkDivisibility(input);
             checkValueRange(input);
+            return true;
         } catch (IllegalArgumentException e) {
-            isValid = false;
             System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
         }
-        return isValid;
+        return false;
     }
 
     public void checkDivisibility(String input) {

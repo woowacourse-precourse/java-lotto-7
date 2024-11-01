@@ -13,22 +13,20 @@ public class LottoNumberValidator implements NumberInputValidator {
 
     @Override
     public boolean isValid(String input) {
-        boolean isValid = true;
         List<String> numbers = List.of(input.split(SPLIT_DELIMITER));
 
         try {
             checkArraySize(numbers);
             checkDuplicate(input);
-
             for (String number : numbers) {
                 checkInputType(number);
                 checkValueRange(number);
             }
+            return true;
         } catch (IllegalArgumentException e) {
-            isValid = false;
             System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
         }
-        return isValid;
+        return false;
     }
 
     public void checkArraySize(List<String> numbers) {
