@@ -8,7 +8,21 @@ public class WinningNumberValidator {
 
     public void validateWinningNumber(List<String> parsedInput){
         for(String element: parsedInput){
+            checkElementIsEmpty(element);
+            checkElementIsNull(element);
             checkElementIsNumber(element);
+        }
+    }
+
+    private void checkElementIsEmpty(String element){
+        if(element.isEmpty()){
+            throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    private void checkElementIsNull(String element){
+        if(element == null){
+            throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -19,6 +33,7 @@ public class WinningNumberValidator {
             throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_NUMBER_FORMAT.getMessage());
         }
     }
+
 
 
 

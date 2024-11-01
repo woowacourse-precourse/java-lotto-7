@@ -81,12 +81,24 @@ public class InputTest {
 
             WinningNumberParser parser = new WinningNumberParser();
             List<String> parsedInput = parser.parseWinningNumber(input);
-            
+
             assertThrows(IllegalArgumentException.class, () -> {
                 validator.validateWinningNumber(parsedInput);
             });
         }
 
+        @DisplayName("비었거나 null 인 당첨번호 예외 처리")
+        @ParameterizedTest()
+        @ValueSource(strings = {" ", "1, ,3,4,5", ""})
+        void 비었거나_널_당첨번호_예외(String input){
+            WinningNumberParser parser = new WinningNumberParser();
+            List<String> parsedInput = parser.parseWinningNumber(input);
+            System.out.println(parsedInput);
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validateWinningNumber(parsedInput);
+            });
+        }
+        
     }
 
     @Nested
