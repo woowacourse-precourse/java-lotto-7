@@ -17,10 +17,7 @@ public class LottoMatchingMachine {
     }
 
     public boolean isBonusMatch(Lotto lotto){
-        long size =  lotto.getNumbers().stream()
-                .filter(bonus::isMatch)
-                .count();
-
-        return size == 1; // 흠... 흠...
+        return lotto.getNumbers().stream()
+                .anyMatch(bonus::isMatch);
     }
 }

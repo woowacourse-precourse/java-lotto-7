@@ -6,21 +6,29 @@ import java.util.List;
 
 public class InputView {
 
-    public long inputPurchaseAmount(){
-        return Long.parseLong(Console.readLine());
+    public static int inputInitialCapital(){
+        int initialCapital = Integer.parseInt(Console.readLine());
+        validateThousandUnit(initialCapital);
+        return initialCapital;
     }
 
-    public List<Integer> inputWinningNumber(){
+    private static void validateThousandUnit(long initialCapital) {
+        if(initialCapital % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 천원단위의 구입금액을 입력해야 합니다. ");
+        }
+    }
+
+    public static List<Integer> inputWinningNumber(){
         return stringToIntegerList(Console.readLine());
     }
 
-    private List<Integer> stringToIntegerList(String input){
+    private static List<Integer> stringToIntegerList(String input){
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    public Integer inputBonusNumber(){
+    public static Integer inputBonusNumber(){
         return Integer.parseInt(Console.readLine());
     }
 }
