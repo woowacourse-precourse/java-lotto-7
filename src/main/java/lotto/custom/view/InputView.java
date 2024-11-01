@@ -7,4 +7,9 @@ public class InputView {
         System.out.println(PromptMessages.INPUT_PURCHASE_AMOUNT_PROMPT);
         return Console.readLine();
     }
+
+    public String inputWinningNumbers() {
+        System.out.println(PromptMessages.INPUT_WINNING_NUMBERS_PROMPT);
+        return Console.readLine();
+    }
 }
