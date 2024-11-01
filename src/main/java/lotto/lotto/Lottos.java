@@ -29,11 +29,10 @@ public class Lottos {
     private void generateLottos(int count) {
         for (int currentCount = 0; currentCount < count; currentCount++) {
             List<Integer> numbers =
-                    Randoms.pickUniqueNumbersInRange(
+                    new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                             LottoConstant.MIN_LOTTO_NUMBER.getValue(),
                             LottoConstant.MAX_LOTTO_NUMBER.getValue(),
-                            LottoConstant.LOTTO_SIZE.getValue()
-                    );
+                            LottoConstant.LOTTO_SIZE.getValue()));
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
