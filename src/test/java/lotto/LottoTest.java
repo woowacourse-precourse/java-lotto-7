@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -22,4 +24,33 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 특정번호가포함되지않았을때() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int notContainNumber = 7;
+        // when
+        System.out.println("=====Logic Start=====");
+
+        boolean actual = lotto.isContains(notContainNumber);
+
+        System.out.println("=====Logic End=====");
+        // then
+        assertThat(actual).isFalse();
+    }
+    @Test
+    void 특정번호가포함되었을때() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int containNumber = 6;
+        // when
+        System.out.println("=====Logic Start=====");
+
+        boolean actual = lotto.isContains(containNumber);
+
+        System.out.println("=====Logic End=====");
+        // then
+        assertThat(actual).isTrue();
+
+    }
 }

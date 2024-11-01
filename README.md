@@ -7,7 +7,7 @@
 
 ### Lottos
 - [ ] 당첨된 로또의 개수
-
+- [ ] 특정번호의 포함여부 확인
 ### Lotto
 - [ ] 리스트에 포함된 번호의 개수 반환
 
@@ -25,4 +25,3 @@
 ## Controller
 
 ### LottoController
-- [ ] View의 값 Model로 서빙
