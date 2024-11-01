@@ -25,12 +25,24 @@ class InputViewTest {
 
     @AfterEach
     void tearDown() {
-        System.setIn(originalIn);
-        Console.close(); // 테스트를 마치면 입력 버퍼를 flush
+        System.setIn(originalIn); // 테스트를 마치면 입력 버퍼를 flush
+        Console.close();
     }
 
     private void setInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+    }
+
+
+    @Test
+    @DisplayName("구입 금액이 1000원 단위로 입력되지 않으면 예외 발생")
+    void shouldThrowExceptionWhenInvalidPurchaseAmount() {
+        // Given
+        setInput("1500"); // 1000원 단위가 아님
+
+        // When & Then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, InputView::getPurchaseAmount);
+        assertEquals(ErrorMessage.INVALID_AMOUNT.getMessage(), exception.getMessage());
     }
 
     @Test
