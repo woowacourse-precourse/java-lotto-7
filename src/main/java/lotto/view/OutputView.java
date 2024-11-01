@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.service.LottoResult;
 import lotto.domain.PurchasedLottos;
@@ -23,12 +25,25 @@ public class OutputView {
     }
 
     public void showWinStatus(LottoResult lottoResult) {
+        StringBuilder output = new StringBuilder();
+        showWinInstructions();
+        Map<Rank, Integer> result = lottoResult.getResult();
+        for (Rank rank : result.keySet()) {
+            if (rank != Rank.MISS) {
+                output.append(rank.toString())
+                        .append(" - ")
+                        .append(lottoResult.getResult().get(rank))
+                        .append("개")
+                        .append(System.lineSeparator());
+            }
+        }
+        System.out.printf(output.toString());
+    }
+
+    private static void showWinInstructions() {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        for (Rank rank : Rank.values()) {
-            System.out.println(rank.getMsg() + lottoResult.getResult().get(rank) + "개");
-        }
     }
 
     public void showProfit(Rank rank, int money) {
@@ -39,6 +54,7 @@ public class OutputView {
     private void showLottoNums(Lotto lotto) {
         String numbers = String.join(", ", lotto.lottoNums()
                 .stream()
+                .sorted()
                 .map(String::valueOf)
                 .toList());
         System.out.printf(LOTTO_NUMBERS, numbers);

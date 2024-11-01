@@ -3,7 +3,7 @@ package lotto.util;
 public enum ErrorMessage {
 
     NOT_NUMBER("[ERROR] 정수만 가능합니다."),
-    MONEY_IS_NOT_MOD_PRICE("[ERROR] 천원 단위로만 입력하세요."),
+    MONEY_IS_NOT_MOD_PRICE("[ERROR] 돈은 천원 단위로 입력해야 합니다."),
     LOTTO_IS_NOT_FIT_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_NUMS_DUPLICATION("[ERROR] 로또 번호가 중복됩니다."),
     LOTTO_NUM_OUT_OF_RANGE(String.format("[ERROR] 로또 번호는 %d와 %d 사이의 숫자여야 합니다.",
