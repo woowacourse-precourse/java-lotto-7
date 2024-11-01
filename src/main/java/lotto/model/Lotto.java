@@ -48,6 +48,10 @@ public class Lotto {
                 .toList();
     }
 
+    public int getSize() {
+        return LOTTO_SIZE;
+    }
+
     public List<Integer> getNumbers() {
         return numbers.stream().toList();
     }

@@ -39,4 +39,12 @@ public class WinningLotto {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DISTINCT.getMessage());
         }
     }
+
+    public int getSize() {
+        return LOTTO_SIZE;
+    }
+
+    public List<Integer> getWinNumbers() {
+        return winNumbers.stream().toList();
+    }
 }
