@@ -26,4 +26,8 @@ public class RankCounter {
     public Integer getRankCount(Rank rank) {
         return rankCounter.get(rank);
     }
+
+    public void increaseRankCount(Rank rank) {
+        rankCounter.put(rank, rankCounter.get(rank) + 1);
+    }
 }
