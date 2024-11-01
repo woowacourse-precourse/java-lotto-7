@@ -5,6 +5,7 @@ import lotto.global.communication.CustomCommunicationCode;
 import lotto.global.communication.CustomCommunicationData;
 import lotto.global.communication.Telecommunication;
 import lotto.global.dto.request.PurchaseLottoRequestDTO;
+import lotto.global.dto.request.SetPrizeLottoRequestDTO;
 import lotto.global.exception.CustomIllegalArgumentException;
 
 public class FrontController {
@@ -32,6 +33,9 @@ public class FrontController {
 
         if (requestObject instanceof PurchaseLottoRequestDTO purchaseLottoRequestDTO) {
             return lottoController.purchase(purchaseLottoRequestDTO);
+        } else if (requestObject instanceof SetPrizeLottoRequestDTO setPrizeLottoRequestDTO) {
+            lottoController.setPrizeLotto(setPrizeLottoRequestDTO);
+            return null;
         }
 
         throw new RuntimeException("잘못된 요청입니다.");

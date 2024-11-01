@@ -3,6 +3,7 @@ package lotto.back.support;
 import lotto.back.global.support.ApplicationContext;
 import lotto.back.global.support.BeanConfig;
 import lotto.back.lotto.controller.LottoController;
+import lotto.back.lotto.repository.PrizeLottoRepository;
 import lotto.back.lotto.repository.PurchasedLottosRepository;
 import lotto.back.lotto.service.LottoService;
 import org.assertj.core.api.Assertions;
@@ -18,7 +19,12 @@ class BeanConfigTest {
     }
 
     @ParameterizedTest
-    @ValueSource(classes = {LottoController.class, LottoService.class, PurchasedLottosRepository.class})
+    @ValueSource(classes = {
+            LottoController.class,
+            LottoService.class,
+            PurchasedLottosRepository.class,
+            PrizeLottoRepository.class
+    })
     void 빈_생성_테스트(Class<?> beanClass) {
         // given
         Object bean = BeanConfig.getBean(beanClass);

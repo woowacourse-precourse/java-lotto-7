@@ -3,6 +3,7 @@ package lotto.back.lotto.controller;
 import lotto.back.global.annotation.Controller;
 import lotto.back.lotto.service.LottoService;
 import lotto.global.dto.request.PurchaseLottoRequestDTO;
+import lotto.global.dto.request.SetPrizeLottoRequestDTO;
 import lotto.global.dto.response.PurchasedLottoResponseDTOs;
 
 @Controller
@@ -16,5 +17,9 @@ public class LottoController {
 
     public PurchasedLottoResponseDTOs purchase(PurchaseLottoRequestDTO purchaseLottoRequestDTO) {
         return lottoService.purchase(purchaseLottoRequestDTO);
+    }
+
+    public void setPrizeLotto(SetPrizeLottoRequestDTO setPrizeLottoRequestDTO) {
+        lottoService.setPrizeLotto(setPrizeLottoRequestDTO);
     }
 }
