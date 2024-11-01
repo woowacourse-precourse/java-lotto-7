@@ -1,8 +1,12 @@
-package lotto;
+package lotto.lotto.domain;
 
 import java.util.List;
+import lotto.lotto.domain.value.LottoRank;
+import lotto.lotto.domain.value.LottoRankFinder;
 
 public class Lotto {
+
+    private static final int LOTTO_NUMBER_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -10,11 +14,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-
-    // TODO: 추가 기능 구현
 }
