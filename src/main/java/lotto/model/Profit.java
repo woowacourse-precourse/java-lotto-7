@@ -8,7 +8,7 @@ public class Profit {
     public static final int SIX_MATCH_PRIZE = 2_000_000_000;
 
     private final int purchasePrice;
-    private int totalMoney;
+    private long totalMoney;
     private double rate;
 
     public Profit(final int purchasePrice) {
@@ -17,11 +17,11 @@ public class Profit {
     }
 
     public void calculateTotalPrize(final MatchNumbers matchNumbers) {
-        totalMoney = matchNumbers.getThreeMatch() * THREE_MATCH_PRIZE
-        + matchNumbers.getFourMatch() * FOUR_MATCH_PRIZE
-        + matchNumbers.getFiveMatch() * FIVE_MATCH_PRIZE
-        + matchNumbers.getFiveAndBonusMatch() * FIVE_AND_BONUS_MATCH_PRIZE
-        + matchNumbers.getSixMatch() * SIX_MATCH_PRIZE;
+        totalMoney = (long) matchNumbers.getThreeMatch() * THREE_MATCH_PRIZE
+                + (long) matchNumbers.getFourMatch() * FOUR_MATCH_PRIZE
+                + (long) matchNumbers.getFiveMatch() * FIVE_MATCH_PRIZE
+                + (long) matchNumbers.getFiveAndBonusMatch() * FIVE_AND_BONUS_MATCH_PRIZE
+                + (long) matchNumbers.getSixMatch() * SIX_MATCH_PRIZE;
     }
 
     public void calculateRate() {
