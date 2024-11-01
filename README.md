@@ -179,11 +179,12 @@ private final List<Integer> numbers;
 }
 ```
 # 기능 요구 조건
-1. money 를 반환 (하루 최대 구입 금액은 10만원이다) 
-2. 로또 머신을 (여기에 money 객체 가 들어감) 사용하여 LottoTickets 을 반환
-3. 당첨 번호를 입력한다 (WinningLotto) : Lotto
-4. 보너스 번호를 입력한다 이때 WinningLotto 랑 중복된 값이 있는지 확인해야함
-5. 결과 반환 (최고 금액은 200,000,000,000)
+1. buyer 클래스를 통해 money 를 반환 (하루 최대 구입 금액은 10만원이다) 
+2. 로또 머신을 이용하여 로또들을 반환한다
+   1. LottoTickets 을 반환
+   2. 당첨 번호를 입력한다 (WinningLotto) : Lotto
+   3. 보너스 번호를 입력한다 이때 WinningLotto 랑 중복된 값이 있는지 확인해야함
+3. 결과 반환 (최고 금액은 200,000,000,000, 최고 수익률은 200,000,000.0% 이다)
 
 # Validator
 # Lotto
