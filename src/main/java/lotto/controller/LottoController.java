@@ -29,7 +29,8 @@ public class LottoController {
         List<Integer> winningLotto = inputWinningNumber();
         int bonusNumber = inputBonusNumber(winningLotto);
 
-        // 발행된 로또와 당첨 로또, 보너스 비교
+        Map<Result,Integer> results = compareLottoWithWinningNumber(userLottos, winningLotto, bonusNumber);
+        output.printProfit(Calculator.calculateRateOfReturn(lottoAmount,results));
     }
 
     public int inputLottoAmount(){
@@ -61,9 +62,9 @@ public class LottoController {
         }
     }
 
-    public void compareLottoWithWinningNumber(List<Lotto> userLottos, List<Integer> winningLotto, int bonusNumber){
+    public Map<Result,Integer> compareLottoWithWinningNumber(List<Lotto> userLottos, List<Integer> winningLotto, int bonusNumber){
         Map<Result,Integer> results = new LinkedHashMap<>();
-        for(int i = Result.values().length; i > 0; i--){
+        for(int i = Result.values().length -1; i >= 0; i--){
             results.put(Result.values()[i], 0);
         }
         for(Lotto userLotto : userLottos) {
@@ -71,6 +72,7 @@ public class LottoController {
             results.put(result, results.get(result)+1);
         }
         printResults(results);
+        return results;
     }
 
     public void printResults(Map<Result,Integer> results){
@@ -80,7 +82,5 @@ public class LottoController {
         for(Result result : results.keySet()){
             output.printResult(result.getMatchCount(), result.getPrizeMoney(), results.get(result));
         }
-
-        //수익률 출력
     }
 }
