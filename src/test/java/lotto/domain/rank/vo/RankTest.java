@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RankTest {
@@ -30,5 +30,20 @@ class RankTest {
 
         // then
         assertThat(rankInfo).isEqualByComparingTo(Rank.valueOf(rank));
+    }
+
+    @Test
+    @DisplayName("오름차순 순위를 반환할 수 있다.")
+    void 순위_객체_반환() {
+        // given
+        // when
+        List<Rank> sortedRanks = Rank.getSortedRanks();
+
+        // then
+        assertThat(sortedRanks.get(0)).isEqualTo(Rank.FIFTH);
+        assertThat(sortedRanks.get(1)).isEqualTo(Rank.FOURTH);
+        assertThat(sortedRanks.get(2)).isEqualTo(Rank.THIRD);
+        assertThat(sortedRanks.get(3)).isEqualTo(Rank.SECOND);
+        assertThat(sortedRanks.get(4)).isEqualTo(Rank.FIRST);
     }
 }
