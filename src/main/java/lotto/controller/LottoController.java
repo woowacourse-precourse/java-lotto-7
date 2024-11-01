@@ -28,6 +28,7 @@ public class LottoController {
         WinningNumbers winningNumbers = requestWinningNumbers();
         Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
         double rateOfReturn = calculateRateOfReturn(result, purchase.getPrice());
+        outputView.printWinningResult(result, rateOfReturn);
     }
 
     private Purchase requestPurchase() {
@@ -80,7 +81,9 @@ public class LottoController {
         ));
         for (Lotto lotto : lottoTickets) {
             Prize prize = winningNumbers.checkPrize(lotto);
-            result.replace(prize, result.get(prize) + 1);
+            if (prize != Prize.NON) {
+                result.replace(prize, result.get(prize) + 1);
+            }
         }
 
         return result;
