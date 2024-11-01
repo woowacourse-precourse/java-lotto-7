@@ -15,15 +15,15 @@ import lotto.view.OutputView;
 
 public class Controller {
     private final PurchasedLottoNumbersService purchasedLottoNumbersService = new PurchasedLottoNumbersService();
-    private int input;
+    int userMoney;
 
     public int divideByThousand() {
         InputView.printRequestPurchaseAmountInput();
-        String input = InputView.getUserInput();
+        String inputMoney = InputView.getUserInput();
         try{
-            new Money(Parser.stringToInt(input));
-            this.input = Parser.stringToInt(input);
-            return Parser.stringToInt(input) / 1000;
+            Money money = new Money(Parser.stringToInt(inputMoney));
+            this.userMoney = money.getUserInputMoney();
+            return money.getUserInputMoney() / 1000;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             OutputView.printInputAgainPrompt();
@@ -42,7 +42,7 @@ public class Controller {
         InputView.printRequestLotto();
         List<Integer> numbers = InputView.getLotto(InputView.getUserInputSplitByComma());
         try {
-            return new Lotto(numbers); // 올바른 Lotto 객체 생성
+            return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             OutputView.printInputAgainPrompt();
@@ -50,34 +50,28 @@ public class Controller {
         }
     }
 
-    public int generateBonusNumber(Lotto lotto, String bonusNumberInput){
+    public BonusNumber generateBonusNumber(Lotto lotto){
+        InputView.printRequestBonusNumber();
+        String bonusNumberInput = InputView.getUserInput();
         try {
             BonusNumber bonusNumber = new BonusNumber(Parser.stringToInt(bonusNumberInput));
             LottoBonusDuplicateCheckerService.checkForDuplicates(lotto, Integer.parseInt(bonusNumberInput));
-            return bonusNumber.getBonusNumber();
+            return bonusNumber;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             OutputView.printInputAgainPrompt();
-            return generateBonusNumber(lotto, Console.readLine());
+            return generateBonusNumber(lotto);
         }
     }
 
     public int[] makeLottoAndBonusNumberCalculateRank(ArrayList<List<Integer>> purchasedLottoNumbers) {
         Lotto lotto = generateLotto();
-        InputView.printRequestBonusNumber();
-        int bonusNumber = generateBonusNumber(lotto, InputView.getUserInput());
-        int[] rank = new int[5];
-
-        for (List<Integer> purchasedLottoNumber : purchasedLottoNumbers) {
-            int matchCount = LottoRankingService.countMatches(lotto, purchasedLottoNumber);
-            LottoRankingService.updateRank(rank, matchCount, purchasedLottoNumber.contains(bonusNumber));
-        }
-
-        return rank;
+        BonusNumber bonusNumber = generateBonusNumber(lotto);
+        return LottoRankingService.calculateLottoRank(lotto,purchasedLottoNumbers,bonusNumber);
     }
 
     public void printResult(int [] rank){
-        double totalRate = LottoRankingService.getTotalRate(rank, input);
+        double totalRate = LottoRankingService.getTotalRate(rank, userMoney);
         OutputView.printLottoResults(rank,totalRate);
     }
 
