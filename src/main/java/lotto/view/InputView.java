@@ -22,17 +22,9 @@ public class InputView {
     private static int convertInputAmountToInt(String inputAmount) {
         try {
             int intAmount = Integer.parseInt(inputAmount);
-            long longAmount = convertInputAmountToLong(inputAmount);
+            long longAmount = Long.parseLong(inputAmount);
             validateAmountEquality(intAmount, longAmount);
             return intAmount;
-        } catch (NumberFormatException exception) {
-            throw new CustomLottoException(ErrorMessage.NOT_NUMBER);
-        }
-    }
-
-    private static long convertInputAmountToLong(String inputAmount) {
-        try {
-            return Long.parseLong(inputAmount);
         } catch (NumberFormatException exception) {
             throw new CustomLottoException(ErrorMessage.NOT_NUMBER);
         }
