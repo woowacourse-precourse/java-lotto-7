@@ -8,12 +8,10 @@ import java.util.List;
 
 public class Lottos {
 
-    private final int buyAmount;
     private final List<Lotto> lottos;
 
 
     public Lottos(int buyAmount, LottoFactory lottoFactory) {
-        this.buyAmount = buyAmount;
         this.lottos = createLottos(buyAmount, lottoFactory);
     }
 
@@ -27,13 +25,13 @@ public class Lottos {
 
         while (lottos.size() < buyAmount) {
             Lotto lotto = Lotto.from(lottoFactory);
-            addUnduplicateLotto(lottos,lotto);
+            addUnduplicateLotto(lottos, lotto);
         }
         return lottos;
     }
 
 
-    private void addUnduplicateLotto(List<Lotto> lottos,Lotto lotto) {
+    private void addUnduplicateLotto(List<Lotto> lottos, Lotto lotto) {
 
         if (!lottos.contains(lotto)) {
             lottos.add(lotto);
