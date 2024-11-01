@@ -30,4 +30,7 @@ public class Lotto {
         System.out.println(lottoPrintMessage);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
