@@ -51,17 +51,17 @@ public class LottoResult {
         }
     }
 
-    public Double getProfit(Lottos lottos) {
-        double profit = (double) (totalBenefit / lottos.getLottoCount()) * 100.0;
+    public Double getProfitRate(Lottos lottos) {
+        double profit = (double) (totalBenefit / lottos.getLottoCount()) / 1000.0 * 100.0;
         return Math.round(profit * 10.0) / 10.0;
     }
 
     @Override
     public String toString() {
-        return WinningInfo.FIFTH_WINNER.getInfo() + "-" + result.get(WinningInfo.FIFTH_WINNER) + "개" + "\n" +
-                WinningInfo.FOURTH_WINNER.getInfo() + "-" + result.get(WinningInfo.FOURTH_WINNER) + "개" + "\n" +
-                WinningInfo.THIRD_WINNER.getInfo() + "-" + result.get(WinningInfo.THIRD_WINNER) + "개" + "\n" +
-                WinningInfo.SECOND_WINNER.getInfo() + "-" + result.get(WinningInfo.SECOND_WINNER) + "개" + "\n" +
-                WinningInfo.FIRST_WINNER.getInfo() + "-" + result.get(WinningInfo.FIRST_WINNER) + "개" + "\n";
+        return WinningInfo.FIFTH_WINNER.getInfo() + " - " + result.get(WinningInfo.FIFTH_WINNER) + "개" + "\n" +
+                WinningInfo.FOURTH_WINNER.getInfo() + " - " + result.get(WinningInfo.FOURTH_WINNER) + "개" + "\n" +
+                WinningInfo.THIRD_WINNER.getInfo() + " - " + result.get(WinningInfo.THIRD_WINNER) + "개" + "\n" +
+                WinningInfo.SECOND_WINNER.getInfo() + " - " + result.get(WinningInfo.SECOND_WINNER) + "개" + "\n" +
+                WinningInfo.FIRST_WINNER.getInfo() + " - " + result.get(WinningInfo.FIRST_WINNER) + "개" + "\n";
     }
 }

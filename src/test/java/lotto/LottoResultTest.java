@@ -22,11 +22,11 @@ class LottoResultTest {
 
         // then
         assertThat(lottoResult.toString()).contains(
-                "3개 일치 (5,000원)-0개",
-                "4개 일치 (50,000원)-0개",
-                "5개 일치 (1,500,000원)-0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원)-0개",
-                "6개 일치 (2,000,000,000원)-0개"
+                "3개 일치 (5,000원) - 0개",
+                "4개 일치 (50,000원) - 0개",
+                "5개 일치 (1,500,000원) - 0개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                "6개 일치 (2,000,000,000원) - 0개"
         );
     }
 
@@ -48,8 +48,8 @@ class LottoResultTest {
         lottoResult.calculateTotalBenefit();
 
         // then
-        assertThat(lottoResult.toString()).contains("6개 일치 (2,000,000,000원)-1개");
-        assertThat(lottoResult.getProfit(lottos)).isEqualTo(200000000000.0);
+        assertThat(lottoResult.toString()).contains("6개 일치 (2,000,000,000원) - 1개");
+        assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(200_000_000.0);
     }
 
     @Test
@@ -70,8 +70,8 @@ class LottoResultTest {
         lottoResult.calculateTotalBenefit();
 
         // then
-        assertThat(lottoResult.toString()).contains("5개 일치, 보너스 볼 일치 (30,000,000원)-1개");
-        assertThat(lottoResult.getProfit(lottos)).isEqualTo(3000000000.0);
+        assertThat(lottoResult.toString()).contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 1개");
+        assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(3_000_000.0);
     }
 
     @Test
@@ -97,11 +97,11 @@ class LottoResultTest {
 
         // then
         assertThat(lottoResult.toString())
-                .contains("6개 일치 (2,000,000,000원)-1개")
-                .contains("5개 일치, 보너스 볼 일치 (30,000,000원)-1개")
-                .contains("5개 일치 (1,500,000원)-1개")
-                .contains("4개 일치 (50,000원)-1개")
-                .contains("3개 일치 (5,000원)-1개");
+                .contains("6개 일치 (2,000,000,000원) - 1개")
+                .contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 1개")
+                .contains("5개 일치 (1,500,000원) - 1개")
+                .contains("4개 일치 (50,000원) - 1개")
+                .contains("3개 일치 (5,000원) - 1개");
     }
 
     @Test
@@ -127,7 +127,7 @@ class LottoResultTest {
         lottoResult.calculateTotalBenefit();
 
         // then
-        assertThat(lottoResult.getProfit(lottos)).isEqualTo(166600.00);
+        assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(166.6);
     }
 
     @Test
@@ -149,7 +149,7 @@ class LottoResultTest {
         lottoResult.calculateTotalBenefit();
 
         // then
-        assertThat(lottoResult.getProfit(lottos)).isEqualTo(0.0);
+        assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(0.0);
     }
 
     @Test
@@ -165,10 +165,10 @@ class LottoResultTest {
 
         // then
         assertThat(lottoResult.toString())
-                .contains("6개 일치 (2,000,000,000원)-0개")
-                .contains("5개 일치, 보너스 볼 일치 (30,000,000원)-0개")
-                .contains("5개 일치 (1,500,000원)-0개")
-                .contains("4개 일치 (50,000원)-0개")
-                .contains("3개 일치 (5,000원)-0개");
+                .contains("6개 일치 (2,000,000,000원) - 0개")
+                .contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개")
+                .contains("5개 일치 (1,500,000원) - 0개")
+                .contains("4개 일치 (50,000원) - 0개")
+                .contains("3개 일치 (5,000원) - 0개");
     }
 }

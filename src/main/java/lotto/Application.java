@@ -27,6 +27,6 @@ public class Application {
         View view = new View();
         view.printLotto(lottos.getLottoCount(), lottos.toString());
         view.printWinningResult(lottoResult.toString());
-        view.printProfit(lottoResult.getProfit(lottos));
+        view.printProfit(lottoResult.getProfitRate(lottos));
     }
 }
