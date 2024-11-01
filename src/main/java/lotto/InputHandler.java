@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputHandler {
-    public static int getBuyingNumber() {
-        String buyingNumber = Console.readLine();
-        return Integer.parseInt(buyingNumber);
+    public static int getBuyingAmount() {
+        String buyingAmount = Console.readLine();
+        return Integer.parseInt(buyingAmount);
     }
     public static List<Integer> getWinningNumber() {
         String winningNumbers = Console.readLine();
