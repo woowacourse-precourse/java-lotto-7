@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.Lotto;
 
 public class LottoPlay {
@@ -7,7 +8,7 @@ public class LottoPlay {
 
     public static void lottoPlay_Input() {
         int purchaseAmount = input.getPurchaseAmount();
-        GeneratorLotto.createLotto(purchaseAmount);
+        List<Lotto> lottoList = GeneratorLotto.createLotto(purchaseAmount);
         Lotto winningNumbers = input.getWinningNumbers();
         System.out.println(winningNumbers.toString());
         input.getBonusNumber(winningNumbers);
