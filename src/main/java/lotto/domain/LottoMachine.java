@@ -23,6 +23,9 @@ public class LottoMachine {
         inputBonusNumber(winningNumbers);
         final WinningResult winningResult = lottos.getWinningResult(winningNumbers);
         outputView.printWinningResult(winningResult.get());
+
+        final double profitRate = winningResult.calculateProfitRate(purchaseAmount.get());
+        outputView.printProfitRate(profitRate);
     }
 
     private PurchaseAmount inputPurchaseAmount() {
