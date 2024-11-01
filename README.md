@@ -8,6 +8,7 @@
 1. RandomNumbers : 1 - 45 사이에서 6개의 중복되지 않은 랜덤 숫자를 생성, 반환하는 클래스
 2. SplitNumbers : 입력받은 당첨 번호에 대한 Split을 담당하는 클래스
 3. ValidateNumbers : 로또 번호를 검증하는 클래스
+4. LottoConfig : 로또 특징을 가진 enum 클래스
 ### domain
 1. Lotto : 주어진 Lotto 클래스 (domain 으로 이동해서 사용)
 2. BonusNumber : 보너스 번호에 대한 클래스
@@ -15,10 +16,11 @@
 4. MyLotto : 구매한 로또에 대한 클래스
 5. LottoRanking : 로또 등수에 대한 클래스
 6. LottoStatistic : 로또 통계(수익률)에 대한 클래스
+7. Ranking : 로또 등수에 따른 정보를 갖고 있는 enum 클래스
 ### controller
 1. LottoController : 로또 게임에 대한 컨트롤러 클래스
 ### message
-1. ErrorMessage : 에러 메세지를 관리함 (Enum 을 적용하여 구현)
+1. ErrorMessage : 에러 메세지를 관리하는 enum 클래스 
 
 ## 프로그래밍 요구 사항
 - [x] indent depth 가 3이 넘지 않도록 구현 => 메서드 분리
@@ -41,4 +43,3 @@
 ## 고려사항
 - [x] 로또 번호 오름차순으로 정렬하여 보여줘야한다.
 - [x] 수익률은 소수점 둘째 자리에서 반올림한다.
-- [ ] JUnit, AssertJ 사용법 익히기.
