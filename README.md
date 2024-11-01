@@ -90,11 +90,6 @@
     - [x] 중복된다면 예외 발생
     - [x] 중복되지 않는다면 보너스 번호를 리턴
 
-### enum WinningPrize
-int standard
-
-int amount
-
 ### InputView
 - [x]  **public int getBuyingAmount()** \: 구입 금액을 입력받는 기능
     - [x] `구입금액을 입력해 주세요.` 출력
