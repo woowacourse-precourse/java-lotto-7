@@ -3,8 +3,10 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,11 +17,17 @@ public class Application {
         int money = inputMoney();
         List<List<Integer>> lottoNumbers = generateLottoNumbers(money);
         printLotto(lottoNumbers);
+
+        Lotto lotto = new Lotto(splitWinningNumbers(inputWinningNumbers()));
+    }
+
+    private static String readLine() {
+        return Console.readLine();
     }
 
     public static int inputMoney() {
         printMoneyInputMessage();
-        String input = Console.readLine();
+        String input = readLine();
         return parseToInt(input) / 1000;
     }
 
@@ -53,10 +61,23 @@ public class Application {
         System.out.printf("\n%d개를 구매했습니다.\n", money);
     }
 
-    private static void printLotto(List<List<Integer>> lottoNumbers) {
+    public static void printLotto(List<List<Integer>> lottoNumbers) {
         lottoNumbers.stream()
                 .map(Object::toString)
                 .forEach(System.out::println);
+    }
+
+    private static String inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해주세요.");
+        return Console.readLine();
+    }
+
+    private static List<Integer> splitWinningNumbers(String winningNumbers) {
+        String[] numbers = winningNumbers.split(",");
+        return Arrays.stream(numbers)
+                .filter(num -> !num.trim().isEmpty())
+                .map(num -> parseToInt(num.trim()))
+                .collect(Collectors.toList());
     }
 
 }
