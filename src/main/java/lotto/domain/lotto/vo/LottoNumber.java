@@ -17,6 +17,9 @@ public record LottoNumber(int value) {
         if (object instanceof LottoNumber) {
             return ((LottoNumber) object).value == value;
         }
+        if (object instanceof Integer) {
+            return (Integer) object == value;
+        }
         return false;
     }
 
