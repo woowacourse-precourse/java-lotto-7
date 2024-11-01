@@ -18,4 +18,8 @@ public class Parser {
         }
         return winningNums;
     }
+
+    public int bonusNumParser(String inputBonusNum) {
+        return Integer.parseInt(inputBonusNum);
+    }
 }

@@ -23,5 +23,6 @@ public class LottoController {
         lottoMachine.initMachine();
         Lottos lottos = lottoMachine.issueLottos(purchaseAmount);
         List<Integer> winningNums = parser.winningNumsParser(inputView.readWinningNums());
+        int Bonus = parser.bonusNumParser(inputView.readBonusNum());
     }
 }
