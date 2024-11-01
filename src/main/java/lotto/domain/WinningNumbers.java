@@ -25,6 +25,7 @@ public class WinningNumbers {
         private static List<Integer> validateWinningNumbers(String numbers) {
             validateWinningNumbersIsNotEmpty(numbers);
             List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
+            validateWinningNumbersCount(delimitedWinningNumbers);
             List<Integer> positiveWinningNumbers = validatePositiveWinningNumbers(delimitedWinningNumbers);
             validateWinningNumbersInRange(positiveWinningNumbers);
             validateUniqueWinningNumbers(positiveWinningNumbers);
@@ -43,6 +44,12 @@ public class WinningNumbers {
                         .toList();
             }
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다.");
+        }
+
+        private static void validateWinningNumbersCount(List<String> delimitedWinningNumbers) {
+            if (delimitedWinningNumbers.size() != 6) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            }
         }
 
         private static List<Integer> validatePositiveWinningNumbers(List<String> delimitedWinningNumbers) {
