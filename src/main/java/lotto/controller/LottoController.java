@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaseCalculator;
+import lotto.domain.WinningNumber;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 import lotto.util.RandomNumberGenerator;
@@ -32,7 +33,18 @@ public class LottoController {
                     outputHandler.showLottoList(lotto.getNumbers());
                 }
 
+                outputHandler.showWinningNumbersMessage();
+                List<Integer> winNumbers = inputHandler.winningNumbersInput();
+                int bonusNumber = inputHandler.bonusNumberInput();
+                WinningNumber winningNumber = new WinningNumber(winNumbers, bonusNumber);
 
+
+                for (Lotto lotto : lottoTickets) {
+                    int matchCount = winningNumber.matchCount(lotto);
+                    boolean bonusMatch = winningNumber.isBonusMatched(lotto);
+                    outputHandler.showMatchResult(matchCount, bonusMatch);
+                }
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
