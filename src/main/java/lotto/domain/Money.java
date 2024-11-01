@@ -35,4 +35,7 @@ public class Money {
         return remainder.compareTo(BigInteger.ZERO) == 0;
     }
 
+    public int availableLottoCount() {
+        return amount.divide(LOTTO_PRICE).intValue();
+    }
 }
