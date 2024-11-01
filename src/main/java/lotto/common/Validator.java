@@ -51,8 +51,8 @@ public class Validator {
         }
     }
 
-    public void isUniqueNumbers(List<Integer> winingNumbers, int bonusNumber) {
-        boolean isDuplicate = winingNumbers.stream()
+    public void isUniqueBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        boolean isDuplicate = winningNumbers.stream()
                 .anyMatch(num -> num.equals(bonusNumber));
         if (isDuplicate) {
             throw new IllegalArgumentException(ExceptionCode.BONUS_NUMBER_DOES_NOT_UNIQUE.message());

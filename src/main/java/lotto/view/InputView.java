@@ -9,7 +9,7 @@ import lotto.common.Validator;
 public class InputView {
     private final static String PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private final static String QUANTITY_MESSAGE = "개를 구매했습니다.";
-    private final static String WINING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private final static String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final static String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String NUMBER_DELIMITER = ",";
 
@@ -25,10 +25,6 @@ public class InputView {
         return input.replaceAll(" ", "");
     }
 
-    public void printPrice(int price) {
-        System.out.println(price);
-    }
-
     public void printLottoQuantity(int quantity) {
         System.out.println(quantity + QUANTITY_MESSAGE);
     }
@@ -37,8 +33,8 @@ public class InputView {
         System.out.println(numbers);
     }
 
-    public List<Integer> getWiningNumber() {
-        System.out.println(WINING_NUMBER_MESSAGE);
+    public List<Integer> getWinningNumber() {
+        System.out.println(WINNING_NUMBER_MESSAGE);
         String input = Console.readLine();
         String trimmedInput = input.replaceAll(" ", "");
         validator.validateDelimiter(trimmedInput);
