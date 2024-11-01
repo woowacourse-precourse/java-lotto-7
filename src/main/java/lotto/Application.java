@@ -159,4 +159,15 @@ public class Application {
         }
         return result;
     }
+
+
+    private static void outputResult(LottoResult result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result.getCountOf3Match());
+        System.out.println("4개 일치 (50,000원) - " + result.getCountOf4Match());
+        System.out.println("5개 일치 (1,500,000원) - " + result.getCountOf5Match());
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getCountOf5MatchAndBonus());
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.getCountOf5MatchAndBonus());
+    }
 }
