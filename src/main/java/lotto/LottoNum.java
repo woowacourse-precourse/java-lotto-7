@@ -7,6 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNum {
+    private static final int LOTTO_PRICE = 1000;
+    private static final int CORRECT_3 = 5000;
+    private static final int CORRECT_4 = 50000;
+    private static final int CORRECT_5 = 1500000;
+    private static final int CORRECT_BONUS_5 = 30000000;
+    private static final int CORRECT_6 = 2000000000;
+
     private List<List<Integer>> lottos = new ArrayList<>();
 
     public LottoNum(int money) {
@@ -16,13 +23,13 @@ public class LottoNum {
     }
 
     private void checkMoney(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("1000원으로 나누어 떨어지지 않습니다.");
         }
     }
 
     private void lottoNumbers(int money) {
-        for (int i = 0; i < money / 1000; i++) {
+        for (int i = 0; i < money / LOTTO_PRICE; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             List<Integer> sortNumbers = numbers.stream().sorted().toList();
             lottos.add(sortNumbers);
@@ -31,7 +38,7 @@ public class LottoNum {
 
     public void printNumber(int money) {
         System.out.println();
-        System.out.println( (money/1000) + "개를 구매했습니다.");
+        System.out.println( (money/LOTTO_PRICE) + "개를 구매했습니다.");
         for (List<Integer> lotto : lottos) {
             System.out.println(lotto);
         }
@@ -80,11 +87,11 @@ public class LottoNum {
     }
     private int rateResult(int[] counts){
         int sum = 0;
-        sum += counts[0] * 5000;
-        sum += counts[1] * 50000;
-        sum += counts[2] * 1500000;
-        sum += counts[3] * 30000000;
-        sum += counts[4] * 2000000000;
+        sum += counts[0] * CORRECT_3;
+        sum += counts[1] * CORRECT_4;
+        sum += counts[2] * CORRECT_5;
+        sum += counts[3] * CORRECT_BONUS_5;
+        sum += counts[4] * CORRECT_6;
         return sum;
 
     }
