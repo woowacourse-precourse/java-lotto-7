@@ -1,25 +1,34 @@
 package lotto.controller;
 
 import lotto.domain.AutoLotto;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
     private final LottoService lottoService;
+    private final OutputView outputView;
 
-    public LottoController(InputView inputView, LottoService lottoService) {
+    public LottoController(InputView inputView, LottoService lottoService, OutputView outputView) {
         this.inputView = inputView;
         this.lottoService = lottoService;
+        this.outputView = outputView;
     }
 
     public void run() {
-        getValidAutoLotto();
+        List<AutoLotto> autoLottos = getValidAutoLottoOrRepeat();
+        outputView.lottoCount(autoLottos.stream().count());
+        outputView.lottos(autoLottos);
+        WinningLotto winningLotto = getWinningLottoOrReapeat();
+        setWinningLottoBonusNumberOrRepeat(winningLotto);
+
     }
 
-    private List<AutoLotto> getValidAutoLotto() {
+    private List<AutoLotto> getValidAutoLottoOrRepeat() {
         while (true) {
             try {
                 String inputLottoPrice = inputView.getLottoPriceByUser();
@@ -29,6 +38,32 @@ public class LottoController {
             }
         }
     }
+
+    private WinningLotto getWinningLottoOrReapeat() {
+        while (true) {
+            try {
+                String inputWinningLottoNumbers = inputView.getWinningLottoNumbers();
+                return lottoService.createWinningLotto(inputWinningLottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " " + "다시 입력하세요.");
+            }
+        }
+    }
+
+    private WinningLotto setWinningLottoBonusNumberOrRepeat(WinningLotto winningLotto) {
+        while (true) {
+            try {
+                String inputWinningLottoBonusNumber = inputView.getWinningLottoBonusNumber();
+                return lottoService.setWinningLottoBonusNumber(winningLotto, inputWinningLottoBonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " " + "다시 입력하세요.");
+            }
+        }
+    }
+
+
+
+
 
 
 }

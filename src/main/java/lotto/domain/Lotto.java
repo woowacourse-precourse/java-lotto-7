@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.message.LottoErrorMessage;
 import lotto.domain.rule.LottoRules;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,7 +20,14 @@ public class Lotto {
                 LottoRules.MAX_NUMBER.getValue(),
                 LottoRules.NUMBER_COUNT.getValue()
         );
+        randomNumbers.sort(Integer::compareTo);
         return new AutoLotto(randomNumbers);
+    }
+
+    public static WinningLotto createWinningLotto(List<Integer> winningLottoNumbers) {
+        List<Integer> winningLottoNumberList = new ArrayList<>(winningLottoNumbers);
+        winningLottoNumberList.sort(Integer::compareTo);
+        return new WinningLotto(winningLottoNumberList);
     }
 
 
