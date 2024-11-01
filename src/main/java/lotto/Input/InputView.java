@@ -7,17 +7,24 @@ public class InputView {
     private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static int readPurchaseAmount(){
-        System.out.println(PURCHASE_AMOUNT_MESAGE);
-        return Integer.parseInt(readLine());
+    private final InputValidator validator;
+
+    public InputView(InputValidator validator) {
+        this.validator = validator;
     }
 
-    public static String readWinningNumbers() {
+    public int readPurchaseAmount(){
+        System.out.println(PURCHASE_AMOUNT_MESAGE);
+        String input = readLine();
+        return validator.validatePurchaseFormat(input);
+    }
+
+    public String readWinningNumbers() {
         System.out.println(WINNING_NUMBERS_MESSAGE);
         return readLine();
     }
 
-    public static String readBonusNumber() {
+    public String readBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         return readLine();
     }
