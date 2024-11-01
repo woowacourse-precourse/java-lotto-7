@@ -6,6 +6,10 @@ public enum LottoRank {
 	THIRD(5, false, 1500000),
 	FOURTH(4, false, 50000),
 	FIFTH(1, false, 5000); 
+	private static final String MATCH_MESSAGE = "개 일치";
+	private static final String BONUS_MATCH_MESSAGE = "보너스 볼 일치";
+	private static final String WON = "원";
+	private static final String AMOUNT = "개";
 	private final int matchCount;
 	private final boolean bonusMatch;
 	private final int prizeAmount;
