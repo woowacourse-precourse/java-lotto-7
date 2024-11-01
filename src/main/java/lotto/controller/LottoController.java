@@ -32,6 +32,8 @@ public class LottoController {
         outputView.printBoughtLottoList(boughtLottoList);
 
         WinningLotto winningLotto = inputWinningLotto();
+        LottoStatistic lottoStatistic = lottoMachine.generateLottoStatistic(winningLotto, boughtLottoList);
+        outputView.printLottoStatistic(lottoStatistic);
     }
 
     private Integer inputMoney() {
