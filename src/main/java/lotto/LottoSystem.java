@@ -1,20 +1,22 @@
 package lotto;
 
-import static lotto.AppConstants.INSERT_MONEY;
-import static lotto.AppConstants.INVALID_WINNING_NUMBERS_INPUT;
 import static lotto.AppConstants.LOTTO_NUMBER_COUNT;
 import static lotto.AppConstants.LOTTO_NUMBER_MAX;
 import static lotto.AppConstants.LOTTO_NUMBER_MIN;
 import static lotto.AppConstants.LOTTO_PRICE;
 import static lotto.AppConstants.MATCH_COUNT_FOR_SECOND_PRIZE;
 import static lotto.AppConstants.MATCH_COUNT_FOR_THIRD_PRIZE;
-import static lotto.AppConstants.MONEY_LESS_THAN_1000;
-import static lotto.AppConstants.MONEY_NOT_DIVIDED_BY_1000;
 import static lotto.AppConstants.PRINT_SOLD_LOTTO_COUNT;
 import static lotto.AppConstants.PRIZE_MATCH_RESULT_TEMPLATE;
 import static lotto.AppConstants.RATE_OF_RETURN;
+import static lotto.AppConstants.SECOND_PRIZE_MATCH_RESULT_TEMPLATE;
 import static lotto.AppConstants.SEPARATION_LINE;
 import static lotto.AppConstants.WINNING_STATISTICS;
+import static lotto.LottoPrize.FIFTH_PRIZE;
+import static lotto.LottoPrize.FIRST_PRIZE;
+import static lotto.LottoPrize.FOURTH_PRIZE;
+import static lotto.LottoPrize.SECOND_PRIZE;
+import static lotto.LottoPrize.THIRD_PRIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.StringTokenizer;
+
 
 public class LottoSystem {
     private static final int MIN_MATCH_COUNT = 3;
@@ -69,7 +71,7 @@ public class LottoSystem {
         List<List<Integer>> eachLottos = lottos.stream().map(Lotto::getNumbers).toList();
         for (List<Integer> lottoPaper : eachLottos) {
             int matchedCount = (int) lottoPaper.stream().filter(this.winningNumbers::contains).count();
-            if (matchedCount == MATCH_COUNT_FOR_THIRD_PRIZE && !hasBonusNumber(lottoPaper)) {
+            if (matchedCount == MATCH_COUNT_FOR_THIRD_PRIZE && hasBonusNumber(lottoPaper)) {
                 matchedCount = MATCH_COUNT_FOR_SECOND_PRIZE;
             }
             if (matchedCount >= MIN_MATCH_COUNT) {
@@ -83,9 +85,13 @@ public class LottoSystem {
         DecimalFormat formatter = new DecimalFormat("###,###");
         System.out.println(WINNING_STATISTICS);
         System.out.println(SEPARATION_LINE);
-        for (LottoPrize rank : LottoPrize.values()) {
-            System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", rank.getMatchCount(), formatter.format(rank.getPrize()), rank.getWinningCount());
-        }
+
+        System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", FIFTH_PRIZE.getMatchCount(), formatter.format(FIFTH_PRIZE.getPrize()), FIFTH_PRIZE.getWinningCount());
+        System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", FOURTH_PRIZE.getMatchCount(), formatter.format(FOURTH_PRIZE.getPrize()), FOURTH_PRIZE.getWinningCount());
+        System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", THIRD_PRIZE.getMatchCount(), formatter.format(THIRD_PRIZE.getPrize()), THIRD_PRIZE.getWinningCount());
+        System.out.printf(SECOND_PRIZE_MATCH_RESULT_TEMPLATE + "%n", THIRD_PRIZE.getMatchCount(), formatter.format(SECOND_PRIZE.getPrize()), SECOND_PRIZE.getWinningCount());
+        System.out.printf(PRIZE_MATCH_RESULT_TEMPLATE + "%n", FIRST_PRIZE.getMatchCount(), formatter.format(FIRST_PRIZE.getPrize()), FIRST_PRIZE.getWinningCount());
+
         System.out.printf(RATE_OF_RETURN, calculateReturnRate());
     }
 
@@ -98,7 +104,7 @@ public class LottoSystem {
         for (LottoPrize rank : LottoPrize.values()) {
             totalReturn += rank.getWinningCount() * rank.getPrize();
         }
-        return Math.round((double) totalReturn / (issuedLottoCount * LOTTO_PRICE) * 100);
+        return ((double) totalReturn / (issuedLottoCount * LOTTO_PRICE) * 100);
     }
     private boolean hasBonusNumber(List<Integer> lottoNumbers) {
         return lottoNumbers.contains(this.bonusNumber);
