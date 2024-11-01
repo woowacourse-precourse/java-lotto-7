@@ -36,4 +36,7 @@ public class InputProcessor {
         }
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
 }

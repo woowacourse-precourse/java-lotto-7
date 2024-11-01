@@ -7,6 +7,7 @@ public class LottoController {
     private final OutputView output;
     private final InputView input;
     private final InputProcessor inputProcessor;
+    private LottoManager lottoManager;
 
     public LottoController() {
         this.input = new InputView();
@@ -17,6 +18,7 @@ public class LottoController {
     public void run() {
         output.printStartMessage();
         inputProcessor.processPrice(input.readLine());
-
+        lottoManager = new LottoManager(inputProcessor.getTryCount());
+        output.printTicket(lottoManager.getLottoTicket());
     }
 }
