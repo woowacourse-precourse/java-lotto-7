@@ -31,7 +31,7 @@ public class LottoBundle {
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {
         return lottos.stream()
-                .map(lotto -> LottoRank.findLottoRank(lotto, winningLotto, bonusNumber))
+                .map(lotto -> LottoRank.ofLottoAndWinningLottoAndBonusNumber(lotto, winningLotto, bonusNumber))
                 .collect(Collectors.toList());
     }
 

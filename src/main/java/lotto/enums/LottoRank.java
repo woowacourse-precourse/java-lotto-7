@@ -62,7 +62,8 @@ public enum LottoRank {
         this.increamentIfMatchCondition = increamentIfMatchCondition;
     }
 
-    public static LottoRank findLottoRank(Lotto lotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
+    public static LottoRank ofLottoAndWinningLottoAndBonusNumber(
+            Lotto lotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
         int lottoMatchCount = lotto.getMatchCountWinningLotto(winningLotto);
         boolean bonusNumberMatch = lotto.isMatchBonusNumber(bonusNumber);
 
@@ -76,7 +77,7 @@ public enum LottoRank {
         return message;
     }
 
-    public int getPrizeMoney(){
+    public int getPrizeMoney() {
         return prizeMoney;
     }
 
