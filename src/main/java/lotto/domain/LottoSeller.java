@@ -13,12 +13,6 @@ public class LottoSeller {
         this.lottoMachine = lottoMachine;
     }
 
-    public void sellUntilNoMoneyTo(Customer customer) {
-        while (customer.hasMoney(LOTTO_PRICE)) {
-            customer.buy(lottoMachine.issueLotto());
-        }
-    }
-
     public LottoGroups sellUntilNoMoney(Money money) {
         List<Lotto> lottos = new ArrayList<>();
         while (money.isGreaterEqualThan(LOTTO_PRICE)) {

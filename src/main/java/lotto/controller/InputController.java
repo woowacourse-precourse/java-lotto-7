@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.converter.StringToIntConverter;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
@@ -36,7 +37,8 @@ public class InputController {
         return inputTemplate.execute(
                 inputView::inputBonusNumber,
                 bonusNumber -> {
-                    int bonus = Integer.parseInt(bonusNumber);
+                    StringToIntConverter converter = new StringToIntConverter();
+                    int bonus = converter.convert(bonusNumber);
                     return new WinningLotto(lotto, new Bonus(bonus));
                 }
         );
@@ -46,8 +48,9 @@ public class InputController {
         return inputTemplate.execute(
                 inputView::inputWinningNumber,
                 winningNumber -> {
+                    StringToIntConverter converter = new StringToIntConverter();
                     List<Integer> winningNumbers = Stream.of(winningNumber.split(","))
-                            .map(Integer::valueOf)
+                            .map(converter::convert)
                             .toList();
                     return new Lotto(winningNumbers);
                 }
