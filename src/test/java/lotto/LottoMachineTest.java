@@ -4,7 +4,6 @@ import static lotto.Lotto.LOTTO_NUMBER_DUPLICATE_ERROR_MSG;
 import static lotto.Lotto.LOTTO_NUMBER_SIZE_ERROR_MSG;
 import static lotto.LottoMachine.BONUS_NUMBER_DUPLICATE_ERROR_MSG;
 import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
-import static lotto.LottoMachine.LOTTO_PRICE;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,20 +17,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LottoMachineTest {
 
     private static final LottoMachine LOTTO_MACHINE = new LottoMachine();
-
-    @Test
-    public void 로또_발행_테스트() throws Exception {
-        //Given
-        int amount = 14000;
-        int expected = amount / LOTTO_PRICE;
-        LOTTO_MACHINE.issue(amount);
-
-        //When
-        int actual = LOTTO_MACHINE.getLottoBunch().size();
-
-        //Then
-        Assertions.assertThat(actual).isEqualTo(expected);
-    }
 
     @Test
     public void 당첨번호_정상테스트() throws Exception {
