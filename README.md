@@ -21,6 +21,7 @@
     - LottoRank
     - PurchaseAmount
     - WinningNumbers
+    - WinningResult
 - view
     - InputHandler
     - InputView
@@ -56,4 +57,4 @@
 
 - [x] 구매한 로또 번호 출력 - OutputView#printLottos()
 - [x] 당첨 결과 출력 - OutputView#printWinningResult()
-- [ ] 수익률 출력
+- [x] 수익률 출력 - OutputView#printProfitRate()
