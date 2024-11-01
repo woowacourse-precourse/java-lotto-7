@@ -1,11 +1,9 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoManager;
 import lotto.utils.RandomNumbersSelector;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
