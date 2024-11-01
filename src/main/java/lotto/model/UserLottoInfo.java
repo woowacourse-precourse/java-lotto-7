@@ -20,6 +20,7 @@ public class UserLottoInfo {
 
     public LottoRateInfo calculateReturnRate(WinningLotto winningLotto) {
         lottos.makeWinningInfo(winningLotto, rankingStatus);
+        long totalPrize = rankingStatus.getTotalPrize();
 
         return null;
     }
