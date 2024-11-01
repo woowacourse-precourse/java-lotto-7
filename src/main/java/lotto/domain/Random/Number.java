@@ -6,6 +6,7 @@ import static lotto.resources.ErrorMessages.BIGGER_THAN_LOTTO_MAX_NUMBER;
 import static lotto.resources.ErrorMessages.SMALLER_THAN_LOTTO_MIN_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Objects;
 
 public class Number {
     private final int number;
@@ -44,5 +45,22 @@ public class Number {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Number number = (Number) obj;
+        return Objects.equals(this.number, number.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(number);
     }
 }

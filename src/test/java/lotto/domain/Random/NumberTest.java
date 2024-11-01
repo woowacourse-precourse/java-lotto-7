@@ -19,7 +19,7 @@ class NumberTest {
 
         Number number = Number.createNumber(validNumber);
 
-        assertThat(number.getNumber()).isEqualTo(validNumber);
+        assertThat(number).isEqualTo(Number.createNumber(validNumber));
     }
 
     @DisplayName("숫자가 로또번호 범위를 벗어나면 예외가 발생한다.")
