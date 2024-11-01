@@ -8,10 +8,12 @@ import lotto.util.Validator;
 
 public class InputHandler {
     private static final String DELIMITER = ",";
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ENTER_PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String NEW_LINE = "\n";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private final Validator validator;
 
-    // TODO: InputHandler가 OutputHandler에 의존하여 Sysout 하는 것 고민하기
     public InputHandler(Validator validator) {
         this.validator = validator;
     }
@@ -19,12 +21,12 @@ public class InputHandler {
     public int getInputForPurchaseMoney() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                print(ENTER_PURCHASE_MONEY_MESSAGE);
                 String input = Console.readLine();
                 validator.checkPurchaseMoney(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                print(ERROR_PREFIX + e.getMessage());
+                print(e.getMessage());
             }
         }
     }
@@ -32,14 +34,14 @@ public class InputHandler {
     public List<Integer> getInputForWinningNumber() {
         while (true) {
             try {
-                print("당첨 번호를 입력해 주세요.");
+                print(INPUT_WINNING_NUMBER_MESSAGE);
                 String input = Console.readLine();
                 validator.checkLottoNumbers(input);
                 return Stream.of(input.split(DELIMITER))
                         .map(number -> Integer.parseInt(number.trim()))
                         .collect(Collectors.toList());
             } catch (IllegalArgumentException e) {
-                print(ERROR_PREFIX + e.getMessage());
+                print(e.getMessage());
             }
         }
     }
@@ -47,12 +49,12 @@ public class InputHandler {
     public Integer getInputForBonusNumber() {
         while (true) {
             try {
-                print("\n보너스 번호를 입력해 주세요.");
+                print(NEW_LINE + INPUT_BONUS_NUMBER_MESSAGE);
                 String input = Console.readLine();
                 validator.checkBonusNumber(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_PREFIX + e.getMessage());
+                print(e.getMessage());
             }
         }
     }

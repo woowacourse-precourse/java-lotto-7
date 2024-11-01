@@ -6,10 +6,21 @@ import lotto.domain.Lottos;
 import lotto.domain.Prize;
 
 public class OutputHandler {
+    private static final String PURCHASE_FINISH_MESSAGE = "개를 구매했습니다.";
+    private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 ";
+    private static final String SYMBOL_PERCENT = "%";
+    private static final String SYMBOL_HYPHEN = " - ";
+    private static final String ENDING_SUFFIX = "입니다.";
+    private static final String WINNING_STATISTICS = "당첨 통계";
+    private static final String DIVIDER = "---";
+    private static final String OPEN_ROUND_BRACKET = " (";
+    private static final String CLOSE_ROUND_BRACKET = ")";
+    private static final String AMOUNT_ENDING_SUFFIX = "개";
 
     public void printLottoStatus(Lottos lottos) {
         printNewLine();
-        System.out.println(lottos.size() + "개를 구매했습니다.");
+        System.out.println(lottos.size() + PURCHASE_FINISH_MESSAGE);
+
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.toString());
         }
@@ -27,7 +38,7 @@ public class OutputHandler {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익은 " + rateOfReturn + "%입니다.");
+        System.out.println(TOTAL_RATE_OF_RETURN_MESSAGE + rateOfReturn + SYMBOL_PERCENT + ENDING_SUFFIX);
     }
 
     private void printNewLine() {
@@ -35,11 +46,11 @@ public class OutputHandler {
     }
 
     private void printResultNotice() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_STATISTICS);
+        System.out.println(DIVIDER);
     }
 
     private void printLottoResultOf(Prize prize, int count) {
-        System.out.println(prize.getCondition() + " (" + prize.getPrizeMoney() + ")" + " - " + count + "개");
+        System.out.println(prize.getCondition() + OPEN_ROUND_BRACKET + prize.getPrizeMoney() + CLOSE_ROUND_BRACKET + SYMBOL_HYPHEN + count + AMOUNT_ENDING_SUFFIX);
     }
 }

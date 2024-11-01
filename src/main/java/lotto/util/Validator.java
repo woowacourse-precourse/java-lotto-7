@@ -14,24 +14,30 @@ public class Validator {
     private static final String BONUS_NUMBER_REGEX = "^(0?[1-9]|[1-3][0-9]|4[0-5])$";
     private static final String DELIMITER = ",";
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String LOTTO_NUMBER_INVALID_ERROR = "로또 번호의 형식이 올바르지 않습니다.";
+    private static final String LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE = "로또 번호는 서로 중복될 수 없습니다.";
+    private static final String PURCHASE_MONEY_INVALID_ERROR = "구입 금액은 1,000원 단위로 입력해야 합니다.";
+    private static final String LOTTO_NUMBER_RANGE_ERROR = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+
     public void checkLottoNumbers(String input) {
         if (!input.matches(LOTTO_NUMBERS_REGEX)) {
-            throw new IllegalArgumentException("로또 번호의 형식이 올바르지 않습니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_NUMBER_INVALID_ERROR);
         }
         if (!hasNoDuplicates(input)) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
 
     public void checkPurchaseMoney(String input) {
         if (!input.matches(PURCHASE_MONEY_REGEX)) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + PURCHASE_MONEY_INVALID_ERROR);
         }
     }
 
     public void checkBonusNumber(String input) {
         if (!input.matches(BONUS_NUMBER_REGEX)) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_PREFIX + LOTTO_NUMBER_RANGE_ERROR);
         }
     }
 

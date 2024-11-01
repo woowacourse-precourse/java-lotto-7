@@ -1,10 +1,11 @@
 package lotto.domain;
 
 public class Money {
+    private static final int ZER0_MONEY = 0;
+    private static final int LOTTO_PRICE = 1000;
     private int money;
     private int spentMoney;
     private int earnedMoney;
-    private static final int ZER0_MONEY = 0;
 
     public Money() {
         this(ZER0_MONEY);
@@ -15,7 +16,7 @@ public class Money {
     }
 
     public int getTicket() {
-        int ticketCount = money / 1000;
+        int ticketCount = money / LOTTO_PRICE;
         useMoney(money);
         return ticketCount;
     }
