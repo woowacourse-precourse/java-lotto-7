@@ -19,11 +19,11 @@ public class Lotto {
         List<Integer> randomNumbers = numbersGenerator.random(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
 
         if(isInvalidSize(randomNumbers))
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         if(hasDuplicatedNumbers(randomNumbers))
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개는 유니크해야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개는 유니크해야 합니다.");
         if(hasNumbersOutOfRange(randomNumbers))
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 1~45 사이의 숫자여야 합니다.");
 
         return new Lotto(randomNumbers);
     }

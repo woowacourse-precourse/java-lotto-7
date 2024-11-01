@@ -16,9 +16,9 @@ public class LottoStore {
 
     public List<Lotto> sale(final int money) {
         if(isNotPositiveMoney(money))
-            throw new IllegalArgumentException("[ERROR] 돈은 양수만 가능합니다.");
+            throw new IllegalArgumentException("돈은 양수만 가능합니다.");
         if(hasChange(money))
-            throw new IllegalArgumentException("[ERROR] 거스름돈이 발생합니다.");
+            throw new IllegalArgumentException("거스름돈이 발생합니다.");
 
         List<Lotto> result = new LinkedList<>();
 
