@@ -9,7 +9,7 @@ import lotto.domain.sorting.Sorter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class NumbersGeneratorTest {
+class LottoGeneratorTest {
 
     private RandomNumberListGenerator randomNumberListGenerator;
 

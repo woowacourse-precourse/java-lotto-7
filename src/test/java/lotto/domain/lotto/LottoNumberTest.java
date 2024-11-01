@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-class NumbersNumberTest {
+class LottoNumberTest {
 
     @Test
     void 로또번호는_1미만이면_예외가_발생한다() {
