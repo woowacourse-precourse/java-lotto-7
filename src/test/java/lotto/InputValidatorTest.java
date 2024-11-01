@@ -50,6 +50,8 @@ public class InputValidatorTest {
                 .hasMessage("구입 금액은 1,000원 단위여야 합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"10000000000000", "99999999999999", "2147483648"})
     @DisplayName("너무 큰 값이 입력되면 예외가 발생한다")
     void 실패_로또구입_숫자형식_범위초과(String input) {
         InputValidator validator = new InputValidator();
