@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.error.LottoError.*;
+
 import java.util.List;
+import java.util.Arrays;
 
 public class WinningNumber {
     private final List<Integer> winNumbers;
@@ -14,19 +17,39 @@ public class WinningNumber {
 
     private void validate(List<Integer> winNumbers, int bonusNumber) {
         if (winNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_COUNT.getMessage());
         }
         for (Integer number : winNumbers) {
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+                throw new IllegalArgumentException(INVALID_WINNING_NUMBER_RANGE.getMessage());
             }
         }
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
         }
         if (winNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
         }
+    }
+
+    public static List<Integer> parseWinningNumbers(String winningInput) {
+        if (!winningInput.matches("\\d+(,\\s*\\d+){5}")) {
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_DELIMITER.getMessage());
+        }
+
+        String[] numberStrings = winningInput.split(",");
+        List<Integer> winNumbers = Arrays.stream(numberStrings)
+                .map(String::trim)
+                .map(numberString -> {
+                    try {
+                        return Integer.parseInt(numberString);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
+                    }
+                })
+                .toList();
+
+        return winNumbers;
     }
 
     public List<Integer> getWinNumbers() {
