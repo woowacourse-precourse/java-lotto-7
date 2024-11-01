@@ -7,10 +7,10 @@ import java.util.Set;
 import lotto.converter.IntegersToLottoNumbersConverter;
 import lotto.converter.LottoNumbersConverter;
 import lotto.converter.StringsToLottoNumbersConverter;
+import lotto.settings.LottoSettings;
 import lotto.util.StringUtil;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
     private static final String DELIMITER = ",";
 
     private final Set<LottoNumber> numbers;
@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     private void validateSize() {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoSettings.SIZE.value()) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }

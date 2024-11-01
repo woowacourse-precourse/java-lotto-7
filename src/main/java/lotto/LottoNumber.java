@@ -1,11 +1,10 @@
 package lotto;
 
 import java.util.Objects;
+import lotto.settings.LottoSettings;
 
 public class LottoNumber {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
 
     private final int number;
 
@@ -25,7 +24,7 @@ public class LottoNumber {
     }
 
     private static boolean inRange(int number) {
-        return number < MIN_NUMBER || MAX_NUMBER < number;
+        return number < LottoSettings.MIN_NUMBER.value() || LottoSettings.MAX_NUMBER.value() < number;
     }
 
     @Override
