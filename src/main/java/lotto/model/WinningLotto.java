@@ -36,6 +36,7 @@ public class WinningLotto extends Lotto {
         Validator.isEqualListSize(parsedNumbers, WINNING_NUMBER_COUNT);
         parsedNumbers.stream()
                 .peek(Validator::isDigitString)
+                .peek(Validator::isInteger)
                 .forEach(parsedNumber -> {});
     }
 }
