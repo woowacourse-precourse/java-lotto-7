@@ -10,6 +10,8 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
+    private int parsedCostToInt;
+
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
@@ -19,7 +21,6 @@ public class LottoController {
     public void startPurchaseAmountInput() {
         boolean isValidNumber = false;
         String inputCost;
-        int parsedCostToInt = 0;
 
         do {
             outputView.printMessage(OutputMessage.INPUT_PURCHASE_AMOUNT);
@@ -32,11 +33,9 @@ public class LottoController {
                 outputView.printErrorMessage(e.getMessage());
             }
         } while (!isValidNumber);
-
-        printNumberOfPurchaseLotto(parsedCostToInt);
     }
 
-    public void printNumberOfPurchaseLotto(int parsedCostToInt) {
+    public void printNumberOfPurchaseLotto() {
         int purchasedLottoCount = lottoService.divideInputByLottoPrice(parsedCostToInt);
         String lottoCountMessage = OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE
                 .getLottoCountMessage(purchasedLottoCount);

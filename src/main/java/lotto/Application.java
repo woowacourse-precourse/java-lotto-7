@@ -8,5 +8,6 @@ public class Application {
         // TODO: 프로그램 구현
         LottoController controller = LottoFactory.createLottoController();
         controller.startPurchaseAmountInput();
+        controller.printNumberOfPurchaseLotto();
     }
 }
