@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.dto.LottoCalculateRequest;
 import lotto.dto.LottoWinResult;
 import lotto.enums.LottoCriteria;
 import lotto.enums.LottoErrorMessage;
@@ -24,8 +25,10 @@ public class Lottos {
         }
     }
 
-    public List<LottoWinResult> getWinResult(List<Integer> winningNumbers, int bonusNumber) {
+    public List<LottoWinResult> getWinResult(LottoCalculateRequest lottoCalculateRequest) {
         List<LottoWinResult> lottoWinResultList = new ArrayList<>();
+        List<Integer> winningNumbers = lottoCalculateRequest.winningNumbers();
+        int bonusNumber = lottoCalculateRequest.bonusNumber();
         for(Lotto lotto : lottos){
             LottoWinResult lottoWinResult = lotto.getResult(winningNumbers, bonusNumber);
             lottoWinResultList.add(lottoWinResult);
