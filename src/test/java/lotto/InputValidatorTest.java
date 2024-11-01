@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class InputValidatorTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"이천원", "abc", "1000원", "천원"})
+    @ValueSource(strings = {"이천원", "abcd", "1000원", "천원"})
     @DisplayName("로또 구매 금액이 숫자가 아니라면 예외가 발생한다.")
     void 실패_로또구입_숫자아님() {
         // given
@@ -48,6 +48,15 @@ public class InputValidatorTest {
         assertThatThrownBy(() -> validator.validateInput("2500"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("구입 금액은 1,000원 단위여야 합니다.");
+    }
+
+    @DisplayName("너무 큰 값이 입력되면 예외가 발생한다")
+    void 실패_로또구입_숫자형식_범위초과(String input) {
+        InputValidator validator = new InputValidator();
+
+        assertThatThrownBy(() -> validator.validateInput(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("입력값이 너무 큽니다.");
     }
 
     @ParameterizedTest
