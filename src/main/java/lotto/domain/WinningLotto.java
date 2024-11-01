@@ -18,16 +18,14 @@ public class WinningLotto {
 
     public RankPrice getRank(Lotto target) {
         List<Integer> targetNumbers = target.getNumbers();
-        int matchCount = 0;
         boolean matchBonus = false;
-        for (int i = 0; i < 6; i++) {
-            if (lotto.getNumbers().get(i) == targetNumbers.get(i)) {
-                matchCount++;
-                continue;
-            }
-            if (targetNumbers.get(i) == bonusNumber) {
-                matchBonus = true;
-            }
+        Set<Integer> set = new HashSet<>();
+        set.addAll(lotto.getNumbers());
+        int matchCount = (int)targetNumbers.stream()
+            .filter(number -> !set.add(number))
+            .count();
+        if (!set.add(bonusNumber)) {
+            matchBonus = true;
         }
         return RankPrice.of(matchCount, matchBonus);
     }

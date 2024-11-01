@@ -1,6 +1,7 @@
 package lotto.constant;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public enum RankPrice {
@@ -36,6 +37,14 @@ public enum RankPrice {
             return rankPrices.getFirst();
         }
         return NONE;
+    }
+
+    public static List<RankPrice> values(Comparator<RankPrice> comparator) {
+        List<RankPrice> rankPrices = Arrays.asList(values());
+        if (comparator != null) {
+            rankPrices.sort(comparator);
+        }
+        return rankPrices;
     }
 
     public int getMatchCount() {

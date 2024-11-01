@@ -22,7 +22,7 @@ public class LottoController {
     }
 
     private void inputMoney() {
-        OutputView.money();
+        OutputView.inputMoney();
         lottoService.setupMoney(InputView.money());
     }
 
@@ -31,7 +31,7 @@ public class LottoController {
     }
 
     private void inputWinningNumbers() {
-        OutputView.winningNumbers();
+        OutputView.inputWinningNumbers();
         List<Integer> winningNumbers = InputView.winningNumbers();
 
         OutputView.bonusNumber();
