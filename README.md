@@ -10,16 +10,8 @@
 
 - (로또 구입 금액 / 1000)개의 로또 발행
   - Lotto[] lottos = new Lotto[로또 구입 금액 / 1000] 배열 생성
-  - 1에서 45 사이의 중복되지 않는 6개 세트를 (로또 구입 금액 / 1000)번 뽑기
-    - (로또 구입 금액 / 1000)번만큼 반복문 돌리기
-      - 무한 반복문
-        - Randoms.pickUniqueNumbersInRance(1, 45, 로또 구입 금액 / 1000) 메서드 사용 
-        - Set<Integer> numbers = new TreeSet<>() 생성
-          - 로또 번호는 오름차순으로 정렬해야 하므로, 자동으로 오름차순 정렬되는 TreeSet 사용
-          - Set으로 중복을 거르고, Set의 size가 6이 되었다면 반복문 탈출
-      - i번째 로또 발행
-        - Lotto 생성자의 매개변수 자료형은 List이므로 Set을 List로 변경
-          - lotto[i] = new Lotto(new ArrayList(numbers))
+  - 1에서 45 사이의 중복되지 않는 6개 세트 뽑기
+    - Randoms.pickUniqueNumbersInRance(1, 45, 로또 구입 금액 / 1000) 메서드 사용
 
 - 1에서 45 사이의 중복되지 않는 숫자 6개의 당첨 번호 입력받기 (번호는 쉼표(,)를 기준으로 구분)
   - IllegalArgumentException 발생
@@ -32,6 +24,7 @@
   - IllegalArgumentException 발생
     - 숫자가 아닌 값을 입력받을 경우
     - 숫자가 1 미만이거나 45 초과일 경우
+    - 당첨 번호와 중복되는 숫자일 경우
    
 - 당첨 Enum 클래스: Prize
   - 당첨 개수: count
