@@ -9,7 +9,7 @@ public class Validator {
     private static final int LOTTERY_NUM_RANGE_FIRST = 1;
     private static final int LOTTERY_NUM_RANGE_LAST = 45;
 
-    private void isNumber(String input) {
+    private void checkIsNumber(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -17,13 +17,13 @@ public class Validator {
         }
     }
 
-    private void isPositiveNumber(int num) {
+    private void checkIsPositiveNumber(int num) {
         if (num < 0) {
             throw new IllegalArgumentException(POSITIVE_RANGE_ERROR_MESSAGE);
         }
     }
 
-    private void isLotteryRange(int num) {
+    private void checkIsLotteryRange(int num) {
         if (num < LOTTERY_NUM_RANGE_FIRST || LOTTERY_NUM_RANGE_LAST < num) {
             throw new IllegalArgumentException(LOTTERY_RANGE_ERROR_MESSAGE);
         }
@@ -31,10 +31,10 @@ public class Validator {
 
     public void validatePurchaseAmount(String purchaseInput) {
         try {
-            isNumber(purchaseInput);
+            checkIsNumber(purchaseInput);
             int num = Integer.parseInt(purchaseInput);
-            isPositiveNumber(num);
-            isLotteryRange(num);
+            checkIsPositiveNumber(num);
+            checkIsLotteryRange(num);
         } catch (IllegalArgumentException e) {
             System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
         }
