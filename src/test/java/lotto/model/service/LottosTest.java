@@ -35,18 +35,4 @@ class LottosTest {
         assertEquals(1, rankResult.getMatchCount(Rank.SECOND));
         assertEquals(1, rankResult.getMatchCount(Rank.THIRD));
     }
-
-    @DisplayName("이천원 로또를 사고 당첨금 오천원의 수익률을 반환한다")
-    @Test
-    void test_3() {
-        Lotto userLotto1 = new Lotto(List.of(8, 9, 10, 11, 12, 13));
-        Lotto userLotto2 = new Lotto(List.of(1, 2, 3, 43, 44, 45));
-        Lottos lottos = new Lottos(List.of(userLotto2, userLotto1));
-        WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
-        BonusBall bonusBall = BonusBall.of(7, winningBalls);
-
-        Float returnRate = lottos.calculateReturnRate(winningBalls, bonusBall);
-
-        assertEquals(250F, returnRate);
-    }
 }

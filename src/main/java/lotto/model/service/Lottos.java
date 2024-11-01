@@ -11,6 +11,7 @@ import lotto.model.domain.Rank;
 import lotto.model.domain.WinningBalls;
 
 public class Lottos {
+
     private static final Long LOTTO_PRICE = 1_000L;
     private final List<Lotto> lottos;
 
@@ -25,13 +26,6 @@ public class Lottos {
 
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
-    }
-
-    public Float calculateReturnRate(WinningBalls winningBalls, BonusBall bonusBall) {
-        RankResult rankResult = calculateWinningResults(winningBalls, bonusBall);
-        Long winningAmount = rankResult.calculateWinningAmount();
-        long totalPrice = getSize() * LOTTO_PRICE;
-        return (Float.valueOf(winningAmount) / totalPrice) * 100;
     }
 
     public RankResult calculateWinningResults(WinningBalls winningBalls, BonusBall bonusBall) {
