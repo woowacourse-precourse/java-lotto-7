@@ -31,7 +31,7 @@ public class InputView {
 
 
     public String getBonusComponent() {
-        System.out.println("/n");
+        System.out.println();
         System.out.println(InputMessage.BONUS_NUMBER.getInstance());
         return readLine();
     }

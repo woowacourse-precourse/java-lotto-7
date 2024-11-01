@@ -8,7 +8,7 @@ import java.util.Map;
 
 public enum ScoreSystem implements Constants<HashMap> {
 
-    DEFAULT_SCORE_SYSTEM(new HashMap<>() {{
+    DEFAULT(new HashMap<>() {{
         put(List.of(3, 0), 0);
         put(List.of(4, 0), 0);
         put(List.of(5, 0), 0);
