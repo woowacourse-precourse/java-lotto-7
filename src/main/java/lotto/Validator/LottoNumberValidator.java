@@ -1,5 +1,6 @@
 package lotto.Validator;
 
+import static lotto.constants.LottoConstants.*;
 import static lotto.error.ErrorCode.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.error.ErrorCode.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.error.ErrorCode.LOTTO_NUMBER_DUPLICATE;
@@ -9,9 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoNumberValidator {
-    private static final int REQUIRED_SIZE = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
 
     public static void validateLottoNumber(List<Integer> numbers) {
         validateSize(numbers);
@@ -20,7 +18,7 @@ public class LottoNumberValidator {
     }
 
     private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != REQUIRED_SIZE) {
+        if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
