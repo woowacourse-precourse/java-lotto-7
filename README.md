@@ -23,8 +23,8 @@
 ## 기능 목록
 ### Purchase
 
-- [ ] public void checkEachLottosResult() \: 구매한 각 로또들의 당첨 결과를 조회하는 기능
-  - [ ] boughtLottos의 각 Lotto 객체마다 `Lotto.getResult()`를 호출해 당첨 결과 조회 
+- [x] **public void checkEachLottosResult()** \: 구매한 각 로또들의 당첨 결과를 조회하는 기능
+  - [x] boughtLottos의 각 Lotto 객체마다 `Lotto.getResult()`를 호출해 당첨 결과 조회 
 
 ### Lotto
 - [x] **private void sortNumbers()** \: 로또 번호를 오름차순으로 정렬하는 기능
@@ -59,7 +59,13 @@
     - [x] `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange(1, 45, 6)` 호출한 결과 반환
 
 ### ResultController
-- [ ]  당첨 통계 산정하는 기능
+- [x] **public Map<Prize, Integer> makeWinningStatistic(List\<Prize> prizeStatus)** \: 등수별 당첨 횟수를 합산하는 기능
+  - [x] `initMap()` 호출해 각 등수별 당첨 횟수를 0으로 초기화
+  - [x] prizeStatus에 저장된 모든 당첨 현황 확인
+    - [x] 당첨된 로또에 대해 해당 등수의 당첨 횟수를 1 증가 (미당첨인 경우 증가하지 않음)
+  - [x] 등수별 당첨 횟수가 저장된 map 반환
+
+
 - [ ]  수익률 연산하는 기능
 
 ### BuyingAmountValidator
