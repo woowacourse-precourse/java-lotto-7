@@ -14,50 +14,19 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto ticket, int bonusNumber) {
-        validate(bonusNumber);
+        validateRange(bonusNumber);
         this.ticket = ticket;
+        validateDuplicate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     public LottoResult checkLotto(Lotto customerLotto) {
         int matchedCount = getMatchedCount(customerLotto);
-        boolean containsBonus = hasMatchingBonusNumber(customerLotto, matchedCount);
+        boolean containsBonus = hasContainsBonusNumber(customerLotto);
 
         Rank rank = getRank(matchedCount, containsBonus);
 
         return LottoResult.of(rank, matchedCount);
-    }
-
-    private void validate(int bonusNumber) {
-        validateRange(bonusNumber);
-        validateDuplicate(bonusNumber);
-    }
-
-    private boolean containsDuplicateNumbers(int bonusNumber) {
-        return ticket.getNumbers().stream().anyMatch(n -> n == bonusNumber);
-    }
-
-    private int getMatchedCount(Lotto customerLotto) {
-        return ticket.getMatchedCount(customerLotto.getNumbers());
-    }
-
-    private boolean hasMatchingBonusNumber(Lotto customerLotto, int matchedCount) {
-        return isSecondRank(matchedCount) && containsBonusNumber(customerLotto);
-    }
-
-    private Rank getRank(int matchedCount, boolean containsBonus) {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> rank.matchesCriteria(matchedCount, containsBonus))
-                .findFirst()
-                .orElse(Rank.NONE);
-    }
-
-    private boolean isSecondRank(int matchedCount) {
-        return matchedCount == Rank.SECOND.getMatchingNumberCount();
-    }
-
-    private boolean containsBonusNumber(Lotto customerLotto) {
-        return customerLotto.getNumbers().contains(bonusNumber);
     }
 
     private void validateDuplicate(int bonusNumber) {
@@ -70,5 +39,24 @@ public class WinningLotto {
         if (bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE) {
             throw new IllegalArgumentException(String.format(BONUS_NUMBER_RANGE_ERROR_MESSAGE, MIN_RANGE, MAX_RANGE));
         }
+    }
+
+    private boolean containsDuplicateNumbers(int bonusNumber) {
+        return ticket.getNumbers().stream().anyMatch(n -> n == bonusNumber);
+    }
+
+    private int getMatchedCount(Lotto customerLotto) {
+        return ticket.getMatchedCount(customerLotto.getNumbers());
+    }
+
+    private Rank getRank(int matchedCount, boolean containsBonus) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.matchesCriteria(matchedCount, containsBonus))
+                .findFirst()
+                .orElse(Rank.NONE);
+    }
+
+    private boolean hasContainsBonusNumber(Lotto customerLotto) {
+        return customerLotto.getNumbers().contains(bonusNumber);
     }
 }
