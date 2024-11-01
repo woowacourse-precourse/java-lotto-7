@@ -12,12 +12,15 @@ public class LottoController {
     }
 
     public void insertMoney() {
-        try {
-            OutputView.printInsertMoney();
-            balance = new Balance(InputView.inputMoney());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            insertMoney();
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                OutputView.printInsertMoney();
+                balance = new Balance(InputView.inputMoney());
+                isValid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
