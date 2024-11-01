@@ -65,10 +65,17 @@ int 보너스 번호
 - [ ]  당첨 통계 산정하는 기능
 - [ ]  수익률 연산하는 기능
 
-### Validation
-- [ ]  구입 금액 검증
-- [ ]  당첨 번호 검증
-- [ ]  보너스 번호 검증
+### BuyingAmountValidator
+- [x] **public int validateBuyingAmount(String input)**
+\: 구입 금액 입력 검증 기능 
+  - [x] validateLength()를 호출해 입력의 길이 검증 (입력 값이 int 범위를 초과해 Integer.parseInt() 호출 시 오버 플로우가 발생하는 경우를 막기 위함)
+    - [x] 길이가 6보다 큰 경우 10만원 이내일 수 없으므로 예외 발생
+  - [x] validateFormat()을 호출해 입력이 숫자 형태인지 여부 검증
+  - [x] validateRange()를 호출해 입력이 1000원 이상, 10만원 이하인지 검증
+    - [x] 입력이 1000원 이상 10만원 이하라면 이를 int 타입으로 파싱해 반환
+    - [x] 입력이 범위 밖이라면 예외 발생
+  - [x] validateDivisionIntoThousand()를 호출해 입력이 1000으로 나누어 떨어지는지 검증
+    - [x] 나누어 떨어지지 않는다면 예외 발생
 
 ### enum WinningPrize
 int standard
