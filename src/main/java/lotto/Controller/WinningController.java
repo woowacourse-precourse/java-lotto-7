@@ -31,7 +31,7 @@ public class WinningController {
         List<Integer> winningNumbers = getWinningInput();
         int bonusNumber = getBonusInput(winningNumbers);
         int[] result = winningService.getResult(lottos, winningNumbers, bonusNumber);
-        float returnRate = winningService.getReturnRate(result, lottos.size());
+        double returnRate = winningService.getReturnRate(result, lottos.size());
         statisticsView.print(result, returnRate);
     }
 

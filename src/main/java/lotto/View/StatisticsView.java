@@ -3,7 +3,7 @@ package lotto.View;
 public class StatisticsView {
     public StatisticsView() {}
 
-    public void print(int[] result, float returnRate) {
+    public void print(int[] result, double returnRate) {
         System.out.println("당첨 통계");
         System.out.println("---");
         printStatistics(result);

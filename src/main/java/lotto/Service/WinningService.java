@@ -45,13 +45,14 @@ public class WinningService {
         return LottoResult.NONE;
     }
 
-    public float getReturnRate(int[] result, int count) {
-        int earn = 0;
+    public double getReturnRate(int[] result, int count) {
+        double earn = 0;
         earn += result[0]*2000000000;
         earn += result[1]*30000000;
         earn += result[2]*1500000;
         earn += result[3]*50000;
         earn += result[4]*5000;
-        return Math.round((earn / (count * 1000))/1.00);
+        earn = Math.round((earn / 8000) * 100)/100.0;
+        return earn;
     }
 }
