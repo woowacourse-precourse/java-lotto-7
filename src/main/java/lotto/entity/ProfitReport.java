@@ -8,14 +8,15 @@ public class ProfitReport {
     private final WinningNumbers winningNumbers;
 
     public ProfitReport(int paymentAmount, List<Lotto> purchasedLottos, WinningNumbers winningNumbers) {
-        /**
-         * Validation TODO
-         * 1. paymetnAmout가 0 이하일 때
-         * 2. purchasedLottos가 null일 때
-         * 3. purchasedLottos의 크기가 0일 때
-         * 4. winningNumbers가 null일 때
-         * 5. winningNumbers의 크기가 0일 때
-         */
+        if (paymentAmount <= 0) {
+            throw new IllegalArgumentException("투자 금액은 0 이상이어야 합니다.");
+        }
+        if (purchasedLottos == null || purchasedLottos.isEmpty()) {
+            throw new IllegalArgumentException("구매한 로또는 null 또는 비어있을 수 없습니다.");
+        }
+        if (winningNumbers == null) {
+            throw new IllegalArgumentException("당첨 번호는 null일 수 없습니다.");
+        }
 
         this.paymentAmount = paymentAmount;
         this.purchasedLottos = purchasedLottos;
