@@ -8,8 +8,12 @@ public class LottoNumbers {
 
     private final List<LottoNumber> lottoNumbers;
 
-    public LottoNumbers(List<LottoNumber> lottoNumbers) {
+    private LottoNumbers(List<LottoNumber> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
+    }
+
+    public static LottoNumbers from(List<LottoNumber> numbers) {
+        return new LottoNumbers(numbers);
     }
 
     public static LottoNumbers generateBy(int size, RandomNumberGenerator randomNumberGenerator) {
