@@ -67,7 +67,7 @@ public class NumbersValidator {
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < RANDOM_MIN || number > RANDOM_MAX) {
-                throw new IllegalArgumentException(ErrorMessage.MUST_BE_BETWEEN.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.MUST_BE_RANGE.getMessage());
             }
         }
     }
