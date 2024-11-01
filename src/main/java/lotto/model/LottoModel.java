@@ -23,4 +23,8 @@ public class LottoModel {
     public UserLotto getUserLotto() {
         return userLotto;
     }
+
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
 }
