@@ -7,15 +7,18 @@ import lotto.enums.LottoRank;
 
 public class LottoBundle {
     private final List<Lotto> lottos;
+    private final LottoPurchasePrice lottoPurchasePrice;
     private final LottoConfig lottoConfig;
 
-    private LottoBundle(List<Lotto> lottos, LottoConfig lottoConfig) {
+    private LottoBundle(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice, LottoConfig lottoConfig) {
         this.lottos = lottos;
+        this.lottoPurchasePrice = lottoPurchasePrice;
         this.lottoConfig = lottoConfig;
     }
 
-    public static LottoBundle ofLottosAndConfig(List<Lotto> lottos, LottoConfig lottoConfig) {
-        return new LottoBundle(lottos, lottoConfig);
+    public static LottoBundle ofLottosAndPurchasePriceAndConfig(
+            List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice, LottoConfig lottoConfig) {
+        return new LottoBundle(lottos, lottoPurchasePrice, lottoConfig);
     }
 
     public List<Lotto> getLottos() {
@@ -25,9 +28,9 @@ public class LottoBundle {
     public LottoResult makeLottoResult(WinningLotto winningLotto, BonusNumber bonusNumber) {
         List<LottoRank> lottoRanks = checkLottoRank(winningLotto, bonusNumber);
         double totalPrizeMoney = sumLottoPrizeMoney(lottoRanks);
+        LottoProfit lottoProfit = lottoPurchasePrice.calculateProfit(totalPrizeMoney);
 
-        return LottoResult.ofLottoRanksAndLottoPriceAndTotalPrizeMoney(
-                lottoRanks, lottoConfig.getLottoPrice(), totalPrizeMoney);
+        return LottoResult.ofLottoRanksAndProfit(lottoRanks, lottoProfit);
     }
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {

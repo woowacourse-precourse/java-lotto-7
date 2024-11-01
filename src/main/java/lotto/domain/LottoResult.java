@@ -10,16 +10,16 @@ public class LottoResult {
     private final Map<LottoRank, Integer> rankCount;
     private final LottoProfit lottoProfit;
 
-    private LottoResult(List<LottoRank> lottoRanks, int lottoPrice, double totalPrizeMoney) {
-        rankCount = new HashMap<>();
-        lottoProfit = LottoProfit.ofProfitAndLottoPurchasePrice(totalPrizeMoney, lottoRanks.size() * lottoPrice);
+    private LottoResult(List<LottoRank> lottoRanks, LottoProfit lottoProfit) {
+        this.rankCount = new HashMap<>();
+        this.lottoProfit = lottoProfit;
         initRankCount();
         makeRankCount(lottoRanks);
     }
 
-    public static LottoResult ofLottoRanksAndLottoPriceAndTotalPrizeMoney(
-            List<LottoRank> lottoRanks, int lottoPrice, double totalPrizeMoney) {
-        return new LottoResult(lottoRanks, lottoPrice, totalPrizeMoney);
+    public static LottoResult ofLottoRanksAndProfit(
+            List<LottoRank> lottoRanks, LottoProfit lottoProfit) {
+        return new LottoResult(lottoRanks, lottoProfit);
     }
 
     private void initRankCount() {
