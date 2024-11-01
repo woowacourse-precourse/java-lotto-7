@@ -23,7 +23,4 @@ public class Selling {
         }
         return lottos;
     }
-
-    private int generateRandomNumber() {
-    }
 }
