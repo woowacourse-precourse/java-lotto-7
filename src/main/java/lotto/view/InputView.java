@@ -2,11 +2,12 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.WinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputView {
+public class InputView { //숫자 형식, 로또 구입 금액, 당첨 번호, 보너스 번호 유효성 검사
 
     // 로또 구입 금액을 입력받는 메서드
     public int readPurchaseAmount() {
@@ -23,8 +24,8 @@ public class InputView {
         }
     }
 
-    // 당첨 번호를 입력받는 메서드
-    public Lotto readWinningNumbers() {
+    // 당첨 번호와 보너스 번호를 입력받는 메서드
+    public WinningNumbers readWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
             try {
@@ -36,8 +37,11 @@ public class InputView {
                     winningNumbers.add(Integer.parseInt(numberString.trim()));
                 }
 
-                // Lotto 클래스의 생성자를 통해 유효성 검사를 수행
-                return new Lotto(winningNumbers);
+                // 보너스 번호 입력
+                int bonusNumber = readBonusNumber(); // 보너스 번호 입력
+
+                // WinningNumbers 객체 반환
+                return new WinningNumbers(winningNumbers, bonusNumber);
 
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
