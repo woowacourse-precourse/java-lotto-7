@@ -26,21 +26,21 @@ public class LottoGame {
     }
 
     // 100,000원을 초과했는지 확인하는 메서드
-    private void checkPurchasedAmountExceeded(int purchaseAmount) {
+    public void checkPurchasedAmountExceeded(int purchaseAmount) {
         if (purchaseAmount > 100000) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1인당 100,000원을 넘길 수 없습니다.");
         }
     }
 
     // 1,000원 단위인지 확인하는 메서드
-    private void checkUnitOfPurchaseAmount(int purchaseAmount) {
+    public void checkUnitOfPurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
 
     // 양수인지 확인하는 메서드
-    private String checkPositiveNumber(String input) {
+    public String checkPositiveNumber(String input) {
         if (!input.matches("^[1-9]\\d*$")) {
             throw new IllegalArgumentException("[ERROR] 입력한 값은 숫자(양수)여야 합니다.");
         }
