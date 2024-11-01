@@ -24,4 +24,10 @@ public class LottoStatistics {
             resultCounts.put(result, resultCounts.get(result) + 1);
         }
     }
+    public void processTickets(List<Lotto> allLotto, WinningLotto winningLotto){
+        for(Lotto ticket : allLotto){
+            LottoResult result = winningLotto.getMatchResult(ticket);
+            updateResultCount(result);
+        }
+    }
 }
