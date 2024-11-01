@@ -3,6 +3,11 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import lotto.controller.LottoController;
+import lotto.validator.DefaultDuplicateValidator;
+import lotto.validator.DefaultRangeValidator;
+import lotto.validator.LottoValidator;
+import lotto.validator.RangeValidator;
+import lotto.view.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +23,9 @@ public class LottoControllerTest {
 
     @BeforeEach
     void setUp() {
-        lottoController = new LottoController();
+        lottoController = new LottoController(
+            new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator()),
+            new InputView());
     }
 
     @Test

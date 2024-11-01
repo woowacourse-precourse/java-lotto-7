@@ -4,37 +4,56 @@ import static lotto.ErrorCode.CONTIGIOUS_COMMA;
 import static lotto.ErrorCode.INVALID_INPUT_FORMAT;
 import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.PublishCount;
-import lotto.validator.DefaultDuplicateValidator;
-import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
+import lotto.view.InputView;
 
 public class LottoController {
 
     private static final int TICKET_PRICE = 1000;
     private static final String COMMAS = ",,";
-    private static String ENTER_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
 
-    private LottoValidator lottoValidator = new LottoValidator(new DefaultRangeValidator(),
-        new DefaultDuplicateValidator());
+    private final LottoValidator lottoValidator;
+    private final InputView inputView;
+
     private PublishCount publishCount;
     private Lotto lotto;
 
-    public void setUp() {
-        printEnterPurChasePriceMessage();
-        int purchasePrice = parseInt(readLine());
-        validatePurchaseAmount(purchasePrice);
-        int countOfPublish = getCountOfPublish(purchasePrice);
-        publishCount = PublishCount.from(countOfPublish);;
-        lotto = new Lotto(stringListToIntList(splitByComma(readLine())),lottoValidator);
+    public LottoController(LottoValidator lottoValidator, InputView inputView) {
+        this.lottoValidator = lottoValidator;
+        this.inputView = inputView;
     }
 
-    //구매 금액 검증
+    public void publishCountSetUp() {
+        //구매 금액
+        int purchasePrice = getPurchasePrice();
+        validatePurchaseAmount(purchasePrice);
+        publishCount = createPublishCount(purchasePrice);
+    }
+
+    public void lottoSetUp() {
+        lotto = createLotto();
+    }
+
+    private int getPurchasePrice() {
+        return parseInt(inputView.printEnterPurChasePriceMessage());
+    }
+
+    private PublishCount createPublishCount(int purchasePrice) {
+        int countOfPublish = getCountOfPublish(purchasePrice);
+        return PublishCount.from(countOfPublish);
+    }
+
+    private Lotto createLotto() {
+        List<String> splitWinningNumbers = splitByComma(inputView.printEnterWinningNumber());
+        List<Integer> winningNumbers = stringListToIntList(splitWinningNumbers);
+        return new Lotto(winningNumbers, lottoValidator);
+    }
+
     public void validatePurchaseAmount(final int purchaseAmount) {
         if (purchaseAmount % TICKET_PRICE != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
@@ -54,14 +73,6 @@ public class LottoController {
 
     public List<String> splitByComma(String input) {
         return Arrays.stream(input.split(",")).toList();
-    }
-
-    public void printEnterPurChasePriceMessage() {
-        System.out.println(ENTER_PURCHASE_PRICE_MESSAGE);
-    }
-
-    public String readLine() {
-        return Console.readLine();
     }
 
     public List<Integer> stringListToIntList(List<String> stringList) {
