@@ -1,6 +1,6 @@
 package lotto.domain.vo;
 
-import static lotto.common.exception.ErrorMessages.BLANK_NOT_ALLOWED;
+import static lotto.common.exception.ErrorMessages.*;
 
 import lotto.domain.entity.Lotto;
 import lotto.domain.validator.InputValidator;
@@ -10,13 +10,12 @@ public record WinningLotto(Lotto lotto, BonusNumber bonus) {
     private static final InputValidator nonBlankValidator = new NonBlankValidator();
     private static final String COMMA = ",";
 
-    private WinningLotto(String inputNumbers, BonusNumber bonus) {
-        this(Lotto.from(inputNumbers), bonus);
-    }
-
     public static WinningLotto of(String inputNumbers, String inputBonus) {
         validate(inputNumbers);
-        return new WinningLotto(inputNumbers, new BonusNumber(inputBonus));
+        Lotto lotto = Lotto.from(inputNumbers);
+        BonusNumber bonus = new BonusNumber(inputBonus);
+        validateDuplicate(lotto, bonus);
+        return new WinningLotto(lotto, bonus);
     }
 
     private static void validate(String input) {
@@ -27,6 +26,13 @@ public record WinningLotto(Lotto lotto, BonusNumber bonus) {
     private static void validateEndingComma(String input) {
         if (input.endsWith(COMMA)) {
             throw new IllegalArgumentException(BLANK_NOT_ALLOWED.toString());
+        }
+    }
+
+    private static void validateDuplicate(Lotto lotto, BonusNumber bonusNumber) {
+        LottoNumbers lottoNumbers = lotto.createLottoNumbers();
+        if (lottoNumbers.hasNumber(bonusNumber.number())) {
+            throw new IllegalArgumentException(DUPLICATED.toString());
         }
     }
 }

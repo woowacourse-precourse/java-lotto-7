@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import lotto.domain.validator.InputValidator;
 import lotto.domain.validator.LottoValidator;
 import lotto.domain.validator.NonBlankValidator;
+import lotto.domain.vo.LottoNumbers;
 
 public class Lotto {
     private static final InputValidator nonBlankValidator = new NonBlankValidator();
@@ -35,6 +36,10 @@ public class Lotto {
 
     private static void validateEachNumber(String splitInput) {
         validator.validate(splitInput);
+    }
+
+    public LottoNumbers createLottoNumbers() {
+        return new LottoNumbers(List.copyOf(numbers));
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

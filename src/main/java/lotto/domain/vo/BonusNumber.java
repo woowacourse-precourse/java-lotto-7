@@ -6,7 +6,7 @@ import static lotto.common.exception.ErrorMessages.*;
 import lotto.domain.validator.InputValidator;
 import lotto.domain.validator.LottoValidator;
 
-public record BonusNumber(int bonus) {
+public record BonusNumber(int number) {
     private static final InputValidator validator = new LottoValidator();
 
     public BonusNumber(String input) {
@@ -15,9 +15,9 @@ public record BonusNumber(int bonus) {
 
     private static int parseAndValidate(String input) {
         validator.validate(input);
-        int bonus = parseInt(input);
-        validateRange(bonus);
-        return bonus;
+        int number = parseInt(input);
+        validateRange(number);
+        return number;
     }
 
     private static int parseInt(String input) {
@@ -26,7 +26,7 @@ public record BonusNumber(int bonus) {
 
     private static void validateRange(int number) {
         if (MIN_RANGE.getValue() > number || number > MAX_RANGE.getValue()) {
-            throw new IllegalArgumentException(String.valueOf(MUST_BE_IN_RANGE));
+            throw new IllegalArgumentException(MUST_BE_IN_RANGE.toString());
         }
     }
 }
