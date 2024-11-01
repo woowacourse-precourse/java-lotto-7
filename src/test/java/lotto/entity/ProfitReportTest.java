@@ -136,7 +136,7 @@ class ProfitReportTest {
 
     // 계산 테스트들
 
-    static Stream<Arguments> 성공__수익률_계산_테스트_케이스() {
+    static Stream<Arguments> 수익_계산_테스트_케이스() {
         return Stream.of(
                 Arguments.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 6), 7, 2_000_000_000),   // 1등
                 Arguments.of(List.of(1, 2, 3, 4, 5, 7), List.of(1, 2, 3, 4, 5, 6), 7, 30_000_000),      // 2등
@@ -150,22 +150,22 @@ class ProfitReportTest {
     }
 
     @ParameterizedTest
-    @MethodSource("성공__수익률_계산_테스트_케이스")
-    void 성공__수익률_계산(List<Integer> lottoInput, List<Integer> winningNumbersInput, int bonusNumber, long expected) {
+    @MethodSource("수익_계산_테스트_케이스")
+    void 성공__수익_계산(List<Integer> lottoInput, List<Integer> winningNumbersInput, int bonusNumber, long expected) {
         // given
         Lotto lotto = new Lotto(lottoInput);
         WinningNumbers winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumber);
         ProfitReport profitReport = new ProfitReport(List.of(lotto), winningNumbers);
 
         // when
-        long actual = profitReport.calculateProfitRate();
+        long actual = profitReport.calculateProfit();
 
         // then
         assertEquals(expected, actual);
     }
 
     @Test
-    void 성공__수익_계산() {
+    void 성공__수익률_계산_테스트_케이스() {
         // calculateProfit
     }
 
