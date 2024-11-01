@@ -108,6 +108,7 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [x] 로또를 판매하는 기능 추가
 - Comparator
 - [x] 일치하는 번호의 수를 반환하는 기능 추가
+- [x] 일치하는 여러 번호의 수를 반환하는 기능 추가
 - Result
 - [ ] 당첨금을 지급하는 기능 추가
 - [ ] 당첨 기록을 저장하는 기능 추가
