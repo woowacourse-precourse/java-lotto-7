@@ -30,6 +30,22 @@ public class LottoGame {
         return lottos;
     }
 
+    public Lotto getWinningNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        List<Integer> winningNumbers = parseWinningNumbers(input);
+        return new Lotto(winningNumbers);
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        String[] tokens = input.split(",");
+        ArrayList<Integer> winningNumbers = new ArrayList<>();
+        for (String token : tokens) {
+            winningNumbers.add(Integer.parseInt(token));
+        }
+        return winningNumbers;
+    }
+
     public static void validateNumericNumber(String input){
         for (int i = 0; i < input.length(); i++) {
             if(!Character.isDigit(input.charAt(i))){
