@@ -61,8 +61,7 @@
 - [ ]  수익률 연산하는 기능
 
 ### BuyingAmountValidator
-- [x] **public int validateBuyingAmount(String input)**
-\: 구입 금액 입력 검증 기능 
+- [x] **public int validateBuyingAmount(String input)** \: 구입 금액 입력 검증 기능 
   - [x] `validateLength()`를 호출해 입력의 길이 검증 (입력 값이 int 범위를 초과해 `Integer.parseInt()` 호출 시 오버 플로우가 발생하는 경우를 막기 위함)
     - [x] 길이가 6보다 큰 경우 10만원 이내일 수 없으므로 예외 발생
   - [x] `validateFormat()`을 호출해 입력이 숫자 형태인지 여부 검증
@@ -84,7 +83,7 @@
     - [x] 검증 완료된 당첨 번호 리스트를 리턴
 
 - [x] **public int validateBonusNumber(List\<Integer> winningNums, String input)** \: 보너스 번호 검증 기능
-  - `validateFormat()` 호출해 input을 int 타입으로 파싱한 후 검증 수행
+  - [x] `validateFormat()` 호출해 input을 int 타입으로 파싱한 후 검증 수행
     - [x] 보너스 번호가 1 이상 45 이하의 정수 형태가 아니라면 예외 발생
     - [x] 맞다면 파싱된 보너스 번호를 리턴
   - [x] `validateUniqueness()` 호출해 보너스 번호가 당첨 번호와 중복되는지 확인
@@ -103,13 +102,25 @@ int amount
     - [x] `BuyingAmountValidator.validateBuyingAmount()`를 호출하여 입력 값 검증
       - [x] 검증 결과 유효하지 않은 입력인 경우 재귀 호출하여 금액을 다시 입력받기
       - [x] 유효한 입력인 경우 해당 입력을 int 타입으로 파싱한 결과를 리턴
-- [ ]  당첨 번호를 입력받는 기능
-    - [ ]  `당첨 번호를 입력해 주세요.` 출력
-    - [ ]  `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 당첨 번호 입력받기
-- [ ]  보너스 번호를 입력받는 기능
+
+
+- [x] **public List\<Integer> getWinningNumbers()** \: 당첨 번호를 입력받는 기능
+    - [x] `당첨 번호를 입력해 주세요.` 출력
+    - [x] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 당첨 번호 입력받기
+    - [x] `WinningNumberValidator.validateWinningNumbers()` 호출하여 입력 값 검증
+      - [x] 검증 결과 유효하지 않은 입력인 경우 재귀 호출하여 당첨 번호를 다시 입력받기
+      - [x] 유효한 입력인 경우 당첨 번호 리스트를 리턴
+
+
+- [x] **public int getBonusNumber(List\<Integer> winningNumbers)** \: 보너스 번호를 입력받는 기능
+    - [x] `보너스 번호를 입력해 주세요.` 출력
+    - [x] `camp.nextstep.edu.missionutils.Console`의 `readLine()` 을 활용해 사용자로부터 보너스 번호 입력받기
+        - [x] 검증 결과 유효하지 않은 입력인 경우 재귀 호출하여 보너스 번호를 다시 입력받기
+        - [x] 유효한 입력인 경우 보너스 번호를 리턴
+
 
 ### OutputView
-- [ ] **public void printBoughtLottoNumbers(List<List\<Integer>> lottos)** \: 구매한 로또 번호를 출력하는 기능
+- [x] **public void printBoughtLottoNumbers(List<List\<Integer>> lottos)** \: 구매한 로또 번호를 출력하는 기능
     - [x] `N개를 구매했습니다.` 출력
     - [x] 생성된 로또 번호 출력
 
