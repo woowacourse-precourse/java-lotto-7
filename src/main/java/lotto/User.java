@@ -1,0 +1,66 @@
+package lotto;
+
+import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
+
+public class User {
+
+    public int cost() {
+        int cost;
+
+        while (true) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                cost = Integer.parseInt(Console.readLine());
+
+                costValidation(cost);
+
+                break;
+
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 구입 금액은 1000원 단위로 입력해 주세요.");
+            }
+        }
+
+        return cost;
+    }
+
+    public Lotto lotto() {
+        List<Integer> userLottoNumbers = new ArrayList<>();
+        String[] userLotto = Console.readLine().split(",");
+
+        for (String lotto : userLotto) {
+            userLottoNumbers.add(Integer.parseInt(lotto));
+        }
+
+        return new Lotto(userLottoNumbers);
+    }
+
+    public int bonus() {
+        int bonus;
+
+        while (true) {
+            try {
+                System.out.println();
+                bonus = Integer.parseInt(Console.readLine());
+
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            }
+        }
+
+        return bonus;
+    }
+
+
+    private void costValidation(int cost) {
+        if (cost % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+}
