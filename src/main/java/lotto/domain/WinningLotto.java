@@ -1,9 +1,11 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.BonusNumberDuplicateException;
+import lotto.exception.NumberOutOfRangeException;
 
-import static lotto.constants.LottoConstants.MIN_NUMBER;
-import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constant.LottoConstants.MIN_NUMBER;
+import static lotto.constant.LottoConstants.MAX_NUMBER;
 
 public class WinningLotto {
     private final Lotto winningLotto;
@@ -32,13 +34,13 @@ public class WinningLotto {
 
     private void validateBonusNumberInRange(int bonusNumber) {
         if (bonusNumber < MIN_NUMBER.getValue() || bonusNumber > MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new NumberOutOfRangeException();
         }
     }
 
     private void validateBonusNumberDuplication(int bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new BonusNumberDuplicateException();
         }
     }
 }

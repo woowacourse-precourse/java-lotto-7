@@ -3,10 +3,13 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.exception.DuplicateNumberException;
+import lotto.exception.InvalidLottoSizeException;
+import lotto.exception.NumberOutOfRangeException;
 
-import static lotto.constants.LottoConstants.MIN_NUMBER;
-import static lotto.constants.LottoConstants.MAX_NUMBER;
-import static lotto.constants.LottoConstants.LOTTO_SIZE;
+import static lotto.constant.LottoConstants.MIN_NUMBER;
+import static lotto.constant.LottoConstants.MAX_NUMBER;
+import static lotto.constant.LottoConstants.LOTTO_SIZE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,7 +32,7 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 번호의 개수는 6개여야 합니다.");
+            throw new InvalidLottoSizeException();
         }
     }
 
@@ -39,13 +42,13 @@ public class Lotto {
 
     private void validateNumberRange(Integer number) {
         if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new NumberOutOfRangeException();
         }
     }
 
     private void validateNumbersDuplication(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자여야 합니다.");
+            throw new DuplicateNumberException();
         }
     }
 
