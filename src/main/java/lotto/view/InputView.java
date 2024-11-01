@@ -19,7 +19,7 @@ public class InputView {
     private static int convertInputToMoney(String input) throws IllegalArgumentException {
         int money = Integer.parseInt(input);
         if (money < 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 0원 이상을 입력해주세요.");
+            throw new IllegalArgumentException();
         }
         return money;
     }
@@ -41,5 +41,19 @@ public class InputView {
             Numbers.add(Integer.parseInt(rawNumber));
         }
         return Numbers;
+    }
+
+    public static int readNumber() {
+        String input = readLine();
+        try {
+            return convertInputToNumber(input);
+        } catch(IllegalArgumentException e) {
+            //Todo: 입력 요구 메시지 추가
+            return readNumber();
+        }
+    }
+
+    private static int convertInputToNumber(String input) throws IllegalArgumentException {
+        return Integer.parseInt(input);
     }
 }

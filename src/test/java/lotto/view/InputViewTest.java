@@ -52,6 +52,16 @@ class InputViewTest {
 
         assertEquals(winningNumbers,expect);
     }
+
+    @DisplayName("숫자가 아니면 예외가 발생한다")
+    @Test
+    void 숫자가_아니라면_예외가_발생한다() {
+        String input = "a\naaa\n10\n";
+        setInput(input);
+
+        int number = InputView.readNumber();
+        assertEquals(number, 10);
+    }
     private void setInput(String input) {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
