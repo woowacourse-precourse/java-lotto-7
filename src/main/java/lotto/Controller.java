@@ -2,7 +2,9 @@ package lotto;
 
 import static lotto.User.LOTTO_PRICE;
 
+import lotto.validator.BonusNumber;
 import lotto.validator.Money;
+import lotto.validator.WinningNumber;
 
 public class Controller {
     private User user;
@@ -33,7 +35,34 @@ public class Controller {
     }
 
     public void drawLotto() {
-        DrawLotto lotto = new DrawLotto(InputUI.winningNumber(), InputUI.bonusNumber());
-        lotto.getWinningNumbers();
+        String inputWinningNumber = InputUI.winningNumber();
+        WinningNumber winningNumber = new WinningNumber(inputWinningNumber);
+        while (true) {
+            try {
+                winningNumber.isDelimitedByComma();
+                winningNumber.isNaturalNumber();
+                winningNumber.isSameNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                winningNumber = new WinningNumber(InputUI.winningNumber());
+            }
+        }
+
+        String inputBonusNumber = InputUI.bonusNumber();
+        BonusNumber bonusNumber = new BonusNumber(inputBonusNumber);
+        while (true) {
+            try {
+                bonusNumber.isNaturalNumber();
+                bonusNumber.isExistedNumber(winningNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                bonusNumber = new BonusNumber(InputUI.bonusNumber());
+            }
+        }
+
+        DrawLotto lotto = new DrawLotto(inputWinningNumber, inputBonusNumber);
+        lotto.showResult(user);
     }
 }

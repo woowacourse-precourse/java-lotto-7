@@ -6,5 +6,6 @@ public class Application {
         Controller controller = new Controller();
         controller.start();
         controller.buying();
+        controller.drawLotto();
     }
 }

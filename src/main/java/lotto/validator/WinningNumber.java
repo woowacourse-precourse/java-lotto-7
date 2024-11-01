@@ -7,7 +7,7 @@ public class WinningNumber implements InputTypeValidator{
     private final List<String> numbers;
 
     public WinningNumber(String winningNumber) {
-        List<String> numbers = List.of(winningNumber.split(","));
+        List<String> numbers = List.of(winningNumber.split(",", -1));
         this.numbers = numbers;
     }
 
