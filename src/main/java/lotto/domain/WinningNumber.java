@@ -8,7 +8,6 @@ public class WinningNumber {
 
     private static final String WINNING_NUMBER_DUPLICATE = "[ERROR] 로또 당첨 번호는 중복되선 안 됩니다.";
     private static final String BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복되선 안 됩니다.";
-    private static final int BONUS_NUMBER_COUNT = 1;
 
     private final List<Integer> winningNumber;
     private final int bonusNumber;
@@ -20,14 +19,6 @@ public class WinningNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getWinningNumber() {
-        return this.winningNumber.stream().toList();
-    }
-
-    public int getBonusNumber() {
-        return this.bonusNumber;
-    }
-
     private void validateWinningNumberDuplicate(final List<Integer> winningNumber) {
         Set<Integer> winningNumberSet = new HashSet<>(winningNumber);
         if (winningNumberSet.size() != winningNumber.size()) {
@@ -37,8 +28,7 @@ public class WinningNumber {
 
     private void validateBonusNumberDuplicate(final List<Integer> winningNumber, final int bonusNumber) {
         Set<Integer> lottoNumberSet = new HashSet<>(winningNumber);
-        lottoNumberSet.add(bonusNumber);
-        if (lottoNumberSet.size() != winningNumber.size() + BONUS_NUMBER_COUNT) {
+        if (lottoNumberSet.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE);
         }
     }

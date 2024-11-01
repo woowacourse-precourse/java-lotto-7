@@ -6,6 +6,7 @@ import lotto.dto.LottoInputDto;
 import lotto.dto.LottoOutputDto;
 import lotto.service.LottoBuyService;
 import lotto.service.LottoCheckService;
+import lotto.util.WinningNumberParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,11 +32,12 @@ public class LottoController {
 
         outputView.showLottos(lottos);
 
-        List<Integer> winningNumber = inputView.enterWinningNumber();
+        List<Integer> winningNumber = WinningNumberParser.parseWinningNumber(inputView.enterWinningNumber());
         int bonusNumber = inputView.enterBonusNumber();
 
         LottoOutputDto lottoOutputDto = lottoCheckService.checkLottos(
-                new LottoInputDto(purchaseAmount, winningNumber, bonusNumber), lottos);
+                new LottoInputDto(purchaseAmount, winningNumber, bonusNumber),
+                lottos);
 
         outputView.showStatistics(lottoOutputDto);
     }
