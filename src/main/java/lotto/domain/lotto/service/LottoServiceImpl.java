@@ -7,6 +7,7 @@ import java.util.Map;
 import lotto.domain.lotto.domain.LottoGame;
 import lotto.domain.lotto.dto.request.LottoGameReq;
 import lotto.domain.lotto.domain.LottoResult;
+import lotto.domain.lotto.dto.response.LottoGameRes;
 
 public class LottoServiceImpl implements LottoService{
 
@@ -25,14 +26,13 @@ public class LottoServiceImpl implements LottoService{
     }
 
     @Override
-    public LottoResult getGameResult() {
+    public LottoGameRes getGameResult() {
         validateGameExists();
 
         Map<LottoResult, Integer> results = lottoGame.getResults();
-        double profitRate = calculateProfitRate(results, this.lottoGame.getCost());
+        double profitRate = calculateProfitRate(results, lottoGame.getCost());
 
-
-        return null;
+        return LottoGameRes.of(results, profitRate);
     }
 
     /**
