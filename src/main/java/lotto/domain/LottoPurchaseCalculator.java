@@ -29,13 +29,13 @@ public class LottoPurchaseCalculator {
         }
     }
 
-    public List<List<Integer>> generateLottoNumbers(int count) {
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
+    public List<Lotto> generateLottoNumbers(int count) {
+        List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = randomNumberGenerator.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            lottoNumbers.add(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottoTickets.add(lotto);
         }
-        return lottoNumbers;
+        return lottoTickets;
     }
 }

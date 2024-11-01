@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaseCalculator;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
@@ -26,11 +27,11 @@ public class LottoController {
                 int lottoCount = lottoManager.getLottoCount(price);
                 outputHandler.showLottoCount(lottoCount);
 
-                List<List<Integer>> lottoNumbers = lottoManager.generateLottoNumbers(lottoCount);
-                for (List<Integer> numbers : lottoNumbers) {
-                    outputHandler.showLottoList(numbers);
+                List<Lotto> lottoTickets = lottoManager.generateLottoNumbers(lottoCount);
+                for (Lotto lotto : lottoTickets) {
+                    outputHandler.showLottoList(lotto.getNumbers());
                 }
-                break;
+
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
