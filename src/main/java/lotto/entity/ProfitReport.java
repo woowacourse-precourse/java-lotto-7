@@ -36,6 +36,14 @@ public class ProfitReport {
         return profit;
     }
 
+    public double calculateProfitRate() {
+        long profit = calculateProfit();
+        long paymentAmount = getPaymentAmount();
+
+        double rate = (double) profit / paymentAmount * 100;
+        return Math.round(rate * 10) / 10.0;
+    }
+
     public int getPaymentAmount() {
         return purchasedLottos.size() * LottoConfiguration.LOTTO_PRICE.getValue();
     }
