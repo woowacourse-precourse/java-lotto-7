@@ -27,18 +27,15 @@ public class LottoController {
         TicketCount ticketCount = calculateTicketCount(buyLottoAmount);
 
         Lotteries lotteries = createLotteries(ticketCount);
-        lottoView.displayTicketCount(ticketCount);
-        lottoView.displayLotteries(LottoDto.toDto(lotteries.getLotteries()));
+        displayLottoPurchaseInfo(ticketCount, lotteries);
 
-        List<Integer> winningNumbers = lottoView.promptWinningLotto();
-        Lotto winningLotteries = Lotto.createWinningLotto(winningNumbers);
+        Lotto winningLotteries = inputWinningLotteries();
         BonusNumber bonusNumber = lottoView.promptBonusNumber(winningLotteries.getNumbers());
 
         Statistic statistic = generateStatistic(lotteries, winningLotteries, bonusNumber);
         YieldRate yieldRate = calculateYieldRate(statistic, buyLottoAmount);
 
-        lottoView.displayStatistics(StatisticDto.from(statistic));
-        lottoView.displayProfitRate(yieldRate.getRate());
+        displayResult(statistic, yieldRate);
     }
 
     private TicketCount calculateTicketCount(BuyLottoAmount buyLottoAmount) {
@@ -60,5 +57,20 @@ public class LottoController {
 
     private YieldRate calculateYieldRate(Statistic statistic, BuyLottoAmount buyLottoAmount) {
         return YieldRate.createYieldRate(statistic.getStatisticResult(), buyLottoAmount);
+    }
+
+    private void displayLottoPurchaseInfo(TicketCount ticketCount, Lotteries lotteries) {
+        lottoView.displayTicketCount(ticketCount);
+        lottoView.displayLotteries(LottoDto.toDto(lotteries.getLotteries()));
+    }
+
+    private void displayResult(Statistic statistic, YieldRate yieldRate) {
+        lottoView.displayStatistics(StatisticDto.from(statistic));
+        lottoView.displayProfitRate(yieldRate.getRate());
+    }
+
+    private Lotto inputWinningLotteries() {
+        List<Integer> winningNumbers = lottoView.promptWinningLotto();
+        return Lotto.createWinningLotto(winningNumbers);
     }
 }
