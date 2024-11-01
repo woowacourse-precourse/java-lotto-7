@@ -14,7 +14,7 @@ public class InputValidator {
 
     }
 
-    private static void validateBuyLotteriesAmount(final String buyAmount) {
+    public static void validateBuyLotteriesAmount(final String buyAmount) {
         validateEmptyInput(buyAmount);
         validateIsNumeric(buyAmount);
         validateNegativeNumber(buyAmount);
