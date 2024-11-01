@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +53,32 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("맞춘게 5개인 경우 보너스 볼 일치 여부 확인")
+    void 기능_테스트2() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "1,4,7,16,24,2", "3");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 0개"
+                    );
+                },
+                List.of(5, 8, 10, 12, 26, 40),
+                List.of(3, 17, 25, 34, 38, 44),
+                List.of(1, 4, 7, 16, 24, 26),
+                List.of(3, 15, 18, 28, 32, 33),
+                List.of(1, 4, 11, 27, 30, 37),
+                List.of(9, 11, 14, 17, 19, 40),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
+        );
     }
 
     @Override
