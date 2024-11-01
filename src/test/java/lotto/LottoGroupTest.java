@@ -9,22 +9,31 @@ import org.junit.jupiter.api.Test;
 class LottoGroupTest {
 
     private LottoGroup lottoGroup;
-    private List<Lotto> lottoList;
 
     @BeforeEach
     void setUp() {
-        lottoList = List.of(
-                new Lotto(List.of(8, 21, 23, 41, 42, 43)),
-                new Lotto(List.of(3, 5, 11, 16, 32, 38)),
-                new Lotto(List.of(7, 11, 16, 35, 36, 44)),
-                new Lotto(List.of(1, 8, 11, 31, 41, 42)),
-                new Lotto(List.of(13, 14, 16, 38, 42, 45)),
-                new Lotto(List.of(7, 11, 30, 40, 42, 43)),
-                new Lotto(List.of(2, 13, 22, 32, 38, 45)),
-                new Lotto(List.of(1, 3, 5, 14, 22, 45))
-        );
+        LottoGenerateStrategy fixedStrategy = new LottoGenerateStrategy() {
+            private final List<List<Integer>> fixedNumbers = List.of(
+                    List.of(8, 21, 23, 41, 42, 43),
+                    List.of(3, 5, 11, 16, 32, 38),
+                    List.of(7, 11, 16, 35, 36, 44),
+                    List.of(1, 8, 11, 31, 41, 42),
+                    List.of(13, 14, 16, 38, 42, 45),
+                    List.of(7, 11, 30, 40, 42, 43),
+                    List.of(2, 13, 22, 32, 38, 45),
+                    List.of(1, 3, 5, 14, 22, 45)
+            );
 
-        lottoGroup = new LottoGroup(lottoList);
+            private int index = 0;
+
+            @Override
+            public List<Integer> pickNumbers() {
+                return fixedNumbers.get(index++);
+            }
+        };
+
+        // from 메서드를 통해 LottoGroup을 초기화
+        lottoGroup = LottoGroup.from(fixedStrategy, 8);
     }
 
     @DisplayName("로또그룹 생성에 성공한다.")
