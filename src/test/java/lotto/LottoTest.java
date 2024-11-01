@@ -53,4 +53,13 @@ class LottoTest {
         assertThat(fifthPrize).isEqualTo(5_000);
         assertThat(nonePrize).isEqualTo(0);
     }
+
+    @Test
+    void print_the_numbers_of_lottery_in_ascending_order() {
+        Lotto lotto = new Lotto(List.of(35, 2, 9, 17, 23, 22));
+
+        String lottoNumbers = lotto.describe();
+
+        assertThat(lottoNumbers).isEqualTo("[2, 9, 17, 22, 23, 35]");
+    }
 }
