@@ -30,7 +30,7 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    public List<LottoRank> getResult(List<Integer> winningNumbers, int bonusNumber) {
+    public List<LottoRank> getRanks(List<Integer> winningNumbers, int bonusNumber) {
         List<LottoRank> ranks = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
@@ -42,5 +42,47 @@ public class LottoService {
         }
 
         return ranks;
+    }
+
+    public String getPrizeResult(List<LottoRank> ranks) {
+        StringBuilder result = new StringBuilder();
+
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.NONE) {
+                result.append(rank.getDescription())
+                        .append(" (")
+                        .append(FormatString.formatPrize(rank.getPrize()))
+                        .append("원) - ")
+                        .append(getRankCount(ranks, rank))
+                        .append("개\n");
+            }
+        }
+
+        return result.toString();
+    }
+
+    public String getProfitRateResult(List<LottoRank> ranks, int purchaseAmount) {
+        StringBuilder result = new StringBuilder();
+
+        double profitRate = getProfitRate(ranks, purchaseAmount);
+
+        result.append("총 수익률은 ")
+                .append(FormatString.formatProfitRate(profitRate))
+                .append("%입니다.\n");
+
+        return result.toString();
+    }
+
+    private double getProfitRate(List<LottoRank> ranks, int purchaseAmount) {
+        int totalPrize = 0;
+        for (LottoRank rank : ranks) {
+            totalPrize += rank.getPrize();
+        }
+
+        return totalPrize / (double) purchaseAmount;
+    }
+
+    private int getRankCount(List<LottoRank> ranks, LottoRank rank) {
+        return Collections.frequency(ranks, rank);
     }
 }

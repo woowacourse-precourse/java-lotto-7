@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.enums.LottoRank;
 import lotto.model.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -38,6 +39,7 @@ public class LottoController {
         outputView.printBonusNumberRequest();
         bonusNumber = inputView.readBonusNumber();
 
-        outputView.printResult(lottoService.getResult(winningNumbers, bonusNumber), purchaseAmount);
+        List<LottoRank> ranks = lottoService.getRanks(winningNumbers, bonusNumber);
+        outputView.printResult(lottoService.getPrizeResult(ranks), lottoService.getProfitRateResult(ranks, purchaseAmount));
     }
 }
