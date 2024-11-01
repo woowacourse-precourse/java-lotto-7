@@ -70,4 +70,17 @@ public class LottoController {
         }
     }
 
+    private WinningResult getWinningResult(List<Lotto> tickets, WinningNumber winningNumber) {
+        WinningResult winningResult = new WinningResult();
+
+        for (Lotto oneLotto : tickets) {
+            int oneRank = winningNumber.getWinningRank(oneLotto);
+            for (Rank rank : Rank.values()) {
+                if (rank.getRank() == oneRank) {
+                    winningResult.add(rank);
+                }
+            }
+        }
+        return winningResult;
+    }
 }

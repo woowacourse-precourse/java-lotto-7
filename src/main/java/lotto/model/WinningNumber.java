@@ -10,17 +10,17 @@ public class WinningNumber extends Lotto {
         this.bonus_number = bonus_number;
     }
 
-    public int getWinningRank(List<Integer> lotto) {
+    public int getWinningRank(Lotto oneLotto) {
         List<Integer> winningNumber = this.getNumbers();
         int matchedCount = 0;
         boolean matchedBonusNumber = false;
 
         for (Integer singleNumber : winningNumber) {
-            if (lotto.contains(singleNumber)) {
+            if (oneLotto.getNumbers().contains(singleNumber)) {
                 matchedCount++;
             }
         }
-        if (lotto.contains(bonus_number)) {
+        if (oneLotto.getNumbers().contains(bonus_number)) {
             matchedBonusNumber = true;
         }
 
