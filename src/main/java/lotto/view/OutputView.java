@@ -11,7 +11,7 @@ public class OutputView {
     private static final String PURCHASE_NOTICE_HEADER = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
 
-    public void displayPrompt(Prompt prompt) {
+    public static void displayPrompt(Prompt prompt) {
         if (prompt.equals(PURCHASE_AMOUNT)) {
             System.out.println(PURCHASE_AMOUNT_PROMPT);
         }
