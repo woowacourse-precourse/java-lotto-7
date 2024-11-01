@@ -29,5 +29,13 @@ public class LottoResult {
         return lottoResult;
     }
 
+    private int matchNumber(Lotto lotto, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (Integer winningNumber : winningNumbers) {
+            if (isMatch(winningNumber, lotto)) matchCount++;
+        }
+
+        return matchCount;
+    }
 
 }
