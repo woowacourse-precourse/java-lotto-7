@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,19 +102,21 @@ public class Application {
     }
 
     public enum PrizeRank {
-        FIRST(6, 2_000_000_000),
-        SECOND(5, 30_000_000),
-        THIRD(5, 1_500_000),
-        FOURTH(4, 50_000),
-        FIFTH(3, 5_000),
-        NONE(0, 0);
+        FIRST(6, 2_000_000_000, false),
+        SECOND(5, 30_000_000, true),
+        THIRD(5, 1_500_000, false),
+        FOURTH(4, 50_000, false),
+        FIFTH(3, 5_000, false),
+        NONE(0, 0, false);
 
         private final int matchCount;
         private final int prizeAmount;
+        private final boolean isBonusNeed;
 
-        PrizeRank(int matchCount, int prizeAmount) {
+        PrizeRank(int matchCount, int prizeAmount, boolean isBonusNeed) {
             this.matchCount = matchCount;
             this.prizeAmount = prizeAmount;
+            this.isBonusNeed = isBonusNeed;
         }
 
         public int getMatchCount() {
@@ -125,22 +128,11 @@ public class Application {
         }
 
         public static PrizeRank getPrizeRank(int matchCount, boolean isBonusMatch) {
-            if (matchCount == FIRST.matchCount) {
-                return FIRST;
-            }
-            if (matchCount == SECOND.matchCount && isBonusMatch) {
-                return SECOND;
-            }
-            if (matchCount == THIRD.matchCount) {
-                return THIRD;
-            }
-            if (matchCount == FOURTH.matchCount) {
-                return FOURTH;
-            }
-            if (matchCount == FIFTH.matchCount) {
-                return FIFTH;
-            }
-            return NONE;
+            return Arrays.stream(values())
+                    .filter(prizeRank -> (prizeRank.matchCount == matchCount))
+                    .filter(prizeRank -> (!prizeRank.isBonusNeed || isBonusMatch))
+                    .findFirst()
+                    .orElse(NONE);
         }
     }
 
