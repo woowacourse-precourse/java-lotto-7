@@ -30,7 +30,8 @@ public class LottoController {
         addBunusNumber(winningLotto);
 
         LottoResult lottoResult = compareLottoTicketWithWinningLotto(lottoTicket, winningLotto);
-        lottoOutputView.printLottoResult(lottoResult.getRankResults());
+        double totalEarnings = lottoService.calculateEarnings(lottoResult.getRankResults(), lottoTicket);
+        lottoOutputView.printLottoResult(lottoResult.getRankResults(), totalEarnings);
     }
 
     private LottoResult compareLottoTicketWithWinningLotto(LottoTicket lottoTicket, WinningLotto winningLotto) {

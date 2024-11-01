@@ -1,5 +1,9 @@
 package lotto.service;
 
+import static lotto.model.LottoStore.LOTTO_PRICE;
+
+import java.util.Map;
+import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
@@ -23,5 +27,15 @@ public class LottoService {
         LottoResult lottoResult = new LottoResult();
         lottoResult.compare(lottoTicket, winningLotto);
         return lottoResult;
+    }
+
+    public double calculateEarnings(Map<LottoRank, Integer> rankResults, LottoTicket lottoTicket) {
+        int purchaseMoney = lottoTicket.getLottosCount() * LOTTO_PRICE;
+        long totalEarnings = 0L;
+        for (LottoRank rank : rankResults.keySet()) {
+            int count = rankResults.get(rank);
+            totalEarnings += rank.getPrize() * count;
+        }
+        return 0;
     }
 }
