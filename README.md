@@ -89,12 +89,12 @@
 
 ### Number
 
-- [x] 숫자를 생성한다.
+- [x] 숫자를 생성하는 기능 (createNumber)
   - 숫자를 검증한다. (validateNumber)
     - 생성한 숫자가 로또 번호의 최소 숫자인 1보다 큰거나 같은지 검증한다. (validateNumberBiggerThanMinNumber)
     - 생성한 숫자가 로또 번호의 최대 숫자인 45보다 작거나 같은지 검증한다. (validateNumberSmallerThanMaxNumber)
-  - 랜덤 숫자를 생성한다. (generateRandomNumber)
-    - 로또 번호 범위 내의 숫자 중 하나를 무작위로 생성한다.
+- [x] 랜덤 숫자를 생성하는 기능 (generateRandomNumber)
+  - 로또 번호 범위 내의 숫자 중 하나를 무작위로 생성한다.
 
 ---
 
