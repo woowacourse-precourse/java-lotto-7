@@ -37,4 +37,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호는 중복되면 안됩니다.");
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
