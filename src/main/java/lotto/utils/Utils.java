@@ -52,9 +52,9 @@ public class Utils {
         return true;
     }
 
-    public static boolean isDuplicateNumber (List<BigDecimal> numbers) {
-        Set<BigDecimal> uniqueNumbers = new HashSet<>();
-        for (BigDecimal number : numbers) {
+    public static <T> boolean isDuplicateNumber (List<T> numbers) {
+        Set<T> uniqueNumbers = new HashSet<>();
+        for (T number : numbers) {
             if (!uniqueNumbers.add(number)) {
                 return false;
             }
