@@ -17,6 +17,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private static final String DEFAULT_MATCH_FORMAT = "%d개 일치 (%,d원) - %d개";
     private static final String BONUS_MATCH_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String RATIO_OF_BENEFIT_FORMAT = "총 수익률은 %.1f%% 입니다.";
     private final LottoMoneyService lottoMoneyService;
     private final InputView inputView;
     private final OutputView outputView;
@@ -48,18 +49,7 @@ public class LottoController {
 
         LottoMatcher lottoMatcher = new LottoMatcher(lotties, winLotto);
         printLottoMatchResult(lottoMatcher);
-        printRatioOfBenefit();
-    }
-
-    private void printLottoMatchResult(LottoMatcher lottoMatcher) {
-        lottoMatcher.matchLotties();
-        outputView.println("당첨 통계");
-        outputView.println("---");
-        printDefaultMatchFormat(WinRank.FIFTH, lottoMatcher);
-        printDefaultMatchFormat(WinRank.FOURTH, lottoMatcher);
-        printDefaultMatchFormat(WinRank.THIRD, lottoMatcher);
-        printBonusMatchFormat(WinRank.SECOND, lottoMatcher);
-        printDefaultMatchFormat(WinRank.FIRST, lottoMatcher);
+        printRatioOfBenefit(lottoMatcher, validPurchasePrice);
     }
 
     private void printDefaultMatchFormat(WinRank winRank, LottoMatcher lottoMatcher) {
@@ -125,7 +115,19 @@ public class LottoController {
         return rawBonusNumber;
     }
 
-    private void printRatioOfBenefit() {
+    private void printLottoMatchResult(LottoMatcher lottoMatcher) {
+        lottoMatcher.matchLotties();
+        outputView.println("당첨 통계");
+        outputView.println("---");
+        printDefaultMatchFormat(WinRank.FIFTH, lottoMatcher);
+        printDefaultMatchFormat(WinRank.FOURTH, lottoMatcher);
+        printDefaultMatchFormat(WinRank.THIRD, lottoMatcher);
+        printBonusMatchFormat(WinRank.SECOND, lottoMatcher);
+        printDefaultMatchFormat(WinRank.FIRST, lottoMatcher);
+    }
 
+    private void printRatioOfBenefit(LottoMatcher lottoMatcher, int validPurchasePrice) {
+        outputView.println(String.format(RATIO_OF_BENEFIT_FORMAT,
+                lottoMoneyService.getRatioOfBenefit(lottoMatcher, validPurchasePrice)));
     }
 }

@@ -18,4 +18,12 @@ public class LottoMoneyService {
     public long getMoney(WinRank winRank){
         return rankWithMoneyMap.get(winRank).getValue();
     }
+
+    public double getRatioOfBenefit(LottoMatcher lottoMatcher, int validPurchasePrice){
+        long sum = 0;
+        for(WinRank w:rankWithMoneyMap.keySet()){
+            sum +=lottoMatcher.getResult(w) * rankWithMoneyMap.get(w).getValue();
+        }
+        return (double )sum / validPurchasePrice;
+    }
 }
