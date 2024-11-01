@@ -1,6 +1,8 @@
 package lotto.util;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
@@ -41,6 +43,15 @@ public class Validator {
     public static <T> void isEqualListSize(List<T> list, int winningNumberCount) {
         if (list.size() != winningNumberCount) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public static void isNotDuplicate(List<String> inputs) {
+        Set<String> uniqueNumbers = new HashSet<>();
+        for (String input : inputs) {
+            if (!uniqueNumbers.add(input)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

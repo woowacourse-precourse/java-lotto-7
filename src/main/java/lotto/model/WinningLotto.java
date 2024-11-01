@@ -38,5 +38,6 @@ public class WinningLotto extends Lotto {
                 .peek(Validator::isDigitString)
                 .peek(Validator::isInteger)
                 .forEach(parsedNumber -> {});
+        Validator.isNotDuplicate(parsedNumbers);
     }
 }
