@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import java.util.stream.Collectors;
+import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 
 public record LottoNumbers(
@@ -8,7 +9,14 @@ public record LottoNumbers(
 ) {
     public String getLottoNumbers() {
         return lottos.getLottos().stream()
-                .map(lotto -> lotto.getNumbers().toString())
+                .map(this::formatLottoNumbers)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private String formatLottoNumbers(Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .sorted()
+                .toList()
+                .toString();
     }
 }
