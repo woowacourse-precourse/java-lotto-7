@@ -84,4 +84,4 @@
 
 
 # ➕ 추가 요구사항
-- [ ] Random 클래스의 model로 패키지 변경
+- [x] Random 클래스의 model로 패키지 변경
