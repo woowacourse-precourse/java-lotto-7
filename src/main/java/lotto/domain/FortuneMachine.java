@@ -13,7 +13,7 @@ public class FortuneMachine {
     List<Lotto> lottos;
 
     public Lottos buyLotto(Money money) {
-        count = money.getMoney() / NumberConstants.LOTTO_COST;
+        count = money.value() / NumberConstants.LOTTO_COST;
         lottos = new ArrayList<>();
         draw(count);
         return new Lottos(lottos);

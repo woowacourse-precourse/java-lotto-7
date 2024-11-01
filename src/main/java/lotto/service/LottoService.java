@@ -4,8 +4,6 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.*;
-
 public class LottoService {
 
     InputView inputView;
@@ -24,7 +22,8 @@ public class LottoService {
         WinningNumbers winningNumbers = inputView.getWinningNumbers();
         BonusNumber bonusNumber = inputView.getBonusNumber();
         lottos.forEach(lotto -> {
-            Integer result = getResult(winningNumbers, bonusNumber, lotto);
+            Result result = getResult(winningNumbers, bonusNumber, lotto);
+            System.out.println("수익률 : " + getROI(money, result));
         });
     }
 
@@ -44,8 +43,8 @@ public class LottoService {
         outputView.showLottos(lottos);
     }
 
-    public Integer getResult(WinningNumbers  winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
-        return countWinningNumber(winningNumbers, lotto) + countBonusNumber(bonusNumber.value(), lotto);
+    public Result getResult(WinningNumbers  winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
+        return Result.findByCount(countWinningNumber(winningNumbers, lotto), countBonusNumber(bonusNumber.value(), lotto));
     }
 
     public Integer countWinningNumber(WinningNumbers  winningNumbers, Lotto lotto) {
@@ -62,8 +61,9 @@ public class LottoService {
         return 0;
     }
 
-
-
+    public String getROI(Money money, Result result) {
+        return String.format("%.1f",(double) result.longPrize()/money.value() * 100);
+    }
 
 
 }

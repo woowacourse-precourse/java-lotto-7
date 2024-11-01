@@ -25,7 +25,7 @@ public class Money extends NumberImpl {
         return money / NumberConstants.LOTTO_COST != 0;
     }
 
-    public long getMoney() {
+    public long value() {
         return this.money;
     }
 
