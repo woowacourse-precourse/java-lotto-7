@@ -87,10 +87,18 @@
     - 로또 번호로 6개의 숫자로 이루어있는지 검증한다. (validateNumbersSize)
     - 로또 번호 내 중복이 있는지 검증한다. (validateDuplicateNumbers)
   - 로또 내 번호를 오름차순으로 정렬한다 (sortAscendingLotto)
+- [x] 로또가 동일한지 확인하는 기능 (equals)
+- [x] 로또의 해시코드를 가져오는 기능 (hashCode)
+- [x] 로또를 출력하는 기능 (toString)
+
+### LottoFactory
+
+- [x] 길이가 6인 배열을 입력받아 로또를 생성하는 기능
+- [x] 랜덤 숫자를 6개 뽑아 로또를 생성하는 기능
 
 ### Number
 
-- [x] 숫자를 생성하는 기능 (createNumber)
+- [x] 숫자를 생성하는 기능 (from)
   - 숫자를 검증한다. (validateNumber)
     - 생성한 숫자가 로또 번호의 범위에 들어오는지 확인한다.
 - [x] 랜덤 숫자를 생성하는 기능 (generateRandomNumber)
@@ -99,9 +107,15 @@
 
 ### Numbers
 
-- [x] Numbers 객체를 생성하는 기능 (createNumbers)
+- [x] Numbers 객체를 생성하는 기능 (of)
 - [x] 랜덤 숫자 6개를 생성하는 기능 (generateSixRandomNumbers)
   - 로또 범위 내의 숫자 6개를 무작위로 생성한다.
+
+### Buyer
+
+- 로또를 구매하는 기능
+  - 로또를 몇개 살 수 있는지 계산한다.
+  - 계산한 개수만큼 로또를 구매한다.
 
 ---
 
