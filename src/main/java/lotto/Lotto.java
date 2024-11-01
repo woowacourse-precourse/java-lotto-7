@@ -34,5 +34,17 @@ public class Lotto {
         }
         return count;
     }
+
+    public static Lotto getRandom() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+    
+    public static List<Lotto> getRandoms(int n) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            lottos.add(getRandom());
+        }
+        return lottos;
+    }
     // TODO: 추가 기능 구현
 }
