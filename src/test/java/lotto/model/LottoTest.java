@@ -15,6 +15,7 @@ class LottoTest {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     Lotto lotto = new Lotto(Lotto.generate());
                     assertThat(lotto).isEqualTo(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
+                    assertThat(lotto.toString()).isEqualTo("[8, 21, 23, 41, 42, 43]");
                 },
                 List.of(8, 21, 23, 41, 42, 43)
         );
