@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.stream.Stream;
 
 public enum Rank {
@@ -38,5 +39,9 @@ public enum Rank {
                 .filter(rank -> rank.count() == matchedCount && rank.hasBonus() == hasBonus)
                 .findFirst()
                 .orElse(NONE);
+    }
+
+    public String getFormattedPrice() {
+        return NumberFormat.getInstance().format(this.price);
     }
 }

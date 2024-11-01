@@ -21,9 +21,7 @@ public class LottoService {
         machine.compareLottoToWinning();
     }
 
-    //- 당첨 기준에 따라 1등~5등까지 기준에 따라 몇 개의 번호가 일치하는지 당첨 내역을 판정한다.
     public Map<Rank, Integer> getWinningResult(LottoDrawMachine machine) {
         return machine.prizeWinningResult();
     }
-
 }
