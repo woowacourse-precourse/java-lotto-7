@@ -5,8 +5,10 @@ import lotto.model.Lotto;
 import lotto.model.LottoArchive;
 import lotto.model.LottoMaker;
 import lotto.model.Money;
+import lotto.model.WinningNumber;
 import lotto.view.MoneyInputView;
 import lotto.view.OutView;
+import lotto.view.WinningNumberInputView;
 
 public class LottoController {
 
@@ -17,6 +19,8 @@ public class LottoController {
         Money money = userMoneyInput();
         LottoArchive lottoArchive = buyLottos(money.getTickets());
         printLottoList(lottoArchive.getLottoList());
+        WinningNumber winningNumber = winningNumberInput();
+
     }
 
     public Money userMoneyInput() {
@@ -42,5 +46,18 @@ public class LottoController {
         for (Lotto lotto : lottoList) {
             outView.printLottoNumbers(lotto.getNumbers());
         }
+    }
+
+    public WinningNumber winningNumberInput() {
+        outView.printWinningNumberInputMessage();
+        while (true) {
+            try {
+                List<Integer> number = WinningNumberInputView.getWinningNumber();
+                return new WinningNumber(number);
+            } catch (IllegalArgumentException e) {
+                outView.printErrorMessage(e.getMessage());
+            }
+        }
+
     }
 }
