@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
@@ -23,5 +24,6 @@ public class LottoService {
         Validator.isEmptyInput(bonusNumber);
         Validator.isDigitString(bonusNumber);
         Validator.isInteger(bonusNumber);
+        Validator.isNotInList(winningLotto.getNumbers(), Integer.parseInt(bonusNumber));
     }
 }

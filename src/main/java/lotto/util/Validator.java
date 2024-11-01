@@ -29,7 +29,7 @@ public class Validator {
     public static int isInteger(String input) {
         try {
             return Integer.parseInt(input);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
     }
@@ -52,6 +52,12 @@ public class Validator {
             if (!uniqueNumbers.add(input)) {
                 throw new IllegalArgumentException();
             }
+        }
+    }
+
+    public static <T> void isNotInList(List<T> list, T input) {
+        if (list.contains(input)) {
+            throw new IllegalArgumentException();
         }
     }
 }
