@@ -8,12 +8,13 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
 
     private static List<Lotto> lottos = new ArrayList<>();
+    public static List<Integer> winningNumbers = new ArrayList<>();
     private static int pieces = 8;
 
     @BeforeEach
@@ -26,6 +27,13 @@ class LottoTest {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
+        }
+    }
+
+    public static void getWinningNumbers(String input) {
+        String[] winningNumbersString = input.split(",");
+        for(String number : winningNumbersString) {
+            winningNumbers.add(Integer.parseInt(number));
         }
     }
 
@@ -54,5 +62,13 @@ class LottoTest {
     void testPublishLotto() {
         publishLotto();
         assertEquals(pieces, lottos.size());
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 정상적으로 받아졌는지 테스트")
+    void testGetWinningNumbers() {
+        String input = "1,2,3,4,5,6";
+        getWinningNumbers(input);
+        assertThat(winningNumbers).contains(1,2,3,4,5,6);
     }
 }
