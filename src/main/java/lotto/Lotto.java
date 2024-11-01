@@ -19,10 +19,8 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        for (int i : numbers) {
-            if (!inRange(i)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
-            }
+        if (!numbers.stream().allMatch(this::inRange)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 각 번호는 서로 달라야 합니다.");
