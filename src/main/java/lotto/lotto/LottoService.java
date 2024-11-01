@@ -2,6 +2,7 @@ package lotto.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.io.input.Input;
 import lotto.random.Random;
 
 public class LottoService {
@@ -25,5 +26,11 @@ public class LottoService {
 
     private int getLottoCount(int price) {
         return price / 1000;
+    }
+
+    public Lotto issueWinningNumbers() {
+        List<Integer> winningNumbersInput = Input.getWinningNumbersInput();
+
+        return new Lotto(winningNumbersInput);
     }
 }
