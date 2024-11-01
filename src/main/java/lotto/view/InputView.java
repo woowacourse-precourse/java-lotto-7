@@ -18,7 +18,7 @@ public class InputView {
                 validator.isValidPrice(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e){
-                System.out.println("[ERROR]" + e);
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
