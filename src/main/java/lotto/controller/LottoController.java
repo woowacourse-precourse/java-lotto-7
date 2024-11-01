@@ -8,8 +8,6 @@ import lotto.service.LottoService;
 import lotto.service.WinService;
 import lotto.validator.AmountValidator;
 import lotto.validator.BonusNumValidator;
-import lotto.validator.ControllerValidator;
-import lotto.validator.ServiceValidator;
 import lotto.validator.WinNumValidator;
 import lotto.view.Request;
 import lotto.view.Response;
@@ -20,13 +18,11 @@ public class LottoController {
     private final Response response = new Response();
     private final LottoService lottoService;
     private final WinService winService;
-    private final ControllerValidator controllerValidator = new ControllerValidator();
 
     public LottoController() {
-        ServiceValidator serviceValidator = new ServiceValidator();
         Lottos lottos = new Lottos();
-        this.lottoService = new LottoService(lottos, serviceValidator);
-        this.winService = new WinService(lottos, serviceValidator);
+        this.lottoService = new LottoService(lottos);
+        this.winService = new WinService(lottos);
     }
 
     public void buyLotto() {

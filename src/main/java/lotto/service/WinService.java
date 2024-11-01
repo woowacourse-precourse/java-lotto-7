@@ -6,20 +6,17 @@ import lotto.dto.Lottos;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
 import lotto.validator.BonusNumValidator;
-import lotto.validator.ServiceValidator;
 import lotto.validator.WinNumValidator;
 
 public class WinService {
 
     private final Lottos lottos;
-    private final ServiceValidator serviceValidator;
 
     private List<Integer> winNum = new ArrayList<>();
     private Integer bonusNum;
 
-    public WinService(Lottos lottos, ServiceValidator serviceValidator) {
+    public WinService(Lottos lottos) {
         this.lottos = lottos;
-        this.serviceValidator = serviceValidator;
     }
 
     public void inputWinNum(List<Integer> winNum) {

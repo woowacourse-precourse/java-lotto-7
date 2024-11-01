@@ -9,7 +9,6 @@ import lotto.dto.Lottos;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
 import lotto.validator.AmountValidator;
-import lotto.validator.ServiceValidator;
 
 public class LottoService {
     private final int LOTTO_NUM_SIZE = LottoConfig.LOTTO_NUM_SIZE.getValue();
@@ -17,13 +16,10 @@ public class LottoService {
     private final int LOTTO_NUM_START = LottoConfig.LOTTO_NUM_START.getValue();
     private final int LOTTO_NUM_END = LottoConfig.LOTTO_NUM_END.getValue();
 
-    private final ServiceValidator serviceValidator;
-
     private final Lottos lottos;
 
-    public LottoService(Lottos lottos, ServiceValidator serviceValidator) {
+    public LottoService(Lottos lottos) {
         this.lottos = lottos;
-        this.serviceValidator = serviceValidator;
     }
 
     public void buyLotto(int amount) {
