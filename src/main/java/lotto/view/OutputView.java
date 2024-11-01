@@ -2,24 +2,25 @@ package lotto.view;
 
 import lotto.model.LottoResult;
 
-import java.util.List;
-
 public class OutputView {
 
-    public void printResult(List<LottoResult> lottoResults, int profitRate){
-        System.out.println("당첨 통계");
-        System.out.println("---");
+    private static final String RESULT_TITLE = "당첨 통계";
+    private static final String SEPARATOR = "---";
+    private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
+    public void printResult(LottoResult lottoResults, double profitRate) {
+        System.out.println();
+        System.out.println(RESULT_TITLE);
+        System.out.println(SEPARATOR);
         printLottoPlace(lottoResults);
         printProfitRate(profitRate);
     }
 
-    private void printLottoPlace(List<LottoResult> lottoResults){
-        for (LottoResult lottoResult : lottoResults) {
-            System.out.println(lottoResult.getLottoRanking().getMessage() + " - " + lottoResult.getWinCount() + "개");
-        }
+    private void printLottoPlace(LottoResult lottoResults) {
+        lottoResults.getLottoRankingSet().reversed().stream().filter(ranking -> !ranking.getMessage().isEmpty()).forEach(ranking -> System.out.println(ranking.getMessage() + " - " + ranking.getWinCount() + "개"));
     }
 
-    private void printProfitRate(int profitRate){
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    private void printProfitRate(double profitRate) {
+        System.out.printf(PROFIT_RATE_MESSAGE + "%n", profitRate);
     }
 }
