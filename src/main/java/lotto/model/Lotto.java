@@ -31,6 +31,9 @@ public class Lotto {
             throw new InputException(ExceptionMessage.INVALID_COUNT_ERROR);
         }
     }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
     // TODO: 추가 기능 구현
 }

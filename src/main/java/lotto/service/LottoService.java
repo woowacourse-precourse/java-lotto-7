@@ -1,10 +1,10 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -12,10 +12,16 @@ public class LottoService {
 
     public void issue(int count){
         for(int i=0;i<count;i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange
-                    (1,45,6);
+            List<Integer> numbers = getSortedNumbers();
             lottos.add(new Lotto(numbers));
         }
+    }
+
+    private static List<Integer> getSortedNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange
+                (1,45,6);
+        Collections.sort(numbers);
+        return numbers;
     }
 
     public List<Lotto> getLottos() {
