@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import java.util.List;
+
 public class InputValidator {
 
     public static int validatePurchaseAmount(String input) {
@@ -11,6 +13,36 @@ public class InputValidator {
             return amount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해 주세요.");
+        }
+    }
+
+    /*
+    번호 6개
+    1 ~ 45
+    중복 번호
+    */
+    public static void validateWinningNumber(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이어야 합니다.");
+        }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+        }
+    }
+
+    /*
+    1 ~ 45
+    당첨번호와 중복
+    */
+    public static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이어야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }
