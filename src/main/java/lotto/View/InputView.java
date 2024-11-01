@@ -5,14 +5,20 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     public int inputPurchasePrice() {
-        System.out.println("구입금액을 입력해주세요");
-        String input = Console.readLine();
+        try {
+            System.out.println("구입금액을 입력해주세요");
+            String input = Console.readLine();
 
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해주세요.");
+            if (!input.matches("\\d+")) {
+                throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해주세요.");
+            }
+            return Integer.parseInt(input);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPurchasePrice();
         }
 
-        return Integer.parseInt(input);
     }
 
     public String[] setWinningNumber() {
@@ -21,7 +27,20 @@ public class InputView {
     }
 
     public int setBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요");
-        return Integer.parseInt(Console.readLine());
+        try {
+            System.out.println("보너스 번호를 입력해 주세요");
+            String bonusNumber = Console.readLine();
+
+            if (!bonusNumber.matches("\\d+")) {
+                throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해주세요.");
+            }
+
+            return Integer.parseInt(bonusNumber);
+
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return setBonusNumber();
+        }
+
     }
 }
