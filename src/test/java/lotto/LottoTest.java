@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +22,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또는_주어진_구분자로_자신의_번호를_오름차순으로_읽어_문자열로_반환할_수_있다")
+    @Test
+    public void readNumberAscending() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 6, 4, 3, 2, 5));
+        String delimiter = ", ";
+
+        //when
+        String result = lotto.readNumberAscending(delimiter);
+
+        //then
+        assertThat(result).isEqualTo("1, 2, 3, 4, 5, 6");
+    }
 }
