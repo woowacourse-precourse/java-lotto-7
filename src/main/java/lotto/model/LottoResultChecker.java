@@ -1,48 +1,38 @@
 package lotto.model;
 
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class LottoResultChecker {
 
-    public static Ranking matchCount(Set<Integer> winningLotto, List<Lotto> issuedLotto,
-            int bonusNumber) {
-        int count = 0;
-        for (Lotto lotto : issuedLotto) {
-            for (int number : lotto.getNumbers()) {
-                if (winningLotto.contains(number)) {
-                    count++;
-                }
-            }
-        }
+    public static Map<Ranking, Integer> calculateRankingCount(Set<Integer> winningLotto,
+            List<Lotto> issuedLotto, int bonusNumber) {
+        Map<Ranking, Integer> rankingCountMap = new EnumMap<>(Ranking.class);
 
-        boolean isMatchBonus = false;
         for (Lotto lotto : issuedLotto) {
-            if (lotto.getNumbers().contains(bonusNumber)) {
-                isMatchBonus = true;
-                break;
+            int matchCount = countMatches(winningLotto, lotto);
+            boolean isMatchBonus = lotto.getNumbers().contains(bonusNumber);
+            Ranking ranking = determineRanking(matchCount, isMatchBonus);
+            rankingCountMap.put(ranking, rankingCountMap.getOrDefault(ranking, 0) + 1);
+        }
+        return rankingCountMap;
+    }
+
+    private static int countMatches(Set<Integer> winningLotto, Lotto lotto) {
+        int count = 0;
+        for (int number : lotto.getNumbers()) {
+            if (winningLotto.contains(number)) {
+                count++;
             }
         }
-        return determineRanking (count, isMatchBonus);
+        return count;
     }
 
     private static Ranking determineRanking(int count, boolean isMatchBonus) {
-        if (Ranking.valueOf(count, isMatchBonus).equals(Ranking.FIRST)) {
-            return Ranking.FIRST;
-        }
-        if (Ranking.valueOf(count, isMatchBonus).equals(Ranking.SECOND)) {
-            return Ranking.SECOND;
-        }
-        if (Ranking.valueOf(count, isMatchBonus).equals(Ranking.THIRD)) {
-            return Ranking.THIRD;
-        }
-        if (Ranking.valueOf(count, isMatchBonus).equals(Ranking.FOURTH)) {
-            return Ranking.FOURTH;
-        }
-        if (Ranking.valueOf(count, isMatchBonus).equals(Ranking.FIFTH)) {
-            return Ranking.FIFTH;
-        }
-        return Ranking.NONE;
+        return Ranking.valueOf(count, isMatchBonus);
     }
 
     public static double calculateProfit(int purchaseCount, int winningPrize) {
