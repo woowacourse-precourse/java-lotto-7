@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,6 +25,12 @@ public class LottoController {
 //        System.out.println(generatedLottoNumbers);
 
         outputView.printLottoNumbers(generatedLottoNumbers);
+
+        // 당첨 번호 입력
+        WinningNumbers winningNumbers = inputView.receiveWinningNumbers();
+
+        // 보너스 번호 입력
+        BonusNumber bonusNumber = inputView.receiveBonusNumber();
 
     }
 }
