@@ -21,11 +21,9 @@ public class OutputView {
     public void printResult(Map<Winning, Integer> winnings, double yield) {
         System.out.println(RESULT_TITLE);
         System.out.println(DIVIDER);
-        System.out.printf(Winning.THREE.getPrompt(), winnings.getOrDefault(Winning.THREE, 0));
-        System.out.printf(Winning.FOUR.getPrompt(), winnings.getOrDefault(Winning.FOUR, 0));
-        System.out.printf(Winning.FIVE.getPrompt(), winnings.getOrDefault(Winning.FIVE, 0));
-        System.out.printf(Winning.FIVE_BONUS.getPrompt(), winnings.getOrDefault(Winning.FIVE_BONUS, 0));
-        System.out.printf(Winning.SIX.getPrompt(), winnings.getOrDefault(Winning.SIX, 0));
+        for (Winning winning : Winning.values()) {
+            System.out.printf(winning.getPrompt(), winnings.getOrDefault(winning, 0));
+        }
         System.out.printf(YIELD_PRINT, yield);
     }
 }

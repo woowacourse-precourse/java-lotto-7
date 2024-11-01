@@ -1,9 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.common.Winning;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,19 +16,6 @@ public class LottoController {
         this.lottoService = new LottoService();
         this.inputView = new InputView();
         this.outputView = new OutputView();
-    }
-
-    public void run() {
-        int payment = pay();
-        List<Lotto> lottos = buyLottos(payment);
-
-        List<Integer> winningNumbers = postWinningNumbers();
-        int bonus = postBonus();
-
-        Map<Winning, Integer> result = getWinnings(lottos, winningNumbers, bonus);
-        double yield = getYield(result, payment);
-
-        printResult(result, yield);
     }
 
     public int pay() {
@@ -70,18 +55,5 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    public Map<Winning, Integer> getWinnings(List<Lotto> lottos, List<Integer> winningNumbers, int bonus) {
-        return lottoService.getWinnings(lottos, winningNumbers, bonus);
-    }
-
-    public double getYield(Map<Winning, Integer> winnings, int payment) {
-        int totalWinnings = lottoService.calculateTotalWinnings(winnings);
-        return lottoService.calculateYield(payment, totalWinnings);
-    }
-
-    public void printResult(Map<Winning, Integer> winnings, double yield) {
-        outputView.printResult(winnings, yield);
     }
 }

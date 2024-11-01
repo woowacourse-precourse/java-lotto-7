@@ -13,10 +13,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoServiceTest {
     private static LottoService lottoService;
+    private static LottoResultService lottoResultService;
 
     @BeforeAll
     static void init() {
         lottoService = new LottoService();
+        lottoResultService = new LottoResultService();
     }
 
     @ParameterizedTest
@@ -41,7 +43,7 @@ class LottoServiceTest {
         int bonus = 10;
 
         // when
-        Map<Winning, Integer> countWinnings = lottoService.getWinnings(lottos, winningNumbers, bonus);
+        Map<Winning, Integer> countWinnings = lottoResultService.getWinnings(lottos, winningNumbers, bonus);
 
         // then
         assertThat(countWinnings).isEqualTo(Map.of(
@@ -59,7 +61,7 @@ class LottoServiceTest {
         int totalWinnings = 5000;
 
         // when
-        double yield = lottoService.calculateYield(payment, totalWinnings);
+        double yield = lottoResultService.calculateYield(payment, totalWinnings);
 
         // then
         assertThat(yield).isEqualTo(100.0);

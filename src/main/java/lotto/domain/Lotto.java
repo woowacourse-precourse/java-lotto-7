@@ -30,6 +30,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public Winning checkWinnings(List<Integer> winningNumbers, int bonus) {
         int count = 0;
+        boolean matchedBonus = false;
         for (int winningNumber : winningNumbers) {
             if (numbers.contains(winningNumber)) {
                 count++;
@@ -37,10 +38,10 @@ public class Lotto {
         }
 
         if (count == 5 && numbers.contains(bonus)) {
-            count = 7;
+            matchedBonus = true;
         }
 
-        return Winning.of(count);
+        return Winning.of(count, matchedBonus);
     }
 
     public List<Integer> getNumbers() {
