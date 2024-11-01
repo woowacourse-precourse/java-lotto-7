@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.model.exception.LottoNumberInvalidException;
+import lotto.model.number_generator.RandomNumberGenerator;
 
 public class Lotto {
 
@@ -11,6 +12,10 @@ public class Lotto {
     public Lotto(LottoNumbers numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto generateBy(RandomNumberGenerator randomLottoNumberGenerator) {
+        return new Lotto(LottoNumbers.generateBy(LOTTO_NUMBER_SIZE, randomLottoNumberGenerator));
     }
 
     private void validate(LottoNumbers numbers) {
