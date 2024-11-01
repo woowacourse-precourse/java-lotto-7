@@ -20,8 +20,6 @@ class LottoTest {
             "로또 번호의 개수가 6개가 넘어가면 예외가 발생한다"
             "로또 번호에 중복된 숫자가 있으면 예외가 발생한다."
             "로또 번호 숫자가 45가 넘으면 예외가 발생한다."
-            "로또 번호가 0이면 예외가 발생한다."
-            "로또 번호가 음수이면 예외가 발생한다."
         """)
     @ParameterizedTest
     @MethodSource("provideFewConditionedList")
