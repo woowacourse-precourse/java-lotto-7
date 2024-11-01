@@ -13,7 +13,7 @@ public class View {
         System.out.println(results);
     }
 
-    public void printProfit(Integer profit) {
+    public void printProfit(Double profit) {
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 }
