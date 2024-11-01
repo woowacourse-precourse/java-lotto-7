@@ -16,6 +16,7 @@ public class Validator {
         List<Integer> validatedWinningTicket = new ArrayList<>();
         for (Integer winningNumber : winningTicket) {
             validateNoDuplicate(validatedWinningTicket, winningNumber);
+            validateRange(winningNumber);
             validatedWinningTicket.add(winningNumber);
         }
     }
@@ -29,6 +30,12 @@ public class Validator {
     private static void validateNoDuplicate(List<Integer> numbers, Integer number) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateRange(Integer number) {
+        if (number > MAX_LOTTO_NUMBER.getIntegerValue()) {
+            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage(MIN_LOTTO_NUMBER.getIntegerValue(), MAX_LOTTO_NUMBER.getIntegerValue()));
         }
     }
 }
