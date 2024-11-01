@@ -21,9 +21,9 @@ class LottoStoreTest {
     @CsvSource(value = {"1000, 1", "7000, 7", "50000, 50", "100000, 100"})
     void 구입금액에_맞는_로또_구매_개수를_반환한다(int amount, int tickets) {
         //given
-        Money money = Money.won(amount);
+        Money money = Money.from(amount);
         //when
-        int lottoTickets = lottoStore.calculateLottoTicket(money);
+        int lottoTickets = lottoStore.calculateLottoQuantity(money);
         //then
         assertThat(lottoTickets).isEqualTo(tickets);
     }
@@ -32,10 +32,10 @@ class LottoStoreTest {
     @ValueSource(ints = {999, 1001, 10010, 50500})
     void 구입금액이_천원단위가_아니면_예외가_발생한다(int amount) {
         //given
-        Money money = Money.won(amount);
+        Money money = Money.from(amount);
         //when
         //then
-        assertThatThrownBy(() -> lottoStore.calculateLottoTicket(money))
+        assertThatThrownBy(() -> lottoStore.calculateLottoQuantity(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 1000원 단위로 구매해주세요.");
     }
@@ -43,10 +43,10 @@ class LottoStoreTest {
     @Test
     void 구입금액이_최대금액을_넘어가면_예외가_발생한다() {
         //given
-        Money money = Money.won(101000);
+        Money money = Money.from(101000);
         //when
         //then
-        assertThatThrownBy(() -> lottoStore.calculateLottoTicket(money))
+        assertThatThrownBy(() -> lottoStore.calculateLottoQuantity(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 최대 100000원까지 구매 가능합니다.");
     }

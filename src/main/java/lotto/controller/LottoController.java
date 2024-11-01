@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.dto.response.LottosResponse;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.util.NumberParser;
@@ -9,26 +11,25 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class LottoController {
+
     private final NumberParser numberParser;
     private final WinningNumberSplitter winningNumberSplitter;
+    private final LottoService lottoService;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController(NumberParser numberParser, WinningNumberSplitter winningNumberSplitter, InputView inputView, OutputView outputView) {
+    public LottoController(NumberParser numberParser, WinningNumberSplitter winningNumberSplitter, LottoService lottoService, InputView inputView, OutputView outputView) {
         this.numberParser = numberParser;
         this.winningNumberSplitter = winningNumberSplitter;
+        this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void run() {
-        Integer purchaseAmount = getPurchaseAmount();
+        LottosResponse lottosResponse = getPurchasedLottos();
         List<Integer> winningNumber = getWinningNumber();
         Integer bonusNumber = getBonusNumber();
-    }
-
-    public Integer getPurchaseAmount() {
-        return getValidatedInput(inputView::readPurchaseAmount);
     }
 
     public List<Integer> getWinningNumber() {
@@ -46,6 +47,17 @@ public class LottoController {
 
     public Integer getBonusNumber() {
         return getValidatedInput(inputView::readBonusNumber);
+    }
+
+    private LottosResponse getPurchasedLottos() {
+        try {
+            String input = inputView.readPurchaseAmount();
+            Integer purchaseAmount = numberParser.parseToInt(input);
+            return lottoService.purchaseLottos(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return getPurchasedLottos();
+        }
     }
 
     private Integer getValidatedInput(Supplier<String> inputReader) {

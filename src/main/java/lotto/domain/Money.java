@@ -4,12 +4,12 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Money {
-    public static final Money ZERO = Money.won(0);
+    public static final Money ZERO = Money.from(0);
     public static final int ZERO_THRESHOLD = 0;
 
     private final BigDecimal amount;
 
-    public static Money won(int amount) {
+    public static Money from(int amount) {
         return new Money(BigDecimal.valueOf(amount));
     }
 
