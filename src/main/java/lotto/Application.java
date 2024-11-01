@@ -9,8 +9,8 @@ public class Application {
         long money = Money.buy(moneyText); // String 변수 moneyText를 long형으로 변환 및 유효성 검사
 
         String lottoText = Console.readLine();
-        Lotto lotto = new Lotto(lottoText); // String 변수 lottoText를 long형으로 변환 및 유효성 검사
-
+        Lotto lotto = new Lotto(LottoText.ParseIntegerList(lottoText)); // String 변수 lottoText를 long형으로 변환 및 유효성 검사
+        lotto.getNumbers();
         System.out.println(lotto.getNumbers());
     }
 }
