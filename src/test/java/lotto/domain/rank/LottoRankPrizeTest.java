@@ -12,8 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoRankPrizeTest {
 
-    private final InputParser inputParser = new InputParser();
-
     @Test
     void 최종_금액을_반환_테스트() {
         // given
@@ -73,6 +71,25 @@ class LottoRankPrizeTest {
         final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
 
         final Lottos lottos = new Lottos(List.of(allMatched, fiveMatchedWithBonusNumber));
+        final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
+
+        // when
+        final LottoRankPrize lottoRankPrize = new LottoRankPrize();
+        final int result = lottoRankPrize.calculateTotalPrize(lottoRanks);
+
+        // then
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    void 최종_금액을_반환_테스트_4() {
+        // given
+        final List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
+        final int bonusNumber = 7;
+
+        final LottoResultChecker resultChecker = new LottoResultChecker(winningNumber, bonusNumber);
+
+        final Lottos lottos = new Lottos(List.of());
         final List<Lotto> lottoRanks = resultChecker.checkLottosRank(lottos);
 
         // when
