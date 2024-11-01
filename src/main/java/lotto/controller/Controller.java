@@ -26,5 +26,8 @@ public class Controller {
             lottos.addLotto(lotto);
             outputView.printPurchaseLottos(lotto);
         }
+        inputView.readWinningNumbers();
+        inputView.readBonusNumber();
+        outputView.printLottoResult(lottos);
     }
 }
