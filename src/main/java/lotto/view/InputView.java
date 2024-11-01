@@ -18,6 +18,16 @@ public class InputView {
         }
     }
 
+    public static int getBonusNumber() {
+        String input = askInput(BONUS_NUMBER_INPUT_QUESTION);
+        try {
+            return InputParser.parseBonusNumber(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
     private static String askInput(String question) {
         System.out.println(question);
         return readLine();
