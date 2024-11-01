@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.LottoTicketCalculator;
 import lotto.domain.PurchaseAmount;
 import lotto.dto.PurchaseAmountDto;
 import lotto.view.InputView;
@@ -16,6 +17,10 @@ public class Application {
 
         PurchaseAmount purchaseAmount = PurchaseAmount.from(purchaseAmountDto.amount());
 
-        System.out.println("구매 금액: " + purchaseAmount.amount());
+        LottoTicketCalculator lottoTicketCalculator = new LottoTicketCalculator();
+        int ticketCount = lottoTicketCalculator.getTicketCount(purchaseAmount);
+
+        outputView.printPurchasedTicketCount(ticketCount);
+
     }
 }
