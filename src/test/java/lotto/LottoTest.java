@@ -27,11 +27,11 @@ class LottoTest {
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
     void 사용자가_구매한_번호를_당첨_번호와_비교하는_테스트(){
-        Lotto lotto = new Lotto(List.of());
-        LottoWinningNumbers winningLotto = new LottoWinningNumbers("1,3,5,7,9,11", "13");
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        LottoWinningNumbers winningLotto = new LottoWinningNumbers("1,2,3,4,5,11", "6");
         winningLotto.generate();
 
         long countSameNumbers = lotto.compareResult(winningLotto);
-        assertThat(countSameNumbers).isEqualTo(3L);
+        assertThat(countSameNumbers).isEqualTo(6L);
     }
 }

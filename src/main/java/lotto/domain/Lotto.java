@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -31,10 +32,26 @@ public class Lotto {
 
     // LottoWinningNumbers와 비교하는 메서드 (일치하는 숫자의 개수를 리턴)
     public long compareResult(LottoWinningNumbers winningNumbers) {
-        return numbers.stream()
+        long countSameNumbers = numbers.stream()
                 .filter(o -> winningNumbers.getWinningNumbers().stream()
                         .anyMatch(Predicate.isEqual(o)))
                 .count();
+
+        // 5개의 번호가 일치하는 경우, 보너스 번호 일치 여부 확인
+        if (countSameNumbers == 5) {
+            Optional<Integer> filterResult = numbers.stream()
+                    .filter(o -> winningNumbers.getBonusNumber() == o)
+                    .findAny();
+
+            if (filterResult.isPresent()) {
+                countSameNumbers++;
+            }
+        }
+
+        if (countSameNumbers == 6) {
+            
+        }
+        return countSameNumbers;
     }
 
     public List<Integer> getNumbers() {
