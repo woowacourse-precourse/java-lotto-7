@@ -1,24 +1,13 @@
-package lotto;
+package lotto.models;
 
 import java.util.List;
 
-public class Lotto implements Observable {
+public class Lotto {
     private final List<Integer> numbers;
-    private Observer observer;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    @Override
-    public void registerObserver(Observer observer) {
-        this.observer = observer;
-    }
-
-    @Override
-    public void notifyObserver() {
-        this.observer.update(numbers);
     }
 
     private void validate(List<Integer> numbers) {

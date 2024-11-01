@@ -1,4 +1,4 @@
-package lotto.ui;
+package lotto.ui.constants;
 
 public enum ResultText {
     PURCHASED("개를 구매했습니다."),

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.models.constants;
 
 public enum RewardTable {
     THREE_MATCHES(3, 5000),

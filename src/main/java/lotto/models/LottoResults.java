@@ -1,4 +1,6 @@
-package lotto;
+package lotto.models;
+
+import lotto.models.constants.RewardTable;
 
 import java.util.HashMap;
 import java.util.Map;
