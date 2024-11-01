@@ -9,4 +9,15 @@ public class WinningLotto {
         bonusNumber.validateDuplicated(lotto);
         this.bonusNumber = bonusNumber;
     }
+
+    public int calculateMatchCount(final Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(this.lotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean isContainBonus(final Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .anyMatch(bonusNumber::isEqual);
+    }
 }

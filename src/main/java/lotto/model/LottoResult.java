@@ -17,6 +17,16 @@ public class LottoResult {
         result.put(rank, result.get(rank) + 1);
     }
 
+    public double calculateReturnRate(final Money money) {
+        int inputMoney = money.getAmount();
+        int profit = calculatePrize();
+        return ((double) profit / inputMoney) * 100;
+    }
+
+    private int calculatePrize() {
+        return Rank.calculateMoney(result);
+    }
+
     public Map<Rank, Integer> getResult() {
         return Collections.unmodifiableMap(result);
     }
