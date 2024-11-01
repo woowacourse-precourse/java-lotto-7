@@ -3,22 +3,13 @@ package lotto.model.money;
 import static lotto.exception.InvalidUnitAmountException.invalidUnitAmount;
 import static lotto.exception.ShouldNotBeMinusException.minusMoney;
 import static lotto.model.money.Money.Currency.WON;
-import static lotto.model.rank.RankCondition.FIFTH;
-import static lotto.model.rank.RankCondition.FIRST;
-import static lotto.model.rank.RankCondition.FOURTH;
-import static lotto.model.rank.RankCondition.NONE;
-import static lotto.model.rank.RankCondition.SECOND;
-import static lotto.model.rank.RankCondition.THIRD;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import lotto.model.rank.RankCondition;
 
-public class Money {
+public class Money implements Comparable<Money> {
 
     enum Currency {
         WON("원");
@@ -30,18 +21,15 @@ public class Money {
         }
     }
 
+    private static final DecimalFormat FORMATTER = new DecimalFormat("###,###");
+
     public static final Money ZERO = new Money(0L);
     public static final Money LOTTO_PRICE = Money.from(1000L);
-
-    private static final DecimalFormat FORMATTER = new DecimalFormat("###,###");
-    private static final Map<RankCondition, Money> PRIZE_AMOUNT_TABLE = new EnumMap<>(Map.of(
-            FIRST, Money.from(2000000000L),
-            SECOND, Money.from(30000000L),
-            THIRD, Money.from(1500000L),
-            FOURTH, Money.from(50000L),
-            FIFTH, Money.from(5000L),
-            NONE, ZERO
-    ));
+    public static final Money FIRST_RANK_PRIZE = Money.from(2000000000L);
+    public static final Money SECOND_RANK_PRIZE = Money.from(30000000L);
+    public static final Money THIRD_RANK_PRIZE = Money.from(1500000L);
+    public static final Money FOURTH_RANK_PRIZE = Money.from(50000L);
+    public static final Money FIFTH_RANK_PRIZE = Money.from(5000L);
 
     private final long value;
 
@@ -52,10 +40,6 @@ public class Money {
     public static Money from(long value) {
         validateIsMinus(value);
         return new Money(value);
-    }
-
-    public static Money findByRank(RankCondition rank) {
-        return PRIZE_AMOUNT_TABLE.get(rank);
     }
 
     public static Money addAll(List<Money> monies) {
@@ -99,6 +83,11 @@ public class Money {
     public String toString() {
         String formattedMoney = FORMATTER.format(this.value);
         return String.format("(%s%s)", formattedMoney, WON.value);
+    }
+
+    @Override
+    public int compareTo(final Money that) {
+        return Long.compare(this.value, that.value);
     }
 
     public BigDecimal toBigDecimal() {

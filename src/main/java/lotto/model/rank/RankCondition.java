@@ -1,28 +1,35 @@
 package lotto.model.rank;
 
+import static lotto.model.money.Money.FIFTH_RANK_PRIZE;
+import static lotto.model.money.Money.FIRST_RANK_PRIZE;
+import static lotto.model.money.Money.FOURTH_RANK_PRIZE;
+import static lotto.model.money.Money.SECOND_RANK_PRIZE;
+import static lotto.model.money.Money.THIRD_RANK_PRIZE;
+import static lotto.model.money.Money.ZERO;
+
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.function.BiPredicate;
+import lotto.model.money.Money;
 
 public enum RankCondition {
 
-    FIRST(1, 6, (count, bonus) -> count == 6 && !bonus),
-    SECOND(2, 5, (count, bonus) -> count == 5 && bonus),
-    THIRD(3, 5, (count, bonus) -> count == 5 && !bonus),
-    FOURTH(4, 4, (count, bonus) -> count == 4 && !bonus),
-    FIFTH(5, 3, (count, bonus) -> count == 3 && !bonus),
-    NONE(6, 0, (count, bonus) -> count == 6 && !bonus);
+    FIRST(6, (count, bonus) -> count == 6 && !bonus, FIRST_RANK_PRIZE),
+    SECOND(5, (count, bonus) -> count == 5 && bonus, SECOND_RANK_PRIZE),
+    THIRD(5, (count, bonus) -> count == 5 && !bonus, THIRD_RANK_PRIZE),
+    FOURTH(4, (count, bonus) -> count == 4 && !bonus, FOURTH_RANK_PRIZE),
+    FIFTH(3, (count, bonus) -> count == 3 && !bonus, FIFTH_RANK_PRIZE),
+    NONE(0, (count, bonus) -> count == 6 && !bonus, ZERO);
 
-    private final int rankPlace;
     private final Integer matchingCount;
     private final BiPredicate<Integer, Boolean> predicate;
+    private final Money prizeAmount;
 
-    RankCondition(final int rankPlace, final Integer matchingCount, final BiPredicate<Integer, Boolean> predicate) {
-        this.rankPlace = rankPlace;
+    RankCondition(final Integer matchingCount, final BiPredicate<Integer, Boolean> predicate, final Money prizeAmount) {
         this.matchingCount = matchingCount;
         this.predicate = predicate;
+        this.prizeAmount = prizeAmount;
     }
 
     public static RankCondition getRankBy(int matchingCount, boolean bonusNumberMatched) {
@@ -37,34 +44,34 @@ public enum RankCondition {
     }
 
     public static List<RankCondition> sortedValuesExceptNone() {
-        Comparator<RankCondition> sortingCondition = Comparator.comparing(RankCondition::getRankPlace)
-                .reversed();
         return Arrays.stream(RankCondition.values())
                 .filter(RankCondition::exceptNone)
-                .sorted(sortingCondition)
+                .sorted(Comparator.comparing(RankCondition::getPrizeAmount))
                 .toList();
     }
 
-    private int getRankPlace() {
-        return this.rankPlace;
+    public Money calculateReceivableTotalPrizeAmountBy(int prizeCount) {
+        return prizeAmount.multiply(prizeCount);
+    }
+
+    private Money getPrizeAmount() {
+        return this.prizeAmount;
     }
 
     private static boolean exceptNone(RankCondition rankCondition) {
         return rankCondition != NONE;
     }
 
-    public static EnumMap<RankCondition, String> stringMessageEnumMap() {
-        EnumMap<RankCondition, String> rankEnumMap = new EnumMap<>(RankCondition.class);
-        for (RankCondition condition : RankCondition.values()) {
-            rankEnumMap.put(condition, condition.toStringMessage(condition));
+    public String toStringMessage() {
+        if (this == SECOND) {
+            String template = "%d개 일치, 보너스 볼 일치 %s";
+            return generateMessageFrom(template, matchingCount, prizeAmount.toString());
         }
-        return rankEnumMap;
+        String template = "%d개 일치 %s";
+        return generateMessageFrom(template, matchingCount, prizeAmount.toString());
     }
 
-    public String toStringMessage(RankCondition condition) {
-        if (condition == SECOND) {
-            return String.format("%d개 일치, 보너스 볼 일치", matchingCount);
-        }
-        return String.format("%d개 일치", matchingCount);
+    private String generateMessageFrom(String template, int matchingCount, String prizeAmount) {
+        return String.format(template, matchingCount, prizeAmount);
     }
 }

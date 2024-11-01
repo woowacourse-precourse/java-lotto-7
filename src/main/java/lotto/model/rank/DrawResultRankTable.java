@@ -42,13 +42,12 @@ public class DrawResultRankTable {
 
     private Money toMoney(final Entry<RankCondition, Integer> entry) {
         RankCondition rank = entry.getKey();
-        Money prizePrice = Money.findByRank(rank);
         int prizeCount = entry.getValue();
-        return prizePrice.multiply(prizeCount);
+        return rank.calculateReceivableTotalPrizeAmountBy(prizeCount);
     }
 
-    public String getStringPrizeCount(final RankCondition rank) {
-        Integer prizeCount = result.getOrDefault(rank, 0);
+    public String toStringMessageOf(final RankCondition condition) {
+        Integer prizeCount = result.getOrDefault(condition, 0);
         return String.format("%d개", prizeCount);
     }
 }

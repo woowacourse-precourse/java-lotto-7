@@ -3,9 +3,7 @@ package lotto.view;
 import static lotto.model.rank.RankCondition.sortedValuesExceptNone;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import lotto.model.money.Money;
 import lotto.model.rank.DrawResultRankTable;
 import lotto.model.rank.RankCondition;
 import lotto.model.statistic.RecoveryRatio;
@@ -23,18 +21,19 @@ public class StatisticView {
     public static StatisticView from(final DrawResultRankTable resultRankTable, final RecoveryRatio recoveryRatio) {
         List<String> messages = new ArrayList<>();
 
-        EnumMap<RankCondition, String> stringValueEnumMap = RankCondition.stringMessageEnumMap();
+        for (RankCondition rankCondition : sortedValuesExceptNone()) {
+            String rankConditionMessage = rankCondition.toStringMessage();
+            String prizeCount = resultRankTable.toStringMessageOf(rankCondition);
 
-        for (RankCondition rank : sortedValuesExceptNone()) {
-            String matchedConditionCount = stringValueEnumMap.get(rank);
-            Money prizeAmount = Money.findByRank(rank);
-            String prizeCount = resultRankTable.getStringPrizeCount(rank);
-
-            String message = String.format("%s %s - %s", matchedConditionCount, prizeAmount.toString(), prizeCount);
+            String message = generateMessageFrom(rankConditionMessage, prizeCount);
             messages.add(message);
         }
 
         return new StatisticView(messages, recoveryRatio.toString());
+    }
+
+    private static String generateMessageFrom(String rankCondition, String prizeCount) {
+        return String.format("%s - %s", rankCondition, prizeCount);
     }
 
     public List<String> getMatchingResults() {
