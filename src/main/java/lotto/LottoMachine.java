@@ -27,6 +27,7 @@ public class LottoMachine {
         OutputView.displayPurchasedLottoNumbers(purchasedLotto);
 
         WinningNumbers winningNumbers = inputWinningNumbers();
+        BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
     }
 
     private Budget inputBudget() {
@@ -50,6 +51,16 @@ public class LottoMachine {
         while (true) {
             try {
                 return new WinningNumbers(InputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber inputBonusNumber(WinningNumbers numbers) {
+        while (true) {
+            try {
+                return new BonusNumber(InputView.readBonusNumber(), numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
