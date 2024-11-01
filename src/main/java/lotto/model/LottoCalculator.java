@@ -62,12 +62,12 @@ public class LottoCalculator {
 
         for (Rank rank : lottoResult.keySet()) {
             long prize = rank.getPrize();
-            int count = lottoResult.get(rank);
+            long count = lottoResult.get(rank);
 
             totalPrize += prize * count;
         }
-
-        return Math.round((double) totalPrize / purchaseAmount * 100);
+        double earningRate = (double) totalPrize / purchaseAmount * 100;
+        return (double) Math.round(earningRate * 10) / 10;
     }
 
     private int getCorrectNumberCount(List<Integer> numbers) {
