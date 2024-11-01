@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.model.number_generator.DefaultRandomLottoNumberGenerator;
+import lotto.model.number_generator.RandomLottoNumberGenerator;
 import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,6 +15,8 @@ public class LottoController {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+
+    private final RandomLottoNumberGenerator randomLottoNumberGenerator = new DefaultRandomLottoNumberGenerator();
     private final LottoShop lottoShop = new LottoShop();
 
     private int purchaseMoney;
@@ -31,7 +35,7 @@ public class LottoController {
 
     private Lottos purchaseLotto() {
         purchaseMoney = inputView.inputPurchaseMoney();
-        return lottoShop.purchaseLottos(purchaseMoney);
+        return lottoShop.purchaseRandomLottos(purchaseMoney, randomLottoNumberGenerator);
     }
 
     private WinningLotto createWinningLotto() {
