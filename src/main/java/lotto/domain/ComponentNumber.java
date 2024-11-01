@@ -18,7 +18,6 @@ public class ComponentNumber implements Component {
 
     private static void validateRange(int lottoNumber) {
         if (lottoNumber < LottoRule.MINIMUM_NUMBER_RANGE.getInstance() || lottoNumber > MAXIMUM_NUMBER_RANGE.getInstance()) {
-            System.out.println(RangeError.NUMBER.getInstance());
             throw new IllegalArgumentException(RangeError.NUMBER.getInstance());
         }
     }
