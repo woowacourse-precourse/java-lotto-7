@@ -10,7 +10,7 @@ public class TotalPrice {
   public static final int THIRD_PLACE_PRICE = 1500000;
   public static final int FOURTH_PLACE_PRICE = 50000;
   public static final int FIFTH_PLACE_PRICE = 5000;
-
+  public static final int PERCENTAGE_FOR_CALCULATION = 100;
   private static final Map<WinningType, Integer> prizeMap =
       Map.of(
           WinningType.FIFTH_PLACE, FIFTH_PLACE_PRICE,
@@ -18,16 +18,23 @@ public class TotalPrice {
           WinningType.THIRD_PLACE, THIRD_PLACE_PRICE,
           WinningType.SECOND_PLACE, SECOND_PLACE_PRICE,
           WinningType.FIRST_PLACE, FIRST_PLACE_PRICE);
-          
-  private final List<WinningType> winningStatistic;
 
-  public TotalPrice(List<WinningType> winningStatistic) {
-    this.winningStatistic = winningStatistic;
+  private final Integer totalPrice;
+
+  private TotalPrice(Integer totalPrice) {
+    this.totalPrice = totalPrice;
   }
 
-  public int sumAllPrice() {
-    return winningStatistic.stream()
-        .mapToInt(winningType -> prizeMap.getOrDefault(winningType, 0))
-        .sum();
+  public static TotalPrice sumAllPrice(List<WinningType> winningStatistic) {
+    Integer totalPrice =
+        winningStatistic.stream()
+            .mapToInt(winningType -> prizeMap.getOrDefault(winningType, 0))
+            .sum();
+    return new TotalPrice(totalPrice);
   }
+
+  public double calculateReturnRate(Money money) {
+    return Math.round((this.totalPrice % money.getMoney()) * PERCENTAGE_FOR_CALCULATION * 100) / 100.0;
+  }
+
 }
