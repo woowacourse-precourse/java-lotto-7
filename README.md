@@ -89,3 +89,35 @@
 - [x] 총 당첨 금액을 계산한다.
 
 - [x] 수익률을 계산한다. ((총 당첨 금액 / 구입 금액) * 100) 소수점 둘째 자리에서 반올림한다.
+
+  &nbsp;
+
+# 🗂️ 패키지 구조
+
+### **view**
+- InputView - 사용자로부터 문자열 입력
+- OutputView - 모든 출력 시스템 담당
+  
+### **domain**
+- Lotto - 사용자가 입력한 당첨 번호의 유효성을 검증하고 관리
+- BonusBall - 사용자가 입력한 보너스 번호의 유효성을 검증하고 관리
+- LottoMachine - 로또 번호를 생성
+- CalculateResult - 사용자가 입력한 당첨 번호와 로또 번호를 비교하여 당첨 결과를 계산
+
+#### **service**
+- LottoExchanger - 사용자가 입력한 금액을 기반으로 로또 구매 횟수로 반환
+- Parser - 입력받은 문자열을 Int 형으로 변환
+- Splitter - 쉼표를 구분자로 입력받은 문자열을 split 해서 반환
+
+#### **util**
+- Constants - 로또 게임에서 사용되는 상수들을 enum 클래스로 관리
+- ExceptionMessage - 에러 메세지를 enum 클래스로 관리
+- PrizeType - 상금 내역으 enum 클래스로 관리
+
+#### **validation**
+- InputMoneyValidator - 사용자가 입력한 금액에 대하여 검증
+
+### **controller**
+- Controller - 예외 시 그 부분부터 다시 입력 및 domain 과 view 를 통합해 로또를 진행 
+
+- Application - 실행
