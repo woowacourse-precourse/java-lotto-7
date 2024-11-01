@@ -5,6 +5,7 @@ import static lotto.exception.ExceptionMessage.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
@@ -36,7 +37,7 @@ public class LottoProvider {
 	public void pickLottoNumbers() {
 		for (int i = 0; i < numberOfLottos; i++) {
 			List<Integer> pickedLottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_DRAW_COUNT);
-			Collections.sort(pickedLottoNumbers);
+			pickedLottoNumbers = pickedLottoNumbers.stream().sorted().collect(Collectors.toList());
 			pickedLottos.add(new Lotto(pickedLottoNumbers));
 		}
 	}
@@ -50,5 +51,9 @@ public class LottoProvider {
 
 	public List<Lotto> getPickedLottos() {
 		return pickedLottos;
+	}
+
+	public int getLottoPurchaseAmount() {
+		return lottoPurchaseAmount;
 	}
 }
