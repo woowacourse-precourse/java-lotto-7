@@ -13,7 +13,7 @@ public class LottoDto {
         this.lotteries = lotteries;
     }
 
-    public static List<LottoDto> lottoDto(List<Lotto> lotteries) {
+    public static List<LottoDto> toDto(List<Lotto> lotteries) {
         return lotteries.stream()
                 .map(LottoDto::from)
                 .toList();
