@@ -22,34 +22,23 @@ public class LottoGameController {
 
     public void run() {
         try {
-            int purchaseAmount = handlePurchaseAmount();
-            handleLottoGeneration(purchaseAmount);
-            handleWinningNumbersInput();
-            handleResults(purchaseAmount);
+            // 1. 사용자로부터 구매 금액 입력 및 로또 티켓 생성
+            int purchaseAmount = inputHandler.getPurchaseAmount();
+            lottoService.generateLottoTickets(purchaseAmount);
+            outputView.printLottoPurchase(lottoService.getLottoTickets());
+
+            // 2. 사용자로부터 당첨 번호와 보너스 번호 입력 받기
+            List<Integer> winningNumbers = inputHandler.getWinningNumbers();
+            int bonusNumber = inputHandler.getBonusNumber(winningNumbers);
+            lottoService.setWinningNumbers(winningNumbers, bonusNumber);
+
+            // 3. 결과 계산 및 출력
+            resultHandler.calculateResults();
+            resultHandler.printWinningResults();
+            resultHandler.printProfitRate(purchaseAmount);
         } finally {
             inputHandler.close();
         }
     }
-
-    private int handlePurchaseAmount() {
-        return inputHandler.getPurchaseAmount();
-    }
-
-    private void handleLottoGeneration(int purchaseAmount) {
-        lottoService.generateLottoTickets(purchaseAmount);
-        outputView.printLottoPurchase(lottoService.getPurchasedTickets());
-    }
-
-    private void handleWinningNumbersInput() {
-        List<Integer> winningNumbers = inputHandler.getWinningNumbers();
-        int bonusNumber = inputHandler.getBonusNumber(winningNumbers);
-        lottoService.setWinningNumbers(winningNumbers, bonusNumber);
-    }
-
-    private void handleResults(int purchaseAmount) {
-        resultHandler.calculateResults();
-        resultHandler.printWinningResults();
-        resultHandler.printProfitRate(purchaseAmount);
-    }
-
+    
 }
