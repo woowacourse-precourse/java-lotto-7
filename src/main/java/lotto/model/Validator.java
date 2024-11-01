@@ -22,6 +22,9 @@ public class Validator {
         validateSize(validatedWinningTicket);
     }
 
+    public static void validateBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
+    }
+
     private static void validateMultiple(Integer number) {
         if ((number % LOTTO_PRICE.getIntegerValue()) != 0) {
             throw new IllegalArgumentException(INVALID_MULTIPLE_AMOUNT.getMessage(LOTTO_PRICE.getIntegerValue()));
