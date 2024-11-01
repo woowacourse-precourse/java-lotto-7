@@ -11,6 +11,7 @@ public class Answer {
 	private int bonusLotto;
 
 	public Answer(String answerLotto, String bonusLotto) {
+		this.answerLotto = new Lotto(from(answerLotto));
 		this.bonusLotto = Integer.parseInt(bonusLotto);
 	}
 
