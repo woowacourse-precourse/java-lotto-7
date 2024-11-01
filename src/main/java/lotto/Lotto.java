@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
@@ -20,10 +22,32 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateExactlySix(numbers);
+        validateUnduplicate(numbers);
+        validateNumberRange(numbers);
+    }
+
+    private void validateExactlySix(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_NUMBERS) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_HAVE_A_SIX_UMBER.message());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_HAVE_A_SIX_NUMBERS.message());
         }
     }
 
+    private static void validateUnduplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (numbers.size() != set.size()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE_NUMBER.message());
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        if (!numbers.stream().allMatch(this::isLottoNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_OF_RANGE.message());
+        }
+    }
+
+    private boolean isLottoNumber(int number) {
+        return (number >= MIN_NUMBER) && (number <= MAX_NUMBER);
+    }
 
 }
