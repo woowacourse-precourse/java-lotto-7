@@ -26,9 +26,6 @@ public class LottoMachine {
         Lottos lottos = new Lottos();
         for (int i = purchaseCount; i > 0; i--) {
             Lotto lotto = issueLotto();
-            for (Lotto l : lottos.getLottos()) {
-                System.out.println(l.toString());
-            }
             lottos.addLotto(lotto);
         }
         return lottos;
