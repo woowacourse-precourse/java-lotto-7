@@ -3,10 +3,10 @@
 ## Model
 
 ### LottoCreator
-- [ ] 금액을 입력받아 금액만큼 Lottos 생성
+- [X] 금액을 입력받아 금액만큼 Lottos 생성
 
 ### Lottos
-- [ ] 당첨된 로또의 개수
+- [X] 당첨된 로또의 개수
 
 
 ### Lotto
@@ -14,7 +14,7 @@
 - [X] 특정번호의 포함여부 확인
  
 ### Calculator
-- [ ] 수익률 계산
+- [X] 수익률 계산
 
 
 ## View
