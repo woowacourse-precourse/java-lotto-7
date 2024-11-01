@@ -21,7 +21,7 @@ class RankTest {
     @Test
     void 각_등수_상금_확인() {
         assertThat(Rank.FIRST.getPrize()).isEqualTo(2_000_000_000);
-        assertThat(Rank.SECOND.getPrize()).isEqualTo(3_000_000);
+        assertThat(Rank.SECOND.getPrize()).isEqualTo(30_000_000);
         assertThat(Rank.THIRD.getPrize()).isEqualTo(1_500_000);
         assertThat(Rank.FOURTH.getPrize()).isEqualTo(50_000);
         assertThat(Rank.FIFTH.getPrize()).isEqualTo(5_000);
