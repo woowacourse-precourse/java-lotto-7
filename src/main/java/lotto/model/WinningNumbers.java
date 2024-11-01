@@ -44,13 +44,20 @@ public class WinningNumbers {
         HashSet<Integer> numbers = new HashSet<>();
 
         for (int number : winningNumbers) {
-            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-                throw new InvalidWinningNumbersException(INVALID_NUMBER_RANGE.getMessage());
-            }
+            checkNumberHasValidRange(number);
+            checkNumberIsDuplicate(numbers, number);
+        }
+    }
 
-            if (!numbers.add(number)) {
-                throw new InvalidWinningNumbersException(DUPLICATE_NUMBER_IS_NOT_ALLOWED.getMessage());
-            }
+    private void checkNumberHasValidRange(int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new InvalidWinningNumbersException(INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void checkNumberIsDuplicate(HashSet<Integer> numbers, int number) {
+        if (!numbers.add(number)) {
+            throw new InvalidWinningNumbersException(DUPLICATE_NUMBER_IS_NOT_ALLOWED.getMessage());
         }
     }
 }
