@@ -33,7 +33,7 @@ public class LottoDraw {
         try {
             int bonusNumber = Integer.parseInt(secondInput);
 
-            inputLotto.validateBonusNumber(bonusNumber, inputLotto);
+            inputLotto.validateBonusNumber(bonusNumber);
             return bonusNumber;
 
         } catch (IllegalArgumentException e) {
