@@ -20,8 +20,8 @@ class UserInputParserTest {
                 "'32000', 32000",
                 "'529132000', 529132000"
             })
-    void 구매금액_파서_기능_테스트(String rawInput, int expected) {
-        assertEquals(expected, UserInputParser.getPurchaseCost(rawInput));
+    void 구매금액_파서_기능_테스트(String rawInput, long expected) {
+        assertEquals(expected, UserInputParser.getParsedInput(rawInput, UserInputType.PURCHASE_COST));
     }
     
     @ParameterizedTest(name = "구매금액 입력 테스트(예외) : {0}")
@@ -31,7 +31,7 @@ class UserInputParserTest {
             "1002", "1050", "400000120"})
     void 구매금액_파서_예외_테스트(String rawInput) {
         assertThatThrownBy(() -> {
-            UserInputParser.getPurchaseCost(rawInput);
+            UserInputParser.getParsedInput(rawInput, UserInputType.PURCHASE_COST);
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageStartingWith("[ERROR]");
@@ -49,7 +49,7 @@ class UserInputParserTest {
     @ParameterizedTest(name = "당첨번호 입력 테스트 : {0} -> {1}")
     @MethodSource("당첨번호_테스트값_생성")
     void 당첨번호_파서_기능_테스트(String rawInput, List<Integer> expected) {
-        assertThat(UserInputParser.getWinningNumbers(rawInput))
+        assertThat((List<Integer>)UserInputParser.getParsedInput(rawInput, UserInputType.WINNING_NUMBERS))
                 .containsExactlyElementsOf(expected);
     }
     
@@ -67,7 +67,7 @@ class UserInputParserTest {
             })
     void 당첨번호_파서_예외_테스트(String rawInput) {
         assertThatThrownBy(() -> {
-            UserInputParser.getWinningNumbers(rawInput);
+            UserInputParser.getParsedInput(rawInput, UserInputType.WINNING_NUMBERS);
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageStartingWith("[ERROR]");
@@ -81,7 +81,7 @@ class UserInputParserTest {
                 "30, 30"
             })
     void 보너스번호_파서_기능_테스트(String rawInput, int expected) {
-        assertEquals(expected, UserInputParser.getBonusNumber(rawInput));
+        assertEquals(expected, UserInputParser.getParsedInput(rawInput, UserInputType.BONUS_NUMBER));
     }
 
     @ParameterizedTest(name = "보너스 번호 입력 테스트(예외) : {0}")
@@ -95,7 +95,7 @@ class UserInputParserTest {
             })
     void 보너스번호_파서_예외_테스트(String rawInput) {
         assertThatThrownBy(() -> {
-            UserInputParser.getBonusNumber(rawInput);
+            UserInputParser.getParsedInput(rawInput, UserInputType.BONUS_NUMBER);
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageStartingWith("[ERROR]");

@@ -13,12 +13,34 @@ public class UserInputParser {
     private static final int LOTTO_NUMBER_COUNT = 6;
     
     /**
+     * 주어진 문자열을 UserInputType에 따라 변환한 결과를 반환합니다.
+     * @param rawInput 변환할 문자열
+     * @param inputType 입력 데이터의 종류
+     * @return 변환된 결과 :
+     * <br/> {@link UserInputType#PURCHASE_COST} - long
+     * <br/> {@link UserInputType#WINNING_NUMBERS} - List{@literal <Integer>}
+     * <br/> {@link UserInputType#BONUS_NUMBER} - int
+     */
+    public static Object getParsedInput(String rawInput, UserInputType inputType) {
+        if (inputType == UserInputType.PURCHASE_COST) {
+            return getPurchaseCost(rawInput);
+        }
+        if (inputType == UserInputType.WINNING_NUMBERS) {
+            return getWinningNumbers(rawInput);
+        }
+        if (inputType == UserInputType.BONUS_NUMBER) {
+            return getLottoNumber(rawInput);
+        }
+        throw new UnsupportedOperationException("알 수 없는 입력 형식입니다! : " + inputType.toString());
+    }
+    
+    /**
      * 로또 구매 금액에 대한 사용자 입력값을 long 타입 정수로 변환합니다. 
      * @param rawInput 사용자 입력 문자열입니다.
      * @return 변환된 로또 구매 금액값입니다.
      * @throws IllegalArgumentException 사용자 입력이 적절하지 않을 경우 발생합니다.
      */
-    public static long getPurchaseCost(String rawInput) {
+    private static long getPurchaseCost(String rawInput) {
         long value;
         try {
             value = checkAvailPurchaseCost(Long.parseLong(rawInput));
@@ -51,7 +73,7 @@ public class UserInputParser {
      * @return 변환된 당첨번호 List입니다. (정렬됨)
      * @throws IllegalArgumentException 사용자 입력이 적절하지 않을 경우 발생합니다.
      */
-    public static List<Integer> getWinningNumbers(String rawInput) {
+    private static List<Integer> getWinningNumbers(String rawInput) {
         Set<Integer> numbers = new TreeSet<Integer>();
         
         String[] rawNumbers = rawInput.split(",", -1);
@@ -59,7 +81,7 @@ public class UserInputParser {
             throw InputErrorFactory.getErrorWithMessage(InvalidInputType.LOTTO_NUMBER_SIZE_INCORRECT);
         }
         for (int i = 0; i < rawNumbers.length; i++) {
-            numbers.add(checkAvailNumber(rawNumbers[i]));
+            numbers.add(getLottoNumber(rawNumbers[i]));
         }
         if (rawNumbers.length != numbers.size()) {
             throw InputErrorFactory.getErrorWithMessage(InvalidInputType.LOTTO_NUMBER_DUPLICATED);
@@ -67,8 +89,14 @@ public class UserInputParser {
         
         return new ArrayList<Integer>(numbers);
     }
-    
-    private static int checkAvailNumber(String numberStr) {
+
+    /**
+     * 한 로또 번호에 대한 문자열을 변환합니다. 
+     * @param numberStr 로또 번호 문자열입니다.
+     * @return 변환된 로또 번호입니다.
+     * @throws IllegalArgumentException 사용자 입력이 적절하지 않을 경우 발생합니다.
+     */
+    private static int getLottoNumber(String numberStr) {
         int number;
         try {
             number = Integer.parseInt(numberStr);
@@ -82,15 +110,5 @@ public class UserInputParser {
         }
         
         return number;
-    }
-
-    /**
-     * 보너스 번호에 대한 사용자 입력값을 변환합니다. 
-     * @param rawInput 사용자 입력 문자열입니다.
-     * @return 변환된 보너스 번호입니다.
-     * @throws IllegalArgumentException 사용자 입력이 적절하지 않을 경우 발생합니다.
-     */
-    public static int getBonusNumber(String rawInput) {
-        return checkAvailNumber(rawInput);
     }
 }
