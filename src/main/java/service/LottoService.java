@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Lotto;
 import validator.LottoBuyValidator;
+import validator.LottoValidator;
 
 public class LottoService {
 
+    private static final LottoValidator LOTTO_VALIDATOR = new LottoValidator();
     private static final LottoBuyValidator LOTTO_BUY_VALIDATOR = new LottoBuyValidator();
 
     public LottoService() {
@@ -39,5 +41,9 @@ public class LottoService {
         }
 
         return lottos;
+    }
+
+    public void validateNumbers(List<Integer> numbers) {
+        LOTTO_VALIDATOR.validateNumbers(numbers);
     }
 }

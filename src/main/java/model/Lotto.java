@@ -2,7 +2,6 @@ package model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.LottoNumber;
 import validator.LottoValidator;
 
 public class Lotto {
@@ -13,23 +12,20 @@ public class Lotto {
     public static final int PRICE = 1000;
     private static final LottoValidator LOTTO_VALIDATOR = new LottoValidator();
 
-    private final List<LottoNumber> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         LOTTO_VALIDATOR.validateNumbers(numbers);
-        this.numbers = numbers.stream()
-                .map(LottoNumber::new)
-                .toList();
+        this.numbers = numbers;
     }
 
-    public List<LottoNumber> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
     @Override
     public String toString() {
         return numbers.stream()
-                .map(LottoNumber::getValue)
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }

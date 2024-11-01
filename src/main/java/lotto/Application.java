@@ -1,9 +1,11 @@
 package lotto;
 
 import handler.ConsoleHandler;
-import java.util.Arrays;
 import java.util.List;
+import model.FirstRankLotto;
 import model.Lotto;
+import parser.IntegerListParser;
+import service.FirstRankLottoService;
 import service.LottoService;
 
 public class Application {
@@ -11,10 +13,14 @@ public class Application {
     private final Client client;
 
     private final LottoService lottoService;
+    private final FirstRankLottoService firstRankLottoService;
+    private final IntegerListParser integerListParser;
 
     public Application() {
         this.client = new Client();
         this.lottoService = new LottoService();
+        this.firstRankLottoService = new FirstRankLottoService();
+        this.integerListParser = new IntegerListParser();
     }
 
     public static void main(String[] args) {
@@ -25,7 +31,7 @@ public class Application {
 
     private void run() {
         buyLotto();
-        WinningNumbersWithBonusNumber winningNumbersWithBonusNumber = generateWinningNumbersWithBonusNumber();
+        FirstRankLotto firstRankLotto = generateFirstRankLotto();
     }
 
     private void buyLotto() {
@@ -42,59 +48,44 @@ public class Application {
         ConsoleHandler.announceBuyLottos(client.getLottos());
     }
 
-    private WinningNumbersWithBonusNumber generateWinningNumbersWithBonusNumber() {
-        WinningNumbersWithBonusNumber winningNumbersWithBonusNumber = null;
+    private FirstRankLotto generateFirstRankLotto() {
+        List<Integer> firstRankLottoNumbers = generateFirstRankLottoNumbers();
+        int bonusNumber = generateBonusNumber(firstRankLottoNumbers);
 
-        WinningLottoNumbers winningLottoNumbers = generateWinningNumbers();
+        return new FirstRankLotto(firstRankLottoNumbers, bonusNumber);
+    }
 
-        while (winningNumbersWithBonusNumber == null) {
+    private List<Integer> generateFirstRankLottoNumbers() {
+        List<Integer> firstRankLottoNumbers = null;
+
+        while (firstRankLottoNumbers == null) {
             try {
-                LottoNumber bonusNumber = generateBonusNumber();
-                winningNumbersWithBonusNumber = new WinningNumbersWithBonusNumber(winningLottoNumbers, bonusNumber);
+                String input = ConsoleHandler.inputStringValue("당첨 번호를 입력해 주세요.");
+                List<Integer> parsedInput = integerListParser.parse(input, ",");
+                firstRankLottoService.validateNumbers(parsedInput);
+                firstRankLottoNumbers = parsedInput;
             } catch (IllegalArgumentException exception) {
                 ConsoleHandler.announceError(exception.getMessage());
             }
         }
 
-        return winningNumbersWithBonusNumber;
+        return firstRankLottoNumbers;
     }
 
-    private WinningLottoNumbers generateWinningNumbers() {
-        WinningLottoNumbers winningLottoNumbers = null;
-
-        while (winningLottoNumbers == null) {
-            try {
-                List<Integer> winningNumbers =
-                        stringToIntegerList(ConsoleHandler.inputStringValue("당첨 번호를 입력해 주세요."));
-                winningLottoNumbers = new WinningLottoNumbers(winningNumbers.stream().map(LottoNumber::new).toList());
-            } catch (IllegalArgumentException exception) {
-                ConsoleHandler.announceError(exception.getMessage());
-            }
-        }
-
-        return winningLottoNumbers;
-    }
-
-    private LottoNumber generateBonusNumber() {
-        LottoNumber bonusNumber = null;
+    private int generateBonusNumber(List<Integer> firstRankLottoNumbers) {
+        Integer bonusNumber = null;
 
         while (bonusNumber == null) {
-            int number = ConsoleHandler.inputIntValue("보너스 번호를 입력해 주세요.");
+            try {
+                int input = ConsoleHandler.inputIntValue("보너스 번호를 입력해 주세요.");
 
-            bonusNumber = new LottoNumber(number);
+                firstRankLottoService.validateBonusNumber(firstRankLottoNumbers, input);
+                bonusNumber = input;
+            } catch (IllegalArgumentException exception) {
+                ConsoleHandler.announceError(exception.getMessage());
+            }
         }
 
         return bonusNumber;
-    }
-
-    private List<Integer> stringToIntegerList(String value) {
-        try {
-            return Arrays.stream(value.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
-        } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("int형으로 변환할 수 없습니다.");
-        }
     }
 }
