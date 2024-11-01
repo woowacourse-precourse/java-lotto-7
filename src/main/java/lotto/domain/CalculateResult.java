@@ -32,12 +32,8 @@ public class CalculateResult {
     }
 
     private int countMatchingNumbers(List<Integer> singleLotto, List<Integer> winningNumbers) {
-        int matchCount = 0;
-        for (int number : singleLotto) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) singleLotto.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 }

@@ -13,7 +13,7 @@ public class InputValidator {
     }
 
     private void isZero(int money) {
-        if (money <= ZERO.getIntValue()) {
+        if (money == ZERO.getIntValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }
