@@ -8,7 +8,7 @@ public class PurchaseAmountValidator implements Validator {
 
     @Override
     public void validate(String input) {
-        int purchaseAmount = validateNumber(input);
+        int purchaseAmount = StringParser.toInt(input);
         hasMinimum(purchaseAmount);
         isDivisibleByMinimumAmount(purchaseAmount);
     }
@@ -25,11 +25,4 @@ public class PurchaseAmountValidator implements Validator {
         }
     }
 
-    private int validateNumber(String input) {
-        try {
-            return StringParser.toInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
-        }
-    }
 }
