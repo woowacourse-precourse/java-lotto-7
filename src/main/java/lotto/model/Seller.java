@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class Seller {
     private final String PAY_PATTERN = "^[1-9][0-9]{3,}";
-    private List<Lotto> lottoTickets = new ArrayList<>();
 
     public void validate(String input) {
         Pattern patternPay = Pattern.compile(PAY_PATTERN);
@@ -24,16 +23,15 @@ public class Seller {
         }
     }
 
-    public void createLottoTickets(int money) {
+    public List<Lotto> createLottoTickets(int money) {
+        List<Lotto> lottos = new ArrayList<>();
         int howmany = money / 1000;
 
         for (int i = 0; i < howmany; i++) {
-            lottoTickets.add(new Lotto(getRandomNumber()));
+            lottos.add(new Lotto(getRandomNumber()));
         }
-    }
 
-    public List<Lotto> getLottoTickets() {
-        return lottoTickets;
+        return lottos;
     }
 
     public List<Integer> getRandomNumber() {
