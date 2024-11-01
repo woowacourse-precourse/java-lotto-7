@@ -18,7 +18,7 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호의_개수가_5개_이하면_예외가_발생합니다() {
+    void 로또_번호의_개수가_5개_이하면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -31,13 +31,13 @@ class LottoTest {
     }
 
     @Test
-    void 로또_번호는_1에서_45이내의_숫자여야_합니다() {
+    void 로또_번호는_1에서_45이내의_숫자여야_한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 로또_번호가_당첨_번호와_몇_개_일치하는지_확인합니다() {
+    void 로또_번호가_당첨_번호와_몇_개_일치하는지_확인한다() {
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
         int matchCount = lotto1.getMatchNumberCount(lotto2);
