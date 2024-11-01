@@ -1,10 +1,13 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class LottoGame {
-
     private int purchaseAmount;
+    private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
     public void start() {
         purchaseAmountInput();
@@ -18,10 +21,26 @@ public class LottoGame {
             checkUnitOfPurchaseAmount(purchaseAmount);
             checkPurchasedAmountExceeded(purchaseAmount);
 
-            System.out.println(purchaseAmount);
+            LottoIssuance(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             purchaseAmountInput();
+        }
+    }
+
+    // 금액에 맞게 로또를 발급하는 메서드
+    public void LottoIssuance(int purchaseAmount) {
+        int numberOfLottoPurchases = purchaseAmount / 1000;
+        System.out.println(numberOfLottoPurchases + "개를 구매했습니다.");
+
+        for (int i = 0; i < numberOfLottoPurchases; i++) {
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(randomNumbers);
+            lottoNumbers.add(randomNumbers);
+        }
+
+        for (List<Integer> lottoNumber : lottoNumbers) {
+            System.out.println(lottoNumber);
         }
     }
 
