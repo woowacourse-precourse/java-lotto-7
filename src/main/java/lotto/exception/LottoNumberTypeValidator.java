@@ -17,4 +17,13 @@ public class LottoNumberTypeValidator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로 입력해주세요.\n");
         }
     }
+
+    public int validateBonusNumberType(String userInput) {
+        try {
+            int bonusNumber = Integer.parseInt(userInput);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해주세요.\n");
+        }
+    }
 }
