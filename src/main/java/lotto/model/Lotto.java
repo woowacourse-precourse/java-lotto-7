@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -19,6 +20,12 @@ public class Lotto {
     private void validateRange(List<Integer> numbers){
         if (numbers.stream().anyMatch(number -> !isInRange(number))) {
             throw new IllegalArgumentException("[ERROR] 숫자가 유효 범위를 벗어났습니다.");
+        }
+    }
+
+    private void validateDuplicated(List<Integer> numbers){
+        if(numbers.stream().anyMatch(new HashSet<>()::add)){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
