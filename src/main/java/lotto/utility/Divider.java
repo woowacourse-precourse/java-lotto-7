@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.utility;
 
 public class Divider {
     private static final int LOTTO_PRICE = 1000;

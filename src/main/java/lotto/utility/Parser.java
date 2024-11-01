@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.utility;
 
 public class Parser {
     public static int parseStringToInt(String inputCost) {
