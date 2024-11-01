@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class LottoNumber {
 
@@ -9,6 +10,11 @@ public class LottoNumber {
 	private static final int MAX_LOTTO_NUMBER = 45;
 
 	private static Map<Integer, LottoNumber> lottoNumberCache = new HashMap<>();
+
+	static {
+		IntStream.rangeClosed(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER)
+				.forEach(number -> lottoNumberCache.put(number, new LottoNumber(number)));
+	}
 
 	private final int number;
 
