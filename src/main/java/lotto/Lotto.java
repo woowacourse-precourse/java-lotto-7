@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.validation.ErrorMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,8 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            //[ERROR]를 상수 문자열로 만들어서 바꿀 것
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getMessage());
         }
         validateDuplicate(numbers);
     }
