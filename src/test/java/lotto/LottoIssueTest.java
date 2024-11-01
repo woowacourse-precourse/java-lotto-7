@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.*;
-import lotto.controller.LottoNumberController;
+import lotto.controller.LottoNumberGenerator;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +9,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LottoIssueTest {
-    private final LottoNumberController lottoNumberController = new LottoNumberController();
+    private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private static final int LOTTO_MIN = 1;
     private static final int LOTTO_MAX = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
     @Test
     void 주어진_수량만큼_로또_발행() {
-        List<Lotto> testLottos = lottoNumberController.issueLottos(10);
+        List<Lotto> testLottos = lottoNumberGenerator.issueLottos(10);
         // 로또가 주어진 수량인 10장만큼 발행되었는지
         assertThat(testLottos.size()).isEqualTo(10);
 

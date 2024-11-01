@@ -6,7 +6,7 @@ import lotto.domain.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoNumberController {
+public class LottoNumberGenerator {
     private static final int LOTTO_MIN = 1;
     private static final int LOTTO_MAX = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
