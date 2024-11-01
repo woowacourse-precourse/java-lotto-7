@@ -3,7 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class LottoService {
     public List<Lotto> generateLottos(String purchaseAmount) {
