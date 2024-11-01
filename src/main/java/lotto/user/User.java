@@ -10,4 +10,8 @@ public class User {
 	private Map<LottoRank, Integer> lottoStats = new EnumMap<>(LottoRank.class);
 	private double rateOfReturn;
 
+	public void updateRank(LottoRank rank) {
+		lottoStats.put(rank, lottoStats.get(rank) + 1);
+	}
+
 }
