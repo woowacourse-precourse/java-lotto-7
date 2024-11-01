@@ -17,15 +17,11 @@ public enum WinningCondition {
         this.printFormat = printFormat;
     }
 
-    public int getMatchingCondition() {
-        return this.matchingCondition;
-    }
-
-    public int getPrize() {
-        return this.prize;
-    }
-
     public String getPrintFormat() {
         return this.printFormat;
+    }
+
+    public long calculatePrize(int count) {
+        return (long) this.prize * count;
     }
 }

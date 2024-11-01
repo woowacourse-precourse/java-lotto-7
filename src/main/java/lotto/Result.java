@@ -48,6 +48,12 @@ public class Result {
         }
     }
 
+    public long calculateTotalPrize() {
+        return winningDetails.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().calculatePrize(entry.getValue()))
+                .sum();
+    }
+
     private WinningCondition getSatisfiedWinningCriteria(int matchingCount, boolean isBonusContained) {
         if (matchingCount == 6) {
             return WinningCondition.FIRST;

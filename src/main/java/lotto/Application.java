@@ -53,6 +53,10 @@ public class Application {
         System.out.println("당첨 통계\n---");
         Result result = new Result();
         result.calculate(winningNumber, bonusNumber, issuer);
-        System.out.println(result.getFormattedWinningDetails());
+        System.out.print(result.getFormattedWinningDetails());
+
+        ReturnRate returnRate = new ReturnRate();
+        String formattedReturnRate = returnRate.calculate(result, price);
+        System.out.print("총 수익률은 " + formattedReturnRate + "입니다.");
     }
 }
