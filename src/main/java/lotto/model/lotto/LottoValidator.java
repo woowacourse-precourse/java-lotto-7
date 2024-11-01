@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.model.ErrorMessages.Lotto.DUPLICATED;
 import static lotto.model.ErrorMessages.Lotto.INVALID_RANGE;

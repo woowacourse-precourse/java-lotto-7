@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lotto.LottoValidator;
 
 public class WinningLottoValidator extends LottoValidator {
     private WinningLottoValidator() {

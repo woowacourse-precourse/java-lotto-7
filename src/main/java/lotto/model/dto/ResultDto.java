@@ -3,7 +3,7 @@ package lotto.model.dto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.model.Rank;
+import lotto.model.lotto.Rank;
 
 public record ResultDto(
         List<RankDto> rankDtos,

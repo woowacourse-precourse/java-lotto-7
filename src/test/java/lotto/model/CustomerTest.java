@@ -4,6 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
 
 import java.util.List;
+import lotto.model.customer.Customer;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoTicket;
+import lotto.model.lotto.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

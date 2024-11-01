@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import java.util.List;
+import lotto.model.lotto.Lotto;
 
 public class WinningLotto extends Lotto {
 

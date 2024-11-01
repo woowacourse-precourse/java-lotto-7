@@ -1,7 +1,10 @@
-package lotto.model;
+package lotto.model.customer;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.lotto.LottoTicket;
+import lotto.model.lotto.Rank;
+import lotto.model.lotto.WinningLotto;
 
 public class Customer {
     private final int paidAmount;

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.model.ErrorMessages.LottoTicket.RANK_IS_NULL;
 

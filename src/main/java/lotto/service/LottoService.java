@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.model.Customer;
-import lotto.model.Lotto;
-import lotto.model.LottoNumberGenerator;
-import lotto.model.LottoTicket;
-import lotto.model.Rank;
-import lotto.model.WinningLotto;
+import lotto.model.customer.Customer;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoNumberGenerator;
+import lotto.model.lotto.LottoTicket;
+import lotto.model.lotto.Rank;
+import lotto.model.lotto.WinningLotto;
 import lotto.model.dto.LottoDto;
 import lotto.model.dto.ResultDto;
 
