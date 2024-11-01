@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 import lotto.view.impl.ConsoleOutputView;
 
 public class AppConfig {
-    private static final AppConfig INSTANCE = new AppConfig();
+    private static AppConfig INSTANCE;
 
     private final OutputView outputView;
     private final LottoService lottoService;
@@ -23,6 +23,9 @@ public class AppConfig {
     }
 
     public static AppConfig getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new AppConfig();
+        }
         return INSTANCE;
     }
 
