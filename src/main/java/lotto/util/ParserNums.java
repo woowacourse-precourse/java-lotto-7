@@ -11,22 +11,22 @@ import java.util.stream.Collectors;
 public class ParserNums {
 
     public List<Integer> parsingWinningNums(String winningNumbers){
-        List<Integer> winnigNums = new ArrayList<>();
+        List<Integer> winningNums = new ArrayList<>();
 
         validate(winningNumbers);
 
-        winnigNums.addAll(
+        winningNums.addAll(
                 Arrays.stream(winningNumbers.split(DelimiterPattern.COMMA.getPattern()))
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList())
         );
 
-        return winnigNums;
+        return winningNums;
     }
 
-    public void validate(String winnigNumbers){
-        if(winnigNumbers.isEmpty()) throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
-        if(!winnigNumbers.matches(DelimiterPattern.COMMA_SEPARATED_NUMERIC_LIST_REGEX.getPattern())) {throw new IllegalArgumentException(ErrorMessage.NOT_COMMA_PARSE.getMessage());}
+    public void validate(String winningNumbers){
+        if(winningNumbers.isEmpty()) throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
+        if(!winningNumbers.matches(DelimiterPattern.COMMA_SEPARATED_NUMERIC_LIST_REGEX.getPattern())) {throw new IllegalArgumentException(ErrorMessage.NOT_COMMA_PARSE.getMessage());}
     }
 }

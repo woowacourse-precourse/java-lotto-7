@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.constant.Constants;
-import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
 import lotto.model.PurchaseQuantity;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoManagerTest {
 
