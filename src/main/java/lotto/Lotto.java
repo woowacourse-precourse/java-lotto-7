@@ -1,9 +1,12 @@
 package lotto;
 
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_COUNTS;
+import static lotto.exception.ErrorMessage.INVALID_LOTTO_DUPLICATE;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateCount(numbers);
+        validateDuplication(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
@@ -23,6 +27,14 @@ public class Lotto {
         }
     }
 
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!set.add(number)) {
+                throw new LottoException(INVALID_LOTTO_DUPLICATE);
+            }
+        }
+        ;
     }
 
     // TODO: 추가 기능 구현
