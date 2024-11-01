@@ -29,5 +29,8 @@ public class OutputView {
         System.out.println(PROMPT_MESSAGE_FOR_WINNING_RESULT.getPromptMessage());
     }
 
+    public static void printWinningResult(final String prefix, final Integer winningLottoNumber) {
+        System.out.println(prefix + winningLottoNumber + unit);
+    }
 
 }
