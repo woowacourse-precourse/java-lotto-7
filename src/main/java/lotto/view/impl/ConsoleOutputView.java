@@ -18,7 +18,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String INPUT_BONUS_NUMBER_NOTICE = "\n보너스 번호를 입력해 주세요.";
 
     @Override
-    public void printBuyingLotto(LottoTickets lottoTickets) {
+    public void printPurchasedLotto(LottoTickets lottoTickets) {
         System.out.printf(NUMBER_OF_PURCHASE_LOTTO_NOTICE, lottoTickets.getLottoTickets().size());
         lottoTickets.getLottoTickets().stream().map(Lotto::getNumbers).forEach(System.out::println);
     }
@@ -32,7 +32,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private void printLottoPrize(LottoRank lottoRank, int count) {
-        if (lottoRank.getMatchCount() == 0) {
+        if (lottoRank == LottoRank.NONE) {
             return;
         }
         if (lottoRank.isMatchBonus()) {
@@ -43,17 +43,17 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printInputAmount() {
+    public void printInputAmountNotice() {
         System.out.println(INPUT_AMOUNT_NOTICE);
     }
 
     @Override
-    public void printInputWinningLotto() {
+    public void printInputWinningLottoNotice() {
         System.out.println(INPUT_WINNING_LOTTO_NOTICE);
     }
 
     @Override
-    public void printInputBonusNumber() {
+    public void printInputBonusNumberNotice() {
         System.out.println(INPUT_BONUS_NUMBER_NOTICE);
     }
 }

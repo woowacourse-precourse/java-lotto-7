@@ -31,19 +31,19 @@ public class LottoController {
     }
 
     private LottoTickets getPurchasedLottoTickets() {
-        outputView.printInputAmount();
+        outputView.printInputAmountNotice();
         int amount = Integer.parseInt(Console.readLine());
         return lottoService.purchaseTickets(amount);
     }
 
     private void displayPurchasedTickets(LottoTickets lottoTickets) {
-        outputView.printBuyingLotto(lottoTickets);
+        outputView.printPurchasedLotto(lottoTickets);
     }
 
     private WinningLotto getWinningLotto() {
-        outputView.printInputWinningLotto();
+        outputView.printInputWinningLottoNotice();
         List<Integer> winningNumbers = validate(Console.readLine());
-        outputView.printInputBonusNumber();
+        outputView.printInputBonusNumberNotice();
         int bonusNumber = Integer.parseInt(Console.readLine());
         return new WinningLotto(winningNumbers, bonusNumber);
     }
@@ -57,14 +57,14 @@ public class LottoController {
         outputView.printLottoStatistics(lottoStatistics, returnRate);
     }
 
-    public List<Integer> validate(String winningLottoNumbers) {
+    private List<Integer> validate(String winningLottoNumbers) {
         try {
             return Arrays.stream(winningLottoNumbers.split(DELIMITER))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자와 구분자(,)로 이루어진 문자열을 입력해 주세요.");
         }
     }
 }
