@@ -9,27 +9,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoStatisticTests {
+class LottoPurchasedInfoTests {
 
-    private LottoStatistic lottoStatistic;
-    private List<Lotto> sample;
+    private LottoPurchasedInfo lottoPurchasedInfo;
+    private List<Integer> winningNumbers;
+    private Integer bonusNumber;
 
     @BeforeEach
     void setup() {
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        lottoStatistic = new LottoStatistic(winningNumbers, bonusNumber);
-        sample = List.of(
+        List<Lotto> purchasedSample = List.of(
                 new Lotto(List.of(1, 3, 5, 14, 22, 45)),
-                new Lotto(List.of(7, 11, 30, 40, 42, 43))
-        );
+                new Lotto(List.of(7, 11, 30, 40, 42, 43)));
+
+        winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        bonusNumber = 7;
+
+        lottoPurchasedInfo = new LottoPurchasedInfo(purchasedSample, purchasedSample.size()*LOTTO_TICKET_PRICE);
+        lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
     }
 
     @Test
     @DisplayName("당첨된 복권의 개수를 등수별로 그룹화")
-    void countByLottoRankTest() {
+    void groupByLottoRankTest() {
         Map<LottoRank, Integer> expected = Map.of(LottoRank.NONE, 1, LottoRank.FIFTH, 1);
-        Map<LottoRank, Integer> result = lottoStatistic.countByLottoRank(sample);
+        Map<LottoRank, Integer> result = lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
 
         assertEquals(result, expected);
     }
@@ -39,8 +42,7 @@ class LottoStatisticTests {
     void calculateTotalRewardsTest() {
         Long expected = 5000L;
 
-        lottoStatistic.countByLottoRank(sample);
-        assertEquals(lottoStatistic.calculateTotalRewards(), expected);
+        assertEquals(lottoPurchasedInfo.calculateTotalRewards(), expected);
     }
 
     @Test
@@ -48,8 +50,7 @@ class LottoStatisticTests {
     void calculateProfitPercentageTest() {
         Double expected = 250.0;
 
-        lottoStatistic.countByLottoRank(sample);
-        Double result = lottoStatistic.calculateProfitPercentage(sample.size() * LOTTO_TICKET_PRICE);
+        Double result = lottoPurchasedInfo.calculateProfitPercentage();
         assertEquals(result, expected);
     }
 }
