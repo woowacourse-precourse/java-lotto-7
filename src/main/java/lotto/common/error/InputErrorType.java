@@ -23,6 +23,8 @@ public enum InputErrorType {
     }
 
     public String getMessage() {
-        return message;
+        String errorPrefix = "[ERROR] ";
+
+        return errorPrefix + message;
     }
 }

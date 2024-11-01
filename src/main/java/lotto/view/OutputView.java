@@ -55,6 +55,6 @@ public class OutputView {
     }
 
     public void printException(String errorMessage) {
-        System.out.println("[ERROR] " + errorMessage + "\n");
+        System.out.println(errorMessage);
     }
 }
