@@ -152,14 +152,14 @@ View
             <td>✅ `WinningLotto`에 보너스 번호 추가</td> </tr><tr> 
      <td rowspan="4">로또 당첨 조회</td>
         <td rowspan="1">LottoService</td>
-            <td>⬜ `WinningLotto`와 `PurchasedLottos` 매칭 여부</td> 
+            <td>✅ `WinningLotto`와 `PurchasedLottos` 매칭 여부</td> 
                 <td rowspan="4"></tr><tr> 
         <td rowspan="1">LottoService</td>
-            <td>⬜ `MatchResults` 반환</td> </tr><tr> 
+            <td>✅ `MatchResults` 반환</td> </tr><tr> 
         <td rowspan="1"><b><em>MatchResult</em></b></td>
-            <td>⬜ `MatchResult` 생성</td> </tr><tr> 
+            <td>✅ `MatchResult` 생성</td> </tr><tr> 
         <td rowspan="1"><b><em>MatchResults</em></b></td>
-            <td>⬜ `MatchResult` 추가</td> </tr><tr> 
+            <td>✅ `MatchResult` 추가</td> </tr><tr> 
     <td rowspan="5">로또 당첨 통계 출력</td>
         <td rowspan="1"><b><em>Prize</em></b></td>
             <td>⬜  `Prize` 생성</td> 
