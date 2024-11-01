@@ -1,9 +1,12 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,6 +38,15 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.from(condition))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외가 발생한다.")
+    void validateUniqueBonusAndWinningNumbers() {
+        List<Integer> winningNumbers = WinningNumbers.from("1,2,3,4,5,6").getNumbers();
+        assertThatThrownBy(() -> BonusNumber.of(winningNumbers, "6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
     }
 
 }
