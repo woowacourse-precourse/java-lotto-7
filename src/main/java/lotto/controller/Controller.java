@@ -9,7 +9,7 @@ import lotto.domain.LottoMachine;
 import lotto.domain.BonusBall;
 import lotto.domain.Lotto;
 import lotto.domain.CalculateResult;
-import lotto.validation.InputValidator;
+import lotto.validation.InputMoneyValidator;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public class Controller {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
-    private final InputValidator inputValidator;
+    private final InputMoneyValidator inputMoneyValidator;
     private final CalculateResult calculateResult;
 
     public Controller() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoMachine = new LottoMachine();
-        this.inputValidator = new InputValidator();
+        this.inputMoneyValidator = new InputMoneyValidator();
         this.calculateResult = new CalculateResult();
     }
 
@@ -48,7 +48,7 @@ public class Controller {
 
     private int UntilValidPurchaseMoney() {
         try {
-            return inputValidator.validate(Parser.parseNumber(inputView.readInputLine()));
+            return inputMoneyValidator.validate(Parser.parseNumber(inputView.readInputLine()));
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             return (UntilValidPurchaseMoney());

@@ -5,7 +5,7 @@ import static lotto.util.Constants.ZERO;
 
 import static lotto.util.ExceptionMessage.INVALID_AMOUNT_UNIT;
 
-public class InputValidator {
+public class InputMoneyValidator {
     public int validate(int value) {
         isNotPositive(value);
         idValidateAmountUnit(value);
