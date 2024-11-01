@@ -27,10 +27,7 @@ public class InputManager {
         ValidChecker checker = new ValidChecker();
         checker.notInt(number);
         checker.checkUnderMaximum(Integer.parseInt(number));
-        if(winningNumbers.contains(number)) {
-            System.out.println("[ERROR] 보너스 번호는 당첨 번호 6개와 중복될 수 없습니다.");
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호 6개와 중복될 수 없습니다.");
-        }
+        checker.isBonusDuplicated(number, winningNumbers);
         return Integer.parseInt(number);
     }
 

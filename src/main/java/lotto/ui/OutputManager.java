@@ -33,6 +33,7 @@ public class OutputManager {
     public void printStatistics(Map<WinningStatisticsManager.PrizeTier, Integer> results, BigDecimal earningRate) {
         System.out.println("\n");
         DecimalFormat formatter = new DecimalFormat("#,###");
+        DecimalFormat rateFormatter = new DecimalFormat("#.#");
         System.out.println("당첨 통계\n---");
         for (WinningStatisticsManager.PrizeTier tier : WinningStatisticsManager.PrizeTier.values()) {
             System.out.print(tier.getMatchCount() + "개 일치");
@@ -44,7 +45,8 @@ public class OutputManager {
                     results.getOrDefault(tier, 0)
             );
         }
-        System.out.println("총 수익률은 " + earningRate.toPlainString() + "%입니다.");
+        String result = String.format("%.1f",earningRate);
+        System.out.println("총 수익률은 " + result + "%입니다.");
     }
 
 }

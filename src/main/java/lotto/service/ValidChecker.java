@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.List;
+
 public class ValidChecker {
     public void checkUnderMaximum(int number) {
         if(number>45||number<1){
@@ -29,6 +31,13 @@ public class ValidChecker {
         if (parts.length != 6) {
             System.out.println("[ERROR] 쉼표로 구분된 6개의 숫자를 넣어주세요");
             throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 6개의 숫자를 넣어주세요");
+        }
+    }
+
+    public void isBonusDuplicated(String number,List<Integer> winningNumbers){
+        if(winningNumbers.contains(Integer.parseInt(number))) {
+            System.out.println("[ERROR] 보너스 숫자는 당첨 숫자 6개와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨 숫자 6개와 중복될 수 없습니다.");
         }
     }
 }

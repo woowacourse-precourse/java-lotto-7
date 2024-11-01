@@ -4,6 +4,8 @@ import lotto.service.ValidChecker;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+
 public class ValidCheckerTest {
     @Test
     public void testCheckUnderMaximum() {
@@ -35,10 +37,18 @@ public class ValidCheckerTest {
     }
 
     @Test
+    public void testIsBonusNumberDuplicated(){
+        assertThatThrownBy(() -> new ValidChecker().isBonusDuplicated("6",List.of(1,2,3,4,5,6)))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("[ERROR] 보너스 숫자는 당첨 숫자 6개와 중복될 수 없습니다.");
+    }
+
+    @Test
     public void run() {
         testCheckUnderMaximum();
         testNotInt();
         testNotContainComma();
         testNotSixNumbers();
+        testIsBonusNumberDuplicated();
     }
 }
