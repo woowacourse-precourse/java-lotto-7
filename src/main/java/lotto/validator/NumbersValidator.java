@@ -32,7 +32,6 @@ public class NumbersValidator {
     }
 
     private List<Integer> winningNumbers = new ArrayList<>();
-    private List<Integer> bonusNumber = new ArrayList<>();
 
     private List<Integer> parseNumbersToList(String numbersInput) {
         return Arrays.stream(numbersInput.split(","))
@@ -58,10 +57,10 @@ public class NumbersValidator {
     }
 
     public void validateBonusNumber(String input) {
-        this.bonusNumber = parseNumbersToList(input);
+        List<Integer> bonusNumber = parseNumbersToList(input);
         validateLength("보너스", bonusNumber);
         validateBetweenList(bonusNumber);
-
+        validateBonusNumber(bonusNumber);
     }
 
     private void validateLength(String type, List<Integer> numbers) {
@@ -101,12 +100,19 @@ public class NumbersValidator {
         }
     }
 
-    public void getWinningNumbers() {
-        getNumbers(winningNumbers);
+    private void validateBonusNumber(List<Integer> numbers) {
+        List<Integer> copyWinningNumbers = getWinningNumbers();
+        copyWinningNumbers.addAll(numbers);
+
+        validateUnique(copyWinningNumbers);
     }
 
-    public void getBonusNumber() {
-        getNumbers(winningNumbers);
+    public List<Integer> getWinningNumbers() {
+        return getNumbers(winningNumbers);
+    }
+
+    public List<Integer> getBonusNumber() {
+        return getNumbers(winningNumbers);
     }
 
     private List<Integer> getNumbers(List<Integer> numbers) {
