@@ -5,11 +5,13 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
 import lotto.service.LottoGenerator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
     private final InputView inputView = new InputView();
     private final LottoGenerator lottoGenerator = new LottoGenerator();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
         // 구매할 금액 입력 받기
@@ -18,7 +20,9 @@ public class LottoController {
 
         // 구매 개수만큼 로또 생성
         List<Lotto> generatedLottoNumbers = lottoGenerator.generate(purchasePrice);
-        System.out.println(generatedLottoNumbers);
+//        System.out.println(generatedLottoNumbers);
+
+        outputView.printLottoNumbers(generatedLottoNumbers);
 
     }
 }
