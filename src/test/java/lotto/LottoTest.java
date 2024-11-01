@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -22,5 +24,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호를_오름차순으로_정렬한다() {
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
+
+        Lotto sortedLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(sortedLotto).isEqualTo(lotto);
+    }
 }
