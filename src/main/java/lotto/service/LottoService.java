@@ -21,5 +21,6 @@ public class LottoService {
 
     private void validateBonusNumber(WinningLotto winningLotto, String bonusNumber) {
         Validator.isEmptyInput(bonusNumber);
+        Validator.isDigitString(bonusNumber);
     }
 }
