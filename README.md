@@ -156,7 +156,7 @@
 
 ## 순서도
 
-<img width = "450" alt = "image" src="./flowchart/flowchart(total).jpg">
+<img width = "450" alt = "image" src="./image/flowchart(total).jpg">
 
 ## 파일 구조
 
