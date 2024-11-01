@@ -10,13 +10,14 @@ public class UserInput {
     public int inputAmount() {
         try {
             return Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 숫자이어야 합니다.");
         }
     }
 
     public int inputBonusNumber() {
-        int bonus = Integer.parseInt(Console.readLine());
+        int bonus = validateBonusNumberFormat();
         validateBonusNumber(bonus);
         return bonus;
     }
@@ -44,4 +45,14 @@ public class UserInput {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 숫자만 허용됩니다.");
         }
     }
+
+    private int validateBonusNumberFormat() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자 형태여야 합니다.");
+        }
+    }
+
 }
