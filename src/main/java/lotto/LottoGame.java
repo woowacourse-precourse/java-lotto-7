@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     
@@ -14,9 +16,53 @@ public class LottoGame {
         
         // 구매 금액에 맞는 수량의 로또 발행
         List<Lotto> generatedLottos = generateLottos(money);
+        
+        // 유저의 로또 번호들 입력 받기
+        Lotto userLotto = generateUserLotto();
+        
     }
     
-    private List<Lotto> generateLottos(Integer money) {
+    public Lotto generateUserLotto() {
+        List<Integer> userLottoNumbers = new ArrayList<>();
+        
+        System.out.println("당첨 번호를 입력해 주세요.");
+        
+        while (userLottoNumbers.size() != 6) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String inputLottoNumbers = Console.readLine();
+                userLottoNumbers = validateInputLottoNumbers(inputLottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해 주세요.");
+            }
+        }
+        
+        return new Lotto(userLottoNumbers);
+    }
+    
+    private List<Integer> validateInputLottoNumbers(String inputLottoNumbers) {
+        if (inputLottoNumbers == null || inputLottoNumbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호가 비어있습니다.");
+        }
+        
+        List<Integer> splits = null;
+        try {
+            splits = Arrays.stream(inputLottoNumbers.split(","))
+                    .mapToInt(value -> Integer.parseInt(value.trim()))
+                    .boxed()
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 입력한 값은 Integer 배열로 변환할 수 없습니다.");
+        }
+        
+        // 로또의 validate를 통해 검증, 여기서 에러가 안나면 통과 한다는 뜻
+        Lotto validateCheckLotto = new Lotto(splits);
+
+        return validateCheckLotto.getNumbers();
+    }
+    
+    public List<Lotto> generateLottos(Integer money) {
         
         List<Lotto> generatedLottos = new ArrayList<>();
         
