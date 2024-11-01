@@ -8,6 +8,7 @@ public class Application {
         int purchaseAmount = InputView.inputPurchaseAmount();
 
         LottoDraw lottoDraw = new LottoDraw(purchaseAmount);
+        OutputView.outputNumberOfPurchaseLotto(lottoDraw);
 
         Lotto lotto = new Lotto(InputView.inputLottoPrizeNumbers());
         int bonusNumber = InputView.inputLottoBonusNumber();
