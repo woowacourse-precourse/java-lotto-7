@@ -22,7 +22,7 @@ public class Input implements AutoCloseable {
         return Integer.parseInt(money);
     }
 
-    public static Winning readWinningNumber() {
+    public static List<Integer> readWinningNumber() {
         String winningNumber = Console.readLine();
 
         if (!Pattern.matches("^[1-9|,]+$", winningNumber)) {
@@ -43,10 +43,10 @@ public class Input implements AutoCloseable {
             throw new IllegalArgumentException("로또 번호 6글자를 입력해주세요. (중복은 허용되지 않습니다.)");
         }
 
-        return Winning.create(numbers);
+        return numbers;
     }
 
-    public static Bonus readBonusNumber() {
+    public static int readBonusNumber() {
         String strBonusNumber = Console.readLine();
         validateNumber(strBonusNumber);
 
@@ -55,7 +55,7 @@ public class Input implements AutoCloseable {
             throw new IllegalArgumentException("45 이상을 입력할 수 없습니다.");
         }
 
-        return Bonus.create(bonusNumber);
+        return bonusNumber;
     }
 
     private static void validateNumber(String input) {
