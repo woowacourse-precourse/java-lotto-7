@@ -215,9 +215,9 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
 - 로또 구입
    - [x] `로또 구입 금액 / 1000`으로 구입할 로또의 개수를 계산한다. 
 - 로또 발행
-   - [ ] 중복되지 않는 숫자 6개를 생성한다. `Randoms.pickUniqueNumbersInRange(1, 45, 6);`
+   - [x] 중복되지 않는 숫자 6개를 생성한다. `Randoms.pickUniqueNumbersInRange(1, 45, 6);`
    - [ ] 발행한 로또를 오름차순 정렬한다.
-   - [ ] 로또 구입 개수만큼 로또를 발행한다.
+   - [x] 로또 구입 개수만큼 로또를 발행한다.
 - 로또 당첨 판단
    - [ ] 사용자가 입력한 당첨 번호와 생성된 로또를 비교해 일치하는 번호의 수를 센다.
 - 로또 당첨금 계산
