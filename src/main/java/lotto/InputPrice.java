@@ -64,7 +64,7 @@ public class InputPrice {
     }
 
     //당첨 번호가 숫자 6개인지, 1~45인지 검사 메소드
-    private static void validateWinningNumbers(List<Integer> numbers) {
+    static void validateWinningNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
@@ -76,7 +76,7 @@ public class InputPrice {
     }
 
     //보너스 번호가 1~45인지 검사
-    private static void validateBonusNumber(int bonusNumber) {
+    static void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
