@@ -17,4 +17,12 @@ public class InputParser {
     public String[] parseWinnerNumber(String winnerNumber) {
         return winnerNumber.split(WINNER_NUMBER_COMMA_REGEX);
     }
+
+    public Integer parseBonusAmount(String bonusAmount) {
+        try {
+            return Integer.parseInt(bonusAmount);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_MUST_INTEGER, e);
+        }
+    }
 }

@@ -41,6 +41,6 @@ public class ObjectFactory {
     }
 
     public final BonusNumberService bonusNumberService() {
-        return new BonusNumberService(inputValidator);
+        return new BonusNumberService(inputValidator, inputParser);
     }
 }
