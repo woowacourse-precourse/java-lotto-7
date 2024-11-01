@@ -4,6 +4,7 @@ public class Purchase {
 
     private static final String ERROR_NOT_INTEGER = "[ERROR] 정수 값이 입력되어야 합니다.";
     private static final String ERROR_PURCHASE_AMOUNT = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
+    private static final int LOTTO_PRICE = 1000;
 
     private final int purchaseAmount;
 
@@ -19,7 +20,7 @@ public class Purchase {
     }
 
     public int numberOfLotto() {
-        return purchaseAmount / 1000;
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     private void validateInput(String input) {
@@ -31,7 +32,7 @@ public class Purchase {
     }
 
     private void validateMoney(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERROR_PURCHASE_AMOUNT);
         }
     }
