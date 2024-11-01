@@ -1,5 +1,7 @@
 package lotto.util;
 
+import static lotto.util.InputValidator.*;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.exception.LottoException.NotAllowCharacterInputException;
@@ -17,11 +19,10 @@ public class Converter {
                 .toList();
     }
 
-    private static Integer getNumber(final String number) {
-        try {
-            return Integer.valueOf(number);
-        } catch (NumberFormatException e) {
-            throw new NotAllowCharacterInputException();
-        }
+    private static Integer getNumber(final String input) {
+        validateIsNumeric(input);
+        validateNegativeNumber(input);
+
+        return Integer.valueOf(input);
     }
 }
