@@ -24,6 +24,6 @@ public class OutputView {
     }
 
     public static void printRevenue(double revenue) {
-        System.out.println("총 수익률은 " + String.format("%.2f", revenue) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", revenue) + "%입니다.");
     }
 }
