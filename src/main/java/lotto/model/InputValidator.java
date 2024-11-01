@@ -46,7 +46,7 @@ public class InputValidator {
         validateRangeNumber(input);
     }
 
-    public void validateRangeNumber(String input) {
+    private void validateRangeNumber(String input) {
         int parsedInt = Integer.parseInt(input);
 
         if (1 > parsedInt && parsedInt > 45) {
