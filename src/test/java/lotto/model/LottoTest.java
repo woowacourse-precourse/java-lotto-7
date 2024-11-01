@@ -1,10 +1,10 @@
 package lotto.model;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -16,6 +16,24 @@ class LottoTest {
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_쉼표로만_구분되지_않으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto("1,2,3;4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호에_공백을_입력_받으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호는_1에서_45사이의_숫자가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,5,46"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

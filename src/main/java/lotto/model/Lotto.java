@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.util.inputParser.convertStringToList;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +18,7 @@ public class Lotto {
     }
 
     public Lotto(String input) { // winningLotto 생성자
+        validateStringFormat(input);
         List<Number> parsedNumbers = parseStringInput(input);
         validateLotto(parsedNumbers);
         this.numbers = sortLottoNumber(parsedNumbers);
@@ -27,6 +29,16 @@ public class Lotto {
         return rawWinningLotto.stream()
                 .map(Number::new)
                 .collect(Collectors.toList());
+    }
+
+    private void validateStringFormat(String input){
+        if (hasInvalidInput(input)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)로만 구분되어야 합니다.");
+        }
+    }
+
+    private boolean hasInvalidInput(String input){
+        return !input.matches("[0-9,]+");
     }
 
     private void validateLotto(List<Number> numbers) {
@@ -58,9 +70,9 @@ public class Lotto {
     }
 
     private List<Number> sortLottoNumber(List<Number> numbers) {
-        List<Number> sortedNumbers = new ArrayList<>(numbers);
-        sortedNumbers.sort((n1, n2) -> Integer.compare(n1.getValue(), n2.getValue()));
-        return sortedNumbers;
+        return numbers.stream()
+                .sorted(Comparator.comparing(Number::getValue))
+                .collect(Collectors.toList());
     }
 
     @Override
