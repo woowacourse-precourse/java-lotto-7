@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class LottoValidator {
+public class LottoValidator implements  Validator{
     private static final Pattern LOTTO_NUMBER_FORMAT = Pattern.compile("^-?\\d+(,-?\\d+)*$");
     private static final int MAX_NUMBER = 45;
     private static final int MIN_NUMBER = 1;
@@ -16,14 +16,8 @@ public class LottoValidator {
     public void validate(String input) {
         validateNull(input);
         validateFormat(input);
-        validateNumberRange(input);
+        validateNumbersRange(input);
         validateDuplicateNumber(input);
-    }
-
-    private void validateNull(String input) {
-        if (input.isBlank()) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_BLANK.getMessage());
-        }
     }
 
     private void validateFormat(String input) {
@@ -32,7 +26,7 @@ public class LottoValidator {
         }
     }
 
-    private void validateNumberRange(String input) {
+    private void validateNumbersRange(String input) {
         boolean hasInvalidNumber = Converter.toNumberList(input).stream()
                 .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
         if (hasInvalidNumber) {
