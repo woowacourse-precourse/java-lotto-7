@@ -1,22 +1,12 @@
 package lotto.view;
 
-import static lotto.exception.ErrorMessage.*;
-
 import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.PurchaseAmount;
-import lotto.exception.CustomIllegalArgumentException;
+import lotto.dto.PurchaseAmountDto;
 
 public class InputView {
 
-    public PurchaseAmount readPurchaseAmount() {
+    public PurchaseAmountDto readPurchaseAmount() {
         String input = Console.readLine();
-        validateEmptyInput(input);
-        return PurchaseAmount.from(input);
-    }
-
-    private void validateEmptyInput(String input) {
-        if (input.isBlank()) {
-            throw CustomIllegalArgumentException.from(EMPTY_INPUT);
-        }
+        return new PurchaseAmountDto(input.trim());
     }
 }
