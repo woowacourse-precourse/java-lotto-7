@@ -87,9 +87,11 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 
 # ➕ 추가 요구사항
 **기능 요구사항**
-- [ ] 검증 로직을 static으로 리팩토링 한다.
 
 **에러처리 요구사항**
 - [ ] 로또 번호가 0보다 작거나, 45보다 크다면 예외를 반환한다.
+
 **기타 요구사항**
 - [x] Random 클래스의 model로 패키지 변경
+- [x] 검증 로직을 static으로 리팩토링 한다.
+- [x] validateNotDuplicate에서 validateUnique로 메서드명 변경하여 리팩토링 한다.
