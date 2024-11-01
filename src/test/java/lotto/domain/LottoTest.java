@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.domain.LottoInfo.PICK_COUNT;
+import static lotto.domain.LottoInfo.END_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -26,7 +26,10 @@ class LottoTest {
 
     @Test
     void 로또_번호가_범위를_벗어나면_예외처리() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, PICK_COUNT + 1)))
+
+        int outOfRangeNumber = END_NUMBER + 1;
+
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, outOfRangeNumber)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
