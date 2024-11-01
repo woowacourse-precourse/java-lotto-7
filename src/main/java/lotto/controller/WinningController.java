@@ -2,10 +2,10 @@ package lotto.controller;
 
 import lotto.view.InputPaymentView;
 
-public class CheckingWinningLottoController {
+public class WinningController {
     private InputPaymentView inputPaymentView;
 
-    public CheckingWinningLottoController() {
+    public WinningController() {
         this.create();
     }
 
