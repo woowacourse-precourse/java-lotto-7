@@ -7,9 +7,9 @@ import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import domain.BonusNumber;
-import domain.Lotto;
-import domain.PublishCount;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.PublishCount;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
@@ -76,7 +76,7 @@ public class LottoController {
 
     private PublishCount createPublishCount(int purchasePrice) {
         int countOfPublish = getCountOfPublish(purchasePrice);
-        return PublishCount.from(countOfPublish);
+        return PublishCount.getInstance(countOfPublish);
     }
 
     private Lotto createLotto() {
