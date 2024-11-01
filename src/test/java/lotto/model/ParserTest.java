@@ -31,4 +31,16 @@ class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("입력 문자열 정수로 변환: 특수 문자 - 예외 테스트")
+    void parseInputToInt_specialCharacter() {
+        // given
+        String input = "$";
+
+        // when & then
+        assertThatThrownBy(() -> Parser.parseInputToInt(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
