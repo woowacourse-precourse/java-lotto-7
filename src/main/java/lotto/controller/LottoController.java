@@ -60,10 +60,9 @@ public class LottoController {
 
                 validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
                 List<Integer> lottoNumbrs = TypeConverter.ToNumberList(lottoInput);
-                validInput = validationManager.isRangeValid(lottoNumbrs);
                 Lotto lotto = new Lotto(lottoNumbrs);//6자 이상인지 1-45안에 있는지 확인후 객체 생성
                 validLottoNumbers = lotto.getLottoNumbers();
-
+                validInput = validationManager.isRangeValid(validLottoNumbers); //범위 확인
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
