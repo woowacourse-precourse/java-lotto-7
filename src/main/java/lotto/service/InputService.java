@@ -5,6 +5,7 @@ import lotto.domain.User;
 import lotto.validate.BonusNumberValidate;
 import lotto.validate.LottoNumberValidate;
 import lotto.validate.PriceValidate;
+import lotto.view.OutputView;
 
 import java.util.List;
 
@@ -17,8 +18,11 @@ public class InputService {
         return validate.getPrice();
     }
 
-    public User getUser() {
-        return new User(priceValidate());
+    public User inputUser() {
+        User user = new User(priceValidate());
+        OutputView.buyLottoQuantity(user);
+        OutputView.buyLottoNumber(user);
+        return user;
     }
 
     private List<Integer> lottoNumberValidate() {
