@@ -1,6 +1,7 @@
 package controller;
 
 import factory.LottoFactory;
+import factory.ResultFactory;
 import factory.WinningLottoNumFactory;
 import model.Amount;
 import model.BonusNumber;
@@ -20,6 +21,7 @@ public class LottoController {
     private LottoAmount lottoAmount;
     private WinningLottoNum winningLottoNum;
     private BonusNumber bonusNumber;
+    private ResultFactory resultFactory;
 
     public LottoController(InputView inputView, OutputView outputView, LottoCollection lottoCollection) {
         this.inputView = inputView;
@@ -38,6 +40,9 @@ public class LottoController {
         outputView.printLottos(lottoCollection);
         makeWinningNum();
         bonusNumber = new BonusNumber(winningLottoNum, inputView.bonusNum());
+
+        resultFactory = new ResultFactory(lottoCollection,winningLottoNum,bonusNumber);
+        outputView.printResult(resultFactory,purchaseAmount);
     }
 
     private static void validateInput(String str) {

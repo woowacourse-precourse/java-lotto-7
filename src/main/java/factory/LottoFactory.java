@@ -1,6 +1,7 @@
 package factory;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
@@ -12,9 +13,10 @@ public class LottoFactory {
     private static final int LOTTO_NUM_COUNT = 6;
 
     public static Lotto make() {
-        List<Integer> nums = generateRandomNums(LOTTO_NUM_RANGE_START, LOTTO_NUM_RANGE_END, LOTTO_NUM_COUNT);
-        Collections.sort(nums);
-        return new Lotto(nums);
+        List<Integer> randomNums = generateRandomNums(LOTTO_NUM_RANGE_START, LOTTO_NUM_RANGE_END, LOTTO_NUM_COUNT);
+        List<Integer> sortedRandomNums = new ArrayList<>(randomNums);
+        Collections.sort(sortedRandomNums);
+        return new Lotto(sortedRandomNums);
     }
 
     private static List<Integer> generateRandomNums(int start, int end, int count) {
