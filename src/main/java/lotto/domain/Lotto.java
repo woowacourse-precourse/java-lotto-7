@@ -37,7 +37,7 @@ public class Lotto {
 
     private void validateLength(List<Component> numbers) {
         if (numbers.size() != LottoRule.COMBINATION_LENGTH.getInstance()) {
-            throw new IllegalArgumentException(RangeError.LOTTO.getInstance());
+            throw new IllegalArgumentException(RangeError.LOTTO_LENGTH.getInstance());
         }
     }
 
