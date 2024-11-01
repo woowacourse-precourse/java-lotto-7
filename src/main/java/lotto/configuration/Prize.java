@@ -30,6 +30,10 @@ public enum Prize {
         return NONE;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrizeMoney() {
         return prizeMoney;
     }
