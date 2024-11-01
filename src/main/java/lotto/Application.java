@@ -8,16 +8,18 @@ public class Application {
 
     public static void main(String[] args) {
         MyInfo myInfo = new MyInfo();
-        myInfo.gainPurchaseAmount();
-        int lottoCount = myInfo.getLottoCount();
-        List<Lotto> myLottos = Lotto.sortLottoList(lottoCount);
-        Lotto answer = myInfo.getWinningInput();
-        int bonus = myInfo.gainBonusInput(answer);
-        List<MyResults> myResults = WinningDetails.saveMyGrades(myLottos, answer, bonus);
         WinningDetails winningDetails = new WinningDetails();
+        myInfo.gainPurchaseAmount();
+        myInfo.setLottoCount(myInfo.getLottoCount());
+        myInfo.setMyLottos(Lotto.sortLottoList(myInfo.getLottoCount()));
+        myInfo.setAnswerLotto(myInfo.gainWinningInput());
+        myInfo.setBonusNumber(myInfo.gainBonusInput(myInfo.getAnswerLotto()));
+        List<MyResults> myResults = WinningDetails
+                .saveMyGrades(myInfo.getMyLottos(), myInfo.getAnswerLotto(), myInfo.getBonusNumber());
         winningDetails.sumUpGrades(myResults);
         OutputView.printResults(winningDetails);
-        int revenue = MyResults.getMyRevenue(winningDetails);
-        OutputView.printReturn(myInfo.getPurchasePrice(), revenue);
+        myInfo.setRevenue(myInfo.gainMyRevenue(winningDetails));
+        myInfo.setMyReturn(myInfo.gainReturn(myInfo.getPurchasePrice(), myInfo.getRevenue()));
+        OutputView.printReturn(myInfo.getMyReturn());
     }
 }
