@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,6 +10,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = Set.copyOf(numbers);
+    }
+
+    public Set<Integer> getNumbers() {
+        return Set.copyOf(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -34,5 +37,4 @@ public class Lotto {
     private boolean isLottoNumberNotDuplicated(List<Integer> numbers) {
         return Set.copyOf(numbers).size() == 6;
     }
-
 }
