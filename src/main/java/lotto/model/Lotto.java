@@ -1,8 +1,13 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,8 +16,52 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicationNumber(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    private void validateDuplicationNumber(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if (nonDuplicateNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if ( number < 1 || number > 45 ) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        });
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Lotto lotto)) {
+            return false;
+        }
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return "[" +
+                numbers.stream().map(Object::toString).collect(Collectors.joining(", "))
+                + "]";
     }
 }

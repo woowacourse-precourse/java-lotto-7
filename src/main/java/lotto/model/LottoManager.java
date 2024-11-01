@@ -15,6 +15,10 @@ public class LottoManager {
 
     public void run() {
         PurchaseAmount purchaseAmount = receivePurchaseAmount();
+
+        LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator(new LottoGenerator(), purchaseAmount);
+
+        LottoTicket lottoTicket = lottoTicketGenerator.generateLottoTicket();
     }
 
     public PurchaseAmount receivePurchaseAmount() {
@@ -26,4 +30,5 @@ public class LottoManager {
             }
         }
     }
+
 }

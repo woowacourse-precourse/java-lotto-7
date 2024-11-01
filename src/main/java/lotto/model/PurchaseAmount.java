@@ -15,7 +15,6 @@ public class PurchaseAmount {
         return new PurchaseAmount(Integer.parseInt(amount));
     }
 
-
     private void validate(int amount) {
         validateMinAmount(amount);
         validateUnit(amount);
@@ -45,6 +44,10 @@ public class PurchaseAmount {
         if (amount == null || amount.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액이 빈 값입니다.");
         }
+    }
+
+    public int getPurchasableLottoAmount() {
+        return amount/1000;
     }
 
 }
