@@ -33,4 +33,14 @@ public class LottoServiceTest {
 
         assertEquals(3, matchCount);
     }
+
+    @Test
+    void 로또_번호가_보너스_번호와_일치하는지_확인합니다() {
+        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 1;
+
+        boolean matchBonus = LottoService.checkBonusNumberMatch(userLotto, bonusNumber);
+
+        assertEquals(true, matchBonus);
+    }
 }
