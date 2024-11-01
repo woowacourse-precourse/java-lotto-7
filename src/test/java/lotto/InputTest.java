@@ -29,4 +29,25 @@ public class InputTest {
     void 제대로된_금액_입력_시_int_반환() {
         assertThat(Input.parseMoney("1000")).isEqualTo(1000);
     }
+
+    @Test
+    @DisplayName("당첨 번호에 숫자와 쉽표 외의 문자가 있으면 예외가 발생한다.")
+    void 당첨_번호에_숫자와_쉼표_외의_문자_입력_시_예외_발생() {
+        assertThatThrownBy(() -> Input.parseWinningLotto("1/2/3/4/5/6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("당첨 번호에 쉼표를 연속으로 입력하면 예외가 발생한다.")
+    void 당첨_번호에_쉼표_연속_입력_시_예외_발생() {
+        assertThatThrownBy(() -> Input.parseWinningLotto("1,33,44,,2,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력이 쉼표로 끝나면 예외가 발생한다.")
+    void 당첨_번호_입력이_쉼표로_끝나면_예외_발생() {
+        assertThatThrownBy(() -> Input.parseWinningLotto("1,2,3,4,5,6,"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
