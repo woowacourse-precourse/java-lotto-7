@@ -5,7 +5,7 @@ import lotto.exception.ExceptionMessages;
 
 public class InputValidator {
 
-    private static final String DIGIT_REGEX = "^[0-9]*$";
+    private static final String DIGIT_REGEX = "^-?[0-9]*$";
     private static final String INPUT_DELIM = ",";
 
     public void validateWhiteSpace(String input) {
