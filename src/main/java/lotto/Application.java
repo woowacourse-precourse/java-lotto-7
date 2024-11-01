@@ -1,37 +1,35 @@
 package lotto;
 
-import lotto.controller.LottoStatisticController;
-import lotto.controller.LottoVendingMachineController;
-import lotto.controller.LottoNumberInputController;
+import static lotto.config.AppConfig.inputController;
+import static lotto.config.AppConfig.inputView;
+import static lotto.config.AppConfig.outputView;
+import static lotto.config.LottoCheckerConfig.lottoCheckerController;
+import static lotto.config.LottoMachineConfig.lottoMachineController;
+
+import java.util.List;
 import lotto.dto.LottoResultDTO;
-import lotto.dto.PurchaseDTO;
 import lotto.dto.WinningLottoDTO;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.model.Lotto;
 
 public class Application {
 
-    private static final InputView inputView = new InputView();
-    private static final OutputView outputView = new OutputView();
-
-    private static PurchaseDTO purchased;
-
     public static void main(String[] args) {
-        useLottoVendingMachine();
-        calculateLottoStatistic();
+        purchaseLotto();
+        printResult();
     }
 
-    public static void useLottoVendingMachine() {
-        Integer totalCost = inputView.inputSingleInteger(inputView::inputTotalCost);
+    public static void purchaseLotto() {
+        Integer totalCost = inputController.inputSingleValue(inputView::inputTotalCost);
+        List<Lotto> purchased = lottoMachineController.purchase(totalCost);
 
-        purchased = LottoVendingMachineController.buy(totalCost);
+        lottoCheckerController.setPurchasedLotto(purchased, totalCost);
 
-        outputView.displayLottoNumbers(purchased.getLottoTickets());
+        outputView.displayLottoNumbers(purchased);
     }
 
-    public static void calculateLottoStatistic() {
-        WinningLottoDTO winningLotto = LottoNumberInputController.inputWinningLotto(inputView);
-        LottoResultDTO result = LottoStatisticController.calculateResult(winningLotto, purchased);
+    public static void printResult() {
+        WinningLottoDTO winningLotto = inputController.inputWinningCondition();
+        LottoResultDTO result = lottoCheckerController.checkPurchasedLottoRank(winningLotto);
 
         outputView.displayLottoStatistic(result.getResult(), result.getProfitPercentage());
     }
