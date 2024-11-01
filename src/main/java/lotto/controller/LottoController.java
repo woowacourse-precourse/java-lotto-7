@@ -20,24 +20,18 @@ import lotto.model.Rank;
 
 public class LottoController {
     private static final int PURCHASE_UNIT = 1000;
-    private int wholeCashPrize = 0;
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottos = IntStream.range(0, purchaseAmount / PURCHASE_UNIT)
-                .mapToObj(i -> new Lotto(pickUniqueNumbersInRange(1, 45, 6))).toList();
+        List<Lotto> lottos = issueLottos(purchaseAmount);
         printPurchasedLottos(lottos);
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
         List<MatchingRecord> matchingRecords = stream(Rank.values()).map(MatchingRecord::new).toList();
         getStatistics(matchingRecords, lottos, winningNumbers, bonusNumber);
         printWinningStatistics(matchingRecords);
-        for (MatchingRecord matchingRecord : matchingRecords) {
-            if (matchingRecord.getLottoQuantity() > 0) {
-                wholeCashPrize += matchingRecord.getRank().getPrizeMoney() * matchingRecord.getLottoQuantity();
-            }
-        }
-        printEarningsRate((((double) wholeCashPrize / (double) purchaseAmount) * 100));
+        double wholeCashPrize = calculateWholeCashPrize(matchingRecords);
+        printEarningsRate(((wholeCashPrize / (double) purchaseAmount) * 100));
     }
 
     private int getPurchaseAmount() {
@@ -71,6 +65,21 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private List<Lotto> issueLottos(int purchaseAmount) {
+        return IntStream.range(0, purchaseAmount / PURCHASE_UNIT)
+                .mapToObj(i -> new Lotto(pickUniqueNumbersInRange(1, 45, 6))).toList();
+    }
+
+    private double calculateWholeCashPrize(List<MatchingRecord> matchingRecords) {
+        int wholeCashPrize = 0;
+        for (MatchingRecord matchingRecord : matchingRecords) {
+            if (matchingRecord.getLottoQuantity() > 0) {
+                wholeCashPrize += matchingRecord.getRank().getPrizeMoney() * matchingRecord.getLottoQuantity();
+            }
+        }
+        return wholeCashPrize;
     }
 
     private void getStatistics(List<MatchingRecord> matchingRecords, List<Lotto> lottos, List<Integer> winningNumbers,
