@@ -14,7 +14,7 @@ public class LottoInputView {
 
     public String getWinningNumber() {
         printWinningNumberMessage();
-        return null;
+        return Console.readLine();
     }
 
     private void printWinningNumberMessage() {
