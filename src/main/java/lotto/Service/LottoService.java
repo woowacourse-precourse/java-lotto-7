@@ -10,19 +10,20 @@ import lotto.domain.UserLotto;
 import java.util.*;
 
 public class LottoService {
-    private static long purchase_amount=0;
+    private static int purchaseAmount=0;
     private static final int START_LOTTO_NUMBER=1;
     private static final int END_LOTTO_NUMBER=45;
     private static final int LOTTO_COUNT=6;
 
     public List<Lotto> purchaseLotto(int purchase_amount){
-        purchase_amount=purchase_amount;
+        purchaseAmount=purchase_amount;
         List<Lotto> lottos = new ArrayList<>();
         int lotto_count=LottoNumber(purchase_amount);
         OutputView.print_purchase_count(lotto_count);
         for(int i=0;i<lotto_count;i++){
             lottos.add(getGenerateLotto());
         }
+        OutputView.print_lotto_list(lottos);
         return lottos;
     }
     public int LottoNumber(int purchase_amount){
@@ -50,22 +51,12 @@ public class LottoService {
         }
         return count;
     }
-    private double profit_rate(RankResult rankResult){
+    public double profit_rate(RankResult rankResult){
         Map<Rank,Integer> rank_Result=rankResult.getRank_Count();
         int sum=0;
-        for(Rank rank: rank_Result.keySet()){
-            sum=get_sum(rank);
+        for (Rank rank : rank_Result.keySet()) {
+            sum += rank.getPrice() * rank_Result.get(rank);
         }
-        return get_profit(sum);
-    }
-    private int get_sum(Rank rank){
-        int sum=0;
-        sum+=rank.getPrice();
-        return sum;
-    }
-
-    private double get_profit(int sum){
-        double profit=(sum/purchase_amount)%100;
-        return Math.round(profit/10.0);
+        return  (sum / purchaseAmount)*100;
     }
 }
