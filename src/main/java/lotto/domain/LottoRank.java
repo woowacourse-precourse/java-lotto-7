@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public enum LottoRank {
-
     MATCH_THREE_NUMBER(5_000, 3, null),
     MATCH_FOUR_NUMBER(50_000, 4, null),
     MATCH_FIVE_NUMBER(1_500_000, 5, false),
@@ -28,5 +27,13 @@ public enum LottoRank {
 
     public Boolean hasBonus() {
         return hasBonus;
+    }
+
+    public boolean checkMatchCount(int value) {
+        return matchCount == value;
+    }
+
+    public boolean checkHasBonus(boolean value) {
+        return hasBonus == null || hasBonus == value;
     }
 }

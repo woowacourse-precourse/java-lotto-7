@@ -1,21 +1,53 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.config.validation.FieldValidation;
+import lotto.config.validation.annotation.Length;
+import lotto.config.validation.annotation.Unique;
 
-public class Lotto {
+public class Lotto extends FieldValidation {
 
-    private final List<Integer> numbers;
+    public static final int PRICE = 1_000;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+    @Unique
+    @Length(min = 6, max = 6)
+    private final List<LottoNumber> numbers;
+
+    public Lotto(int... numbers) {
+        this.numbers = Arrays.stream(numbers)
+                .mapToObj(LottoNumber::new)
+                .collect(Collectors.toList());
+
+        super.valid();
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
+
+    public int match(LottoNumber targetNumber) {
+        if (numbers.stream().anyMatch(targetNumber::equals)) {
+            return 1;
         }
+
+        return 0;
     }
 
-    // TODO: 추가 기능 구현
+    public int match(List<LottoNumber> targetNumbers) {
+        return (int) numbers.stream()
+                .filter(targetNumbers::contains)
+                .count();
+    }
+
+    @Override
+    public String toString() {
+        String numbers = this.numbers.stream()
+                .map(LottoNumber::getNumber)
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
+
+        return "[" + numbers + "]";
+    }
 }

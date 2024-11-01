@@ -3,6 +3,8 @@ package lotto.application.in;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.Application;
+import lotto.config.context.ApplicationContext;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
@@ -18,8 +20,8 @@ class LottoUseCaseTest {
     private final LottoUseCase lottoUseCase;
 
     public LottoUseCaseTest() {
-        /* Todo: 추후 구현체로 변경 */
-        lottoUseCase = null;
+        lottoUseCase = ApplicationContext.getInstance(Application.class)
+                .getBean(LottoUseCase.class);
     }
 
     @Test

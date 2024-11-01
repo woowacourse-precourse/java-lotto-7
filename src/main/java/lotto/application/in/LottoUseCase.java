@@ -1,5 +1,7 @@
 package lotto.application.in;
 
+import lotto.config.validation.annotation.NotNull;
+import lotto.config.validation.annotation.Valid;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoRound;
 import lotto.domain.LottoRoundResult;
@@ -17,7 +19,7 @@ public interface LottoUseCase {
      * @param purchaseAmount 구입 가격
      * @return 구입한 회차의 로또 정보
      */
-    LottoRound buyLotto(PurchaseAmount purchaseAmount);
+    LottoRound buyLotto(@Valid @NotNull PurchaseAmount purchaseAmount);
 
     /**
      * 로또의 당첨 등수를 확인합니다.
@@ -27,5 +29,8 @@ public interface LottoUseCase {
      * @param bonusNumber   회차의 보너스 번호
      * @return 회차의 결과 정보
      */
-    LottoRoundResult checkResult(LottoRound lottoRound, WinningNumber winningNumber, BonusNumber bonusNumber);
+    LottoRoundResult checkResult(
+            @Valid @NotNull LottoRound lottoRound,
+            @Valid @NotNull WinningNumber winningNumber,
+            @Valid @NotNull BonusNumber bonusNumber);
 }
