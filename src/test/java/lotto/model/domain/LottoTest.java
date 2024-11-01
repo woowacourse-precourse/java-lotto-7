@@ -40,4 +40,18 @@ class LottoTest {
         // then
         assertThat(retrievedNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @Test
+    @DisplayName("getStringNumbers 호출 시 Lotto 번호 리스트를 문자열 리스트로 변환하여 반환하는지 확인")
+    void getStringNumbers() {
+        // given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        // when
+        Lotto lotto = Lotto.of(numbers);
+        List<String> retrievedStringNumbers = lotto.getStringNumbers();
+
+        // then
+        assertThat(retrievedStringNumbers).containsExactly("1", "2", "3", "4", "5", "6");
+    }
 }
