@@ -1,8 +1,10 @@
 package lotto.view;
 
+import lotto.global.enums.PrintMessage;
 import lotto.model.Lotto;
 import lotto.model.WinningCountDTO;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 public class OutputView {
@@ -19,22 +21,30 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void printMessage(PrintMessage message) {
+        System.out.println(message.getMessage());
+    }
+
     public void printLottoNumbers(Lotto lotto) {
         System.out.println(lotto.getNumbers());
     }
 
+    public String formattingMessage(PrintMessage message, Object objects) {
+        return MessageFormat.format(message.getMessage(), objects);
+    }
+
+    public String formattingMessage(PrintMessage printMessage, Object[] objects) {
+        return MessageFormat.format(printMessage.getMessage(), objects);
+    }
+
     public void printWinningResult(WinningCountDTO winningCountDTO) {
-        printMessage("당첨 통계");
-        printMessage("---");
         List<Integer> winningCount = winningCountDTO.getWinningCount();
-        printMessage("3개 일치 (5,000원) - " + winningCount.get(1) + "개");
-        printMessage("4개 일치 (50,000원) - " + winningCount.get(2) + "개");
-        printMessage("5개 일치 (1,500,000원) - " + winningCount.get(3) + "개");
-        printMessage("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCount.get(4) + "개");
-        printMessage("6개 일치 (2,000,000,000원) - " + winningCount.get(5) + "개");
+        String message = formattingMessage(PrintMessage.WINNING_RESULT, winningCount.subList(1, 6).toArray());
+        printMessage(message);
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        printMessage("총 수익률은 " + rateOfReturn + "%입니다.");
+        String message = formattingMessage(PrintMessage.RATE_OF_RETURN, rateOfReturn);
+        printMessage(message);
     }
 }

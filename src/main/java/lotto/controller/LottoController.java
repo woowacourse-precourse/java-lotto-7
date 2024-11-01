@@ -10,6 +10,8 @@ import lotto.view.OutputView;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static lotto.global.enums.PrintMessage.*;
+
 public class LottoController {
     private static final InputView inputView = InputView.getInstance();
     private static final OutputView outputView = OutputView.getInstance();
@@ -28,12 +30,12 @@ public class LottoController {
 
 
     private Integer getLottoCount() {
-        outputView.printMessage("구입금액을 입력해 주세요.");
+        outputView.printMessage(INPUT_PRICE);
         return inputView.inputPrice();
     }
 
     private List<Lotto> createRandomLottosAndPrint(Integer lottoCount) {
-        outputView.printMessage(lottoCount + "개를 구매했습니다.");
+        outputView.printMessage(outputView.formattingMessage(LOTTO_COUNT, lottoCount));
         List<Lotto> createdLottos = createLotto(lottoCount);
         createdLottos.forEach(outputView::printLottoNumbers);
         return createdLottos;
@@ -52,12 +54,12 @@ public class LottoController {
     }
 
     private List<Integer> getWinningNumbers() {
-        outputView.printMessage("당첨 번호를 입력해 주세요.");
+        outputView.printMessage(WINNING_NUMBRES);
         return inputView.inputWinningNumbers();
     }
 
     private Integer getBonusNumber() {
-        outputView.printMessage("보너스 번호를 입력해 주세요.");
+        outputView.printMessage(BONUS_NUMBER);
         return inputView.inputBonusNumber();
     }
 }
