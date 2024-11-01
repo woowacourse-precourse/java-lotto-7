@@ -13,17 +13,7 @@ public class LottoWinningNumberValidator {
     private final static IllegalArgumentException EXCEPTION_LOTTO_WINNING_NUMBER = new IllegalArgumentException(
             ERROR_TEXT_INFRONT_OF_DETAILS + RECOMMAND_MESSAGE_FOR_ENTERING_CORRECT_LOTTO_WINNING_NUMBER);
 
-    private final String lottoWinningNumber;
-    private final LottoWinningNumberDelimiter lottoWinningNumberDelimiter;
-
-    public LottoWinningNumberValidator(String lottoWinningNumber) {
-        this.lottoWinningNumber = lottoWinningNumber;
-        this.lottoWinningNumberDelimiter = new LottoWinningNumberDelimiter(lottoWinningNumber);
-    }
-
-    public void validateAllThing() {
-        List<String> seperatedLottoWinningNumbers = lottoWinningNumberDelimiter.runAndBringLottoWinningNumber();
-
+    public void validateAllThing(List<String> seperatedLottoWinningNumbers) {
         // 문자열로 할 수 있는 것
         validateAmountOfNumbersIs6(seperatedLottoWinningNumbers);
         validateNumbersOverlap(seperatedLottoWinningNumbers);
@@ -49,18 +39,18 @@ public class LottoWinningNumberValidator {
 
     // numberFormatException 외 다른 exception 존재?
     private void validateNumbersAreNumeric(List<String> seperatedLottoWinningNumbers) {
-        ListStringToNumConverter listStringToNumConverter = new ListStringToNumConverter(seperatedLottoWinningNumbers);
+        ListStringToNumConverter listStringToNumConverter = new ListStringToNumConverter();
 
         try {
-            listStringToNumConverter.convert();
+            listStringToNumConverter.convert(seperatedLottoWinningNumbers);
         } catch (NumberFormatException numberFormatException) {
             throw EXCEPTION_LOTTO_WINNING_NUMBER;
         }
     }
 
     private void validateRangeOfNumbersGreaterThan1AndLessThan45(List<String> seperatedLottoWinningNumbers) {
-        ListStringToNumConverter listStringToNumConverter = new ListStringToNumConverter(seperatedLottoWinningNumbers);
-        List<Integer> seperatedLottoWinningNumbersToInt = listStringToNumConverter.convert();
+        ListStringToNumConverter listStringToNumConverter = new ListStringToNumConverter();
+        List<Integer> seperatedLottoWinningNumbersToInt = listStringToNumConverter.convert(seperatedLottoWinningNumbers);
 
         if (!isAllNumbersThatFitConditions(seperatedLottoWinningNumbersToInt)) {
             throw EXCEPTION_LOTTO_WINNING_NUMBER;
