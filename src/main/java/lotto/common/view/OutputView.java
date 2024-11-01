@@ -13,4 +13,8 @@ public class OutputView {
         System.out.println(PROMPT_MESSAGE_FOR_PRICE_TO_BUY_LOTTO.getPromptMessage());
     }
 
+    public static void printNumberOfLotto(final Integer numberOfLotto) {
+        System.out.println(numberOfLotto + messageOfNumberOfLottoSuffix);
+    }
+
 }
