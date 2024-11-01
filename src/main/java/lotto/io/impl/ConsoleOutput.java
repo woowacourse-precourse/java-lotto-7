@@ -1,9 +1,11 @@
 package lotto.io.impl;
 
 import lotto.domain.Lotto;
-import lotto.error.LottoErrorMessage;
-import lotto.io.msg.LottoInquiryMessage;
+import lotto.domain.ResultCount;
 import lotto.io.Output;
+import lotto.domain.enums.WinningStatistics;
+
+import java.util.Map;
 
 public class ConsoleOutput implements Output {
 
@@ -39,8 +41,22 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void printWinningStatistics() {
+    public void printWinningStatistics(ResultCount resultCount, int lottoPrize) {
 
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Map<WinningStatistics, Integer> resultMap = resultCount.getResults();
+        WinningStatistics[] grades = WinningStatistics.values();
+        for(WinningStatistics grade : grades) {
+            if(grade == WinningStatistics.FIVE_MATCHES_WITH_BONUS)
+                System.out.print(grade.getCnt() + "개 일치, 보너스 볼 일치 (" + grade.getFormatPrizeMoney() +"원)");
+            if(grade != WinningStatistics.FIVE_MATCHES_WITH_BONUS)
+                System.out.print(grade.getCnt() + "개 일치 (" + grade.getFormatPrizeMoney() +"원)");
+            System.out.println(" - " + resultMap.get(grade) + "개");
+        }
+        float returnRate = resultCount.getReturnRate(lottoPrize) * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", returnRate) + "%입니다.");
     }
 
     @Override

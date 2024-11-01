@@ -4,9 +4,9 @@ import lotto.domain.*;
 
 public interface Input {
 
-    AmountOfLottos inputMoney();
+    AmountOfLottos inputMoney(int lottoPrize);
 
     WinningNumbers inputWinningNumbers();
 
-    BonusNumber inputBonusNumber();
+    BonusNumber inputBonusNumber(WinningNumbers winningNumbers);
 }

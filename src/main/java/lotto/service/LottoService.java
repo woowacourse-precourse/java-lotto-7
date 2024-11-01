@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class LottoService {
 
+    private static final int LOTTO_PRICE = 1000;
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
     private static final int AMOUNT_OF_LOTTO_NUMBERS = 6;
@@ -36,7 +37,7 @@ public class LottoService {
 
     public List<Lotto> buyLottos() {
 
-        AmountOfLottos amountOfLottos = input.inputMoney();
+        AmountOfLottos amountOfLottos = input.inputMoney(LOTTO_PRICE);
         output.completePurchase(amountOfLottos.getAmount());
 
         List<Lotto> lottos = new ArrayList<>();
@@ -54,7 +55,17 @@ public class LottoService {
 
     public void setBonusNumber() {
 
-        bonusNumber = input.inputBonusNumber();
+        bonusNumber = input.inputBonusNumber(winningNumbers);
+    }
+
+    public void calculateResult(List<Lotto> lottos) {
+
+        ResultCount resultCount = new ResultCount();
+
+        for(Lotto lotto : lottos)
+            compareLotto(lotto, resultCount);
+
+        output.printWinningStatistics(resultCount, LOTTO_PRICE);
     }
 
     private Lotto issueLotto() {
@@ -72,5 +83,21 @@ public class LottoService {
         output.printLotto(lotto);
 
         return lotto;
+    }
+
+    private void compareLotto(Lotto lotto, ResultCount resultCount) {
+
+        int cnt = 0;
+        boolean bonus = false;
+        for(int n : lotto.getNumbers()) {
+            if(bonusNumber.getBonusNumber() == n) {
+                bonus = true;
+                continue;
+            }
+            if(winningNumbers.getNumbers().contains(n))
+               cnt++;
+        }
+
+        resultCount.check(cnt, bonus);
     }
 }

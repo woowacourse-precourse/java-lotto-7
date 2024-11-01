@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.domain.Lotto;
+import lotto.domain.ResultCount;
 
 public interface Output {
 
@@ -8,7 +9,7 @@ public interface Output {
 
     void printLotto(Lotto lotto);
 
-    void printWinningStatistics();
+    void printWinningStatistics(ResultCount resultCount, int lottoPrize);
 
     void printMsg(String msg);
 }

@@ -2,9 +2,8 @@ package lotto.io.impl;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
-import lotto.error.LottoErrorMessage;
 import lotto.io.*;
-import lotto.io.msg.*;
+import lotto.io.enums.*;
 
 import java.util.*;
 
@@ -26,16 +25,16 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public AmountOfLottos inputMoney() {
+    public AmountOfLottos inputMoney(int lottoPrize) {
 
         output.printMsg(LottoInquiryMessage.PURCHASE_AMOUNT_INQUIRY.getMsg());
 
         AmountOfLottos amountOfLottos = null;
         try{
-            amountOfLottos = new AmountOfLottos(Console.readLine().trim());
+            amountOfLottos = new AmountOfLottos(Console.readLine().trim(), lottoPrize);
         } catch (IllegalArgumentException e){
             output.printMsg(e.getMessage());
-            return inputMoney();
+            return inputMoney(lottoPrize);
         }
 
         return amountOfLottos;
@@ -60,16 +59,16 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public BonusNumber inputBonusNumber() {
+    public BonusNumber inputBonusNumber(WinningNumbers winningNumbers) {
 
         output.printMsg(LottoInquiryMessage.BONUS_NUMBER_INQUERY.getMsg());
 
         BonusNumber bonusNumber = null;
         try{
-            bonusNumber = new BonusNumber(Console.readLine().trim());
+            bonusNumber = new BonusNumber(Console.readLine().trim(), winningNumbers);
         } catch (IllegalArgumentException e) {
             output.printMsg(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
 
         return bonusNumber;

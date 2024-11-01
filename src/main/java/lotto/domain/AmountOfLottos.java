@@ -1,16 +1,14 @@
 package lotto.domain;
 
-import lotto.error.LottoErrorMessage;
+import lotto.error.enums.LottoErrorMessage;
 
 public class AmountOfLottos {
 
-    private static final int LOTTO_PRICE = 1000;
-
     private final int amount;
 
-    public AmountOfLottos(String inputMoney) {
+    public AmountOfLottos(String inputMoney, int lottoPrize) {
         validate(inputMoney);
-        this.amount = Integer.parseInt(inputMoney) / LOTTO_PRICE;
+        this.amount = Integer.parseInt(inputMoney) / lottoPrize;
     }
 
     private void validate(String input) {

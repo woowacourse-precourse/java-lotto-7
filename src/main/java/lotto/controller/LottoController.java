@@ -32,7 +32,6 @@ public class LottoController {
         service.setBonusNumber();
         Console.close();
 
-
-
+        service.calculateResult(lottos);
     }
 }

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.error.LottoErrorMessage;
+import lotto.error.enums.LottoErrorMessage;
 
 public class BonusNumber {
 
