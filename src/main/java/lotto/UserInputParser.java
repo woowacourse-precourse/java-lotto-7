@@ -83,4 +83,14 @@ public class UserInputParser {
         
         return number;
     }
+
+    /**
+     * 보너스 번호에 대한 사용자 입력값을 변환합니다. 
+     * @param rawInput 사용자 입력 문자열입니다.
+     * @return 변환된 보너스 번호입니다.
+     * @throws IllegalArgumentException 사용자 입력이 적절하지 않을 경우 발생합니다.
+     */
+    public static int getBonusNumber(String rawInput) {
+        return checkAvailNumber(rawInput);
+    }
 }

@@ -72,4 +72,32 @@ class UserInputParserTest {
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageStartingWith("[ERROR]");
     }
+    
+    @ParameterizedTest(name = "보너스 번호 입력 테스트 : {0}")
+    @CsvSource({
+                "1, 1",
+                "45, 45",
+                "12, 12",
+                "30, 30"
+            })
+    void 보너스번호_파서_기능_테스트(String rawInput, int expected) {
+        assertEquals(expected, UserInputParser.getBonusNumber(rawInput));
+    }
+
+    @ParameterizedTest(name = "보너스 번호 입력 테스트(예외) : {0}")
+    @ValueSource(strings = {
+                "",
+                "0",
+                "46",
+                "-12",
+                "30, 30",
+                "숫자"
+            })
+    void 보너스번호_파서_예외_테스트(String rawInput) {
+        assertThatThrownBy(() -> {
+            UserInputParser.getBonusNumber(rawInput);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageStartingWith("[ERROR]");
+    }
 }
