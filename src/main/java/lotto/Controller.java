@@ -17,12 +17,26 @@ public class Controller {
     }
 
     public void start() {
+        purchase();
+
+        getPrizeNumber();
+
+        printResult();
+    }
+
+    private void purchase() {
         this.tryCount = input.getPurchaseCount();
         this.model = new Model(this.tryCount);
         output.printLottoNum(model.getNumbers());
+    }
+
+    private void getPrizeNumber() {
         model.setWinNumbers(new Lotto(input.getWinNumber()).getNumbers());
         model.setBonusNumber(input.getBonusNum());
         model.countPrizeNum();
+    }
+
+    private void printResult() {
         output.printPrize(model.getPrizeNum(), tryCount, model.sumPrizeMoney());
     }
 
