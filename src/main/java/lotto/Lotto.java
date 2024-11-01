@@ -33,8 +33,8 @@ public class Lotto {
     }
 
     private void checkDuplicity(List<Integer> numbers) {
-        for (int number: numbers) {
-            if (Collections.frequency(numbers,number) != 1) {
+        for (int number : numbers) {
+            if (Collections.frequency(numbers, number) != 1) {
                 exception.Message message = new exception.Message(Integer.toString(number));
                 String exceptionMessage = message.getMessage(Message.DUPLICATE_NUMBER);
                 throw new IllegalArgumentException(exceptionMessage);
@@ -43,7 +43,7 @@ public class Lotto {
     }
 
     static void checkRange(List<Integer> numbers) {
-        for (int number: numbers) {
+        for (int number : numbers) {
             if (number < 1 || number > 45) {
                 exception.Message message = new exception.Message(Integer.toString(number));
                 String exceptionMessage = message.getMessage(Message.INVALID_RANGE);
@@ -53,7 +53,7 @@ public class Lotto {
     }
 
     static void checkBonusNumber(Lotto lotto, int bonusNumber) {
-        for (int number: lotto.numbers) {
+        for (int number : lotto.numbers) {
             if (bonusNumber == number) {
                 exception.Message message = new exception.Message(Integer.toString(number));
                 String exceptionMessage = message.getMessage(Message.INVALID_BONUS_NUMBER);
@@ -82,5 +82,51 @@ public class Lotto {
 
     public class Price {
         public final static int PRICE = 1000;
-    }// TODO: 추가 기능 구현
+    }
+
+    enum Rank {
+        FIRST, SECOND, THIRD, FOURTH, FIFTH, NONE
+    }
+
+    public static Rank getRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        int count = lotto.numbers.stream().filter(x -> winningLotto.numbers.contains(x)).toList().size();
+        if (count == 6) {
+            return Rank.FIRST;
+        }
+        if (count == 5) {
+            return Rank.SECOND;
+        }
+        if (count == 4 && winningLotto.numbers.contains(bonusNumber)) {
+            return Rank.THIRD;
+        }
+        if (count == 4 && !winningLotto.numbers.contains(bonusNumber)) {
+            return Rank.FOURTH;
+        }
+        if (count == 3) {
+            return Rank.FIFTH;
+        }
+        return Rank.NONE;
+    }
+
+    public static List<Integer> countRank(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        List<Integer> counter = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        for (Lotto lotto: lottos) {
+            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.FIRST)) {
+                counter.set(0, counter.get(0) + 1);
+            }
+            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.SECOND)) {
+                counter.set(1, counter.get(1) + 1);
+            }
+            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.THIRD)) {
+                counter.set(2, counter.get(2) + 1);
+            }
+            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.FOURTH)) {
+                counter.set(3, counter.get(3) + 1);
+            }
+            if (getRank(lotto, winningLotto, bonusNumber).equals(Rank.FIFTH)) {
+                counter.set(4, counter.get(4) + 1);
+            }
+        }
+        return counter;
+    }
 }

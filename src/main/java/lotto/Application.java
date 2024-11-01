@@ -33,5 +33,21 @@ public class Application {
         lotto.Lotto.checkRange(bonusNumberAfterParse);
         lotto.Lotto.checkBonusNumber(winningLotto, Integer.parseInt(bonusNumber));
 
+        List<Integer> rank = lotto.Lotto.countRank(lottos,winningLotto,Integer.parseInt(bonusNumber));
+        int gainedMoney = rank.get(0)*2000000000 + rank.get(1)*30000000 + rank.get(2) * 1500000 + rank.get(3) * 50000 + rank.get(4) * 5000;
+        float rate = (float) gainedMoney / lottoNumber / 1000 * 100;
+        float roundedRate = (float) Math.round(rate*100)/100;
+
+        String string = """
+당첨 통계
+---
+3개 일치 (5,000원) - 1개
+4개 일치 (50,000원) - 0개
+5개 일치 (1,500,000원) - 0개
+5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
+6개 일치 (2,000,000,000원) - 0개
+총 수익률은 %.2f%%입니다.""".formatted(roundedRate);
+
+        io.Print.print(string);
     }
 }
