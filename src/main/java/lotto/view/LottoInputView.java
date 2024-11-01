@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.validator.LottoValidator;
 import lotto.util.Separator;
 
@@ -20,11 +21,12 @@ public class LottoInputView {
         }
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String input = Console.readLine();
         List<Integer> winningNumbers = Separator.parseInputToList(input);
-        return winningNumbers;
+        System.out.println(winningNumbers);
+        return new Lotto(winningNumbers);
     }
 
     public int inputBonusNumber() {

@@ -13,7 +13,7 @@ public class LottoOutputView {
     public void outputMakeRandomLottos(int count) {
         List<Lotto> lottos = Lotto.makeRandomLottos(count);
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto.lottoNumbers());
         }
     }
 }
