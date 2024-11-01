@@ -1,6 +1,8 @@
 package lotto.model;
 
 import lotto.model.exception.LottoNumberInvalidException;
+import lotto.model.number.LottoNumber;
+import lotto.model.number.LottoNumbers;
 
 public class WinningLotto {
 

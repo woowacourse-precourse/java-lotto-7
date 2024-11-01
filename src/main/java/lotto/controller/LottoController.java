@@ -1,6 +1,10 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.Lottos;
+import lotto.model.Score;
+import lotto.model.WinningLotto;
+import lotto.model.number.LottoNumber;
+import lotto.model.number.LottoNumbers;
 import lotto.model.number_generator.DefaultRandomNumberGenerator;
 import lotto.model.number_generator.RandomNumberGenerator;
 import lotto.model.shop.LottoShop;

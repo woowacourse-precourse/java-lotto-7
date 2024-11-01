@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.model.Lotto;
-import lotto.model.LottoNumber;
-import lotto.model.LottoNumbers;
+import lotto.model.number.LottoNumber;
+import lotto.model.number.LottoNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
