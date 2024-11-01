@@ -7,7 +7,7 @@ public class ExceptionUtils {
     }
 
     public static void throwIllegalArgument(String message) {
-        throw  new IllegalArgumentException(formatMessage(message));
+        throw new IllegalArgumentException(formatMessage(message));
     }
 
     public static void throwIllegalState(String message) {

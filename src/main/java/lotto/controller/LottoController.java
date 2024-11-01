@@ -5,6 +5,7 @@ import lotto.domain.LottoStore;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
 import lotto.utils.LottoNumbersGenerator;
+import lotto.utils.Retry;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,8 +16,8 @@ public class LottoController {
 
     public void run(){
         LottoStore lottoStore = new LottoStore(new LottoNumbersGenerator());
-        LottoTicket lottoTicket = buyLotto(lottoStore);
-        WinningLotto winningLotto = createWinningLotto();
+        LottoTicket lottoTicket =  Retry.retryOnException(() -> buyLotto(lottoStore));
+        WinningLotto winningLotto = Retry.retryOnException(() -> createWinningLotto());
         checkLottoResult(lottoTicket, winningLotto);
     }
 
@@ -28,8 +29,8 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto(){
-        List<Integer> winNumbers = InputView.inputWinNumbers();
-        Integer bonusNumber = InputView.inputBonusNumber();
+        List<Integer> winNumbers = Retry.retryOnException(() -> InputView.inputWinNumbers());
+        Integer bonusNumber = Retry.retryOnException(() -> InputView.inputBonusNumber());
         return WinningLotto.of(winNumbers, bonusNumber);
     }
 
