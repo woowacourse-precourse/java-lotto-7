@@ -17,10 +17,10 @@ public class OutputView {
 
     public static void printWinningStats(List<Integer> result) {
         System.out.println("\n당첨 통계\n---");
-        int num = 0;
+        int num = 4;
         for (LottoRank lottoRank : LottoRank.values()){
             System.out.printf("%s (%,d원) - %d개\n", lottoRank.getDescription(), lottoRank.getPrizeAmount(), result.get(num));
-            num ++;
+            num --;
         }
     }
 
