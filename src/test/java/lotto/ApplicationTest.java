@@ -57,14 +57,24 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void InputHandler_Test() {
+    void testInputHandler() {
         String testDataName = "구입금액을";
         String expectedInput = "8000";
 
         System.setIn(new java.io.ByteArrayInputStream(expectedInput.getBytes()));
         String actualInput = inputHandler.inputData(testDataName);
 
-        assertEquals(expectedInput, actualInput);
+        assertEquals(expectedInput, actualInput, "저장된 값이 전달된 값과 다름");
+    }
+
+    @Test
+    public void testLottoGenerator() {
+        int price = 9000;
+        int expectedCount = price / 1000;
+
+        LottoGenerator lottoGenerator = new LottoGenerator(price);
+
+        assertEquals(expectedCount, lottoGenerator.getLottoList().size(), "생성된 로또 개수가 주어진 가격과 다름");
     }
 
     @Override
