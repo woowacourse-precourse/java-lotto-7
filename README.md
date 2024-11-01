@@ -48,7 +48,7 @@
      - 수익률 계산
 3. controller
    - LottoController
-     - aaa
+     - 로또 입력과 출력을 명령
 4. util
    - CreateLootNumber
      - 1 ~ 45 범위중 6개의 숫자 추출 + 정렬로 자동 로또 생성
