@@ -1,11 +1,11 @@
 package lotto;
 
 public enum Prize {
-    FIRST("1등", 6, 2_000_000_000),
-    SECOND("2등", 5, 30_000_000, true),
-    THIRD("3등", 5, 1_500_000, false),
+    FIFTH("5등", 3, 5_000),
     FOURTH("4등", 4, 50_000),
-    FIFTH("5등", 3, 5_000);
+    THIRD("3등", 5, 1_500_000, false),
+    SECOND("2등", 5, 30_000_000, true),
+    FIRST("1등", 6, 2_000_000_000);
 
     private final String explain;
     private final int matchedCount;
@@ -23,34 +23,30 @@ public enum Prize {
         this(explain, matchedCount, prizeMoney, false);
     }
 
-    public String getExplain() {
-        return explain;
-    }
-
-    public int getMatchedCount() {
-        return matchedCount;
-    }
-
-    public int getPrizeMoney() {
-        return prizeMoney;
-    }
-
-    public boolean isBonus() {
-        return bonus;
-    }
-
     @Override
     public String toString() {
-        String string = explain + ": " +
-                matchedCount + "개 번호 ";
+        String string = matchedCount + "개 일치 ";
 
         if (this.bonus) {
-            string += "+ 보너스 번호 ";
+            string += ", 보너스 볼 일치 ";
         }
 
-        string += "일치 / " +
-                String.format("%,d", prizeMoney) +
-                "원";
+        string += String.format("(%,d원)", prizeMoney);
         return string;
     }
+
+    public static Prize getPrize(Lotto lotto, WinningLotto winningLotto) {
+        int matchResult = lotto.match(winningLotto);
+        if (matchResult == 5 && lotto.getNumbers().contains(winningLotto.getBonusNum())) {
+            return SECOND;
+        }
+        for (Prize value : Prize.values()) {
+            if (value.matchedCount == matchResult) {
+                return value;
+            }
+        }
+        return null;
+    }
+
+
 }
