@@ -20,4 +20,8 @@ public class Lottos {
         lotto.sortNumbers(lotto.getNumbers());
         return lotto;
     }
+
+    public int getLottoCount() {
+        return this.lottoCount;
+    }
 }
