@@ -33,19 +33,12 @@ public class InputView {
 
     //inputWinningNumber 구현
     public static List<Integer> inputWinningNumber() {
-
-        while (true) {
-            try {
-                OutputView.printPrompt(OutputViewEnum.WINNING_NUMBER_INPUT.getMessage());
-                String userInput = Console.readLine();
-                validateWinningNumber(userInput);
-                String[] numbers = userInput.split(",");
-                List<Integer> winningNumber = Arrays.stream(numbers).map(number -> Integer.parseInt(number)).toList();
-                return winningNumber;
-            } catch (IllegalArgumentException e) {
-                OutputView.errorPrint(e.getMessage());
-            }
-        }
+        OutputView.printPrompt(OutputViewEnum.WINNING_NUMBER_INPUT.getMessage());
+        String userInput = Console.readLine();
+        validateWinningNumber(userInput);
+        String[] numbers = userInput.split(",");
+        List<Integer> winningNumber = Arrays.stream(numbers).map(number -> Integer.parseInt(number)).toList();
+        return winningNumber;
     }
 
     private static void validateWinningNumber(String userInput) {
