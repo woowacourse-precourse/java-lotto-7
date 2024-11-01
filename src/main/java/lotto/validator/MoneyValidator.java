@@ -1,7 +1,8 @@
 package lotto.validator;
 
 import java.util.regex.Pattern;
-import lotto.view.ErrorMessages;
+import lotto.view.Errors;
+import lotto.view.Outputs;
 
 public class MoneyValidator {
     private final String money;
@@ -15,12 +16,16 @@ public class MoneyValidator {
     }
 
     public void validate() {
-        validateNumber();
+        validateInteger();
     }
 
-    private void validateNumber() {
+    private void validateInteger() {
         if (!Pattern.matches("-?\\d+", money)) {
-            throw new IllegalArgumentException(ErrorMessages.NON_NUMERIC_CONTAINED.getMessage());
+            throw new IllegalArgumentException(String.join(Outputs.SPACE.getMessage(),
+                    Errors.ERROR.getMessage(),
+                    Errors.NOT_AN_INTEGER.getMessage(),
+                    Errors.NUMBER_REQUEST.getMessage())
+            );
         }
     }
 }

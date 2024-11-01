@@ -2,14 +2,14 @@ package lotto.view;
 
 import lotto.util.ConstantNumbers;
 
-public enum ErrorMessages {
-    ERROR("[ERROR] "),
+public enum Errors {
+    ERROR("[ERROR]"),
     NUMBER_REQUEST(ConstantNumbers.LOTTO_PRICE.getNumber() + "원 단위의 금액을 입력해주세요."),
-    NON_NUMERIC_CONTAINED(ERROR.getMessage() + "숫자만 입력할 수 있습니다. " + NUMBER_REQUEST.getMessage());
+    NOT_AN_INTEGER("정수가 아닙니다.");
 
     private final String message;
 
-    ErrorMessages(String message) {
+    Errors(String message) {
         this.message = message;
     }
 
