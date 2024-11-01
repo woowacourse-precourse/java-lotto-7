@@ -15,20 +15,23 @@ public class LottoStatisticsCalculator {
         lottoNumbers.forEach(singleLotto -> {
             int matchCount = countMatchingNumbers(singleLotto, winningNumbers);
             boolean hasBonus = singleLotto.contains(bonusNumber);
-
-            if (matchCount == PLACE_OF_1ST) {
-                results[PrizeType.MATCHING_6.ordinal()]++;
-            } else if (matchCount == PLACE_OF_2ST && hasBonus) {
-                results[PrizeType.HAS_BONUS_WIN_MATCHING_5.ordinal()]++;
-            } else if (matchCount == PLACE_OF_2ST) {
-                results[PrizeType.MATCHING_5.ordinal()]++;
-            } else if (matchCount == PLACE_OF_3ST) {
-                results[PrizeType.MATCHING_4.ordinal()]++;
-            } else if (matchCount == PLACE_OF_4ST) {
-                results[PrizeType.MATCHING_3.ordinal()]++;
-            }
+            updateResultsBasedOnMatchCount(matchCount, results, hasBonus);
         });
         return results;
+    }
+
+    private void updateResultsBasedOnMatchCount(int matchCount, int[] results, boolean hasBonus) {
+        if (matchCount == PLACE_OF_1ST) {
+            results[PrizeType.MATCHING_6.ordinal()]++;
+        } else if (matchCount == PLACE_OF_2ST && hasBonus) {
+            results[PrizeType.HAS_BONUS_WIN_MATCHING_5.ordinal()]++;
+        } else if (matchCount == PLACE_OF_2ST) {
+            results[PrizeType.MATCHING_5.ordinal()]++;
+        } else if (matchCount == PLACE_OF_3ST) {
+            results[PrizeType.MATCHING_4.ordinal()]++;
+        } else if (matchCount == PLACE_OF_4ST) {
+            results[PrizeType.MATCHING_3.ordinal()]++;
+        }
     }
 
     private int countMatchingNumbers(List<Integer> singleLotto, List<Integer> winningNumbers) {
