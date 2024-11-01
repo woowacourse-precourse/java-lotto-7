@@ -22,12 +22,12 @@ public class LottoResult {
         result.put(type, result.getOrDefault(type, 0) + 1);
     }
 
-    public double getIncomeRatio(int lottoCount) {
+    public double getIncomeRatio(LottoPurchase purchase) {
         long totalIncome = 0L;
         for (Entry<WinningType, Integer> entry : result.entrySet()) {
             totalIncome += entry.getKey().getPrice() * entry.getValue();
         }
-        return (double) totalIncome / lottoCount;
+        return (double) totalIncome / purchase.getPrice();
     }
 
     public Map<WinningType, Integer> getResult() {

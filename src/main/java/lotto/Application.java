@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.view.InputReader;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputReader reader = new InputReader();
+        LottoController lottoController = new LottoController(reader);
+        lottoController.run();
     }
 }
