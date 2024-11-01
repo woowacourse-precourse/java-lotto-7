@@ -14,7 +14,7 @@ public class Lottos {
         lottos.add(lotto);
     }
 
-    public int count() {
+    public int size() {
         return lottos.size();
     }
 
@@ -24,5 +24,9 @@ public class Lottos {
             stringBuilder.append(lotto.toString());
         }
         return stringBuilder.toString();
+    }
+
+    public void calculateMatchingNumberCount(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        lottos.forEach((lotto) -> lotto.calculateMatchingNumberCount(winningNumbers, bonusNumber));
     }
 }

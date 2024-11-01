@@ -2,9 +2,10 @@ package lotto.controller;
 
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.model.LottoNumber;
+import lotto.model.LottoNumbers;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinnerType;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,10 +24,10 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = receivePurchaseAmount();
         Lottos lottos = drawLottoNumbers(purchaseAmount.calculateLottoCount());
-        printLottoInformation(lottos.count(), lottos.information());
+        printLottoInformation(lottos.size(), lottos.information());
         WinningNumbers winningNumbers = receiveWinningNumbers();
         BonusNumber bonusNumber = receiveBonusNumber();
-        displayWinningStatistic(winningNumbers, bonusNumber);
+        displayWinningStatistic(lottos, winningNumbers, bonusNumber);
     }
 
     private PurchaseAmount receivePurchaseAmount() {
@@ -36,9 +37,9 @@ public class LottoController {
 
     private Lottos drawLottoNumbers(int lottoCount) {
         Lottos lottos = new Lottos();
-        LottoNumber lottoNumber = new LottoNumber();
+        LottoNumbers lottoNumbers = new LottoNumbers();
         for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = new Lotto(lottoNumber.generate());
+            Lotto lotto = new Lotto(lottoNumbers.generate());
             lottos.add(lotto);
         }
         return lottos;
@@ -46,7 +47,7 @@ public class LottoController {
 
     private void printLottoInformation(int lottoCount, String lottoInformation) {
         outputView.printLottoCount(lottoCount);
-        outputView.printLottoInformation(lottoInformation);
+        outputView.printMessage(lottoInformation);
     }
 
     private WinningNumbers receiveWinningNumbers() {
@@ -59,18 +60,20 @@ public class LottoController {
         return getValidInput(BonusNumber::new);
     }
 
+    private void displayWinningStatistic(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        outputView.printWinningStatisticHeader();
+        lottos.calculateMatchingNumberCount(winningNumbers, bonusNumber);
+        outputView.printMessage(WinnerType.information());
+    }
+
     private <T> T getValidInput(Function<String, T> creationFunction) {
         while (true) {
             try {
                 String input = inputView.receiveString();
                 return creationFunction.apply(input);
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+                outputView.printMessage(e.getMessage());
             }
         }
-    }
-
-    private void displayWinningStatistic(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        outputView.printWinningStatistic();
     }
 }

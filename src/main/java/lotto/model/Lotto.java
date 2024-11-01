@@ -53,4 +53,34 @@ public class Lotto {
         }
         throw new IllegalArgumentException(NOT_ALLOWED_DUPLICATED_NUMBERS);
     }
+
+    public void calculateMatchingNumberCount(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        int count = 0;
+        boolean hasBonus = numbers.contains(bonusNumber.toInteger());
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+
+        if (count == 3 && hasBonus == WinnerType.FIFTH.getBonusStatus()) {
+            WinnerType.FIFTH.increaseCount();
+        }
+
+        if (count == 4 && hasBonus == WinnerType.FOURTH.getBonusStatus()) {
+            WinnerType.FOURTH.increaseCount();
+        }
+
+        if (count == 5 && hasBonus == WinnerType.THIRD.getBonusStatus()) {
+            WinnerType.THIRD.increaseCount();
+        }
+
+        if (count == 5 && hasBonus == WinnerType.SECOND.getBonusStatus()) {
+            WinnerType.SECOND.increaseCount();
+        }
+
+        if (count == 6 && hasBonus == WinnerType.FIRST.getBonusStatus()) {
+            WinnerType.FIRST.increaseCount();
+        }
+    }
 }

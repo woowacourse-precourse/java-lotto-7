@@ -15,6 +15,10 @@ public class BonusNumber {
         this.rawBonusNumber = rawBonusNumber;
     }
 
+    public int toInteger() {
+        return Integer.parseInt(rawBonusNumber);
+    }
+
     private void validate(String rawBonusNumber) {
         validateStrip(rawBonusNumber);
         validateNumeric(rawBonusNumber);

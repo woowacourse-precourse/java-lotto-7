@@ -22,6 +22,15 @@ public class WinningNumbers {
         this.rawWinningNumbers = rawWinningNumbers;
     }
 
+    public boolean contains(int number) {
+        List<Integer> winningNumbers = splitByComma(rawWinningNumbers).stream()
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .toList();
+
+        return winningNumbers.contains(number);
+    }
+
     private void validate(String rawWinningNumbers) {
         validateStrip(rawWinningNumbers);
         validateComma(rawWinningNumbers);

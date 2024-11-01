@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-public class LottoNumber {
+public class LottoNumbers {
     private static final int RANGE_START = 1;
     private static final int RANGE_END = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;

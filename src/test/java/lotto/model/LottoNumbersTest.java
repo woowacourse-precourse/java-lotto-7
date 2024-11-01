@@ -6,14 +6,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoNumberTest {
+class LottoNumbersTest {
     @Test
     void 로또_번호를_생성할_수_있다() {
         // given
-        LottoNumber lottoNumber = new LottoNumber();
+        LottoNumbers lottoNumbers = new LottoNumbers();
 
         // when
-        List<Integer> numbers = lottoNumber.generate();
+        List<Integer> numbers = lottoNumbers.generate();
 
         // then
         int real = numbers.size();

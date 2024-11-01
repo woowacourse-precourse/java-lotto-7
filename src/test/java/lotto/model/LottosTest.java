@@ -11,7 +11,7 @@ class LottosTest {
         Lottos lottos = new Lottos();
 
         // when
-        int real = lottos.count();
+        int real = lottos.size();
 
         // then
         int expected = 0;
@@ -21,15 +21,15 @@ class LottosTest {
     @Test
     void 로또를_추가할_수_있다() {
         // given
-        LottoNumber lottoNumber = new LottoNumber();
-        Lotto lotto = new Lotto(lottoNumber.generate());
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        Lotto lotto = new Lotto(lottoNumbers.generate());
         Lottos lottos = new Lottos();
 
         // when
         lottos.add(lotto);
 
         // then
-        int real = lottos.count();
+        int real = lottos.size();
         int expected = 1;
         assertThat(real).isEqualTo(expected);
     }
@@ -37,8 +37,8 @@ class LottosTest {
     @Test
     void 로또_정보를_가져올_수_있다() {
         // given
-        LottoNumber lottoNumber = new LottoNumber();
-        Lotto lotto = new Lotto(lottoNumber.generate());
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        Lotto lotto = new Lotto(lottoNumbers.generate());
         Lottos lottos = new Lottos();
 
         // when
