@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoProfit;
-import lotto.domain.LottoRank;
+import lotto.enums.LottoRank;
 import lotto.domain.LottoResult;
 
 public class LottoOutputView {

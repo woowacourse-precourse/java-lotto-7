@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.regex.Pattern;
-import lotto.error.LottoError;
+import lotto.enums.LottoError;
 
 public class LottoInputValidator {
     private static final String INPUT_DIGIT_FORMAT_REGEX = "^\\d+$";

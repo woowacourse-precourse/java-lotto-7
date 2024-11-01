@@ -1,7 +1,10 @@
-package lotto.domain;
+package lotto.enums;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 public enum LottoRank {
 

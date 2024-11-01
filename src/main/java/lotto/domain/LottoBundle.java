@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.enums.LottoRank;
 
 public class LottoBundle {
     private final List<Lotto> lottos;

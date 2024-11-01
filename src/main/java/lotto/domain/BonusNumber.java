@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.error.LottoError;
+import lotto.enums.LottoError;
 
 public class BonusNumber {
     private static final int MIN_LOTTO_NUMBER = 1;

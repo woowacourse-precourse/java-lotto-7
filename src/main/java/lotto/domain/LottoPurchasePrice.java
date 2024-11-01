@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.error.LottoError;
+import lotto.enums.LottoError;
 
 public class LottoPurchasePrice {
     private static final int LOTTO_PRICE = 1_000;

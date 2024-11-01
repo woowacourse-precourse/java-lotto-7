@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.error.LottoError;
+import lotto.enums.LottoError;
 
 public class WinningLotto {
     private static final int MIN_LOTTO_NUMBER = 1;

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.error.LottoError;
+import lotto.enums.LottoError;
 
 public class LottoInputView {
     private static final String NUMBERS_DELIMITER = ",";
