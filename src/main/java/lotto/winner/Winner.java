@@ -11,6 +11,12 @@ public class Winner {
         this.winningNumber = new Lotto(winningNumber);
     }
 
+    public int determineLottoRank(Lotto lotto) {
+        return (int) getWinningNumbers().stream()
+                .filter(number -> lotto.getNumbers().contains(number))
+                .count();
+    }
+
     public Lotto getWinningNumber() {
         return winningNumber;
     }
