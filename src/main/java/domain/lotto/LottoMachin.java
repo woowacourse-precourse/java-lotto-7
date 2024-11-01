@@ -6,13 +6,14 @@ import domain.consumer.Consumer;
 import io.Input;
 import io.InputMessage;
 import io.Output;
+import io.OutputMessage;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachin {
 
     public void sellTo(Consumer consumer) {
-        int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyFoPurchaseLotto());
+        int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyForPurchaseLotto());
         List<Lotto> generatedLotto = generateLottoBy(quantity);
         consumer.receiveLottoTicket(generatedLotto);
     }
@@ -41,12 +42,16 @@ public class LottoMachin {
     }
 
     public void inputWinningNumbersTo(Consumer consumer) {
+        Output.println(OutputMessage.ENTER_WINNER_NUMBERS.getOutputMessage());
         Lotto selectWinnerLotto = Input.inputWinningNumbers(Console.readLine());
         selectWinnerLotto.sortLottoNumbers();
+        Output.println(selectWinnerLotto);
         consumer.selectWinnerNumbers(selectWinnerLotto);
     }
 
     public void inputBonusNumbersTo(Consumer consumer) {
+        // TODO : 보너스 번호를 입력해 주세요.
+        Output.println(OutputMessage.ENTER_BONUS_NUMBER.getOutputMessage());
         int selectedBonusNumber = Input.inputBonusNumber(Console.readLine());
         consumer.selectBonusNumber(selectedBonusNumber);
     }

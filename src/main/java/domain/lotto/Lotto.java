@@ -14,6 +14,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public void sortLottoNumbers() {
+        numbers.sort(Integer::compareTo);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LottoErrorMessage.LOTTO_NUMBER_COUNT.getErrorMessage());
@@ -27,15 +40,6 @@ public class Lotto {
             }
             left++;
         }
-    }
-
-    public void sortLottoNumbers() {
-        numbers.sort(Integer::compareTo);
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 
     public void validateWinnerNumberRangeAndCount(List<Integer> numbers) {
