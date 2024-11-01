@@ -22,9 +22,7 @@ public class UserView {
     private static Integer printAndGetPurchaseMoney() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
-            String inputMoney = readLine();
-            validateMoney(inputMoney);
-            return parseInt(inputMoney);
+            return validateMoney(readLine());
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -32,11 +30,12 @@ public class UserView {
         }
     }
 
-    private static void validateMoney(String s) {
+    private static Integer validateMoney(String s) {
         checkParsing(s);
         checkBlank(s);
         checkRange(s);
         checkChange(s);
+        return parseInt(s);
     }
 
     private static void checkRange(String s) {
