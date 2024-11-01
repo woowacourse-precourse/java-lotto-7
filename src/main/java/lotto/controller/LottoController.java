@@ -6,7 +6,10 @@ import lotto.view.OutputView;
 public class LottoController {
     public void run() {
         OutputView.printInputPurchaseAmountMessage();
-        String input = InputView.getUserInput();
+        String purchaseAmountInput = InputView.getUserInput();
+        OutputView.printInputWinningNumbers();
+        String winningNumbersInput = InputView.getUserInput();
+
 
     }
 }
