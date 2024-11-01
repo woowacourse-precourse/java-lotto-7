@@ -1,10 +1,18 @@
 package lotto.repository;
 
-import lotto.dto.TicketResult;
+import java.util.concurrent.ConcurrentHashMap;
+import lotto.domain.ticket.Ticket;
 
 public class TicketRepository {
-    public Long save(TicketResult ticketResult) {
 
-        return null;
+    private final ConcurrentHashMap repository = new ConcurrentHashMap<Long, Ticket>();
+
+    private TicketRepository() {
     }
+
+    public Long save(Ticket ticket) {
+        repository.put(ticket.getId(), ticket);
+        return ticket.getId();
+    }
+
 }

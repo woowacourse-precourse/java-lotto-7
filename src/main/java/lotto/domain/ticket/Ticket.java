@@ -15,4 +15,8 @@ public class Ticket {
 
         return null;
     }
+
+    public Long getId() {
+        return null;
+    }
 }
