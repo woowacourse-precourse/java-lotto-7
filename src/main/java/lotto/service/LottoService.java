@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.validator.BonusNumValidator;
 import lotto.validator.MoneyValidator;
 import lotto.validator.WinningNumValidator;
 import lotto.view.InputView;
@@ -15,6 +16,10 @@ public class LottoService {
         String money = inputView.readMoney();
         new MoneyValidator().validate(money);
 
+        String winningNum=inputView.readLottoNum();
+        new WinningNumValidator().validate(winningNum);
 
+        String bonusNum = inputView.readBonusNum();
+        new BonusNumValidator().validate(bonusNum);
     }
 }
