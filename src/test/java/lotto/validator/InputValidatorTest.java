@@ -1,7 +1,7 @@
 package lotto.validator;
 
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -18,17 +18,17 @@ public class InputValidatorTest {
             "'   ', EMPTY_INPUT_INVALID"  // 공백 문자열
     })
     void validateNotEmpty_WhenInputEmptyOrBlank_ShouldThrowException(String input, String errorMessage) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> InputValidator.validateNotEmpty(input))
-                .withMessage(ErrorMessage.valueOf(errorMessage).getMessage());
+        assertThatThrownBy(() -> InputValidator.validateNotEmpty(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.valueOf(errorMessage).getMessage());
     }
 
     @DisplayName("입력값이 null일 때 예외 발생")
     @Test
     void validateNotEmpty_WhenInputIsNull_ShouldThrowException() {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> InputValidator.validateNotEmpty(null))
-                .withMessage(ErrorMessage.EMPTY_INPUT_INVALID.getMessage());
+        assertThatThrownBy(() -> InputValidator.validateNotEmpty(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.EMPTY_INPUT_INVALID.getMessage());
     }
 
     @DisplayName("입력값이 정상적인 경우 예외 발생하지 않음")
@@ -48,9 +48,9 @@ public class InputValidatorTest {
             "250, PURCHASE_AMOUNT_INVALID"    // 1,000원 단위가 아님
     })
     void validatePurchaseAmount_WhenNotThousandUnit_ShouldThrowException(int amount, String errorMessage) {
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> InputValidator.validatePurchaseAmount(amount))
-                .withMessage(ErrorMessage.valueOf(errorMessage).getMessage());
+        assertThatThrownBy(() -> InputValidator.validatePurchaseAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.valueOf(errorMessage).getMessage());
     }
 
     @DisplayName("구매 금액이 1,000원 단위일 때 예외 발생하지 않음")
