@@ -23,4 +23,13 @@ public class InputWinningNumberTest {
             inputValidator.validateInputWinningNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호가 중복될 경우 에러가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"'1,2,2,3,4,5'", "'1,1,1,1,1,1'", "'29,30,31,32,33,30'"})
+    public void 당첨_번호가_중복될_경우_에러가_발생한다(String input) {
+        Assertions.assertThatThrownBy(() -> {
+            inputValidator.validateInputWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
