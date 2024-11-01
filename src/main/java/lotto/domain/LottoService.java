@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 
-import static lotto.domain.LottoConstants.*;
+import static lotto.constants.LottoConstants.*;
 
 public class LottoService {
     private final Map<Integer, Integer> winningRankCount = initializeWinningRankCount();

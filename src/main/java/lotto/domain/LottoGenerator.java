@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-import static lotto.domain.LottoConstants.*;
+import static lotto.constants.LottoConstants.*;
 
 public class LottoGenerator {
 
