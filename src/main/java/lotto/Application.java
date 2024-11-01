@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -41,6 +39,18 @@ public class Application {
             String bonusNumberInput = Console.readLine();
 
             int bonusNumbers = Integer.parseInt(bonusNumberInput);
+
+            Map<Rank, Integer> rankCount = new HashMap<>();
+            int totalPrize = 0;
+            for (Lotto lotto : lottoNumbers) {
+                int matchCount = (int) lotto.getNumbers().stream()
+                        .filter(winningNumbers::contains)
+                        .count();
+                boolean matchBonus = lotto.getNumbers().contains(bonusNumbers);
+                Rank rank = Rank.calculateRank(matchCount, matchBonus);
+                rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+                totalPrize += rank.getPrize();
+            }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
