@@ -33,17 +33,13 @@ class RankTest {
     }
 
     @Test
-    @DisplayName("오름차순 순위를 반환할 수 있다.")
+    @DisplayName("낮은 순위부터 높은 순위까지 전체 순위를 순서대로 반환할 수 있다.")
     void 순위_객체_반환() {
         // given
         // when
         List<Rank> sortedRanks = Rank.getSortedRanks();
 
         // then
-        assertThat(sortedRanks.get(0)).isEqualTo(Rank.FIFTH);
-        assertThat(sortedRanks.get(1)).isEqualTo(Rank.FOURTH);
-        assertThat(sortedRanks.get(2)).isEqualTo(Rank.THIRD);
-        assertThat(sortedRanks.get(3)).isEqualTo(Rank.SECOND);
-        assertThat(sortedRanks.get(4)).isEqualTo(Rank.FIRST);
+        assertThat(sortedRanks).containsExactly(Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
     }
 }
