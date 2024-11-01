@@ -1,4 +1,4 @@
-package lotto.domain.util;
+package lotto.domain.util.parser;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,14 +6,23 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class DelimitedNumberParser {
+public final class DelimitedNumberParser implements StringParser<List<Integer>> {
 
     public final static String NUMBER_DELIMITER = ",";
     public final static int NUMBERS_LENGTH = 6;
 
+    public static DelimitedNumberParser instance;
+
     private DelimitedNumberParser() {}
 
-    public static List<Integer> parse(String input) {
+    public static DelimitedNumberParser getInstance() {
+        if (instance == null) {
+            instance = new DelimitedNumberParser();
+        }
+        return instance;
+    }
+
+    public List<Integer> parse(String input) {
         Set<String> collect = Arrays.stream(input.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toCollection(HashSet<String>::new));
@@ -25,19 +34,12 @@ public final class DelimitedNumberParser {
         return parseIntList(collect);
     }
 
-    private static List<Integer> parseIntList(final Set<String> collect) {
-        for (String s : collect) {
-            if (!isNumeric(s)) {
-                throw new IllegalArgumentException();
-            }
-        }
+    private List<Integer> parseIntList(final Set<String> collect) {
+        collect.forEach(this::validateNumeric);
 
         return List.copyOf(collect.stream()
                 .map(Integer::parseInt)
                 .toList());
     }
 
-    private static boolean isNumeric(String s) {
-        return s.chars().allMatch(Character::isDigit);
-    }
 }
