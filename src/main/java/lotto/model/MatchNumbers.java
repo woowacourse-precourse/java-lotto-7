@@ -20,17 +20,17 @@ public class MatchNumbers {
 
     public void calculate(final List<List<Integer>> lottoNumbers, final List<Integer> userNumbers, final int bonusNumber) {
         for (List<Integer> number : lottoNumbers) {
-            updateMatchCounts(getMatchCount(number, userNumbers), number.contains(bonusNumber));
+            updateCounts(getCount(number, userNumbers), number.contains(bonusNumber));
         }
     }
 
-    private int getMatchCount(final List<Integer> number, final List<Integer> userNumbers) {
+    private int getCount(final List<Integer> number, final List<Integer> userNumbers) {
         return (int) userNumbers.stream()
                 .filter(number::contains)
                 .count();
     }
 
-    private void updateMatchCounts(final int matchCount, final boolean bonusMatch) {
+    private void updateCounts(final int matchCount, final boolean bonusMatch) {
         if (matchCount == Match.THREE.getMatchCount()) threeMatch++;
         if (matchCount == Match.FOUR.getMatchCount()) fourMatch++;
         if (matchCount == Match.FIVE.getMatchCount() && !(bonusMatch)) fiveMatch++;

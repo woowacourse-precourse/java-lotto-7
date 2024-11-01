@@ -5,7 +5,6 @@ import static lotto.util.Splitter.DELIMITER;
 import lotto.util.Convertor;
 
 public class InputValidator {
-
     private static final String EMPTY_INPUT_ERROR_MESSAGE = "[ERROR] 공백은 입력할 수 없습니다.";
     private static final String NUMBER_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자만 입력 가능합니다.";
     private static final String COMMA_FORMAT_ERROR_MESSAGE = "[ERROR] 숫자 사이에 쉼표(,)를 사용해서 입력해주세요.";

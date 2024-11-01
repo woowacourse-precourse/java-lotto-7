@@ -26,7 +26,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateDuplicate(final List<Integer> numbers) {
         if (numbers.size() != numbers.stream()
                 .distinct()
@@ -46,4 +45,3 @@ public class Lotto {
         return numbers;
     }
 }
-

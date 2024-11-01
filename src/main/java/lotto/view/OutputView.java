@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.model.constant.Match;
 
 public class OutputView {
-
     private static void printEnter() {
         System.out.println();
     }
