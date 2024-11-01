@@ -1,10 +1,14 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumbersTest {
@@ -62,6 +66,12 @@ public class WinningNumbersTest {
         assertThatThrownBy(() -> WinningNumbers.from(condition))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+    }
+
+    @Test
+    void 당첨_번호가_정상적인_경우_테스트는_통과한다() {
+        List<Integer> numbers = WinningNumbers.from("1,2,3,4,5,6").getNumbers();
+        assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
 }
