@@ -1,7 +1,7 @@
 package lotto.common;
 
 public enum LottoNumber {
-    START(0),
+    START(1),
     END(45),
     SIZE(6);
 
