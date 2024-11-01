@@ -5,6 +5,7 @@ public enum InputErrorMessage {
     EMPTY_PURCHASE_AMOUNT("[ERROR] 구입 금액은 비어있을 수 없습니다."),
     NEGATIVE_OR_ZERO_AMOUNT("[ERROR] 구입 금액은 0원 이상이어야 합니다."),
     EXCEEDS_LIMIT_AMOUNT("[ERROR] 구입 금액은 1,000,000원을 초과할 수 없습니다."),
+    INVALID_NUMERIC_AMOUNT("[ERROR] 구입 금액은 숫자여야 합니다."),
 
     EMPTY_WINNING_NUMBERS("[ERROR] 당첨 번호는 비어있을 수 없습니다."),
     INVALID_WINNING_NUMBERS("[ERROR] 당첨 번호는 숫자여야 합니다."),

@@ -20,6 +20,14 @@ public class InputValidatorTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = {""," "})
+    void 입력금액이_없다면_예외발생(String inValidAmount) {
+        assertThatThrownBy(() -> InputValidator.validateAmount(inValidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(InputErrorMessage.EMPTY_PURCHASE_AMOUNT.getMessage()); // 예외 메시지는 실제 메시지로 수정 필요
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = {"1000"})
     void 입력금액이_1000원_단위일때_통과한다(String validAmount) {
         InputValidator.validateAmount(validAmount);
