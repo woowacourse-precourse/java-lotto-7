@@ -26,6 +26,15 @@ public class InputView {
         return inputWinning;
     }
 
+    public String readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputBonus = Console.readLine();
+
+        validateNotNullOrBlank(inputBonus);
+
+        return inputBonus;
+    }
+
     private void validateNotNullOrBlank(String input) {
         if (input == null || input.isBlank())
             throw new IllegalArgumentException();
