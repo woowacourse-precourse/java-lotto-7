@@ -1,10 +1,10 @@
-package lotto.validation;
+package lotto.validator;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ValidateLotto {
+public class LottoValidator {
 
 	public static void validateLottoNumbers(List<Integer> numbers) {
 		validateSize(numbers);

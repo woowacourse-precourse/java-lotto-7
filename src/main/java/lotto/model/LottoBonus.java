@@ -2,13 +2,13 @@ package lotto.model;
 
 import java.util.List;
 
-import lotto.validation.ValidateLottoBonus;
+import lotto.validator.LottoBonusValidator;
 
 public class LottoBonus {
 	private final int bonusNumber;
 
 	public LottoBonus(int bonusNumber, List<Integer> lottoNumbers) {
-		ValidateLottoBonus.validateBonusNumber(bonusNumber, lottoNumbers);
+		LottoBonusValidator.validateBonusNumber(bonusNumber, lottoNumbers);
 		this.bonusNumber = bonusNumber;
 	}
 	

@@ -1,8 +1,8 @@
-package lotto.validation;
+package lotto.validator;
 
 import java.util.List;
 
-public class ValidateLottoBonus {
+public class LottoBonusValidator {
 
 	public static void validateBonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
 		validateRange(bonusNumber);
