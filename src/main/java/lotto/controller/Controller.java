@@ -12,8 +12,9 @@ public class Controller {
     private static LottoManager lottoManager;
 
     public Controller() {
-        issueLotties();
-        checkWinPrizes();
+        this.issueLotties();
+        this.checkWinPrizes();
+        printView.printStatistic(lottoManager.calculateEarnRate().toString(), lottoManager.getWinLottiesCount());
     }
 
     public void issueLotties() {
