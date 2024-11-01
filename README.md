@@ -44,12 +44,13 @@ int 보너스 번호
 - [ ]  몇 등 당첨인지 확인하는 기능
 
 ### LottoNumberController
-- [ ]  public List\<Lotto> issueLottos(int count)
-    - [ ]  for (int i = 0; i < count; i++)
-        - [ ]  getRandomLottoNumbers() 호출해 로또 번호 6개 추출
-        - [ ]  Lotto 객체 생성 → 리스트에 추가
-    - [ ]  OutputView.printIssuedLottos() 호출해 발행 결과 출력
-    - [ ]  Lotto 객체가 저장된 리스트 반환
+- [x] **public List\<Lotto> issueLottos(int amount)** \: 주어진 수량만큼 로또를 발행하는 기능
+    - [x] for (int i = 0; i < amount; i++)
+        - [x] `getRandomLottoNumbers()` 호출해 로또 번호 6개 추출
+        - [x] Lotto 객체 생성 → 리스트에 추가
+    - [x] Lotto 객체가 저장된 리스트 반환
+
+
 - [ ]  public Lotto getWinningNumbers()
     - [ ]  InputView.getWinningNumbers() 호출해 당첨 번호 입력받기
     - [ ]  입력받은 당첨 번호로 Lotto 객체 생성
@@ -58,8 +59,8 @@ int 보너스 번호
     - [ ]  InputView.getBonusNumbers() 호출해 보너스 번호 입력받기
     - [ ]  보너스 번호 반환
 
-- [ ]  private List\<Integer> getRandomLottoNumbers()
-    - [ ]  `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange(1, 45, 6)` 호출한 결과 반환
+- [x] **private List\<Integer> getRandomLottoNumbers()** \: 로또 번호 6개를 추첨하는 기능
+    - [x] `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange(1, 45, 6)` 호출한 결과 반환
 
 ### ResultController
 - [ ]  당첨 통계 산정하는 기능
