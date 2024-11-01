@@ -4,6 +4,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.LottoRanking;
 import lotto.domain.ReturnMoneyRate;
+import lotto.validator.MoneyValidator;
+import lotto.validator.NumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,7 +16,13 @@ public class LottoGame {
     private int money;
 
     public void initMoney() {
-        money = InputView.getMoney();
+        String inputMoney = InputView.getMoney();
+        MoneyValidator.validateInputMoney(inputMoney);
+
+        money = Integer.parseInt(inputMoney);
+        MoneyValidator.validateMoney(money);
+        MoneyValidator.validatePurchaseAmount(money);
+
         issueLotto(money);
     }
 
@@ -29,7 +37,7 @@ public class LottoGame {
     private void initWinningLotto(List<Lotto> issuedLottos) {
         List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber();
-
+        NumberValidator.validateNoDuplicatesBonus(winningNumbers, bonusNumber);
         calculateLotto(issuedLottos, winningNumbers, bonusNumber);
     }
 
