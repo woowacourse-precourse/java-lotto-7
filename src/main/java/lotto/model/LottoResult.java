@@ -17,4 +17,17 @@ public class LottoResult {
         return lottoRankingSet;
     }
 
+    public LottoResult winning(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto lotto : lottos) {
+            int countOfMatch = matchNumber(lotto, winningNumbers);
+            boolean matchBonus = matchBonusNumber(lotto, bonusNumber);
+            LottoRanking ranking = LottoRanking.valueOf(countOfMatch, matchBonus);
+            addResult(lottoResult.getLottoRankingSet(), ranking);
+        }
+
+        return lottoResult;
+    }
+
+
 }
