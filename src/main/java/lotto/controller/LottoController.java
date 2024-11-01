@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lotto.dto.Lottos;
 import lotto.service.LottoService;
 import lotto.service.WinService;
+import lotto.validator.AmountValidator;
 import lotto.validator.ControllerValidator;
 import lotto.validator.ServiceValidator;
 import lotto.view.Request;
@@ -31,7 +32,7 @@ public class LottoController {
 
         inputAmount = request.inputAmount();
         try {
-            controllerValidator.amountIsNum(inputAmount);
+            AmountValidator.amountIsNum(inputAmount);
             lottoService.buyLotto(Integer.parseInt(inputAmount));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

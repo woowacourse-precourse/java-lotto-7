@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import lotto.dto.Lottos;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
+import lotto.validator.AmountValidator;
 import lotto.validator.ServiceValidator;
 
 public class LottoService {
@@ -28,7 +29,8 @@ public class LottoService {
     public void buyLotto(int amount) {
         int lottoCount = amount / LOTTO_PRICE;
 
-        serviceValidator.amountDivide(amount);
+        AmountValidator.amountDivide(amount);
+        AmountValidator.amountMinus(amount);
         for (int count = 0; count < lottoCount; count++) {
             createLottoNum();
         }
