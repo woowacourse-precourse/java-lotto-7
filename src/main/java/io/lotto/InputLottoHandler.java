@@ -3,10 +3,7 @@ package io.lotto;
 import io.InputHandler;
 import util.NumberUtil;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static util.NumberUtil.*;
 
@@ -20,15 +17,20 @@ public class InputLottoHandler {
         return number;
     }
 
-    public List<Integer> getWinningNumber() {
+    public List<Integer> getWinningNumbers() {
         List<Integer> numbers = convertNumbersFrom(inputHandler.getUserInput());
-        isValidWinningNumber(numbers);
+        isValidWinningNumbers(numbers);
         return numbers;
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         int number = convertNumberFrom(inputHandler.getUserInput());
         isValidBonusNumber(number);
+
+        List<Integer> numbers = new ArrayList<>(winningNumbers);
+        numbers.add(number);
+
+        isDuplicate(numbers);
         return number;
     }
 
@@ -50,7 +52,7 @@ public class InputLottoHandler {
                 .map(NumberUtil::convertNumberFrom).toList();
     }
 
-    public void isValidWinningNumber(List<Integer> numbers) {
+    public void isValidWinningNumbers(List<Integer> numbers) {
         checkLength(numbers);
         isDuplicate(numbers);
         numbers.stream()
