@@ -25,4 +25,13 @@ class WinningNumberValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_WINNING_NUMBER_RANGE);
     }
+
+    @Test
+    void 당첨_번호_중복_검증_테스트() {
+        List<Integer> duplicateNumbers = List.of(1, 2, 3, 4, 5, 5);
+
+        assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumbers(duplicateNumbers))
+                .isInstanceOf(IllegalArgumentException)
+                .hasMessageContaining(ErrorMessageConstants.INVALID_WINNING_NUMBER_DUPLICATE);
+    }
 }
