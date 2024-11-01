@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.util.ExceptionMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.util.ExceptionMessage.INVALID_RANGE;
+
 import java.util.List;
 
 public class BonusBall {
@@ -13,13 +16,13 @@ public class BonusBall {
 
     private void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_RANGE.format());
         }
     }
 
     private void validateNoDuplicateWithWinningNumbers(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.format());
         }
     }
 

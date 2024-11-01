@@ -8,7 +8,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -61,12 +60,6 @@ class ApplicationTest extends NsTest {
             runException("999");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
-    }
-
-    @Test
-    void 기능_테스트_2() {
-        Application application = new Application();
-        assertEquals(8, application.inputMoney("8000"));
     }
 
     @Override

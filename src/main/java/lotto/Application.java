@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.util.ExceptionMessage.INVALID_INPUT;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.stream.Collectors;
 import lotto.domain.BonusBall;
 import lotto.domain.Lotto;
 import lotto.util.PrizeType;
+import lotto.validation.InputValidator;
 
 public class Application {
     public static void main(String[] args) {
@@ -35,16 +38,18 @@ public class Application {
     public static int inputMoney() {
         printMoneyInputMessage();
         String input = readLine();
-        return parseToInt(input) / 1000;
+        int amount = parseToInt(input);
+        InputValidator.idValidateAmountUnit(amount);
+        InputValidator.isZero(amount);
+        return amount / 1000;
     }
 
     private static int parseToInt(String input) {
         int intValue;
         try {
             intValue = Integer.parseInt(input);
-
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 잘못된 입력입니다.");
+            throw new IllegalArgumentException(INVALID_INPUT.format());
         }
         return intValue;
     }

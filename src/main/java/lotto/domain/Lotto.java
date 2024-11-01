@@ -1,4 +1,7 @@
-package lotto;
+package lotto.domain;
+
+import static lotto.util.ExceptionMessage.INVALID_LOTTO_NUMBER;
+import static lotto.util.ExceptionMessage.INVALID_RANGE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.format());
         }
     }
 
@@ -25,7 +28,7 @@ public class Lotto {
                 .allMatch(number -> number >= 1
                         && number <= 45);
         if (!isValid) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_RANGE.format());
         }
     }
 
@@ -33,7 +36,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("당첨 번호는 6개의 서로 다른 숫자여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.format());
         }
     }
 
