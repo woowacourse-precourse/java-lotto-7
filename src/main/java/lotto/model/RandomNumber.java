@@ -11,6 +11,6 @@ public class RandomNumber {
     private static final int GENERATE_COUNT = 6;
 
     public List<Integer> generate() {
-        return Sorter.sort(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, GENERATE_COUNT));
+        return Sorter.ascendingOrder(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, GENERATE_COUNT));
     }
 }

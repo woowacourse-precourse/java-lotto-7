@@ -17,7 +17,7 @@ public class MatchNumbers {
         sixMatch = 0;
     }
 
-    public void count(List<List<Integer>> lottoNumbers, List<Integer> userNumbers, int bonusNumber) {
+    public void calculate(List<List<Integer>> lottoNumbers, List<Integer> userNumbers, int bonusNumber) {
         for (List<Integer> number : lottoNumbers) {
             updateMatchCounts(getMatchCount(number, userNumbers), number.contains(bonusNumber));
         }

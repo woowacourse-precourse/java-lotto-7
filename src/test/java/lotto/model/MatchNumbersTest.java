@@ -24,7 +24,7 @@ class MatchNumbersTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 10, 11, 12);
         int bonusNumber = 13;
 
-        matchNumbers.count(lottoNumbers, userNumbers, bonusNumber);
+        matchNumbers.calculate(lottoNumbers, userNumbers, bonusNumber);
 
         assertThat(matchNumbers.getThreeMatch()).isEqualTo(1);
         assertThat(matchNumbers.getFourMatch()).isEqualTo(0);
@@ -41,7 +41,7 @@ class MatchNumbersTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 4, 10, 11);
         int bonusNumber = 12;
 
-        matchNumbers.count(lottoNumbers, userNumbers, bonusNumber);
+        matchNumbers.calculate(lottoNumbers, userNumbers, bonusNumber);
 
         assertThat(matchNumbers.getThreeMatch()).isEqualTo(0);
         assertThat(matchNumbers.getFourMatch()).isEqualTo(1);
@@ -58,7 +58,7 @@ class MatchNumbersTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 10);
         int bonusNumber = 11;
 
-        matchNumbers.count(lottoNumbers, userNumbers, bonusNumber);
+        matchNumbers.calculate(lottoNumbers, userNumbers, bonusNumber);
 
         assertThat(matchNumbers.getThreeMatch()).isEqualTo(0);
         assertThat(matchNumbers.getFourMatch()).isEqualTo(0);
@@ -75,7 +75,7 @@ class MatchNumbersTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 10);
         int bonusNumber = 9;
 
-        matchNumbers.count(lottoNumbers, userNumbers, bonusNumber);
+        matchNumbers.calculate(lottoNumbers, userNumbers, bonusNumber);
 
         assertThat(matchNumbers.getThreeMatch()).isEqualTo(0);
         assertThat(matchNumbers.getFourMatch()).isEqualTo(0);
@@ -92,7 +92,7 @@ class MatchNumbersTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        matchNumbers.count(lottoNumbers, userNumbers, bonusNumber);
+        matchNumbers.calculate(lottoNumbers, userNumbers, bonusNumber);
 
         assertThat(matchNumbers.getThreeMatch()).isEqualTo(0);
         assertThat(matchNumbers.getFourMatch()).isEqualTo(0);
@@ -110,7 +110,7 @@ class MatchNumbersTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 10, 11, 12);
         int bonusNumber = 45;
 
-        matchNumbers.count(lottoNumbers, userNumbers, bonusNumber);
+        matchNumbers.calculate(lottoNumbers, userNumbers, bonusNumber);
 
         assertThat(matchNumbers.getThreeMatch()).isEqualTo(2);
         assertThat(matchNumbers.getFourMatch()).isEqualTo(0);

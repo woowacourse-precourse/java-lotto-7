@@ -16,7 +16,7 @@ public class Profit {
         totalMoney = 0;
     }
 
-    public void calculateTotalMoney(MatchNumbers matchNumbers) {
+    public void calculateTotalPrize(MatchNumbers matchNumbers) {
         totalMoney = matchNumbers.getThreeMatch() * THREE_MATCH_PRIZE
         + matchNumbers.getFourMatch() * FOUR_MATCH_PRIZE
         + matchNumbers.getFiveMatch() * FIVE_MATCH_PRIZE

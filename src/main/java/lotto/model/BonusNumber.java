@@ -14,14 +14,14 @@ public class BonusNumber {
         this.bonus = bonus;
     }
 
-    private void validateDuplicate(List<Integer> numbers, int input) {
-        if (numbers.contains(input)) {
+    private void validateDuplicate(List<Integer> numbers, int bonus) {
+        if (numbers.contains(bonus)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
     }
 
-    private void validateNumberRange(int input) {
-        if (!(RandomNumber.MIN_NUMBER <= input && input <= RandomNumber.MAX_NUMBER)) {
+    private void validateNumberRange(int bonus) {
+        if (!(RandomNumber.MIN_NUMBER <= bonus && bonus <= RandomNumber.MAX_NUMBER)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
@@ -53,10 +52,10 @@ public class LottoController {
 
     private Lotto initUserNumbers() {
         try {
-            String[] input = Splitter.split(inputView.inputWinningNumbers());
+            String[] input = Splitter.comma(inputView.inputUserLottoNumbers());
             Convertor.validateNull(input);
             Convertor.validateNumberFormat(input);
-            return new Lotto(Sorter.sort(Convertor.arrayToList(input)));
+            return new Lotto(Sorter.ascendingOrder(Convertor.arrayToList(input)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return initUserNumbers();
@@ -87,7 +86,7 @@ public class LottoController {
     }
 
     private void calculateProfit(Profit profit, MatchNumbers matchNumbers) {
-        profit.calculateTotalMoney(matchNumbers);
+        profit.calculateTotalPrize(matchNumbers);
         profit.calculateRate();
     }
 
@@ -108,7 +107,7 @@ public class LottoController {
         BonusNumber bonusNumber = initBonusNumber(lotto);
 
         MatchNumbers matchNumbers = new MatchNumbers();
-        matchNumbers.count(lottoNumber.get(), lotto.get(), bonusNumber.get());
+        matchNumbers.calculate(lottoNumber.get(), lotto.get(), bonusNumber.get());
         printMatchResult(matchNumbers);
 
         Profit profit = createProfit(purchasePrice);
