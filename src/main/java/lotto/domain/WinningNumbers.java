@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.util.LottoNumberValidator;
+import lotto.util.NumberValidator;
 
 public class WinningNumbers {
 
@@ -17,8 +17,8 @@ public class WinningNumbers {
     private void validate(final Lotto winningLotto, final BonusNumber bonusNumber) {
         final List<Integer> numbers = winningLotto.getNumbers();
         final int value = bonusNumber.getValue();
-        final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-        lottoNumberValidator.validateContains(numbers, value);
+        final NumberValidator numberValidator = NumberValidator.getInstance();
+        numberValidator.validateContains(numbers, value);
     }
 
     public int countMatchNumber(final List<Integer> numbers) {

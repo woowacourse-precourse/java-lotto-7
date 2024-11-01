@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.util.LottoNumberValidator;
+import lotto.util.NumberValidator;
 
 public class BonusNumber {
 
@@ -21,7 +21,7 @@ public class BonusNumber {
     }
 
     private void validate(final int value) {
-        final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-        lottoNumberValidator.validateRange(value, 1, 45);
+        final NumberValidator numberValidator = NumberValidator.getInstance();
+        numberValidator.validateRange(value, 1, 45);
     }
 }

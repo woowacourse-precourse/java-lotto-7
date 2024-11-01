@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
-import lotto.util.LottoNumberValidator;
+import lotto.util.NumberValidator;
 
 public class Money {
 
@@ -20,10 +20,9 @@ public class Money {
         return (value.longValue() / (double) this.value) * 100;
     }
 
-
     private void validate(final int value) {
-        final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-        lottoNumberValidator.validateUnit(value, 1_000);
+        final NumberValidator numberValidator = NumberValidator.getInstance();
+        numberValidator.validateUnit(value, 1_000);
     }
 
 }

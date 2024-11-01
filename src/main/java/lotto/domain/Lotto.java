@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import lotto.util.LottoListValidator;
-import lotto.util.LottoNumberValidator;
+import lotto.constant.LottoRule;
+import lotto.util.ListValidator;
+import lotto.util.NumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,10 +27,10 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        final LottoListValidator lottoListValidator = new LottoListValidator();
-        final LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-        lottoListValidator.validateSize(numbers)
-                .validateRange(numbers, number -> lottoNumberValidator.validateRange(number, 1, 45))
+        final ListValidator listValidator = ListValidator.getInstance();
+        final NumberValidator numberValidator = NumberValidator.getInstance();
+        listValidator.validateSize(numbers, LottoRule.WINNING_NUMBER_SIZE)
+                .validateRange(numbers, number -> numberValidator.validateRange(number, 1, 45))
                 .validateDuplicate(numbers);
     }
 
