@@ -48,7 +48,7 @@ public class LottoGameController {
 
     private Lottos getLottos(int lottoQuantity) {
         Lottos lottos = lottoService.createLottos(lottoQuantity);
-        List<Lotto> lottoGroup = lottos.getLottoGroup();
+        List<Lotto> lottoGroup = lottoService.convertToLottoGroup(lottos);
 
         printLottoGroup(lottoGroup);
 
