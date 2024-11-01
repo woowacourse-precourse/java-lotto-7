@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
+import lotto.utils.Constant;
 
 public class LottoService {
     public List<Lotto> createLottos(int purchaseAmount) {
@@ -17,7 +18,7 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(Constant.MIN_LOTTO_NUMBER, Constant.MAX_LOTTO_NUMBER, Constant.LOTTO_SIZE));
             Collections.sort(lottoNumbers);
             lottos.add(new Lotto(lottoNumbers));
         }
