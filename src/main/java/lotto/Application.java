@@ -10,17 +10,20 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int price = inputPrice();
+        lottoGameStart();
 
-        System.out.println();
+    }
 
-        List<Lotto> lottos = manyGenerators(price, TICKET_PRICE);
+    private static void lottoGameStart() {
+        int price;
+        List<Lotto> lottos = buyLottos();
         printLotto(lottos);
 
         System.out.println();
-        Lotto targetLotto = inputTargetLottoNumber();
+        Lotto targetLotto = inputTargetLotto();
 
         System.out.println();
+
         inputBonusNumber(targetLotto);
 
         successStaticsPrint(lottos, targetLotto);
@@ -28,22 +31,69 @@ public class Application {
         getRateOfReturn(lottos, targetLotto);
     }
 
+    private static Lotto inputTargetLotto() {
+        Lotto targetLotto;
+        try {
+            targetLotto = inputTargetLottoNumber();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputTargetLotto();
+        }
+        return targetLotto;
+    }
+
+    private static List<Lotto> buyLottos() {
+        List<Lotto> lottos;
+        try {
+            int price;
+            price = inputPrice();
+            System.out.println();
+            lottos = manyGenerators(price, TICKET_PRICE);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return buyLottos();
+        }
+        return lottos;
+    }
+
     private static int inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-
-        int price = Integer.parseInt(Console.readLine());
+        int price;
+        try {
+            price = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]: 숫자를 입력해 주세요.");
+        }
         return price;
     }
 
     private static Lotto inputTargetLottoNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        Lotto targetLotto = LottoGenerator.generate(Console.readLine(), ",");
+        Lotto targetLotto;
+        try {
+            targetLotto = LottoGenerator.generate(Console.readLine(), ",");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR]: 로또(n,n,n,n,n,n)형태의 값을 입력해 주세요.");
+        }
         return targetLotto;
     }
 
     private static void inputBonusNumber(Lotto targetLotto) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        LottoGenerator.addNumber(targetLotto, Integer.parseInt(Console.readLine()));
+        try {
+            getBonusNumber(targetLotto);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            inputBonusNumber(targetLotto);
+        }
+    }
+
+    private static void getBonusNumber(Lotto targetLotto) {
+        try{
+            LottoGenerator.addNumber(targetLotto, Integer.parseInt(Console.readLine()));
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR]: 숫자를 입력해 주세요.");
+        }
     }
 
     private static void successStaticsPrint(List<Lotto> lottos, Lotto targetLotto) {
@@ -126,7 +176,7 @@ public class Application {
         return matchValue;
     }
 
-    private static void getRateOfReturn(List<Lotto> lottos, Lotto targetLotto){
+    private static void getRateOfReturn(List<Lotto> lottos, Lotto targetLotto) {
         int count = lottos.size();
         Long totalPrice = Grade.THREECOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 3);
         totalPrice += Grade.FOURCOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 4);
@@ -134,10 +184,9 @@ public class Application {
         totalPrice += Grade.FIVECOINSIDE_BONUS.getPrice() * checkLotto(lottos, targetLotto, 5, true);
         totalPrice += Grade.SIXCOINSIDE.getPrice() * checkLotto(lottos, targetLotto, 6);
         System.out.println(totalPrice);
-        System.out.println(count* TICKET_PRICE);
-        double rateOfReturn = (double)totalPrice / (count * TICKET_PRICE) * 100.0;
-        // 5000, 8000
-        System.out.println("총 수익률은 " + Math.round((rateOfReturn)*100)/100.0 + "%입니다.");
+        System.out.println(count * TICKET_PRICE);
+        double rateOfReturn = (double) totalPrice / (count * TICKET_PRICE) * 100.0;
+        System.out.println("총 수익률은 " + Math.round((rateOfReturn) * 100) / 100.0 + "%입니다.");
     }
 }
 

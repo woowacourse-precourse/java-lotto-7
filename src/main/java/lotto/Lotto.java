@@ -14,6 +14,12 @@ public class Lotto {
     }
 
     public void setBonus(int bonus) {
+        if(bonus < LOW_NUMBER || bonus > HIGH_NUMBER){
+            throw new IllegalArgumentException("[ERROR]: 보너스 숫자는 " + LOW_NUMBER + "~ " + HIGH_NUMBER + "이어야 합니다.");
+        }
+        if(getNumbers().contains(bonus)){
+            throw new IllegalArgumentException("[ERROR]: 로또 번호중에 보너스 번호와 겹치는 번호가 있습니다.");
+        }
         this.bonus = bonus;
     }
 
