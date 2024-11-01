@@ -47,4 +47,8 @@ public class LottoProvider {
 			pickedLotto.printLottoNumbers();
 		}
 	}
+
+	public List<Lotto> getPickedLottos() {
+		return pickedLottos;
+	}
 }
