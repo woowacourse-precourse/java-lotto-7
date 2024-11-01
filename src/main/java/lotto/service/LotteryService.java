@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.validation.LotteryValidator;
 import lotto.view.OutputView;
 
@@ -30,7 +31,15 @@ public class LotteryService {
     }
 
     public void getLottoWinningNumber() {
-        String lottoWinningNumbers = Console.readLine();
+        String inputLottoWinningNumbers = Console.readLine();
+
+        List<Integer> lottoWinningNumbers = null;
+
+        for (final String winningNumber : inputLottoWinningNumbers.split(",")) {
+            lottoWinningNumbers.add(Integer.parseInt(winningNumber));
+        }
+
+        Lotto lotto = new Lotto(lottoWinningNumbers);
     }
 
     public void getLottoBonusNumber() {
