@@ -32,4 +32,8 @@ public class LottoCost {
             throw new IllegalArgumentException("[ERROR] 금액은 1000의 배수만 가능합니다.");
         }
     }
+
+    public int divideCostByUnit() {
+        return cost / LOTTO_COST_UNIT;
+    }
 }
