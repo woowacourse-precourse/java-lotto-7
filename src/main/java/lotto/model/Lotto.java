@@ -10,7 +10,7 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate(numbers);
         validateNumberRange(numbers);
         validateDuplicatedNumber(numbers);
@@ -39,5 +39,9 @@ public class Lotto {
         if (notDuplicatedCount != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복되어선 안됩니다.");
         }
+    }
+
+    public static Lotto createLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 }
