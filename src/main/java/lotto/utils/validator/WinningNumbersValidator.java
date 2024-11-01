@@ -1,5 +1,8 @@
 package lotto.utils.validator;
 
+import static lotto.exception.ErrorMessages.EMPTY_INPUT;
+import static lotto.exception.ErrorMessages.NOT_SIX_NUMBERS;
+
 public class WinningNumbersValidator implements Validator<String> {
     private final String DELIMITER = ",";
     private final Validator<String> positiveIntValidator;
@@ -23,7 +26,7 @@ public class WinningNumbersValidator implements Validator<String> {
 
     private void validateNotEmpty(String rawWinningNumbers) {
         if (rawWinningNumbers.isBlank()) {
-            throw new IllegalArgumentException("입력값이 공백입니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }
 
@@ -33,7 +36,7 @@ public class WinningNumbersValidator implements Validator<String> {
         }
 
         if (rawWinningNumberList.length != 6) {
-            throw new IllegalArgumentException("로또 번호는 총 여섯 개여야 합니다.");
+            throw new IllegalArgumentException(NOT_SIX_NUMBERS.getMessage());
         }
     }
 

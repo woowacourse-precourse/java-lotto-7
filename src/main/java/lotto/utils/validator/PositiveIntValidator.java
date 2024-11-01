@@ -1,5 +1,11 @@
 package lotto.utils.validator;
 
+
+import static lotto.exception.ErrorMessages.EMPTY_INPUT;
+import static lotto.exception.ErrorMessages.NOT_NUMBER;
+import static lotto.exception.ErrorMessages.NOT_INT;
+import static lotto.exception.ErrorMessages.NOT_POSITIVE_INT;
+
 public class PositiveIntValidator implements Validator<String> {
 
     @Override
@@ -14,7 +20,7 @@ public class PositiveIntValidator implements Validator<String> {
 
     private static void validateNotEmpty(String rawPurchasePrice) {
         if (rawPurchasePrice.isBlank()) { //strip().isEmpty() 대체.
-            throw new IllegalArgumentException("입력값이 비어있습니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
         }
     }
 
@@ -22,7 +28,7 @@ public class PositiveIntValidator implements Validator<String> {
         try{
             Double.parseDouble(rawPurchasePrice);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 숫자가 아닙니다");
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
@@ -31,13 +37,13 @@ public class PositiveIntValidator implements Validator<String> {
         try{
             Integer.parseInt(rawPurchasePrice);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 정수가 아닙니다");
+            throw new IllegalArgumentException(NOT_INT.getMessage());
         }
     }
 
     private static void validatePositiveInt(int purchasePrice) {
         if (purchasePrice <= 0) {
-            throw new IllegalArgumentException("입력값이 양의 정수가 아닙니다");
+            throw new IllegalArgumentException(NOT_POSITIVE_INT.getMessage());
         }
     }
 }
