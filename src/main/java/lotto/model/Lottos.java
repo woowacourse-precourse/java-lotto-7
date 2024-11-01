@@ -27,4 +27,8 @@ public class Lottos {
     }
     return sb.toString();
   }
+
+  public List<Lotto> getLottos() {
+    return this.lottos;
+  }
 }
