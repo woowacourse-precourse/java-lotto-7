@@ -12,13 +12,13 @@ public class InputBonusNumberView {
         System.out.println("보너스 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",| ");
 
-        if(input.length != 1){
+        if (input.length != 1) {
             throw new BonusNumberCountException();
         }
 
         int bonusNumber = validate(input[0]);
 
-        if(winningNumbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new BonusNumberDuplicationException();
         }
 
