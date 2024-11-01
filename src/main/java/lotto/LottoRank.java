@@ -18,6 +18,16 @@ public enum LottoRank {
         this.price = price;
     }
 
+    public static LottoRank getRank(Lotto lotto, Lotto winner, Integer bonusBall) {
+        return findByCorrectCountAndBonusBall(lotto.getCorrectCount(winner), lotto.isBonusBallMatch(bonusBall));
+    }
+
+    public static List<LottoRank> getRanks(List<Lotto> lottos, Lotto winner, Integer bonusBall) {
+        return lottos.stream()
+                .map(lotto -> LottoRank.getRank(lotto, winner, bonusBall))
+                .toList();
+    }
+
     public static LottoRank findByCorrectCountAndBonusBall(int correctCount, boolean bonusBall) {
         LottoRank rottoRank = Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.correctCount == correctCount)
