@@ -1,11 +1,9 @@
 package lotto.lotto;
 
 import java.util.List;
+import lotto.random.Random;
 
 public class LottoValidator {
-
-    public static final int START_INCLUSIVE = 1;
-    public static final int END_INCLUSIVE = 45;
 
     private LottoValidator() {
 
@@ -18,7 +16,7 @@ public class LottoValidator {
     }
 
     private static void validateNumberInRange(int number) {
-        if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
+        if (number < Random.START_INCLUSIVE || number > Random.END_INCLUSIVE) {
             throw new IllegalArgumentException("Number must be between 1 and 45");
         }
     }
