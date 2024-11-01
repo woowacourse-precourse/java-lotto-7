@@ -19,7 +19,7 @@ public class LottoController {
                 balance = new Balance(InputView.inputMoney());
                 isValid = true;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }
