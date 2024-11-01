@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.parser;
 
 import lotto.exception.InputErrorMessage;
 
@@ -7,10 +7,9 @@ public class ParserUtil {
     private ParserUtil() {
     }
 
-    public static int parseInt(String input) {
+    public static int convertToNumber(String input) {
         validateNotEmpty(input);
         validateNumericFormat(input);
-
         return Integer.parseInt(input);
     }
 
