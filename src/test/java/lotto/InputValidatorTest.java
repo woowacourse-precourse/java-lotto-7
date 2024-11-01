@@ -42,6 +42,6 @@ public class InputValidatorTest {
         // when & then
         assertThatThrownBy(() -> validator.validateInput("2500"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 1000원 단위여야 합니다.");
+                .hasMessage("구입 금액은 1,000원 단위여야 합니다.");
     }
 }

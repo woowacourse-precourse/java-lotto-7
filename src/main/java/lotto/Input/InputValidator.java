@@ -19,5 +19,8 @@ public class InputValidator {
     }
 
     private void validateThousandUnit(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000원 단위여야 합니다.");
+        }
     }
 }
