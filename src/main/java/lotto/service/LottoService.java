@@ -1,6 +1,11 @@
 package lotto.service;
 
 
+import static lotto.constant.Winner.FIFTH_WINNER;
+import static lotto.constant.Winner.FIRST_WINNER;
+import static lotto.constant.Winner.FOURTH_WINNER;
+import static lotto.constant.Winner.SECOND_WINNER;
+import static lotto.constant.Winner.THIRD_WINNER;
 import static lotto.exception.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.Arrays;
@@ -17,11 +22,6 @@ import lotto.generator.LottoGenerator;
 public class LottoService {
     private final static String WINNING_NUMBER_SEPARATOR = ",";
     private static final int LOTTO_PRICE = 1000;
-    public static final int FIFTH_PRIZE = 5000;
-    public static final int FOURTH_PRIZE = 50000;
-    public static final int THIRD_PRIZE = 1500000;
-    public static final int SECOND_PRIZE = 30000000;
-    public static final int FIRST_PRIZE = 2000000000;
 
     public LottoService(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
@@ -62,28 +62,27 @@ public class LottoService {
     }
 
     private void updateMatchResult(Map<Integer, Integer> result, int matchCount, boolean isBonusMatched) {
-        if (matchCount == 6) {
-            int index = 1;
+        if (matchCount == FIRST_WINNER.getMatchCount()) {
+            int key = FIRST_WINNER.getRank();
             if (isBonusMatched) {
-                index = 2;
+                key = SECOND_WINNER.getRank();
             }
-            result.put(index, result.getOrDefault(index, 0) + 1);
-        } else if (matchCount == 5) {
-            result.put(3, result.getOrDefault(3, 0) + 1);
-        } else if (matchCount == 4) {
-            result.put(4, result.getOrDefault(4, 0) + 1);
-        } else if (matchCount == 3) {
-            result.put(5, result.getOrDefault(5, 0) + 1);
+            result.put(key, result.getOrDefault(key, 0) + 1);
+        } else if (matchCount == THIRD_WINNER.getMatchCount()) {
+            result.put(THIRD_WINNER.getRank(), result.getOrDefault(THIRD_WINNER.getRank(), 0) + 1);
+        } else if (matchCount == FOURTH_WINNER.getMatchCount()) {
+            result.put(FOURTH_WINNER.getRank(), result.getOrDefault(FOURTH_WINNER.getRank(), 0) + 1);
+        } else if (matchCount == FIFTH_WINNER.getMatchCount()) {
+            result.put(FIFTH_WINNER.getRank(), result.getOrDefault(FIFTH_WINNER.getRank(), 0) + 1);
         }
     }
 
     private double calculateTotalRevenue(Map<Integer, Integer> result, int count) {
-        double totalRevenue = result.getOrDefault(1, 0) * FIRST_PRIZE
-                + result.getOrDefault(2, 0) * SECOND_PRIZE
-                + result.getOrDefault(3, 0) * THIRD_PRIZE
-                + result.getOrDefault(4, 0) * FOURTH_PRIZE
-                + result.getOrDefault(4, 0) * FOURTH_PRIZE
-                + result.getOrDefault(5, 0) * FIFTH_PRIZE;
+        double totalRevenue = result.getOrDefault(FIFTH_WINNER.getRank(), 0) * FIRST_WINNER.getPrizeMoney()
+                + result.getOrDefault(SECOND_WINNER.getRank(), 0) * SECOND_WINNER.getPrizeMoney()
+                + result.getOrDefault(THIRD_WINNER.getRank(), 0) * THIRD_WINNER.getPrizeMoney()
+                + result.getOrDefault(FOURTH_WINNER.getRank(), 0) * FOURTH_WINNER.getPrizeMoney()
+                + result.getOrDefault(FIFTH_WINNER.getRank(), 0) * FIFTH_WINNER.getPrizeMoney();
 
         int totalInvest = count * LOTTO_PRICE;
         double rateOfReturn = (totalRevenue / totalInvest) * 100;

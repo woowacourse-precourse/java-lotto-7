@@ -1,5 +1,11 @@
 package lotto.view;
 
+import static lotto.constant.Winner.FIFTH_WINNER;
+import static lotto.constant.Winner.FIRST_WINNER;
+import static lotto.constant.Winner.FOURTH_WINNER;
+import static lotto.constant.Winner.SECOND_WINNER;
+import static lotto.constant.Winner.THIRD_WINNER;
+
 import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoResultDto;
@@ -7,11 +13,7 @@ import lotto.dto.LottoResultDto;
 public class OutputView {
     private static final String PURCHASE_COUNT = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS = "당첨 통계\n---";
-    private static final String FIFTH_WINNER = "3개 일치 (5,000원) - %d개\n";
-    private static final String FOURTH_WINNER = "4개 일치 (50,000원) - %d개\n";
-    private static final String THIRD_WINNER = "5개 일치 (1,500,000원) - %d개\n";
-    private static final String SECOND_WINNER = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
-    private static final String FIRST_WINNER = "6개 일치 (2,000,000,000원) - %d개\n";
+    private static final String PRIZE_DETAIL = "%d개 일치 (%,d원) - %d개\n";
     private static final String REVENUE_RESULT = "총 수익률은 %.1f%%입니다.";
 
 
@@ -25,11 +27,16 @@ public class OutputView {
 
     public void printWinningDetail(LottoResultDto dto) {
         System.out.println(WINNING_STATISTICS);
-        System.out.printf(FIFTH_WINNER, dto.result().getOrDefault(5, 0));
-        System.out.printf(FOURTH_WINNER, dto.result().getOrDefault(4, 0));
-        System.out.printf(THIRD_WINNER, dto.result().getOrDefault(3, 0));
-        System.out.printf(SECOND_WINNER, dto.result().getOrDefault(2, 0));
-        System.out.printf(FIRST_WINNER, dto.result().getOrDefault(1, 0));
+        System.out.printf(PRIZE_DETAIL, FIFTH_WINNER.getMatchCount(), FIFTH_WINNER.getPrizeMoney(),
+                dto.result().getOrDefault(FIFTH_WINNER.getRank(), 0));
+        System.out.printf(PRIZE_DETAIL, FOURTH_WINNER.getMatchCount(), FOURTH_WINNER.getPrizeMoney(),
+                dto.result().getOrDefault(FOURTH_WINNER.getRank(), 0));
+        System.out.printf(PRIZE_DETAIL, THIRD_WINNER.getMatchCount(), THIRD_WINNER.getPrizeMoney(),
+                dto.result().getOrDefault(THIRD_WINNER.getRank(), 0));
+        System.out.printf(PRIZE_DETAIL, SECOND_WINNER.getMatchCount(), SECOND_WINNER.getPrizeMoney(),
+                dto.result().getOrDefault(SECOND_WINNER.getRank(), 0));
+        System.out.printf(PRIZE_DETAIL, FIRST_WINNER.getMatchCount(), FIRST_WINNER.getPrizeMoney(),
+                dto.result().getOrDefault(FIRST_WINNER.getRank(), 0));
     }
 
     public void printRevenueResult(LottoResultDto dto) {
