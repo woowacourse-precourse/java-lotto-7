@@ -3,19 +3,14 @@ package lotto.lottoModel;
 import java.util.List;
 
 public class HitLottoDTO {
-    private List<Integer> hitNumbers;
-    private int bonusNumber;
+    private List<Integer> allHitNumbers;
 
-    public HitLottoDTO(List<Integer> hitNumbers, int bonusNumber) {
-        this.hitNumbers = hitNumbers;
-        this.bonusNumber = bonusNumber;
+    public HitLottoDTO(List<Integer> allHitNumbers) {
+        this.allHitNumbers = allHitNumbers;
     }
 
-    public List<Integer> getHitNumbers() {
-        return hitNumbers;
+    public List<Integer> getAllHitNumbers() {
+        return allHitNumbers;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }
