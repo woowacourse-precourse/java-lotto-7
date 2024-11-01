@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Number;
 import lotto.model.Price;
+import lotto.model.Stastistics;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -31,6 +32,8 @@ public class LottoController {
         WinningLotto winningLotto = inputBonusNumber(WinningLottoNum);
 
         outputView.printWinningStatistics();
+        Stastistics stastistics = new Stastistics(lottos, winningLotto);
+        outputResultStatistics(stastistics, ticketCount);
 
         inputView.closeConsole();
     }
@@ -73,5 +76,12 @@ public class LottoController {
                 outputView.printResult(e.getMessage());
             }
         }
+    }
+
+    private void outputResultStatistics(Stastistics stastistics, int ticketCount) {
+        String rankStastistics = stastistics.getStatisticsString();
+        float profitRate = stastistics.calculateProfitRate(ticketCount);
+        outputView.printResult(rankStastistics);
+        outputView.printProfitRate(profitRate);
     }
 }

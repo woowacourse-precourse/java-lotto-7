@@ -29,6 +29,19 @@ public class Number {
         return value < 1 || value > 45;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Number number = (Number) obj;
+        return value == number.value;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(value);
+    }
+
     public int getValue() {
         return value;
     }

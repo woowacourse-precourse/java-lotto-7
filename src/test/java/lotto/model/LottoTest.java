@@ -41,7 +41,7 @@ class LottoTest {
     void 로또_번호는_오름차순으로_정렬_되어야_한다() {
         Lotto lotto = new Lotto("1,5,3,2,6,4");
 
-        List<Number> numbers = lotto.getNumbers();
+        List<Number> numbers = lotto.getLottoNumbers();
 
         assertThat(numbers).extracting(Number::getValue).isSorted();
     }

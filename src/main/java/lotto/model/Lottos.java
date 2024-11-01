@@ -40,4 +40,8 @@ public class Lottos {
         }
         return result.toString();
     }
+
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
 }

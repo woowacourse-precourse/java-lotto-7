@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.util.inputParser.convertStringToList;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -82,7 +81,7 @@ public class Lotto {
                 .collect(Collectors.joining(", ", "[", "]"));
     }
 
-    public List<Number> getNumbers() {
+    public List<Number> getLottoNumbers() {
         return numbers;
     }
 }
