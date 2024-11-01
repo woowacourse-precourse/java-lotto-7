@@ -24,7 +24,7 @@ public class PurchaseAmountValidator implements Validator<String> {
 
     private void validateDividedByLottoPrice (int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE.getValue() != 0){
-            throw new IllegalArgumentException(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage());
+            throw new IllegalArgumentException(String.format(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage(),LOTTO_PRICE.getValue()));
         }
     }
 
