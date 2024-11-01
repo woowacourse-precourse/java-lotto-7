@@ -4,12 +4,12 @@ import lotto.model.exception.LottoNumberInvalidException;
 
 public class LottoNumber {
 
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
+    protected static final int MIN_NUMBER = 1;
+    protected static final int MAX_NUMBER = 45;
 
     private final int number;
 
-    private LottoNumber(int number) {
+    public LottoNumber(int number) {
         this.number = number;
     }
 
