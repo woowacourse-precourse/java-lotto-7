@@ -1,12 +1,12 @@
 package lotto.validator;
 
 import static lotto.ErrorCode.INVALID_WINNIG_NUMBER_COUNT;
+import static lotto.constant.LottoConstant.VALID_LOTTO_NUMBER_COUNT;
 
 import java.util.List;
 
 public class LottoValidator {
 
-    private final int VALID_LOTTO_NUMBER_COUNT = 6;
     private final RangeValidator rangeValidator;
     private final DuplicateValidator<List<Integer>> duplicateValidator;
 

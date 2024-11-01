@@ -1,11 +1,10 @@
 package lotto.validator;
 
 import static lotto.ErrorCode.INVALID_NUMBER_RANGE;
+import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 
 public class DefaultRangeValidator implements RangeValidator {
-
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     @Override
     public void validateNumberRange(final int number) {

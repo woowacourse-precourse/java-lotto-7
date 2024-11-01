@@ -1,6 +1,6 @@
 package lotto;
 
-import domain.Lotto;
+import lotto.domain.Lotto;
 import java.util.stream.Stream;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
