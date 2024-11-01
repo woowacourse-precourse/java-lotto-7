@@ -26,6 +26,7 @@ public class Input {
             }
         }
     }
+
     private List<Integer> changeInput(String input) {
         String[] splitInput = input.split(",");
         List<Integer> numbers = new ArrayList<>();
@@ -54,5 +55,3 @@ public class Input {
         }
     }
 }
-
-

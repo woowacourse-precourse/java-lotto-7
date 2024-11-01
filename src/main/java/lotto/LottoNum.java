@@ -85,6 +85,7 @@ public class LottoNum {
             return;
         }
     }
+
     private int rateResult(int[] counts){
         int sum = 0;
         sum += counts[0] * CORRECT_3;
@@ -93,8 +94,8 @@ public class LottoNum {
         sum += counts[3] * CORRECT_BONUS_5;
         sum += counts[4] * CORRECT_6;
         return sum;
-
     }
+
     public void printRes(int[] counts, int money) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
