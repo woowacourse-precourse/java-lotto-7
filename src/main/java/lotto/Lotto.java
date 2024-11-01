@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_COUNTS;
 import static lotto.exception.ErrorMessage.INVALID_LOTTO_DUPLICATE;
+import static lotto.exception.ErrorMessage.INVALID_LOTTO_RANGE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateCount(numbers);
         validateDuplication(numbers);
+        validateRange(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
@@ -35,6 +37,14 @@ public class Lotto {
             }
         }
         ;
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new LottoException(INVALID_LOTTO_RANGE);
+            }
+        }
     }
 
     // TODO: 추가 기능 구현
