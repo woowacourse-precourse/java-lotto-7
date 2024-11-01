@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.service.LottoService;
 import lotto.service.PurchaseService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -7,19 +8,19 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final PurchaseService purchaseService = new PurchaseService();
 
     public void purchaseLotto() {
+        PurchaseService purchaseService = new PurchaseService();
         int price = inputView.getPrice();
-
         int lottoCount = purchaseService.buyLotto(price);
-        outputView.printPurchaseResult(lottoCount);
 
-        //수량만큼 로또 발부
-        runLottoMachine(lottoCount);
+        outputView.printPurchaseResult(lottoCount);
+        makeLotto(lottoCount);
     }
 
-    public void runLottoMachine(int lottoCount) {
-
+    public void makeLotto(int lottoCount) {
+        LottoService lottoService = new LottoService();
+        lottoService.makeLotto(lottoCount);
+        lottoService.printLottoNumbers();
     }
 }
