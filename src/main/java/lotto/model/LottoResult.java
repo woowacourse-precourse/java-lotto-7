@@ -47,4 +47,14 @@ public class LottoResult {
         return false;
     }
 
+    private boolean matchBonusNumber(Lotto lotto, int bonusNumber) {
+        for (Integer number : lotto.getNumbers()) {
+            if (number == bonusNumber) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
