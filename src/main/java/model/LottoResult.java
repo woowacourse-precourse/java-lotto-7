@@ -12,4 +12,18 @@ public class LottoResult {
             rankCounts.put(rank, 0);
         }
     }
+
+    public void incrementRankCount(LottoRank rank) {
+        rankCounts.put(rank, rankCounts.get(rank) + 1);
+        totalPrizeAmount += rank.getPrize();
+    }
+
+    public int getTotalPrizeAmount() {
+        return totalPrizeAmount;
+    }
+
+    public int getRankCount(LottoRank rank) {
+        return rankCounts.get(rank);
+    }
+
 }
