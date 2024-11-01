@@ -18,7 +18,35 @@ public class LottoController {
         List<Lotto> lottoNumbers = createLottoNumbers(count);
         OutputView.printLottoCount(count);
         OutputView.printLottoNumbers(lottoNumbers);
+
+        String inputWinningNumbers = InputView.getWinningNumbers();
+        validateWinningNumbers(inputWinningNumbers);
+
     }
+
+    private static Lotto validateWinningNumbers(String inputWinningNumbers) {
+        String[] inputNumbers = inputWinningNumbers.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String number : inputNumbers) {
+            int parsedNumber = parseWinningNumber(number.trim());
+            winningNumbers.add(parsedNumber);
+        }
+        return new Lotto(winningNumbers);
+    }
+
+    private static int parseWinningNumber(String number) {
+        try {
+            int winningNumber = Integer.parseInt(number);
+            if(winningNumber<1 || winningNumber>45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+            }
+            return winningNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+        }
+    }
+
     public static List<Lotto> createLottoNumbers (int count) {
 
         List<Lotto> lottos = new ArrayList<>();
