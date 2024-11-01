@@ -25,7 +25,7 @@ public class Controller {
 
     public void checkWinPrizes() {
         lottoManager.setWinningNumbers(inputValidation.getValidatedWinningNumbers());
-        lottoManager.setBonusNumber(inputValidation.getValidatedBonusNumber(lottoManager.getWinLottiesNumber()));
+        lottoManager.setBonusNumber(inputValidation.getValidatedBonusNumber(lottoManager.getWinningNumbers()));
         lottoManager.checkLottiesWin();
     }
 

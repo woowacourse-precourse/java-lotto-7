@@ -113,9 +113,9 @@ public class InputValidation {
     }
 
     public void checkUniqueBetweenWinningAndBonus(List<Integer> winningNumbers, int bonusNumber) {
-        for (int number : winningNumbers) {
+        for (Integer number : winningNumbers) {
             if (number == bonusNumber) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 번호여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다");
             }
         }
     }

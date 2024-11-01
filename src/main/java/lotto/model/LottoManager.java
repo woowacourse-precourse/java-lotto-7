@@ -109,7 +109,7 @@ public class LottoManager {
 
     public Double calculateEarnRate() {
         double earnRate = ((double) this.sumOfLotto() / (double) this.money)*100;
-        return (double) (Math.round(earnRate * 10) / 10.0);
+        return Math.round(earnRate * 10) / 10.0;
     }
 
     private int sumOfLotto() {
@@ -126,8 +126,8 @@ public class LottoManager {
         return lotties;
     }
 
-    public List<Integer> getWinLottiesNumber() {
-        return winLottiesCount;
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 
     public Long getMoney() {
