@@ -15,9 +15,29 @@ public class LottoGenerator {
     }
 
     public LottoGenerator(Integer price, Supplier<List<Integer>> randomNumbers) {
+        validate(price);
         this.price = price;
         this.randomNumbers = randomNumbers;
     }
+
+    private void validate(Integer price) {
+        validatePriceNegative(price);
+        validatePriceDividable(price);
+    }
+
+    private void validatePriceNegative(Integer price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("[ERROR] Price cannot be negative");
+        }
+    }
+
+    private void validatePriceDividable(Integer price) {
+        if( price % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] Price must be a multiple of 1000");
+        }
+    }
+
+
 
     private Lotto generateLotto(){
         List<Integer> numbers = randomNumbers.get();
