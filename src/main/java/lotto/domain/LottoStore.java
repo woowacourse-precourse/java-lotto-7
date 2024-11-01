@@ -1,7 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.dto.LottoPaper;
+import lotto.generator.LottoNumberGenerator;
 
 public class LottoStore {
     private static final Won BASE_AMOUNT = new Won(1000);

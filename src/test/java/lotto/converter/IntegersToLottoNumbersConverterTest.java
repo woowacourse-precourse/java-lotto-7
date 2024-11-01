@@ -3,7 +3,7 @@ package lotto.converter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.LottoNumber;
+import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 class IntegersToLottoNumbersConverterTest {

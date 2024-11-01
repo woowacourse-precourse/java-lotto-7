@@ -1,7 +1,9 @@
-package lotto;
+package lotto.dto;
 
 import java.util.List;
 import java.util.Objects;
+import lotto.domain.Lotto;
+import lotto.domain.Won;
 
 public class LottoPaper {
 

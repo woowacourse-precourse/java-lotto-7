@@ -1,7 +1,7 @@
 package lotto.converter;
 
 import java.util.List;
-import lotto.LottoNumber;
+import lotto.domain.LottoNumber;
 
 public class IntegersToLottoNumbersConverter implements LottoNumbersConverter {
 
