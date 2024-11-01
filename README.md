@@ -72,6 +72,8 @@
   - [x] `validateDivisionIntoThousand()`를 호출해 입력이 1000으로 나누어 떨어지는지 검증
     - [x] 나누어 떨어지지 않는다면 예외 발생
 
+### WinningNumberValidator
+
 ### enum WinningPrize
 int standard
 
