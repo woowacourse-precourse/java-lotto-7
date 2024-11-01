@@ -8,13 +8,12 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
+import lotto.util.ErrorMessage;
 import lotto.util.NumberGenerate;
 
 public class LottoMachine {
 
     public static final int LOTTO_PRICE = 1000;
-    public static final int LOTTO_RANGE_START = 1;
-    public static final int LOTTO_RANGE_END = 45;
 
     private final NumberGenerate lottoGenerate;
     private int money;
@@ -24,13 +23,14 @@ public class LottoMachine {
     }
 
     public PurchasedLottos issueLotto(int money) {
+        validateMoneyLessThenZero(money);
         validateMoneyModLottoPrice(money);
         int lottoCnt = money / LOTTO_PRICE;
 
         // 로또 발행
         List<Lotto> lottos = new ArrayList<>();
         for (int cnt = 0; cnt < lottoCnt; cnt++) {
-            List<Integer> numbers = lottoGenerate.randomGenerateInRange(LOTTO_RANGE_START, LOTTO_RANGE_END);
+            List<Integer> numbers = lottoGenerate.randomGenerateInRange();
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
@@ -45,28 +45,35 @@ public class LottoMachine {
 
     private void validateMoneyModLottoPrice(int money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 돈은 천원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_NOT_MOD_PRICE.getMsg());
+        }
+    }
+
+    private void validateMoneyLessThenZero(int money) {
+        if (money <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMsg());
         }
     }
 
     public LottoResult winLotto(PurchasedLottos purchasedLotto, WinningLotto winningLotto) {
-        Set<Integer> prize = new HashSet<>();
+        long max = 0;
         boolean bonus = false;
         for (Lotto lotto : purchasedLotto.getLottos()) {
             List<Integer> lottoNums = lotto.lottoNums();
-            prize.addAll(winningLotto.lottoNums().stream()
-                    .filter(lottoNums::contains)
-                    .toList());
-
+            long count = winningLotto.lottoNums()
+                    .stream()
+                    .filter(num -> lottoNums.contains(num))
+                    .count();
+            max = Math.max(count, max);
             if (lottoNums.contains(winningLotto.bonusBall().getNum())) {
                 bonus = true;
             }
         }
 
-        return new LottoResult(calculateRank(prize, bonus));
+        return new LottoResult(calculateRank(max, bonus));
     }
 
-    private static Rank calculateRank(Set<Integer> prize, boolean bonus) {
-        return Rank.calculateRank(prize.size(), bonus);
+    private static Rank calculateRank(long count, boolean bonus) {
+        return Rank.calculateRank(count, bonus);
     }
 }
