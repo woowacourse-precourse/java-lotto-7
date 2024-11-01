@@ -15,4 +15,8 @@ public class Payment {
     public Integer getLottoCount() {
         return wallet.getMoney() / MIN_MONEY_UNIT;
     }
+
+    public Integer getWalletMoney() {
+        return wallet.getMoney();
+    }
 }
