@@ -12,9 +12,6 @@ public class LottoController {
     InputView inputView;
     OutputView outputView;
 
-    private int payment;
-    private int issuelottoNumber;
-
     public LottoController() {
         lottoModel = new LottoModel();
         inputView = new InputView();
@@ -23,15 +20,14 @@ public class LottoController {
 
     public void tryLotto() {
         // 지불 금액 입력 받고 int로 형변환
-        outputView.askPayment();
-        payment = inputView.inputPayment();
-
         // 구입금액을 1000으로 나누어 구입할 로또 갯수 반환
-        issuelottoNumber = lottoModel.countIssueLottoNumber(payment);
+        outputView.askPayment();
+        int lottoAmount = inputView.inputPayment();
+
         // 구입갯수만큼 로또를 발행해 리스트로 저장
-        List<Lotto> issuedLottos = lottoModel.issueLottos(issuelottoNumber);
+        List<Lotto> issuedLottos = lottoModel.issueLottos(lottoAmount);
         // 구입 갯수 출력
-        outputView.alertBuyingNumber(issuelottoNumber);
+        outputView.alertBuyingNumber(lottoAmount);
         // 로또들의 각 로또 번호 정렬
         List<List<Integer>> sortedNumbers = lottoModel.sortLottos(issuedLottos);
 
@@ -41,13 +37,11 @@ public class LottoController {
 
         // 당첨 번호 입력받기
         outputView.askWinningNumbers();
-        String inputWinningNumber = inputView.inputWinningNumbersString();
+        List<Integer> winningNumbers = inputView.inputWinningNumbersString();
 
-        // 당첨 번호 6개 저장하기
-        List<Integer> winningNumbers = inputView.winningNumbers(inputWinningNumber);
         // 보너스 번호 입력 받기
         outputView.askBonusNumber();
-        int bonusNumber = inputView.inputBonusNumberString();
+        int bonusNumber = inputView.inputBonusNumberString(winningNumbers);
 
         // 로또별 당첨 내역 출력
         outputView.alertStartStat();
