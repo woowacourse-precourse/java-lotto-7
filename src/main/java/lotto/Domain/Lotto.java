@@ -1,6 +1,8 @@
 package lotto.Domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,7 +13,7 @@ public class Lotto {
     }
 
     // 추가적인 validation을 대비해 validate 매서드 생성
-    private void validate(List<Integer> numbers){
+    private void validate(List<Integer> numbers) {
         validateSizeOfNumber(numbers);
     }
 
@@ -24,5 +26,15 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        final String LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE = "[ERROR] 로또 번호에서 중복되는 숫자가 존재하면 안됩니다.";
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE);
+        }
+    }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
     // TODO: 추가 기능 구현
 }
