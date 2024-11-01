@@ -1,20 +1,28 @@
 package lotto.controller;
 
 import lotto.model.LottoModel;
+import lotto.service.LottoService;
 import lotto.validation.Validator;
 import lotto.view.LottoView;
 
 import java.util.*;
 
 public class LottoController {
-    private final LottoModel lottoModel = new LottoModel();
-    private final LottoView lottoView = new LottoView();
+    private final LottoModel lottoModel;
+    private final LottoView lottoView;
+    private final LottoService lottoService;
+
+    public LottoController() {
+        this.lottoModel = new LottoModel();
+        this.lottoView = new LottoView();
+        this.lottoService = new LottoService(lottoModel);
+    }
 
 
     public void start() {
         int lottoCount = getLottoCount();
         lottoView.output.lottoCount(lottoCount);
-        lottoModel.generateLottos(lottoCount);
+        lottoService.generateLottos(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
             lottoView.output.lottoNumber(lottoModel.getLottoNumbers(i));
         }
@@ -24,38 +32,10 @@ public class LottoController {
         //당첨 로직 구현
         int[] ans = new int[5];
         for (int i = 0; i < lottoCount; i++) {
-            winningCount(winningNumber, i, ans, bonusNumber);
+            lottoService.winningCount(winningNumber, i, ans, bonusNumber);
         }
 
-        lottoView.output.winningResult(ans, getRate(lottoCount, ans));
-    }
-
-    private void winningCount(List<Integer> winningNumber, int i, int[] ans, int bonusNumber) {
-        int total = 0;
-        for (Integer winVal : winningNumber) {
-            if (lottoModel.getLottoNumbers(i).contains(winVal)) {
-                total++;
-            }
-        }
-        if (total == 3) ans[0]++;
-        if (total == 4) ans[1]++;
-        if (total == 5) {
-            if (lottoModel.getLottoNumbers(i).contains(bonusNumber)) {
-                ans[3]++;
-                return;
-            }
-            ans[2]++;
-        }
-        if (total == 6) ans[4]++;
-    }
-
-    private static double getRate(int lottoCount, int[] ans) {
-        int price = lottoCount * 1000;
-        long sum = 0;
-        sum = ans[0] * 5000L + ans[1] * 50000L + ans[2] * 1500000L
-                + ans[3] * 30000000L + ans[4] * 2000000000L;
-        double rate = ((double)sum / price) * 100;
-        return rate;
+        lottoView.output.winningResult(ans, lottoService.getRate(lottoCount, ans));
     }
 
     int getLottoCount() {
