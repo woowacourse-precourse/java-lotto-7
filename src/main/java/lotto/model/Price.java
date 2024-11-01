@@ -17,4 +17,8 @@ public class Price {
             throw new IllegalArgumentException("[ERROR] 0초과의 값을 입력하시오.");
         }
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

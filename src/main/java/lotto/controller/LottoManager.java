@@ -6,7 +6,9 @@ import lotto.model.BonusLotto;
 import lotto.model.Lotto;
 import lotto.model.NumberParser;
 import lotto.model.Price;
+import lotto.model.PurchasedLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoManager {
 
@@ -18,7 +20,9 @@ public class LottoManager {
         InputView inputView = new InputView();
 
         int price = NumberParser.stringToInt(inputView.price()); //구입금액 입력 받기
-        new Price(price); //검사 후 저장
+        Price money = new Price(price); //검사 후 저장
+
+        randomLotto(money.getPrice()); //금액에 맞게 로또 발행
 
         List<Integer> lottoNumbers = new ArrayList<>();
         String[] winningNum = inputView.winningNumber().split(","); //당첨번호 입력 받기
@@ -30,5 +34,19 @@ public class LottoManager {
         int bonusNum = NumberParser.stringToInt(inputView.bonusNumber()); //보너스 번호 입력 받기
         BonusLotto bonusLotto = new BonusLotto(bonusNum); //보너스번호 숫자 범위 검사 후 저장
         bonusLotto.bonusDuplicate(bonusNum, lotto.getLottoNumbers()); //중복 검사
+
+    }
+
+    public void randomLotto(int money) {
+        int count = money / 1000;
+        OutputView outputView = new OutputView();
+        outputView.count(count);
+
+        PurchasedLotto purchasedLotto = new PurchasedLotto();
+        for (int i = 0; i < count; i++) {
+            List<Integer> lottoNumbers = RandomLotto.generateRandomLotto();
+            outputView.printLotto(lottoNumbers);
+            purchasedLotto.addPurchasedLotto(lottoNumbers);
+        }
     }
 }
