@@ -1,4 +1,4 @@
-package lotto.model.validator;
+package lotto.model.validator.lotto;
 
 import static lotto.exception.InvalidLottoNumberException.DUPLICATE_WINNING_NUMBERS;
 import static lotto.exception.InvalidLottoNumberException.INVALID_WINNING_NUMBERS;
@@ -12,9 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.model.validator.lotto.WinningNumbersValidator;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersValidatorTest {
+class WinningNumbersValidatorTest extends ValidatorTestBase{
 
     @Test
     void 로또_번호가_유효한_개수일_때_예외가_발생하지_않는다() {
@@ -44,47 +45,15 @@ class WinningNumbersValidatorTest {
                 .hasMessage(INVALID_WINNING_NUMBERS);
     }
 
-    @Test
-    void 로또_번호가_중복되지_않으면_예외가_발생하지_않는다() {
-        List<Integer> uniqueLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-        WinningNumbersValidator validator = new WinningNumbersValidator(uniqueLottoNumbers);
-
-        assertDoesNotThrow(validator::validate);
-    }
-
-    @Test
-    void 로또_번호가_중복되면_예외가_발생한다() {
-        List<Integer> duplicateLottoNumbers = List.of(1, 2, 3, 4, 5, 5);
-        WinningNumbersValidator validator = new WinningNumbersValidator(duplicateLottoNumbers);
-
-        assertThatThrownBy(validator::validate)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(DUPLICATE_WINNING_NUMBERS);
-    }
-
-    @Test
-    void 로또_번호가_모두_유효한_범위에_있으면_예외가_발생하지_않는다() {
-        List<Integer> inRangeNumbers = List.of(1, 2, 3, 4, 5, 6);
-        WinningNumbersValidator validator = new WinningNumbersValidator(inRangeNumbers);
-
-        assertDoesNotThrow(validator::validate);
-    }
-
-    @Test
-    void 로또_번호에_유효한_범위를_벗어난_숫자가_있으면_예외가_발생한다() {
-        List<Integer> outOfRangeNumbers = List.of(LOTTO_NUMBER_MIN - 1, 10, 20, 30, 40, LOTTO_NUMBER_MAX + 1);
-
-        WinningNumbersValidator validator = new WinningNumbersValidator(outOfRangeNumbers);
-
-        assertThatThrownBy(validator::validate)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(OUT_OF_RANGE_NUMBER);
-    }
-
 
     private List<Integer> createLottoNumbers(int size) {
         return IntStream.rangeClosed(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MIN + size - 1)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    protected WinningNumbersValidator createValidator(List<Integer> winNumbers, Integer bonusNumber) {
+        return new WinningNumbersValidator(winNumbers);
     }
 }
