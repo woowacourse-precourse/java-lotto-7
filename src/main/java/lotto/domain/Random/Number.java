@@ -55,8 +55,8 @@ public class Number {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final Number number = (Number) obj;
-        return Objects.equals(this.number, number.number);
+        final Number otherNumber = (Number) obj;
+        return Objects.equals(this.number, otherNumber.number);
     }
 
     @Override
