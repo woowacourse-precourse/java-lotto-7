@@ -1,7 +1,6 @@
-package lotto.domain.ticket;
+package lotto.domain;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
 import lotto.global.common.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
