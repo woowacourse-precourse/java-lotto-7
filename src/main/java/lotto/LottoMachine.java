@@ -2,6 +2,13 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Budget;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbersGenerator;
+import lotto.domain.WinningNumbers;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoMachine {
 
@@ -18,6 +25,8 @@ public class LottoMachine {
         int lottoQuantity = budget.getAmount() / LOTTO_PRICE;
         purchaseLotto(lottoQuantity);
         OutputView.displayPurchasedLottoNumbers(purchasedLotto);
+
+        WinningNumbers winningNumbers = inputWinningNumbers();
     }
 
     private Budget inputBudget() {
@@ -34,6 +43,16 @@ public class LottoMachine {
         for (int i = 0; i < lottoQuantity; i++) {
             List<Integer> numbers = LottoNumbersGenerator.generate();
             purchasedLotto.add(new Lotto(numbers));
+        }
+    }
+
+    private WinningNumbers inputWinningNumbers() {
+        while (true) {
+            try {
+                return new WinningNumbers(InputView.readWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
