@@ -8,11 +8,12 @@ public class StringParser {
     private StringParser() {
     }
 
-    public static List<Integer> parseToIntegerList(String input) {
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+    public static List<Integer> parseToIntegerList(List<String> input) {
+        return input.stream().map(Integer::parseInt).collect(Collectors.toList());
+    }
+
+    public static boolean isNumeric(String str) {
+        return str.chars().allMatch(Character::isDigit);
     }
 }
 

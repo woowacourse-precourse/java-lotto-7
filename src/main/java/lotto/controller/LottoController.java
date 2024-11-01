@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.enums.LottoRank;
 import lotto.model.LottoService;
 import lotto.view.InputView;
@@ -20,20 +20,42 @@ public class LottoController {
     }
 
     public void start() {
-        int purchaseAmount, numOfTickets;
+        int purchaseAmount = 0, numOfTickets = 0;
         List<Lotto> lottos;
         List<Integer> winningNumbers;
-        int bonusNumber;
+        int bonusNumber = 0;
 
-        purchaseAmount = requestPurchaseAmount();
+        while(true) {
+            try {
+                purchaseAmount = requestPurchaseAmount();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
         numOfTickets = purchaseAmount / 1000;
         outputView.printNumOfTickets(numOfTickets);
 
         lottos = lottoService.getLottos(numOfTickets);
         outputView.printGeneratedLottos(lottos);
 
-        winningNumbers = requestWinningNumbers();
-        bonusNumber = requestBonusNumber();
+        while (true) {
+            try {
+                winningNumbers = requestWinningNumbers();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                bonusNumber = requestBonusNumber();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         List<LottoRank> ranks = lottoService.getRanks(winningNumbers, bonusNumber);
         outputView.printResult(lottoService.getPrizeResult(ranks), lottoService.getProfitRateResult(ranks, purchaseAmount));

@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
 import lotto.enums.LottoRank;
 import lotto.util.FormatString;
 
@@ -23,7 +22,7 @@ public class LottoService {
     }
 
     private List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
 
         Collections.sort(lottoNumbers);
 

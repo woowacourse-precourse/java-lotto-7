@@ -1,10 +1,7 @@
 package lotto.view;
 
-import lotto.Lotto;
-import lotto.enums.LottoRank;
-import lotto.util.FormatString;
+import lotto.model.Lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
