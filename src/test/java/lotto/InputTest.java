@@ -76,13 +76,12 @@ public class InputTest {
 
         @DisplayName("숫자가 아닌 당첨번호 입력시 예외처리를 한다")
         @ParameterizedTest()
-        @ValueSource(strings = {"1,2,3,a,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:"})
+        @ValueSource(strings = {"1,2,a,4,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:", "1,,2,3,4,5,6"})
         void 숫자가_아닌_당첨번호_예외(String input){
 
             WinningNumberParser parser = new WinningNumberParser();
             List<String> parsedInput = parser.parseWinningNumber(input);
-
-
+            
             assertThrows(IllegalArgumentException.class, () -> {
                 validator.validateWinningNumber(parsedInput);
             });
