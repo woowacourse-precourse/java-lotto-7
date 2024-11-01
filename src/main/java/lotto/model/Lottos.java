@@ -22,10 +22,6 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public List<LottoNumbers> getAllLottoNumbers() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
