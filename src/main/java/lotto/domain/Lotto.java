@@ -14,7 +14,7 @@ public class Lotto {
         validateNumberCount(numbers);
         validateNumberRange(numbers);
         validateNumberDuplication(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumber(numbers);
     }
 
     private void validateNumberCount(List<Integer> numbers) {
@@ -42,6 +42,10 @@ public class Lotto {
     private boolean IsNumberDuplicate(List<Integer> numbers) {
         return numbers.stream().distinct().toList()
                 .size() != numbers.size();
+    }
+
+    private List<Integer> sortNumber(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
     }
 
     public List<Integer> getNumbers() {
