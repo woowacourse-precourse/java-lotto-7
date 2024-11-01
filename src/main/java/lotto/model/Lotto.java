@@ -3,12 +3,11 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lotto.utilities.Sorter;
 import lotto.validation.LottoNumberValidator;
 
 public class Lotto {
-  private static final String LOTTO_NUMBERS_SEPARATER = ", ";
+
   private final List<Integer> numbers;
 
   public Lotto(List<Integer> numbers) {
@@ -20,11 +19,9 @@ public class Lotto {
     LottoNumberValidator.mainValidator(numbers);
   }
 
-  public String numbersToString() {
+  public String sortedNumbersToString() {
     Sorter.inAscendingOrder(numbers);
-    return numbers.stream()
-        .map(String::valueOf)
-        .collect(Collectors.joining(LOTTO_NUMBERS_SEPARATER));
+    return numbers.toString();
   }
 
   public int compareWinningNumbers(List<Integer> winningNumbers) {

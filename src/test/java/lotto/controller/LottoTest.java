@@ -44,8 +44,8 @@ class LottoTest {
     void 정상적인_로또_번호를_문자열로_변환(){
         List<Integer> numbers = Arrays.asList(5, 1, 3, 2, 4, 6);
         Lotto lotto = new Lotto(numbers);
-        String expectedOutput = "1, 2, 3, 4, 5, 6";
-        
-        assertThat(lotto.numbersToString()).isEqualTo(expectedOutput);
+        String expectedOutput = "[1, 2, 3, 4, 5, 6]";
+
+        assertThat(lotto.sortedNumbersToString()).isEqualTo(expectedOutput);
     }
 }
