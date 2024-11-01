@@ -2,27 +2,29 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
-import lotto.domain.LottoStorage;
+import lotto.domain.LottoManager;
+import lotto.utils.RandomNumbersSelector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
     private final LottoGenerator lottoGenerator;
-    private final LottoStorage lottoStorage;
+    private final LottoManager lottoManager;
 
-    public LottoService(LottoGenerator lottoGenerator, LottoStorage lottoStorage) {
+    public LottoService(LottoGenerator lottoGenerator, LottoManager lottoManager) {
         this.lottoGenerator = lottoGenerator;
-        this.lottoStorage = lottoStorage;
+        this.lottoManager = lottoManager;
     }
 
-    public void createLottoStorage(String buyLottoMoney) {
-        int buyLottoCount = calculateBuyLottoCount(Integer.parseInt(buyLottoMoney));
+    public void createLottos(int buyLottoCount) {
         for (int i = 0; i < buyLottoCount; i++) {
-            List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers();
-            Lotto lotto = new Lotto(lottoNumbers);
-            lottoStorage.addLotto(lotto);
+            List<Integer> randomNumbers = RandomNumbersSelector.selectRandomNumbers();
+            List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers(randomNumbers);
+            lottoManager.createLottosByRandomNumbers(lottoNumbers);
         }
     }
+
 
     public int calculateBuyLottoCount(int buyLottoMoney) {
         int lottoCount = buyLottoMoney / 1000;
