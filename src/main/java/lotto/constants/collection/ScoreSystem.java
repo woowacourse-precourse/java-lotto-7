@@ -9,7 +9,7 @@ import java.util.Map;
 
 public enum ScoreSystem implements Constants<LinkedHashMap> {
 
-    DEFAULT(new HashMap<>() {{
+    DEFAULT(new LinkedHashMap<>() {{
         put(List.of(3, 0), 0);
         put(List.of(4, 0), 0);
         put(List.of(5, 0), 0);
