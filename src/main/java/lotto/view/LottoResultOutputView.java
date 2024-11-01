@@ -24,6 +24,10 @@ public class LottoResultOutputView {
     }
 
     private void printLottoResultByRank(Rank rank, int rankCount) {
+        if (rank.equals(Rank.NONE)) {
+            return;
+        }
+
         String rankReward = decimalFormat.format(rank.reward);
 
         if (rank.equals(Rank.SECOND)) {
