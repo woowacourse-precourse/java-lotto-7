@@ -141,11 +141,13 @@ private final List<Integer> numbers;
 _Implementing functionality in a bottom-up approach_
 
 0. [x] 입력 기능 모듈 구현 
+   - [x] 입력 메시지 Enum 구현 
+   - [x] 입력 예외 메시지 Enum 구현 
    - [ ] 예외 처리 : 숫자가 아닌 문자를 입력한 경우   
    - [ ] 예외 처리 : Null 값인 경우   
-   
 
 1. [ ] 입력 검증 모듈 구현
+   - [x] 검증 예외 메시지 Enum 구현
    - [ ] 예외 처리 : 구입 금액이 1,000원 단위가 아닌 경우 
    - [ ] 예외 처리 : 구입 금액이 0원 이하인 경우 
    - [ ] 예외 처리 : 당첨 번호가 6개가 아닌 경우 
