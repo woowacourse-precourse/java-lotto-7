@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import lotto.constants.OutputMessages;
 
@@ -17,7 +18,8 @@ public class OutputView {
         System.out.printf(OutputMessages.ANNOUNCE_LOTTO_COUNT_FORMAT, count);
     }
 
-    public static void printLotto(List<Integer> lotto) {
+    public static void printSortedLotto(List<Integer> lotto) {
+        Collections.sort(lotto);
         System.out.println(lotto);
     }
 
@@ -39,6 +41,10 @@ public class OutputView {
 
     public static void printWinningResult(int count, int prizeMoney, int hit, String bonus) {
         System.out.printf(OutputMessages.WIN_RESULT_FORMAT, count, bonus, prizeMoney, hit);
+        System.out.println();
+    }
+
+    public static void printEnter() {
         System.out.println();
     }
 
