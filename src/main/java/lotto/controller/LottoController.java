@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.model.LottoPublisher;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.ValidationManager;
@@ -13,17 +14,20 @@ public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
     private final ValidationManager validationManager;
+    private final LottoPublisher lottoPublisher;
 
-    public LottoController(InputView inputView, OutputView outputView, ValidationManager validationManager) {
+    public LottoController(InputView inputView, OutputView outputView, ValidationManager validationManager, LottoPublisher lottoPublisher) {
         this.outputView = outputView;
         this.inputView = inputView;
         this.validationManager = validationManager;
+        this.lottoPublisher = lottoPublisher;
     }
 
     public void play() {
         int validAmount = handleAmountInputError();
         List<Integer> validLottoNumbers = handleLottoNumberInputError();
         int validBonusNumber = handleBonusInputError();
+
     }
 
     public int handleAmountInputError() {
