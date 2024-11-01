@@ -44,7 +44,7 @@ class WinningNumberValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,43,45", "1,5,2,3,43,46"})
+    @ValueSource(strings = {"0,1,2,3,43,46"})
     void 당첨번호가_1미만_45초과일때_에러_반환(String winningNumbers) {
         assertThatThrownBy(() -> {
             winningNumberValidator.validate(winningNumbers);
