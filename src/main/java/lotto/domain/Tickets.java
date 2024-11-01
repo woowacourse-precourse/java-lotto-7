@@ -19,6 +19,12 @@ public class Tickets {
         return List.copyOf(tickets);
     }
 
+    public List<Rank> getTicketResults(Ticket winTicket) {
+        return tickets.stream()
+                .map(ticket -> ticket.check(winTicket))
+                .toList();
+    }
+
     private static List<Ticket> generateTicketList(int count) {
         List<Ticket> ticketList = new ArrayList<>();
 
