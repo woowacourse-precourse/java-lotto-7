@@ -1,7 +1,6 @@
 package lotto.rule;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum Prize {
 
@@ -24,15 +23,11 @@ public enum Prize {
     }
 
     public static Prize getPrizeByMatchInfo(int matchesCount, boolean isBonusMatches) {
-        List<Prize> prizes = Arrays.stream(values())
+        return Arrays.stream(values())
                 .filter(prize -> prize.matchesCount == matchesCount)
                 .filter(prize -> prize.isBonusMatches == isBonusMatches)
-                .toList();
-
-        if (prizes.isEmpty()) {
-            return NO_LUCK;
-        }
-        return prizes.getLast();
+                .findFirst()
+                .orElse(NO_LUCK);
     }
 
     public long getPrizeAmount() {
