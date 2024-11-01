@@ -6,7 +6,10 @@ public enum Error {
     PURCHASE_AMOUNT_LT_MINIMUM("로또 구입 금액은 1000원 이상이어야 합니다."),
     PURCHASE_AMOUNT_NOT_MULTIPLE_OF_1000("로또 구입 금액은 1000원 단위로 입력해야 합니다."),
     PARSE_INT_ERROR("숫자로 변환할 수 없는 값입니다."),
-    NO_SUCH_ELEMENT_EXCEPTION("입력이 잘못되었습니다.");
+    NO_SUCH_ELEMENT_EXCEPTION("입력이 잘못되었습니다."),
+    LOTTO_NUMBERS_SIZE_NOT_6("로또 번호는 6개여야 합니다."),
+    LOTTO_NUMBERS_DUPLICATED("로또 번호는 중복되면 안됩니다."),
+    LOTTO_NUMBERS_OUT_OF_RANGE("로또 번호는 1부터 45 사이여야 합니다."),;
 
     private final String text;
 
