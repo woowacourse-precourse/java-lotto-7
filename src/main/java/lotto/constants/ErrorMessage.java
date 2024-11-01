@@ -7,7 +7,8 @@ public enum ErrorMessage {
     LOTTO_NUMBER_ONLY_CAN_LENGTH_6("[ERROR] 로또 번호는 중복되지 않은 6개의 숫자여야 합니다."),
     LOTTO_NUMBER_ONLY_CAN_RANGE_1_TO_45("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
 
-    BONUS_NUMBER_ONLY_CAN_NUMBER("[ERROR] 보너스 번호는 숫자여야 합니다.");
+    BONUS_NUMBER_ONLY_CAN_NUMBER("[ERROR] 보너스 번호는 숫자여야 합니다."),
+    BONUS_NUMBER_ONLY_CAN_RANGE_1_TO_45("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");;
 
     private final String errorMessage;
 

@@ -23,7 +23,7 @@
 
 - [x] 보너스 번호를 입력 받는다.
   - [x] 숫자가 아닐 시 'IllegalArgumentException' 예외 처리한다.
-  - [ ] 1~45사이가 아닐 시 'IllegalArgumentException' 예외 처리한다.
+  - [x] 1~45사이가 아닐 시 'IllegalArgumentException' 예외 처리한다.
   - [ ] 당첨 번호와 겹칠 시 'IllegalArgumentException' 예외 처리한다.
 
 ### 출력 기능
