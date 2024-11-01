@@ -43,8 +43,7 @@ public class ProfitReport {
         long profit = calculateProfit();
         long paymentAmount = getPaymentAmount();
 
-        double rate = (double) profit / paymentAmount * 100;
-        return Math.round(rate * 10) / 10.0;
+        return (double) profit / paymentAmount * 100;
     }
 
     public Map<Prize, Integer> calculateWinningCountsByRank() {
