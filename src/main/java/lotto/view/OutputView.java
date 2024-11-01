@@ -1,10 +1,10 @@
 package lotto.view;
 
-import lotto.model.Score;
 import lotto.view.response.LottoNumberResponse;
+import lotto.view.response.LottoScoreResponse;
+import lotto.view.response.LottoScoreResponses;
 import lotto.view.response.PurchaseLottoResponse;
 
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -15,23 +15,27 @@ public class OutputView {
         response.getLottoNumberResponses().forEach(this::printLotto);
     }
 
-    public void printScores(Map<Score, Integer> scores) {
+    public void printScores(LottoScoreResponses response) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (%,d원) - %d개%n", Score.THREE.getPrize(),
-                scores.getOrDefault(Score.THREE, 0));
+        response.getLottoScoreResponses().forEach(this::printScore);
+    }
 
-        System.out.printf("4개 일치 (%,d원) - %d개%n", Score.FOURTH.getPrize(),
-                scores.getOrDefault(Score.FOURTH, 0));
+    private void printScore(LottoScoreResponse lottoScoreResponse, Integer count) {
+        int matchCount = lottoScoreResponse.getMatchCount();
+        if (matchCount == 0) {
+            return;
+        }
+        boolean isBonusMatch = lottoScoreResponse.isBonusMatch();
+        int prize = lottoScoreResponse.getPrize();
 
-        System.out.printf("5개 일치 (%,d원) - %d개%n", Score.FIFTH.getPrize(),
-                scores.getOrDefault(Score.FIFTH, 0));
+        String result = String.format("%d개 일치%s (%,d원) - %d개",
+                matchCount,
+                isBonusMatch ? ", 보너스 볼 일치" : "",
+                prize,
+                count);
+        System.out.println(result);
 
-        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개%n", Score.FIFTH_WITH_BONUS.getPrize(),
-                scores.getOrDefault(Score.FIFTH_WITH_BONUS, 0));
-
-        System.out.printf("6개 일치 (%,d원) - %d개%n", Score.SIX.getPrize(),
-                scores.getOrDefault(Score.SIX, 0));
     }
 
     public void printProfitRate(double profitRate) {
