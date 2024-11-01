@@ -6,8 +6,15 @@ public class Application {
     public static void main(String[] args) {
 
         LottoController lottoController = new LottoController();
+
+        //로또 구매
         lottoController.getPurchasePrice();
+        lottoController.purchaseLotto();
+
+        //당첨 번호
         lottoController.getWinningNumbers();
+
+        //보너스 번호
         lottoController.getBonusNumber();
 
     }

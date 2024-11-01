@@ -7,6 +7,7 @@ import lotto.model.PurchaseQuantity;
 import lotto.util.ParserNums;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
 import java.util.List;
 
 public class LottoController {
@@ -17,6 +18,8 @@ public class LottoController {
     private final ParserNums parser;
 
     private final LottoManager lottoManager;
+
+    private List<Lotto> lottos;
 
     public LottoController(){
         this.inputView = new InputView();
@@ -73,6 +76,7 @@ public class LottoController {
     }
 
     public void purchaseLotto(){ //로또 구매(발행)
-
+        this.lottos = lottoManager.publishLotto();
+        outputView.printLotto(lottos);
     }
 }
