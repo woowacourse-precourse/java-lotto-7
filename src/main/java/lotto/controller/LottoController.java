@@ -21,6 +21,7 @@ public class LottoController {
     public void run() {
         int money = 3000;
         List<Lotto> purchasedLottos = lottoService.purchaseBy(money);
+        lottoView.showPurchasedLottos(purchasedLottos);
 
         Lotto winningLotto = Lotto.of(List.of(1,2,3,4,5,6));
         LottoNumber bonusNumber = new LottoNumber(7);

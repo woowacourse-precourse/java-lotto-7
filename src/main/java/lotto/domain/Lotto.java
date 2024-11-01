@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,10 @@ public class Lotto {
 
     public boolean contains(LottoNumber number) {
         return numbers.contains(number);
+    }
+
+    public List<LottoNumber> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     private void validate(List<LottoNumber> numbers) {
