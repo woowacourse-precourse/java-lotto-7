@@ -34,7 +34,7 @@ public class OutputView {
 
     public void printScoreResult(ScoreDto scoreDto) {
         System.out.println();
-        System.out.println(OutputMessage.RESULT_START_LINE);
+        System.out.println(OutputMessage.RESULT_START_LINE.getInstance());
         List<String> scoreSystemFormat = ScoreSystemPrintForm.DEFAULT_PRINT.getInstance();
         List<Integer> scores = scoreDto.scores();
         for (int i = 0; i < scores.size(); i++) {
