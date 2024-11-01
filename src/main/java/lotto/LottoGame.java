@@ -9,9 +9,9 @@ public class LottoGame {
         System.out.println("구매 금액을 입력해 주세요.");
         String input = Console.readLine();
         validateNumericNumber(input);
-        Integer purchaseNumber = Integer.valueOf(input);
-        validateThousandUnit(purchaseNumber);
-        return purchaseNumber;
+        Integer purchaseAmount = Integer.valueOf(input);
+        validateThousandUnit(purchaseAmount);
+        return purchaseAmount;
     }
 
     public static void validateNumericNumber(String input){
