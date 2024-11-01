@@ -41,6 +41,7 @@ public class InputConvertor {
         for(String inputWinningNumber : inputWinningNumbers.split(",")) {
             isNumber(inputWinningNumber);
             Integer winningNumber = Integer.valueOf(inputWinningNumber);
+            Validate.isPositiveNumber(winningNumber);
             Validate.isOneBetweenFortyFive(winningNumber);
             winningNumbers.add(winningNumber);
         }
@@ -56,6 +57,7 @@ public class InputConvertor {
     private static void validateBonusNumber(int bonusNumber) {
         // TODO : 당첨 번호와 다른지 검증하기
 //        Validate.isNotInWinningNumbers();
+        Validate.isPositiveNumber(bonusNumber);
         Validate.isOneBetweenFortyFive(bonusNumber);
     }
 
