@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.validation.NumberValidator;
+import lotto.validation.InputValidator;
 
-public class NumberParser {
+public class InputParser {
     private static final String COMMA = ",";
 
     public static List<Integer> parseLottoNumbers(String input) {
@@ -19,13 +19,13 @@ public class NumberParser {
         // 다만, validation의 책임이 늘어나는 것처럼 보이기도 함
         // 이 클래스 내부의 private 메소드로 validation을 둘까?
         // 객체에서 따로 validation을 하는 것과 동일한 맥락일 수 있을 것 같음
-        NumberValidator.validateMultiNumberInput(trimNumbers);
+        InputValidator.validateMultiNumberInput(trimNumbers);
         return trimNumbers.stream().map(Integer::parseInt).toList();
     }
 
     public static int parseBonusNumber(String input) {
         String trimNumber = input.trim();
-        NumberValidator.isInputNumber(trimNumber);
+        InputValidator.isInputNumber(trimNumber);
         return Integer.parseInt(trimNumber);
     }
 }

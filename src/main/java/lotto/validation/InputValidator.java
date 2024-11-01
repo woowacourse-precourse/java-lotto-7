@@ -3,12 +3,12 @@ package lotto.validation;
 import java.util.List;
 import lotto.exception.InputException;
 
-public class NumberValidator {
+public class InputValidator {
     private static final String NUMBER_REGX = "[0-9]";
 
     public static void validateMultiNumberInput(List<String> numbers) {
         boolean isAllNumeric = numbers.stream()
-                .allMatch(NumberValidator::isInputNumber);
+                .allMatch(InputValidator::isInputNumber);
         InputException.notNumericException(isAllNumeric);
     }
 
