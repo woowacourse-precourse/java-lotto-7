@@ -1,7 +1,5 @@
 package lotto.service.impl;
 
-import java.util.List;
-import lotto.common.LottoRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoStatistics;
@@ -30,10 +28,7 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public LottoStatistics collectResults(LottoTickets tickets, WinningLotto winningLotto) {
         LottoStatistics statistics = new LottoStatistics();
-        for (Lotto ticket : tickets.getLottoTickets()) {
-            LottoRank rank = winningLotto.determineRank(ticket);
-            statistics.recordResult(rank);
-        }
+        tickets.getLottoTickets().stream().map(winningLotto::determineRank).forEach(statistics::recordResult);
         return statistics;
     }
 
