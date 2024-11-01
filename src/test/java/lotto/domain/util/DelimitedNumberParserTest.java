@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(ReplaceUnderscores.class)
-class LottoParserTest {
+class DelimitedNumberParserTest {
 
     @Nested
     class 당첨번호_파싱_성공 {
@@ -21,7 +21,7 @@ class LottoParserTest {
             List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
 
             //when
-            List<Integer> parse = LottoParser.parseNumbers(input);
+            List<Integer> parse = DelimitedNumberParser.parse(input);
 
             //then
             assertThat(parse).isEqualTo(expected);
@@ -34,7 +34,7 @@ class LottoParserTest {
             List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
 
             //when
-            List<Integer> parse = LottoParser.parseNumbers(input);
+            List<Integer> parse = DelimitedNumberParser.parse(input);
 
             //then
             assertThat(parse).isEqualTo(expected);
