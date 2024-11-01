@@ -1,13 +1,12 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoService {
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     public static int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE;
@@ -22,16 +21,25 @@ public class LottoService {
     }
 
     public static Map<LottoRank, Integer> calculateStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+        Map<LottoRank, Integer> statistics = initializeStatisticsMap();
+
+        for (Lotto userLotto : userLottos) {
+            LottoRank rank = determineLottoRank(winningLotto, bonusNumber, userLotto);
+            statistics.put(rank, statistics.get(rank) + 1);
+        }
+        return statistics;
+    }
+
+    private static LottoRank determineLottoRank(Lotto winningLotto, int bonusNumber, Lotto userLotto) {
+        int matchCount = userLotto.countMatchingNumbers(winningLotto);
+        boolean matchBonus = userLotto.containsNumber(bonusNumber);
+        return LottoRank.findRank(matchCount, matchBonus);
+    }
+
+    private static Map<LottoRank, Integer> initializeStatisticsMap() {
         Map<LottoRank, Integer> statistics = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             statistics.put(rank, 0);
-        }
-
-        for (Lotto userLotto : userLottos) {
-            int matchCount = userLotto.countMatchingNumbers(winningLotto);
-            boolean matchBonus = userLotto.containsNumber(bonusNumber);
-            LottoRank rank = LottoRank.findRank(matchCount, matchBonus);
-            statistics.put(rank, statistics.get(rank) + 1);
         }
         return statistics;
     }
@@ -40,9 +48,9 @@ public class LottoService {
         long totalPrize = 0;
 
         for (LottoRank rank : statistics.keySet()) {
-            long prize = rank.getPrizeAmount();
+            int prize = rank.getPrize();
             int count = statistics.getOrDefault(rank, 0);
-            totalPrize += prize * count;
+            totalPrize += (long) prize * count;
         }
 
         return totalPrize;
