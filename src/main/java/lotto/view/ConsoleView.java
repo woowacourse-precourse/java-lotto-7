@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
-camp.nextstep.edu.missionutils.Console;
 public class ConsoleView {
     public Integer getPurchaseLottoAmount(){
         System.out.println("구입금액을 입력해 주세요.");
