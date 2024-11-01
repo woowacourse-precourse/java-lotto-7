@@ -70,11 +70,10 @@ public class InputView {
         return bonusBall;
     }
 
-    public static int validatePurchaseAmount(int input) {
+    public static void validatePurchaseAmount(int input) {
         if ((input % 1000) != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
-        return input;
     }
 
     public static void validate6Numbers(Set<Integer> numbers) {
