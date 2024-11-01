@@ -36,6 +36,9 @@ public class Application {
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
+
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusNumberInput = Console.readLine();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
