@@ -7,8 +7,10 @@ import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.BonusNumber;
 import lotto.Lotto;
 import lotto.PublishCount;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 
@@ -18,18 +20,27 @@ public class LottoController {
     private static final String COMMAS = ",,";
 
     private final LottoValidator lottoValidator;
+    private final BonusNumberValidator bonusNumberValidator;
     private final InputView inputView;
 
     private PublishCount publishCount;
     private Lotto lotto;
+    private BonusNumber bonusNumber;
 
-    public LottoController(LottoValidator lottoValidator, InputView inputView) {
+    public LottoController(LottoValidator lottoValidator, BonusNumberValidator bonusNumberValidator,
+        InputView inputView) {
         this.lottoValidator = lottoValidator;
+        this.bonusNumberValidator = bonusNumberValidator;
         this.inputView = inputView;
     }
 
+    public void setUp() {
+        publishCountSetUp();
+        lottoSetUp();
+        bonusNumberSetUp();
+    }
+
     public void publishCountSetUp() {
-        //구매 금액
         int purchasePrice = getPurchasePrice();
         validatePurchaseAmount(purchasePrice);
         publishCount = createPublishCount(purchasePrice);
@@ -37,6 +48,26 @@ public class LottoController {
 
     public void lottoSetUp() {
         lotto = createLotto();
+    }
+
+    public void bonusNumberSetUp() {
+        int parsedBonusNumber = getParsedBonusNumber();
+        bonusNumber = createBonusNumber(parsedBonusNumber);
+    }
+
+    public void validatePurchaseAmount(final int purchaseAmount) {
+        if (purchaseAmount % TICKET_PRICE != 0) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    private BonusNumber createBonusNumber(int parsedBonusNumber) {
+        return new BonusNumber(parsedBonusNumber, lotto, bonusNumberValidator);
+    }
+
+    private int getParsedBonusNumber() {
+        String inputBonusNumber = inputView.printBonusNumberMessage();
+        return parseInt(inputBonusNumber);
     }
 
     private int getPurchasePrice() {
@@ -49,22 +80,15 @@ public class LottoController {
     }
 
     private Lotto createLotto() {
-        List<String> splitWinningNumbers = splitByComma(inputView.printEnterWinningNumber());
+        List<String> splitWinningNumbers = splitByComma(inputView.printEnterWinningNumberMessage());
         List<Integer> winningNumbers = stringListToIntList(splitWinningNumbers);
         return new Lotto(winningNumbers, lottoValidator);
-    }
-
-    public void validatePurchaseAmount(final int purchaseAmount) {
-        if (purchaseAmount % TICKET_PRICE != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT.getMessage());
-        }
     }
 
     public int getCountOfPublish(final int purchasePrice) {
         return purchasePrice / TICKET_PRICE;
     }
 
-    //당첨 번호 검증
     public void validateInputWinnigNumber(final String inputWinnigNumber) {
         if (inputWinnigNumber.contains(COMMAS)) {
             throw new IllegalArgumentException(CONTIGIOUS_COMMA.getMessage());

@@ -3,6 +3,7 @@ package lotto;
 import java.util.Arrays;
 import java.util.List;
 import lotto.controller.LottoController;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
@@ -25,7 +26,7 @@ public class LottoControllerTest {
     void setUp() {
         lottoController = new LottoController(
             new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator()),
-            new InputView());
+            new BonusNumberValidator(new DefaultRangeValidator()), new InputView());
     }
 
     @Test
