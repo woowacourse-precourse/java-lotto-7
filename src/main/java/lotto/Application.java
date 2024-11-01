@@ -23,8 +23,8 @@ public class Application {
         lottoMachine.setWinningNumbers(numbers);
 
         System.out.printf("%n");
-        System.out.println(INSERT_BONUS_NUMBER);
-        lottoMachine.setBonusNumber(Integer.parseInt(Console.readLine()));
+        int bonusNumber = View.inputBonusNumber(INSERT_BONUS_NUMBER, lottoMachine.getWinningNumbers());
+        lottoMachine.setBonusNumber(bonusNumber);
 
         lottoMachine.processLottoResult(boughtLottos);
         System.out.printf("%n");

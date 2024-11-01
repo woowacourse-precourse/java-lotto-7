@@ -53,8 +53,29 @@ public class View {
         return winningNumbers;
     }
 
+    public static int inputBonusNumber(String displayMessage, HashSet<Integer> winningNumbers) {
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                System.out.println(displayMessage);
+                int number = Integer.parseInt(Console.readLine());
+                isAlreadyWinningNumber(winningNumbers, number);
+                checkNumberInLottoRange(number);
+                return number;
+            } catch (IllegalArgumentException e) {
+                System.out.println(INVALID_BONUS_NUMBERS_INPUT);
+            }
+        }
+        return 0;
+    }
 
-        //쉼표로 시작하거나 끝날때. 쉼표와 쉼표 사이 공백이 있을때, 숫자와 공백이 같은 토큰에 있을때, 공백으로 시작할떄, 입력끝에 엔터 제외 다른 공백이 있을때
+    private static void isAlreadyWinningNumber(HashSet<Integer> winningNumbers, int number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    //쉼표로 시작하거나 끝날때. 쉼표와 쉼표 사이 공백이 있을때, 숫자와 공백이 같은 토큰에 있을때, 공백으로 시작할떄, 입력끝에 엔터 제외 다른 공백이 있을때
         //숫자 외에 다른게 있을떄. 연속되는 쉼표가 있을 떄.
     private static List<Integer> parseStr2Integers(String input) throws IllegalArgumentException {
         List<Integer> numbers = new ArrayList<>();
@@ -84,9 +105,7 @@ public class View {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT);
         }
         for (int number : numbers) {
-            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
-                throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT);
-            }
+            checkNumberInLottoRange(number);
             if (!verifiedNumbers.add(number)) {
                 throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT);
             }
@@ -94,6 +113,12 @@ public class View {
         return verifiedNumbers;
     }
 
+    private static boolean checkNumberInLottoRange(int number) {
+        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+                throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT);
+        }
+        return true;
+    }
     private static void validatePurchaseCondition(int money) throws IllegalArgumentException {
         if (money < LOTTO_PRICE) {
             throw new IllegalArgumentException(MONEY_LESS_THAN_1000);
