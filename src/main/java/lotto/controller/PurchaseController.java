@@ -1,39 +1,39 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.LottoStore;
+import lotto.model.Prize;
+import lotto.view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PurchaseController {
 
     private final LottoStore lottoStore = new LottoStore();
+    private List<Lotto> purchasedLottos = new ArrayList<>();
 
     public void purchaseLottos() {
         int amount = getUserAmount();
-        int count = calculateLottoCount(amount);
-
-        List<Lotto> lottos = generateLottos(count);
-        printLottos(lottos, count);
+        int count = lottoStore.calculateLottoCount(amount);
+        purchasedLottos = generateLottos(count);
     }
 
-    private int getUserAmount() {
-        System.out.println("구입 금액을 입력해 주세요.");
-        String input = Console.readLine();
+    public LottoResult calculateResult(List<Integer> winningNumbers, int bonusNumber) {
+        Map<Prize, Integer> prizeResults = lottoStore.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
+        return new LottoResult(prizeResults);
+    }
 
-        int amount = parseAmount(input);
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
+
+    public int getUserAmount() {
+        int amount = InputView.getAmount();
         validateAmount(amount);
         return amount;
-    }
-
-    private int parseAmount(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
-        }
     }
 
     private void validateAmount(int amount) {
@@ -42,22 +42,11 @@ public class PurchaseController {
         }
     }
 
-    private int calculateLottoCount(int amount) {
-        return lottoStore.calculateLottoCount(amount);
-    }
-
     private List<Lotto> generateLottos(int count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             lottos.add(Lotto.generateRandomLotto());
         }
         return lottos;
-    }
-
-    private void printLottos(List<Lotto> lottos, int count) {
-        System.out.println(count + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
     }
 }
