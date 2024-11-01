@@ -37,6 +37,8 @@ public class LottoService {
         return ParseUtils.convertToNumbers(trimmedWinNumbers);
     }
 
+
+
     public int calculateBuyLottoCount(int buyLottoMoney) {
         int lottoCount = buyLottoMoney / 1000;
         return lottoCount;
