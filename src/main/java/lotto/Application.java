@@ -1,11 +1,9 @@
 package lotto;
 
 import static lotto.ErrorMessage.DUPLICATE_BONUS_NUMBER;
-import static lotto.ErrorMessage.NUMBER_OUT_OF_RANGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
@@ -35,12 +33,7 @@ public class Application {
     // 서비스 계층
     public ArrayList<List<Integer>> generateLottoNumbers(int times){
         OutputView.printPurchasedTicketCount(times);
-        PurchasedLottoNumbers purchasedLottoNumbers = new PurchasedLottoNumbers();
-        // 이 과정은 RandomNumbers
-        for (int i = 0; i < times; i++) {
-            List<Integer> purchasedLottoNumber = RandomNumbers.generateSortedLottoNumbers();
-            purchasedLottoNumbers.makePurchasedLottoNumbers(purchasedLottoNumber);
-        }
+        PurchasedLottoNumbers purchasedLottoNumbers = new PurchasedLottoNumbers(RandomNumbers.generateSortedRandomLottoSets(times));
         OutputView.printPurchasedLottoNumbers(purchasedLottoNumbers.getPurchasedLottoNumbers());
         return purchasedLottoNumbers.getPurchasedLottoNumbers();
     }
