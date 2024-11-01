@@ -38,4 +38,13 @@ public class LottoResult {
         return matchCount;
     }
 
+    private boolean isMatch(int winningNumber, Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        for (Integer number : numbers) {
+            if (number == winningNumber) return true;
+        }
+
+        return false;
+    }
+
 }
