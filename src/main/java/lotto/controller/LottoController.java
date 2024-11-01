@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.earning.Earning;
 import lotto.domain.lotto.LottoGenerator;
 import lotto.domain.purchase.Purchase;
 import lotto.domain.winning.WinningNumber;
@@ -32,5 +33,9 @@ public class LottoController {
         winningStatics.numOfWinnings(lottos.getLottos(), winningNumber);
 
         outputView.printWinningStatics(winningStatics);
+
+        int purchaseAmount = purchase.getAmount();
+        Earning earning = new Earning();
+        System.out.printf("총 수익률은 %.1f%%입니다.", earning.getEarning(purchaseAmount, winningStatics.getWinningStatics()));
     }
 }
