@@ -10,6 +10,12 @@ public class User {
 	private Map<LottoRank, Integer> lottoStats = new EnumMap<>(LottoRank.class);
 	private double rateOfReturn;
 
+	public User() {
+		for (LottoRank lottoRank : LottoRank.values()) {
+			lottoStats.putIfAbsent(lottoRank, 0);
+		}
+	}
+
 	public void updateRank(LottoRank rank) {
 		lottoStats.put(rank, lottoStats.getOrDefault(rank, 0) + 1);
 	}
