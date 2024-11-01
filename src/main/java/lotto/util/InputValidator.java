@@ -5,17 +5,15 @@ import java.util.Arrays;
 public class InputValidator {
 
     private static final String WINNING_NUMBER_DELIMITER = ",";
-    private static final int WINNING_NUMBER_SIZE = 6;
 
-    public static void validatePurchaseAmount(String input) {
+    public static void validateNotBlankAndInteger(String input) {
         InputValidator.validateNotBlank(input);
         InputValidator.validateInteger(input);
     }
 
     public static void validateWinningNumbers(String input) {
         validateNotBlank(input);
-        validateDelimitedFormat(input);
-        validateAllNumbers(input);
+        validateAllInteger(input);
     }
 
     private static void validateNotBlank(String input) {
@@ -24,14 +22,7 @@ public class InputValidator {
         }
     }
 
-    private static void validateDelimitedFormat(String input) {
-        String[] elements = input.split(WINNING_NUMBER_DELIMITER);
-        if (elements.length != WINNING_NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 쉼표(,)로 구분된 6개의 숫자여야 합니다.");
-        }
-    }
-
-    private static void validateAllNumbers(String input) {
+    private static void validateAllInteger(String input) {
         String[] elements = input.split(WINNING_NUMBER_DELIMITER);
         Arrays.stream(elements).forEach(InputValidator::validateInteger);
     }
