@@ -1,6 +1,7 @@
 package lotto.lottoView;
 
 import java.util.List;
+import lotto.lottoModel.StatisticsLottoDTO;
 
 public class OutputView {
     private static final String HOW_MANY_BUY = "%d개를 구매했습니다.";
@@ -11,16 +12,25 @@ public class OutputView {
     private static final String PROFIT_MESSAGE = "총 수익률은 %f %입니다.";
 
 
+
     public void howManyBuy(Long numberOfBuy) {
         System.out.printf(HOW_MANY_BUY, numberOfBuy);
+        System.out.println();
     }
 
     public void statisticStart() {
         System.out.println(STATISTIC_START);
     }
-//
-//    public void statisticEnd() {
-//        if (
-//        System.out.printf(VALUE_MATCH_START+VALUE_MATCH_END,
-//    }
+
+    public void statisticEnd(int i, StatisticsLottoDTO stats) {
+        if (i==5){
+            System.out.printf(VALUE_MATCH_START+BONUS_MATCH+VALUE_MATCH_END,i,LottoPrize.getPrize(i,false),stats.getHitNumberValue(i)-stats.getBonusNumberFrequency());
+            System.out.println();
+            System.out.printf(VALUE_MATCH_START+BONUS_MATCH+VALUE_MATCH_END,i,LottoPrize.getPrize(i,true),stats.getBonusNumberFrequency());
+            System.out.println();
+            return;
+        }
+        System.out.printf(VALUE_MATCH_START+VALUE_MATCH_END,i,LottoPrize.getPrize(i,false),stats.getHitNumberValue(i));
+        System.out.println();
+    }
 }
