@@ -1,11 +1,11 @@
 package lotto.view;
 
-import lotto.utils.InputValidator;
-import lotto.utils.Validator;
+import lotto.utils.validator.InputValidator;
+import lotto.utils.validator.Validator;
 
 public class MemberInputView extends InputView {
 
-    private final Validator<String> validator;
+    public Validator<String> validator;
     public MemberInputView() {
         this.validator = new InputValidator();
     }
@@ -13,6 +13,7 @@ public class MemberInputView extends InputView {
     public int getPrice() {
         String inputPrice = readInput();
         validator.validate(inputPrice);
+
         return Integer.parseInt(inputPrice);
     }
 
