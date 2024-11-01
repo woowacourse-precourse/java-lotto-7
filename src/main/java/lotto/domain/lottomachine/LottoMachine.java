@@ -12,7 +12,7 @@ public class LottoMachine {
 
     public PurchasedLottos issueTickets(NumberGenerator numberGenerator, int quantity) {
         List<Lotto> purchasedLottos = IntStream.range(ZERO_QUANTITY, quantity)
-                .mapToObj(i -> Lotto.from(numberGenerator.generateNumbers()))
+                .mapToObj(i -> new Lotto(numberGenerator.generateNumbers()))
                 .toList();
         return PurchasedLottos.from(purchasedLottos);
     }
