@@ -24,9 +24,7 @@ public class LottoResultTest {
                 7
         );
 
-        LottoResult lottoResult = new LottoResult();
-
-        lottoResult.calculateLottosResult(lottos, winningNumbers);
+        LottoResult lottoResult = new LottoResult(lottos, winningNumbers);
 
         assertThat(lottoResult.getLottoResult())
                 .isEqualTo(

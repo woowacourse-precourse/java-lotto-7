@@ -11,10 +11,12 @@ import lotto.dto.LottoDto;
 public class LottoResult {
     private final Map<Rank, Integer> lottoResult = new EnumMap<>(Rank.class);
 
-    public LottoResult() {
+    public LottoResult(Lottos lottos, WinningNumbers winningNumbers) {
         for (Rank rank : Rank.values()) {
             lottoResult.put(rank, 0);
         }
+
+        calculateLottosResult(lottos, winningNumbers);
     }
 
     public void calculateLottosResult(Lottos lottos, WinningNumbers winningNumbers) {
