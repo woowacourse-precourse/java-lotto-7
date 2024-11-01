@@ -2,22 +2,21 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.model.domain.BonusBall;
-import lotto.model.service.LottoSellingMachine;
-import lotto.model.service.RankResult;
 import lotto.model.domain.WinningBalls;
+import lotto.model.service.LottoSellingMachine;
 import lotto.model.service.Lottos;
+import lotto.model.service.RankResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.SimpleInputValidator;
 
 public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController() {
-        this.inputView = new InputView(new SimpleInputValidator());
-        this.outputView = new OutputView();
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void play() {
