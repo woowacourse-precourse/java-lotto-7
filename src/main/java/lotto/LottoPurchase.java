@@ -53,5 +53,3 @@ public class LottoPurchase {
         new LottoPurchase().start();
     }
 }
-
-}
