@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.utils.Constant;
@@ -18,7 +16,9 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < numberOfLottos; i++) {
-            List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(Constant.MIN_LOTTO_NUMBER, Constant.MAX_LOTTO_NUMBER, Constant.LOTTO_SIZE));
+            List<Integer> lottoNumbers = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(Constant.MIN_LOTTO_NUMBER, Constant.MAX_LOTTO_NUMBER,
+                            Constant.LOTTO_SIZE));
             Collections.sort(lottoNumbers);
             lottos.add(new Lotto(lottoNumbers));
         }
@@ -33,15 +33,26 @@ public class LottoService {
     }
 
     private LottoRank determineRank(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) return LottoRank.FIRST;
-        if (matchCount == 5 && bonusMatch) return LottoRank.SECOND;
-        if (matchCount == 5) return LottoRank.THIRD;
-        if (matchCount == 4) return LottoRank.FOURTH;
-        if (matchCount == 3) return LottoRank.FIFTH;
+        if (matchCount == 6) {
+            return LottoRank.FIRST;
+        }
+        if (matchCount == 5 && bonusMatch) {
+            return LottoRank.SECOND;
+        }
+        if (matchCount == 5) {
+            return LottoRank.THIRD;
+        }
+        if (matchCount == 4) {
+            return LottoRank.FOURTH;
+        }
+        if (matchCount == 3) {
+            return LottoRank.FIFTH;
+        }
         return LottoRank.NONE;
     }
 
-    public Map<LottoRank, Integer> calculateWinningStats(List<Lotto> userLottos, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<LottoRank, Integer> calculateWinningStats(List<Lotto> userLottos, List<Integer> winningNumbers,
+                                                         int bonusNumber) {
         Map<LottoRank, Integer> winningStats = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             winningStats.put(rank, 0);
@@ -52,6 +63,7 @@ public class LottoService {
         }
         return winningStats;
     }
+
     public double calculateYield(Map<LottoRank, Integer> winningStats, int purchaseAmount) {
         int totalPrize = 0;
         for (Map.Entry<LottoRank, Integer> entry : winningStats.entrySet()) {
@@ -59,8 +71,6 @@ public class LottoService {
         }
         return (double) totalPrize / purchaseAmount * 100;
     }
-
-
 
 
 }

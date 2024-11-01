@@ -10,10 +10,11 @@ public class OutputView {
 
     private final DecimalFormat prizeMoneyFormat = new DecimalFormat("#,###");
     private final DecimalFormat yieldFormat = new DecimalFormat("#,##0.0");
+
     public void printLottos(List<Lotto> lottos) {
         System.out.printf("%d개를 구매했습니다.%n", lottos.size());
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-        }
+    }
 
     public void printWinningStats(Map<LottoRank, Integer> winningStats) {
         System.out.println("당첨 통계");

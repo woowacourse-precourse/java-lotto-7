@@ -27,6 +27,8 @@ public class InputView {
         System.out.println(Constant.WINNING_NUMBERS_PROMPT);
         String numbers = Console.readLine();
 
+        validator.validateInputLottoNumber(numbers);
+
         String[] LottoNumbers = numbers.split(",");
 
         for (String number : LottoNumbers) {
