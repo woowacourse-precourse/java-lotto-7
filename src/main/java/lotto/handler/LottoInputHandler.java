@@ -11,6 +11,7 @@ import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+// 사용자로부터 로또 관련 입력을 처리하고 검증하는 클래스
 public class LottoInputHandler {
     private final InputView inputView;
     private final OutputView outputView;
@@ -21,32 +22,35 @@ public class LottoInputHandler {
     }
 
     public int getPurchaseAmount() {
-        return getInputWithValidation(
+        return getValidatedInput(
                 inputView::inputPurchaseAmount,
-                this::parsePurchaseAmount,
-                this::validateAmount
+                ParsingUtils::parseStringToInteger,
+                InputValidator::validatePurchaseAmount
         );
     }
 
     public List<Integer> getWinningNumbers() {
-        return getInputWithValidation(
+        return getValidatedInput(
                 inputView::inputLottoNumbers,
-                this::parseWinningNumbers,
-                this::validateWinningNumbers
+                ParsingUtils::parseStringToIntegerList,
+                this::validateLottoNumbers
         );
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {
-        return getInputWithValidation(
+        return getValidatedInput(
                 inputView::inputBonusNumber,
-                this::parseBonusNumber,
-                bonusNumber -> validateBonusNumber(bonusNumber, winningNumbers)
+                ParsingUtils::parseStringToInteger,
+                bonusNumber -> {
+                    LottoValidator.validateBonusNumberRange(bonusNumber);
+                    LottoValidator.validateBonusNumberDuplication(bonusNumber, winningNumbers);
+                }
         );
     }
 
-    private <T> T getInputWithValidation(Supplier<String> inputSupplier,
-                                         Function<String, T> parseFunction,
-                                         Consumer<T> validationFunction) {
+    private <T> T getValidatedInput(Supplier<String> inputSupplier,
+                                    Function<String, T> parseFunction,
+                                    Consumer<T> validationFunction) {
         while (true) {
             try {
                 String input = inputSupplier.get();
@@ -60,28 +64,8 @@ public class LottoInputHandler {
         }
     }
 
-    private int parsePurchaseAmount(String input) {
-        return ParsingUtils.parseStringToInteger(input);
-    }
-
-    private List<Integer> parseWinningNumbers(String input) {
-        return ParsingUtils.parseStringToIntegerList(input);
-    }
-
-    private int parseBonusNumber(String input) {
-        return ParsingUtils.parseStringToInteger(input);
-    }
-
-    private void validateAmount(int amount) {
-        InputValidator.validatePurchaseAmount(amount);
-    }
-
-    private void validateWinningNumbers(List<Integer> numbers) {
-        new Lotto(numbers); // Lotto 생성자에서 자동 검증 수행
-    }
-
-    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        LottoValidator.validateBonusNumber(bonusNumber, winningNumbers);
+    private void validateLottoNumbers(List<Integer> numbers) {
+        new Lotto(numbers); // Lotto 생성자를 통한 검증 수행
     }
 
     public void close() {
