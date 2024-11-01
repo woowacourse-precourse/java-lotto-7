@@ -50,7 +50,7 @@ class LottoMachineTest {
         assertSoftly(softly -> {
             softly.assertThatThrownBy(() -> lottoMachine.getLottoTickets())
                     .isInstanceOf(IllegalStateException.class)
-                    .hasMessageContaining("[ERROR] 구입 금액을 넣지 않았습니다. 구입 금액: ");
+                    .hasMessageContaining("[ERROR] 구입 금액을 넣지 않았습니다.");
         });
 
     }
