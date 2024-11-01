@@ -94,6 +94,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 입력이 들어오면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_당첨_번호와_중복되는_입력이_들어오면_예외() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
