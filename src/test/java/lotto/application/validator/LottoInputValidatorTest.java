@@ -104,6 +104,28 @@ class LottoInputValidatorTest {
     }
 
     @ParameterizedTest
+    @DisplayName("당첨 번호의 빈 문자열 입력을 예외처리 할 수 있다.")
+    @CsvSource(value = {"   ; 1", "1, 2, 3, 4, 5, 6;", ";"}, delimiter = ';')
+    void 당첨번호_빈_문자열_입력_예외(String numbers, String bonus) {
+        // given
+        // when & then
+        assertThatThrownBy(() -> lottoInputValidator.validateWinningLotto(numbers, bonus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .describedAs(ExceptionMessage.EMPTY_INPUT);
+    }
+
+    @ParameterizedTest
+    @DisplayName("6개가 아닌 당첨 번호를 예외처리 할 수 있다.")
+    @CsvSource(value = {"1, 2, 3; 4", "1; 2", "1, 2, 3, 4, 5, 6, 7; 8"}, delimiter = ';')
+    void 당첨_번호_개수_예외(String numbers, String bonus) {
+        // given
+        // when & then
+        assertThatThrownBy(() -> lottoInputValidator.validateWinningLotto(numbers, bonus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .describedAs(ExceptionMessage.INVALID_LOTTO_COUNT(6));
+    }
+
+    @ParameterizedTest
     @DisplayName("요구사항에 맞지 않는 금액을 예외처리 할 수 있다.")
     @ValueSource(strings = {"10", "1001"})
     void 금액_입력_예외(String costInput) {
@@ -134,5 +156,16 @@ class LottoInputValidatorTest {
         assertThatThrownBy(() -> lottoInputValidator.validateCost(costInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .describedAs(ExceptionMessage.INVALID_INTEGER);
+    }
+
+    @ParameterizedTest
+    @DisplayName("빈 문자열 금액 입력을 예외처리 할 수 있다.")
+    @ValueSource(strings = {"", "   "})
+    void 금액_빈_문자열_예외(String costInput) {
+        // given
+        // when & then
+        assertThatThrownBy(() -> lottoInputValidator.validateCost(costInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .describedAs(ExceptionMessage.EMPTY_INPUT);
     }
 }
