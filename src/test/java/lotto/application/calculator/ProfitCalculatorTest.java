@@ -1,11 +1,13 @@
 package lotto.application.calculator;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ProfitCalculatorTest {
 
     @Test
+    @DisplayName("수익률 계산을 확인한다.")
     void calculateProfit() {
         //given
         ProfitCalculator profitCalculator = new ProfitCalculator();

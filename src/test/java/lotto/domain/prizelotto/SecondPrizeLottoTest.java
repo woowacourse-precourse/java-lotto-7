@@ -3,11 +3,13 @@ package lotto.domain.prizelotto;
 import java.util.List;
 import lotto.domain.WinNumbers;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class SecondPrizeLottoTest {
 
     @Test
+    @DisplayName("2등 조건의 만족을 확인한다.")
     void isSatisfyPrizeRule() {
         //given
         SecondPrizeLotto secondPrizeLotto = new SecondPrizeLotto();

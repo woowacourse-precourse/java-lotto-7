@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class FifthPrizeLottoTest {
+
     @Test
     @DisplayName("5등 조건의 만족을 확인한다.")
     void isSatisfyPrizeRule() {

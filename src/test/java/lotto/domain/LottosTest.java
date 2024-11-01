@@ -2,12 +2,14 @@ package lotto.domain;
 
 import lotto.application.numberstrategy.MakingRandomNumbers;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottosTest {
 
     @Test
-    void from() {
+    @DisplayName("로또 리스트 생성을 확인한다.")
+    void makingLottos() {
         //given
         LottoQuantity lottoQuantity = new LottoQuantity(2);
         MakingRandomNumbers makingRandomNumbers = new MakingRandomNumbers();
