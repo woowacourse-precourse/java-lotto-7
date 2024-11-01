@@ -23,9 +23,8 @@ public class LottoController {
     public void run() {
         Price price = inputBuyLotto();
 
-        int ticketCount = price.convertToTicket();
-        Lottos lottos = new Lottos(ticketCount);
-        outputRandomLottoNumber(ticketCount, lottos);
+        Lottos lottos = new Lottos(price);
+        outputRandomLottoNumber(lottos);
 
         Lotto WinningLottoNum = inputWinningLotto();
 
@@ -33,7 +32,7 @@ public class LottoController {
 
         outputView.printWinningStatistics();
         Stastistics stastistics = new Stastistics(lottos, winningLotto);
-        outputResultStatistics(stastistics, ticketCount);
+        outputResultStatistics(stastistics, lottos);
 
         inputView.closeConsole();
     }
@@ -49,8 +48,8 @@ public class LottoController {
         }
     }
 
-    private void outputRandomLottoNumber(int ticketCount, Lottos lottos) {
-        outputView.printLottoTicket(ticketCount);
+    private void outputRandomLottoNumber(Lottos lottos) {
+        outputView.printLottoTicket(lottos.getTicketCount());
         String lottosNumber = lottos.getLottosToString();
         outputView.printResult(lottosNumber);
     }
@@ -70,17 +69,16 @@ public class LottoController {
         while (true) {
             try {
                 String rawBonusNum = inputView.readBonusNumber();
-                Number bonusNum = new Number(rawBonusNum);
-                return new WinningLotto(WinningLottoNum, bonusNum);
+                return new WinningLotto(WinningLottoNum, new Number(rawBonusNum));
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }
         }
     }
 
-    private void outputResultStatistics(Stastistics stastistics, int ticketCount) {
+    private void outputResultStatistics(Stastistics stastistics, Lottos lottos) {
         String rankStastistics = stastistics.getStatisticsString();
-        float profitRate = stastistics.calculateProfitRate(ticketCount);
+        float profitRate = stastistics.calculateProfitRate(lottos.getTicketCount());
         outputView.printResult(rankStastistics);
         outputView.printProfitRate(profitRate);
     }

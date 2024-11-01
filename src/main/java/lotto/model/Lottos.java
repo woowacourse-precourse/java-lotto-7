@@ -10,8 +10,8 @@ public class Lottos {
     private final List<Lotto> lottos;
 
 
-    public Lottos(final int ticketCount) {
-        this.ticketCount = ticketCount;
+    public Lottos(Price price) {
+        this.ticketCount = price.convertToTicket();
         this.lottos = createLottos();
     }
 
@@ -43,5 +43,9 @@ public class Lottos {
 
     public List<Lotto> getLottos(){
         return lottos;
+    }
+
+    public int getTicketCount(){
+        return ticketCount;
     }
 }

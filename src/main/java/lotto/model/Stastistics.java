@@ -55,7 +55,7 @@ public class Stastistics {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NONE)
                 .sorted(Comparator.comparingInt(Rank::getMatchNumber))
-                .map(rank -> String.format("%s - %d개", rank.toString(), rankStatistics.getOrDefault(rank, 0)))
+                .map(rank -> String.format("%s - %d개", rank, rankStatistics.getOrDefault(rank, 0)))
                 .collect(Collectors.joining("\n"));
     }
 }
