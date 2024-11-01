@@ -19,4 +19,19 @@ class RankCounterTest {
             assertThat(rankCounter.getRankCount(rank)).isEqualTo(0);
         }
     }
+
+    @Test
+    @DisplayName("RankCounter의 count가 1씩 증가하는지 확인: 단일 Rank")
+    void increaseRankCount_singleRank() {
+        // given
+        RankCounter rankCounter = RankCounter.create();
+        Rank rank = Rank.FIRST_PLACE;
+
+        // when
+        rankCounter.increaseRankCount(rank);
+        rankCounter.increaseRankCount(rank);
+
+        // then
+        assertThat(rankCounter.getRankCount(rank)).isEqualTo(2);
+    }
 }
