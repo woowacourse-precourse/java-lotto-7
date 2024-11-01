@@ -18,10 +18,15 @@ public class InputService {
             break;
         }
 
-        getLottoPurchaseAmount(user);
+        int lottoPurchaseAmount = getLottoPurchaseAmount(user);
+        setLottoPurchaseAmount(lottoPurchaseAmount, user);
     }
 
-    public void getLottoPurchaseAmount(User user) {
-        user.setNumOfLottos(user.getMoney() / 1000);
+    public int getLottoPurchaseAmount(User user) {
+        return user.getMoney() / 1000;
+    }
+
+    public void setLottoPurchaseAmount(int purchaseAmount, User user) {
+        user.setNumOfLottos(purchaseAmount);
     }
 }

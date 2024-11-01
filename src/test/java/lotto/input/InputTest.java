@@ -90,7 +90,6 @@ public class InputTest {
         assertFalse(InputValidate.isDivisibleBy1000(31200));
     }
 
-
     @Test
     @DisplayName("검증 시, 모든 기준을 충족하는 문자열이라면 통과한다.")
     public void testNumberInputValidate() {
