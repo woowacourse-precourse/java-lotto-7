@@ -27,26 +27,26 @@ public class LottoResult {
     public void calculate(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             Integer count = lotto.howManyMatches(winningNumber);
-            if(count.equals(6)) {
+            if (count.equals(6)) {
                 result.put(WinningInfo.FIRST_WINNER, result.get(WinningInfo.FIRST_WINNER) + 1);
             }
-            if(count.equals(5) && lotto.contains(bonusNumber)) {
+            if (count.equals(5) && lotto.contains(bonusNumber)) {
                 result.put(WinningInfo.SECOND_WINNER, result.get(WinningInfo.SECOND_WINNER) + 1);
             }
-            if(count.equals(5) && !lotto.contains(bonusNumber)) {
+            if (count.equals(5) && !lotto.contains(bonusNumber)) {
                 result.put(WinningInfo.THIRD_WINNER, result.get(WinningInfo.THIRD_WINNER) + 1);
             }
-            if(count.equals(4)){
+            if (count.equals(4)) {
                 result.put(WinningInfo.FOURTH_WINNER, result.get(WinningInfo.FOURTH_WINNER) + 1);
             }
-            if(count.equals(3)){
+            if (count.equals(3)) {
                 result.put(WinningInfo.FIFTH_WINNER, result.get(WinningInfo.FIFTH_WINNER) + 1);
             }
         }
     }
 
     public void calculateTotalBenefit() {
-        for(Map.Entry<WinningInfo, Integer> entry : result.entrySet()) {
+        for (Map.Entry<WinningInfo, Integer> entry : result.entrySet()) {
             totalBenefit += entry.getKey().getWinningAmount() * entry.getValue();
         }
     }
@@ -56,7 +56,7 @@ public class LottoResult {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return WinningInfo.FIFTH_WINNER.getInfo() + "-" + result.get(WinningInfo.FIFTH_WINNER) + "개" + "\n" +
                 WinningInfo.FOURTH_WINNER.getInfo() + "-" + result.get(WinningInfo.FOURTH_WINNER) + "개" + "\n" +
                 WinningInfo.THIRD_WINNER.getInfo() + "-" + result.get(WinningInfo.THIRD_WINNER) + "개" + "\n" +
