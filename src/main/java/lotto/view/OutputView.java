@@ -8,12 +8,12 @@ import java.util.List;
 
 public class OutputView {
 
-    public void outputLotteryMachine(List<String> lotteryMachineResult,int number) {
-        System.out.printf(HOW_MANY_DID_YOU_PURCHASED.getMessage(), number);
-        lotteryMachineResult.forEach(System.out::println);
+    public void printLottoResult(List<String> lottoResult, int lotteryCount) {
+        System.out.printf(HOW_MANY_DID_YOU_PURCHASED.getMessage(), lotteryCount);
+        lottoResult.forEach(System.out::println);
     }
 
-    public void outputWinningResult(String winningResult) {
+    public void printWinningResult(String winningResult) {
         System.out.println(LOTTERY_RESULT.getMessage() + DIVIDER.getMessage());
         System.out.println(winningResult);
     }

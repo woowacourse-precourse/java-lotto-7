@@ -1,8 +1,12 @@
 package lotto.controller;
 
+import lotto.service.LottoUserService;
+
 public class LottoControllerFactory {
 
     public LottoController createLottoController() {
-        return new LottoController();
+        LottoUserService userService = new LottoUserService();
+
+        return new LottoController(userService);
     }
 }
