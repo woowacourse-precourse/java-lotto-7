@@ -33,8 +33,8 @@ public class Money {
     public static final Money ZERO = new Money(0L);
     public static final Money LOTTO_PRICE = Money.from(1000L);
 
-    private static final DecimalFormat formatter = new DecimalFormat("###,###");
-    private static final Map<RankCondition, Money> moneyTable = new EnumMap<>(Map.of(
+    private static final DecimalFormat FORMATTER = new DecimalFormat("###,###");
+    private static final Map<RankCondition, Money> PRIZE_AMOUNT_TABLE = new EnumMap<>(Map.of(
             FIRST, Money.from(2000000000L),
             SECOND, Money.from(30000000L),
             THIRD, Money.from(1500000L),
@@ -55,7 +55,7 @@ public class Money {
     }
 
     public static Money findByRank(RankCondition rank) {
-        return moneyTable.get(rank);
+        return PRIZE_AMOUNT_TABLE.get(rank);
     }
 
     public static Money addAll(List<Money> monies) {
@@ -97,8 +97,8 @@ public class Money {
 
     @Override
     public String toString() {
-        String formattedMoney = formatter.format(this.value);
-        return String.format("%s%s", formattedMoney, WON.value);
+        String formattedMoney = FORMATTER.format(this.value);
+        return String.format("(%s%s)", formattedMoney, WON.value);
     }
 
     public BigDecimal toBigDecimal() {

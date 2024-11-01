@@ -9,6 +9,5 @@ public class Application {
 
         MainController mainController = appConfig.serverController();
         mainController.run();
-
     }
 }

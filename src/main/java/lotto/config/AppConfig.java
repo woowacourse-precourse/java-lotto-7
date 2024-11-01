@@ -1,6 +1,8 @@
 package lotto.config;
 
 import lotto.controller.MainController;
+import lotto.io.terminal.InputTerminal;
+import lotto.io.terminal.OutputTerminal;
 import lotto.model.lotto.generator.LottoGenerator;
 import lotto.model.lotto.generator.RandomLottoGenerator;
 import lotto.service.LottoService;
@@ -20,8 +22,22 @@ public class AppConfig {
     }
 
     public MainController serverController() {
-        return new MainController(lottoService(), statisticService());
+        return new MainController(
+                inputTerminal(),
+                outputTerminal(),
+                lottoService(),
+                statisticService()
+        );
     }
+
+    private InputTerminal inputTerminal() {
+        return InputTerminal.getInstance();
+    }
+
+    private OutputTerminal outputTerminal() {
+        return OutputTerminal.getInstance();
+    }
+
 
     private LottoService lottoService() {
         return new LottoService(lottoGenerator());

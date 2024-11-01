@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -48,6 +47,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @Disabled
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");

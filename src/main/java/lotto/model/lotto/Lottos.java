@@ -31,7 +31,7 @@ public class Lottos {
         }
     }
 
-    public Stream<Lotto> initiateStream() {
+    public Stream<Lotto> initiateReadOnlyStream() {
         return lottos.stream();
     }
 

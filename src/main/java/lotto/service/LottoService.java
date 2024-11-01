@@ -5,7 +5,6 @@ import static lotto.model.rank.RankCondition.hasEnoughCountToBeSecondRank;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.generator.LottoGenerator;
-import lotto.model.money.Money;
 import lotto.model.rank.DrawResultRankTable;
 import lotto.model.rank.RankCondition;
 
@@ -17,16 +16,15 @@ public class LottoService {
         this.lottoGenerator = lottoGenerator;
     }
 
-    public Lottos offerLottos(final Money money) {
-        int count = money.calculatePurchasedLottoCount();
-        return lottoGenerator.generate(count);
+    public Lottos offerLottos(final int lottoCount) {
+        return lottoGenerator.generate(lottoCount);
     }
 
     public DrawResultRankTable rankMyLottos(final Lottos lottos, final Lotto drawResult, final Integer bonusNumber) {
 
         DrawResultRankTable rankTable = DrawResultRankTable.initiate();
 
-        lottos.initiateStream()
+        lottos.initiateReadOnlyStream()
                 .forEach(lotto -> {
                     RankCondition rank = rankEachLotto(lotto, drawResult, bonusNumber);
                     rankTable.updateResultRankTable(rank);

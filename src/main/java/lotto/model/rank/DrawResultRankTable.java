@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.stream.Stream;
 import lotto.model.money.Money;
 
 public class DrawResultRankTable {
@@ -27,14 +26,6 @@ public class DrawResultRankTable {
         result.put(rank, newValue);
     }
 
-    public int getRankValue(final RankCondition rank) {
-        return result.getOrDefault(rank, 0);
-    }
-
-    public Stream<Entry<RankCondition, Integer>> initiateReadOnlyStream() {
-        return result.entrySet().stream();
-    }
-
     public Money totalPrizeAmount() {
         List<Money> monies = result.entrySet()
                 .stream()
@@ -54,5 +45,10 @@ public class DrawResultRankTable {
         Money prizePrice = Money.findByRank(rank);
         int prizeCount = entry.getValue();
         return prizePrice.multiply(prizeCount);
+    }
+
+    public String getStringPrizeCount(final RankCondition rank) {
+        Integer prizeCount = result.getOrDefault(rank, 0);
+        return String.format("%d개", prizeCount);
     }
 }
