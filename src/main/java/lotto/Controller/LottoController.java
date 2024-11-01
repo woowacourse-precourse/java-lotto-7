@@ -47,7 +47,6 @@ public class LottoController {
     }
 
     private void displayLottos() {
-        System.out.printf("%d개를 구매했습니다.%n", lottoAmount);
         Utils.printLottos(lottos);
     }
 

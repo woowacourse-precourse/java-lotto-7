@@ -12,6 +12,8 @@ public class Utils {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
     public static void printLottos(List<Lotto> lottos){
+        System.out.println();
+        System.out.println(lottos.size()+Constants.LOTTO_AMOUNT_OUTPUT);
         lottos.stream().forEach(lotto -> lotto.printLotto());
     }
     public static ArrayList<Integer> toArrayList(String nums){

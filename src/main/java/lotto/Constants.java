@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 public class Constants {
     public static final String LOTTO_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
     public static final String LOTTO_AMOUNT_OUTPUT = "개를 구매했습니다.";
-    public static final String LOTTO_WINNING_NUMS_INPUT = "당첨 번호를 입력해 주세요.";
-    public static final String BONUS_NUM_INPUT = "보너스 번호를 입력해 주세요.";
+    public static final String LOTTO_WINNING_NUMS_INPUT = "\n당첨 번호를 입력해 주세요.";
+    public static final String BONUS_NUM_INPUT = "\n보너스 번호를 입력해 주세요.";
 
 
     public static final String DELIMITER = ",";
