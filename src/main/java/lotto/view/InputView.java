@@ -19,9 +19,9 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public int enterBonusNumber() {
+    public String enterBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
-        return Integer.parseInt(scanner.nextLine());
+        return scanner.nextLine();
 
     }
 }

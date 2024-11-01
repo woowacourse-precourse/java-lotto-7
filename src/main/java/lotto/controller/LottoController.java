@@ -1,11 +1,11 @@
 package lotto.controller;
 
+import lotto.converter.WinningNumberConverter;
 import lotto.domain.Lottos;
-import lotto.dto.LottoInputDto;
+import lotto.domain.WinningNumber;
 import lotto.dto.LottoOutputDto;
 import lotto.service.LottoBuyService;
 import lotto.service.LottoCheckService;
-import lotto.util.WinningNumberParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,13 +31,12 @@ public class LottoController {
 
         outputView.showLottos(lottos);
 
-        String winningNumber = inputView.enterWinningNumber();
-        int bonusNumber = inputView.enterBonusNumber();
+        String winningNumbers = inputView.enterWinningNumber();
+        String bonusNumber = inputView.enterBonusNumber();
+        WinningNumber winningNumber = WinningNumberConverter.toWinningNumber(winningNumbers, bonusNumber);
 
         LottoOutputDto lottoOutputDto = lottoCheckService.checkLottos(
-                new LottoInputDto(Long.parseLong(purchaseAmount), WinningNumberParser.parseWinningNumber(winningNumber),
-                        bonusNumber),
-                lottos);
+                Long.parseLong(purchaseAmount), winningNumber, lottos);
 
         outputView.showStatistics(lottoOutputDto);
     }

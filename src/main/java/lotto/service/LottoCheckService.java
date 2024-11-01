@@ -7,27 +7,28 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Ranking;
-import lotto.dto.LottoInputDto;
+import lotto.domain.WinningNumber;
 import lotto.dto.LottoOutputDto;
 
 public class LottoCheckService {
 
-    public LottoOutputDto checkLottos(final LottoInputDto lottoInputDto, final Lottos lottos) {
+    public LottoOutputDto checkLottos(final Long purchaseAmount, final WinningNumber winningNumber,
+                                      final Lottos lottos) {
         LottoResult lottoResult = new LottoResult();
-        Set<Integer> lottoChecker = new HashSet<>(lottoInputDto.winningNumber());
+        Set<Integer> lottoChecker = new HashSet<>(winningNumber.getWinningNumber());
 
         for (Lotto lotto : lottos.getLottos()) {
-            checkLotto(lottoChecker, lotto, lottoInputDto, lottoResult);
+            checkLotto(lottoChecker, lotto, winningNumber.getBonusNumber(), lottoResult);
         }
-        double rateOfReturn = calculateRateOfReturn(lottoInputDto.purchaseAmount(), lottoResult);
+        double rateOfReturn = calculateRateOfReturn(purchaseAmount, lottoResult);
 
         return new LottoOutputDto(rateOfReturn, lottoResult);
     }
 
-    private void checkLotto(Set<Integer> lottoChecker, Lotto lotto, LottoInputDto lottoInputDto,
+    private void checkLotto(Set<Integer> lottoChecker, Lotto lotto, int bonusNumber,
                             LottoResult lottoResult) {
         Ranking ranking = Ranking.getRanking(checkLottoNumber(lottoChecker, lotto),
-                checkBonusNumber(lottoInputDto.bonusNumber(), lotto));
+                checkBonusNumber(bonusNumber, lotto));
         if (ranking != null) {
             lottoResult.addResult(ranking);
         }
