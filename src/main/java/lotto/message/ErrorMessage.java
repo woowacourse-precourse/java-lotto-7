@@ -8,4 +8,11 @@ public class ErrorMessage {
     public static final String ERROR_INVALID_UNIT = "[ERROR] 1000원 단위로 입력해주세요.";
     public static final String ERROR_BELOW_MINIMUM = "[ERROR] 1000원 이상 입력해주세요.";
 
+    public static final String ERROR_NOT_SEPARATED = "[ERROR] 입력값에 쉼표(,) 구분자가 포함되어 있지 않습니다.";
+    public static final String ERROR_EMPTY_WINNING_NUMBERS = "[ERROR] 당첨 번호를 입력하셔야 합니다.";
+    public static final String ERROR_WINNING_NUMBERS_SIZE_LESS = "[ERROR] 당첨 번호는 6개를 입력해야 합니다.";
+    public static final String ERROR_WINNING_NUMBERS_SIZE_MORE = "[ERROR] 당첨 번호는 6개를 초과할 수 없습니다.";
+    public static final String ERROR_WINNING_NUMBERS_RANGE = "[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final String ERROR_DUPLICATE_WINNING_NUMBERS = "[ERROR] 당첨 번호에 중복된 번호가 있습니다.";
+
 }

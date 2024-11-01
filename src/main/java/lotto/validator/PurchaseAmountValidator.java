@@ -1,11 +1,11 @@
 package lotto.validator;
 
+import static lotto.message.CommonConstants.MINIMUM_AMOUNT;
+import static lotto.message.CommonConstants.ZERO;
 import static lotto.message.ErrorMessage.ERROR_BELOW_MINIMUM;
 import static lotto.message.ErrorMessage.ERROR_INPUT_PURCHASE_AMOUNT;
 import static lotto.message.ErrorMessage.ERROR_INVALID_UNIT;
 import static lotto.message.ErrorMessage.ERROR_NEGATIVE_PRICE;
-import static lotto.message.MessageConstants.MINIMUM_AMOUNT;
-import static lotto.message.MessageConstants.ZERO;
 
 import lotto.util.ParseUtil;
 import org.junit.platform.commons.util.StringUtils;

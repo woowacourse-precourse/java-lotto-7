@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.message.MessageConstants.LOTTO_PRICE;
-import static lotto.message.MessageConstants.ZERO;
+import static lotto.message.CommonConstants.LOTTO_PRICE;
+import static lotto.message.CommonConstants.ZERO;
 
 import java.util.ArrayList;
 import java.util.Collections;

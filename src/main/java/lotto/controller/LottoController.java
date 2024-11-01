@@ -27,6 +27,8 @@ public class LottoController {
         Lottos lottos = issueLottos(purchaseAmount);
         printLottos(lottos);
 
+        Lotto lotto = createWinningLotto();
+
         Console.close();
     }
 
@@ -45,6 +47,11 @@ public class LottoController {
         for (Lotto lotto : lottoList) {
             outputView.printLottoNumbers(lotto.getNumbers());
         }
+    }
+
+    private Lotto createWinningLotto() {
+        String inputWinningNumbers = inputView.inputWinningNumbers();
+        return Lotto.createLotto(inputWinningNumbers);
     }
 
 }
