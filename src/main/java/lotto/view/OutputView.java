@@ -3,7 +3,8 @@ package lotto.view;
 public class OutputView {
 
     private static final String purchaseAmountMessage = "구입금액을 입력해 주세요.";
-    private static final String winningNumbers = "당첨 번호를 입력해 주세요.";
+    private static final String winningNumbersMessage = "당첨 번호를 입력해 주세요.";
+    private static final String bonusNumberMessage = "보너스 번호를 입력해 주세요.";
 
     private OutputView() {
     }
@@ -13,6 +14,10 @@ public class OutputView {
     }
 
     public static void printInputWinningNumbers() {
-        System.out.println(winningNumbers);
+        System.out.println(winningNumbersMessage);
+    }
+
+    public static void printInputBonusNumber() {
+        System.out.println(bonusNumberMessage);
     }
 }

@@ -9,7 +9,8 @@ public class LottoController {
         String purchaseAmountInput = InputView.getUserInput();
         OutputView.printInputWinningNumbers();
         String winningNumbersInput = InputView.getUserInput();
-
+        OutputView.printInputBonusNumber();
+        String bonusNumberInput = InputView.getUserInput();
 
     }
 }
