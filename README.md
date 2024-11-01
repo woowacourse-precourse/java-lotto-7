@@ -14,6 +14,8 @@
 - Java Development Kit 21
 - Gradle
 
+<br />
+
 ## ⛳️ 요구 사항
 
 ### 🚀 기능 요구 사항
@@ -131,6 +133,8 @@
 총 수익률은 62.5%입니다.
 ```
 
+<br />
+
 ## 💎 프로젝트 설계 목표
 
 ### 1. TDD(Test Driven Development)
@@ -162,9 +166,11 @@
 - 프록시 패턴을 활용해 인터페이스 메서드 기반의 유효성 검사 지원한다.
 - 도메인의 필드 기반 유효성 검사 지원한다.
 
+<br />
+
 ## 📒 구현할 기능 목록
 
-## 1. 테스트를 설계한다.
+### 1. 테스트를 설계한다.
 
 > [!IMPORTANT]
 > TDD(Test Driven Development) 방법론에 따라 테스트를 먼저 설계하고 작성한다.
@@ -212,7 +218,7 @@
 - [x] 예외 상황의 경우 `IllegalArgumentException`가 발생한다.
 - [x] 예외 상황의 경우 `Exception Message`가 `[ERROR]`로 시작한다.
 
-## 2. IoC(Inversion of Control), DI(Dependency Injection) 기능을 구현한다.
+### 2. IoC(Inversion of Control), DI(Dependency Injection) 기능을 구현한다.
 
 > [!NOTE]
 > [자바로 구현하는 간단한 레이싱](https://github.com/himitery/java-racingcar-7)에서 구현한 코드를 기반으로 리팩터링을 진행한다.
@@ -223,7 +229,7 @@
 - [x] 메서드의 기능을 최대한 작게 만든다.
   - 메서드의 길이는 최대한 15 이하가 되도록 한다.
 
-## 3. 유효성 검증 기능을 구현한다.
+### 3. 유효성 검증 기능을 구현한다.
 
 > [!NOTE]
 > [자바로 구현하는 간단한 레이싱](https://github.com/himitery/java-racingcar-7)에서 구현한 코드를 기반으로 기능 추가 및 리팩터링을
@@ -236,7 +242,7 @@
 - [x] 메서드의 기능을 최대한 작게 만든다.
   - 메서드의 길이는 최대한 15 이하가 되도록 한다.
 
-## 4. 도메인 로직을 구현한다.
+### 4. 도메인 로직을 구현한다.
 
 **✅ 사용자로부터 입력을 받고 입력값을 검증한다.**
 
