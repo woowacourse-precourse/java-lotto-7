@@ -1,18 +1,20 @@
 package lotto.util;
 
 public enum LottoOperator {
-    THREE_AGREEMENT(3, "개 일치(5,000원) - ", 0),
-    FOUR_AGREEMENT(4, "개 일치(50,000원) - ", 0),
-    FIVE_AGREEMENT(5, "개 일치(1,500,000원) - ", 0),
-    FIVE_AND_BONUS_AGREEMENT(5, "개 일치, 보너스 볼 일치(30,000,000원) - ", 0),
-    SIX_AGREEMENT(6, "개 일치(2,000,000,000원) - ", 0);
+    THREE_AGREEMENT(3, 5000, "개 일치(5,000원) - ", 0),
+    FOUR_AGREEMENT(4, 50000, "개 일치(50,000원) - ", 0),
+    FIVE_AGREEMENT(5, 1500000, "개 일치(1,500,000원) - ", 0),
+    FIVE_AND_BONUS_AGREEMENT(5, 30000000, "개 일치, 보너스 볼 일치(30,000,000원) - ", 0),
+    SIX_AGREEMENT(6, 2000000000, "개 일치(2,000,000,000원) - ", 0);
 
     private int agree;
+    private int amount;
     private String message;
     private int count;
 
-    LottoOperator(int agree, String message, int count) {
+    LottoOperator(int agree, int amount, String message, int count) {
         this.agree = agree;
+        this.amount = amount;
         this.message = message;
         this.count = count;
     }
@@ -44,5 +46,9 @@ public enum LottoOperator {
 
     public String getResult() {
         return agree + message + count + "개";
+    }
+
+    public int getRateOfReturn() {
+        return amount * count;
     }
 }

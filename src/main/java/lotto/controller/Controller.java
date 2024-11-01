@@ -29,5 +29,6 @@ public class Controller {
         inputView.readWinningNumbers();
         inputView.readBonusNumber();
         outputView.printLottoResult(lottos);
+        outputView.printRateOfReturn(thousandUnitCount);
     }
 }
