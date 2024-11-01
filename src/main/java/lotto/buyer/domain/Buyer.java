@@ -1,5 +1,7 @@
 package lotto.buyer.domain;
 
+import lotto.money.domain.Money;
+
 public class Buyer {
     private final InsertMoneyService insertMoneyService;
     public Buyer(InsertMoneyService insertMoneyService) {
