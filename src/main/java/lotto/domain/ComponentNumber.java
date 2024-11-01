@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.constants.value.LottoRule;
-import lotto.constants.message.RangeError;
+import lotto.constants.string.RangeError;
 
 import java.util.Objects;
 

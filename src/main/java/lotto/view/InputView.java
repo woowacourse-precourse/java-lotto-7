@@ -1,7 +1,7 @@
 package lotto.view;
 
 
-import lotto.constants.message.InputMessage;
+import lotto.constants.string.InputMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -24,13 +24,13 @@ public class InputView {
         return readLine();
     }
 
-    public String getWinningNumber() {
+    public String getWinningComponent() {
         System.out.println(InputMessage.WINNING_NUMBER.getInstance());
         return readLine();
     }
 
 
-    public String getBonusNumber() {
+    public String getBonusComponent() {
         System.out.println(InputMessage.BONUS_NUMBER.getInstance());
         return readLine();
     }

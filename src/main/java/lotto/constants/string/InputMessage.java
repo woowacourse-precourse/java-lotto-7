@@ -1,4 +1,4 @@
-package lotto.constants.message;
+package lotto.constants.string;
 
 import lotto.constants.Constants;
 

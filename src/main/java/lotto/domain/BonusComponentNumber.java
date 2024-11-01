@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constants.message.InputError;
+import lotto.constants.string.InputError;
 
 public class BonusComponentNumber implements BonusComponent {
 
