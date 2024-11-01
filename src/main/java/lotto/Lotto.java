@@ -42,5 +42,9 @@ public class Lotto {
         return numbers.size() != numbers.stream().distinct().count();
     }
 
+    public boolean isNumberInLottoResult(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     // TODO: 추가 기능 구현
 }
