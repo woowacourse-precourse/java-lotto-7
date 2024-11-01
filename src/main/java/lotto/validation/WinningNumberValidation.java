@@ -9,11 +9,12 @@ import static lotto.constants.LottoNumbers.*;
 
 public class WinningNumberValidation {
     private final static String DELIMITER = ",";
+    public static List<Integer> parsedWinningNumbers;
 
     public static void validate(String inputWinningNumbers) {
         List<String> winningNumbers = setTrimNumbers(inputWinningNumbers);
         winningNumbers = setUniqueNumbers(winningNumbers);
-        List<Integer> parsedWinningNumbers = parseNumbers(winningNumbers);
+        parsedWinningNumbers = parseNumbers(winningNumbers);
         validateRange10To45(parsedWinningNumbers);
     }
 
