@@ -22,16 +22,15 @@ public class LottoManager {
         return new Lotto(numberList);
     }
 
-    // 로또sets, 당첨번호, 보너스번호를 인자로 받고 로또의 결과값들을 당첨결과 List에 추가하여 반환한다.
-    public List<LottoRank> analyzeLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber){
-        List<LottoRank>lottoRankResults = new ArrayList<>();
-        boolean hasBonusNumber = false;
-        for(Lotto currentLottoNumbers : lottoSets){
-            int hitCount = countHitCount(currentLottoNumbers.getLotto(),winningNumbers.getLotto());
-            if(hitCount==5 && checkHasBonusNumber(currentLottoNumbers.getLotto(),bonusNumber)){
+    public List<LottoRank> analyzeLottoResults(List<Lotto> lottoSets, Lotto winningNumbers, int bonusNumber) {
+        List<LottoRank> lottoRankResults = new ArrayList<>();
+        for (Lotto currentLottoNumbers : lottoSets) {
+            boolean hasBonusNumber = false;
+            int hitCount = countHitCount(currentLottoNumbers.getLotto(), winningNumbers.getLotto());
+            if (hitCount == 5 && checkHasBonusNumber(currentLottoNumbers.getLotto(), bonusNumber)) {
                 hasBonusNumber = true;
             }
-            lottoRankResults.add(getLottoRank(hitCount,hasBonusNumber));
+            lottoRankResults.add(getLottoRank(hitCount, hasBonusNumber));
         }
         return lottoRankResults;
     }
@@ -43,8 +42,8 @@ public class LottoManager {
 
     private int countHitCount(List<Integer> currentLottoNumbers, List<Integer> winningNumbers) {
         int hitCount = 0;
-        for(int number : currentLottoNumbers){
-            if(winningNumbers.contains(number)){
+        for (int number : currentLottoNumbers) {
+            if (winningNumbers.contains(number)) {
                 hitCount++;
             }
         }
