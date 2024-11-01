@@ -16,30 +16,42 @@ public class InputValidator {
     private static final String ATTEMPTS_PATTERN_REGEX = "^[0-9]+$";
 
     public void validateInputAmount(String input) {
-        int amount;
+        validateEmptyAmount(input);
+        validateInvalidCharacter(input);
+        int amount = validateExceedMaxArea(input);
+        validateMinAmount(amount);
+        validateAmountUnit(amount);
+    }
 
+    private void validateEmptyAmount(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT_EXCEPTION);
         }
+    }
 
+    private void validateInvalidCharacter(String input) {
         if (!Pattern.matches(ATTEMPTS_PATTERN_REGEX, input)) {
             throw new IllegalArgumentException(INVALID_CHARACTER_INPUT_EXCEPTION);
         }
+    }
 
+    private int validateExceedMaxArea(String input) {
         try {
-            amount = Integer.parseInt(input);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(EXCEED_MAX_AREA_EXCEPTION);
         }
+    }
 
+    private void validateMinAmount(int amount) {
         if (amount < 1000) {
             throw new IllegalArgumentException(UNDER_MIN_AMOUNT_INPUT_EXCEPTION);
         }
+    }
 
+    private void validateAmountUnit(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT_EXCEPTION);
         }
-
-
     }
 }
