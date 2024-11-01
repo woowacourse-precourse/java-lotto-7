@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.PurchaseCost;
 import lotto.model.WinningNumbers;
-import lotto.utility.PurchaseCostParser;
+import lotto.utility.NumberParser;
 import lotto.utility.RandomNumberCreator;
 import lotto.utility.WinningNumberParser;
 import lotto.view.InputView;
@@ -28,7 +28,7 @@ public class LottoController {
 
     public int inputPurchaseCost() {
         String rawPurchaseCost = InputView.inputPurchaseCost();
-        return PurchaseCostParser.parseToInteger(rawPurchaseCost);
+        return NumberParser.parseToInteger(rawPurchaseCost);
     }
 
     public List<Lotto> purchaseLotto(int purchaseCount) {
