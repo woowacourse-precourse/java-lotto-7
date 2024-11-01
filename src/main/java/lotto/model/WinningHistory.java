@@ -8,14 +8,14 @@ public class WinningHistory {
     private final Map<Rank, Integer> winningHistory;
     private int totalPrize;
 
-    public WinningHistory(List<Integer> winningNumbersToCompare, List<Lotto> publishedLotteries, int bonusNumber) {
+    public WinningHistory(List<Integer> winningNumbers, List<Lotto> publishedLotteries, int bonusNumber) {
         winningHistory = new EnumMap<>(Rank.class);
 
         for (Rank rank : Rank.values()) {
             winningHistory.put(rank, 0);
         }
 
-        countWinningsOfEachRank(winningNumbersToCompare, publishedLotteries, bonusNumber);
+        countWinningsOfEachRank(winningNumbers, publishedLotteries, bonusNumber);
     }
 
     public Map<Rank, Integer> getWinningCountOfEachRank() {
@@ -36,7 +36,7 @@ public class WinningHistory {
 
             if (rank != null) {
                 winningHistory.put(rank, winningHistory.get(rank) + 1);
-                totalPrize += rank.getPrize();
+                sumTotalPrize(rank.getPrize());
             }
         }
     }
@@ -51,5 +51,9 @@ public class WinningHistory {
         }
 
         return count;
+    }
+
+    private void sumTotalPrize(int prize) {
+        totalPrize += prize;
     }
 }
