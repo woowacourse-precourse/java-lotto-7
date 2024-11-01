@@ -12,4 +12,8 @@ public class LottoRepository {
     public void save(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
 }

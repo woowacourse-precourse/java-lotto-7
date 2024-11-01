@@ -16,6 +16,14 @@ public class Parser {
                 .toList();
     }
 
+    public static Long parseStringToLong(String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자가 입력되어야 합니다.");
+        }
+    }
+
     public static int parseStringToInt(String input) {
         try {
             return Integer.parseInt(input);

@@ -8,8 +8,8 @@ public enum LottoStore {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public Integer getMaxPurchasableLottos(int purchaseAmount){
-        return purchaseAmount / LOTTO_PRICE;
+    public Integer getMaxPurchasableLottos(Long purchaseAmount) {
+        return (int) (purchaseAmount / LOTTO_PRICE);
     }
 
     public List<Lotto> purchase(int count){
@@ -21,9 +21,5 @@ public enum LottoStore {
         }
 
         return lottos;
-    }
-
-    public Integer getPrice(){
-        return LOTTO_PRICE;
     }
 }

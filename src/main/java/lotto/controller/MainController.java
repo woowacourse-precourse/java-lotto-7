@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.repository.LottoRepository;
 import lotto.dto.response.PurchaseLottosResponse;
+import lotto.dto.response.getLottoResultResponse;
 import lotto.service.LottoService;
 import lotto.util.Parser;
 import lotto.view.InputView;
@@ -15,17 +16,16 @@ public class MainController {
     private final LottoController lottoController = new LottoController(new LottoService(lottoRepository));
 
     public void start(){
-        // 구매 금액 입력
-        Integer purchaseAmount = inputPurchaseAmount();
-        // 로또 구매 개수  + 번호 출력
+        // 1000 단위 검사
+        Long purchaseAmount = inputPurchaseAmount();
         purchaseLottos(purchaseAmount);
-        // 로또 당첨 번호 입력
+        // 중복 검사 해야함
         List<Integer> winLottoNumbers = inputWinLottoNumbers();
-        // 보너스 번호 입력
+        // 로또 당첨 번호랑 중복 안되게 해야함
         Integer bonusNumber = inputBonusNumber();
-        // 당첨 내역
-        
-        // 수익률
+        getLottoResultResponse response = lottoController.getLottoResult(winLottoNumbers, bonusNumber);
+        OutputView.printLottoResult(response.result());
+        OutputView.printLottoReturnRate(purchaseAmount, response.prizeMoney());
     }
 
     private Integer inputBonusNumber() {
@@ -38,14 +38,14 @@ public class MainController {
         return Parser.parseDelimitersInteger(InputView.readUserInput());
     }
 
-    private void purchaseLottos(Integer purchaseAmount) {
+    private void purchaseLottos(Long purchaseAmount) {
         PurchaseLottosResponse purchaseLottosResponse = lottoController.purchaseLottos(purchaseAmount);
         OutputView.printPurchaseLottos(purchaseLottosResponse.count());
         OutputView.printIssueAllLottoNumbers(purchaseLottosResponse.allLottosNumbers());
     }
 
-    private Integer inputPurchaseAmount() {
+    private Long inputPurchaseAmount() {
         OutputView.inputPurchaseAmount();
-        return Parser.parseStringToInt(InputView.readUserInput());
+        return Parser.parseStringToLong(InputView.readUserInput());
     }
 }
