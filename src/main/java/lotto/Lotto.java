@@ -15,6 +15,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     public static void printRequestingMoneyInput() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
@@ -31,12 +35,12 @@ public class Lotto {
         return Console.readLine();
     }
 
-    private static int getLottoPurchaseCount(String userInput) {
+    public static int getLottoPurchaseCount(String userInput) {
         int money = Validator.validateMoneyInput(userInput);
         return money / 1000;
     }
 
-    public Lotto getWinningNumbers(String userInput) {
+    public static Lotto getWinningNumbers(String userInput) {
         List<Integer> winningNumbers = new ArrayList<Integer>();
 
         String[] numbers = userInput.split(",", -1);
@@ -49,7 +53,7 @@ public class Lotto {
         return new Lotto(winningNumbers);
     }
 
-    public static int getBonusNumber(List<Integer> winningNumbers, String userInput) {
+    public static int getBonusNumber(Lotto winningNumbers, String userInput) {
         int bonusNumber = Validator.validateLottoNumber(userInput);
         Validator.validateBonusNumber(winningNumbers, bonusNumber);
 
