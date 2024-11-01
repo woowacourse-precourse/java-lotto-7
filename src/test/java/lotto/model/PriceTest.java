@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,5 +22,19 @@ class PriceTest {
 
 		// then
 		assertEquals(expectedPrice, price.getPrice());
+	}
+
+	@ParameterizedTest
+	@DisplayName("구입금액이 금액 단위 조건에 나누어 떨어지지 않는다면 에러를 발생시킨다.")
+	@ValueSource(ints = {500, 1234, 999})
+	void 구입금액_단위에_나누어_떨어지지_않을_때_예외가_발생한다(int increment) {
+		// given
+		int priceDivisibilityUnit = 1000;
+		int expectedPrice = priceDivisibilityUnit + increment;
+
+		// when, then
+		assertThatThrownBy(() -> new Price(expectedPrice))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.");
 	}
 }
