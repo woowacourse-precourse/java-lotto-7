@@ -1,7 +1,9 @@
 package lotto.service;
 
-public class LottoService {
+import static lotto.util.Constants.AMOUNT_UNIT;
+
+public class LottoExchanger {
     public static int divideByThousand(int money) {
-        return money / 1000;
+        return money / AMOUNT_UNIT.getIntValue();
     }
 }

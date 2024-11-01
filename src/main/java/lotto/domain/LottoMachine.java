@@ -15,7 +15,7 @@ public class LottoMachine {
                     Collections.sort(singleLotto);
                     return singleLotto;
                 })
-                .collect(Collectors.toList()); // List<List<Integer>>로 수집
+                .collect(Collectors.toList());
     }
 }
 

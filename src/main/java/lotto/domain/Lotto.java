@@ -3,6 +3,10 @@ package lotto.domain;
 import static lotto.util.ExceptionMessage.INVALID_LOTTO_NUMBER;
 import static lotto.util.ExceptionMessage.INVALID_RANGE;
 
+import static lotto.util.Constants.MIN_LOTTO_NUMBER;
+import static lotto.util.Constants.MAX_LOTTO_NUMBER;
+import static lotto.util.Constants.LOTTO_NUMBER_SIZE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,15 +22,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getIntValue()) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.format());
         }
     }
 
     private void validateWinningNumberRange(List<Integer> numbers) {
         boolean isValid = numbers.stream()
-                .allMatch(number -> number >= 1
-                        && number <= 45);
+                .allMatch(number -> number >= MIN_LOTTO_NUMBER.getIntValue()
+                        && number <= MAX_LOTTO_NUMBER.getIntValue());
         if (!isValid) {
             throw new IllegalArgumentException(INVALID_RANGE.format());
         }

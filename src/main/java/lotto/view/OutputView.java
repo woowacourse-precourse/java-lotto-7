@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.util.Constants.AMOUNT_UNIT;
+import static lotto.util.Constants.ONE_HUNDRED;
+
 import java.util.List;
 import lotto.util.PrizeType;
 
@@ -29,17 +32,17 @@ public class OutputView {
         System.out.printf(LOTTO_FORMAT, chance);
     }
 
-    public void displayLottoNumbers(List<List<Integer>> lottoNumbers) {
-        for (List<Integer> numbers : lottoNumbers) {
-            System.out.println(numbers);
-        }
+    public void printLotto(List<List<Integer>> lottoNumbers) {
+        lottoNumbers.stream()
+                .map(Object::toString)
+                .forEach(System.out::println);
     }
 
-    private void showResultMessage() {
+    public void showResultMessage() {
         System.out.println(RESULT_MESSAGE);
     }
 
-    public void displayStatistics(int[] results, int moneySpent) {
+    public void printStatistics(int[] results, int moneySpent) {
         int totalPrize = 0;
         showResultMessage();
         for (PrizeType prizeType : PrizeType.values()) {
@@ -48,11 +51,11 @@ public class OutputView {
             totalPrize += count * prizeAmount;
             System.out.printf(PRIZE_FORMAT, prizeType.getMatching(), prizeType.getPrize(), count);
         }
-        displayResultMessage(totalPrize, moneySpent);
+        printResultMessage(totalPrize, moneySpent);
     }
 
-    public void displayResultMessage(int totalPrize, int moneySpent) {
-        double rateOfReturn = ((double) totalPrize / (moneySpent * 1000)) * 100;
+    public void printResultMessage(int totalPrize, int moneySpent) {
+        double rateOfReturn = ((double) totalPrize / (moneySpent * AMOUNT_UNIT.getIntValue())) * ONE_HUNDRED.getIntValue();
         System.out.printf(RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
 

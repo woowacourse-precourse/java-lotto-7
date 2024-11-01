@@ -1,5 +1,8 @@
 package lotto.validation;
 
+import static lotto.util.Constants.AMOUNT_UNIT;
+import static lotto.util.Constants.ZERO;
+
 import static lotto.util.ExceptionMessage.INVALID_AMOUNT_UNIT;
 
 public class InputValidator {
@@ -10,13 +13,13 @@ public class InputValidator {
     }
 
     private void isZero(int money) {
-        if (money <= 0) {
+        if (money <= ZERO.getIntValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }
 
     private void idValidateAmountUnit(int money) {
-        if (money % 1000 != 0) {
+        if (money % AMOUNT_UNIT.getIntValue() != ZERO.getIntValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }

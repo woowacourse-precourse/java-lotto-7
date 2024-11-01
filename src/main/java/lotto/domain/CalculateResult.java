@@ -7,7 +7,7 @@ public class CalculateResult {
     public int[] calculateStatistics(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottoNumbers) {
         int[] results = new int[PrizeType.values().length];
 
-        for (List<Integer> singleLotto : lottoNumbers) {
+        lottoNumbers.forEach(singleLotto -> {
             int matchCount = countMatchingNumbers(singleLotto, winningNumbers);
             boolean hasBonus = singleLotto.contains(bonusNumber);
 
@@ -22,7 +22,7 @@ public class CalculateResult {
             } else if (matchCount == 3) {
                 results[PrizeType.MATCHING_3.ordinal()]++;
             }
-        }
+        });
         return results;
     }
 
