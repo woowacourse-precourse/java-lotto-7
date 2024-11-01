@@ -1,8 +1,10 @@
 package lotto.validator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.constants.LottoConstants.*;
 
@@ -29,18 +31,15 @@ public class NumbersValidator {
         }
     }
 
-    private final List<Integer> numbers = new ArrayList<>();
+    private List<Integer> winningNumbers = new ArrayList<>();
+    private List<Integer> bonusNumber = new ArrayList<>();
 
-    public NumbersValidator(String numbersInput) {
-        parseNumbersToList(numbersInput);
-    }
-
-    private void parseNumbersToList(String numbersInput) {
-        for (String number : numbersInput.split(",")) {
-            validateNoSpace(number);
-            validateIsNumber(number);
-            numbers.add(Integer.parseInt(number));
-        }
+    private List<Integer> parseNumbersToList(String numbersInput) {
+        return Arrays.stream(numbersInput.split(","))
+                .peek(this::validateNoSpace)
+                .peek(this::validateIsNumber)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private void validateIsNumber(String number) {
@@ -51,25 +50,28 @@ public class NumbersValidator {
         }
     }
 
-    public void validateWinningNumbers() {
-        validateLength("당첨");
-        validateUnique();
-        validateBetweenList();
+    public void validateWinningNumbers(String input) {
+        this.winningNumbers = parseNumbersToList(input);
+        validateLength("당첨", winningNumbers);
+        validateUnique(winningNumbers);
+        validateBetweenList(winningNumbers);
     }
 
-    public void validateBonusNumber() {
-        validateLength("보너스");
-        validateBetweenList();
+    public void validateBonusNumber(String input) {
+        this.bonusNumber = parseNumbersToList(input);
+        validateLength("보너스", bonusNumber);
+        validateBetweenList(bonusNumber);
+
     }
 
-    private void validateLength(String type) {
+    private void validateLength(String type, List<Integer> numbers) {
         int targetLength = LENGTH_BY_NUMBER_TYPE.get(type);
         if (numbers.size() != targetLength) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_TARGET_LENGTH.getMessage(type, targetLength));
         }
     }
 
-    private void validateUnique() {
+    private void validateUnique(List<Integer> numbers) {
         int beforeSize = numbers.size();
         int afterSize = new HashSet<>(numbers).size();
 
@@ -87,7 +89,7 @@ public class NumbersValidator {
         }
     }
 
-    private void validateBetweenList() {
+    private void validateBetweenList(List<Integer> numbers) {
         for (int number : numbers) {
             validateBetween(number);
         }
@@ -99,7 +101,15 @@ public class NumbersValidator {
         }
     }
 
-    public List<Integer> getNumbers() {
+    public void getWinningNumbers() {
+        getNumbers(winningNumbers);
+    }
+
+    public void getBonusNumber() {
+        getNumbers(winningNumbers);
+    }
+
+    private List<Integer> getNumbers(List<Integer> numbers) {
         return new ArrayList<>(numbers);
     }
 }
