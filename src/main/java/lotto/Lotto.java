@@ -1,7 +1,10 @@
 package lotto;
 
+import static lotto.AppConstants.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.AppConstants.INVALID_LOTTO_NUMBER_DUPLICATED;
 import static lotto.AppConstants.LOTTO_NUMBER_COUNT;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -19,7 +22,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT);
+        }
+        HashSet<Integer> singleNumbers = new HashSet<>(numbers);
+        if (singleNumbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_DUPLICATED);
         }
     }
 
