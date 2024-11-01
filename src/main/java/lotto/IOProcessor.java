@@ -2,14 +2,13 @@ package lotto;
 
 import static lotto.ExceptionHandler.validateNumeric;
 import static lotto.Utils.calculateProfitRate;
-import static lotto.Utils.issueLottos;
 import static lotto.Utils.parseByComma;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class IOProcessor {
-    private static final List<String> LOTTO_RANK = List.of("FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH");
+    private static final List<String> LOTTO_RANK = List.of("FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST");
 
     public static int readNumber(String guide) {
         String numberText = "";
@@ -32,18 +31,22 @@ public class IOProcessor {
         return parseByComma(commaSeperatedText);
     }
 
-    public static void printIssuedLotto(int purchaseAmount) {
-        int issueAmount = Lotto.getIssueAmount(purchaseAmount);
+    public static void printIssueAmount(int issueAmount) {
         String issueText = OutputPrompt.LOTTO_ISSUE.print(issueAmount);
         System.out.println(issueText);
+    }
 
-        List<Lotto> lottos = issueLottos(issueAmount);
-        for (Lotto lotto : lottos) {
+    public static void printIssuedLottos(List<Lotto> issuedLottos) {
+        for (Lotto lotto : issuedLottos) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
     public static void printWinningDetails() {
+        String winningDetailHead = OutputPrompt.WINNING_DETAIL_HEAD.getDefaultPrint();
+        System.out.println(winningDetailHead);
+
         for (String rank : LOTTO_RANK) {
             int count = LottoWinner.valueOf(rank).getCount();
             String winningDetail = OutputPrompt.valueOf(rank).print(count);
