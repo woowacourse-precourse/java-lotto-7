@@ -31,7 +31,7 @@ public class LottoController {
         outputView.printLottoResult(lottoManager.getLottoResult(), lottoManager.getPurchaseAmount());
     }
 
-    private static LottoManager generateLottoManager(int purchaseAmount) {
+    private LottoManager generateLottoManager(int purchaseAmount) {
         LottoManager lottoManager = new LottoManager(purchaseAmount);
         lottoManager.generateLottoNumbers(purchaseAmount);
         return lottoManager;
