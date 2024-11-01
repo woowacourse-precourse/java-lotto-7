@@ -3,7 +3,7 @@ package lotto.controller;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
 
 public class LottoMachineControllerTest {

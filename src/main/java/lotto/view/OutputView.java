@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class OutputView {
     public void printLottoTicket(List<Lotto> lottoTickets, int lottoTicketNumber){

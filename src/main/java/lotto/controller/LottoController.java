@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.util.Calculator;
 import lotto.validator.Validator;
 import lotto.view.InputView;
