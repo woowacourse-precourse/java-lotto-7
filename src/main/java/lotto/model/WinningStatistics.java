@@ -3,9 +3,11 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class WinningStatistics {
+    private static final int INITIAL_WINNING_COUNT = 0;
+    private static final int INCREMENT_COUNT = 1;
+    private static final int PERCENTAGE_MULTIPLIER = 100;
     private final Map<Rank, Integer> winningStatistics;
 
     public WinningStatistics(Map<Rank, Integer> winningStatistics) {
@@ -15,7 +17,7 @@ public class WinningStatistics {
 
     private void initializeWinningStatistics() {
         for (Rank rank : Rank.values()) {
-            winningStatistics.put(rank, 0);
+            winningStatistics.put(rank, INITIAL_WINNING_COUNT);
         }
     }
 
@@ -44,7 +46,7 @@ public class WinningStatistics {
     public void updateWinningStatistics(int matchCount, boolean isBonusMatch) {
         for (Rank rank : Rank.values()) {
             if (rank.checkRank(matchCount, isBonusMatch)) {
-                winningStatistics.put(rank, winningStatistics.get(rank) + 1);
+                winningStatistics.put(rank, winningStatistics.get(rank) + INCREMENT_COUNT);
                 return;
             }
         }
@@ -61,6 +63,6 @@ public class WinningStatistics {
     }
 
     public double getRateOfReturn(Money money) {
-        return ((double) getTotalPrize() / money.getMoney()) * 100;
+        return ((double) getTotalPrize() / money.getMoney()) * PERCENTAGE_MULTIPLIER;
     }
 }
