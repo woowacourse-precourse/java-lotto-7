@@ -2,7 +2,7 @@ package lotto.validation;
 
 import lotto.constants.ErrorMessageConstants;
 
-public class InputValidator {
+public class PurchaseAmountValidator {
     public static void validatePurchaseAmountInput(String purchaseAmountInput) {
         validateNotBlank(purchaseAmountInput);
         validateIsNumber(purchaseAmountInput);
