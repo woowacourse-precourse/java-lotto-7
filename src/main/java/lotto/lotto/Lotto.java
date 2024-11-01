@@ -22,6 +22,10 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean containsNumber(Number number) {
+        return numbers.contains(number);
+    }
+
     private List<Number> convertFrom(List<Integer> numbers) {
         return numbers.stream()
                 .map(Number::new)

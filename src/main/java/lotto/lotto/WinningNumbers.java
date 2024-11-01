@@ -9,4 +9,10 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = new Lotto(winningNumbers);
     }
+
+    public int countMatches(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(number -> winningNumbers.getNumbers().contains(number))
+                .count();
+    }
 }

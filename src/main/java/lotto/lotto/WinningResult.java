@@ -15,4 +15,18 @@ public class WinningResult {
         this.bonusNumber = bonusNumber;
         this.rankCounts = initializeRankCounts();
     }
+
+    public void calculateResult(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            Rank rank = calculateRank(lotto);
+            rankCounts.put(rank, rankCounts.get(rank) + 1);
+        }
+    }
+
+    private Rank calculateRank(Lotto lotto) {
+        int matchCount = winningNumbers.countMatches(lotto);
+        boolean hasBonusNumber = lotto.containsNumber(bonusNumber);
+
+        return Rank.valueOf(matchCount, hasBonusNumber);
+    }
 }
