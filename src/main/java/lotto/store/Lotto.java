@@ -1,4 +1,4 @@
-package lotto;
+package lotto.store;
 
 import lotto.basic.NumbersGenerator;
 
