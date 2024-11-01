@@ -19,4 +19,13 @@ public class BonusNumberTest {
                 .hasMessage("[ERROR] 보너스 번호는 비어있을 수 없습니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"a", "-", ";"})
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    void validateBonusNumberIsNumeric(String condition) {
+        assertThatThrownBy(() -> BonusNumber.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 숫자만 가능합니다.");
+    }
+
 }
