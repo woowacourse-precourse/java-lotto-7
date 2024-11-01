@@ -19,7 +19,7 @@ public class NumberValidatorTest {
     void 로또_번호_공백_테스트() {
         assertThatThrownBy(() -> {
             numbersValidator.validateWinningNumbers("1, 2, 3, 4, 5");
-        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 공백은 허용되지 않습니다.");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호에 공백은 허용되지 않습니다.");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class NumberValidatorTest {
     void 로또_번호_숫자_테스트() {
         assertThatThrownBy(() -> {
             numbersValidator.validateWinningNumbers("!,3,@,@,:,!");
-        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호는 숫자 형식이어야 합니다.");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호은(는) 숫자 형식이어야 합니다.");
     }
 
     @Test

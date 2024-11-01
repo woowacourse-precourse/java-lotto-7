@@ -9,28 +9,6 @@ import java.util.stream.Collectors;
 import static lotto.constants.LottoConstants.*;
 
 public class NumbersValidator {
-    private enum ErrorMessage {
-        MUST_BE_TARGET_LENGTH("%s %s 번호는 %d개이어야 합니다."),
-        MUST_BE_NUMBER("%s 로또 번호는 숫자 형식이어야 합니다."),
-        MUST_BE_UNIQUE("%s 로또 번호가 중복되었습니다."),
-        MUST_BE_NO_SPACE("%s 공백은 허용되지 않습니다."),
-        MUST_BE_BETWEEN("%s 로또 번호는 1 ~ 45 사이 숫자이어야 합니다.");
-
-        private final String message;
-
-        ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return String.format(message, ERROR_MESSAGE_BEGINNING);
-        }
-
-        public String getMessage(String type, int length) {
-            return String.format(message, ERROR_MESSAGE_BEGINNING, type, length);
-        }
-    }
-
     private List<Integer> winningNumbers = new ArrayList<>();
     private List<Integer> bonusNumber = new ArrayList<>();
 
@@ -63,13 +41,13 @@ public class NumbersValidator {
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NUMBER.getMessage(NUMBERS));
         }
     }
 
     private void validateNoSpace(String number) {
         if (!number.equals(number.strip())) {
-            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage(NUMBERS));
         }
     }
 
