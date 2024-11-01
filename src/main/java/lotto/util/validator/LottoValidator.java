@@ -2,6 +2,7 @@ package lotto.util.validator;
 
 import lotto.util.constant.LottoConstants;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoValidator {
@@ -17,6 +18,17 @@ public class LottoValidator {
     public static void validateLottoNumberIsValid(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LottoConstants.LOTTO_MIN_NUMBER || number > LottoConstants.LOTTO_MAX_NUMBER) {
+                throw new IllegalArgumentException(ERR_MSG_WRONG_WINNER_NUMBERS);
+            }
+        }
+    }
+
+    public static void validateLottoNumberIsDuplicate(List<Integer> numbers){
+        HashMap<Integer, Integer> hashNumber = new HashMap<>();
+        for (int number : numbers) {
+            if(!hashNumber.containsKey(number)){
+                hashNumber.put(number, 0);
+            }else{
                 throw new IllegalArgumentException(ERR_MSG_WRONG_WINNER_NUMBERS);
             }
         }
