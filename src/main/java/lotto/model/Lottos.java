@@ -16,4 +16,8 @@ public class Lottos {
                 .map(lotto -> Score.calculateScore(lotto, winningLotto))
                 .collect(Collectors.toList());
     }
+
+    public int size() {
+        return lottos.size();
+    }
 }
