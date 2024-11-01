@@ -55,4 +55,9 @@ public class Lotto {
     public int hashCode() {
         return Objects.hashCode(numbers);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(numbers);
+    }
 }
