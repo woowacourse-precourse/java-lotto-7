@@ -13,7 +13,6 @@ public class LottoTicketGenerator {
         this.purchaseAmount = purchaseAmount;
     }
 
-
     public LottoTicket generateLottoTicket() {
         List<Lotto> lottos = new ArrayList<>();
         int lottoAmount = purchaseAmount.getPurchasableLottoAmount();
