@@ -20,7 +20,7 @@ public class Customer {
     }
 
     public double calculateProfitRate() {
-        return ((double) (getTotalProfit() - paidAmount) / paidAmount) * 100;
+        return ((double) (getTotalProfit()) / paidAmount) * 100;
     }
 
     private int getTotalProfit() {
