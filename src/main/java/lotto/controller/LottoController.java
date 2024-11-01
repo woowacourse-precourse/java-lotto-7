@@ -36,7 +36,7 @@ public class LottoController {
         // 당첨번호 받기
         List<Integer> integers = inputView.inputWinningNumber();
         //보너스 번호 받기
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(integers);
         // 로또 추첨
         // 통계 출력
     }

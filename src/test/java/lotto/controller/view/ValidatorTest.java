@@ -179,4 +179,42 @@ class ValidatorTest {
                         policy.getWinningNumberCount() + ExceptionMessage.INPUT_WINNING_COUNT.getMessage());
     }
 
+
+    @DisplayName("보너스 번호는 당첨번호와 중복될 수 없다.")
+    @Test
+    void validateBonusNumberInput(){
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        //when
+
+        //then
+        Assertions.assertThatThrownBy(() ->
+                        validator.validateBonusNumberInput(winningNumbers,"2")).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR.getMessage() +
+                        ExceptionMessage.INPUT_BONUS_NOT_IN_WINNING_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호는 당첨범위를 넘을 수 없다.")
+    @Test
+    void checkNumberRangeOrThrow(){
+        //given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        //when
+
+        //then
+        Assertions.assertThatThrownBy(() ->
+                        validator.validateBonusNumberInput(winningNumbers,"55")).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR.getMessage()+
+                        policy.getMinNumberLimit()+ExceptionMessage.RANGE_SYMBOL.getMessage()
+                        +policy.getMaxNumberLimit()
+                        +ExceptionMessage.INPUT_WINNING_NUMBER_RANGE.getMessage());
+    }
+
+
+
+
+
+
 }

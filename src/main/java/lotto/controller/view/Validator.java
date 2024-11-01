@@ -57,11 +57,11 @@ public class Validator {
     public List<Integer> validateWinningNumberInput(String input){
         //구분자가 있는지 검증
         checkDelimiterOrThrow(input);
-        String[] unverifiedWinnerNumbers = input.split(policy.getDelimiter());
+        String[] unverifiedWinningNumbers = input.split(policy.getDelimiter());
         //구분자로 나눈 값이 숫자인지 검증
-        checkNumberOrThrow(unverifiedWinnerNumbers);
+        checkNumberOrThrow(unverifiedWinningNumbers);
         //숫자가 1-45 사이의 숫자인지 검증
-        List<Integer> verifiedWinningNumbers = validateNumberRange(unverifiedWinnerNumbers);
+        List<Integer> verifiedWinningNumbers = validateWinningNumberRange(unverifiedWinningNumbers);
         //중복된 숫자가 있는지 검증
         validateDuplicateNumbers(verifiedWinningNumbers);
         //당첨번호 개수 검증
@@ -77,25 +77,29 @@ public class Validator {
 
     }
 
-    private void checkNumberOrThrow(String[] unverifiedWinnerNumbers) {
-        for (String input:unverifiedWinnerNumbers) {
+    private void checkNumberOrThrow(String[] unverifiedWinningNumbers) {
+        for (String input:unverifiedWinningNumbers) {
             validateNumber(input);
         }
     }
 
-    private List<Integer> validateNumberRange(String[] unverifiedWinnerNumbers) {
+    private List<Integer> validateWinningNumberRange(String[] unverifiedWinningNumbers) {
         List<Integer> validatedWinningNumbers = new ArrayList<>();
-        for (String input:unverifiedWinnerNumbers) {
+        for (String input:unverifiedWinningNumbers) {
             int winningNumber = Integer.parseInt(input);
-            if(!(winningNumber>= policy.getMinNumberLimit() && winningNumber<= policy.getMaxNumberLimit())){
-                throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage()+
-                        policy.getMinNumberLimit()+ExceptionMessage.RANGE_SYMBOL.getMessage()
-                        +policy.getMaxNumberLimit()
-                        +ExceptionMessage.INPUT_WINNING_NUMBER_RANGE.getMessage());
-            }
+            checkNumberRangeOrThrow(winningNumber);
             validatedWinningNumbers.add(winningNumber);
         }
         return validatedWinningNumbers;
+    }
+
+    private void checkNumberRangeOrThrow(int winningNumber) {
+        if(!(winningNumber >= policy.getMinNumberLimit() && winningNumber <= policy.getMaxNumberLimit())){
+            throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage()+
+                    policy.getMinNumberLimit()+ExceptionMessage.RANGE_SYMBOL.getMessage()
+                    +policy.getMaxNumberLimit()
+                    +ExceptionMessage.INPUT_WINNING_NUMBER_RANGE.getMessage());
+        }
     }
 
     private void validateDuplicateNumbers(List<Integer> validatedWinningNumbers) {
@@ -113,9 +117,22 @@ public class Validator {
         }
     }
 
-    public int validateBonusNumberInput(String bonusNumber) {
+    public int validateBonusNumberInput(List<Integer> winningNumbers,String bonusNumberInput) {
+        //숫자인지 확인
+        validateNumber(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        //숫자가 범위 안에 있는지 확인
+        checkNumberRangeOrThrow(bonusNumber);
+        // 당첨번호와 겹치지 않는지 확인
+        checkContainWinningNumberOrThrow(winningNumbers, bonusNumber);
+        return bonusNumber;
+    }
 
-        return 0;
+    private void checkContainWinningNumberOrThrow(List<Integer> winningNumbers, int bonusNumber) {
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException(
+                    ExceptionMessage.ERROR.getMessage() + ExceptionMessage.INPUT_BONUS_NOT_IN_WINNING_NUMBER.getMessage());
+        }
     }
 
 }

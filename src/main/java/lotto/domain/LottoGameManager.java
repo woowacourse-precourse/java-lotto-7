@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.controller.Policy;
 
@@ -13,6 +14,7 @@ public class LottoGameManager implements GameManager{
         for (int i = 0; i < totalBuyCount; i++) {
             List<Integer> pickLottoNumber = Randoms.pickUniqueNumbersInRange(
                     policy.getMinNumberLimit(), policy.getMaxNumberLimit(),policy.getWinningNumberCount());
+            Collections.sort(pickLottoNumber);
             Lotto lotto = new Lotto(pickLottoNumber);
             lotteries.add(lotto);
         }
@@ -21,6 +23,6 @@ public class LottoGameManager implements GameManager{
 
     @Override
     public int calculateBuyCount(int lotteryAmount, int inputAmount) {
-        return inputAmount/lotteryAmount;
+        return lotteryAmount/inputAmount;
     }
 }

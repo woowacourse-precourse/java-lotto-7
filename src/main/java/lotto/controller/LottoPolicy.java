@@ -4,7 +4,7 @@ public class LottoPolicy implements Policy {
     public static int LOTTO_AMOUNT = 1000;
     public static int MIN_NUMBER = 1;
     public static int MAX_NUMBER = 45;
-    public static int PICKED_WINNING_COUNT = 6;
+    public static int WINNING_NUMBER_COUNT = 6;
     public static String DELIMITER = ",";
     public static int ZERO = 0;
     public static String INTEGER_REGEX = "[-+]?\\d+";
@@ -34,7 +34,7 @@ public class LottoPolicy implements Policy {
 
     @Override
     public int getWinningNumberCount() {
-        return PICKED_WINNING_COUNT;
+        return WINNING_NUMBER_COUNT;
     }
 
     @Override

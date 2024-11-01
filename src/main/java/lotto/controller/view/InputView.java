@@ -21,17 +21,15 @@ public class InputView {
         boolean isStop = true;
         while (isStop){
             try {
-                System.out.println(INPUT_WINNING_NUMBER_GUIDE);
+                System.out.println(INPUT_AMOUNT_GUIDE);
                 String amountInput = Console.readLine();
                 validator.validateAmountInput(amountInput);
                 isStop = false;
-                Console.close();
                 return Integer.parseInt(amountInput);
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
-        Console.close();
         return 0;
     }
 
@@ -40,11 +38,10 @@ public class InputView {
         boolean isStop = true;
         while (isStop){
             try {
-                System.out.println(INPUT_AMOUNT_GUIDE);
+                System.out.println(INPUT_WINNING_NUMBER_GUIDE);
                 String winningNumberInput = Console.readLine();
                 winningNumbers = validator.validateWinningNumberInput(winningNumberInput);
                 isStop = false;
-                Console.close();
                 return winningNumbers;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -54,15 +51,14 @@ public class InputView {
         return winningNumbers;
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<Integer> winningNumbers) {
         boolean isStop = true;
         while (isStop){
             try {
                 System.out.println(INPUT_BONUS_NUMBER_GUIDE);
                 String bonusNumber = Console.readLine();
-                int verifiedBonusNumber = validator.validateBonusNumberInput(bonusNumber);
+                int verifiedBonusNumber = validator.validateBonusNumberInput(winningNumbers,bonusNumber);
                 isStop = false;
-                Console.close();
                 return verifiedBonusNumber;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
