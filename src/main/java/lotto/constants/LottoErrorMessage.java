@@ -18,5 +18,4 @@ public enum LottoErrorMessage implements ErrorMessage {
     public String getMessage() {
         return ERROR_PREFIX + message;
     }
-
 }
