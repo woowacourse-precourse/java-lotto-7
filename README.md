@@ -93,8 +93,16 @@
 
 ### LottoFactory
 
-- [x] 길이가 6인 배열을 입력받아 로또를 생성하는 기능
-- [x] 랜덤 숫자를 6개 뽑아 로또를 생성하는 기능
+- [x] 길이가 6인 배열을 입력받아 로또를 생성하는 기능 (createCustomLotto)
+- [x] 랜덤 숫자를 6개 뽑아 로또를 생성하는 기능 (createRandomLotto)
+
+### Lottos
+
+- [x] Lotto 객체 리스트를 입력받아 Lottos 객체를 생성하는 기능 (of)
+- [x] Lottos 객체를 반환하는 기능 (getLottos)
+- [x] Lottos 객체의 동등성 비교 기능 (equals)
+- [x] Lottos 객체의 해시코드 생성 기능 (hashCode)
+- [x] Lottos 객체를 문자열로 출력하는 기능 (toString)
 
 ### Number
 
