@@ -16,6 +16,8 @@ import lotto.model.Rank;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.exception.ErrorMessage.ALREADY_EXIST_IN_WINNING_NUMBERS;
+
 public class LottoController {
     private Purchase purchase;
     private WinningNumbers winningNumbers;
@@ -88,6 +90,11 @@ public class LottoController {
         while (true) {
             try {
                 int number = inputView.getBonusNumber();
+
+                if (winningNumbers.get().contains(number)) {
+                    throw new InvalidBonusNumberException(ALREADY_EXIST_IN_WINNING_NUMBERS.getMessage());
+                }
+
                 bonusNumber = new BonusNumber(number);
                 break;
             } catch (InvalidBonusNumberException e) {
