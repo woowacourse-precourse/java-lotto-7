@@ -39,7 +39,11 @@ public class Lotto {
         }
     }
 
-    public int getMatchingCount(List<Integer> winningNumbers, int bonusNumber) {
+    public int getRank(List<Integer> winningNumbers, int bonusNumber) {
+        for (Rank rank : Rank.values()) {
+            if (rank.)
+        }
+
         int matchingCount = 0;
         for (int number : winningNumbers) {
             if (this.numbers.contains(number)) {

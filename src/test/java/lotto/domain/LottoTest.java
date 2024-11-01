@@ -31,15 +31,14 @@ class LottoTest {
     }
 
     @Test
-    void 당첨_번호와_일치하는_수_개수가_올바른지_테스트() {
+    void rank가_올바른지_테스트() {
         // given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 6;
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
-        int expected = 7;
+        List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+        Rank expected = Rank.SECOND;
 
         // when
-        int result = lotto.getMatchingCount(winningNumbers, bonusNumber);
+        Rank result = new Lotto(List.of(1, 2, 3, 4, 5, 7)).getRank(winningNumbers, bonusNumber);
 
         // then
         assertThat(result).isEqualTo(expected);
