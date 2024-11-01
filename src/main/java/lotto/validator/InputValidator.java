@@ -2,7 +2,6 @@ package lotto.validator;
 
 import lotto.utils.ExceptionUtils;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ public class InputValidator {
     private static final String ERROR_MESSAGE_TRAILING_COMMA = "입력값의 마지막에 콤마(,)가 올 수 없습니다.";
     private static final String DELIMITER = ",";
     private static final Pattern TRAILING_DELIMITER_PATTERN = Pattern.compile(".*,$");
-    private static final Pattern DELIMITER_PATTERN = Pattern.compile("^(\\d+,)*\\d+$");
+    private static final Pattern DELIMITER_PATTERN = Pattern.compile("^([a-zA-Z가-힣\\d]+,)*[a-zA-Z가-힣\\d]+$");
 
     private InputValidator() {
     }
