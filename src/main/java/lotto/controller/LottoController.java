@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,33 +18,49 @@ public class LottoController {
     private int purchaseMoney;
 
     public void run() {
-        Lottos lottos = purchaseLotto();
+        Lottos lottos = Retryer.retryOnCustomException(this::purchaseLotto);
         outputView.printPurchasedLottos(lottos);
 
-        List<LottoNumber> winningNumbers = inputView.inputWinningNumbers().stream().map(LottoNumber::from).toList();
-        LottoNumber bonusNumber = LottoNumber.from(inputView.inputBonusNumber());
+        WinningLotto winningLotto = Retryer.retryOnCustomException(this::createWinningLotto);
 
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        List<Score> scores = lottos.getLottos().stream().map(lotto -> Score.calculateScore(lotto, winningLotto)).toList();
+        Map<Score, Integer> scores = Retryer.retryOnCustomException(() -> calculateScores(lottos, winningLotto));
+        double profitRate = Retryer.retryOnCustomException(() -> calculateProfitRate(scores.keySet().stream().toList()));
 
-        double profitRate = (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
-
-        Map<Score, Integer> scoreMap = new LinkedHashMap<>();
-        scores.forEach(score -> {
-            scoreMap.put(score, scoreMap.getOrDefault(score, 0) + 1);
-        });
-
-        outputView.printScores(scoreMap);
-        outputView.printProfitRate(profitRate);
+        printResult(scores, profitRate);
     }
 
-    public Lottos purchaseLotto() {
-        try {
-            purchaseMoney = inputView.inputPurchaseMoney();
-            return lottoMaker.makeLottos(purchaseMoney);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-            return purchaseLotto();
-        }
+    private Lottos purchaseLotto() {
+        purchaseMoney = inputView.inputPurchaseMoney();
+        return lottoMaker.makeLottos(purchaseMoney);
+    }
+
+    private WinningLotto createWinningLotto() {
+        List<LottoNumber> winningNumbers = inputView.inputWinningNumbers().stream()
+                .map(LottoNumber::from)
+                .toList();
+
+        LottoNumber bonusNumber = LottoNumber.from(inputView.inputBonusNumber());
+
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private Map<Score, Integer> calculateScores(Lottos lottos, WinningLotto winningLotto) {
+        List<Score> scores = lottos.calculateResult(winningLotto);
+
+        return scores.stream()
+                .collect(
+                        LinkedHashMap::new,
+                        (map, score) -> map.put(score, map.getOrDefault(score, 0) + 1),
+                        Map::putAll
+                );
+    }
+
+    private double calculateProfitRate(List<Score> scores) {
+        return (double) scores.stream().mapToInt(Score::getPrize).sum() / purchaseMoney * 100;
+    }
+
+    private void printResult(Map<Score, Integer> scores, double profitRate) {
+        outputView.printScores(scores);
+        outputView.printProfitRate(profitRate);
     }
 }
