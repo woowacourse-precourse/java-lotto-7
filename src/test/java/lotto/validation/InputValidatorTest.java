@@ -24,7 +24,7 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> inputValidator.validateInputIsEmpty(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .extracting(e -> e.getMessage())
+                .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.INPUT_EMPTY);
     }
 
@@ -37,7 +37,7 @@ class InputValidatorTest {
         // then
         assertThatThrownBy(() -> inputValidator.validateInputIsEmpty(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .extracting(e -> e.getMessage())
+                .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.INPUT_EMPTY);
     }
 

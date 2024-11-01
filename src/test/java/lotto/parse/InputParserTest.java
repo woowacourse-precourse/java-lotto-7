@@ -38,7 +38,7 @@ class InputParserTest {
         // then
         assertThatThrownBy(() -> inputParser.parsePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .extracting(e -> e.getMessage())
+                .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_MUST_LONG);
     }
 
@@ -52,7 +52,7 @@ class InputParserTest {
         // then
         assertThatThrownBy(() -> inputParser.parsePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .extracting(e -> e.getMessage())
+                .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_MUST_LONG);
     }
 }
