@@ -27,6 +27,7 @@ public class MyInfo {
         this.myReturn = 0.0;
     }
 
+    //함수 길이 문제
     public void gainPurchaseAmount(){
         int purchasePrice = 0;
         try {
@@ -35,6 +36,11 @@ public class MyInfo {
             this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
+            if(e.getMessage().equals(ErrorMessage.NOT_DIV.getError())){
+                OutputView.printError(ErrorMessage.NOT_DIV.getError());
+                gainPurchaseAmount();
+                return;
+            }
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
             gainPurchaseAmount();
         }
