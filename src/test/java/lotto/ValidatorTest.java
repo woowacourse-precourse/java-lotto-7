@@ -4,15 +4,18 @@ import lotto.exception.lottoNumber.*;
 import lotto.exception.lottoPrice.InvalidThousandUnitException;
 import lotto.exception.lottoPrice.MinimumPriceException;
 import lotto.exception.lottoPrice.NullPriceException;
-import org.junit.jupiter.api.DisplayName;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class ValidatorTest {
 
     private final Validator validator = new Validator();
-
+    List<Integer>lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+    Lotto lotto = new Lotto(lottoNumbers);
     @Test
     void 로또금액_공백이면_예외_테스트(){
         String input = "";
@@ -38,7 +41,7 @@ public class ValidatorTest {
     }
 
     @Test
-    void 로또번호_공백_예외_테스트(){
+    void 로또번호_공백이면_예외_테스트(){
         String input = "";
         assertThatThrownBy(()->validator.isValidLottoNumbers(input))
                 .isInstanceOf(NullLottoNumberException.class)
@@ -85,7 +88,45 @@ public class ValidatorTest {
                 .hasMessage("로또 번호는 중복이 될 수 없습니다.");
     }
 
+    @Test
+    void 보너스번호_공백이면_예외_테스트(){
+        String input = "";
+        assertThatThrownBy(()->validator.isValidBonusLottoNumber(input,lotto))
+                .isInstanceOf(NullLottoNumberException.class)
+                .hasMessage("로또 번호는 null 일 수 없습니다.");
+    }
 
+    @Test
+    void 보너스번호_입력값이_2개_이상이면_예외_테스트(){
+        String input = "11, 22";
+        assertThatThrownBy(()->validator.isValidBonusLottoNumber(input,lotto))
+                .isInstanceOf(InvalidSingleBonusNumberException.class)
+                .hasMessage("보너스 번호는 하나의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 보너스번호_숫자가_아니면_예외_테스트(){
+        String input = "a";
+        assertThatThrownBy(()->validator.isValidBonusLottoNumber(input,lotto))
+                .isInstanceOf(InvalidNumberException.class)
+                .hasMessage("로또 번호는 숫자여야 합니다");
+    }
+
+    @Test
+    void 보너스번호_1미만_45초과_예외_테스트(){
+        String input = "46";
+        assertThatThrownBy(()->validator.isValidBonusLottoNumber(input,lotto))
+                .isInstanceOf(OutOfRangeNumberException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다");
+    }
+
+    @Test
+    void 보너스번호_당첨번호와_중복되면_예외_테스트(){
+        String input = "6";
+        assertThatThrownBy(()->validator.isValidBonusLottoNumber(input,lotto))
+                .isInstanceOf(DuplicatedNumberException.class)
+                .hasMessage("로또 번호는 중복이 될 수 없습니다.");
+    }
 
 
 
