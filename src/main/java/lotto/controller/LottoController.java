@@ -2,35 +2,37 @@ package lotto.controller;
 
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoDispenser;
 import lotto.domain.LottoPurchasePrice;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
+import lotto.handler.RetryHandler;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 public class LottoController {
     private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
+    private final RetryHandler retryHandler;
 
     public LottoController(
             LottoInputView lottoInputView,
-            LottoOutputView lottoOutputView
+            LottoOutputView lottoOutputView,
+            RetryHandler retryHandler
     ) {
         this.lottoInputView = lottoInputView;
         this.lottoOutputView = lottoOutputView;
+        this.retryHandler = retryHandler;
     }
 
     public void run() {
-        LottoPurchasePrice lottoPurchasePrice = retry(this::requestLottoPurchasePrice);
+        LottoPurchasePrice lottoPurchasePrice = retryHandler.retry(this::requestLottoPurchasePrice);
         LottoBundle lottoBundle = issueLottoBundle(lottoPurchasePrice);
         lottoOutputView.printLottoBundle(lottoBundle);
-        WinningLotto winningLotto = retry(this::requestLottoWinningNumbers);
-        BonusNumber bonusNumber = retry(this::requestLottoBonusNumber, winningLotto);
+        WinningLotto winningLotto = retryHandler.retry(this::requestLottoWinningNumbers);
+        BonusNumber bonusNumber = retryHandler.retry(this::requestLottoBonusNumber, winningLotto);
         LottoResult lottoResult = lottoBundle.makeLottoResult(winningLotto, bonusNumber);
         lottoOutputView.printLottoResult(lottoResult);
     }
@@ -58,31 +60,4 @@ public class LottoController {
         return BonusNumber.of(lottoBonusNumber, winningLotto);
     }
 
-    private <T> T retry(Supplier<T> logic) {
-        boolean retryFlag = true;
-        T result = null;
-        while (retryFlag) {
-            try {
-                result = logic.get();
-                retryFlag = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return result;
-    }
-
-    private <T, R> R retry(Function<T, R> logic, T data) {
-        boolean retryFlag = true;
-        R result = null;
-        while (retryFlag) {
-            try {
-                result = logic.apply(data);
-                retryFlag = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return result;
-    }
 }
