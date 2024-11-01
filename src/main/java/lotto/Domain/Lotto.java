@@ -15,6 +15,8 @@ public class Lotto {
     // 추가적인 validation을 대비해 validate 매서드 생성
     private void validate(List<Integer> numbers) {
         validateSizeOfNumber(numbers);
+        validateDuplicatedNumber(numbers);
+        validateIsOverRange(numbers);
     }
 
     private void validateSizeOfNumber(List<Integer> numbers) {
@@ -33,6 +35,14 @@ public class Lotto {
         }
     }
 
+    private void validateIsOverRange(List<Integer> numbers){
+        final String LOTTO_NUMBER_OVER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호가 1 ~ 45 범위를 벗어나면 안됩니다.";
+        final int MIN = 1;
+        final int MAX = 45;
+        if(numbers.stream().anyMatch(num -> num < MIN || num > MAX)){
+            throw new IllegalArgumentException(LOTTO_NUMBER_OVER_RANGE_ERROR_MESSAGE);
+        }
+    }
     public List<Integer> getNumbers(){
         return numbers;
     }
