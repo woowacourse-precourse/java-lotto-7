@@ -8,6 +8,15 @@ import java.util.List;
 
 public class LottoGame {
 
+    public void start(){
+        int purchaseAmount = getPurchaseAmount();
+        List<Lotto> lottos = generateLottos(purchaseAmount);
+        Lotto winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers.getNumbers());
+        LottoComparator result = new LottoComparator(lottos, winningNumbers, bonusNumber);
+        result.printResult();
+    }
+
     public int getPurchaseAmount(){
         System.out.println("구매 금액을 입력해 주세요.");
         String input = Console.readLine();
