@@ -47,7 +47,7 @@ public class Lotto {
 
     private void validateLottoNumberCount(int numberCount, LottoConfig lottoConfig) {
         if (numberCount != lottoConfig.getLottoNumberCount()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_COUNT.getMessage());
         }
     }
 
