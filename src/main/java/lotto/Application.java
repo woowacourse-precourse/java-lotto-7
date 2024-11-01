@@ -5,6 +5,7 @@ import static lotto.AppConstants.INSERT_MONEY;
 import static lotto.AppConstants.INSERT_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.HashSet;
 import java.util.List;
 
 public class Application {
@@ -15,11 +16,11 @@ public class Application {
         List<Lotto> boughtLottos = lottoMachine.buyLotto(money);
 
         System.out.printf("%n");
-        lottoMachine.printSoldLottos(boughtLottos);
+        lottoMachine.printLottoNumbers(boughtLottos);
 
         System.out.printf("%n");
-        System.out.println(INSERT_WINNING_NUMBERS);
-        lottoMachine.setWinningNumbers(Console.readLine());
+        HashSet<Integer> numbers = View.inputWinningNumbers(INSERT_WINNING_NUMBERS);
+        lottoMachine.setWinningNumbers(numbers);
 
         System.out.printf("%n");
         System.out.println(INSERT_BONUS_NUMBER);

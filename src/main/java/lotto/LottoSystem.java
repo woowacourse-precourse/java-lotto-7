@@ -20,6 +20,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -27,7 +28,7 @@ public class LottoSystem {
     private static final int MIN_MATCH_COUNT = 3;
 
     private HashMap<Integer, LottoPrize> prizes = new HashMap<>();
-    private List<Integer> winningNumbers;
+    private HashSet<Integer> winningNumbers;
     private int bonusNumber;
     private int issuedLottoCount;
 
@@ -48,24 +49,16 @@ public class LottoSystem {
         return lottos;
     }
 
-    public void printSoldLottos(List<Lotto> lottos) {
+    public void printLottoNumbers(List<Lotto> lottos) {
         System.out.printf((PRINT_SOLD_LOTTO_COUNT) + "%n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
     }
 
-    public void setWinningNumbers(String input) {
-        StringTokenizer strtok = new StringTokenizer(input, ",");
-        ArrayList<Integer> winningNumbers = new ArrayList<>();
-        while (strtok.hasMoreTokens()) {
-            int luckyNumber = Integer.parseInt(strtok.nextToken());
-            if (winningNumbers.contains(luckyNumber) || !isNumberInRange(luckyNumber)) {
-                throw new IllegalArgumentException(INVALID_WINNING_NUMBERS_INPUT);
-            }
-            winningNumbers.add(luckyNumber);
-        }
-        this.winningNumbers = winningNumbers;
+    public void setWinningNumbers(HashSet<Integer> numbers) {
+
+        this.winningNumbers = numbers;
     }
 
     public void setBonusNumber(int bonusNumber) {
@@ -96,7 +89,7 @@ public class LottoSystem {
         System.out.printf(RATE_OF_RETURN, calculateReturnRate());
     }
 
-    public List<Integer> getWinningNumbers() {
+    public HashSet<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
