@@ -16,9 +16,9 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningLotto = Lotto.create(winningNumbers);
-        validate(bonusNumber, this.winningLotto);
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+        validate(bonusNumber, winningLotto);
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 

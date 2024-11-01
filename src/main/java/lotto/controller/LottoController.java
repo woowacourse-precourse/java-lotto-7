@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.config.FilterConfig;
+import lotto.domain.Lotto;
 import lotto.domain.LottoStatistics;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningLotto;
@@ -26,7 +27,11 @@ public class LottoController {
     public void start() {
         LottoTickets lottoTickets = getPurchasedLottoTickets();
         displayPurchasedTickets(lottoTickets);
-        WinningLotto winningLotto = getWinningLotto();
+
+        Lotto winningLottoWithoutBonusNumber = getWinningLotto();
+        Integer bonusNumber = getBonusNumber();
+        WinningLotto winningLotto = lottoService.createWinningNumbers(winningLottoWithoutBonusNumber, bonusNumber);
+
         LottoStatistics lottoStatistics = calculateLottoStatistics(lottoTickets, winningLotto);
         displayStatistics(lottoStatistics);
         Console.close();
@@ -44,20 +49,22 @@ public class LottoController {
         outputView.printPurchasedLotto(lottoTickets);
     }
 
-    private WinningLotto getWinningLotto() {
+    private Lotto getWinningLotto() {
         outputView.printInputWinningLottoNotice();
         String winningLottoInput = Console.readLine();
         filterConfig.getCommaSeparatedNumberFilterChain().doFilter(winningLottoInput);
-        List<Integer> winningNumbers = separateInputWinningLotto(winningLottoInput);
+        return Lotto.create(separateInputWinningLotto(winningLottoInput));
+    }
+
+    private Integer getBonusNumber() {
         outputView.printInputBonusNumberNotice();
         String bonusNumberInput = Console.readLine();
         filterConfig.getPositiveIntegerFilterChain().doFilter(bonusNumberInput);
-        int bonusNumber = Integer.parseInt(bonusNumberInput);
-        return new WinningLotto(winningNumbers, bonusNumber);
+        return Integer.parseInt(bonusNumberInput);
     }
 
     private LottoStatistics calculateLottoStatistics(LottoTickets lottoTickets, WinningLotto winningLotto) {
-        return lottoService.checkResults(lottoTickets, winningLotto);
+        return lottoService.collectResults(lottoTickets, winningLotto);
     }
 
     private void displayStatistics(LottoStatistics lottoStatistics) {

@@ -23,12 +23,12 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public WinningLotto createWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        return new WinningLotto(winningNumbers, bonusNumber);
+    public WinningLotto createWinningNumbers(Lotto winningLotto, int bonusNumber) {
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     @Override
-    public LottoStatistics checkResults(LottoTickets tickets, WinningLotto winningLotto) {
+    public LottoStatistics collectResults(LottoTickets tickets, WinningLotto winningLotto) {
         LottoStatistics statistics = new LottoStatistics();
         for (Lotto ticket : tickets.getLottoTickets()) {
             LottoRank rank = winningLotto.determineRank(ticket);
