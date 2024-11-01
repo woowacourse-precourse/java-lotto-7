@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.amount.Amount;
 import lotto.exception.CustomException;
 import lotto.exception.ExceptionMessage;
+import lotto.lotto.Number;
 import lotto.lotto.WinningNumbers;
 
 public class InputView {
@@ -19,7 +20,13 @@ public class InputView {
     public WinningNumbers getWinningNumbers() {
         String input = Console.readLine();
         validateBlankInput(input);
-        return new WinningNumbers(parseWinningNumbers(input));
+        return new WinningNumbers(parseNumbers(input));
+    }
+
+    public Number getBonusNumber() {
+        String input = Console.readLine();
+        validateBlankInput(input);
+        return new Number(validateNumber(input));
     }
 
     private void validateBlankInput(String input) {
@@ -36,7 +43,7 @@ public class InputView {
         }
     }
 
-    private List<Integer> parseWinningNumbers(String numbers) {
+    private List<Integer> parseNumbers(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .map(this::validateNumber)
                 .toList();
