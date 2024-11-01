@@ -1,8 +1,11 @@
 package lotto.io.validator;
 
-import lotto.io.validator.money.NullValidator;
-import lotto.io.validator.money.ParsingValidator;
-import lotto.io.validator.money.RegexValidator;
+import lotto.io.validator.lotto.LottoLengthValidator;
+import lotto.io.validator.lotto.LottoNullValidator;
+import lotto.io.validator.lotto.LottoRegexValidator;
+import lotto.io.validator.money.MoneyNullValidator;
+import lotto.io.validator.money.MoneyParsingValidator;
+import lotto.io.validator.money.MoneyRegexValidator;
 import lotto.io.validator.money.ThousandUnitValidator;
 
 public class InputValidatorFacade {
@@ -11,16 +14,28 @@ public class InputValidatorFacade {
     }
 
     public static void purchaseAmountValidators(final String source) {
-        NullValidator nullValidator = new NullValidator();
-        RegexValidator regexValidator = new RegexValidator();
-        ParsingValidator parsingValidator = new ParsingValidator();
-        ThousandUnitValidator thousandUnitValidator = new ThousandUnitValidator();
+        MoneyNullValidator moneyNullValidator = MoneyNullValidator.initiate();
+        MoneyRegexValidator moneyRegexValidator = MoneyRegexValidator.initiate();
+        MoneyParsingValidator moneyParsingValidator = MoneyParsingValidator.initiate();
+        ThousandUnitValidator thousandUnitValidator = ThousandUnitValidator.initiate();
 
-        nullValidator
-                .doChain(regexValidator)
-                .doChain(parsingValidator)
+        moneyNullValidator
+                .doChain(moneyRegexValidator)
+                .doChain(moneyParsingValidator)
                 .doChain(thousandUnitValidator);
 
-        nullValidator.check(source);
+        moneyNullValidator.check(source);
+    }
+
+    public static void lottoNumbersValidators(final String source) {
+        LottoNullValidator lottoNullValidator = LottoNullValidator.initiate();
+        LottoRegexValidator lottoRegexValidator = LottoRegexValidator.initiate();
+        LottoLengthValidator lottoLengthValidator = LottoLengthValidator.initiate();
+
+        lottoNullValidator
+                .doChain(lottoRegexValidator)
+                .doChain(lottoLengthValidator);
+
+        lottoNullValidator.check(source);
     }
 }

@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class Lotto {
 
-    private static final int MAX_NUMBER_COUNT = 6;
+    public static final int MAX_NUMBER_COUNT = 6;
 
     private final List<Integer> numbers;
 

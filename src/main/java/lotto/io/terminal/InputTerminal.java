@@ -48,7 +48,7 @@ public class InputTerminal {
             try {
                 writer.printWithNewLineBefore(ENTER_DRAW_RESULT);
                 String input = reader.readInput();
-                // TODO : Validation
+                InputValidatorFacade.lottoNumbersValidators(input);
                 return IOPreprocessor.stringToLotto(input);
             } catch (IllegalArgumentException e) {
                 writer.printErrorMessage(e.getMessage());

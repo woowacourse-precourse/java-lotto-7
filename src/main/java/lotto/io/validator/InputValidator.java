@@ -1,4 +1,4 @@
-package lotto.io.validator.money;
+package lotto.io.validator;
 
 import static java.util.Objects.nonNull;
 

@@ -5,10 +5,18 @@ import static lotto.io.exception.InvalidRegexException.invalidMoneyRegex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.io.validator.InputValidator;
 
-public class RegexValidator extends InputValidator {
+public class MoneyRegexValidator extends InputValidator {
 
     private static final Pattern regexPattern = Pattern.compile("^[0-9]+$");
+
+    private MoneyRegexValidator() {
+    }
+
+    public static MoneyRegexValidator initiate() {
+        return new MoneyRegexValidator();
+    }
 
     @Override
     public void check(final String source) {

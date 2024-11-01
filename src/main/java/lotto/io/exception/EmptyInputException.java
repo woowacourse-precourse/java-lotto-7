@@ -8,7 +8,11 @@ public class EmptyInputException extends IllegalArgumentException {
         super(message);
     }
 
-    public static EmptyInputException emptyInput() {
-        return new EmptyInputException(ErrorMessage.EMPTY_INPUT);
+    public static EmptyInputException emptyPurchaseAmount() {
+        return new EmptyInputException(ErrorMessage.EMPTY_INPUT_PURCHASE_AMOUNT);
+    }
+
+    public static EmptyInputException emptyLottoNumbers() {
+        return new EmptyInputException(ErrorMessage.EMPTY_INPUT_LOTTO_NUMBER);
     }
 }
