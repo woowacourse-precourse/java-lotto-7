@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAmount;
 import lotto.domain.RandomLottoNumbers;
+import lotto.view.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,7 +14,9 @@ import java.util.List;
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
+    private static final String REGEX = "^([^,]+,){5}[^,]+$";
     private static List<Lotto> myLottos;
+    private static Lotto winningNumbers;
 
     public void run(){
         try{
@@ -30,6 +33,9 @@ public class LottoController {
         OutputView.printLottoAmount(purchaseAmount);
         myLottos = generateMyLottoList(purchaseAmount);
         OutputView.printMyLottoNumber(myLottos);
+
+        WinningNumbers();
+        System.out.println(winningNumbers.getNumbers());
 
     }
     // 로또 개수
@@ -48,6 +54,44 @@ public class LottoController {
             myLottos.add(lotto);
         }
         return myLottos;
+    }
+
+    // 입력 우승 번호 처리
+    public static void WinningNumbers(){
+        String inputWinningNumbers = InputView.inputWinningNumber();
+        List<Integer> splitWinningNumbers = splitWinningNumbers(inputWinningNumbers);
+        winningNumbers = new Lotto(splitWinningNumbers);
+    }
+
+    // 우승번호 입력값 나누기
+    private static List<Integer> splitWinningNumbers (String inputWinningNumbers){
+
+        validateDeliminator(inputWinningNumbers);
+        String[] splitResult = inputWinningNumbers.split(",");
+        List<Integer> numbers = new ArrayList<>();
+
+        for (int i = 0; i < splitResult.length; i++) {
+            numbers.add(convertToInt(splitResult[i]));
+        }
+        return numbers;
+    }
+
+    // 구분자가 다른 특수문자일때
+    private static void validateDeliminator(String inputWinningNumbers) {
+        if(!inputWinningNumbers.matches(REGEX)){
+            ExceptionMessage.delimiterException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    // 입력 번호 정수로 바꾸기
+    private static int convertToInt(String inputNumber){
+        try {
+            return Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            ExceptionMessage.priceNumberException();
+            throw new IllegalArgumentException();
+        }
     }
 
 
