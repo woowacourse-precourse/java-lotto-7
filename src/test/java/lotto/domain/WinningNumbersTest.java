@@ -28,4 +28,13 @@ public class WinningNumbersTest {
                 .hasMessage("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"a,b,c", "1,2,a", "-1,1,2", "0,1,5"})
+    @DisplayName("당첨 번호는 양수가 아니면 예외가 발생한다.")
+    void validatePositiveWinningNumbers(String condition) {
+        assertThatThrownBy(() -> WinningNumbers.from(condition))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 양수만 가능합니다.");
+    }
+
 }
