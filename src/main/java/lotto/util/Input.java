@@ -1,6 +1,7 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validation.BonusNumberValidation;
 import lotto.validation.CommonValidation;
 import lotto.validation.WinningNumberValidation;
 import lotto.validation.MoneyValidation;
@@ -41,11 +42,12 @@ public class Input {
         }
     }
 
-    public static int bonusNumber() {
+    public static int bonusNumber(List<Integer> winningNumbers) {
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             try {
                 int bonusNumber = CommonValidation.isIntegerType(CommonValidation.isEmpty(Console.readLine()));
+                BonusNumberValidation.duplicateChecker(bonusNumber, winningNumbers);
                 CommonValidation.value1to45(bonusNumber);
 
                 return bonusNumber;
