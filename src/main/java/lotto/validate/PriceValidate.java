@@ -7,14 +7,14 @@ public class PriceValidate {
     private final int price;
 
     public PriceValidate(String priceString) {
-        int price= isNumber(priceString);
+        int price= toNumber(priceString);
         isPositiveNumber(price);
         validatePrice(price);
 
         this.price = price;
     }
 
-    private int isNumber(String priceString) {
+    private int toNumber(String priceString) {
         try {
             return Integer.parseInt(priceString);
         } catch (NumberFormatException e) {
