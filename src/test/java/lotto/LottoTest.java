@@ -31,4 +31,17 @@ class LottoTest {
                 () -> new Lotto(List.of(1, 2, 3, 4, 5, 77))
         );
     }
+
+    @Test
+    @DisplayName("보너스 번호와 로또 번호가 중복되면 예외가 발생한다.")
+    void validateNoDuplicateWithBonusNumber() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 1;
+
+        // expected
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> lotto.validateNoDuplicateWithBonusNumber(bonusNumber)
+        );
+    }
 }
