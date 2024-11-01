@@ -18,6 +18,18 @@ public class LottoComparator {
         this.rankCount = new int[LottoRank.values().length];
     }
 
+    public void printResult(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if(lottoRank != LottoRank.NONE_MATCH){
+                System.out.println(lottoRank.getMessage() + " - " + rankCount[lottoRank.ordinal()] + "개");
+            }
+        }
+        Double profit = calculateProfit();
+        System.out.println("총 수익률은 %.1f%% 입니다." + profit);
+    }
+
     public void calculateResult(){
         for (Lotto customerTicket : customerTickets) {
             int matchCount = getMatchCount(customerTicket.getNumbers(), winningTicket.getNumbers());
@@ -35,8 +47,9 @@ public class LottoComparator {
     public int getMatchCount(List<Integer> customerNumbers, List<Integer> winningNumbers){
         int count = 0;
         for (int i = 0; i < winningNumbers.size(); i++) {
-            if(customerNumbers.contains(winningNumbers.get(i)));
+            if(customerNumbers.contains(winningNumbers.get(i))) {
                 count++;
+            }
         }
         return count;
     }
