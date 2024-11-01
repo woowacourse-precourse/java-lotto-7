@@ -35,4 +35,9 @@ public class LottoService {
 
         return matchCount;
     }
+
+    public static boolean checkBonusNumberMatch(Lotto userLotto, int bonusNumber) {
+        List<Integer> userLottoNumbers = userLotto.getNumbers();
+        return userLottoNumbers.contains(bonusNumber);
+    }
 }
