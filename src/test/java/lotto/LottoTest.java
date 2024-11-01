@@ -32,7 +32,7 @@ class LottoTest {
         assertThat(lotto.countMatches(winningNumbers)).isEqualTo(3);
     }
 
-    @DisplayName("당첨 번호와 로또 번호의 개수가 다르면 예외가 발생한다.")
+    @DisplayName("인자 리스트의 사이즈와 로또 번호의 개수가 다르면 예외가 발생한다.")
     @Test
     void countMatchesLengthException() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
