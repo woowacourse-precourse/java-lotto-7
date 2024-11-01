@@ -29,8 +29,9 @@ public class OutputView {
         System.out.println(PRINT_WINNING_STATISTICS);
         System.out.println(PRINT_SEPARATE_SENTENCE);
         Map<Rank,Integer> winning_statistics=rankResult.getRank_Count();
-        for(Rank rank:winning_statistics.keySet()) {
-            System.out.println(rank.getMessage()+PRINT_WINNING_STATISTICS_SEPARATE+winning_statistics.get(rank)+PRINT_WINNING_STATISTICS_UNIT);
+        for (Rank rank : Rank.values()) {
+            int count = winning_statistics.getOrDefault(rank, 0);
+            System.out.println(rank.getMessage() + PRINT_WINNING_STATISTICS_SEPARATE + count + PRINT_WINNING_STATISTICS_UNIT);
         }
     }
     public static void print_profit_statistics(double profit_statistics) {
