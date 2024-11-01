@@ -26,8 +26,8 @@ public class LottoGenerator {
     }
 
     private void validatePriceNegative(Integer price) {
-        if (price < 0) {
-            throw new IllegalArgumentException("[ERROR] Price cannot be negative");
+        if (price <= 0) {
+            throw new IllegalArgumentException("[ERROR] Price cannot be negative or zero");
         }
     }
 
