@@ -4,10 +4,7 @@ import lotto.Lotto;
 import lotto.Prize;
 
 import java.text.NumberFormat;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class OutputHandler {
 
@@ -47,6 +44,7 @@ public class OutputHandler {
     public void showLottos(List<Integer> lottoNumbers) {
         System.out.println(lottoNumbers.toString());
     }
+
 
     public static String formatCurrency(long amount) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
