@@ -51,8 +51,26 @@ public class InputService {
     }
 
     public Lotto setWinningLotto() {
-        Lotto lotto = new Lotto(lottoNumberValidate());
-        lotto.setBonusNumber(bonusNumberValidate());
+        Lotto lotto = setLotto();
+        setBonusNumber(lotto);
         return lotto;
+    }
+
+    private Lotto setLotto() {
+        try {
+            return new Lotto(lottoNumberValidate());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setLotto();
+        }
+    }
+
+    private void setBonusNumber(Lotto lotto) {
+        try {
+            lotto.setBonusNumber(bonusNumberValidate());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setBonusNumber(lotto);
+        }
     }
 }
