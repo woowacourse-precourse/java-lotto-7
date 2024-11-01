@@ -31,7 +31,10 @@ public class LottoDrawingController {
     }
 
     public void start() {
+        winningNumbersInputView.printWinningNumbersInputGuide();
         WinningNumbers winningNumbers = getWinningNumbers();
+
+        bonusNumberInputView.printBonusNumberInputGuide();
         BonusNumber bonusNumber = getBonusNumber(winningNumbers);
 
         LottoResult lottoResult = new LottoResult(lottos, winningNumbers, bonusNumber);
@@ -47,8 +50,6 @@ public class LottoDrawingController {
     }
 
     private WinningNumbers getWinningNumbers() {
-        winningNumbersInputView.printWinningNumbersInputGuide();
-
         WinningNumbers winningNumbers;
 
         try {
@@ -65,8 +66,6 @@ public class LottoDrawingController {
     }
 
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
-        bonusNumberInputView.printBonusNumberInputGuide();
-
         BonusNumber bonusNumber;
         try {
 
