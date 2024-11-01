@@ -20,7 +20,7 @@ public class WinningService {
         return result;
     }
 
-    private List<LottoResult> getResultbyEnum(List<Lotto> lottos, List<Integer> winnings, int bonus) {
+    public List<LottoResult> getResultbyEnum(List<Lotto> lottos, List<Integer> winnings, int bonus) {
         List<LottoResult> results = new ArrayList<>();
         for(int i = 0; i < lottos.size(); i++) {
             LottoResult lottoRank = getContains(lottos.get(i), winnings, bonus);
