@@ -1,7 +1,7 @@
-package controller;
+package lotto.controller;
 
-import view.InputView;
-import view.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -14,6 +14,7 @@ public class LottoController {
     }
 
     public void paly(){
-        outputView.printRequest();
+        outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
+        String amount= inputView.readInput();
     }
 }
