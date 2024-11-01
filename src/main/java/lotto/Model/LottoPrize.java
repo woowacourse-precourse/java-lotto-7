@@ -1,26 +1,20 @@
 package lotto.Model;
 
 public enum LottoPrize {
-    FIRST(6, 1, 2000000000),
-    SECOND(7, 2, 30000000),
-    THIRD(5, 3, 1500000),
-    FOURTH(4, 4, 50000),
-    FIFTH(3, 5, 5000),
-    NO_RANK(0, 0, 0)
+    FIRST(6, 1),
+    SECOND(7, 2),
+    THIRD(5, 3),
+    FOURTH(4, 4),
+    FIFTH(3, 5),
+    NO_RANK(0, 0)
     ;
 
     private final int sameCount;
     private final int rank;
-    private final int money;
 
-    LottoPrize(int sameCount, int rank, int money) {
+    LottoPrize(int sameCount, int rank) {
         this.sameCount = sameCount;
         this.rank = rank;
-        this.money = money;
-    }
-
-    public int getMoney() {
-        return money;
     }
 
     public int getRank() {
@@ -42,7 +36,7 @@ public enum LottoPrize {
             if (sameCount == 5 && bonus) {
                 bonusCount = 2;
             }
-            if (prize.sameCount + bonusCount == sameCount) {
+            if (prize.sameCount == sameCount + bonusCount) {
                 return prize.rank;
             }
         }

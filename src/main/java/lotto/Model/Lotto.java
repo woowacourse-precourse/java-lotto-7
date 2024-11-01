@@ -1,5 +1,6 @@
 package lotto.Model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,13 +9,59 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> temp = new ArrayList<>(numbers);
+        Collections.sort(temp);
+        this.numbers = temp;
+    }
+
+    public Lotto(String[] numbers) {
+        typeValidate(numbers);;
+        List<Integer> number = new ArrayList<>();
+        for (String s : numbers) {
+            number.add(Integer.parseInt(s));
+        }
+        validate(number);
+        Collections.sort(number);
+        this.numbers = number;
     }
 
     private void validate(List<Integer> numbers) {
+        sizeValidate(numbers);
+        rangeValidate(numbers);
+        dupValidate(numbers);
+    }
+
+    private void typeValidate(String[] numbers) {
+        try {
+            for (String number : numbers) {
+                Integer.parseInt(number);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Exception.INVALID_NUMBER_TYPE.getErrorMessage());
+        }
+    }
+
+    private void sizeValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println();
+            throw new IllegalArgumentException(Exception.INVALID_NUMBER_COUNT.getErrorMessage());
+        }
+    }
+
+    private void rangeValidate(List<Integer> numbers) {
+        for(int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(Exception.INVALID_NUMBER_RANGE.getErrorMessage());
+            }
+        }
+    }
+
+    private void dupValidate(List<Integer> numbers) {
+        List<Integer> dupCheck = new ArrayList<>();
+        for (int number : numbers) {
+            if (dupCheck.contains(number)) {
+                throw new IllegalArgumentException(Exception.DUPLICATE_NUMBER.getErrorMessage());
+            }
+            dupCheck.add(number);
         }
     }
 

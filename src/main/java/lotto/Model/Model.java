@@ -39,7 +39,21 @@ public class Model {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        bonusNumRangeValidate(bonusNumber);
+        bonusNumDupValidate(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void bonusNumRangeValidate(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(Exception.INVALID_NUMBER_RANGE.getErrorMessage());
+        }
+    }
+
+    private void bonusNumDupValidate(int bonusNumber) {
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(Exception.EXIST_BONUS_NUMBER.getErrorMessage());
+        }
     }
 
     public List<Lotto> getNumbers() {

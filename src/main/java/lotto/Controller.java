@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.Model.Lotto;
 import lotto.Model.Model;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -19,7 +20,7 @@ public class Controller {
         this.tryCount = input.getPurchaseCount();
         this.model = new Model(this.tryCount);
         output.printLottoNum(model.getNumbers());
-        model.setWinNumbers(input.getWinNumber());
+        model.setWinNumbers(new Lotto(input.getWinNumber()).getNumbers());
         model.setBonusNumber(input.getBonusNum());
         model.countPrizeNum();
         output.printPrize(model.getPrizeNum(), tryCount, model.sumPrizeMoney());
