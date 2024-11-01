@@ -21,4 +21,8 @@ public class StatisticsLottoDTO {
     public int getBonusNumberFrequency() {
         return bonusNumberFrequency;
     }
+
+    public int getHitNumberValue(Integer keyNumber) {
+        return hitNumberFrequency.get(keyNumber);
+    }
 }
