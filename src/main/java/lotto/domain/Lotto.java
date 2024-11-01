@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.constants.LottoErrorMessage.INVALID_NUMBER_COUNT;
+import static lotto.constants.LottoErrorMessage.INVALID_NUMBER_SIZE;
 import static lotto.constants.LottoErrorMessage.NUMBER_OUT_OF_RANGE;
 
 public class Lotto {
@@ -19,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
+            throw new IllegalArgumentException(INVALID_NUMBER_SIZE.getMessage());
         }
     }
 
