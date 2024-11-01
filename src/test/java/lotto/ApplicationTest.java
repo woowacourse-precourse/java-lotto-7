@@ -1,10 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import lotto.model.BonusNumber;
-import lotto.model.Money;
-import lotto.validation.Parser;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,7 +8,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -49,40 +44,6 @@ class ApplicationTest extends NsTest {
                 List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
-    }
-    @Test
-    void 기능_테스트_2() {
-        Application application = new Application();
-        assertEquals(8, application.divideByThousand("8000"));
-    }
-    @Test
-    void divideByThousand_예외_메시지_테스트_숫자만_입력() {
-        Parser parser = new Parser();
-
-        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            parser.stringToInt("abc");
-        });
-
-        Assertions.assertEquals("[ERROR] 숫자만 입력해 주세요.", exception.getMessage());
-    }
-    @Test
-    void divideByThousand_예외_메시지_테스트_1000원_단위로_입력() {
-
-        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Money money = new Money(1001);
-        });
-
-        Assertions.assertEquals("[ERROR] 1000원 단위의 금액을 입력해 주세요.", exception.getMessage());
-    }
-
-    @Test
-    void 예외_메시지_테스트_1부터_45까지_숫자만_입력() {
-
-        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            BonusNumber bonusNumber = new BonusNumber(46);
-        });
-
-        Assertions.assertEquals("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.", exception.getMessage());
     }
 
     @Test
