@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.InputErrorMessage.PURCHASE_AMOUNT_MINIMUM;
+import static lotto.domain.InputErrorMessage.PURCHASE_AMOUNT_UNIT;
+
 import lotto.domain.calculators.TicketCalculator;
 import lotto.domain.calculators.YieldCalculator;
 
@@ -37,13 +40,13 @@ public class Wallet {
 
     private void validateMinAmount(int money) {
         if (money < MIN_PRICE_PER_LOTTO_TICKET) {
-            throw new IllegalArgumentException("로또 구입 금액은 최소 1,000원 입니다.");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_MINIMUM.getMessage());
         }
     }
 
     private void validateUnit(int money) {
         if (money % MIN_PRICE_PER_LOTTO_TICKET != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_UNIT.getMessage());
         }
     }
 

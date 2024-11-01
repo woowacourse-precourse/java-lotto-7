@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.domain.InputErrorMessage.BONUS_LOTTO_ONLY_ONE_NUMBER;
+import static lotto.domain.InputErrorMessage.PURCHASE_AMOUNT_ONLY_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
@@ -10,7 +13,7 @@ public class Input {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("구입 금액은 숫자로 입력해주세요.");
+            throw new NumberFormatException(PURCHASE_AMOUNT_ONLY_NUMBER.getMessage());
         }
     }
 
@@ -32,7 +35,7 @@ public class Input {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("보너스 번호를 숫자 1개로 입력해주세요.");
+            throw new NumberFormatException(BONUS_LOTTO_ONLY_ONE_NUMBER.getMessage());
         }
     }
 

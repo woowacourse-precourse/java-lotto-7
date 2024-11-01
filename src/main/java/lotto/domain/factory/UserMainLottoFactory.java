@@ -1,11 +1,14 @@
 package lotto.domain.factory;
 
+import static lotto.domain.InputErrorMessage.EMPTY_INPUT_VALUE;
+import static lotto.domain.InputErrorMessage.LOTTO_INCORRECT_DELIMITER;
+import static lotto.domain.InputErrorMessage.LOTTO_ONLY_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.domain.lottos.Lotto;
-
 
 public class UserMainLottoFactory {
     private final static String LOTTO_DELIMITER = ",";
@@ -13,7 +16,7 @@ public class UserMainLottoFactory {
     public Lotto make(String input) {
         String[] separatedInputValues = input.split(LOTTO_DELIMITER);
         List<Integer> lottoNumber = convertToNumbers(separatedInputValues);
-        
+
         return new Lotto(lottoNumber);
     }
 
@@ -35,7 +38,7 @@ public class UserMainLottoFactory {
         try {
             num = Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 번호를 숫자로 입력해 주세요");
+            throw new IllegalArgumentException(LOTTO_ONLY_NUMBER.getMessage());
         }
         return num;
     }
@@ -44,14 +47,14 @@ public class UserMainLottoFactory {
     private static void validateContainSpecialCharacters(String value) {
         Matcher matcher = Pattern.compile("[!@#$%^&*().?\":{}|<>]").matcher(value);
         if (matcher.find()) {
-            throw new IllegalArgumentException("잘못된 구분자를 입력했습니다.");
+            throw new IllegalArgumentException(LOTTO_INCORRECT_DELIMITER.getMessage());
         }
     }
 
 
     private static void validateEmpty(String value) {
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("빈 입력값이 있습니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT_VALUE.getMessage());
         }
     }
 
