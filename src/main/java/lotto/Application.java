@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import lotto.Prize;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -34,6 +35,22 @@ public class Application {
         String input_bonus = readLine();
         Integer bonus_number = Integer.getInteger(input_bonus);
         System.out.println("\n당첨 통계\n---");
+        List<Integer> match_count = new ArrayList<>(Collections.nCopies(7,0));
+        Integer bonus_match = 0;
+        for (Lotto lotto: all_lottos) {
+            Integer match = (int) golden_numbers.stream()
+                    .filter(lotto.getNumbers()::contains)
+                    .count();
+            match_count.set(match, match_count.get(match) + 1);
+            if (match == 5 && lotto.getNumbers().contains(bonus_number)) {
+                bonus_match += 1;
+            }
+        }
 
+        System.out.println("3개 일치 (" + Prize.fifth + "원) - " + match_count.get(3) +"개");
+        System.out.println("4개 일치 (" + Prize.forth + "원) - " + match_count.get(4) +"개");
+        System.out.println("5개 일치 (" + Prize.third + "원) - " + (match_count.get(5) - bonus_match) +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + Prize.second + "원) - " + bonus_match +"개");
+        System.out.println("6개 일치 (" + Prize.first + "원) - " + match_count.get(6) +"개");
     }
 }
