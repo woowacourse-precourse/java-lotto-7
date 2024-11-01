@@ -40,6 +40,14 @@ class LottoTest {
         assertThat(lotto.size()).isEqualTo(6);
     }
 
+    @Test
+    @DisplayName("3000원으로 구매할 수 있는 로또 장수는 3장이다.")
+    void 구매할수_있는_로또_장수(){
+        LottoService lottoService = new LottoService();
+        int purchase_amount = 3000;
+        int number=lottoService.LottoNumber(purchase_amount);
+        assertThat(number).isEqualTo(3);
+    }
 
 }
 
