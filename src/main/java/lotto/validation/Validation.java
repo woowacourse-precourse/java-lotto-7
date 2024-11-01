@@ -31,5 +31,17 @@ public class Validation {
             throw new IllegalArgumentException(LOTTO_ERROR_WRONG_LOTTO_DUPLICATE.getMessage());
         }
     }
+    public static void checkMoneyMinCost(int money, int min_cost) {
+        if (money < min_cost) {
+            throw new IllegalArgumentException(LOTTO_ERROR_PAY_UNDER.getMessage());
+        }
+    }
+
+    public static void checkMoneyMaxCost(int money, int max_cost) {
+        if (money > max_cost) {
+            throw new IllegalArgumentException(LOTTO_ERROR_PAY_OVER.getMessage());
+        }
+    }
+
 
 }
