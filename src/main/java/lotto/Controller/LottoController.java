@@ -10,12 +10,14 @@ public class LottoController {
     private int lottoAmount;
     private List<Lotto> lottos;
     private List<Integer> winningNums;
+    private int bonusNum;
 
     public LottoController() {
         set();
         setLottos();
         displayLottos();
         setWinningNums();
+        setBonusNum();
     }
 
     private void setWinningNums() {
@@ -47,5 +49,13 @@ public class LottoController {
     private void displayLottos() {
         System.out.printf("%d개를 구매했습니다.%n", lottoAmount);
         Utils.printLottos(lottos);
+    }
+
+    private void setBonusNum(){
+        try{
+            bonusNum = InputController.setBonusNum(winningNums);
+        }catch (IllegalArgumentException e){
+            setBonusNum();
+        }
     }
 }

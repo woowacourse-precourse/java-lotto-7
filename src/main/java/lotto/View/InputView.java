@@ -12,4 +12,9 @@ public class InputView {
         System.out.println(Constants.LOTTO_WINNING_NUMS_INPUT);
         return Console.readLine();
     }
+
+    public static String inputBonusNum() {
+        System.out.println(Constants.BONUS_NUM_INPUT);
+        return Console.readLine();
+    }
 }

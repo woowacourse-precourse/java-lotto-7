@@ -6,6 +6,8 @@ public class Constants {
     public static final String LOTTO_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
     public static final String LOTTO_AMOUNT_OUTPUT = "개를 구매했습니다.";
     public static final String LOTTO_WINNING_NUMS_INPUT = "당첨 번호를 입력해 주세요.";
+    public static final String BONUS_NUM_INPUT = "보너스 번호를 입력해 주세요.";
+
 
     public static final String DELIMITER = ",";
 
@@ -24,4 +26,9 @@ public class Constants {
     public static final String WINNING_NUMS_RANGE_ERROR = "[ERROR] 당첨 번호의 범위에서 벗어납니다.";
     public static final String WINNING_NUMS_DUPLICATE_ERROR = "[ERROR] 당첨 번호에 중복된 숫자가 있습니다.";
     public static final String WINNING_NUMS_SIZE_ERROR = "[ERROR] 당첨 번호의 개수에 오류가 있습니다.";
+
+    public static final String BONUS_NUM_BLANK_ERROR = "[ERROR] 보너스 번호에는 공백이 입력될 수 없습니다.";
+    public static final String BONUS_NUM_PARSE_ERROR = "[ERROR] 보너스 번호에 문자열이 있습니다.";
+    public static final String BONUS_NUM_DUPLICATE_ERROR = "[ERROR] 보너스 번호와 당첨번호가 중복됩니다.";
+    public static final String BONUS_NUM_RANGE_ERROR = "[ERROR] 보너스 번호의 범위가 잘못되었습니다.";
 }
