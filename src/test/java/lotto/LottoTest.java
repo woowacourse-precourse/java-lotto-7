@@ -1,5 +1,7 @@
 package lotto;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+    private LottoGame lottoGame;
+
+    @BeforeEach
+    void setUp() {
+        lottoGame = new LottoGame();
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -21,5 +30,24 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 구매_금액이_양수가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> lottoGame.checkPositiveNumber("-1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 입력한 값은 숫자(양수)여야 합니다.");
+    }
+
+    @Test
+    void 구매_금액이_1_000원_단위가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> lottoGame.checkUnitOfPurchaseAmount(500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
+    }
+
+    @Test
+    void 구매_금액이_100_000원을_초과하면_예외가_발생한다() {
+        assertThatThrownBy(() -> lottoGame.checkPurchasedAmountExceeded(100001))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1인당 100,000원을 넘길 수 없습니다.");
+    }
 }
