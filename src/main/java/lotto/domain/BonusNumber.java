@@ -5,11 +5,9 @@ import lotto.enums.LottoError;
 
 public class BonusNumber {
     private final int number;
-    private final LottoConfig lottoConfig;
 
     private BonusNumber(int number, WinningLotto winningLotto, LottoConfig lottoConfig) {
-        this.lottoConfig = lottoConfig;
-        validate(number, winningLotto);
+        validate(number, winningLotto, lottoConfig);
         this.number = number;
     }
 
@@ -17,10 +15,10 @@ public class BonusNumber {
         return new BonusNumber(number, winningLotto, lottoConfig);
     }
 
-    private void validate(int number, WinningLotto winningLotto) {
+    private void validate(int number, WinningLotto winningLotto, LottoConfig lottoConfig) {
         validateDuplicationNumber(number, winningLotto);
-        validateLessThanLottoNumberMax(number);
-        validateMoreThanLottoNumberMin(number);
+        validateLessThanLottoNumberMax(number, lottoConfig);
+        validateMoreThanLottoNumberMin(number, lottoConfig);
     }
 
     private void validateDuplicationNumber(int number, WinningLotto winningLotto) {
@@ -29,13 +27,13 @@ public class BonusNumber {
         }
     }
 
-    private void validateMoreThanLottoNumberMin(int number) {
+    private void validateMoreThanLottoNumberMin(int number, LottoConfig lottoConfig) {
         if (number < lottoConfig.getLottoNumberMin()) {
             throw new IllegalArgumentException(LottoError.LOTTO_NUMBER_LESS_THAN_MIN.getMessage());
         }
     }
 
-    private void validateLessThanLottoNumberMax(int number) {
+    private void validateLessThanLottoNumberMax(int number, LottoConfig lottoConfig) {
         if (number > lottoConfig.getLottoNumberMax()) {
             throw new IllegalArgumentException(LottoError.LOTTO_NUMBER_MORE_THAN_MAX.getMessage());
         }

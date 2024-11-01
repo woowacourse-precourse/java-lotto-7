@@ -6,11 +6,9 @@ import lotto.enums.LottoError;
 
 public class WinningLotto {
     private final List<Integer> numbers;
-    private final LottoConfig lottoConfig;
 
     private WinningLotto(List<Integer> numbers, LottoConfig lottoConfig) {
-        this.lottoConfig = lottoConfig;
-        validate(numbers);
+        validate(numbers, lottoConfig);
         this.numbers = numbers;
     }
 
@@ -18,12 +16,12 @@ public class WinningLotto {
         return new WinningLotto(numbers, lottoConfig);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers, LottoConfig lottoConfig) {
         validateDuplicationNumbers(numbers);
         validateLottoNumberCount(numbers.size());
         numbers.stream().forEach(number -> {
-            validateMoreThanLottoNumberMin(number);
-            validateLessThanLottoNumberMax(number);
+            validateMoreThanLottoNumberMin(number, lottoConfig);
+            validateLessThanLottoNumberMax(number, lottoConfig);
         });
     }
 
@@ -33,13 +31,13 @@ public class WinningLotto {
         }
     }
 
-    private void validateMoreThanLottoNumberMin(int number) {
+    private void validateMoreThanLottoNumberMin(int number, LottoConfig lottoConfig) {
         if (number < lottoConfig.getLottoNumberMin()) {
             throw new IllegalArgumentException(LottoError.LOTTO_NUMBER_LESS_THAN_MIN.getMessage());
         }
     }
 
-    private void validateLessThanLottoNumberMax(int number) {
+    private void validateLessThanLottoNumberMax(int number, LottoConfig lottoConfig) {
         if (number > lottoConfig.getLottoNumberMax()) {
             throw new IllegalArgumentException(LottoError.LOTTO_NUMBER_MORE_THAN_MAX.getMessage());
         }
