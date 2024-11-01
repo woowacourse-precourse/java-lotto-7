@@ -5,7 +5,7 @@ import lotto.util.SplitNumbers;
 import java.util.List;
 
 public class InputView {
-    public String inputMoney(){
+    public String inputAmount(){
         return Console.readLine();
     }
     public List<Integer> inputWinningNumbers() {
