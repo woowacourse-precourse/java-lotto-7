@@ -23,7 +23,7 @@ import lotto.view.input.InputView;
 import lotto.view.output.ConsoleOutputView;
 import lotto.view.output.OutputView;
 
-public class AppConfig implements Config{
+public class AppConfig {
     private final ValidatorConfig validatorConfig = new ValidatorConfig();
     private final DtoMapperConfig dtoMapperConfig = new DtoMapperConfig();
 
