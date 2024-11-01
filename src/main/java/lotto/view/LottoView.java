@@ -31,4 +31,11 @@ public class LottoView {
         winningNumbers = inputModel.getWinningNumbers();
         return winningNumbers;
     }
+
+    public int inputBonusNumberView(Lotto lotto) {
+        int bonusNumber;
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNumber = inputModel.getBonusNumber(lotto.getNumbers());
+        return bonusNumber;
+    }
 }
