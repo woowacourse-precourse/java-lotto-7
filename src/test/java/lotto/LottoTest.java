@@ -26,9 +26,8 @@ class LottoTest {
     @Test
     @DisplayName("로또와 비교하여 겹치는 숫자의 개수를 반환한다.")
     void testHowManyMatches() {
-        List<Integer> otherNumbers = Arrays.asList(4, 5, 6, 7, 8, 9);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto otherLotto = new Lotto(otherNumbers);
+        Lotto otherLotto = new Lotto(List.of(4, 5, 6, 7, 8, 9));
 
         Assertions.assertEquals(3, lotto.howManyMatches(otherLotto));
     }
