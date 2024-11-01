@@ -31,4 +31,8 @@ public class OutputView {
         System.out.println(FIRST_PLACE_OUTPUT_MESSAGE.getMessage(
                 FIRST_PLACE.getMatchCount(), FIRST_PLACE.getPrizeAmount(), rankCounter.getRankCount(FIRST_PLACE)));
     }
+
+    public static void printEarningsRate(Double earningRate) {
+        System.out.println(EARNING_RATE_OUTPUT_MESSAGE.getMessage(earningRate));
+    }
 }
