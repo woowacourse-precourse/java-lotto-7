@@ -8,19 +8,13 @@ import lotto.dto.ScoreDto;
 
 public class LottoMachine {
 
-    private LottoFactory lottoFactory;
+    private final LottoFactory lottoFactory;
+    private final Score score;
     private Lottos lottos;
-    private Score score;
 
-    public LottoMachine() {
-    }
-
-    public void setLottoFactory(LottoFactory lottoFactory){
-        this.lottoFactory = lottoFactory;
-    }
-
-    public void setScoreSystem(ScoreSystem scoreSystem){
-        score = new Score(scoreSystem);
+    public LottoMachine(LottoFactory lottoFactory,Score score) {
+        this.lottoFactory=lottoFactory;
+        this.score=score;
     }
 
     public void buyNumberOfLottos(int amount){
