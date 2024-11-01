@@ -1,8 +1,8 @@
 package lotto.domain.lottos;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import lotto.domain.Rank;
+import java.util.Map;
 import lotto.domain.lottos.user.UserLotto;
 
 public class RandomLottos {
@@ -12,17 +12,16 @@ public class RandomLottos {
         this.lottos = lottos;
     }
 
-    public List<Rank> findMatchedRank(UserLotto userLotto) {
-        List<Rank> ranks = new ArrayList<>();
+    public Map<Integer, Boolean> matchLotto(UserLotto userLotto) {
+        Map<Integer, Boolean> matchedResult = new HashMap<>();
 
         for (Lotto lotto : lottos) {
             int mainLottoMatchedCount = userLotto.getMainLottoMatchedCount(lotto);
             boolean isMatchedBonus = userLotto.isContainBonusLotto(lotto);
-            Rank matchedRank = Rank.findRank(mainLottoMatchedCount, isMatchedBonus);
 
-            ranks.add(matchedRank);
+            matchedResult.put(mainLottoMatchedCount, isMatchedBonus);
         }
-        return ranks;
+        return matchedResult;
     }
 
     @Override
