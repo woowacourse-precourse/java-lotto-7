@@ -26,12 +26,8 @@ public class LottoMachine {
 
         WinningNumbers winningNumbers = getWinningNumbers();
 
-        Number bonusNumber = getBonusNumber();
-
-        WinningResult winningResult = new WinningResult(winningNumbers, bonusNumber);
-        winningResult.calculateResult(lottos);
-
-        outputView.printWinningStatistics(winningResult, purchaseAmount);
+        WinningResult winningResult = generateWinningResult(winningNumbers);
+        printWinningResult(winningResult, lottos, purchaseAmount);
     }
 
     private Amount getPurchaseAmount() {
@@ -57,14 +53,29 @@ public class LottoMachine {
         });
     }
 
-    private Number getBonusNumber() {
+    private Number getBonusNumber(WinningNumbers winningNumbers) {
         return retry(() -> {
             outputView.requestBonusNumber();
-            return inputView.getBonusNumber();
+            Number bonusNumber = inputView.getBonusNumber();
+            winningNumbers.containsNumber(bonusNumber);
+            return bonusNumber;
         });
     }
 
-    private static <T> T retry(Supplier<T> supplier) {
+    private WinningResult generateWinningResult(WinningNumbers winningNumbers) {
+        return retry(() -> {
+            Number bonusNumber = getBonusNumber(winningNumbers);
+
+            return new WinningResult(winningNumbers, bonusNumber);
+        });
+    }
+
+    private void printWinningResult(WinningResult winningResult, Lottos lottos, Amount purchaseAmount) {
+        winningResult.calculateResult(lottos);
+        outputView.printWinningStatistics(winningResult, purchaseAmount);
+    }
+
+    private <T> T retry(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
