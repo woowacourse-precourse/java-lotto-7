@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +14,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public String getNumbers() {
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    public String getPrintFormatNumber() {
         return numbers.stream()
                 .sorted()
                 .map(String::valueOf)

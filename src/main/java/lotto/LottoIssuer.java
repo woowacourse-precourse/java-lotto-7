@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Randoms.*;
 import java.util.List;
 
 public class LottoIssuer {
+    // TODO : 자료구조 수정해야
     private final Lotto[] lottos;
 
     public LottoIssuer(int price) {
@@ -12,10 +13,14 @@ public class LottoIssuer {
         execute();
     }
 
-    public String getResult() {
+    public Lotto[] getLottos() {
+        return this.lottos;
+    }
+
+    public String getFormatLottos() {
         StringBuilder result = new StringBuilder();
         for (Lotto lotto : lottos) {
-            result.append(lotto.getNumbers() + "\n");
+            result.append(lotto.getPrintFormatNumber() + "\n");
         }
         return result.toString();
     }

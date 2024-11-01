@@ -20,6 +20,10 @@ public class BonusNumber {
         }
     }
 
+    public int getValue() {
+        return this.value;
+    }
+
     private static void validate(int value, WinningNumber winningNumber) {
         if (value < 1 || value > 45) {
             throw new IllegalArgumentException("[ERROR] " + "보너스 번호는 1에서 45 사이여야 합니다.");

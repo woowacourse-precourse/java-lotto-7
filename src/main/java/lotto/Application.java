@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -21,7 +22,7 @@ public class Application {
         int lottoCount = issuer.getLottoCount();
         System.out.println(lottoCount + "개를 구매했습니다.");
 
-        String issuedLottoResult = issuer.getResult();
+        String issuedLottoResult = issuer.getFormatLottos();
         System.out.println(issuedLottoResult);
 
         WinningNumber winningNumber = null;
@@ -51,5 +52,11 @@ public class Application {
         }
 
         System.out.println("당첨 통계\n---");
+        Result result = new Result();
+        result.calculate(winningNumber, bonusNumber, issuer);
+        Map<WinningCriteria, Integer> formatWinningDetails = result.getFormatWinningDetails();
+        for(Map.Entry<WinningCriteria, Integer> entry : formatWinningDetails.entrySet()) {
+            System.out.println(entry.getKey().getPrintFormat() + entry.getValue() + "개");
+        }
     }
 }
