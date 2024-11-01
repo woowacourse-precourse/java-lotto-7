@@ -10,9 +10,9 @@ public class Validators {
         }
     }
 
-    public void validateNumericInput(String price) {
+    public void validateNumericInput(String number) {
         try {
-            Integer.parseInt(price);
+            Integer.parseInt(number);
         } catch (InputMismatchException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
         }
