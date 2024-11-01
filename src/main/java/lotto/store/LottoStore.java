@@ -29,10 +29,15 @@ public class LottoStore {
         // TODO: lottoCount -> 좀 더 좋은 이름 ?
         int lottoCount = money / LOTTO_PRICE;
         for (int i = 0; i < lottoCount ; i++) {
-            result.add(new Lotto(generateLottoNumbers()));
+            List<Integer> numbers = generateLottoNumbers();
+            result.add(new Lotto(toLottoNumbers(numbers)));
         }
 
         return result;
+    }
+
+    private List<LottoNumber> toLottoNumbers(List<Integer> numbers) {
+        return numbers.stream().map(LottoNumber::new).toList();
     }
 
     private List<Integer> generateLottoNumbers() {
