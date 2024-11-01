@@ -8,4 +8,8 @@ public class OutputView {
     public static void printError(String message) {
         System.out.println(message);
     }
+
+    public static void printLottoTicketMessage(int ticket) {
+        System.out.println("\n" + ticket + "개를 구매했습니다.");
+    }
 }

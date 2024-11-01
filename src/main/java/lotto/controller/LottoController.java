@@ -9,6 +9,7 @@ public class LottoController {
 
     public void run() {
         insertMoney();
+        buyLotto();
     }
 
     public void insertMoney() {
@@ -22,5 +23,9 @@ public class LottoController {
                 OutputView.printError(e.getMessage());
             }
         }
+    }
+
+    public void buyLotto() {
+        OutputView.printLottoTicketMessage(balance.getTicket());
     }
 }
