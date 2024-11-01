@@ -8,11 +8,13 @@ public final class PurchaseMoneyInvalidException extends IllegalArgumentExceptio
         super(message);
     }
 
-    public static IllegalArgumentException lottoMoneyTooSmall() {
-        return new PurchaseMoneyInvalidException("로또 구매 금액은 1000원 이상이어야 합니다.");
+    public static IllegalArgumentException lottoMoneyTooSmall(String... details) {
+        String message = CustomException.appendDetails("로또 구매 금액이 너무 작습니다.", details);
+        return new PurchaseMoneyInvalidException(message);
     }
 
-    public static IllegalArgumentException lottoMoneyNotDivisible() {
-        return new PurchaseMoneyInvalidException("로또 구매 금액은 1000원 단위여야 합니다.");
+    public static IllegalArgumentException lottoMoneyNotDivisible(String... details) {
+        String message = CustomException.appendDetails("로또 구매 금액의 단위가 맞지 않습니다.", details);
+        return new PurchaseMoneyInvalidException(message);
     }
 }

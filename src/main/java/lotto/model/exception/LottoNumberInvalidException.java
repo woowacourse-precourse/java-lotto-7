@@ -8,19 +8,21 @@ public final class LottoNumberInvalidException extends IllegalArgumentException 
         super(message);
     }
 
-    public static IllegalArgumentException lottoNumberRange() {
-        return new LottoNumberInvalidException("로또 번호는 1부터 45 사이여야 합니다.");
+    public static IllegalArgumentException lottoNumberRange(String... details) {
+        String message = CustomException.appendDetails("로또 번호의 범위가 잘못되었습니다.", details);
+        return new LottoNumberInvalidException(message);
     }
 
-    public static IllegalArgumentException lottoNumberSize() {
-        return new LottoNumberInvalidException("로또 번호는 6개여야 합니다.");
+    public static IllegalArgumentException lottoNumberSize(String... details) {
+        String message = CustomException.appendDetails("로또 번호의 개수가 잘못되었습니다.", details);
+        return new LottoNumberInvalidException(message);
     }
 
-    public static IllegalArgumentException lottoNumberDuplicate() {
+    public static IllegalArgumentException lottoNumberDuplicate(String... details) {
         return new LottoNumberInvalidException("로또 번호는 중복되지 않아야 합니다.");
     }
 
-    public static IllegalArgumentException bonusNumberDuplicate() {
+    public static IllegalArgumentException bonusNumberDuplicate(String... details) {
         return new LottoNumberInvalidException("보너스 번호가 당첨 번호에 포함되서는 안됩니다.");
     }
 }
