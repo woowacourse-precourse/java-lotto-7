@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.policy.LottoPolicy;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoNumberGenerator {

@@ -3,18 +3,17 @@ package lotto.model;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
-import lotto.policy.BasicPolicy;
+import lotto.policy.PrizeMoneyPolicy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoNumberGeneratorTest {
-
     LottoNumberGenerator lottoNumberGenerator;
 
     @BeforeEach
     void setUp() {
-        lottoNumberGenerator = new LottoNumberGenerator(new BasicPolicy());
+        lottoNumberGenerator = new LottoNumberGenerator(new PrizeMoneyPolicy());
     }
 
     @Test
