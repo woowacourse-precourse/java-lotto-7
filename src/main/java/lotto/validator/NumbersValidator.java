@@ -37,16 +37,16 @@ public class NumbersValidator {
         validateRange(numbers);
     }
 
-    private void validateIsNumber(String number) {
+    private void validateIsNumber(String input) {
         try {
-            Integer.parseInt(number);
+            Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_NUMBER.getMessage(NUMBERS));
         }
     }
 
-    private void validateNoSpace(String number) {
-        if (!number.equals(number.strip())) {
+    private void validateNoSpace(String input) {
+        if (!input.equals(input.strip())) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage(NUMBERS));
         }
     }
