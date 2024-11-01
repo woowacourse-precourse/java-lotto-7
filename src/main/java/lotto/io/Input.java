@@ -14,7 +14,22 @@ public class Input {
         return price;
     }
 
+    public static String inputWinningNumber() {
+        String winningNumber = Console.readLine();
+        try{
+            validateWinningNumber();
+        } catch (IllegalArgumentException e) {
+            return inputWinningNumber();
+        }
+        return winningNumber;
+    }
+
     private static void validatePrice() {
 
     }
+
+    private static void validateWinningNumber() {
+
+    }
+
 }
