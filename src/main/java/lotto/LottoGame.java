@@ -11,11 +11,18 @@ public class LottoGame {
     }
 
     private void purchaseAmountInput() {
-        System.out.println("구입금액을 입력해 주세요.");
-        purchaseAmount = Integer.parseInt(checkPositiveNumber(Console.readLine()));
-        checkUnitOfPurchaseAmount(purchaseAmount);
-        checkPurchasedAmountExceeded(purchaseAmount);
-        System.out.println(purchaseAmount);
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+
+            purchaseAmount = Integer.parseInt(checkPositiveNumber(Console.readLine()));
+            checkUnitOfPurchaseAmount(purchaseAmount);
+            checkPurchasedAmountExceeded(purchaseAmount);
+
+            System.out.println(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            purchaseAmountInput();
+        }
     }
 
     // 100,000원을 초과했는지 확인하는 메서드
