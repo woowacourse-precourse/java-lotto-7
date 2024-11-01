@@ -19,7 +19,7 @@ public class LottoManager {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public void generateLottoNumbers(int purchaseAmount) {
+    public void generateLottoNumbers() {
         int lottoCount = purchaseAmount / MIN_PURCHASE_AMOUNT;
 
         for (int count = 0; count < lottoCount; count++) {

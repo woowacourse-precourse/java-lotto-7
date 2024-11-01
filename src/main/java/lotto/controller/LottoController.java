@@ -33,7 +33,7 @@ public class LottoController {
 
     private LottoManager generateLottoManager(int purchaseAmount) {
         LottoManager lottoManager = new LottoManager(purchaseAmount);
-        lottoManager.generateLottoNumbers(purchaseAmount);
+        lottoManager.generateLottoNumbers();
         return lottoManager;
     }
 }

@@ -20,7 +20,7 @@ public class LottoManagerTest {
     @DisplayName("구입 금액을 1000으로 나눈 값 만큼 로또가 발행되어야한다.")
     @Test
     void testGenerateLotto() {
-        lottoManager.generateLottoNumbers(8000);
+        lottoManager.generateLottoNumbers();
 
         List<Lotto> lottoNumbers = lottoManager.getLottoNumbers();
 
