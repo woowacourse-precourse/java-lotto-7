@@ -1,4 +1,20 @@
 package lotto.money.infrastructure;
 
-public class BenefitCreator {
+import lotto.lotto.domain.LottoTickets;
+import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.winning.domain.WinningLotto;
+import lotto.money.domain.Benefit;
+import lotto.money.domain.BenefitCreatorService;
+import lotto.money.domain.Money;
+
+public class BenefitCreator implements BenefitCreatorService {
+    private final WinningAmountCalculator winningAmountCalculator;
+    public BenefitCreator(WinningAmountCalculator winningAmountCalculator) {
+        this.winningAmountCalculator = winningAmountCalculator;
+    }
+    @Override
+    public Benefit create(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
+        Money winningAmount = winningAmountCalculator.calculate(lottoTickets, winningLotto, bonusNumber);
+        return new Benefit(winningAmount);
+    }
 }
