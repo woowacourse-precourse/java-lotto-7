@@ -13,14 +13,14 @@ public class InputValidator {
         return input;
     }
 
-    public static Integer validateInteger(String input) {
+    public static Long validateInteger(String input) {
         try {
-            return validatePositive(Integer.parseInt(input));
+            return validatePositive(Long.parseLong(input));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER.toString());
         }
     }
-    private static Integer validatePositive(Integer number) {
+    private static Long validatePositive(Long number) {
         if (number <= 0) {
             throw new IllegalArgumentException(NOT_POSITIVE_INTEGER.toString());
         }

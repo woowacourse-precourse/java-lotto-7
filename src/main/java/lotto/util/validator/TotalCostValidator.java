@@ -5,8 +5,8 @@ import static lotto.util.message.ExceptionMessage.NOT_DIVIDED_TO_LOTTO_PRICE;
 
 public class TotalCostValidator extends InputValidator {
 
-    public static Integer validateDividedByLottoPrice(String input) {
-        Integer totalCost = validateInteger(input);
+    public static Long validateDividedByLottoPrice(String input) {
+        Long totalCost = validateInteger(input);
         if (totalCost % LOTTO_TICKET_PRICE != 0) {
             throw new IllegalArgumentException(NOT_DIVIDED_TO_LOTTO_PRICE.toString());
         }

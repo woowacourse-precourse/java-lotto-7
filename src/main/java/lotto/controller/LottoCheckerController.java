@@ -12,7 +12,7 @@ public class LottoCheckerController {
 
     private LottoPurchasedInfo lottoPurchasedInfo;
 
-    public void setPurchasedLotto(List<Lotto> purchased, Integer totalCost) {
+    public void setPurchasedLotto(List<Lotto> purchased, Long totalCost) {
         lottoPurchasedInfo = new LottoPurchasedInfo(purchased, totalCost);
     }
 

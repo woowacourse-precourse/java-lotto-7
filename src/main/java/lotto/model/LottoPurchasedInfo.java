@@ -9,11 +9,11 @@ import java.util.Map;
 public class LottoPurchasedInfo {
 
     private final List<Lotto> purchased;
-    private final Integer totalCost;
+    private final Long totalCost;
 
     private Map<LottoRank, Integer> countResult;
 
-    public LottoPurchasedInfo(List<Lotto> purchased, Integer totalCost) {
+    public LottoPurchasedInfo(List<Lotto> purchased, Long totalCost) {
         this.purchased = purchased;
         this.totalCost = totalCost;
     }

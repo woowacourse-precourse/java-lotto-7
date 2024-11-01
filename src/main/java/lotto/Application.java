@@ -19,7 +19,7 @@ public class Application {
     }
 
     public static void purchaseLotto() {
-        Integer totalCost = lottoInputController.inputSingleValue(inputView::inputTotalCost);
+        Long totalCost = lottoInputController.inputSingleValue(inputView::inputTotalCost);
         List<Lotto> purchased = lottoMachineController.purchase(totalCost);
 
         lottoCheckerController.setPurchasedLotto(purchased, totalCost);

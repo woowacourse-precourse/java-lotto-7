@@ -13,7 +13,7 @@ public class LottoMachineController {
         this.vendingMachine = vendingMachine;
     }
 
-    public List<Lotto> purchase(Integer totalCost) {
+    public List<Lotto> purchase(Long totalCost) {
         return Collections.unmodifiableList(vendingMachine.issueLotto(totalCost));
     }
 }

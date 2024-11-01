@@ -30,8 +30,8 @@ public class LottoNumberValidator extends InputValidator {
         }
     }
 
-    public static Integer validateNumberInRange(String numberToken) {
-        int number = validateInteger(numberToken);
+    public static Long validateNumberInRange(String numberToken) {
+        Long number = validateInteger(numberToken);
         if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
             throw new IllegalArgumentException(WINNING_NUMBER_NOT_IN_RANGE.toString());
         }

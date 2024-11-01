@@ -15,7 +15,7 @@ public class LottoInputController {
         this.inputView = inputView;
     }
 
-    public Integer inputSingleValue(Supplier<Integer> input) {
+    public Long inputSingleValue(Supplier<Long> input) {
         while (true) {
             try {
                 return input.get();
@@ -29,8 +29,8 @@ public class LottoInputController {
         Lotto winningNumbers = inputLottoNumbers(inputView::inputWinningNumbers);
         while (true) {
             try {
-                Integer bonusNumber = inputSingleValue(inputView::inputBonusNumber);
-                return new WinningLottoDTO(winningNumbers, new BonusNumber(winningNumbers, bonusNumber));
+                Long bonusNumber = inputSingleValue(inputView::inputBonusNumber);
+                return new WinningLottoDTO(winningNumbers, new BonusNumber(winningNumbers, bonusNumber.intValue()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class InputView {
 
-    public Integer inputTotalCost() {
+    public Long inputTotalCost() {
         System.out.println(INPUT_TOTAL_COST);
         String input = validateBlank(Console.readLine());
         return validateDividedByLottoPrice(input);
@@ -26,10 +26,11 @@ public class InputView {
         String input = validateInputString(Console.readLine());
         return Arrays.stream(input.split(INPUT_DELIMITER))
                 .map(s -> validateNumberInRange(s.trim()))
+                .map(Long::intValue)
                 .toList();
     }
 
-    public Integer inputBonusNumber() {
+    public Long inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
         String input = validateBlank(Console.readLine());
         return validateNumberInRange(input);
