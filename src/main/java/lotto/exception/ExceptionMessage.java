@@ -5,7 +5,8 @@ public enum ExceptionMessage {
     BLANK_INPUT_ERROR("입력값은 공백이 될 수 없습니다."),
     DUPLICATED_NUMBER_ERROR("입력값은 중복될 수 없습니다."),
     MINUS_PRICE_ERROR("입력한 금액은 0 이상이어야 합니다."),
-    INVALID_INPUT_ERROR("올바르지 않은 입력값입니다.");
+    INVALID_INPUT_ERROR("올바르지 않은 입력값입니다."),
+    INVALID_RANGE_ERROR("번호는 1과 45 사이의 숫자여야 합니다.");
 
     private final String message;
 
