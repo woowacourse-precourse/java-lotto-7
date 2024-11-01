@@ -16,7 +16,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "1500", "-1000"})
+    @ValueSource(strings = {"0", "1", "1500", "-1000", "abc", ",./"})
     void 로또_구입_금액_유효성_검증_실패_테스트(String input) {
         assertThatThrownBy(() -> validator.validatePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -29,7 +29,13 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,4,5", "-1,1,2,3,4,5", "41,42,43,44,45,46"})
+    @ValueSource(strings = {
+            "0,1,2,3,4,5",
+            "-1,1,2,3,4,5",
+            "41,42,43,44,45,46",
+            "1,2,3,4,5",
+            "1.2.3.4.5.6",
+            "a,b,c,d,e,f"})
     void 당첨_번호_유효성_검증_실패_테스트(String input) {
         assertThatThrownBy(() -> validator.validateLottoNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -42,7 +48,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1", "0", "46"})
+    @ValueSource(strings = {"-1", "0", "1, 2", "46", "a", "ab", "abcd"})
     void 보너스_번호_유효성_검증_실패_테스트(String input) {
         assertThatThrownBy(() -> validator.validateBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -65,5 +71,4 @@ class ValidatorTest {
         assertThatThrownBy(() -> validator.checkDuplicateLottoNumbers(lottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }
