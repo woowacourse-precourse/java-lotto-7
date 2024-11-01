@@ -4,7 +4,7 @@ import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
 
 import java.util.List;
-import lotto.model.LottoNumberRange;
+import lotto.constant.LottoNumberRange;
 
 public class LottoNumberValidator extends NumberValidator {
 

@@ -3,7 +3,7 @@ package lotto.util.generator;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.LottoNumberRange;
+import lotto.constant.LottoNumberRange;
 
 public class RandomLottoNumberGenerator implements NumberGenerator<List<Integer>> {
 

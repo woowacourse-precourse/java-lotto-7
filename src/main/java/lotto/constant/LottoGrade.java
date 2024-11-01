@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.constant;
 
 import java.util.Collections;
 import java.util.Map;

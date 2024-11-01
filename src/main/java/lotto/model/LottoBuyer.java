@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import lotto.constant.LottoGrade;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoNumberListDto;
 import lotto.dto.LottoResultDto;

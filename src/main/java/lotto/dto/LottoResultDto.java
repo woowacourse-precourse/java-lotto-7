@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.model.LottoGrade;
+import lotto.constant.LottoGrade;
 
 public record LottoResultDto(
         LottoGrade grade,

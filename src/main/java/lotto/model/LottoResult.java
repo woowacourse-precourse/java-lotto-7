@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.constant.LottoGrade;
 import lotto.dto.LottoDto;
 
 public class LottoResult {

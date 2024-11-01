@@ -3,10 +3,9 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import lotto.dto.LottoDto;
 import lotto.dto.LottoNumberListDto;
 import lotto.dto.LottoResultDto;
-import lotto.model.LottoGrade;
+import lotto.constant.LottoGrade;
 
 public class OutputView {
 

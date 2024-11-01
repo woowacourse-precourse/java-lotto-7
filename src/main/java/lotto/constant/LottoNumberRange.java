@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.constant;
 
 public enum LottoNumberRange {
     MIN_LOTTO_NUMBER(1),
