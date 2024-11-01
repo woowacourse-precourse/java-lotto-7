@@ -7,7 +7,6 @@ import lotto.exception.WinningNumberCountException;
 import lotto.exception.WinningNumberDuplicationException;
 import lotto.exception.WinningNumberRangeException;
 import lotto.exception.WinningNumberTypeException;
-import lotto.exception.WinningNumberZeroException;
 
 public class InputWinningNumberView {
     public static Set<Integer> WinningNumbersInput() {
@@ -32,10 +31,7 @@ public class InputWinningNumberView {
     private static int validate(String input) {
         try {
             int winningNumber = Integer.parseInt(input);
-            if (winningNumber <= 0) {
-                throw new WinningNumberZeroException();
-            }
-            if (winningNumber <= 45) {
+            if (winningNumber <= 0 || winningNumber > 45) {
                 throw new WinningNumberRangeException();
             }
 
