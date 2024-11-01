@@ -45,8 +45,7 @@ public class Lotto {
         }
     }
 
-    @Override
-    public String toString() {
+    public String getLottoNumbers() {
         return numbers.toString();
     }
 }

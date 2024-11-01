@@ -26,23 +26,37 @@ class LottoTest {
     }
 
     @Test
-    public void 로또_발행_정상테스트() throws Exception {
+    public void 로또_로또번호_출력_정상테스트() throws Exception {
         //Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        String expected = "[1, 2, 3, 4, 5, 6]";
 
-        //When, Then
-        Assertions.assertThatCode(Lotto::issue).doesNotThrowAnyException();
+        //When
+        String actual = lotto.getLottoNumbers();
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    public void 로또_Integer_LottoNumber_포장_정상테스트() throws Exception {
+    public void 로또_정렬_정상테스트() throws Exception {
         //Given
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         String expected = "[1, 2, 3, 4, 5, 6]";
 
         //When
-        String actual = lotto.toString();
+        String actual = lotto.getLottoNumbers();
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+
+    @Test
+    public void 로또_발행_정상테스트() throws Exception {
+        //Given
+
+        //When, Then
+        Assertions.assertThatCode(Lotto::issue).doesNotThrowAnyException();
     }
 }
