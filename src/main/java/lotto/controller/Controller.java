@@ -38,11 +38,11 @@ public class Controller {
         outputView.printLotto(lottoNumbers);
 
         outputView.showWinningNumberInputMessage();
-        Lotto lotto = untilValidWinningNumber();
+        Lotto winningNumbers = untilValidWinningNumber();
         outputView.showBonusBallInputMessage();
-        BonusBall bonusNumber = untilValidBonusBall(lotto);
+        BonusBall bonus = untilValidBonusBall(winningNumbers);
 
-        int[] results = calculateResult.calculateStatistics(lotto.getNumbers(), bonusNumber.getBonusNumber(), lottoNumbers);
+        int[] results = calculateResult.calculateStatistics(winningNumbers.getNumbers(), bonus.getBonusNumber(), lottoNumbers);
         outputView.printStatistics(results, ticket);
     }
 
@@ -64,12 +64,12 @@ public class Controller {
         }
     }
 
-    private BonusBall untilValidBonusBall(Lotto lotto) {
+    private BonusBall untilValidBonusBall(Lotto winningNumbers) {
         try {
-            return new BonusBall(Parser.parseNumber(inputView.readInputLine()), lotto.getNumbers());
+            return new BonusBall(Parser.parseNumber(inputView.readInputLine()), winningNumbers.getNumbers());
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
-            return (untilValidBonusBall(lotto));
+            return (untilValidBonusBall(winningNumbers));
         }
     }
 }
