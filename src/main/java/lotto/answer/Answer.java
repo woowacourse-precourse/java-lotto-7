@@ -21,4 +21,12 @@ public class Answer {
 			.map(Integer::parseInt)
 			.collect(Collectors.toList()); 
 	}
+
+	public Lotto getAnswerLotto() {
+		return answerLotto;
+	}
+
+	public int getBonusLotto() {
+		return bonusLotto;
+	}
 }
