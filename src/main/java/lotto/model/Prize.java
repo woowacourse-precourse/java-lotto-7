@@ -4,27 +4,33 @@ import java.util.Arrays;
 
 
 public enum Prize {
-    FIRST_PRIZE(1, 6, false, 2000000000L),
-    SECOND_PRIZE(2, 5, true, 30000000L),
-    THIRD_PRIZE(3, 5, false, 1500000L),
-    FOURTH_PRIZE(4, 4, false, 50000L),
-    FIFTH_PRIZE(5, 3, false, 5000L);
+    FIRST_PRIZE(1, new FirstRankStrategy(), 2000000000L),
+    SECOND_PRIZE(2, new SecondRankStrategy(), 30000000L),
+    THIRD_PRIZE(3, new ThirdRankStrategy(), 1500000L),
+    FOURTH_PRIZE(4, new FourthRankStrategy(), 50000L),
+    FIFTH_PRIZE(5, new FifthRankStrategy(), 5000L),
+    NO_PRIZE(Integer.MAX_VALUE, new NoRankStrategy(), 0L);
     private final Integer rank;
-    private final Integer numberOfMatch;
-
-    private final boolean isBonusMatch;
+    private LottoWinningStrategy lottoWinningStrategy;
     private final Long money;
 
-    Prize(Integer rank, Integer numberOfMatch, boolean isBonusMatch, Long money) {
+    Prize(Integer rank, LottoWinningStrategy lottoWinningStrategy, Long money) {
         this.rank = rank;
-        this.numberOfMatch = numberOfMatch;
-        this.isBonusMatch = isBonusMatch;
+        this.lottoWinningStrategy = lottoWinningStrategy;
         this.money = money;
     }
 
-    public static Prize getMoney(int numberOfMatch, boolean isBonusMatch) {
-        return Arrays.stream(Prize.values()).filter(prize ->
-                        prize.isBonusMatch == isBonusMatch && prize.numberOfMatch == numberOfMatch).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 당첨되지 못 했습니다."));
+    public static Prize getPrize(WinningLotto winningLotto, Lotto myLotto, BonusNumber bonusNumber) {
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.lottoWinningStrategy.isWinning(winningLotto, myLotto, bonusNumber)).findFirst()
+                .orElse(Prize.NO_PRIZE);
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public Long getMoney() {
+        return money;
     }
 }
