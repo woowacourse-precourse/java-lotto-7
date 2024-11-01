@@ -10,10 +10,13 @@ import lotto.view.PurchasedLottoOutputView;
 public class LottoPurchaseController {
     private final Lottos lottos;
     private final LottoPurchase lottoPurchase;
+    private final PurchaseAmountInputView purchaseAmountInputView;
 
-    public LottoPurchaseController(Lottos lottos, LottoPurchase lottoPurchase) {
+    public LottoPurchaseController(Lottos lottos, LottoPurchase lottoPurchase,
+                                   PurchaseAmountInputView purchaseAmountInputView) {
         this.lottos = lottos;
         this.lottoPurchase = lottoPurchase;
+        this.purchaseAmountInputView = purchaseAmountInputView;
     }
 
     public void start() {
@@ -23,14 +26,12 @@ public class LottoPurchaseController {
     }
 
     private void purchaseLotto() {
-        PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
-
         purchaseAmountInputView.printPurchaseAmountInputGuide();
 
-        setLottoPurchaseFromInput(purchaseAmountInputView);
+        setLottoPurchaseFromInput();
     }
 
-    private void setLottoPurchaseFromInput(PurchaseAmountInputView purchaseAmountInputView) {
+    private void setLottoPurchaseFromInput() {
 
         try {
             lottoPurchase.calculateLottoPurchaseCount(purchaseAmountInputView.getPurchaseAmount());
@@ -38,7 +39,7 @@ public class LottoPurchaseController {
 
             ErrorOutputView.printErrorMessage(e.getMessage());
 
-            setLottoPurchaseFromInput(purchaseAmountInputView);
+            setLottoPurchaseFromInput();
         }
     }
 
