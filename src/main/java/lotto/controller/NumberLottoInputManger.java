@@ -52,6 +52,10 @@ public class NumberLottoInputManger implements LottoInputManger{
 
     public Lotto validateInputWinningNubmer(String winningNumber) {
 
+        if (winningNumber.isBlank()) {
+            throw new IllegalArgumentException(InputError.BLANK_WINNING_NUMBER.getInstance());
+        }
+
         boolean onlyAllowedNoneInteger = IntStream.range(0, winningNumber.length())
                 .allMatch(i -> {
                     char currentChar = winningNumber.charAt(i);
@@ -73,6 +77,9 @@ public class NumberLottoInputManger implements LottoInputManger{
     }
 
     private BonusComponent validateInputBonusComponent(Lotto winningComponent, String inputBonusComponent) {
+        if(inputBonusComponent.isBlank()){
+            throw new IllegalArgumentException(InputError.BLANK_BONUS_NUMBER.getInstance());
+        }
         if(!isInteger(inputBonusComponent)){
             throw new IllegalArgumentException(InputError.NONE_INTEGER_BONUS_NUMBER.getInstance());
         }
