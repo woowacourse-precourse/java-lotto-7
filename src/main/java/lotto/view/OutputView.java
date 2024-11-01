@@ -25,6 +25,10 @@ public class OutputView {
     private static final String LOTTO_NUMBERS_POSTFIX = "]";
     private static final String EMPTY_STRING = "";
 
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
     }

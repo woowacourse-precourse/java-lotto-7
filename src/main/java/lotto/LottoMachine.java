@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.function.Supplier;
 import lotto.amount.Amount;
 import lotto.lotto.Lottos;
 import lotto.lotto.Number;
@@ -34,24 +35,42 @@ public class LottoMachine {
     }
 
     private Amount getPurchaseAmount() {
-        outputView.requestPurchaseAmount();
-        return inputView.getPurchaseAmount();
+        return retry(() -> {
+            outputView.requestPurchaseAmount();
+            return inputView.getPurchaseAmount();
+        });
     }
 
     private Lottos getLottos(Amount purchaseAmount) {
-        int lottoCount = purchaseAmount.calculateLottoCount();
-        Lottos lottos = new Lottos(lottoCount);
-        outputView.printPurchaseLottoNumbers(lottos);
-        return lottos;
+        return retry(() -> {
+            int lottoCount = purchaseAmount.calculateLottoCount();
+            Lottos lottos = new Lottos(lottoCount);
+            outputView.printPurchaseLottoNumbers(lottos);
+            return lottos;
+        });
     }
 
     private WinningNumbers getWinningNumbers() {
-        outputView.requestWinningNumbers();
-        return inputView.getWinningNumbers();
+        return retry(() -> {
+            outputView.requestWinningNumbers();
+            return inputView.getWinningNumbers();
+        });
     }
 
     private Number getBonusNumber() {
-        outputView.requestBonusNumber();
-        return inputView.getBonusNumber();
+        return retry(() -> {
+            outputView.requestBonusNumber();
+            return inputView.getBonusNumber();
+        });
+    }
+
+    private static <T> T retry(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
