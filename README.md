@@ -13,6 +13,7 @@
 - [X] project scan, bean container 관리 기능
 - [X] FrontController과 백 애플리케이션 기반 기능
 - [X] front와 back의 통신 기능
+- [X] 프론트 애플리케이션 로직 및 재시도 기능 
 
 ### INPUT
 - [X] 로또 구입 금액 입력
