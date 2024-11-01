@@ -30,7 +30,7 @@ public class Controller {
         }
     }
 
-    public ArrayList<List<Integer>> generateLottoNumbers(int times){
+    public ArrayList<List<Integer>> generatePurchasedLottoNumbers(int times){
         OutputView.printPurchasedTicketCount(times);
         purchasedLottoNumbersService.PurchasedLottoNumbersGenerator(times);
         OutputView.printPurchasedLottoNumbers(purchasedLottoNumbersService.getPurchasedLottoNumbers());
@@ -79,7 +79,7 @@ public class Controller {
     }
 
     public void lottoStart(){
-        printResult(makeLottoAndBonusNumberCalculateRank(generateLottoNumbers(divideByThousand())));
+        printResult(makeLottoAndBonusNumberCalculateRank(generatePurchasedLottoNumbers(divideByThousand())));
 
     }
 }
