@@ -19,6 +19,7 @@ public class WinningLotto {
     private void validate(List<Integer> numbers, LottoConfig lottoConfig) {
         validateDuplicationNumbers(numbers);
         validateLottoNumberCount(numbers.size(), lottoConfig);
+
         numbers.stream().forEach(number -> {
             validateMoreThanLottoNumberMin(number, lottoConfig);
             validateLessThanLottoNumberMax(number, lottoConfig);
