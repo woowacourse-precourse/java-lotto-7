@@ -12,7 +12,9 @@ public class Revenue {
     }
 
     private static float calculateReturnRate(int purchaseAmount, int totalAmount) {
-        if (isZero(totalAmount)) return 0;
+        if (isZero(totalAmount)) {
+            return 0;
+        }
         return (float) totalAmount / purchaseAmount * 100;
     }
 

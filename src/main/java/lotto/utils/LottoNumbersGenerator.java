@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LottoNumbersGenerator {
     public static List<Integer> generate() {
-        List<Integer> numbers =  pickUniqueLottoNumbers();
+        List<Integer> numbers = pickUniqueLottoNumbers();
         return sortNumbers(numbers);
     }
 

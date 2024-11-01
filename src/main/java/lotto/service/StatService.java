@@ -67,11 +67,21 @@ public class StatService {
         int matchingCount = getMatchingCount(pickedLotto.getNumbers(), winningLotto.getNumbers());
         boolean bonusMatch = isBonusMatch(pickedLotto.getNumbers(), bonusNumber.getNumber());
 
-        if (matchingCount == FIRST_PRIZE.getMatchingCount()) return FIRST_PRIZE;
-        if (matchingCount == SECOND_PRIZE.getMatchingCount() && bonusMatch) return SECOND_PRIZE;
-        if (matchingCount == THIRD_PRIZE.getMatchingCount()) return THIRD_PRIZE;
-        if (matchingCount == FOURTH_PRIZE.getMatchingCount()) return FOURTH_PRIZE;
-        if (matchingCount == FIFTH_PRIZE.getMatchingCount()) return FIFTH_PRIZE;
+        if (matchingCount == FIRST_PRIZE.getMatchingCount()) {
+            return FIRST_PRIZE;
+        }
+        if (matchingCount == SECOND_PRIZE.getMatchingCount() && bonusMatch) {
+            return SECOND_PRIZE;
+        }
+        if (matchingCount == THIRD_PRIZE.getMatchingCount()) {
+            return THIRD_PRIZE;
+        }
+        if (matchingCount == FOURTH_PRIZE.getMatchingCount()) {
+            return FOURTH_PRIZE;
+        }
+        if (matchingCount == FIFTH_PRIZE.getMatchingCount()) {
+            return FIFTH_PRIZE;
+        }
 
         return NONE;
     }
@@ -80,7 +90,9 @@ public class StatService {
         List<WinningStat> winningStats = new ArrayList<>();
 
         for (WinningPrize prize : WinningPrize.values()) {
-            if (prize == NONE) continue;
+            if (prize == NONE) {
+                continue;
+            }
 
             winningStats.add(
                     new WinningStat(prize.getMatchingCount(), prize.isBonusMatch(),

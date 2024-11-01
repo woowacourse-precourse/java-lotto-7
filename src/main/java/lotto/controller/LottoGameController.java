@@ -100,7 +100,7 @@ public class LottoGameController {
         String input = InputView.inputBonusNumbers();
 
         try {
-            BonusNumber bonusNumber =  buyerService.createBonusNumber(winningLotto, input);
+            BonusNumber bonusNumber = buyerService.createBonusNumber(winningLotto, input);
             printNewLine();
 
             return bonusNumber;
