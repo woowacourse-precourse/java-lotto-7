@@ -25,6 +25,7 @@ public class LottoController {
             validatePrice(price);
             return price / CompareInteger.PRICE_LOTTO.getNumber();
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getLottoPrice();
         }
     }
