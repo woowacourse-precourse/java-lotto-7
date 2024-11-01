@@ -14,6 +14,7 @@ import static lotto.constants.RankNumber.THIRD;
 import static lotto.constants.RankNumber.THIRD_PRIZE_MONEY;
 import static lotto.constants.RankNumber.THREE;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,17 +29,18 @@ public class LottoResultEvaluator {
     private int profit;
     private double returnRate;
 
-    public LottoResultEvaluator(Lotto winningNumber, LottoNumbersGenerator lottos, Bonus bonus, Purchase purchase) {
+    public LottoResultEvaluator() {
         this.result = new HashMap<>();
     }
 
     public void evaluateLottoResults(Lotto winningNumber, LottoNumbersGenerator lottos, Bonus bonus, Purchase purchase) {
+        result.clear();
+
         for (Lotto lotto : lottos.getLottos()) {
-            List<Integer> copyLotto = lotto.getNumbers();
-            copyLotto.retainAll(winningNumber.getNumbers());
+            List<Integer> copyLotto = getCopyLotto(winningNumber, lotto);
             getFirstRank(copyLotto);
             getSecondRank(lotto, copyLotto, bonus);
-            getThirdRank(copyLotto);
+            getThirdRank(lotto, copyLotto, bonus);
             getFourthRank(copyLotto);
             getFifthRank(copyLotto);
         }
@@ -58,6 +60,12 @@ public class LottoResultEvaluator {
         return returnRate;
     }
 
+    private static List<Integer> getCopyLotto(Lotto winningNumber, Lotto lotto) {
+        List<Integer> copyLotto = new ArrayList<>(lotto.getNumbers());
+        copyLotto.retainAll(winningNumber.getNumbers());
+        return copyLotto;
+    }
+
     private void getFirstRank(List<Integer> copyLotto) {
         if (copyLotto.size() == SIX.getNumber()) {
             result.put(FIRST.getNumber(), result.getOrDefault(FIRST.getNumber(), 0) + 1);
@@ -70,8 +78,8 @@ public class LottoResultEvaluator {
         }
     }
 
-    private void getThirdRank(List<Integer> copyLotto) {
-        if (copyLotto.size() == FIVE.getNumber()) {
+    private void getThirdRank(Lotto lotto, List<Integer> copyLotto, Bonus bonus) {
+        if (copyLotto.size() == FIVE.getNumber() && !lotto.getNumbers().contains(bonus.getBonus())) {
             result.put(THIRD.getNumber(), result.getOrDefault(THIRD.getNumber(), 0) + 1);
         }
     }
@@ -90,11 +98,11 @@ public class LottoResultEvaluator {
 
     private int getProfitMoney(Map<Integer, Integer> result) {
         int money = 0;
-        money += get1stMoney(result.get(FIRST));
-        money += get2ndMoney(result.get(SECOND));
-        money += get3thMoney(result.get(THIRD));
-        money += get4thMoney(result.get(FOURTH));
-        money += get5thMoney(result.get(FIFTH));
+        money += get1stMoney(result.getOrDefault(FIRST, 0));
+        money += get2ndMoney(result.getOrDefault(SECOND, 0));
+        money += get3thMoney(result.getOrDefault(THIRD, 0));
+        money += get4thMoney(result.getOrDefault(FOURTH, 0));
+        money += get5thMoney(result.getOrDefault(FIFTH, 0));
 
         return money;
     }
