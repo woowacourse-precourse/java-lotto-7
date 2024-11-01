@@ -38,4 +38,14 @@ public class InputView {
         }
     }
 
+    public int getBonusNumber() {
+        while (true){
+            try {
+                System.out.println(OutputView.INPUT_BONUS_NUMBER_MESSAGE);
+                return this.lottoNumberTypeValidator.validateBonusNumberType(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
