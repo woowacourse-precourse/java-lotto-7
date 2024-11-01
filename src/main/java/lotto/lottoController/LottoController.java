@@ -30,7 +30,7 @@ public class LottoController {
         this.outputView = new OutputView();
 
 
-        this.lottoMainService = new LottoMainService(lottoDAO, hitLottoDAO, statisticsDAO);
+        this.lottoMainService = new LottoMainService();
     }
 
     public void run() {
@@ -38,7 +38,7 @@ public class LottoController {
         //여기에 유효성 검증
 
         long calcCost = Long.parseLong(cost);
-        outputView.howManyBuy(calcCost / 1000);
+        outputView.howManyBuy(calcCost/1000);
         lottoMainService.buyLotto(calcCost);
 
         List<LottoDTO> allLottosAsDTO = lottoMainService.getAllLottosAsDTO();

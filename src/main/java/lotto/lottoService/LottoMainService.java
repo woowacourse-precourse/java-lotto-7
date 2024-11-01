@@ -1,6 +1,7 @@
 package lotto.lottoService;
 
 import java.util.stream.Collectors;
+import lotto.lottoModel.LottoDAO;
 import lotto.lottoModel.*;
 import lotto.lottoView.LottoPrize;
 import lotto.Utility.LottoNumberGenerator;
@@ -9,14 +10,12 @@ import java.util.*;
 
 public class LottoMainService {
 
-    private final LottoDAO lottoDAO;
-    private final HitLottoDAO hitLottoDAO;
-    private final StatisticsLottoDAO statisticsDAO;
+    private LottoDAO lottoDAO;
+    private HitLottoDAO hitLottoDAO;
+    private StatisticsLottoDAO statisticsDAO;
 
-    public LottoMainService(LottoDAO lottoDAO, HitLottoDAO hitLottoDAO, StatisticsLottoDAO statisticsDAO) {
-        this.lottoDAO = lottoDAO;
-        this.hitLottoDAO = hitLottoDAO;
-        this.statisticsDAO = statisticsDAO;
+    public LottoMainService() {
+        this.lottoDAO = new LottoDAO();
     }
 
     public void buyLotto(long calcCost) {
