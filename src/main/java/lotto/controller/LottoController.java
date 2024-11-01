@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,10 +24,11 @@ public class LottoController {
         String inputWinningNumbers = InputView.getWinningNumbers();
         List<Integer> winningNumbers = convertWinningNumbers(inputWinningNumbers);
 
-        String inputBonusNumber = InputView.getBonusNumber();
-        Integer bonus = convertBonusNumber(inputBonusNumber);
+        Integer bonus = convertBonusNumber(InputView.getBonusNumber());
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
 
+        List<Integer> result = countWinnings(lottoNumbers, winningLotto);
+        OutputView.printWinningStats(result);
     }
 
     private static Integer convertBonusNumber(String inputBonusNumber) {
@@ -64,7 +66,7 @@ public class LottoController {
         }
     }
 
-    public static List<Lotto> createLottoNumbers (int count) {
+    private static List<Lotto> createLottoNumbers (int count) {
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -75,20 +77,20 @@ public class LottoController {
         }
         return lottos;
     }
-    public static int validateAndParsePurchaseAmount(String purchaseAmount) {
+    private static int validateAndParsePurchaseAmount(String purchaseAmount) {
         int parsedPurchaseAmount = parsePurchaseAmount(purchaseAmount);
         validatePurchaseAmount(parsedPurchaseAmount);
         return parsedPurchaseAmount;
     }
 
-    public static int parsePurchaseAmount(String purchaseAmount) {
+    private static int parsePurchaseAmount(String purchaseAmount) {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해야 합니다.");
         }
     }
-    public static void validatePurchaseAmount(int purchaseAmount) {
+    private static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
         }
@@ -97,7 +99,44 @@ public class LottoController {
         }
     }
 
-    public static int getCount(int purchaseAmount) {
+    private static int getCount(int purchaseAmount) {
         return purchaseAmount/1000;
+    }
+
+    private static List<Integer> countWinnings(List<Lotto> lottos, WinningLotto winningLotto) {
+        List<Integer> result = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+
+        for (Lotto lotto : lottos) {
+            int matchCounts = countMatches(lotto.getNumbers(), winningLotto.getNumbers());
+            if(matchCounts == LottoRank.FIRST.getMatchingCount()) {
+                result.add(0, result.get(0) + 1);
+            } else if(matchCounts == LottoRank.SECOND.getMatchingCount() && bonusMatches(lotto.getNumbers(), winningLotto.getBonusNumber())) {
+                result.add(1, result.get(1) + 1);
+
+            } else if(matchCounts == LottoRank.THIRD.getMatchingCount()) {
+                result.add(2, result.get(2) + 1);
+
+            } else if(matchCounts == LottoRank.FOURTH.getMatchingCount()) {
+                result.add(3, result.get(3) + 1);
+
+            } else if(matchCounts == LottoRank.FIFTH.getMatchingCount()) {
+                result.add(4, result.get(4) + 1);
+
+            }
+        }
+        return result;
+    }
+
+    private static int countMatches(List<Integer> numbers, List<Integer> winningLotto) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if(winningLotto.contains(number)) {
+                count ++;
+            }
+        }
+        return count;
+    }
+    private static boolean bonusMatches(List<Integer> numbers, Integer bonus) {
+        return numbers.contains(bonus);
     }
 }

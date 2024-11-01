@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 
 import java.util.List;
 
@@ -12,5 +13,18 @@ public class OutputView {
         for (Lotto lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber);
         }
+    }
+
+    public static void printWinningStats(List<Integer> result) {
+        System.out.println("\n당첨 통계\n---");
+        int num = 0;
+        for (LottoRank lottoRank : LottoRank.values()){
+            System.out.printf("%s (%,d원) - %d개\n", lottoRank.getDescription(), lottoRank.getPrizeAmount(), result.get(num));
+            num ++;
+        }
+    }
+
+    public static void printProfitRate() {
+
     }
 }
