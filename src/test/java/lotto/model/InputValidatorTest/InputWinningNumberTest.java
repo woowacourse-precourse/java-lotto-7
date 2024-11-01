@@ -59,4 +59,13 @@ public class InputWinningNumberTest {
             inputValidator.validateInputWinningNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호가 정수가 아닐경우 에러가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"'a,b,c,d,e,f'", "'일번,이번,삼번,사번,오번,육번'", "'ㄱ,ㄴ,ㄷ,ㄹ,ㅁ,ㅂ'", "'1.0,2.0,3.0,4.0,5.0,6.0'"})
+    public void 당첨_번호가_정수가_아닐경우_에러가_발생한다(String input) {
+        Assertions.assertThatThrownBy(() -> {
+            inputValidator.validateInputWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
