@@ -78,7 +78,7 @@ public class LottoService {
             totalPrize += rank.getPrize();
         }
 
-        return totalPrize / (double) purchaseAmount;
+        return (totalPrize / (double) purchaseAmount) * 100;
     }
 
     private int getRankCount(List<LottoRank> ranks, LottoRank rank) {
