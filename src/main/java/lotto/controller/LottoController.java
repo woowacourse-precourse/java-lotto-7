@@ -27,6 +27,7 @@ public class LottoController {
                 String unValidPurchasePrice = inputView.inputPurchasePrice();
 
                 lottoValidation.validateBlank(unValidPurchasePrice);
+                lottoValidation.validateParsing(unValidPurchasePrice);
 
                 return Integer.parseInt(unValidPurchasePrice);
             } catch (IllegalArgumentException e) {

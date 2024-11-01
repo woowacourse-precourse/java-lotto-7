@@ -13,4 +13,10 @@ class LottoValidationTest {
         assertThatThrownBy(() -> lottoValidation.validateBlank("  "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void Integer로_변환이_불가능할_경우_예외가_발생한다(){
+        assertThatThrownBy(()->lottoValidation.validateParsing("일억"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
