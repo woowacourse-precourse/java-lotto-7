@@ -1,16 +1,18 @@
 package lotto.lotto.winning.infrastructure;
 
 import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.domain.BonusNumberCreatorService;
 import lotto.lotto.winning.domain.WinningLotto;
 import lotto.lotto.validator.LottoValidator;
 import lotto.view.input.hanlder.domain.InputHandlerService;
 import lotto.view.output.infrastructure.ErrorOutput;
 
-public class BonusNumberCreator {
+public class BonusNumberCreator implements BonusNumberCreatorService {
     private final InputHandlerService inputHandlerService;
     public BonusNumberCreator(InputHandlerService inputHandlerService) {
         this.inputHandlerService = inputHandlerService;
     }
+    @Override
     public BonusNumber create(WinningLotto winningLotto) {
         try {
             BonusNumber bonusNumber = inputHandlerService.retrieveReceive(BonusNumber::of);
