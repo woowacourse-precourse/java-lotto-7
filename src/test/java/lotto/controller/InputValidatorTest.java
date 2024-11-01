@@ -16,7 +16,11 @@ class InputValidatorTest {
                 .hasMessageContaining(IS_NOT_NUMBER.message());
     }
 
+    @DisplayName("입력이 수 배열이 아니면 예외가 발생한다.")
     @Test
     void validateWinningNumbers() {
+        assertThatThrownBy(() -> InputValidator.validateWinningNumbers(""))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(IS_NOT_NUMBER.message());
     }
 }
