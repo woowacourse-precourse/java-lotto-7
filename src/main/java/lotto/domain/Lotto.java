@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.provider.NumberProvider;
 import lotto.domain.validator.RangeValidator;
 
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers, RangeValidator rangeValidator) {
+    public Lotto(NumberProvider numberProvider, RangeValidator rangeValidator) {
+        List<Integer> numbers = numberProvider.provide();
         validate(numbers, rangeValidator);
         this.numbers = numbers;
     }

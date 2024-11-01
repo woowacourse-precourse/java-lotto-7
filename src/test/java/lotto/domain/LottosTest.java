@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.provider.DefinedNumberProvider;
 import lotto.domain.validator.DefaultRangeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,12 +14,12 @@ class LottosTest {
     @DisplayName("로또 리스트를 통해 생성할 수 있다.")
     @Test
     void createLottosWithLottoList() {
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
         DefaultRangeValidator rangeValidator = new DefaultRangeValidator();
         List<Lotto> lottoList = List.of(
-                new Lotto(numbers, rangeValidator),
-                new Lotto(numbers, rangeValidator),
-                new Lotto(numbers, rangeValidator)
+                new Lotto(numberProvider, rangeValidator),
+                new Lotto(numberProvider, rangeValidator),
+                new Lotto(numberProvider, rangeValidator)
         );
 
         Lottos lottos = new Lottos(lottoList);

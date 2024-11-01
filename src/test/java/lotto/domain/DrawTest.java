@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.provider.DefinedNumberProvider;
 import lotto.domain.validator.DefaultRangeValidator;
 import lotto.domain.validator.RangeValidator;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,8 +11,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import static lotto.domain.Rank.*;
@@ -21,19 +20,20 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class DrawTest {
 
     private final RangeValidator rangeValidator = new DefaultRangeValidator();
-    private Lotto winningNumbers;
+    private Lotto defaultWinningNumbers;
 
     @BeforeEach
     void setUp() {
-        this.winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
+        this.defaultWinningNumbers = new Lotto(numberProvider, rangeValidator);
     }
 
     @DisplayName("추첨 시 6개의 당첨 번호와 1개의 보너스 번호를 갖는다.")
     @Test
     void drawHas6WinningNumbersAndOneBonusNumber() {
-        Draw draw = new Draw(winningNumbers, 7, rangeValidator);
+        Draw draw = new Draw(defaultWinningNumbers, 7, rangeValidator);
 
-        assertThat(draw).extracting("winningNumbers").isEqualTo(winningNumbers);
+        assertThat(draw).extracting("winningNumbers").isEqualTo(defaultWinningNumbers);
         assertThat(draw).extracting("bonusNumber").isEqualTo(7);
     }
 
@@ -48,7 +48,7 @@ class DrawTest {
     @DisplayName("보너스 번호가 null이면 예외를 던진다.")
     @Test
     void bonusNumberCannotBeNull() {
-        assertThatThrownBy(() -> new Draw(winningNumbers, null, rangeValidator))
+        assertThatThrownBy(() -> new Draw(defaultWinningNumbers, null, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 null 일 수 없습니다.");
     }
@@ -57,7 +57,7 @@ class DrawTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})
     void bonusNumberShouldBeBetween1And45(Integer bonusNumber) {
-        assertThatThrownBy(() -> new Draw(winningNumbers, bonusNumber, rangeValidator))
+        assertThatThrownBy(() -> new Draw(defaultWinningNumbers, bonusNumber, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 1 ~ 45 사이의 숫자입니다.");
     }
@@ -65,7 +65,8 @@ class DrawTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void bonusNumberCannotBeDuplicatedWithWinningNumbers() {
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(numberProvider, rangeValidator);
 
         assertThatThrownBy(() -> new Draw(winningNumbers, 6, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -76,7 +77,8 @@ class DrawTest {
     @ParameterizedTest
     @MethodSource("provideLottoWithRank")
     void returnRankByLottoMatchingCount(Lotto lotto, Rank expectedRank) {
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(numberProvider, rangeValidator);
         Draw draw = new Draw(winningNumbers, 23, rangeValidator);
 
         Rank rank = draw.compare(lotto);
@@ -104,7 +106,7 @@ class DrawTest {
     }
 
     private static Lotto createLotto(Integer...numbers) {
-        return new Lotto(Arrays.asList(numbers), new DefaultRangeValidator());
+        return new Lotto(new DefinedNumberProvider(numbers), new DefaultRangeValidator());
     }
 
 }

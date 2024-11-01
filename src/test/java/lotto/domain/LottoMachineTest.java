@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.provider.RandomNumberProvider;
 import lotto.domain.validator.DefaultRangeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,9 @@ class LottoMachineTest {
     @Test
     void createLottosWithAmount() {
         Money money = new Money(BigInteger.valueOf(8000));
-        LottoMachine lottoMachine = new LottoMachine(money, new DefaultRangeValidator());
+        RandomNumberProvider numberProvider = new RandomNumberProvider();
+        DefaultRangeValidator rangeValidator = new DefaultRangeValidator();
+        LottoMachine lottoMachine = new LottoMachine(money, numberProvider, rangeValidator);
 
         Lottos lottos = lottoMachine.create();
 

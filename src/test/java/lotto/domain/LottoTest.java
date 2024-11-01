@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.provider.DefinedNumberProvider;
+import lotto.domain.provider.NullProvider;
 import lotto.domain.validator.DefaultRangeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,9 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provideNumbersGreaterOrLess6InLength")
     void lottoHas6Numbers(List<Integer> numbers) {
-        assertThatThrownBy(() -> new Lotto(numbers, rangeValidator))
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(numbers);
+
+        assertThatThrownBy(() -> new Lotto(numberProvider, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 6개여야 합니다.");
     }
@@ -38,7 +42,7 @@ class LottoTest {
     @DisplayName("로또 번호 리스트가 null이면 예외가 발생한다.")
     @Test
     void lottoNumberListCannotBeNull() {
-        assertThatThrownBy(() -> new Lotto(null, rangeValidator))
+        assertThatThrownBy(() -> new Lotto(new NullProvider(), rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 NULL 일 수 없습니다.");
     }
@@ -46,9 +50,9 @@ class LottoTest {
     @DisplayName("로또 번호가 null이면 예외가 발생한다.")
     @Test
     void lottoNumberCannotBeNull() {
-        List<Integer> numbers = Arrays.asList(null, 2, 3, 4, 5, 6);
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(null, 2, 3, 4, 5, 6);
 
-        assertThatThrownBy(() -> new Lotto(numbers, rangeValidator))
+        assertThatThrownBy(() -> new Lotto(numberProvider, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 null 을 포함할 수 없습니다.");
     }
@@ -57,7 +61,9 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provideOutOfRangeNumbers")
     void lottoNumberShouldBeBetween1And45(List<Integer> numbers, Integer invalidNumber) {
-        assertThatThrownBy(() -> new Lotto(numbers, rangeValidator))
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(numbers);
+
+        assertThatThrownBy(() -> new Lotto(numberProvider, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 1 ~ 45 사이의 숫자입니다. 잘못된 숫자 : %s", invalidNumber);
     }
@@ -73,7 +79,9 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void lottoHasUniqueNumbers() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5), rangeValidator))
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 5);
+
+        assertThatThrownBy(() -> new Lotto(numberProvider, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또 번호는 중복될 수 없습니다.");
     }
@@ -82,7 +90,8 @@ class LottoTest {
     @ParameterizedTest
     @CsvSource(value = {"1, true", "7, false"}, delimiter = ',')
     void returnLottoHasSpecificNumber(Integer number, boolean expected) {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
+        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numberProvider, rangeValidator);
 
         assertThat(lotto.hasNumber(number)).isEqualTo(expected);
     }
