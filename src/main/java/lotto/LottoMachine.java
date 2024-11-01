@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class LottoMachine {
-    static HashMap<Integer, Integer> map = new HashMap<>();
+    private final LottoStatistics lottoStatistics = new LottoStatistics();
 
     public void run(){
         InputView input = new InputView();
@@ -21,18 +21,16 @@ public class LottoMachine {
         Lotto numbers = input.LottoNumber();
         int bonusNum = input.bonusNum(numbers);
 
-        List<Integer> winningNumbers = numbers.getNumbers();
-        winningNumbers.add(bonusNum);
-
-        calculateStatistics(lottoTickets, winningNumbers);
-        output.printStatistics(map);
-        output.printRevenue(map, money);
+        calculateStatistics(lottoTickets, numbers.getNumbers(), bonusNum);
+        output.printStatistics(lottoStatistics);
+        output.printRevenue(lottoStatistics.getTotalPrize(), money);
     }
 
-    private void calculateStatistics(List<Lotto> lottoTickets, List<Integer> winningNumbers) {
+    private void calculateStatistics(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNum) {
         for (Lotto lotto : lottoTickets) {
             int matchCount = countMatchingNumbers(lotto.getNumbers(), winningNumbers);
-            map.put(matchCount, map.getOrDefault(matchCount, 0) + 1);
+            boolean hasBonusMatch = (matchCount == 5 && lotto.getNumbers().contains(bonusNum)); // 보너스 번호 일치 여부 확인
+            lottoStatistics.incrementCount(matchCount, hasBonusMatch);
         }
     }
 
