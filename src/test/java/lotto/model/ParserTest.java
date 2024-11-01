@@ -2,7 +2,9 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
+import lotto.model.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -262,5 +264,24 @@ class ParserTest {
         assertThatThrownBy(() -> Parser.parseInputsToIntList(inputs))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
+    @DisplayName("구매한 로또를 출력 형식에 맞게 포맷팅 - 성공 테스트")
+    void formatLottoTickets() {
+        // given
+        Lotto lottoTicket1 = Lotto.of(Arrays.asList(1,2,3,4,5,6));
+        Lotto lottoTicket2 = Lotto.of(Arrays.asList(7,8,9,10,11,12));
+        Lotto lottoTicket3 = Lotto.of(Arrays.asList(13,14,15,16,17,18));
+        List<Lotto> lottoTickets = Arrays.asList(lottoTicket1, lottoTicket2, lottoTicket3);
+        String joiner = ", ";
+
+        // when
+        List<String> formattedLottoTickets = Parser.formatLottoTickets(lottoTickets, joiner);
+
+        // then
+        assertThat(formattedLottoTickets.get(0)).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(formattedLottoTickets.get(1)).isEqualTo("[7, 8, 9, 10, 11, 12]");
+        assertThat(formattedLottoTickets.get(2)).isEqualTo("[13, 14, 15, 16, 17, 18]");
     }
 }
