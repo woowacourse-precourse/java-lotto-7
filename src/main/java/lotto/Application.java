@@ -2,11 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoConstants;
+import lotto.enums.Rank;
 import lotto.service.LottoGenerator;
 import lotto.service.WinningNumberInput;
+import lotto.service.WinningResultCalculator;
 
 public class Application {
     public static void main(String[] args) {
@@ -24,6 +28,9 @@ public class Application {
 
         int bonusNumber = getBonusNumber(winningNumbers);
         System.out.println();
+
+        Map<Rank, Integer> statistics = calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
 
     }
 
@@ -94,5 +101,17 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    static Map<Rank, Integer> calculateStatistics(List<Lotto> lottoTickets, List<Integer> winningNumbers,
+                                                  int bonusNumber) {
+        Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
+
+        for (Lotto lotto : lottoTickets) {
+            Rank rank = WinningResultCalculator.calculateResult(lotto, winningNumbers, bonusNumber);
+            statistics.put(rank, statistics.getOrDefault(rank, 0) + 1);
+        }
+
+        return statistics;
     }
 }

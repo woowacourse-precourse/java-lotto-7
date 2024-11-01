@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
+import lotto.enums.Rank;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +57,114 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("1등 당첨 통계 계산 테스트")
+    void 일등_당첨_통계_계산_테스트() {
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))
+        );
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Map<Rank, Integer> statistics = Application.calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> expectedStatistics = new EnumMap<>(Rank.class);
+        expectedStatistics.put(Rank.FIRST, 1);
+
+        assertThat(statistics).isEqualTo(expectedStatistics);
+    }
+
+    @Test
+    @DisplayName("2등 당첨 통계 계산 테스트")
+    void 이등_당첨_통계_계산_테스트() {
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7))
+        );
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Map<Rank, Integer> statistics = Application.calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> expectedStatistics = new EnumMap<>(Rank.class);
+        expectedStatistics.put(Rank.SECOND, 1);
+
+        assertThat(statistics).isEqualTo(expectedStatistics);
+    }
+
+    @Test
+    @DisplayName("3등 당첨 통계 계산 테스트")
+    void 삼등_당첨_통계_계산_테스트() {
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8))
+        );
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Map<Rank, Integer> statistics = Application.calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> expectedStatistics = new EnumMap<>(Rank.class);
+        expectedStatistics.put(Rank.THIRD, 1);
+
+        assertThat(statistics).isEqualTo(expectedStatistics);
+    }
+
+    @Test
+    @DisplayName("4등 당첨 통계 계산 테스트")
+    void 사등_당첨_통계_계산_테스트() {
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 10, 11))
+        );
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Map<Rank, Integer> statistics = Application.calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> expectedStatistics = new EnumMap<>(Rank.class);
+        expectedStatistics.put(Rank.FOURTH, 1);
+
+        assertThat(statistics).isEqualTo(expectedStatistics);
+    }
+
+    @Test
+    @DisplayName("5등 당첨 통계 계산 테스트")
+    void 오등_당첨_통계_계산_테스트() {
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(Arrays.asList(1, 2, 3, 20, 21, 22))
+        );
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Map<Rank, Integer> statistics = Application.calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> expectedStatistics = new EnumMap<>(Rank.class);
+        expectedStatistics.put(Rank.FIFTH, 1);
+
+        assertThat(statistics).isEqualTo(expectedStatistics);
+    }
+
+    @Test
+    @DisplayName("당첨되지 않은 경우 통계 계산 테스트")
+    void 당첨되지_않은_경우_통계_계산_테스트() {
+        List<Lotto> lottoTickets = List.of(
+                new Lotto(Arrays.asList(10, 20, 30, 40, 41, 42))
+        );
+
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Map<Rank, Integer> statistics = Application.calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
+
+        Map<Rank, Integer> expectedStatistics = new EnumMap<>(Rank.class);
+        expectedStatistics.put(Rank.NONE, 1);
+
+        assertThat(statistics).isEqualTo(expectedStatistics);
     }
 
     @Override
