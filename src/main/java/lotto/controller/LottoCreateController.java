@@ -15,6 +15,7 @@ public class LottoCreateController {
 	}
 
 	public void run() {
+		Price price = getPurchasePrice();
 	}
 
 	private Price getPurchasePrice() {
