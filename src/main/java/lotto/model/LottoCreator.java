@@ -15,6 +15,7 @@ public class LottoCreator {
 		List<LottoNumber> lottoNumbers = randomNumbers.stream()
 				.map(LottoNumber::from)
 				.toList();
+		return new Lotto(lottoNumbers);
 	}
 
 	private List<Integer> getRandomNumbers() {
