@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import lotto.domain.Lotto;
 import lotto.model.InputParser;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +42,24 @@ public class LottoControllerTest {
 
         int purchaseAmount = lottoController.getPurchaseAmount(inputParser);
         assertEquals(1000, purchaseAmount);
+    }
+
+    // 담첨 번호 테스트 -----------
+
+    @Test
+    public void 한번에_정상적인_당첨_번호가_들어온_경우() {
+        provideInput("1,2,3,4,5,6\n");
+
+        Lotto winningNumbers = lottoController.getWinningNumbers(inputParser);
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), winningNumbers.getNumbers());
+    }
+
+    @Test
+    public void 비정상적인_당첨_번호_이후_정상적인_당첨_번호가_들어욘_경우() {
+        provideInput("1,2,3,4,5,a\n1,2,3,4,5,46\n1,2,3,4,5,6");
+
+        Lotto winningNumbers = lottoController.getWinningNumbers(inputParser);
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), winningNumbers.getNumbers());
     }
 
     @AfterEach
