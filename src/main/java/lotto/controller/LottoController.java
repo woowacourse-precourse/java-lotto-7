@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.collection.WinningNumbers;
+import lotto.domain.LottoResult;
 import lotto.service.LottoService;
 
 public class LottoController {
@@ -14,7 +16,11 @@ public class LottoController {
         return instance;
     }
 
-    public void getWinningNumbers(int userId) {
-        lottoService.getWinningNumbers(userId);
+    public WinningNumbers getWinningNumbers() {
+        return lottoService.getWinningNumbers();
+    }
+
+    public LottoResult getBonusNumbers(WinningNumbers winningNumbers) {
+        return lottoService.getBonusNumbers(winningNumbers);
     }
 }

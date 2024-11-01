@@ -2,16 +2,14 @@ package lotto.domain.user;
 
 import lotto.collection.Lotto;
 import lotto.collection.LottoTickets;
-import lotto.collection.WinningNumbers;
-import lotto.util.Validator;
 import lotto.util.UserIdGenerator;
+import lotto.util.Validator;
 
 public class User {
 
     private final int id;
     private final int purchasePrice;
     private final LottoTickets lottoTickets;
-    private WinningNumbers winningNumbers;
     private long revenue;
 
     public User(String purchasePrice) {
@@ -35,11 +33,6 @@ public class User {
         this.revenue += revenue;
     }
 
-    public void addWinningNumbers(WinningNumbers winningNumbers) {
-        this.winningNumbers = winningNumbers;
-    }
-
-
     // getter
     public int getId() {
         return id;
@@ -51,10 +44,6 @@ public class User {
 
     public LottoTickets getLottoTickets() {
         return lottoTickets;
-    }
-
-    public WinningNumbers getWinningNumbers() {
-        return winningNumbers;
     }
 
     public long getRevenue() {

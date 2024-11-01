@@ -1,5 +1,6 @@
 package lotto.exception;
 
+import lotto.collection.WinningNumbers;
 import lotto.enums.ErrorCause;
 import lotto.enums.LottoConstant;
 
@@ -46,6 +47,16 @@ public class ValidatorException {
             throw new IllegalArgumentException(
                     ErrorCause.PURCHASE_PRICE_UNIT.getMessage() + "(로또 1장: " + lottoPrice + "원)"
             );
+        }
+    }
+
+    // 보너스 번호 예외처리
+    public static void throwIfBonusNumberIsDuplicate(WinningNumbers winningNumbers, String bonusNumber) {
+        final HashSet<Integer> duplicationCheckSet = new HashSet<>(winningNumbers.getWinningNumbers());
+        int value = Integer.parseInt(bonusNumber);
+
+        if (duplicationCheckSet.contains(value)) {
+            throw new IllegalArgumentException(ErrorCause.NUMBER_DUPLICATION.getMessage());
         }
     }
 }

@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.collection.WinningNumbers;
 import lotto.exception.ValidatorException;
 
 import java.util.Arrays;
@@ -48,6 +49,17 @@ public class Validator {
         return Arrays.stream(values)
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    // 보너스 번호 검사
+    public static void checkBonusNumber(WinningNumbers winningNumbers, String bonusNumber) {
+        validateBonusNumber(winningNumbers,bonusNumber);
+    }
+
+    private static void validateBonusNumber(WinningNumbers winningNumbers, String bonusNumber) {
+        ValidatorException.throwIfValueIsNotNumber(bonusNumber);
+        ValidatorException.throwIfValueIsOutOfRange(bonusNumber);
+        ValidatorException.throwIfBonusNumberIsDuplicate(winningNumbers,bonusNumber);
     }
 
 

@@ -56,8 +56,8 @@ public class UserService {
 
     public void displayPurchaseLottoTickets(int userId) {
         LottoTickets lottoTickets = getLottoTicketsByUserId(userId);
-        OutputView.printMessage(
-                "\n" + lottoTickets.size() + PURCHASED_LOTTO_COUNT.getMessage());
+        OutputView.newLine();
+        OutputView.printMessage(lottoTickets.size() + PURCHASED_LOTTO_COUNT.getMessage());
         OutputView.printMessage(getLottoList(lottoTickets));
     }
 
@@ -73,7 +73,6 @@ public class UserService {
         }
         return sb.toString();
     }
-
 
     public void getLottoTickets(int userId) {
         User user = userRepository.findById(userId);
@@ -92,8 +91,7 @@ public class UserService {
     }
 
     private void saveLotto(User user) {
-        int accessCount = ACCESS_COUNT.getValue();
-        for (int i = 0; i < accessCount; i++) {
+        for (int i = 0; i < ACCESS_COUNT.getValue(); i++) {
             try {
                 user.addLotto(new Lotto(autoCreateLottoNumbers()));
                 return;
@@ -101,7 +99,7 @@ public class UserService {
                 ErrorOutputView.printErrorMessage(e.getMessage());
             }
         }
-        ProgramExit.run(accessCount);
+        ProgramExit.run(ACCESS_COUNT.getValue());
     }
 
     private List<Integer> autoCreateLottoNumbers() {

@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.collection.WinningNumbers;
 import lotto.controller.LottoController;
 import lotto.controller.UserController;
+import lotto.domain.LottoResult;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,9 +14,14 @@ public class Application {
         int userId = userController.getUserIdByInputPurchasePrice();
 
         // 로또 구매
-        lottoController.getPurchaseLottoTickets(userId);
+        userController.getPurchaseLottoTickets(userId);
 
         // 당첨 번호 입력
-        lottoController.getWinningNumbers(userId);
+        WinningNumbers winningNumbers = lottoController.getWinningNumbers();
+
+        // 보너스 번호 입력
+        LottoResult lottoResult = lottoController.getBonusNumbers(winningNumbers);
+
+
     }
 }
