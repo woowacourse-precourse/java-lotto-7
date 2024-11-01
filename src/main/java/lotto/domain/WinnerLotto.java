@@ -54,10 +54,9 @@ public class WinnerLotto {
         return Lotto.create(winnerNums);
     }
 
-    public WinnerLotto addBonusNum(LottoNum bonusNumber) {
+    public void addBonusNum(LottoNum bonusNumber) {
         winLotto.validBonusNum(bonusNumber);
         this.bonusNum = bonusNumber;
-        return this;
     }
 
     @Override

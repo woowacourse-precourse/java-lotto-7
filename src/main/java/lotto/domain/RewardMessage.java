@@ -19,18 +19,14 @@ public class RewardMessage {
     }
 
     public String explainReward(int reward) {
-        if (!message.containsKey(reward)) {
-            throw new IllegalArgumentException("잘못된 상금입니다!");
-        }
-
         return message.get(reward);
     }
 
     private void init() {
-        message.put(FIFTH.getPrize(), "3개 일치 (5,000원) - ");
-        message.put(FOURTH.getPrize(), "4개 일치 (50,000원) - ");
-        message.put(THIRD.getPrize(), "5개 일치 (1,500,000원) - ");
-        message.put(SECOND.getPrize(), "5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        message.put(FIRST.getPrize(), "6개 일치 (2,000,000,000원) - ");
+        message.put(FIFTH.getPrize(), FIFTH.getDescription());
+        message.put(FOURTH.getPrize(), FOURTH.getDescription());
+        message.put(THIRD.getPrize(), THIRD.getDescription());
+        message.put(SECOND.getPrize(), SECOND.getDescription());
+        message.put(FIRST.getPrize(), FIRST.getDescription());
     }
 }

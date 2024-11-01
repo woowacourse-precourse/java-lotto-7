@@ -16,16 +16,10 @@ import lotto.service.WinnerLottoService;
 public class WinnerLottoServiceImpl implements WinnerLottoService {
 
     private final SingleRepository<WinnerLotto> winnerLottoRepository;
-    private final SingleRepository<LottoList> lottoListRepository;
-    private final SingleRepository<WinnerStatus> winnerStatusRepository;
 
 
-    public WinnerLottoServiceImpl(SingleRepository<WinnerLotto> winnerLottoRepository,
-                                  SingleRepository<LottoList> lottoListRepository,
-                                  SingleRepository<WinnerStatus> winnerStatusRepository) {
+    public WinnerLottoServiceImpl(SingleRepository<WinnerLotto> winnerLottoRepository) {
         this.winnerLottoRepository = winnerLottoRepository;
-        this.lottoListRepository = lottoListRepository;
-        this.winnerStatusRepository = winnerStatusRepository;
     }
 
     @Override
@@ -47,22 +41,5 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
         winnerLottoRepository.save(winnerLotto);
     }
 
-    @Override
-    public WinnerStatusDto calculateStatus() {
-        WinnerLotto winnerLotto = winnerLottoRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
-        if (!winnerLotto.hasBonusNum()) {
-            throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
-        }
-
-        LottoList lottoList = lottoListRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_LOTTO_LIST.getMessage()));
-
-        WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
-        WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);
-        winnerStatusRepository.save(winnerStatus);
-
-        return winnerStatus.toDto();
-    }
 }

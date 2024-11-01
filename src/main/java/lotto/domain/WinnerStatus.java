@@ -8,6 +8,8 @@ import lotto.utils.DtoMapper;
 
 public class WinnerStatus {
 
+    public static final String COUNT_INDICATOR = "개";
+
     private final Map<Integer, Integer> rewardMap;
     private final RewardMessage rewardMessage;
 
@@ -44,7 +46,7 @@ public class WinnerStatus {
             Integer value = entry.getValue();
             String explainReward = rewardMessage.explainReward(key);
 
-            joiner.add(explainReward + value + "개");
+            joiner.add(explainReward + value + COUNT_INDICATOR);
         }
 
         return joiner.toString();

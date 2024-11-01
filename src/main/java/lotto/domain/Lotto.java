@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.utils.Constants.END_NUM;
+import static lotto.utils.Constants.LOTTO_COUNT;
 import static lotto.utils.Constants.START_NUM;
 import static lotto.utils.ErrorMessage.INVALID_BONUS_NUM;
 
@@ -13,14 +14,13 @@ import java.util.StringJoiner;
 
 public class Lotto {
 
-    private static final int LOTTO_COUNT = 6;
-
     private final List<LottoNum> numbers;
 
     protected Lotto(List<LottoNum> numbers) {
         validate(numbers);
         this.numbers = sorted(numbers);
     }
+
 
     public static Lotto generate() {
         List<LottoNum> numbers = Lotto.generateRandomLottoNumbers();
@@ -45,13 +45,13 @@ public class Lotto {
                 .toList();
     }
 
-    public int matchCount(Lotto compareLotto) {
+    protected int matchCount(Lotto compareLotto) {
         return (int) numbers.stream()
                 .filter(compareLotto::hasNumber)
                 .count();
     }
 
-    public boolean hasNumber(LottoNum number) {
+    protected boolean hasNumber(LottoNum number) {
         return numbers.contains(number);
     }
 

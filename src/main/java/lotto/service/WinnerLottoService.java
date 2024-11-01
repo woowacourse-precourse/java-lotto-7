@@ -8,5 +8,4 @@ public interface WinnerLottoService {
 
     void addBonusNumber(String input);
 
-    WinnerStatusDto calculateStatus();
 }

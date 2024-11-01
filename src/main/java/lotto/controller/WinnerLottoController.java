@@ -25,8 +25,5 @@ public class WinnerLottoController {
         executeWithRetry(viewer::getInput, winnerLottoService::addBonusNumber);
     }
 
-    public void printStatus() {
-        WinnerStatusDto winnerStatusDto = winnerLottoService.calculateStatus();
-        viewer.printMessage(winnerStatusDto.message());
-    }
+
 }

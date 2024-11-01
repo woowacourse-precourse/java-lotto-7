@@ -43,6 +43,14 @@ public class LottoList {
         return countDtoList;
     }
 
+    protected void add(Lotto lotto) {
+        this.lottoCollection.add(lotto);
+    }
+
+    protected int size() {
+        return lottoCollection.size();
+    }
+
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(ENTER);
