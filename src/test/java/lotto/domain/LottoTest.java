@@ -46,4 +46,22 @@ class LottoTest {
         assertThat(result).isEqualTo(false);
 
     }
+
+    @DisplayName("서로 다른 로또가 몇 개의 숫자를 공유하는지 확인함.")
+    @Test
+    void 로또가_서로_몇개의_숫자를_공유하는지_확인() {
+        Lotto testLotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto testLotto2 = new Lotto(List.of(4, 5, 6, 8, 9, 10));
+
+        assertThat(testLotto1.countDuplication(testLotto2)).isEqualTo(3);
+    }
+
+    @DisplayName("서로 다른 로또가 몇 개의 숫자를 공유하는지 확인함2.")
+    @Test
+    void 로또가_서로_몇개의_숫자를_공유하는지_확인2() {
+        Lotto testLotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto testLotto2 = new Lotto(List.of(4, 5, 6, 1, 9, 10));
+
+        assertThat(testLotto1.countDuplication(testLotto2)).isEqualTo(4);
+    }
 }
