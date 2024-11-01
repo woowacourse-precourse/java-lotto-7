@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.Model.LottoResult;
 import org.junit.jupiter.api.BeforeEach;
 
 public class LottoResultTest {
