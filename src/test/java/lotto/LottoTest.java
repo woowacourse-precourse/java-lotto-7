@@ -117,9 +117,9 @@ class LottoTest {
     @Test
     @DisplayName("수익률 테스트")
     void testRevenueRate() {
-        revenue = 1000;
-        credit = 2000;
+        revenue = 5000;
+        credit = 8000;
         calculateRevenueRate();
-        assertThat(revenueRate).isEqualTo(50.0);
+        assertThat(revenueRate).isEqualTo(62.5);
     }
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 public class Application {
     public static final String CREDIT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
+    public static final String NOT_A_NUM = "[ERROR] 구입 금액은 숫자여야 합니다.";
     public static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static int credit;
@@ -25,7 +26,13 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println(CREDIT_MESSAGE);
-        credit = Integer.parseInt(Console.readLine());
+        try {
+            credit = parseInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            System.out.println(CREDIT_MESSAGE);
+            int newCredit = Integer.parseInt(Console.readLine());
+        }
         try {
             pieces = checkCredit(credit);
         } catch (IllegalArgumentException e) {
@@ -53,10 +60,19 @@ public class Application {
         printResult();
     }
 
+    public static int parseInt(String input) throws IllegalArgumentException {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_A_NUM);
+        }
+    }
+
     public static int checkCredit(int credit) throws IllegalArgumentException {
         if (credit % 1000 != 0) {
             throw new IllegalArgumentException(NOT_MULTIPLE_1000);
         }
+
         return credit / 1000;
     }
 
