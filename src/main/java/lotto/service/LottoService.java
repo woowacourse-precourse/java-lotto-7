@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -42,11 +43,11 @@ public class LottoService {
         return count;
     }
 
-    public int sumOfPrizes() {
-        throw new IllegalArgumentException("아직 구현되지 않았습니다.");
-    }
-
-    public double calculateReturn(int sum, int purchaseAmount) {
+    public int calculateReturn(List<Rank> ranks, int purchaseAmount) {
+        int sum = 0;
+        for (Rank rank : ranks) {
+            sum += rank.getPrize();
+        }
         return sum / purchaseAmount * 100;
     }
 }

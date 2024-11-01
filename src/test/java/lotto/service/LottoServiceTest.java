@@ -10,7 +10,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoServiceTest {
     private final LottoService lottoService = new LottoService();
-    private static final List<Integer> WINNING_PRIZES = List.of(0, 0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
 
     @Test
     void 로또_번호는_오름차순으로_정렬되어야_한다() {
@@ -61,26 +60,13 @@ public class LottoServiceTest {
                 Rank.THIRD,
                 Rank.NONE
         ));
-        int expected = Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.THIRD.getPrize();
+        int purchaseAmount = 5000;
+        int expected = (Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.THIRD.getPrize()) / purchaseAmount * 100;
 
         // when
-        int result = lottoService.sumOfPrizes(ranks);
+        int result = lottoService.calculateReturn(ranks, purchaseAmount);
 
         // then
-        assertThat(result).isEqualTo(expected);
-    }
-
-    @Test
-    void 로또_당첨금_수익률_계산이_올바른지_태스트() {
-        // given
-        int sum = WINNING_PRIZES.get(5) + WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7);
-        int purchaseAmount = 3000;
-        double expected = sum / purchaseAmount * 100;
-
-        // when
-        double result = lottoService.calculateReturn(sum, purchaseAmount);
-
-        //then
         assertThat(result).isEqualTo(expected);
     }
 }
