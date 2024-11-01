@@ -1,6 +1,7 @@
 package lotto.dto.response;
 
 import java.util.List;
+import java.util.Map;
 
 import lotto.constant.Rank;
 
@@ -9,10 +10,10 @@ public record ResultResponse(
     double gain
 ) {
 
-    public static ResultResponse of(List<Rank> ranks, double gain) {
+    public static ResultResponse of(Map<Rank, Integer> ranks, double gain) {
         return new ResultResponse(
-            ranks.stream()
-                .map(InnerRankCountResponse::from)
+            ranks.entrySet().stream()
+                .map(value -> InnerRankCountResponse.of(value.getKey().getRank(), value.getValue()))
                 .toList(),
             gain
         );
@@ -31,8 +32,8 @@ public record ResultResponse(
         int count
     ) {
 
-        private static InnerRankCountResponse from(Rank rank) {
-            return new InnerRankCountResponse(rank.getRank(), rank.getMatchCount());
+        private static InnerRankCountResponse of(int rank, int count) {
+            return new InnerRankCountResponse(rank, count);
         }
     }
 }

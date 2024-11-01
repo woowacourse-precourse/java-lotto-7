@@ -3,7 +3,9 @@ package lotto.domain;
 import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lotto.constant.Rank;
 import lotto.random.LottoRandom;
@@ -12,7 +14,7 @@ public class Wallet {
 
     private long money;
     private long originalMoney;
-    private List<Rank> ranks = new ArrayList<>();
+    private Map<Rank, Integer> ranks = new HashMap<>();
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Wallet(long money) {
@@ -44,17 +46,17 @@ public class Wallet {
     }
 
     public void addRank(Rank rank) {
-        ranks.add(rank);
+        ranks.merge(rank, 1, Integer::sum);
     }
 
     public double gain() {
-        long totalPrice = ranks.stream()
-            .mapToLong(Rank::getPrice)
+        long totalPrice = ranks.entrySet().stream()
+            .mapToLong(set -> set.getKey().getPrice() * set.getValue())
             .sum();
         return (double)totalPrice / originalMoney;
     }
 
-    public List<Rank> getRanks() {
+    public Map<Rank, Integer> getRanks() {
         return ranks;
     }
 }
