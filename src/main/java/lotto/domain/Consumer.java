@@ -10,6 +10,7 @@ public class Consumer {
     private final static int MAX_COST = 100000;
     private final static int MIN_COST = 1000;
 
+    private final ArrayList<Lotto> lottoes = new ArrayList<>();
     private final int money;
 
     public Consumer(int money) {
@@ -24,6 +25,15 @@ public class Consumer {
 
     public int getMoney() {
         return money;
+    }
+
+
+    public void buyLotto(Lotto lotto) {
+        lottoes.add(lotto);
+    }
+
+    public ArrayList<Lotto> getLottoes() {
+        return lottoes;
     }
 
 }
