@@ -22,4 +22,8 @@ public class Money {
     public int getQuantity() {
         return money / MONEY_UNIT;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }
