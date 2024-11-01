@@ -2,9 +2,6 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.exception.InvalidBonusNumberException;
-import lotto.exception.InvalidDuplicateBonusNumberException;
-import lotto.exception.InvalidDuplicateNumberException;
 import lotto.exception.InvalidPurchaseAmountException;
 
 import java.util.*;
@@ -12,11 +9,8 @@ import java.util.*;
 public class InputService {
     private static List<Lotto> lottos = new ArrayList<>();
     private static List<Integer> winningNumbers = new ArrayList<>();
-    private static Set<Integer> winningNumberSet = new HashSet<>();
     private static final String CONVERT_ERROR_MESSAGE = "[ERROR] 잘못된 입력값입니다. 입력값은 숫자여야합니다.";
     private static final String AMOUNT_ERROR_MESSAGE = "[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 당첨 번호가 중복될 수 없습니다.";
-    private static final String BONUS_NUMBER_ERROR_MESSAGE = "[ERROR] 보너스 번호는 0이상 45이하여야 합니다.";
 
     public int purchaseValue() {
         String value = Console.readLine();
@@ -58,4 +52,17 @@ public class InputService {
             System.out.println(lottoNumber.getNumbers().toString());
         }
     }
+
+    public List<Integer> winningNumbersValue() {
+        String value = Console.readLine();
+        value = value.replaceAll("\\s", "");
+        String[] winningNumber = value.split(",");
+        for (String number : winningNumber) {
+            int convertNumber = convertToInt(number);
+            winningNumbers.add(convertNumber);
+        }
+
+        return winningNumbers;
+    }
+
 }
