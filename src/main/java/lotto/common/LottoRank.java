@@ -22,6 +22,14 @@ public enum LottoRank {
         return prize;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
+
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {
         if (matchCount == 6) {
             return FIRST;
