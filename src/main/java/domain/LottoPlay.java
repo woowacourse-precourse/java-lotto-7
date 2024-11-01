@@ -24,4 +24,20 @@ public class LottoPlay {
         }
         this.user.updateLottos(lottos);
     }
+
+    public void drawLottos() {
+        List<Integer> winningNumbers = this.lottoMachine.getWinningNumbers();
+        for(Lotto lotto : this.user.getLottos()) {
+            long matchCount = lotto.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+            if(matchCount == 5) {
+                if(lotto.getNumbers().contains(this.lottoMachine.getBonusNumber())) {
+                    this.user.addWinning(WinningLotto.SECOND);
+                }
+            }
+            // TODO : 2등과 3등 구분할 수 있도록 변경하기
+            user.addWinning(WinningLotto.from(matchCount));
+        }
+    }
 }
