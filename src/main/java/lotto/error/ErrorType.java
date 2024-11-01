@@ -11,7 +11,7 @@ public enum ErrorType {
     private final String message;
 
     ErrorType(final String message) {
-        this.message = "[ERROR]" + message;
+        this.message = "[ERROR] " + message;
     }
 
     public String getMessage() {
