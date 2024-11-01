@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoPurchase;
 import lotto.model.Lottos;
+import lotto.view.PurchaseAmountInputView;
 import lotto.view.PurchasedLottoOutputView;
 
 public class LottoPurchaseController {
@@ -14,26 +15,34 @@ public class LottoPurchaseController {
         this.lottoPurchase = lottoPurchase;
     }
 
-    public void start(long purchaseAmount) {
-        long lottoPurchaseCount = purchaseLotto(purchaseAmount);
-        generateLottos(lottoPurchaseCount);
-        printPurchasedLotto(lottoPurchaseCount);
+    public void start() {
+        purchaseLotto();
+        generateLottos();
+        printPurchasedLotto();
     }
 
-    private long purchaseLotto(long purchaseAmount) {
-        lottoPurchase.calculateLottoPurchaseCount(purchaseAmount);
+    private long purchaseLotto() {
+        PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
+        purchaseAmountInputView.printPurchaseAmountInputGuide();
+
+        lottoPurchase.calculateLottoPurchaseCount(purchaseAmountInputView.getPurchaseAmount());
         return lottoPurchase.getLottoPurchaseCount();
     }
 
-    private void generateLottos(long lottoPurchaseCount) {
+    private void generateLottos() {
+        long lottoPurchaseCount = lottoPurchase.getLottoPurchaseCount();
+
         for (int lottoCount = 0; lottoCount < lottoPurchaseCount; lottoCount++) {
             Lotto lotto = lottos.createLotto();
             lottos.saveLotto(lotto);
         }
     }
 
-    private void printPurchasedLotto(long lottoPurchaseCount) {
+    private void printPurchasedLotto() {
         PurchasedLottoOutputView purchasedLottoOutputView = new PurchasedLottoOutputView();
+
+        long lottoPurchaseCount = lottoPurchase.getLottoPurchaseCount();
+
         purchasedLottoOutputView.printLottoPurchaseCount(lottoPurchaseCount);
         purchasedLottoOutputView.printPurchasedLottos(lottos.getLottoDtos());
     }

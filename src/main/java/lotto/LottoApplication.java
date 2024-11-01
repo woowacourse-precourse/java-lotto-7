@@ -4,6 +4,7 @@ import lotto.controller.LottoPurchaseController;
 import lotto.model.LottoPurchase;
 import lotto.model.Lottos;
 import lotto.view.PurchaseAmountInputView;
+import lotto.view.WinningNumbersInputView;
 
 public class LottoApplication {
     public static void run() {
@@ -11,9 +12,8 @@ public class LottoApplication {
         LottoPurchase lottoPurchase = new LottoPurchase();
         LottoPurchaseController lottoPurchaseController = new LottoPurchaseController(lottos, lottoPurchase);
 
-        PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
-        purchaseAmountInputView.printPurchaseAmountInputGuide();
+        lottoPurchaseController.start();
 
-        lottoPurchaseController.start(purchaseAmountInputView.getPurchaseAmount());
+        
     }
 }
