@@ -14,10 +14,6 @@ public class PurchaseAmount implements Money {
         MoneyValidator.validate(amount);
         return new PurchaseAmount(amount);
     }
-    public static PurchaseAmount of(Long money) {
-        return new PurchaseAmount(money);
-    }
-
 
     @Override
     public long getMoney() {
