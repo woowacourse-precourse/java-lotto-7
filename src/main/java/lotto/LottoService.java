@@ -24,4 +24,8 @@ public class LottoService {
     public Map<Rank, Integer> getWinningResult(LottoDrawMachine machine) {
         return machine.prizeWinningResult();
     }
+
+    public Double generateEarningsRate(LottoDrawMachine machine) {
+        return machine.calculateEarningsRate();
+    }
 }

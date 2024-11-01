@@ -1,6 +1,5 @@
 package lotto;
 
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -81,9 +80,11 @@ public class LottoController {
 
         Map<Rank, Integer> winningResult = lottoService.getWinningResult(lottoDrawMachine);
         for (Rank rank : Rank.values()) {
-            if (rank.equals(Rank.NONE)) return;
+            if (rank.equals(Rank.NONE)) continue;
             String formattedPrice = rank.getFormattedPrice();
-            outputView.printLottoPrize(rank.count(), formattedPrice, winningResult.getOrDefault(rank, 0));
+            outputView.printLottoPrize(rank.count(), rank.hasBonus(), formattedPrice, winningResult.getOrDefault(rank, 0));
         }
+        Double earningsRate = lottoService.generateEarningsRate(lottoDrawMachine);
+        outputView.printLottoRate(earningsRate);
     }
 }
