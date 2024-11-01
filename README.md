@@ -30,8 +30,8 @@
 
 ### LOTTOS
 
-- [ ] 산 로또 개수 만큼 LOTTO를 생성한다.
-- [ ] camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용하여 LOTTO 숫자를 뽑는다.
+- [X] 산 로또 개수 만큼 LOTTO를 생성한다.
+- [X] camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용하여 LOTTO 숫자를 뽑는다.
 
 ### LOTTOMACHINE
 
