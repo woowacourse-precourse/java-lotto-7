@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.LottoErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,15 +35,17 @@ class WinningLottoTest {
 
     @DisplayName("당첨 번호와 보너스 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 당첨_번호와_보너스_번호에_중복된_숫자가_있으면_예외가_발생한다() {
+    void 당첨_번호와_보너스_번호_중복_예외_테스트() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoErrorMessages.BONUS_NUMBER_DUPLICATE.getMessage());
     }
 
     @DisplayName("보너스 번호가 1~45 범위 외의 숫자면 예외가 발생한다.")
     @Test
     void 범위_외의_숫자_예외_테스트() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 46))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoErrorMessages.NUMBER_OUT_OF_RANGE.getMessage());
     }
 }
