@@ -21,22 +21,24 @@ public class LottoController {
     }
 
     public void play() {
-        String validAmount = handleAmountInputError();
+        int validAmount = handleAmountInputError();
         List<Integer> validLottoNumbers = handleLottoNumberInputError();
     }
 
-    public String handleAmountInputError() {
+    public int handleAmountInputError() {
         boolean validInput = false;
-        String amountInput = "";
+        int amountInput = 0;
 
         while (!validInput) {
             try {
                 outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
-                amountInput = inputView.readInput();
+                String input = inputView.readInput();
 
-                validationManager.isNotEmptyInput(amountInput);
-                validationManager.isNumber(amountInput);
-                validInput = validationManager.isDivideByThousand(amountInput);
+                validationManager.isNotEmptyInput(input);
+                validationManager.isNumber(input);
+                validInput = validationManager.isDivideByThousand(input);
+
+                amountInput = TypeConverter.ToNumber(input);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
