@@ -28,8 +28,8 @@ public class StatService {
         return createWinningStats(prizeCountMap);
     }
 
-    public Revenue createRevenue(int lottoQuantity, List<WinningStat> winningStats) {
-        int purchaseAmount = lottoQuantity * LOTTO_COST.getValue();
+    public Revenue createRevenue(Lottos lottos, List<WinningStat> winningStats) {
+        int purchaseAmount = lottos.getLottoQuantity() * LOTTO_COST.getValue();
         int totalAmount = getTotalAmount(winningStats);
 
         return new Revenue(purchaseAmount, totalAmount);
