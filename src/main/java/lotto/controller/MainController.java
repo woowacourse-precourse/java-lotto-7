@@ -37,7 +37,7 @@ public class MainController {
         outputTerminal.writeLottos(lottosView);
 
         Lotto drawResult = inputTerminal.readDrawResult();
-        Integer bonusNumber = inputTerminal.readBonusNumber();
+        Integer bonusNumber = inputTerminal.readBonusNumber(drawResult);
 
         DrawResultRankTable drawResultRankTable = lottoService.rankMyLottos(lottos, drawResult, bonusNumber);
         RecoveryRatio recoveryRatio = statisticService.returnOfInvestment(drawResultRankTable, purchasedAmount);

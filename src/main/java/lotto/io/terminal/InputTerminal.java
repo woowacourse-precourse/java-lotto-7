@@ -56,12 +56,12 @@ public class InputTerminal {
         }
     }
 
-    public Integer readBonusNumber() {
+    public Integer readBonusNumber(Lotto lotto) {
         while (true) {
             try {
                 writer.printWithNewLineBefore(ENTER_BONUS_NUMBER);
                 String input = reader.readInput();
-                // TODO : Validation
+                InputValidatorFacade.bonusNumberValidator(input, lotto);
                 return IOPreprocessor.stringToInteger(input);
             } catch (IllegalArgumentException e) {
                 writer.printErrorMessage(e.getMessage());

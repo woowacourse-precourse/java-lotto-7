@@ -19,7 +19,6 @@ public class MoneyNullValidator extends InputValidator {
         if (isNull(source) || source.isEmpty() || source.isBlank()) {
             throw emptyPurchaseAmount();
         }
-        String cleanedSource = source.strip();
-        super.check(cleanedSource);
+        super.check(source);
     }
 }

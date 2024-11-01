@@ -1,31 +1,26 @@
-package lotto.io.validator.lotto;
+package lotto.io.validator.bonus;
 
 import static lotto.io.error.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.io.exception.InvalidRangeException.invalidLottoNumberRange;
 import static lotto.io.validator.regex.RegexPattern.NUMBER_RANGE;
 
-import java.util.List;
 import java.util.regex.Matcher;
-import lotto.io.preprocessor.IOPreprocessor;
 import lotto.io.validator.InputValidator;
 
-public class LottoRegexValidator extends InputValidator {
+public class BonusNumberRegexValidator extends InputValidator {
 
-    private LottoRegexValidator() {
+    private BonusNumberRegexValidator() {
     }
 
-    public static LottoRegexValidator initiate() {
-        return new LottoRegexValidator();
+    public static BonusNumberRegexValidator initiate() {
+        return new BonusNumberRegexValidator();
     }
 
     @Override
     public void check(final String source) {
-        List<String> sources = IOPreprocessor.stringToListString(source);
-        boolean matched = sources.stream().anyMatch(this::isNotValid);
-        if (matched) {
+        if (isNotValid(source)) {
             throw invalidLottoNumberRange(INVALID_LOTTO_NUMBER_RANGE);
         }
-
         super.check(source);
     }
 

@@ -19,7 +19,7 @@ public class LottoNullValidator extends InputValidator {
 
     @Override
     public void check(final String source) {
-        if (isNull(source)) {
+        if (isNull(source) || source.isEmpty() || source.isBlank()) {
             throw emptyLottoNumbers();
         }
         List<String> sources = IOPreprocessor.stringToListString(source);

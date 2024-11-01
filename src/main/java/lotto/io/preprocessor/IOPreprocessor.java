@@ -14,6 +14,10 @@ public class IOPreprocessor {
     private IOPreprocessor() {
     }
 
+    public static String cleanWhiteBlanks(String source) {
+        return source.strip();
+    }
+
     public static Money stringToMoney(String source) {
         long purchaseAmount = Long.parseLong(source);
         return Money.from(purchaseAmount);
