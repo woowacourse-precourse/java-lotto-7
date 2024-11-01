@@ -13,6 +13,10 @@ public class LottoStore {
 
     private static final int LOTTO_PRICE = 1000;
 
+    public static final int LOTTO_NUMBER_MINIMUM = 1;
+
+    public static final int LOTTO_NUMBER_MAXIMUM = 25;
+
     public static LottoTicket makeLottoTicket(String purchaseMoney) {
         validateInput(purchaseMoney);
 
@@ -39,7 +43,7 @@ public class LottoStore {
     }
 
     private static List<Integer> makeRandomNumber() {
-        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM, 6);
         Collections.sort(randomNumber);
         return randomNumber;
     }

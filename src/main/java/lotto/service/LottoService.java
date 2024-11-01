@@ -1,10 +1,12 @@
 package lotto.service;
 
-import java.util.List;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
 import lotto.util.Validator;
+
+import static lotto.model.LottoStore.LOTTO_NUMBER_MAXIMUM;
+import static lotto.model.LottoStore.LOTTO_NUMBER_MINIMUM;
 
 public class LottoService {
 
@@ -24,6 +26,9 @@ public class LottoService {
         Validator.isEmptyInput(bonusNumber);
         Validator.isDigitString(bonusNumber);
         Validator.isInteger(bonusNumber);
-        Validator.isNotInList(winningLotto.getNumbers(), Integer.parseInt(bonusNumber));
+
+        int bonusNumberInt = Integer.parseInt(bonusNumber);
+        Validator.isNumberWithinRange(bonusNumberInt, LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM);
+        Validator.isNotInList(winningLotto.getNumbers(), bonusNumberInt);
     }
 }
