@@ -146,4 +146,16 @@ class ParserTest {
         assertThat(parsedInputs.get(1)).isEqualTo(2);
         assertThat(parsedInputs.get(2)).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("입력 문자열 정수 리스트로 변환: 문자 포함 - 예외 테스트")
+    void parseInputsToIntList_includeString() {
+        // given
+        String inputs = "1,a,3";
+
+        // when & then
+        assertThatThrownBy(() -> Parser.parseInputsToIntList(inputs))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
