@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum PriceRule {
     ONLY_INTEGER("[ERROR] 금액은 정수만 입력 가능합니다"),

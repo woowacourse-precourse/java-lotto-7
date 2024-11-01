@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum CompareInteger {
     PRICE_LOTTO(1000),
