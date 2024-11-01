@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class LottoGameDisplay {
 
+    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String rawMoney = Console.readLine();
@@ -33,6 +35,10 @@ public class LottoGameDisplay {
         String rawBonusNumber = Console.readLine();
 
         return Integer.parseInt(rawBonusNumber);
+    }
+
+    private void printErrorMessage(Exception e) {
+        System.out.println(ERROR_MESSAGE_PREFIX + e.getMessage());
     }
 
     public void printPurchaseBreakdown(List<Lotto> lottos) {
