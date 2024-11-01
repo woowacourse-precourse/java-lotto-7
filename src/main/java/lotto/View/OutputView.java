@@ -2,7 +2,7 @@ package lotto.View;
 
 import lotto.Lotto;
 import lotto.Messages.StateMessage;
-import lotto.MyResult;
+import lotto.MyResults;
 import lotto.WinningDetails;
 
 public class OutputView {
@@ -33,7 +33,7 @@ public class OutputView {
     }
 
     public static void printReturn(Integer purchasePrice, Integer revenue){
-        System.out.println("총 수익률은 " + MyResult.getReturn(purchasePrice, revenue) + "%입니다.");
+        System.out.println("총 수익률은 " + MyResults.getReturn(purchasePrice, revenue) + "%입니다.");
     }
 
     public static void printError(String error){

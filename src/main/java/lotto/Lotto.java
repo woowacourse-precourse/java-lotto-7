@@ -60,11 +60,11 @@ public class Lotto {
         return myLottos;
     }
 
-    public static MyResult gradeLotto(Lotto answer, Lotto target, int bonus){
+    public static MyResults gradeLotto(Lotto answer, Lotto target, int bonus){
         List<Integer> matchNums = answer.numbers.stream().filter(num -> target.numbers.stream()
                 .anyMatch(Predicate.isEqual(num))).collect(Collectors.toList());
         boolean bonusMatch = target.numbers.stream().anyMatch(Predicate.isEqual(bonus));
-        MyResult myresult = new MyResult(matchNums.size(), bonusMatch);
+        MyResults myresult = new MyResults(matchNums.size(), bonusMatch);
 
         return myresult;
     }

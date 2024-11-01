@@ -10,8 +10,8 @@ public class WinningDetails {
     private Integer fifthBonus = 0;
     private Integer sixth = 0;
 
-    public void sumUpGrades(List<MyResult> myResults){
-        for(MyResult result : myResults){
+    public void sumUpGrades(List<MyResults> myResults){
+        for(MyResults result : myResults){
             if(result.getMatches() == 3) this.third++;
             else if(result.getMatches() == 4) this.fourth++;
             else if(result.getMatches() == 5 && result.getIsBonus()) this.fifth++;
@@ -20,10 +20,10 @@ public class WinningDetails {
         }
     }
 
-    public static List<MyResult> saveMyGrades(List<Lotto> lottoList, Lotto answer, int bonus){
-        List<MyResult> myResults = new ArrayList<>();
+    public static List<MyResults> saveMyGrades(List<Lotto> lottoList, Lotto answer, int bonus){
+        List<MyResults> myResults = new ArrayList<>();
         for(int i = 0; i < lottoList.size(); i++){
-            MyResult gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
+            MyResults gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
             myResults.add(gradedLotto);
         }
         return myResults;

@@ -4,32 +4,44 @@ import lotto.Messages.ErrorMessage;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
-public class Controller {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MyInfo {
+
+    private Integer purchasePrice;
     private Integer lottoCount;
+    private List<Lotto> myLottos;
 
-    public int gainPurchaseAmount(){
+    public MyInfo() {
+        this.purchasePrice = 0;
+        this.lottoCount = 0;
+        this.myLottos = new ArrayList<>();
+    }
+
+
+    public void gainPurchaseAmount(){
         int purchasePrice = 0;
         try {
             OutputView.printPurchaseAmount();
             purchasePrice = InputView.readPurchaseAmount();
-            this.lottoCount = this.countLotto(purchasePrice);
+            this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
             OutputView.printError(ErrorMessage.ONLY_NUMBER.getError());
-            return gainPurchaseAmount();
+            gainPurchaseAmount();
         }
         OutputView.printBlank();
-        return purchasePrice;
+        this.purchasePrice = purchasePrice;
     }
 
-    public int countLotto(Integer purchasePrice){
+    public void countLotto(Integer purchasePrice){
         int lottoCount = purchasePrice/1000;
         if (purchasePrice % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIV.getError());
         }
         OutputView.printCount(lottoCount);
-        return lottoCount;
+        this.lottoCount = lottoCount;
     }
 
     public Lotto getWinningInput(){
@@ -62,5 +74,13 @@ public class Controller {
 
     public Integer getLottoCount(){
         return this.lottoCount;
+    }
+
+    public List<Lotto> getMyLottos(){
+        return this.myLottos;
+    }
+
+    public Integer getPurchasePrice(){
+        return this.purchasePrice;
     }
 }

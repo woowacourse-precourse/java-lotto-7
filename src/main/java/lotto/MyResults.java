@@ -1,10 +1,10 @@
 package lotto;
 
-public class MyResult {
+public class MyResults {
     private Integer matches;//몇개 맞췄는지
     private Boolean isBonus;//보너스 맞췄는지
 
-    public MyResult(Integer matches, Boolean bonusPoint) {
+    public MyResults(Integer matches, Boolean bonusPoint) {
         this.matches = matches;
         this.isBonus = bonusPoint;
     }
