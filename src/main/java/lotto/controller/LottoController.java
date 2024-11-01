@@ -19,8 +19,14 @@ public class LottoController {
 
         User user = new User(lottoMachine.getLottoTickets(), winnerLotto);
         long prize = calculatePrizeMoeny(user);
-        OutputView.winningStatistics(prize);
+        double totalReturn = totalReturn(user, prize);
+        OutputView.winningStatistics(totalReturn);
 
+    }
+
+    private static double totalReturn(User user, long prize) {
+        int purchaseMoney = user.getLottoTickets().size() * 100;
+        return (double) prize / purchaseMoney;
     }
 
     private static long calculatePrizeMoeny(User user) {
