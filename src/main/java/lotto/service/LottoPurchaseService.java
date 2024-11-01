@@ -1,5 +1,5 @@
 package lotto.service;
 
 public interface LottoPurchaseService {
-    void buyLottos(int purchaseAmount);
+    void purchaseLottos(String rawPurchaseAmount);
 }
