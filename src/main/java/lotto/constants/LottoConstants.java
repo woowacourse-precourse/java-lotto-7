@@ -37,10 +37,16 @@ public class LottoConstants {
     // NumbersValidator 클래스
     public static final String ERROR_MESSAGE_BEGINNING = "[ERROR]";
     public static final String INPUT_DELIMITER = ",";
+    public static final String NUMBERS = "로또 번호";
     public static final String WINNING = "당첨";
     public static final String BONUS = "보너스";
     public static final Map<String, Integer> LENGTH_BY_NUMBER_TYPE = Map.of(
             WINNING, 6,
             BONUS, 1
     );
+
+    // PurchaseAmountValidator 클래스
+    public static final String PURCHASE_AMOUNT = "구입 금액";
+    public static final int PURCHASE_AMOUNT_THRESHOLD = 0;
+    public static final int PURCHASE_AMOUNT_UNIT = 1000;
 }
