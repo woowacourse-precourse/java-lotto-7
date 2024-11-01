@@ -22,8 +22,7 @@ public class Utils {
     }
 
     public static ArrayList<Integer> toArrayList(String nums) {
-        return Arrays.stream(nums.split(Constants.DELIMITER))
-                .map(Integer::parseInt)
+        return Arrays.stream(nums.split(Constants.DELIMITER)).map(Integer::parseInt)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -31,15 +30,11 @@ public class Utils {
     public static String printRanktoString(Rank rank, EnumMap<Rank, Integer> enumMap) {
         String prizeFormatted = NumberFormat.getInstance().format(rank.getPrize());
         StringBuilder result = new StringBuilder();
-
         result.append(rank.getMatchCount()).append("개 일치");
-
         if (rank == Rank.SECOND) {
             result.append(", 보너스 볼 일치");
         }
-
-        result.append(" (").append(prizeFormatted).append("원) - ")
-                .append(enumMap.getOrDefault(rank, 0)).append("개");
+        result.append(" (").append(prizeFormatted).append("원) - ").append(enumMap.getOrDefault(rank, 0)).append("개");
 
         return result.toString();
     }
