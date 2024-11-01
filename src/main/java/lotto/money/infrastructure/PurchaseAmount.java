@@ -4,28 +4,28 @@ import lotto.money.domain.Money;
 import lotto.buyer.validator.MoneyValidator;
 import lotto.util.Convertor;
 
-public class Won implements Money {
-    private long money;
-    private Won(long money) {
-        this.money = money;
+public class PurchaseAmount implements Money {
+    private long amount;
+    private PurchaseAmount(long amount) {
+        this.amount = amount;
     }
-    public static Won of(String input) {
-        Long money = Convertor.stringToLong(input);
-        MoneyValidator.validate(money);
-        return new Won(money);
+    public static PurchaseAmount of(String input) {
+        long amount = Convertor.stringToLong(input);
+        MoneyValidator.validate(amount);
+        return new PurchaseAmount(amount);
     }
-    public static Won of(Long money) {
-        return new Won(money);
+    public static PurchaseAmount of(Long money) {
+        return new PurchaseAmount(money);
     }
 
 
     @Override
     public long getMoney() {
-        return money;
+        return amount;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(money);
+        return String.valueOf(amount);
     }
 }
