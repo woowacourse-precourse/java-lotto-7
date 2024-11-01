@@ -1,8 +1,8 @@
-package lotto.domain.lotto.domain;
+package lotto.domain.lotto.dto.response;
 
 import java.util.Arrays;
 
-public enum LottoResult {
+public enum LottoResultRes {
     FIRST(6, 2_000_000_000, "6개 일치"),
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
     THIRD(5, 1_500_000, "5개 일치"),
@@ -14,13 +14,13 @@ public enum LottoResult {
     private final int prize;
     private final String description;
 
-    LottoResult(int matchCount, int prize, String description) {
+    LottoResultRes(int matchCount, int prize, String description) {
         this.matchCount = matchCount;
         this.prize = prize;
         this.description = description;
     }
 
-    public static LottoResult of(
+    public static LottoResultRes of(
             final int matchCount,
             final boolean matchBonus
     ) {
