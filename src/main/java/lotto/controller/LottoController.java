@@ -53,8 +53,10 @@ public class LottoController {
     private WinningLotto inputWinningLotto() {
         outputView.print(INPUT_WINNING_NUMBERS);
         String inputNumbers = inputView.readLine();
+        outputView.print(INPUT_BONUS_NUMBER);
+        String inputBonus = inputView.readLine();
         try {
-            return WinningLotto.of(inputNumbers, "");
+            return WinningLotto.of(inputNumbers, inputBonus);
         } catch (IllegalArgumentException e) {
             outputView.print(e.getMessage());
             return inputWinningLotto();
