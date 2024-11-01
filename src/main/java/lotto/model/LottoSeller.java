@@ -8,13 +8,13 @@ public class LottoSeller {
 
     public static final int SELL_UNIT = 1000;
 
-    public List<Lotto> sell(final MoneyDTO moneyDTO){
+    public List<Lotto> sell(final MoneyDTO moneyDTO) {
         validateUnit(moneyDTO.money());
-        return LottoGenerator.generate(getQuantity(moneyDTO));
+        return Lotto.createLottos(getQuantity(moneyDTO));
     }
 
     private void validateUnit(final Long money) {
-        if(isMultipleOfSellUnit(money)){
+        if (isMultipleOfSellUnit(money)) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_MONEY_IS_MULTIPLE_1000.getMessage());
         }
     }

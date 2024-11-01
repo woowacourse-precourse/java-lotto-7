@@ -1,6 +1,8 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.common.ErrorMessage;
 
 public class Lotto {
@@ -38,6 +40,12 @@ public class Lotto {
         if (distinctNumbersSize != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DISTINCT.getMessage());
         }
+    }
+
+    public static List<Lotto> createLottos(final int quantity) {
+        return IntStream.range(0, quantity)
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_SIZE)))
+                .toList();
     }
 
     public List<Integer> getNumbers() {
