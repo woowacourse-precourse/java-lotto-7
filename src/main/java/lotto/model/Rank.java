@@ -25,4 +25,8 @@ public enum Rank {
     public boolean checkRank(int matchCount, boolean isBonusMatch) {
         return checkRank.apply(matchCount, isBonusMatch);
     }
+
+    public long getPrize() {
+        return prize;
+    }
 }
