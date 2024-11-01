@@ -14,4 +14,9 @@ public class ConsoleOutputView implements OutputView {
     public void outputFinalResult(FinalResultDto finalResultDto) {
 
     }
+
+    @Override
+    public void outputErrorMessage(String errorMessage) {
+        System.out.println("[ERROR] " + errorMessage);
+    }
 }
