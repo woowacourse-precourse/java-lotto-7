@@ -27,4 +27,8 @@ public class Lotto {
         }
         return Result.findResult(duplicateNumber.size(),isBonusMatch);
     }
+
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }
