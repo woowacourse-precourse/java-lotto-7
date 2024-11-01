@@ -1,6 +1,8 @@
 package lotto.util.validator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,13 @@ public class BonusNumberValidatorTest {
         String duplicateBonusNumber = "1";
 
         assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(duplicateBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"A","&!*"})
+    void 보너스번호가_숫자가_아닐_때_예외발생(String invalidBonusNumber) {
+        assertThatThrownBy(() -> BonusNumberValidator.validateBonusNumber(invalidBonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
