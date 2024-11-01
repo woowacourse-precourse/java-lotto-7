@@ -51,12 +51,13 @@ public class LottoService {
         }
         return count;
     }
-    public double profit_rate(RankResult rankResult){
-        Map<Rank,Integer> rank_Result=rankResult.getRank_Count();
-        int sum=0;
+    public double profit_rate(RankResult rankResult) {
+        Map<Rank, Integer> rank_Result = rankResult.getRank_Count();
+        double sum = 0;
         for (Rank rank : rank_Result.keySet()) {
             sum += rank.getPrice() * rank_Result.get(rank);
         }
-        return  (sum / purchaseAmount)*100;
+        double profit_rate = (sum / purchaseAmount) * 100;
+        return Math.round(profit_rate * 100.0) / 100.0;
     }
 }
