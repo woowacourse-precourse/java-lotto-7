@@ -9,7 +9,7 @@ public class PurchasedLotto {
     private List<Lotto> lottos;
     private Map<Prize, Integer> prizes;
     private int usedMoney;
-    private int earnedMoney;
+    private long earnedMoney;
 
     public PurchasedLotto() {
         this.lottos = new ArrayList<>();
