@@ -3,11 +3,11 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.WinningResult;
-import lotto.model.InputValidator;
-import lotto.model.Lotto;
-import lotto.model.LottoMachine;
-import lotto.model.LottoResultEvaluator;
-import lotto.model.LottoTickets;
+import lotto.error.InputValidator;
+import lotto.model.ticket.Lotto;
+import lotto.model.ticket.LottoMachine;
+import lotto.model.evaluate.LottoResultEvaluator;
+import lotto.model.ticket.LottoTickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

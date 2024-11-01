@@ -1,10 +1,11 @@
-package lotto.model;
+package lotto.model.evaluate;
 
 import java.util.List;
 import lotto.dto.MatchInfo;
 import lotto.dto.WinningResult;
 import lotto.model.match.MatchCounter;
 import lotto.model.match.SetBasedLottoNumbersMatchCounter;
+import lotto.model.ticket.LottoTickets;
 
 public class LottoResultEvaluator {
 

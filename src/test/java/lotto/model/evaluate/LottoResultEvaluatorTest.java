@@ -1,9 +1,11 @@
-package lotto.model;
+package lotto.model.evaluate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import lotto.dto.WinningResult;
+import lotto.model.ticket.Lotto;
+import lotto.model.ticket.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,8 @@
-package lotto.model;
+package lotto.error;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.error.InputError;
 import lotto.rule.LottoRule;
 import org.junit.platform.commons.util.StringUtils;
 

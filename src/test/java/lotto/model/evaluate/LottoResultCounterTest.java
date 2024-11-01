@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.evaluate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

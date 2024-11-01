@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.evaluate;
 
 import lotto.dto.MatchInfo;
 import lotto.dto.WinningResult;
