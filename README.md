@@ -29,8 +29,10 @@
     - [ ]  발행한 Lotto 수량 및 번호를 출력한다.
     - [ ]  당첨 통계를 출력한다.
     - [ ]  수익률을 출력한다.
+### 3. Global 설정
+- [x] 에러 메시지 클래스 생성
 
-### 3. Controller 구현
+### 4. Controller 구현
 
 - [ ]  ApplicationController 클래스 생성
     - [ ]  애플리케이션 실행 기능
