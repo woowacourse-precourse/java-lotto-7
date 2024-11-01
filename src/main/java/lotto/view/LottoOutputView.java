@@ -17,6 +17,19 @@ public class LottoOutputView {
     }
 
     public void printLottoResult(Map<LottoRank, Integer> rankResults) {
+        printResultMessage();
+        for (LottoRank rank : LottoRank.values()) {
+            StringBuilder result = new StringBuilder();
+            result.append(rank.getMatchCount()).append("개 일치");
+            if (rank == LottoRank.SECOND) {
+                result.append(", 보너스 볼 일치");
+            }
+            System.out.printf(result.toString());
+            System.out.printf(" (%d원) - %d개\n", rank.getPrize(), rankResults.get(rank));
+        }
+    }
+
+    private void printResultMessage() {
         System.out.println("당첨 결과");
         System.out.println("-----------------");
     }
