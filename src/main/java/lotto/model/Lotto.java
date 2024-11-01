@@ -5,6 +5,7 @@ import lotto.common.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -18,6 +19,9 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT);
+        }
+        if (new HashSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE);
         }
     }
 
