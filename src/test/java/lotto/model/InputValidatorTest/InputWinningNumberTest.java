@@ -41,4 +41,13 @@ public class InputWinningNumberTest {
             inputValidator.validateInputWinningNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호가 음수일 경우 에러가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"'-1,1,2,3,4,5'", "'-99,-8,-12,-20,-999'"})
+    public void 당첨_번호가_음수일_경우_에러가_발생한다(String input) {
+        Assertions.assertThatThrownBy(() -> {
+            inputValidator.validateInputWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
