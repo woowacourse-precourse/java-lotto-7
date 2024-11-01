@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constants.collection.ScoreSystem;
 import lotto.domain.factory.LottoFactory;
 import lotto.domain.score.Score;
+import lotto.dto.LottosDto;
 import lotto.dto.ScoreDto;
 
 public class LottoMachine {
@@ -24,6 +25,10 @@ public class LottoMachine {
 
     public void buyNumberOfLottos(int amount){
         lottos = new Lottos(amount,lottoFactory);
+    }
+
+    public LottosDto getLottos(){
+        return new LottosDto(lottos);
     }
 
     public ScoreDto getScore(Lotto winningLotto, BonusComponent bonusComponent){
