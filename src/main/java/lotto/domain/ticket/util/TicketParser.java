@@ -1,6 +1,6 @@
 package lotto.domain.ticket.util;
 
-public abstract class TicketParser {
+public final class TicketParser {
 
     private final static String DECIMAL_COMMA = ",";
     public final static int TICKET_PRICE = 1_000;
