@@ -76,20 +76,23 @@ public class LottoServiceTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    /**
+     * 여기서부터 수정 hashmap을 입력받아 총합을 계산하기
+     */
     @Test
     void 로또_당첨금_총합_계산이_올바른지_테스트() {
         // given
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        List<Lotto> lottos = new ArrayList<>(List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 6개 일치
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 5개 일치 + 보너스 볼 일치
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)) // 5개 일치
-        ));
-        int expected = WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7) + WINNING_PRIZES.get(5);
+        Map<Integer, Integer> matchingCounts = new HashMap<>() {{
+            put(3, 0);
+            put(4, 0);
+            put(5, 1);
+            put(6, 1);
+            put(7, 1);
+        }};
+        int expected = WINNING_PRIZES.get(5) + WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7);
 
         // when
-        int result = lottoService.sumOfPrizes(lottos, winningNumbers, bonusNumber);
+        int result = lottoService.sumOfPrizes(matchingCounts);
 
         // then
         assertThat(result).isEqualTo(expected);

@@ -55,12 +55,4 @@ public class LottoService {
         }
         return matchingCounts;
     }
-
-    public int sumOfPrizes(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int sum = 0;
-        for (Lotto lotto : lottos) {
-            sum += lotto.getMatchingCount(winningNumbers, bonusNumber);
-        }
-        return sum;
-    }
 }
