@@ -1,21 +1,23 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
+import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_SIZE;
 
+public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = sortNumbers(numbers);
+        this.numbers = new ArrayList<>(numbers);
+        sortNumbers();
     }
 
-    private List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
@@ -26,7 +28,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 번호의 개수는 6개여야 합니다.");
         }
     }
@@ -36,8 +38,8 @@ public class Lotto {
     }
 
     private void validateNumberRange(Integer number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 번호는 " + MIN_NUMBER + "~" + MAX_NUMBER + " 사이의 숫자여야 합니다.");
+        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1~45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -47,8 +49,7 @@ public class Lotto {
         }
     }
 
-    private List<Integer> sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+    private void sortNumbers() {
+        Collections.sort(this.numbers);
     }
 }
