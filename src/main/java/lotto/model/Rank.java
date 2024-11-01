@@ -12,10 +12,10 @@ public enum Rank {
 
     private final int matchCount;
     private final boolean isBonusMatch;
-    private final int prize;
+    private final long prize;
     private final BiFunction<Integer, Boolean, Boolean> checkRank;
 
-    Rank(int matchCount, boolean isBonusMatch, int prize, BiFunction<Integer, Boolean, Boolean> checkRank) {
+    Rank(int matchCount, boolean isBonusMatch, long prize, BiFunction<Integer, Boolean, Boolean> checkRank) {
         this.matchCount = matchCount;
         this.isBonusMatch = isBonusMatch;
         this.prize = prize;
