@@ -57,4 +57,13 @@ public class LottoResult {
         return false;
     }
 
+    public void addResult(List<LottoRanking> lottoRankingSet, LottoRanking ranking) {
+        for (LottoRanking lottoRanking : lottoRankingSet) {
+            if (lottoRanking.equals(ranking)) {
+                totalPrice += lottoRanking.getWinningAmount();
+                ranking.win();
+            }
+        }
+    }
+
 }
