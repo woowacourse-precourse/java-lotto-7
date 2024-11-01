@@ -1,4 +1,4 @@
-package delimit;
+package lottoWinningNumber;
 
 import java.util.Arrays;
 import java.util.List;

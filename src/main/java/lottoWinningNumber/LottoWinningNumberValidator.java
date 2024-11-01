@@ -1,9 +1,8 @@
-package validate;
+package lottoWinningNumber;
 
 import convert.ListStringToNumConverter;
-import delimit.LottoWinningNumberDelimiter;
+import lottoWinningNumber.LottoWinningNumberDelimiter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoWinningNumberValidator {
     private final static String ERROR_TEXT_INFRONT_OF_DETAILS = "[ERROR] ";
