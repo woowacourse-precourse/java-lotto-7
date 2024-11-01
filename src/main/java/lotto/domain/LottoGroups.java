@@ -32,6 +32,6 @@ public class LottoGroups {
                 .flatMap(Optional::stream)
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.summingInt(r -> 1)));
 
-        return LottoResult.from(lottoResults, initialMoney);
+        return LottoResult.of(lottoResults, initialMoney);
     }
 }

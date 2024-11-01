@@ -10,13 +10,13 @@ import lotto.domain.WinningLotto;
 import lotto.view.InputValidator;
 import lotto.view.InputView;
 
-public class InputController {
+public class InputHandler {
 
     private final InputView inputView;
     private final InputValidator inputValidator;
     private final InputTemplate inputTemplate;
 
-    public InputController(InputView inputView, InputValidator inputValidator, InputTemplate inputTemplate) {
+    public InputHandler(InputView inputView, InputValidator inputValidator, InputTemplate inputTemplate) {
         this.inputView = inputView;
         this.inputValidator = inputValidator;
         this.inputTemplate = inputTemplate;

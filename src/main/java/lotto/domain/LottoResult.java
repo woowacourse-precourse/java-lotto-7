@@ -11,7 +11,7 @@ public class LottoResult {
         this.revenue = revenue;
     }
 
-    public static LottoResult from(Map<Ranking, Integer> lottoResults, Money baseMoney) {
+    public static LottoResult of(Map<Ranking, Integer> lottoResults, Money baseMoney) {
         Money totalPrize = Money.from(calculateTotalPrize(lottoResults));
         return new LottoResult(lottoResults, totalPrize.calculateRevenue(baseMoney));
     }

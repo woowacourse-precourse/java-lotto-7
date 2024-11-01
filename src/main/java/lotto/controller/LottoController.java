@@ -11,22 +11,22 @@ public class LottoController {
 
     private final OutputView outputView;
     private final LottoService lottoService;
-    private final InputController inputController;
+    private final InputHandler inputHandler;
 
     public LottoController(OutputView outputView,
                            LottoService lottoService,
-                           InputController inputController) {
+                           InputHandler inputHandler) {
         this.outputView = outputView;
         this.lottoService = lottoService;
-        this.inputController = inputController;
+        this.inputHandler = inputHandler;
     }
 
     public void process() {
-        Money lottoPurchaseMoney = inputController.inputLottoPurchaseMoney();
+        Money lottoPurchaseMoney = inputHandler.inputLottoPurchaseMoney();
         LottoGroups lottoGroups = lottoService.purchaseLottos(lottoPurchaseMoney);
         outputView.printPurchaseLottos(lottoGroups.getLottos());
 
-        WinningLotto winningLotto = inputController.inputWinningLotto();
+        WinningLotto winningLotto = inputHandler.inputWinningLotto();
         LottoResult lottoResult = lottoGroups.calculateLottoResult(winningLotto, lottoPurchaseMoney);
         outputView.printLottoResults(lottoResult);
     }
