@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.parser.WinningNumberParser;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PriceValidator;
 import lotto.validator.Validator;
 import lotto.validator.WinningNumberValidator;
@@ -125,6 +126,26 @@ public class InputTest {
         @ParameterizedTest()
         @ValueSource(strings = {"1,2,3,4,5", "", " ", "1", "1,2,3"})
         void 당첨_번호_기준_미만(String input){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validate(input);
+            });
+        }
+    }
+
+    @Nested
+    class 보너스_숫자_예외_테스트{
+
+        private Validator validator;
+
+        @BeforeEach
+        void setUp(){
+            this.validator = new BonusNumberValidator();
+        }
+
+        @DisplayName("비어있는 경우 예외")
+        @ParameterizedTest()
+        @ValueSource(strings = {" ", ""})
+        void 비어있는_보너스_숫자_예외(String input){
             assertThrows(IllegalArgumentException.class, () -> {
                 validator.validate(input);
             });
