@@ -17,7 +17,7 @@ public class LottoResult {
         makeRankCount(lottoRanks);
     }
 
-    public static LottoResult ofLottoRanksAndProfit(
+    public static LottoResult ofRanksAndProfit(
             List<LottoRank> lottoRanks, LottoProfit lottoProfit) {
         return new LottoResult(lottoRanks, lottoProfit);
     }

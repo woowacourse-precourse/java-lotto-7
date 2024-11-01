@@ -27,7 +27,7 @@ public class LottoBundle {
         double totalPrizeMoney = sumLottoPrizeMoney(lottoRanks);
         LottoProfit lottoProfit = lottoPurchasePrice.calculateProfit(totalPrizeMoney);
 
-        return LottoResult.ofLottoRanksAndProfit(lottoRanks, lottoProfit);
+        return LottoResult.ofRanksAndProfit(lottoRanks, lottoProfit);
     }
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {

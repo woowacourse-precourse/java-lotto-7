@@ -9,7 +9,7 @@ public class LottoProfit {
         this.lottoPurchasePrice = lottoPurchasePrice;
     }
 
-    public static LottoProfit ofProfitAndLottoPurchasePrice(double profit, int lottoPurchasePrice){
+    public static LottoProfit ofProfitAndPurchasePrice(double profit, int lottoPurchasePrice){
         return new LottoProfit(profit, lottoPurchasePrice);
     }
 
