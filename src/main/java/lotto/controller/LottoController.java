@@ -77,8 +77,8 @@ public class LottoController {
     private void assignWinningNumbers() {
         while (true) {
             try {
-                List<Integer> input = inputView.getWinningNumbers();
-                winningNumbers = new WinningNumbers(input);
+                String winningString = inputView.getWinningString();
+                winningNumbers = new WinningNumbers(winningString);
                 break;
             } catch (InvalidWinningNumbersException e) {
                 System.out.println(e.getMessage());
