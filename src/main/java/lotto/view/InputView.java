@@ -6,7 +6,7 @@ import lotto.util.InputValidator;
 
 public class InputView {
     private final static String INPUT_MONEY_AMOUNT = "구입금액을 입력해 주세요.";
-    private final static String INPUT_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
+    private final static String INPUT_WINNING_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
     private final static String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요";
 
     public int getLottoAmount() {
@@ -18,8 +18,8 @@ public class InputView {
         return Integer.parseInt(money);
     }
 
-    public List<Integer> getLottoNumber() {
-        System.out.println(INPUT_LOTTO_NUMBER);
+    public List<Integer> getWinningLottoNumber() {
+        System.out.println(INPUT_WINNING_LOTTO_NUMBER);
         String lottoNumber = Console.readLine();
 
         InputValidator.validateLottoNumber(lottoNumber);
