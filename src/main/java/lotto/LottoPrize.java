@@ -1,11 +1,13 @@
 package lotto;
 
+import java.util.List;
+
 public enum LottoPrize {
-    FIRST(6, false, 2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false, 1500000),
+    FIFTH(3, false, 5000),
     FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000);
+    THIRD(5, false, 1500000),
+    SECOND(5, true, 30000000),
+    FIRST(6, false, 2000000000);
 
     private final int numberMatchCount;
     private final boolean bonusNumberRequired;
@@ -17,15 +19,11 @@ public enum LottoPrize {
         this.prize = prize;
     }
 
-    public int getNumberMatchCount() {
-        return numberMatchCount;
-    }
-
-    public boolean isBonusNumberRequired() {
-        return bonusNumberRequired;
-    }
-
-    public int getPrize() {
-        return prize;
+    public static void getIndividualResult(int matchCount, boolean matchBonusNumber, List<Integer> prizeCount) {
+        for (LottoPrize rank : LottoPrize.values()) {
+            if (rank.numberMatchCount == matchCount && rank.bonusNumberRequired == matchBonusNumber) {
+                prizeCount.set(rank.ordinal(), prizeCount.get(rank.ordinal()) + 1);
+            }
+        }
     }
 }
