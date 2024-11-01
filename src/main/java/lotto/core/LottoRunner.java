@@ -5,7 +5,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.core.constants.WinningStatistics;
 import lotto.util.InputValidationUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class LottoRunner {
     public static final String ERROR_PREFIX = "[ERROR] ";
@@ -133,8 +136,6 @@ public class LottoRunner {
     }
 
     private List<Integer> getRandomNumbers() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        Collections.sort(numbers);
-        return numbers;
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }
