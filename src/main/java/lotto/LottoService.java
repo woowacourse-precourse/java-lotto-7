@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,5 +57,17 @@ public class LottoService {
     public static boolean checkBonusNumberMatch(Lotto userLotto, int bonusNumber) {
         List<Integer> userLottoNumbers = userLotto.getNumbers();
         return userLottoNumbers.contains(bonusNumber);
+    }
+
+    public static long calculateTotalPrize(Map<LottoRank, Integer> statistics) {
+        long totalPrize = 0;
+
+        for (LottoRank rank : statistics.keySet()) {
+            long prize = rank.getPrizeAmount();
+            int count = statistics.getOrDefault(rank, 0);
+            totalPrize += prize * count;
+        }
+
+        return totalPrize;
     }
 }
