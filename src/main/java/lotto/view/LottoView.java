@@ -1,9 +1,9 @@
 package lotto.view;
 
+import lotto.WinnerPrice;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.*;
@@ -138,6 +138,13 @@ public class LottoView {
 
         }
 
+    }
+
+    //총 수익률 출력
+    public void outputProfitRate(double profitRate) {
+        double profitRateOutputValue = Math.round(profitRate * 10.0) / 10.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRateOutputValue);
+        System.out.println();
     }
 
 }
