@@ -7,8 +7,12 @@ public class Won {
         this.amount = amount;
     }
 
-    public boolean isLessThan(Won won) {
-        return won.amount < this.amount;
+    public boolean isLessThan(Won value) {
+        return value.amount < this.amount;
+    }
+
+    public boolean hasChange(Won value) {
+        return this.amount % value.amount != 0;
     }
 
     @Override
