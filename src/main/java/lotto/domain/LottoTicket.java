@@ -18,6 +18,16 @@ public class LottoTicket {
                 .collect(Collectors.toList());
     }
 
+    public List<List<Integer>> getAllLottoNumbers() {
+        return lottos.stream()
+                .map(Lotto::getNumberValues)
+                .collect(Collectors.toList());
+    }
+
+    public int getLottoCount(){
+        return lottos.size();
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }
