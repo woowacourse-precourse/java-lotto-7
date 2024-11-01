@@ -17,5 +17,11 @@ public class InputService {
             user.setMoney(input);
             break;
         }
+
+        getLottoPurchaseAmount(user);
+    }
+
+    public void getLottoPurchaseAmount(User user) {
+        user.setNumOfLottos(user.getMoney() / 1000);
     }
 }

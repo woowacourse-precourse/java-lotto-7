@@ -21,4 +21,16 @@ public class User {
     public void setMoney(String money) {
         this.money = money;
     }
+
+    public void setNumOfLottos(int numOfLottos) {
+        this.numOfLottos = numOfLottos;
+    }
+
+    public int getMoney() {
+        return Integer.parseInt(money);
+    }
+
+    public int getNumOfLottos() {
+        return numOfLottos;
+    }
 }
