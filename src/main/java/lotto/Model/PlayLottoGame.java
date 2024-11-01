@@ -7,28 +7,34 @@ import java.util.Map;
 import lotto.Lotto;
 
 public class PlayLottoGame {
-    public ArrayList<Integer> winningNumbers;
-    public List<Lotto> lottoList;
-    public static Map<Integer,Boolean> matchingNumber = new HashMap<>();
-    public final int bonusNumber;
-
-
+    private final ArrayList<Integer> winningNumbers;
+    private final List<Lotto> lottoList;
+    private final Map<Integer, Boolean> matchingNumber;
+    private final int bonusNumber;
 
     public PlayLottoGame(ArrayList<Integer> winningNumbers, List<Lotto> lottoList, int bonusNumber) {
-        this.lottoList=lottoList;
-        this.winningNumbers=winningNumbers;
-        this.bonusNumber=bonusNumber;
+        this.winningNumbers = winningNumbers;
+        this.lottoList = lottoList;
+        this.bonusNumber = bonusNumber;
+        this.matchingNumber = new HashMap<>();
     }
 
     public Map<Integer, Boolean> play() {
         lottoList.forEach(lotto -> {
-            long matchCount = lotto.getNumbers().stream()
-                    .filter(winningNumbers::contains)
-                    .count();
-            matchingNumber.put((int)matchCount,(winningNumbers.contains(bonusNumber)));
+            int matchCount = countMatches(lotto);
+            boolean hasBonusMatch = checkBonusMatch(lotto);
+            matchingNumber.put(matchCount, hasBonusMatch);
         });
         return matchingNumber;
     }
 
+    private int countMatches(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
 
+    private boolean checkBonusMatch(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 }

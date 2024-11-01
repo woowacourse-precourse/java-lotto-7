@@ -4,18 +4,13 @@ import java.util.Map;
 import lotto.Model.Ranking;
 
 public class OutputView{
-    private final Map<Ranking,Integer> rankingCount;
-
-    public OutputView(Map<Ranking,Integer> rankingCount) {
-        this.rankingCount = rankingCount;
-    }
 
     public void printSuccessResult(){
         System.out.println("당첨 통계");
         System.out.println("---");
     }
 
-    public void printresult(){
+    public void printResult(Map<Ranking,Integer> rankingCount){
         rankingCount.forEach((rank,count)->{
             if(rank==Ranking.MISS){
                 return;
@@ -25,8 +20,8 @@ public class OutputView{
 
     }
 
-    public static void PrintRevenueRate(double revenue){
-        System.out.println("총 수익률은 "+String.format("%.1f",revenue*100)+"입니다");
+    public static void printRevenueRate(double revenue){
+        System.out.println("총 수익률은 "+String.format("%.1f",revenue*100)+"%입니다.");
     }
 
 

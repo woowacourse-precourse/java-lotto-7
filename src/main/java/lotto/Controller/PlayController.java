@@ -13,66 +13,47 @@ import lotto.View.OutputView;
 
 public class PlayController {
     private final InputController inputController;
-    static int gameNumber;
-    ArrayList<Integer> winningNumbers;
-    List<Lotto> lottoNumberList;
-    PlayLottoGame playLottoGame;
-    Map<Integer,Boolean> matchingNumber;
-    static Map<Ranking,Integer> resultSet;
-    OutputView outputView;
-
+    private final OutputView outputView;
+    private int gameNumber;
+    private ArrayList<Integer> winningNumbers;
+    private List<Lotto> lottoNumberList;
+    private PlayLottoGame playLottoGame;
+    private Map<Integer, Boolean> matchingNumber;
+    private Map<Ranking, Integer> resultSet;
 
     public PlayController() {
         inputController = new InputController();
-        gameNumber = setGameNumber();
+        outputView = new OutputView();
+        gameNumber = inputController.setPurchasePrice();
         lottoNumberList = LottoNumbers.makeLottoList(gameNumber);
-        winningNumbers = setWinningNumbers();
-        int bonusNumber = setBonusNumber();
-        playLottoGame = new PlayLottoGame(winningNumbers, lottoNumberList,bonusNumber);
-        resultSet = new HashMap<>();
-    }
-
-
-    public int setGameNumber() {
-        return inputController.setPurchasePrice();
-    }
-
-    public ArrayList<Integer> setWinningNumbers() {
-        return inputController.setWinningNumber();
-    }
-
-    public int setBonusNumber() {
-        return inputController.setBonusNumber();
-    }
-
-    public void play(){
-        matchingNumber=playLottoGame.play();
-    }
-
-    public void setResult(){
+        winningNumbers = inputController.setWinningNumber();
+        int bonusNumber = inputController.setBonusNumber();
+        playLottoGame = new PlayLottoGame(winningNumbers, lottoNumberList, bonusNumber);
         initializeResultSet();
-        matchingNumber.forEach((count,bonus) -> {
-            Ranking rank = Ranking.valueOf(count,bonus);
-
-            resultSet.put(rank,resultSet.get(rank)+1);
-        });
     }
 
     private void initializeResultSet() {
+        resultSet = new HashMap<>();
         for (Ranking rank : Ranking.values()) {
             resultSet.put(rank, 0);
         }
     }
 
-    public void showResult(){
-        outputView=new OutputView(resultSet);
-        outputView.printSuccessResult();
-        outputView.printresult();
-        OutputView.PrintRevenueRate(EarningRate.returnEarningRate(gameNumber,resultSet));
+    public void play() {
+        matchingNumber = playLottoGame.play();
+        updateResultSet();
     }
 
+    private void updateResultSet() {
+        matchingNumber.forEach((count, bonus) -> {
+            Ranking rank = Ranking.valueOf(count, bonus);
+            resultSet.put(rank, resultSet.get(rank) + 1);
+        });
+    }
 
-
-
-
+    public void showResult() {
+        outputView.printSuccessResult();
+        outputView.printResult(resultSet);
+        outputView.printRevenueRate(EarningRate.returnEarningRate(gameNumber, resultSet));
+    }
 }
