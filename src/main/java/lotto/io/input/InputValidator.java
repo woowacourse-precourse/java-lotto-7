@@ -10,4 +10,9 @@ public class InputValidator {
         }
     }
 
+    public static void validateIsNumber(String input) {
+        if (!input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException("Input must be a number");
+        }
+    }
 }

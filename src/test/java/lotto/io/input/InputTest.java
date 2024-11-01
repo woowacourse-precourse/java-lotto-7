@@ -35,4 +35,16 @@ class InputTest {
         // then
         Assertions.assertEquals(priceInput, 3000);
     }
+
+    @Test
+    @DisplayName("입력이 숫자가 아니라면 예외가 발생한다.")
+    void validateIsNumber() {
+        // given
+        String number = "abc123";
+
+        // expected
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.validateIsNumber(number);
+        });
+    }
 }

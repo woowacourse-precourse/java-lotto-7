@@ -11,6 +11,7 @@ public class Input {
 
     public static int getPriceInput() {
         String priceAsString = Console.readLine();
+        InputValidator.validateIsNumber(priceAsString);
         int price = Integer.parseInt(priceAsString);
 
         InputValidator.validatePriceIsInThousandUnit(price);
@@ -22,6 +23,7 @@ public class Input {
         String winningNumbers = Console.readLine();
 
         return Arrays.stream(winningNumbers.split(","))
+                .peek(InputValidator::validateIsNumber)
                 .map(Integer::parseInt)
                 .toList();
     }
