@@ -4,7 +4,7 @@ import lotto.model.exception.LottoNumberInvalidException;
 
 public class WinningLotto {
 
-    private static final int NUMBER_SIZE = 6;
+    private static final int WINNING_LOTTO_NUMBER_SIZE = 6;
 
     private final LottoNumbers numbers;
     private final LottoNumber bonusNumber;
@@ -29,7 +29,7 @@ public class WinningLotto {
     }
 
     private void validateNumbers(LottoNumbers numbers) {
-        if (!numbers.hasSize(NUMBER_SIZE)) {
+        if (!numbers.hasSize(WINNING_LOTTO_NUMBER_SIZE)) {
             throw LottoNumberInvalidException.lottoNumberSize();
         }
         if (!numbers.hasUniqueElements()) {
