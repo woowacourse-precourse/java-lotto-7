@@ -1,5 +1,6 @@
-package lotto.model;
+package lotto.controller;
 
+import lotto.controller.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
