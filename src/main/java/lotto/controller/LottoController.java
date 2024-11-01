@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
@@ -63,9 +62,9 @@ public class LottoController {
     }
 
     public void compareLottoWithWinningNumber(List<Lotto> userLottos, List<Integer> winningLotto, int bonusNumber){
-        Map<Result,Integer> results = new HashMap<>();
-        for(Result result : Result.values()){
-            results.put(result,0);
+        Map<Result,Integer> results = new LinkedHashMap<>();
+        for(int i = Result.values().length; i > 0; i--){
+            results.put(Result.values()[i], 0);
         }
         for(Lotto userLotto : userLottos) {
             Result result = userLotto.compareWithWinningLotto(winningLotto, bonusNumber);
