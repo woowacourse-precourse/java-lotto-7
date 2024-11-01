@@ -1,8 +1,13 @@
 package lotto.model;
 
 import static lotto.common.AppConstant.LOTTO_END_RANGE;
+import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
+import static lotto.common.AppConstant.SPLIT_DELIMITER;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class InputValidator {
     public void validateInputMoney(String input) {
@@ -10,6 +15,17 @@ public class InputValidator {
         validatePositiveNumber(input);
         validateOverLottoPrice(input);
         validateDivideByUnit(input);
+    }
+
+    public void validateInputWinningNumber(String input) {
+        List<String> splitWinningNumber = Arrays.stream(input.split(SPLIT_DELIMITER)).toList();
+        validateNumberListSize(splitWinningNumber);
+
+        splitWinningNumber.forEach(number -> {
+            validateParseNumber(number);
+            validateRangeNumber(number);
+            validatePositiveNumber(number);
+        });
     }
 
     private void validateParseNumber(String input) {
@@ -44,8 +60,12 @@ public class InputValidator {
         }
     }
 
-    public void validateInputWinningNumber(String input) {
-        validateRangeNumber(input);
+    private void validateNumberListSize(List<String> numberList) {
+        if (numberList.size() != LOTTO_NUMBER_COUNT) {
+            String errorMessage = "(" + SPLIT_DELIMITER + ")로 구분된 " + LOTTO_NUMBER_COUNT + "개의 숫자를 입력해주세요.";
+
+            throw new IllegalArgumentException(errorMessage);
+        }
     }
 
     private void validateRangeNumber(String input) {
