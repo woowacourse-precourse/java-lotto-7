@@ -10,8 +10,13 @@ public enum ErrorMessage {
     HAS_CONSECUTIVE_COMMA("숫자 + , 의 형태로 입력해 주세요."),
     ONLY_DIGITS_AND_COMMAS_ALLOWED("숫자 쉼표 이외의 값이 들어가 있습니다. 다시 입력해주세요."),
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 6개여야 합니다."),
-    WINNING_NUMBER_OUT_OF_RANGE("당첨번호는 1부터 45사이의 번호여야 합니다."),
+    INPUT_LOTTO_NUMBER_OUT_OF_RANGE("당첨번호는 1부터 45사이의 번호여야 합니다."),
     DUPLICATE_NUMBER_MESSAGE("중복된 숫자가 있습니다. 다시 입력해주세요."),
+    EMPTY_LOTTO_BONUS_NUMBERS("보너스 숫자가 입력되지 않았습니다. 다시 입력해주세요."),
+    ONLY_DIGITS_ALLOWED("보너스 숫자는 오직 숫자만 입력할 수 있습니다. 다시 입력해주세요."),
+    ONLY_INTEGER_ALLOWED("보너스 번호는 정수값만 입력할 수 있습니다."),
+    INPUT_BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1부터 45까지의 숫자만 입력가능합니다."),
+    CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER("당첨 번호와 보너스 번호는 중복될 수 없습니다."),
     ;
 
     private final String message;
