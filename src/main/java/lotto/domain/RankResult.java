@@ -10,4 +10,8 @@ public class RankResult {
         this.Rank_Count = Rank_Count;
         this.Total_Price = Total_Price;
     }
+
+    public RankResult(Map<Rank, Integer> rankResult) {
+        this.Rank_Count = rankResult;
+    }
 }

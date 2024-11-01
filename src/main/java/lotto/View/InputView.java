@@ -3,6 +3,7 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -99,12 +100,13 @@ public class InputView {
     private static boolean isValidAmount(String input_purchase_amount) {
         return check_invalidAmount(input_purchase_amount);
     }
-    private static List<Integer> parseWinningNumbers(String input_winning_number) {
-        String[] numbers = input_winning_number.split(",");
-        return List.of(numbers).stream()
+    private static Lotto parseWinningNumbers(String input_winning_number) {
+        List<Integer> numbers = Arrays.stream(input_winning_number.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
+
+        return new Lotto(numbers);
     }
     private static int parsePurchaseAmount(String input_purchase_amount) {
         return Integer.parseInt(input_purchase_amount);

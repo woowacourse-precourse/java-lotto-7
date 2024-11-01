@@ -2,11 +2,12 @@ package lotto.Service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.RankResult;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 public class LottoService {
-    private static final int MAX_MARCH=6;
     private static final int START_LOTTO_NUMBER=1;
     private static final int END_LOTTO_NUMBER=45;
     private static final int LOTTO_COUNT=6;
@@ -27,6 +28,22 @@ public class LottoService {
         lottoNumbers=Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_COUNT);
         return new Lotto(lottoNumbers);
     }
-
+    public RankResult winning_statistics(List<Lotto> lottos,List<Integer> winning_numbers,int bonus_number){
+        Map<Rank,Integer> rankResult=new EnumMap<>(Rank.class);
+        for(Lotto lotto:lottos){
+            int count=contain_Count(lotto.getNumbers(),winning_numbers);
+            boolean is_bonus_number=lotto.check_Bonus_Number(bonus_number);
+            Rank rank=Rank.check_Rank(count,is_bonus_number);
+            if(rank!=null) rankResult.put(rank,rankResult.getOrDefault(rank,0)+1);
+        }
+        return new RankResult(rankResult);
+    }
+    private int contain_Count(List<Integer> lotto, List<Integer> winning_numbers){
+        int count=0;
+        for(Integer number:winning_numbers){
+            if(lotto.contains(number)) count++;
+        }
+        return count;
+    }
 
 }

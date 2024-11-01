@@ -16,5 +16,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean check_Bonus_Number(int bonus_number) {
+        if(numbers.contains(bonus_number)) return true;
+        return false;
+    }
 }
