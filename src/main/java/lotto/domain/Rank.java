@@ -1,8 +1,4 @@
-package lotto;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+package lotto.domain;
 
 public enum Rank {
     FIRST(2_000_000_000, 6, false),

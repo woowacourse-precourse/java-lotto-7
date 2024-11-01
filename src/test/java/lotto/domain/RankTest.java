@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import org.junit.jupiter.api.Test;
+import lotto.domain.Rank;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -20,7 +20,7 @@ public class RankTest {
         "1,false,LOSE",
         "0, false, LOSE"
     })
-    void 랭크_테스트(int matchLotto, boolean matchBonus,Rank rank){
+    void 랭크_테스트(int matchLotto, boolean matchBonus, Rank rank){
         Rank result = Rank.assign(matchLotto, matchBonus);
         assertEquals(rank,result);
 
