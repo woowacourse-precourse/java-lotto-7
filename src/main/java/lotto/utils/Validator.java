@@ -33,11 +33,11 @@ public class Validator {
         if (!isValidNumber(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
-        int num = Integer.parseInt(number);
-        if (num < Constant.MIN_LOTTO_NUMBER || num > Constant.MAX_LOTTO_NUMBER) {
+        int singleNumber = Integer.parseInt(number);
+        if (singleNumber < Constant.MIN_LOTTO_NUMBER || singleNumber > Constant.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
-        if (!uniqueNumbers.add(num)) {
+        if (!uniqueNumbers.add(singleNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
