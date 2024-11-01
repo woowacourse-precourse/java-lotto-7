@@ -38,4 +38,9 @@ public class LottoStatistics {
         }
         return totalPrize;
     }
+
+    public double calculateProfitRate(){
+        int totalPrize = calculateTotalPrize();
+        return ((double) totalPrize / purchaseAmount) * 100;
+    }
 }
