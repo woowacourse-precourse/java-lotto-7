@@ -16,8 +16,8 @@ public class Lotto {
         }
     }
 
-    public long countMatchingNumber(WinningNumber winningNumber) {
-        return numbers.stream()
+    public int countMatchingNumber(WinningNumber winningNumber) {
+        return (int) numbers.stream()
                 .filter(winningNumber::contains)
                 .count();
     }
