@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * ScoreSystem의 조합 순서에 맞게 Reward가 List에 들어가 있습니다.
+ * 순서를 이용하기 위해 ScoreSystem은 LinkedHashMap을 사용했습니다.
  */
 public enum ScoreSystemReward implements Constants<List> {
     DEFAULT(List.of(5000,
