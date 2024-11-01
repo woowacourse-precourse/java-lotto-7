@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.validation.ErrorMessage;
 import lotto.model.LottoModel;
+import lotto.validation.Validator;
 import lotto.view.LottoView;
 
 import java.util.*;
@@ -63,79 +64,33 @@ public class LottoController {
     }
 
     int getLottoCount() {
-        int price = 0;
         while (true) {
             try {
-                try {
-                    price = Integer.parseInt(lottoView.input.price());
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
-                }
-                if (price <= 0) {
-                    throw new IllegalArgumentException(ErrorMessage.NEGATIVE_OR_ZERO.getMessage());
-                }
-                if (price % 1000 != 0) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
-                }
-                break;
+                return Validator.validateLottoCount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return price / 1000;
     }
 
     List<Integer> getWinningNumber() {
-        List<Integer> winningNumber = new ArrayList<>();
         while (true) {
-            String[] inputWinningNumber = lottoView.input.winningNumber().split(",");
             try {
-                if (inputWinningNumber.length != 6) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getMessage());
-                }
-                for (String strNumber : inputWinningNumber) {
-                    int number;
-                    try {
-                        number = Integer.parseInt(strNumber);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
-                    }
-                    if (number < 1 || number > 45) {
-                        throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
-                    }
-                    winningNumber.add(number);
-                }
-                if (new HashSet<>(winningNumber).size() != 6) {
-                    throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
-                }
-                break;
+                String[] inputWinningNumber = lottoView.input.winningNumber().split(",");
+                return Validator.validateWinningNumber(inputWinningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return winningNumber;
     }
 
     private int getBonusNumber(List<Integer> winningNumber) {
-        int bonusNumber;
         while (true) {
             try {
-                try {
-                    bonusNumber = Integer.parseInt(lottoView.input.bonusNumber());
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
-                }
-                if (bonusNumber < 1 || bonusNumber > 45) {
-                    throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
-                }
-                if (winningNumber.contains(bonusNumber)) {
-                    throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_WIN_NUMBER.getMessage());
-                }
-                break;
+                return Validator.validateBonusNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return bonusNumber;
     }
 }
