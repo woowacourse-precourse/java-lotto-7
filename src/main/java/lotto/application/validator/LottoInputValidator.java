@@ -2,13 +2,34 @@ package lotto.application.validator;
 
 import lotto.domain.cost.Cost;
 import lotto.domain.lotto.WinningLottoImpl;
+import lotto.infrastructure.constant.ExceptionMessage;
+import lotto.infrastructure.exception.CustomException;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LottoInputValidator {
+    private static final String DELIMITER = ",";
+
     public Cost validateCost(final String input) {
-        return null;
+        final int number = validateNumberFormat(input);
+        return Cost.of(number);
     }
 
     public WinningLottoImpl validateWinningLotto(String numbers, String bonusInput) {
-        return null;
+        List<String> splits = Arrays.stream(numbers.split(DELIMITER))
+                .map(String::trim)
+                .toList();
+        List<Integer> basicNumbers = splits.stream().map(this::validateNumberFormat).toList();
+        int bonusNumber = validateNumberFormat(bonusInput);
+        return WinningLottoImpl.of(basicNumbers, bonusNumber);
+    }
+
+    private int validateNumberFormat(final String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new CustomException(ExceptionMessage.INVALID_INTEGER);
+        }
     }
 }
