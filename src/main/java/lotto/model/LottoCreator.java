@@ -12,7 +12,7 @@ public class LottoCreator {
 
 	public List<LottoNumber> createPurchasedLotto() {
 		List<Integer> randomNumbers = getRandomNumbers();
-		List<LottoNumber> purchasedLotto = randomNumbers.stream()
+		List<LottoNumber> lottoNumbers = randomNumbers.stream()
 				.map(LottoNumber::from)
 				.toList();
 	}
