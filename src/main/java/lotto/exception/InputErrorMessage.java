@@ -14,6 +14,7 @@ public enum InputErrorMessage {
     // 당첨 번호 관련 메시지
     INVALID_WINNING_RANGE("[ERROR] 당첨 번호는 1~45 범위의 양의 정수여야 합니다."),
     DUPLICATED_WINNING_NUMBER("[ERROR] 당첨 번호는 중복될 수 없습니다."),
+    OVER_SIZE_WINNING_NUMBER("[ERROR] 당첨 번호는 최대 6자리 입니다."),
 
     // 보너스 번호 관련 메시지
     INVALID_BONUS_RANGE("[ERROR] 보너스 번호는 1~45 범위의 양의 정수여야 합니다."),
