@@ -6,27 +6,15 @@ public enum Constants {
     LOTTO_NUMBER_SIZE(6),
     ZERO(0),
     ONE_HUNDRED(100),
-    AMOUNT_UNIT(1000),
-    DELIMITER(",");
+    AMOUNT_UNIT(1000);
 
-    private final Integer intValue;
-    private final String stringValue;
+    private final int value;
 
-    Constants(int intValue) {
-        this.intValue = intValue;
-        this.stringValue = null;
+    Constants(int value) {
+        this.value = value;
     }
 
-    Constants(String stringValue) {
-        this.intValue = null;
-        this.stringValue = stringValue;
-    }
-
-    public Integer getIntValue() {
-        return intValue;
-    }
-
-    public String getStringValue() {
-        return stringValue;
+    public int getValue() {
+        return value;
     }
 }
