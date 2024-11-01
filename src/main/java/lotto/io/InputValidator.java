@@ -1,12 +1,22 @@
 package lotto.io;
 
 import java.util.Arrays;
+import lotto.domain.Money;
 import lotto.exception.ExceptionMessages;
 
 public class InputValidator {
 
     private static final String DIGIT_REGEX = "^-?[0-9]*$";
     private static final String INPUT_DELIM = ",";
+
+    public Money validateAmountOfMoney(String input) {
+        validateWhiteSpace(input);
+        validateNonDigitInput(input);
+        validateOutOfRangeAmount(input);
+        int amountOfMoney = Integer.parseInt(input);
+
+        return new Money(amountOfMoney);
+    }
 
     public void validateWhiteSpace(String input) {
         if (input.isBlank()) {

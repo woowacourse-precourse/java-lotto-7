@@ -24,21 +24,13 @@ public class InputView {
         while (true) {
             try {
                 String input = Console.readLine();
-                validateAmountOfMoney(input);
-                int amountOfMoney = Integer.parseInt(input);
-                money = new Money(amountOfMoney);
+                money = validator.validateAmountOfMoney(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return money;
-    }
-
-    private void validateAmountOfMoney(String input) {
-        validator.validateWhiteSpace(input);
-        validator.validateNonDigitInput(input);
-        validator.validateOutOfRangeAmount(input);
     }
 
     public Lotto getWinningNumbers() {
