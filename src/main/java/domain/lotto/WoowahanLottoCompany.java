@@ -13,6 +13,15 @@ public class WoowahanLottoCompany {
         lottoMachin.sellTo(consumer);
         lottoMachin.printLottoInfo(consumer);
         // 로또 머신이 당첨 번호를 입력받는다.
+        while(true) {
+            try {
+                lottoMachin.inputWinningNumbersTo(consumer);
+                lottoMachin.inputBonusNumbersTo(consumer);
+                return;
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     /**
      * 우아한 로또 회사는 로또 머신을 가지고 있으며 여러 대일 수 있다.
