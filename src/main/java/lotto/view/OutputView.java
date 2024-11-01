@@ -32,13 +32,15 @@ public class OutputView {
         }
     }
 
-    public void printScoreResult(List<Integer> scores, float rateOfReturn) {
+    public void printScoreResult(ScoreDto scoreDto) {
         System.out.println();
         System.out.println(OutputMessage.RESULT_START_LINE);
         List<String> scoreSystemFormat = ScoreSystemPrintForm.DEFAULT_PRINT.getInstance();
+        List<Integer> scores = scoreDto.scores();
         for (int i = 0; i < scores.size(); i++) {
             System.out.println(String.format(scoreSystemFormat.get(i), scores.get(i)));
         }
+        float rateOfReturn = scoreDto.rateOfReturn();
         System.out.println(String.format(OutputMessage.RATE_OF_RETURN.getInstance(), rateOfReturn));
     }
 }
