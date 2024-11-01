@@ -1,6 +1,7 @@
 package lotto.config;
 
 
+import lotto.controller.LottoGameController;
 import lotto.domain.DefaultLottoFactory;
 import lotto.domain.LottoFactory;
 import lotto.domain.LottoNumbersGenerator;
@@ -40,6 +41,10 @@ public class AppConfig implements Config{
         DtoMapper<Lottos, LottosDto> lottosDtoMapper = dtoMapperConfig.lottosDtoMapper();
         Validator<String> purchaseAmountValidator = validatorConfig.purchaseAmountValidator();
         return new LottoPurchaseServiceImpl(lottoFactory(),lottosDtoMapper,purchaseAmountValidator);
+    }
+
+    public LottoGameController lottoGameController() {
+        return new LottoGameController(outputView(),inputView(),lottoPurchaseService());
     }
 
 }
