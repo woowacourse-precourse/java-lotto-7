@@ -13,9 +13,9 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        final int MAX_LOTTO_SIZE = 6;
+        final int LOTTO_SIZE = 6;
 
-        if (numbers.size() != MAX_LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
