@@ -46,4 +46,8 @@ public class Lotto {
             duplicateNumbers.add(Number);
         }
     }
+
+    protected List<Integer> getLottoNumber(){
+        return numbers;
+    }
 }
