@@ -20,7 +20,7 @@ class UserInputParserTest {
                 "'32000', 32000",
                 "'529132000', 529132000"
             })
-    void 구매금액_파서_기능_테스트(String rawInput, long expected) {
+    void 구매금액_파서_기능_테스트(String rawInput, int expected) {
         assertEquals(expected, UserInputParser.getParsedInput(rawInput, UserInputType.PURCHASE_COST));
     }
     

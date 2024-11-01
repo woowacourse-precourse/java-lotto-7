@@ -15,6 +15,10 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
+    
+    public boolean hasNumber(int num) {
+        return numbers.contains(num);
+    }
 
     public String toString() {
         StringBuilder str = new StringBuilder();
