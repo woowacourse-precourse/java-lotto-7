@@ -1,9 +1,15 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.INVALID_BONUS_NUM;
+import static lotto.utils.ErrorMessage.INVALID_LOTTO_NUM;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -64,5 +70,58 @@ class WinnerLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO 위너 넘버를 넣고 보너스 넘버 성공, 실패 테스트
+    @ParameterizedTest
+    @DisplayName("성공 : 위너 넘버 + 보너스 넘버")
+    @CsvSource(value = {
+            "1,2,3,4,5,6:7",
+            "1,45,2,3,4,5:7"
+    }, delimiter = ':')
+    void test8(String winnerNums, String bonusNum) {
+        WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
+
+        winnerLotto.addBonusNum(new LottoNum(bonusNum));
+
+        assertThat(winnerLotto).isNotNull();
+    }
+
+    @ParameterizedTest
+    @DisplayName("예외 : 위너 넘버 + 보너스 넘버")
+    @CsvSource(value = {
+            "1,2,3,4,5,6:46",
+            "1,2,3,4,5,6:-1",
+            "1,2,3,4,5,6:0"
+    }, delimiter = ':')
+    void test9(String winnerNums, String bonusNum) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
+            winnerLotto.addBonusNum(new LottoNum(bonusNum));
+        });
+
+        assertThat(exception.getMessage()).isEqualTo(INVALID_LOTTO_NUM.toString());
+    }
+
+    @ParameterizedTest
+    @DisplayName("중복 예외 : 위너 넘버 + 보너스 넘버")
+    @CsvSource(value = {
+            "1,2,3,4,5,6:1",
+            "1,2,3,4,5,6:5"
+    }, delimiter = ':')
+    void test10(String winnerNums, String bonusNum) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            WinnerLotto winnerLotto = new WinnerLotto(winnerNums);
+            winnerLotto.addBonusNum(new LottoNum(bonusNum));
+        });
+
+        assertThat(exception.getMessage()).isEqualTo(INVALID_BONUS_NUM.toString());
+    }
+
+    @Test
+    @DisplayName("보너스 넘버 존재 테스트")
+    void test11() {
+        WinnerLotto winnerLotto = new WinnerLotto("1,2,3,4,5,6");
+        assertThat(winnerLotto.hasBonusNum()).isFalse();
+
+        winnerLotto.addBonusNum(new LottoNum("7"));
+        assertThat(winnerLotto.hasBonusNum()).isTrue();
+    }
 }

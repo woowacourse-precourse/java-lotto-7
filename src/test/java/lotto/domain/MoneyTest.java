@@ -4,6 +4,7 @@ import static lotto.utils.ErrorMessage.INVALID_MONEY_INPUT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,7 +54,7 @@ class MoneyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0", "1000.5", "1500"})
+    @ValueSource(strings = {"0", "1000.5", "1500", "999", "1001"})
     @DisplayName("예외: 0, 소수, 천원 단위 x")
     void test6(String money) {
         assertThatThrownBy(() -> new Money(money))
@@ -76,5 +77,39 @@ class MoneyTest {
         assertThat(cnt).isEqualTo(expectedCnt);
     }
 
+    @Test
+    @DisplayName("수익률 계산 테스트")
+    void test8() {
+        // given
+        Money money = Money.create("1000");
+        BigDecimal bigDecimal = sumPercentage("1000");
 
+        // when
+        String result = money.calculateProfitRate(bigDecimal);
+
+        // then
+        assertThat(result).isEqualTo("100.0");
+    }
+
+    @Test
+    @DisplayName("최대 테스트 : Long Max Value")
+    void test9(){
+        // given
+        String maxProfit = String.valueOf(Long.MAX_VALUE);
+        Money money = Money.create("1000");
+
+        BigDecimal bigDecimal = sumPercentage(maxProfit);
+
+        // when
+        String result = money.calculateProfitRate(bigDecimal);
+
+        // then
+        assertThat(result).isNotNull();
+    }
+
+    private BigDecimal sumPercentage(String sum) {
+        BigDecimal bigDecimal1 = new BigDecimal(sum);
+        BigDecimal bigDecimal2 = new BigDecimal("100");
+        return bigDecimal1.multiply(bigDecimal2);
+    }
 }

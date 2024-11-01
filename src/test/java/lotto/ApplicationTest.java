@@ -1,13 +1,14 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -51,6 +52,17 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Disabled
+    @Test
+    @DisplayName("돈 최대로 입력시 1초가 넘어 에러 발생")
+    void 내구성_테스트1() {
+        String maxMoney = String.valueOf(Long.MAX_VALUE / 1000 * 1000);
+
+        assertSimpleTest(() -> {
+            run(maxMoney, "1,2,3,4,5,6", "7");
         });
     }
 

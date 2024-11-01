@@ -1,8 +1,12 @@
 package lotto.domain;
 
+import static lotto.utils.Constants.END_NUM;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -24,6 +28,19 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("숫자 6개 미만 테스트")
+    void 개수_부족_테스트() {
+        for (int i = 0; i < 5; i++) {
+            List<Integer> list = new ArrayList<>();
+            for (int j = 0; j < i + 1; j++) {
+                list.add(j + 1);
+            }
+            List<LottoNum> lottoNums = toLottoNumList(list);
+            assertThatThrownBy(() -> new Lotto(lottoNums))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+    }
 
     @Test
     @DisplayName("로또 번호 오름차순 확인")
@@ -67,6 +84,46 @@ class LottoTest {
         List<LottoNum> lottoNums = toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(lottoNums);
         assertThat(lotto.toString()).hasToString("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @Test
+    @DisplayName("숫자 포함 테스트")
+    void test5() {
+        List<LottoNum> lottoNums = toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNums);
+
+        for (int i = 1; i < 7; i++) {
+            assertTrue(lotto.hasNumber(new LottoNum(i)));
+        }
+    }
+
+    @Test
+    @DisplayName("숫자 미포함 테스트")
+    void test6() {
+        List<LottoNum> lottoNums = toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNums);
+
+        for (int i = 7; i < END_NUM; i++) {
+            assertFalse(lotto.hasNumber(new LottoNum(i)));
+        }
+    }
+
+    @Test
+    @DisplayName("맞은 개수 확인 테스트")
+    void test7() {
+        // given
+        List<LottoNum> lottoNums = toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNums);
+
+        List<LottoNum> compareLottoNums = toLottoNumList(List.of(6, 5, 4, 3, 2, 45));
+        Lotto compareLotto = new Lotto(compareLottoNums);
+
+        int expected = 5;
+
+        // when
+        int matchedCount = lotto.matchCount(compareLotto);
+
+        assertThat(matchedCount).isEqualTo(expected);
     }
 
 

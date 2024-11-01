@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,6 +20,13 @@ class LottoNumTest {
 
             assertThat(lottoNum.toString()).hasToString(Integer.toString(i));
         }
+
+        for (int i = 1; i < 46; i++) {
+            String s = String.valueOf(i);
+            LottoNum lottoNum = new LottoNum(s);
+
+            assertThat(lottoNum.toString()).hasToString(Integer.toString(i));
+        }
     }
 
     @ParameterizedTest
@@ -26,6 +34,15 @@ class LottoNumTest {
     @ValueSource(ints = {-1, 0, 46})
     @NullSource
     void test1(Integer value) {
+        assertThatThrownBy(() -> new LottoNum(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("예외) 공백 테스트과 초과값, 미만")
+    @ParameterizedTest
+    @EmptySource
+    @ValueSource(strings = {"0", "-1", "46"})
+    void test2(String value) {
         assertThatThrownBy(() -> new LottoNum(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
