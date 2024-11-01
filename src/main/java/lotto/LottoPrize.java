@@ -26,4 +26,15 @@ public enum LottoPrize {
             }
         }
     }
+
+    public static void printResult(List<Integer> prizeCount) {
+        for (LottoPrize rank : LottoPrize.values()) {
+            System.out.print(rank.numberMatchCount + "개 일치");
+            if (rank.bonusNumberRequired) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.printf(String.format(" (%,d원) - %,d개", rank.prize, prizeCount.get(rank.ordinal())));
+            System.out.println();
+        }
+    }
 }
