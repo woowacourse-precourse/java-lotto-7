@@ -11,7 +11,7 @@ public class OutputView {
     private static final String FOURTH_WINNER = "4개 일치 (50,000원) - %d개\n";
     private static final String THIRD_WINNER = "5개 일치 (1,500,000원) - %d개\n";
     private static final String SECOND_WINNER = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
-    private static final String FIRST_WINNER = "6개 일치 (2,000,000,000원) - %d개";
+    private static final String FIRST_WINNER = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String REVENUE_RESULT = "총 수익률은 %.1f%%입니다.";
 
 
