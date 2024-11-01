@@ -14,20 +14,20 @@ public class LottoManager implements LottoValueProvider {
     private LottoBuyer lottoBuyer;
 
     @Override
-    public Set<Lotto> makePurchasedLotto(int money) {
+    public List<Lotto> makePurchasedLotto(int money) {
         Budget budget = new Budget(money);
         RandomNumberGenerator lottoGenerator = new WoowaLottoGenerator();
         this.lottoBuyer = makeLottoBuyer(budget, lottoGenerator);
-        Set<Lotto> purchasedLotto = lottoBuyer.getPurchasedLotto();
+        List<Lotto> purchasedLotto = lottoBuyer.getPurchasedLotto();
 
         return purchasedLotto;
     }
 
     private LottoBuyer makeLottoBuyer(Budget budget, RandomNumberGenerator lottoGenerator) {
         int purchaseCount = (budget.getBudget() / 1_000);
-        Set<Lotto> purchasedLotto = IntStream.range(0, purchaseCount)
+        List<Lotto> purchasedLotto = IntStream.range(0, purchaseCount)
                 .mapToObj(i -> new Lotto(lottoGenerator.makeLottoRandomNumber()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
 
         return new LottoBuyer(purchasedLotto, budget);
     }
