@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.dto.LottoDto;
@@ -11,7 +12,7 @@ public class PurchasedLottoOutputView {
 
     public void printPurchasedLottos(List<LottoDto> lottoDtos) {
         for (LottoDto lottoDto : lottoDtos) {
-            List<Integer> numbers = lottoDto.numbers();
+            List<Integer> numbers = new ArrayList<>(lottoDto.numbers());
 
             Collections.sort(numbers);
 
