@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 public class LottoMachine {
 
     private Lotto lotto;
-    private  int cost;
+    private int cost;
     private int bonusNumber;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
     public void run() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        cost = Integer.parseInt(Console.readLine().trim());
+        requestCostInput();
 
         int purchaseCount = cost / 1000;
 
@@ -103,5 +103,31 @@ public class LottoMachine {
         String formatEarningRatio = String.format("%,.1f", earningRatio);
         System.out.println("총 수익률은 " + formatEarningRatio + "%입니다.");
 
+    }
+
+    // 금액 입력
+    private void requestCostInput() {
+        try {
+            cost = Integer.parseInt(Console.readLine().trim());
+
+            if (cost % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.");
+            }
+
+            if (cost < 0) {
+                throw new IllegalArgumentException("[ERROR] 금액은 음수를 입력할 수 없습니다.");
+            }
+
+            if (cost == 0 || String.valueOf(cost).isBlank()) {
+                throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 금액은 숫자만 입력할 수 있습니다.");
+            requestCostInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            requestCostInput();
+        }
     }
 }
