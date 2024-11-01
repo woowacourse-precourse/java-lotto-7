@@ -29,15 +29,16 @@ public class OutputView {
         for (LottoRank rank : ranks) {
             printRankCount(rank, rankCounts);
         }
-        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 
     private static void printRankCount(LottoRank rank, Map<LottoRank, Integer> rankCounts) {
         int count = rankCounts.getOrDefault(rank, 0);
+        String prizeFormatted = String.format("%,d원", rank.getPrize());
         if (rank == LottoRank.SECOND) {
-            System.out.println("5개 일치, 보너스 볼 일치 (" + rank.getPrize() + "원) - " + count + "개");
+            System.out.printf("5개 일치, 보너스 볼 일치 (%s) - %d개%n", prizeFormatted, count);
             return;
         }
-        System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count + "개");
+        System.out.printf("%d개 일치 (%s) - %d개%n", rank.getMatchCount(), prizeFormatted, count);
     }
 }

@@ -15,8 +15,9 @@ import java.util.Map;
 
 public class LottoController {
     public void run() {
-        int price = InputView.getPrice();
-        LottoValidator.validatePrice(price);
+        String input = InputView.getPrice();
+        LottoValidator.validatePrice(input);
+        int price = Integer.parseInt(input);
         int amount = price / 1000;
 
         List<Lotto> lottos = new ArrayList<>();

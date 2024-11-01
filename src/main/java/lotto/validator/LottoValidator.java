@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoValidator {
-    public static void validatePrice(int price) {
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위이어야 합니다.");
+    public static void validatePrice(String input) {
+        try {
+            int Price = Integer.parseInt(input);
+            if (Price % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위이어야 합니다.");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자이어야 합니다.");
         }
     }
     public static void validateWinningNumbers(List<Integer> numbers, int bonusNumber){
