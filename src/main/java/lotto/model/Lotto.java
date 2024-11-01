@@ -1,9 +1,10 @@
 package lotto.model;
 
+import static lotto.validation.LottoNumberValidator.validateLottoNumbers;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
-import lotto.exception.ExceptionMessage;
 
 public class Lotto {
     private static final int START_INCLUSIVE = 1;
@@ -13,15 +14,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbers(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_SIZE.getMessage());
-        }
     }
 
     public static List<Integer> lottoGenerator() {
