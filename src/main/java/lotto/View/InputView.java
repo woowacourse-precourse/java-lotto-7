@@ -25,50 +25,76 @@ public class InputView {
         while (true) {
             System.out.println(ASK_PurchaseAmount);
             String input_purchase_amount = readLine();
-            if (isValidAmount(input_purchase_amount)) return parsePurchaseAmount(input_purchase_amount);
-            ErrorInvalidAmount();
+            try {
+                return validatePurchaseAmount(input_purchase_amount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
     public static Lotto input_winningNumber() {
         while (true) {
             System.out.println(ASK_WinningNumber);
             String input_winning_number = readLine();
-            if (!isRangeValidWinningNumber(input_winning_number)){
-                ErrorRangeValidWinningNumber();
-                continue;
+            try {
+                return validateWinningNumber(input_winning_number);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            if(!isCommaWinngingnumber(input_winning_number)){
-                ErrorCommaValidWinningNumber();
-                continue;
-            }
-            if(!isOverlapWinningnumber(input_winning_number)){
-                ErrorOverlapValidWinningNumber();
-                continue;
-            }
-            return (Lotto) parseWinningNumbers(input_winning_number);
         }
     }
     public static int input_bounsNumber() {
         while (true) {
             System.out.println(ASK_BounsNumber);
             String input_bouns_number = readLine();
-            if(isRangeBounsNumber(input_bouns_number)) return parseBounsNumber(input_bouns_number);
-            ErrorRangeValidBounsNumber();
+            try {
+                return validateBounsNumber(input_bouns_number);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
+    private static int validatePurchaseAmount(String purchase_amount) {
+        if (!check_invalidAmount(purchase_amount)) {
+            throw new IllegalArgumentException(ERROR_PurchaseAmount);
+        }
+        return Integer.parseInt(purchase_amount);
+    }
+
+    private static Lotto validateWinningNumber(String input_winning_number) {
+        if (!isRangeValidWinningNumber(input_winning_number)) {
+            throw new IllegalArgumentException(ERROR_RangeValidWinningNumber);
+        }
+        if (!isCommaWinngingnumber(input_winning_number)) {
+            throw new IllegalArgumentException(ERROR_CommaValidWinningNumber);
+        }
+        if (!isOverlapWinningnumber(input_winning_number)) {
+            throw new IllegalArgumentException(ERROR_OverlapValidWinningNumber);
+        }
+        return parseWinningNumbers(input_winning_number);
+    }
+
+    private static int validateBounsNumber(String input_bouns_number) {
+        if (!isRangeBounsNumber(input_bouns_number)) {
+            throw new IllegalArgumentException(ERROR_RangeValidBounsNumber);
+        }
+        return parseBounsNumber(input_bouns_number);
+    }
+
     private static boolean isRangeBounsNumber(String input_bouns_number) {
         int bounsNumber = parseBounsNumber(input_bouns_number);
-        if(bounsNumber < 1 || bounsNumber > 45) return false;
-        return true;
+        return bounsNumber >= 1 && bounsNumber <= 45;
     }
+
     private static boolean isRangeValidWinningNumber(String input_winning_number) {
-        String[] winning_number=input_winning_number.split(",");
-        for(String number:winning_number){
-            int valid_number=Integer.parseInt(number.trim());
-            if(valid_number<1||valid_number>45) return false;
+        String[] winning_numbers = input_winning_number.split(",");
+        for (String number : winning_numbers) {
+            int valid_number = Integer.parseInt(number.trim());
+            if (valid_number < 1 || valid_number > 45) return false;
         }
         return true;
     }
+
     private static boolean isOverlapWinningnumber(String input_winning_number) {
         Set<Integer> winning_number_set = new HashSet<>();
         String[] winning_numbers = input_winning_number.split(",");
@@ -78,45 +104,24 @@ public class InputView {
         }
         return true;
     }
+
     private static boolean isCommaWinngingnumber(String input_winning_number) {
-        if(!input_winning_number.contains(",")) return false;
-        return true;
+        return input_winning_number.contains(",");
     }
-    private static void ErrorRangeValidBounsNumber() {
-        throw new IllegalThreadStateException(ERROR_RangeValidBounsNumber);
-    }
-    private static void ErrorRangeValidWinningNumber() {
-        throw new IllegalArgumentException(ERROR_RangeValidWinningNumber);
-    }
-    private static void ErrorCommaValidWinningNumber() {
-        throw new IllegalArgumentException(ERROR_CommaValidWinningNumber);
-    }
-    private static void ErrorOverlapValidWinningNumber() {
-        throw new IllegalArgumentException(ERROR_OverlapValidWinningNumber);
-    }
-    private static void ErrorInvalidAmount(){
-        throw new IllegalArgumentException(ERROR_PurchaseAmount);
-    }
-    private static boolean isValidAmount(String input_purchase_amount) {
-        return check_invalidAmount(input_purchase_amount);
-    }
+
     private static Lotto parseWinningNumbers(String input_winning_number) {
         List<Integer> numbers = Arrays.stream(input_winning_number.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();
-
         return new Lotto(numbers);
     }
-    private static int parsePurchaseAmount(String input_purchase_amount) {
-        return Integer.parseInt(input_purchase_amount);
-    }
+
     private static int parseBounsNumber(String input_bouns_number) {
         return Integer.parseInt(input_bouns_number);
     }
-    private static boolean check_invalidAmount(String purchase_amount){
-        int amount=Integer.parseInt(purchase_amount);
-        if(amount%1000==0&&amount>0) return true;
-        return false;
+
+    private static boolean check_invalidAmount(String purchase_amount) {
+        return (purchase_amount.matches("^[0-9]+$") && Integer.parseInt(purchase_amount) % 1000 == 0 && Integer.parseInt(purchase_amount) > 0);
     }
 }
