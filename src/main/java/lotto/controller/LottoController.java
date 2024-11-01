@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.service.LottoGenerator;
-import lotto.util.MoneyParser;
+import lotto.util.InputParser;
 import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -45,7 +45,7 @@ public class LottoController {
         MoneyValidator validator = new MoneyValidator(inputView.getUserInput());
         validator.validate();
 
-        return MoneyParser.parseLong(validator.getMoney());
+        return InputParser.parseLong(validator.getMoney());
     }
 
 
