@@ -3,8 +3,10 @@ package lotto.validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.constants.ErrorMessage.BONUS_NUMBER_ONLY_CAN_NUMBER;
-import static lotto.constants.ErrorMessage.BONUS_NUMBER_ONLY_CAN_RANGE_1_TO_45;
+import java.util.List;
+
+import static lotto.constants.ErrorMessage.*;
+import static lotto.validation.WinningNumberValidation.parsedWinningNumbers;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -58,5 +60,32 @@ class BonusNumberValidationTest {
         assertThatThrownBy(() -> BonusNumberValidation.validateRange10To45(inputNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_ONLY_CAN_RANGE_1_TO_45.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호는 로또번호와 중복되지 않는다.")
+    void 보너스_번호는_로또번호와_중복되지_않는다() {
+        //given
+        parsedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        //when
+        //then
+        BonusNumberValidation.validateDuplication(bonusNumber);
+    }
+
+    @Test
+    @DisplayName("보너스 번호는 로또번호와 중복이면 예외가 발생한다.")
+    void 보너스_번호는_로또번호와_중복이면_예외가_발생한다() {
+        //given
+        parsedWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 4;
+
+        //when
+        //then
+        assertThatThrownBy(() -> BonusNumberValidation.validateDuplication(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUMBER_CAN_NOT_BE_DUPLICATED_LOTTO_NUMBER.getErrorMessage());
+
     }
 }
