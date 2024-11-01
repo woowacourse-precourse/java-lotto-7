@@ -1,5 +1,6 @@
 package lotto.controller;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,5 +16,9 @@ public class LottoController {
 
         List<Integer> winningNumbers = InputView.inputWinningNumbers(); // 당첨 번호 입력
         int bonusNumber = InputView.inputBonusNumber(winningNumbers); // 보너스 번호 입력
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.checkResults(lottos, winningNumbers, bonusNumber);
+        lottoResult.printResults();
     }
 }
