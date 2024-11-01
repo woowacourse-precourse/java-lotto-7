@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.FortuneMachine;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,6 +24,7 @@ public class LottoController {
         FortuneMachine fortuneMachine = new FortuneMachine();
         List<Lotto> lotto = fortuneMachine.buyLotto(money);
         outputView.showLottos(lotto);
+        WinningNumbers winningNumbers = inputView.getWinningNumbers();
 
     }
 }
