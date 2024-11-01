@@ -32,8 +32,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printReturn(Integer purchasePrice, Integer revenue){
-        System.out.println("총 수익률은 " + MyResults.getReturn(purchasePrice, revenue) + "%입니다.");
+    public static void printReturn(double myReturn){
+        System.out.println("총 수익률은 " + myReturn + "%입니다.");
     }
 
     public static void printError(String error){
