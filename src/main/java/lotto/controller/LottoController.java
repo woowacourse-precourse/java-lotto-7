@@ -22,8 +22,9 @@ public class LottoController {
 
         LottoGenerator lottoGenerator = new LottoGenerator(purchaseAmount);
         List<Lotto> generatedlottoList = lottoGenerator.getLottoList();
-
         outputView.displayLottoList(purchaseAmount, generatedlottoList);
+
+        Lotto winningNumbers = getWinningNumbers(inputParser);
     }
 
     public int getPurchaseAmount(InputParser inputParser) {
@@ -31,6 +32,17 @@ public class LottoController {
             try {
                 String purchaseAmount = inputView.readPurchaseAmount();
                 return inputParser.parsePurchaseAmount(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public Lotto getWinningNumbers(InputParser inputParser) {
+        while (true) {
+            try {
+                String winningNumbers = inputView.readWinningNumbers();
+                return inputParser.parseWinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

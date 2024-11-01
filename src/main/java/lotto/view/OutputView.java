@@ -22,6 +22,7 @@ public class OutputView {
         System.out.println();
         System.out.println(purchaseAmount + PromptMessage.LOTTO_AMOUNT_MESSAGE);
         lottoList.forEach(Lotto::displayNumbers);
+        System.out.println();
     }
 
     public void close() {

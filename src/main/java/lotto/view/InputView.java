@@ -20,4 +20,9 @@ public class InputView {
         System.out.println(PromptMessage.PURCHASE_AMOUNT_MESSAGE);
         return Console.readLine();
     }
+
+    public String readWinningNumbers() {
+        System.out.println(PromptMessage.WINNING_NUMBERS_MESSAGE);
+        return Console.readLine();
+    }
 }
