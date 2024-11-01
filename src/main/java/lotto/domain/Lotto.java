@@ -27,7 +27,7 @@ public class Lotto {
         boolean overRange = numbers.stream()
             .anyMatch(number -> number > 45 || number < 1);
         if (overRange) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_LOTTO_NUMBER.getMessage(1, 45));
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 

@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
-
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -29,14 +27,12 @@ public class LottoController {
 
     private void inputWinningNumbers() {
         OutputView.inputWinningNumbers();
-        List<Integer> winningNumbers = InputView.winningNumbers();
-        lottoService.setupWinningNumbers(winningNumbers);
+        lottoService.setupWinningNumbers(InputView.winningNumbers());
     }
 
     private void inputBonusNumber() {
         OutputView.bonusNumber();
-        int bonusNumber = InputView.bonusNumber();
-        lottoService.setupBonusNumber(bonusNumber);
+        lottoService.setupBonusNumber(InputView.bonusNumber());
     }
 
     private void result() {

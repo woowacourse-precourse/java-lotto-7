@@ -5,6 +5,9 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
+import lotto.dto.request.BonusNumberRequest;
+import lotto.dto.request.MoneyRequest;
+import lotto.dto.request.WinningNumbersRequest;
 import lotto.random.LottoRandom;
 import lotto.random.LottoRandomStrategy;
 import lotto.repository.WalletRepository;
@@ -16,20 +19,20 @@ public class LottoService {
     private final WalletRepository walletRepository = new WalletRepository();
     private final WinningLottoRepository winningLottoRepository = new WinningLottoRepository();
 
-    public void setupMoney(long money) {
-        walletRepository.create(money);
+    public void setupMoney(MoneyRequest request) {
+        walletRepository.create(request.money());
     }
 
     public List<Lotto> buyLottos() {
         return walletRepository.buyLottos(lottoRandom);
     }
 
-    public void setupWinningNumbers(List<Integer> numbers) {
-        winningLottoRepository.createLotto(new Lotto(numbers));
+    public void setupWinningNumbers(WinningNumbersRequest request) {
+        winningLottoRepository.createLotto(new Lotto(request.winningNumbers()));
     }
 
-    public void setupBonusNumber(int bonusNumber) {
-        winningLottoRepository.createBonusNumber(bonusNumber);
+    public void setupBonusNumber(BonusNumberRequest request) {
+        winningLottoRepository.createBonusNumber(request.bonusNumber());
     }
 
     public Wallet result() {

@@ -2,15 +2,19 @@ package lotto.constant;
 
 import java.text.DecimalFormat;
 
+import lotto.random.LottoRandom;
+
 public enum ExceptionMessage {
     INVALID_LOTTO_NUMBER_COUNT("로또 번호는 %d개여야 합니다."),
     DUPLICATED_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
-    OUT_OF_RANGE_LOTTO_NUMBER("로또 번호는 %d에서 %d 이내의 숫자여야 합니다."),
     NOT_NUMBER_MONEY("구입금액은 숫자여야 합니다."),
-    NOT_NUMBER_WINNING_NUMBER("당첨 번호는 숫자여야 합니다."),
     NOT_NUMBER_BONUS_NUMBER("보너스 번호는 숫자여야 합니다."),
     INVALID_MONEY_UNIT("로또 구입 금액은 %s원 단위로 입력해야 합니다."),
     BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
+    INVALID_LOTTO_NUMBER(
+        String.format("로또 번호는 %d에서 %d 이내의 숫자여야 합니다.",
+            LottoRandom.LOTTO_NUMBER_START_INCLUSIVE,
+            LottoRandom.LOTTO_NUMBER_END_INCLUSIVE)),
     ;
 
     private final String message;
@@ -20,13 +24,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return String.format(message);
-    }
-
-    public String getMessage(int start, int end) {
-        if (equals(OUT_OF_RANGE_LOTTO_NUMBER)) {
-            return String.format(message, start, end);
-        }
         return String.format(message);
     }
 

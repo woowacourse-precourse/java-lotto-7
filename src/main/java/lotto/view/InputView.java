@@ -1,40 +1,22 @@
 package lotto.view;
 
-import static lotto.constant.ExceptionMessage.NOT_NUMBER_MONEY;
-import static lotto.constant.ExceptionMessage.NOT_NUMBER_WINNING_NUMBER;
-
-import java.util.Arrays;
-import java.util.List;
-
 import camp.nextstep.edu.missionutils.Console;
+import lotto.dto.request.BonusNumberRequest;
+import lotto.dto.request.MoneyRequest;
+import lotto.dto.request.WinningNumbersRequest;
 
 public class InputView {
 
-    public static long money() {
-        try {
-            return Long.parseLong(input());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_MONEY.getMessage());
-        }
+    public static MoneyRequest money() {
+        return MoneyRequest.from(input());
+   }
+
+    public static WinningNumbersRequest winningNumbers() {
+        return WinningNumbersRequest.from(input());
     }
 
-    public static List<Integer> winningNumbers() {
-        try {
-            return Arrays.stream(input().split(","))
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_WINNING_NUMBER.getMessage());
-        }
-    }
-
-    public static int bonusNumber() {
-        try {
-            return Integer.parseInt(input());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
+    public static BonusNumberRequest bonusNumber() {
+        return BonusNumberRequest.from(input());
     }
 
     private static String input() {
