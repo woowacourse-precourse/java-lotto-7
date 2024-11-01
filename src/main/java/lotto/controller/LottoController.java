@@ -15,8 +15,8 @@ public class LottoController {
 
     public void run() {
         int lottoAmount = lottoInputView.inputPurchaseAmount();
-        int numberOfTickets = lottoOutputView.numberOfLotto(lottoAmount);
-        lottoOutputView.makeRandomLottos(numberOfTickets);
+        int numberOfTickets = lottoOutputView.outputNumberOfLottoOutput(lottoAmount);
+        lottoOutputView.outputMakeRandomLottos(numberOfTickets);
         List<Integer> winningNumbers = lottoInputView.inputWinningNumbers();
         int bonusNumber = lottoInputView.inputBonusNumber();
         // 테스트 삭제예정
