@@ -55,8 +55,7 @@ public class LottoService {
             boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
             updateMatchResult(result, matchCount, isBonusMatched);
         }
-        int count = lottos.size();
-        double revenue = calculateTotalRevenue(result, count);
+        double revenue = calculateTotalRevenue(result, lottos);
 
         return new LottoResultDto(result, revenue);
     }
@@ -77,7 +76,8 @@ public class LottoService {
         }
     }
 
-    private double calculateTotalRevenue(Map<Integer, Integer> result, int count) {
+    private double calculateTotalRevenue(Map<Integer, Integer> result, List<Lotto> lottos) {
+        int count = lottos.size();
         double totalRevenue = result.getOrDefault(FIFTH_WINNER.getRank(), 0) * FIRST_WINNER.getPrizeMoney()
                 + result.getOrDefault(SECOND_WINNER.getRank(), 0) * SECOND_WINNER.getPrizeMoney()
                 + result.getOrDefault(THIRD_WINNER.getRank(), 0) * THIRD_WINNER.getPrizeMoney()
