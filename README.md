@@ -82,47 +82,47 @@
 ### 구입 금액
 
 - 문자열
-    - [ ] 숫자 이외의 문자를 입력한 경우
-    - [ ] 입력하지 않는 경우
+    - [x] 숫자 이외의 문자를 입력한 경우
+    - [x] 입력하지 않는 경우
 - 단위
-    - [ ] 1000원 단위로 입력하지 않은 경우
-    - [ ] 1000원 보다 작은 금액을 입력한 경우 (음수 포함)
+    - [x] 1000원 단위로 입력하지 않은 경우
+    - [x] 1000원 보다 작은 금액을 입력한 경우 (음수 포함)
 - 공백(전처리)
-    - [ ] 앞, 뒤, 중간에 공백을 입력한 경우
+    - [x] 앞, 뒤 공백을 입력한 경우
 
 <br>
 
 ### 당첨 번호 (배열)
 
 - 문자열
-    - [ ] 숫자 이외의 문자를 입력한 경우
-    - [ ] 하나도 입력하지 않은 경우
+    - [x] 숫자 이외의 문자를 입력한 경우
+    - [x] 하나도 입력하지 않은 경우
 - 갯수
-    - [ ] 6개 미만해서 입력한 경우
-    - [ ] 6개 초과해서 입력한 경우
+    - [x] 6개 미만해서 입력한 경우
+    - [x] 6개 초과해서 입력한 경우
 - 범위
-    - [ ] 1~45 범위 내의 숫자를 입력하지 않은 경우
+    - [x] 1~45 범위 내의 숫자를 입력하지 않은 경우
 - 중복
-    - [ ] 중복된 수를 입력한 경우
+    - [x] 중복된 수를 입력한 경우
 - 공백(전처리)
-    - [ ] 구분자로 쉼표(,)를 기준으로 split
-    - [ ] 앞, 뒤, 중간에 공백 제거
+    - [x] 구분자로 쉼표(,)를 기준으로 split
+    - [x] 앞, 뒤 공백 제거
 
 <br>
 
 ### 보너스 번호
 
 - 문자열
-    - [ ] 숫자 이외의 문자를 입력한 경우
-    - [ ] 하나도 입력하지 않은 경우
+    - [x] 숫자 이외의 문자를 입력한 경우
+    - [x] 하나도 입력하지 않은 경우
 - 갯수
-    - [ ] 1개 초과해서 입력한 경우
+    - [x] 1개 초과해서 입력한 경우
 - 범위
-    - [ ] 1~45 범위 내의 숫자를 입력하지 않은 경우
+    - [x] 1~45 범위 내의 숫자를 입력하지 않은 경우
 - 중복
-    - [ ] 당첨 번호와 중복된 수를 입력한 경우
+    - [x] 당첨 번호와 중복된 수를 입력한 경우
 - 공백(전처리)
-    - [ ] 앞, 뒤, 중간에 공백을 입력한 경우
+    - [x] 앞, 뒤 공백을 입력한 경우
 
 <br>
 <br>
@@ -191,10 +191,10 @@
 
 | Method                       | Parameter          | Return Type | Implementation |
 |------------------------------|--------------------|-------------|----------------|
-| calculatePurchasedLottoCount | -                  | int         | ✅              | 
-| findByRank                   | Rank               | Money       | ✅              | 
+| calculatePurchasedLottoCount | -                  | int         | ✅              |
 | addAll                       | List<Money> monies | Money       | ✅              | 
 | toBigDecimal                 | -                  | BigDecimal  | ✅              | 
+| hasSmallChange               | Money              | boolean     | ✅              | 
 
 <br>
 
@@ -217,10 +217,11 @@
 
 ### [Enum] RankCondition
 
-| Method                       | Parameter        | Return Type | Implementation |
-|------------------------------|------------------|-------------|----------------|
-| getRankBy                    | Integer, Boolean | Rank        | ✅              |
-| hasEnoughCountToBeSecondRank | int              | boolean     | ✅              |
+| Method                                | Parameter        | Return Type | Implementation |
+|---------------------------------------|------------------|-------------|----------------|
+| getRankBy                             | Integer, Boolean | Rank        | ✅              |
+| hasEnoughCountToBeSecondRank          | int              | boolean     | ✅              |
+| calculateReceivableTotalPrizeAmountBy | int              | Money       | ✅              |
 
 <br>
 
