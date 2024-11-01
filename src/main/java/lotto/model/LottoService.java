@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,11 +8,11 @@ import java.util.Map;
 public class LottoService {
     public static final int LOTTO_PRICE = 1000;
 
-    public static int calculateLottoCount(int purchaseAmount) {
+    public int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    public static List<Lotto> generateLottos(int lottoTickets) {
+    public List<Lotto> generateLottos(int lottoTickets) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoTickets; i++) {
             lottos.add(LottoGenerator.generate());
@@ -20,7 +20,7 @@ public class LottoService {
         return lottos;
     }
 
-    public static Map<LottoRank, Integer> calculateStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+    public Map<LottoRank, Integer> calculateStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
         Map<LottoRank, Integer> statistics = initializeStatisticsMap();
 
         for (Lotto userLotto : userLottos) {
@@ -30,13 +30,13 @@ public class LottoService {
         return statistics;
     }
 
-    private static LottoRank determineLottoRank(Lotto winningLotto, int bonusNumber, Lotto userLotto) {
+    private LottoRank determineLottoRank(Lotto winningLotto, int bonusNumber, Lotto userLotto) {
         int matchCount = userLotto.countMatchingNumbers(winningLotto);
         boolean matchBonus = userLotto.containsNumber(bonusNumber);
         return LottoRank.findRank(matchCount, matchBonus);
     }
 
-    private static Map<LottoRank, Integer> initializeStatisticsMap() {
+    private Map<LottoRank, Integer> initializeStatisticsMap() {
         Map<LottoRank, Integer> statistics = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             statistics.put(rank, 0);
@@ -44,7 +44,7 @@ public class LottoService {
         return statistics;
     }
 
-    public static long calculateTotalPrize(Map<LottoRank, Integer> statistics) {
+    public long calculateTotalPrize(Map<LottoRank, Integer> statistics) {
         long totalPrize = 0;
 
         for (LottoRank rank : statistics.keySet()) {
@@ -56,7 +56,7 @@ public class LottoService {
         return totalPrize;
     }
 
-    public static double calculateRateOfReturn(long totalPrize, int purchaseAmount) {
+    public double calculateRateOfReturn(long totalPrize, int purchaseAmount) {
         double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
         return Math.round(rateOfReturn * 10) / 10.0;
     }

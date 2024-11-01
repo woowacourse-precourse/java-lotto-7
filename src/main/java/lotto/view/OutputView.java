@@ -1,7 +1,9 @@
-package lotto;
+package lotto.view;
 
 import java.util.List;
 import java.util.Map;
+import lotto.model.Lotto;
+import lotto.model.LottoRank;
 
 public class OutputView {
     private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
@@ -27,11 +29,11 @@ public class OutputView {
             int matchCount = rank.getMatchCount();
             String prizeAmount = rank.getFormatPrize();
             int count = statistics.getOrDefault(rank, 0);
-            System.out.println(WinningStatisticsMessage(rank,matchCount,prizeAmount,count));
+            System.out.println(winningStatisticsMessage(rank,matchCount,prizeAmount,count));
         }
     }
 
-    private static String WinningStatisticsMessage(LottoRank rank, int matchCount, String prizeAmount, int count) {
+    private static String winningStatisticsMessage(LottoRank rank, int matchCount, String prizeAmount, int count) {
         if (rank == LottoRank.SECOND_PRIZE) {
             return String.format(MATCH_BONUS_MESSAGE, matchCount, prizeAmount, count);
         }
@@ -40,5 +42,9 @@ public class OutputView {
 
     public static void printRateOfReturn(double rateOfReturn) {
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn);
+    }
+
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 }
