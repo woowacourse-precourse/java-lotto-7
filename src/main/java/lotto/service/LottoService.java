@@ -21,10 +21,11 @@ public class LottoService {
         showLotto(lottos);
         WinningNumbers winningNumbers = inputView.getWinningNumbers();
         BonusNumber bonusNumber = inputView.getBonusNumber();
-        lottos.forEach(lotto -> {
-            Result result = getResult(winningNumbers, bonusNumber, lotto);
-            System.out.println("수익률 : " + getROI(money, result));
-        });
+        Results results = new Results(lottos.stream()
+                .map(lotto -> getResult(winningNumbers, bonusNumber, lotto))
+                .toList());
+        outputView.showResults(results, money);
+
     }
 
     public Money getMoney() {
@@ -43,11 +44,11 @@ public class LottoService {
         outputView.showLottos(lottos);
     }
 
-    public Result getResult(WinningNumbers  winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
+    public Result getResult(WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotto lotto) {
         return Result.findByCount(countWinningNumber(winningNumbers, lotto), countBonusNumber(bonusNumber.value(), lotto));
     }
 
-    public Integer countWinningNumber(WinningNumbers  winningNumbers, Lotto lotto) {
+    public Integer countWinningNumber(WinningNumbers winningNumbers, Lotto lotto) {
         return Math.toIntExact(winningNumbers.getKeySet()
                 .stream()
                 .filter(lotto::isMatched)
@@ -59,10 +60,6 @@ public class LottoService {
             return 1;
         }
         return 0;
-    }
-
-    public String getROI(Money money, Result result) {
-        return String.format("%.1f",(double) result.longPrize()/money.value() * 100);
     }
 
 

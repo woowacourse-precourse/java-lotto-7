@@ -45,15 +45,36 @@ public enum Result {
         return rank.winningNumberCount == winningNumberCount && rank.bonusNumberCount == bonusNumberCount;
     }
 
+    public static Result findByRank(Integer rank) {
+        for (Result rankResult : values()) {
+            if (rankResult.rank == rank) {
+                return rankResult;
+            }
+        }
+        return NONE;
+    }
+
     public int rank() {
         return rank;
     }
 
-    public String prize() {
+    public String getPrize() {
         return prize;
+    }
+
+    public String getWinningNumberCount() {
+        return String.valueOf(winningNumberCount);
+    }
+
+    public int getBonusNumberCount() {
+        return winningNumberCount;
     }
 
     public long longPrize() {
         return Long.parseLong(prize.replace(",", ""));
+    }
+
+    public double getROI(Money money) {
+        return (double) longPrize() / money.value() * 100;
     }
 }

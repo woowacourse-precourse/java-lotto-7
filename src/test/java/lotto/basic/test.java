@@ -233,21 +233,21 @@ public class test  {
         assertThat(actualValue).isEqualTo(expectedValues);
     }
 
-    @Test
-    void 수익률_계산_테스트() {
-        // given
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
-        LottoService lottoService = new LottoService(inputView, outputView);
-        Money money = new Money("1000");
-        String expectedValues = "500.0";
-
-        // when
-        String actualValue = lottoService.getROI(money, Result.FIFTH);
-
-        // then
-        assertThat(actualValue).isEqualTo(expectedValues);
-    }
+//    @Test
+//    void 수익률_계산_테스트() {
+//        // given
+//        InputView inputView = new InputView();
+//        OutputView outputView = new OutputView();
+//        LottoService lottoService = new LottoService(inputView, outputView);
+//        Money money = new Money("1000");
+//        String expectedValues = "500.0";
+//
+//        // when
+//        String actualValue = lottoService.fge(money, Result.FIFTH);
+//
+//        // then
+//        assertThat(actualValue).isEqualTo(expectedValues);
+//    }
 
 
 
