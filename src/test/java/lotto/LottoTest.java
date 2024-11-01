@@ -47,4 +47,14 @@ class LottoTest {
 
         assertThat(lotto.hasBonus(bonusNumber)).isFalse();
     }
+
+    @Test
+    void 당첨_번호와_일치하는_개수를_반환한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winnerNumbers = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+
+        int matchCount = lotto.getMatchCount(winnerNumbers);
+
+        assertThat(matchCount).isEqualTo(3);
+    }
 }

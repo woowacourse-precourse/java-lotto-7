@@ -14,7 +14,9 @@ public class Lotto {
     }
 
     public int getMatchCount(Lotto winnerNumbers) {
-        return 0;
+        return (int) numbers.stream()
+                .filter(winnerNumbers.getNumbers()::contains)
+                .count();
     }
 
     public boolean hasBonus(Integer bonusNumber) {
@@ -55,5 +57,9 @@ public class Lotto {
     @Override
     public int hashCode() {
         return Objects.hash(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 }
