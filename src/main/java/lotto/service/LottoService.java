@@ -1,7 +1,7 @@
 package lotto.service;
 
 
-import static lotto.constant.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import static lotto.error.ErrorType.INVALID_NUMBER_FORMAT;
 
 import java.util.Arrays;

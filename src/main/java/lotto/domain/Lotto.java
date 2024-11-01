@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.constant.LottoConstants.LOTTO_RANGE_MAX;
-import static lotto.constant.LottoConstants.LOTTO_RANGE_MIN;
-import static lotto.constant.LottoConstants.LOTTO_SIZE;
+import static lotto.constants.LottoConstants.LOTTO_RANGE_MAX;
+import static lotto.constants.LottoConstants.LOTTO_RANGE_MIN;
+import static lotto.constants.LottoConstants.LOTTO_SIZE;
 import static lotto.error.ErrorType.DUPLICATION_NUM;
 import static lotto.error.ErrorType.INSUFFICIENT_OR_EXCESSIVE_NUMBERS;
 import static lotto.error.ErrorType.INVALID_BONUS_NUM;

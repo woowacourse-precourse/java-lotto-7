@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.constant.LottoConstants.LOTTO_PRICE;
-import static lotto.constant.Winner.FIFTH_WINNER;
-import static lotto.constant.Winner.FIRST_WINNER;
-import static lotto.constant.Winner.FOURTH_WINNER;
-import static lotto.constant.Winner.SECOND_WINNER;
-import static lotto.constant.Winner.THIRD_WINNER;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.WinnerConstants.FIFTH_WINNER;
+import static lotto.constants.WinnerConstants.FIRST_WINNER;
+import static lotto.constants.WinnerConstants.FOURTH_WINNER;
+import static lotto.constants.WinnerConstants.SECOND_WINNER;
+import static lotto.constants.WinnerConstants.THIRD_WINNER;
 
 import java.util.HashMap;
 import java.util.Map;

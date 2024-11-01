@@ -1,6 +1,6 @@
-package lotto.constant;
+package lotto.constants;
 
-public enum Winner {
+public enum WinnerConstants {
     FIRST_WINNER(1, 6, 2000000000),
     SECOND_WINNER(2, 6, 30000000),
     THIRD_WINNER(3, 5, 1500000),
@@ -11,7 +11,7 @@ public enum Winner {
     private final int matchCount;
     private final long prizeMoney;
 
-    Winner(final int rank, final int matchCount, final long prizeMoney) {
+    WinnerConstants(final int rank, final int matchCount, final long prizeMoney) {
         this.rank = rank;
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;

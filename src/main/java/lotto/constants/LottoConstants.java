@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.constants;
 
 public class LottoConstants {
     public final static int LOTTO_SIZE = 6;
