@@ -1,8 +1,5 @@
 package lotto.model;
 
-import static lotto.model.Lotto.MAXIMUM_THRESHOLD;
-import static lotto.model.Lotto.MINIMUM_THRESHOLD;
-
 import java.util.List;
 import lotto.constant.ErrorConstant;
 
@@ -26,9 +23,9 @@ public class WinningNumbers {
 
     private void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < MINIMUM_THRESHOLD || number > MAXIMUM_THRESHOLD) {
+            if (number < Lotto.MINIMUM_THRESHOLD || number > Lotto.MAXIMUM_THRESHOLD) {
                 throw new IllegalArgumentException(
-                        ErrorConstant.ERROR.getContent() + " 당첨 번호는 " + MINIMUM_THRESHOLD + "이상, " + MAXIMUM_THRESHOLD
+                        ErrorConstant.ERROR.getContent() + " 당첨 번호는 " + Lotto.MINIMUM_THRESHOLD + "이상, " + Lotto.MAXIMUM_THRESHOLD
                                 + "이하만 가능합니다.");
             }
         }
@@ -43,5 +40,9 @@ public class WinningNumbers {
                     ErrorConstant.ERROR.getContent() + " 당첨 번호는 서로 중복되어선 안됩니다."
             );
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
