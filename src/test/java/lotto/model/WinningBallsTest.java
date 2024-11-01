@@ -21,12 +21,25 @@ class WinningBallsTest {
     void test2() {
         assertThatThrownBy(() -> new WinningBalls(List.of(6, 6, 6, 6, 6, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
 
+    @DisplayName("6개 초과하여 생성시 예외 반환한다")
+    @Test
+    void test3() {
+        assertThatThrownBy(() -> new WinningBalls(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("각 숫자가 1 ~ 45 가 아닐 시 예외 반환한다")
+    @Test
+    void test4() {
+        assertThatThrownBy(() -> new WinningBalls(List.of(1, 2, 3, 4, 5, 10000)))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호와 몇 개가 똑같은지 반환한다")
     @Test
-    void test_3() {
+    void test5() {
         WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertEquals(6, winningBalls.getSameNumberCount(lotto));
