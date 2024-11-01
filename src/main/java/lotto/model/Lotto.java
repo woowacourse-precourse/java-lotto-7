@@ -62,7 +62,10 @@ public class Lotto {
                 count++;
             }
         }
+        updateCountStatus(count, hasBonus);
+    }
 
+    private void updateCountStatus(int count, boolean hasBonus) {
         if (count == 3 && hasBonus == WinnerType.FIFTH.getBonusStatus()) {
             WinnerType.FIFTH.increaseCount();
         }
