@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumberValidation {
-    public static List<Integer> isIntegerType(String[] inputValues){
-        try{
-            for(String value : inputValues){
+    public static List<Integer> isIntegerType(String[] inputValues) {
+        try {
+            for (String value : inputValues) {
                 CommonValidation.isIntegerType(value);
             }
 
@@ -26,9 +26,9 @@ public class WinningNumberValidation {
         }
     }
 
-    public static void value1to45(List<Integer> inputValues){
-        try{
-            for(int value : inputValues){
+    public static void value1to45(List<Integer> inputValues) {
+        try {
+            for (int value : inputValues) {
                 CommonValidation.value1to45(value);
             }
         } catch (NumberFormatException e) {
@@ -36,10 +36,10 @@ public class WinningNumberValidation {
         }
     }
 
-    public static void duplicateChecker(List<Integer> inputValues){
+    public static void duplicateChecker(List<Integer> inputValues) {
         Set<Integer> set = new HashSet<>(inputValues);
 
-        if(set.size() != inputValues.size()){
+        if (set.size() != inputValues.size()) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_DUPLICATE.getErrorDescription());
         }
     }

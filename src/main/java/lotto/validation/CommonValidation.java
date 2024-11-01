@@ -3,8 +3,8 @@ package lotto.validation;
 import lotto.message.ExceptionMessage;
 
 public class CommonValidation {
-    public static String isEmpty(String value){
-        if(value.isEmpty()){
+    public static String isEmpty(String value) {
+        if (value.isEmpty()) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_EMPTY.getErrorDescription());
         }
 
@@ -20,7 +20,7 @@ public class CommonValidation {
     }
 
     public static void value1to45(int value) {
-        if(value<1 || value >45) {
+        if (value < 1 || value > 45) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_1_TO_45.getErrorDescription());
         }
     }
