@@ -2,6 +2,7 @@ package lotto.io.impl;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
+import lotto.error.LottoErrorMessage;
 import lotto.io.*;
 import lotto.io.msg.*;
 
@@ -43,7 +44,7 @@ public class ConsoleInput implements Input {
     @Override
     public WinningNumbers inputWinningNumbers() {
 
-        output.printMsg(LottoInquiryMessage.BONUS_NUMBER_INQUERY.getMsg());
+        output.printMsg(LottoInquiryMessage.WINNING_NUMBERS_INQUIRY.getMsg());
         List<Integer> tempWinningNumbers = Arrays.stream(Console.readLine().trim().split(","))
                 .map(Integer::parseInt).toList();
 
@@ -61,12 +62,16 @@ public class ConsoleInput implements Input {
     @Override
     public BonusNumber inputBonusNumber() {
 
-        /*
         output.printMsg(LottoInquiryMessage.BONUS_NUMBER_INQUERY.getMsg());
-        String a = Console.readLine().trim();
 
-        return new BonusNumber();
-         */
-        return null;
+        BonusNumber bonusNumber = null;
+        try{
+            bonusNumber = new BonusNumber(Console.readLine().trim());
+        } catch (IllegalArgumentException e) {
+            output.printMsg(e.getMessage());
+            return inputBonusNumber();
+        }
+
+        return bonusNumber;
     }
 }

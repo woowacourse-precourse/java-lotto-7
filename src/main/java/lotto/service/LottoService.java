@@ -19,6 +19,9 @@ public class LottoService {
     private final Input input;
     private final Output output;
 
+    private WinningNumbers winningNumbers;
+    private BonusNumber bonusNumber;
+
     private LottoService(LottoConfig config) {
         this.input = config.input();
         this.output = config.output();
@@ -43,22 +46,15 @@ public class LottoService {
         return lottos;
     }
 
-    /*
     public void setWinningNumbers() {
 
-        List<Integer> tempWinningNumbers = Arrays.stream(input.inputWinningNumbers()).map(Integer::parseInt).toList();
-        try{
-            lottoInputValidator.checkWinningNumbers(tempWinningNumbers);
-            winningNumbers = tempWinningNumbers;
-            System.out.println(winningNumbers);
-        } catch(IllegalArgumentException e) {
-            setWinningNumbers();
-        }
+        winningNumbers = input.inputWinningNumbers();
     }
-    */
+
 
     public void setBonusNumber() {
 
+        bonusNumber = input.inputBonusNumber();
     }
 
     private Lotto issueLotto() {

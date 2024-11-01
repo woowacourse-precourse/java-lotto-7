@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.config.LottoConfig;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
@@ -27,8 +28,10 @@ public class LottoController {
     public void run() {
 
         List<Lotto> lottos = service.buyLottos();
-        // service.setWinningNumbers();
-        // service.setBonusNumber();
+        service.setWinningNumbers();
+        service.setBonusNumber();
+        Console.close();
+
 
 
     }
