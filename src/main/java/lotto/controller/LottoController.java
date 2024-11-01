@@ -3,7 +3,6 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.WinLotto;
 import lotto.service.LottoService;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumberValidator;
@@ -30,10 +29,9 @@ public class LottoController {
     }
 
     public void run() {
-        String rawPurchasePrice = validatePurchasePrice();
-        int validPurchasePrice = getValidPurchasePrice(rawPurchasePrice);
-        List<Lotto> lottos = lottoService.makeLottos(validPurchasePrice);
-        printLottoNumbers(lottos);
+        int validPurchasePrice = getValidPurchasePrice(validatePurchasePrice());
+        List<Lotto> lotties = lottoService.makeLottos(validPurchasePrice);
+        printLottoNumbers(lotties);
         String rawWinningNumbers = validateWinningNumbers();
         List<Integer> validWinningNumbers = validWinningNumbers(rawWinningNumbers);
     }
@@ -45,7 +43,7 @@ public class LottoController {
     private String validateWinningNumbers() {
         boolean pass = false;
         String rawWinningNumber = "";
-        while(!pass){
+        while (!pass) {
             rawWinningNumber = inputView.getRequestWinningNumber();
             pass = WinningNumberValidator.validate(rawWinningNumber);
         }
@@ -68,10 +66,10 @@ public class LottoController {
         return rawPurchasePrice;
     }
 
-    private void printLottoNumbers(List<Lotto> lottos) {
+    private void printLottoNumbers(List<Lotto> lotties) {
         outputView.println("");
-        outputView.println(lottos.size()+"개를 구매했습니다.");
-        lottos.stream()
+        outputView.println(lotties.size() + "개를 구매했습니다.");
+        lotties.stream()
                 .map(Lotto::getNumbers)
                 .forEach(outputView::printList);
         outputView.println("");

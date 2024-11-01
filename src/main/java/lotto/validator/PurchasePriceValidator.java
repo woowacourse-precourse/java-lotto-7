@@ -4,9 +4,10 @@ import lotto.constants.InputError;
 import lotto.constants.LottoConstInteger;
 import lotto.view.ErrorPrinter;
 
-public class PurchasePriceValidator{
+public class PurchasePriceValidator {
     private static String rawPurchasePrice;
     private static int intPurchasePrice;
+
     public static boolean validate(String rawPurchasePrice) {
         PurchasePriceValidator.rawPurchasePrice = rawPurchasePrice;
         if (!isExist()) {

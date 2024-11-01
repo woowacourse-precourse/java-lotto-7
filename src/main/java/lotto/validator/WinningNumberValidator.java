@@ -25,7 +25,7 @@ public class WinningNumberValidator {
         if (!isDigit()) {
             return false;
         }
-        if(!isValidRangeNumbers()){
+        if (!isValidRangeNumbers()) {
             return false;
         }
         if (!hasNoDuplication()) {
@@ -94,7 +94,7 @@ public class WinningNumberValidator {
         return false;
     }
 
-    private static boolean isValidRange(int needValidating){
+    private static boolean isValidRange(int needValidating) {
         return needValidating >= LottoConstInteger.LOTTO_START_NUMBER.getValue()
                 && needValidating <= LottoConstInteger.LOTTO_END_NUMBER.getValue();
     }
