@@ -1,0 +1,28 @@
+package lotto.controller;
+
+import java.util.List;
+import java.util.Map;
+import lotto.dto.LottoResultDTO;
+import lotto.dto.WinningLottoDTO;
+import lotto.model.Lotto;
+import lotto.model.LottoRank;
+import lotto.model.LottoPurchasedInfo;
+
+public class LottoCheckerController {
+
+    private LottoPurchasedInfo lottoPurchasedInfo;
+
+    public void setPurchasedLotto(List<Lotto> purchased, Integer totalCost) {
+        lottoPurchasedInfo = new LottoPurchasedInfo(purchased, totalCost);
+    }
+
+    public LottoResultDTO checkPurchasedLottoRank(WinningLottoDTO winningLotto) {
+        List<Integer> winningNumbers = winningLotto.getWinningNumber();
+        Integer bonusNumber = winningLotto.getBonusNumber();
+
+        Map<LottoRank, Integer> countResult = lottoPurchasedInfo.getWinningResult(winningNumbers, bonusNumber);
+        Double profitPercentage = lottoPurchasedInfo.calculateProfitPercentage();
+
+        return new LottoResultDTO(countResult, profitPercentage);
+    }
+}
