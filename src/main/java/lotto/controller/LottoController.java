@@ -5,8 +5,10 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.Lottos;
+import lotto.domain.WinningRank;
+import lotto.domain.WinningStatistics;
+import lotto.domain.WinningStatisticsCalculator;
 import lotto.domain.generator.LottoNumberGenerator;
-import lotto.domain.generator.RandomLottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,10 +18,12 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView,
+                           OutputView outputView,
+                           LottoNumberGenerator lottoNumberGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoNumberGenerator = new RandomLottoNumberGenerator();
+        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public void start() {
@@ -27,8 +31,9 @@ public class LottoController {
         Lottos lottos = issueLottos(purchaseAmount);
         printLottos(lottos);
 
-        Lotto lotto = createWinningLotto();
-        int bonusNumber = createBonusNumber(lotto.getNumbers());
+        Lotto winningLotto = createWinningLotto();
+        int bonusNumber = createBonusNumber(winningLotto.getNumbers());
+        processStatistics(lottos, winningLotto, bonusNumber, purchaseAmount);
 
         Console.close();
     }
@@ -57,6 +62,36 @@ public class LottoController {
 
     private int createBonusNumber(List<Integer> winningNumbers) {
         return inputView.inputBonusNumber(winningNumbers);
+    }
+
+    private void processStatistics(Lottos lottos, Lotto winningLotto, int bonusNumber, String purchaseAmount) {
+        WinningStatistics winningStatistics = calculateStatistics(lottos, winningLotto, bonusNumber);
+        printStatistics(winningStatistics);
+        calculateAndPrintReturnRate(winningStatistics, purchaseAmount);
+    }
+
+    private WinningStatistics calculateStatistics(Lottos lottos, Lotto winningLotto, int bonusNumber) {
+        return WinningStatisticsCalculator.calculateStatistics(lottos, winningLotto, bonusNumber);
+    }
+
+    private void printStatistics(WinningStatistics winningStatistics) {
+        outputView.printWinningStatisticsHeader();
+        for (WinningRank winningRank : winningStatistics.getStatistics().keySet()) {
+            printWinningRankStatistics(winningRank, winningStatistics.getStatistics().get(winningRank));
+        }
+    }
+
+    private void printWinningRankStatistics(WinningRank winningRank, int count) {
+        outputView.printWinningStatisticsMessage(winningRank.getMessage(), winningRank.getPrizeMoney(), count);
+    }
+
+    private void calculateAndPrintReturnRate(WinningStatistics winningStatistics, String purchaseAmount) {
+        double returnRate = WinningStatisticsCalculator.calculateReturnRate(winningStatistics, purchaseAmount);
+        printReturnRate(returnRate);
+    }
+
+    private void printReturnRate(double returnRate) {
+        outputView.printReturnRate(returnRate);
     }
 
 }
