@@ -39,8 +39,9 @@ int 보너스 번호
     - [ ]  boughtNumbers의 setter 호출해 발행한 로또 번호 정보 set
 - [ ]  private void setWinningNumbers()
 
-### Lotto 클래스
-- [ ]  로또 번호를 정렬하는 기능
+### Lotto
+- [x] **private void sortNumbers()** \: 로또 번호를 오름차순으로 정렬하는 기능
+
 - [ ]  몇 등 당첨인지 확인하는 기능
 
 ### LottoNumberController
