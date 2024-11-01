@@ -1,7 +1,7 @@
 package lotto.lotto.winning.domain;
 
-import lotto.buyer.domain.Money;
-import lotto.buyer.infrastructure.Won;
+import lotto.money.domain.Money;
+import lotto.money.infrastructure.PurchaseAmount;
 import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,14 +14,14 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RateOfReturnTest {
     private static Money insertMoney;
-    private WinningCalculator winningCalculator;
+    private WinningAmountCalculator winningCalculator;
     private LottoTickets lottoTickets;
     private Lotto lotto;
 
     @BeforeEach
     void init() {
-        insertMoney = Won.of("1000");
-        winningCalculator = new WinningCalculator();
+        insertMoney = PurchaseAmount.of("1000");
+        winningCalculator = new WinningAmountCalculator();
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
     }

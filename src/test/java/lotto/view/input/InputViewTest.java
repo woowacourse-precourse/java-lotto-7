@@ -1,12 +1,12 @@
 package lotto.view.input;
 
 import lotto.buyer.domain.InsertMoneyService;
-import lotto.buyer.domain.Money;
-import lotto.buyer.infrastructure.InsertWon;
+import lotto.money.domain.Money;
+import lotto.buyer.infrastructure.InsertPurchaseMoney;
 import lotto.lotto.domain.LottoMachine;
 import lotto.lotto.domain.LottoTickets;
 import lotto.lotto.domain.NumberGenerator;
-import lotto.lotto.infrastructure.WonCalculator;
+import lotto.lotto.infrastructure.DivideThousandCalculator;
 import lotto.lotto.winning.domain.BonusNumber;
 import lotto.lotto.winning.domain.WinningLotto;
 import lotto.lotto.winning.infrastructure.BonusNumberCreator;
@@ -31,7 +31,7 @@ public class InputViewTest {
 
     @BeforeEach
     void init() {
-        InsertMoneyService insertMoneyService = new InsertWon(new MoneyHandler(new MoneyInputTest()));
+        InsertMoneyService insertMoneyService = new InsertPurchaseMoney(new MoneyHandler(new MoneyInputTest()));
         money = insertMoneyService.insert();
     }
 
@@ -54,7 +54,7 @@ public class InputViewTest {
                 "[4, 5, 6, 7, 8, 9]",
                 "[2, 3, 42, 43, 44, 45]\n"
         );
-        LottoMachine lottoMachine = new LottoMachine(new WonCalculator(), new NumberGenerateTest(), new PurchaseOutputViewTest());
+        LottoMachine lottoMachine = new LottoMachine(new DivideThousandCalculator(), new NumberGenerateTest(), new PurchaseOutputViewTest());
         LottoTickets lottoTickets = lottoMachine.purchaseLottoTickets(money);
         assertThat(lottoTickets.toString()).isEqualTo(excepted);
     }

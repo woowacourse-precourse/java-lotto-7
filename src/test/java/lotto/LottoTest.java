@@ -1,12 +1,7 @@
 package lotto;
 
-import lotto.buyer.domain.Money;
-import lotto.buyer.infrastructure.Won;
 import lotto.constant.ErrorMessage;
 import lotto.lotto.domain.Lotto;
-import lotto.lotto.validator.LottoValidator;
-import lotto.lotto.winning.domain.BonusNumber;
-import lotto.lotto.winning.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

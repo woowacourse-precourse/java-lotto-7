@@ -11,13 +11,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 public class WinningCalculatorTest {
-    private WinningCalculator winningCalculator;
+    private WinningAmountCalculator winningCalculator;
     private LottoTickets lottoTickets;
     private Lotto lotto;
 
     @BeforeEach
     void init() {
-        winningCalculator = new WinningCalculator();
+        winningCalculator = new WinningAmountCalculator();
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoTickets = LottoTickets.of(List.of(lotto));
     }
