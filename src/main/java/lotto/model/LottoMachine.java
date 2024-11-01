@@ -1,4 +1,4 @@
 package lotto.model;
 
-public interface LottoMachine {
+public class LottoMachine {
 }
