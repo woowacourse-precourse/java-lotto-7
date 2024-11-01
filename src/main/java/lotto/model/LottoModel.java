@@ -6,15 +6,6 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class LottoModel {
-    // 구입금액을 1000으로 나누어 로또 구입 갯수를 반환하는 함수
-    public int countIssueLottoNumber(int amountPaid) {
-        if (amountPaid % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 지불 금액이 1000으로 나누어 떨어지지 않습니다");
-        }
-        // else 쓰지 말기
-        return amountPaid / 1000;
-    }
-
     // 복수의 로또를 발행하는 함수
     public List<Lotto> issueLottos(int issueNumber) {
         List<Lotto> lottos = new ArrayList<>();
