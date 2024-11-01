@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 class LottoTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     @DisplayName("로또 번호의 개수는 6개이다.")
     void 로또_번호의_개수는_6개이다() {
@@ -49,6 +51,7 @@ class LottoTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -63,6 +66,7 @@ class LottoTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -77,6 +81,7 @@ class LottoTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

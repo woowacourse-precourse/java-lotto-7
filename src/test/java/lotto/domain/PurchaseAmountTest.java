@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 class PurchaseAmountTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     @DisplayName("구입 금액이 1,000원보다 낮으면 예외가 발생한다.")
     void 구입_금액이_1000원보다_낮으면_예외가_발생한다() {
@@ -19,6 +21,7 @@ class PurchaseAmountTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,6 +36,7 @@ class PurchaseAmountTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

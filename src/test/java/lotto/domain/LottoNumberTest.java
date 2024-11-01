@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 class LottoNumberTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     @DisplayName("로또 번호는 최소 1 이상이다.")
     void 로또_번호는_최소_1_이상이다() {
@@ -48,6 +50,7 @@ class LottoNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,6 +65,7 @@ class LottoNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

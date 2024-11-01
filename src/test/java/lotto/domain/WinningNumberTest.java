@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 class WinningNumberTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     @DisplayName("당첨 번호가 6자리보다 짧으면 예외가 발생한다")
     void 당첨_번호가_6자리보다_짧으면_예외가_발생한다() {
@@ -19,6 +21,7 @@ class WinningNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -33,6 +36,7 @@ class WinningNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,6 +51,7 @@ class WinningNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -61,6 +66,7 @@ class WinningNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -75,6 +81,7 @@ class WinningNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 class BonusNumberTest {
 
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
     @Test
     @DisplayName("보너스 번호는 최소 1 이상이다.")
     void 보너스_번호는_최소_1_이상이다() {
@@ -48,6 +50,7 @@ class BonusNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -62,6 +65,7 @@ class BonusNumberTest {
 
         // Then
         assertThatThrownBy(throwable)
+                .hasMessageContaining(ERROR_MESSAGE)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
