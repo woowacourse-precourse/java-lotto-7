@@ -12,6 +12,10 @@ public class LottoNumber {
         this.number = number;
     }
 
+    public LottoNumber(LottoNumber obj) {
+        this.number = obj.number;
+    }
+
     public static LottoNumber parseLottoNumber(String input) {
         try {
             return new LottoNumber(Integer.parseInt(input));

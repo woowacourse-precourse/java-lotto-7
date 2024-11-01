@@ -9,6 +9,15 @@ public class BonusNumber extends LottoNumber {
         validate(winningNumber);
     }
 
+    public BonusNumber(LottoNumber number, Lotto winningNumber) {
+        super(number);
+        validate(winningNumber);
+    }
+
+    public static BonusNumber parseBonusNumber(String input, Lotto winningNumber) {
+        return new BonusNumber(LottoNumber.parseLottoNumber(input), winningNumber);
+    }
+
     private void validate(Lotto winningNumber) {
         if (winningNumber.hasBonusNumber(this)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR_MSG);

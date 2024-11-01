@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.BonusNumber.BONUS_NUMBER_DUPLICATE_ERROR_MSG;
 
 import java.util.List;
+import lotto.LottoMachine;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -32,5 +33,31 @@ class BonusNumberTest {
         Assertions.assertThatThrownBy(() -> new BonusNumber(number, winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_DUPLICATE_ERROR_MSG);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"7", "45"})
+    public void 보너스번호파싱_정상테스트(String input) throws Exception {
+        //Given
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int expected = Integer.parseInt(input);
+
+        //When
+        int actual = BonusNumber.parseBonusNumber(input, winningNumbers).getNumber();
+
+        //Then
+        Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "6"})
+    public void 보너스번호파싱_중복_예외테스트(String input) throws Exception {
+        //Given
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        //When, Then
+        Assertions.assertThatThrownBy(() -> BonusNumber.parseBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LottoMachine.BONUS_NUMBER_DUPLICATE_ERROR_MSG);
     }
 }
