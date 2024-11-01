@@ -35,4 +35,9 @@ class LottoTest {
         // then
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
+    @Test
+    void 로또_번호중_범위_다른_숫자_테스트(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 47)))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
