@@ -15,6 +15,7 @@ class LottoTest {
 
     private static List<Lotto> lottos = new ArrayList<>();
     public static List<Integer> winningNumbers = new ArrayList<>();
+    public static int[] matchCount = new int[8];
     private static int pieces = 8;
 
     @BeforeEach
@@ -35,6 +36,12 @@ class LottoTest {
         for(String number : winningNumbersString) {
             winningNumbers.add(Integer.parseInt(number));
         }
+    }
+
+    public static void matchTest(Lotto lotto) {
+        List<Integer> intersection = new ArrayList<>(winningNumbers);
+        intersection.retainAll(lotto.getNumbers());
+        matchCount[intersection.size()]++;
     }
 
     @Test
@@ -70,5 +77,14 @@ class LottoTest {
         String input = "1,2,3,4,5,6";
         getWinningNumbers(input);
         assertThat(winningNumbers).contains(1,2,3,4,5,6);
+    }
+
+    @Test
+    @DisplayName("일치하는 번호 개수 테스트")
+    void testMatchTest() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        winningNumbers = List.of(1,2,3,4,5,6);
+        matchTest(lotto);
+        assertThat(matchCount[6]).isEqualTo(1);
     }
 }

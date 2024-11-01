@@ -14,6 +14,7 @@ public class Application {
     public static List<Lotto> lottos = new ArrayList<>();
     public static List<Integer> winningNumbers = new ArrayList<>();
     public static int bonusNumber;
+    public static int[] matchCount = new int[8];
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println(CREDIT_MESSAGE);
@@ -29,7 +30,7 @@ public class Application {
         System.out.println();
         System.out.println(pieces + "개를 구매했습니다.");
         publishLotto();
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             printLottos(lotto);
         }
         System.out.println();
@@ -38,6 +39,10 @@ public class Application {
         System.out.println();
         System.out.println(BONUS_NUMBER_MESSAGE);
         bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
+        for (Lotto lotto : lottos) {
+            matchTest(lotto);
+        }
     }
 
     public static int checkCredit(int credit) throws IllegalArgumentException {
@@ -48,7 +53,7 @@ public class Application {
     }
 
     public static void publishLotto() throws IllegalArgumentException {
-        for(int i=0; i<pieces; i++) {
+        for (int i = 0; i < pieces; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
@@ -58,7 +63,7 @@ public class Application {
     public static void printLottos(Lotto lotto) {
         String lottoNumber = "[";
         List<Integer> numbers = lotto.getNumbers();
-        for(int number : numbers) {
+        for (int number : numbers) {
             lottoNumber += number + ",";
         }
         lottoNumber = lottoNumber.substring(0,lottoNumber.length() - 1);
@@ -68,8 +73,15 @@ public class Application {
 
     public static void getWinningNumbers(String input) {
         String[] winningNumbersString = input.split(",");
-        for(String number : winningNumbersString) {
+        for (String number : winningNumbersString) {
             winningNumbers.add(Integer.parseInt(number));
         }
     }
+
+    public static void matchTest(Lotto lotto) {
+        List<Integer> intersection = new ArrayList<>(winningNumbers);
+        intersection.retainAll(lotto.getNumbers());
+        matchCount[intersection.size()]++;
+    }
+
 }
