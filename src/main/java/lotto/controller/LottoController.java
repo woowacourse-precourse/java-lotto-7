@@ -54,7 +54,7 @@ public class LottoController {
                 lottoInput = inputView.readInput();
 
                 validationManager.isNotEmptyInput(lottoInput);
-                validationManager.isNumbersDividedByComma(lottoInput);
+                validInput = validationManager.isNumbersDividedByComma(lottoInput);
                 List<String> lottoNumbrs = TypeConverter.ToList(lottoInput);
 
             } catch (IllegalArgumentException e) {

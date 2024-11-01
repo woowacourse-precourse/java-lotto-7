@@ -30,7 +30,7 @@ public class ValidationManager {
     }
 
     public boolean isNumbersDividedByComma(String userInput) {
-        if (userInput.matches("\\\\d{1,2}(,\\\\d{1,2})*")) {
+        if (userInput.matches("\\d{1,2}(,\\d{1,2})*")) {
             return true;
         }
         throw new IllegalArgumentException(LOTTO_DELIMITER_COMMA_ERROR);
