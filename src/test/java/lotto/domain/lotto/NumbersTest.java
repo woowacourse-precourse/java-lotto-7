@@ -28,11 +28,57 @@ class NumbersTest {
     @DisplayName("로또 번호를 정상적으로 생성한다.")
     @Test
     void 로또를_정상적으로_생성한다() {
+        //given
         Numbers numbers = new Numbers(
                 List.of(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4),
                         new LottoNumber(5), new LottoNumber(6)));
 
+        //when & then
         assertThat(numbers).isNotNull();
     }
 
+    @Test
+    void 두_리스트의_공통값의_개수는_올바르게_나와야한다() {
+        //given
+        Numbers lotto = new Numbers(
+                List.of(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4),
+                        new LottoNumber(5), new LottoNumber(6)));
+        Numbers winningNumbers = new Numbers(
+                List.of(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4),
+                        new LottoNumber(5), new LottoNumber(6)));
+
+        //when
+        int matchCount = winningNumbers.matchCount(lotto);
+
+        //then
+        assertThat(matchCount).isEqualTo(6);
+    }
+
+    @Test
+    void 보너스_번호가_있다면_참을_반환해야한다() {
+        //given
+        Numbers lotto = new Numbers(
+                List.of(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4),
+                        new LottoNumber(5), new LottoNumber(6)));
+        LottoNumber bonusNumber = new LottoNumber(6);
+
+        //when
+        boolean hasBonusNumber = lotto.matchBonusNumber(bonusNumber);
+        //then
+        assertThat(hasBonusNumber).isEqualTo(true);
+    }
+
+    @Test
+    void 보너스_번호가_없다면_거짓을_반환해야한다() {
+        //given
+        Numbers lotto = new Numbers(
+                List.of(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4),
+                        new LottoNumber(5), new LottoNumber(6)));
+        LottoNumber bonusNumber = new LottoNumber(7);
+
+        //when
+        boolean hasBonusNumber = lotto.matchBonusNumber(bonusNumber);
+        //then
+        assertThat(hasBonusNumber).isEqualTo(false);
+    }
 }
