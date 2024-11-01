@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 
 public class Score {
 
-    private final LinkedHashMap<List<Integer>, Integer> scoreSystem ;
+    private final LinkedHashMap<List<Integer>, Integer> scoreSystem;
     private final List<Integer> scoreSystemReward;
 
     public Score(LinkedHashMap<List<Integer>, Integer> scoreSystem, List<Integer> scoreSystemReward) {
@@ -24,39 +24,45 @@ public class Score {
     public ScoreDto printScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
         scoreSystem.replaceAll((key, value) -> 0);
 
-        List<Lotto> mylottos = new ArrayList<>(lottos.getLottos());
-        List<Component> winningComponent = new ArrayList<>(winningLotto.getComponents());
-
-        scoring(bonusComponent, mylottos, winningComponent);
+        initializeScore(lottos, winningLotto, bonusComponent);
 
         List<Integer> scoreValues = new ArrayList<>(scoreSystem.values());
+        float rateOfReturn = calculateRateOfReturn(lottos, scoreValues);
+
+        return new ScoreDto(new ArrayList<>(scoreValues), rateOfReturn);
+    }
+
+    private float calculateRateOfReturn(Lottos lottos, List<Integer> scoreValues) {
         int amountOfLottos = lottos.getLottos().size();
-        int totalUsedPrice = LottoRule.LOTTO_PRICE.getInstance()* amountOfLottos;
+        int totalUsedPrice = LottoRule.LOTTO_PRICE.getInstance() * amountOfLottos;
         int totalSum = IntStream.range(0, scoreValues.size())
                 .map(i -> scoreValues.get(i) * scoreSystemReward.get(i))
                 .sum();
-        float rateOfReturn = (float) totalSum / totalUsedPrice *100;
-
-
-        return new ScoreDto(new ArrayList<>(scoreValues),rateOfReturn);
+        float rateOfReturn = (float) totalSum / totalUsedPrice * 100;
+        return rateOfReturn;
     }
 
-    private void scoring(BonusComponent bonusComponent, List<Lotto> mylottos, List<Component> winningComponent) {
-        for(Lotto lotto: mylottos){
+    private void initializeScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
+        List<Lotto> mylottos = new ArrayList<>(lottos.getLottos());
+        List<Component> winningComponent = new ArrayList<>(winningLotto.getComponents());
+        processScore(bonusComponent, mylottos, winningComponent);
+    }
+
+    private void processScore(BonusComponent bonusComponent, List<Lotto> mylottos, List<Component> winningComponent) {
+        for (Lotto lotto : mylottos) {
             Integer matches = (int) lotto.getComponents()
                     .stream()
                     .filter(winningComponent::contains)
                     .count();
             Integer bonusMatch = 0;
-            if(lotto.getComponents().contains(bonusComponent)){
-                bonusMatch ++;
+            if (lotto.getComponents().contains(bonusComponent)) {
+                bonusMatch++;
             }
             List<Integer> key = Arrays.asList(matches, bonusMatch);
             if (scoreSystem.containsKey(key)) {
                 scoreSystem.put(key, scoreSystem.get(key) + 1);
             }
-
         }
-
     }
+
 }
