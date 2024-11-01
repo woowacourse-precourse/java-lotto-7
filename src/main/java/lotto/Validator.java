@@ -1,7 +1,8 @@
 package lotto;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Validator {
     private static final String COMMON_ERROR_MESSAGE = "[ERROR] ";
@@ -11,6 +12,7 @@ public class Validator {
 
     private static final int LOTTERY_NUM_RANGE_FIRST = 1;
     private static final int LOTTERY_NUM_RANGE_LAST = 45;
+    private static final int WINNING_NUMBER_COUNT = 6;
 
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
@@ -51,12 +53,18 @@ public class Validator {
         try {
             Arrays.stream(splitInputs).forEach(this::checkIsNumber);
 
-            List<Integer> winningDigits = Arrays.stream(splitInputs)
-                .map(Integer::parseInt).toList();
+            Set<Integer> winningDigits = new HashSet<>();
+            for (String splitInput : splitInputs) {
+                Integer parseInt = Integer.parseInt(splitInput);
+                winningDigits.add(parseInt);
+            }
 
             for (Integer w : winningDigits) {
                 checkIsPositiveNumber(w);
                 checkIsLotteryRange(w);
+            }
+            if (winningDigits.size() != WINNING_NUMBER_COUNT) {
+                throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
             }
         } catch (IllegalArgumentException e) {
             System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
