@@ -8,12 +8,12 @@ public class Calculator {
         return input / 1000;
     }
 
-    public static double calculateRateOfReturn(int lottoAmount, Map<Result,Integer> results){
-        double totalProfit = 0;
+    public static String calculateRateOfReturn(int lottoAmount, Map<Result,Integer> results){
+        float totalProfit = 0;
         for(Result result : results.keySet()){
             totalProfit += result.getPrizeMoney() * results.get(result);
         }
         totalProfit /= lottoAmount;
-        return Math.round(totalProfit*1000);
+        return String.format("%.1f", totalProfit*100);
     }
 }
