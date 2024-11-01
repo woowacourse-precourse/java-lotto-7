@@ -1,7 +1,5 @@
 package lotto.validation;
 
-import org.junit.platform.commons.util.StringUtils;
-
 public class PurchaseAmountValidation {
     private final static int PRICE_PER_LOTTO = 1000;
     private final static String INVALID_PRICE_INPUT = "[ERROR]올바른 금액을 입력해 주시기 바랍니다.";
@@ -11,7 +9,13 @@ public class PurchaseAmountValidation {
         if (input == null || input.isBlank() || !input.matches(NUMBER_REGEX)) {
             throw new IllegalArgumentException(INVALID_PRICE_INPUT);
         }
-        String trimmedInput = input.trim();
+        int parsedInput = parseInput(input);
+        if (parsedInput == 0 || parsedInput % PRICE_PER_LOTTO != 0) {
+            throw new IllegalArgumentException(INVALID_PRICE_INPUT);
+        }
+    }
 
+    private static int parseInput(String input) {
+        return Integer.parseInt(input.trim());
     }
 }
