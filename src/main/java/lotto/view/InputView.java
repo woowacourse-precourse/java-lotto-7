@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.common.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,11 +13,16 @@ public class InputView {
     // 1-1. 로또 구입 금액 입력 메서드
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = Integer.parseInt(Console.readLine());
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
+        try {
+            int purchaseAmount = Integer.parseInt(Console.readLine());
+
+            if (purchaseAmount % 1000 != 0) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
+            }
+            return purchaseAmount;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT);
         }
-        return purchaseAmount;
     }
 
     // 1-2. 당첨 번호 입력 메서드
