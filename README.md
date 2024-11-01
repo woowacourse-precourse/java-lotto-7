@@ -86,6 +86,7 @@
   - 로또를 검증한다. (validate)
     - 로또 번호로 6개의 숫자로 이루어있는지 검증한다. (validateNumbersSize)
     - 로또 번호 내 중복이 있는지 검증한다. (validateDuplicateNumbers)
+  - 로또 내 번호를 오름차순으로 정렬한다 (sortAscendingLotto)
 
 ### Number
 
