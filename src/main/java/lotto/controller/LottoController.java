@@ -14,14 +14,12 @@ import lotto.validation.InputMoneyValidator;
 import java.util.List;
 
 public class LottoController {
-    private final InputView inputView;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
     private final InputMoneyValidator inputMoneyValidator;
     private final LottoStatisticsCalculator calculateResult;
 
     public LottoController() {
-        this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoMachine = new LottoMachine();
         this.inputMoneyValidator = new InputMoneyValidator();
@@ -48,7 +46,7 @@ public class LottoController {
 
     private int untilValidPurchaseMoney() {
         try {
-            return inputMoneyValidator.validate(Parser.parseNumber(inputView.readInputLine()));
+            return inputMoneyValidator.afterParseValidate(Parser.parseNumber(InputView.readInputLine()));
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             return (untilValidPurchaseMoney());
@@ -57,7 +55,7 @@ public class LottoController {
 
     private Lotto untilValidWinningNumber() {
         try {
-            return new Lotto(Splitter.splitWinningNumbers(inputView.readInputLine()));
+            return new Lotto(Splitter.splitWinningNumbers(InputView.readInputLine()));
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             return (untilValidWinningNumber());
@@ -66,7 +64,7 @@ public class LottoController {
 
     private BonusBall untilValidBonusBall(Lotto winningNumbers) {
         try {
-            return new BonusBall(Parser.parseNumber(inputView.readInputLine()), winningNumbers.getNumbers());
+            return new BonusBall(Parser.parseNumber(InputView.readInputLine()), winningNumbers.getNumbers());
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             return (untilValidBonusBall(winningNumbers));
