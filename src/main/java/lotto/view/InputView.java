@@ -28,7 +28,7 @@ public class InputView {
             throw new IllegalArgumentException(ExceptionConstant.CONTAINS_INVALID_CHARACTER);
         }
         int bonus = Integer.parseInt(bonusNumber);
-        if (bonus < LottoConstant.LOTTO_NUMBER_MIN || bonus > LottoConstant.LOTTO_NUMBER_MAX){
+        if (bonus < LottoConstant.LOTTO_NUMBER_MIN || bonus > LottoConstant.LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ExceptionConstant.NUMBER_VALID_RANGE);
         }
         return bonus;

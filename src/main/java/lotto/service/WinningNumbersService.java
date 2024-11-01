@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,16 +15,18 @@ public class WinningNumbersService {
         inputValidate(input);
         return new WinningNumbers(convertToIntegerList(input));
     }
+
     private List<Integer> convertToIntegerList(String input) {
         return Arrays.stream(input.split(LottoConstant.LOTTO_NUMBER_INPUT_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-    private void inputValidate(String input){
-        if (input == null || input.isEmpty()){
+
+    private void inputValidate(String input) {
+        if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(ExceptionConstant.NULL_OR_EMPTY);
         }
-        if (!input.contains(LottoConstant.LOTTO_NUMBER_INPUT_DELIMITER)){
+        if (!input.contains(LottoConstant.LOTTO_NUMBER_INPUT_DELIMITER)) {
             throw new IllegalArgumentException("[ERROR] 구분자를 입력해주시기 바랍니다.");
         }
         if (input.endsWith(LottoConstant.LOTTO_NUMBER_INPUT_DELIMITER)) {
@@ -33,8 +34,8 @@ public class WinningNumbersService {
         }
         boolean allNumbers = Arrays.stream(input.split(LottoConstant.LOTTO_NUMBER_INPUT_DELIMITER))
                 .allMatch(str -> str.matches("\\d+"));
-        if (!allNumbers){
-            throw  new IllegalArgumentException(ExceptionConstant.CONTAINS_INVALID_CHARACTER);
+        if (!allNumbers) {
+            throw new IllegalArgumentException(ExceptionConstant.CONTAINS_INVALID_CHARACTER);
         }
     }
 

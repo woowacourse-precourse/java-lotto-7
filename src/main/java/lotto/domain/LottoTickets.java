@@ -20,6 +20,7 @@ public class LottoTickets {
             throw new IllegalArgumentException("[ERROR] 정상적으로 로또 번호가 생성되지 못하였습니다.");
         }
     }
+
     public Stream<Lotto> streamLotto() {
         return tickets.stream();
     }

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import lotto.constant.ExceptionConstant;
-import lotto.constant.InputConstant;
 import lotto.constant.LottoConstant;
 
 public class WinningNumbers {
@@ -32,10 +31,13 @@ public class WinningNumbers {
     }
 
     public int calculateMatchingCount(Lotto lotto) {
-        Set<Integer> primarySet = new HashSet<>(primaryNumbers);
-        return (int) lotto.streamNumbers()
+        List<Integer> x = this.primaryNumbers;
+        Set<Integer> primarySet = new HashSet<>(x);
+        int a = (int) lotto.streamNumbers()
                 .filter(primarySet::contains)
                 .count();
+
+        return a;
     }
 
     @Override

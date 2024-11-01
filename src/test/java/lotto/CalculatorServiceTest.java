@@ -28,7 +28,7 @@ public class CalculatorServiceTest {
     }
 
     @Test
-    void 당첨복권_갯수_추가(){
+    void 당첨복권_갯수_추가() {
         String input = "1,2,3,4,7,8";
         int bonus = 9;
         Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
@@ -45,7 +45,7 @@ public class CalculatorServiceTest {
     }
 
     @Test
-    void 수익_계산(){
+    void 수익_계산() {
         String input = "1,2,3,4,7,8";
         int bonus = 9;
         Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));

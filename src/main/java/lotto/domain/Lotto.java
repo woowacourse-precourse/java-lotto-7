@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +20,8 @@ public class Lotto {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ExceptionConstant.NUMBER_COUNT);
         }
-        boolean allInRange = numbers.stream()
-                .allMatch(n -> n >= LottoConstant.LOTTO_NUMBER_MIN && n <= LottoConstant.LOTTO_NUMBER_MAX);
+        boolean allInRange = numbers.stream().
+                allMatch(n -> n >= LottoConstant.LOTTO_NUMBER_MIN && n <= LottoConstant.LOTTO_NUMBER_MAX);
         if (!allInRange) {
             throw new IllegalArgumentException(ExceptionConstant.NUMBER_VALID_RANGE);
         }
@@ -38,9 +37,7 @@ public class Lotto {
 
     public void lottoNumbersPrint() {
         String result = "[" +
-                this.numbers.stream().
-                        map(String::valueOf).
-                        collect(Collectors.joining(", "))
+                this.numbers.stream().map(String::valueOf).collect(Collectors.joining(", "))
                 + "]";
         System.out.println(result);
     }

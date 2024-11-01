@@ -26,8 +26,9 @@ public class WinningNumbersServiceTest {
     void 로또_랭크_체크() {
         String input = "1,2,3,4,5,6";
         int bonus = 7;
-        LottoRank expect = LottoRank.FIFTH;
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
+        LottoRank expect = LottoRank.NONE;
+        Lotto lotto = new Lotto(List.of(1, 8, 11, 31, 41, 42));
+
         WinningNumbersService winningNumbersService = new WinningNumbersService();
 
         WinningNumbers winningNumbers = winningNumbersService.createWinningNumbers(input);

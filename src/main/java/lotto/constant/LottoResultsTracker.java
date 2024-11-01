@@ -17,7 +17,7 @@ public class LottoResultsTracker {
         rankCounts.put(rank, rankCounts.get(rank) + 1);
     }
 
-    public int getRankCount(LottoRank rank){
+    public int getRankCount(LottoRank rank) {
         return this.rankCounts.get(rank);
     }
 }

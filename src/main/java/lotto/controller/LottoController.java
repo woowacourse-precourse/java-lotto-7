@@ -17,8 +17,6 @@ public class LottoController {
         int bonusNumber = inputBonusNumber();
         LottoResultsTracker lottoResultsTracker = getLottoResultstracker(lottoTickets, winningNumbers, bonusNumber);
         OutputView.LottoResultOutcome(lottoResultsTracker);
-        getLottoResultstracker(lottoTickets, winningNumbers, bonusNumber);
-        OutputView.LottoResultOutcome(lottoResultsTracker);
     }
 
     private LottoTickets buyLottoAndPrintTickets() {
@@ -33,29 +31,30 @@ public class LottoController {
             return buyLottoAndPrintTickets();
         }
     }
-    private WinningNumbers inputWinningNumbers(){
+
+    private WinningNumbers inputWinningNumbers() {
         WinningNumbersService winningNumbersService = new WinningNumbersService();
         String winningNumbers = InputView.inputPrimaryNumber();
         try {
             return winningNumbersService.createWinningNumbers(winningNumbers);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNumbers();
         }
     }
 
-    private int inputBonusNumber(){
+    private int inputBonusNumber() {
         try {
             return InputView.inputBonusNumber();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNumber();
         }
     }
 
-    private LottoResultsTracker getLottoResultstracker(LottoTickets lotto, WinningNumbers winningNumbers, int bonus){
+    private LottoResultsTracker getLottoResultstracker(LottoTickets lotto, WinningNumbers winningNumbers, int bonus) {
         CalculatorService calculatorService = new CalculatorService(new WinningNumbersService());
-        return calculatorService.calculateRankForWinningLotto(lotto, winningNumbers,bonus);
+        return calculatorService.calculateRankForWinningLotto(lotto, winningNumbers, bonus);
     }
 
 }

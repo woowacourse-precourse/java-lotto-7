@@ -14,14 +14,15 @@ public class CalculatorService {
     }
 
     public String profitCalculate(double lottoPrice, double profit) {
-        if (profit == 0){
+        if (profit == 0) {
             return "0%";
         }
         double rateOfReturn = profit / lottoPrice * 100;
         return String.format("%.1f%%", rateOfReturn);
     }
 
-    public LottoResultsTracker calculateRankForWinningLotto(LottoTickets lottoTickets, WinningNumbers winningNumbers, int bonus){
+    public LottoResultsTracker calculateRankForWinningLotto(LottoTickets lottoTickets, WinningNumbers winningNumbers,
+                                                            int bonus) {
         LottoResultsTracker lottoResultsTracker = new LottoResultsTracker();
         lottoTickets.streamLotto()
                 .forEach(lotto -> {
@@ -31,7 +32,7 @@ public class CalculatorService {
         return lottoResultsTracker;
     }
 
-    public double getProfit(LottoResultsTracker lottoResultsTracker){
+    public double getProfit(LottoResultsTracker lottoResultsTracker) {
         return Arrays.stream(LottoRank.values()).
                 mapToDouble(rank -> rank.prize * lottoResultsTracker.getRankCount(rank)).
                 reduce(0, Double::sum);
