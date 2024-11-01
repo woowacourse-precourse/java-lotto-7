@@ -3,11 +3,12 @@ package lotto.service;
 import java.util.List;
 import lotto.domain.WinningLotto;
 import lotto.utils.parser.Parser;
+import lotto.utils.validator.ComparisonValidator;
 import lotto.utils.validator.Validator;
 
 public class LottoResultServiceImpl implements LottoResultService {
     private final Validator<String> winningNumbersValidator;
-    private final Validator<String> bonusNumberValidator;
+    private final ComparisonValidator bonusNumberValidator;
     private final Parser<List<Integer>> stringToIntListParser;
     private final Parser<Integer> stringToIntParser;
     private List<Integer> winningNumbers;
@@ -15,7 +16,7 @@ public class LottoResultServiceImpl implements LottoResultService {
     private WinningLotto winningLotto;
 
     public LottoResultServiceImpl(Validator<String> winningNumbersValidator
-            , Validator<String> bonusNumberValidator
+            , ComparisonValidator bonusNumberValidator
             , Parser<List<Integer>>  stringToIntListParser
             , Parser<Integer> stringToIntParser) {
         this.winningNumbersValidator = winningNumbersValidator;
@@ -34,8 +35,10 @@ public class LottoResultServiceImpl implements LottoResultService {
 
     @Override
     public void receiveBonusNumber(String rawBonusNumber) {
-        bonusNumberValidator.validate(rawBonusNumber);
+        bonusNumberValidator.validateWithComparison(rawBonusNumber,winningNumbers);
         bonusNumber = stringToIntParser.parse(rawBonusNumber);
+
+        buildWinningLotto();
 
     }
 

@@ -1,6 +1,7 @@
 package lotto.config;
 
 import lotto.utils.validator.BonusNumberValidator;
+import lotto.utils.validator.ComparisonValidator;
 import lotto.utils.validator.LottoNumberValidator;
 import lotto.utils.validator.PositiveIntValidator;
 import lotto.utils.validator.PurchaseAmountValidator;
@@ -25,7 +26,7 @@ public class ValidatorConfig {
         return new WinningNumbersValidator(positiveIntValidator(), lottoNumberValidator());
     }
 
-    public Validator<String> BonusNumberValidator(){
+    public ComparisonValidator BonusNumberValidator(){
         return new BonusNumberValidator(positiveIntValidator(), lottoNumberValidator());
     }
 }
