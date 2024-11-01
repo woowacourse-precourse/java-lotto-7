@@ -12,4 +12,8 @@ public class ErrorMessage {
     public static final String INVALID_MONEY = "1,000원 단위로 입력해 주세요";
     public static final String INVALID_PRICE = "금액은 숫자로만 입력해 주세요";
     public static final String INVALID_BOUNS_NUMBER = "보너스 번호는 숫자만 입력해 주세요";
+
+    private ErrorMessage() {
+
+    }
 }
