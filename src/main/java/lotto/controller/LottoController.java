@@ -26,9 +26,9 @@ public class LottoController {
      * Error는 사용자의 입력이 동반 된 작업에만 발생할 수 있습니다.
      * 따라서, ErrorCatcher는 사용자의 입력을 받는 경우에만 적용됩니다.
      */
-    public void play(){
+    public void play() {
         int inputPrice = ErrorCatcher(inputManger::getInputPrice);
-        int lottoBuyAmount = inputPrice/ LottoRule.LOTTO_PRICE.getInstance();
+        int lottoBuyAmount = inputPrice / LottoRule.LOTTO_PRICE.getInstance();
 
         lottoMachine.buyNumberOfLottos(lottoBuyAmount);
         LottosDto lottosDto = lottoMachine.getLottos();
@@ -37,7 +37,7 @@ public class LottoController {
         Lotto winningComponents = ErrorCatcher(inputManger::getInputWinningComponent);
         BonusComponent bonusComponent = ErrorCatcher(() -> inputManger.getInputBonusComponent(winningComponents));
 
-        ScoreDto scoreDto = lottoMachine.getScore(winningComponents,bonusComponent);
+        ScoreDto scoreDto = lottoMachine.getScore(winningComponents, bonusComponent);
         outputView.printScoreResult(scoreDto);
     }
 
