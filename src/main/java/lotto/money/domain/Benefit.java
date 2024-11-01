@@ -1,6 +1,5 @@
-package lotto.lotto.winning.domain;
+package lotto.money.domain;
 
-import lotto.money.domain.Money;
 import java.text.DecimalFormat;
 
 public class Benefit {

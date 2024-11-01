@@ -2,6 +2,7 @@ package lotto.lotto.winning.domain;
 
 import lotto.lotto.domain.Lotto;
 import lotto.lotto.domain.LottoTickets;
+import lotto.money.domain.Benefit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

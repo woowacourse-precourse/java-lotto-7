@@ -4,7 +4,7 @@ import lotto.buyer.domain.Buyer;
 import lotto.money.domain.Money;
 import lotto.lotto.domain.LottoMachine;
 import lotto.lotto.domain.LottoTickets;
-import lotto.lotto.winning.domain.Benefit;
+import lotto.money.domain.Benefit;
 import lotto.lotto.winning.domain.BonusNumber;
 import lotto.lotto.winning.domain.WinningAmountCalculator;
 import lotto.lotto.winning.domain.WinningLotto;

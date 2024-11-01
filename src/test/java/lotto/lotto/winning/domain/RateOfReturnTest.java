@@ -1,5 +1,6 @@
 package lotto.lotto.winning.domain;
 
+import lotto.money.domain.Benefit;
 import lotto.money.domain.Money;
 import lotto.money.infrastructure.PurchaseAmount;
 import lotto.lotto.domain.Lotto;
