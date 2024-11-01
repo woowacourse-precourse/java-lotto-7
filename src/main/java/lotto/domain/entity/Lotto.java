@@ -1,6 +1,6 @@
 package lotto.domain.entity;
 
-import static lotto.common.exception.ErrorMessages.ERROR_PREFIX;
+import static lotto.common.exception.ErrorMessages.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,11 +41,19 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateLength(numbers);
+        validateDuplicate(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LENGTH) {
             throw new IllegalArgumentException(INCORRECT_LENGTH);
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        int size = (int)numbers.stream().distinct().count();
+        if (size != LENGTH) {
+            throw new IllegalArgumentException(String.valueOf(DUPLICATED));
         }
     }
 

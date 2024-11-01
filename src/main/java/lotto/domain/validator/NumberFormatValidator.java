@@ -1,14 +1,27 @@
 package lotto.domain.validator;
 
-import static lotto.common.exception.ErrorMessages.MUST_BE_WHOLE_NUMBER;
+import static lotto.common.exception.ErrorMessages.*;
 
 public class NumberFormatValidator implements InputValidator {
     private static final String NUMBER_REGULAR_EXPRESSION = "^[0-9]*$";
+    private static final int NUMBER_ONE = 1;
 
     @Override
     public void validate(String input) {
-        if (!input.trim().matches(NUMBER_REGULAR_EXPRESSION)) {
+        validateNumber(input);
+        validatePositive(input);
+    }
+
+    public void validateNumber(String input) {
+        if (!input.trim().matches(NUMBER_REGULAR_EXPRESSION) || input.trim().isEmpty()) {
             throw new IllegalArgumentException(MUST_BE_WHOLE_NUMBER.toString());
+        }
+    }
+
+    public void validatePositive(String input) {
+        int i = Integer.parseInt(input.trim());
+        if (i < NUMBER_ONE) {
+            throw new IllegalArgumentException(MUST_BE_POSITIVE_NUMBER.toString());
         }
     }
 }
