@@ -17,4 +17,12 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
+
+    public List<String> getStringNumbers() {
+        List<String> stringNumbers = new ArrayList<>();
+        for (Integer number : numbers) {
+            stringNumbers.add(Integer.toString(number));
+        }
+        return stringNumbers;
+    }
 }
