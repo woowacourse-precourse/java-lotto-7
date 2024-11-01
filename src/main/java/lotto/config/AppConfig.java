@@ -9,6 +9,7 @@ import lotto.dto.LottosDto;
 import lotto.service.DtoMapper;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoPurchaseServiceImpl;
+import lotto.utils.validator.Validator;
 import lotto.view.input.ConsoleInputView;
 import lotto.view.input.InputView;
 import lotto.view.output.ConsoleOutputView;
@@ -37,8 +38,8 @@ public class AppConfig implements Config{
 
     public LottoPurchaseService lottoPurchaseService() {
         DtoMapper<Lottos, LottosDto> lottosDtoMapper = dtoMapperConfig.lottosDtoMapper();
-
-        return new LottoPurchaseServiceImpl(lottoFactory(),lottosDtoMapper);
+        Validator<String> purchaseAmountValidator = validatorConfig.purchaseAmountValidator();
+        return new LottoPurchaseServiceImpl(lottoFactory(),lottosDtoMapper,purchaseAmountValidator);
     }
 
 }

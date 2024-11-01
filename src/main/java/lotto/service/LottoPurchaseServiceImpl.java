@@ -5,18 +5,18 @@ import static lotto.constants.LottoConstants.LOTTO_PRICE;
 import lotto.domain.LottoFactory;
 import lotto.domain.Lottos;
 import lotto.dto.LottosDto;
-import lotto.utils.validator.PurchaseAmountValidator;
+import lotto.utils.validator.Validator;
 
 public class LottoPurchaseServiceImpl implements LottoPurchaseService {
     private final DtoMapper<Lottos, LottosDto> lottosDtoMapper;
     private final LottoFactory defaultLottoFactory;
-    private final PurchaseAmountValidator purchaseAmountValidator;
+    private final Validator<String> purchaseAmountValidator;
     private Lottos lottos;
 
     public LottoPurchaseServiceImpl(
             LottoFactory defaultLottoFactory
             , DtoMapper<Lottos, LottosDto> lottosDtoMapper
-            , PurchaseAmountValidator purchaseAmountValidator) {
+            , Validator<String> purchaseAmountValidator) {
 
         this.defaultLottoFactory = defaultLottoFactory;
         this.lottosDtoMapper = lottosDtoMapper;
