@@ -18,7 +18,8 @@ public class Parser {
         List<Integer> parsedInputs = new ArrayList<>();
         List<String> separatedInputs = separateBySeparator(inputs);
         for (String input : separatedInputs) {
-            Integer convertedInput = convertStringToInteger(input);
+            String trimmedInput = trimWhitespace(input);
+            Integer convertedInput = convertStringToInteger(trimmedInput);
             parsedInputs.add(convertedInput);
         }
         return parsedInputs;
