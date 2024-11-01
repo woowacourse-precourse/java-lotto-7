@@ -1,10 +1,15 @@
 package lotto.Controller;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.Model.Lotto;
+import lotto.Model.Rank;
+import lotto.Model.Result;
 import lotto.Utils;
+import lotto.View.OutputView;
 
 public class LottoController {
     private int lottoAmount;
@@ -18,6 +23,15 @@ public class LottoController {
         displayLottos();
         setWinningNums();
         setBonusNum();
+        calculateWinning();
+    }
+
+    private void calculateWinning() {
+        OutputView.printResult();
+        Result result = new Result();
+        result.compareLottos(lottos,winningNums,bonusNum);
+        result.calcRevenue(lottoAmount);
+
     }
 
     private void setWinningNums() {

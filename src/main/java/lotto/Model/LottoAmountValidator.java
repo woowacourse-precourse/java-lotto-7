@@ -25,7 +25,7 @@ public class LottoAmountValidator {
     private void validateContainsString(){
         try{
             this.parsedAmountOfLotto = Integer.parseInt(this.amountOfLottoBeforeValidate);
-        }catch (Exception e){
+        }catch (IllegalArgumentException e){
             System.out.println(Constants.LOTTO_AMOUNT_CONTAINS_STRING_ERROR);
             throw new IllegalArgumentException(Constants.LOTTO_AMOUNT_CONTAINS_STRING_ERROR);
         }

@@ -30,8 +30,12 @@ public class Lotto {
     public void printLotto() {
         System.out.print("[");
         System.out.print(numbers.stream()
+                        .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ")));
         System.out.println("]");
+    }
+    public List<Integer> getNumbers(){
+        return this.numbers;
     }
 }
