@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoManager;
 import lotto.domain.LottoResultFormatter;
+import lotto.utils.ParseUtils;
 import lotto.utils.RandomNumbersSelector;
 
 import java.util.List;
@@ -30,6 +31,11 @@ public class LottoService {
         return lottoResultFormatter.formatLottoNumbers(lottoManager.getLottos());
     }
 
+    public List<Integer> parseWinNumbers(String winNumbers) {
+        String[] deletedWinNumbers  = winNumbers.split(",");
+        List<String> trimmedWinNumbers = ParseUtils.removeWhitespace(deletedWinNumbers);
+        return ParseUtils.convertToNumbers(trimmedWinNumbers);
+    }
 
     public int calculateBuyLottoCount(int buyLottoMoney) {
         int lottoCount = buyLottoMoney / 1000;
