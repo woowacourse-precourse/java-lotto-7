@@ -3,8 +3,8 @@ package lotto.model;
 import static lotto.constants.ExceptionMessage.DUPLICATE_BONUS_NUMBER;
 import static lotto.constants.ExceptionMessage.INVALID_RANGE;
 
-import static lotto.constants.Constants.MIN_LOTTO_NUMBER;
-import static lotto.constants.Constants.MAX_LOTTO_NUMBER;
+import static lotto.constants.LottoConfig.MIN_LOTTO_NUMBER;
+import static lotto.constants.LottoConfig.MAX_LOTTO_NUMBER;
 
 import java.util.List;
 

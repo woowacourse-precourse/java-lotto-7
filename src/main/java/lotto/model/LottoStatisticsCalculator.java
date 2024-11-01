@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.List;
 import lotto.constants.PrizeType;
 
-public class CalculateResult {
+public class LottoStatisticsCalculator {
     private final int PLACE_OF_1ST = 6;
     private final int PLACE_OF_2ST = 5;
     private final int PLACE_OF_3ST = 4;

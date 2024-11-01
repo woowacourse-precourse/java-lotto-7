@@ -1,7 +1,7 @@
 package lotto.validation;
 
-import static lotto.constants.Constants.AMOUNT_UNIT;
-import static lotto.constants.Constants.ZERO;
+import static lotto.constants.LottoConfig.AMOUNT_UNIT;
+import static lotto.constants.LottoConfig.ZERO;
 
 import static lotto.constants.ExceptionMessage.INVALID_AMOUNT_UNIT;
 

@@ -3,9 +3,9 @@ package lotto.model;
 import static lotto.constants.ExceptionMessage.INVALID_WINNING_NUMBERS;
 import static lotto.constants.ExceptionMessage.INVALID_RANGE;
 
-import static lotto.constants.Constants.MIN_LOTTO_NUMBER;
-import static lotto.constants.Constants.MAX_LOTTO_NUMBER;
-import static lotto.constants.Constants.LOTTO_NUMBER_SIZE;
+import static lotto.constants.LottoConfig.MIN_LOTTO_NUMBER;
+import static lotto.constants.LottoConfig.MAX_LOTTO_NUMBER;
+import static lotto.constants.LottoConfig.LOTTO_NUMBER_SIZE;
 
 import java.util.HashSet;
 import java.util.List;

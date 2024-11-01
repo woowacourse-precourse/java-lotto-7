@@ -25,7 +25,7 @@ class CalculateResultTest {
                 Arrays.asList(1, 2, 8, 9, 10, 11) // 꽝
         );
 
-        CalculateResult calculateResult = new CalculateResult();
+        LottoStatisticsCalculator calculateResult = new LottoStatisticsCalculator();
 
         int[] results = calculateResult.calculateStatistics(winningNumbers, bonusNumber, userLottoNumbers);
 

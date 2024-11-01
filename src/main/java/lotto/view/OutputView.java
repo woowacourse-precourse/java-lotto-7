@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.constants.Constants.ONE_HUNDRED;
+import static lotto.constants.LottoConfig.ONE_HUNDRED;
 
 import java.util.List;
 import lotto.constants.PrizeType;

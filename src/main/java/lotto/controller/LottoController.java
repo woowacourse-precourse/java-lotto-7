@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 import lotto.model.LottoMachine;
 import lotto.model.BonusBall;
 import lotto.model.Lotto;
-import lotto.model.CalculateResult;
+import lotto.model.LottoStatisticsCalculator;
 import lotto.validation.InputMoneyValidator;
 
 import java.util.List;
@@ -18,14 +18,14 @@ public class LottoController {
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
     private final InputMoneyValidator inputMoneyValidator;
-    private final CalculateResult calculateResult;
+    private final LottoStatisticsCalculator calculateResult;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoMachine = new LottoMachine();
         this.inputMoneyValidator = new InputMoneyValidator();
-        this.calculateResult = new CalculateResult();
+        this.calculateResult = new LottoStatisticsCalculator();
     }
 
     public void playLotto() {
