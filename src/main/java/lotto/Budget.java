@@ -5,7 +5,7 @@ public class Budget {
     private static final String ERROR_BUDGET_INVALID_UNIT = "[ERROR] 금액은 1000원 단위여야 합니다.";
     private static final long LOTTO_PRICE = 1000;
 
-    private Long amount;
+    private final Long amount;
 
     private Budget(Long amount) {
         this.amount = amount;
