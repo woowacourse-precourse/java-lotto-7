@@ -1,8 +1,9 @@
 package lotto.controller;
 
 
-import java.util.Map;
-import lotto.domain.LottoRank;
+import java.util.List;
+import java.util.function.Predicate;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoStore;
 import lotto.domain.Numbers;
@@ -14,37 +15,72 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
+        Price purchasePrice = getPurchasePrice();
+        OutputView.printPurchasedLottoAmount(purchasePrice.getLottoAmount());
 
-        Price purchasePrice = new Price(InputView.inputPurchasePrice());
+        List<Lotto> purchasedLottos = getPurchasedLottos(purchasePrice);
+        OutputView.printPurchasedLottoNumbers(purchasedLottos);
 
-        LottoStore lottoStore = new LottoStore();
-        lottoStore.buyLotto(purchasePrice);
-
-        System.out.println();
-        OutputView.printPurchasedLottoAmount(lottoStore.getPurchasedLottos().size());
-        OutputView.printPurchasedLottoNumbers(lottoStore.getPurchasedLottos());
-        System.out.println();
-
-        Numbers winNumbers = new Numbers(InputView.inputWinNumbers());
-        System.out.println();
-
-        Number bonusNumber = new Number(InputView.inputBonusNumber());
-        System.out.println();
-
-        if (winNumbers.contains(bonusNumber)) return ;//보너스 관련 로직 추가 필요;
+        Numbers winNumbers = getWinNumbers();
+        Number bonusNumber = getBonusNumber(winNumbers);
 
         LottoResult lottoResult = new LottoResult();
-        lottoResult.calculateLottoResult(lottoStore.getPurchasedLottos(), winNumbers, bonusNumber);
-        lottoResult.calculateProfitRate(purchasePrice);
-
-        Map<LottoRank, Integer> lottoResultDetail = lottoResult.getLottoResult();
+        calculateLottoResult(lottoResult, purchasedLottos, winNumbers, bonusNumber);
+        calculateProfitRate(lottoResult, purchasePrice);
 
         OutputView.printWinStatistics();
-        lottoResultDetail.forEach((k, v) -> {
-            OutputView.printWinStatisticsDetail(k.getMessage(), v);
+
+        lottoResult.getLottoResult().forEach((result, count) -> {
+            OutputView.printWinStatisticsDetail(result.getMessage(), count);
         });
 
         OutputView.printProfitRate(lottoResult.getProfitRate());
     }
 
+    private Price getPurchasePrice() {
+        try {
+            return new Price(InputView.inputPurchasePrice());
+        } catch (IllegalArgumentException e) {
+            getPurchasePrice();
+        }
+        return null;
+    }
+
+    private List<Lotto> getPurchasedLottos(Price price) {
+        LottoStore lottoStore = new LottoStore();
+        try {
+            return lottoStore.buyLotto(price.getLottoAmount());
+        } catch (IllegalArgumentException e) {
+            getPurchasedLottos(price);
+        }
+        return null;
+    }
+
+    private Numbers getWinNumbers() {
+        try {
+            return new Numbers(InputView.inputWinNumbers());
+        } catch (IllegalArgumentException e) {
+            getWinNumbers();
+        }
+        return null;
+    }
+
+    private Number getBonusNumber(Numbers winNumbers) {
+        try {
+            Number bonusNumber = new Number(InputView.inputBonusNumber());
+            if (winNumbers.contains(bonusNumber)) throw new IllegalArgumentException();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            getBonusNumber(winNumbers);
+        }
+        return null;
+    }
+
+    private void calculateLottoResult(LottoResult lottoResult, List<Lotto> lottos, Numbers winNumbers, Number bonusNumber) {
+        lottoResult.calculateLottoResult(lottos, winNumbers, bonusNumber);
+    }
+
+    private void calculateProfitRate(LottoResult lottoResult, Price purchasePrice) {
+        lottoResult.calculateProfitRate(purchasePrice);
+    }
 }

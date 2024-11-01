@@ -41,8 +41,11 @@ public class Price {
         if (price < MIN_PRICE || price > MAX_PRICE) throw new IllegalArgumentException(priceRangeErrorMessage);
     }
 
-
     public int value() {
         return price;
+    }
+
+    public int getLottoAmount() {
+        return price / MIN_PRICE;
     }
 }
