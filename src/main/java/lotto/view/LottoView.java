@@ -10,6 +10,7 @@ import lotto.domain.LottoBundle;
 import lotto.domain.LottoProfit;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
+import lotto.error.LottoError;
 
 public class LottoView {
     private static final String LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE = "구입금액을 입력해 주세요.";
@@ -20,10 +21,17 @@ public class LottoView {
     private static final String LOTTO_BONUS_NUMBER_REQUEST_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String LOTTO_PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private final LottoInputValidator lottoInputValidator;
 
-    public String requestLottoPurchasePrice() {
+    public LottoView(LottoInputValidator lottoInputValidator){
+        this.lottoInputValidator = lottoInputValidator;
+    }
+
+    public int requestLottoPurchasePrice() {
         System.out.println(LOTTO_PURCHASE_PRICE_REQUEST_MESSAGE);
-        return input();
+        String lottoPurchasePrice = input();
+        lottoInputValidator.validateLottoPurchasePrice(lottoPurchasePrice);
+        return parseInt(lottoPurchasePrice);
     }
 
     public String requestLottoWinningNumbers() {
@@ -48,6 +56,15 @@ public class LottoView {
 
     private String input() {
         return Console.readLine();
+    }
+
+    private int parseInt(String number){
+        try{
+            return Integer.parseInt(number);
+        }
+        catch (NumberFormatException e){
+            throw new IllegalArgumentException(LottoError.INVALID_NUMBER.getMessage());
+        }
     }
 
     private void printLottos(List<Lotto> lottos) {

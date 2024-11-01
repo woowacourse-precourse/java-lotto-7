@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
+import lotto.domain.LottoPurchasePrice;
 import org.junit.jupiter.api.Test;
 
 public class LottoGeneratorTest {
@@ -25,24 +26,23 @@ public class LottoGeneratorTest {
         List<Integer> randomNumbers = List.of(1, 2, 3, 4, 5, 6);
         int lottoCount = 1;
 
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
-                    LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(lottoCount * LOTTO_PRICE);
+        assertRandomUniqueNumbersInRangeTest(() -> {
+            LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(
+                    LottoPurchasePrice.from(lottoCount * LOTTO_PRICE));
 
-                    assertThat(lottoBundle.getLottos().getFirst())
-                            .extracting("numbers")
-                            .usingRecursiveComparison()
-                            .isEqualTo(randomNumbers);
-                },
-                randomNumbers
-        );
+            assertThat(lottoBundle.getLottos().getFirst())
+                    .extracting("numbers")
+                    .usingRecursiveComparison()
+                    .isEqualTo(randomNumbers);
+        }, randomNumbers);
     }
 
     @Test
     public void 로또_발행_갯수_테스트() {
         int lottoCount = 100;
 
-        LottoBundle lottoBundle = lottoGenerator.generateLottoBundle(lottoCount * LOTTO_PRICE);
+        LottoBundle lottoBundle = lottoGenerator
+                .generateLottoBundle(LottoPurchasePrice.from(lottoCount * LOTTO_PRICE));
 
         assertThat(lottoBundle.getLottos().size()).isEqualTo(lottoCount);
     }

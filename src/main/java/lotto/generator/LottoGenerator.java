@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
+import lotto.domain.LottoPurchasePrice;
 
 public class LottoGenerator {
 
@@ -21,13 +22,11 @@ public class LottoGenerator {
         this.lottoNumberCount = lottoNumberCount;
     }
 
-    public LottoBundle generateLottoBundle(int lottoPurchasePrice){
-        return LottoBundle.from(generateLottos(lottoPurchasePrice), lottoPrice);
+    public LottoBundle generateLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
+        return LottoBundle.from(generateLottos(lottoPurchasePrice.getLottoCount()), lottoPrice);
     }
 
-    private List<Lotto> generateLottos(int lottoPurchasePrice) {
-        int lottoCount = lottoPurchasePrice / lottoPrice;
-
+    private List<Lotto> generateLottos(int lottoCount) {
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> new Lotto(generateRandomNumbers()))
                 .collect(Collectors.toList());
