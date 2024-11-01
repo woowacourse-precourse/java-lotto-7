@@ -7,19 +7,19 @@ public class MoneyInputHandler {
   private static final String NUMBER_ERROR_MESSAGE = "[ERROR] 구입금액이 올바르지 않습니다. 다시 입력해 주시기 바랍니다.";
   private static final String MONEY_RANGE_ERROR_MESSAGE = "[ERROR] 천원 이상이거나, 1000으로 나누어 떨어지는 금액으로 다시 입력해 주시기 바랍니다.";
 
-  public int getMoney(){
+  public int getMoney() {
     int myMoney = -1;
     System.out.println(MONEY_MESSAGE);
-    while(true){
+    while (true) {
       myMoney = validator(Console.readLine());
-      if(myMoney > -1){
+      if (myMoney > -1) {
         break;
       }
     }
     return myMoney;
   }
 
-  private int validator(String input){
+  private int validator(String input) {
     try {
       Integer.parseInt(input);
       validatePriceRange(input);
@@ -32,8 +32,8 @@ public class MoneyInputHandler {
     return -1;
   }
 
-  private void validatePriceRange(String input){
-    if(Integer.parseInt(input) % 1000 != 0 || Integer.parseInt(input) < 1000){
+  private void validatePriceRange(String input) {
+    if (Integer.parseInt(input) % 1000 != 0 || Integer.parseInt(input) < 1000) {
       throw new ArithmeticException(MONEY_RANGE_ERROR_MESSAGE);
     }
   }
