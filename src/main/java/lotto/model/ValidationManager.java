@@ -3,8 +3,9 @@ package lotto.model;
 public class ValidationManager {
 
     private final String NON_NUMERIC_ERROR = "[ERROR] 숫자 이외의 한글,알파벳,특수문자 등을 허용하지 않습니다.";
-    private final String EMPTY_INPUT_ERROR = "[ERROR] 빈문자열입니다. 다시 입력해주세요.";
-    private final String NOT_DIVISIBLE_BY_THOUSAND_ERROR = "[ERROR] 1000원 단이가 아닙니다. 다시 입력해주세요.";
+    private final String EMPTY_INPUT_ERROR = "[ERROR] 입력이 되지 않았습니다.";
+    private final String NOT_DIVISIBLE_BY_THOUSAND_ERROR = "[ERROR] 로또의 금액이 1000원 단위가 아닙니다.";
+    private final String LOTTO_DELIMITER_COMMA_ERROR = "[ERROR] 로또 번호는 (2,3,4,5) 이런 형태로 숫자와 쉼표가 번갈아 입력되어 구분되어야합니다.";
     private final int amountDivisor = 1000;
 
     public boolean isNumber(String userInput) {
@@ -26,6 +27,13 @@ public class ValidationManager {
             return true;
         }
         throw new IllegalArgumentException(NOT_DIVISIBLE_BY_THOUSAND_ERROR);
+    }
+
+    public boolean isNumbersDividedByComma(String userInput) {
+        if (userInput.matches("\\\\d{1,2}(,\\\\d{1,2})*")) {
+            return true;
+        }
+        throw new IllegalArgumentException(LOTTO_DELIMITER_COMMA_ERROR);
     }
 
 }

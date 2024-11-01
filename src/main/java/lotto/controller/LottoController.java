@@ -48,11 +48,12 @@ public class LottoController {
 
         while (!validInput) {
             try {
-                outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
+                outputView.printRequest(OutputView.REQUEST_NUMBER_MESSAGE);
                 lottoInput = inputView.readInput();
 
                 validationManager.isEmptyInput(lottoInput);
-                validInput = validationManager.isNumber(lottoInput);
+                validationManager.isNumbersDividedByComma(lottoInput);
+
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
