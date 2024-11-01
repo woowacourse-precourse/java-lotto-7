@@ -3,7 +3,7 @@ package lotto;
 public class Money {
     public static long buy(String moneyText){
         if (!moneyText.matches("\\d+")) {
-            throw new IllegalArgumentException("입력 값은 숫자만 포함해야 합니다.");
+            throw new IllegalArgumentException("로또 구입 금액 값은 숫자만 포함해야 합니다.");
         }
         long money = Long.parseLong(moneyText);
         if (money%1000 != 0){
