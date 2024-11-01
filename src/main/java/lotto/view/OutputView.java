@@ -29,7 +29,7 @@ public class OutputView {
                     PRIZE_DETAIL,
                     winner.getMatchCount(),
                     winner.getPrizeMoney(),
-                    dto.result().getOrDefault(winner.getRank(), 0)
+                    dto.prizeMatchResults().getOrDefault(winner.getRank(), 0)
             );
         });
     }

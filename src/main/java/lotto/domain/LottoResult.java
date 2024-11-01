@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
-    private final Map<Integer, Integer> result;
+    private final Map<Integer, Integer> prizeMatchResults;
     private final int count;
 
     public LottoResult(int count) {
-        this.result = new HashMap<>();
+        this.prizeMatchResults = new HashMap<>();
         this.count = count;
     }
 
@@ -29,19 +29,22 @@ public class LottoResult {
             if (isBonusMatched) {
                 key = SECOND_WINNER.getRank();
             }
-            result.put(key, result.getOrDefault(key, 0) + 1);
+            prizeMatchResults.put(key, prizeMatchResults.getOrDefault(key, 0) + 1);
         } else if (matchCount == THIRD_WINNER.getMatchCount()) {
-            result.put(THIRD_WINNER.getRank(), result.getOrDefault(THIRD_WINNER.getRank(), 0) + 1);
+            prizeMatchResults.put(THIRD_WINNER.getRank(),
+                    prizeMatchResults.getOrDefault(THIRD_WINNER.getRank(), 0) + 1);
         } else if (matchCount == FOURTH_WINNER.getMatchCount()) {
-            result.put(FOURTH_WINNER.getRank(), result.getOrDefault(FOURTH_WINNER.getRank(), 0) + 1);
+            prizeMatchResults.put(FOURTH_WINNER.getRank(),
+                    prizeMatchResults.getOrDefault(FOURTH_WINNER.getRank(), 0) + 1);
         } else if (matchCount == FIFTH_WINNER.getMatchCount()) {
-            result.put(FIFTH_WINNER.getRank(), result.getOrDefault(FIFTH_WINNER.getRank(), 0) + 1);
+            prizeMatchResults.put(FIFTH_WINNER.getRank(),
+                    prizeMatchResults.getOrDefault(FIFTH_WINNER.getRank(), 0) + 1);
         }
     }
 
     public double calculateRateOfReturn() {
         double totalRevenue = WINNERS.stream()
-                .mapToDouble(winner -> result.getOrDefault(winner.getRank(), 0) * winner.getPrizeMoney())
+                .mapToDouble(winner -> prizeMatchResults.getOrDefault(winner.getRank(), 0) * winner.getPrizeMoney())
                 .sum();
 
         int totalInvest = count * LOTTO_PRICE;
@@ -49,7 +52,7 @@ public class LottoResult {
         return Math.round(rateOfReturn * 100.0) / 100.0;
     }
 
-    public Map<Integer, Integer> getResult() {
-        return result;
+    public Map<Integer, Integer> getPrizeMatchResults() {
+        return prizeMatchResults;
     }
 }
