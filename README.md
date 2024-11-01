@@ -3,7 +3,7 @@
 ---
 
 # 주요 개념 식별
-
+![워크플로우](https://github.com/user-attachments/assets/4b90ab0e-7dbd-4bed-91e1-d6b41a210518)
 
 # 객체 간 메시지 흐름 (협력 정의)
 
