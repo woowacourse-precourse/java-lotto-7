@@ -33,14 +33,14 @@ public class Lotto {
 
     private void validateLength(List<Component> numbers, int lottoLength) {
         if (numbers.size() != lottoLength) {
-            System.out.println(RangeError.LOTTO.getMessage());
+            System.out.println(RangeError.LOTTO.getInstance());
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplicate(List<Component> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            System.out.println(InputError.DUPLICATE_LOTTO_NUMBER.getMessage());
+            System.out.println(InputError.DUPLICATE_LOTTO_NUMBER.getInstance());
             throw new IllegalArgumentException();
         }
     }

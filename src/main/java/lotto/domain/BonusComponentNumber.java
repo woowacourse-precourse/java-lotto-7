@@ -16,7 +16,7 @@ public class BonusComponentNumber implements BonusComponent {
     @Override
     public void validateDuplicateWithWinningComponent(Lotto winningLotto, Component component) {
         if (winningLotto.getComponents().contains(component)){
-            throw new IllegalArgumentException(InputError.DUPLICATE_BONUS_NUMBER.getMessage());
+            throw new IllegalArgumentException(InputError.DUPLICATE_BONUS_NUMBER.getInstance());
         }
     }
 

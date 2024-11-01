@@ -1,17 +1,20 @@
 package lotto.constants.value;
 
-public enum LottoRule {
+import lotto.constants.Constants;
+
+public enum LottoRule implements Constants<Integer> {
     COMBINATION_LENGTH(6),
     MINIMUM_NUMBER_RANGE(1),
     MAXIMUM_NUMBER_RANGE(45);
 
-    private final int value;
+    private final Integer value;
 
-    LottoRule(int value) {
+    LottoRule(Integer value) {
         this.value = value;
     }
 
-    public int getValue() {
+    @Override
+    public Integer getInstance() {
         return value;
     }
 }
