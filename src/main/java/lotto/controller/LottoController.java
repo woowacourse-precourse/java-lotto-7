@@ -13,14 +13,14 @@ import lotto.validation.InputMoneyValidator;
 
 import java.util.List;
 
-public class Controller {
+public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
     private final InputMoneyValidator inputMoneyValidator;
     private final CalculateResult calculateResult;
 
-    public Controller() {
+    public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoMachine = new LottoMachine();
@@ -43,7 +43,7 @@ public class Controller {
         BonusBall bonus = untilValidBonusBall(winningNumbers);
 
         int[] results = calculateResult.calculateStatistics(winningNumbers.getNumbers(), bonus.getBonusNumber(), lottoNumbers);
-        outputView.printStatistics(results, ticket);
+        outputView.printStatistics(results, money);
     }
 
     private int untilValidPurchaseMoney() {
