@@ -49,7 +49,7 @@ public class Lotto {
     }
 
 
-    public static List<Lotto> sortLottoList(Integer lottoCount){
+    public static List<Lotto> sortLottoList(int lottoCount){
         List<Lotto> myLottos = new ArrayList<>();
         for(int i = 0; i < lottoCount; i++){
             Lotto newLotto = Lotto.getLotto();
@@ -60,7 +60,7 @@ public class Lotto {
         return myLottos;
     }
 
-    public static MyResult gradeLotto(Lotto answer, Lotto target, Integer bonus){
+    public static MyResult gradeLotto(Lotto answer, Lotto target, int bonus){
         List<Integer> matchNums = answer.numbers.stream().filter(num -> target.numbers.stream()
                 .anyMatch(Predicate.isEqual(num))).collect(Collectors.toList());
         boolean bonusMatch = target.numbers.stream().anyMatch(Predicate.isEqual(bonus));
