@@ -1,6 +1,9 @@
 package lotto.view;
 
+import lotto.dto.LottoResult;
 import lotto.dto.LottoResultDto;
+
+import java.util.Map;
 
 public class OutputView {
 
@@ -25,5 +28,17 @@ public class OutputView {
 
     public void printBonusNumberInputMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
+    public void printLottoStatistics(Map<LottoResult, Integer> printResultList) {
+        System.out.println("당첨 통계\n" + "---");
+        for (LottoResult resultType : LottoResult.values()) {
+            int count = printResultList.getOrDefault(resultType, 0);
+            System.out.println(resultType.getMessage() + " - " + count + "개");
+        }
+    }
+
+    public void printWinningRate(double winningRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningRate);
     }
 }

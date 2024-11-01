@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import lotto.dto.LottoResult;
 import lotto.dto.LottoResultDto;
 import lotto.service.LottoService;
+import lotto.service.LottoStatisticsService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,12 +12,14 @@ import java.util.Map;
 
 public class LottoController {
     private final LottoService lottoService;
+    private final LottoStatisticsService lottoStatisticsService;
     private final InputView inputView;
     private final OutputView outputView;
     private LottoResultDto lottoDto;
 
-    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+    public LottoController(LottoService lottoService, LottoStatisticsService lottoStatisticsService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
+        this.lottoStatisticsService = lottoStatisticsService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
@@ -27,6 +31,10 @@ public class LottoController {
         int bonusNumber = receiveBonusNumber(winningNumbers);
         setLottoResultDto(bonusNumber, winningNumbers);
         List<Map<Integer, Boolean>> resultList = lottoService.getLottoWinningResults(lottoDto);
+        Map<LottoResult, Integer> printResultList = lottoStatisticsService.getLottoStatistics(resultList);
+        double winningRate = lottoStatisticsService.calculateWinningRate(lottoDto, printResultList);
+        outputView.printLottoStatistics(printResultList);
+        outputView.printWinningRate(winningRate);
     }
 
     private void setLottoResultDto(int bonusNumber, List<Integer> winningNumbers) {
