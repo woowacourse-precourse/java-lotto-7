@@ -22,28 +22,26 @@ public class InputValidator {
 
     public static void validateWinningNumbers(final String winningNumber) {
         validateEmptyInput(winningNumber);
-        validateNegativeNumber(winningNumber);
     }
 
     public static void validateBonusNumber(final String bonusNumber) {
         validateEmptyInput(bonusNumber);
-        validateNegativeNumber(bonusNumber);
     }
 
-    private static void validateEmptyInput(final String input) {
+    protected static void validateEmptyInput(final String input) {
         if (input.isEmpty()) {
             throw new EmptyInputException();
         }
     }
 
-    private static void validateNegativeNumber(final String input) {
+    protected static void validateNegativeNumber(final String input) {
         if (!isPositiveNumber(input)) {
             throw new NotAllowNegativeNumberException();
         }
     }
 
-    private static void validateIsNumeric(final String input) {
-        if (isNumeric(input)) {
+    protected static void validateIsNumeric(final String input) {
+        if (!isNumeric(input)) {
             throw new NotAllowCharacterInputException();
         }
     }
