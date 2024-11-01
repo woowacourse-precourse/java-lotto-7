@@ -132,6 +132,9 @@ public class LottoController {
                 if (bonusNumber < 1 || bonusNumber > 45) {
                     throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
                 }
+                if (winningNumber.contains(bonusNumber)) {
+                    throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_WIN_NUMBER.getMessage());
+                }
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
