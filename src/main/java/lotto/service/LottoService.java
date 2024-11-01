@@ -2,14 +2,56 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.Lotto;
 import lotto.common.Winning;
+import lotto.validator.Validator;
 
 public class LottoService {
+    private final Validator validator;
+
+    public LottoService() {
+        this.validator = new Validator();
+    }
+
+    public int getPayment(String input) {
+        try {
+            int payment = Integer.parseInt(input);
+            validator.validatePayment(payment);
+            return payment;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
+        }
+    }
+
+    public List<Integer> getWinningNumbers(String input) {
+        String[] splitNumbers = input.split(",");
+
+        try {
+            List<Integer> winningNumbers = Arrays.stream(splitNumbers)
+                    .map(Integer::parseInt)
+                    .toList();
+            validator.validateWinningNumbers(winningNumbers);
+            return winningNumbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
+        }
+    }
+
+    public int getBonus(String input) {
+        try {
+            int bonus = Integer.parseInt(input);
+            validator.validateLottoNumber(bonus);
+            return bonus;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주십시오.");
+        }
+    }
+
     public List<Lotto> issueLottos(int payment) {
         int lottoCount = payment / 1000;
 
