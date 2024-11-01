@@ -2,11 +2,13 @@ package lotto.util.retryer;
 
 import lotto.exception.CustomException;
 
+import java.util.function.Supplier;
+
 public class Retryer {
 
     public static final String ERROR_PREFIX = "[ERROR] ";
 
-    public static <T> T retryOnCustomException(SupplierWithException<T> supplier) {
+    public static <T> T retryOnCustomException(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (RuntimeException e) {
@@ -15,7 +17,7 @@ public class Retryer {
         }
     }
 
-    public static void retryOnCustomException(RunnableWithException runnable) {
+    public static void retryOnCustomException(Runnable runnable) {
         try {
             runnable.run();
         } catch (RuntimeException e) {
@@ -30,15 +32,5 @@ public class Retryer {
             return;
         }
         throw e;
-    }
-
-    @FunctionalInterface
-    public interface SupplierWithException<T> {
-        T get() throws RuntimeException;
-    }
-
-    @FunctionalInterface
-    public interface RunnableWithException {
-        void run() throws RuntimeException;
     }
 }
