@@ -1,21 +1,21 @@
 package lotto.model;
 
-import lotto.validation.UserValidation;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.Constants.*;
+import static lotto.message.ErrorMessage.*;
 public class User {
     int buyAmount;
     List<Lotto> lottos = new ArrayList<>();
 
     public User(int buyAmount) {
-        UserValidation.validateBuyAmount(buyAmount);
+        validateBuyAmount(buyAmount);
         this.buyAmount = buyAmount;
     }
 
     public int getBuyLottoCount(){
-        return buyAmount/1000;
+        return buyAmount/BUY_AMOUNT_UNIT;
     }
 
     public void buyLotto(Lotto lotto){
@@ -24,6 +24,31 @@ public class User {
 
     public List<Lotto> getLottos(){
         return lottos;
+    }
+
+    private void validateBuyAmount(int buyAmount){
+        validateBuyAmountRange(buyAmount);
+        validateBuyAmountThousandUnit(buyAmount);
+    }
+
+    private void validateBuyAmountThousandUnit(int buyAmount) {
+        if(isNotDivisibleByThousand(buyAmount)){
+            throw new IllegalArgumentException(BUY_AMOUNT_NOT_THOUSAND_UNIT.getMessage());
+        }
+    }
+
+    private boolean isNotDivisibleByThousand(int buyAmount) {
+        return buyAmount % BUY_AMOUNT_UNIT != 0;
+    }
+
+    private void validateBuyAmountRange(int buyAmount){
+        if(isLessThanThousand(buyAmount)){
+            throw new IllegalArgumentException(BUY_AMOUNT_LESS_THAN_THOUSAND.getMessage());
+        }
+    }
+
+    private boolean isLessThanThousand(int buyAmount){
+        return buyAmount < BUY_AMOUNT_UNIT;
     }
 
 }
