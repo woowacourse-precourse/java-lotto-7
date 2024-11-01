@@ -1,10 +1,9 @@
 package lotto.model;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class Lotto {
+    public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -29,4 +28,7 @@ public class Lotto {
         return numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
