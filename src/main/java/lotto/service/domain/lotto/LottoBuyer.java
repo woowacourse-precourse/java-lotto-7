@@ -17,4 +17,11 @@ public class LottoBuyer {
         this.budget = budget;
     }
 
+    public List<Lotto> getPurchasedLotto() {
+        return purchasedLotto;
+    }
+
+    public Money getBudget() {
+        return budget;
+    }
 }

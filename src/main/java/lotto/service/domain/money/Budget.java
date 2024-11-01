@@ -1,11 +1,11 @@
 package lotto.service.domain.money;
 
 public class Budget implements Money{
-    private final long userMoney;
+    private final int userMoney;
     private static final int THOUSAND_WON = 1_000;
     private static final int DEVIDED = 0;
 
-    public Budget(long userMoney) {
+    public Budget(int userMoney) {
         validateThousand(userMoney);
         this.userMoney = userMoney;
     }
@@ -17,7 +17,7 @@ public class Budget implements Money{
     }
 
     @Override
-    public long getBudget() {
+    public int getBudget() {
         return this.userMoney;
     }
 }
