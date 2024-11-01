@@ -3,22 +3,29 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static final String CREDIT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NOT_MULTIPLE_1000 = "[ERROR] 구입 금액은 1,000의 배수여야 합니다.";
     public static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    public static int credit;
     public static int pieces;
     public static List<Lotto> lottos = new ArrayList<>();
     public static List<Integer> winningNumbers = new ArrayList<>();
     public static int bonusNumber;
+
     public static int[] matchCount = new int[8];
+
+    public static int revenue = 0;
+    public static double revenueRate;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println(CREDIT_MESSAGE);
-        int credit = Integer.parseInt(Console.readLine());
+        credit = Integer.parseInt(Console.readLine());
         try {
             pieces = checkCredit(credit);
         } catch (IllegalArgumentException e) {
@@ -104,4 +111,15 @@ public class Application {
         System.out.println(sb);
     }
 
+    public static void calculateRevenue() {
+        revenue += matchCount[3] * 5000;
+        revenue += matchCount[4] * 50000;
+        revenue += matchCount[5] * 1500000;
+        revenue += matchCount[7] * 30000000;
+        revenue += matchCount[6] * 2000000000;
+    }
+
+    public static void calculateRevenueRate() {
+        revenueRate = Math.round((double) revenue / credit * 100 * 100) / 100.0;
+    }
 }

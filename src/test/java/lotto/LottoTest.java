@@ -14,10 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoTest {
 
     private static List<Lotto> lottos = new ArrayList<>();
-    public static List<Integer> winningNumbers = new ArrayList<>();
-    public static int[] matchCount = new int[8];
-    public static int bonusNumber;
+    private static List<Integer> winningNumbers = new ArrayList<>();
+    private static int[] matchCount = new int[8];
+    private static int bonusNumber;
     private static int pieces = 8;
+    private static int revenue;
+    private static int credit;
+    private static double revenueRate;
+
 
     @BeforeEach
     void setup() {
@@ -50,6 +54,10 @@ class LottoTest {
 
     public static boolean bonusMatchTest(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public static void calculateRevenueRate() {
+        revenueRate = Math.round((double) revenue / credit * 100 * 100) / 100.0;
     }
 
     @Test
@@ -104,5 +112,14 @@ class LottoTest {
         bonusNumber = 6;
         matchTest(lotto);
         assertThat(matchCount[7]).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("수익률 테스트")
+    void testRevenueRate() {
+        revenue = 1000;
+        credit = 2000;
+        calculateRevenueRate();
+        assertThat(revenueRate).isEqualTo(50.0);
     }
 }
