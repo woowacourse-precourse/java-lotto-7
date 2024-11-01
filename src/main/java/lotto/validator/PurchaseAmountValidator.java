@@ -7,6 +7,7 @@ public class PurchaseAmountValidator {
 
     public PurchaseAmountValidator(String input) {
         this.purchaseAmount = parsePurchaseAmount(input);
+        validateZeroOrMore();
     }
 
     private int parsePurchaseAmount(String input) {
@@ -26,6 +27,12 @@ public class PurchaseAmountValidator {
     private void validateNoSpace(String input) {
         if (!input.equals(input.strip())) {
             throw new IllegalArgumentException(ErrorMessage.MUST_BE_NO_SPACE.getMessage(PURCHASE_AMOUNT));
+        }
+    }
+
+    private void validateZeroOrMore() {
+        if (purchaseAmount < PURCHASE_AMOUNT_THRESHOLD) {
+            throw new IllegalArgumentException(ErrorMessage.MUST_BE_ZERO_OR_MORE.getMessage());
         }
     }
 }
