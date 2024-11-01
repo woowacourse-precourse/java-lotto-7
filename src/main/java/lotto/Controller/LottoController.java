@@ -11,28 +11,32 @@ public class LottoController {
     private int lottoAmount;
     private List<Lotto> lottos;
 
-    public LottoController(){
+    public LottoController() {
         set();
         setLottos();
         displayLottos();
     }
-    private void set(){
-        try{
+
+    private void set() {
+        try {
             lottoAmount = InputController.setAmountOfLotto();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             set();
         }
     }
+
     private void setLottos() {
-        try{
+        try {
             lottos = IntStream.range(0, lottoAmount)
                     .mapToObj(i -> new Lotto(Utils.setLottoNums()))
                     .collect(Collectors.toList());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             setLottos();
         }
     }
+
     private void displayLottos() {
         System.out.printf("%d개를 구매했습니다.%n", lottoAmount);
+        Utils.printLottos(lottos);
     }
 }

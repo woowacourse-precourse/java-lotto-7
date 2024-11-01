@@ -7,4 +7,5 @@ public class Constants {
     public static final String LOTTO_AMOUNT_BLANK_ERROR = "[ERROR] 구입 금액이 공백입니다.";
     public static final String LOTTO_AMOUNT_CONTAINS_STRING_ERROR = "[ERROR] 구입 금액에 문자열이 포함되어 있습니다.";
     public static final String LOTTO_AMOUNT_UNIT_ERROR = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
+    public static final String LOTTO_NUMS_DUPLICATE_ERROR = "[ERROR] 로또 번호에 중복된 숫자가 있습니다.";
 }
