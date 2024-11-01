@@ -8,6 +8,17 @@ public class WinningLotto {
     public WinningLotto(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;
         this.bonus = new LottoNumber(bonusNumber);
+        validateBonusNumberNotInWinningNumbers();
+    }
+
+    private void validateBonusNumberNotInWinningNumbers() {
+        if (isBonusNumberInWinningNumbers()) {
+            throw new IllegalArgumentException("당첨번호에 보너스번호가 존재 할 수 없습니다.");
+        }
+    }
+
+    private boolean isBonusNumberInWinningNumbers() {
+        return this.lotto.contains(this.bonus);
     }
 
     public Rank match(Lotto lotto) {
