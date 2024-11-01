@@ -1,19 +1,18 @@
 package lotto;
 
+import lotto.controller.LottoDrawingController;
 import lotto.controller.LottoPurchaseController;
 import lotto.model.LottoPurchase;
 import lotto.model.Lottos;
-import lotto.view.PurchaseAmountInputView;
-import lotto.view.WinningNumbersInputView;
 
 public class LottoApplication {
     public static void run() {
         Lottos lottos = new Lottos();
         LottoPurchase lottoPurchase = new LottoPurchase();
-        LottoPurchaseController lottoPurchaseController = new LottoPurchaseController(lottos, lottoPurchase);
 
+        LottoPurchaseController lottoPurchaseController = new LottoPurchaseController(lottos, lottoPurchase);
         lottoPurchaseController.start();
 
-        
+        LottoDrawingController lottoDrawingController = new LottoDrawingController(lottos, lottoPurchase);
     }
 }
