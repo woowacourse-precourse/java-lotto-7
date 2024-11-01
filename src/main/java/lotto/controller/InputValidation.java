@@ -4,14 +4,13 @@ import static java.lang.Integer.parseInt;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.view.View;
+import lotto.view.InputView;
 
 public class InputValidation {
-    private static View view;
+    private static InputView inputView;
 
     public InputValidation() {
-        view = new View();
+        inputView = new InputView();
     }
 
     public Long getValidatedMoney() {
@@ -25,7 +24,7 @@ public class InputValidation {
     }
 
     private Long moneyCheck() {
-        String moneyInput = view.getMoneyInput().replace(" ", "");
+        String moneyInput = inputView.getMoneyInput().replace(" ", "");
         checkInputNull(moneyInput);
         checkNumberForm(moneyInput);
         Long money = Long.parseLong(moneyInput);
@@ -63,7 +62,7 @@ public class InputValidation {
     }
 
     private List<Integer> winningNumbersCheck() {
-        String winningNumbersInput = view.getWinningNumbers().replace(" ", "");
+        String winningNumbersInput = inputView.getWinningNumbers().replace(" ", "");
         checkInputNull(winningNumbersInput);
         checkWinningNumbersForm(winningNumbersInput);
         List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(",")).map(Integer::parseInt).toList();
@@ -104,7 +103,7 @@ public class InputValidation {
     }
 
     private Integer bonusNumberCheck(List<Integer> winningNumbers) {
-        String bonusNumbersInput = view.getBonusNumber().replace(" ", "");
+        String bonusNumbersInput = inputView.getBonusNumber().replace(" ", "");
         checkInputNull(bonusNumbersInput);
         checkNumberForm(bonusNumbersInput);
         Integer bonusNumber = parseInt(bonusNumbersInput);
