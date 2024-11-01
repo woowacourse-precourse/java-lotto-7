@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
+import lotto.constant.Prize;
 import lotto.model.Purchase;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
@@ -25,7 +26,7 @@ public class LottoController {
         Purchase purchase = requestPurchase();
         List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
         WinningNumbers winningNumbers = requestWinningNumbers();
-        Map<Integer, Integer> result = calculateResult(lottoTickets, winningNumbers);
+        Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
     }
 
     private Purchase requestPurchase() {
@@ -68,16 +69,16 @@ public class LottoController {
                 .toList();
     }
 
-    private Map<Integer, Integer> calculateResult(List<Lotto> lottoTickets, WinningNumbers winningNumbers) {
-        Map<Integer, Integer> result = new HashMap<>(Map.of(
-                1, 0,
-                2, 0,
-                3, 0,
-                4, 0,
-                5, 0
+    private Map<Prize, Integer> calculateResult(List<Lotto> lottoTickets, WinningNumbers winningNumbers) {
+        Map<Prize, Integer> result = new HashMap<>(Map.of(
+                Prize.FIRST, 0,
+                Prize.SECOND, 0,
+                Prize.THIRD, 0,
+                Prize.FOURTH, 0,
+                Prize.FIFTH, 0
         ));
         for (Lotto lotto : lottoTickets) {
-            int prize = winningNumbers.checkPrize(lotto);
+            Prize prize = winningNumbers.checkPrize(lotto);
             result.replace(prize, result.get(prize) + 1);
         }
 

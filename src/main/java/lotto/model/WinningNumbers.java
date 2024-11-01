@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.constant.Prize;
 
 public class WinningNumbers {
     private final Lotto numbers;
@@ -14,28 +15,13 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public int checkPrize(Lotto myLotto) {
+    public Prize checkPrize(Lotto myLotto) {
         List<Integer> matchedNumbers = new ArrayList<>(myLotto.getNumbers());
         matchedNumbers.retainAll(numbers.getNumbers());
 
-        int matchedNumberSize = matchedNumbers.size();
-        if (matchedNumberSize == 6) {
-            return 1;
-        }
-        if (matchedNumberSize == 5) {
-            if (myLotto.getNumbers().contains(bonusNumber)) {
-                return 2;
-            }
-            return 3;
-        }
-        if (matchedNumberSize == 4) {
-            return 4;
-        }
-        if (matchedNumberSize == 3) {
-            return 2;
-        }
-
-        return 0;
+        int matchedCount = matchedNumbers.size();
+        boolean hasBonus = myLotto.getNumbers().contains(bonusNumber);
+        return Prize.getPrize(matchedCount, hasBonus);
     }
 
     private void validateBonusNumber(int number) {
