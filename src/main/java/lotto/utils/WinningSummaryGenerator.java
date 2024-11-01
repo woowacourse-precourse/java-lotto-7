@@ -5,12 +5,17 @@ import static lotto.constant.WinningPrize.SECOND_PRIZE;
 
 import java.util.List;
 import lotto.dto.WinningStat;
+import lotto.dto.WinningSummary;
 
 public class WinningSummaryGenerator {
     private final static String NORMAL_STAT = "%d개 일치 (%s)원 - %d개";
     private final static String BONUS_STAT = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개";
 
-    public static List<String> generate(List<WinningStat> winningStats) {
+    public static WinningSummary generate(List<WinningStat> winningStats) {
+        return new WinningSummary(getSummaryDetails(winningStats), winningStats);
+    }
+
+    private static List<String> getSummaryDetails(List<WinningStat> winningStats) {
         return winningStats.stream()
                 .map(WinningSummaryGenerator::convertToString)
                 .toList();
