@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -18,10 +17,11 @@ class LottoSellerTest {
         this.lottoSeller = new LottoSeller();
     }
 
-    @Test
-    void 천원단위로_로또개수를_계산한다() {
-        int count = lottoSeller.calculatePurchaseCount(3000);
-        assertEquals(count, 3);
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 1100, 8800, 999000, 3330000, 9900})
+    void 천원단위로_로또개수를_계산한다(int amount) {
+        int count = lottoSeller.calculatePurchaseCount(amount);
+        assertEquals(count, amount / 1000);
     }
 
     @ParameterizedTest
