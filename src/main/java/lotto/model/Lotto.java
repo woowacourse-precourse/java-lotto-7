@@ -5,8 +5,7 @@ import lotto.Exception.LottoExceptionType;
 
 import java.util.List;
 
-import static lotto.utils.LottoRules.LOTTO_MIN_NUMBER;
-import static lotto.utils.LottoRules.LOTTO_NUMBER_SIZE;
+import static lotto.utils.LottoRules.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -37,7 +36,7 @@ public class Lotto {
 
     private boolean isValidRangeNumbers(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < LOTTO_MIN_NUMBER || number > LOTTO_MIN_NUMBER) {
+            if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
                 return false;
             }
         }

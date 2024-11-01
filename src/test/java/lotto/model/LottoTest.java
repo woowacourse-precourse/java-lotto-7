@@ -37,7 +37,7 @@ class LottoTest {
     @DisplayName("로또 번호의 MIN 보다 작은 숫자가 들어오면 예외가 발생한다.")
     void inValidRangeNumbersTest2() {
         List<Integer> numbers = LottoRules.pickRandomNumbers();
-        numbers.set(0, LottoRules.LOTTO_MIN_NUMBER + 1);
+        numbers.set(0, LottoRules.LOTTO_MIN_NUMBER - 1);
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
