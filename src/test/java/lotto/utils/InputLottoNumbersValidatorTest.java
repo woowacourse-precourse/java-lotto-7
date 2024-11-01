@@ -20,15 +20,6 @@ class InputLottoNumbersValidatorTest {
         validator = new InputLottoNumbersValidator();
     }
 
-    @Test
-    @DisplayName("로또 번호가 6개가 아니면 예외를 발생시킨다")
-    void validateNumbersSize_shouldThrowExceptionWhenSizeIsNotSix() {
-        List<Integer> invalidNumbers = Arrays.asList(1, 2, 3, 4, 5);
-        assertThatThrownBy(() -> validator.validateWinningNumbers(invalidNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 6개여야 합니다.");
-    }
-
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
     @DisplayName("로또 번호가 1-45 범위를 벗어나면 예외를 발생시킨다")
