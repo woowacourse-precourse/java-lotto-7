@@ -1,4 +1,4 @@
-package lotto.error;
+package lotto.error.enums;
 
 public enum LottoErrorMessage {
 
