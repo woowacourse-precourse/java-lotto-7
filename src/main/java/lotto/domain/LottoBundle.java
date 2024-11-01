@@ -8,17 +8,14 @@ import lotto.enums.LottoRank;
 public class LottoBundle {
     private final List<Lotto> lottos;
     private final LottoPurchasePrice lottoPurchasePrice;
-    private final LottoConfig lottoConfig;
 
-    private LottoBundle(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice, LottoConfig lottoConfig) {
+    private LottoBundle(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice) {
         this.lottos = lottos;
         this.lottoPurchasePrice = lottoPurchasePrice;
-        this.lottoConfig = lottoConfig;
     }
 
-    public static LottoBundle ofLottosAndPurchasePriceAndConfig(
-            List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice, LottoConfig lottoConfig) {
-        return new LottoBundle(lottos, lottoPurchasePrice, lottoConfig);
+    public static LottoBundle ofLottosAndPurchasePrice(List<Lotto> lottos, LottoPurchasePrice lottoPurchasePrice) {
+        return new LottoBundle(lottos, lottoPurchasePrice);
     }
 
     public List<Lotto> getLottos() {

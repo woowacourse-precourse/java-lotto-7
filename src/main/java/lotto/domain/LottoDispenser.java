@@ -19,7 +19,7 @@ public class LottoDispenser {
 
     public LottoBundle issueLottoBundle(LottoPurchasePrice lottoPurchasePrice) {
         List<Lotto> lottos = issueLottos(lottoPurchasePrice.getLottoCount());
-        return LottoBundle.ofLottosAndPurchasePriceAndConfig(lottos, lottoPurchasePrice, lottoConfig);
+        return LottoBundle.ofLottosAndPurchasePrice(lottos, lottoPurchasePrice);
     }
 
     private List<Lotto> issueLottos(int lottoCount) {
