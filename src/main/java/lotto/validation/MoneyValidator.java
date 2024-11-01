@@ -11,7 +11,7 @@ public class MoneyValidator {
     if (money <= MINIMUM_AMOUNT) {
       throw new IllegalArgumentException(ErrorMessage.NOT_NATURAL_NUMBER.getMessage());
     }
-    if (money % MoneyConstants.MONEY_UNIT != DIVISIBILITY_CHECK) {
+    if (money % MoneyConstants.LOTTO_PRICE != DIVISIBILITY_CHECK) {
       throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY_UNIT.getMessage());
     }
   }

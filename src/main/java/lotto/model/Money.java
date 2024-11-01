@@ -22,7 +22,7 @@ public class Money {
     }
 
     public int buyedLottosQuantity(){
-        return money / MoneyConstants.MONEY_UNIT;
+        return money / MoneyConstants.LOTTO_PRICE;
     }
 
     public Integer getMoney(){
