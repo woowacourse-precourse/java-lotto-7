@@ -1,11 +1,11 @@
 package lotto.common;
 
-public enum InputRule {
+public enum LottoRule {
     LOTTO_PRICE(1000);
 
     private final int value;
 
-    InputRule(int value) {
+    LottoRule(int value) {
         this.value = value;
     }
 

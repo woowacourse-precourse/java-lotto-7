@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.common.InputRule.LOTTO_PRICE;
+import static lotto.common.LottoRule.LOTTO_PRICE;
 import static lotto.validator.ValidationMessage.INVALID_NEGATIVE_PRICE;
 import static lotto.validator.ValidationMessage.INVALID_PURCHASE_PRICE;
 
