@@ -42,7 +42,7 @@ public class LottoCalculatorService {
                     winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
                     continue;
                 }
-                
+
                 if (duplicateNumber != 5) {
                     winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
                 }
@@ -53,10 +53,14 @@ public class LottoCalculatorService {
 
     public void profitCalculate(User user) {
         for (LottoRanking lottoRanking : winningCount.keySet()) {
-            if (winningCount.get(lottoRanking) != 0) {
-                user.addWinningPrice(lottoRanking.getPrice());
-            }
+            addWinningPrice(user, lottoRanking);
         }
         OutputView.printProfit(user.getProfit());
+    }
+
+    private void addWinningPrice(User user, LottoRanking lottoRanking) {
+        if (winningCount.get(lottoRanking) != 0) {
+            user.addWinningPrice(lottoRanking.getPrice());
+        }
     }
 }
