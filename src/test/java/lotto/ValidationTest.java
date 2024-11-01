@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.validation.ErrorMessage.LOTTO_ERROR_WRONG_LOTTO_SIZE;
+import static lotto.validation.Validation.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ValidationTest {
 
-    private final Validation validation = new Validation();
-
+    private static final Integer LOTTO_MAX_LENGTH = 6;
     @DisplayName("로또 6개 이상 오류 메시지 출력")
     @Test
     void 로또_입력값이_6을_초과() {
@@ -27,7 +27,7 @@ class ValidationTest {
 
         // when
         Throwable throwable = assertThrows(IllegalArgumentException.class, () -> {
-            validation.checkLottoSize(lotto_numbers);
+            checkLottoSize(lotto_numbers, LOTTO_MAX_LENGTH);
         });
 
         // then
@@ -47,7 +47,7 @@ class ValidationTest {
 
         //when
         Throwable throwable = assertThrows(IllegalArgumentException.class, () -> {
-            validation.checkLottoDuplicate(lotto_numbers, null);
+            checkLottoDuplicate(lotto_numbers);
         });
 
         //then
@@ -66,7 +66,7 @@ class ValidationTest {
 
         //when
         Throwable throwable = assertThrows(IllegalArgumentException.class, () -> {
-            validation.checkLottoDuplicate(lotto_numbers, 1);
+            checkDuplicateBonusNumber(lotto_numbers, 1);
         });
 
         //then
