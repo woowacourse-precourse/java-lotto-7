@@ -66,6 +66,7 @@ public class InputValidation {
         checkWinningNumbersForm(winningNumbersInput);
         List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(",")).map(Integer::parseInt).toList();
         checkNumbersRange(winningNumbers);
+        checkUniqueNumbers(winningNumbers);
         return winningNumbers;
     }
 
@@ -83,4 +84,10 @@ public class InputValidation {
         }
     }
 
+    public void checkUniqueNumbers(List<Integer> inputNumbers) {
+        boolean hasDuplicate = inputNumbers.stream().distinct().count() != inputNumbers.size();
+        if (hasDuplicate) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+        }
+    }
 }
