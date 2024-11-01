@@ -13,7 +13,7 @@ public class WinningNumbersValidator {
         validateDelimiter(inputNumbers);
     }
 
-    public void validateNotNull(String inputNumbers) {
+    private void validateNotNull(String inputNumbers) {
         if (inputNumbers == null) {
             throw new InvalidInputException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
