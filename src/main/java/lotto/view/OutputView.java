@@ -15,32 +15,19 @@ public class OutputView {
         System.out.println(amount + "" + ViewMessage.OUTPUT_GET_AMOUNT);
     }
 
-    // 나눠야 댐
-    public static void printLottoNumbers(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            printLottoNumber(lotto);
-        }
-    }
-
     public static void printLottoNumber(Lotto lotto) {
         System.out.println(lotto.getNumbers());
     }
 
-    // 나눠야 딤
-    public static void printResults(Map<LottoRank, Integer> resultCounts) {
+    public static void printSuccess() {
         System.out.println("당첨 통계\n---");
-        List<LottoRank> ranks = Arrays.asList(LottoRank.values());
-        Collections.reverse(ranks);
-
-        for (LottoRank rank : ranks) {
-            if (rank != LottoRank.MISS) {
-                System.out.println(rank.toString() + " - " + resultCounts.getOrDefault(rank, 0) + "개");
-            }
-        }
     }
 
-    public static void printRevenue(int sum, int amount) {
-        double result =(double) sum / amount *100;
-        System.out.println("총 수익률은 " + result + "%입니다.");
+    public static void printResults(LottoRank rank, int count) {
+        System.out.println(rank.toString() + " - " + count + "개");
+    }
+
+    public static void printRevenue(double revenue) {
+        System.out.println("총 수익률은 " + String.format("%.2f", revenue) + "%입니다.");
     }
 }
