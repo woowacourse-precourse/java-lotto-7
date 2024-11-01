@@ -21,11 +21,18 @@ public class BonusNumber {
 
         private static void validateBonusNumber(String bonusNumber) {
             validateWinningNumbersIsNotEmpty(bonusNumber);
+            validateBonusNumberIsNumeric(bonusNumber);
         }
 
         private static void validateWinningNumbersIsNotEmpty(String bonusNumber) {
             if (bonusNumber == null || bonusNumber.isBlank()) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 비어있을 수 없습니다.");
+            }
+        }
+
+        private static void validateBonusNumberIsNumeric(String bonusNumber) {
+            if (!bonusNumber.matches("-?\\d+")) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 가능합니다.");
             }
         }
 
