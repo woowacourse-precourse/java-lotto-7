@@ -28,14 +28,7 @@ public class BonusBall {
         this.number = number;
     }
 
-    public int getSameNumberCount(Lotto userLotto) {
-        if (userLotto.hasNumber(number)) {
-            return 1;
-        }
-        return 0;
-    }
-
-    protected int getNumber() {
+    public int getNumber() {
         return this.number;
     }
 }

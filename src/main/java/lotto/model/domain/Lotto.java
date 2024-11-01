@@ -10,12 +10,6 @@ public class Lotto {
         this.lottoNumbers = new LottoNumbers(numbers);
     }
 
-
-
-    public boolean hasNumber(int number) {
-        return lottoNumbers.hasNumber(number);
-    }
-
     @Override
     public String toString() {
         return "[" + String.join(", ",
@@ -31,5 +25,12 @@ public class Lotto {
 
     public int countDuplicatingCount(LottoNumbers lottoNumbers) {
         return this.lottoNumbers.countDuplicatingNumbers(lottoNumbers.getNumbers());
+    }
+
+    public int countDuplicatingCount(int number) {
+        if(lottoNumbers.hasNumber(number)) {
+            return 1;
+        }
+        return 0;
     }
 }
