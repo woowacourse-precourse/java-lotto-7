@@ -12,8 +12,8 @@ public class LottoController {
 
     public void purchaseLotto() {
         PurchaseView purchaseView = new PurchaseView();
-        String payment = purchaseView.getPayment();
-        this.purchase = new Purchase(payment);
+        String paymentInput = purchaseView.getPayment();
+        purchase = new Purchase(paymentInput);
         purchaseView.displayPurchaseResult(purchase.getLottoCount(), purchase.getPurchasedLottoTickets());
     }
 
@@ -21,7 +21,7 @@ public class LottoController {
         LottoDrawView lottoDrawView = new LottoDrawView();
         String drawNumbersInput = lottoDrawView.getDrawNumbers();
         LottoNumbers drawNumbers = new LottoNumbers(drawNumbersInput);
-//        String bonusNumberInput = lottoDrawView.getBonusNumber();
-//        this.lottoDraw = new LottoDraw(drawNumbers, bonusNumberInput);
+        String bonusNumberInput = lottoDrawView.getBonusNumber();
+        lottoDraw = new LottoDraw(drawNumbers, bonusNumberInput);
     }
 }
