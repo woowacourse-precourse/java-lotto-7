@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public void printLottoNumbers(LottoDTO lottoNumber) {
-        System.out.println(lottoNumber);
+        System.out.println(lottoNumber.getNumbers());
     }
 
 

@@ -16,6 +16,8 @@ public class LottoMainService {
 
     public LottoMainService() {
         this.lottoDAO = new LottoDAO();
+        this.hitLottoDAO = new HitLottoDAO();
+        this.statisticsDAO = new StatisticsLottoDAO();
     }
 
     public void buyLotto(long calcCost) {
@@ -42,6 +44,8 @@ public class LottoMainService {
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         HitLotto.getInstance(hitNumbers, bonusNumber);
     }
+
+    //todo ? 구현
 
     // 로또 번호와 당첨 번호 비교 및 통계 저장
     public void retainLotto(List<LottoDTO> allLottos, List<Integer> hitLottos) {

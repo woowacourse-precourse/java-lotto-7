@@ -53,7 +53,7 @@ public class LottoController {
 
         lottoMainService.saveHitLotto(hitLottoInput, bonusNumberInput);
 
-        HitLottoDTO dto = hitLottoDAO.getAsDTO(); //?
+        HitLottoDTO dto = hitLottoDAO.getAsDTO(); //
 
         lottoMainService.retainLotto(allLottosAsDTO, dto.getAllHitNumbers());
 
