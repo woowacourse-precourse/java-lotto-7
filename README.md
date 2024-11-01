@@ -119,10 +119,11 @@
 - 입력값이 비어있는 경우 `IllegalArgumentException`을 발생시킨다.
 - 입력값이 정수가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
 - 입력값이 음수인 경우 `IllegalArgumentException`을 발생시킨다.
-- 입력값이 `0`인 경우 `IllegalArgumentException`을 발생시킨다.
+- 입력값이 1,000원 이하인 경우 `IllegalArgumentException`을 발생시킨다.
 - 입력값이 1,000원 단위가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- 입력값이 너무 큰 경우 `IllegalArgumentException`을 발생시킨다.
 
-2. 구입 금액에 해당하는 만큼 로또를 발행한다. 
+2. 구입 금액에 해당하는 만큼 로또를 발행한다.
 
 3. 로또 수량 및 번호를 출력한다.
 
@@ -133,7 +134,7 @@
 - 번호의 범위가 1~45가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
 - 번호가 중복될 경우 `IllegalArgumentException`을 발생시킨다.
 
-5. 보너스 번호를 입력 받는다. 
+5. 보너스 번호를 입력 받는다.
 
 - 입력값이 비어있는 경우 `IllegalArgumentException`을 발생시킨다.
 - 입력값이 정수가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
