@@ -21,7 +21,10 @@ public class Exception {
 
     public long verifyBuyPrice(String buyPriceInput) {
         long buyPrice = changeInputStrToNumber(buyPriceInput);
-        if (buyPrice % 1000 != 0 || buyPrice == 0) {
+        if (buyPrice == 0) {
+            throwException("1000원부터 구매 가능합니다.");
+        }
+        if (buyPrice % 1000 != 0) {
             throwException("1000단위로 입력해주세요(숫자로만 입력해주세요)");
         }
         return buyPrice;
