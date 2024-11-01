@@ -3,13 +3,15 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.InputException;
+import lotto.model.Amount;
 
 import java.util.regex.Pattern;
 
 public class InputView {
-    public String getAmount(){
+    public Amount getAmount(){
         System.out.println("구입금액을 입력해 주세요.");
-        return Validator.validateAmount(Console.readLine());
+        return new Amount(
+                Validator.validateAmount(Console.readLine()));
     }
     private static class Validator{
         static String validateAmount(String input){
@@ -27,7 +29,7 @@ public class InputView {
 
         private static void isNotNumeric(String input) {
             String regex = "^[0-9]*$";
-            if(Pattern.matches(regex, input)){
+            if(!Pattern.matches(regex, input)){
                 throw new InputException(ExceptionMessage.INVALID_INPUT_ERROR);
             }
         }
