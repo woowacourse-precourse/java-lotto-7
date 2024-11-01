@@ -19,6 +19,7 @@ public class Winning {
     private void validate(List<Integer> numbers, int bonusNumber) {
         validateNumberRange(bonusNumber);
         validateNumberRange(numbers);
+        validateDuplicateNumber(numbers);
         verifyLottoContainsBonusNumber(numbers, bonusNumber);
     }
 
