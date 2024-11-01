@@ -23,6 +23,7 @@ public class Validator {
     }
 
     public static void validateBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
+        validateNoDuplicate(winningNumbers, bonusNumber);
     }
 
     private static void validateMultiple(Integer number) {
