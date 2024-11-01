@@ -49,8 +49,6 @@ public class Customer {
             System.out.println(key + " - " + count + "개");
         }
 
-        System.out.println("totalPrizeMoney = " + totalPrizeMoney);
-        System.out.println("expenditure = " + cost);
         System.out.println("총 수익률은 " +
                 String.format("%.1f", (float) totalPrizeMoney / cost * 100) +
                 "%입니다.");
