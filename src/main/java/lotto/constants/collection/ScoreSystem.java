@@ -4,7 +4,6 @@ import lotto.constants.Constants;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * ScoreSytem과 SystemReward는 Score 객체에 들어가게 되는 점수 관련 세팅입니다.
