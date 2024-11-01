@@ -11,13 +11,12 @@ public enum Rank {
 
     FIFTH_PLACE(5_000, 3, false, "3개 일치 (5,000원)"),
 
-    DEFAULT(0, 0, false, null);
-
+    OUT_OF_RANK(0, 0, false, null);
 
     private final int prizeMoney;
     private final int matchingCount;
     private final boolean requiresBonusMatch;
-    private String description;
+    private final String description;
 
     Rank(int prizeMoney, int matchingCount, boolean requiresBonusMatch, String description) {
         this.prizeMoney = prizeMoney;
@@ -33,7 +32,7 @@ public enum Rank {
                 return rank;
             }
         }
-        return DEFAULT;
+        return OUT_OF_RANK;
     }
 
     public int getPrizeMoney() {

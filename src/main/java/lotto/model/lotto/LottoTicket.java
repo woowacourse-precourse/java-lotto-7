@@ -30,7 +30,7 @@ public class LottoTicket {
     }
 
     public void countRank(Map<Rank, Integer> countRanks) {
-        if (rank.equals(Rank.DEFAULT)) {
+        if (rank.equals(Rank.OUT_OF_RANK)) {
             return;
         }
         countRanks.put(rank, countRanks.getOrDefault(rank, 0) + 1);

@@ -51,9 +51,10 @@ public class LottoService {
         Map<Rank, Integer> rankCounts = new LinkedHashMap<>();
 
         for (Rank rank : Rank.values()) {
-            if (!rank.equals(Rank.DEFAULT)) {
-                rankCounts.put(rank, 0);
+            if (rank.equals(Rank.OUT_OF_RANK)) {
+                continue;
             }
+            rankCounts.put(rank, 0);
         }
         return rankCounts;
     }

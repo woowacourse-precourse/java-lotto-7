@@ -23,8 +23,8 @@ public class RankTest {
     }
 
     @Test
-    @DisplayName("아무 조건에도 부합하지 않는 경우 DEFAULT 를 반환한다.")
-    void returnDefaultWhenNoRankConditionsMet() {
+    @DisplayName("아무 조건에도 부합하지 않는 경우 OUT_OF_RANK 를 반환한다.")
+    void returnOutOfRankWhenNoRankConditionsMet() {
         // given
         int matchingCount = 0;
         boolean bonusNumberMatched = false;
@@ -33,6 +33,6 @@ public class RankTest {
         Rank rank = Rank.findRank(matchingCount, bonusNumberMatched);
 
         // then
-        assertThat(rank).isEqualTo(Rank.DEFAULT);
+        assertThat(rank).isEqualTo(Rank.OUT_OF_RANK);
     }
 }
