@@ -2,6 +2,7 @@ package view;
 
 import camp.nextstep.edu.missionutils.Console;
 import convert.InputConvertor;
+import java.util.List;
 
 public class InputView {
 
@@ -21,9 +22,10 @@ public class InputView {
         return inputConvertor.convertPurchaseAmount(inputPurchaseAmount);
     }
 
-    public String inputWinningNumbers() {
+    public List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS_MSG);
-        return Console.readLine();
+        String inputWinningNumbers = Console.readLine();
+        return inputConvertor.convertInputWinningNumbers(inputWinningNumbers);
     }
 
     public String InputBonusNumberMsg() {
