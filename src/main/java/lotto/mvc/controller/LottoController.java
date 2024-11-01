@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.mvc.model.Lotto;
+import lotto.mvc.validation.LottoBonusNumberValidator;
 import lotto.mvc.validation.LottoNumberValidator;
 import lotto.mvc.validation.PurchaseAmountValidator;
 import lotto.mvc.view.InputView;
@@ -33,6 +34,14 @@ public class LottoController {
         winningNumber = trimInput(winningNumber);
 
         Lotto winningLotto = new Lotto(extractLottoNumber(winningNumber));
+
+        inputView.showLottoBonusNumberMsg();
+        String bonusNumber = inputView.getUserInput();
+        bonusNumber = trimInput(bonusNumber);
+
+        LottoBonusNumberValidator.isValid(winningLotto, bonusNumber);
+
+
     }
 
     private String trimInput(String input) {
