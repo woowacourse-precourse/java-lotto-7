@@ -1,19 +1,28 @@
 package lotto;
 
-public enum WinningRank {
-    FAIL(-1, 0),
-    FIFTH(3, 5000),
-    FOURTH(4, 50000),
-    THIRD(5, 1500000),
-    SECOND(5, 30000000),
-    FIRST(6, 2000000000);
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
+public enum WinningRank {
+    FAIL(-1, -1, 0, ""),
+    FIFTH(5, 3, 5000, "5,000"),
+    FOURTH(4, 4, 50000, "50,000"),
+    THIRD(3, 5, 1500000, "1,500,000"),
+    SECOND(2, 5, 30000000, "30,000,000"),
+    FIRST(1, 6, 2000000000, "2,000,000,000");
+
+    private final int rank;
     private final int matchingAmount;
     private final int price;
+    private final String priceString; //리팩토링 예정
 
-    WinningRank(int matchingAmount, int price) {
+    WinningRank(int rank, int matchingAmount, int price, String priceString) {
+        this.rank = rank;
         this.matchingAmount = matchingAmount;
         this.price = price;
+        this.priceString = priceString;
     }
 
     public static WinningRank findWinningStatusByMatchingAmount(int matchingAmount, boolean matchesBonusNumber) {
@@ -33,5 +42,35 @@ public enum WinningRank {
             return THIRD;
         }
         return winningRank;
+    }
+
+    public static List<WinningRank> findWinningRanksInDescendingOrder() {
+        List<WinningRank> winningRanks = new ArrayList<>(List.of(WinningRank.values()));
+        winningRanks.remove(WinningRank.FAIL);
+        winningRanks.sort(Comparator.comparingInt(WinningRank::getRank));
+        return winningRanks;
+    }
+
+    public static String findMatchingAmountMessage(WinningRank winningRank) {
+        if (winningRank == WinningRank.FIFTH) {
+            return "%d개 일치, 보너스 볼 일치 ";
+        }
+        return "%d개 일치 ";
+    }
+
+    private int getRank() {
+        return rank;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMatchingAmount() {
+        return matchingAmount;
+    }
+
+    public String getPriceString() {
+        return priceString;
     }
 }

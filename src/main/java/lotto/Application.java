@@ -10,13 +10,14 @@ import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-        int purchaseAmount = purchaseLottos();
-        List<Lotto> lottos = issueLottos(purchaseAmount);
+        int lottoAmount = purchaseLottos();
+        List<Lotto> lottos = issueLottos(lottoAmount);
         printIssuedLottos(lottos);
         Lotto winningNumbers = pickWinningNumbers();
         int bonusNumber = pickBonusNumber(winningNumbers);
 
-        drawLottos(lottos, winningNumbers, bonusNumber);
+        Map<WinningRank, Integer> winningResult = drawLottos(lottos, winningNumbers, bonusNumber);
+        printWinningRanks(winningResult);
     }
 
     private static int purchaseLottos() {
@@ -87,6 +88,19 @@ public class Application {
             winningResult.replace(winningRank, lastWinningLottoAmount + 1);
         }
         return winningResult;
+    }
+
+    private static void printWinningRanks(Map<WinningRank, Integer> winningResult) {
+        System.out.println("당첨 통계\n---");
+        for (WinningRank winningRank : WinningRank.findWinningRanksInDescendingOrder()) {
+            String matchingAmountMessage = WinningRank.findMatchingAmountMessage(winningRank);
+            System.out.println(String.format(
+                    matchingAmountMessage + "(%s원) - %d개"
+                    , winningRank.getMatchingAmount()
+                    , winningRank.getPriceString()
+                    , winningResult.get(winningRank)
+            ));
+        }
     }
 
     private static Map<WinningRank, Integer> initializeWinningResult() {
