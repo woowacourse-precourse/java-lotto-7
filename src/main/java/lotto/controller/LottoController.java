@@ -37,6 +37,7 @@ public class LottoController {
         });
 
         outputView.printScores(scoreMap);
+        outputView.printProfitRate(profitRate);
     }
 
     public List<Lotto> purchaseLotto() {
