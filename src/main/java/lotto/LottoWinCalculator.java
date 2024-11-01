@@ -8,11 +8,6 @@ import java.util.TreeMap;
  * 로또의 당첨 결과를 계산하는 클래스입니다.
  */
 public class LottoWinCalculator {
-    private static final int CLASS_5_AMOUNT = 3;
-    private static final int CLASS_4_AMOUNT = 4;
-    private static final int CLASS_2_TO_3_AMOUNT = 5;
-    private static final int CLASS_1_AMOUNT = 6;
-    
     private List<Integer> winningNums;
     private int bonusNum;
     
@@ -42,19 +37,19 @@ public class LottoWinCalculator {
     }
     
     private WinningType getWinningType(int count, boolean gotBonus) {
-        if (count == CLASS_5_AMOUNT) {
+        if (count == LottoWinningInfo.CLASS_5_AMOUNT) {
             return WinningType.CLASS_5;
         }
-        if (count == CLASS_4_AMOUNT) {
+        if (count == LottoWinningInfo.CLASS_4_AMOUNT) {
             return WinningType.CLASS_4;
         }
-        if (count == CLASS_2_TO_3_AMOUNT && !gotBonus) {
+        if (count == LottoWinningInfo.CLASS_2_TO_3_AMOUNT && !gotBonus) {
             return WinningType.CLASS_3;
         }
-        if (count == CLASS_2_TO_3_AMOUNT && gotBonus) {
+        if (count == LottoWinningInfo.CLASS_2_TO_3_AMOUNT && gotBonus) {
             return WinningType.CLASS_2;
         }
-        if (count == CLASS_1_AMOUNT) {
+        if (count == LottoWinningInfo.CLASS_1_AMOUNT) {
             return WinningType.CLASS_1;
         } return WinningType.NONE;
     }
@@ -75,5 +70,23 @@ public class LottoWinCalculator {
             resultStat.put(type, resultStat.get(type) + 1);
         }
         return resultStat;
+    }
+    
+    /**
+     * 로또 당첨 결과로부터 수익률을 계산하여 반환합니다.
+     * @param winningStat 로또 당첨 결과
+     * @param totalPrice 총 로또 구매 비용
+     * @return 수익률
+     */
+    public static double getReturnRate(Map<WinningType, Integer> winningStat, int totalPrice) {
+        double totalReward = 0.0;
+        for (WinningType type : WinningType.values()) {
+            Integer count = winningStat.get(type);
+            if (count == null) {
+                count = 0;
+            }
+            totalReward += count * LottoWinningInfo.getReward(type);
+        }
+        return totalReward / totalPrice;
     }
 }
