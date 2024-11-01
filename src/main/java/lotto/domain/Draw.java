@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.domain.validator.RangeValidator;
 
+import java.util.List;
+
 public class Draw {
 
     private final Lotto winningNumbers;
@@ -34,4 +36,9 @@ public class Draw {
         }
     }
 
+    public Rank compare(Lotto lotto) {
+        List<Integer> matchedWinningNumbers = winningNumbers.match(lotto);
+        boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
+        return Rank.with(matchedWinningNumbers.size(), hasBonusNumber);
+    }
 }

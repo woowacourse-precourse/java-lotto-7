@@ -6,10 +6,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
+import static lotto.domain.Rank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -65,6 +70,41 @@ class DrawTest {
         assertThatThrownBy(() -> new Draw(winningNumbers, 6, rangeValidator))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+    @DisplayName("로또 번호 일치 개수에 따라 등수를 반환한다.")
+    @ParameterizedTest
+    @MethodSource("provideLottoWithRank")
+    void returnRankByLottoMatchingCount(Lotto lotto, Rank expectedRank) {
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6), rangeValidator);
+        Draw draw = new Draw(winningNumbers, 23, rangeValidator);
+
+        Rank rank = draw.compare(lotto);
+
+        assertThat(rank).isEqualTo(expectedRank);
+    }
+
+    private static Stream<Arguments> provideLottoWithRank() {
+        int bonus = 23;
+        return Stream.of(
+                Arguments.of(createLotto(1, 2, 3, 4, 5, 6), FIRST),
+                Arguments.of(createLotto(1, 2, 3, 4, 5, bonus), SECOND),
+                Arguments.of(createLotto(1, 2, 3, 4, 5, 45), THIRD),
+                Arguments.of(createLotto(1, 2, 3, 4, 44, bonus), FOURTH),
+                Arguments.of(createLotto(1, 2, 3, 4, 44, 45), FOURTH),
+                Arguments.of(createLotto(1, 2, 3, 43, 44, bonus), FIFTH),
+                Arguments.of(createLotto(1, 2, 3, 43, 44, 45), FIFTH),
+                Arguments.of(createLotto(1, 2, 42, 43, 44, bonus), NONE),
+                Arguments.of(createLotto(1, 2, 42, 43, 44, 45), NONE),
+                Arguments.of(createLotto(1, 41, 42, 43, 44, bonus), NONE),
+                Arguments.of(createLotto(1, 41, 42, 43, 44, 45), NONE),
+                Arguments.of(createLotto(40, 41, 42, 43, 44, bonus), NONE),
+                Arguments.of(createLotto(40, 41, 42, 43, 44, 45), NONE)
+        );
+    }
+
+    private static Lotto createLotto(Integer...numbers) {
+        return new Lotto(Arrays.asList(numbers), new DefaultRangeValidator());
     }
 
 }

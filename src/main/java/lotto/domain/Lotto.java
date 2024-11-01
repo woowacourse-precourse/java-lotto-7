@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.domain.validator.RangeValidator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -53,5 +54,15 @@ public class Lotto {
 
     public boolean hasNumber(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> match(Lotto lotto) {
+        List<Integer> matched = new ArrayList<>();
+        for (Integer number : lotto.numbers) {
+            if (this.hasNumber(number)) {
+                matched.add(number);
+            }
+        }
+        return matched;
     }
 }
