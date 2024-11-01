@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.CommonSymbols.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +22,6 @@ public class LottoService {
     public String getFormattedLottoNumbers(List<Lotto> lottos) {
         return lottos.stream()
                 .map(Lotto::formattedNumbers)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(NEW_LINE.getSymbol()));
     }
 }
