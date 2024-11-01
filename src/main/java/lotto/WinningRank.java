@@ -51,6 +51,8 @@ public enum WinningRank {
         this.successMatch = 0;
     }
 
+    abstract int calculateRevenue();
+
     public int getSuccessMatch() {
         return successMatch;
     }
@@ -60,38 +62,62 @@ public enum WinningRank {
     }
 
     public static WinningRank match(int requiredMatch, boolean hasBonus) {
-        if (requiredMatch == 5 && hasBonus) {
+        if (isMatchSecond(requiredMatch, hasBonus)) {
             increase(WinningRank.SECOND);
             return WinningRank.SECOND;
         }
 
-        WinningRank lottoRank = Arrays.stream(WinningRank.values())
+        return getWinningRank(requiredMatch);
+    }
+
+    private static boolean isMatchSecond(int requiredMatch, boolean hasBonus) {
+        return requiredMatch == 5 && hasBonus;
+    }
+
+    private static WinningRank getWinningRank(int requiredMatch) {
+        WinningRank winningRank = Arrays.stream(WinningRank.values())
                 .filter(rank -> rank != WinningRank.SECOND)
                 .filter(rank -> rank.requiredMatch == requiredMatch)
                 .findFirst()
                 .orElseThrow();
 
-        increase(lottoRank);
+        increase(winningRank);
 
-        return lottoRank;
+        return winningRank;
     }
 
     private static void increase(WinningRank rank) {
         rank.successMatch++;
     }
 
-    abstract int calculateRevenue();
-
     public static String winningStatus() {
         return Arrays.stream(WinningRank.values())
-                .map(rank -> {
-                    String reward = WINNING_AMOUNT_FORMAT.format(rank.reward);
-
-                    if (rank == WinningRank.SECOND) {
-                        return String.format(BONUS_STATISTICS_FORMAT, rank.requiredMatch, reward, rank.successMatch);
-                    }
-                    return String.format(BASIC_STATISTICS_FORMAT, rank.requiredMatch, reward, rank.successMatch);
-                })
+                .map(WinningRank::selectStatus)
                 .collect(Collectors.joining("\n"));
+    }
+
+    private static String selectStatus(WinningRank rank) {
+        String reward = formattingReward(rank);
+
+        if (isSecond(rank)) {
+            return secondStatistics(rank, reward);
+        }
+        return statistics(rank, reward);
+    }
+
+    private static String formattingReward(WinningRank rank) {
+        return WINNING_AMOUNT_FORMAT.format(rank.reward);
+    }
+
+    private static boolean isSecond(WinningRank rank) {
+        return rank == WinningRank.SECOND;
+    }
+
+    private static String secondStatistics(WinningRank rank, String reward) {
+        return String.format(BONUS_STATISTICS_FORMAT, rank.requiredMatch, reward, rank.successMatch);
+    }
+
+    private static String statistics(WinningRank rank, String reward) {
+        return String.format(BASIC_STATISTICS_FORMAT, rank.requiredMatch, reward, rank.successMatch);
     }
 }
