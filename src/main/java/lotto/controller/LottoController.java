@@ -1,6 +1,7 @@
 package lotto.controller;
 
 
+import lotto.validation.PurchaseAmountValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,6 +13,6 @@ public class LottoController {
     private int getAttemptCount() {
         OutputView.printPurchaseAmountInputMessage();
         String purchaseAmount = InputView.UserInput();
-        return 0;
+
     }
 }
