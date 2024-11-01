@@ -14,35 +14,20 @@ public class InputView {
     private static final int MAX_LOTTO_RANGE = 45;
 
     //inputPurchasePrice 구현
-    public static int inputPurchasePrice() {
-        while (true) {
-            try {
-                OutputView.printPrompt(OutputViewEnum.PURCHASE_AMOUNT_INPUT.getMessage());
-                String userInput = Console.readLine();
-                validatePurchase(userInput);
-                return Utils.stringToInteger(userInput);
-            } catch (NumberFormatException e) {
-                OutputView.errorPrint(e.getMessage());
-            } catch (IllegalArgumentException e) {
-                OutputView.errorPrint(e.getMessage());
-            }
-        }
+    public static BigDecimal inputPurchasePrice() {
+        OutputView.printPrompt(OutputViewEnum.PURCHASE_AMOUNT_INPUT.getMessage());
+        String userInput = Console.readLine();
+        validateInput(userInput);
+        return new BigDecimal(userInput);
     }
 
     //금액 valiadate
-    private static void validatePurchase(String userInput) {
+    private static void validateInput(String userInput) {
         if (userInput.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage() + " : " + userInput);
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
         if (!Utils.isDigitOnly(userInput)) {
-            throw new NumberFormatException(ErrorMessage.NOT_NUMBER.getMessage() + " : " + userInput);
-        }
-        BigDecimal count = Utils.stringToNumber(userInput);
-        if (!Utils.isInRange(new BigDecimal("1000"), new BigDecimal("100000"), count)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage() + " : " + userInput);
-        }
-        if (!Utils.isDivisibleByThousand(count.intValue())) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_THOUSAND.getMessage() + " : " + userInput);
+            throw new NumberFormatException(ErrorMessage.NOT_NUMBER.getMessage());
         }
     }
 
