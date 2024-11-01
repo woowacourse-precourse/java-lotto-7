@@ -13,7 +13,7 @@ public final class LottoParser {
 
     private LottoParser() {}
 
-    public static List<Integer> parseBallNumbers(String input) {
+    public static List<Integer> parseNumbers(String input) {
         Set<String> collect = Arrays.stream(input.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toCollection(HashSet<String>::new));
@@ -25,7 +25,7 @@ public final class LottoParser {
         return parseIntList(collect);
     }
 
-    public static Integer parseBonusBall(String input) {
+    public static Integer parseBonusNumber(String input) {
         return Integer.parseInt(input.trim());
     }
 
