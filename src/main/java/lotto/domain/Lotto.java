@@ -1,14 +1,24 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private static final int LOTTO_NUMBER_SIZE = 6;
 
-    public Lotto(List<Integer> numbers) {
+    private final List<LottoNumber> numbers;
+
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto of(List<Integer> numbers) {
+        return new Lotto(numbers.stream()
+                .map(LottoNumber::new)
+                .toList());
     }
 
     public int countMatchingNumbers(Lotto lotto) {
@@ -17,14 +27,32 @@ public class Lotto {
                 .count();
     }
 
-    public boolean contains(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    private void validate(List<LottoNumber> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateSize(List<LottoNumber> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(String.format("[ERROR] 로또 번호는 %d개여야 합니다.", LOTTO_NUMBER_SIZE));
         }
+    }
+
+    private void validateDuplicate(List<LottoNumber> numbers) {
+        if (isDuplicated(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+
+    }
+
+    private boolean isDuplicated(List<LottoNumber> numbers) {
+        Set<LottoNumber> distinctNumbers = new HashSet<>();
+        return !numbers.stream()
+                .allMatch(distinctNumbers::add);
     }
 
 }

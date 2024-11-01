@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.LottoRank;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
@@ -18,13 +19,13 @@ public class LottoController {
     }
 
     public void run() {
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
-        int bonusNumber = 7;
-        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                new Lotto(List.of(1, 2, 3, 11, 12, 13)));
+        int money = 3000;
+        List<Lotto> purchasedLottos = lottoService.purchaseBy(money);
 
-        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, bonusNumber, lottos);
+        Lotto winningLotto = Lotto.of(List.of(1,2,3,4,5,6));
+        LottoNumber bonusNumber = new LottoNumber(7);
+
+        Map<LottoRank, Integer> ranks = lottoService.evaluateLottos(winningLotto, bonusNumber, purchasedLottos);
         lottoView.showWinningResult(ranks);
     }
 

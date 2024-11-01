@@ -6,6 +6,7 @@ import lotto.domain.LottoRank;
 
 public class LottoView {
 
+    // TODO: 의존성 주입
     RankMessageGenerator rankMessageGenerator = new RankMessageGenerator();
 
     public void showWinningResult(Map<LottoRank, Integer> ranks) {
