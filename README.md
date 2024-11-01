@@ -12,7 +12,7 @@
     - [ ] print lottery numbers in ascending order
         - [x] pick 6 numbers in range 1~45
     - [ ] get winning numbers and bonus number
-    - [ ] calculate each lottery prize
+    - [x] calculate each lottery prize
     - [ ] calculate rate of return
     - [ ] print lottery results and rate of return
 
