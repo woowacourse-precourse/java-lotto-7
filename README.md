@@ -37,13 +37,14 @@
     + [] 로또 진행 기능 - 
 
 ### utils package
-- WinningPrices class
-    + [] 당첨금 관련 Enum 클래스
+- WinningLotto class
+    + [0] 당첨금 관련 Enum 클래스 구현 
+        + [0] 등수에 맞는 당첨금, 당첨 통계 출력 포멧 상수화
+        + [0] Enum 원소 반환 기능 구현
 
 ### exception package
 - Lotto class : 입력된 로또 번호에 대한 검증 진행
     + [0]  입력한 로또 번호가 6개가 맞는지 검증 - validate
-
 
 
 ## 구현 규칙
