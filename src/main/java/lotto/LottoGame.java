@@ -14,6 +14,7 @@ public class LottoGame {
         Lotto winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers.getNumbers());
         LottoComparator result = new LottoComparator(lottos, winningNumbers, bonusNumber);
+        result.calculateResult();
         result.printResult();
     }
 
