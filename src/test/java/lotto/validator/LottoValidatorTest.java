@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,16 +11,16 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class LottoValidatorTest {
 
-    @DisplayName("로또 번호 개수가 6개가 아닐 때 예외 발생")
+    @DisplayName("[ERROR] 로또 번호는 6개의 숫자여야 합니다.")
     @Test
     void validateLottoNumberCount_WhenCountIsNotSix_ShouldThrowException() {
         assertThatThrownBy(() -> LottoValidator.validateLottoNumberCount(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_COUNT_INVALID.getMessage());
+                .hasMessage("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
 
         assertThatThrownBy(() -> LottoValidator.validateLottoNumberCount(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_COUNT_INVALID.getMessage());
+                .hasMessage("[ERROR] 로또 번호는 6개의 숫자여야 합니다.");
     }
 
     @DisplayName("로또 번호 개수가 정확히 6개일 때 예외 발생하지 않음")
@@ -30,7 +29,7 @@ public class LottoValidatorTest {
         assertThatNoException().isThrownBy(() -> LottoValidator.validateLottoNumberCount(List.of(1, 2, 3, 4, 5, 6)));
     }
 
-    @DisplayName("로또 번호가 범위를 벗어날 때 예외 발생")
+    @DisplayName("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.")
     @ParameterizedTest
     @CsvSource({
             "0,1,2,3,4,5",    // 0이 범위에서 벗어남
@@ -43,7 +42,7 @@ public class LottoValidatorTest {
 
         assertThatThrownBy(() -> LottoValidator.validateLottoNumberRange(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_RANGE_INVALID.getMessage());
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
     }
 
     @DisplayName("로또 번호가 범위 내에 있을 때 예외 발생하지 않음")
@@ -52,12 +51,12 @@ public class LottoValidatorTest {
         assertThatNoException().isThrownBy(() -> LottoValidator.validateLottoNumberRange(List.of(1, 2, 3, 4, 5, 45)));
     }
 
-    @DisplayName("로또 번호에 중복이 있을 때 예외 발생")
+    @DisplayName("[ERROR] 로또 번호에는 중복된 숫자가 없어야 합니다.")
     @Test
     void validateNoDuplicates_WhenDuplicatesExist_ShouldThrowException() {
         assertThatThrownBy(() -> LottoValidator.validateNoDuplicates(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.LOTTO_NUMBER_DUPLICATE_INVALID.getMessage());
+                .hasMessage("[ERROR] 로또 번호에는 중복된 숫자가 없어야 합니다.");
     }
 
     @DisplayName("로또 번호에 중복이 없을 때 예외 발생하지 않음")
@@ -66,13 +65,13 @@ public class LottoValidatorTest {
         assertThatNoException().isThrownBy(() -> LottoValidator.validateNoDuplicates(List.of(1, 2, 3, 4, 5, 6)));
     }
 
-    @DisplayName("보너스 번호가 범위를 벗어날 때 예외 발생")
+    @DisplayName("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.")
     @ParameterizedTest
     @CsvSource({"0", "46"})
     void validateBonusNumberRange_WhenBonusOutOfRange_ShouldThrowException(int bonusNumber) {
         assertThatThrownBy(() -> LottoValidator.validateBonusNumberRange(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+                .hasMessage("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
     }
 
     @DisplayName("보너스 번호가 범위 내에 있을 때 예외 발생하지 않음")
@@ -82,7 +81,7 @@ public class LottoValidatorTest {
         assertThatNoException().isThrownBy(() -> LottoValidator.validateBonusNumberRange(bonusNumber));
     }
 
-    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외 발생")
+    @DisplayName("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.")
     @Test
     void validateBonusNumberDuplication_WhenBonusIsDuplicate_ShouldThrowException() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
@@ -90,7 +89,7 @@ public class LottoValidatorTest {
 
         assertThatThrownBy(() -> LottoValidator.validateBonusNumberDuplication(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.BONUS_NUMBER_DUPLICATE_INVALID.getMessage());
+                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복되지 않을 때 예외 발생하지 않음")
@@ -102,5 +101,4 @@ public class LottoValidatorTest {
         assertThatNoException().isThrownBy(
                 () -> LottoValidator.validateBonusNumberDuplication(bonusNumber, winningNumbers));
     }
-
 }
