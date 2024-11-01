@@ -60,7 +60,7 @@ public class MoneyValidator {
 
     protected void validateRange() {
         if (Long.parseLong(money) < Constants.MIN_MONEY.getNumber()
-                || Long.parseLong(money) > Constants.MAX_MONEY.getNumber()) {
+                || Long.parseLong(money) > Constants.MAX_MONEY.getLong()) {
             throw new IllegalArgumentException(combineMessages(Errors.NOT_IN_RANGE.getMessage()));
         }
     }

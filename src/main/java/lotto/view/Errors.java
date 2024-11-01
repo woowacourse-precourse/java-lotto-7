@@ -11,7 +11,7 @@ public enum Errors {
     NOT_IN_RANGE("범위를 벗어났습니다 ("
             + Constants.MIN_MONEY.getNumber()
             + "~"
-            + Constants.MAX_MONEY.getNumber()
+            + Constants.MAX_MONEY.getLong()
             + ")."),
     REMAINDER_EXISTENT("값이 나누어 떨어지지 않습니다.");
 

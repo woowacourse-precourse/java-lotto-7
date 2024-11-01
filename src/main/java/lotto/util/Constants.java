@@ -3,8 +3,10 @@ package lotto.util;
 public enum Constants {
     LOTTO_PRICE(1000),
     MAX_MONEY(10000000000000L), // 10조, Long.MAX_VALUE 보단 작게
-    MIN_MONEY(1);
-
+    MIN_MONEY(1),
+    MIN_LOTTO_NUMBER(1),
+    MAX_LOTTO_NUMBER(45),
+    LOTTO_NUMBER_COUNT(6);
 
     private final long number;
 
@@ -12,7 +14,11 @@ public enum Constants {
         this.number = number;
     }
 
-    public long getNumber() {
+    public long getLong() {
         return number;
+    }
+
+    public int getNumber() {
+        return (int) number;
     }
 }
