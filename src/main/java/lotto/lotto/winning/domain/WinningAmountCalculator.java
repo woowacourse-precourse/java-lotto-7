@@ -4,7 +4,7 @@ import lotto.money.domain.Money;
 import lotto.lotto.domain.LottoTickets;
 import lotto.money.infrastructure.WinningAmount;
 
-public class WinningCalculator {
+public class WinningAmountCalculator {
     public Benefit updateBenefit(LottoTickets lottoTickets, WinningLotto winningLotto, BonusNumber bonusNumber) {
         Money winningAmount = winningCalculate(lottoTickets, winningLotto, bonusNumber);
         return new Benefit(winningAmount);
