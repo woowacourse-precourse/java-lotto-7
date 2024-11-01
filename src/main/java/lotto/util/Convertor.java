@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 import lotto.view.validator.InputValidator;
 
 public class Convertor {
+    private Convertor(){
+    }
+
     public static int stringToInt(final String input) {
         return Integer.parseInt(input);
     }
