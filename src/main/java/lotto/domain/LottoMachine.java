@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.CAN_BUY;
+import static lotto.utils.ErrorMessage.INVALID_MONEY;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,19 +19,19 @@ public class LottoMachine {
     }
 
     private void amountValid(int amount) {
-        canBuyLotto(amount);
+        canBuy(amount);
         checkDivisible(amount);
     }
 
-    private void canBuyLotto(int amount) {
+    private void canBuy(int amount) {
         if (!(amount >= LOTTO_PRICE)) {
-            throw new IllegalArgumentException("canBuyLotto");
+            throw new IllegalArgumentException(CAN_BUY);
         }
     }
 
     private void checkDivisible(int amount) {
         if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_MONEY);
         }
     }
 
@@ -43,7 +46,7 @@ public class LottoMachine {
         return lottoTickets;
     }
 
-    private static List<Integer> sort(List<Integer> numbers) {
+    private List<Integer> sort(List<Integer> numbers) {
         Collections.sort(numbers);
         return numbers;
     }

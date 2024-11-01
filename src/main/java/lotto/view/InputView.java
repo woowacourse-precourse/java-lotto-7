@@ -8,7 +8,7 @@ import java.util.List;
 public class InputView {
     private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNER_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
 
     public static void errorPrint(String errorMessage) {
@@ -21,7 +21,7 @@ public class InputView {
             System.out.println(INPUT_PRICE_MESSAGE);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            errorPrint("금액은 숫자로만 입력해 주세요.");
+            errorPrint(INVALID_PRICE);
             return inputPrice();
         }
     }
@@ -29,7 +29,6 @@ public class InputView {
     public static List<String> inputNumbers() {
         System.out.println(INPUT_WINNER_LOTTO_MESSAGE);
         return List.of(Console.readLine().split(","));
-
     }
 
     public static int inputBonus() {
@@ -37,7 +36,7 @@ public class InputView {
             System.out.println(INPUT_BONUS_MESSAGE);
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            errorPrint("보너스 번호는 숫자만 입력해 주세요");
+            errorPrint(INVALID_BOUNS_NUMBER);
             return inputBonus();
         }
     }

@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import static lotto.utils.ErrorMessage.INVALID_LOTTO;
+import static lotto.utils.ErrorMessage.BONUS_NUMBER_DUPLICATION;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -25,9 +28,9 @@ public class LottoController {
     }
 
     private static double totalReturn(User user, long prize) {
-        int purchaseMoney = user.getLottoTickets().size() * 10;
+        int amount = user.getLottoTickets().size() * 10;
 
-        return Math.round(prize * 100.0 / purchaseMoney) / 100.0;
+        return Math.round(prize * 100.0 / amount) / 100.0;
     }
 
     private static long calculatePrizeMoeny(User user) {
@@ -90,7 +93,7 @@ public class LottoController {
 
     private static int checkContains(Lotto winnerLotto, int bonus) {
         if (winnerLotto.getNumbers().contains(bonus)) {
-            throw new IllegalArgumentException("당첨 번호에 포함된 숫자입니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
         }
         return bonus;
     }
@@ -106,7 +109,7 @@ public class LottoController {
                 }
                 return winnerNumbers;
             } catch (NumberFormatException e) {
-                InputView.errorPrint("당첨 번호는 숫자로만 작성해 주세요.");
+                InputView.errorPrint(INVALID_LOTTO);
             }
         }
     }

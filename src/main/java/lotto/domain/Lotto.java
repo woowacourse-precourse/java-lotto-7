@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.INVALID_LOTTO_NUMBER;
+import static lotto.utils.ErrorMessage.INVALID_RANGE;
+import static lotto.utils.ErrorMessage.LOTTO_NUMBER_DUPLICATION;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,21 +26,21 @@ public class Lotto {
 
     private void checkSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER);
         }
     }
 
     private void checkSame(List<Integer> numbers) {
         Set<Integer> numberSize = new HashSet<>(numbers);
         if (numbers.size() != numberSize.size()) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION);
         }
     }
 
     private void checkRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (!(number >= 1 && number <= 45)) {
-                throw new IllegalArgumentException("로또 번호는 1 에서 45 사이로 작성해 주세요");
+                throw new IllegalArgumentException(INVALID_RANGE);
             }
         }
     }

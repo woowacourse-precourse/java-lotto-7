@@ -16,18 +16,15 @@ public enum LottoPrize {
         this.prize = prize;
     }
 
-    public long getPrizeByRank(int matchCount) {
+    public static long getPrizeByRank(int matchCount) {
         for (LottoPrize value : values()) {
             if (value.getMatch() == matchCount) {
                 value.incrementCount();
                 return value.prize;
             }
         }
+
         return 0;
-    }
-
-    public void getWinningStatistics(int match) {
-
     }
 
     public void incrementCount() {
