@@ -1,10 +1,13 @@
 package lotto;
 
+import java.util.ArrayList;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -21,5 +24,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("toString은 의도한 String을 반환한다.")
+    void toString_ReturnCorrectly() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        String result = lotto.toString();
+
+        // then
+        assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }
