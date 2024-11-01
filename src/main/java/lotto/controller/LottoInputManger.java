@@ -1,6 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.BonusComponent;
+import lotto.domain.Lotto;
+
 public interface LottoInputManger {
 
-    void validateInput();
+    int getInputPrice();
+
+    Lotto getInputWinningComponent();
+
+    BonusComponent getInputBonusComponent();
 }
