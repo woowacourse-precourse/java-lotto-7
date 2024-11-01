@@ -13,7 +13,7 @@ public class Money {
 
     public Money(final String input) {
         int price = Parser.parsePrice(input);
-        validatePrice(price);
+        validate(price);
         this.price = price;
     }
 
@@ -21,7 +21,7 @@ public class Money {
         return price;
     }
 
-    private static void validatePrice(final int price) {
+    private static void validate(final int price) {
         validateRange(price);
         validateDivisibility(price);
     }
