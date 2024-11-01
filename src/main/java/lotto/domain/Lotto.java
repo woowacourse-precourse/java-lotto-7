@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.MatchCondition;
+
 import java.util.List;
 
 public class Lotto {
@@ -16,13 +18,19 @@ public class Lotto {
         }
     }
 
-    public int countMatchingNumber(WinningNumber winningNumber) {
+    private int countMatchingNumber(WinningNumber winningNumber) {
         return (int) numbers.stream()
                 .filter(winningNumber::contains)
                 .count();
     }
 
-    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+    private boolean containsBonusNumber(BonusNumber bonusNumber) {
         return numbers.stream().anyMatch(bonusNumber::isEqualTo);
+    }
+
+    public MatchCondition compareWithWinningNumbers(WinningNumber winningNumber, BonusNumber bonusNumber) {
+        int matchCount = countMatchingNumber(winningNumber);
+        boolean containsBonusNumber = containsBonusNumber(bonusNumber);
+        return new MatchCondition(matchCount, containsBonusNumber);
     }
 }
