@@ -7,11 +7,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoDraw {
+    private final int LOTTO_PRICE = 1000;
+    private final int MIN_NUMBER_RANGE = 1;
+    private final int MAX_NUMBER_RANGE = 45;
+    private final int RANDOM_NUMBER_COUNT = 6;
+
     private int numberOfPurchases;
     private List<Lotto> lottoDrawNumbers;
 
     public LottoDraw(int purchaseAmount) {
-        numberOfPurchases = purchaseAmount / 1000;
+        numberOfPurchases = purchaseAmount / LOTTO_PRICE;
         lottoDrawNumbers = new ArrayList<>();
         randomLottoNumberDraw();
     }
@@ -24,7 +29,11 @@ public class LottoDraw {
     }
 
     private List<Integer> sortRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+                MIN_NUMBER_RANGE,
+                MAX_NUMBER_RANGE,
+                RANDOM_NUMBER_COUNT
+        );
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
