@@ -14,6 +14,14 @@ public class LottoComparator {
         this.bonusNumber = bonusNumber;
     }
 
+    public void calculateResult(){
+        for (Lotto customerTicket : customerTickets) {
+            int matchCount = getMatchCount(customerTicket.getNumbers(), winningTicket.getNumbers());
+            boolean bonusMatch = customerTicket.getNumbers().contains(bonusNumber);
+            LottoRank rank = LottoRank.getLottoRank(matchCount, bonusMatch);
+        }
+    }
+
     public int getMatchCount(List<Integer> customerNumbers, List<Integer> winningNumbers){
         int count = 0;
         for (int i = 0; i < winningNumbers.size(); i++) {
