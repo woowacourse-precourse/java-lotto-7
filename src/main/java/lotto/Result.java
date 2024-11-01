@@ -74,4 +74,31 @@ public class Result {
     private void incrementResult(String key) {
         resultMap.put(key, resultMap.get(key) + 1);
     }
+
+    public void printResult(int purchaseAmount) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        long totalPrize = calculateTotalPrize();
+        printResultCounts();
+        double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
+    }
+
+    private long calculateTotalPrize() {
+        long totalPrize = 0;
+        for (Map.Entry<String, Integer> entry : resultMap.entrySet()) {
+            String key = entry.getKey();
+            int count = entry.getValue();
+            int prize = PRIZE_MONEY.get(key);
+            totalPrize += (long) prize * count;
+        }
+        return totalPrize;
+    }
+
+    private void printResultCounts() {
+        for (Map.Entry<String, Integer> entry : resultMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue() + "개");
+        }
+    }
 }
