@@ -5,15 +5,17 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 
-public class AutoNumberGenerator implements NumberGenerator {
+import static lotto.domain.constant.LottoRule.*;
 
-    public static final int MIN_NUMBER = 1;
-    public static final int MAX_NUMBER = 45;
-    public static final int LOTTO_SIZE = 6;
+public class AutoNumberGenerator implements NumberGenerator {
 
     @Override
     public List<Integer> generateNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+                MIN_NUMBER.getNumber(),
+                MAX_NUMBER.getNumber(),
+                LOTTO_SIZE.getNumber()
+        );
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

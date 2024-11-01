@@ -8,7 +8,10 @@ public enum ExceptionMessage {
     INVALID_WINNING_NUMBER_FORMAT("잘못된 입력 형식입니다: %s다음 숫자를 입력해 주세요."),
     INVALID_PURCHASING_UNIT("%d원 단위로 구매해주세요."),
     INVALID_PURCHASING_PRICE("최대 %d원까지 구매 가능합니다."),
-    NO_MORE_LOTTO("더이상 존재하는 로또가 없습니다.");
+    NO_MORE_LOTTO("더이상 존재하는 로또가 없습니다."),
+    INVALID_LOTTO_SIZE("로또 번호는 %d개여야 합니다."),
+    NUMBER_OUT_OF_RANGE("로또 숫자 범위는 최소 %d부터 최대 %d까지 가능합니다."),
+    DUPLICATED_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다.");
 
 
     private static final String ERROR_PREFIX = "[ERROR] ";

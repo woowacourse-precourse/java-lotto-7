@@ -2,7 +2,12 @@ package lotto.domain;
 
 import lotto.dto.response.LottoResponse;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.domain.constant.LottoRule.*;
+import static lotto.exception.ExceptionMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,6 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -18,15 +24,24 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage(LOTTO_SIZE.getNumber()));
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException();
+            if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber()));
+            }
+        }
+    }
+
+    private void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
             }
         }
     }
