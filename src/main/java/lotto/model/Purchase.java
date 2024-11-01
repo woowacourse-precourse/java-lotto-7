@@ -8,6 +8,10 @@ public class Purchase {
         this.price = price;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public int getQuantity() {
         return price / 1000;
     }

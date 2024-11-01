@@ -27,6 +27,7 @@ public class LottoController {
         List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
         WinningNumbers winningNumbers = requestWinningNumbers();
         Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
+        double rateOfReturn = calculateRateOfReturn(result, purchase.getPrice());
     }
 
     private Purchase requestPurchase() {
@@ -83,5 +84,13 @@ public class LottoController {
         }
 
         return result;
+    }
+
+    private double calculateRateOfReturn(Map<Prize, Integer> result, int purchasePrice) {
+        int totalPrizeMoney = result.entrySet().stream()
+                .mapToInt(entry -> entry.getValue() * entry.getKey().getPrizeMoney())
+                .sum();
+
+        return ((double) totalPrizeMoney / purchasePrice) * 100;
     }
 }
