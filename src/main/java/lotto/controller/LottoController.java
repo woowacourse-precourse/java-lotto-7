@@ -74,7 +74,6 @@ public class LottoController {
         }
     }
 
-
     private <T> T retryUntilValidInput(Supplier<T> supplier) {
         while (true) {
             try {
