@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.exception.bonus.BonusErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class BonusNumberTest {
         // when, then
         assertThatThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 공백일 수 없습니다.");
+                .hasMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
     }
 
     @Test
@@ -32,7 +33,7 @@ public class BonusNumberTest {
         // when, then
         assertThatThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 하나의 양수여야 합니다.");
+                .hasMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
     }
 
     @Test
@@ -45,7 +46,7 @@ public class BonusNumberTest {
         // when, then
         assertThatThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 하나의 양수여야 합니다.");
+                .hasMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
     }
 
     @Test
@@ -58,7 +59,7 @@ public class BonusNumberTest {
         // when, then
         assertThatThrownBy(() -> new BonusNumber(invalidInput, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 하나의 양수여야 합니다.");
+                .hasMessage(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
     }
 
     @Test
@@ -71,7 +72,7 @@ public class BonusNumberTest {
         // when, then
         assertThatThrownBy(() -> new BonusNumber(outOfRangeInput, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessage(BonusErrorMessages.OUT_OF_RANGE_NUMBER.getMessage());
     }
 
     @Test
@@ -84,7 +85,7 @@ public class BonusNumberTest {
         // when, then
         assertThatThrownBy(() -> new BonusNumber(duplicateInput, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                .hasMessage(BonusErrorMessages.DUPLICATE_NUMBER.getMessage());
     }
 
     @Test

@@ -38,7 +38,6 @@ public class WinningNumbers {
         checkRange(numbers);
     }
 
-    // Check methods for different validations
 
     private void checkEmptyOrNull(String input) {
         if (input == null || input.isBlank()) {
