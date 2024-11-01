@@ -1,6 +1,5 @@
 package lotto.vendingmachine;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -29,8 +28,6 @@ public class Lotto {
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        Collections.sort(numbers);
-
         int tmp = 0;
         for (Integer number : numbers) {
             if (tmp == number) {
