@@ -4,6 +4,7 @@ import lotto.back.lotto.controller.LottoController;
 import lotto.global.communication.CustomCommunicationCode;
 import lotto.global.communication.CustomCommunicationData;
 import lotto.global.communication.Telecommunication;
+import lotto.global.dto.request.LottoResultRequestDTO;
 import lotto.global.dto.request.PurchaseLottoRequestDTO;
 import lotto.global.dto.request.SetPrizeLottoRequestDTO;
 import lotto.global.exception.CustomIllegalArgumentException;
@@ -27,7 +28,6 @@ public class FrontController {
         }
     }
 
-    //TODO 로직 구현 시 각 메서드로 redirect되도록 구현
     private static Object lottoRequestHandling(Object requestObject) {
         LottoController lottoController = BeanConfig.getBean(LottoController.class);
 
@@ -36,6 +36,8 @@ public class FrontController {
         } else if (requestObject instanceof SetPrizeLottoRequestDTO setPrizeLottoRequestDTO) {
             lottoController.setPrizeLotto(setPrizeLottoRequestDTO);
             return null;
+        } else if (requestObject instanceof LottoResultRequestDTO lottoResultRequestDTO) {
+            return lottoController.setBonusAndGetResult(lottoResultRequestDTO);
         }
 
         throw new RuntimeException("잘못된 요청입니다.");
