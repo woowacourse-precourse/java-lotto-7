@@ -19,9 +19,16 @@ public enum WinningResult {
     }
 
     public static WinningResult of(int matchCount, boolean isBonusMatch) {
-        for (WinningResult winningResult : values()) {
-            if (winningResult.normalCount == matchCount && winningResult.bonusMatch == isBonusMatch) {
-                return winningResult;
+        if (matchCount == 5 && isBonusMatch) {
+            return SECOND;
+        }
+        if(matchCount == 5) {
+            return THIRD;
+        }
+
+        for (WinningResult result : values()) {
+            if (result.normalCount == matchCount) {
+                return result;
             }
         }
         return NONE;
