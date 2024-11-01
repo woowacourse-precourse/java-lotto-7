@@ -21,7 +21,7 @@ public class WinningNumbersValidator {
 
     public static void validateWinningNumbers(String inputWinningNumbers) {
         validateSeparator(inputWinningNumbers);
-        validateIsBlank(inputWinningNumbers);
+        validateNotEmpty(inputWinningNumbers);
         List<Integer> winningNumbers = ParseUtil.parseToList(inputWinningNumbers);
         validateWinningNumbersCount(winningNumbers);
         validateNumbersRange(winningNumbers);
@@ -34,7 +34,7 @@ public class WinningNumbersValidator {
         }
     }
 
-    private static void validateIsBlank(String winningNumbers) {
+    private static void validateNotEmpty(String winningNumbers) {
         if (StringUtils.isBlank(winningNumbers)) {
             throw new IllegalArgumentException(ERROR_EMPTY_WINNING_NUMBERS);
         }
