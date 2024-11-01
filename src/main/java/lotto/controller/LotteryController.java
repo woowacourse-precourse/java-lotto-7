@@ -10,7 +10,6 @@ public class LotteryController {
     }
 
     public void startLottery() {
-        int purchaseAmount = lotteryService.getPurchaseAmount();
-        System.out.println("purchaseAmount = " + purchaseAmount);
+        lotteryService.getPurchaseAmount();
     }
 }

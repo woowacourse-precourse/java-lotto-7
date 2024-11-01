@@ -17,4 +17,9 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
     }
+
+    public void printPurchaseAmount(final int lottoPurchaseAmount) {
+        System.out.println();
+        System.out.println(lottoPurchaseAmount + "개를 구매했습니다");
+    }
 }
