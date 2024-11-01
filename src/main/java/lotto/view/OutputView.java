@@ -13,38 +13,37 @@ public class OutputView {
     private static final String MATCH_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static void printLottos(List<Lotto> lottos) {
+    public static void displayLottoTickets(List<Lotto> lottos) {
         System.out.printf((PURCHASE_MESSAGE) + "%n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
     }
 
-    public static void printWinningStatistics(Map<LottoRank, Integer> statistics) {
+    public static void displayWinningStatistics(Map<LottoRank, Integer> statistics) {
         System.out.println(WINNING_STATISTICS_HEADER);
         System.out.println(DIVIDER);
 
         for (LottoRank rank : LottoRank.values()) {
-            if (rank == LottoRank.NO_PRIZE) continue;
-            int matchCount = rank.getMatchCount();
-            String prizeAmount = rank.getFormatPrize();
-            int count = statistics.getOrDefault(rank, 0);
-            System.out.println(winningStatisticsMessage(rank,matchCount,prizeAmount,count));
+            if (rank == LottoRank.NONE) continue;
+            
+            String prizeAmount = rank.getFormattedPrizeAmount();
+            int matchNumberCount = rank.getMatchNumberCount();
+            int prizeWinningCount = statistics.getOrDefault(rank, 0);
+            
+            if (rank == LottoRank.SECOND) {
+                System.out.printf((MATCH_BONUS_MESSAGE) + "%n", matchNumberCount, prizeAmount, prizeWinningCount);
+                continue;
+            }
+            System.out.printf((MATCH_MESSAGE) + "%n", matchNumberCount, prizeAmount, prizeWinningCount);
         }
     }
 
-    private static String winningStatisticsMessage(LottoRank rank, int matchCount, String prizeAmount, int count) {
-        if (rank == LottoRank.SECOND_PRIZE) {
-            return String.format(MATCH_BONUS_MESSAGE, matchCount, prizeAmount, count);
-        }
-        return String.format(MATCH_MESSAGE, matchCount, prizeAmount, count);
-    }
-
-    public static void printRateOfReturn(double rateOfReturn) {
+    public static void displayRateOfReturn(double rateOfReturn) {
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 
-    public static void printErrorMessage(String errorMessage) {
+    public static void displayErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 }

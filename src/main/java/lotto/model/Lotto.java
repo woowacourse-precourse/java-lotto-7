@@ -8,7 +8,7 @@ public class Lotto {
     public static final int LOTTO_SIZE = 6;
     public static final int LOTTO_NUMBER_MIN = 1;
     public static final int LOTTO_NUMBER_MAX = 45;
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
@@ -16,10 +16,6 @@ public class Lotto {
         validateNumberRange(numbers);
         this.numbers = new ArrayList<>(numbers);
         Collections.sort(this.numbers);
-    }
-
-    public int getNumbersSize() {
-        return numbers.size();
     }
 
     public List<Integer> getNumbers() {
@@ -30,7 +26,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int countMatchingNumbers(Lotto winningLotto) {
+    public int getMatchNumberCount(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::containsNumber)
                 .count();

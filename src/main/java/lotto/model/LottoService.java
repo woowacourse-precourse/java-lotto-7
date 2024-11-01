@@ -1,26 +1,12 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoService {
-    public static final int LOTTO_PRICE = 1000;
 
-    public int calculateLottoCount(int purchaseAmount) {
-        return purchaseAmount / LOTTO_PRICE;
-    }
-
-    public List<Lotto> generateLottos(int lottoTickets) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoTickets; i++) {
-            lottos.add(LottoGenerator.generate());
-        }
-        return lottos;
-    }
-
-    public Map<LottoRank, Integer> calculateStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+    public Map<LottoRank, Integer> calculateWinningStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
         Map<LottoRank, Integer> statistics = initializeStatisticsMap();
 
         for (Lotto userLotto : userLottos) {
@@ -30,10 +16,27 @@ public class LottoService {
         return statistics;
     }
 
+    public long calculateTotalWinnings(Map<LottoRank, Integer> statistics) {
+        long totalWinnings = 0;
+
+        for (LottoRank rank : statistics.keySet()) {
+            int prize = rank.getPrizeAmount();
+            int count = statistics.getOrDefault(rank, 0);
+            totalWinnings += (long) prize * count;
+        }
+
+        return totalWinnings;
+    }
+
+    public double calculateProfitRate(long totalPrize, int purchaseAmount) {
+        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(profitRate * 10) / 10.0;
+    }
+
     private LottoRank determineLottoRank(Lotto winningLotto, int bonusNumber, Lotto userLotto) {
-        int matchCount = userLotto.countMatchingNumbers(winningLotto);
-        boolean matchBonus = userLotto.containsNumber(bonusNumber);
-        return LottoRank.findRank(matchCount, matchBonus);
+        int matchNumberCount = userLotto.getMatchNumberCount(winningLotto);
+        boolean isMatchBonusNumber = userLotto.containsNumber(bonusNumber);
+        return LottoRank.findRank(matchNumberCount, isMatchBonusNumber);
     }
 
     private Map<LottoRank, Integer> initializeStatisticsMap() {
@@ -42,22 +45,5 @@ public class LottoService {
             statistics.put(rank, 0);
         }
         return statistics;
-    }
-
-    public long calculateTotalPrize(Map<LottoRank, Integer> statistics) {
-        long totalPrize = 0;
-
-        for (LottoRank rank : statistics.keySet()) {
-            int prize = rank.getPrize();
-            int count = statistics.getOrDefault(rank, 0);
-            totalPrize += (long) prize * count;
-        }
-
-        return totalPrize;
-    }
-
-    public double calculateRateOfReturn(long totalPrize, int purchaseAmount) {
-        double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
-        return Math.round(rateOfReturn * 10) / 10.0;
     }
 }

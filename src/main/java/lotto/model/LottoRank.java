@@ -1,49 +1,49 @@
 package lotto.model;
 
 public enum LottoRank {
-    NO_PRIZE(0, 0),
-    FIFTH_PRIZE(3, 5_000),
-    FOURTH_PRIZE(4, 50_000),
-    THIRD_PRIZE(5, 1_500_000),
-    SECOND_PRIZE(5, 30_000_000),
-    FIRST_PRIZE(6, 2_000_000_000);
+    NONE(0, 0),
+    FIFTH(3, 5_000),
+    FOURTH(4, 50_000),
+    THIRD(5, 1_500_000),
+    SECOND(5, 30_000_000),
+    FIRST(6, 2_000_000_000);
 
-    private final int matchCount;
-    private final int prize;
+    private final int matchNumberCount;
+    private final int prizeAmount;
 
-    LottoRank(int matchCount, int prizeAmount) {
-        this.matchCount = matchCount;
-        this.prize = prizeAmount;
+    LottoRank(int matchNumberCount, int prizeAmount) {
+        this.matchNumberCount = matchNumberCount;
+        this.prizeAmount = prizeAmount;
     }
 
-    public static LottoRank findRank(int matchCount, boolean matchBonus) {
-        if (matchCount == FIRST_PRIZE.matchCount) {
-            return FIRST_PRIZE;
+    public static LottoRank findRank(int matchNumberCount, boolean isMatchBonusNumber) {
+        if (matchNumberCount == FIRST.matchNumberCount) {
+            return FIRST;
         }
-        if (matchCount == SECOND_PRIZE.matchCount && matchBonus) {
-            return SECOND_PRIZE;
+        if (matchNumberCount == SECOND.matchNumberCount && isMatchBonusNumber) {
+            return SECOND;
         }
-        if (matchCount == THIRD_PRIZE.matchCount && !matchBonus) {
-            return THIRD_PRIZE;
+        if (matchNumberCount == THIRD.matchNumberCount && !isMatchBonusNumber) {
+            return THIRD;
         }
-        if (matchCount == FOURTH_PRIZE.matchCount) {
-            return FOURTH_PRIZE;
+        if (matchNumberCount == FOURTH.matchNumberCount) {
+            return FOURTH;
         }
-        if (matchCount == FIFTH_PRIZE.matchCount) {
-            return FIFTH_PRIZE;
+        if (matchNumberCount == FIFTH.matchNumberCount) {
+            return FIFTH;
         }
-        return NO_PRIZE;
+        return NONE;
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public int getMatchNumberCount() {
+        return matchNumberCount;
     }
 
-    public String getFormatPrize() {
-        return String.format("%,d", prize);
+    public String getFormattedPrizeAmount() {
+        return String.format("%,d", prizeAmount);
     }
 
-    public int getPrize() {
-        return prize;
+    public int getPrizeAmount() {
+        return prizeAmount;
     }
 }

@@ -40,7 +40,7 @@ class LottoTest {
     void 로또_번호가_당첨_번호와_몇_개_일치하는지_확인합니다() {
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
-        int matchCount = lotto1.countMatchingNumbers(lotto2);
+        int matchCount = lotto1.getMatchNumberCount(lotto2);
         assertEquals(3, matchCount);
     }
 }
