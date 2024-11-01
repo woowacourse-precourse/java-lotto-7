@@ -1,7 +1,9 @@
 package lotto.view;
 
 import lotto.controller.LottoController;
+import lotto.domain.Lottoes;
 import lotto.domain.Money;
+import lotto.util.CustomStringUtils;
 import lotto.util.SingletonObjectProvider;
 
 public class LottoView {
@@ -16,5 +18,9 @@ public class LottoView {
 
     public void startLottoProgram() {
         Money money = moneyInputView.inputMoney();
+
+        Lottoes lottoes = lottoController.createLottoes(money);
+
+        CustomStringUtils.printLottoesStatus(lottoes);
     }
 }
