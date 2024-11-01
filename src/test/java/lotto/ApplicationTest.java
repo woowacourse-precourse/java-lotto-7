@@ -103,6 +103,16 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호가 숫자가 아닌 입력이 들어오면 예외가 발생한다.")
+    @Test
+    void 보너스_번호가_숫자가_아닌_입력이_들어오면_예외() {
+        assertSimpleTest(() -> {
+           runException("1000", "1,2,3,4,5,6", "abc");
+           assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
