@@ -35,7 +35,9 @@ public class LottoController {
 
         // BonusNumber 입력
         int bonusNumber = inputBonusNumber();
-        OutputView.printBonusNum(bonusNumber);
+
+        // LottoGame 시작
+        gameStart(lottos, winningNumbers, bonusNumber);
     }
 
     private int inputAmount() {
@@ -73,5 +75,36 @@ public class LottoController {
             System.out.println(e.getMessage());
             return inputBonusNumber();
         }
+    }
+
+    private static void gameStart(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> result = setResult();
+        int sum = 0;
+        for (Lotto lotto : lottos) {
+            int matchCount = getMatchCount(lotto, winningNumbers);
+            boolean isBonusMatched = isBonusMatched(lotto, bonusNumber);
+            LottoRank rank = LottoRank.getRank(matchCount, isBonusMatched);
+            result.put(rank, result.get(rank)+1);
+        }
+        OutputView.printResults(result);
+        OutputView.printRevenue(sum, lottos.size()*1000);
+    }
+
+    private static int getMatchCount(Lotto lotto, Lotto winningNumbers) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers.getNumbers()::contains)
+                .count();
+    }
+
+    private static boolean isBonusMatched(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private static Map<LottoRank, Integer> setResult(){
+        Map<LottoRank, Integer> result = new EnumMap<>(LottoRank.class);
+        for(LottoRank rank : LottoRank.values()){
+            result.put(rank, 0);
+        }
+        return result;
     }
 }
