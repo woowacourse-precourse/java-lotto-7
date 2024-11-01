@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoPurchase;
 import lotto.model.Lottos;
+import lotto.view.ErrorOutputView;
 import lotto.view.PurchaseAmountInputView;
 import lotto.view.PurchasedLottoOutputView;
 
@@ -21,12 +22,24 @@ public class LottoPurchaseController {
         printPurchasedLotto();
     }
 
-    private long purchaseLotto() {
+    private void purchaseLotto() {
         PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
+
         purchaseAmountInputView.printPurchaseAmountInputGuide();
 
-        lottoPurchase.calculateLottoPurchaseCount(purchaseAmountInputView.getPurchaseAmount());
-        return lottoPurchase.getLottoPurchaseCount();
+        setLottoPurchaseFromInput(purchaseAmountInputView);
+    }
+
+    private void setLottoPurchaseFromInput(PurchaseAmountInputView purchaseAmountInputView) {
+
+        try {
+            lottoPurchase.calculateLottoPurchaseCount(purchaseAmountInputView.getPurchaseAmount());
+        } catch (IllegalArgumentException e) {
+
+            ErrorOutputView.printErrorMessage(e.getMessage());
+
+            setLottoPurchaseFromInput(purchaseAmountInputView);
+        }
     }
 
     private void generateLottos() {
