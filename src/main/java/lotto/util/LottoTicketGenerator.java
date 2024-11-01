@@ -1,12 +1,15 @@
 package lotto.util;
 
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.constants.LottoConstants;
 import lotto.model.Lotto;
 
-public class LottoTicketFactory {
+public class LottoTicketGenerator {
 
+    // 로또 티켓 생성기
+    // 사용자가 선택한 번호 조합을 포함하는 로또 티켓을 생성
     public List<Lotto> createTickets(int purchaseAmount) {
         int ticketCount = calculateTicketCount(purchaseAmount);
         return IntStream.range(0, ticketCount)
@@ -14,8 +17,10 @@ public class LottoTicketFactory {
                 .toList();
     }
 
+    // 구매 금액에 따른 티켓 개수 계산
     private int calculateTicketCount(int purchaseAmount) {
-        return purchaseAmount / LottoConstants.LOTTO_PRICE;
+        return purchaseAmount / LOTTO_PRICE;
     }
+
 
 }
