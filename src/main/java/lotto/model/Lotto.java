@@ -1,6 +1,8 @@
 package lotto.model;
 
 import static lotto.model.BonusNumber.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
+import static lotto.model.RandomNumber.MAX_NUMBER;
+import static lotto.model.RandomNumber.MIN_NUMBER;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45)) {
+                .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
