@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoBuyer;
 import lotto.validation.LotteryValidator;
 import lotto.view.OutputView;
 
@@ -25,6 +26,7 @@ public class LotteryService {
         lotteryValidator.validatePurchaseAmount(purchaseAmount);
 
         int lottoPurchaseAmount = purchaseAmount / 1000;
+        final LottoBuyer lottoBuyer = new LottoBuyer(lottoPurchaseAmount);
         outputView.printPurchaseAmount(lottoPurchaseAmount);
 
         issueLottoTickets(lottoPurchaseAmount);
