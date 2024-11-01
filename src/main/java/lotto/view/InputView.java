@@ -19,6 +19,7 @@ public class InputView implements ViewManager{
     }
 
     protected String inputBonusNumber() {
+        lineBreak();
         printMessage(INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine();
     }

@@ -21,11 +21,6 @@ public class OutputView implements ViewManager{
         printMessage(String.format(NUMBER_OF_PURCHASED_LOTTO_MESSAGE, ticketCount));
     }
 
-    protected void printStatisticResultHeader() {
-        printMessage(STATISTIC_RESULT_MESSAGE);
-        printMessage(DIVIDING_LINE);
-    }
-
     protected void printYeildRate(final Double yieldRate) {
         printMessage(String.format(YIELD_RATE_MESSAGE, yieldRate));
     }
@@ -44,5 +39,11 @@ public class OutputView implements ViewManager{
         printMessage(String.format(THIRD_RANK_MESSAGE, statisticDto.getThirdRankCount()));
         printMessage(String.format(SECOND_RANK_MESSAGE, statisticDto.getSecondRankCount()));
         printMessage(String.format(FIRST_RANK_MESSAGE, statisticDto.getFirstRankCount()));
+    }
+
+    private void printStatisticResultHeader() {
+        lineBreak();
+        printMessage(STATISTIC_RESULT_MESSAGE);
+        printMessage(DIVIDING_LINE);
     }
 }
