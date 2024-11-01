@@ -4,12 +4,12 @@ import lotto.constants.ErrorMessage;
 
 public class WinningLotto {
 
-    private final Lotto lotto;
+    private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
-        validate(lotto, bonusNumber);
-        this.lotto = lotto;
+    public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
+        validate(winningLotto, bonusNumber);
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
@@ -24,7 +24,7 @@ public class WinningLotto {
     }
 
     public int countMatchingNumbers(Lotto lotto) {
-        return this.lotto.countMatchingNumbers(lotto);
+        return winningLotto.countMatchingNumbers(lotto);
     }
 
     public boolean hasBonusNumber(Lotto lotto) {

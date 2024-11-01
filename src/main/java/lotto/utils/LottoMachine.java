@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.utils;
 
 import static lotto.constants.LottoConfig.NUMBERS_SIZE;
 import static lotto.constants.LottoConfig.NUMBER_RANGE_MAXIMUM;
@@ -7,12 +7,14 @@ import static lotto.constants.LottoConfig.NUMBER_RANGE_MINIMUM;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedList;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.Money;
 
 public class LottoMachine {
 
     public static List<Lotto> purchaseLottos(Money money) {
         List<Lotto> lottos = new LinkedList<>();
-        while (lottos.size() < money.getLottoTicketCount()) {
+        while (money.isPurchasable(lottos.size())) {
             generateLotto(lottos);
         }
         return lottos;

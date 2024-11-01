@@ -23,7 +23,7 @@ public class Money {
         return price <= PRICE_MINIMUM || price % TICKET_PRICE != 0;
     }
 
-    public int getLottoTicketCount() {
-        return price / TICKET_PRICE;
+    public boolean isPurchasable(int size) {
+        return size < price / TICKET_PRICE;
     }
 }
