@@ -3,11 +3,11 @@ package lotto.domain;
 import java.util.Map;
 
 public class LottoResult {
-    private final Map<Ranking, Integer> lottoResults;
+    private final Map<Ranking, Integer> result;
     private final double revenue;
 
-    private LottoResult(Map<Ranking, Integer> lottoResults, double revenue) {
-        this.lottoResults = lottoResults;
+    private LottoResult(Map<Ranking, Integer> result, double revenue) {
+        this.result = result;
         this.revenue = revenue;
     }
 
@@ -22,8 +22,8 @@ public class LottoResult {
                 .sum();
     }
 
-    public Map<Ranking, Integer> getLottoResults() {
-        return lottoResults;
+    public Map<Ranking, Integer> getResults() {
+        return result;
     }
 
     public double getRevenue() {

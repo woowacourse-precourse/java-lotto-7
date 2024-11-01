@@ -1,15 +1,27 @@
 package lotto.service;
 
-import lotto.domain.LottoGroups;
+import java.util.Map;
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoSeller;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Ranking;
+import lotto.domain.WinningLotto;
 import lotto.domain.strategy.NumberGenerationStrategy;
 
 public class LottoService {
-    public LottoGroups purchaseLottos(Money lottoPurchaseMoney,
-                                      NumberGenerationStrategy numberGenerationStrategy) {
+    
+    public Lottos purchaseLottos(Money lottoPurchaseMoney,
+                                 NumberGenerationStrategy numberGenerationStrategy) {
         LottoSeller lottoSeller = new LottoSeller(new LottoMachine());
         return lottoSeller.sellUntilNoMoney(lottoPurchaseMoney, numberGenerationStrategy);
+    }
+
+    public LottoResult calculateLottoResult(Lottos purchasedLottos,
+                                            WinningLotto winningLotto,
+                                            Money lottoPurchaseMoney) {
+        Map<Ranking, Integer> lottoResult = purchasedLottos.calculateLottoResult(winningLotto);
+        return LottoResult.of(lottoResult, lottoPurchaseMoney);
     }
 }

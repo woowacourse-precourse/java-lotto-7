@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.LottoGroups;
 import lotto.domain.LottoResult;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.domain.strategy.RandomNumberGenerationStrategy;
@@ -24,11 +24,11 @@ public class LottoController {
 
     public void process() {
         Money lottoPurchaseMoney = inputHandler.inputLottoPurchaseMoney();
-        LottoGroups lottoGroups = lottoService.purchaseLottos(lottoPurchaseMoney, new RandomNumberGenerationStrategy());
-        outputView.printPurchaseLottos(lottoGroups.getLottos());
+        Lottos purchasedLottos = lottoService.purchaseLottos(lottoPurchaseMoney, new RandomNumberGenerationStrategy());
+        outputView.printPurchaseLottos(purchasedLottos.getLottos());
 
         WinningLotto winningLotto = inputHandler.inputWinningLotto();
-        LottoResult lottoResult = lottoGroups.calculateLottoResult(winningLotto, lottoPurchaseMoney);
+        LottoResult lottoResult = lottoService.calculateLottoResult(purchasedLottos, winningLotto, lottoPurchaseMoney);
         outputView.printLottoResults(lottoResult);
     }
 }

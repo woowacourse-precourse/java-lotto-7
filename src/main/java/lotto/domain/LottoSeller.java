@@ -14,13 +14,13 @@ public class LottoSeller {
         this.lottoMachine = lottoMachine;
     }
 
-    public LottoGroups sellUntilNoMoney(Money money, NumberGenerationStrategy numberGenerationStrategy) {
+    public Lottos sellUntilNoMoney(Money money, NumberGenerationStrategy numberGenerationStrategy) {
         List<Lotto> lottos = new ArrayList<>();
         while (money.isGreaterEqualThan(LOTTO_PRICE)) {
             lottos.add(lottoMachine.issueLotto(numberGenerationStrategy));
             money = money.minus(LOTTO_PRICE);
         }
 
-        return LottoGroups.from(lottos);
+        return Lottos.from(lottos);
     }
 }

@@ -55,7 +55,7 @@ public class OutputView {
         Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking != Ranking.MISS)
                 .sorted(Comparator.comparingInt(Ranking::getMatchCount))
-                .forEach(ranking -> printLottoResult(lottoResult.getLottoResults(), ranking));
+                .forEach(ranking -> printLottoResult(lottoResult.getResults(), ranking));
     }
 
     public void printLottoResult(Map<Ranking, Integer> lottoResults, Ranking ranking) {
