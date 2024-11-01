@@ -16,5 +16,15 @@ public class Lotto {
         }
     }
 
+    private void validateRange(List<Integer> numbers){
+        if (numbers.stream().anyMatch(number -> !isInRange(number))) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 유효 범위를 벗어났습니다.");
+        }
+    }
+
+    private boolean isInRange(int number){
+        return (number >=0) && (number <=45);
+    }
+
     // TODO: 추가 기능 구현
 }
