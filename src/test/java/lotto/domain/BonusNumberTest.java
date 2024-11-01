@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Collections;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BonusNumberTest {
@@ -48,6 +49,13 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.of(winningNumbers, "6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+    }
+
+    @Test
+    void 보너스_번호가_정상적인_경우_테스트는_통과한다() {
+        List<Integer> winningNumbers = WinningNumbers.from("1,2,3,4,5,6").getNumbers();
+        int bonusNumber = BonusNumber.of(winningNumbers, "7").getBonusNumber();
+        assertThat(bonusNumber).isEqualTo(7);
     }
 
 }
