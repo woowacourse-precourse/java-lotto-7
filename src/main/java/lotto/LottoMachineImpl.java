@@ -11,7 +11,10 @@ public class LottoMachineImpl implements LottoMachine {
     private static final List<Lotto> lottoTickets = new ArrayList<>();
 
     @Override
-    public List<Lotto> createLottoTickets(int count) {
+    public List<Lotto> createLottoTickets(String inputMoney) {
+        int money = InputValidater.validateMoney(inputMoney);
+        int count = money % 1000;
+
         for (int i = 0; i < count; i++) {
             Lotto newLottoTicket = new Lotto(pickLottoNumbers());
             lottoTickets.add(newLottoTicket);

@@ -15,18 +15,19 @@ class LottoMachineImplTest {
     @Test
     void 발행할_개수를_입력하면_로또가_6개씩_발행_개수만큼_생성된다() {
         //given
-        int count = 5;
+        String money = "5000";
         //when
-        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(count);
+        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(money);
         //then
-        Assertions.assertThat(lottoTickets.size()).isEqualTo(count);
+        Assertions.assertThat(lottoTickets.size()).isEqualTo(5);
         Assertions.assertThat(lottoTickets.get(1).getNumbers().size()).isEqualTo(LOTTO_NUMBER);
     }
 
     @Test
     void 자동으로_생성된_로또_결과_출력_테스트() {
         //given
-        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(5);
+        String money = "5000";
+        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(money);
         //when
         lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
         //then
