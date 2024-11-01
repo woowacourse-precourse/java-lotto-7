@@ -51,6 +51,8 @@ public class OutputHandler {
     }
 
     private void printLottoResultOf(Prize prize, int count) {
-        System.out.println(prize.getCondition() + OPEN_ROUND_BRACKET + prize.getPrizeMoney() + CLOSE_ROUND_BRACKET + SYMBOL_HYPHEN + count + AMOUNT_ENDING_SUFFIX);
+        System.out.println(
+                prize.getCondition() + OPEN_ROUND_BRACKET + prize.getPrizeMoney() + CLOSE_ROUND_BRACKET + SYMBOL_HYPHEN
+                        + count + AMOUNT_ENDING_SUFFIX);
     }
 }

@@ -24,11 +24,9 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         LottoCompany lottoCompany = new LottoCompany(winningLotto, money);
 
-        // 당첨 여부 파악 및 출력
+        // 당첨 결과와 수익률 파악 및 출력
         PrizeResult prizeResult = lottoCompany.getWinningResults(lottos.getLottos());
         printResult(prizeResult);
-
-        // 수익률 계산 및 출력
         double rateOfReturn = calculateRateOfReturn(money.getEarnedMoney(), money.getSpentMoney());
         printRateOfReturn(rateOfReturn);
     }
