@@ -24,11 +24,25 @@ public class Input {
         return winningNumber;
     }
 
+    public static String inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        try{
+            validateBonusNumber();
+        } catch (IllegalArgumentException e) {
+            return inputBonusNumber();
+        }
+        return bonusNumber;
+    }
+
     private static void validatePrice() {
 
     }
 
     private static void validateWinningNumber() {
+
+    }
+
+    private static void validateBonusNumber() {
 
     }
 
