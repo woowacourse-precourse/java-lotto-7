@@ -8,6 +8,28 @@ public class InputView {
 
     public int inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        return readPurchaseAmount();
+    }
+
+    private int readPurchaseAmount() {
+        String input = Console.readLine();
+        int purchaseAmount = parsePurchaseAmount(input);
+        validatePurchaseAmount(purchaseAmount);
+        return purchaseAmount;
+    }
+
+    private int parsePurchaseAmount(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            return readPurchaseAmount();
+        }
+    }
+
+    public void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위여야 합니다.");
+        }
     }
 }
