@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.domain.Bonus;
+import lotto.domain.Winning;
 
 public class Input implements AutoCloseable {
 
@@ -20,7 +22,7 @@ public class Input implements AutoCloseable {
         return Integer.parseInt(money);
     }
 
-    public static List<Integer> readWinningNumber() {
+    public static Winning readWinningNumber() {
         String winningNumber = Console.readLine();
 
         if (!Pattern.matches("^[1-9|,]+$", winningNumber)) {
@@ -41,18 +43,19 @@ public class Input implements AutoCloseable {
             throw new IllegalArgumentException("로또 번호 6글자를 입력해주세요. (중복은 허용되지 않습니다.)");
         }
 
-        return numbers;
+        return Winning.create(numbers);
     }
 
-    public static int readBonusNumber() {
-        String bonusNumber = Console.readLine();
-        validateNumber(bonusNumber);
+    public static Bonus readBonusNumber() {
+        String strBonusNumber = Console.readLine();
+        validateNumber(strBonusNumber);
 
-        if (Integer.parseInt(bonusNumber) > 45) {
+        int bonusNumber = Integer.parseInt(strBonusNumber);
+        if (bonusNumber > 45) {
             throw new IllegalArgumentException("45 이상을 입력할 수 없습니다.");
         }
 
-        return Integer.parseInt(bonusNumber);
+        return Bonus.create(bonusNumber);
     }
 
     private static void validateNumber(String input) {
