@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class InputView {
     public static int inputLottoAmount(){
         String inputAmount = Console.readLine();
-        return convertInputAmountToInt(inputAmount);
+        return convertInputToInt(inputAmount);
     }
 
     public static List<Integer> inputWinningNumbers() {
@@ -19,12 +19,17 @@ public class InputView {
         return convertInputWinningNumbersToIntegerList(inputWinningNumbers);
     }
 
-    private static int convertInputAmountToInt(String inputAmount) {
+    public static int inputBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return convertInputToInt(bonusNumber);
+    }
+
+    private static int convertInputToInt(String input) {
         try {
-            int intAmount = Integer.parseInt(inputAmount);
-            long longAmount = Long.parseLong(inputAmount);
-            validateAmountEquality(intAmount, longAmount);
-            return intAmount;
+            int intNumber = Integer.parseInt(input);
+            long longNumber = Long.parseLong(input);
+            validateAmountEquality(intNumber, longNumber);
+            return intNumber;
         } catch (NumberFormatException exception) {
             throw new CustomLottoException(ErrorMessage.NOT_NUMBER);
         }
