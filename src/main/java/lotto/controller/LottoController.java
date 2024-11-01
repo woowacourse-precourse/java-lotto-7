@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.ValidationManager;
+import utils.TypeConverter;
 
 public class LottoController {
 
@@ -53,7 +55,7 @@ public class LottoController {
 
                 validationManager.isEmptyInput(lottoInput);
                 validationManager.isNumbersDividedByComma(lottoInput);
-
+                List<String> lottoNumbrs = TypeConverter.ToList(lottoInput);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
