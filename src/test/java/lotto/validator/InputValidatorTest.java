@@ -30,7 +30,7 @@ public class InputValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1.2.3.4.5.6", "1"})
+    @ValueSource(strings = {"1.2.3.4.5.6", "1,2,3,4,5,6,"})
     void 당첨번호를_구분자로_구분할수_없으면_예외가_발생한다(String input) {
         assertThatThrownBy(() -> InputValidator.validateWinNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);

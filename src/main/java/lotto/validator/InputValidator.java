@@ -2,9 +2,15 @@ package lotto.validator;
 
 import lotto.utils.ExceptionUtils;
 
+import java.util.regex.Pattern;
+
 public class InputValidator {
     private static final String ERROR_MESSAGE_EMPTY_INPUT = "입력값에 공백을 허용하지 않습니다.";
     private static final String ERROR_MESSAGE_NOT_POSITIVE_NUMBER = "양의 정수가 아닌 값은 허용하지 않습니다.";
+    private static final String ERROR_MESSAGE_INVALID_WIN_NUMBERS = "당첨 번호는 구분자(,)로 구분할 수 있어야 합니다.";
+    private static final String ERROR_MESSAGE_TRAILING_COMMA = "입력값의 마지막에 콤마(,)가 올 수 없습니다.";
+    private static final Pattern TRAILING_DELIMITER_PATTERN = Pattern.compile(".*,$");
+    private static final Pattern DELIMITER_PATTERN= Pattern.compile("^(\\d+,)*\\d+$");
 
     private InputValidator(){
     }
@@ -16,6 +22,8 @@ public class InputValidator {
 
     public static void validateWinNumbers(String input){
         checkEmptyInput(input);
+        checkSeparatedNumbers(input);
+        checkTrailingComma(input);
     }
 
     public static void validateBonusNumber(String input){
@@ -35,4 +43,15 @@ public class InputValidator {
         }
     }
 
+    private static void checkTrailingComma(String input) {
+        if (TRAILING_DELIMITER_PATTERN.matcher(input).matches()) {
+            ExceptionUtils.throwIllegalArgument(ERROR_MESSAGE_TRAILING_COMMA);
+        }
+    }
+
+    private static void checkSeparatedNumbers(String input) {
+        if (!DELIMITER_PATTERN.matcher(input).matches()) {
+            ExceptionUtils.throwIllegalArgument(ERROR_MESSAGE_INVALID_WIN_NUMBERS);
+        }
+    }
 }
