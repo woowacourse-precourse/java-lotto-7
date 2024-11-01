@@ -1,13 +1,17 @@
-package lotto;
+package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
+import lotto.Messages.ErrorMessage;
+import lotto.Messages.StateMessage;
+import lotto.WinningDetails;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static lotto.Application.*;
+import static lotto.View.InputView.*;
 
-public class View {
+public class Controller {
 
     public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
     public static final String LOTTO_COUNT_PHRASE = "개를 구매했습니다.";
@@ -18,18 +22,17 @@ public class View {
 
     private Integer lottoCount;
 
-    public Integer getPurchaseAmount(){
+    public Integer gainPurchaseAmount(){
         Integer purchasePrice = 0;
         try {
-            System.out.println(LOTTO_AMOUNT_PHRASE);
-            String rawPurchasePrice = Console.readLine();
-            System.out.println();
-            purchasePrice = parseInt(rawPurchasePrice);
+            OutputView.printPurchaseAmount();
+            purchasePrice = InputView.readPurchaseAmount();
+            OutputView.printBlank();
             this.lottoCount = this.countLotto(purchasePrice);
         }
         catch(IllegalArgumentException e){
             System.out.println(ErrorMessage.ONLY_NUMBER.getError());
-            return getPurchaseAmount();
+            return gainPurchaseAmount();
         }
         return purchasePrice;
     }
@@ -54,7 +57,7 @@ public class View {
         Lotto answer;
         try {
             answer = new Lotto(Arrays.asList(rawWinningInput.split(DELIMITER)).stream()
-                    .map(Application::parseInt)
+                    .map(InputView::parseInt)
                     .collect(Collectors.toList()));
         }
         catch (IllegalArgumentException e){
@@ -64,7 +67,7 @@ public class View {
         return answer;
     }
 
-    public Integer getBonusInput(Lotto answer){
+    public Integer gainBonusInput(Lotto answer){
         System.out.println(LOTTO_BONUS_INPUT);
         String rawBonus  = Console.readLine();
         System.out.println();
@@ -76,18 +79,9 @@ public class View {
         }
         catch (IllegalArgumentException e){
             System.out.println(ErrorMessage.BONUS.getError());
-            return getBonusInput(answer);
+            return gainBonusInput(answer);
         }
         return bonus;
-    }
-
-    public void printResults(WinningDetails grades){
-        System.out.println(StateMessage.WIN_STATICS.getMessage());
-        System.out.println(StateMessage.THREE.getMessage() + grades.getThird() + NUM);
-        System.out.println(StateMessage.FOUR.getMessage() + grades.getFourth() + NUM);
-        System.out.println(StateMessage.FIVE.getMessage() + grades.getFifth() + NUM);
-        System.out.println(StateMessage.FIVE_BONUS.getMessage() +grades.getFifthBonus() + NUM);
-        System.out.println(StateMessage.SIX.getMessage() + grades.getSixth() + NUM);
     }
 
     public Integer getLottoCount(){
