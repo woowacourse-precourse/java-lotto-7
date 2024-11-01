@@ -50,4 +50,8 @@ public class Lotto {
         return (number >= MIN_NUMBER) && (number <= MAX_NUMBER);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
