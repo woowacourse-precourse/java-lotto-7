@@ -1,7 +1,9 @@
 package lotto;
 
+import lotto.io.InputHandler;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputHandler.repeatInputOrderPrice();
     }
 }
