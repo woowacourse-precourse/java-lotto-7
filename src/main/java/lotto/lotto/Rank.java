@@ -1,5 +1,8 @@
 package lotto.lotto;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 public enum Rank {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -40,5 +43,13 @@ public enum Rank {
         }
 
         return NONE;
+    }
+
+    public static EnumMap<Rank, Integer> initializeRankCounts() {
+        EnumMap<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            rankCounts.put(rank, 0);
+        }
+        return rankCounts;
     }
 }

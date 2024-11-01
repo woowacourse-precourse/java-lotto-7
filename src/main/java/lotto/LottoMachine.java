@@ -32,8 +32,7 @@ public class LottoMachine {
         outputView.requestBonusNumber();
         Number bonusNumber = inputView.getBonusNumber();
 
-        WinningResult winningResult =
-                new WinningResult(winningNumbers, bonusNumber);
+        WinningResult winningResult = new WinningResult(winningNumbers, bonusNumber);
 
         outputView.printWinningStatistics(winningResult);
     }
