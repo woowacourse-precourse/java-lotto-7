@@ -13,10 +13,10 @@ class HandlerTest extends NsTest{
     @Test
     void 로또_구입_개수() {
         assertSimpleTest(() -> {
-            run("1000"); // 왜 입력값이 1로 되는지...
+            run("1000","1,2,3,4,5,6","7");
 
-            int result = exception.Handler.getLottoNumber();
-            assertThat(result).isEqualTo(1);
+            assertThat(output()).contains(
+                    "1개를 구매했습니다.");
         });
 
     }

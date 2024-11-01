@@ -7,6 +7,7 @@ public class Message {
     public final static String DUPLICATE_NUMBER = DEFAULT + "당첨 번호에는 중복값이 없어야 합니다. 중복값: ";
     public final static String INVALID_RANGE = DEFAULT + "번호는 1과 45 사이의 수여야 합니다. 반례: ";
     public final static String INVALID_BONUS_NUMBER = DEFAULT + "보너스 번호는 당첨 번호와 달라야 합니다. 중복값: ";
+    public final static String INVALID_INPUT_STRING = DEFAULT + "입력값은 ,로 구분되는 정수의 문자열이어야 합니다. 사용자의 입력값: ";
 
     public String string;
 
