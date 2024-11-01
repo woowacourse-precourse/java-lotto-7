@@ -23,7 +23,7 @@ public class LottoBundle {
     public List<String> retrieveLottoNumbers() {
         List<String> lottoNumbers = new ArrayList<>();
         for (Lotto lotto : bundle) {
-            lottoNumbers.add(lotto.getLottoNumbers());
+            lottoNumbers.add(lotto.retrieveLottoNumber());
         }
         return lottoNumbers;
     }

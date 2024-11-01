@@ -45,7 +45,7 @@ public class Lotto {
         }
     }
 
-    public String getLottoNumbers() {
+    public String retrieveLottoNumber() {
         return numbers.toString();
     }
 }

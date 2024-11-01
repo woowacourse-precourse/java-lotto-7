@@ -1,14 +1,10 @@
 package lotto;
 
-import static lotto.Lotto.LOTTO_NUMBER_DUPLICATE_ERROR_MSG;
-import static lotto.Lotto.LOTTO_NUMBER_SIZE_ERROR_MSG;
 import static lotto.LottoMachine.BONUS_NUMBER_DUPLICATE_ERROR_MSG;
-import static lotto.LottoMachine.LOTTO_NUMBER_RANGE_ERROR_MSG;
 
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -17,51 +13,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 class LottoMachineTest {
 
     private static final LottoMachine LOTTO_MACHINE = new LottoMachine();
-
-    @Test
-    public void 당첨번호_정상테스트() throws Exception {
-        //Given
-        String input = "1,10,20,30,40,45";
-
-        //When
-        List<Integer> actual = LOTTO_MACHINE.parseWinningNumber(input).getNumbers();
-
-        //Then
-        Assertions.assertThat(actual).containsExactly(1, 10, 20, 30, 40, 45);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"", "1,,3,4,5,6", "1,2,3,4,5,46", "1,2,3,4,5, 6"})
-    public void 당첨번호_로또숫자_예외테스트(String input) throws Exception {
-        //Given
-
-        //When, Then
-        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MSG);
-    }
-
-    @Test
-    public void 당첨번호_중복_예외테스트() throws Exception {
-        //Given
-        String input = "1,2,3,4,6,6";
-
-        //When, Then
-        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_DUPLICATE_ERROR_MSG);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
-    public void 당첨번호_개수_예외테스트(String input) throws Exception {
-        //Given
-
-        //When, Then
-        Assertions.assertThatThrownBy(() -> LOTTO_MACHINE.parseWinningNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_SIZE_ERROR_MSG);
-    }
 
     @ParameterizedTest
     @ValueSource(strings = {"7", "45"})

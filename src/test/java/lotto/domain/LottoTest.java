@@ -32,7 +32,7 @@ class LottoTest {
         String expected = "[1, 2, 3, 4, 5, 6]";
 
         //When
-        String actual = lotto.getLottoNumbers();
+        String actual = lotto.retrieveLottoNumber();
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
@@ -45,7 +45,7 @@ class LottoTest {
         String expected = "[1, 2, 3, 4, 5, 6]";
 
         //When
-        String actual = lotto.getLottoNumbers();
+        String actual = lotto.retrieveLottoNumber();
 
         //Then
         Assertions.assertThat(actual).isEqualTo(expected);
