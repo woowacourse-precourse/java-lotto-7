@@ -9,7 +9,8 @@ public class PrintMessages {
     private static final String OUT_WIN_COUNT_MSG       = "개 일치";
     private static final String OUT_WIN_BONUS_MSG       = ", 보너스 볼 일치";
     private static final String OUT_DASH_MSG            = "---";
-    private static final String OUT_ROI_MSG             = "당첨 통계";
+    private static final String OUT_RESULT_MSG          = "당첨 통계";
+    private static final String OUT_ROI_MSG             = "총 수익률은 ";
 
     public static void printInputMoneyMsg() {
         System.out.println(INPUT_MONEY_MSG);
@@ -37,6 +38,10 @@ public class PrintMessages {
 
     public static void printDash() {
         System.out.println(OUT_DASH_MSG);
+    }
+
+    public static void printResultMsg() {
+        System.out.println(OUT_RESULT_MSG);
     }
 
     public static void printRoiMsg() {
