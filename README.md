@@ -4,10 +4,11 @@
 
 ### view package
 - output class
-    + [] 로또 구매 개수와 구매한 로또 번호를 출력하는 기능 - 
-    + [] 당첨 통계를 출력하는 기능 -
-    + [] 수익률을 출력하는 기능 - 
-    + [] 개행 문자 출력 기능 -
+    + [0] 로또 구매 개수를 출력하는 기능 - printPurchaseAmount
+    + [0] 구매한 로또 번호를 출력하는 기능 - printLottoNumbers
+    + [] 당첨 통계를 출력하는 기능 - printWinningStatistics
+    + [0] 수익률을 출력하는 기능 - printProfitRate
+    + [0] 개행 문자 출력 기능 - printNewLine
 
 - input class
     + [0] 구입 금액을 입력받는 기능 - getPurchaseAmount
