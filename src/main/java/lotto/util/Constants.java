@@ -5,6 +5,8 @@ public enum Constants {
     MAX_LOTTO_NUMBER(45),
     LOTTO_NUMBER_SIZE(6),
     ZERO(0),
+    ONE_HUNDRED(100),
+    AMOUNT_UNIT(1000),
     DELIMITER(",");
 
     private final Integer intValue;
