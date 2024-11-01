@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import java.util.List;
-import lotto.dto.TicketResult;
+import lotto.dto.TicketResponse;
 import lotto.view.formatter.LottoMessageFormatter;
 import lotto.view.printer.OutputPrinter;
 
@@ -15,9 +15,9 @@ public class TicketOutputView {
         this.printer = new OutputPrinter();
     }
 
-    public void show(TicketResult ticketResult) {
-        appendPurchaseCount(ticketResult.count());
-        appendLottoNumbers(ticketResult.ticket());
+    public void show(TicketResponse ticketResponse) {
+        appendPurchaseCount(ticketResponse.count());
+        appendLottoNumbers(ticketResponse.ticket());
         printer.execute();
     }
 

@@ -45,10 +45,10 @@
 InputView-구입금액을 입력해 주세요
 
         Long ticketId=CreateLottoTicketUsecase.execute(ThousandWons money);
-        TicketResult ticketResult=GetLottoTicketUsecase.execute(Long ticketId);
+        TicketResult ticketResponse=GetLottoTicketUsecase.execute(Long ticketId);
 
-        OutputView-{ticketResult.getCount}개를 구매했습니다.
-        OutputView-{ticketResult.getAll}
+        OutputView-{ticketResponse.getCount}개를 구매했습니다.
+        OutputView-{ticketResponse.getAll}
 ```
 
 ### WinnerNumberController (당첨 번호 컨트롤러)
@@ -173,8 +173,8 @@ Payment payment=Payment.pay(ThousandWodns money);
 - Long LottoTicketService.pay(ThousandWons money);
 
 ```java
-Ticket ticketResult=Ticket.of(LottoCount lottoCount);
-        Long savedId=TicketRepository.save(ticketResult);
+Ticket ticketResponse=Ticket.of(LottoCount lottoCount);
+        Long savedId=TicketRepository.save(ticketResponse);
 ```
 
 ### TicketService - 조회하라
@@ -182,7 +182,7 @@ Ticket ticketResult=Ticket.of(LottoCount lottoCount);
 - TicketService - 조회하라
 
 ```java
-Ticket ticketResult=TicketRepository.getById(Long ticketId);
+Ticket ticketResponse=TicketRepository.getById(Long ticketId);
 ```
 
 ### WinnerNumberService - 생성하라

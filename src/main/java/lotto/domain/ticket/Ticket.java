@@ -1,7 +1,5 @@
 package lotto.domain.ticket;
 
-import lotto.dto.TicketResult;
-
 public class Ticket {
     public static Ticket of(Long generate, int lottoCount) {
         return null;
@@ -11,7 +9,7 @@ public class Ticket {
         return null;
     }
 
-    public TicketResult publish() {
+    public PublishedTicket publish() {
 
         return null;
     }

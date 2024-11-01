@@ -3,7 +3,7 @@ package lotto;
 import lotto.controller.TicketController;
 import lotto.controller.WinnerNumberController;
 import lotto.controller.WinnerStatisticsController;
-import lotto.dto.TicketResult;
+import lotto.dto.TicketResponse;
 
 public class LottoTicketMachine {
 
@@ -21,9 +21,9 @@ public class LottoTicketMachine {
     }
 
     public void run() {
-        TicketResult ticketResult = ticketController.create();
+        TicketResponse ticketResponse = ticketController.create();
         WinnerNumber winnerNumber = winNumberController.create();
-        winStatisticsController.create(ticketResult, winnerNumber);
+        winStatisticsController.create(ticketResponse, winnerNumber);
     }
 
 }

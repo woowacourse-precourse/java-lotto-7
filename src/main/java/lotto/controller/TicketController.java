@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.ThousandWons;
-import lotto.dto.TicketResult;
+import lotto.dto.TicketResponse;
 import lotto.usecase.CreateLottoTicketUsecase;
 import lotto.usecase.GetLottoTicketUsecase;
 import lotto.view.input.TicketInputView;
@@ -31,12 +31,12 @@ public class TicketController {
     //TODO OutputView - { }개를 구매했습니다. [x]
     //TODO OutputView - {로또목록들} [x]
 
-    public TicketResult create() {
+    public TicketResponse create() {
         ThousandWons krMoney = inputView.initialize();
         Long ticketId = createLottoTicketUsecase.execute(krMoney);
-        TicketResult ticketResult = getLottoTicketUsecase.execute(ticketId);
-        outputView.show(ticketResult);
+        TicketResponse ticketResponse = getLottoTicketUsecase.execute(ticketId);
+        outputView.show(ticketResponse);
 
-        return ticketResult;
+        return ticketResponse;
     }
 }
