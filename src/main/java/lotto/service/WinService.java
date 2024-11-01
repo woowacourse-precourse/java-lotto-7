@@ -6,6 +6,7 @@ import lotto.dto.Lottos;
 import lotto.enums.LottoConfig;
 import lotto.model.Lotto;
 import lotto.validator.ServiceValidator;
+import lotto.validator.WinNumValidator;
 
 public class WinService {
 
@@ -21,7 +22,8 @@ public class WinService {
     }
 
     public void inputWinNum(List<Integer> winNum) {
-        serviceValidator.winNumDup(winNum);
+        WinNumValidator.winNumDup(winNum);
+        WinNumValidator.winNumRange(winNum);
         this.winNum = winNum;
     }
 

@@ -9,6 +9,7 @@ import lotto.service.WinService;
 import lotto.validator.AmountValidator;
 import lotto.validator.ControllerValidator;
 import lotto.validator.ServiceValidator;
+import lotto.validator.WinNumValidator;
 import lotto.view.Request;
 import lotto.view.Response;
 
@@ -56,8 +57,8 @@ public class LottoController {
         List<String> inputWinNum = List.of(request.inputWinNum().split(","));
 
         try {
-            controllerValidator.winNumSize(inputWinNum);
-            controllerValidator.winNumIsNum(inputWinNum);
+            WinNumValidator.winNumSize(inputWinNum);
+            WinNumValidator.winNumIsNum(inputWinNum);
             List<Integer> winNum = inputWinNum.stream()
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
