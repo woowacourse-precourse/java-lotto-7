@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.model.ErrorMessages.LottoTicket.RANK_IS_NULL;
 
+import java.util.Map;
+
 public class LottoTicket {
     private final Lotto lotto;
     private Rank rank;
@@ -24,5 +26,12 @@ public class LottoTicket {
         }
 
         return rank.getPrizeMoney();
+    }
+
+    public void countRank(Map<Rank, Integer> countRanks) {
+        if (rank.equals(Rank.DEFAULT)) {
+            return;
+        }
+        countRanks.put(rank, countRanks.getOrDefault(rank, 0) + 1);
     }
 }

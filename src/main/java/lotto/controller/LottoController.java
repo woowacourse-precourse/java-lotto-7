@@ -6,6 +6,7 @@ import lotto.model.Customer;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
 import lotto.model.dto.LottoDto;
+import lotto.model.dto.ResultDto;
 import lotto.service.LottoService;
 import lotto.view.OutputView;
 
@@ -32,7 +33,7 @@ public class LottoController {
         WinningLotto winningLotto = lottoService.registerWinningNumbers(winningNumbers, bonusNumber);
 
         lottoService.determineRanks(customer, winningLotto);
-        double profitRate = lottoService.calculateProfitRate(customer);
-        OutputView.displayProfitRate(profitRate);
+        ResultDto result = lottoService.getResult(customer);
+        OutputView.displayResult(result);
     }
 }

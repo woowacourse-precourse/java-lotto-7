@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.model.dto.LottoDto;
+import lotto.model.dto.ResultDto;
+import lotto.model.dto.ResultDto.RankDto;
 
 public class OutputView {
     public static void displayLottoNumbersOfCustomer(List<LottoDto> lottoDtos) {
@@ -18,7 +20,13 @@ public class OutputView {
         }
     }
 
-    public static void displayProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    public static void displayResult(ResultDto resultDto) {
+        List<RankDto> rankDtos = resultDto.rankDtos();
+
+        for (RankDto rankDto : rankDtos) {
+            System.out.println(rankDto.description() + " - " + rankDto.count() + "개");
+        }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.", Math.round(resultDto.profitRate() * 10) / 10.0);
     }
 }

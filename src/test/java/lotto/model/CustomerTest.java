@@ -13,16 +13,16 @@ public class CustomerTest {
     @DisplayName("올바른 수익률을 반환한다.")
     void returnValidProfitRate() {
         // given
-        int paidAmount = 3_000;
+        int paidAmount = 8_000;
         LottoTicket lottoTicket = new LottoTicket(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         Customer customer = new Customer(paidAmount, List.of(lottoTicket));
-        customer.determineRanks(new WinningLotto(List.of(1, 2, 3, 7, 8, 9), 10));
+        customer.determineRanks(new WinningLotto(List.of(1, 2, 3, 9, 10, 11), 12));
 
         // when
         double profitRate = customer.calculateProfitRate();
 
         // then
-        assertThat(profitRate).isCloseTo(66.7, offset(0.1));
+        assertThat(profitRate).isCloseTo(62.5, offset(0.1));
     }
 }
 

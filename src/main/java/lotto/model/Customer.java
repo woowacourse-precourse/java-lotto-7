@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Map;
 
 public class Customer {
     private final int paidAmount;
@@ -33,4 +34,11 @@ public class Customer {
         return totalProfit;
     }
 
+    public Map<Rank, Integer> countRank(Map<Rank, Integer> rankCounts) {
+        for (LottoTicket lottoTicket : lottoTickets) {
+            lottoTicket.countRank(rankCounts);
+        }
+
+        return rankCounts;
+    }
 }
