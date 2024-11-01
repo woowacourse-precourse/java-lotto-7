@@ -4,7 +4,9 @@ import lotto.WinnerPrice;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 
@@ -106,7 +108,15 @@ public class LottoView {
             int winningNumber = validateTokenNumberForm(inputToken);
             winningNumbers.add(winningNumber);
         }
+        validateUniqueWinningNumbers(winningNumbers);
         return winningNumbers;
+    }
+
+    private  void validateUniqueWinningNumbers(List<Integer> winningNumbers) {
+        Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);
+        if (winningNumberSet.size() != winningNumbers.size()) {
+            throw new IllegalArgumentException("중복되지 않는 당첨 번호들을 입력해 주세요!");
+        }
     }
 
     private static int validateTokenNumberForm(String winningNumberToken) {
