@@ -1,10 +1,15 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class UserInputParserTest {
@@ -27,6 +32,42 @@ class UserInputParserTest {
     void 구매금액_파서_예외_테스트(String rawInput) {
         assertThatThrownBy(() -> {
             UserInputParser.getPurchaseCost(rawInput);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageStartingWith("[ERROR]");
+    }
+    
+    static Stream<Arguments> 당첨번호_테스트값_생성() {
+        return Stream.of(
+                    Arguments.of("1,2,3,4,5,6", List.of(1,2,3,4,5,6)),
+                    Arguments.of("6,5,4,3,2,1", List.of(1,2,3,4,5,6)),
+                    Arguments.of("45,12,41,24,17,6", List.of(6,12,17,24,41,45)),
+                    Arguments.of("13,1,45,30,21,40", List.of(1,13,21,30,40,45))
+                );
+    }
+
+    @ParameterizedTest(name = "당첨번호 입력 테스트 : {0} -> {1}")
+    @MethodSource("당첨번호_테스트값_생성")
+    void 당첨번호_파서_기능_테스트(String rawInput, List<Integer> expected) {
+        assertThat(UserInputParser.getWinningNumbers(rawInput))
+                .containsExactlyElementsOf(expected);
+    }
+    
+    @ParameterizedTest(name = "당첨번호 입력 테스트(예외) : {0}")
+    @ValueSource(strings = {
+                "",
+                "12",
+                "숫자아님",
+                "1,2,3,숫자,5",
+                "1,2,3,4,5",
+                "-1,2,3,4,5,6",
+                "46,1,2,3,4,5",
+                "1,2,3,4,5,6,7",
+                "1,1,1,1,1,1"
+            })
+    void 당첨번호_파서_예외_테스트(String rawInput) {
+        assertThatThrownBy(() -> {
+            UserInputParser.getWinningNumbers(rawInput);
         })
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageStartingWith("[ERROR]");
