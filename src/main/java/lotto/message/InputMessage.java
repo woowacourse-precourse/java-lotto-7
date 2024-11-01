@@ -12,7 +12,6 @@ public enum InputMessage {
     OUT_OF_RANGE_AMOUNT("1등 당첨 금액보다 큰 액수만큼 구매할 수 없습니다."),
     IS_NOT_DIVISIBLE_BY_1000("1000원 단위로 입력해주십시오.");
 
-
     private final String message;
 
     InputMessage(String message) {
