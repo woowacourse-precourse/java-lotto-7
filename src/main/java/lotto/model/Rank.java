@@ -1,30 +1,21 @@
 package lotto.model;
 
 public enum Rank {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
-    FOURTH(4, false, 50_000),
-    FIFTH(3, false, 5_000),
-    NONE(0, false, 0);
+    FIRST(6, 2_000_000_000, "6개 일치"),
+    SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
+    THIRD(5, 1_500_000, "5개 일치"),
+    FOURTH(4, 50_000, "4개 일치"),
+    FIFTH(3, 5_000, "3개 일치"),
+    NONE(0, 0, "당첨 없음");
 
     private final int matchCount;
-    private final boolean matchBonus;
     private final int prize;
+    private final String description;
 
-    Rank(final int matchCount, final boolean matchBonus, final int prize) {
+    Rank(int matchCount, int prize, String description) {
         this.matchCount = matchCount;
-        this.matchBonus = matchBonus;
         this.prize = prize;
-    }
-
-    public static Rank valueOf(int matchCount, boolean matchBonus) {
-        for(Rank rank : Rank.values()) {
-            if(rank.matchCount == matchCount && (!rank.matchBonus || matchBonus)) {
-                return rank;
-            }
-        }
-        return NONE;
+        this.description = description;
     }
 
     public int getPrize() {
@@ -35,7 +26,7 @@ public enum Rank {
         return matchCount;
     }
 
-    public boolean isMatchBonus() {
-        return matchBonus;
-    }
+   public String getDescription() {
+        return description;
+   }
 }
