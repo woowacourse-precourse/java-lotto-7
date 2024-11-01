@@ -82,4 +82,8 @@ public class MyInfo {
     public Integer getPurchasePrice(){
         return this.purchasePrice;
     }
+
+    public void setMyLottos(List<Lotto> myLottos){
+        this.myLottos = myLottos;
+    }
 }
