@@ -21,6 +21,8 @@
         - [x] 예외인 경우 IllegalArgumentException 발생
     - [x] 올바른 구분자(,)를 포함하고 있는지 검증
       - [x] 예외인 경우 IllegalArgumentException 발생
+    - [x] 숫자인지 검증
+      - [x] 예외인 경우 IllegalArgumentException 발생
 - [ ] 보너스 번호 입력
     - [ ] 입력 값이 비어있는지 검증
       - [ ] 예외인 경우 IllegalArgumentException 발생
@@ -33,7 +35,7 @@
     - [x] 1000원 단위인지 검증
         - [x] 예외인 경우 IllegalArgumentException 발생
     - [x] 로또 생성
-      - [x] 로또 6자리 검증
+      - [x] 로또 6자리인지 검증
         - [x] 예외인 경우 IllegalArgumentException 발생
       - [x] 로또 숫자 중복 검증
         - [x] 예외인 경우 IllegalArgumentException 발생
@@ -43,15 +45,7 @@
 
 ### 4) 당첨번호 및 보너스 번호 생성
 
-- [ ] 당첨 번호 생성
-    - [ ] 숫자인지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
-    - [ ] 6자리인지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
-    - [ ] 중복되는 숫자가 있는지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
-    - [ ] 숫자의 범위가 1~45 사이 숫자인지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
+- [x] 당첨 로또 생성
 - [ ] 보너스 번호 생성
     - [ ] 숫자인지 검증
         - [ ] 예외인 경우 IllegalArgumentException 발생
