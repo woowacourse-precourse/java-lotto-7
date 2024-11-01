@@ -13,7 +13,7 @@ public class PurchaseAmountValidation {
         if (parsedInput == 0 || parsedInput % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException(INVALID_PRICE_INPUT);
         }
-        return parsedInput/PRICE_PER_LOTTO;
+        return parsedInput / PRICE_PER_LOTTO;
     }
 
     private static int parseInput(String input) {

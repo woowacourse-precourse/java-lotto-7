@@ -12,29 +12,36 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 
 public class LottoController {
-    private List<Lotto> lottoTickets;
+    private static final List<Lotto> lottoTickets = new ArrayList<Lotto>();
 
     public void run() {
         int attemptCount = getAttemptCount();
         printPurchaseLottoCount(attemptCount);
-        lottoTickets = generateLotto(attemptCount);
+        generateLotto(attemptCount);
+        List<Integer> winningNumber = getWinningNumber();
 
     }
 
-    private List<Lotto> generateLotto(int attemptCount) {
-        List<Lotto> lotto = new ArrayList<>();
+
+    private void generateLotto(int attemptCount) {
         for (int count = 1; count <= attemptCount; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             printEachLotto(numbers);
-            lotto.add(new Lotto(numbers));
+            lottoTickets.add(new Lotto(numbers));
         }
-        return lotto;
     }
 
     private int getAttemptCount() {
         printPurchaseAmountInputMessage();
         String purchaseAmount = UserInput();
         return parseValidatedLottoCount(purchaseAmount);
+    }
+
+    private List<Integer> getWinningNumber() {
+        printWinningNumberInputMessage();
+        String winningNumber = UserInput();
+        System.out.println(winningNumber);
+        return List.of(1, 2, 3);
     }
 }
