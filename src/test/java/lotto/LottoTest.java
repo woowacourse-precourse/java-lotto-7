@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -36,5 +38,19 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.isBonusBallMatch(6)).isTrue();
         assertThat(lotto.isBonusBallMatch(7)).isFalse();
+    }
+
+    @Test
+    void 로또_당첨개수_보너스볼_등수받기(){
+        assertThat(LottoRank.findByCorrectCountAndBonusBall(1,TRUE)).isEqualTo(LottoRank.BLANK);
+        assertThat(LottoRank.findByCorrectCountAndBonusBall(2,TRUE)).isEqualTo(LottoRank.BLANK);
+        assertThat(LottoRank.findByCorrectCountAndBonusBall(5,TRUE)).isEqualTo(LottoRank.SECOND);
+        assertThat(LottoRank.findByCorrectCountAndBonusBall(6,FALSE)).isEqualTo(LottoRank.FIRST);
+    }
+
+    @Test
+    void 로또_조건_출력(){
+        LottoRank lottoRank = LottoRank.SECOND;
+        assertThat(LottoRank.getCondition(lottoRank)).isEqualTo("5개 일치, 보너스 볼 일치");
     }
 }
