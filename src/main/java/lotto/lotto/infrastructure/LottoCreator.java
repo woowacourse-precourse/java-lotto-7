@@ -1,30 +1,35 @@
-package lotto.lotto.service;
+package lotto.lotto.infrastructure;
 
+import lotto.lotto.domain.LottoCreatorService;
 import lotto.lotto.domain.LottoTickets;
+import lotto.lotto.domain.PurchaseLottoTicketsService;
 import lotto.lotto.winning.domain.BonusNumber;
+import lotto.lotto.domain.BonusNumberCreatorService;
 import lotto.lotto.winning.domain.WinningLotto;
-import lotto.lotto.winning.infrastructure.BonusNumberCreator;
-import lotto.lotto.winning.infrastructure.WinningLottoCreator;
+import lotto.lotto.domain.WinningLottoCreatorService;
 
-public class LottoCreator {
-    private final LottoTicketsCreator lottoTicketsCreator;
-    private final BonusNumberCreator bonusNumberCreator;
-    private final WinningLottoCreator winningLottoCreator;
+public class LottoCreator implements LottoCreatorService {
+    private final PurchaseLottoTicketsService purchaseLottoTickets;
+    private final BonusNumberCreatorService bonusNumberCreator;
+    private final WinningLottoCreatorService winningLottoCreator;
     public LottoCreator(
-            LottoTicketsCreator lottoTicketsCreator,
-            WinningLottoCreator winningLottoCreator,
-            BonusNumberCreator bonusNumberCreator
+            PurchaseLottoTicketsService purchaseLottoTickets,
+            WinningLottoCreatorService winningLottoCreator,
+            BonusNumberCreatorService bonusNumberCreator
     ) {
-        this.lottoTicketsCreator = lottoTicketsCreator;
+        this.purchaseLottoTickets = purchaseLottoTickets;
         this.winningLottoCreator = winningLottoCreator;
         this.bonusNumberCreator = bonusNumberCreator;
     }
+    @Override
     public LottoTickets createLottoTickets(int count) {
-        return lottoTicketsCreator.purchaseLottoTickets(count);
+        return purchaseLottoTickets.purchase(count);
     }
+    @Override
     public BonusNumber createBonusNumber(WinningLotto winningLotto) {
         return bonusNumberCreator.create(winningLotto);
     }
+    @Override
     public WinningLotto createWinningLotto() {
         return winningLottoCreator.create();
     }
