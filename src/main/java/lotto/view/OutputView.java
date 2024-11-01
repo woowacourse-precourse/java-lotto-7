@@ -11,6 +11,8 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-
+    public void printLottoCountMessage(String lottoCountMessage) {
+        System.out.println(lottoCountMessage);
+    }
 
 }

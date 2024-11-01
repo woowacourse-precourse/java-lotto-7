@@ -16,24 +16,30 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void startLottoSales() {
+    public void startPurchaseAmountInput() {
         boolean isValidNumber = false;
         String inputCost;
+        int parsedCostToInt = 0;
 
         do {
             outputView.printMessage(OutputMessage.INPUT_PURCHASE_AMOUNT);
-            inputCost = inputView.InputPurchaseAmount();
+            inputCost = inputView.inputPurchaseAmount();
 
             try {
-                lottoService.isValidNumber(inputCost);
+                parsedCostToInt = lottoService.isValidNumber(inputCost);
                 isValidNumber = true;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         } while (!isValidNumber);
 
-        int parsedPurchaseAmount = lottoService.parseStringToInt(inputCost);
+        printNumberOfPurchaseLotto(parsedCostToInt);
     }
 
-
+    public void printNumberOfPurchaseLotto(int parsedCostToInt) {
+        int purchasedLottoCount = lottoService.divideInputByLottoPrice(parsedCostToInt);
+        String lottoCountMessage = OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE
+                .getLottoCountMessage(purchasedLottoCount);
+        outputView.printLottoCountMessage(lottoCountMessage);
+    }
 }
