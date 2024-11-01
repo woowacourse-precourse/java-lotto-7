@@ -11,6 +11,24 @@ import org.junit.jupiter.api.Test;
 class WinningMoneyTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @DisplayName("보너스_번호가_공백일시_예외_발생")
+    @Test
+    void 보너스_번호가_공백_일시_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스_번호가_문자일시_예외_발생")
+    @Test
+    void 보너스_번호가_문자_일시_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", "a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @DisplayName("보너스_번호가_45_초과일시_예외_발생")
     @Test
     void 보너스_번호가_45_초과일시_예외_발생() {
@@ -42,16 +60,26 @@ class WinningMoneyTest extends NsTest {
     @Test
     void 당첨_번호가_45_초과일시_예외_발생() {
         assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "7");
+            runException("8000", "1,2,3,4,5,46", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
-    //그냥 통과하는 케이스로만들어보기
     @DisplayName("당첨_번호가_1_미만일시_예외_발생")
     @Test
     void 당첨_번호가_1_미만일시_예외_발생() {
         assertSimpleTest(() -> {
-            runException("8000", "1,2,3,4,5,6", "7");
+            runException("8000", "-1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호 숫자가 6개가 아닐시 예외발생")
+    @Test
+    void 당첨_번호_숫자가_6개가_아닐시_예외_발생() {
+        assertSimpleTest(() -> {
+            runException("8000", ",2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
