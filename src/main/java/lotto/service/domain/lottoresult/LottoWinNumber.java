@@ -1,14 +1,13 @@
 package lotto.service.domain.lottoresult;
 
-import java.util.Set;
 import lotto.service.domain.lotto.Lotto;
 import lotto.service.domain.lotto.LottoNumber;
 
-public class LottoWinner {
+public class LottoWinNumber {
     private final Lotto winnerLotto;
     private final LottoNumber bonusNumber;
 
-    public LottoWinner(Lotto winnerLotto, LottoNumber bonusNumber) {
+    public LottoWinNumber(Lotto winnerLotto, LottoNumber bonusNumber) {
         validateBounusNumberDuplicate(winnerLotto, bonusNumber);
         this.winnerLotto = winnerLotto;
         this.bonusNumber = bonusNumber;
