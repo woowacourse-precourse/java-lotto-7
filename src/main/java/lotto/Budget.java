@@ -1,7 +1,9 @@
 package lotto;
 
 public class Budget {
-    private static final long LOTTO_PRICE = 1000;
+    private static final long LOTTO_PRICE = 1000L;
+    private static final long MIN_AMOUNT = 0L;
+    private static final long ZERO = 0L;
 
     private final Long amount;
 
@@ -21,13 +23,13 @@ public class Budget {
     }
 
     private static void validateBudgetSign(Long amount) {
-        if (amount < 0) {
+        if (amount < MIN_AMOUNT) {
             throw new IllegalArgumentException(ErrorMessage.BUDGET_NEGATIVE_NUMBER.message());
         }
     }
 
     private static void validateBudgetUnit(Long amount) {
-        if (amount % LOTTO_PRICE != 0) {
+        if (amount % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(ErrorMessage.BUDGET_INVALID_UNIT.message());
         }
     }
