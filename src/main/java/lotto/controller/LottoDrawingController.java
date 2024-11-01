@@ -67,10 +67,20 @@ public class LottoDrawingController {
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
         bonusNumberInputView.printBonusNumberInputGuide();
 
-        BonusNumber bonusNumber = new BonusNumber(
-                bonusNumberInputView.getBonusNumber(),
-                winningNumbers.getWinningNumbers()
-        );
+        BonusNumber bonusNumber;
+        try {
+
+            bonusNumber = new BonusNumber(
+                    bonusNumberInputView.getBonusNumber(),
+                    winningNumbers.getWinningNumbers()
+            );
+
+        } catch (IllegalArgumentException e) {
+
+            ErrorOutputView.printErrorMessage(e);
+
+            return getBonusNumber(winningNumbers);
+        }
 
         return bonusNumber;
     }
