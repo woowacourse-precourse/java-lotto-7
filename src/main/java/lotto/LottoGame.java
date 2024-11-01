@@ -3,6 +3,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LottoGame {
 
     public int getPurchaseAmount(){
@@ -12,6 +15,19 @@ public class LottoGame {
         Integer purchaseAmount = Integer.valueOf(input);
         validateThousandUnit(purchaseAmount);
         return purchaseAmount;
+    }
+
+    public List<Lotto> generateLottos(int purchaseAmount){
+        int ticket = purchaseAmount / 1000;
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < ticket; i++) {
+            lottos.add(Lotto.generate());
+        }
+        System.out.println(ticket + "개를 구매하였습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
+        }
+        return lottos;
     }
 
     public static void validateNumericNumber(String input){

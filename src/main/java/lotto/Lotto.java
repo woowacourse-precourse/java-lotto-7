@@ -13,7 +13,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto generate(){
+    public static Lotto generate(){
         List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumber);
     }
@@ -37,4 +37,9 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
