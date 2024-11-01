@@ -1,6 +1,6 @@
 package lotto.config;
 
-import lotto.controller.InputController;
+import lotto.controller.LottoInputController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -8,7 +8,7 @@ public final class AppConfig {
 
     public static InputView inputView = getInputView();
     public static OutputView outputView = getOutputView();
-    public static InputController inputController = getInputController();
+    public static LottoInputController lottoInputController = getInputController();
 
     private AppConfig() {
     }
@@ -27,10 +27,10 @@ public final class AppConfig {
         return outputView;
     }
 
-    private static InputController getInputController() {
-        if (inputController == null) {
-            inputController = new InputController(getInputView());
+    private static LottoInputController getInputController() {
+        if (lottoInputController == null) {
+            lottoInputController = new LottoInputController(getInputView());
         }
-        return inputController;
+        return lottoInputController;
     }
 }

@@ -1,18 +1,17 @@
 package lotto.dto;
 
-import static lotto.util.validator.LottoNumberValidator.validateDuplicated;
-
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 
 public class WinningLottoDTO {
 
     private final Lotto winningNumbers;
-    private final Integer bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public WinningLottoDTO(Lotto winningNumbers, Integer bonusNumber) {
+    public WinningLottoDTO(Lotto winningNumbers, BonusNumber bonusNumber) {
         this.winningNumbers = winningNumbers;
-        this.bonusNumber = validateDuplicated(winningNumbers, bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public List<Integer> getWinningNumber() {
@@ -20,6 +19,6 @@ public class WinningLottoDTO {
     }
 
     public Integer getBonusNumber() {
-        return bonusNumber;
+        return bonusNumber.getBonusNumber();
     }
 }

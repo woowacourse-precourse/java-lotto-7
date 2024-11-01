@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.config.AppConfig.inputController;
+import static lotto.config.AppConfig.lottoInputController;
 import static lotto.config.AppConfig.inputView;
 import static lotto.config.AppConfig.outputView;
 import static lotto.config.LottoCheckerConfig.lottoCheckerController;
@@ -19,7 +19,7 @@ public class Application {
     }
 
     public static void purchaseLotto() {
-        Integer totalCost = inputController.inputSingleValue(inputView::inputTotalCost);
+        Integer totalCost = lottoInputController.inputSingleValue(inputView::inputTotalCost);
         List<Lotto> purchased = lottoMachineController.purchase(totalCost);
 
         lottoCheckerController.setPurchasedLotto(purchased, totalCost);
@@ -28,7 +28,7 @@ public class Application {
     }
 
     public static void printResult() {
-        WinningLottoDTO winningLotto = inputController.inputWinningCondition();
+        WinningLottoDTO winningLotto = lottoInputController.inputWinningCondition();
         LottoResultDTO result = lottoCheckerController.checkPurchasedLottoRank(winningLotto);
 
         outputView.displayLottoStatistic(result.getResult(), result.getProfitPercentage());

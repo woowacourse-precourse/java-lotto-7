@@ -13,9 +13,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
-public class InputView extends AbstractInputView {
+public class InputView {
 
-    public Integer inputTotalCost() throws IllegalArgumentException {
+    public Integer inputTotalCost() {
         System.out.println(INPUT_TOTAL_COST);
         String input = validateBlank(Console.readLine());
         return validateDividedByLottoPrice(input);

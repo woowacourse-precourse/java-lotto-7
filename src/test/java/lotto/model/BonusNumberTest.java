@@ -1,14 +1,13 @@
-package lotto.dto;
+package lotto.model;
 
 import static lotto.util.message.OutputMessage.ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningLottoDTOTest {
+class BonusNumberTest {
 
     @Test
     @DisplayName("입력한 6개의 당첨 번호 중 보너스 번호와 중복된 번호가 존재하면 예외 발생")
@@ -17,7 +16,7 @@ class WinningLottoDTOTest {
         int bonusNumber = 6;
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new WinningLottoDTO(winningLottoNumber, bonusNumber))
+                .isThrownBy(() -> new BonusNumber(winningLottoNumber, bonusNumber))
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
 }
