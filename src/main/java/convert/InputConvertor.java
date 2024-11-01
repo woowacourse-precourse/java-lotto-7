@@ -6,13 +6,13 @@ import valid.Validate;
 
 public class InputConvertor {
 
-    public String convertPurchaseAmount(String inputPurchaseAmount) {
+    public int convertPurchaseAmount(String inputPurchaseAmount) {
         isNumber(inputPurchaseAmount);
 
         int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
 
         validatePurchaseAmount(purchaseAmount);
-        return inputPurchaseAmount;
+        return purchaseAmount;
     }
 
     private void isNumber(String input) {

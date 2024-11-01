@@ -15,7 +15,7 @@ public class InputView {
         this.inputConvertor = inputConvertor;
     }
 
-    public String inputPurchaseAmount() {
+    public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MSG);
 
         String inputPurchaseAmount = Console.readLine();
