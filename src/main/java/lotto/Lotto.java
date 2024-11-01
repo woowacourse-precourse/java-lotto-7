@@ -30,8 +30,8 @@ public class Lotto {
 
     private void validateEachNumber(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 0) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 음수일 수 없습니다.");
+            if (number <= 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상의 양수로 입력해 주세요.");
             }
             if (number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
