@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 import static lotto.constants.LottoConstants.*;
 
 public enum LottoNumberPolicy {
+
     SORTED_RANDOM_NUMBERS(() -> {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
         Collections.sort(numbers);
