@@ -8,9 +8,9 @@ import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
 
 public class LottosDtoMapper implements DtoMapper <Lottos,LottosDto> {
-    private final LottoDtoMapper lottoDtoMapper;
+    private final DtoMapper <Lotto,LottoDto> lottoDtoMapper;
 
-    public LottosDtoMapper(LottoDtoMapper lottoDtoMapper) {
+    public LottosDtoMapper(DtoMapper <Lotto,LottoDto> lottoDtoMapper) {
         this.lottoDtoMapper = lottoDtoMapper;
     }
 

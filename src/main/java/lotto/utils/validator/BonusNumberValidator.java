@@ -1,6 +1,5 @@
 package lotto.utils.validator;
 
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.exception.ErrorMessages.NUMBER_DUPLICATION;
@@ -8,16 +7,19 @@ import static lotto.exception.ErrorMessages.NUMBER_DUPLICATION;
 public class BonusNumberValidator implements Validator<String> {
     private final Validator<String> positiveIntValidator;
     private final Validator<Integer> lottoNumberValidator;
-    private final List<Integer> winningNumbers;
 
     public BonusNumberValidator(
             Validator<String> positiveIntValidator
-            , Validator<Integer> lottoNumberValidator
-            , List<Integer> winningNumbers) {
+            , Validator<Integer> lottoNumberValidator ){
 
         this.positiveIntValidator = positiveIntValidator;
         this.lottoNumberValidator = lottoNumberValidator;
-        this.winningNumbers = Collections.unmodifiableList(winningNumbers); //불변성 확보
+    }
+
+    public void validateWithComparison(String rawBonusNumber,  List<Integer> winningNumbers){
+        validate(rawBonusNumber);
+        int bonusNumber = Integer.parseInt(rawBonusNumber);
+        validateNoDuplication( bonusNumber, winningNumbers);
     }
 
     @Override
@@ -28,7 +30,6 @@ public class BonusNumberValidator implements Validator<String> {
         int bonusNumber = Integer.parseInt(rawBonusNumber);
 
         lottoNumberValidator.validate(bonusNumber);
-        validateNoDuplication(bonusNumber, winningNumbers);
     }
 
     private static void validateNoDuplication(
