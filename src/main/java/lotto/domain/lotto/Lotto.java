@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static lotto.resources.Constants.LOTTO_TOTAL_NUMBERS;
 import static lotto.resources.ErrorMessages.DUPLICATE_LOTTO_NUMBER;
@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = sortAscendingLotto(numbers);
     }
@@ -60,5 +60,10 @@ public class Lotto {
     @Override
     public int hashCode() {
         return Objects.hash(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString() + "\n";
     }
 }
