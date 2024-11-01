@@ -5,7 +5,7 @@ import lotto.buyer.validator.MoneyValidator;
 import lotto.util.Convertor;
 
 public class PurchaseAmount implements Money {
-    private long amount;
+    private final long amount;
     private PurchaseAmount(long amount) {
         this.amount = amount;
     }
