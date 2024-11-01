@@ -143,3 +143,12 @@
 - **LottoStatistic 인스턴스 변수 추가**
   - 로또 구입 금액 purchaseAmount 및 로또 수량 quantity 필드를 추가하여, 통계 클래스에 필요한 데이터로 종속시킵니다.
   - 랜덤로또 N장 생성 시 로또 수량 데이터가 필요한 경우, statistics의 DTO 객체를 통해 불변값을 전달받도록 수정합니다.
+
+### 24.11.02.(토).2
+- **ErrorException 클래스 추가 및 Validator 수정**
+  - 프로그램 내 예외 구문을 util.LottoErrorMessages에 상수로 정의합니다.
+  - LottoException을 상속받아 각 예외처리 경우에 대한 예외발생 메서드를 정의합니다.
+  - 각 클래스 내 예외발생 및 처리를 위한 중복 코드가 발생하지 않도록 수정되었습니다.
+- **ErrorView, I/O View 분리**
+  - 사용자 입력을 위한 View, 콘솔 출력을 위한 View, 에러 출력을 위한 View 의 세 가지 케이스로 View를 분리합니다.
+  - 모든 View는 static으로 변경합니다.

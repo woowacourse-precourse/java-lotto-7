@@ -1,14 +1,12 @@
 package lotto;
 import lotto.controller.LottoController;
-import lotto.model.LottoStatistic;
-import lotto.model.LottoStatistics;
 import lotto.services.LottoService;
 import lotto.services.LottoServices;
-import lotto.view.LottoView;
+import lotto.view.ErrorView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoView lottoView = new LottoView();
+        ErrorView lottoView = new ErrorView();
         LottoServices lottoServices = new LottoService();
         LottoController controller = new LottoController(lottoView, lottoServices);
         controller.start();
