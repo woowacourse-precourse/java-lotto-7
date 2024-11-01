@@ -71,19 +71,17 @@ public class LottoService {
         return MATCH_COUNT_TO_RANK.getOrDefault(matchCount, 0);
     }
 
-    public BigDecimal getWinningAmount() {
-        return this.winningAmount;
+    public String getWinningAmount() {
+        return this.winningAmount.toPlainString();
     }
 
-    public void calculateRateOfReturn() {
+    public void calculateEarningsRate() {
         BigDecimal purchaseAmount = BigDecimal.valueOf(lottoTickets.size() * LOTTO_PRICE);
-        BigDecimal winningAmount = getWinningAmount();
-
-        BigDecimal earningsRatio = winningAmount.divide(purchaseAmount, PLACE_TO_ROUND_TO, RoundingMode.HALF_UP);
-        this.earningsRate = earningsRatio.multiply(BigDecimal.valueOf(PERCENT));
+        BigDecimal winningAmountMultiplyPercent = winningAmount.multiply(BigDecimal.valueOf(PERCENT));
+        this.earningsRate = winningAmountMultiplyPercent.divide(purchaseAmount, PLACE_TO_ROUND_TO, RoundingMode.HALF_UP);
     }
 
-    public BigDecimal getEarningsRate() {
-        return this.earningsRate;
+    public String getEarningsRate() {
+        return this.earningsRate.toPlainString();
     }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,16 +31,16 @@ public class LottoServiceTest {
     @DisplayName("당첨 금액을 올바르게 합산하는지 확인")
     void 당첨_금액_테스트() {
         lottoService.calculateWinningAmount();
-        BigDecimal result = lottoService.getWinningAmount();
-        assertThat(result).isEqualTo(BigDecimal.valueOf(1500000 + 50000));
+        String result = lottoService.getWinningAmount();
+        assertThat(result).isEqualTo("1550000");
     }
 
     @Test
     @DisplayName("수익률을 올바르게 계산하는지 확인")
     void 수익률_테스트() {
         lottoService.calculateWinningAmount();
-        lottoService.calculateRateOfReturn();
-        BigDecimal result = lottoService.getEarningsRate();
-        assertThat(result).isEqualTo(BigDecimal.valueOf(77500.0));
+        lottoService.calculateEarningsRate();
+        String result = lottoService.getEarningsRate();
+        assertThat(result).isEqualTo("77500.0");
     }
 }
