@@ -4,7 +4,7 @@ import static lotto.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 import lotto.model.Lotto;
 
 public class LottoBonusDuplicateCheckerService {
-    public void checkForDuplicates(Lotto lotto, int bonusNumber){
+    public static void checkForDuplicates(Lotto lotto, int bonusNumber){
         if(lotto.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.format());
         }
