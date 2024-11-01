@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 
-public interface LottoBuyService {
+public interface LottoService {
 
     MoneyDto createMoney(String money);
 

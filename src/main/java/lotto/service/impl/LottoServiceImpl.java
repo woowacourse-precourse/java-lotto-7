@@ -5,15 +5,15 @@ import lotto.domain.Money;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 import lotto.repository.SingleRepository;
-import lotto.service.LottoBuyService;
+import lotto.service.LottoService;
 
-public class LottoBuyServiceImpl implements LottoBuyService {
+public class LottoServiceImpl implements LottoService {
 
     private final SingleRepository<Money> moneyRepository;
     private final SingleRepository<LottoList> lottoListRepository;
 
-    public LottoBuyServiceImpl(SingleRepository<Money> moneyRepository,
-                               SingleRepository<LottoList> lottoListRepository) {
+    public LottoServiceImpl(SingleRepository<Money> moneyRepository,
+                            SingleRepository<LottoList> lottoListRepository) {
         this.moneyRepository = moneyRepository;
         this.lottoListRepository = lottoListRepository;
     }

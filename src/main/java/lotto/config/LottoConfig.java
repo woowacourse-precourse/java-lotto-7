@@ -1,8 +1,7 @@
 package lotto.config;
 
-import lotto.controller.LottoBuyController;
+import lotto.controller.LottoController;
 import lotto.controller.ProfitRateController;
-import lotto.controller.StatusController;
 import lotto.controller.WinnerLottoController;
 import lotto.domain.LottoList;
 import lotto.domain.Money;
@@ -13,13 +12,11 @@ import lotto.repository.impl.LottoListRepository;
 import lotto.repository.impl.MoneyRepository;
 import lotto.repository.impl.WinnerLottoRepository;
 import lotto.repository.impl.WinnerStatusRepository;
-import lotto.service.LottoBuyService;
+import lotto.service.LottoService;
 import lotto.service.ProfitRateService;
-import lotto.service.StatusService;
 import lotto.service.WinnerLottoService;
-import lotto.service.impl.LottoBuyServiceImpl;
+import lotto.service.impl.LottoServiceImpl;
 import lotto.service.impl.ProfitRateServiceImpl;
-import lotto.service.impl.StatusServiceImpl;
 import lotto.service.impl.WinnerLottoServiceImpl;
 import lotto.viewer.Viewer;
 
@@ -32,18 +29,14 @@ public class LottoConfig {
     private static final SingleRepository<WinnerStatus> WINNER_STATUS_REPOSITORY = new WinnerStatusRepository();
     private static final SingleRepository<WinnerLotto> WINNER_LOTTO_REPOSITORY = new WinnerLottoRepository();
 
-    private static final LottoBuyService LOTTO_BUY_SERVICE = new LottoBuyServiceImpl(MONEY_REPOSITORY,
+    private static final LottoService LOTTO_BUY_SERVICE = new LottoServiceImpl(MONEY_REPOSITORY,
             LOTTO_LIST_REPOSITORY);
-    private static final LottoBuyController LOTTO_BUY_CONTROLLER = new LottoBuyController(LOTTO_BUY_SERVICE, VIEWER);
+    private static final LottoController LOTTO_BUY_CONTROLLER = new LottoController(LOTTO_BUY_SERVICE, VIEWER);
 
     private static final WinnerLottoService WINNER_LOTTO_SERVICE = new WinnerLottoServiceImpl(
-            WINNER_LOTTO_REPOSITORY);
+            WINNER_LOTTO_REPOSITORY, LOTTO_LIST_REPOSITORY, WINNER_STATUS_REPOSITORY);
     private static final WinnerLottoController WINNER_LOTTO_CONTROLLER = new WinnerLottoController(WINNER_LOTTO_SERVICE,
             VIEWER);
-
-    private static final StatusService STATUS_SERVICE = new StatusServiceImpl(WINNER_LOTTO_REPOSITORY,
-            LOTTO_LIST_REPOSITORY, WINNER_STATUS_REPOSITORY);
-    private static final StatusController STATUS_CONTROLLER = new StatusController(STATUS_SERVICE, VIEWER);
 
     private static final ProfitRateService PROFIT_RATE_SERVICE = new ProfitRateServiceImpl(MONEY_REPOSITORY,
             WINNER_STATUS_REPOSITORY);
@@ -57,13 +50,11 @@ public class LottoConfig {
         return WINNER_LOTTO_CONTROLLER;
     }
 
-    public static LottoBuyController getLottoBuyController() {
+    public static LottoController getLottoBuyController() {
         return LOTTO_BUY_CONTROLLER;
     }
 
-    public static StatusController getStatusController() {
-        return STATUS_CONTROLLER;
-    }
+
 
     public static ProfitRateController getProfitRateController() {
         return PROFIT_RATE_CONTROLLER;

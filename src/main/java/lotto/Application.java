@@ -2,24 +2,21 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.LottoConfig;
-import lotto.controller.LottoBuyController;
+import lotto.controller.LottoController;
 import lotto.controller.ProfitRateController;
-import lotto.controller.StatusController;
 import lotto.controller.WinnerLottoController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoBuyController lottoBuyController = LottoConfig.getLottoBuyController();
+        LottoController lottoController = LottoConfig.getLottoBuyController();
         WinnerLottoController winnerLottoController = LottoConfig.getWinnerLottoController();
-        StatusController statusController = LottoConfig.getStatusController();
         ProfitRateController profitRateController = LottoConfig.getProfitRateController();
 
         try {
-            lottoBuyController.process();
+            lottoController.buy();
 
             winnerLottoController.create();
-
-            statusController.print();
+            winnerLottoController.printStatus();
 
             profitRateController.print();
         } catch (OutOfMemoryError e) {
