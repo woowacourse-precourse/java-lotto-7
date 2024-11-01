@@ -10,8 +10,8 @@ public class Application {
         getBonusNumber();
     } 
     
-    private static long getPurchaseCost() {
-        return (long)getParsedUserInput(UserInputType.PURCHASE_COST);
+    private static int getPurchaseCost() {
+        return (int)getParsedUserInput(UserInputType.PURCHASE_COST);
     }
     
     private static List<Integer> getWinningNumbers() {

@@ -17,7 +17,7 @@ public class UserInputParser {
      * @param rawInput 변환할 문자열
      * @param inputType 입력 데이터의 종류
      * @return 변환된 결과 :
-     * <br/> {@link UserInputType#PURCHASE_COST} - long
+     * <br/> {@link UserInputType#PURCHASE_COST} - int
      * <br/> {@link UserInputType#WINNING_NUMBERS} - List{@literal <Integer>}
      * <br/> {@link UserInputType#BONUS_NUMBER} - int
      */
@@ -40,10 +40,10 @@ public class UserInputParser {
      * @return 변환된 로또 구매 금액값입니다.
      * @throws IllegalArgumentException 사용자 입력이 적절하지 않을 경우 발생합니다.
      */
-    private static long getPurchaseCost(String rawInput) {
-        long value;
+    private static int getPurchaseCost(String rawInput) {
+        int value;
         try {
-            value = checkAvailPurchaseCost(Long.parseLong(rawInput));
+            value = checkAvailPurchaseCost(Integer.parseInt(rawInput));
         }
         catch (NumberFormatException e) {
             throw InputErrorFactory.getErrorWithMessage(InvalidInputType.PURCHASE_COST_NOT_NUMBER);
@@ -55,7 +55,7 @@ public class UserInputParser {
         return value;
     }
     
-    private static long checkAvailPurchaseCost(long cost) {
+    private static int checkAvailPurchaseCost(int cost) {
         if (cost < 1000) {
             throw InputErrorFactory.getErrorWithMessage(InvalidInputType.PURCHASE_COST_TOO_LOW);
         }
