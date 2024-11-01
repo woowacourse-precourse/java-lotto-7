@@ -20,8 +20,8 @@ public class WinningDetails {
         }
     }
 
-    public static List<MyResult> saveMyGrades(List<Lotto> lottoList, Lotto answer, Integer bonus){
-        List<MyResult> myResults = new ArrayList<MyResult>();
+    public static List<MyResult> saveMyGrades(List<Lotto> lottoList, Lotto answer, int bonus){
+        List<MyResult> myResults = new ArrayList<>();
         for(int i = 0; i < lottoList.size(); i++){
             MyResult gradedLotto = Lotto.gradeLotto(answer, lottoList.get(i), bonus);
             myResults.add(gradedLotto);
