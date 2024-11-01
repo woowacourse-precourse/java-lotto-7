@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,30 +9,63 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MatchStatisticsTest {
+class MatchStatisticsTest {
+    private MatchStatistics matchStatistics;
+    private WinningNumber winningNumber;
 
-    @DisplayName("당첨 결과를 올바르게 추가하고 출력한다.")
+    @BeforeEach
+    void setUp() {
+        matchStatistics = new MatchStatistics();
+        winningNumber = new WinningNumber(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+    }
+
     @Test
-    void testMatchStatistics() {
-        MatchStatistics matchStatistics = new MatchStatistics();
-        List<Lotto> tickets = Arrays.asList(
-                new Lotto(Arrays.asList(17, 35, 12, 30, 34, 26)),
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(17, 35, 12, 37, 34, 26))
-        );
+    @DisplayName("당첨 결과를 추가하고 통계가 올바르게 업데이트되는지 확인")
+    void addMatchResult_ShouldUpdateStatistics() {
+        matchStatistics.addMatchResult(MatchResult.THREE_MATCH, 2);
+        matchStatistics.addMatchResult(MatchResult.FOUR_MATCH, 1);
+        matchStatistics.addMatchResult(MatchResult.FIVE_MATCH, 3);
+        matchStatistics.addMatchResult(MatchResult.SIX_MATCH, 1);
 
-        WinningNumber winningNumber = new WinningNumber(Arrays.asList(17, 35, 12, 37, 34, 26), 30);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.THREE_MATCH.getDescription())).isEqualTo(2);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.FOUR_MATCH.getDescription())).isEqualTo(1);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.FIVE_MATCH.getDescription())).isEqualTo(3);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.SIX_MATCH.getDescription())).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("지출 금액을 설정하고 총 수익률을 계산하는지 확인")
+    void setTotalSpent_ShouldUpdateInvestmentAndCalculateReturnRate() {
+        matchStatistics.setTotalSpent(10000);
+        matchStatistics.addMatchResult(MatchResult.THREE_MATCH, 2);
+        matchStatistics.addMatchResult(MatchResult.FIVE_MATCH, 1);
+
+        double profitRate = matchStatistics.getProfitRate();
+
+        assertThat(profitRate).isGreaterThan(0);
+    }
+
+    @Test
+    @DisplayName("입력한 로또 티켓으로 당첨 통계를 계산하는지 확인")
+    void calculateMatches_ShouldCalculateCorrectly() {
+        List<Lotto> tickets = Arrays.asList(
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 8, 9)),
+                new Lotto(Arrays.asList(1, 2, 3, 10, 11, 12))
+        );
 
         matchStatistics.calculateMatches(tickets, winningNumber);
 
-        matchStatistics.printMatchResults();
-
-        assertThat(matchStatistics.getMatchResults().get("3개 일치 (5,000원)")).isEqualTo(0);
-        assertThat(matchStatistics.getMatchResults().get("4개 일치 (50,000원)")).isEqualTo(0);
-        assertThat(matchStatistics.getMatchResults().get("5개 일치 (1,500,000원)")).isEqualTo(0);
-        assertThat(matchStatistics.getMatchResults().get("5개 일치, 보너스 볼 일치 (30,000,000원)")).isEqualTo(1);
-        assertThat(matchStatistics.getMatchResults().get("6개 일치 (2,000,000,000원)")).isEqualTo(1);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.SIX_MATCH.getDescription())).isEqualTo(1);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.FIVE_MATCH_WITH_BONUS.getDescription())).isEqualTo(1);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.FOUR_MATCH.getDescription())).isEqualTo(1);
+        assertThat(matchStatistics.getMatchResults().get(MatchResult.THREE_MATCH.getDescription())).isEqualTo(1);
     }
 
-
+    @Test
+    @DisplayName("수익률이 0일 때 계산되는지 확인")
+    void calculateReturnRate_ShouldReturnZeroWhenNoInvestment() {
+        assertThat(matchStatistics.getProfitRate()).isEqualTo(0);
+    }
 }

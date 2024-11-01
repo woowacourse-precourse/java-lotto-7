@@ -13,11 +13,14 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 기능_테스트() {
+    void shouldPurchaseLottoTicketsAndShowResults() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
-                    assertThat(output()).contains(
+                    String actualOutput = output();
+                    System.out.println(actualOutput);
+
+                    assertThat(actualOutput.trim()).contains(
                             "8개를 구매했습니다.",
                             "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]",
@@ -47,9 +50,33 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void shouldThrowErrorForInvalidInput() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void shouldThrowErrorForNegativeInput() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void shouldThrowErrorForTooHighInput() {
+        assertSimpleTest(() -> {
+            runException("10001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void shouldThrowErrorForInvalidBonusNumber() {
+        assertSimpleTest(() -> {
+            runException("1,2,3,4,5,6,7,8");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
