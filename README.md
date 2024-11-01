@@ -23,19 +23,21 @@
 ## 기능 목록
 ### Purchase
 
-- [ ]  public void process()
-    - [ ]  buyLottos() 호출해 로또 구매
-    - [ ]  setWinningNumbers() 호출해 당첨 번호와 보너스 번호 설정
-    - [ ]  showResult() 호출해 당첨 결과 확인
-- [ ]  private void buyLottos()
-    - [ ]  LottoNumberGenerator.issueLottos() 호출해 구매 액수만큼의 로또 발행
-    - [ ]  boughtNumbers의 setter 호출해 발행한 로또 번호 정보 set
-- [ ]  private void setWinningNumbers()
+- [ ] public void checkEachLottosResult() \: 구매한 각 로또들의 당첨 결과를 조회하는 기능
+  - [ ] boughtLottos의 각 Lotto 객체마다 `Lotto.getResult()`를 호출해 당첨 결과 조회 
 
 ### Lotto
 - [x] **private void sortNumbers()** \: 로또 번호를 오름차순으로 정렬하는 기능
 
-- [ ]  몇 등 당첨인지 확인하는 기능
+- [x] **public void getResult(List\<Integer> winningNums, int bonusNum)** \: 몇 등 당첨인지 확인하는 기능
+  - [x] `findMatchCounts()` 호출해 자신의 로또 번호와 winningNums가 일치하는 개수 확인
+    - [x] 일치하는 개수가 5개라면 보너스 번호 일치 여부에 따라 2등 혹은 3등으로 Prize 값 결정
+    - [x] 일치하는 개수가 5개가 아니라면 보너스 번호 일치 여부에 관계 없이 winningNums가 일치하는 개수에 따라 Prize 값 결정
+  
+- [x] **private int findMatchCounts(List<Integer> winningNums)** \: 당첨 번호와 자신의 로또 번호가 몇 개 일치하는지 확인하는 기능
+  - [x] 자신의 로또 번호인 numbers의 원소를 하나씩 확인
+    - [x] 현재 확인하고 있는 원소를 winningNums도 가지고 있다면 count 1 증가
+  - [x] count 값 반환
 
 ### LottoNumberGenerator
 - [x] **public List\<Lotto> issueLottos(int amount)** \: 주어진 수량만큼 로또를 발행하는 기능

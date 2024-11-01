@@ -21,4 +21,24 @@ public enum Prize {
         this.bonusNumMatch = bonusNumMatch;
         this.amount = amount;
     }
+
+    public int getStandard() {
+        return standard;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public static Prize findResult(int matchCounts, boolean bonusNumMatch) {
+        for (Prize prize : Prize.values()) {
+            if (prize == LOSE) {
+                continue;
+            }
+            if (prize.standard == matchCounts && prize.bonusNumMatch == bonusNumMatch) {
+                return prize;
+            }
+        }
+        return LOSE;
+    }
 }

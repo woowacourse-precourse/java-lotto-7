@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private Prize prize;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -22,7 +23,34 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+    public void getResult(List<Integer> winningNums, int bonusNum) {
+        int matchCounts = findMatchCounts(winningNums);
+        if (matchCounts == Prize.SECOND.getStandard()) {
+            setPrize(Prize.findResult(matchCounts, numbers.contains(bonusNum)));
+            return;
+        }
+        setPrize(Prize.findResult(matchCounts, false));
+    }
+
+    private int findMatchCounts(List<Integer> winningNums) {
+        int count = 0;
+        for (int num : numbers) {
+            if (winningNums.contains(num)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public Prize getPrize() {
+        return prize;
+    }
+
+    private void setPrize(Prize prize) {
+        this.prize = prize;
     }
 }

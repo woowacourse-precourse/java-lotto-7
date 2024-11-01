@@ -11,4 +11,9 @@ public class Purchase {
         this.boughtLottos = boughtLottos;
     }
 
+    public void checkEachLottosResult() {
+        for (Lotto lotto : boughtLottos) {
+            lotto.getResult(winningNumbers.getNumbers(), bonusNumber);
+        }
+    }
 }
