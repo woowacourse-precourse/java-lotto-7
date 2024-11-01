@@ -4,6 +4,11 @@ import java.util.List;
 import lotto.util.PrizeType;
 
 public class CalculateResult {
+    private final int PLACE_OF_1ST = 6;
+    private final int PLACE_OF_2ST = 5;
+    private final int PLACE_OF_3ST = 4;
+    private final int PLACE_OF_4ST = 3;
+
     public int[] calculateStatistics(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottoNumbers) {
         int[] results = new int[PrizeType.values().length];
 
@@ -11,15 +16,15 @@ public class CalculateResult {
             int matchCount = countMatchingNumbers(singleLotto, winningNumbers);
             boolean hasBonus = singleLotto.contains(bonusNumber);
 
-            if (matchCount == 6) {
+            if (matchCount == PLACE_OF_1ST) {
                 results[PrizeType.MATCHING_6.ordinal()]++;
-            } else if (matchCount == 5 && hasBonus) {
+            } else if (matchCount == PLACE_OF_2ST && hasBonus) {
                 results[PrizeType.HAS_BONUS_WIN_MATCHING_5.ordinal()]++;
-            } else if (matchCount == 5) {
+            } else if (matchCount == PLACE_OF_2ST) {
                 results[PrizeType.MATCHING_5.ordinal()]++;
-            } else if (matchCount == 4) {
+            } else if (matchCount == PLACE_OF_3ST) {
                 results[PrizeType.MATCHING_4.ordinal()]++;
-            } else if (matchCount == 3) {
+            } else if (matchCount == PLACE_OF_4ST) {
                 results[PrizeType.MATCHING_3.ordinal()]++;
             }
         });
