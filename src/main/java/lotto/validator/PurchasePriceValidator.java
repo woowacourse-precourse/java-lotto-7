@@ -1,7 +1,7 @@
 package lotto.validator;
 
 import lotto.constants.InputError;
-import lotto.constants.LottoConstInteger;
+import lotto.constants.LottoInteger;
 import lotto.view.ErrorPrinter;
 
 public class PurchasePriceValidator {
@@ -58,7 +58,7 @@ public class PurchasePriceValidator {
     }
 
     private static boolean isReachAtLeastPrice() {
-        if (intPurchasePrice >= LottoConstInteger.LOTTO_PRICE.getValue()) {
+        if (intPurchasePrice >= LottoInteger.LOTTO_PRICE.getValue()) {
             return true;
         }
         ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_NOT_REACH_AT_LEAST);
@@ -66,7 +66,7 @@ public class PurchasePriceValidator {
     }
 
     private static boolean isDividedClearly() {
-        if (intPurchasePrice % LottoConstInteger.LOTTO_PRICE.getValue() == 0) {
+        if (intPurchasePrice % LottoInteger.LOTTO_PRICE.getValue() == 0) {
             return true;
         }
         ErrorPrinter.errorPrint(InputError.PURCHASE_PRICE_SHOULD_BE_DIVIDED_CLEARLY);

@@ -6,7 +6,8 @@ public class OutputView {
     public void println(String message) {
         System.out.println(message);
     }
-    public void newLine(){
+
+    public void newLine() {
         System.out.println();
     }
 

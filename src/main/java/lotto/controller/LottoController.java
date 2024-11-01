@@ -2,9 +2,12 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.WinRank;
 import lotto.domain.Lotto;
 import lotto.domain.WinLotto;
-import lotto.service.LottoService;
+import lotto.factory.LottoFactory;
+import lotto.service.LottoMatcher;
+import lotto.service.LottoMoneyService;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchasePriceValidator;
 import lotto.validator.WinningNumberValidator;
@@ -12,14 +15,18 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final String DEFAULT_MATCH_FORMAT = "%d개 일치 (%,d원) - %d개";
+    private static final String BONUS_MATCH_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private final LottoMoneyService lottoMoneyService;
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
+    private final LottoFactory lottoFactory;
 
     private LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoService = new LottoService();
+        this.lottoFactory = new LottoFactory();
+        this.lottoMoneyService = new LottoMoneyService();
     }
 
     public static LottoController getInstance() {
@@ -32,11 +39,38 @@ public class LottoController {
 
     public void run() {
         int validPurchasePrice = getValidInteger(validatePurchasePrice());
-        List<Lotto> lotties = lottoService.makeLottos(validPurchasePrice);
+        List<Lotto> lotties = lottoFactory.makeLotties(validPurchasePrice);
         printLottoNumbers(lotties);
+
         List<Integer> validWinningNumbers = getValidWinningNumbers(validateWinningNumbers());
         int validBonusNumber = getValidInteger(validateBonusNumber());
         WinLotto winLotto = new WinLotto(validWinningNumbers, validBonusNumber);
+
+        LottoMatcher lottoMatcher = new LottoMatcher(lotties, winLotto);
+        printLottoMatchResult(lottoMatcher);
+    }
+
+    private void printLottoMatchResult(LottoMatcher lottoMatcher) {
+        lottoMatcher.matchLotties();
+        outputView.println("당첨 통계");
+        outputView.println("---");
+        printDefaultMatchFormat(WinRank.FIFTH, lottoMatcher);
+        printDefaultMatchFormat(WinRank.FOURTH, lottoMatcher);
+        printDefaultMatchFormat(WinRank.THIRD, lottoMatcher);
+        printBonusMatchFormat(WinRank.SECOND, lottoMatcher);
+        printDefaultMatchFormat(WinRank.FIRST, lottoMatcher);
+    }
+
+    private void printDefaultMatchFormat(WinRank winRank, LottoMatcher lottoMatcher) {
+        outputView.println(
+                String.format(DEFAULT_MATCH_FORMAT, winRank.getMatchCount(), lottoMoneyService.getMoney(winRank),
+                        lottoMatcher.getResult(winRank)));
+    }
+
+    private void printBonusMatchFormat(WinRank winRank, LottoMatcher lottoMatcher) {
+        outputView.println(
+                String.format(BONUS_MATCH_FORMAT, winRank.getMatchCount(), lottoMoneyService.getMoney(winRank),
+                        lottoMatcher.getResult(winRank)));
     }
 
     private int getValidInteger(String validatedInteger) {
@@ -50,6 +84,7 @@ public class LottoController {
             rawWinningNumber = inputView.getRequestWinningNumber();
             pass = WinningNumberValidator.validate(rawWinningNumber);
         }
+        outputView.newLine();
         return rawWinningNumber;
     }
 
@@ -66,11 +101,11 @@ public class LottoController {
             rawPurchasePrice = inputView.getRequestPurchasePrice();
             pass = PurchasePriceValidator.validate(rawPurchasePrice);
         }
+        outputView.newLine();
         return rawPurchasePrice;
     }
 
     private void printLottoNumbers(List<Lotto> lotties) {
-        outputView.newLine();
         outputView.println(lotties.size() + "개를 구매했습니다.");
         lotties.stream()
                 .map(Lotto::getNumbers)
@@ -78,13 +113,14 @@ public class LottoController {
         outputView.newLine();
     }
 
-    private String validateBonusNumber(){
+    private String validateBonusNumber() {
         boolean pass = false;
         String rawBonusNumber = "";
-        while(!pass){
+        while (!pass) {
             rawBonusNumber = inputView.getRequestBonusNumber();
             pass = BonusNumberValidator.validate(rawBonusNumber);
         }
+        outputView.newLine();
         return rawBonusNumber;
     }
 }

@@ -3,8 +3,8 @@ package lotto.validator;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constants.InputError;
-import lotto.constants.LottoConstInteger;
-import lotto.constants.LottoConstString;
+import lotto.constants.LottoInteger;
+import lotto.constants.LottoString;
 import lotto.view.ErrorPrinter;
 
 public class WinningNumberValidator {
@@ -53,16 +53,16 @@ public class WinningNumberValidator {
     }
 
     private static int getLottoNumberCount() {
-        return LottoConstInteger.LOTTO_NUMBER_COUNT.getValue();
+        return LottoInteger.LOTTO_NUMBER_COUNT.getValue();
     }
 
     private static boolean isDelimiter(int it) {
-        return LottoConstString.DELIMITER.getValue().contains(String.valueOf((char) it));
+        return LottoString.DELIMITER.getValue().contains(String.valueOf((char) it));
     }
 
     private static boolean hasNumberCountExactly() {
         String[] split = splitWithDelimiters();
-        if (split.length == LottoConstInteger.LOTTO_NUMBER_COUNT.getValue()) {
+        if (split.length == LottoInteger.LOTTO_NUMBER_COUNT.getValue()) {
             return true;
         }
         ErrorPrinter.errorPrint(InputError.LOTTO_WINNING_NUMBER_NOT_EQUAL_COUNT);
@@ -70,7 +70,7 @@ public class WinningNumberValidator {
     }
 
     private static String[] splitWithDelimiters() {
-        return rawWinningNumber.split(LottoConstString.DELIMITER.getValue());
+        return rawWinningNumber.split(LottoString.DELIMITER.getValue());
     }
 
     private static boolean isDigit() {
@@ -95,8 +95,8 @@ public class WinningNumberValidator {
     }
 
     private static boolean isValidRange(int needValidating) {
-        return needValidating >= LottoConstInteger.LOTTO_START_NUMBER.getValue()
-                && needValidating <= LottoConstInteger.LOTTO_END_NUMBER.getValue();
+        return needValidating >= LottoInteger.LOTTO_START_NUMBER.getValue()
+                && needValidating <= LottoInteger.LOTTO_END_NUMBER.getValue();
     }
 
     private static boolean hasNoDuplication() {

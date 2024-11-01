@@ -1,7 +1,7 @@
 package lotto.validator;
 
 import lotto.constants.InputError;
-import lotto.constants.LottoConstInteger;
+import lotto.constants.LottoInteger;
 import lotto.view.ErrorPrinter;
 
 public class BonusNumberValidator {
@@ -16,8 +16,9 @@ public class BonusNumberValidator {
         if (!isDigit()) {
             return false;
         }
-        if(!isValidRange())
+        if (!isValidRange()) {
             return false;
+        }
         return true;
     }
 
@@ -40,9 +41,10 @@ public class BonusNumberValidator {
     }
 
     private static boolean isValidRange() {
-        if (intBonusNumber >= LottoConstInteger.LOTTO_START_NUMBER.getValue()
-                && intBonusNumber <= LottoConstInteger.LOTTO_END_NUMBER.getValue())
+        if (intBonusNumber >= LottoInteger.LOTTO_START_NUMBER.getValue()
+                && intBonusNumber <= LottoInteger.LOTTO_END_NUMBER.getValue()) {
             return true;
+        }
         ErrorPrinter.errorPrint(InputError.BONUS_NUMBER_NOT_IN_BETWEEN_START_AND_END);
         return false;
     }

@@ -1,12 +1,12 @@
 package lotto.constants;
 
-public enum LottoConstString {
+public enum LottoString {
     DELIMITER(","),
     ;
 
     private final String value;
 
-    LottoConstString(String value) {
+    LottoString(String value) {
         this.value = value;
     }
 
