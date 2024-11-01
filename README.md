@@ -2,19 +2,19 @@
 
 ## Feature
 
-- [ ] get price, winning numbers and bonus number and print rate of return
-    - [ ] throw error when invalid input is given
-        - [ ] throw error when price is invalid
-        - [ ] throw error when winning numbers are invalid
-        - [ ] throw error when bonus number is invalid
-        - [ ] continue accepting input
-    - [ ] get the number of lottery to publish
+- [x] get price, winning numbers and bonus number and print rate of return
+    - [x] throw error when invalid input is given
+        - [x] throw error when price is invalid
+        - [x] throw error when winning numbers are invalid
+        - [x] throw error when bonus number is invalid
+        - [x] continue accepting input
+    - [x] get the number of lottery to publish
     - [x] print lottery numbers in ascending order
         - [x] pick 6 numbers in range 1~45
-    - [ ] get winning numbers and bonus number
+    - [x] get winning numbers and bonus number
     - [x] calculate each lottery prize
-    - [ ] calculate rate of return
-    - [ ] print lottery results and rate of return
+    - [x] calculate rate of return
+    - [x] print lottery results and rate of return
 
 ## Spec
 
