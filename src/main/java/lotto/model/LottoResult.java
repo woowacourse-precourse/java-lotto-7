@@ -66,4 +66,8 @@ public class LottoResult {
         }
     }
 
+    public double getProfitRate(int purchase) {
+        double result = ((double) totalPrice / purchase) * 100;
+        return Math.round(result * 10) / 10.0;
+    }
 }
