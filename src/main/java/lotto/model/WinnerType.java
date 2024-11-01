@@ -7,9 +7,10 @@ public enum WinnerType {
     FOURTH(4, false, 50_000),
     THIRD(5, false, 1_500_000),
     SECOND(5, true, 30_000_000),
-    FIRST(6, false, 30_000_000);
+    FIRST(6, false, 2_000_000_000);
 
     private static final String LINE_BREAK = "\n";
+    public static final int UNIT = 1000;
 
     private final int matchNumberCount;
     private final boolean hasBonus;
@@ -37,6 +38,18 @@ public enum WinnerType {
         }
 
         return stringBuilder.toString();
+    }
+
+    public static double calculateRateOfReturn(int lottoCount) {
+        int investmentAmount = lottoCount * UNIT;
+        int profit = 0;
+
+        for (WinnerType winnerType : WinnerType.values()) {
+            if (winnerType.count > 0) {
+                profit += winnerType.prize * winnerType.count;
+            }
+        }
+        return ((double) profit / investmentAmount) * 100;
     }
 
     public void increaseCount() {

@@ -28,6 +28,7 @@ public class LottoController {
         WinningNumbers winningNumbers = receiveWinningNumbers();
         BonusNumber bonusNumber = receiveBonusNumber();
         displayWinningStatistic(lottos, winningNumbers, bonusNumber);
+        displayRateOfReturn(purchaseAmount);
     }
 
     private PurchaseAmount receivePurchaseAmount() {
@@ -64,6 +65,11 @@ public class LottoController {
         outputView.printWinningStatisticHeader();
         lottos.calculateMatchingNumberCount(winningNumbers, bonusNumber);
         outputView.printMessage(WinnerType.information());
+    }
+
+    private void displayRateOfReturn(PurchaseAmount purchaseAmount) {
+        double rateOfReturn = WinnerType.calculateRateOfReturn(purchaseAmount.calculateLottoCount());
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
     private <T> T getValidInput(Function<String, T> creationFunction) {
