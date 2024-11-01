@@ -6,21 +6,17 @@ public class InputView {
 
     public String readMoney() {
         InputPrompt.printMoneyInPutMessage();
-        String moneyInput = readInput();
-        InputValidator.validateMoneyInput(moneyInput);
-        return moneyInput;
+        return readInput();
     }
 
-    public String setWinningNumbers() {
+    public String readWinningNumbers() {
         InputPrompt.printWinningNumbersInputMessage();
-        String winningNumbers = readInput();
-        return winningNumbers;
+        return readInput();
     }
 
-    public String setBonusNumber() {
+    public String readBonusNumber() {
         InputPrompt.printBonusNumberInputMessage();
-        String bonusNumber = readInput();
-        return bonusNumber;
+        return readInput();
     }
 
     private String readInput() {
