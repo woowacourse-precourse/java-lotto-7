@@ -1,7 +1,7 @@
 package lotto.constants;
 
 public class MoneyConstants {
-    public static final int MONEY_UNIT = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     private MoneyConstants(){} 
     
