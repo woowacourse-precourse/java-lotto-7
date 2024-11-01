@@ -10,7 +10,7 @@ enum ExceptionMessage {
     NOT_THOUSAND_DIVISIBLE("[ERROR] 1,000원 단위로 입력하세요"),
     NOT_LOTTO_NUMBER("[ERROR] 로또 번호는 1부터 45 사이의 값입니다."),
     INVALID_LOTTO_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
-    DUPLICATE_LOTTO_NUMBER("로또 번호는 중복된 값을 가질 수 없습니다.");
+    DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호는 중복된 값을 가질 수 없습니다.");
 
     private final String message;
 
