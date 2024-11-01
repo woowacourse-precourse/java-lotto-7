@@ -13,13 +13,13 @@ public class InputMoneyValidator {
     }
 
     private void isNotPositive(int money) {
-        if (money <= ZERO.getIntValue()) {
+        if (money <= ZERO.getValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }
 
     private void idValidateAmountUnit(int money) {
-        if (money % AMOUNT_UNIT.getIntValue() != ZERO.getIntValue()) {
+        if (money % AMOUNT_UNIT.getValue() != ZERO.getValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }

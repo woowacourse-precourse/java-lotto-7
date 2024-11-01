@@ -22,15 +22,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE.getIntValue()) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getValue()) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBERS.format());
         }
     }
 
     private void validateWinningNumberRange(List<Integer> numbers) {
         boolean isValid = numbers.stream()
-                .allMatch(number -> number >= MIN_LOTTO_NUMBER.getIntValue()
-                        && number <= MAX_LOTTO_NUMBER.getIntValue());
+                .allMatch(number -> number >= MIN_LOTTO_NUMBER.getValue()
+                        && number <= MAX_LOTTO_NUMBER.getValue());
         if (!isValid) {
             throw new IllegalArgumentException(INVALID_RANGE.format());
         }

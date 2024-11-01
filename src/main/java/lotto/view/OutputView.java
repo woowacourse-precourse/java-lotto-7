@@ -55,7 +55,7 @@ public class OutputView {
     }
 
     public void printResultMessage(int totalPrize, int moneySpent) {
-        double earningRate = ((double) totalPrize / (moneySpent * AMOUNT_UNIT.getIntValue())) * ONE_HUNDRED.getIntValue();
+        double earningRate = ((double) totalPrize / (moneySpent * AMOUNT_UNIT.getValue())) * ONE_HUNDRED.getValue();
         System.out.printf(EARNING_RATE_FORMAT, earningRate);
     }
 
