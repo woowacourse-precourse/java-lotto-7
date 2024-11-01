@@ -3,21 +3,21 @@ package lotto.model.evaluate;
 import java.util.List;
 import lotto.dto.MatchInfo;
 import lotto.dto.WinningResult;
-import lotto.model.match.MatchCounter;
-import lotto.model.match.SetBasedLottoNumbersMatchCounter;
+import lotto.model.match.MatchCountAlgorithm;
+import lotto.model.match.SetBasedMatchCountAlgorithm;
 import lotto.model.ticket.LottoTickets;
 
 public class LottoResultEvaluator {
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
-    private final MatchCounter<Integer> matchCounter;
+    private final MatchCountAlgorithm<Integer> matchCountAlgorithm;
     private final LottoResultCounter lottoResultCounter;
 
     public LottoResultEvaluator(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        this.matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        this.matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
         this.lottoResultCounter = new LottoResultCounter();
     }
 
@@ -30,7 +30,7 @@ public class LottoResultEvaluator {
     }
 
     private MatchInfo evaluateMatch(List<Integer> lottoNumbers) {
-        int matchesCount = matchCounter.countMatches(winningNumbers, lottoNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(winningNumbers, lottoNumbers);
         boolean bonusMatch = isBonusNumberMatched(lottoNumbers, matchesCount);
         return new MatchInfo(matchesCount, bonusMatch);
     }

@@ -7,16 +7,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("로또 번호 매치 카운터 객체 테스트")
-class SetBasedLottoNumbersMatchCounterTest {
+class SetBasedMatchCountAlgorithmTest {
 
     @DisplayName("6개가 동일한 경우")
     @Test
     void shouldReturn6_WhenAllMatch() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 6);
     }
 
@@ -25,9 +25,9 @@ class SetBasedLottoNumbersMatchCounterTest {
     void shouldReturn5_When5Match() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 5);
     }
 
@@ -36,9 +36,9 @@ class SetBasedLottoNumbersMatchCounterTest {
     void shouldReturn4_When4Match() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 7, 8);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 4);
     }
 
@@ -47,9 +47,9 @@ class SetBasedLottoNumbersMatchCounterTest {
     void shouldReturn3_When3Match() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 3);
     }
 
@@ -58,9 +58,9 @@ class SetBasedLottoNumbersMatchCounterTest {
     void shouldReturn2_When2Match() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(1, 2, 7, 8, 9, 10);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 2);
     }
 
@@ -69,9 +69,9 @@ class SetBasedLottoNumbersMatchCounterTest {
     void shouldReturn1_When1Match() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(1, 7, 8, 9, 10, 11);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 1);
     }
 
@@ -80,9 +80,9 @@ class SetBasedLottoNumbersMatchCounterTest {
     void shouldReturn0_WhenNotMatch() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumbers = List.of(7, 8, 9, 10, 11, 12);
-        MatchCounter<Integer> matchCounter = new SetBasedLottoNumbersMatchCounter<>();
+        MatchCountAlgorithm<Integer> matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
 
-        int matchesCount = matchCounter.countMatches(lottoNumbers, winningNumbers);
+        int matchesCount = matchCountAlgorithm.countMatches(lottoNumbers, winningNumbers);
         assertEquals(matchesCount, 0);
     }
 }
