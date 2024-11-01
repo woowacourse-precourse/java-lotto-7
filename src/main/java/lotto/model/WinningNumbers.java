@@ -8,7 +8,7 @@ public class WinningNumbers {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    public WinningNumbers(Lotto winningLotto, int bonusNumber) {
+    private WinningNumbers(Lotto winningLotto, int bonusNumber) {
         validateDuplicate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = BonusNumber.from(bonusNumber);
@@ -16,6 +16,14 @@ public class WinningNumbers {
 
     public static WinningNumbers of(Lotto winningLotto, int bonusNumber) {
         return new WinningNumbers(winningLotto, bonusNumber);
+    }
+
+    public int countMatchingNumbers(Lotto lotto) {
+        return winningLotto.countMatches(lotto);
+    }
+
+    public boolean isMatchBonusNumber(Lotto lotto) {
+        return bonusNumber.isMatches(lotto);
     }
 
     private void validateDuplicate(Lotto winningLotto, int bonusNumber) {

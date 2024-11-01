@@ -3,9 +3,13 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoWinningCalculator;
+import lotto.model.LottoWinningResult;
+import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
 import lotto.model.lottonumberstrategy.LottoNumbersStrategy;
+import lotto.model.lottowinningstrategy.LottoWinningStrategy;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -30,6 +34,13 @@ public class LottoController {
         outputView.printLottos(lottos);
 
         WinningNumbers winningNumbers = issueWinningNumbers();
+
+        LottoWinningResult winningResult = getLottoWinningResult(lottos, winningNumbers);
+    }
+
+    private LottoWinningResult getLottoWinningResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        LottoWinningCalculator winningCalculator = LottoWinningCalculator.from(new LottoWinningStrategy());
+        return winningCalculator.calculateWinningResult(Lottos.from(lottos), winningNumbers);
     }
 
     private WinningNumbers issueWinningNumbers() {

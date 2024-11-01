@@ -25,8 +25,18 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public int countMatches(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::isContains)
+                .count();
+    }
+
     public boolean isDuplicateBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    private boolean isContains(Integer number) {
+        return this.numbers.contains(number);
     }
 
     private void validateNumbersSize(List<Integer> numbers) {

@@ -8,19 +8,23 @@ public class BonusNumber {
     private static final int MIN_NUMBER_RANGE = 1;
     private static final int MAX_NUMBER_RANGE = 45;
 
-    private final int bonusNumber;
+    private final int number;
 
-    protected BonusNumber(int bonusNumber) {
-        validateOutOfRangeNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+    protected BonusNumber(int number) {
+        validateOutOfRangeNumber(number);
+        this.number = number;
     }
 
-    public static BonusNumber from(int bonusNumber) {
-        return new BonusNumber(bonusNumber);
+    public static BonusNumber from(int number) {
+        return new BonusNumber(number);
     }
 
-    private void validateOutOfRangeNumber(int bonusNumber) {
-        if (bonusNumber < MIN_NUMBER_RANGE || bonusNumber > MAX_NUMBER_RANGE) {
+    public boolean isMatches(Lotto lotto) {
+        return lotto.isDuplicateBonusNumber(number);
+    }
+
+    private void validateOutOfRangeNumber(int number) {
+        if (number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE.getErrorMessage());
         }
     }
@@ -34,11 +38,11 @@ public class BonusNumber {
             return false;
         }
         BonusNumber that = (BonusNumber) o;
-        return bonusNumber == that.bonusNumber;
+        return number == that.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(bonusNumber);
+        return Objects.hashCode(number);
     }
 }
