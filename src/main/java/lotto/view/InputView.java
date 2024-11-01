@@ -25,12 +25,14 @@ public class InputView {
     }
 
     public String getWinningComponent() {
+        System.out.println("/n");
         System.out.println(InputMessage.WINNING_NUMBER.getInstance());
         return readLine();
     }
 
 
     public String getBonusComponent() {
+        System.out.println("/n");
         System.out.println(InputMessage.BONUS_NUMBER.getInstance());
         return readLine();
     }
