@@ -30,7 +30,7 @@ public class PurchaseAmountValidator implements Validator<String> {
 
     private void validateNotBeyondPurchaseLimit (int purchaseAmount) {
         if (purchaseAmount > PURCHASE_LIMIT.getValue()){
-            throw new IllegalArgumentException(String.format(BEYOND_LIMIT.getMessage(), PURCHASE_LIMIT));
+            throw new IllegalArgumentException(String.format(BEYOND_LIMIT.getMessage(), PURCHASE_LIMIT.getValue()));
         }
     }
 }

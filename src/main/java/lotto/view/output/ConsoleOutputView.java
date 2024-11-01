@@ -12,7 +12,7 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void outputPurchaseLottoList(LottosDto lottosDto) {
         int lottoCount = lottosDto.lottoDtos().size();
-        System.out.printf("%d개를 구매했습니다%n",lottoCount);
+        System.out.printf("\n%d개를 구매했습니다%n",lottoCount);
 
         for (LottoDto lottoDto : lottosDto.lottoDtos()) {
             List<Integer> lottoNumbers = new ArrayList<> (lottoDto.lottoNumbers());
@@ -30,6 +30,6 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void outputErrorMessage(String errorMessage) {
-        System.out.println("[ERROR] " + errorMessage);
+        System.out.println("\n[ERROR] " + errorMessage);
     }
 }
