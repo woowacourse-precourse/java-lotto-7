@@ -1,7 +1,8 @@
 package lotto.constant;
 
 public enum ExtraText {
-    WINNING_NUMBER_SEPARATOR(",");
+    WINNING_NUMBER_SEPARATOR(","),
+    NEW_LINE("\n");
     private String text;
 
     ExtraText(String text) {
