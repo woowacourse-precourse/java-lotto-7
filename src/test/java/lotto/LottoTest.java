@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
 
@@ -34,6 +33,28 @@ class LottoTest {
         //when & then
         assertThatThrownBy(() -> new Lotto(numbers))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또는 가지고 있는 숫자를 보여준다.")
+    @ParameterizedTest
+    @MethodSource("provideValidNumbers")
+    public void thenRepresentLotto(List<Integer> numbers) {
+        //given
+        Lotto lotto = new Lotto(numbers);
+        String regex = "^\\[\\d+(, \\d+){5}\\]$";
+
+        //when & then
+        assertTrue(lotto.represent().matches(regex));
+    }
+
+    private static Stream<List<Integer>> provideValidNumbers() {
+        return Stream.of(
+            List.of(1, 2, 3, 4, 5, 6),
+            List.of(1, 2, 3, 4, 5, 45),
+            List.of(4, 5, 45, 1, 2, 3),
+            List.of(1, 2, 3, 4, 10, 20),
+            List.of(40, 41, 42, 43, 44, 45)
+        );
     }
 
     private static Stream<List<Integer>> provideOutOfRangeNumbers() {

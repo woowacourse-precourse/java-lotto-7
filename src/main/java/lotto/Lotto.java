@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -14,9 +15,9 @@ public class Lotto {
     }
 
     public String represent() {
-        String nums = String.join(", ", numbers.stream()
-            .map(LottoNumber::toString).toList());
-        return "[" + nums + "]";
+        return numbers.stream()
+            .map(LottoNumber::toString)
+            .collect(Collectors.joining(", ", "[", "]"));
     }
 
     // TODO: 에러 메시지가 6개 이상일 때 enum 으로 관리!
