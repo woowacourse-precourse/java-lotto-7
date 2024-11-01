@@ -31,10 +31,4 @@ public class WinningNumValidator extends Validator{
         }
     }
 
-    public void validateRange(String input) {
-        Integer lottoNum=Integer.parseInt(input);
-        if (lottoNum < MIN_LOTTO_NUM.getValue() || lottoNum > MAX_LOTTO_NUM.getValue()) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUM_RANGE.getMessage());
-        }
-    }
 }
