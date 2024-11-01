@@ -12,4 +12,11 @@ public final class InputView {
         System.out.println();
         return amount;
     }
+
+    public static String getWinningNumbers() {
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
+        String numbers = Console.readLine();
+        System.out.println();
+        return numbers;
+    }
 }
