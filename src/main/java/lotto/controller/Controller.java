@@ -13,6 +13,7 @@ public class Controller {
 
     public Controller() {
         issueLotties();
+        checkWinPrizes();
     }
 
     public void issueLotties() {
@@ -21,5 +22,10 @@ public class Controller {
         printView.printLotties(lottisNumber);
     }
 
+    public void checkWinPrizes() {
+        lottoManager.setWinningNumbers(inputValidation.getValidatedWinningNumbers());
+        lottoManager.setBonusNumber(inputValidation.getValidatedBonusNumber(lottoManager.getWinLottiesNumber()));
+        lottoManager.checkLottiesWin();
+    }
 
 }
