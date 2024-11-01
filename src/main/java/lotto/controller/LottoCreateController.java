@@ -21,6 +21,7 @@ public class LottoCreateController {
 		try {
 		} catch (IllegalArgumentException exception) {
 			outputView.printErrorMessage(exception.getMessage());
+			return getPurchasePrice();
 		}
 	}
 }
