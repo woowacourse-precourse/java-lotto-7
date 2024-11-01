@@ -10,12 +10,12 @@ import lotto.view.OutputView;
 public class LottoController {
     public void run() {
         OutputView.displayPrompt(PURCHASE_AMOUNT);
-        InputView.getInput();
+        String purchaseAmount = InputView.getInput();
 
         OutputView.displayPrompt(WINNING_NUMBERS);
-        InputView.getInput();
+        String winningNumbers = InputView.getInput();
 
         OutputView.displayPrompt(BONUS_NUMBER);
-        InputView.getInput();
+        String bonusNumber = InputView.getInput();
     }
 }
