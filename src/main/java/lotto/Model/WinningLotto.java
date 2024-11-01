@@ -20,5 +20,9 @@ public class WinningLotto {
         }
         return count;
     }
+
+    private boolean isBonusMatched(Lotto lotto){
+        return lotto.getNumbers().contains(bonus);
+    }
 }
 
