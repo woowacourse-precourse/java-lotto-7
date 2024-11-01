@@ -1,12 +1,12 @@
-package lotto.domain;
+package lotto.core.domain;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.validate.InputValidate;
-import lotto.view.InputView;
+import lotto.core.validate.InputValidate;
+import lotto.system.view.InputView;
 
 public class WinnerLotto {
 

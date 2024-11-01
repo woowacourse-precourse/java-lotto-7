@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.core.domain;
 
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import lotto.validate.LottoValidate;
+import lotto.core.validate.LottoValidate;
 
 public class Lotto {
 
@@ -17,8 +17,7 @@ public class Lotto {
     public ScoreBoard matchNumbers(Lotto winnerLotto, Integer winnerBonusNumber) {
         Integer countMatchNumber = checkWinnerBaseNumbers(winnerLotto);
         boolean checkWinnerBonusNumber = numbers.contains(winnerBonusNumber);
-        return ScoreBoard.getScoreBoardResultByMatchResult(countMatchNumber,
-                checkWinnerBonusNumber);
+        return ScoreBoard.getScoreBoardResultByMatchResult(countMatchNumber, checkWinnerBonusNumber);
     }
 
     public Integer checkWinnerBaseNumbers(Lotto winnerLotto) {

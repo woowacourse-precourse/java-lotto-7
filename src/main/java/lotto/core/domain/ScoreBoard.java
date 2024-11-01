@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.core.domain;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.view.OutputView;
+import lotto.system.view.OutputView;
 
 public enum ScoreBoard {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),

@@ -1,4 +1,4 @@
-package lotto.validate;
+package lotto.core.validate;
 
 public class MoneyValidate {
 

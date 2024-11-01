@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.core.domain;
 
-import lotto.validate.InputValidate;
-import lotto.validate.MoneyValidate;
+import lotto.core.validate.InputValidate;
+import lotto.core.validate.MoneyValidate;
 
 public class Money {
 

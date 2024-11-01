@@ -1,17 +1,17 @@
-package lotto.controller;
+package lotto.system.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.Money;
-import lotto.domain.WinnerLotto;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.core.domain.Lotto;
+import lotto.core.domain.Money;
+import lotto.core.domain.WinnerLotto;
+import lotto.system.view.InputView;
+import lotto.system.view.OutputView;
 
-public class Shop {
+public class ShopController {
 
     private final Set<Lotto> lottos;
     private final Money money;
@@ -19,7 +19,7 @@ public class Shop {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private Shop() {
+    private ShopController() {
         this.money = new Money();
         this.winnerLotto = new WinnerLotto();
         this.lottos = new HashSet<>();
@@ -27,8 +27,8 @@ public class Shop {
         this.outputView = new OutputView();
     }
 
-    public static Shop visitShop() {
-        return new Shop();
+    public static ShopController visitShop() {
+        return new ShopController();
     }
 
     public void buyLottos() {
