@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,5 +65,9 @@ public class LottoService {
             sum += WINNING_PRIZES.get(matchCount) * prizeCount;
         }
         return sum;
+    }
+
+    public double calculateReturn(int sum, int purchaseAmount) {
+        return sum / purchaseAmount * 100;
     }
 }

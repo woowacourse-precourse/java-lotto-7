@@ -103,10 +103,10 @@ public class LottoServiceTest {
         // given
         int sum = WINNING_PRIZES.get(5) + WINNING_PRIZES.get(6) + WINNING_PRIZES.get(7);
         int purchaseAmount = 3000;
-        int expected = sum / purchaseAmount * 100;
+        double expected = sum / purchaseAmount * 100;
 
         // when
-        int result = lottoService.calculateReturn(sum, purchaseAmount);
+        double result = lottoService.calculateReturn(sum, purchaseAmount);
 
         //then
         assertThat(result).isEqualTo(expected);
