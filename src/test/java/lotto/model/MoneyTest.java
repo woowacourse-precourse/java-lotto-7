@@ -11,10 +11,7 @@ class MoneyTest {
     @ParameterizedTest
     @ValueSource(ints = {1_000_000, -1000, 0, -9000})
     void throwExceptionIfIsOutOfRangeByTicketPrice(int price) {
-        int minimum = 1000;
-        int maximum = 100_000;
-
-        Assertions.assertThat(new Money(price).isOutOfRange(minimum, maximum))
+        Assertions.assertThat(new Money(price).isOutOfRange())
                 .isEqualTo(true);
     }
 
@@ -24,7 +21,7 @@ class MoneyTest {
     void throwExceptionIfIsNotDivisibleByTicketPrice(int price) {
         int ticketPrice = 1000;
 
-        Assertions.assertThat(new Money(ticketPrice).isIndivisibleBy(price))
+        Assertions.assertThat(new Money(ticketPrice).isIndivisibleBy())
                 .isEqualTo(true);
     }
 }

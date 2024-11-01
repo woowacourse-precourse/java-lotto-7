@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.constants.LottoConfig.PRICE_MAXIMUM;
+import static lotto.constants.LottoConfig.TICKET_PRICE;
+
 import java.util.List;
 
 public class Money {
@@ -11,15 +14,15 @@ public class Money {
         this.price = price;
     }
 
-    public boolean isOutOfRange(int minimum, int maximum) {
-        return price < minimum || price > maximum;
+    public boolean isOutOfRange() {
+        return price < PRICE_MINIMUM || price > PRICE_MAXIMUM;
     }
 
-    public boolean isIndivisibleBy(int ticketPrice) {
-        return price % ticketPrice != 0;
+    public boolean isIndivisibleBy() {
+        return price % TICKET_PRICE != 0;
     }
 
-    public boolean isPurchasable(List<Lotto> lottos, int ticketPrice) {
-        return lottos.size() < price / ticketPrice;
+    public boolean isPurchasable(List<Lotto> lottos) {
+        return lottos.size() < price / TICKET_PRICE;
     }
 }

@@ -13,24 +13,21 @@ import lotto.model.Money;
 
 public class LottoMachine {
 
-    private static final int TICKET_PRICE = 1000;
-    private static final int PRICE_MINIMUM = TICKET_PRICE;
-    private static final int PRICE_MAXIMUM = 100_000;
 
     public static List<Lotto> purchaseLottos(Money money) {
         validate(money);
         List<Lotto> lottos = new LinkedList<>();
-        while (money.isPurchasable(lottos, TICKET_PRICE)) {
+        while (money.isPurchasable(lottos)) {
             generateLotto(lottos);
         }
         return lottos;
     }
 
     private static void validate(Money money) {
-        if (money.isOutOfRange(PRICE_MINIMUM, PRICE_MAXIMUM)) {
+        if (money.isOutOfRange()) {
             throw new IllegalArgumentException(ErrorMessage.IS_OUT_OF_RANGE_PRICE.getMessage());
         }
-        if (money.isIndivisibleBy(TICKET_PRICE)) {
+        if (money.isIndivisibleBy()) {
             throw new IllegalArgumentException(ErrorMessage.IS_INDIVISIBLE_PRICE.getMessage());
         }
     }
