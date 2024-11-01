@@ -2,6 +2,8 @@ package lotto.domain;
 
 public class Money {
     private int money;
+    private int spentMoney;
+    private int earnedMoney;
 
     public Money(int money) {
         this.money = money;
@@ -9,7 +11,25 @@ public class Money {
 
     public int getTicket() {
         int ticketCount = money / 1000;
-        money = 0;
+        useMoney(money);
         return ticketCount;
+    }
+
+    public int getEarnedMoney() {
+        return earnedMoney;
+    }
+
+    public int getSpentMoney() {
+        return spentMoney;
+    }
+
+    public void addMoney(int amount) {
+        money += amount;
+        earnedMoney += amount;
+    }
+
+    private void useMoney(int amount) {
+        money -= amount;
+        spentMoney += amount;
     }
 }

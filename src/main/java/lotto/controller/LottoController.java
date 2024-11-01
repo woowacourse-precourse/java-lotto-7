@@ -22,11 +22,15 @@ public class LottoController {
 
         // 당첨 번호 입력
         WinningLotto winningLotto = getWinningLotto();
-        LottoCompany lottoCompany = new LottoCompany(winningLotto);
+        LottoCompany lottoCompany = new LottoCompany(winningLotto, money);
 
         // 당첨 여부 파악 및 출력
         PrizeResult prizeResult = lottoCompany.getWinningResults(lottos.getLottos());
         printResult(prizeResult);
+
+        // 수익률 계산 및 출력
+        double rateOfReturn = calculateRateOfReturn(money.getEarnedMoney(), money.getSpentMoney());
+        printRateOfReturn(rateOfReturn);
     }
 
     private Money getMoney() {
@@ -47,11 +51,20 @@ public class LottoController {
         return lottoShop.buyLottos(money.getTicket());
     }
 
+    private double calculateRateOfReturn(long earnedMoney, long spentMoney) {
+        double rateOfReturn = ((float) earnedMoney / spentMoney) * 100;
+        return Math.round(rateOfReturn * 10) / 10.0;
+    }
+
     private void printLottoStatus(Lottos lottos) {
         new OutputHandler().printLottoStatus(lottos);
     }
 
     private void printResult(PrizeResult prizeResult) {
-        new OutputHandler().printLottoResult(prizeResult);
+        new OutputHandler().printLottoResults(prizeResult.getPrizeResult());
+    }
+
+    private void printRateOfReturn(double rateOfReturn) {
+        new OutputHandler().printRateOfReturn(rateOfReturn);
     }
 }
