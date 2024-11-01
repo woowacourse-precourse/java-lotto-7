@@ -1,4 +1,4 @@
-package lotto.Validator;
+package lotto.validator;
 
 import lotto.exception.BuyingAmountException;
 import lotto.exception.BuyingAmountFormatException;
