@@ -19,6 +19,7 @@ public class LottoController {
 
         User user = new User(lottoMachine.getLottoTickets(), winnerLotto);
         long prize = calculatePrizeMoeny(user);
+        OutputView.winningStatistics(prize);
 
     }
 
