@@ -12,28 +12,28 @@ class LottoTest {
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
+    void 로또_번호가_6개를_넘으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7), 8))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedNumber() {
+    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5), 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호가 정해진 시작 범위를 벗어나면 예외가 발생한다.")
     @Test
-    void createLottoByOutOfStartRange() {
+    void 로또_번호가_시작_범위를_벗어나면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호와 중복되는 번호를 가지고 있으면 true 반환한다.")
     @Test
-    void containsDuplicateNumber() {
+    void 로또_번호와_중복되는_번호가_있으면_true_반환한다() {
         int number = 1;
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), 7);
         boolean result = lotto.contains(number);
@@ -42,7 +42,7 @@ class LottoTest {
 
     @DisplayName("로또 번호와 중복되는 번호가 없으면 false 반환한다.")
     @Test
-    void containsNotDuplicateNumber() {
+    void 로또_번호와_중복되는_번호가_없으면_false_반환한다() {
         int number = 7;
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6), 7);
         boolean result = lotto.contains(number);
@@ -51,14 +51,14 @@ class LottoTest {
 
     @DisplayName("보너스 번호가 로또 번호와 중복되면 예외가 발생한다.")
     @Test
-    void createLottoByDuplicatedBonusNumber() {
+    void 보너스_번호가_로또_번호와_중복되면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6), 5))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("무작위 로또 번호 생성이 잘 작동하는지 확인한다.")
     @Test
-    void generateRandomLotto() {
+    void 무작위_로또_번호_생성이_잘_작동하는지_확인한다() {
         Lotto lotto = Lotto.generateRandomLotto();
         List<Integer> numbers = lotto.getNumbers();
         int bonusNumber = lotto.getBonusNumber();

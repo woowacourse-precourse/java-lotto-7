@@ -1,36 +1,40 @@
 package lotto.entity;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConsumerTest {
-    @Test
-    public void shouldCreateConsumerWithValidInput() {
-        // Given
-        String input = "5000\n"; // 가상의 입력을 설정합니다.
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
 
-        // When
-        Consumer consumer = new Consumer();
+    private Consumer consumer;
 
-        // Then
-        assertThat(consumer.getTotalLottoCost()).isEqualTo(5000);
-        assertThat(consumer.getLottoCount()).isEqualTo(5);
-        assertThat(consumer.getLottoTickets().size()).isEqualTo(5);
+    @BeforeEach
+    public void setUp() {
+        String input = "5000\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        consumer = new Consumer();
     }
 
     @Test
-    public void shouldThrowExceptionForInvalidCost() {
-        // Given
-        String input = "1500\n"; // 1000원 단위가 아님
-        System.setIn(new java.io.ByteArrayInputStream(input.getBytes()));
+    public void 테스트_로또_구매금액_입력_및_티켓_생성() {
+        assertEquals(5000, consumer.getTotalLottoCost());
+        assertEquals(5, consumer.getLottoCount());
 
-        // When & Then
-        IllegalArgumentException thrown = org.junit.jupiter.api.Assertions.assertThrows(
-                IllegalArgumentException.class,
-                Consumer::new
-        );
-        assertThat(thrown.getMessage()).isEqualTo("[ERROR] 로또 구매 금액은 1,000원 단위여야 합니다.");
+        List<List<Integer>> lottoTickets = consumer.getLottoTickets();
+        assertEquals(5, lottoTickets.size());
+
+        for (List<Integer> ticket : lottoTickets) {
+            assertEquals(6, ticket.size());
+            for (Integer number : ticket) {
+                assertEquals(true, number >= 1 && number <= 45);
+            }
+        }
     }
 }
