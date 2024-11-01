@@ -2,7 +2,6 @@ package lotto.controller;
 
 
 import java.util.List;
-import java.util.function.Predicate;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoStore;
@@ -38,42 +37,50 @@ public class LottoController {
     }
 
     private Price getPurchasePrice() {
-        try {
-            return new Price(InputView.inputPurchasePrice());
-        } catch (IllegalArgumentException e) {
-            getPurchasePrice();
+        while (true) {
+            try {
+                return new Price(InputView.inputPurchasePrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return null;
     }
 
     private List<Lotto> getPurchasedLottos(Price price) {
         LottoStore lottoStore = new LottoStore();
-        try {
-            return lottoStore.buyLotto(price.getLottoAmount());
-        } catch (IllegalArgumentException e) {
-            getPurchasedLottos(price);
+        while (true) {
+            try {
+                return lottoStore.buyLotto(price.getLottoAmount());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return null;
     }
 
     private Numbers getWinNumbers() {
-        try {
-            return new Numbers(InputView.inputWinNumbers());
-        } catch (IllegalArgumentException e) {
-            getWinNumbers();
+        while (true) {
+            try {
+                return new Numbers(InputView.inputWinNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return null;
     }
 
     private Number getBonusNumber(Numbers winNumbers) {
-        try {
-            Number bonusNumber = new Number(InputView.inputBonusNumber());
-            if (winNumbers.contains(bonusNumber)) throw new IllegalArgumentException();
-            return bonusNumber;
-        } catch (IllegalArgumentException e) {
-            getBonusNumber(winNumbers);
+        while (true) {
+            try {
+                Number bonusNumber = new Number(InputView.inputBonusNumber());
+                validateBonusNumber(winNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return null;
+    }
+
+    private void validateBonusNumber(Numbers winNumbers, Number bonusNumber) {
+        if (winNumbers.contains(bonusNumber)) throw new IllegalArgumentException();
     }
 
     private void calculateLottoResult(LottoResult lottoResult, List<Lotto> lottos, Numbers winNumbers, Number bonusNumber) {
