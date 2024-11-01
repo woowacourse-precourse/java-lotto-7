@@ -7,7 +7,7 @@ public class InputView {
     public String readLine() {
         String readLine = Console.readLine();
         if (readLine.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 구입금액을 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 입력이 잘못되었습니다.");
         }
         return readLine;
     }
