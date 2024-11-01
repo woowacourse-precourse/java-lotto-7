@@ -4,9 +4,55 @@
 **로또 구입 금액**을 입력받은 뒤에 **중복되지 않는 숫자 6개와 보너스 숫자 1개**를   
 입력받은 금액의 **로또 수량만큼** 무작위 추첨해 **당첨된 수량과 수익률**을 출력
 ## 기능
-
+- 입력에 대한 유효성 검사
+- 입력으로 들어온 금액만큼 랜덤 번호 로또 생성 후 저장
+- 입력으로 들어온 당첨 번호와 보너스 번호로 생성된 로또 검사
+- 검사 후 당첨 통계에 값 반영
+- 랜덤 로또 번호 및 당첨 통계 출력
 ## 패키지 / 클래스
-
+```angular2html
+├─main
+│  └─java
+│      └─lotto
+│          │  Application.java
+│          │  Lotto.java
+│          │
+│          ├─domain // 로또의 생성 및 관리
+│          │      DrawNumber.java // 랜덤 번호 생성
+│          │      LottoPool.java // 생성된 로또 관리
+│          │
+│          ├─game // 로또 추첨 후 당첨 과정 전체
+│          │      LottoGame.java
+│          │
+│          ├─service // 여러 서비스 클래스
+│          │      LottoConverter.java // 당첨 번호 -> 로또 변환, 돈 -> 로또 변환
+│          │      ValidChecker.java // 입력 유효성 검사
+│          │      WinningNumberChecker.java // 당첨 번호와 생성된 번호 대조
+│          │      WinningStatisticsManager.java // 당첨 통계 관리
+│          │
+│          ├─test // 테스트 패키지
+│          │  │  WholeTest.java // 통합 테스트 클래스
+│          │  │
+│          │  ├─domainTest
+│          │  │      DrawNumberTest.java
+│          │  │      LottoPoolTest.java
+│          │  │
+│          │  └─serviceTest
+│          │          LottoConverterTest.java
+│          │          ValidCheckerTest.java
+│          │          WinningNumberCheckerTest.java
+│          │          WinningStatisticsManagerTest.java
+│          │
+│          └─ui // 입출력
+│                  InputManager.java
+│                  OutputManager.java
+│
+└─test
+    └─java
+        └─lotto
+                ApplicationTest.java
+                LottoTest.java
+```
 ## 입출력 예시
 ### 입력
 - 로또 구입 금액을 입력받음
