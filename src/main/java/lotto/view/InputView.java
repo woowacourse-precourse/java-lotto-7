@@ -29,19 +29,19 @@ public class InputView {
     }
 
     public List<Integer> getWinningNumbers() {
-        String winningString;
+        String winningNumbers;
         System.out.println("\n" + "당첨 번호를 입력해 주세요.");
-        winningString = Console.readLine();
+        winningNumbers = Console.readLine();
 
-        if (winningString.isEmpty()) {
+        if (winningNumbers.isEmpty()) {
             throw new InvalidWinningNumbersException(EMPTY_INPUT_IS_NOT_POSSIBLE.getMessage());
         }
 
-        if (!winningString.matches("^\\d+(,\\d+){5}")) {
+        if (!winningNumbers.matches("^\\d+(,\\d+){5}")) {
             throw new InvalidWinningNumbersException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
 
-        return createLottoWithWinningNumbers(winningString);
+        return createLottoWithWinningNumbers(winningNumbers);
     }
 
     public int getBonusNumber() {
