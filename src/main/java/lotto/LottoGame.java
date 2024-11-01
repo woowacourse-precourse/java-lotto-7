@@ -5,21 +5,35 @@ public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
 
     public void start() {
-        int purchaseAmount = getPurchaseAmount();
+        int purchaseAmount = getValidatePurchaseAmount();
     }
-    private int getPurchaseAmount() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                int amount = Integer.parseInt(Console.readLine());
 
-                if (amount % LOTTO_PRICE != 0) {
-                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-                }
+    private int getValidatePurchaseAmount() {
+        while (true) {
+            int amount = getInputAmount();
+            if (amount != -1 && isValidAmount(amount)) {
                 return amount;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
         }
     }
+
+    private int getInputAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            return -1;
+        }
+    }
+
+    private boolean isValidAmount(int amount) {
+        if (amount <= 0 || amount % LOTTO_PRICE != 0) {
+            System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            return false;
+        }
+        return true;
+    }
+
 }
