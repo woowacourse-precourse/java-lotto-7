@@ -16,5 +16,9 @@ public class LottoController {
         PurchasePrice purchasePrice = inputView.receivePurchasePrice();
 //        System.out.println("This is the purchase price. " + purchasePrice.getPurchasePrice());
 
+        // 구매 개수만큼 로또 생성
+        List<Lotto> generatedLottoNumbers = lottoGenerator.generate(purchasePrice);
+        System.out.println(generatedLottoNumbers);
+
     }
 }
