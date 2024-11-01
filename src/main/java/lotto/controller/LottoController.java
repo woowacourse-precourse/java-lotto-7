@@ -11,6 +11,7 @@ public class LottoController {
     private final OutputView outputView;
 
     private int parsedCostToInt;
+    private int purchasedLottoCount;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -36,9 +37,14 @@ public class LottoController {
     }
 
     public void printNumberOfPurchaseLotto() {
-        int purchasedLottoCount = lottoService.divideInputByLottoPrice(parsedCostToInt);
+        purchasedLottoCount = lottoService.divideInputByLottoPrice(parsedCostToInt);
         String lottoCountMessage = OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE
                 .getLottoCountMessage(purchasedLottoCount);
         outputView.printLottoCountMessage(lottoCountMessage);
+    }
+
+    public void generateLottoRandomNumber() {
+        lottoService.generateOneSetRandomNumber();
+        lottoService.generateLottosObject(purchasedLottoCount);
     }
 }

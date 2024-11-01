@@ -9,5 +9,6 @@ public class Application {
         LottoController controller = LottoFactory.createLottoController();
         controller.startPurchaseAmountInput();
         controller.printNumberOfPurchaseLotto();
+        controller.generateLottoRandomNumber();
     }
 }

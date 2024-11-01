@@ -1,7 +1,10 @@
 package lotto.service;
 
-import lotto.domain.Divider;
-import lotto.domain.Parser;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.utility.Divider;
+import lotto.utility.Parser;
+import lotto.utility.RandomGenerator;
 import lotto.validation.Validator;
 
 public class LottoService {
@@ -22,7 +25,7 @@ public class LottoService {
         Validator.isPositiveNumber(inputCost);
     }
 
-    public int parseStringToInt(String inputCost) {
+    private int parseStringToInt(String inputCost) {
         return Parser.parseStringToInt(inputCost);
     }
 
@@ -32,6 +35,17 @@ public class LottoService {
 
     public int divideInputByLottoPrice(int parsedPurchaseAmount) {
         return Divider.divideInputByLottoPrice(parsedPurchaseAmount);
+    }
+
+    public void generateLottosObject(int purchasedLottoCount) {
+        for (int i = 0; i < purchasedLottoCount; i++) {
+            List<Integer> randomNumbers = generateOneSetRandomNumber();
+            Lotto lotto = new Lotto(randomNumbers);
+        }
+    }
+
+    public List<Integer> generateOneSetRandomNumber() {
+        return RandomGenerator.makeRandomNumber();
     }
 
 }
