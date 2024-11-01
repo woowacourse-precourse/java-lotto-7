@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MAX_LOTTO_PRICE = 100000;
+
     private int purchaseAmount;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
 
@@ -30,7 +33,7 @@ public class LottoGame {
 
     // 금액에 맞게 로또를 발급하는 메서드
     public void LottoIssuance(int purchaseAmount) {
-        int numberOfLottoPurchases = purchaseAmount / 1000;
+        int numberOfLottoPurchases = purchaseAmount / LOTTO_PRICE;
         System.out.println(numberOfLottoPurchases + "개를 구매했습니다.");
 
         for (int i = 0; i < numberOfLottoPurchases; i++) {
@@ -46,14 +49,14 @@ public class LottoGame {
 
     // 100,000원을 초과했는지 확인하는 메서드
     public void checkPurchasedAmountExceeded(int purchaseAmount) {
-        if (purchaseAmount > 100000) {
+        if (purchaseAmount > MAX_LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1인당 100,000원을 넘길 수 없습니다.");
         }
     }
 
     // 1,000원 단위인지 확인하는 메서드
     public void checkUnitOfPurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
         }
     }
