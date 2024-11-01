@@ -27,4 +27,13 @@ public class WinningStatistics {
     public boolean checkBonusMatch(Lotto lotto, WinningNumbers winningNumbers) {
         return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
     }
+
+    public void updateWinningStatistics(int matchCount, boolean isBonusMatch) {
+        for (Rank rank : Rank.values()) {
+            if (rank.checkRank(matchCount, isBonusMatch)) {
+                winningStatistics.put(rank, winningStatistics.get(rank) + 1);
+                return;
+            }
+        }
+    }
 }
