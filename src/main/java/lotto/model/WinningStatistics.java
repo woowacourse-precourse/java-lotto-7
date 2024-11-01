@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WinningStatistics {
@@ -15,5 +16,11 @@ public class WinningStatistics {
         for (Rank rank : Rank.values()) {
             winningStatistics.put(rank, 0);
         }
+    }
+
+    public int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        return (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 }
