@@ -63,6 +63,12 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 기능_테스트_2() {
+        Application application = new Application();
+        assertEquals(8, application.inputMoney("8000"));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
