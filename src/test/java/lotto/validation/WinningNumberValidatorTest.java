@@ -16,4 +16,13 @@ class WinningNumberValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_WINNING_NUMBER_COUNT);
     }
+
+    @Test
+    void 당첨_번호_범위_검증_테스트() {
+        List<Integer> outOfRangeNumbers = List.of(1, 2, 3, 4, 5, 46);
+
+        assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumbers(outOfRangeNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessageConstants.INVALID_WINNING_NUMBER_RANGE);
+    }
 }
