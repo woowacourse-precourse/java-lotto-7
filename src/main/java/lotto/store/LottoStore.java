@@ -8,6 +8,10 @@ import java.util.List;
 public class LottoStore {
     private static final int LOTTO_PRICE = 1_000;
     private static final int MINIMUM_MONEY = 0;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
+
     private final NumbersGenerator numbersGenerator;
 
     public LottoStore(NumbersGenerator numbersGenerator) {
@@ -25,10 +29,16 @@ public class LottoStore {
         // TODO: lottoCount -> 좀 더 좋은 이름 ?
         int lottoCount = money / LOTTO_PRICE;
         for (int i = 0; i < lottoCount ; i++) {
-            result.add(Lotto.generate(numbersGenerator));
+            result.add(new Lotto(generateLottoNumbers()));
         }
 
         return result;
+    }
+
+    private List<Integer> generateLottoNumbers() {
+        return numbersGenerator.random(
+                MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE
+        );
     }
 
     private boolean isNotPositiveMoney(int money) {
