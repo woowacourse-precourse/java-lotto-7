@@ -13,7 +13,11 @@ public class LottoController {
     private static final int PERCENTAGE = 100;
     private static final List<Lotto> lottos = new ArrayList<>();
     private static final RandomLotto randomLotto = new RandomLotto();
-    private static List<Integer> numbers;
+
+    private List<Integer> numbers;
+
+    public LottoController() {
+    }
 
     public void run() {
         try {
