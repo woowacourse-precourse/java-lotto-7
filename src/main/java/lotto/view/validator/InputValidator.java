@@ -1,5 +1,7 @@
 package lotto.view.validator;
 
+import static lotto.util.Splitter.DELIMITER;
+
 import lotto.util.Convertor;
 
 public class InputValidator {
@@ -24,13 +26,13 @@ public class InputValidator {
     }
 
     public static void validateContainsComma(String input) {
-        if(!input.contains(",")) {
+        if(!input.contains(DELIMITER)) {
             throw new IllegalArgumentException(COMMA_FORMAT_ERROR_MESSAGE);
         }
     }
 
     public static void validateCommaFormat(String input) {
-        if(input.startsWith(",") || input.endsWith(",")) {
+        if(input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException(COMMA_FORMAT_ERROR_MESSAGE);
         }
     }

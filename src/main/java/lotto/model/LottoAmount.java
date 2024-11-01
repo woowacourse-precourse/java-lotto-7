@@ -1,8 +1,8 @@
 package lotto.model;
 
-public class LottoAmount {
-    private static final int PRICE_PER_LOTTO = 1000;
+import static lotto.model.constant.Lotto.PRICE_PER_LOTTO;
 
+public class LottoAmount {
     private final int amount;
 
     public LottoAmount(int purchasePrice) {

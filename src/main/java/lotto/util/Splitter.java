@@ -1,7 +1,9 @@
 package lotto.util;
 
 public class Splitter {
-    public static String[] comma(String input) {
-        return input.split(",");
+    public static final String DELIMITER = ",";
+
+    public static String[] split(String input) {
+        return input.split(DELIMITER);
     }
 }

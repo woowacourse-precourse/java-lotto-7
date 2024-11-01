@@ -52,7 +52,7 @@ public class LottoController {
 
     private Lotto initUserNumbers() {
         try {
-            String[] input = Splitter.comma(inputView.inputUserLottoNumbers());
+            String[] input = Splitter.split(inputView.inputUserLottoNumbers());
             Convertor.validateNull(input);
             Convertor.validateNumberFormat(input);
             return new Lotto(Sorter.ascendingOrder(Convertor.arrayToList(input)));
