@@ -27,14 +27,14 @@ public class BonusNumberValidator implements NumberInputValidator {
         return isValid;
     }
 
-    private void checkValueRange(String input) {
+    public void checkValueRange(String input) {
         int amount = Integer.parseInt(input);
         if (amount < MIN_VALUE || amount > MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_NOT_WITHIN_RANGE.getMessage());
         }
     }
 
-    private void checkDuplicate(String input, String lottoNumbers) {
+    public void checkDuplicate(String input, String lottoNumbers) {
         List<String> numbers = List.of(lottoNumbers.split(SPLIT_DELIMITER));
         if (numbers.contains(input)) {
             throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_IS_DUPLICATE.getMessage());

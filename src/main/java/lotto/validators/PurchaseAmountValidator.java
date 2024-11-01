@@ -20,14 +20,14 @@ public class PurchaseAmountValidator implements NumberInputValidator {
         return isValid;
     }
 
-    private void checkDivisibility(String input) {
+    public void checkDivisibility(String input) {
         int amount = Integer.parseInt(input);
         if (amount % MIN_VALUE != 0) {
             throw new IllegalArgumentException(ErrorMessages.NOT_DIVISIBLE.getMessage());
         }
     }
 
-    private void checkValueRange(String input) {
+    public void checkValueRange(String input) {
         int amount = Integer.parseInt(input);
         if (amount < MIN_VALUE || amount > MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_AMOUNT_NOT_WITHIN_RANGE.getMessage());

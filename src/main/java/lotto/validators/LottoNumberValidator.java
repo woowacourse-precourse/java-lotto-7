@@ -31,20 +31,20 @@ public class LottoNumberValidator implements NumberInputValidator {
         return isValid;
     }
 
-    private void checkArraySize(List<String> numbers) {
+    public void checkArraySize(List<String> numbers) {
         if (numbers.size() != ARRAY_SIZE) {
             throw new IllegalArgumentException(ErrorMessages.INCORRECT_NUMBER_COUNT.getMessage());
         }
     }
 
-    private void checkValueRange(String input) {
+    public void checkValueRange(String input) {
         int amount = Integer.parseInt(input);
         if (amount < MIN_VALUE || amount > MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_NOT_WITHIN_RANGE.getMessage());
         }
     }
 
-    private void checkDuplicate(String input) {
+    public void checkDuplicate(String input) {
         try {
             Set.of(input.split(SPLIT_DELIMITER));
         } catch (IllegalArgumentException e) {
