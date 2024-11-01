@@ -21,25 +21,13 @@ public enum Score {
         int matchCount = winningLotto.getMatchCount(lotto);
         boolean isBonusNumberMatches = winningLotto.isBonusNumberMatches(lotto);
 
-        if (matchCount < 3) {
-            return ZERO;
-        }
-        if (matchCount == 3) {
-            return THREE;
-        }
-        if (matchCount == 4) {
-            return FOURTH;
-        }
-        if (matchCount == 5 && isBonusNumberMatches) {
-            return FIFTH_WITH_BONUS;
-        }
-        if (matchCount == 5) {
-            return FIFTH;
-        }
-        if (matchCount == 6) {
-            return SIX;
-        }
-        return ZERO;
+        return switch (matchCount) {
+            case 6 -> SIX;
+            case 5 -> isBonusNumberMatches ? FIFTH_WITH_BONUS : FIFTH;
+            case 4 -> FOURTH;
+            case 3 -> THREE;
+            default -> ZERO;
+        };
     }
 
     public String getMessage() {
