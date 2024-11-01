@@ -1,30 +1,32 @@
 package lotto.domain.vo;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import static lotto.common.exception.ErrorMessages.BLANK_NOT_ALLOWED;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.validator.InputValidator;
+import lotto.domain.validator.NonBlankValidator;
 
 public record WinningLotto(Lotto lotto, BonusNumber bonus) {
-    private static final String SEPARATOR = ",";
+    private static final InputValidator nonBlankValidator = new NonBlankValidator();
+    private static final String COMMA = ",";
 
-    private WinningLotto(List<Integer> numbers, BonusNumber bonus) {
-        this(new Lotto(numbers), bonus);
+    private WinningLotto(String inputNumbers, BonusNumber bonus) {
+        this(Lotto.from(inputNumbers), bonus);
     }
 
     public static WinningLotto of(String inputNumbers, String inputBonus) {
-        List<Integer> numbers = parseInputNumbers(inputNumbers);
-        return new WinningLotto(numbers, new BonusNumber(inputBonus));
+        validate(inputNumbers);
+        return new WinningLotto(inputNumbers, new BonusNumber(inputBonus));
     }
 
-    private static List<Integer> parseInputNumbers(String input) {
-        String[] splitInput = input.trim().split(SEPARATOR);
-        return Arrays.stream(splitInput)
-            .map(String::trim)
-            .mapToInt(Integer::parseInt)
-            .boxed()
-            .collect(Collectors.toList());
+    private static void validate(String input) {
+        nonBlankValidator.validate(input);
+        validateEndingComma(input);
     }
 
+    private static void validateEndingComma(String input) {
+        if (input.endsWith(COMMA)) {
+            throw new IllegalArgumentException(BLANK_NOT_ALLOWED.toString());
+        }
+    }
 }
