@@ -2,8 +2,10 @@ package lotto.model;
 
 import static lotto.model.constant.Lotto.PRICE_PER_LOTTO;
 
+import lotto.util.ExceptionHelper;
+
 public class PurchasePrice {
-    private static final String INVALID_PRICE_ERROR_MESSAGE = "[ERROR] 구입 금액은 1,000원 단위로 입력해주세요.";
+    private static final String INVALID_PRICE_ERROR_MESSAGE = "구입 금액은 1,000원 단위로 입력해주세요.";
 
     private final int price;
 
@@ -14,7 +16,7 @@ public class PurchasePrice {
 
     private static void validatePurchasePrice(final int price) {
         if (price % PRICE_PER_LOTTO != 0) {
-            throw new IllegalArgumentException(INVALID_PRICE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ExceptionHelper.errorMessage(INVALID_PRICE_ERROR_MESSAGE));
         }
     }
 

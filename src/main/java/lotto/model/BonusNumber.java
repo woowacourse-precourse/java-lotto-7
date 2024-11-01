@@ -5,9 +5,10 @@ import static lotto.model.constant.Lotto.MAX_NUMBER;
 import static lotto.model.constant.Lotto.MIN_NUMBER;
 
 import java.util.List;
+import lotto.util.ExceptionHelper;
 
 public class BonusNumber {
-    public final static String INVALID_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 번호는 1 이상 45 이하로 입력해주세요.";
+    public final static String INVALID_NUMBER_RANGE_ERROR_MESSAGE = "번호는 1 이상 45 이하로 입력해주세요.";
 
     private final int bonus;
 
@@ -19,13 +20,13 @@ public class BonusNumber {
 
     private void validateDuplicate(final List<Integer> numbers, final int bonus) {
         if (numbers.contains(bonus)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ExceptionHelper.errorMessage(DUPLICATE_NUMBER_ERROR_MESSAGE));
         }
     }
 
     private void validateNumberRange(final int bonus) {
         if (!(MIN_NUMBER <= bonus && bonus <= MAX_NUMBER)) {
-            throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ExceptionHelper.errorMessage(INVALID_NUMBER_RANGE_ERROR_MESSAGE));
         }
     }
 
