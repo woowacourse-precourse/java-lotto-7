@@ -12,11 +12,19 @@ public class MyInfo {
     private Integer purchasePrice;
     private Integer lottoCount;
     private List<Lotto> myLottos;
+    private Lotto answerLotto;
+    private Integer bonusNumber;
+    private Integer revenue;
+    private Double myReturn;
 
     public MyInfo() {
         this.purchasePrice = 0;
         this.lottoCount = 0;
         this.myLottos = new ArrayList<>();
+        this.answerLotto = null;
+        this.bonusNumber = 0;
+        this.revenue = 0;
+        this.myReturn = 0.0;
     }
 
     public void gainPurchaseAmount(){
@@ -43,7 +51,7 @@ public class MyInfo {
         this.lottoCount = lottoCount;
     }
 
-    public Lotto getWinningInput(){
+    public Lotto gainWinningInput(){
         OutputView.printWinning();
         Lotto answer;
         try {
@@ -51,7 +59,7 @@ public class MyInfo {
         }
         catch (IllegalArgumentException e){
             OutputView.printError(ErrorMessage.WIN_INPUT.getError());
-            return getWinningInput();
+            return gainWinningInput();
         }
         OutputView.printBlank();
         return answer;
@@ -71,6 +79,21 @@ public class MyInfo {
         return bonus;
     }
 
+    public int gainMyRevenue(WinningDetails grades){
+        int revenue = 0;
+        revenue += grades.getThird() * 5000;
+        revenue += grades.getFourth() * 50000;
+        revenue += grades.getFifth() * 1500000;
+        revenue += grades.getFifthBonus() * 30000000;
+        revenue += grades.getSixth() * 2000000000;
+        return revenue;
+    }
+
+    public double gainReturn(int purchasePrice, int revenue){
+        double myReturn = (double)revenue / (double)purchasePrice * 100;
+        return Math.round(myReturn * 100)/100.0;
+    }
+
     public Integer getLottoCount(){
         return this.lottoCount;
     }
@@ -83,7 +106,47 @@ public class MyInfo {
         return this.purchasePrice;
     }
 
+    public Integer getBonusNumber(){
+        return this.bonusNumber;
+    }
+
+    public Lotto getAnswerLotto(){
+        return this.answerLotto;
+    }
+
+    public Integer getRevenue(){
+        return this.revenue;
+    }
+
+    public Double getMyReturn(){
+        return this.myReturn;
+    }
+
     public void setMyLottos(List<Lotto> myLottos){
         this.myLottos = myLottos;
+    }
+
+    public void setAnswerLotto(Lotto answerLotto){
+        this.answerLotto = answerLotto;
+    }
+
+    public void setBonusNumber(Integer bonusNumber){
+        this.bonusNumber = bonusNumber;
+    }
+
+    public void setLottoCount(Integer lottoCount){
+        this.lottoCount = lottoCount;
+    }
+
+    public void setMyReturn(Double myReturn){
+        this.myReturn = myReturn;
+    }
+
+    public void setPurchasePrice(Integer purchasePrice){
+        this.purchasePrice = purchasePrice;
+    }
+
+    public void setRevenue(Integer revenue){
+        this.revenue = revenue;
     }
 }
