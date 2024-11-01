@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.BonusNumber.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
+
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateAmount(numbers);
+        validateNumberRange(numbers);
         validateDuplicate(numbers);
         this.numbers =numbers;
     }
@@ -26,6 +29,13 @@ public class Lotto {
                 .distinct()
                 .count()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        if (numbers.stream()
+                .anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }
 
