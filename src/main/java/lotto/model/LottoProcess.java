@@ -65,10 +65,18 @@ public class LottoProcess {
     //총 수익금 계산
     public long calculateProfit() {
         long profit = 0;
+        int winnerStatisticsIndex = 4;
         for (WinnerPrice winnerPrice : WinnerPrice.values()) {
-            profit += winnerPrice.getPrize();
+            profit += (long) winnerPrice.getPrize() * winningStatistics.get(winnerStatisticsIndex--);
+
         }
         return profit;
+    }
+
+    //수익률 계산
+    public double calculateProfitRate(int purchaseAmount) {
+        long profit = calculateProfit();
+        return ((double) profit / purchaseAmount) * 100;
     }
 
 }
