@@ -1,4 +1,4 @@
-package lotto.Utility;
+package lotto.utility;
 
 import java.util.List;
 import java.util.stream.Collectors;

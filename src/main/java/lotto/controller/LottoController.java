@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.controller;
 
 public class LottoController {
     public void purchaseLotto() {
