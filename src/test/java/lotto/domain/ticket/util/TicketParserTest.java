@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.ticket.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
