@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
 
-    private Long countMatches(List<Integer> numbers) {
+    public Long countMatches(List<Integer> numbers) {
         return IntStream.range(0, COUNT).filter(i -> Objects.equals(this.numbers.get(i), numbers.get(i))).count();
     }
 }
