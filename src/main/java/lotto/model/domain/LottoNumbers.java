@@ -44,4 +44,14 @@ public class LottoNumbers {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof LottoNumbers)) return false;
+
+        LottoNumbers other = (LottoNumbers) obj;
+        return this.numbers.equals(other.numbers);
+    }
 }

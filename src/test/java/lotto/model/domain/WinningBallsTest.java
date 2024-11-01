@@ -12,8 +12,9 @@ class WinningBallsTest {
     @DisplayName("당첨 번호를 생산한다")
     @Test
     void test1() {
-        WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
-        assertEquals(6, winningBalls.getsize());
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        WinningBalls winningBalls = new WinningBalls(numbers);
+        assertEquals(numbers, winningBalls.getNumbers());
     }
 
     @DisplayName("당첨 번호가 겹칠시 예외를 반환한다.")

@@ -10,10 +10,6 @@ public class WinningBalls {
         this.lottoNumbers = new LottoNumbers(lottoNumbers);
     }
 
-    public int getsize() {
-        return lottoNumbers.getNumbers().size();
-    }
-
     public boolean isDistinct(int number) {
         long duplicatingCount = lottoNumbers.getNumbers().stream()
                 .filter(num -> num == number)
@@ -26,5 +22,9 @@ public class WinningBalls {
         return (int) this.lottoNumbers.getNumbers().stream()
                 .filter(lotto::hasNumber)
                 .count();
+    }
+
+    protected List<Integer> getNumbers() {
+        return this.lottoNumbers.getNumbers();
     }
 }
