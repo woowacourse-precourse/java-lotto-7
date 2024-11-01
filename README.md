@@ -115,8 +115,8 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 - [ ] 당첨 기록을 반환하는 기능 추가
 [View]  
 InputView
-- [ ] 금액을 입력받는 기능 추가
-- [ ] 금액에 대한 예외처리 기능 추가
+- [x] 금액을 입력받는 기능 추가
+- [x] 금액에 대한 예외처리 기능 추가
 - [ ] 당첨 번호를 입력받는 기능 추가
 - [ ] 당첨 번호에 대한 예외처리 기능 추가
 - [ ] 보너스 번호를 입력받는 기능 추가
