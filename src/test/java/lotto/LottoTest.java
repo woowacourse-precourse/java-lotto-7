@@ -45,6 +45,14 @@ class LottoTest {
     }
 
     //당첨 번호 입력 부분
+    @DisplayName("당첨 번호가 6개를 넘거나 6개 안되게 입력된 경우 예외가 발생한다.")
+    @Test
+    void 당첨_번호가_6개를_넘거나_6개_안되게_입력된_경우_예외가_발생한다() {
+        WinningController winningController = new WinningController();
+        assertThatThrownBy(() -> winningController.validateWinningInput("1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("당첨 번호에 중복된 숫자가 있는 경우 예외가 발생한다.")
     @Test
     void 당첨_번호에_중복된_숫자가_있는_경우_예외가_발생한다() {
