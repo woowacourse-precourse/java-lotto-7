@@ -38,6 +38,15 @@ public class InputTest {
                 validator.validatePrice(null);
             });
         }
+
+        @DisplayName("양수가 아닌 가격이 입력되면 예외처리를 한다")
+        @ParameterizedTest()
+        @ValueSource(strings = {"-1", "0", "-999999999", "-100000000"})
+        void 양수가_아닌_가격이_입력되면_예외처리를_한다(){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validatePrice(null);
+            });
+        }
     }
 
 }
