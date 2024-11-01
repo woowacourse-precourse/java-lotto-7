@@ -8,13 +8,13 @@ public enum ErrorMessage {
     BONUS("보너스 번호 조건을 다시 확인하고 입력해 주세요.");
 
 
-    private String error;
+    private String message;
 
-    private ErrorMessage(String error) {
-        this.error = error;
+    private ErrorMessage(String message) {
+        this.message = message;
     }
 
     public String getError() {
-        return ERROR_PREFIX + error;
+        return ERROR_PREFIX.message + message;
     }
 }
