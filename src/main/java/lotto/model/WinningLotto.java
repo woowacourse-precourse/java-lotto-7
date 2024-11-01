@@ -4,9 +4,9 @@ import java.util.List;
 import lotto.common.ErrorMessage;
 
 public class WinningLotto {
-    public static final int MIN = 1;
-    public static final int MAX = 45;
-    public static final int LOTTO_SIZE = 6;
+    private static final int MIN = 1;
+    private static final int MAX = 45;
+    private static final int LOTTO_SIZE = 6;
     private final List<Integer> winNumbers;
 
     public WinningLotto(List<Integer> winNumbers) {
@@ -23,19 +23,19 @@ public class WinningLotto {
         }
     }
 
-    private void validateNumbersRange(List<Integer> numbers){
+    private void validateNumbersRange(List<Integer> numbers) {
         numbers.stream().forEach(number -> validateNumberRange(number));
     }
 
     private void validateNumberRange(Integer number) {
-        if(number < MIN || number > MAX){
+        if (number < MIN || number > MAX) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         long distinctNumbersSize = numbers.stream().distinct().count();
-        if(distinctNumbersSize != LOTTO_SIZE){
+        if (distinctNumbersSize != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DISTINCT.getMessage());
         }
     }
