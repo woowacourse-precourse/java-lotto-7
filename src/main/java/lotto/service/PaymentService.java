@@ -19,13 +19,13 @@ public class PaymentService {
     //TODO: Payment - 지불하라
     //TODO: PaymentRepository - 저장하라
     public LottoCount pay(ThousandWons krMoney) {
-        Payment payment = createPayment(krMoney);
+        Payment payment = createPayment(idGenerator.generate(), krMoney);
         processPayment(payment);
         return calculateLottoCount(payment);
     }
 
-    private Payment createPayment(ThousandWons krMoney) {
-        return Payment.of(krMoney);
+    private Payment createPayment(Long paymentId, ThousandWons krMoney) {
+        return Payment.of(paymentId, krMoney);
     }
 
     private void processPayment(Payment payment) {
