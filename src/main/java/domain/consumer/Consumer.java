@@ -28,6 +28,16 @@ public class Consumer {
     public void selectBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
+
+    public boolean selectedWinnerNumberIsEqualsTo(Lotto expectedLotto) {
+        return selectWinnerLotto
+                .getNumbers()
+                .equals(expectedLotto.getNumbers());
+    }
+
+    public boolean selectedBonusNumberIsEqualsTo(int expectedBonusNumber) {
+        return bonusNumber == expectedBonusNumber;
+    }
     /**
      * 소비자는 돈을 소지하고 있는다.
      * 소비자는 로또를 저장할 수 있다.

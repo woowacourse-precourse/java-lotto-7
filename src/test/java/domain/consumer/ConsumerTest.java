@@ -30,7 +30,7 @@ class ConsumerTest {
     @DisplayName("금액에 맞는 로또 수량 테스트")
     @Test
     void purchaseLottoByMoneyTest() {
-        int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyFoPurchaseLotto());
+        int quantity = consumer.getQuantityPurchaseLottoBy(Input.getMoneyForPurchaseLotto());
         assertEquals(quantity, 5);
     }
 
