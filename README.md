@@ -31,7 +31,7 @@
 해당 과제의 기능을 분석한 "기능 목록"은 다음과 같습니다.<br>
 기능 목록은 다음과 같이 프로젝트 마일스톤을 기반으로 나누어 작성했습니다.
 
-**Milestone 1: 로또 구입🎰**
+**Milestone 1: 로또 구입 🎰**
 
 - [x] | `구입 금액` 입력
 - [x] | 입력된 `구입 금액` 을 객체로 저장
@@ -43,17 +43,17 @@
 - [x] | `로또`의 `번호`를 오름차순으로 정렬
 - [x] | 로또 구입 테스트 코드 추가
 
-**Milestone 2: 당첨 번호 관리📂**
+**Milestone 2: 당첨 번호 관리 📂**
 
-- [ ] | `당첨 번호` 입력
-- [ ] | 입력된 `당첨 번호`를 쉼표(,) 기준으로 구분된 입력값 파싱 처리
+- [x] | `당첨 번호` 입력
+- [ ] | 입력된 `당첨 번호`를 쉼표(,) 기준으로 구분된 입력값 파싱 처리[
 - [ ] | 입력된 `당첨 번호`가 1~45 범위 내의 숫자인지 검증
 - [ ] | 입력된 `당첨 번호`에 중복된 숫자가 없는지 검증
 - [ ] | `보너스 번호` 입력
 - [ ] | 입력된 `보너스 번호`가 당첨 번호와 중복되지 않는지 검증
 - [ ] | 당첨 번호 관리 테스트 코드 추가
 
-**Milestone 3: 당첨 결과 처리🎁**
+**Milestone 3: 당첨 결과 처리 🎁**
 
 - [ ] | 당첨된 `로또`를 `당첨 내역`에 추가
 - [ ] | `당첨 내역` 출력
@@ -90,13 +90,11 @@
     │   ├── exception/                          # 예외 처리 관련 패키지
     │   └── util/                               # 유틸리티 클래스 패키지
     ├── controller/                         # 컨트롤러 패키지
-    │
     ├── domain/                             # 도메인 패키지
     │   ├── entity/                         # 핵심 엔티티 패키지
     │   │   ├── Lotto.java                      # 로또 티켓 엔티티
     │   │   ├── Wallet.java                     # 사용자 지갑 엔티티(로또+구입금액)
     │   │   └── WinningLotto.java               # 당첨 번호 엔티티
-    │   │
     │   ├── validator/                      # 입력값 검증 패키지
     │   │   ├── CompositeValidator.java         # 복합 검증 클래스
     │   │   └── InputValidator.java             # 입력값 검증 인터페이스
@@ -129,21 +127,21 @@
 
 ---
 
-## 단위 테스트 🧪
+## 🧪 단위 테스트
 
-### 📂common/exception/
+### 📂 common/exception/
 
 - **ErrorMessagesTest**
 
 - [x] | 에러메세지는 반드시 접두사([ERROR])를 포함한다
 
-### 📂common/util/
+### 📂 common/util/
 
 - **RandomsWrapperTest**
 
 - [x] | RandomsWrapper.getInt는 1~45내 숫자를 반환한다
 
-### 📂controller/
+### 📂 controller/
 
 - **LottoControllerTest**
 
@@ -152,7 +150,7 @@
 - [x] | 숫자가 아닌 입력 시 에러가 발생하고 재입력을 받는다
 - [x] | 0원 이하의 금액 입력 시 에러가 발생하고 재입력을 받는다
 
-### 📂domain/entity
+### 📂 domain/entity
 
 - **LottoTest**
 
@@ -173,7 +171,7 @@
 - [ ] | 보너스 번호가 당첨 번호와 중복되는 경우 예외가 발생한다
 - [ ] | 1~45 범위를 벗어난 숫자가 있는 경우 예외가 발생한다
 
-### 📂domain/validator
+### 📂 domain/validator
 
 - **CompositeValidator**
 
@@ -181,13 +179,17 @@
 - [x] | 하나의 validator라도 실패하면 예외가 발생한다
 - [x] | 빈 validator 리스트로 생성된 경우 검증을 통과한다
 
+
 - **NonBlankValidator**
+
 - [x] | 정상적인 입력값은 검증을 통과한다
 - [x] | null 입력값은 예외가 발생한다
 - [x] | 빈 문자열은 예외가 발생한다
 - [x] | 공백 문자열은 예외가 발생한다
 
+
 - **NumberFormatValidator**
+
 - [x] | 양의 정수는 검증을 통과한다
 - [x] | 양끝에 공백이 포함된 양의 정수도 검증을 통과한다
 - [x] | 음수는 예외가 발생한다
@@ -195,7 +197,7 @@
 - [x] | 소수점이 있는 숫자는 예외가 발생한다
 - [x] | 문자가 포함된 입력은 예외가 발생한다
 
-### 📂domain/vo
+### 📂 domain/vo
 
 - **PurchaseAmountTest**
 
@@ -203,28 +205,29 @@
 - [x] | 구입 금액으로 구매 가능한 로또 수량을 계산할 수 있다
 - [x] | 구입 금액이 1000원 단위가 아닌 경우 예외가 발생한다
 
+
 - **WalletTest**
 
 - [x] | 구입 금액에 따라 로또를 발급한다
 - [x] | 내부의 로또 리스트는 생성 시점에 불변 리스트로 복사되어 저장된다
 
-# 학습 테스트 📚
+## 학습 테스트 📚
 
-## 📗 ParseIntTest
+### 📗 ParseIntTest
 
 - [x] | Integer.parseInt는 문자열을 정수로 변환한다
 - [x] | Integer.parseInt는 숫자가 아닌 문자열에 대해 NumberFormatException을 발생시킨다
 
-## 📘 RecodeTest
+### 📘 RecodeTest
 
 - [x] | Record는 getter 메서드를 자동으로 생성한다
 - [x] | Record는 equals와 hashCode를 자동으로 구현한다
 
-## 📙 StreamTest
+### 📙 StreamTest
 
 - [x] | Stream의 sorted()로 리스트의 정수를 정렬할 수 있다
 
-## 📗 RandomsTest
+### 📗 RandomsTest
 
 - [x] | pickNumberInRange는 지정된 범위 내의 난수를 생성한다
 - [x] | pickNumberInRange는 최솟값과 최댓값을 포함한다

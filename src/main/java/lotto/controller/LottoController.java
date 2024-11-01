@@ -5,6 +5,7 @@ import static lotto.view.OutputMessage.*;
 import java.util.List;
 
 import lotto.domain.entity.Lotto;
+import lotto.domain.entity.WinningLotto;
 import lotto.domain.vo.Wallet;
 import lotto.domain.vo.PurchaseAmount;
 import lotto.view.InputView;
@@ -23,6 +24,7 @@ public class LottoController {
         PurchaseAmount amount = inputPurchaseAmount();
         Wallet wallet = purchaseLotto(amount);
         printLottoNumbers(wallet);
+        WinningLotto winningLotto = inputWinningLotto();
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -45,6 +47,17 @@ public class LottoController {
         List<Lotto> lottos = wallet.lottos();
         for (Lotto lotto : lottos) {
             outputView.print(String.valueOf(lotto));
+        }
+    }
+
+    private WinningLotto inputWinningLotto() {
+        outputView.print(INPUT_WINNING_NUMBERS);
+        String inputNumbers = inputView.readLine();
+        try {
+            return WinningLotto.of(inputNumbers, "");
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            return inputWinningLotto();
         }
     }
 }
