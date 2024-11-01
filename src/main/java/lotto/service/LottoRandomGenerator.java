@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.util.Constants;
@@ -27,7 +28,9 @@ public class LottoRandomGenerator implements LottoGenerator {
     }
 
     public Lotto getLotto() {
-        return new Lotto(generateRandomNumbers());
+        List<Integer> numbers = generateRandomNumbers();
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
     protected List<Integer> generateRandomNumbers() {
