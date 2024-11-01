@@ -6,6 +6,11 @@ import java.util.stream.Collectors;
 import lotto.enums.WinningType;
 
 public class WinningStatistic {
+  private static final int THREE_SAME_NUMBERS = 3;
+  private static final int FOUR_SAME_NUMBERS = 4;
+  private static final int FIVE_SAME_NUMBERS = 5;
+  private static final int SIX_SAME_NUMBERS = 6;
+
   private final List<WinningType> winningStatistic;
 
   private WinningStatistic(List<WinningType> winningStatistic) {
@@ -43,24 +48,24 @@ public class WinningStatistic {
   }
 
   private static boolean isFirstPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == 6;
+    return quantityOfSameNumbers == SIX_SAME_NUMBERS;
   }
 
   private static boolean isSecondPlace(
       int quantityOfSameNumbers, Lotto lotto, WinningNumbers winningNumbers) {
-    return quantityOfSameNumbers == 5 && lotto.compareBonusNumber(winningNumbers.getBonusNumber());
+    return quantityOfSameNumbers == FIVE_SAME_NUMBERS && lotto.compareBonusNumber(winningNumbers.getBonusNumber());
   }
 
   private static boolean isThirdPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == 5;
+    return quantityOfSameNumbers == FIVE_SAME_NUMBERS;
   }
 
   private static boolean isFourthPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == 4;
+    return quantityOfSameNumbers == FOUR_SAME_NUMBERS;
   }
 
   private static boolean isFifthPlace(int quantityOfSameNumbers) {
-    return quantityOfSameNumbers == 3;
+    return quantityOfSameNumbers == THREE_SAME_NUMBERS;
   }
 
   public List<WinningType> getWinningStatistic(){
