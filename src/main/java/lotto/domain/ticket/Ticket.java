@@ -23,7 +23,7 @@ public class Ticket {
         List<Integer> winningNumbers = winningTicket.getNumbers();
 
         int matchCount = getMatchCount(numbers, winningNumbers);
-        boolean matchBonus = isBonusMatch(bonus);
+        boolean matchBonus = isBonusMatch(winningTicket.getBonusNumber());
 
         return Rank.valueOf(matchCount, matchBonus);
     }
