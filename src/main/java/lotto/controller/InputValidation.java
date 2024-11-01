@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.view.View;
 
 public class InputValidation {
@@ -12,14 +15,14 @@ public class InputValidation {
     public Long getValidatedMoney() {
         while (true) {
             try {
-                return moneyCheck(); // 올바른 입력일 때 반환
+                return moneyCheck();
             } catch (Exception e) {
                 System.out.println(e.getMessage()); // 모든 예외를 한 번에 처리
             }
         }
     }
 
-    public Long moneyCheck() {
+    private Long moneyCheck() {
         String moneyInput = view.getMoneyInput();
         checkInputNull(moneyInput);
         checkMoneyForm(moneyInput);
@@ -47,4 +50,26 @@ public class InputValidation {
     }
 
 
+    public List<Integer> getValidatedWinningNumbers() {
+        while (true) {
+            try {
+                return winningNumbersCheck();
+            } catch (Exception e) {
+                System.out.println(e.getMessage()); // 모든 예외를 한 번에 처리
+            }
+        }
+    }
+
+    private List<Integer> winningNumbersCheck() {
+        String winningNumbersInput = view.getWinningNumbers();
+        checkWinningNumbersForm(winningNumbersInput);
+        List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(",")).map(Integer::parseInt).toList();
+        return winningNumbers;
+    }
+
+    public void checkWinningNumbersForm(String input) {
+        if (!input.matches("^\\d{1,2}(,\\d{1,2}){5}$")) {
+            throw new IllegalArgumentException("[ERROR] 입력은 쉼표로 구분된 6개의 양수로 이루어져야 합니다.");
+        }
+    }
 }
