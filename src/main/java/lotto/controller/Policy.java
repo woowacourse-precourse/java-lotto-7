@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.controller;
 
 public interface Policy {
     int getAmountPolicy();
@@ -9,8 +9,11 @@ public interface Policy {
     boolean isAmountPositive(int number);
     int getMinNumberLimit();
     int getMaxNumberLimit();
+
+    int getPickedCount();
     String getDelimiter();
     String getIntegerRegex();
+    int getZero();
 
 
 }

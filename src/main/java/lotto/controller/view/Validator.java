@@ -1,5 +1,6 @@
-package lotto.view;
+package lotto.controller.view;
 
+import lotto.controller.Policy;
 import lotto.exception.ExceptionMessage;
 
 public class Validator {
@@ -16,8 +17,10 @@ public class Validator {
     public void validateAmountInput(String input){
         this.validateNumber(input);
         int purchasedAmount = Integer.parseInt(input);
+        this.validateMinAmount(input);
         this.validatePositive(purchasedAmount);
         this.validatePurchasedAmount(purchasedAmount);
+
     }
 
     private void validatePurchasedAmount(int amount){
@@ -33,6 +36,12 @@ public class Validator {
         if(!input.matches(integerRegex)){
             throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() +
                     ExceptionMessage.INPUT_NUMBER_EXCEPTION.getMessage());
+        }
+    }
+    private void validateMinAmount(String input){
+        if(Integer.parseInt(input)==policy.getZero()){
+            throw new IllegalArgumentException(ExceptionMessage.ERROR.getMessage() +
+                    ExceptionMessage.INPUT_AMOUNT_MIN.getMessage());
         }
     }
 

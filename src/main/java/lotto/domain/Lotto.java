@@ -1,13 +1,16 @@
-package lotto;
+package lotto.domain;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class Lotto {
+public class Lotto implements Lottery {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        sort();
     }
 
     private void validate(List<Integer> numbers) {
@@ -17,4 +20,14 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    @Override
+    public void sort() {
+        Collections.sort(numbers);
+    }
+
+    @Override
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

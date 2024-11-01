@@ -5,7 +5,8 @@ public enum ExceptionMessage {
     AMOUNT("구입금액은"),
     AMOUNT_UNIT("원 단위어야 합니다."),
     INPUT_NUMBER_EXCEPTION("숫자를 입력해주세요."),
-    INPUT_NUMBER_POSITIVE("입력값은 양수여야 합니다.")
+    INPUT_NUMBER_POSITIVE("입력값은 양수여야 합니다."),
+    INPUT_AMOUNT_MIN("구입금액이 0원일 수 없습니다.")
     ;
     private final String message;
 

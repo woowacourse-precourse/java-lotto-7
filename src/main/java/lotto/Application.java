@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.view.LottoPolicy;
-import lotto.view.Policy;
+import lotto.controller.LottoPolicy;
+import lotto.controller.Policy;
 
 public class Application {
     public static void main(String[] args) {

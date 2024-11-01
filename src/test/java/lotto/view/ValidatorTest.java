@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.controller.LottoPolicy;
+import lotto.controller.Policy;
+import lotto.controller.view.Validator;
 import lotto.exception.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -68,6 +71,16 @@ class ValidatorTest {
         Assertions.assertThatThrownBy(() ->
                         validator.validateAmountInput("-4")).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.INPUT_NUMBER_POSITIVE.getMessage());
+    }
+    @DisplayName("input값이 0이면 에러를 반환한다.")
+    @Test
+    void validateMinAmount() {
+        //given
+        //when
+        //then
+        Assertions.assertThatThrownBy(() ->
+                        validator.validateAmountInput("0")).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR.getMessage() + ExceptionMessage.INPUT_AMOUNT_MIN.getMessage());
     }
 
 }
