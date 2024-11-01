@@ -31,4 +31,12 @@ public enum Ranking {
     private boolean isMatch(int count, boolean isBonus) {
         return isMatchFunction.test(count, isBonus);
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public long getReward() {
+        return reward;
+    }
 }
