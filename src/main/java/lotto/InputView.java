@@ -78,4 +78,16 @@ public class InputView {
             }
         }
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
+
+    public Set<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

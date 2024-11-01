@@ -26,4 +26,8 @@ public class LottoMachine {
             System.out.println(lotto);
         }
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
