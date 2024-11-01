@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseTest {
+
+    // 티켓 수 테스트
+
     @Test
     void 성공__사용자가_출력할수있는_티켓_수_1개() {
         // given
@@ -40,6 +43,8 @@ public class PurchaseTest {
         Assertions.assertEquals(100, purchase.calculateTicketCount());
     }
 
+    // 결제한 금액 테스트
+
     @Test
     void 성공__사용자가_결제한_금액() {
         // given
@@ -51,6 +56,8 @@ public class PurchaseTest {
         // then
         Assertions.assertEquals(1000, purchase.getAmount());
     }
+
+    // 예외 테스트들
 
     @Test
     void 실패__사용자가_결제한_금액이_로또가격보다_작을때() {
@@ -115,6 +122,18 @@ public class PurchaseTest {
 
         // then
         Assertions.assertEquals("로또는 한번에 10만원 까지 구입 가능합니다.", exception.getMessage());
+    }
+
+    @Test
+    void 성공__사용자가_결제한_금액_확인() {
+        // given
+        int money = 1000;
+
+        // when
+        Purchase purchase = new Purchase(money);
+
+        // then
+        Assertions.assertEquals(1000, purchase.getAmount());
     }
 
 }
