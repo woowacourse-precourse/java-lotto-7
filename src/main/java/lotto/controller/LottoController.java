@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoArchive;
 import lotto.model.LottoMaker;
 import lotto.model.Money;
 import lotto.model.WinningNumber;
+import lotto.view.BonusNumberInputView;
 import lotto.view.MoneyInputView;
 import lotto.view.OutView;
 import lotto.view.WinningNumberInputView;
@@ -20,6 +22,7 @@ public class LottoController {
         LottoArchive lottoArchive = buyLottos(money.getTickets());
         printLottoList(lottoArchive.getLottoList());
         WinningNumber winningNumber = winningNumberInput();
+        BonusNumber bonusNumber = bonusNumberInput(winningNumber.getNumberList());
 
     }
 
@@ -58,6 +61,17 @@ public class LottoController {
                 outView.printErrorMessage(e.getMessage());
             }
         }
+    }
 
+    public BonusNumber bonusNumberInput(List<Integer> winningNumber) {
+        outView.printBonusNumberInputMessage();
+        while (true) {
+            try {
+                int number = BonusNumberInputView.getBonusNumber();
+                return new BonusNumber(number, winningNumber);
+            } catch (IllegalArgumentException e) {
+                outView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

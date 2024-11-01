@@ -50,4 +50,8 @@ public class WinningNumber {
         list.retainAll(numberList);
         return list.size();
     }
+
+    public List<Integer> getNumberList() {
+        return numberList;
+    }
 }
