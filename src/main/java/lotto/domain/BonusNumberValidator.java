@@ -27,10 +27,11 @@ public class BonusNumberValidator {
     private void validateUniqueNumber(Integer bonusNumber, List<Integer> winningNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         uniqueNumbers.add(bonusNumber);
-        if (uniqueNumbers.size() < winningNumbers.size()+1) {
+        if (uniqueNumbers.size() < winningNumbers.size() + 1) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호는 중복될 수 없습니다.");
         }
     }
+
     private List<Integer> convert(String input, List<Integer> winningNumbers) {
         try {
             Integer bonusNumber = Integer.parseInt(input);
