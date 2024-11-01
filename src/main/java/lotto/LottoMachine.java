@@ -6,7 +6,7 @@ import java.util.List;
 public interface LottoMachine {
     List<Lotto> createLottoTickets(int count);
 
-    HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String winningNumbers, int bonusNumber);
+    HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String winningNumbers, String bonusNumber);
 
     Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber);
 }

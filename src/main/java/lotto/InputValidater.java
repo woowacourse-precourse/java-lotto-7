@@ -28,13 +28,17 @@ public class InputValidater {
         return winningNumbers;
     }
 
-    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public static int validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+
         //보너스 번호가 당첨 번호 6개와 중복되는 수 일때
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호 6개와 중복 되지 않아야 합니다.");
         }
         //보너스 번호가 1 ~ 45 사이의 값이 아닐 때 (공통)
         validateNumberRange(bonusNumber);
+
+        return bonusNumber;
     }
 
     private static void validateNumberRange(int number) {

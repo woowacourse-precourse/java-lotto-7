@@ -10,6 +10,7 @@ class LottoMachineImplTest {
     private static final int LOTTO_NUMBER = 6;
     private static final LottoMachineImpl lottoMachine = new LottoMachineImpl();
     private static final String winningNumbers = "1,2,3,4,5,6";
+    private static final String bonusNumber = "7";
 
     @Test
     void 발행할_개수를_입력하면_로또가_6개씩_발행_개수만큼_생성된다() {
@@ -26,7 +27,6 @@ class LottoMachineImplTest {
     void 자동으로_생성된_로또_결과_출력_테스트() {
         //given
         List<Lotto> lottoTickets = lottoMachine.createLottoTickets(5);
-        int bonusNumber = 7;
         //when
         lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
         //then
@@ -37,7 +37,6 @@ class LottoMachineImplTest {
         //given
         List<Integer> lottoTicket = List.of(1, 2, 3, 40, 41, 42);
         List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
-        int bonusNumber = 7;
         //when
         HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
         Integer winningNumber = winningResult.get(LottoRank.RANK_5);
@@ -50,7 +49,6 @@ class LottoMachineImplTest {
         //given
         List<Integer> lottoTicket = List.of(1, 2, 3, 4, 41, 42);
         List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
-        int bonusNumber = 7;
         //when
         HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
                 bonusNumber);
@@ -64,7 +62,6 @@ class LottoMachineImplTest {
         //given
         List<Integer> lottoTicket = List.of(1, 2, 3, 4, 5, 42);
         List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
-        int bonusNumber = 7;
         //when
         HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
                 bonusNumber);
@@ -78,7 +75,6 @@ class LottoMachineImplTest {
         //given
         List<Integer> lottoTicket = List.of(1, 2, 3, 4, 5, 7);
         List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
-        int bonusNumber = 7;
         //when
         HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
                 bonusNumber);
@@ -92,7 +88,6 @@ class LottoMachineImplTest {
         //given
         List<Integer> lottoTicket = List.of(1, 2, 3, 4, 5, 6);
         List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
-        int bonusNumber = 7;
         //when
         HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
                 bonusNumber);
