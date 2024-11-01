@@ -12,6 +12,8 @@ import lotto.domain.Ranking;
 
 public class OutputView {
 
+    public static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s%n";
+
     public void printPurchaseLottos(List<Lotto> lottos) {
         printEmptyLine();
         printPurchaseCount(lottos.size());
@@ -67,8 +69,7 @@ public class OutputView {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", lottoResult.getRevenue());
     }
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println("[ERROR] " + errorMessage);
+    public void printErrorMessage(Exception exception) {
+        System.out.printf(ERROR_MESSAGE_FORMAT, exception.getMessage());
     }
-
 }
