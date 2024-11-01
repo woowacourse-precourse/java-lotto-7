@@ -33,6 +33,7 @@ public class LottoPurchaseServiceImpl implements LottoPurchaseService {
         lottos = Lottos.createLottos(purchasedLottoCount, defaultLottoFactory);
     }
 
+    @Override
     public LottosDto getLottosDto() {
         return lottosDtoMapper.toDto(lottos);
     }

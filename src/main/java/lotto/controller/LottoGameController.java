@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.LottosDto;
 import lotto.service.LottoPurchaseService;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -31,6 +32,11 @@ public class LottoGameController {
                 consoleOutputView.outputErrorMessage(e.getMessage());
             }
         }
+
+        LottosDto lottosDto = lottoPurchaseServiceImpl.getLottosDto();
+        consoleOutputView.outputPurchaseLottoList(lottosDto);
+
+
 
 
     }
