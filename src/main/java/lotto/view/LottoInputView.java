@@ -3,9 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.validator.LottoValidator;
-import lotto.model.Lotto;
+import lotto.util.Separator;
 
-public class LottoPurchaseInputView {
+public class LottoInputView {
     public int inputPurchaseAmount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
@@ -20,16 +20,15 @@ public class LottoPurchaseInputView {
         }
     }
 
-    public int numberOfLotto(int lottoAmount) {
-        int lottoTickets = lottoAmount / 1000;
-        System.out.println(lottoTickets + "개를 구매했습니다.");
-        return lottoTickets;
+    public List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해주세요.");
+        String input = Console.readLine();
+        List<Integer> winningNumbers = Separator.parseInputToList(input);
+        return winningNumbers;
     }
 
-    public void makeRandomLottos(int count) {
-        List<Lotto> lottos = Lotto.makeRandomLottos(count);
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
+    public int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 }
