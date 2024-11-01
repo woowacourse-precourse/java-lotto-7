@@ -14,10 +14,11 @@ public class InputView {
     private InputView() {
     }
 
-    public static void purchasePriceInput() {
+    public static int purchasePriceInput() {
         System.out.println(PURCHASE_PRICE_MESSAGE);
         String userInput = Console.readLine();
         validatePurchasePrice(userInput);
+        return Integer.parseInt(userInput);
     }
 
     public static List<Integer> winningNumberInput() {
@@ -41,4 +42,5 @@ public class InputView {
             throw new IllegalArgumentException(INPUT_ONLY_NUMBER.getMessage());
         }
     }
+
 }

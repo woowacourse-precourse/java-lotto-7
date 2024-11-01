@@ -11,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+
         this.numbers = numbers;
     }
 
@@ -23,4 +24,5 @@ public class Lotto {
             throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_ERROR.getMessage());
         }
     }
+
 }
