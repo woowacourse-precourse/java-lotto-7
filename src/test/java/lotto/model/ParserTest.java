@@ -194,4 +194,16 @@ class ParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("입력 문자열 정수 리스트로 변환: 중간에 공백 포함 - 예외 테스트")
+    void parseInputsToIntList_includeInternalWhiteSpace() {
+        // given
+        String inputs = "1,2 3,4";
+
+        // when & then
+        assertThatThrownBy(() -> Parser.parseInputsToIntList(inputs))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
