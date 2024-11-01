@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.Optional;
-
 public class WinningLotto {
     private final Lotto lotto;
     private final Bonus bonus;
@@ -18,7 +16,7 @@ public class WinningLotto {
         }
     }
 
-    public Optional<Ranking> calculateRanking(Lotto lotto) {
+    public Ranking calculateRanking(Lotto lotto) {
         int count = this.lotto.countCommonElements(lotto);
         return Ranking.findBy(count, lotto.contains(bonus.number()));
     }

@@ -30,7 +30,7 @@ public class OutputView {
         Collections.sort(numbers);
 
         String outputNumbers = numbers.stream()
-                .map(String::valueOf) // 각 숫자를 문자열로 변환
+                .map(String::valueOf)
                 .collect(Collectors.joining(", "));
         System.out.printf("[%s]\n", outputNumbers);
     }
@@ -52,7 +52,9 @@ public class OutputView {
     }
 
     private void printLottoResult(LottoResult lottoResult) {
-        Arrays.stream(Ranking.values()).sorted(Comparator.comparingInt(Ranking::getMatchCount))
+        Arrays.stream(Ranking.values())
+                .filter(ranking -> ranking != Ranking.MISS)
+                .sorted(Comparator.comparingInt(Ranking::getMatchCount))
                 .forEach(ranking -> printLottoResult(lottoResult.getLottoResults(), ranking));
     }
 
