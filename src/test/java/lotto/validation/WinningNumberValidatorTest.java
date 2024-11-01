@@ -2,6 +2,8 @@ package lotto.validation;
 
 import lotto.constants.ErrorMessageConstants;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -33,5 +35,15 @@ class WinningNumberValidatorTest {
         assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumbers(duplicateNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_WINNING_NUMBER_DUPLICATE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    void 보너스_번호_범위_검증_테스트(int invalidBonusNumber) {
+        List<Integer> validWinningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> WinningNumberValidator.validateBonusNumber(validWinningNumbers, invalidBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessageConstants.INVALID_BONUS_NUMBER_RANGE);
     }
 }
