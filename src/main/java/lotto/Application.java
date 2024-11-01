@@ -27,6 +27,8 @@ public class Application {
         output.requestBonusNumber();
         int bonusNumber = input.getBonusNumber();
 
+        LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto, bonusNumber);
+
     }
 
     public static void main(String[] args) {

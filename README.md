@@ -48,9 +48,11 @@
 ### 4) 당첨번호 및 보너스 번호 생성
 
 - [x] 당첨 로또 생성
-- [ ] 보너스 번호 생성
-    - [ ] 숫자의 범위가 1~45 사이 숫자인지 검증
-        - [ ] 예외인 경우 IllegalArgumentException 발생
+- [x] 보너스 번호 생성
+    - [x] 숫자의 범위가 1~45 사이 숫자인지 검증
+        - [x] 예외인 경우 IllegalArgumentException 발생
+    - [x] 당첨 번호와 겹치는 숫자인지 검증
+        - [x] 예외인 경우 IllegalArgumentException 발생
 
 ### 5) 당첨 확인 및 통계
 
