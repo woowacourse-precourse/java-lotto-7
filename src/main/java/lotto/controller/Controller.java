@@ -18,7 +18,8 @@ public class Controller {
     private int input;
 
     public int divideByThousand() {
-        String input = InputView.requestPurchaseAmountInput();
+        InputView.printRequestPurchaseAmountInput();
+        String input = InputView.getUserInput();
         try{
             new Money(Parser.stringToInt(input));
             this.input = Parser.stringToInt(input);
@@ -38,7 +39,8 @@ public class Controller {
     }
 
     public Lotto generateLotto() {
-        List<Integer> numbers = InputView.requestLotto();
+        InputView.printRequestLotto();
+        List<Integer> numbers = InputView.getLotto(InputView.getUserInputSplitByComma());
         try {
             return new Lotto(numbers); // 올바른 Lotto 객체 생성
         } catch (IllegalArgumentException e) {
@@ -62,7 +64,8 @@ public class Controller {
 
     public int[] makeLottoAndBonusNumberCalculateRank(ArrayList<List<Integer>> purchasedLottoNumbers) {
         Lotto lotto = generateLotto();
-        int bonusNumber = generateBonusNumber(lotto, InputView.requestBonusNumber());
+        InputView.printRequestBonusNumber();
+        int bonusNumber = generateBonusNumber(lotto, InputView.getUserInput());
         int[] rank = new int[5];
 
         for (List<Integer> purchasedLottoNumber : purchasedLottoNumbers) {
