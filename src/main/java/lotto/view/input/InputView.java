@@ -1,4 +1,4 @@
 package lotto.view.input;
 
-public interface Reader {
+public interface InputView {
 }

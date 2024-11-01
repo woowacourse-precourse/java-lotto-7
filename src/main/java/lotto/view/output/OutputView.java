@@ -1,4 +1,4 @@
 package lotto.view.output;
 
-public interface Printer {
+public interface OutputView {
 }
