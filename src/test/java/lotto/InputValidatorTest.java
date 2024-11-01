@@ -17,7 +17,7 @@ public class InputValidatorTest {
         InputValidator validator = new InputValidator();
 
         // when & then
-        assertThatThrownBy(() -> validator.validatePurchaseFormat("이천원"))
+        assertThatThrownBy(() -> validator.validateInput("이천원"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자만 입력 가능합니다.");
     }

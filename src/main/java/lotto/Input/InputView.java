@@ -16,7 +16,7 @@ public class InputView {
     public int readPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_MESAGE);
         String input = readLine();
-        return validator.validatePurchaseFormat(input);
+        return validator.validateInput(input);
     }
 
     public String readWinningNumbers() {
