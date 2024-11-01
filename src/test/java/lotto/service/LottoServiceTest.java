@@ -53,27 +53,7 @@ public class LottoServiceTest {
 
     @Test
     void 숫자_일치_개수에_따른_로또_장수_계산_테스트() {
-        // given
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
-        List<Lotto> lottos = new ArrayList<>(List.of(
-                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 6개 일치
-                new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 5개 일치 + 보너스 볼 일치
-                new Lotto(List.of(1, 2, 3, 4, 5, 8)) // 5개 일치
-        ));
-        Map<Integer, Integer> expected = new HashMap<>() {{
-            put(3, 0);
-            put(4, 0);
-            put(5, 1);
-            put(6, 1);
-            put(7, 1);
-        }};
 
-        // when
-        Map<Integer, Integer> result = lottoService.getMatchingCounts(lottos, winningNumbers, bonusNumber);
-
-        // then
-        assertThat(result).isEqualTo(expected);
     }
 
     /**

@@ -39,21 +39,28 @@ public class Lotto {
         }
     }
 
-    public int getRank(List<Integer> winningNumbers, int bonusNumber) {
-        for (Rank rank : Rank.values()) {
-            if (rank.)
-        }
-
+    private int getMatchingCount(List<Integer> winningNumbers) {
         int matchingCount = 0;
         for (int number : winningNumbers) {
             if (this.numbers.contains(number)) {
                 matchingCount++;
             }
         }
-        if (matchingCount == 5 && this.numbers.contains(bonusNumber)) {
-            return 7;
-        }
         return matchingCount;
+    }
+
+    public Rank getRank(List<Integer> winningNumbers, int bonusNumber) {
+        int matchingCount = getMatchingCount(winningNumbers);
+        Boolean hasBonusNumber = false;
+        if (numbers.contains(bonusNumber)) {
+            hasBonusNumber = true;
+        }
+        for (Rank rank : Rank.values()) {
+            if (rank.getMatchCount() == matchingCount && rank.isRequiresBonus() == hasBonusNumber) {
+                return rank;
+            }
+        }
+        return Rank.NONE;
     }
     // TODO: 추가 기능 구현
 }

@@ -42,19 +42,8 @@ public class LottoService {
         return count;
     }
 
-    public Map<Integer, Integer> getMatchingCounts(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        Map<Integer, Integer> matchingCounts = new HashMap<>() {{
-            put(3, 0);
-            put(4, 0);
-            put(5, 0);
-            put(6, 0);
-            put(7, 0);
-        }};
-        for (Lotto lotto : lottos) {
-            int matchingCount = lotto.getMatchingCount(winningNumbers, bonusNumber);
-            matchingCounts.put(matchingCount, matchingCounts.get(matchingCount) + 1);
-        }
-        return matchingCounts;
+    public Map<Integer, Integer> getMatchingCounts() {
+        throw new IllegalArgumentException("아직 구현되지 않았습니다.");
     }
 
     public int sumOfPrizes(Map<Integer, Integer> matchingCounts) {
