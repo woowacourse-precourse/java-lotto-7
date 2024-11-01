@@ -23,10 +23,10 @@ public class Lotto {
     public Rank check(Lotto winningLotto, int bonus) {
         List<Integer> winningNumbers = winningLotto.getNumbers();
 
-        return Rank.valueOf(getMatchCount(numbers, winningNumbers), isBonusMatch(bonus));
+        return Rank.valueOf(countNumberMatches(numbers, winningNumbers), isBonusMatch(bonus));
     }
 
-    private int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {
+    private int countNumberMatches(List<Integer> numbers, List<Integer> winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
