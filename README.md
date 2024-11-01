@@ -24,9 +24,10 @@
     - [x]  숫자가 아닌경우
     - [x]  숫자 범위 1~45 넘는 경우
     - [x]  중복되는 숫자인 경우
-    - [x]  6개 입력 안 함
-    - [x]  ,로 구분하지 않은 경우
+    - [x]  6개 입력하지 않은 경우
+    - [x]  쉼표(,)로 구분하지 않은 경우
         - [x]  공백포함하면 에러
+        - [x]  다른 문자 포함하면 에러
 - [x]  보너스 번호
     - [x]  숫자가 아닌 경우
     - [x]  숫자 범위 1~45 넘는 경우
@@ -54,18 +55,18 @@
 - [ ]  코드 포맷팅
 - [ ]  네이밍 점검하기
 
-➡️마지막에 점검하기
+➡️ 마지막에 점검하기
 
 ---
 ### 전체 구조
 ```
 lotto
 ├── Application.java
-├── Lotto.java
 ├── controller
 │   ├── LottoController.java
 │   └── LottoMachineController.java
 ├── model
+│   ├── Lotto.java
 │   └── Result.java
 ├── util
 │   └── Calculator.java
@@ -74,5 +75,4 @@ lotto
 └── view
     └── InputView.java
     └── OutputView.java
-
 ```
