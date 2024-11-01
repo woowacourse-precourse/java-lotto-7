@@ -25,6 +25,10 @@ public class OutputHandler {
     public void displayPrizes(EnumMap<Prize, Integer> prizeCount) {
         System.out.println("\n" + "당첨 통계" + "\n" + "---");
         for (Prize prize : Prize.values()) {
+            if(prize.equals(Prize.SECOND)){
+                System.out.println(prize.getRanking() + "개 일치, 보너스 볼 일치 " + "(" + prize.getPrizeMoney() + "원) - " + prizeCount.get(prize) + "개");
+                continue;
+            }
             System.out.println(prize.getRanking() + "개 일치 " + "(" + prize.getPrizeMoney() + "원) - " + prizeCount.get(prize) + "개");
         }
     }
