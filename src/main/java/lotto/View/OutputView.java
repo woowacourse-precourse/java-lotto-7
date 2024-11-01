@@ -24,10 +24,16 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (LottoResult result : LottoResult.values()) {
-            System.out.printf("%d개 일치 (%d원) - %d개%n",
-                    result.getMatchCount(),
-                    result.getWinningAmount(),
-                    statistics.getResultCounts().get(result));
+            if (result == LottoResult.FIVE_WITH_BONUS) {
+                System.out.printf("5개 일치, 보너스 볼 일치 (%d원) - %d개%n",
+                        result.getWinningAmount(),
+                        statistics.getResultCounts().get(result));
+            } else {
+                System.out.printf("%d개 일치 (%d원) - %d개%n",
+                        result.getMatchCount(),
+                        result.getWinningAmount(),
+                        statistics.getResultCounts().get(result));
+            }
         }
     }
     public static void showProfitRate(LottoStatistics statistics){
