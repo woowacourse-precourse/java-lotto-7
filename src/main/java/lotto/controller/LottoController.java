@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.javaEnum.ErrorMessage;
+import lotto.validation.ErrorMessage;
 import lotto.model.LottoModel;
 import lotto.view.LottoView;
 
@@ -50,13 +50,16 @@ public class LottoController {
             }
         }
 
-        //수익률 로직 구현
+        lottoView.output.winningResult(ans, getRate(lottoCount, ans));
+    }
+
+    private static double getRate(int lottoCount, int[] ans) {
         int price = lottoCount * 1000;
         long sum = 0;
         sum = ans[0] * 5000L + ans[1] * 50000L + ans[2] * 1500000L
                 + ans[3] * 30000000L + ans[4] * 2000000000L;
         double rate = ((double)sum / price) * 100;
-        lottoView.output.winningResult(ans,rate);
+        return rate;
     }
 
     int getLottoCount() {
