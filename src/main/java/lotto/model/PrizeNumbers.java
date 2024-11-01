@@ -102,7 +102,4 @@ public class PrizeNumbers {
 
         this.bonusPrizeNumber = Integer.parseInt(bonusPrizeNumber.replaceAll("\\s", ""));
     }
-
-
-
 }

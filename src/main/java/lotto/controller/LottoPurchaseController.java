@@ -12,9 +12,6 @@ public class LottoPurchaseController {
         this.lottoTicketPurchase = new LottoTicketPurchase(buyCount);
     }
 
-
-
-
     public List<Lotto> getBuyLottoInfoList() {
         return this.lottoTicketPurchase.getLottoTickets();
     }
