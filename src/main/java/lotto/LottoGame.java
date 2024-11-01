@@ -37,6 +37,17 @@ public class LottoGame {
         return new Lotto(winningNumbers);
     }
 
+    public int getBonusNumber(List<Integer> winningNumbers){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+
+        Integer bonusNumber = Integer.valueOf(input);
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+        return bonusNumber;
+    }
+
     private static List<Integer> parseWinningNumbers(String input) {
         String[] tokens = input.split(",");
         ArrayList<Integer> winningNumbers = new ArrayList<>();
