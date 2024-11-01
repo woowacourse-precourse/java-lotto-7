@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.common.Winning;
 
 public class OutputView {

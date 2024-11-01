@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.common.Winning;
 import lotto.validator.Validator;
 
@@ -18,7 +18,7 @@ public class LottoService {
         this.validator = new Validator();
     }
 
-    public int getPayment(String input) {
+    public int parsePayment(String input) {
         try {
             int payment = Integer.parseInt(input);
             validator.validatePayment(payment);
@@ -28,9 +28,8 @@ public class LottoService {
         }
     }
 
-    public List<Integer> getWinningNumbers(String input) {
+    public List<Integer> parseWinningNumbers(String input) {
         String[] splitNumbers = input.split(",");
-
         try {
             List<Integer> winningNumbers = Arrays.stream(splitNumbers)
                     .map(Integer::parseInt)
@@ -42,7 +41,7 @@ public class LottoService {
         }
     }
 
-    public int getBonus(String input) {
+    public int parseBonus(String input) {
         try {
             int bonus = Integer.parseInt(input);
             validator.validateLottoNumber(bonus);
@@ -76,16 +75,21 @@ public class LottoService {
         return countWinnings;
     }
 
-    public double getYield(int payment, Map<Winning, Integer> winnings) {
-        Set<Winning> winningSet = winnings.keySet();
-        int totalWinnings = 0;
-        for (Winning winning : winningSet) {
-            int count = winnings.get(winning);
-            totalWinnings += count * winning.getWinnings();
-        }
-
+    public double calculateYield(int payment, int totalWinnings) {
         double yield = totalWinnings / (double) payment;
 
         return Math.round(yield * 1000) / 10.0;
+    }
+
+    public int calculateTotalWinnings(Map<Winning, Integer> winnings) {
+        Set<Winning> winningSet = winnings.keySet();
+        int totalWinnings = 0;
+
+        for (Winning winning : winningSet) {
+            int count = winnings.get(winning);
+            totalWinnings += count * winning.getPrize();
+        }
+
+        return totalWinnings;
     }
 }

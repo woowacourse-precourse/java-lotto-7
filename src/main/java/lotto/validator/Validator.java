@@ -4,27 +4,25 @@ import java.util.List;
 
 public class Validator {
     public void validatePayment(int value) {
-        validatePositive(value);
+        isPositive(value);
 
         if (value % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지도록 입력해주십시오.");
         }
     }
 
-    public void validateWinningNumbers(List<Integer> winningNumbers) {
-        List<Integer> after = winningNumbers.stream().distinct().toList();
+    public void validateWinningNumbers(List<Integer> numbers) {
+        List<Integer> after = numbers.stream().distinct().toList();
 
-        if (winningNumbers.size() != after.size()) {
+        if (numbers.size() != after.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하지 말아주십시오.");
         }
 
-        if (winningNumbers.size() != 6) {
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입력해주십시오.");
         }
 
-        for (Integer winningNumber : winningNumbers) {
-            validateLottoNumber(winningNumber);
-        }
+        numbers.forEach(this::validateLottoNumber);
     }
 
     public void validateLottoNumber(int value) {
@@ -33,7 +31,7 @@ public class Validator {
         }
     }
 
-    public void validatePositive(int value) {
+    private void isPositive(int value) {
         if (value < 0) {
             throw new IllegalArgumentException("[ERROR] 양수를 입력해주십시오.");
         }

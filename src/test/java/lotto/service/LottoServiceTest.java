@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.common.Winning;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -50,15 +50,16 @@ class LottoServiceTest {
     }
 
     @Test
-    void getYield() {
+    void calculateYield() {
         //given
         int payment = 5000;
         Map<Winning, Integer> winnings = Map.of(
             Winning.THREE, 1
         );
+        int totalWinnings = 5000;
 
         // when
-        double yield = lottoService.getYield(payment, winnings);
+        double yield = lottoService.calculateYield(payment, totalWinnings);
 
         // then
         assertThat(yield).isEqualTo(100.0);
