@@ -28,6 +28,7 @@ public class LottoController {
         printLottos(lottos);
 
         Lotto lotto = createWinningLotto();
+        int bonusNumber = createBonusNumber(lotto.getNumbers());
 
         Console.close();
     }
@@ -52,6 +53,10 @@ public class LottoController {
     private Lotto createWinningLotto() {
         String inputWinningNumbers = inputView.inputWinningNumbers();
         return Lotto.createLotto(inputWinningNumbers);
+    }
+
+    private int createBonusNumber(List<Integer> winningNumbers) {
+        return inputView.inputBonusNumber(winningNumbers);
     }
 
 }
