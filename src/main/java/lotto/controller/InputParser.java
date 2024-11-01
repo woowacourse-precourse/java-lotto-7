@@ -19,7 +19,15 @@ public class InputParser {
     }
 
     public static int parseInteger(String input) {
-        return 0;
+        int integer;
+
+        try {
+            integer = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+        }
+
+        return integer;
     }
 
 }
