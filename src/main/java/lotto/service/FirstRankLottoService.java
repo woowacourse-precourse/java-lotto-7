@@ -1,7 +1,7 @@
-package service;
+package lotto.service;
 
 import java.util.List;
-import validator.FirstRankLottoValidator;
+import lotto.validator.FirstRankLottoValidator;
 
 public class FirstRankLottoService {
 

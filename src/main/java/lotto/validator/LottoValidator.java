@@ -1,9 +1,9 @@
-package validator;
+package lotto.validator;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import model.Lotto;
+import lotto.model.Lotto;
 
 public class LottoValidator {
 

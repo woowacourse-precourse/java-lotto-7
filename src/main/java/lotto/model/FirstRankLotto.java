@@ -1,7 +1,7 @@
-package model;
+package lotto.model;
 
 import java.util.List;
-import validator.FirstRankLottoValidator;
+import lotto.validator.FirstRankLottoValidator;
 
 public class FirstRankLotto extends Lotto {
 

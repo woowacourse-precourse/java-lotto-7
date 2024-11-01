@@ -1,4 +1,4 @@
-package parser;
+package lotto.parser;
 
 import java.util.Arrays;
 import java.util.List;

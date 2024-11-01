@@ -1,9 +1,10 @@
-package validator;
+package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import model.Lotto;
+import lotto.model.Lotto;
+import lotto.validator.LottoBuyValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

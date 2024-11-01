@@ -1,12 +1,12 @@
 package lotto;
 
-import handler.ConsoleHandler;
+import lotto.handler.ConsoleHandler;
 import java.util.List;
-import model.FirstRankLotto;
-import model.Lotto;
-import parser.IntegerListParser;
-import service.FirstRankLottoService;
-import service.LottoService;
+import lotto.model.FirstRankLotto;
+import lotto.model.Lotto;
+import lotto.parser.IntegerListParser;
+import lotto.service.FirstRankLottoService;
+import lotto.service.LottoService;
 
 public class Application {
 

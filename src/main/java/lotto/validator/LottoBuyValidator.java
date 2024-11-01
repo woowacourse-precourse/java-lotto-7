@@ -1,6 +1,6 @@
-package validator;
+package lotto.validator;
 
-import model.Lotto;
+import lotto.model.Lotto;
 
 public class LottoBuyValidator {
 

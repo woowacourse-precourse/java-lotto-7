@@ -1,4 +1,6 @@
-package service;
+package lotto.service;
+
+import lotto.service.LottoService;
 
 class LottoServiceTest {
 

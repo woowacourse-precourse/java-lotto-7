@@ -1,8 +1,8 @@
-package model;
+package lotto.model;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import validator.LottoValidator;
+import lotto.validator.LottoValidator;
 
 public class Lotto {
 

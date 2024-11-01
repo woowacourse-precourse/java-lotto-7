@@ -1,9 +1,9 @@
-package handler;
+package lotto.handler;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
-import model.Lotto;
+import lotto.model.Lotto;
 
 public class ConsoleHandler {
 

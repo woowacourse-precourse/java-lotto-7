@@ -1,12 +1,12 @@
-package service;
+package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Lotto;
-import validator.LottoBuyValidator;
-import validator.LottoValidator;
+import lotto.model.Lotto;
+import lotto.validator.LottoBuyValidator;
+import lotto.validator.LottoValidator;
 
 public class LottoService {
 
