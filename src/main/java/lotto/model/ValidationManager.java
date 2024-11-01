@@ -15,8 +15,8 @@ public class ValidationManager {
         throw new IllegalArgumentException(NON_NUMERIC_ERROR);
     }
 
-    public boolean isEmptyInput(String userInput) {
-        if (userInput.isEmpty()) {
+    public boolean isNotEmptyInput(String userInput) {
+        if (!userInput.isEmpty()) {
             return true;
         }
         throw new IllegalArgumentException(EMPTY_INPUT_ERROR);

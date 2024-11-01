@@ -32,7 +32,7 @@ public class LottoController {
                 outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
                 amountInput = inputView.readInput();
 
-                validationManager.isEmptyInput(amountInput);
+                validationManager.isNotEmptyInput(amountInput);
                 validationManager.isNumber(amountInput);
                 validInput = validationManager.isDivideByThousand(amountInput);
 
@@ -53,7 +53,7 @@ public class LottoController {
                 outputView.printRequest(OutputView.REQUEST_NUMBER_MESSAGE);
                 lottoInput = inputView.readInput();
 
-                validationManager.isEmptyInput(lottoInput);
+                validationManager.isNotEmptyInput(lottoInput);
                 validationManager.isNumbersDividedByComma(lottoInput);
                 List<String> lottoNumbrs = TypeConverter.ToList(lottoInput);
 
