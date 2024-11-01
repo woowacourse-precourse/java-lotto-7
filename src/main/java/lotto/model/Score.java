@@ -29,6 +29,10 @@ public enum Score {
                 .orElseGet(() -> ZERO);
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrize() {
         return prize;
     }
