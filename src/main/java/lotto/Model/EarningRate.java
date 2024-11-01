@@ -3,7 +3,7 @@ package lotto.Model;
 import java.util.Map;
 
 public class EarningRate {
-
+    //수익률을 반환하는 메소드
     public static double returnEarningRate(int gameNumber, Map<Ranking,Integer> resultSet) {
         int purchaseAmount = gameNumber*1000;
         int earnedAmount = resultSet.entrySet().stream()
