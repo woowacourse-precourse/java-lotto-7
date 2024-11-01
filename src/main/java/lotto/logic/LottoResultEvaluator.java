@@ -15,6 +15,8 @@ import static lotto.constants.RankNumber.THIRD;
 import static lotto.constants.RankNumber.THIRD_PRIZE_MONEY;
 import static lotto.constants.RankNumber.THREE;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +30,7 @@ public class LottoResultEvaluator {
     private static final int ZERO = 0;
     private Map<Integer, Integer> result;
     private int profit;
-    private double returnRate;
+    private BigDecimal returnRate;
 
     public LottoResultEvaluator() {
         this.result = new HashMap<>();
@@ -57,7 +59,7 @@ public class LottoResultEvaluator {
         return profit;
     }
 
-    public double getReturnRate() {
+    public BigDecimal getReturnRate() {
         return returnRate;
     }
 
@@ -143,7 +145,14 @@ public class LottoResultEvaluator {
         return 0;
     }
 
-    private double calculateRate(int profit, Purchase purchase) {
-        return Math.round((((double) profit / purchase.getPurchase() * 100) * 10) / 10.0);
+    private BigDecimal calculateRate(int profit, Purchase purchase) {
+        BigDecimal profitBigDecimal = new BigDecimal(profit);
+        BigDecimal purchaseBigDecimal = new BigDecimal(purchase.getPurchase());
+
+        // 수익률 계산
+        BigDecimal rate = profitBigDecimal.divide(purchaseBigDecimal, 10, RoundingMode.HALF_UP);
+        rate = rate.multiply(new BigDecimal(100)).setScale(1, RoundingMode.HALF_UP);
+
+        return rate;
     }
 }
