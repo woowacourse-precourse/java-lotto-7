@@ -27,17 +27,16 @@ public class InputValidate {
                 throw new IllegalArgumentException(InputMessage.OUT_OF_RANGE_AMOUNT.getMessage());
             }
 
-            if (isDivisibleBy1000(money)) {
+            if (!isDivisibleBy1000(money)) {
                 throw new IllegalArgumentException(InputMessage.IS_NOT_DIVISIBLE_BY_1000.getMessage());
             }
 
+            return true;
         } catch (IllegalArgumentException e) {
             errorMessage = e.getMessage();
             System.err.println(errorMessage);
             return false;
         }
-
-        return true;
     }
 
     public static boolean isNumeric(String input) {

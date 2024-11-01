@@ -92,20 +92,28 @@ public class InputTest {
 
 
     @Test
-    @DisplayName("검증 시, 숫자 문자열이라면 통과한다.")
+    @DisplayName("검증 시, 모든 기준을 충족하는 문자열이라면 통과한다.")
     public void testNumberInputValidate() {
-        assertTrue(InputValidate.run("0"));
-        assertTrue(InputValidate.run("123"));
-        assertTrue(InputValidate.run("10000"));
-        assertTrue(InputValidate.run("50000"));
+        assertTrue(InputValidate.run("1000"));
+        assertTrue(InputValidate.run("500000"));
+        assertTrue(InputValidate.run("30000000"));
+        assertTrue(InputValidate.run("2345000"));
     }
 
     @Test
-    @DisplayName("검증 시, 숫자 문자열이 아니라면 통과 못한다.")
-    public void testNotNumberInputValidate() {
-        assertFalse(InputValidate.run("abc"));
-        assertFalse(InputValidate.run("test123"));
-        assertFalse(InputValidate.run(""));
-        assertFalse(InputValidate.run(" "));
+    @DisplayName("검증 시, 모든 기준을 충족하는 문자열이 아니라면 통과하지 못한다.")
+    /*
+    1. isNumeric : 양수 문자열인지 확인한다.
+    2. isParsableAsInteger : Integer형으로 형변환이 가능한지 확인한다.
+    3. isLessThanFirstPrizeAmount : 로또 구입 금액이 1등 당첨금보다 적은 액수인지 확인한다.
+    4. isDivisibleBy1000 : 1000으로 나누어 떨어지는 숫자인지 확인한다.
+     */
+    public void testNotInputValidate() {
+        assertFalse(InputValidate.run(""));     // isNumeric
+        assertFalse(InputValidate.run(" "));    // isNumeric
+        assertFalse(InputValidate.run("abc"));  // isNumeric
+        assertFalse(InputValidate.run("100000000000")); // isParsableAsInteger
+        assertFalse(InputValidate.run("2500000000"));   // isLessThanFirstPrizeAmount
+        assertFalse(InputValidate.run("1500"));// isDivisibleBy1000
     }
 }
