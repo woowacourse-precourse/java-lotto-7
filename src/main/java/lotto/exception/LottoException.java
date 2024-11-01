@@ -52,8 +52,8 @@ public class LottoException {
         }
     }
 
-    public static class CharacterInputException extends IllegalArgumentException {
-        public CharacterInputException() {
+    public static class NotAllowCharacterInputException extends IllegalArgumentException {
+        public NotAllowCharacterInputException() {
             super(CHARACTER_INPUT_ERROR_MESSAGE.getMessage());
         }
     }
