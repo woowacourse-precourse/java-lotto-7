@@ -180,4 +180,20 @@ public class AdditionalApplicationTest {
                 .withMessage("[ERROR] 중복되지 않은 숫자를 입력해주세요.");
     }
 
+    @Test
+    void 보너스번호_null일시_예외() {
+        String testNumber = null;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void 보너스번호_빈_문자열일시_예외(String testNumber) {
+        assertThatIllegalArgumentException().isThrownBy(
+                        () -> Application.validateInputValue(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
+
 }
