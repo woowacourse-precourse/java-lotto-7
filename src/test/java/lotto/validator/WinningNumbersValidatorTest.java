@@ -2,10 +2,19 @@ package lotto.validator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumbersValidatorTest {
     private NumbersValidator winningNumbersValidator;
+
+    @Test
+    @DisplayName("로또 번호가 숫자인지 확인")
+    void 로또_번호_숫자_테스트() {
+        assertThatThrownBy(() -> {
+            winningNumbersValidator = new NumbersValidator("!,3,@");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 로또 번호는 숫자 형식이어야 합니다.");
+    }
 
     @Test
     @DisplayName("당첨 번호가 6개인지 확인")
