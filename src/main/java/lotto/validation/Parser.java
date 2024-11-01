@@ -7,9 +7,13 @@ public class Parser {
 
     }
     public static int stringToInt(String input){
+        isNumeric(input);
+        return Integer.parseInt(input);
+    }
+
+    private static void isNumeric(String input) {
         if (!input.matches("^[0-9]*$")){
             throw new IllegalArgumentException(NON_NUMERIC_INPUT.format());
         }
-        return Integer.parseInt(input);
     }
 }
