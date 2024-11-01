@@ -24,7 +24,7 @@ public class InputParser {
     public static List<Integer> parseIntList(String input, String delimiter) {
         String regex = NUMBER_WITH_DELIMITER_REGEX_PREFIX + delimiter + NUMBER_WITH_DELIMITER_REGEX_SUFFIX;
         if (!input.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] '" + delimiter + "'를 사용하여 숫자를 구분해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DELIMITER.format(delimiter));
         }
 
         String[] inputs = input.split(regex);
@@ -35,13 +35,13 @@ public class InputParser {
 
     private static void emptyCheck(String input) {
         if (input == null || input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.format());
         }
     }
 
     private static void numberCheck(String input) {
         if (!input.matches(NUMBER_REGEX)) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.format());
         }
     }
 
@@ -51,11 +51,7 @@ public class InputParser {
         BigInteger max = BigInteger.valueOf(Integer.MAX_VALUE);
 
         if (number.compareTo(min) < 0 || number.compareTo(max) > 0) {
-            throw new IllegalArgumentException("[ERROR] "
-                    + String.valueOf(Integer.MIN_VALUE)
-                    + " ~ "
-                    + String.valueOf(Integer.MAX_VALUE)
-                    + " 사이의 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.format(Integer.MIN_VALUE, Integer.MAX_VALUE));
         }
     }
 }
