@@ -4,7 +4,7 @@ public class LottoPurchaseAmount {
 
     private static final int MIN_VALUE = 1000;
 
-    private Integer value;
+    private final Integer value;
 
     public LottoPurchaseAmount(String value) {
         this(LottoPurchaseAmount.parseString(value));
@@ -40,5 +40,9 @@ public class LottoPurchaseAmount {
 
     public Integer getValue() {
         return this.value;
+    }
+
+    public Integer getLottoCount() {
+        return this.value / MIN_VALUE;
     }
 }

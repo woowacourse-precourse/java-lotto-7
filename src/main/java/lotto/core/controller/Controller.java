@@ -1,9 +1,7 @@
 package lotto.core.controller;
 
-public interface Controller<T> {
+public interface Controller<Request, Response> {
 
-    void process();
-
-    T getResponse();
+    Response request(Request request);
 
 }

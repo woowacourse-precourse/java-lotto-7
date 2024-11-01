@@ -15,6 +15,7 @@ class LottoPurchaseAmountTest {
         LottoPurchaseAmount amount = new LottoPurchaseAmount(value);
         // then
         Assertions.assertEquals(value, amount.getValue());
+        Assertions.assertEquals(10, amount.getLottoCount());
     }
 
     @Test
@@ -26,6 +27,7 @@ class LottoPurchaseAmountTest {
         LottoPurchaseAmount amount = new LottoPurchaseAmount(value);
         // then
         Assertions.assertEquals(Integer.parseInt(value), amount.getValue());
+        Assertions.assertEquals(100, amount.getLottoCount());
     }
     
     @Test

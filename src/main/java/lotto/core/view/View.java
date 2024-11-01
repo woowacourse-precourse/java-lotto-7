@@ -1,7 +1,9 @@
 package lotto.core.view;
 
-public interface View {
+public interface View<T> {
 
-    void display(String content);
+    void setContent(T content);
+
+    void display();
 
 }
