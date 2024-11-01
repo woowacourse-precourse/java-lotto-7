@@ -32,7 +32,10 @@ public class WinningLotto extends Lotto {
         Validator.isEmptyInput(winningNumber);
     }
 
-    private static void validateWinningNumber(List<String> parsedNumber) {
-        Validator.isEqualListSize(parsedNumber, WINNING_NUMBER_COUNT);
+    private static void validateWinningNumber(List<String> parsedNumbers) {
+        Validator.isEqualListSize(parsedNumbers, WINNING_NUMBER_COUNT);
+        parsedNumbers.stream()
+                .peek(Validator::isDigitString)
+                .forEach(parsedNumber -> {});
     }
 }
