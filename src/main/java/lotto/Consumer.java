@@ -26,11 +26,17 @@ public class Consumer {
     }
 
     private int getCount(String priceInput) {
-        validatePriceOnlyInteger(priceInput);
-        int price = Integer.parseInt(priceInput);
-        validatePriceScope(price);
-        validatePriceUnit(price);
-        return price / 1000;
+        try {
+            validatePriceOnlyInteger(priceInput);
+            int price = Integer.parseInt(priceInput);
+            validatePriceScope(price);
+            validatePriceUnit(price);
+            return price / 1000;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            // 사용자로부터 priceInput을 다시 입력 받는다.
+            return getCount(readLine());
+        }
     }
 
     private void validatePriceOnlyInteger(String priceInput) throws IllegalArgumentException {
