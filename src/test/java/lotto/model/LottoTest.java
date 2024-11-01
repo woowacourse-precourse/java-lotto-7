@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -27,7 +28,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource("invalidLottoNumbers")
+    @MethodSource("invalidRangeLottoNumbers")
     void 로또_번호가_범위에_맞지_않으면_예외가_발생한다(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -44,7 +45,14 @@ class LottoTest {
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
-    private static Stream<List<Integer>> invalidLottoNumbers() {
+    @Test
+    void 로또_번호는_오름차순으로_정렬된다() {
+        Lotto lotto = new Lotto(List.of(6, 4, 2, 5, 3, 1));
+
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    private static Stream<List<Integer>> invalidRangeLottoNumbers() {
         return Stream.of(
                 List.of(0, 1, 2, 3, 4, 5),
                 List.of(1, 2, 3, 4, 5, 46)

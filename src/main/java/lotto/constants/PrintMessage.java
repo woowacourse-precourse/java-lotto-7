@@ -6,6 +6,7 @@ public enum PrintMessage {
     BONUS_NUMBER_MESSAGE("\n보너스 번호를 입력해 주세요."),
 
     LOTTO_PURCHASE_MESSAGE("개를 구매했습니다."),
+    WINNING_STATISTICS_MESSAGE("\n당첨 통계\n---")
     ;
 
     private final String message;

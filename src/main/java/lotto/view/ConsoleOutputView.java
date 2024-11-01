@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constants.PrintMessage.LOTTO_PURCHASE_MESSAGE;
+import static lotto.constants.PrintMessage.WINNING_STATISTICS_MESSAGE;
 
 import java.util.List;
 import lotto.model.Lotto;
@@ -21,7 +22,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printWinningStatistics() {
-
+        WINNING_STATISTICS_MESSAGE.display();
     }
 
     @Override

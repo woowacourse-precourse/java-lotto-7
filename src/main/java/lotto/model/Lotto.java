@@ -1,7 +1,9 @@
 package lotto.model;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constants.LottoConstants;
 import lotto.constants.ErrorMessage;
 
@@ -13,7 +15,7 @@ public class Lotto {
         validateCount(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
+        this.numbers = getSortedNumbers(numbers);
     }
 
     private void validateCount(List<Integer> numbers) {
@@ -34,6 +36,10 @@ public class Lotto {
                         || number > LottoConstants.LOTTO_END_INCLUSIVE)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE.getMessage());
         }
+    }
+
+    private List<Integer> getSortedNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {
