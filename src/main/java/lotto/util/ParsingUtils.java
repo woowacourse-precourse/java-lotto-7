@@ -6,6 +6,14 @@ import lotto.view.ErrorMessage;
 
 public class ParsingUtils {
 
+    public static int parseStringToInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
     public static List<Integer> parseStringToIntegerList(String input) {
         try {
             return Arrays.stream(input.split(","))
@@ -15,6 +23,10 @@ public class ParsingUtils {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_FORMAT_INVALID.getMessage());
         }
+    }
+
+    private ParsingUtils() {
+        // 인스턴스화 방지
     }
 
 }
