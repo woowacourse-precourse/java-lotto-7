@@ -1,8 +1,6 @@
 package lotto;
 
 public class Budget {
-    private static final String ERROR_BUDGET_NEGATIVE_NUMBER = "[ERROR] 금액은 음수일 수 없습니다.";
-    private static final String ERROR_BUDGET_INVALID_UNIT = "[ERROR] 금액은 1000원 단위여야 합니다.";
     private static final long LOTTO_PRICE = 1000;
 
     private final Long amount;
@@ -24,13 +22,13 @@ public class Budget {
 
     private static void validateBudgetSign(Long amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException(ERROR_BUDGET_NEGATIVE_NUMBER);
+            throw new IllegalArgumentException(ErrorMessage.BUDGET_NEGATIVE_NUMBER.message());
         }
     }
 
     private static void validateBudgetUnit(Long amount) {
         if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ERROR_BUDGET_INVALID_UNIT);
+            throw new IllegalArgumentException(ErrorMessage.BUDGET_INVALID_UNIT.message());
         }
     }
 
