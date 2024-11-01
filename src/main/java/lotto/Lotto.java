@@ -20,6 +20,13 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 인 정수를 입력 해야 합니다.");
             }
         }
+
+        List<Integer> distinctList = numbers.stream()
+                .distinct()
+                .toList();
+        if (numbers.size() != distinctList.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복이 되는 로또 번호가 없어야 합니다.");
+        }
     }
 
     // TODO: 추가 기능 구현
