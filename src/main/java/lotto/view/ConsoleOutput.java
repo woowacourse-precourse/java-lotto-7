@@ -29,8 +29,13 @@ public class ConsoleOutput {
                     }
                     String outMessage = format("%d개 일치 (%,d원) - %d개", prize.getMatchCount(),
                             prize.getPrizeMoney(), completePrizeMap.get(prize));
+                    if (prize == Prize.SECOND) {
+                        outMessage = format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",
+                                prize.getMatchCount(), prize.getPrizeMoney(), completePrizeMap.get(prize));
+                    }
                     System.out.println(outMessage);
                 });
+        System.out.println(format("총 수익률은 %.1f%%입니다.", input.getProfitRate()));
     }
 
     public void printPurchasedLottos(List<Lotto> lottos) {
