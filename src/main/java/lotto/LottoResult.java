@@ -15,7 +15,7 @@ public class LottoResult {
         initResult();
     }
 
-    public void initResult() {
+    private void initResult() {
         this.totalBenefit = 0;
         result.put(WinningInfo.FIRST_WINNER, 0);
         result.put(WinningInfo.SECOND_WINNER, 0);

@@ -151,24 +151,4 @@ class LottoResultTest {
         // then
         assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(0.0);
     }
-
-    @Test
-    @DisplayName("초기화 후에는 모든 당첨 결과가 0이어야 한다")
-    void initializeResult() {
-        // given
-        Lotto winningNumber = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Integer bonusNumber = 7;
-        LottoResult lottoResult = new LottoResult(winningNumber, bonusNumber);
-
-        // when
-        lottoResult.initResult();
-
-        // then
-        assertThat(lottoResult.toString())
-                .contains("6개 일치 (2,000,000,000원) - 0개")
-                .contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개")
-                .contains("5개 일치 (1,500,000원) - 0개")
-                .contains("4개 일치 (50,000원) - 0개")
-                .contains("3개 일치 (5,000원) - 0개");
-    }
 }
