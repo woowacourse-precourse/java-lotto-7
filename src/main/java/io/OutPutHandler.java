@@ -10,7 +10,7 @@ public class OutPutHandler {
         System.out.println(INPUT_PRICE_MESSAGE);
     }
 
-    public void showInputWinningNumberMessage() {
+    public void showInputWinningNumbersMessage() {
         System.out.println();
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
     }
