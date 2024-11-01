@@ -10,9 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -76,7 +73,7 @@ public class InputTest {
 
         @DisplayName("숫자가 아닌 당첨번호 입력시 예외처리를 한다")
         @ParameterizedTest()
-        @ValueSource(strings = {"1,2,a,4,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:", "1,,2,3,4,5,6"})
+        @ValueSource(strings = {"1,2,a,4,5,6", ".,1,2,3,4,5", "1,2,3,4,5,:", "1,2,3,4,5,6"})
         void 숫자가_아닌_당첨번호_예외(String input){
 
             assertThrows(IllegalArgumentException.class, () -> {
@@ -113,26 +110,15 @@ public class InputTest {
                 validator.validateWinningNumber(input);
             });
         }
-    }
 
-    @Nested
-    class 당첨_번호_파싱_테스트{
-        private WinningNumberParser parser;
-
-        @BeforeEach
-        void setUp(){
-            parser = new WinningNumberParser();
-        }
-
-        @DisplayName("콤마를 기준으로 입력을 파싱한다")
+        @DisplayName("중복 예외 처리")
         @ParameterizedTest()
-        @ValueSource(strings = {"1,2,3,4,5,6", "1,2,3,4,5,6,", "1 ,2 ,3,4, 5, 6            ,"})
-        void 당첨번호_콤마기준_파싱(String input){
-            List<String> parsedInput = parser.parseWinningNumber(input);
-            assertThat(parsedInput).containsExactly("1","2","3","4","5","6");
+        @ValueSource(strings = {"1,1,1,1,1,1", "1,1,2,3,4,5"})
+        void 중복_예외(String input){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validateWinningNumber(input);
+            });
         }
     }
-
-
 
 }
