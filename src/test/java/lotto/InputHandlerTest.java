@@ -14,7 +14,7 @@ class InputHandlerTest {
         // When
         InputHandler inputHandler = new InputHandler();
         // Then
-        Assertions.assertThatThrownBy(() -> InputHandler.priceInputValidator(price))
+        Assertions.assertThatThrownBy(() -> inputHandler.priceInputValidator(price))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입금액은 1000단위만 가능합니다.");
     }
