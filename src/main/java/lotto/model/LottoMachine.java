@@ -17,6 +17,6 @@ public class LottoMachine {
                     Collections.sort(singleLotto);
                     return singleLotto;
                 })
-                .collect(Collectors.toList());
+                .toList();
     }
 }

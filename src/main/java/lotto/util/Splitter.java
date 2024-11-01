@@ -13,6 +13,6 @@ public class Splitter {
         return Arrays.stream(numbers)
                 .filter(num -> !num.trim().isEmpty())
                 .map(num -> Parser.parseNumber(num.trim()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }
