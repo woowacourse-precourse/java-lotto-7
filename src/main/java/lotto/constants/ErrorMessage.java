@@ -2,8 +2,8 @@ package lotto.constants;
 
 public enum ErrorMessage {
     INPUT_EMPTY("입력이 없거나 공백이어선 안됩니다."),
-    MONEY_NOT_INTEGER("구입금액은 정수만 입력되어야 합니다."),
-    MONEY_NOT_POSITIVE("구입금액은 0 이상의 양수만 입력되어야 합니다.");
+    NOT_INTEGER("입력은 정수여야 합니다."),
+    NOT_POSITIVE("입력은 양수여야 합니다.");
 
     private static final String ERROR_TAG = "[ERROR] ";
 
