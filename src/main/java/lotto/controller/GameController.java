@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.view.InputView;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class GameController {
 
@@ -14,6 +15,7 @@ public class GameController {
 
     public void run() {
         BigInteger money = getMoney();
+        List<Integer> winningNumbers = getWinningNumbers();
     }
 
     private BigInteger getMoney() {
@@ -25,5 +27,15 @@ public class GameController {
             return getMoney();
         }
         return new BigInteger(moneyInput);
+    }
+
+    private List<Integer> getWinningNumbers() {
+        String numbersInput = inputView.readWinningNumbers();
+        try {
+            InputValidator.validateWinningNumbers(numbersInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 }
