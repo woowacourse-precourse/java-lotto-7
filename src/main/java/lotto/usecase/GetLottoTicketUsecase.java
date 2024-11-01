@@ -1,9 +1,9 @@
 package lotto.usecase;
 
-import lotto.Ticket;
+import lotto.dto.TicketResult;
 
 public class GetLottoTicketUsecase {
-    public static Ticket execute(Long ticketId) {
+    public static TicketResult execute(Long ticketId) {
         return null;
     }
 }

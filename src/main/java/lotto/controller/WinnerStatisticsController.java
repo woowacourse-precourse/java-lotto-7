@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import lotto.Ticket;
 import lotto.WinnerNumber;
+import lotto.dto.TicketResult;
 
 public class WinnerStatisticsController {
-    public void create(Ticket ticket, WinnerNumber winnerNumber) {
-
+    public void create(TicketResult ticketResult, WinnerNumber winnerNumber) {
 
     }
 }

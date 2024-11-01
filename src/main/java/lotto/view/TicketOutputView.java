@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.Ticket;
+import lotto.dto.TicketResult;
 
 public class TicketOutputView {
-    public void showResult(Ticket ticket) {
+    public void show(TicketResult ticketResult) {
 
     }
 }
