@@ -1,6 +1,7 @@
 package lotto.logic;
 
 import static lotto.constants.RankNumber.FIFTH;
+import static lotto.constants.RankNumber.FIFTH_PRIZE_MONEY;
 import static lotto.constants.RankNumber.FIRST;
 import static lotto.constants.RankNumber.FIRST_PRIZE_MONEY;
 import static lotto.constants.RankNumber.FIVE;
@@ -98,11 +99,11 @@ public class LottoResultEvaluator {
 
     private int getProfitMoney(Map<Integer, Integer> result) {
         int money = 0;
-        money += get1stMoney(result.getOrDefault(FIRST, 0));
-        money += get2ndMoney(result.getOrDefault(SECOND, 0));
-        money += get3thMoney(result.getOrDefault(THIRD, 0));
-        money += get4thMoney(result.getOrDefault(FOURTH, 0));
-        money += get5thMoney(result.getOrDefault(FIFTH, 0));
+        money += get1stMoney(result.getOrDefault(FIRST.getNumber(), 0));
+        money += get2ndMoney(result.getOrDefault(SECOND.getNumber(), 0));
+        money += get3thMoney(result.getOrDefault(THIRD.getNumber(), 0));
+        money += get4thMoney(result.getOrDefault(FOURTH.getNumber(), 0));
+        money += get5thMoney(result.getOrDefault(FIFTH.getNumber(), 0));
 
         return money;
     }
@@ -137,7 +138,7 @@ public class LottoResultEvaluator {
 
     private int get5thMoney(int count) {
         if (count != ZERO) {
-            return FIFTH.getNumber() * count;
+            return FIFTH_PRIZE_MONEY.getNumber() * count;
         }
         return 0;
     }
