@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.controller.LottoController;
+import lotto.Vaildator.InputValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,21 +12,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
+        InputValidator.valid(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers; // 번호 반환
     }
 
     public String toString() {
-        return numbers.toString();
+        return numbers.toString(); // 번호 출력
     }
-
-    public static void lottoStart() {
-        LottoController lottoController = new LottoController();
-        lottoController.buyLottos();
-        lottoController.displayLottos();
-        lottoController.inputLottoNumbers();
-        lottoController.inputBonusNumber();
-    }
-
 }

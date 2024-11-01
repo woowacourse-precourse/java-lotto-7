@@ -1,47 +1,45 @@
 package lotto.controller;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.Service.LottoService;
 
 public class LottoController {
-    private final List<Lotto> lottos = new ArrayList<>();
-    private int bonusNum;
+    private static final List<Lotto> lottos = new ArrayList<>();
+    private static final LottoService lottoService = new LottoService();
+    private static int bonusNum;
 
-    public void buyLottos() {
+    public static void lottoStart() {
+        buyLottos();
+        displayLottos();
+        inputLottoNumbers();
+        inputBonusNumber();
+    }
+
+    private static void buyLottos() {
         System.out.println("구입 금액을 입력해 주세요: ");
         int amount = Integer.parseInt(Console.readLine());
-        int lottoCount = amount / 1000;
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6); // 랜덤 번호 생성
-            lottos.add(new Lotto(numbers));
-        }
+        lottoService.buyLottos(amount);
     }
 
-    public List<Integer> inputLottoNumbers() {
+    private static void inputLottoNumbers() {
         System.out.println("당첨 번호 6개를 입력해 주세요 (쉼표로 구분): ");
         String input = Console.readLine();
-        String[] splitNumbers = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-
-        for (String number : splitNumbers) {
-            numbers.add(Integer.parseInt(number.trim()));
-        }
-        return numbers;
+        List<Integer> winningNumbers = lottoService.inputLottoNumbers(input);
+        lottoService.setWinningNumbers(winningNumbers);
     }
 
-    public void inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요 (쉼표로 구분): ");
+    private static void inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요: ");
         String bonus = Console.readLine();
-        bonusNum = Integer.parseInt(bonus);
+        lottoService.setBonusNumber(Integer.parseInt(bonus));
     }
 
-    public void displayLottos() {
+    private static void displayLottos() {
         System.out.println("발행한 로또 번호:");
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoService.getLottos()) {
             System.out.println(lotto);
         }
     }
