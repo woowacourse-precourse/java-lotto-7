@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class WinningStatistics {
     private final Map<Rank, Integer> winningStatistics;
@@ -47,5 +48,15 @@ public class WinningStatistics {
                 return;
             }
         }
+    }
+
+    public long getTotalPrize() {
+        long totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entryRank : winningStatistics.entrySet()) {
+            Rank rank = entryRank.getKey();
+            int count = entryRank.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+        return totalPrize;
     }
 }
