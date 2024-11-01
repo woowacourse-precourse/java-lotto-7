@@ -9,6 +9,7 @@
  */
 package lotto.controller;
 
+import lotto.constant.ErrorMessage;
 import lotto.domain.Bonus;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
@@ -36,16 +37,57 @@ public class LottoController {
         WinningLotto winningLotto = null;
         LottoCollection lottoCollection = null;
 
-        purchaseAmount = getPurchaseAmount();
-        printNumberOfLottoPurchases(purchaseAmount);
-        lottoCollection = getLottoCollection(purchaseAmount);
-        String state = lottoCollection.getState();
-        printLottoCollectionState(state);
-        winningNumber = getWinningNumber();
-        winningLotto = getWinningLotto(winningNumber);
+        purchaseAmount = getAmount();
+        lottoCollection = getLottoCollection1(purchaseAmount);
+        winningNumber = getNumber();
+        winningLotto = getLotto(winningNumber);
+
         lottoService = new LottoService(purchaseAmount, lottoCollection, winningLotto);
         judgeLotto();
         printWinningResult();
+    }
+
+    private WinningLotto getLotto(WinningNumber winningNumber) {
+        WinningLotto winningLotto;
+        do {
+            winningLotto = getWinningLotto(winningNumber);
+        }while (winningLotto == null);
+        return winningLotto;
+    }
+
+    private WinningNumber getNumber() {
+        WinningNumber winningNumber;
+        do {
+            winningNumber = getWinningNumber();
+        }while (winningNumber == null);
+        return winningNumber;
+    }
+
+    private LottoCollection getLottoCollection1(PurchaseAmount purchaseAmount) {
+        LottoCollection lottoCollection;
+        lottoCollection = getCollection(purchaseAmount);
+        printCollectionState(lottoCollection);
+        return lottoCollection;
+    }
+
+    private PurchaseAmount getAmount() {
+        PurchaseAmount purchaseAmount;
+        do {
+            purchaseAmount = getPurchaseAmount();
+        }while (purchaseAmount == null);
+        return purchaseAmount;
+    }
+
+    private void printCollectionState(LottoCollection lottoCollection) {
+        String state = lottoCollection.getState();
+        printLottoCollectionState(state);
+    }
+
+    private LottoCollection getCollection(PurchaseAmount purchaseAmount) {
+        LottoCollection lottoCollection;
+        printNumberOfLottoPurchases(purchaseAmount);
+        lottoCollection = getLottoCollection(purchaseAmount);
+        return lottoCollection;
     }
 
     private void printLottoCollectionState(String state) {
@@ -54,13 +96,23 @@ public class LottoController {
 
     private void printNumberOfLottoPurchases(PurchaseAmount purchaseAmount) {
         int numberOfLotto = purchaseAmount.getNumberOfLotto();
-        outputView.printPurchaseAmount(numberOfLotto);
+        if (numberOfLotto != 0) {
+            outputView.printPurchaseAmount(numberOfLotto);
+        }
     }
 
     private WinningLotto getWinningLotto(WinningNumber winningNumber) {
-        WinningLotto winningLotto;
-        Bonus bonus = readBouns();
-        winningLotto = getWinningLotto(winningNumber, bonus);
+        WinningLotto winningLotto = null;
+        Bonus bonus = null;
+        do {
+            bonus = readBouns();
+        }while (bonus == null);
+        try {
+            winningLotto = getWinningLotto(winningNumber, bonus);
+        }catch (Exception e) {
+            outputView.printExceptionMessage(e.getMessage());
+            bonus = null;
+        }
         return winningLotto;
     }
 
@@ -71,14 +123,16 @@ public class LottoController {
     }
 
     private PurchaseAmount getPurchaseAmount() {
-        PurchaseAmount purchaseAmount;
+        PurchaseAmount purchaseAmount = null;
         try {
             purchaseAmount = readPurchaseAmount();
             return purchaseAmount;
+        }catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
         }catch (NoSuchElementException e) {
             purchaseAmount = readPurchaseAmount();
-            return purchaseAmount;
         }
+        return purchaseAmount;
     }
 
     private  WinningLotto getWinningLotto(WinningNumber winningNumber, Bonus bonus) {
@@ -88,9 +142,8 @@ public class LottoController {
         try {
             return new WinningLotto(winningNumber, bonus);
         }catch (Exception e) {
-            outputView.printExceptionMessage(e.getMessage());
+            throw e;
         }
-        return null;
     }
 
     private LottoCollection getLottoCollection(PurchaseAmount purchaseAmount) {
@@ -137,18 +190,16 @@ public class LottoController {
 
 
     private PurchaseAmount readPurchaseAmount() {
-        double readLint;
+        double readLint = 0;
         try {
             outputView.printReadPurchaseAmount();
             readLint = inputView.readDouble();
-            return new PurchaseAmount(readLint);
         }catch (Exception e) {
             if (e instanceof NoSuchElementException) {
                 throw (NoSuchElementException) e;
             }
-            outputView.printExceptionMessage(e.getMessage());
-            readPurchaseAmount();
+            throw new IllegalArgumentException(ErrorMessage.READ_NUMBER_ERROR_MESSAGE);
         }
-        return null;
+        return new PurchaseAmount(readLint);
     }
 }
