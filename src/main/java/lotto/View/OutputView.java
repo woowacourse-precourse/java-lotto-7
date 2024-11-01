@@ -29,7 +29,7 @@ public class OutputView {
     }
 
     public static void printBlank(){
-        System.out.println("");
+        System.out.println();
     }
 
     public static void printReturn(Integer purchasePrice, Integer revenue){
