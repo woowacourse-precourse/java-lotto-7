@@ -15,7 +15,7 @@ class WinningNumbersTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
         int bonus = 8;
 
-        assertThatThrownBy(() -> WinningNumbers.generate(numbers, bonus))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,7 +25,7 @@ class WinningNumbersTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
         int bonus = 8;
 
-        assertThatThrownBy(() -> WinningNumbers.generate(numbers, bonus))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -35,7 +35,7 @@ class WinningNumbersTest {
         List<Integer> numbers = List.of(1, 2, 3, 999, 5, 6);
         int bonus = 8;
 
-        assertThatThrownBy(() -> WinningNumbers.generate(numbers, bonus))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -45,7 +45,7 @@ class WinningNumbersTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 3;
 
-        assertThatThrownBy(() -> WinningNumbers.generate(numbers, bonus))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -55,7 +55,7 @@ class WinningNumbersTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         int bonus = 999;
 
-        assertThatThrownBy(() -> WinningNumbers.generate(numbers, bonus))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

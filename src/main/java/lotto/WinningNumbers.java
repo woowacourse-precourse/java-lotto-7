@@ -11,12 +11,7 @@ public class WinningNumbers {
     private final List<Integer> numbers;
     private final int bonus;
 
-    protected WinningNumbers(List<Integer> numbers, int bonus) {
-        this.numbers = numbers;
-        this.bonus = bonus;
-    }
-
-    public static WinningNumbers generate(List<Integer> winningNumber, int bonus) {
+    public WinningNumbers(List<Integer> winningNumber, int bonus) {
         if(isInvalidSize(winningNumber))
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
 
@@ -26,36 +21,37 @@ public class WinningNumbers {
         if(hasNumbersOutOfRange(numberWithBonus))
             throw new IllegalArgumentException("당첨 번호와 bonus는 1~45 사이의 숫자여야 합니다.");
 
-        return new WinningNumbers(winningNumber, bonus);
+        this.numbers = winningNumber;
+        this.bonus = bonus;
     }
 
-    private static LinkedList<Integer> combine(List<Integer> winningNumbers, int bonus) {
+    private LinkedList<Integer> combine(List<Integer> winningNumbers, int bonus) {
         LinkedList<Integer> numbers = new LinkedList<>(winningNumbers);
         numbers.add(bonus);
         return numbers;
     }
 
-    private static boolean hasNumbersOutOfRange(List<Integer> numbers) {
+    private boolean hasNumbersOutOfRange(List<Integer> numbers) {
         return countNumbersInRange(numbers) != numbers.size();
     }
 
-    private static long countNumbersInRange(List<Integer> numbers) {
-        return numbers.stream().filter(WinningNumbers::isWithinLottoRange).count();
+    private long countNumbersInRange(List<Integer> numbers) {
+        return numbers.stream().filter(this::isWithinLottoRange).count();
     }
 
-    private static boolean isWithinLottoRange(Integer num) {
+    private boolean isWithinLottoRange(Integer num) {
         return MIN_LOTTO_NUMBER <= num && num <= MAX_LOTTO_NUMBER;
     }
 
-    private static boolean isInvalidSize(List<Integer> numbers) {
+    private boolean isInvalidSize(List<Integer> numbers) {
         return numbers.size() != LOTTO_SIZE;
     }
 
-    private static boolean hasDuplicatedNumbers(List<Integer> numbers) {
+    private boolean hasDuplicatedNumbers(List<Integer> numbers) {
         return countUniqueNumber(numbers) != numbers.size();
     }
 
-    private static long countUniqueNumber(List<Integer> numbers) {
+    private long countUniqueNumber(List<Integer> numbers) {
         return numbers.stream().distinct().count();
     }
 }
