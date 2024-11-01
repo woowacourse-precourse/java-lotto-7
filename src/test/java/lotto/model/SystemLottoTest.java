@@ -28,14 +28,14 @@ class SystemLottoTest {
     @Test
     void 생성된_숫자_개수_확인() {
         List<Integer> numbers = systemLotto.getNumbers();
-        assertEquals(Constants.LOTTO_COUNT, numbers.size());
+        assertEquals(Constants.LOTTO_NUMBER_COUNT, numbers.size());
     }
 
     @Test
     void 중복_없는_숫자_확인() {
         List<Integer> numbers = systemLotto.getNumbers();
         long uniqueCount = numbers.stream().distinct().count();
-        assertEquals(Constants.LOTTO_COUNT, uniqueCount);
+        assertEquals(Constants.LOTTO_NUMBER_COUNT, uniqueCount);
     }
 
     @Test

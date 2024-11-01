@@ -11,7 +11,7 @@ public class SystemLotto {
     private final List<Integer> numbers;
 
     public SystemLotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_COUNT);
+        this.numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_COUNT);
     }
 
     public List<Integer> getNumbers() {
