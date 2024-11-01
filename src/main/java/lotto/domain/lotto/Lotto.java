@@ -28,6 +28,17 @@ public class Lotto {
                 .anyMatch(number -> number.equals(target));
     }
 
+    public int countMatchingNumbers(Lotto winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean hasBonusNumbers(Number bonusNumber) {
+        return numbers.stream()
+                .anyMatch(bonusNumber::equals);
+    }
+
     public List<Number> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

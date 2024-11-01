@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.lotto.Lotto;
+
 public class AnswerNumbers {
 
     private final WinningNumbers winningNumbers;
@@ -12,6 +14,13 @@ public class AnswerNumbers {
 
     public static AnswerNumbers from(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         return new AnswerNumbers(winningNumbers, bonusNumber);
+    }
+
+    public Rank compare(Lotto lotto) {
+        return Rank.find(
+                lotto.countMatchingNumbers(winningNumbers.getWinningNumbers()),
+                lotto.hasBonusNumbers(bonusNumber.getBonusNumber())
+        );
     }
 
     public WinningNumbers getWinningNumbers() {
