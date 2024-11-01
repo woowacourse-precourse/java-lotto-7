@@ -10,6 +10,6 @@
 ### Lotto relation
 
 - generate 6 numbers randomly and non-duplicated from 1 to 45 
-   - [ ] generate random number from 1 to 45
-   - [ ] generate randomly 6 numbers
-   - [ ] validate numbers **whether number is duplicated or not** 
+   - [x] generate random number from 1 to 45
+   - [x] generate randomly 6 numbers
+   - [x] validate numbers **whether number is duplicated or not** 
