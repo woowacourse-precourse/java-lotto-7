@@ -2,9 +2,8 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.Lotto;
 import lotto.constant.Prize;
 import lotto.model.Purchase;
@@ -26,7 +25,7 @@ public class LottoController {
         Purchase purchase = requestPurchase();
         List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
         WinningNumbers winningNumbers = requestWinningNumbers();
-        Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
+        LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
         double rateOfReturn = calculateRateOfReturn(result, purchase.getPrice());
         outputView.printWinningResult(result, rateOfReturn);
     }
@@ -71,14 +70,14 @@ public class LottoController {
                 .toList();
     }
 
-    private Map<Prize, Integer> calculateResult(List<Lotto> lottoTickets, WinningNumbers winningNumbers) {
-        Map<Prize, Integer> result = new HashMap<>(Map.of(
-                Prize.FIRST, 0,
-                Prize.SECOND, 0,
-                Prize.THIRD, 0,
-                Prize.FOURTH, 0,
-                Prize.FIFTH, 0
-        ));
+    private LinkedHashMap<Prize, Integer> calculateResult(List<Lotto> lottoTickets, WinningNumbers winningNumbers) {
+        LinkedHashMap<Prize, Integer> result = new LinkedHashMap<>() {{
+            put(Prize.FIFTH, 0);
+            put(Prize.FOURTH, 0);
+            put(Prize.THIRD, 0);
+            put(Prize.SECOND, 0);
+            put(Prize.FIRST, 0);
+        }};
         for (Lotto lotto : lottoTickets) {
             Prize prize = winningNumbers.checkPrize(lotto);
             if (prize != Prize.NON) {
@@ -89,7 +88,7 @@ public class LottoController {
         return result;
     }
 
-    private double calculateRateOfReturn(Map<Prize, Integer> result, int purchasePrice) {
+    private double calculateRateOfReturn(LinkedHashMap<Prize, Integer> result, int purchasePrice) {
         int totalPrizeMoney = result.entrySet().stream()
                 .mapToInt(entry -> entry.getValue() * entry.getKey().getPrizeMoney())
                 .sum();
