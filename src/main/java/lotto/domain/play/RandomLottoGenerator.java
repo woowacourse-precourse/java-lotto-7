@@ -1,9 +1,8 @@
-package lotto.domain;
+package lotto.domain.play;
 
+import lotto.domain.ticket.Lotto;
+import lotto.domain.ticket.LottoNumber;
 import lotto.utils.UniqueNumberGenerator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RandomLottoGenerator implements LottoGenerator {
     private static final UniqueNumberGenerator UNIQUE_NUMBER_GENERATOR = new UniqueNumberGenerator(LottoNumber.MIN, LottoNumber.MAX);

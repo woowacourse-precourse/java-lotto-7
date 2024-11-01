@@ -1,6 +1,13 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.play.RandomLottoGenerator;
+import lotto.domain.play.Result;
+import lotto.domain.purchase.LottoMoney;
+import lotto.domain.purchase.LottoShop;
+import lotto.domain.play.WinCriteria;
+import lotto.domain.ticket.Lotto;
+import lotto.domain.play.LottoInventory;
+import lotto.domain.ticket.LottoNumber;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
 import lotto.io.InputReader;
@@ -20,13 +27,15 @@ public class LottoController {
     }
 
     public void run() {
-        LottoMachine lottoMachine = new LottoMachine(RandomLottoGenerator.getInstance());
+        LottoShop lottoShop = new LottoShop(RandomLottoGenerator.getInstance());
         LottoMoney money = requestMoney();
-        List<Lotto> lottos = lottoMachine.purchaseLottoWith(money);
+        List<Lotto> lottos = lottoShop.purchaseLottoWith(money);
+        LottoInventory lottoInventory = new LottoInventory(lottos);
         showPurchaseInfo(lottos);
         List<Integer> userInputWinningNumbers = requestWinningNumbers();
         int bonusNumberValue = requestBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(new Lotto(userInputWinningNumbers), LottoNumber.of(bonusNumberValue));
+        WinCriteria winCriteria = new WinCriteria(new Lotto(userInputWinningNumbers), LottoNumber.of(bonusNumberValue));
+        Result result = lottoInventory.calculateResult(winCriteria);
     }
 
     private void showPurchaseInfo(List<Lotto> lottos) {
@@ -52,7 +61,7 @@ public class LottoController {
 
     private LottosDto toDto(List<Lotto> lottos) {
         List<LottoDto> lottoDtos = lottos.stream()
-                .map(Lotto::getNumbers)
+                .map(Lotto::peekAll)
                 .map(lottoNumbers -> lottoNumbers.stream()
                         .map(LottoNumber::getNumber)
                         .toList())

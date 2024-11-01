@@ -1,6 +1,6 @@
-package lotto.domain;
+package lotto.domain.play;
 
-import java.util.List;
+import lotto.domain.ticket.Lotto;
 
 @FunctionalInterface
 public interface LottoGenerator {

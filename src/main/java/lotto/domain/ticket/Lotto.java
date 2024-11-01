@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +33,14 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public List<LottoNumber> getNumbers() {
-        return numbers;
+    public List<LottoNumber> peekAll() {
+        return List.copyOf(numbers);
+    }
+
+    public int countMatch(Lotto another) {
+        return (int) numbers.stream()
+                .filter(another.numbers::contains)
+                .distinct()
+                .count();
     }
 }

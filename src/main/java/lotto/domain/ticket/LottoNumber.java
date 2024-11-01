@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.ticket;
 
 import java.util.Objects;
 
@@ -38,8 +38,6 @@ public class LottoNumber implements Comparable<LottoNumber> {
     public int hashCode() {
         return Objects.hashCode(number);
     }
-
-
 
     @Override
     public String toString() {
