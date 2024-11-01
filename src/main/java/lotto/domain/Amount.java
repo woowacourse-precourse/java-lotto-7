@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.service.LottoPurchase.LOTTO_PRICE;
+import static lotto.controller.LottoMachine.LOTTO_PRICE;
 
 public class Amount {
 
@@ -11,6 +11,14 @@ public class Amount {
     public Amount(int value) {
         validate(value);
         this.value = value;
+    }
+
+    public static Amount parseAmount(String input) {
+        try {
+            return new Amount(Integer.parseInt(input));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(AMOUNT_ERROR_MSG);
+        }
     }
 
     private void validate(int value) {
