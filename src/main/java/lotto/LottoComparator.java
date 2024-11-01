@@ -26,8 +26,8 @@ public class LottoComparator {
                 System.out.println(lottoRank.getMessage() + " - " + rankCount[lottoRank.ordinal()] + "개");
             }
         }
-        Double profit = calculateProfit();
-        System.out.println("총 수익률은 %.1f%% 입니다." + profit);
+        double profitRate = ((double) totalPrize / (customerTickets.size() * 1000)) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
     public void calculateResult(){
@@ -38,10 +38,6 @@ public class LottoComparator {
 
             validateNoneMatch(rank);
         }
-    }
-
-    public Double calculateProfit(){
-        return (double) ((totalPrize / (customerTickets.size() * 1000)) * 100);
     }
 
     public int getMatchCount(List<Integer> customerNumbers, List<Integer> winningNumbers){
