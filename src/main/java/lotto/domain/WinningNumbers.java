@@ -1,16 +1,14 @@
 package lotto.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class WinningNumbers {
 
     private final List<Integer> numbers;
 
     private WinningNumbers(String numbers) {
-        this.numbers = Validator.validateWinningNumbers(numbers);
+        List<Integer> validateWinningNumbers = Validator.validateWinningNumbers(numbers);
+        this.numbers = sortWinningNumbers(validateWinningNumbers);
     }
 
     public static WinningNumbers from(String numbers) {
@@ -19,6 +17,12 @@ public class WinningNumbers {
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    private List<Integer> sortWinningNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     private static class Validator {

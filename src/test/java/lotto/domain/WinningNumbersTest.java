@@ -70,7 +70,7 @@ public class WinningNumbersTest {
 
     @Test
     void 당첨_번호가_정상적인_경우_테스트는_통과한다() {
-        List<Integer> numbers = WinningNumbers.from("1,2,3,4,5,6").getNumbers();
+        List<Integer> numbers = WinningNumbers.from("3,2,1,6,5,4").getNumbers();
         assertThat(numbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
