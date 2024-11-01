@@ -30,4 +30,20 @@ public class LottoDrawMachine {
     public Map<Rank, Integer> prizeWinningResult() {
         return winningResult;
     }
+
+    public Double calculateEarningsRate() {
+        int totalWinningPrice = sumTotalEarnings();
+        return (double) (totalWinningPrice / (lottos.size() * 1000));
+    }
+
+    private int sumTotalEarnings() {
+        int total = 0;
+        for (Map.Entry<Rank, Integer> entry : winningResult.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            if (count == 0) continue;
+            total += rank.price() * count;
+        }
+        return total;
+    }
 }
