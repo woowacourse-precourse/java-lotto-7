@@ -24,7 +24,7 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (LottoResult result : LottoResult.values()) {
-            System.out.printf("%개 일치 (%d원) - %d개%n",
+            System.out.printf("%d개 일치 (%d원) - %d개%n",
                     result.getMatchCount(),
                     result.getWinningAmount(),
                     statistics.getResultCounts().get(result));
