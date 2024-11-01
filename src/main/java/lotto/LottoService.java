@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -69,5 +68,10 @@ public class LottoService {
         }
 
         return totalPrize;
+    }
+
+    public static double calculateRateOfReturn(long totalPrize, int purchaseAmount) {
+        double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
+        return Math.round(rateOfReturn * 100) / 100.0;
     }
 }
