@@ -26,7 +26,7 @@ public class OutputView {
         System.out.println();
         List<Lotto> lottos = lottosDto.lottos().getLottos();
         int boughtAmount = lottos.size();
-        System.out.println(boughtAmount + OutputMessage.BOUGHT_AMOUNT.getInstance());
+        System.out.println(String.format(OutputMessage.BOUGHT_AMOUNT.getInstance(),boughtAmount));
         for (int i = 0; i < boughtAmount; i++) {
             System.out.println(lottos.get(i));
         }
