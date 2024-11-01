@@ -9,6 +9,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PurchaseAmountValidatorTest {
+    private static final int INVALID_AMOUNT_NOT_DIVISIBLE_BY_BASE_UNIT = 1500;
+    private static final int VALID_AMOUNT = 10000;
+
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" ", "         "})
@@ -28,8 +31,7 @@ class PurchaseAmountValidatorTest {
 
     @Test
     void 구입_금액이_1000원_단위가_아닐_경우_예외_테스트() {
-        int invalidAmount = 1500;
-        assertThatThrownBy(() -> PurchaseAmountValidator.validatePurchaseAmount(invalidAmount))
+        assertThatThrownBy(() -> PurchaseAmountValidator.validatePurchaseAmount(INVALID_AMOUNT_NOT_DIVISIBLE_BY_BASE_UNIT))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessageConstants.INVALID_LOTTO_AMOUNT_UNIT);
     }
@@ -44,7 +46,6 @@ class PurchaseAmountValidatorTest {
 
     @Test
     void 구입_금액_입력_정상_테스트() {
-        int validAmount = 5000;
-        PurchaseAmountValidator.validatePurchaseAmount(validAmount);
+        PurchaseAmountValidator.validatePurchaseAmount(VALID_AMOUNT);
     }
 }

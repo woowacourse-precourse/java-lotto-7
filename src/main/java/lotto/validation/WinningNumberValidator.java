@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumberValidator {
+    private WinningNumberValidator() {
+        throw new IllegalStateException(ErrorMessageConstants.INSTANCE_CREATION_ERROR);
+    }
+
     public static void validateWinningNumbersInput(String winningNumbersInput) {
         ValidationUtils.validateNotBlank(winningNumbersInput, ErrorMessageConstants.EMPTY_WINNING_NUMBERS);
 

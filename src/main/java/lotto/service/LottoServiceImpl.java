@@ -11,11 +11,10 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public int calculateLottoCount(String purchaseAmountInput) {
         PurchaseAmountValidator.validatePurchaseAmountInput(purchaseAmountInput);
-
-        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        int purchaseAmount = parsePurchaseAmount(purchaseAmountInput);
         PurchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
 
-        return calculateLottoCountFromAmount(purchaseAmount);
+        return convertToLottoCount(purchaseAmount);
     }
 
     @Override
@@ -28,7 +27,11 @@ public class LottoServiceImpl implements LottoService {
                 .toList();
     }
 
-    private int calculateLottoCountFromAmount(int purchaseAmount) {
-        return purchaseAmount / LottoConstants.LOTTO_PRICE;
+    private int parsePurchaseAmount(String purchaseAmountInput) {
+        return Integer.parseInt(purchaseAmountInput);
+    }
+
+    private int convertToLottoCount(int purchaseAmount) {
+        return purchaseAmount / LottoConstants.LOTTO_PRICE_BASE_UNIT;
     }
 }

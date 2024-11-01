@@ -1,5 +1,6 @@
 package lotto.generator;
 
+import lotto.constants.LottoConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,20 +18,20 @@ class LottoGeneratorTest {
     @Test
     void 로또_번호_6개_생성_테스트() {
         List<Integer> lottoNumbers = lottoGenerator.generate();
-        assertThat(lottoNumbers).hasSize(6);
+        assertThat(lottoNumbers).hasSize(LottoConstants.LOTTO_NUMBER_COUNT);
     }
 
     @Test
     void 로또_번호_범위_테스트() {
         List<Integer> lottoNumbers = lottoGenerator.generate();
-        assertThat(lottoNumbers).allMatch(number -> number >= 1 && number <= 45);
+        assertThat(lottoNumbers).allMatch(number -> number >= LottoConstants.LOTTO_MIN_NUMBER && number <= LottoConstants.LOTTO_MAX_NUMBER);
     }
 
     @Test
     void 로또_번호_중복_테스트() {
         List<Integer> lottoNumbers = lottoGenerator.generate();
         Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
-        assertThat(uniqueNumbers).hasSize(6);
+        assertThat(uniqueNumbers).hasSize(LottoConstants.LOTTO_NUMBER_COUNT);
     }
 
     @Test

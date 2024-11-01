@@ -3,6 +3,10 @@ package lotto.validation;
 import lotto.constants.ErrorMessageConstants;
 
 public class PurchaseAmountValidator {
+    private PurchaseAmountValidator() {
+        throw new IllegalArgumentException(ErrorMessageConstants.INSTANCE_CREATION_ERROR);
+    }
+
     public static void validatePurchaseAmountInput(String purchaseAmountInput) {
         ValidationUtils.validateNotBlank(purchaseAmountInput, ErrorMessageConstants.EMPTY_PURCHASE_AMOUNT);
         ValidationUtils.validateIsNumber(purchaseAmountInput, ErrorMessageConstants.INVALID_NUMBER_FORMAT);
