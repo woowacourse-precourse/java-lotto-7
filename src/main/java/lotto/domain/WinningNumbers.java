@@ -1,18 +1,15 @@
 package lotto.domain;
 
-import lotto.common.ErrorMessage;
-
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static lotto.common.ErrorMessage.ERROR_MESSAGE;
+import static lotto.common.NumberConstants.LOTTO_LENGTH;
 
 public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
 
     private final List<Integer> winningNumbers;
-    final int LOTTO_LENGTH = 6;
 
     public WinningNumbers(String rawWinningNumbers) {
         String trimWinningNumbers = rawWinningNumbers.trim();
@@ -50,6 +47,15 @@ public class WinningNumbers extends NumberImpl implements Iterable<Integer> {
 
     private boolean hasCorrectSize(List<String> numbers) {
         return numbers.size() == LOTTO_LENGTH;
+    }
+
+    public Map<Integer, Boolean> toMap() {
+        return winningNumbers.stream()
+                .collect(Collectors.toMap(number -> number, number -> true));
+    }
+
+    public Set<Integer> getKeySet() {
+        return toMap().keySet();
     }
 
     @Override

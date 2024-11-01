@@ -12,11 +12,11 @@ public class FortuneMachine {
     long count;
     List<Lotto> lottos;
 
-    public List<Lotto> buyLotto(Money money) {
+    public Lottos buyLotto(Money money) {
         count = money.getMoney() / NumberConstants.LOTTO_COST;
         lottos = new ArrayList<>();
         draw(count);
-        return lottos;
+        return new Lottos(lottos);
     }
 
     private void draw(long count) {

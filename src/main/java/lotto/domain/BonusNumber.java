@@ -13,7 +13,7 @@ public class BonusNumber extends NumberImpl {
         this.bonusNumber = Integer.parseInt(trimBonusNumber);
     }
 
-    public Integer getBonusNumber() {
+    public Integer value() {
         return bonusNumber;
     }
 

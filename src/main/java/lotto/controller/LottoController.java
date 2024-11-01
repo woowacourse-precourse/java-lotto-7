@@ -1,30 +1,16 @@
 package lotto.controller;
 
-import lotto.domain.FortuneMachine;
-import lotto.domain.Lotto;
-import lotto.domain.Money;
-import lotto.domain.WinningNumbers;
-import lotto.view.InputView;
-import lotto.view.OutputView;
-
-import java.util.List;
+import lotto.service.LottoService;
 
 public class LottoController {
 
-    InputView inputView;
-    OutputView outputView;
+    LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
     }
 
     public void run() {
-        Money money = inputView.getMoney();
-        FortuneMachine fortuneMachine = new FortuneMachine();
-        List<Lotto> lotto = fortuneMachine.buyLotto(money);
-        outputView.showLottos(lotto);
-        WinningNumbers winningNumbers = inputView.getWinningNumbers();
-
+        lottoService.run();
     }
 }
