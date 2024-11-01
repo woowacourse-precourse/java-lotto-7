@@ -1,8 +1,10 @@
 package lotto;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,5 +23,20 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("로또와 비교하여 겹치는 숫자의 개수를 반환한다.")
+    void testHowManyMatches() {
+        List<Integer> otherNumbers = Arrays.asList(4, 5, 6, 7, 8, 9);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = new Lotto(otherNumbers);
+
+        Assertions.assertEquals(3, lotto.howManyMatches(otherLotto));
+    }
+
+    @Test
+    @DisplayName("toString should return sorted string representation of numbers")
+    void testToString() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());
+    }
 }
