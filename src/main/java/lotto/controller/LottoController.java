@@ -24,14 +24,16 @@ public class LottoController {
         lottoOutputView.printLottoCount(lottoTicket.getLottosCount());
         lottoOutputView.printLottoTicket(lottoTicket.getLottoTicketNumbers());
         WinningLotto winningLotto = makeWinningNumber();
-        addBunusNumber();
+        addBunusNumber(winningLotto);
 
     }
 
-    private void addBunusNumber() {
+    private void addBunusNumber(WinningLotto winningLotto) {
         while (true) {
             try {
-                String bunusNumber = lottoInputView.getBonusNumber();
+                String bonusNumber = lottoInputView.getBonusNumber();
+                lottoService.addBonusNumber(winningLotto, bonusNumber);
+                return ;
             } catch (IllegalArgumentException exception) {
 
             }
