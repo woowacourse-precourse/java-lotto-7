@@ -48,4 +48,15 @@ public class LottoResult {
     public int getCountOf6Match() {
         return countOf6Match;
     }
+
+
+    public int totalWinningPrize() {
+        int winningPrize = 0;
+        winningPrize += countOf3Match * 5000;
+        winningPrize += countOf4Match * 50000;
+        winningPrize += countOf5Match * 1500000;
+        winningPrize += countOf5MatchAndBonus * 30000000;
+        winningPrize += countOf6Match * 2000000000;
+        return winningPrize;
+    }
 }
