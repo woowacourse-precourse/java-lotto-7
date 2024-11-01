@@ -24,16 +24,16 @@ public enum LottoRank {
                 .findAny()
                 .orElse(BLANK);
 
-        if(rottoRank == THIRD && bonusBall) {
+        if (rottoRank == THIRD && bonusBall) {
             return SECOND;
         }
         return rottoRank;
     }
 
-    public static String getCondition(LottoRank rank) {
-        String condition = rank.correctCount + "개 일치";
+    public String getCondition() {
+        String condition = correctCount + "개 일치";
 
-        if (rank == LottoRank.SECOND) {
+        if (this == LottoRank.SECOND) {
             condition += ", 보너스 볼 일치";
         }
         return condition;
