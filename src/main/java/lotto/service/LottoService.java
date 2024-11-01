@@ -5,18 +5,21 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
+import lotto.random.LottoRandom;
+import lotto.random.LottoRandomStrategy;
 
 public class LottoService {
 
     private Wallet wallet;
     private WinningLotto winningLotto;
+    private final LottoRandom lottoRandom = new LottoRandomStrategy();
 
     public void setupMoney(long money) {
         wallet = new Wallet(money);
     }
 
     public List<Lotto> buyTickets() {
-        wallet.buyLottoTickets();
+        wallet.buyLottoTickets(lottoRandom);
         return wallet.getTickets();
     }
 

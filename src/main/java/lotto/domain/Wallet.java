@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lotto.constant.RankPrice;
-import lotto.util.RandomUtil;
+import lotto.random.LottoRandom;
+import lotto.random.LottoRandomStrategy;
 
 public class Wallet {
 
@@ -21,11 +22,11 @@ public class Wallet {
         originalMoney = money;
     }
 
-    public void buyLottoTickets() {
+    public void buyLottoTickets(LottoRandom strategy) {
         long ticketCount = money / 1000;
         money -= ticketCount * 1000;
         while (ticketCount-- > 0) {
-            lottos.add(new Lotto(RandomUtil.getLottoNumbers()));
+            lottos.add(new Lotto(strategy.getLottoNumbers()));
         }
     }
 

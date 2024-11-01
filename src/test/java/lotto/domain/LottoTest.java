@@ -6,13 +6,23 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import lotto.constant.RankPrice;
-import lotto.util.RandomUtil;
+import lotto.random.LottoRandom;
+import lotto.random.LottoRandomStrategy;
 
 class LottoTest {
+
+    private LottoRandom lottoRandom;
+
+    @BeforeEach
+    void setup() {
+        lottoRandom = () -> List.of(1, 2, 3, 4, 5, 6);
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -28,14 +38,14 @@ class LottoTest {
 
     @Test
     void 당첨_내역을_계산한다() {
-        List<Integer> winningLottoNumbers = RandomUtil.getLottoNumbers();
+        List<Integer> winningLottoNumbers = lottoRandom.getLottoNumbers();
         List<Integer> numbers = new ArrayList<>();
         numbers.addAll(winningLottoNumbers);
         numbers.removeLast();
-        numbers.add(0);
+        numbers.add(7);
         Lotto lotto = new Lotto(numbers);
         WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers));
-        winningLotto.setupBonusNumber(46);
+        winningLotto.setupBonusNumber(8);
         RankPrice rankPrice = winningLotto.getRank(lotto);
         assertThat(rankPrice.getRank()).isEqualTo(3);
     }
@@ -43,7 +53,7 @@ class LottoTest {
     @Test
     void 수익률을_계산한다() {
         Wallet wallet = new Wallet(5000);
-        wallet.buyLottoTickets();
+        wallet.buyLottoTickets(lottoRandom);
         wallet.addRank(RankPrice.THIRD);
         assertThat(wallet.gain()).isEqualTo((double) 1_500_000 / 5_000 );
     }
