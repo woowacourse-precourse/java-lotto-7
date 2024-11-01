@@ -26,4 +26,10 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf((IllegalArgumentException.class));
     }
+
+    @Test
+    void 로또_번호에_음수가_포함된다면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, -2, 3, 4, 5, 6)))
+                .isInstanceOf((IllegalArgumentException.class));
+    }
 }
