@@ -6,8 +6,10 @@ import static lotto.constants.LottoNumbers.MIN_LOTTO_NUMBER;
 import static lotto.validation.WinningNumberValidation.parsedWinningNumbers;
 
 public class BonusNumberValidation {
+    public static int bonusNumber;
+
     public static void validate(String inputBonusNumber) {
-        int bonusNumber = parseNumber(inputBonusNumber);
+        bonusNumber = parseNumber(inputBonusNumber);
         validateRange10To45(bonusNumber);
         validateDuplication(bonusNumber);
     }

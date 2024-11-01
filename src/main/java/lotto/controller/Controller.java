@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.util.RandomNumberUtils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,6 +18,13 @@ public class Controller {
     public void run() {
         int thousandUnitCount = inputView.readPurchaseAmount();
         outputView.printUnitCount(thousandUnitCount);
-        outputView.printPurchaseLottos(thousandUnitCount);
+
+        Lottos lottos = new Lottos();
+
+        for (int count = 0; count < thousandUnitCount; count++) {
+            Lotto lotto = new Lotto(RandomNumberUtils.getRandomNumbers());
+            lottos.addLotto(lotto);
+            outputView.printPurchaseLottos(lotto);
+        }
     }
 }
