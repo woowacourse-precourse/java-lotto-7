@@ -23,6 +23,10 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
+    
+    protected boolean isContain(final int number) {
+        return numbers.contains(number);
+    }
 
     private void validate(final List<Integer> numbers) {
         validateSize(numbers);
@@ -73,10 +77,6 @@ public class Lotto {
         if (!VALID_NUMBER_PATTERN.matcher(lottoNumber).matches()) {
             throw new IllegalArgumentException("[ERROR] 입력에 숫자와 쉼표만 포함되어야 합니다.");
         }
-    }
-
-    protected boolean isContain(final int number) {
-        return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
