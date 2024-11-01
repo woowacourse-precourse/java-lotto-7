@@ -10,7 +10,7 @@ public class LottoCreator {
 	private static final int MAX_LOTTO_NUMBER = 45;
 	private static final int LOTTO_NUMBER_COUNT = 6;
 
-	public List<LottoNumber> createPurchasedLotto() {
+	public Lotto createPurchasedLotto() {
 		List<Integer> randomNumbers = getRandomNumbers();
 		List<LottoNumber> lottoNumbers = randomNumbers.stream()
 				.map(LottoNumber::from)
