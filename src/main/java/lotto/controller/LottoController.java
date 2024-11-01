@@ -1,18 +1,15 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
+import lotto.handler.InputHandler;
 import lotto.model.Customer;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
 import lotto.model.dto.LottoDto;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-
-    private static final String DELIMITER = ",";
 
     private final LottoService lottoService;
 
@@ -21,9 +18,7 @@ public class LottoController {
     }
 
     public void run() {
-        String rawPaidAmount = InputView.getPaidAmount();
-        InputValidator.validatePaidAmount(rawPaidAmount);
-        int paidAmount = Integer.parseInt(rawPaidAmount);
+        int paidAmount = InputHandler.getPaidAmount();
 
         List<LottoTicket> lottoTickets = lottoService.purchase(paidAmount);
         Customer customer = new Customer(paidAmount, lottoTickets);
@@ -31,17 +26,10 @@ public class LottoController {
         List<LottoDto> lottoNumbersOfCustomer = lottoService.getLottoNumbersOfCustomer(customer);
         OutputView.displayLottoNumbersOfCustomer(lottoNumbersOfCustomer);
 
-        String rawWinningNumbers = InputView.getWinningNumbers();
-        InputValidator.validateWinningNumbers(rawWinningNumbers);
-        List<Integer> parsedWinningNumbers = Arrays.stream(rawWinningNumbers.split(DELIMITER))
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> winningNumbers = InputHandler.getWinningNumbers();
+        int bonusNumber = InputHandler.getBonusNumber();
 
-        String rawBonusNumber = InputView.getBonusNumber();
-        InputValidator.validateWinningNumbers(rawBonusNumber);
-
-        WinningLotto winningLotto = lottoService.registerWinningNumbers(parsedWinningNumbers,
-                Integer.parseInt(rawBonusNumber));
+        WinningLotto winningLotto = lottoService.registerWinningNumbers(winningNumbers, bonusNumber);
 
         lottoService.determineRanks(customer, winningLotto);
         double profitRate = lottoService.calculateProfitRate(customer);
