@@ -17,9 +17,6 @@ public class LottoController {
 
     public void run() {
         String purchaseAmountInput = inputView.inputPurchaseAmount();
-        // 입력값 검증
-//        validatePurchaseAmount(purchaseAmountInput);
-        // 입력값이 유효할 경우 로또 개수 계산
         int purchaseAmount = Integer.parseInt(purchaseAmountInput);
         int lottoCount = purchaseAmount / 1000;
 
