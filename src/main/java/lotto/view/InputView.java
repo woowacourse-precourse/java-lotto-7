@@ -43,7 +43,6 @@ public class InputView {
         System.out.println(Constant.BONUS_NUMBER_PROMPT);
         String bonusNumber = Console.readLine();
 
-
         return bonusNumber;
     }
 

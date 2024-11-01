@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import lotto.utils.ErrorMessage;
 
 class LottoTest {
 
@@ -26,14 +27,16 @@ class LottoTest {
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
     }
 
     @Test
@@ -48,7 +51,7 @@ class LottoTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             validator.validateInputPurchaseAmount(input);
         });
-        assertEquals("[ERROR] 숫자만 입력할 수 있습니다.", exception.getMessage());
+        assertEquals(ErrorMessage.INVALID_NUMBER.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -57,7 +60,7 @@ class LottoTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             validator.validateInputPurchaseAmount(input);
         });
-        assertEquals("1000 이상의 금액을 입력해야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessage.PURCHASE_AMOUNT_TOO_LOW.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -66,7 +69,7 @@ class LottoTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             validator.validateInputPurchaseAmount(input);
         });
-        assertEquals("구입 금액은 1000원 단위로 입력해야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -75,8 +78,8 @@ class LottoTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Lotto(numbers);
         });
-        assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", exception.getMessage());
-        }
+        assertEquals(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage(), exception.getMessage());
+    }
 
     @Test
     void 중복이_있을_때_예외발생() {
@@ -84,15 +87,16 @@ class LottoTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Lotto(numbers);
         });
-        assertEquals("[ERROR] 로또 번호는 중복될 수 없습니다.", exception.getMessage());
-        }
+        assertEquals(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage(), exception.getMessage());
+    }
+
     @Test
-    void 번호가_범위를_벗어나면_예외빌생() {
+    void 번호가_범위를_벗어나면_예외발생() {
         List<Integer> numbers = Arrays.asList(0, 2, 5, 10, 50, 100);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new Lotto(numbers);
         });
-        assertEquals("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.", exception.getMessage());
+        assertEquals(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage(), exception.getMessage());
     }
 
     @Test
@@ -100,10 +104,24 @@ class LottoTest {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertDoesNotThrow(() -> new Lotto(numbers));
     }
+
+    @Test
+    void 보너스_번호가_범위를_벗어나면_예외발생() {
+        String inputBonusNumber = "50";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateInputBonusNumber(inputBonusNumber, winningNumbers);
+        });
+        assertEquals(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage(), exception.getMessage());
     }
 
-
-
-
-
-
+    @Test
+    void 보너스_번호가_당첨번호와_중복되면_예외발생() {
+        String inputBonusNumber = "5";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validator.validateInputBonusNumber(inputBonusNumber, winningNumbers);
+        });
+        assertEquals(ErrorMessage.DUPLICATE_BONUS_NUMBER_WITH_WINNING.getMessage(), exception.getMessage());
+    }
+}
