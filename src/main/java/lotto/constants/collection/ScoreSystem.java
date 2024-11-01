@@ -3,10 +3,11 @@ package lotto.constants.collection;
 import lotto.constants.Constants;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public enum ScoreSystem implements Constants<HashMap> {
+public enum ScoreSystem implements Constants<LinkedHashMap> {
 
     DEFAULT(new HashMap<>() {{
         put(List.of(3, 0), 0);
@@ -24,8 +25,8 @@ public enum ScoreSystem implements Constants<HashMap> {
 
     //방어적 복사
     @Override
-    public HashMap<List<Integer>, Integer> getInstance() {
-        return new HashMap<>(scoringMap);
+    public LinkedHashMap<List<Integer>, Integer> getInstance() {
+        return new LinkedHashMap<>(scoringMap);
     }
 
 }

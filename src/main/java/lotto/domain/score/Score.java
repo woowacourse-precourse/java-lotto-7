@@ -7,18 +7,15 @@ import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.dto.ScoreDto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 public class Score {
 
-    private final HashMap<List<Integer>, Integer> scoreSystem ;
+    private final LinkedHashMap<List<Integer>, Integer> scoreSystem ;
 
     public Score(ScoreSystem scoreSystem) {
-        this.scoreSystem = new HashMap<>(scoreSystem.getInstance());
+        this.scoreSystem = scoreSystem.getInstance();
     }
 
     public ScoreDto printScore(Lottos lottos, Lotto winningLotto, BonusComponent bonusComponent) {
