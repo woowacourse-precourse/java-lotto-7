@@ -7,7 +7,8 @@ public enum ErrorMessage {
     INVALID_PURCHASE_TYPE("구매 금액은 숫자로만 입력해주세요."),
     INVALID_PURCHASE_AMOUNT_UNIT("구매 금액은 1000원 단위만 가능합니다."),
     INVALID_PURCHASE_MIN("구매 금액은 1000원 이상이여야합니다."),
-    INVALID_BONUS_NUMBER_RANGE("보너스 숫자는 1에서 45사이의 숫자여야합니다.");
+    INVALID_BONUS_NUMBER_RANGE("보너스 숫자는 1에서 45사이의 숫자여야합니다."),
+    INVALID_BONUS_NUMBER_DUPLICATE("보너스 숫자는 당첨 숫자와 달라야합니다.");
 
     private static final String PREFIX = "[ERROR] ";
     private final String message;
