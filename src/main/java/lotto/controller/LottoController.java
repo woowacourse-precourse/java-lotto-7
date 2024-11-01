@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.validation.ErrorMessage;
 import lotto.model.LottoModel;
 import lotto.validation.Validator;
 import lotto.view.LottoView;
@@ -15,13 +14,11 @@ public class LottoController {
     public void start() {
         int lottoCount = getLottoCount();
         lottoView.output.lottoCount(lottoCount);
+        lottoModel.generateLottos(lottoCount);
         for (int i = 0; i < lottoCount; i++) {
-            lottoModel.makeRandomLottoNumbers();
             lottoView.output.lottoNumber(lottoModel.getLottoNumbers(i));
         }
-
         List<Integer> winningNumber = getWinningNumber();
-
         int bonusNumber = getBonusNumber(winningNumber);
 
         //당첨 로직 구현
