@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.PriceRule.*;
 
 public class Consumer {
     private List<Lotto> lottoTicket;
@@ -31,7 +32,7 @@ public class Consumer {
             int price = Integer.parseInt(priceInput);
             validatePriceScope(price);
             validatePriceUnit(price);
-            return price / 1000;
+            return price / CompareInteger.PRICE_LOTTO.getNumber();
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             // 사용자로부터 priceInput을 다시 입력 받는다.
@@ -40,20 +41,20 @@ public class Consumer {
     }
 
     private void validatePriceOnlyInteger(String priceInput) throws IllegalArgumentException {
-        if (!priceInput.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException(PriceRule.ONLY_INTEGER.getMessage());
+        if (!priceInput.matches(MATCH_NUMBER.getMessage())) {
+            throw new IllegalArgumentException(ONLY_INTEGER.getMessage());
         }
     }
 
     private void validatePriceScope(Integer price) throws IllegalArgumentException{
-        if (price < 1000 || 100000 < price) {
-            throw new IllegalArgumentException(PriceRule.SCOPE.getMessage());
+        if (price < CompareInteger.PRICE_MINIMUM.getNumber() || CompareInteger.PRICE_MAXIMUM.getNumber() < price) {
+            throw new IllegalArgumentException(SCOPE.getMessage());
         }
     }
 
     private void validatePriceUnit(Integer price) throws IllegalArgumentException {
-        if (price % 1000 != 0) {
-            throw new IllegalArgumentException(PriceRule.PRICE_UNIT.getMessage());
+        if (price % CompareInteger.PRICE_LOTTO.getNumber() != CompareInteger.ZERO.getNumber()) {
+            throw new IllegalArgumentException(PRICE_UNIT.getMessage());
         }
     }
 
