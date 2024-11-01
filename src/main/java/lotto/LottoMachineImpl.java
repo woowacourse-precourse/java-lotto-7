@@ -8,10 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoMachineImpl implements LottoMachine {
-    private static final List<Lotto> lottoTickets = new ArrayList<>();
-
     @Override
     public List<Lotto> createLottoTickets(String inputMoney) {
+        List<Lotto> lottoTickets = new ArrayList<>();
         int money = InputValidater.validateMoney(inputMoney);
         int count = money % 1000;
 
@@ -19,7 +18,7 @@ public class LottoMachineImpl implements LottoMachine {
             Lotto newLottoTicket = new Lotto(pickLottoNumbers());
             lottoTickets.add(newLottoTicket);
         }
-        showCreateLottoTickets(count);
+        showCreateLottoTickets(count, lottoTickets);
 
         return lottoTickets;
     }
@@ -64,7 +63,7 @@ public class LottoMachineImpl implements LottoMachine {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    private void showCreateLottoTickets(int count) {
+    private void showCreateLottoTickets(int count, List<Lotto> lottoTickets) {
         System.out.println(count + "개를 구매했습니다.");
 
         for (Lotto lotto : lottoTickets) {
