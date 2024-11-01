@@ -5,8 +5,7 @@ public class BonusNumber {
     private final int bonusNumber;
 
     private BonusNumber(String bonusNumber) {
-        Validator.validateBonusNumber(bonusNumber);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+        this.bonusNumber = Validator.validateBonusNumber(bonusNumber);
     }
 
     public static BonusNumber from(String bonusNumber) {
@@ -19,9 +18,11 @@ public class BonusNumber {
 
     private static class Validator {
 
-        private static void validateBonusNumber(String bonusNumber) {
+        private static int validateBonusNumber(String bonusNumber) {
             validateWinningNumbersIsNotEmpty(bonusNumber);
-            validateBonusNumberIsNumeric(bonusNumber);
+            int numericBonusNumber = validateBonusNumberIsNumeric(bonusNumber);
+            validateBonusNumberInRange(numericBonusNumber);
+            return numericBonusNumber;
         }
 
         private static void validateWinningNumbersIsNotEmpty(String bonusNumber) {
@@ -30,9 +31,16 @@ public class BonusNumber {
             }
         }
 
-        private static void validateBonusNumberIsNumeric(String bonusNumber) {
+        private static int validateBonusNumberIsNumeric(String bonusNumber) {
             if (!bonusNumber.matches("-?\\d+")) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 가능합니다.");
+            }
+            return Integer.parseInt(bonusNumber);
+        }
+
+        private static void validateBonusNumberInRange(int bonusNumber) {
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자가 입력 가능합니다.");
             }
         }
 
