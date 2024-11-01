@@ -11,19 +11,18 @@ import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ResultEvaluatorTest {
+class ResultEvaluatorTest {
 
   @DisplayName("로또 티켓의 당첨 결과를 정확히 평가한다")
   @Test
   void 로또_티켓의_당첨_결과를_정확히_평가한다() {
-    List<Lotto> lottos = List.of(
-        new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 1등
-        new Lotto(List.of(1, 2, 3, 4, 5, 7)), // 2등
-        new Lotto(List.of(1, 2, 3, 4, 5, 8)), // 3등
-        new Lotto(List.of(1, 2, 3, 4, 7, 8)), // 4등
-        new Lotto(List.of(1, 2, 3, 7, 8, 9)), // 5등
-        new Lotto(List.of(1, 2, 7, 8, 9, 10)), // 꽝
-        new Lotto(List.of(7, 8, 9, 10, 11, 12)) // 꽝
+    List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+        new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+        new Lotto(List.of(1, 2, 3, 4, 5, 8)),
+        new Lotto(List.of(1, 2, 3, 4, 7, 8)),
+        new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+        new Lotto(List.of(1, 2, 7, 8, 9, 10)),
+        new Lotto(List.of(7, 8, 9, 10, 11, 12))
     );
 
     WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));

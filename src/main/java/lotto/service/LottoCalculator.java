@@ -10,14 +10,13 @@ public class LottoCalculator {
     return purchaseAmount.divide(BigDecimal.valueOf(LOTTO_PRICE)).intValue();
   }
 
-  public BigDecimal calculateProfitRate(long totalPrize, BigDecimal purchaseAmount) {
+  public BigDecimal calculateProfitRate(Long totalPrize, BigDecimal purchaseAmount) {
     if (purchaseAmount.compareTo(BigDecimal.ZERO) == 0) {
       return BigDecimal.ZERO;
     }
     BigDecimal profitRate = BigDecimal.valueOf(totalPrize)
-        .divide(purchaseAmount, 2, RoundingMode.HALF_UP)
         .multiply(BigDecimal.valueOf(100))
-        .setScale(1, RoundingMode.HALF_UP);
+        .divide(purchaseAmount, 1, RoundingMode.HALF_UP);
     return profitRate;
   }
 

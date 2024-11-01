@@ -7,7 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BonusNumberTest {
+class BonusNumberTest {
+
   @DisplayName("정상적인 보너스 번호 입력 시 객체가 생성된다")
   @Test
   void 정상적인_보너스_번호_입력_시_객체가_생성된다() {

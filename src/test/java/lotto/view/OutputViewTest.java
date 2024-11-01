@@ -16,6 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
+
   private final OutputView outputView = new OutputView();
 
   @DisplayName("로또 발행 결과를 출력한다")

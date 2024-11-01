@@ -6,7 +6,8 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoCalculatorTest {
+class LottoCalculatorTest {
+
   @DisplayName("구매 금액에 따른 티켓 수를 정확히 계산한다")
   @Test
   void 구매_금액에_따른_티켓_수를_정확히_계산한다() {
@@ -19,7 +20,7 @@ public class LottoCalculatorTest {
   @Test
   void 총_당첨금과_구매_금액에_따른_수익률을_정확히_계산한다() {
     LottoCalculator calculator = new LottoCalculator();
-    BigDecimal profitRate = calculator.calculateProfitRate(5000, new BigDecimal("8000"));
+    BigDecimal profitRate = calculator.calculateProfitRate(5000L, new BigDecimal("8000"));
     assertEquals(new BigDecimal("62.5"), profitRate);
   }
 

@@ -15,13 +15,19 @@ public class LottoMachine {
     List<Lotto> lottoTickets = new ArrayList<>();
 
     for (int i = 0; i < ticketCount; i++) {
-      List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-          LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT
-      );
-      Collections.sort(numbers);
+      List<Integer> numbers = pickUniqueNumbersInRange();
       lottoTickets.add(new Lotto(numbers));
     }
 
     return lottoTickets;
+  }
+
+  private List<Integer> pickUniqueNumbersInRange() {
+    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+        LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT
+    );
+    List<Integer> mutableNumbers = new ArrayList<>(numbers);
+    Collections.sort(mutableNumbers);
+    return mutableNumbers;
   }
 }

@@ -41,7 +41,8 @@ public class LottoManager {
     BonusNumber bonusNumber = inputHandler.getBonusNumber(winningNumber);
 
     Result result = lottoEvaluator.evaluateLottoTickets(lottos, winningNumber, bonusNumber);
+    BigDecimal profitRate = lottoCalculator.calculateProfitRate(result.calculateTotalPrize(), purchaseAmount);
 
-    outputView.printResult(result, purchaseAmount);
+    outputView.printResult(result, profitRate);
   }
 }

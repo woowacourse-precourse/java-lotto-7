@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningNumberTest {
+class WinningNumberTest {
 
   @DisplayName("정상적인 당첨 번호 입력 시 객체가 생성된다")
   @Test

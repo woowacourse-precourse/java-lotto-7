@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PurchaseAmountTest {
+class PurchaseAmountTest {
 
   @DisplayName("정상적인 금액 입력 시 객체가 생성된다")
   @Test

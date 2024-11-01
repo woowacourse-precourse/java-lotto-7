@@ -26,14 +26,13 @@ public class OutputView {
     return lotto.getNumbers().toString();
   }
 
-  public void printResult(Result result, BigDecimal purchaseAmount) {
+  public void printResult(Result result, BigDecimal profitRate) {
     System.out.println();
     System.out.println("당첨 통계");
     System.out.println("---");
 
     printRankCounts(result.getRankCounts());
 
-    BigDecimal profitRate = calculateProfitRate(result.calculateTotalPrize(), purchaseAmount);
     printProfitRate(profitRate);
   }
 
@@ -70,17 +69,6 @@ public class OutputView {
 
   private String formatPrize(long prize) {
     return String.format("%,d원", prize);
-  }
-
-  private BigDecimal calculateProfitRate(long totalPrize, BigDecimal purchaseAmount) {
-    if (purchaseAmount.compareTo(BigDecimal.ZERO) == 0) {
-      return BigDecimal.ZERO;
-    }
-    BigDecimal profitRate = BigDecimal.valueOf(totalPrize)
-        .divide(purchaseAmount, 2, RoundingMode.HALF_UP)
-        .multiply(BigDecimal.valueOf(100))
-        .setScale(1, RoundingMode.HALF_UP);
-    return profitRate;
   }
 
   private void printProfitRate(BigDecimal profitRate) {
