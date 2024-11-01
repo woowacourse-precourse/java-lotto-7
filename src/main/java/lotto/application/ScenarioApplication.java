@@ -32,13 +32,13 @@ public class ScenarioApplication {
         calculateResult(purchasePrice, prizeNumber);
     }
 
-    public Lottos buyLottos(LottoQuantity lottoQuantity) {
+    private Lottos buyLottos(LottoQuantity lottoQuantity) {
         Lottos lottos = Lottos.from(lottoQuantity, makingNumbersStrategy);
         printer.printPurchaseResult(lottoQuantity.value(), lottos);
         return lottos;
     }
 
-    public WinNumbers readAllWinNumbers() {
+    private WinNumbers readAllWinNumbers() {
         WinNumbers winNumbersWithoutBonusNumber = readWinNumbers();
         return readBonusNumber(winNumbersWithoutBonusNumber);
     }
