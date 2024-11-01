@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LottoBundle {
 
@@ -16,5 +17,11 @@ public class LottoBundle {
 
 	private int calculateCount(int price) {
 		return price / SINGLE_LOTTO_PRICE;
+	}
+
+	private List<Lotto> createLotto(int count, LottoCreator lottoCreator) {
+		return Stream.generate(lottoCreator::createPurchasedLotto)
+				.limit(count)
+				.toList();
 	}
 }
