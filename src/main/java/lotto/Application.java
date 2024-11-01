@@ -29,6 +29,8 @@ public class Application {
 
         LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto, bonusNumber);
 
+        output.printWinningStatistics();
+
     }
 
     public static void main(String[] args) {
