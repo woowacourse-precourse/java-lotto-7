@@ -16,5 +16,6 @@ public class LottoController {
     public void run() {
         int numberOfLotto = view.inputPriceView();
         model.setUserLotto(numberOfLotto);
+        view.outputUserLottoView(model.getUserLotto());
     }
 }
