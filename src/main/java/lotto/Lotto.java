@@ -50,7 +50,11 @@ public class Lotto {
     }
 
     public int matchCount(Lotto lotto) {
-        return (int) lotto.numbers.stream().filter(this.numbers::contains).count();
+        return (int) lotto.numbers.stream().filter(this::contains).count();
+    }
+
+    public boolean contains(LottoNumber lottoNumber) {
+        return this.numbers.contains(lottoNumber);
     }
 
     @Override

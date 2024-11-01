@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTest {
     @Test
@@ -30,5 +32,12 @@ class LottoTest {
     void 일치하는_로또번호의_개수를_반환한다() {
         Lotto lotto = Lotto.fromIntegers(List.of(1, 2, 3, 4, 7, 8));
         assertThat(lotto.matchCount(Lotto.fromIntegers(List.of(1, 2, 3, 4, 5, 6)))).isEqualTo(4);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "6,false"}, delimiter = ',')
+    void 로또_숫자가_존재하는지_반환한다(int number, boolean result) {
+        Lotto lotto = Lotto.fromIntegers(List.of(1, 2, 3, 4, 7, 8));
+        assertThat(lotto.contains(new LottoNumber(number))).isEqualTo(result);
     }
 }
