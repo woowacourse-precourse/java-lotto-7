@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.common.Validator;
 import lotto.model.Lotto;
+import lotto.model.LottoDrawMachine;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -21,12 +22,16 @@ public class LottoController {
 
     public void getUserInput() {
         int price = getPrice();
-
         int quantity = validator.parseQuantity(price);
         inputView.printLottoQuantity(quantity);
-
         List<Lotto> lottos = makeLottos(quantity);
         printLottos(lottos);
+
+        List<Integer> winingNumbers = inputView.getWiningNumber();
+        int bonusNumber = getBonusNumber();
+        validator.isUniqueNumbers(winingNumbers, bonusNumber);
+
+        LottoDrawMachine lottoDrawMachine = lottoService.makeLottoDrawMachine(lottos, winingNumbers, bonusNumber);
     }
 
     private int getPrice() {
@@ -50,5 +55,12 @@ public class LottoController {
                         .sorted()
                         .toList())
                 .forEach(inputView::printLottos);
+    }
+
+    private int getBonusNumber() {
+        String input = inputView.getBonusNumber();
+        int bonusNumber = validator.isNumber(input);
+        validator.isNumberInRange(input);
+        return bonusNumber;
     }
 }

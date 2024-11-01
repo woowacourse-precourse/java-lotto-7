@@ -1,7 +1,14 @@
 package lotto.common;
 
+import java.util.List;
+import java.util.regex.Pattern;
+
 public class Validator {
-    private final static int CRITERIA_PRICE = 1000;
+    private static final int CRITERIA_PRICE = 1000;
+    private static final String REGEX_NUMBER_PATTERN = "^(?:[1-9]|[1-3][0-9]|4[0-5])$";
+    private static final String REGEX_INVALID_DELIMITER_PATTERN = ".*[^,\\w\\s].*";
+    private static final Pattern validNumber = Pattern.compile(REGEX_NUMBER_PATTERN);
+    private static final Pattern InvalidDelimiter = Pattern.compile(REGEX_INVALID_DELIMITER_PATTERN);
 
     public void validatePrice(int price) {
         isPositivePrice(price);
@@ -12,7 +19,7 @@ public class Validator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(ExceptionCode.INVALID_PRICE.message());
+            throw new NumberFormatException(ExceptionCode.INVALID_NUMBER.message());
         }
     }
 
@@ -32,10 +39,23 @@ public class Validator {
         return price / CRITERIA_PRICE;
     }
 
-    // 2.당첨 번호 구분자 validate
-    // 당첨 번호 구분자 번호는 쉼표(,)를 기준으로 구분한다.
+    public void validateDelimiter(String input) {
+        if (InvalidDelimiter.matcher(input).matches()) {
+            throw new IllegalArgumentException(ExceptionCode.INVALID_DELIMITER.message());
+        }
+    }
 
-    // 3.당첨 번호 validate
-    // 1~45 까지의 번호가 아니라면 예외 처리한다.
+    public void isNumberInRange(String input) {
+        if (!validNumber.matcher(input).matches()) {
+            throw new IllegalArgumentException(ExceptionCode.INVALID_RANGE_NUMBER.message());
+        }
+    }
 
+    public void isUniqueNumbers(List<Integer> winingNumbers, int bonusNumber) {
+        boolean isDuplicate = winingNumbers.stream()
+                .anyMatch(num -> num.equals(bonusNumber));
+        if (isDuplicate) {
+            throw new IllegalArgumentException(ExceptionCode.BONUS_NUMBER_DOES_NOT_UNIQUE.message());
+        }
+    }
 }
