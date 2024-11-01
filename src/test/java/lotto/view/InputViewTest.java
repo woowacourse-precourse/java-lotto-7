@@ -26,12 +26,12 @@ class InputViewTest {
     @AfterEach
     void tearDown() {
         System.setIn(originalIn);
+        Console.close(); // 테스트를 마치면 입력 버퍼를 flush
     }
 
     private void setInput(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
     }
-
 
     @Test
     @DisplayName("올바른 구입 금액 입력 테스트")
@@ -45,6 +45,4 @@ class InputViewTest {
         // Then
         assertEquals(5000, purchaseAmount);
     }
-
-
 }
