@@ -10,8 +10,8 @@ public class AmountValidator {
         return convert(inputPurchaseAmount);
     }
 
-    private void isBlank(String inputString) {
-        if (Objects.isNull(inputString) || inputString.isBlank()) {
+    private void isBlank(String input) {
+        if (Objects.isNull(input) || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액이 비어있습니다.");
         }
     }
@@ -28,9 +28,9 @@ public class AmountValidator {
         }
     }
 
-    private Integer convert(String inputString) {
+    private Integer convert(String input) {
         try {
-            Integer amount = Integer.parseInt(inputString);
+            Integer amount = Integer.parseInt(input);
             isDivisibleBy1000(amount);
             isZeroOrNegative(amount);
 
