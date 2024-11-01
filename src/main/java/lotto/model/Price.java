@@ -11,6 +11,10 @@ public class Price {
 		this.price = price;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+
 	private void validatePrice(int price) {
 		isDivisibleByThousand(price);
 		isPositive(price);
