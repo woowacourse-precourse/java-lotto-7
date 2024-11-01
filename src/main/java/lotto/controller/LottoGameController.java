@@ -8,6 +8,7 @@ import static lotto.view.OutputView.printReturnRate;
 import static lotto.view.OutputView.printWinningStatsTitle;
 import static lotto.view.OutputView.printWinningSummary;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -46,6 +47,8 @@ public class LottoGameController {
         final Lottos lottos = purchaseLotto();
         final WinningNumbers winningNumbers = getWinningNumbers();
         final BonusNumber bonusNumber = getBonusNumber(winningNumbers);
+
+        Console.close();
 
         return lottoService.createLottoGame(lottos, winningNumbers, bonusNumber);
     }
