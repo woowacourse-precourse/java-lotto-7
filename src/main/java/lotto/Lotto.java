@@ -24,7 +24,7 @@ public class Lotto {
         }
     }
 
-    public int getPrize(List<Integer> winningNumbers, int bonus) {
+    public int getPlace(List<Integer> winningNumbers, int bonus) {
         int matchCount = 0;
         boolean isBonusMatch = false;
         for (Integer number : numbers) {
@@ -34,11 +34,11 @@ public class Lotto {
                 isBonusMatch = true;
         }
 
-        if (matchCount == 6) return 2_000_000_000;
-        if (matchCount == 5 && isBonusMatch) return 30_000_000;
-        if (matchCount == 5) return 1_500_000;
-        if (matchCount == 4) return 50_000;
-        if (matchCount == 3) return 5_000;
+        if (matchCount == 6) return 1;
+        if (matchCount == 5 && isBonusMatch) return 2;
+        if (matchCount == 5) return 3;
+        if (matchCount == 4) return 4;
+        if (matchCount == 3) return 5;
         return 0;
     }
 

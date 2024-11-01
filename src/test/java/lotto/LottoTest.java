@@ -39,18 +39,18 @@ class LottoTest {
         Lotto fifth = new Lotto(List.of(1, 2, 3, 10, 11, 12));
         Lotto none = new Lotto(List.of(1, 2, 10, 11, 12, 13));
 
-        int firstPrize = first.getPrize(winningNumbers, bonus);
-        int secondPrize = second.getPrize(winningNumbers, bonus);
-        int thirdPrize = third.getPrize(winningNumbers, bonus);
-        int forthPrize = forth.getPrize(winningNumbers, bonus);
-        int fifthPrize = fifth.getPrize(winningNumbers, bonus);
-        int nonePrize = none.getPrize(winningNumbers, bonus);
+        int firstPrize = first.getPlace(winningNumbers, bonus);
+        int secondPrize = second.getPlace(winningNumbers, bonus);
+        int thirdPrize = third.getPlace(winningNumbers, bonus);
+        int forthPrize = forth.getPlace(winningNumbers, bonus);
+        int fifthPrize = fifth.getPlace(winningNumbers, bonus);
+        int nonePrize = none.getPlace(winningNumbers, bonus);
 
-        assertThat(firstPrize).isEqualTo(2_000_000_000);
-        assertThat(secondPrize).isEqualTo(30_000_000);
-        assertThat(thirdPrize).isEqualTo(1_500_000);
-        assertThat(forthPrize).isEqualTo(50_000);
-        assertThat(fifthPrize).isEqualTo(5_000);
+        assertThat(firstPrize).isEqualTo(1);
+        assertThat(secondPrize).isEqualTo(2);
+        assertThat(thirdPrize).isEqualTo(3);
+        assertThat(forthPrize).isEqualTo(4);
+        assertThat(fifthPrize).isEqualTo(5);
         assertThat(nonePrize).isEqualTo(0);
     }
 
