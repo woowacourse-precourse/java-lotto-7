@@ -3,13 +3,16 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int purchaseAmount = 0;
         Lotto winningNumbersLotto;
+
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             String purchasePriceInput = Console.readLine();
@@ -58,11 +61,13 @@ public class Application {
             }
         }
 
+        int bonusNumber;
+
         while (true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             String bonusNumberInput = Console.readLine();
             try{
-                int bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbersLotto);
+                bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbersLotto);
 
                 break;
             } catch (IllegalArgumentException e) {
@@ -70,7 +75,75 @@ public class Application {
             }
         }
 
+        Map<PrizeRank, Integer> prizeRankCounts = new HashMap<>();
+
+        for (PrizeRank prizeRank : PrizeRank.values()) {
+            prizeRankCounts.put(prizeRank, 0);
+        }
+
+        for (Lotto lotto : myLottos) {
+            int matchCount = lotto.getMatchCount(winningNumbersLotto);
+            boolean isBonusMatch = lotto.isBonusMatch(bonusNumber);
+            PrizeRank prizeRank = PrizeRank.getPrizeRank(matchCount, isBonusMatch);
+            prizeRankCounts.put(prizeRank, prizeRankCounts.get(prizeRank) + 1);
+        }
+
+        double rateOfReturn = getRateOfReturn(prizeRankCounts, purchaseAmount);
+
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + prizeRankCounts.get(PrizeRank.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + prizeRankCounts.get(PrizeRank.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + prizeRankCounts.get(PrizeRank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeRankCounts.get(PrizeRank.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + prizeRankCounts.get(PrizeRank.FIRST) + "개");
+        System.out.println("총 수익률은 "+ String.format("%.1f", rateOfReturn) +"%입니다.");
     }
+
+    public enum PrizeRank {
+        FIRST(6, 2_000_000_000),
+        SECOND(5, 30_000_000),
+        THIRD(5, 1_500_000),
+        FOURTH(4, 50_000),
+        FIFTH(3, 5_000),
+        NONE(0, 0);
+
+        private final int matchCount;
+        private final int prizeAmount;
+
+        PrizeRank(int matchCount, int prizeAmount) {
+            this.matchCount = matchCount;
+            this.prizeAmount = prizeAmount;
+        }
+
+        public int getMatchCount() {
+            return matchCount;
+        }
+
+        public int getPrizeAmount() {
+            return prizeAmount;
+        }
+
+        public static PrizeRank getPrizeRank(int matchCount, boolean isBonusMatch) {
+            if (matchCount == FIRST.matchCount) {
+                return FIRST;
+            }
+            if (matchCount == SECOND.matchCount && isBonusMatch) {
+                return SECOND;
+            }
+            if (matchCount == THIRD.matchCount) {
+                return THIRD;
+            }
+            if (matchCount == FOURTH.matchCount) {
+                return FOURTH;
+            }
+            if (matchCount == FIFTH.matchCount) {
+                return FIFTH;
+            }
+            return NONE;
+        }
+    }
+
     static int validatePurchasePrice(String purchasePriceInput) {
         try{
             return Integer.parseInt(purchasePriceInput);
@@ -107,5 +180,17 @@ public class Application {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    public static double getRateOfReturn(Map<PrizeRank, Integer> prizeRankCounts, int purchaseAmount) {
+        // 수익률 = 총상금 / 구입금액 * 100
+        // 수익률 = 총상금 / (구입개수 * 1000) * 100
+        double totalPrizeAmount = 0;
+        for (PrizeRank prizeRank : PrizeRank.values()) {
+            double prizeAmount = prizeRank.getPrizeAmount();
+            int prizeCount = prizeRankCounts.get(prizeRank);
+            totalPrizeAmount += prizeAmount * prizeCount;
+        }
+        return totalPrizeAmount / (purchaseAmount * 1000) * 100;
     }
 }

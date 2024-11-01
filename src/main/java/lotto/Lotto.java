@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -41,6 +39,27 @@ public class Lotto {
 
     public boolean contains(Integer number) {
         return numbers.contains(number);
+    }
+
+    public int getMatchCount(Lotto winningNumbers) {
+        int matchCount = 0;
+
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    public boolean isBonusMatch(int bonusNumber) {
+        for (int number : numbers) {
+            if (number == bonusNumber) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
