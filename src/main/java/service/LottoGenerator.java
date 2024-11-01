@@ -1,12 +1,13 @@
 package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.Lotto;
 
 import java.util.List;
 
 public class LottoGenerator {
 
-    public static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static Lotto generateLottoNumbers() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 }
