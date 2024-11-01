@@ -37,6 +37,12 @@ public class InputValidator {
         validateRangeNumber(input);
     }
 
+    public void validateBonusNumberExcluding(int bonusNumber, List<Integer> numberList) {
+        if (numberList.contains(bonusNumber)) {
+            throw new IllegalArgumentException("당첨 번호와 중복되지 않는 번호를 입력해주세요.");
+        }
+    }
+
     private void validateParseNumber(String input) {
         try {
             Integer.parseInt(input);

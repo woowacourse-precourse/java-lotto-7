@@ -53,7 +53,7 @@ public class LottoController {
 
     private WinningLotto inputWinningLotto() {
         List<Integer> winningNumberList = attemptWinningNumber();
-        Integer winningBonusNumber = attemptWinningBonusNumber();
+        Integer winningBonusNumber = attemptWinningBonusNumberExclude(winningNumberList);
 
         return lottoMachine.generateWinningLotto(winningNumberList, winningBonusNumber);
     }
@@ -72,16 +72,18 @@ public class LottoController {
         }
     }
 
-    private Integer attemptWinningBonusNumber() {
+    private Integer attemptWinningBonusNumberExcluding(List<Integer> numberList) {
         try {
             String rawWinningBonusNumber = inputView.inputWinningBonusNumber();
             inputValidator.validateInputBonusNumber(rawWinningBonusNumber);
+            int bonusNumber = Integer.parseInt(rawWinningBonusNumber);
+            inputValidator.validateBonusNumberExcluding(bonusNumber, numberList);
 
-            return Integer.parseInt(rawWinningBonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException exception) {
             outputView.printException(exception.getMessage());
 
-            return attemptWinningBonusNumber();
+            return attemptWinningBonusNumberExcluding(numberList);
         }
     }
 }
