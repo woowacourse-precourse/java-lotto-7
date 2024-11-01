@@ -8,11 +8,13 @@ import static lotto.exception.ExceptionCode.REMAINDER_EXISTED;
 public class Money {
 
     private final BigInteger value;
+    private final BigInteger numberOfLotto;
     public static final BigInteger LOTTO_PRICE = new BigInteger("1000");
 
     public Money(BigInteger value) {
         validate(value);
         this.value = value;
+        this.numberOfLotto = value.divide(LOTTO_PRICE);
     }
 
     private void validate(BigInteger value) {
@@ -23,5 +25,9 @@ public class Money {
         if (!value.remainder(LOTTO_PRICE).equals(BigInteger.ZERO)) {
             throw new IllegalArgumentException(REMAINDER_EXISTED.message());
         }
+    }
+
+    public BigInteger numberOfLotto() {
+        return this.numberOfLotto;
     }
 }
