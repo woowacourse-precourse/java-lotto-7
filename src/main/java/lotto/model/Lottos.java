@@ -12,7 +12,7 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Score> calculateResult(WinningLotto winningLotto) {
+    public List<Score> calculateScore(WinningLotto winningLotto) {
         return lottos.stream()
                 .map(lotto -> Score.calculateScore(lotto, winningLotto))
                 .collect(Collectors.toList());
