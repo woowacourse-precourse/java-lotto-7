@@ -3,7 +3,7 @@ package lotto;
 import java.util.Arrays;
 
 public class Parser {
-    String WINNING_NUMBER_OPERATOR = ",";
+    private static final String WINNING_NUMBER_OPERATOR = ",";
 
     int purchaseAmount(String purchaseInput) {
         return Integer.parseInt(purchaseInput);
