@@ -55,10 +55,18 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("null 테스트")
+    @DisplayName("null 주입 테스트")
     void test3() {
         assertThatThrownBy(() -> new Lotto(null))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("toString 동작 테스트")
+    void test4() {
+        List<LottoNum> lottoNums = toLottoNumList(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(lottoNums);
+        assertThat(lotto.toString()).hasToString("[1, 2, 3, 4, 5, 6]");
     }
 
 

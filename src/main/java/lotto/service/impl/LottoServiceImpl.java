@@ -7,6 +7,7 @@ import lotto.domain.ProfitRate;
 import lotto.domain.WinnerCountList;
 import lotto.domain.WinnerLotto;
 import lotto.domain.WinnerStatus;
+import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
 import lotto.dto.ProfitRateResultDto;
 import lotto.dto.WinnerStatusDto;
@@ -20,14 +21,15 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public LottoList generateLottoList(MoneyDto moneyDto) {
+    public LottoListDto generateLottoList(MoneyDto moneyDto) {
         Money money = moneyDto.money();
 
-        return LottoList.generate(money);
+        return LottoList.generate(money)
+                .toDto();
     }
 
     @Override
-    public WinnerLotto createWinnerLotto(String input) {
+    public WinnerLotto addWinnerLotto(String input) {
         return WinnerLotto.create(input);
     }
 
@@ -39,10 +41,12 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public WinnerStatusDto calculateWinnerStatus(LottoList lottoList, WinnerLotto winnerLotto) {
-        if (winnerLotto.hasBonusNum()) {
+    public WinnerStatusDto calculateWinnerStatus(LottoListDto lottoListDto, WinnerLotto winnerLotto) {
+        if (!winnerLotto.hasBonusNum()) {
             throw new IllegalStateException("보너스 번호가 들어가지 않았습니다.");
         }
+
+        LottoList lottoList = lottoListDto.lottoList();
 
         WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
         WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);

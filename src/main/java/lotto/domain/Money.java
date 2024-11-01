@@ -23,11 +23,11 @@ public class Money {
     }
 
     public MoneyDto toDto() {
-        return DtoMapper.toMoneyDto(this, amount);
+        return DtoMapper.toMoneyDto(this, amount / 1000);
     }
 
-    protected String calculateProfitRate(BigDecimal sum) {
-        return sum.divide(BigDecimal.valueOf(amount), 2, RoundingMode.HALF_UP).toString();
+    protected String calculateProfitRate(BigDecimal sumPercentage) {
+        return sumPercentage.divide(BigDecimal.valueOf(amount), 1, RoundingMode.HALF_UP).toString();
     }
 
     private Long parseMoney(String money) {

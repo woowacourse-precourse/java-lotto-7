@@ -20,7 +20,6 @@ public class WinnerStatus {
         return new WinnerStatus(winnerCountList);
     }
 
-
     public WinnerStatusDto toDto() {
         return DtoMapper.toWinnerStatusDto(this, createMessage());
     }

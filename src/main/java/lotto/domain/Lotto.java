@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 public class Lotto {
     private static final int START_NUM = 1;
@@ -97,6 +98,11 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        StringJoiner joiner = new StringJoiner(", ");
+        for (LottoNum num : numbers) {
+            joiner.add(num.toString());
+        }
+
+        return "[" + joiner + "]";
     }
 }

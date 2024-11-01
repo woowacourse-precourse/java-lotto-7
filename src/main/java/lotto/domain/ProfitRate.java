@@ -6,6 +6,8 @@ import lotto.utils.DtoMapper;
 
 public class ProfitRate {
 
+    public static final BigDecimal PERCENTAGE = new BigDecimal("100");
+
     private final Money money;
     private final WinnerStatus winnerStatus;
 
@@ -23,8 +25,8 @@ public class ProfitRate {
     }
 
     public String calculate() {
-        BigDecimal sum = winnerStatus.sum();
-        return money.calculateProfitRate(sum);
+        BigDecimal sumPercentage = winnerStatus.sum().multiply(PERCENTAGE);
+        return money.calculateProfitRate(sumPercentage);
     }
 
 }
