@@ -150,6 +150,23 @@ public class InputTest {
                 validator.validate(input);
             });
         }
+
+        @DisplayName("null 인 경우 예외")
+        @Test
+        void 널_보너스_숫자_예외(){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validate(null);
+            });
+        }
+
+        @DisplayName("숫자가 아닌경우 예외")
+        @ParameterizedTest()
+        @ValueSource(strings = {"a","aa"," ", "a b", ":", ","})
+        void 숫자가_아닌_보너스_숫자(String input){
+            assertThrows(IllegalArgumentException.class, () -> {
+                validator.validate(input);
+            });
+        }
     }
 
 }
