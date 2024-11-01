@@ -41,4 +41,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    public int drawEachLotto(Lotto lotto) {
+        int matchingAmount = 0;
+        for (int number : lotto.getNumbers()) {
+            if (numbers.contains(number)) {
+                matchingAmount++;
+            }
+        }
+        return matchingAmount;
+    }
 }

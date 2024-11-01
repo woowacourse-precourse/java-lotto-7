@@ -16,6 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class AdditionalApplicationTest {
+    private final Lotto defaultWinningNumbers = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+    private final int defaultBonusNumber = 7;
+
     @Test
     void 양의정수_10자리_이하_금액을_입력한다() {
         String testString = "50";
@@ -198,28 +201,47 @@ public class AdditionalApplicationTest {
 
     @Test
     void 보너스번호를_저장한다() {
-        Lotto defaultLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Lotto defaultWinningNumbers = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         String testNumber = "7";
 
-        assertThatCode(() -> Application.registerBonusNumber(testNumber, defaultLotto))
+        assertThatCode(() -> Application.registerBonusNumber(testNumber, defaultWinningNumbers))
                 .doesNotThrowAnyException();
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"-1", "0", "46"})
     void 보너스번호_1이상_45이하가_아니면_예외(String testNumber) {
-        Lotto defaultLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
-        assertThatIllegalArgumentException().isThrownBy(() -> Application.registerBonusNumber(testNumber, defaultLotto))
+        assertThatIllegalArgumentException().isThrownBy(() -> Application.registerBonusNumber(testNumber, defaultWinningNumbers))
                 .withMessage("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
     }
 
     @Test
     void 보너스번호_당첨번호와_중복되면_예외() {
-        Lotto defaultLotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         int testNumber = 1;
-        assertThatIllegalArgumentException().isThrownBy(() -> defaultLotto.validateDuplicationWithBonusNumber(testNumber))
+        assertThatIllegalArgumentException().isThrownBy(() -> defaultWinningNumbers.validateDuplicationWithBonusNumber(testNumber))
                 .withMessage("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 값입니다.");
     }
+
+    @ParameterizedTest
+    @MethodSource("lottoProvider")
+    void 당첨번호와_로또의_일치개수를_확인한다(int matchingAmount, List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+
+        assertThat(defaultWinningNumbers.drawEachLotto(lotto)).isEqualTo(matchingAmount);
+    }
+
+    static Stream<Object[]> lottoProvider() {
+        return Stream.of(
+                new Object[]{6, Arrays.asList(1, 2, 3, 4, 5, 6)}, //6개 일치
+                new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 7)}, //5개 일치
+                new Object[]{5, Arrays.asList(1, 2, 3, 4, 5, 8)}, //5개 일치
+                new Object[]{4, Arrays.asList(1, 2, 3, 4, 8, 9)}, //4개 일치
+                new Object[]{3, Arrays.asList(1, 2, 3, 8, 9, 10)}, //3개 일치
+                new Object[]{2, Arrays.asList(1, 2, 8, 9, 10, 11)}, //2개 일치
+                new Object[]{1, Arrays.asList(1, 8, 9, 10, 11, 12)}
+        );
+    }
+
 
 
 

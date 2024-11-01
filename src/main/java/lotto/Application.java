@@ -13,6 +13,8 @@ public class Application {
         printIssuedLottos(lottos);
         Lotto winningNumbers = pickWinningNumbers();
         int bonusNumber = pickBonusNumber(winningNumbers);
+
+        drawLottos(lottos, winningNumbers, bonusNumber);
     }
 
     private static int purchaseLottos() {
@@ -69,6 +71,13 @@ public class Application {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return pickBonusNumber(winningNumbers);
+        }
+    }
+
+    public static void drawLottos(List<Lotto> lottos, Lotto winningNumbers) {
+        for (Lotto lotto : lottos) {
+            int matchingAmount = winningNumbers.drawEachLotto(lotto);
+
         }
     }
 
