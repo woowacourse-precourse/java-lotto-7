@@ -5,13 +5,16 @@ import lotto.constant.Rank;
 import lotto.dto.LottoResult;
 
 public class WinningLotto {
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 45;
+    public static final String BONUS_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 보너스 번호는 %d와 %d사이 숫자여야합니다.";
     public static final String BONUS_NUMBER_DUPLICATE_MESSAGE = "[ERROR] 보너스 번호는 로또 번호와 중복될 수 없습니다.";
 
     private final Lotto ticket;
     private final int bonusNumber;
 
     public WinningLotto(Lotto ticket, int bonusNumber) {
-        validate(ticket, bonusNumber);
+        validate(bonusNumber);
         this.ticket = ticket;
         this.bonusNumber = bonusNumber;
     }
@@ -25,13 +28,12 @@ public class WinningLotto {
         return LottoResult.of(rank, matchedCount);
     }
 
-    private void validate(Lotto ticket, int bonusNumber) {
-        if (containsDuplicateNumbers(ticket, bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_MESSAGE);
-        }
+    private void validate(int bonusNumber) {
+        validateRange(bonusNumber);
+        validateDuplicate(bonusNumber);
     }
 
-    private boolean containsDuplicateNumbers(Lotto ticket, int bonusNumber) {
+    private boolean containsDuplicateNumbers(int bonusNumber) {
         return ticket.getNumbers().stream().anyMatch(n -> n == bonusNumber);
     }
 
@@ -56,5 +58,17 @@ public class WinningLotto {
 
     private boolean containsBonusNumber(Lotto customerLotto) {
         return customerLotto.getNumbers().contains(bonusNumber);
+    }
+
+    private void validateDuplicate(int bonusNumber) {
+        if (containsDuplicateNumbers(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_MESSAGE);
+        }
+    }
+
+    private void validateRange(int bonusNumber) {
+        if (bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE) {
+            throw new IllegalArgumentException(String.format(BONUS_NUMBER_RANGE_ERROR_MESSAGE, MIN_RANGE, MAX_RANGE));
+        }
     }
 }
