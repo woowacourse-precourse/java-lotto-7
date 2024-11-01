@@ -22,11 +22,11 @@ public class OutputView {
         return instance;
     }
 
-    public void printBoughtLottos(LottosDto lottosDto, int boughtAmount) {
+    public void printBoughtLottos(LottosDto lottosDto) {
         System.out.println();
-        System.out.println(boughtAmount + OutputMessage.BOUGHT_AMOUNT.getInstance());
         List<Lotto> lottos = lottosDto.lottos().getLottos();
-
+        int boughtAmount = lottos.size();
+        System.out.println(boughtAmount + OutputMessage.BOUGHT_AMOUNT.getInstance());
         for (int i = 0; i < boughtAmount; i++) {
             System.out.println(lottos.get(i));
         }
