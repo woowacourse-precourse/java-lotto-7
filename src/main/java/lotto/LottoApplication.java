@@ -14,5 +14,6 @@ public class LottoApplication {
         lottoPurchaseController.start();
 
         LottoDrawingController lottoDrawingController = new LottoDrawingController(lottos, lottoPurchase);
+        lottoDrawingController.start();
     }
 }
