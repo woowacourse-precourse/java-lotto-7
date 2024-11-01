@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.config.*;
 import lotto.domain.Lotto;
+import lotto.io.msg.LottoInquiryMessage;
 import lotto.validator.LottoInputValidator;
 import lotto.io.*;
 
@@ -21,6 +22,9 @@ public class LottoService {
     private final Input input;
     private final Output output;
     private final LottoInputValidator lottoInputValidator;
+
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     private LottoService(LottoConfig config) {
         this.input = config.input();
@@ -48,19 +52,28 @@ public class LottoService {
         return lottos;
     }
 
+    public void setWinningNumbers() {
+
+        List<Integer> temp = Arrays.stream(input.inputWinningNumbers()).map(Integer::parseInt).toList();
+
+
+    }
+
+    public void setBonusNumber() {
+
+    }
+
     private int inputMoney() {
 
-        int money = -1;
+        String money = input.inputMoney();
 
-        while(money == -1) {
-            try {
-                money = lottoInputValidator.checkInputMoney(input.inputMoney());
-            } catch(IllegalArgumentException e) {
-                continue;
-            }
+        try {
+            lottoInputValidator.checkInputMoney(money);
+        } catch(IllegalArgumentException e) {
+            return inputMoney();
         }
 
-        return money;
+        return Integer.parseInt(money);
     }
 
     private Lotto issueLotto() {

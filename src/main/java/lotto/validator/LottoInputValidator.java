@@ -19,7 +19,7 @@ public class LottoInputValidator {
         return lottoInputValidator;
     }
 
-    public int checkInputMoney(String input) throws IllegalArgumentException {
+    public boolean checkInputMoney(String input) throws IllegalArgumentException {
 
         int money;
         try {
@@ -32,6 +32,8 @@ public class LottoInputValidator {
             throw new IllegalArgumentException(LottoErrorMessage.MONEY_EXCEPTION.getMsg());
         }
 
-        return money;
+        return true;
     }
+
+    // public boolean check
 }
