@@ -71,4 +71,8 @@ public class InputService {
         return winningNumbers;
     }
 
+    public int validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
+        return validateWinningNumber(winningNumbers, bonusNumber);
+    }
+
 }
