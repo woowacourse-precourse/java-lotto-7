@@ -13,15 +13,11 @@ public class InputController {
 
     //복권 구매가격 받아오기
     public int setPurchasePrice() {
-        int purchasePrice = inputView.inputPurchasePrice();
-        validation.purchaseValidator(purchasePrice);
-        return purchasePrice/LOTTO_PRICE;
+        return inputView.inputPurchasePrice()/LOTTO_PRICE;
     }
     //복권 당첨숫자 받아오기
     public ArrayList<Integer> setWinningNumber() {
         String[] winningNumber = inputView.setWinningNumber();
-        validation.winningNumberValidator(winningNumber);
-
         return new ArrayList<>(Arrays.stream(winningNumber)
                 .map(Integer::valueOf)
                 .toList());

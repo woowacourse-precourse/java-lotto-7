@@ -1,45 +1,68 @@
 package lotto.View;
 
+
+import static lotto.Model.ErrorCode.PARSING_INTEGER_ERROR;
+import static lotto.Model.ErrorCode.RETRY_MESSAGE;
+
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Model.Validation;
 
 public class InputView {
+
+    private final static Validation validation = new Validation();
+
+
     //사용자에게 구입금액 입력받는 메소드
     public int inputPurchasePrice() {
-        try {
-            System.out.println("구입금액을 입력해주세요");
-            String input = Console.readLine();
-
-            if (!input.matches("\\d+")) {
-                throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해주세요.");
+        System.out.println("구입 금액을 입력해 주세요");
+        while (true){
+            try{
+                int purchasePrice=Integer.parseInt(Console.readLine());
+                validation.purchaseValidator(purchasePrice);
+                return purchasePrice;
+            }catch (NumberFormatException e){
+                System.out.println(PARSING_INTEGER_ERROR.getMessage());
+                System.out.println(RETRY_MESSAGE.getMessage());
             }
-            return Integer.parseInt(input);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputPurchasePrice();
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println(RETRY_MESSAGE.getMessage());
+            }
         }
 
     }
+
     //사용자에게 당첨번호 받는 로직
     public String[] setWinningNumber() {
         System.out.println("당첨 번호를 쉼표로 구분해 입력해 주세요 당첨번호는 1~45까지 6자리 수 입니다");
-        return Console.readLine().split(",");
+        while (true){
+            try{
+                String[] winningNumber=Console.readLine().split(",");
+                validation.winningNumberValidator(winningNumber);
+                return winningNumber;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println(RETRY_MESSAGE.getMessage());
+            }
+        }
     }
+
+
     //사용자에게 보너스 번호 받는 로직
     public int setBonusNumber() {
-        try {
-            System.out.println("보너스 번호를 입력해 주세요");
-            String bonusNumber = Console.readLine();
-
-            if (!bonusNumber.matches("\\d+")) {
-                throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해주세요.");
+        System.out.println("보너스숫자를 입력해 주세요");
+        while (true){
+            try{
+                int bonusNumber=Integer.parseInt(Console.readLine());
+                validation.bonusNumberValidator(bonusNumber);
+                return bonusNumber;
+            }catch(NumberFormatException e){
+                System.out.println(e.getMessage());
+                System.out.println(RETRY_MESSAGE.getMessage());
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+                System.out.println(RETRY_MESSAGE.getMessage());
             }
-
-            return Integer.parseInt(bonusNumber);
-
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return setBonusNumber();
         }
 
     }

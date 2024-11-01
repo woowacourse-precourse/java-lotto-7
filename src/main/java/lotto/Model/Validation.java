@@ -11,6 +11,7 @@ public class Validation {
         if (input < 1000 || input % 1000 != 0) {
             throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT.getMessage());
         }
+
     }
 
     public void bonusNumberValidator(int input) {
@@ -23,6 +24,7 @@ public class Validation {
         Arrays.stream(setNumber).forEach(number->
                 validateRange(Integer.parseInt(number)));
     }
+
 
     private void validateNumberCount(String[] setNumber) {
         if (setNumber.length != 6) {
