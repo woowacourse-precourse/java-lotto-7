@@ -17,4 +17,14 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public boolean isContained(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getMatchCount(Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContained)
+                .count();
+    }
 }
