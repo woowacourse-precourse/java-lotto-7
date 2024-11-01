@@ -7,7 +7,7 @@
 - "구입금액을 입력해 주세요." 안내 문구 출력
 1. 금액이 입력되지 않은 경우
     - IllegalArgumentException 발생
-    - 에러 문구 "[ERROR] 금액이 입력되지 않았습니다." 출력
+    - 에러 문구 "[ERROR] 빈 입력입니다." 출력
     - 금액을 다시 입력 받음
 2. 금액이 1000원 보다 작은 경우
     - IllegalArgumentException 발생
@@ -33,7 +33,7 @@
 - "당첨 번호를 입력해 주세요." 안내 문구 출력
 1. 당첨 번호가 입력되지 않은 경우
     - IllegalArgumentException 발생
-    - 에러 문구 "[ERROR] 로또 번호가 입력되지 않았습니다." 출력
+    - 에러 문구 "[ERROR] 빈 입력입니다." 출력
     - 당첨 번호를 다시 입력 받음
 2. 입력된 당첨 번호의 개수가 6개가 아닌 경우
     - IllegalArgumentException 발생
@@ -58,7 +58,7 @@
 - "보너스 번호를 입력해 주세요." 안내 문구 출력
 1. 보너스 번호가 입력되지 않은 경우
     - IllegalArgumentException 발생
-    - 에러 문구 "[ERROR] 보너스 번호가 입력되지 않았습니다." 출력
+    - 에러 문구 "[ERROR] 빈 입력입니다." 출력
     - 보너스 번호를 다시 입력 받음
 2. 당첨 번호와 중복된 값이 입력된 경우
     - IllegalArgumentException 발생
