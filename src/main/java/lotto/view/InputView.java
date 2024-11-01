@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constant.Message.BONUS_NUMBER_INPUT_GUIDE;
 import static lotto.constant.Message.PURCHASE_AMOUNT_INPUT_GUIDE;
 import static lotto.constant.Message.WINNER_NUMBER_INPUT_GUIDE;
 
@@ -14,6 +15,10 @@ public class InputView {
 
     public void printWinnerNumberInput() {
         System.out.println(WINNER_NUMBER_INPUT_GUIDE);
+    }
+
+    public void printBonusNumberInput() {
+        System.out.println(BONUS_NUMBER_INPUT_GUIDE);
     }
 
     public String getInput() {
