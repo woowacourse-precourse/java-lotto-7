@@ -11,10 +11,10 @@ public class Application {
 
         View view = new View();
         LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
-        LottoService lottoService = new LottoService(numberGenerator);
+        LottoService service = new LottoService(numberGenerator);
 
         User user = new User();
-        LottoController controller = new LottoController(view, lottoService);
+        LottoController controller = new LottoController(view, service);
         controller.run(user);
     }
 }

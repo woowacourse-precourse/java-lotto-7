@@ -1,7 +1,5 @@
 package lotto.service;
 
-import static lotto.model.Lotto.countMatchingNumbers;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,9 +17,8 @@ public class LottoService {
 
     }
 
-    // 로또 번호 설정 및 검증 후 설정
-    public void setAdditionalNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        // 검증 로직 추가 가능 (예: 중복 체크, 범위 체크 등)
+    // 로또 번호 설정
+    public void setExtra(List<Integer> winningNumbers, int bonusNumber) {
         numberGenerator.setWinningNumbers(winningNumbers);
         numberGenerator.setBonusNumber(bonusNumber);
     }
@@ -43,13 +40,21 @@ public class LottoService {
     }
 
 
-    public Map<Lotto, Integer> countMatchingNumbersForAllTickets(List<Integer> winningNumbers) {
-        Map<Lotto, Integer> matchCounts = new HashMap<>();
+    public Map<Lotto, Map<String, Object>> checkMatches(List<Integer> winningNumbers, int bonusNumber) {
+        Map<Lotto, Map<String, Object>> matchResults = new HashMap<>();
         for (Lotto ticket : issuedTickets) {  // 로또서비스가 가진 모든 로또 티켓 가져오기
-            int matchCount = countMatchingNumbers(ticket, winningNumbers);
-            matchCounts.put(ticket, matchCount);  // 각 티켓과 일치하는 숫자 수를 저장
+            int matchCount = Lotto.checkMatch(ticket, winningNumbers);
+            boolean bonusMatch = Lotto.isBonusMatch(ticket, bonusNumber);
+            matchResults.put(ticket, createMatchResult(matchCount, bonusMatch));  // 티켓과 결과 매핑
         }
-        return matchCounts;
+        return matchResults;
+    }
+
+    private Map<String, Object> createMatchResult(int matchCount, boolean bonusMatch) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("matchCount", matchCount);
+        result.put("bonusMatch", bonusMatch);
+        return result;
     }
 
     public List<Integer> getLottoNumbers() { // 가장 마지막에 생성된 로또번호

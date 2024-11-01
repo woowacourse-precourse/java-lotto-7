@@ -16,7 +16,7 @@ public class Lotto {
         }
     }
 
-    public static int countMatchingNumbers(Lotto ticket, List<Integer> winningNumbers) {
+    public static int checkMatch(Lotto ticket, List<Integer> winningNumbers) {
         int matchCount = 0;
         for (Integer number : ticket.numbers) {
             if (winningNumbers.contains(number)) {
@@ -24,6 +24,11 @@ public class Lotto {
             }
         }
         return matchCount;
+    }
+
+    // 보너스 번호 일치 여부를 확인하는 함수
+    public static boolean isBonusMatch(Lotto ticket, int bonusNumber) {
+        return ticket.numbers.contains(bonusNumber);
     }
 
 
