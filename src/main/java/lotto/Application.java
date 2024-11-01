@@ -33,5 +33,23 @@ public class Application {
             }
             System.out.println("------------------------");
         }
+
+        for (String input : testInputs) {
+            try {
+                System.out.println("테스트 입력값: " + input);
+
+                // PurchaseAmount 객체 생성
+                PurchaseAmount purchaseAmount = PurchaseAmount.from(input);
+
+                // 로또 티켓 개수 계산 (예: 1,000원 당 1개 구매 가능)
+                int ticketCount = purchaseAmount.amount() / 1000;
+
+                // 개수를 출력
+                outputView.printPurchasedTicketCount(ticketCount);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("------------------------");
+        }
     }
 }
