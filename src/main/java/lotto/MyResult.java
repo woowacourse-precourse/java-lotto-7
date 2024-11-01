@@ -13,7 +13,7 @@ public class MyResult {
         return matches;
     }
 
-    public Boolean getBonusPoint() {
+    public Boolean getIsBonus() {
         return isBonus;
     }
 
