@@ -13,6 +13,9 @@ import lotto.error.exception.InvalidLottoNumberException;
 import lotto.generator.LottoGenerator;
 
 public class Lotto {
+    private final static int SIZE = 6;
+    private final static int RANGE_MIN = 1;
+    private final static int RANGE_MAX = 45;
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
@@ -45,7 +48,7 @@ public class Lotto {
         if (numbers.contains(bonusNumber)) {
             throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
         }
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < RANGE_MIN || bonusNumber > RANGE_MAX) {
             throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
         }
     }
@@ -62,7 +65,7 @@ public class Lotto {
     }
 
     private void validateSize(final List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE) {
             throw new InvalidLottoNumberException(INSUFFICIENT_OR_EXCESSIVE_NUMBERS);
         }
     }
@@ -76,7 +79,7 @@ public class Lotto {
 
     private void validateNumberRange(final List<Integer> numbers) {
         numbers.forEach(number -> {
-            if (number < 1 || number > 45) {
+            if (number < RANGE_MIN || number > RANGE_MAX) {
                 throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
             }
         });
