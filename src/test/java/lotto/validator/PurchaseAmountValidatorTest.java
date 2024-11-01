@@ -31,4 +31,12 @@ public class PurchaseAmountValidatorTest {
             purchaseAmountValidator = new PurchaseAmountValidator("-2000");
         }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 구입 금액은 0원 이상이어야 합니다.");
     }
+
+    @Test
+    @DisplayName("구입 금액이 1000원 단위인지 확인")
+    void 구입_금액_1000원_단위_테스트() {
+        assertThatThrownBy(() -> {
+            purchaseAmountValidator = new PurchaseAmountValidator("1005");
+        }).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 구입 금액은 1000원 단위이어야 합니다.");
+    }
 }
