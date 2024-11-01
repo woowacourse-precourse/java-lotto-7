@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
+import lotto.model.LottoStatistic;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,9 +28,10 @@ public class LottoController {
 
     public void run() {
         Integer money = inputMoney();
-
         List<Lotto> boughtLottoList = lottoMachine.buyLottoByPrice(money);
         outputView.printBoughtLottoList(boughtLottoList);
+
+        WinningLotto winningLotto = inputWinningLotto();
     }
 
     private Integer inputMoney() {
@@ -45,9 +47,11 @@ public class LottoController {
         }
     }
 
-    private void inputWinningLotto() {
+    private WinningLotto inputWinningLotto() {
         List<Integer> winningNumberList = attemptWinningNumber();
+        Integer winningBonusNumber = attemptWinningBonusNumber();
 
+        return lottoMachine.generateWinningLotto(winningNumberList, winningBonusNumber);
     }
 
     private List<Integer> attemptWinningNumber() {
@@ -61,6 +65,18 @@ public class LottoController {
             outputView.printException(exception.getMessage());
 
             return attemptWinningNumber();
+        }
+    }
+
+    private Integer attemptWinningBonusNumber() {
+        try {
+            String rawWinningBonusNumber = inputView.inputWinningBonusNumber();
+
+            return Integer.parseInt(rawWinningBonusNumber);
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception.getMessage());
+
+            return attemptWinningBonusNumber();
         }
     }
 }
