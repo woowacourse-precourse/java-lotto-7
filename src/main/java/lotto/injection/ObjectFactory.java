@@ -1,6 +1,7 @@
 package lotto.injection;
 
 import lotto.controller.PurchaseAmountController;
+import lotto.controller.WinnerNumberController;
 import lotto.model.LotteryMachineModel;
 import lotto.parse.InputParser;
 import lotto.service.PurchaseAmountService;
@@ -14,6 +15,11 @@ public class ObjectFactory {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         return new PurchaseAmountController(inputView, outputView, purchaseAmountService());
+    }
+
+    public WinnerNumberController winnerNumberController() {
+        InputView inputView = new InputView();
+        return new WinnerNumberController(inputView);
     }
 
     public PurchaseAmountService purchaseAmountService() {
