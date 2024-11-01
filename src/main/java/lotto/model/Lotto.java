@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,8 +14,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalStateException("[ERROR] 로또 번호는 "+ LOTTO_NUMBER_COUNT + "개여야 합니다.");
         }
     }
 
