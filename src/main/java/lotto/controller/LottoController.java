@@ -8,6 +8,7 @@ import lotto.domain.PurchasePrice;
 import lotto.domain.Ranking;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoGenerator;
+import lotto.service.ProfitRateCalculator;
 import lotto.service.ResultCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,6 +19,7 @@ public class LottoController {
     private final LottoGenerator lottoGenerator = new LottoGenerator();
     private final OutputView outputView = new OutputView();
     private final ResultCalculator resultCalculator = new ResultCalculator();
+    private final ProfitRateCalculator profitRateCalculator = new ProfitRateCalculator();
 
     public void run() {
         // 구매할 금액 입력 받기
@@ -39,6 +41,10 @@ public class LottoController {
         // 결과 통계
         Map<Ranking, Integer> results = resultCalculator.calculateResult(generatedLottoNumbers, winningNumbers, bonusNumber);
         outputView.printResults(results);
+
+        // 수익률 결과
+        double profitRate = profitRateCalculator.calculateProfitRate(purchasePrice, results);
+        outputView.printProfitRate(profitRate);
 
 
     }

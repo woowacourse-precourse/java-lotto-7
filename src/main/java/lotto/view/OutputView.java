@@ -39,6 +39,12 @@ public class OutputView {
                     + results.getOrDefault(ranking, 0) + "개"
             );
         }
+    }
 
+    public void printProfitRate(double profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+        profitRate = Double.parseDouble(decimalFormat.format(profitRate));
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 }
