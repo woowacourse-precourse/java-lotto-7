@@ -32,12 +32,20 @@ public class Application {
         return (int)getParsedUserInput(UserInputType.BONUS_NUMBER);
     }
     
+    private static void checkAvailValue(UserInputType inputType, Object value) {
+        if (inputType == UserInputType.BONUS_NUMBER
+                && winningNums.contains(value)) {
+            throw InputErrorFactory.getErrorWithMessage(InvalidInputType.LOTTO_NUMBER_DUPLICATED);
+        }
+    }
+    
     private static Object getParsedUserInput(UserInputType inputType) {
         Object value;
         while (true) { 
             System.out.println(InputMessageFactory.getInputMessage(inputType));
             try {
                 value = UserInputParser.getParsedInput(Console.readLine(), inputType);
+                checkAvailValue(inputType, value);
                 System.out.println();
                 return value;
             }
