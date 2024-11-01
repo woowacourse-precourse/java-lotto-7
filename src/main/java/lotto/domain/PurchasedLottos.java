@@ -16,7 +16,7 @@ public class PurchasedLottos {
         return new PurchasedLottos(purchasedLottos);
     }
 
-   public List<LottoResponse> toLottoResponses() {
+    public List<LottoResponse> toLottoResponses() {
         return lottos.stream()
                 .map(Lotto::toLottoResponse)
                 .toList();
