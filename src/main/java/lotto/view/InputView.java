@@ -15,8 +15,8 @@ import static lotto.console.ConsoleManager.*;
 public class InputView {
     public Amount getAmount(){
         println("구입금액을 입력해 주세요.");
-        return new Amount(
-                Validator.validateAmount(Console.readLine()));
+        String amount = Validator.validateAmount(Console.readLine());
+        return new Amount(Integer.parseInt(amount));
     }
     public Lotto getWinning(){
         println("당첨 번호를 입력해 주세요.");
