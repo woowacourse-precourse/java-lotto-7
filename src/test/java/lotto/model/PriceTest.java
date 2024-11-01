@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -36,5 +37,17 @@ class PriceTest {
 		assertThatThrownBy(() -> new Price(expectedPrice))
 				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("[ERROR] 구입금액은 1000으로 나누어 떨어져야 합니다.");
+	}
+
+	@Test
+	@DisplayName("구입금액이 0보다 작거나 같다면 에러를 발생시킨다.")
+	void 구입금액이_0보다_작거나_같을_때_예외가_발생한다() {
+		// given
+		int expectedPrice = 0;
+
+		// when, then
+		assertThatThrownBy(() -> new Price(expectedPrice))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 구입금액은 0보다 커야 합니다.");
 	}
 }
