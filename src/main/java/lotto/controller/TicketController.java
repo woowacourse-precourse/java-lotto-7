@@ -4,8 +4,8 @@ import lotto.ThousandWons;
 import lotto.dto.TicketResult;
 import lotto.usecase.CreateLottoTicketUsecase;
 import lotto.usecase.GetLottoTicketUsecase;
-import lotto.view.TicketInputView;
-import lotto.view.TicketOutputView;
+import lotto.view.input.TicketInputView;
+import lotto.view.output.TicketOutputView;
 
 public class TicketController {
 
