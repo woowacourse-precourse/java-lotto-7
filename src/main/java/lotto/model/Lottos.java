@@ -18,10 +18,6 @@ public class Lottos {
                 .collect(Collectors.toList());
     }
 
-    public int size() {
-        return lottos.size();
-    }
-
     public List<LottoNumbers> getAllLottoNumbers() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
