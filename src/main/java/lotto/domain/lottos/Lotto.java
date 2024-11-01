@@ -16,7 +16,11 @@ public class Lotto {
 
         this.numbers = numbers;
     }
-    
+
+    public boolean isContainNumber(int number) {
+        return numbers.contains(number);
+    }
+
     public int getMatchedCount(final Lotto randomLotto) {
         int result = 0;
 
@@ -29,14 +33,9 @@ public class Lotto {
     }
 
 
-    public boolean isContainNumber(int number) {
-        return numbers.contains(number);
-    }
-
-
     private void validateLottoLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -48,7 +47,6 @@ public class Lotto {
         }
     }
 
-    //fixme 여기서?
     private void validateLottoDuplicate(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if (numbersSet.size() != numbers.size()) {
