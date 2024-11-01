@@ -37,10 +37,10 @@ public class OutputView {
         System.out.println(DEVIDING_LINE);
         for (Ranking rank : Ranking.values()) {
             if (rank == Ranking.SECOND) {
-                System.out.println(String.format(LOTTO_SECOND_RANK, rank.getCommonNumber(),rank.getWonPrize(), ranking[rank.getIndex()]));
-            } else {
-                System.out.println(String.format("%s - %d개", rank, ranking[rank.getIndex()]));
+                System.out.println(String.format(LOTTO_SECOND_RANK, rank.getCommonNumber(), rank.getWonPrize(), ranking[rank.getIndex()]));
+                continue;
             }
+            System.out.println(String.format("%s - %d개", rank, ranking[rank.getIndex()]));
         }
     }
     public void printTotalReturn(double returnRate) {
