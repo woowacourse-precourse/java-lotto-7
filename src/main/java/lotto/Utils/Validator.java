@@ -5,7 +5,7 @@ public class Validator {
     private Validator() {
     }
 
-    public static boolean isEmptyString(String input) {
+    public static boolean isEmpty(String input) {
         if (input == null) {
             return true;
         }
@@ -13,7 +13,7 @@ public class Validator {
         return input.isEmpty();
     }
 
-    public static boolean isBlankString(String input) {
+    public static boolean isBlank(String input) {
         return input.isBlank();
     }
 
