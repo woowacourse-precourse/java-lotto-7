@@ -51,7 +51,7 @@ public class Wallet {
         long totalPrice = ranks.stream()
             .mapToLong(RankPrice::getPrice)
             .sum();
-        return totalPrice / originalMoney;
+        return (double)totalPrice / originalMoney;
     }
 
     public int getRankCount(int rank) {
