@@ -29,7 +29,7 @@ public class MoneyDTO {
     }
 
     //1000원으로 나눠서 총 lotto가능 횟수 나타냄
-    public int ticketNumber (){
+    public int getTicketNumber (){
         return money/1000;
     }
 
