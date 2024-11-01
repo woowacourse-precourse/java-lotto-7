@@ -20,6 +20,10 @@ public class OutputView {
         }
     }
 
+    public void printProfit(double profit) {
+        System.out.println(ResultText.RETURN_RATE_PREFIX.getText() + profit + ResultText.RETURN_RATE_SUFFIX.getText());
+    }
+
     public void printIntegerList(List<Integer> list) {
         System.out.println(list);
     }

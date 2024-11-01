@@ -35,5 +35,6 @@ public class ResultHandler {
         double roundedProfit = Decimals.round(profit, 1);
 
         outputView.printLottoResults(this.lottoResults);
+        outputView.printProfit(roundedProfit);
     }
 }
