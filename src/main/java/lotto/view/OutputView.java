@@ -1,6 +1,12 @@
 package lotto.view;
 
 import static lotto.model.LottoRank.*;
+import static lotto.view.ViewConstant.BOUGHT_COUNT_FORMAT;
+import static lotto.view.ViewConstant.LOTTO_STATISTIC_PREFIX;
+import static lotto.view.ViewConstant.MATCH_BONUS_NUMBER_COMMENT;
+import static lotto.view.ViewConstant.MATCH_COUNT_SUFFIX;
+import static lotto.view.ViewConstant.PRIZE_FORMAT;
+import static lotto.view.ViewConstant.TOTAL_PROFIT_RATIO_FORMAT;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -12,7 +18,8 @@ import lotto.model.LottoStatistic;
 public class OutputView {
     public void printBoughtLottoList(List<Lotto> lottoList) {
         int count = lottoList.size();
-        System.out.println("\n" + count + "개를 구매했습니다.");
+
+        System.out.printf(BOUGHT_COUNT_FORMAT, count);
 
         lottoList.forEach((lotto -> {
             System.out.println(lotto.getNumbers());
@@ -24,11 +31,10 @@ public class OutputView {
     public void printLottoStatistic(LottoStatistic lottoStatistic) {
         HashMap<LottoRank, Integer> winningResult = lottoStatistic.getWinningResult();
         double profitRatio = lottoStatistic.getProfitRatio();
-        String roundedRatio = String.format("%.1f", profitRatio);
 
-        System.out.println("\n당첨 통계\n---");
+        System.out.println(LOTTO_STATISTIC_PREFIX);
         printEachResult(winningResult);
-        System.out.println("총 수익률은 " + roundedRatio + "%입니다.");
+        System.out.printf(TOTAL_PROFIT_RATIO_FORMAT, profitRatio);
     }
 
     private void printEachResult(HashMap<LottoRank, Integer> winningResult) {
@@ -38,13 +44,13 @@ public class OutputView {
         printRankList.forEach(rank -> {
             Integer winCount = winningResult.get(rank);
             String decimalPrizeMoney = decimalFormat.format(rank.prizeMoney);
-            System.out.print(rank.matchCount + "개 일치");
+            System.out.print(rank.matchCount + MATCH_COUNT_SUFFIX);
 
             if (rank.matchBonus) {
-                System.out.print(", 보너스 볼 일치");
+                System.out.print(MATCH_BONUS_NUMBER_COMMENT);
             }
 
-            System.out.println(" (" + decimalPrizeMoney + "원) - " + winCount + "개");
+            System.out.printf(PRIZE_FORMAT, decimalPrizeMoney, winCount);
         });
     }
 
