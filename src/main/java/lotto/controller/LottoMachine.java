@@ -11,11 +11,7 @@ public class LottoMachine {
 
     public void start() {
         lottoMachineService.purchaseLotto();
-
-        // 당첨 번호 입력
-
-        // 로또 당첨 로직
-
-        //통계 계산
+        lottoMachineService.enterWinningNumbers();
+//        lottoMachineService.printStats();
     }
 }
