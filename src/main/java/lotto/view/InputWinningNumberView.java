@@ -10,6 +10,7 @@ import lotto.exception.WinningNumberTypeException;
 
 public class InputWinningNumberView {
     public static Set<Integer> WinningNumbersInput() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         String[] input = Console.readLine().split(",");
         Set<Integer> winningNumbers = new HashSet<>();
 
