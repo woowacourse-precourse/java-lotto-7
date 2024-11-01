@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.constant.ErrorConstants;
 
-public class Validator {
+public class PriceValidator {
     private final static int ZERO = 0;
     private final static int MINIMUM_PRICE_UNIT = 1000;
     private final static String SEPARATOR = ",";
@@ -15,10 +15,6 @@ public class Validator {
 
         checkInputIsNotNegative();
         checkInputIsDivisableByThousand();
-    }
-
-    public void validateWinningNumber(String input){
-
     }
 
     private void checkInputIsNumber(String input){
@@ -50,7 +46,5 @@ public class Validator {
             throw new IllegalArgumentException(ErrorConstants.INVALID_PRICE_FORMAT.getMessage());
         }
     }
-
-
 
 }
