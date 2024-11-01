@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 import lotto.service.LottoService;
 import lotto.service.LottoServiceImpl;
 import static lotto.view.UserView.*;
@@ -15,15 +16,18 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void start(int amount, List<Integer> winNumbers, int bonusNumber) {
-        lottoService.play(amount, winNumbers, bonusNumber);
-        printLottoList();
-
-//        lottoService.showResult();
+    public void addLottoList(int amount, List<Integer> winNumbers, int bonusNumber) {
+        lottoService.addLottoList(amount, winNumbers, bonusNumber);
     }
 
-    private void printLottoList() {
-        List<Lotto> lottoList = lottoService.showLottoList();
+    public void showLottoList() {
+        List<Lotto> lottoList = lottoService.getLottoList();
         printRandomNumbersList(lottoList.size(), lottoList);
+    }
+
+    public void showLottoResult(int amount, List<Integer> winNumbers, int bonusNumber) {
+        Result result = Result.getInstance();
+        lottoService.getLottoResult(result, winNumbers, bonusNumber);
+        printLottoResult(result, amount);
     }
 }

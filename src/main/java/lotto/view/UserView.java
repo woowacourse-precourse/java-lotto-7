@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.Result;
 import lotto.exception.LottoErrorMessage;
 import lotto.exception.LottoArgumentException;
 
@@ -16,6 +18,9 @@ public class UserView {
     private static final String INPUT_WIN_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     private static final String PRINT_NUMBER_LOTTO_LIST_MESSAGE = "개를 구매했습니다.";
+    private static final String PRINT_LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
+    private static final String PRINT_RESULT_SUFFIX = "개";
+    private static final String PRINT_TOTAL_PRIZE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static int printAndGetAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
@@ -161,5 +166,20 @@ public class UserView {
 
     private static boolean checkDuplicateWinNumbersAndBonusNumber(int bonusNumber, List<Integer> winNumbers) {
         return winNumbers.stream().anyMatch(number -> number == bonusNumber);
+    }
+
+    public static void printLottoResult(Result result, int amount) {
+        System.out.println(PRINT_LOTTO_RESULT_MESSAGE);
+
+        for(Ranking ranking : Ranking.values()) {
+            System.out.println(ranking.getRankResult() + result.getWinCount(ranking) + PRINT_RESULT_SUFFIX);
+        }
+
+        printWinPrizeRate(result, amount);
+    }
+
+    private static void printWinPrizeRate(Result result, int amount) {
+        double winPrizeRate = result.getWinPrize() / (double)amount * 100;
+        System.out.printf(PRINT_TOTAL_PRIZE_RATE_MESSAGE + "%n", Math.round(winPrizeRate * 10) / 10.0);
     }
 }
