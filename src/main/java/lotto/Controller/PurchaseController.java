@@ -7,7 +7,7 @@ import lotto.Pair;
 
 import java.util.List;
 
-public class PurchaseController extends Validate {
+public class PurchaseController {
     private PurchaseView purchaseView;
     private PurchaseService purchaseService;
 
@@ -35,14 +35,12 @@ public class PurchaseController extends Validate {
 
     private Pair purchaseFlow() {
         String inputed = purchaseView.input();
-        if(!isInteger(inputed))
-            throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
         return purchaseFlowWithInput(inputed);
     }
 
     public Pair purchaseFlowWithInput(String inputed) {
         Pair result = new Pair();
-        if(!isInteger(inputed))
+        if(!Validate.isInteger(inputed))
             throw new IllegalArgumentException("[ERROR] 정수를 입력해주세요.");
 
         int count = purchaseService.buy(Integer.parseInt(inputed));

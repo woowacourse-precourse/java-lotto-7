@@ -11,7 +11,7 @@ import lotto.View.WinningView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningController extends Validate{
+public class WinningController {
     WinningView winningView;
     BonusView bonusView;
     StatisticsView statisticsView;
@@ -71,7 +71,7 @@ public class WinningController extends Validate{
         String[] split = input.split(",");
         List<Integer> winningNumbers = new ArrayList<Integer>();
         for(int i = 0; i < split.length; i++) {
-            if(!isInteger(split[i])) throw new IllegalArgumentException("정수를 입력해 주세요.");
+            if(!Validate.isInteger(split[i])) throw new IllegalArgumentException("정수를 입력해 주세요.");
             if(Integer.parseInt(split[i]) < 0 || Integer.parseInt(split[i]) > 45) throw new IllegalArgumentException("당첨 번호는 1이상 45이하의 범위에서만 가능합니다.");
             if(winningNumbers.contains(Integer.parseInt(split[i]))) throw new IllegalArgumentException("당첨 번호는 겹칠 수 없습니다.");
 
@@ -81,7 +81,7 @@ public class WinningController extends Validate{
     }
 
     public Pair validateBonusInput(String input, List<Integer> winningNumbers) {
-        if(!isInteger(input)) throw new IllegalArgumentException("정수를 입력해 주세요");
+        if(!Validate.isInteger(input)) throw new IllegalArgumentException("정수를 입력해 주세요");
         if(Integer.parseInt(input) < 0) throw new IllegalArgumentException("보너스 번호는 0보다 작을 수 없습니다.");
         if(Integer.parseInt(input) > 45) throw new IllegalArgumentException("보너스 번호는 45보다 클 수 없습니다.");
         if(winningNumbers.contains(Integer.parseInt(input))) throw new IllegalArgumentException("보너스 번호는 당첨번호와 겹칠 수 없습니다.");
