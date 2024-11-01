@@ -28,4 +28,10 @@ public enum Rank {
                 .findFirst()
                 .orElse(NONE);
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("%d개 일치 (%,d원)", matchCount, price);
+    }
 }
