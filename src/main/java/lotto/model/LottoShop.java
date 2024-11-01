@@ -20,7 +20,8 @@ public class LottoShop {
     }
 
     private Lotto makeLotto(RandomLottoNumberGenerator randomLottoNumberGenerator) {
-        return new Lotto(randomLottoNumberGenerator.generate());
+        LottoNumbers lottoNumbers = new LottoNumbers(randomLottoNumberGenerator.generate());
+        return new Lotto(lottoNumbers);
     }
 
     private void validateMoney(int money) {

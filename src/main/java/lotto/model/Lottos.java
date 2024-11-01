@@ -26,9 +26,9 @@ public class Lottos {
         return lottos;
     }
 
-    public List<List<LottoNumber>> getAllLottoNumbers() {
+    public List<LottoNumbers> getAllLottoNumbers() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

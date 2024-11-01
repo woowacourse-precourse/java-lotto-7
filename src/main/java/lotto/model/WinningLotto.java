@@ -2,46 +2,42 @@ package lotto.model;
 
 import lotto.model.exception.LottoNumberInvalidException;
 
-import java.util.List;
-
 public class WinningLotto {
 
     private static final int NUMBER_SIZE = 6;
 
-    private final List<LottoNumber> numbers;
+    private final LottoNumbers numbers;
     private final LottoNumber bonusNumber;
 
-    public WinningLotto(List<LottoNumber> numbers, LottoNumber bonusNumber) {
+    public WinningLotto(LottoNumbers numbers, LottoNumber bonusNumber) {
         validate(numbers, bonusNumber);
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }
 
     public int getMatchCount(Lotto lotto) {
-        return (int) numbers.stream()
-                .filter(lotto::containsLottoNumber)
-                .count();
+        return numbers.countMatch(lotto.getNumbers());
     }
 
     public boolean isBonusNumberMatches(Lotto lotto) {
         return lotto.containsLottoNumber(bonusNumber);
     }
 
-    private void validate(List<LottoNumber> numbers, LottoNumber bonusNumber) {
+    private void validate(LottoNumbers numbers, LottoNumber bonusNumber) {
         validateNumbers(numbers);
         validateBonusNumber(numbers, bonusNumber);
     }
 
-    private void validateNumbers(List<LottoNumber> numbers) {
-        if (numbers.size() != NUMBER_SIZE) {
+    private void validateNumbers(LottoNumbers numbers) {
+        if (!numbers.hasSize(NUMBER_SIZE)) {
             throw LottoNumberInvalidException.lottoNumberSize();
         }
-        if (numbers.stream().distinct().count() != NUMBER_SIZE) {
+        if (!numbers.hasUniqueElements()) {
             throw LottoNumberInvalidException.lottoNumberDuplicate();
         }
     }
 
-    private void validateBonusNumber(List<LottoNumber> numbers, LottoNumber bonusNumber) {
+    private void validateBonusNumber(LottoNumbers numbers, LottoNumber bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw LottoNumberInvalidException.bonusNumberDuplicate();
         }
