@@ -50,4 +50,13 @@ public class InputWinningNumberTest {
             inputValidator.validateInputWinningNumber(input);
         }).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구분자가 쉼표가 아니라면 에러가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1!2!3!4!5!6", "1-2-3-4-5-6"})
+    public void 구분자가_쉼표가_아니라면_에러가_발생한다(String input) {
+        Assertions.assertThatThrownBy(() -> {
+            inputValidator.validateInputWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }
