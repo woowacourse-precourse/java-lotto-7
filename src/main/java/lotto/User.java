@@ -8,6 +8,8 @@ public class User {
 
     public int money;
 
+    public int bonusNumber;
+
     public List<List<Integer>> lotteryTickets = new ArrayList<>();
 
     public User(int money) {
@@ -18,6 +20,17 @@ public class User {
     private void validate(int money) {
         if (money < 0 || (money % 1000) != 0) {
             throw new IllegalArgumentException("[ERROR] 0원 이상의 1000원 단위로 나누어 떨어지는 금액을 입력해야합니다.");
+        }
+    }
+
+    public void specifyBonusNumber(int bonusNumber) {
+        bonusNumberValidate(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void bonusNumberValidate(int bonusNumber) {
+        if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 점수는 1~45인 정수를 입력 해야 합니다.");
         }
     }
 

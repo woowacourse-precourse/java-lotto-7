@@ -23,4 +23,10 @@ public class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 보너스_점수_1_부터_45_까지의_정수가_아닐_때_예외가_발생한다() {
+        User user = new User(1000);
+        assertThatThrownBy(() -> user.specifyBonusNumber(47))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
