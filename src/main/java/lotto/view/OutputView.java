@@ -14,7 +14,7 @@ public class OutputView {
     private static final String TOTAL_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void displayLottoTickets(List<Lotto> lottos) {
-        System.out.printf((PURCHASE_MESSAGE) + "%n", lottos.size());
+        System.out.printf(PURCHASE_MESSAGE + "%n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
@@ -39,7 +39,7 @@ public class OutputView {
         }
     }
 
-    public static void displayRateOfReturn(double rateOfReturn) {
+    public static void displayProfitRate(double rateOfReturn) {
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 

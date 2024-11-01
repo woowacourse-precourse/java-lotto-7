@@ -28,9 +28,8 @@ public class LottoService {
         return totalWinnings;
     }
 
-    public double calculateProfitRate(long totalPrize, int purchaseAmount) {
-        double profitRate = (double) totalPrize / purchaseAmount * 100;
-        return Math.round(profitRate * 10) / 10.0;
+    public double calculateProfitRate(long totalWinnings, int totalPurchaseAmount) {
+        return Math.round((double) totalWinnings / totalPurchaseAmount * 1000) / 10.0;
     }
 
     private LottoRank determineLottoRank(Lotto winningLotto, int bonusNumber, Lotto userLotto) {

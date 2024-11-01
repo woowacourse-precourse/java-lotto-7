@@ -21,22 +21,18 @@ public class LottoController {
     }
 
     public void run() {
-        int totalPurchaseAmount = inputProcessor.inputPurchaseAmount();
-        List<Lotto> lottoTickets = lottoMachine.purchaseLottos(totalPurchaseAmount);
+        int totalPurchaseAmount = inputProcessor.getTotalPurchaseAmount();
+        List<Lotto> lottoTickets = lottoMachine.purchaseLottoTickets(totalPurchaseAmount);
         OutputView.displayLottoTickets(lottoTickets);
 
-        Lotto winningLotto = inputProcessor.inputWinningLotto();
-        int bonusLottoNumber = inputProcessor.inputBonusNumber(winningLotto);
+        Lotto winningLotto = inputProcessor.getWinningLotto();
+        int bonusLottoNumber = inputProcessor.getBonusNumber(winningLotto);
 
         Map<LottoRank, Integer> lottoStatistics = lottoService.calculateWinningStatistics(lottoTickets, winningLotto, bonusLottoNumber);
         OutputView.displayWinningStatistics(lottoStatistics);
 
-        displayFinalResult(lottoStatistics, totalPurchaseAmount);
-    }
-
-    private void displayFinalResult(Map<LottoRank, Integer> lottoStatistics, int purchaseAmount) {
         long totalWinnings = lottoService.calculateTotalWinnings(lottoStatistics);
-        double profitRate = lottoService.calculateProfitRate(totalWinnings, purchaseAmount);
-        OutputView.displayRateOfReturn(profitRate);
+        double profitRate = lottoService.calculateProfitRate(totalWinnings, totalPurchaseAmount);
+        OutputView.displayProfitRate(profitRate);
     }
 }
