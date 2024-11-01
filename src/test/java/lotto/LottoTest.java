@@ -1,11 +1,13 @@
 package lotto;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -31,5 +33,13 @@ class LottoTest {
     void 로또_번호는_1에서_45이내의_숫자여야_합니다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_당첨_번호와_몇_개_일치하는지_확인합니다() {
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
+        int matchCount = lotto1.countMatchingNumbers(lotto2);
+        assertEquals(3, matchCount);
     }
 }

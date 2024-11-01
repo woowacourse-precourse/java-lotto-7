@@ -2,8 +2,6 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -22,29 +20,5 @@ public class LottoServiceTest {
         for (Lotto lotto : lottos) {
             assertEquals(6, lotto.getNumbersSize());
         }
-    }
-
-    @Test
-    void 로또_번호가_당첨_번호와_몇_개_일치하는지_확인합니다() {
-        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
-        Lotto winningLotto2 = new Lotto(Arrays.asList(1, 2, 7, 8, 9, 10));
-
-        int matchCount = LottoService.calculateMatchCount(userLotto, winningLotto);
-        assertEquals(3, matchCount);
-        int matchCount2 = LottoService.calculateMatchCount(userLotto, winningLotto2);
-        assertEquals(2, matchCount2);
-    }
-
-    @Test
-    void 로또_번호가_보너스_번호와_일치하는지_확인합니다() {
-        Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 1;
-        int bonusNumber2 = 45;
-
-        boolean matchBonus = LottoService.checkBonusNumberMatch(userLotto, bonusNumber);
-        assertEquals(true, matchBonus);
-        boolean matchBonus2 = LottoService.checkBonusNumberMatch(userLotto, bonusNumber2);
-        assertEquals(false, matchBonus2);
     }
 }
