@@ -21,4 +21,17 @@ class LottoShopTest {
         Assertions.assertThat(lottoSet.getNumberOfLottoSet()).isEqualTo(price / LOTTO_PRICE);
     }
 
+    @Test
+    void 지정된_숫자_범위의_중복되지_않은_로또_번호_생성() {
+        //given
+        LottoShop lottoShop = new LottoShop();
+        RandomLottoGenerator generator = new RandomLottoGenerator();
+        int price = 3 * LOTTO_PRICE;
+
+        //when
+        LottoSet lottoSet = lottoShop.buyLotto(price, generator);
+
+        //then
+        Assertions.assertThat(lottoSet.getNumberOfLottoSet()).isEqualTo(price / LOTTO_PRICE);
+    }
 }

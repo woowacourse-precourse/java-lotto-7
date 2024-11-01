@@ -11,6 +11,9 @@ public class GameManager {
 
     public void start() {
         int price = readPrice();
+        LottoShop lottoShop = new LottoShop();
+        RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
+        LottoSet lottoSet = lottoShop.buyLotto(price, randomLottoGenerator);
     }
 
     private int readPrice() {
