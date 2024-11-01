@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,13 +14,13 @@ class InputParserTest {
     void 정상__parseIntegers() {
         // given
         String input = "1,2,3,4,5,6";
-        int[] expected = {1, 2, 3, 4, 5, 6};
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
 
         // when
-        int[] actual = InputParser.parseIntegers(input);
+        List<Integer> actual = InputParser.parseIntegers(input);
 
         // then
-        assertArrayEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
