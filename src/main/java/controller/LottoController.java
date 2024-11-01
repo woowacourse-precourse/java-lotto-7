@@ -1,39 +1,44 @@
 package controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import service.LottoManager;
 import lotto.Prize;
+import lotto.WinningLotto;
 import view.InputHandler;
 import view.OutputHandler;
 
-import java.sql.Array;
 import java.util.*;
 
 public class LottoController {
     private InputHandler inputHandler;
     private OutputHandler outputHandler;
+    private LottoManager lottoManager;
+    private WinningLotto winningLotto;
 
     public LottoController() {
         this.inputHandler = new InputHandler();
         this.outputHandler = new OutputHandler();
+        this.lottoManager = new LottoManager();
+
     }
 
     public void run() {
-        EnumMap<Prize, Integer> prizeCount = initPrizes();
-
         int amountInput = getInputAmount();
-
         int count = calculateLottoCount(amountInput);
 
         outputHandler.displayPurchasedLottoCount(count);
 
         List<Lotto> generatedLottos = generateLottos(count);
 
-        Lotto winningLotto = generateWinningLotto();
+        displayLottos(generatedLottos);
 
-        int bonusNumber = getInputBonusNumber(winningLotto);
+        Lotto winningLottoWithoutBonusNumber = generateWinningLotto();
 
-        EnumMap<Prize, Integer> prizeResult = calculatePrizes(prizeCount, generatedLottos, winningLotto, bonusNumber);
+        int bonusNumber = getInputBonusNumber(winningLottoWithoutBonusNumber);
+
+        winningLotto = new WinningLotto(winningLottoWithoutBonusNumber, bonusNumber);
+
+        EnumMap<Prize, Integer> prizeResult = calculatePrizes(initPrizes(), generatedLottos, winningLotto);
 
         outputHandler.displayPrizes(prizeResult);
 
@@ -69,18 +74,23 @@ public class LottoController {
         }
     }
 
+
     private int calculateLottoCount(int money) {
         return money / 1000;
     }
 
     private List<Lotto> generateLottos(int count) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lottos.add(lotto);
-            System.out.println(lotto.showNumbers()); //로또 번호는 오름차순이여야함
+
+        lottoManager.buyLottos(count);
+
+        return lottoManager.getLottos();
+
+    }
+
+    private void displayLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            outputHandler.showLottos(lotto.getNumbers());
         }
-        return lottos;
     }
 
     private Lotto generateWinningLotto() {
@@ -108,13 +118,13 @@ public class LottoController {
         }
     }
 
-    private EnumMap<Prize, Integer> calculatePrizes(EnumMap<Prize, Integer> prizeCount, List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    private EnumMap<Prize, Integer> calculatePrizes(EnumMap<Prize, Integer> prizeCount, List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto lotto : lottos) {
-            int matchCount = lotto.compareTo(winningLotto);
+            int matchCount = lotto.compareTo(winningLotto.getNumber());
 
             for (Prize prize : Prize.values()) {
                 if (matchCount == prize.getRanking()) {
-                    if (lotto.hasBonusNumber(bonusNumber) && prize.equals(Prize.THIRD)) {
+                    if (lotto.hasBonusNumber(winningLotto.getBonusNumber()) && prize.equals(Prize.THIRD)) {
                         continue;
                     }
 

@@ -18,6 +18,8 @@ public class InputHandler {
         return Integer.parseInt(input);
     }
 
+
+
     private void validateInputAmount(String input) {
         if (InputValidator.isNullOrBlank(input)) {
             throw new IllegalArgumentException("[ERROR] 빈칸 없이 입력해주세요.");
@@ -33,6 +35,7 @@ public class InputHandler {
     }
 
     public List<Integer> getLottoNumber() {
+
         String input = Console.readLine();
 
         validateLottoInput(input);

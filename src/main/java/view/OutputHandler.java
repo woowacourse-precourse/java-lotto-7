@@ -1,8 +1,10 @@
 package view;
 
+import lotto.Lotto;
 import lotto.Prize;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class OutputHandler {
@@ -21,7 +23,7 @@ public class OutputHandler {
     }
 
     public void displayPrizes(EnumMap<Prize, Integer> prizeCount) {
-        System.out.println("당첨 통계" + "\n" + "---");
+        System.out.println("\n" + "당첨 통계" + "\n" + "---");
         for (Prize prize : Prize.values()) {
             System.out.println(prize.getRanking() + "개 일치 " + "(" + prize.getPrizeMoney() + "원) - " + prizeCount.get(prize) + "개");
         }
@@ -32,4 +34,7 @@ public class OutputHandler {
         System.out.println("총 수익률은 " + formattedValue + "%입니다.");
     }
 
+    public void showLottos(List<Integer> lottoNumbers) {
+        System.out.println(lottoNumbers.toString());
+    }
 }
