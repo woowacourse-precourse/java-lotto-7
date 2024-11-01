@@ -7,18 +7,21 @@ import java.util.stream.Collectors;
 
 public class Controller {
 
-    public static void main(String[] args) {
+    public static void run() {
         int money = getPurchaseAmount();
         int lottoCount = LottoService.calculateLottoCount(money);
         List<Lotto> lottoTickets = LottoService.generateLottos(lottoCount);
         OutputView.printLottos(lottoTickets);
+
         Lotto winningLotto = getWinningLotto();
         int BonusLottoNumber = getBonusNumber(winningLotto);
+
         Map<LottoRank, Integer> LottoStatistics = LottoService.calculateStatistics(lottoTickets, winningLotto, BonusLottoNumber);
         OutputView.printWinningStatistics(LottoStatistics);
+
         long totalPrize = LottoService.calculateTotalPrize(LottoStatistics);
-        double rateOfRetirn = LottoService.calculateRateOfReturn(totalPrize,money);
-        OutputView.printRateOfReturn(rateOfRetirn);
+        double rateOfReturn = LottoService.calculateRateOfReturn(totalPrize,money);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 
     private static int getPurchaseAmount() {
