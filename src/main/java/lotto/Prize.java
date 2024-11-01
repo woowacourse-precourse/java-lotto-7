@@ -8,7 +8,7 @@ public enum Prize {
     FIRST(6, 2_000_000_000);
 
     private final int matchedCount;
-    private final int prizeMoney;
+    public final int prizeMoney;
     private final boolean bonus;
 
     Prize(int matchedCount, int prizeMoney, boolean bonus) {
@@ -23,13 +23,13 @@ public enum Prize {
 
     @Override
     public String toString() {
-        String string = matchedCount + "개 일치 ";
+        String string = matchedCount + "개 일치";
 
         if (this.bonus) {
-            string += ", 보너스 볼 일치 ";
+            string += ", 보너스 볼 일치";
         }
 
-        string += String.format("(%,d원)", prizeMoney);
+        string += String.format(" (%,d원)", prizeMoney);
         return string;
     }
 
