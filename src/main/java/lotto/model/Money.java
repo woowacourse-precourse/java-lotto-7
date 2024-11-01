@@ -1,10 +1,10 @@
 package lotto.model;
 
+import lotto.constants.MoneyConstants;
 import lotto.utilities.Parser;
 import lotto.validation.MoneyValidator;
 
 public class Money {
-    private static final int MONEY_UNIT = 1000;
     private final Integer money;
 
     public Money(String money){
@@ -22,6 +22,6 @@ public class Money {
     }
 
     public int buyedLottosQuantity(){
-        return money % MONEY_UNIT;
+        return money % MoneyConstants.MONEY_UNIT;
     }
 }
