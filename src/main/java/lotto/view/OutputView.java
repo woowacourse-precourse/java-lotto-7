@@ -1,8 +1,12 @@
 package lotto.view;
 
+import static lotto.model.Rank.*;
+
 import java.util.List;
 import lotto.dto.LottoStatus;
 import lotto.dto.LottoTicketStatus;
+import lotto.dto.WinningStatistics;
+import lotto.model.Rank;
 
 public class OutputView {
 
@@ -22,6 +26,22 @@ public class OutputView {
         for(LottoStatus lottoStatus : lottoStatuses) {
             printLottoStatus(lottoStatus);
         }
+    }
+
+
+    public void printWinningStatistics(WinningStatistics winningStatistics) {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Rank[] values = values();
+        for (Rank value : values) {
+            if (value == LOSE) {
+                continue;
+            }
+            int count = winningStatistics.getLottoResult().get(value);
+            System.out.println(value.getMessage() + " (" + value.getPrize() + "원) - " + count + "개");
+        }
+        System.out.println("총 수익률은 " + winningStatistics.getEarningRate() + "%입니다.");
     }
 
     private static void printLottoCount(LottoTicketStatus lottoTicketStatus) {

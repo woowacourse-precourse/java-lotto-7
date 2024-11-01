@@ -40,4 +40,8 @@ public enum Rank {
     public String getMessage() {
         return message;
     }
+
+    public int getCorrectCont() {
+        return correctCont;
+    }
 }

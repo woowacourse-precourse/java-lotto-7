@@ -1,9 +1,17 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.dto.LottoTicketStatus;
+import lotto.dto.WinningStatistics;
+import lotto.model.Lotto;
+import lotto.model.LottoCalculator;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
+import lotto.parser.BonusNumberParser;
+import lotto.parser.WinningNumberParser;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,16 +28,16 @@ public class Controller {
     public void run() {
 
         LottoTicket lottoTicket = purchaseLottoTicket();
-
         printLottoTicketStatus(lottoTicket);
 
-        // 당첨번호 입력
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber(winningLotto);
 
-        // 보너스 번호 입력
+        LottoCalculator lottoCalculator = new LottoCalculator(winningLotto, bonusNumber);
+        WinningStatistics winningStatistics = lottoCalculator.getWinningStatistics(lottoTicket);
 
-        // 조회
+        printWinningStatistics(winningStatistics);
 
-        // 결과 출력
     }
 
     private LottoTicket purchaseLottoTicket() {
@@ -56,7 +64,38 @@ public class Controller {
     }
 
     private void printLottoTicketStatus(LottoTicket lottoTicket) {
-        LottoTicketStatus lottoTicketStatus =  lottoTicket.getLottoTicketStatus();
+        LottoTicketStatus lottoTicketStatus = lottoTicket.getLottoTicketStatus();
         outputView.printLottoTicketStatus(lottoTicketStatus);
+    }
+
+
+    private Lotto getWinningLotto() {
+        while (true) {
+            try {
+                String rawWinningNumbers = inputView.readRawWinningNumbers();
+                WinningNumbersValidator.validate(rawWinningNumbers);
+                List<Integer> winningNumbers = WinningNumberParser.parseRawWinningNumbers(rawWinningNumbers);
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                String rawBonusNumber = inputView.readRawBonusNumber();
+                int bonusNumber = BonusNumberParser.parseRawBonusNumber(rawBonusNumber);
+                BonusNumberValidator.validate(winningLotto, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private void printWinningStatistics(WinningStatistics winningStatistics) {
+        outputView.printWinningStatistics(winningStatistics);
     }
 }
