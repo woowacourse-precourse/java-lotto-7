@@ -46,18 +46,52 @@ class ProfitReportTest {
                 Arguments.of(List.of(7, 8, 9, 10, 11, 12), List.of(1, 2, 3, 4, 5, 6), 7, 0));
     }
 
-
     static Stream<Arguments> 수익률_계산_테스트_케이스() {
-        return Stream.of(Arguments.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))), // 구매한 로또 리스트
-                List.of(1, 2, 3, 4, 5, 6), // 당첨 번호 리스트
-                7, // 보너스 번호
-                200000000.0 // 예상 수익률 (2,000,000,000 / 1,000 * 100)
-        ), Arguments.of(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(10, 11, 12, 13, 14, 15))),
-                List.of(1, 2, 3, 4, 5, 6), 7, 100000000.0 // 예상 수익률 ((2,000,000,000 / 2,000) * 100)
-        ), Arguments.of(List.of(new Lotto(List.of(8, 9, 10, 11, 12, 13))), List.of(1, 2, 3, 4, 5, 6), 7, 0.0
-                // 예상 수익률 (0 / 1,000 * 100)
-        ));
+        return Stream.of(
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(7, 8, 9, 10, 11, 12)), // 꽝
+                                new Lotto(List.of(13, 14, 15, 16, 17, 18)), // 꽝
+                                new Lotto(List.of(19, 20, 21, 22, 23, 24)), // 꽝
+                                new Lotto(List.of(25, 26, 27, 28, 29, 30)), // 꽝
+                                new Lotto(List.of(31, 32, 33, 34, 35, 36)), // 꽝
+                                new Lotto(List.of(37, 38, 39, 40, 41, 42))  // 꽝
+                        ),
+                        List.of(1, 2, 3, 4, 5, 6),
+                        7,
+                        0.0
+                ),
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(1, 2, 3, 4, 5, 6)), // 꽝
+                                new Lotto(List.of(13, 14, 15, 16, 17, 18)), // 꽝
+                                new Lotto(List.of(19, 20, 21, 22, 23, 24)), // 꽝
+                                new Lotto(List.of(25, 26, 27, 28, 29, 30)), // 꽝
+                                new Lotto(List.of(31, 32, 33, 34, 35, 36)), // 꽝
+                                new Lotto(List.of(37, 38, 39, 40, 41, 42))  // 꽝
+                        ),
+                        List.of(1, 2, 3, 4, 5, 6),
+                        7,
+                        2_000_000_000.0 / 6000 * 100
+                ),
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(8, 21, 23, 41, 42, 43)),
+                                new Lotto(List.of(3, 5, 11, 16, 32, 38)),
+                                new Lotto(List.of(7, 11, 16, 35, 36, 44)),
+                                new Lotto(List.of(1, 8, 11, 31, 41, 42)),
+                                new Lotto(List.of(13, 14, 16, 38, 42, 45)),
+                                new Lotto(List.of(7, 11, 30, 40, 42, 43)),
+                                new Lotto(List.of(2, 13, 22, 32, 38, 45)),
+                                new Lotto(List.of(1, 3, 5, 14, 22, 45))
+                        ),
+                        List.of(1, 2, 3, 4, 5, 6),
+                        7,
+                        62.5
+                )
+        );
     }
+
 
     static Stream<Arguments> 각_등수_별_당첨_횟수_계산_테스트_케이스() {
         return Stream.of(
@@ -107,10 +141,24 @@ class ProfitReportTest {
                         List.of(1, 2, 3, 4, 5, 6),
                         7,
                         Map.of(Prize.FIRST, 1, Prize.SECOND, 1, Prize.THIRD, 1, Prize.FOURTH, 1)
+                ),
+                Arguments.of(
+                        List.of(
+                                new Lotto(List.of(8, 21, 23, 41, 42, 43)),
+                                new Lotto(List.of(3, 5, 11, 16, 32, 38)),
+                                new Lotto(List.of(7, 11, 16, 35, 36, 44)),
+                                new Lotto(List.of(1, 8, 11, 31, 41, 42)),
+                                new Lotto(List.of(13, 14, 16, 38, 42, 45)),
+                                new Lotto(List.of(7, 11, 30, 40, 42, 43)),
+                                new Lotto(List.of(2, 13, 22, 32, 38, 45)),
+                                new Lotto(List.of(1, 3, 5, 14, 22, 45))
+                        ),
+                        List.of(1, 2, 3, 4, 5, 6),
+                        7,
+                        Map.of(Prize.NONE, 7, Prize.FIFTH, 1)
                 )
         );
     }
-
 
     // 생성 테스트
 
@@ -261,7 +309,7 @@ class ProfitReportTest {
         double actual = profitReport.calculateProfitRate();
 
         // then
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, 0.00001);
 
     }
 
