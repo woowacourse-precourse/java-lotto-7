@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.util.inputParser.parseInt;
 
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Price;
 import lotto.view.InputView;
@@ -23,7 +24,7 @@ public class LottoController {
         Lottos lottos = new Lottos(ticketCount);
         outputRandomLottoNumber(ticketCount, lottos);
 
-        inputWinningLotto();
+        Lotto WinningLotto = inputWinningLotto();
 
         inputView.closeConsole();
     }
@@ -45,11 +46,11 @@ public class LottoController {
         outputView.printResult(lottosNumber);
     }
 
-    private void inputWinningLotto() {
+    private Lotto inputWinningLotto() {
         while (true) {
             try {
-                inputView.readWinningLottoNumber();
-                return;
+                String rawWinningLotto = inputView.readWinningLottoNumber();
+                return new Lotto(rawWinningLotto);
             } catch (IllegalArgumentException e) {
                 outputView.printResult(e.getMessage());
             }

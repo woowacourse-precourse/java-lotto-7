@@ -2,8 +2,8 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final int ticketCount;
@@ -23,9 +23,11 @@ public class Lottos {
         return lottosNumber;
     }
 
-    public List<Integer> createLottoNumber() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6); // TODO: 클래스분리?
-        return lottoNumber;
+    public List<Number> createLottoNumber() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return randomNumbers.stream()
+                .map(Number::new)
+                .collect(Collectors.toList());
     }
 
     public String getLottos() {
