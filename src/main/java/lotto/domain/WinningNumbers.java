@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningNumbers {
@@ -24,12 +25,21 @@ public class WinningNumbers {
 
         private static void validateWinningNumbers(String numbers) {
             validateWinningNumbersIsNotEmpty(numbers);
+            List<String> delimitedWinningNumbers = validateWinningNumbersDelimiter(numbers);
         }
 
         private static void validateWinningNumbersIsNotEmpty(String numbers) {
             if (numbers == null || numbers.isBlank()) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 비어있을 수 없습니다.");
             }
+        }
+
+        private static List<String> validateWinningNumbersDelimiter(String numbers) {
+            if (numbers.contains(",")) {
+                return Arrays.stream(numbers.split(","))
+                        .toList();
+            }
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표(,)를 기준으로 구분합니다.");
         }
 
     }
