@@ -270,10 +270,10 @@ class ParserTest {
     @DisplayName("구매한 로또를 출력 형식에 맞게 포맷팅 - 성공 테스트")
     void formatLottoTickets() {
         // given
-        Lotto lottoTicket1 = Lotto.of(Arrays.asList(1,2,3,4,5,6));
-        Lotto lottoTicket2 = Lotto.of(Arrays.asList(7,8,9,10,11,12));
-        Lotto lottoTicket3 = Lotto.of(Arrays.asList(13,14,15,16,17,18));
-        List<Lotto> lottoTickets = Arrays.asList(lottoTicket1, lottoTicket2, lottoTicket3);
+        Lotto firstLottoTicket = Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto secondLottoTicket = Lotto.of(Arrays.asList(7, 8, 9, 10, 11, 12));
+        Lotto thirdLottoTicket = Lotto.of(Arrays.asList(13, 14, 15, 16, 17, 18));
+        List<Lotto> lottoTickets = Arrays.asList(firstLottoTicket, secondLottoTicket, thirdLottoTicket);
         String joiner = ", ";
 
         // when
