@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class LottoParser {
+public final class DelimitedNumberParser {
 
     public final static String NUMBER_DELIMITER = ",";
     public final static int NUMBERS_LENGTH = 6;
 
-    private LottoParser() {}
+    private DelimitedNumberParser() {}
 
-    public static List<Integer> parseNumbers(String input) {
+    public static List<Integer> parse(String input) {
         Set<String> collect = Arrays.stream(input.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .collect(Collectors.toCollection(HashSet<String>::new));
@@ -23,10 +23,6 @@ public final class LottoParser {
         }
 
         return parseIntList(collect);
-    }
-
-    public static Integer parseBonusNumber(String input) {
-        return Integer.parseInt(input.trim());
     }
 
     private static List<Integer> parseIntList(final Set<String> collect) {
