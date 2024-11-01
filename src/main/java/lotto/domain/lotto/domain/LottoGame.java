@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.lotto.dto.response.LottoResultRes;
 import lotto.domain.lotto.util.LottoConverter;
 
 public class LottoGame {
@@ -13,7 +12,7 @@ public class LottoGame {
     private final List<LottoNumber> winningLottos;
     private final LottoNumber bonusNumber;
     private final int cost;
-    private final Map<LottoResultRes, Integer> results;
+    private final Map<LottoResult, Integer> results;
 
     public LottoGame(
             List<Lotto> purchasedLottos,
@@ -48,15 +47,15 @@ public class LottoGame {
      */
     public void calculateResults() {
         for (Lotto lotto : purchasedLottos) {
-            LottoResultRes result = calculateResult(lotto);
+            LottoResult result = calculateResult(lotto);
             updateResult(result);
         }
     }
 
-    private LottoResultRes calculateResult(Lotto lotto) {
+    private LottoResult calculateResult(Lotto lotto) {
         int matchCount = countMatchNumbers(lotto);
         boolean matchBonus = checkBonusNumber(lotto);
-        return LottoResultRes.of(matchCount, matchBonus);
+        return LottoResult.of(matchCount, matchBonus);
     }
 
     private int countMatchNumbers(Lotto lotto) {
@@ -69,11 +68,11 @@ public class LottoGame {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void updateResult(LottoResultRes result) {
+    private void updateResult(LottoResult result) {
         results.put(result, results.getOrDefault(result, 0) + 1);
     }
 
-    public Map<LottoResultRes, Integer> getResults() {
+    public Map<LottoResult, Integer> getResults() {
         return Collections.unmodifiableMap(results);
     }
 
