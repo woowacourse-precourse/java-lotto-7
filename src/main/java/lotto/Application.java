@@ -58,6 +58,18 @@ public class Application {
             }
         }
 
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusNumberInput = Console.readLine();
+            try{
+                int bonusNumber = validateBonusNumber(bonusNumberInput, winningNumbersLotto);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
     static int validatePurchasePrice(String purchasePriceInput) {
         try{
@@ -77,6 +89,23 @@ public class Application {
     static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             lotto.printLotto();
+        }
+    }
+    static int validateBonusNumber(String bonusNumberInput, Lotto winningNumbersLotto) {
+        try {
+           int bonusNumber = Integer.parseInt(bonusNumberInput);
+
+           if (bonusNumber < 1 || bonusNumber > 45) {
+               throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+           }
+
+           if (winningNumbersLotto.contains(bonusNumber)) {
+               throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+           }
+
+           return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
     }
 }
