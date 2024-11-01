@@ -33,4 +33,8 @@ public class OutputView {
         System.out.println(prefix + winningLottoNumber + unit);
     }
 
+    public static void printRateOfReturn(final Double rateOfReturn) {
+        System.out.println(messageOfRateOfReturnPrefix + rateOfReturn + messageOfRateOfReturnSuffix);
+    }
+
 }
