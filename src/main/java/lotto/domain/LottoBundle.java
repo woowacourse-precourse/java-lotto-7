@@ -38,7 +38,7 @@ public class LottoBundle {
 
     private double sumLottoPrizeMoney(List<LottoRank> lottoRanks) {
         return lottoRanks.stream()
-                .mapToDouble(lottoRank -> lottoRank.getPrizeMoney())
+                .mapToDouble(LottoRank::getPrizeMoney)
                 .sum();
     }
 }
