@@ -27,7 +27,7 @@ public class MyResult {
         return revenue;
     }
 
-    public static double getReturn(Integer purchasePrice, Integer revenue){
+    public static double getReturn(int purchasePrice, int revenue){
         double myReturn = (double)revenue / (double)purchasePrice * 100;
         return Math.round(myReturn * 100)/100.0;
     }
