@@ -6,6 +6,7 @@ import lotto.domain.LottoCompany;
 import lotto.domain.LottoShop;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.PrizeResult;
 import lotto.domain.WinningLotto;
 import lotto.util.Validator;
 import lotto.view.InputHandler;
@@ -23,7 +24,9 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         LottoCompany lottoCompany = new LottoCompany(winningLotto);
 
-        // 당첨 여부를 파악하는 기능
+        // 당첨 여부 파악 및 출력
+        PrizeResult prizeResult = lottoCompany.getWinningResults(lottos.getLottos());
+        printResult(prizeResult);
     }
 
     private Money getMoney() {
@@ -46,5 +49,9 @@ public class LottoController {
 
     private void printLottoStatus(Lottos lottos) {
         new OutputHandler().printLottoStatus(lottos);
+    }
+
+    private void printResult(PrizeResult prizeResult) {
+        new OutputHandler().printLottoResult(prizeResult);
     }
 }

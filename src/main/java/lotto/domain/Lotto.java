@@ -11,6 +11,10 @@ public class Lotto {
         this.numbers = sorted(numbers);
     }
 
+    public List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
@@ -20,7 +24,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }

@@ -10,7 +10,7 @@ public enum Prize {
     private final String condition;
     private final String prizeMoney;
 
-    private Prize(String condition, String prizeMoney) {
+    Prize(String condition, String prizeMoney) {
         this.condition = condition;
         this.prizeMoney = prizeMoney;
     }
