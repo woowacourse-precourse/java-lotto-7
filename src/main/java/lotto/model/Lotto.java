@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.List;
-
+import lotto.dto.LottoDTO;
 import lotto.utils.Message;
 
 public class Lotto {
