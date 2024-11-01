@@ -26,6 +26,7 @@
     - 1000원 단위가 아닌 경우: `IllegalArgumentException` 발생
     - 당첨번호 6개가 아닌 경우: `IllegalArgumentException` 발생
     - 보너스번호 1개가 아닌 경우: `IllegalArgumentException` 발생
+    - 당첨번호와 보너스번호가  중복인 경우: `IllegalArgumentException` 발생
 - **예시**
     - 출력: `구입금액을 입력해 주세요.`→ 입력: `8000`
     - 출력: `당첨 번호를 입력해 주세요.`→ 입력: `1,2,3,4,5,6`
