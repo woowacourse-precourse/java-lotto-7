@@ -1,6 +1,5 @@
 package lotto.io;
 
-import lotto.Lottos;
 
 public class View {
     public void printLotto(Integer count, String lottos) {
