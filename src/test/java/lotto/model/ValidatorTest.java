@@ -67,4 +67,16 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("당첨 번호 유효성 검사: 범위 미달 - 에외 테스트")
+    void validateWinningTicket_insufficientRange() {
+        // given
+        List<Integer> winningTicket = Arrays.asList(1, 2, 3, 4, 5, 46);
+
+        // when & then
+        assertThatThrownBy(() -> Validator.validateWinningTicket(winningTicket))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
