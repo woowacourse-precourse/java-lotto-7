@@ -62,6 +62,8 @@ public class Application {
 
         LottoResult result = calculateResult(lottoList, winningNumbers, bonusNumber);
         outputResult(result);
+
+        profitRateResult(money, result.totalWinningPrize());
     }
 
 
@@ -172,5 +174,10 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - " + result.getCountOf5Match());
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getCountOf5MatchAndBonus());
         System.out.println("6개 일치 (2,000,000,000원) - " + result.getCountOf5MatchAndBonus());
+    }
+
+    private static void profitRateResult(double money, double winningPrize) {
+        double ProfitRate = ((winningPrize / money) * 100);
+        System.out.println("총 수익률은 " + ProfitRate + "%입니다.");
     }
 }
