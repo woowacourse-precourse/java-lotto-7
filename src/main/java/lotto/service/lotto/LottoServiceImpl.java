@@ -34,6 +34,12 @@ public class LottoServiceImpl implements LottoService {
         return determineRank(matchCount, hasBonus);
     }
 
+    @Override
+    public double calculateEarningsRate(int totalPrize, int amount) {
+        double rate = ((double) totalPrize / amount) * 100;
+        return Math.round(rate * 100) / 100.0;
+    }
+
     private WinningResult determineRank(int matchCount, boolean hasBonus) {
         for (Rank rank : Rank.values()) {
             if (rank.getMatchCount() == matchCount && (!rank.hasBonus() || hasBonus)) {

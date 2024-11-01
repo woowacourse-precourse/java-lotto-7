@@ -7,4 +7,5 @@ import lotto.domain.winning.WinningResult;
 public interface LottoService {
     boolean validateAmount(int amount);
     WinningResult checkResult(Lotto lotto, WinningContext context);
+    double calculateEarningsRate(int totalPrize, int amount);
 }
