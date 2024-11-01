@@ -11,13 +11,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validateLength(List<Integer> numbers) {
+    private static void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateNotDuplicate(List<Integer> numbers) {
+    private static void validateNotDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
