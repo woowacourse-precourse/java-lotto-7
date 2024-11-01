@@ -20,6 +20,10 @@ public class Application {
         System.out.println();
 
         List<Integer> winningNumbers = getWinningNumbers();
+        System.out.println();
+
+        int bonusNumber = getBonusNumber(winningNumbers);
+        System.out.println();
 
     }
 
@@ -69,10 +73,23 @@ public class Application {
     private static List<Integer> getWinningNumbers() {
         while (true) {
             System.out.println("당첨 번호를 입력해 주세요.");
-            String input = Console.readLine().replace(" ", "");
+            String input = Console.readLine().trim();
 
             try {
                 return WinningNumberInput.getWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int getBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요:");
+            String input = Console.readLine().trim();
+
+            try {
+                return WinningNumberInput.getBonusNumber(input, winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -16,6 +16,18 @@ public class WinningNumberInput {
         return numbers;
     }
 
+    public static int getBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(input.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
+        }
+
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
     private static List<Integer> parseInput(String input) {
         try {
             return Arrays.stream(input.split(","))
@@ -37,6 +49,15 @@ public class WinningNumberInput {
         }
 
         if (!areNumbersInRange(numbers)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
+        if (bonusNumber < LottoConstants.LOTTO_MIN_NUMBER.getValue() || bonusNumber > LottoConstants.LOTTO_MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }

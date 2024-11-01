@@ -63,4 +63,48 @@ class WinningNumberInputTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호는 6개여야 합니다");
     }
+
+    @Test
+    @DisplayName("유효한 보너스 번호 입력 시 정상 동작")
+    void 유효한_보너스_번호_입력시_정상_동작() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        String input = "7";
+        int bonusNumber = WinningNumberInput.getBonusNumber(input, winningNumbers);
+
+        assertThat(bonusNumber).isEqualTo(7);
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외 발생")
+    void 보너스_번호가_당첨_번호와_중복될_경우_예외_발생() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        String input = "6";
+
+        assertThatThrownBy(() -> WinningNumberInput.getBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 범위를 벗어난 경우 예외 발생")
+    void 보너스_번호가_범위를_벗어난_경우_예외_발생() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        String input = "0";
+        assertThatThrownBy(() -> WinningNumberInput.getBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        String input2 = "46";
+        assertThatThrownBy(() -> WinningNumberInput.getBonusNumber(input2, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("보너스 숫자가 아닌 값이 포함된 경우 예외 발생")
+    void 보너스_숫자가_아닌_값이_포함된_경우_예외_발생() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        String input = "a";
+
+        assertThatThrownBy(() -> WinningNumberInput.getBonusNumber(input, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
