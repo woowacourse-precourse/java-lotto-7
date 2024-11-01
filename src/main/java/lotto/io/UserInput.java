@@ -26,6 +26,12 @@ public class UserInput {
                 .collect(Collectors.toCollection(ArrayList::new)));
     }
 
+    public int getBonusNumber() {
+        String input = Console.readLine().trim();
+        validateEmptyInput(input);
+        return validateNumber(input);
+    }
+
     private void validateEmptyInput(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 빈 문자열은 입력할 수 없습니다");
