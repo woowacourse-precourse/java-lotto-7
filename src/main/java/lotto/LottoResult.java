@@ -52,7 +52,8 @@ public class LottoResult {
     }
 
     public Double getProfit(Lottos lottos) {
-        return (double) (totalBenefit / lottos.getLottoCount()) * 100.0;
+        double profit = (double) (totalBenefit / lottos.getLottoCount()) * 100.0;
+        return Math.round(profit * 10.0) / 10.0;
     }
 
     @Override
