@@ -37,7 +37,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateNoDuplicate(numbers);
-        validateNumberRange(numbers);
+        numbers.forEach(this::validateNumberRange);
     }
 
     public List<Integer> getNumbers() {
@@ -48,9 +48,7 @@ public class Lotto {
         if (numbers.contains(bonusNumber)) {
             throw new InvalidBonusNumberException(INVALID_BONUS_NUM);
         }
-        if (bonusNumber < RANGE_MIN || bonusNumber > RANGE_MAX) {
-            throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
-        }
+        validateNumberRange(bonusNumber);
     }
 
     public int calculateMatchCount(Lotto winningLotto) {
@@ -77,11 +75,9 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(final List<Integer> numbers) {
-        numbers.forEach(number -> {
-            if (number < RANGE_MIN || number > RANGE_MAX) {
-                throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
-            }
-        });
+    private void validateNumberRange(final int number) {
+        if (number < RANGE_MIN || number > RANGE_MAX) {
+            throw new InvalidLottoNumberException(OUT_OF_RANGE_NUMBER);
+        }
     }
 }
