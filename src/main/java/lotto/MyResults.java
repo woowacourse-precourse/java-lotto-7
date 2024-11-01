@@ -16,19 +16,4 @@ public class MyResults {
     public Boolean getIsBonus() {
         return isBonus;
     }
-
-    public static Integer getMyRevenue(WinningDetails grades){
-        int revenue = 0;
-        revenue += grades.getThird() * 5000;
-        revenue += grades.getFourth() * 50000;
-        revenue += grades.getFifth() * 1500000;
-        revenue += grades.getFifthBonus() * 30000000;
-        revenue += grades.getSixth() * 2000000000;
-        return revenue;
-    }
-
-    public static double getReturn(int purchasePrice, int revenue){
-        double myReturn = (double)revenue / (double)purchasePrice * 100;
-        return Math.round(myReturn * 100)/100.0;
-    }
 }
