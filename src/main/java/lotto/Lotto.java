@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+        validateNumber(numbers);
         this.numbers = ascendingSort(numbers);
     }
 
@@ -20,6 +20,11 @@ public class Lotto {
         Set<Integer> duplicateNumber = new HashSet<>(numbers);
         if(duplicateNumber.size() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.");
+        }
+    }
+    private void validateNumber(List<Integer> numbers){
+        for(int number : numbers){
+            new LottoNumber(number);
         }
     }
     private List<Integer> ascendingSort(List<Integer> numbers){
