@@ -15,10 +15,6 @@ public class Utils {
         return Integer.parseInt(input);
     }
 
-    public static void print(String message){
-        System.out.println(message);
-    }
-
     public static List<Integer> generateRandomNumber(int start, int end, int pickNumber){
         return Randoms.pickUniqueNumbersInRange(start, end, pickNumber).stream()
                 .sorted().collect(Collectors.toList());

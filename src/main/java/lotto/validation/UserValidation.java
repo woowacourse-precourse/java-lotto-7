@@ -1,7 +1,5 @@
 package lotto.validation;
 
-import lotto.utils.Utils;
-
 import static lotto.message.ErrorMessage.*;
 
 public class UserValidation {
