@@ -2,20 +2,19 @@ package lotto.domain.rank;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningLotto;
-import lotto.domain.rank.vo.Rank;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class RankManager {
+public class RankResult {
     private final HashMap<Rank, Integer> rankInfo;
 
-    public RankManager(HashMap<Rank, Integer> rankInfo) {
+    private RankResult(HashMap<Rank, Integer> rankInfo) {
         this.rankInfo = rankInfo;
     }
 
-    public static RankManager from(List<Lotto> lottos, WinningLotto winningLotto) {
+    public static RankResult from(List<Lotto> lottos, WinningLotto winningLotto) {
         HashMap<Rank, Integer> result = initRankInfo();
 
         for (Lotto lotto : lottos) {
@@ -25,7 +24,7 @@ public class RankManager {
             }
         }
 
-        return new RankManager(result);
+        return new RankResult(result);
     }
 
     private static HashMap<Rank, Integer> initRankInfo() {

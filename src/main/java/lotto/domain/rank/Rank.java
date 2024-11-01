@@ -1,4 +1,4 @@
-package lotto.domain.rank.vo;
+package lotto.domain.rank;
 
 import java.util.Arrays;
 import java.util.Comparator;

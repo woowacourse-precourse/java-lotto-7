@@ -2,7 +2,6 @@ package lotto.domain.rank;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningLotto;
-import lotto.domain.rank.vo.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ class FixedWinningLotto implements WinningLotto {
     }
 }
 
-class RankManagerTest {
+class RankResultTest {
     private final WinningLotto winningLotto = new FixedWinningLotto();
     private final List<Lotto> lottos = new ArrayList<>() {{
         add(new Lotto(winningLotto.basicNumbers()));
@@ -38,10 +37,10 @@ class RankManagerTest {
         // given
 
         // when
-        RankManager rankManager = RankManager.from(lottos, winningLotto);
+        RankResult rankResult = RankResult.from(lottos, winningLotto);
 
         // then
-        assertThat(rankManager.getRevenue()).isEqualTo(Rank.FIRST.getPrize() + Rank.FIFTH.getPrize());
+        assertThat(rankResult.getRevenue()).isEqualTo(Rank.FIRST.getPrize() + Rank.FIFTH.getPrize());
     }
 
     @Test
@@ -50,9 +49,9 @@ class RankManagerTest {
         // given
 
         // when
-        RankManager rankManager = RankManager.from(lottos, winningLotto);
+        RankResult rankResult = RankResult.from(lottos, winningLotto);
 
         // then
-        assertThat(rankManager.toString()).contains("3개 일치 (5,000원) - 1개", "6개 일치 (2,000,000,000원) - 1개");
+        assertThat(rankResult.toString()).contains("3개 일치 (5,000원) - 1개", "6개 일치 (2,000,000,000원) - 1개");
     }
 }
