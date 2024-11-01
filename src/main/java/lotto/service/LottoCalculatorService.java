@@ -26,35 +26,62 @@ public class LottoCalculatorService {
 
         for (UserLotto userLottoNumber : userLotto) {
             int duplicateNumber = 0;
-            for (int i = 0; i < 6; i++) {
-                if (userLottoNumber.getLottoNumber().contains(winningLotto.get(i))) {
-                    duplicateNumber++;
-                }
-            }
+            duplicateNumber = getDuplicateNumber(userLottoNumber, duplicateNumber, winningLotto);
 
-            for (LottoRanking ranking : LottoRanking.values()) {
-
-                if (duplicateNumber < 3 || duplicateNumber != ranking.getMatchNumber()) {
-                    continue;
-                }
-
-                if (duplicateNumber == 5 && userLottoNumber.getLottoNumber().contains(winningLotto.get(6)) == ranking.isBonusMatch()) {
-                    winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
-                    continue;
-                }
-
-                if (duplicateNumber != 5) {
-                    winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
-                }
-            }
+            duplicateNumberCalculate(userLottoNumber, duplicateNumber, winningLotto);
         }
+
         OutputView.printWinningHistory(winningCount);
+    }
+
+    private int getDuplicateNumber(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
+        for (int i = 0; i < 6; i++) {
+            duplicateNumber = addDuplicateNumber(userLottoNumber, winningLotto, i, duplicateNumber);
+        }
+        return duplicateNumber;
+    }
+
+    private int addDuplicateNumber(UserLotto userLottoNumber, List<Integer> winningLotto, int i, int duplicateNumber) {
+        if (userLottoNumber.getLottoNumber().contains(winningLotto.get(i))) {
+            duplicateNumber++;
+        }
+        return duplicateNumber;
+    }
+
+    private void duplicateNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
+        for (LottoRanking ranking : LottoRanking.values()) {
+            countDuplicateNumber(userLottoNumber, ranking, duplicateNumber, winningLotto);
+        }
+    }
+
+    private void countDuplicateNumber(UserLotto userLottoNumber, LottoRanking ranking, int duplicateNumber, List<Integer> winningLotto) {
+        if (duplicateNumber < 3 || duplicateNumber != ranking.getMatchNumber()) {
+            return;
+        }
+
+        if (duplicateNumber == 5 && matchesBonusNumberCondition(userLottoNumber, ranking, winningLotto)) {
+            addWinningCount(ranking);
+            return;
+        }
+
+        if (duplicateNumber != 5) {
+            addWinningCount(ranking);
+        }
+    }
+
+    private boolean matchesBonusNumberCondition(UserLotto userLottoNumber, LottoRanking ranking, List<Integer> winningLotto) {
+        return userLottoNumber.getLottoNumber().contains(winningLotto.get(6)) == ranking.isBonusMatch();
+    }
+
+    private void addWinningCount(LottoRanking ranking) {
+        winningCount.put(ranking, winningCount.getOrDefault(ranking, 0) + 1);
     }
 
     public void profitCalculate(User user) {
         for (LottoRanking lottoRanking : winningCount.keySet()) {
             addWinningPrice(user, lottoRanking);
         }
+
         OutputView.printProfit(user.getProfit());
     }
 
