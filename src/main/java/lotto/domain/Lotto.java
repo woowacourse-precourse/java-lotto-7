@@ -12,7 +12,7 @@ public class Lotto {
     //Components 라고 명명하고 싶으나 numbers 명을 바꿔도 되는지 모르겠어서 남겨둡니다.
     private final List<Component> numbers;
 
-    public Lotto(List<Component> components){
+    public Lotto(List<Component> components) {
         validateLength(components);
         validateDuplicate(components);
         this.numbers = components;
@@ -26,9 +26,10 @@ public class Lotto {
 
     }
 
-    public static Lotto from(LottoFactory lottoFactory){
+    public static Lotto from(LottoFactory lottoFactory) {
         return new Lotto(lottoFactory);
-    };
+    }
+
 
     public List<Component> getComponents() {
         return Collections.unmodifiableList(numbers);
