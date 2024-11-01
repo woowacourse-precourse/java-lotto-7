@@ -2,6 +2,9 @@ package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static java.util.Arrays.stream;
+import static lotto.utils.Parser.parseBonusNumber;
+import static lotto.utils.Parser.parsePurchaseAmount;
+import static lotto.utils.Parser.parseWinningNumbers;
 import static lotto.view.InputView.askBonusNumber;
 import static lotto.view.InputView.askPurchaseAmount;
 import static lotto.view.InputView.askWinningNumbers;
@@ -17,16 +20,15 @@ import lotto.model.Rank;
 
 public class LottoController {
     private static final int PURCHASE_UNIT = 1000;
-    private static final String DELIMITER = ",";
     private int wholeCashPrize = 0;
 
     public void run() {
-        int purchaseAmount = Integer.parseInt(askPurchaseAmount());
+        int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottos = IntStream.range(0, purchaseAmount / PURCHASE_UNIT)
                 .mapToObj(i -> new Lotto(pickUniqueNumbersInRange(1, 45, 6))).toList();
         printPurchasedLottos(lottos);
-        List<Integer> winningNumbers = stream(askWinningNumbers().split(DELIMITER, -1)).map(Integer::parseInt).toList();
-        int bonusNumber = Integer.parseInt(askBonusNumber());
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
         List<MatchingRecord> matchingRecords = stream(Rank.values()).map(MatchingRecord::new).toList();
         getStatistics(matchingRecords, lottos, winningNumbers, bonusNumber);
         printWinningStatistics(matchingRecords);
@@ -36,6 +38,39 @@ public class LottoController {
             }
         }
         printEarningsRate((((double) wholeCashPrize / (double) purchaseAmount) * 100));
+    }
+
+    private int getPurchaseAmount() {
+        while (true) {
+            try {
+                int purchaseAmount = parsePurchaseAmount(askPurchaseAmount());
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = parseWinningNumbers(askWinningNumbers());
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                int bonusNumber = parseBonusNumber(askBonusNumber());
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void getStatistics(List<MatchingRecord> matchingRecords, List<Lotto> lottos, List<Integer> winningNumbers,
