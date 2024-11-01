@@ -21,6 +21,10 @@ public class Input {
                 .toList();
     }
 
+    public static int getBonusNumberInput() {
+        return Integer.parseInt(Console.readLine());
+    }
+
     public static void close() {
         Console.close();
     }
