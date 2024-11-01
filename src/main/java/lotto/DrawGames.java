@@ -25,5 +25,11 @@ public class DrawGames {
         final LottoResultDto lottoResult = controller.buyLotto(insertedMoney);
         outputView.printLottoResult(lottoResult.lottoResult(), lottoResult.lotteryCount());
         outputView.newLine();
+        final String winningNumbers = inputView.inputWinningNumbers();
+        outputView.newLine();
+        final String bonusNumber = inputView.inputBonusNumber();
+        outputView.newLine();
+        final WinningLottoNumbersDto winningLottoNumbersDto =
+                controller.setWinningNumbers(winningNumbers, bonusNumber);
     }
 }

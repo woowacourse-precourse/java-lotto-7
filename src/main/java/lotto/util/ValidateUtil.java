@@ -1,6 +1,7 @@
 package lotto.util;
 
 import lotto.exception.EmptyInputException;
+import lotto.exception.NotNumberException;
 
 public class ValidateUtil {
 
@@ -10,5 +11,10 @@ public class ValidateUtil {
         }
     }
 
-
+    public static void validateNumber(final String value) {
+        ValidateUtil.emptyValue(value);
+        if (!value.matches("\\d+")) {
+            throw new NotNumberException();
+        }
+    }
 }

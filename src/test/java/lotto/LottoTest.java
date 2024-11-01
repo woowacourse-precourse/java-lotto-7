@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.exception.administrator.LottoNumbersDuplicationException;
 import lotto.exception.administrator.LottoNumbersMustBeSixException;
-import lotto.model.Lotto;
+import lotto.model.administrator.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

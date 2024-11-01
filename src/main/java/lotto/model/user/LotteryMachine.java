@@ -39,19 +39,12 @@ public class LotteryMachine {
     }
 
     private int createLotteryCount(final String insertedMoney) {
-        validateNumber(insertedMoney);
+        ValidateUtil.validateNumber(insertedMoney);
         final int funds = parseToInt(insertedMoney);
         validateMaxLotteryCount(funds);
         validateCostUnit(funds);
 
         return funds / COST_UNIT;
-    }
-
-    private void validateNumber(final String insertedMoney) {
-        ValidateUtil.emptyValue(insertedMoney);
-        if (!insertedMoney.matches("\\d+")) {
-            throw new NotNumberException();
-        }
     }
 
     private int parseToInt(final String insertedMoney) {

@@ -39,7 +39,7 @@ class LottoUserServiceTest {
 
     @Nested
     @DisplayName("로또 번호 생성 검증 테스트")
-    class createLottoResultTests {
+    class CreateLottoResultTests {
 
         @Test
         void 빈값_예외테스트() {

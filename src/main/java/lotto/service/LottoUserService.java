@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.model.LotteryMachine;
-import lotto.model.dto.LottoResultDto;
+import lotto.model.user.LotteryMachine;
+import lotto.model.user.LottoResultDto;
 
 public class LottoUserService {
 

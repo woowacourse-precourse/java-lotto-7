@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.user;
 
 import static lotto.util.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.util.LottoConstant.LOTTO_NUMBER_END_WITH;
@@ -18,15 +18,14 @@ public class LottoNumbers {
     private final Set<Integer> lotteryNumbers;
 
     protected LottoNumbers() {
-        lotteryNumbers = new HashSet<>(getLotteryNumbers());
+        lotteryNumbers = new HashSet<>(createLotteryNumbers());
     }
 
-    protected String toPrettyString() {
-        List<String> numbersToString = lotteryNumbers.stream().map(Object::toString).toList();
-        return "[" + String.join(", ", numbersToString) + "]";
+    protected Set<Integer> getLotteryNumbers() {
+        return new HashSet<>(lotteryNumbers);
     }
 
-    private List<Integer> getLotteryNumbers() {
+    private List<Integer> createLotteryNumbers() {
         return Randoms.pickUniqueNumbersInRange(
                 LOTTO_NUMBER_START_WITH.getNumber(),
                 LOTTO_NUMBER_END_WITH.getNumber(),
