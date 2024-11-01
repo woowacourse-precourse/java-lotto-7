@@ -7,13 +7,13 @@ import static lotto.util.ExceptionMessage.INVALID_AMOUNT_UNIT;
 
 public class InputValidator {
     public int validate(int value) {
-        isZero(value);
+        isNotPositive(value);
         idValidateAmountUnit(value);
         return value;
     }
 
-    private void isZero(int money) {
-        if (money == ZERO.getIntValue()) {
+    private void isNotPositive(int money) {
+        if (money <= ZERO.getIntValue()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.format());
         }
     }
