@@ -1,14 +1,23 @@
 package lotto.validators;
 
+import lotto.validators.constants.ErrorMessages;
+
 public class PurchaseAmountValidator implements NumberInputValidator {
     private static final int MIN_VALUE = 1000;
     private static final int MAX_VALUE = 100000;
 
     @Override
-    public void validate(String input) {
-        checkInputType(input);
-        checkDivisibility(input);
-        checkValueRange(input);
+    public boolean isValid(String input) {
+        boolean isValid = false;
+        try {
+            checkInputType(input);
+            checkDivisibility(input);
+            checkValueRange(input);
+            isValid = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
+        }
+        return isValid;
     }
 
     private void checkDivisibility(String input) {

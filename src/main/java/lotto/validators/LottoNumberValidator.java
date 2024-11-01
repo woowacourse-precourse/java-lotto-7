@@ -1,5 +1,7 @@
 package lotto.validators;
 
+import lotto.validators.constants.ErrorMessages;
+
 import java.util.List;
 import java.util.Set;
 
@@ -10,17 +12,28 @@ public class LottoNumberValidator implements NumberInputValidator {
     private static final int MAX_VALUE = 45;
 
     @Override
-    public void validate(String input) {
+    public boolean isValid(String input) {
+        boolean isValid = false;
         List<String> numbers = List.of(input.split(SPLIT_DELIMITER));
 
+        try {
+            checkArraySize(numbers);
+            checkDuplicate(input);
+
+            for (String number : numbers) {
+                checkInputType(number);
+                checkValueRange(number);
+            }
+            isValid = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
+        }
+        return isValid;
+    }
+
+    private void checkArraySize(List<String> numbers) {
         if (numbers.size() != ARRAY_SIZE) {
             throw new IllegalArgumentException(ErrorMessages.INCORRECT_NUMBER_COUNT.getMessage());
-        }
-        checkDuplicate(input);
-
-        for (String number : numbers) {
-            checkInputType(number);
-            checkValueRange(number);
         }
     }
 

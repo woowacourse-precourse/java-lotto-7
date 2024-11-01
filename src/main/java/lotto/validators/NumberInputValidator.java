@@ -1,12 +1,14 @@
 package lotto.validators;
 
+import lotto.validators.constants.ErrorMessages;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface NumberInputValidator {
     String POSITIVE_WHOLE_INT_REGEX = "^[1-9][0-9]*$";
 
-    void validate(String input);
+    boolean isValid(String input);
 
     default void checkInputType(String input) {
         Pattern inputPattern = Pattern.compile(POSITIVE_WHOLE_INT_REGEX);

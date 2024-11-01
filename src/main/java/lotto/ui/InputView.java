@@ -1,20 +1,17 @@
 package lotto.ui;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.ui.constants.InputPrompts;
 
 public class InputView {
-    public String getPurchaseAmount() {
+    public void printPurchasePrompt() {
         System.out.println(InputPrompts.PURCHASE_PROMPT.getPrompt());
-        return Console.readLine().strip();
     }
 
-    public String getLottoNumbers() {
+    public void printLottoNumberPrompt() {
         System.out.println(InputPrompts.LOTTO_NUMBER_PROMPT.getPrompt());
-        return Console.readLine().strip();
     }
 
-    public String getBonusNumber() {
+    public void printBonusNumberPrompt() {
         System.out.println(InputPrompts.BONUS_NUMBER_PROMPT.getPrompt());
-        return Console.readLine().strip();
     }
 }

@@ -1,7 +1,7 @@
-package lotto.validators;
+package lotto.validators.constants;
 
 public enum ErrorMessages {
-    ERROR_HEADER("[ERROR]"),
+    ERROR_HEADER("[ERROR] "),
     BONUS_NUMBER_IS_DUPLICATE("로또 번호와 중복됩니다."),
     INCORRECT_NUMBER_COUNT("콤마(,)로 구분된 6개의 숫자를 입력해 주세요."),
     INCORRECT_TYPE("소수점이 없는 양수를 입력해 주세요."),

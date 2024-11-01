@@ -1,4 +1,4 @@
-package lotto.ui;
+package lotto.ui.constants;
 
 public enum InputPrompts {
     PURCHASE_PROMPT("구입금액을 입력해 주세요."),

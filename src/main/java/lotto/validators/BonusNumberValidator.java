@@ -1,5 +1,7 @@
 package lotto.validators;
 
+import lotto.validators.constants.ErrorMessages;
+
 import java.util.List;
 
 public class BonusNumberValidator implements NumberInputValidator {
@@ -8,14 +10,21 @@ public class BonusNumberValidator implements NumberInputValidator {
     private static final int MAX_VALUE = 45;
 
     @Override
-    public void validate(String input) {
+    public boolean isValid(String input) {
+        boolean isValid = false;
         List<String> splitValues = List.of(input.split(":"));
         String bonusNumber = splitValues.get(0);
         String lottoNumbers = splitValues.get(1);
 
-        checkInputType(bonusNumber);
-        checkValueRange(bonusNumber);
-        checkDuplicate(bonusNumber, lottoNumbers);
+        try {
+            checkInputType(bonusNumber);
+            checkValueRange(bonusNumber);
+            checkDuplicate(bonusNumber, lottoNumbers);
+            isValid = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
+        }
+        return isValid;
     }
 
     private void checkValueRange(String input) {
