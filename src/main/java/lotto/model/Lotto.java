@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-public class Lotto {
+public class Lotto {  //개수, 범위, 중복 유효성 검사
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
