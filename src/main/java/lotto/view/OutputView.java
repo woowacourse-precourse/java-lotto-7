@@ -10,6 +10,7 @@ public class OutputView {
     private static final String INPUT_WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
     private static final String PURCHASE_COUNT = "\n%d개를 구매했습니다.\n";
     private static final String INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+    private static final String WINNING_STATISTICS = "\n당첨 통\n---";
 
     public static void printInputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -30,6 +31,15 @@ public class OutputView {
     public static void printLottoNumbers(final List<Integer> numbers) {
         System.out.println(numbers);
     }
+
+    public static void printStatistics() {
+        System.out.println(WINNING_STATISTICS);
+    }
+
+    public static void printMatching() {
+
+    }
+
 
     public static void printErrorMessage(String errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage);
