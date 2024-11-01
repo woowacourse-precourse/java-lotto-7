@@ -16,6 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         List<Integer> copy = new ArrayList<>(numbers);
         validate(copy);
+        copy.sort(Integer::compareTo);
         this.numbers = copy;
     }
 
@@ -50,6 +51,10 @@ public class Lotto {
 
     private boolean isLottoNumber(int number) {
         return (number >= MIN_NUMBER) && (number <= MAX_NUMBER);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     @Override

@@ -45,6 +45,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호는 오름차순 정렬되어야 한다.")
+    @Test
+    void 로또_번호는_오름차순_정렬되어야_한다() {
+        Lotto lotto = Lotto.quickPick();
+        assertTrue(isSorted(lotto),
+                "로또 번호는 오름차순 정렬되야 합니다");
+        ;
+    }
+
+    private boolean isSorted(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        for (int i = 1; i < numbers.size(); i++) {
+            if (numbers.get(i-1).compareTo(numbers.get(i)) > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @DisplayName("로또 번호가 지정된 형식대로 출력돼야 한다.")
     @Test
     void 로또_번호가_지정된_형식대로_출력돼야_한다() {
