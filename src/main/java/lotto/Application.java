@@ -26,7 +26,7 @@ public class Application {
     }
 
     private static int[] calculateMatchCounts(List<List<Integer>> userTickets, WinningLotto winningLotto, LottoYieldCalculator calculator) {
-        int[] matchCounts = new int[6];
+        int[] matchCounts = new int[Rank.values().length];
         for (List<Integer> userNumbers : userTickets) {
             Rank rank = winningLotto.getRank(new HashSet<>(userNumbers));
             matchCounts[rank.ordinal()]++;
