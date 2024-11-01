@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.INVALID_MONEY_UNIT;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class Wallet {
 
     private void validateMoney(long money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.\n");
+            throw new IllegalArgumentException(INVALID_MONEY_UNIT.getMessage(1000));
         }
     }
 

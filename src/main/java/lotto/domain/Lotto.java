@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.DUPLICATED_LOTTO_NUMBERS;
+import static lotto.constant.ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,12 +17,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage(6));
         }
         Set<Integer> filteredNumbers = new HashSet<>();
         filteredNumbers.addAll(numbers);
         if (filteredNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
     }
 

@@ -1,9 +1,10 @@
 package lotto.view;
 
+import static lotto.constant.ExceptionMessage.NOT_NUMBER_MONEY;
+import static lotto.constant.ExceptionMessage.NOT_NUMBER_WINNING_NUMBER;
+
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,7 +14,7 @@ public class InputView {
         try {
             return Long.parseLong(input());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구입금액은 숫자여야 합니다\n");
+            throw new IllegalArgumentException(NOT_NUMBER_MONEY.getMessage());
         }
     }
 
@@ -24,9 +25,7 @@ public class InputView {
                 .boxed()
                 .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("당첨 번호는 숫자여야 합니다.");
-        } catch (RuntimeException e) { // TODO:: split에서 발생하는 에러 캐치. 수정 필요
-            throw new IllegalArgumentException("당첨 번호는 ,로 구분해야 합니다.");
+            throw new IllegalArgumentException(NOT_NUMBER_WINNING_NUMBER.getMessage());
         }
     }
 
@@ -34,7 +33,7 @@ public class InputView {
         try {
             return Integer.parseInt(input());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 번호는 숫자여야 합니다\n");
+            throw new IllegalArgumentException();
         }
     }
 
