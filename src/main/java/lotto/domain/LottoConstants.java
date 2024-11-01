@@ -17,7 +17,7 @@ class LottoConstants {
     static final int INITIAL_WINNING_COUNT = 0;
     static final int FIRST_RANK = 1;
 
-    // (n, m) n개 일치 시 m등
+    /* (n, m) n개 일치 시 m등 */
     static final Map<Integer, Integer> MATCH_COUNT_TO_RANK = Map.of(
             6, 1,
             5, 3,
@@ -25,7 +25,7 @@ class LottoConstants {
             3, 5
     );
 
-    // (m, k) m등 상금 k원
+    /* (m, k) m등 상금 k원 */
     static final Map<Integer, Integer> PRIZE_AMOUNT_BY_RANK = Map.of(
             1, 2000000000,
             2, 30000000,
