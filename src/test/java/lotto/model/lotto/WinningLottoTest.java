@@ -14,7 +14,7 @@ class WinningLottoTest {
     @DisplayName("당첨 번호 정상 생성 테스트")
     void validWinningNumber() {
         // given
-        String lottoNumber = "1,2,3,4,5,6";
+        Lotto lottoNumber = new Lotto("1,2,3,4,5,6");
         BonusNumber bonusNumber = new BonusNumber("30");
 
         // when
@@ -28,7 +28,7 @@ class WinningLottoTest {
     @DisplayName("보너스 번호 예외 테스트")
     void duplicatedBonusNumber() {
         // given
-        String lotto = "1,2,3,4,5,6";
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
         BonusNumber bonusNumber = new BonusNumber("5");
 
         // when & then
@@ -44,7 +44,7 @@ class WinningLottoTest {
         BonusNumber bonusNumber = new BonusNumber("30");
 
         // when & then
-        assertThatThrownBy(() -> new WinningLotto(lottoNumber, bonusNumber))
+        assertThatThrownBy(() -> new WinningLotto(new Lotto(lottoNumber), bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

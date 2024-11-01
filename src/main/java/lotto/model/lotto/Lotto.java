@@ -1,16 +1,25 @@
 package lotto.model.lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class Lotto {
+    private static final Pattern VALID_NUMBER_PATTERN = Pattern.compile("^\\d+(,\\d+)*$");
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    public Lotto(final String lottoNumbers) {
+        List<Integer> numbers = convertStringToLotto(lottoNumbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -42,7 +51,35 @@ public class Lotto {
         }
     }
 
+    private List<Integer> convertStringToLotto(final String lottoNumber) {
+        validateString(lottoNumber);
+        return Arrays.stream(lottoNumber.split(","))
+                .map(Integer::parseInt)
+                .toList();
+    }
+
+    private void validateString(final String lottoNumber) {
+        validateEmptyInput(lottoNumber);
+        validateInput(lottoNumber);
+    }
+
+    private void validateEmptyInput(final String lottoNumber) {
+        if (lottoNumber == null || lottoNumber.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 아무것도 입력되지 않았습니다. 로또 번호를 입력해주세요.");
+        }
+    }
+
+    private void validateInput(final String lottoNumber) {
+        if (!VALID_NUMBER_PATTERN.matcher(lottoNumber).matches()) {
+            throw new IllegalArgumentException("[ERROR] 입력에 숫자와 쉼표만 포함되어야 합니다.");
+        }
+    }
+
     protected boolean isContain(final int number) {
         return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
