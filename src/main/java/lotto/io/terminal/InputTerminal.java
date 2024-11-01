@@ -1,7 +1,7 @@
 package lotto.io.terminal;
 
-import lotto.io.exception.InputException;
 import lotto.io.preprocessor.IOPreprocessor;
+import lotto.io.validator.InputValidatorFacade;
 import lotto.model.lotto.Lotto;
 import lotto.model.money.Money;
 
@@ -35,9 +35,9 @@ public class InputTerminal {
             try {
                 writer.simplePrint(ENTER_PURCHASE_AMOUNT);
                 String input = reader.readInput();
-                // TODO : Validation
+                InputValidatorFacade.purchaseAmountValidators(input);
                 return IOPreprocessor.stringToMoney(input);
-            } catch (InputException e) {
+            } catch (IllegalArgumentException e) {
                 writer.printErrorMessage(e.getMessage());
             }
         }
@@ -50,7 +50,7 @@ public class InputTerminal {
                 String input = reader.readInput();
                 // TODO : Validation
                 return IOPreprocessor.stringToLotto(input);
-            } catch (InputException e) {
+            } catch (IllegalArgumentException e) {
                 writer.printErrorMessage(e.getMessage());
             }
         }
@@ -63,7 +63,7 @@ public class InputTerminal {
                 String input = reader.readInput();
                 // TODO : Validation
                 return IOPreprocessor.stringToInteger(input);
-            } catch (InputException e) {
+            } catch (IllegalArgumentException e) {
                 writer.printErrorMessage(e.getMessage());
             }
         }

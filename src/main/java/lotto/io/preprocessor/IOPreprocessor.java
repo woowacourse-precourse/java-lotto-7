@@ -13,7 +13,7 @@ public class IOPreprocessor {
     }
 
     public static Money stringToMoney(String source) {
-        long purchaseAmount = Long.parseLong(source);
+        long purchaseAmount = Long.parseLong(source.strip());
         return Money.from(purchaseAmount);
     }
 
