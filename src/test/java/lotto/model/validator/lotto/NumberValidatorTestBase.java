@@ -7,8 +7,8 @@ import java.util.List;
 import lotto.exception.InvalidLottoNumberException;
 import org.junit.jupiter.api.Test;
 
-abstract class ValidatorTestBase {
-    protected abstract BaseNumberValidator createValidator(List<Integer> winNumbers, Integer bonusNumber);
+abstract class NumberValidatorTestBase {
+    protected abstract NumberValidator createValidator(List<Integer> winNumbers, Integer bonusNumber);
 
     @Test
     void 번호가_유효한_범위에_있으면_예외가_발생하지_않는다() {

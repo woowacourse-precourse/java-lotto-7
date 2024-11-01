@@ -1,10 +1,7 @@
 package lotto.model.validator.lotto;
 
-import static lotto.exception.InvalidLottoNumberException.DUPLICATE_WINNING_NUMBERS;
 import static lotto.exception.InvalidLottoNumberException.INVALID_WINNING_NUMBERS;
-import static lotto.exception.InvalidLottoNumberException.OUT_OF_RANGE_NUMBER;
 import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
-import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,10 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.model.validator.lotto.WinningNumbersValidator;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersValidatorTest extends ValidatorTestBase{
+class WinningNumbersValidatorTest extends NumberValidatorTestBase {
 
     @Test
     void 로또_번호가_유효한_개수일_때_예외가_발생하지_않는다() {

@@ -5,7 +5,7 @@ import static lotto.exception.InvalidLottoNumberException.DUPLICATE_BONUS_NUMBER
 import java.util.List;
 import lotto.exception.InvalidLottoNumberException;
 
-public class BonusNumberValidator extends BaseNumberValidator {
+public class BonusNumberValidator extends NumberValidator {
     private final Integer bonusNumber;
 
     public BonusNumberValidator(Integer bonusNumber, List<Integer> winNumbers) {

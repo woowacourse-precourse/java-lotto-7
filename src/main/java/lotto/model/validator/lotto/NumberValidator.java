@@ -8,12 +8,11 @@ import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 import java.util.List;
 import lotto.exception.InvalidLottoNumberException;
 import lotto.model.validator.Validator;
-import lotto.util.LottoConstants;
 
-public abstract class BaseNumberValidator implements Validator {
+public abstract class NumberValidator implements Validator {
     protected final List<Integer> winNumbers;
 
-    public BaseNumberValidator(List<Integer> winNumbers) {
+    public NumberValidator(List<Integer> winNumbers) {
         this.winNumbers = winNumbers;
     }
 

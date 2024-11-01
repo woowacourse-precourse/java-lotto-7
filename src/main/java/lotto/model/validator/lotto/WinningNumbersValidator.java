@@ -6,7 +6,7 @@ import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
 import java.util.List;
 import lotto.exception.InvalidLottoNumberException;
 
-public class WinningNumbersValidator extends BaseNumberValidator{
+public class WinningNumbersValidator extends NumberValidator {
     public WinningNumbersValidator(List<Integer> winNumbers) {
         super(winNumbers);
     }
