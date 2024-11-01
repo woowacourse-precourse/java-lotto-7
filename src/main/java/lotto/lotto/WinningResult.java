@@ -29,4 +29,8 @@ public class WinningResult {
 
         return Rank.valueOf(matchCount, hasBonusNumber);
     }
+
+    public EnumMap<Rank, Integer> getRankCounts() {
+        return rankCounts;
+    }
 }

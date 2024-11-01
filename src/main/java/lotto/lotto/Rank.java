@@ -1,7 +1,6 @@
 package lotto.lotto;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 public enum Rank {
     FIRST(6, false, 2_000_000_000),
@@ -51,5 +50,17 @@ public enum Rank {
             rankCounts.put(rank, 0);
         }
         return rankCounts;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean hasBonusNumber() {
+        return hasBonusNumber;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }
