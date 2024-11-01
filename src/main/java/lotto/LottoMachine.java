@@ -30,7 +30,7 @@ public class LottoMachine {
         WinningResult winningResult = new WinningResult(winningNumbers, bonusNumber);
         winningResult.calculateResult(lottos);
 
-        outputView.printWinningStatistics(winningResult);
+        outputView.printWinningStatistics(winningResult, purchaseAmount);
     }
 
     private Amount getPurchaseAmount() {

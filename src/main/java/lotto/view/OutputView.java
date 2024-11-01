@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.EnumMap;
 import java.util.stream.Collectors;
+import lotto.amount.Amount;
 import lotto.lotto.Lotto;
 import lotto.lotto.Lottos;
 import lotto.lotto.Rank;
@@ -17,6 +18,7 @@ public class OutputView {
     private static final String WINNING_RESULT_STATISTICS_TITLE = NEW_LINE + "당첨 통계" + NEW_LINE + "---";
     private static final String WINNING_RESULT_STATISTICS_BODY = "%d개 일치%s (%s원) - %d개" + NEW_LINE;
     private static final String BONUS_NUMBER_MATCH_RESULT_MESSAGE = ", 보너스 볼 일치";
+    private static final String TOTAL_RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private static final String LOTTO_NUMBERS_SEPARATOR = ", ";
     private static final String LOTTO_NUMBERS_PREFIX = "[";
@@ -42,13 +44,16 @@ public class OutputView {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
     }
 
-    public void printWinningStatistics(WinningResult winningResult) {
+    public void printWinningStatistics(WinningResult winningResult, Amount purchaseAmount) {
         System.out.println(WINNING_RESULT_STATISTICS_TITLE);
 
         EnumMap<Rank, Integer> rankCounts = winningResult.getRankCounts();
         for (Rank rank : Rank.values()) {
             printRankStatistics(rank, rankCounts);
         }
+
+        double returnRate = calculateReturnRate(rankCounts, purchaseAmount);
+        System.out.printf(TOTAL_RETURN_RATE_MESSAGE, returnRate);
     }
 
     private void printRankStatistics(Rank rank, EnumMap<Rank, Integer> rankCounts) {
@@ -82,5 +87,15 @@ public class OutputView {
                 .collect(Collectors.joining(LOTTO_NUMBERS_SEPARATOR));
 
         System.out.println(LOTTO_NUMBERS_PREFIX + lottoNumbers + LOTTO_NUMBERS_POSTFIX);
+    }
+
+    private double calculateReturnRate(EnumMap<Rank, Integer> rankCounts, Amount purchaseAmount) {
+        int totalPrize = 0;
+
+        for (Rank rank : Rank.values()) {
+            totalPrize += rank.getPrize() * rankCounts.get(rank);
+        }
+
+        return ((double) totalPrize / purchaseAmount.getValue() * 100);
     }
 }

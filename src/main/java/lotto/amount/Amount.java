@@ -20,6 +20,10 @@ public class Amount {
         return value / LOTTO_PURCHASE_UNIT;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     private void validatePurchaseUnit(int amount) {
         if (isNotDivisibleByLottoPurchaseUnit(amount)) {
             throw new CustomException(ExceptionMessage.INVALID_LOTTO_AMOUNT_EXCEPTION);
