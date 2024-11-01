@@ -13,7 +13,7 @@ public enum ExceptionMessage {
     LOTTO_NUMBER_COUNT_NOT_SIX("로또 번호는 6개여야 합니다."),
     DUPLICATED_LOTTO_NUMBER("당첨 번호 중 서로 중복된 번호가 있습니다."),
     DUPLICATED_BONUS_NUMBER("보너스 번호와 중복되는 당첨 번호가 있습니다."),
-    WINNING_NUMBER_NOT_IN_RANGE("1~45 사이 정수가 아닌 당첨 번호가 존재합니다.");
+    WINNING_NUMBER_NOT_IN_RANGE("입력한 번호가 1~45 사이의 정수가 아닙니다.");
 
     private final String message;
 
