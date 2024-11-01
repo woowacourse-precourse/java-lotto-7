@@ -9,8 +9,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = numbers.stream().sorted().toList();
+        validate(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     public Lotto() {
@@ -29,6 +30,16 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        for (int i = 0; i < 6; i++) {
+            if (numbers.get(i) <= 0 || numbers.get(i) > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (numbers.get(i).equals(numbers.get(i + 1))) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            }
         }
     }
 

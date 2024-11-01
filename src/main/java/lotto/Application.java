@@ -12,14 +12,18 @@ public class Application {
 
         int N = money / 1000;
 
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottoes = new ArrayList<>();
 
         System.out.println(N + "개를 구매했습니다.");
         for (int i = 0; i < N; i++) {
             Lotto lotto = new Lotto();
             lotto.printNumbers();
-            lottos.add(lotto);
+            lottoes.add(lotto);
         }
+        System.out.println();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Lotto winningLotto = Input.validate(Input::parseWinningLotto);
         System.out.println();
     }
 
