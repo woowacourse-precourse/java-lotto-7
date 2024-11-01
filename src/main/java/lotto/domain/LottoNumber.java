@@ -12,18 +12,6 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public static LottoNumber parseLottoNumber(String input) {
-        int number;
-
-        try {
-            number = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MSG);
-        }
-
-        return new LottoNumber(number);
-    }
-
     private void validate(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(LOTTO_NUMBER_ERROR_MSG);
@@ -39,10 +27,9 @@ public class LottoNumber {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        if (!(o instanceof LottoNumber that)) {
+            return false; // null 체크 및 클래스 타입 체크
         }
-        LottoNumber that = (LottoNumber) o;
         return number == that.number;
     }
 
