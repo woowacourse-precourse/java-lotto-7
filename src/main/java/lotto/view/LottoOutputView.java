@@ -16,8 +16,17 @@ public class LottoOutputView {
                 .forEach(System.out::println); // 각 로또 티켓 번호를 한 줄씩 출력
     }
 
-    public void printLottoResult(Map<LottoRank, Integer> rankResults) {
+    public void printLottoResult(Map<LottoRank, Integer> rankResults, double totalEarnings) {
         printResultMessage();
+        printRankResult(rankResults);
+        printEarningRate(totalEarnings);
+    }
+
+    private void printEarningRate(double totalEarnings) {
+        System.out.println(totalEarnings);
+    }
+
+    private void printRankResult(Map<LottoRank, Integer> rankResults) {
         for (LottoRank rank : LottoRank.values()) {
             StringBuilder result = new StringBuilder();
             result.append(rank.getMatchCount()).append("개 일치");
