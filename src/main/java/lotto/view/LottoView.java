@@ -57,8 +57,7 @@ public class LottoView {
         for (Rank rank : Rank.values()) {
             if (rank != Rank.NONE) {
                 long count = results.stream().filter(result -> result == rank).count();
-                System.out.println(rank.getMatchCount() + "개 일치 ("
-                        + rank.getPrize() + "원" + count + "개");
+                System.out.println(rank.getDescription() + " (" + rank.getPrize() + "원) - " + count + "개");
             }
         }
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
