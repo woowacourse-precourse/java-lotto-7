@@ -51,7 +51,7 @@ public class Lotto {
                     .anyMatch(lottoNumber -> lottoNumber < 1 || lottoNumber > 45);
 
             if (hasOutOfRangeNumber) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 입력 가능합니다.");
             }
         }
 

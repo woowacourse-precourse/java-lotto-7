@@ -30,7 +30,7 @@ class LottoTest {
     void validateLottoNumberRange() {
         assertThatThrownBy(() -> Lotto.from(List.of(-1, 0, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 1~45 사이의 숫자만 입력 가능합니다.");
     }
 
     @Test
