@@ -15,7 +15,8 @@ public class LottoCollection {
     public void add(Lotto lotto) {
         lottos.add(lotto);
     }
-    public List<Lotto> getLottos(){
+
+    public List<Lotto> getLottos() {
         return lottos;
     }
 }

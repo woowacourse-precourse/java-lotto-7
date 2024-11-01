@@ -17,13 +17,13 @@ public class InputView {
         return Console.readLine().strip();
     }
 
-    public String winingNumber(){
+    public String winingNumber() {
         System.out.println();
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
         return Console.readLine().strip();
     }
 
-    public String bonusNum(){
+    public String bonusNum() {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine().strip();

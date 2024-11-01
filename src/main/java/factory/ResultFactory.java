@@ -42,7 +42,7 @@ public class ResultFactory {
         for (Lotto lotto : lottos) {
             int winPosition = checkLottoResult(lotto, winningLottoNum, bonusNumber);
             int winCount = result.get(winPosition);
-            winCount+=1;
+            winCount += 1;
             result.put(winPosition, winCount);
         }
         return result;

@@ -13,6 +13,7 @@ public class WinningLottoNumFactory {
     private static final String INPUT_WINNING_LOTTO_NUM_ERROR = "[ERROR] 당첨 번호는 6개여야 합니다.";
 
     private static final int WINNING_LOTTO_NUM_LEN = 6;
+
     public WinningLottoNumFactory(String input) {
         Validation.blankInput(input);
         this.input = input;
@@ -34,16 +35,18 @@ public class WinningLottoNumFactory {
             .collect(Collectors.toList());
     }
 
-    private void validate(){
+    private void validate() {
         Validation.duplicate(nums);
-        if(nums.size() != WINNING_LOTTO_NUM_LEN)
+        if (nums.size() != WINNING_LOTTO_NUM_LEN) {
             throw new IllegalArgumentException(INPUT_WINNING_LOTTO_NUM_ERROR);
+        }
         validRange();
     }
 
-    private void validRange(){
-        for(int num:nums)
+    private void validRange() {
+        for (int num : nums) {
             Validation.range(num);
+        }
     }
 }
 

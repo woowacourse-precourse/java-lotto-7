@@ -20,20 +20,20 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LOTTO_NUM_SIX_ERROR);
         }
-        try{
+        try {
             Validation.duplicate(numbers);
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(LOTTO_NUM_DUPLICATE_ERROR);
         }
     }
 
     // TODO: 추가 기능 구현
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return numbers.toString();
     }
 }

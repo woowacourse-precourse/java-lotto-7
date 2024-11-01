@@ -37,7 +37,7 @@ public class LottoController {
         makeLotto();
         outputView.printLottos(lottoCollection);
         makeWinningNum();
-        bonusNumber = new BonusNumber(winningLottoNum,inputView.bonusNum());
+        bonusNumber = new BonusNumber(winningLottoNum, inputView.bonusNum());
     }
 
     private static void validateInput(String str) {
@@ -51,8 +51,8 @@ public class LottoController {
         winningLottoNum = winningLottoNumFactory.get();
     }
 
-    private void makeLotto(){
-        for(int i=0;i< lottoAmount.getCount();i++){
+    private void makeLotto() {
+        for (int i = 0; i < lottoAmount.getCount(); i++) {
             lottoCollection.add(LottoFactory.make());
         }
     }

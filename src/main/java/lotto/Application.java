@@ -14,7 +14,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         LottoCollection lottoCollection = new LottoCollection();
-        LottoController lottoController = new LottoController(inputView, outputView,lottoCollection);
+        LottoController lottoController = new LottoController(inputView, outputView, lottoCollection);
         lottoController.run();
         Console.close();
     }

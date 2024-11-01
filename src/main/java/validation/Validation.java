@@ -39,16 +39,18 @@ public class Validation {
         }
     }
 
-    public static <T> void duplicate(List<T> input){
+    public static <T> void duplicate(List<T> input) {
         Set<T> hashSet = new HashSet<>();
         hashSet.addAll(input);
-        if(hashSet.size() != input.size())
+        if (hashSet.size() != input.size()) {
             throw new IllegalArgumentException(INVALID_INPUT_ERROR);
+        }
     }
 
-    public static void range(int inputNum){
-        if(inputNum < LOTTO_NUM_START || inputNum > LOTTO_NUM_END)
+    public static void range(int inputNum) {
+        if (inputNum < LOTTO_NUM_START || inputNum > LOTTO_NUM_END) {
             throw new IllegalArgumentException(NUM_RANGE_ERROR);
+        }
     }
 
 }

@@ -13,11 +13,12 @@ public class OutputView {
     }
 
     public void printLottoAmount(LottoAmount lottoAmount) {
-        System.out.println(System.lineSeparator()+lottoAmount.getCount() + PRINT_LOTTO_AMOUNT_MESSAGE);
+        System.out.println(System.lineSeparator() + lottoAmount.getCount() + PRINT_LOTTO_AMOUNT_MESSAGE);
     }
 
-    public void printLottos(LottoCollection lottoCollection){
-        for(Lotto lotto: lottoCollection.getLottos())
+    public void printLottos(LottoCollection lottoCollection) {
+        for (Lotto lotto : lottoCollection.getLottos()) {
             System.out.println(lotto);
+        }
     }
 }
