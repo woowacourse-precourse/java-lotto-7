@@ -15,4 +15,12 @@ public enum LottoRank {
         this.matchCount = matchCount;
         this.prize = prize;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }
