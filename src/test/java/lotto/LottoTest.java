@@ -25,6 +25,14 @@ class LottoTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
+    @DisplayName("로또 번호가 범위를 초과하면 예외가 발생한다")
+    @Test
+    void 로또_번호가_범위를_초과하면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또를 1000개 초과 구매시 예외가 발생한다.")
     @Test
     void 로또_1000개_초과_구매시_예외가_발생한다(){
