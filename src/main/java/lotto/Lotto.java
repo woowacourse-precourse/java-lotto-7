@@ -3,9 +3,6 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,36 +12,31 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public boolean contains(int number) {
-        return numbers.contains(number);
+    public static Lotto getWinningNumbers() {
+        printRequestingLottoWinningNumbers();
+
+        String numbersInput = InputHandler.getUserInput();
+        System.out.println();
+
+        return Lotto.getNumbersFromInput(numbersInput);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public static int getBonusNumber(Lotto winningNumbers) {
+        printRequestingBonusNumber();
+
+        String numberInput = InputHandler.getUserInput();
+        return getBonusNumberFromInput(winningNumbers, numberInput);
     }
 
-    public static void printRequestingMoneyInput() {
-        System.out.println("구입 금액을 입력해 주세요.");
-    }
-
-    public static void printRequestingLottoWinningNumbers() {
+    private static void printRequestingLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static void printRequestingBonusNumber() {
+    private static void printRequestingBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static String getUserInput() {
-        return Console.readLine();
-    }
-
-    public static int getLottoPurchaseCount(String userInput) {
-        int money = Validator.validateMoneyInput(userInput);
-        return money / 1000;
-    }
-
-    public static Lotto getWinningNumbers(String userInput) {
+    private static Lotto getNumbersFromInput(String userInput) {
         List<Integer> winningNumbers = new ArrayList<Integer>();
 
         String[] numbers = userInput.split(",", -1);
@@ -57,15 +49,11 @@ public class Lotto {
         return new Lotto(winningNumbers);
     }
 
-    public static int getBonusNumber(Lotto numbers,String userInput) {
+    private static int getBonusNumberFromInput(Lotto numbers, String userInput) {
         int bonusNumber = Validator.validateLottoNumber(userInput);
         Validator.validateBonusNumber(numbers, bonusNumber);
 
         return bonusNumber;
-    }
-
-    public static List<Integer> getOneRandomLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public static int numberMatchCount(Lotto numbers, List<Integer> randomLotto) {
@@ -78,5 +66,13 @@ public class Lotto {
         }
 
         return numberMatch;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
