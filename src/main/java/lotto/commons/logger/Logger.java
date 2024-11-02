@@ -2,8 +2,10 @@ package lotto.commons.logger;
 
 public class Logger {
 
-    private static final String INFO_PREFIX = "[INFO]";
+    private static final String TXT_COLOR_RED = "\u001B[31m";
+    private static final String TXT_COLOR_RESET = "\u001B[0m";
 
+    private static final String INFO_PREFIX = "[INFO]";
     private static final String ERROR_PREFIX = "[ERROR]";
 
     public static void info(String message) {
@@ -16,13 +18,17 @@ public class Logger {
 
     public static void error(String error) {
         if (error.startsWith(ERROR_PREFIX)) {
-            System.err.println(error);
+            printError(error);
             return;
         }
-        System.err.println(ERROR_PREFIX + " " + error);
+        printError(ERROR_PREFIX + " " + error);
     }
 
     public static void error(Throwable t) {
         Logger.error(t.getMessage());
+    }
+
+    private static void printError(String message) {
+        System.out.println(TXT_COLOR_RED + message + TXT_COLOR_RESET);
     }
 }
