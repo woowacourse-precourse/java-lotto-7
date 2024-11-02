@@ -49,4 +49,8 @@ public class Lotto {
                 .filter(winningNumbers::contains)
                 .count();
     }
+
+    public int calculatePrize(List<Integer> winningNumbers, Integer bonusNumber) {
+        throw new IllegalArgumentException();
+    }
 }
