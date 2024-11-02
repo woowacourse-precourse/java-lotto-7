@@ -6,6 +6,10 @@ import lotto.exception.BuyingAmountOutOfBoundsException;
 import lotto.exception.CannotDividedInThousandException;
 
 public class BuyingAmountValidator {
+    private final int LOTTO_NUMBER_QUANTITY = 6;
+    private final int PRICE_OF_SINGLE_LOTTO = 1000;
+    private final int MAX_BUYING_AMOUNT = 100000;
+
     public int validateBuyingAmount(String input) throws BuyingAmountException {
         validateLength(input);
         validateFormat(input);
@@ -15,7 +19,7 @@ public class BuyingAmountValidator {
     }
 
     private void validateLength(String input) {
-        if (input.length() > 6) {
+        if (input.length() > LOTTO_NUMBER_QUANTITY) {
             throw new BuyingAmountOutOfBoundsException();
         }
     }
@@ -30,14 +34,14 @@ public class BuyingAmountValidator {
 
     private int validateRange(String input) {
         int amount = Integer.parseInt(input);
-        if (amount < 1000 || amount > 100000) {
+        if (amount < PRICE_OF_SINGLE_LOTTO || amount > MAX_BUYING_AMOUNT) {
             throw new BuyingAmountOutOfBoundsException();
         }
         return amount;
     }
 
     private void validateDivisionIntoThousand(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % PRICE_OF_SINGLE_LOTTO != 0) {
             throw new CannotDividedInThousandException();
         }
     }
