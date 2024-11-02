@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.Messages.ErrorMessage;
 import lotto.Model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -15,11 +17,33 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("validateTest 로또 number들이 6개가 아닌 경우")
+    void validateTest(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_NUM.getError());
+    }
+
+    @Test
+    @DisplayName("validateTest 로또 number 사이에 중복이 있을 때")
+    void validateDuplicateTest(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_DUPLICATE.getError());
+    }
+
+    @Test
+    @DisplayName("validateTest 로또 number 정상 작동")
+    void validateCorrectTest(){
+        assertThatNoException().isThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6)));
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
