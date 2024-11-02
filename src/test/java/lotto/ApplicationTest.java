@@ -115,7 +115,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호테스트(){
         assertSimpleTest(
                 () -> {
-                    run("8000", "1,2,3,4,5,6", "7");
+                    run("8000", "1,2,3,4,5,6");
                     assertThat(output()).contains(
                             "golden Numbers: [1, 2, 3, 4, 5, 6]"
                     );
@@ -127,7 +127,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호_비정상_중복(){
         assertSimpleTest(
                 () -> {
-                    runException("8000", "1,2,3,4,5,5", "7");
+                    runException("8000", "1,2,3,4,5,5");
                     assertThat(output()).contains(
                             ERROR_MESSAGE
                     );
@@ -139,7 +139,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호_비정상_모자람(){
         assertSimpleTest(
                 () -> {
-                    runException("8000", "1,2,3,4,5", "7");
+                    runException("8000", "1,2,3,4,5");
                     assertThat(output()).contains(
                             ERROR_MESSAGE
                     );
@@ -151,7 +151,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호_비정상_음수(){
         assertSimpleTest(
                 () -> {
-                    runException("8000", "1,2,3,4,-5,-3", "7");
+                    runException("8000", "1,2,3,4,-5,-3");
                     assertThat(output()).contains(
                             ERROR_MESSAGE
                     );
@@ -163,7 +163,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호_비정상_경계벗어남(){
         assertSimpleTest(
                 () -> {
-                    runException("8000", "0,2,3,4,50,46", "7");
+                    runException("8000", "0,2,3,4,50,46");
                     assertThat(output()).contains(
                             ERROR_MESSAGE
                     );
@@ -175,7 +175,7 @@ class ApplicationTest extends NsTest {
     public void 당첨번호_비정상_이상한값(){
         assertSimpleTest(
                 () -> {
-                    runException("8000", "0,2,3,4,50,java", "7");
+                    runException("8000", "1,2,3,4,50,java");
                     assertThat(output()).contains(
                             ERROR_MESSAGE
                     );

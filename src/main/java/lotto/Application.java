@@ -49,6 +49,7 @@ public class Application {
                 numbers = getNumbers(numbersInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                continue;
             }
 
             try {
