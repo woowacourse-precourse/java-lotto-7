@@ -25,7 +25,7 @@ public class LottoController {
         Payment payment = retry(inputView::readPrice);
         Lottos lottos = purchase(payment);
         AnswerNumbers answerNumbers = create();
-        result(lottos, answerNumbers);
+        result(lottos, answerNumbers, payment);
     }
 
     private Lottos purchase(Payment payment) {
@@ -43,9 +43,10 @@ public class LottoController {
         return AnswerNumbers.from(winningNumbers, bonusNumber);
     }
 
-    private void result(Lottos lottos, AnswerNumbers answerNumbers) {
+    private void result(Lottos lottos, AnswerNumbers answerNumbers, Payment payment) {
         Result result = Result.of(lottos, answerNumbers);
         outputView.printResult(result);
+        outputView.printTotalProfitRate(result.calculateProfitRate(payment));
     }
 
     private <T> T retry(Supplier<T> supplier) {

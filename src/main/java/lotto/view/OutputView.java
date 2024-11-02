@@ -15,6 +15,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS = "당첨통계" + NEW_LINE + "---";
     private static final String WINNING_RESULT_FORMAT = "%d개 일치 (%,d원) - %d개";
     private static final String WINNING_SECOND_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String WINNING_RATE_SUM_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String PURCHASE_LOTTO_COUNT = "%d개를 구매했습니다.";
     private static final String LOTTO_OUTPUT_FORMAT = "[%s]";
     private static final String SEPARATOR = ", ";
@@ -36,6 +37,14 @@ public class OutputView {
         Arrays.stream(Rank.values())
                 .filter(rank -> !rank.equals(Rank.NONE))
                 .forEach(rank -> printResultInfo(rank, result));
+    }
+
+    public void printTotalProfitRate(double totalProfitRate) {
+        Writer.println(getProfitRateFormat(totalProfitRate));
+    }
+
+    private String getProfitRateFormat(double totalProfitRate) {
+        return String.format(WINNING_RATE_SUM_FORMAT, totalProfitRate);
     }
 
     private void printResultInfo(Rank rank, Result result) {
