@@ -5,7 +5,7 @@ import lotto.domain.payment.LottoPrice;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.payment.Payment;
 import lotto.domain.payment.PaymentResult;
-import lotto.repository.PaymentRepository;
+import lotto.repository.paymnet.PaymentRepository;
 import lotto.service.IdGenerator;
 
 public class PaymentService {

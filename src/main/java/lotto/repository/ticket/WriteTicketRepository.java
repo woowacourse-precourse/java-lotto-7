@@ -1,6 +1,6 @@
-package lotto.repository;
+package lotto.repository.ticket;
 
-import static lotto.repository.TicketCommonStorage.getRepository;
+import static lotto.repository.ticket.TicketCommonStorage.getRepository;
 
 import java.util.concurrent.ConcurrentHashMap;
 import lotto.domain.ticket.Ticket;
@@ -9,7 +9,7 @@ public class WriteTicketRepository {
 
     private final ConcurrentHashMap repository = getRepository();
 
-    private WriteTicketRepository() {
+    public WriteTicketRepository() {
     }
 
     public Long save(Ticket ticket) {

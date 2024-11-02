@@ -1,7 +1,7 @@
 package lotto.service.service;
 
 import lotto.domain.ticket.Ticket;
-import lotto.repository.ReadTicketRepository;
+import lotto.repository.ticket.ReadTicketRepository;
 
 public class ReadTicketService {
     private final ReadTicketRepository repository;

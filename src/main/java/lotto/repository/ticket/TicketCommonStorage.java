@@ -1,4 +1,4 @@
-package lotto.repository;
+package lotto.repository.ticket;
 
 import java.util.concurrent.ConcurrentHashMap;
 import lotto.domain.ticket.Ticket;
