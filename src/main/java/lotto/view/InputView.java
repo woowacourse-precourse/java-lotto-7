@@ -10,6 +10,12 @@ public class InputView {
 		return Integer.parseInt(input);
 	}
 
+	public String readLottoNumbers() {
+		String input = Console.readLine();
+
+		return input;
+	}
+
 	private void validatePurchaseAmount(String input) {
 		validateNotBlank(input);
 		validateDigit(input);
