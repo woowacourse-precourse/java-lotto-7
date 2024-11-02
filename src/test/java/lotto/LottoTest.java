@@ -21,5 +21,25 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 범위에 일치 하지 않으면 예외가 발생한다.")
+    @Test
+    void 로또_번호가_범위가_일치하지_않으면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 80)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 0인 경우 범위에 일치하지 않기에 예외가 발생한다. ")
+    @Test
+    void 로또_번호가_0인경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 46인 경우 범위에 일치하지 않기에 예외가 발생한다. ")
+    @Test
+    void 로또_번호가_46인경우_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
