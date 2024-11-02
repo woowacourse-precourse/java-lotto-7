@@ -53,7 +53,9 @@ public class LottoResult {
         return totalPrize;
     }
 
-
+    public Map<WinningPrize, Integer> getResults() {
+        return new EnumMap<>(results);
+    }
 
 
 }

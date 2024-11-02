@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.domain.WinningPrize;
 
 public class View {
     public static void promptForPurchaseAmount() {
@@ -27,7 +30,22 @@ public class View {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public static void printLottoResults(LottoResult lottoResult, double returnRate) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
 
+        Map<WinningPrize, Integer> results = lottoResult.getResults();
+        for (WinningPrize winningPrize : WinningPrize.values()) {
+            if (winningPrize != WinningPrize.NONE_PRIZE) {
+                System.out.printf("%s (%,d원) - %d개%n",
+                        winningPrize.getDescription(),
+                        winningPrize.getPrize(),
+                        results.get(winningPrize));
+            }
+        }
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
+    }
 
 
 
