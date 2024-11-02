@@ -2,6 +2,7 @@ package factory;
 
 import java.util.List;
 import java.util.Map;
+import model.Amount;
 import model.Lotto;
 import model.BonusNumber;
 import model.LottoCollection;
@@ -95,5 +96,33 @@ public class ResultFactoryTest {
         Map<Prize, Integer> result = resultFactory.getResult();
 
         assertThat(result.get(Prize.ZERO)).isEqualTo(1);
+    }
+
+    @Test
+    void 수익률_5등_테스트(){
+        List<Integer> nums = List.of(45, 2, 11, 4, 5, 10);
+        WinningLottoNum winningLottoNum = new WinningLottoNum(nums);
+        BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
+        ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
+        Amount amount = new Amount(5000);
+        resultFactory.getResult();
+
+        float earningRate = resultFactory.getEarningRate(amount);
+
+        assertThat(earningRate).isEqualTo(100.00f);
+    }
+
+    @Test
+    void 수익률_미당첨_테스트(){
+        List<Integer> nums = List.of(45, 9, 11, 4, 5, 10);
+        WinningLottoNum winningLottoNum = new WinningLottoNum(nums);
+        BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
+        ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
+        Amount amount = new Amount(5000);
+        resultFactory.getResult();
+
+        float earningRate = resultFactory.getEarningRate(amount);
+
+        assertThat(earningRate).isEqualTo(0.00f);
     }
 }
