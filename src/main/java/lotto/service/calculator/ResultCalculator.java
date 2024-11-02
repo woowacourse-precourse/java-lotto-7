@@ -4,19 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.message.Place;
+import lotto.message.PrintMessage;
 import lotto.message.Prize;
 import lotto.strategy.FifthPlace;
 import lotto.strategy.FirstPlace;
 import lotto.strategy.FourthPlace;
 import lotto.strategy.PlaceAuction;
 import lotto.strategy.SecondPlace;
-import lotto.message.PrintMessage;
 
 public class ResultCalculator {
 
     private final Map<Integer, Integer> placeMap = new HashMap<>();
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
     private final List<Integer> prize = Prize.getPrize();
+
+    private final Integer START_PLACE = Place.MIN_PLACE.getNumber();
+    private final Integer END_PLACE = Place.MAX_PLACE.getNumber();
 
     private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
@@ -28,7 +32,7 @@ public class ResultCalculator {
     }
 
     private void init(List<Integer> bonusResult) {
-        for (int place = 1; place <= 5; place++) {
+        for (int place = START_PLACE; place <= END_PLACE; place++) {
             placeMap.put(place, 0);
         }
         placeAuctionMap.put(6, new FirstPlace(placeMap));
@@ -68,7 +72,7 @@ public class ResultCalculator {
 
     public Integer getPrizeMoney() {
         int prizeMoney = 0;
-        for (int place = 1; place <= 5; place++) {
+        for (int place = START_PLACE; place <= END_PLACE; place++) {
             prizeMoney += placeMap.get(place) * prize.get(place - 1);
         }
         return prizeMoney;
