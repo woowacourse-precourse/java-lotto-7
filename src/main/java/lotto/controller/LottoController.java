@@ -1,9 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,16 +29,11 @@ public class LottoController {
 
         OutputView.showBuyLottos(lottos.size(), formattedLottos);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumbersInput = InputView.readLine();
-        Set<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(","))
-            .map(Integer::parseInt)
-            .collect(Collectors.toSet());
+        Set<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber();
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(InputView.readLine());
-
-
+        WinningNumbers winningLotto = new WinningNumbers(winningNumbers, bonusNumber);
+        
 
     }
 
