@@ -56,8 +56,13 @@ public class LottoService {
 
     public List<Integer> splitLottoWinningNumbers(String lottoWinningNumbers) {
         String[] lottoArray = lottoWinningNumbers.split(Constants.SEPARATOR);
-        lottoTrim(lottoArray); // 함수 이름 바꾸기
+        trimLottoWinningNumbers(lottoArray);
+        List<Integer> lottoWinningNumbersIntList = convertLottoWinningNumbers(lottoArray);
 
+        return lottoWinningNumbersIntList;
+    }
+
+    private List<Integer> convertLottoWinningNumbers(String[] lottoArray) {
         List<String> lottoWinningNumbersList = Arrays.asList(lottoArray);
         List<Integer> lottoWinningNumbersIntList = lottoWinningNumbersList.stream()
                 .map(Integer::parseInt)
@@ -66,7 +71,7 @@ public class LottoService {
         return lottoWinningNumbersIntList;
     }
 
-    private void lottoTrim(String[] lottoArray) {
+    private void trimLottoWinningNumbers(String[] lottoArray) {
         for (int i = 0; i < lottoArray.length; i++) {
             lottoArray[i] = lottoArray[i].trim();
         }

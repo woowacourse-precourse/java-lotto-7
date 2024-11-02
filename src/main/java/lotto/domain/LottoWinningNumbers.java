@@ -22,6 +22,7 @@ public class LottoWinningNumbers {
         validateNum(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
+        validateRangeCheck(bonus);
         validateDuplicateBonus(numbers, bonus);
     }
     private void validateNum(List<Integer> numbers) {
@@ -32,9 +33,13 @@ public class LottoWinningNumbers {
 
     private void validateRange(List<Integer> numbers){
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이여야 합니다.");
-            }
+            validateRangeCheck(number);
+        }
+    }
+
+    private void validateRangeCheck(Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이여야 합니다.");
         }
     }
 
