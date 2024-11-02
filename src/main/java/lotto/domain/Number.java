@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
@@ -35,17 +36,21 @@ public class Number implements Comparable<Number> {
 
     private static class Validator {
         private static void validate(int value) {
-            validateRange(value);
+            validateRange(value, LottoDetail.MIN_VALUE, LottoDetail.MAX_VALUE);
         }
 
-        private static void validateRange(int value) {
-            if (isInvalidRange(value)) {
+        private static void validateRange(int value,
+                                          LottoDetail min,
+                                          LottoDetail max) {
+            if (isInvalidRange(value, min, max)) {
                 throw new LottoException(ErrorMessage.INVALID_NUMBER_RANGE);
             }
         }
 
-        private static boolean isInvalidRange(int value) {
-            return value < 1 || value > 45;
+        private static boolean isInvalidRange(int value,
+                                              LottoDetail min,
+                                              LottoDetail max) {
+            return value < min.getValue() || value > max.getValue();
         }
     }
 }
