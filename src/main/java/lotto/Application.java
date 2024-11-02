@@ -14,8 +14,8 @@ public class Application {
         int purchaseAmount = calculatePurchaseAmount(scanPurchasePrice());
         Lotto winningNumbersLotto;
 
-        List<Lotto> myLottos = generateLottos(purchaseAmount);
-        printLottos(purchaseAmount, myLottos);
+        List<Lotto> lottos = generateLottos(purchaseAmount);
+        printLottos(purchaseAmount, lottos);
 
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -59,7 +59,7 @@ public class Application {
             prizeRankCounts.put(prizeRank, 0);
         }
 
-        for (Lotto lotto : myLottos) {
+        for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCount(winningNumbersLotto);
             boolean isBonusMatch = lotto.isBonusMatch(bonusNumber);
             PrizeRank prizeRank = PrizeRank.getPrizeRank(matchCount, isBonusMatch);
@@ -95,11 +95,11 @@ public class Application {
     }
 
     public static List<Lotto> generateLottos(int purchaseAmount) {
-        List<Lotto> myLottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            myLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
-        return myLottos;
+        return lottos;
     }
 
     public static void printLottos(int purchaseAmount, List<Lotto> lottos) {
