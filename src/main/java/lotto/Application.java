@@ -12,6 +12,10 @@ public class Application {
         Lotto[] lottoArray = issueLotto(lottoCount);
         List<Integer> winningLotto = InputHandler.handleWinningLottoInput();
         int bonusNumber = InputHandler.handleBonusNumberInput();
+
+        for (Lotto eachLotto : lottoArray) {
+            eachLotto.match(winningLotto);
+        }
     }
 
     private static Lotto[] issueLotto(int lottoCount) {
