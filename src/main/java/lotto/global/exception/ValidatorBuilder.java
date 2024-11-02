@@ -1,58 +1,47 @@
 package lotto.global.exception;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-public class ValidatorBuilder {
-    private String inputValue;
+public class ValidatorBuilder<T> {
+    private final T value;
     private int numericValue;
-    private List<Integer> numericValues;
 
-    private ValidatorBuilder(String StringValue) {
-        this.inputValue = StringValue;
+    private ValidatorBuilder(final T value) {
+        this.value = value;
     }
 
-    public ValidatorBuilder(List<Integer> inputValues) {
-        this.numericValues = inputValues;
+    public static <T> ValidatorBuilder<T> from(final T value) {
+        return new ValidatorBuilder<>(value);
     }
 
-    public static ValidatorBuilder from(String inputValue) {
-        return new ValidatorBuilder(inputValue);
-    }
-
-    public static ValidatorBuilder from(List<Integer> inputValues) {
-        return new ValidatorBuilder(inputValues);
-    }
-
-    public ValidatorBuilder validateIsInteger() {
-        try {
-            numericValue = Integer.parseInt(inputValue);
-            return this;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Exception.NOT_INTEGER.message);
+    public ValidatorBuilder<T> validate(Predicate<T> condition, Exception exception) {
+        if (condition.test(value)) {
+            throw new IllegalArgumentException(exception.message);
         }
+        return this;
     }
 
-    public ValidatorBuilder validate(Predicate<Integer> condition, Exception exception) {
+    public ValidatorBuilder<T> validateInteger(Predicate<Integer> condition, Exception exception) {
         if (condition.test(numericValue)) {
             throw new IllegalArgumentException(exception.message);
         }
         return this;
     }
 
-    public ValidatorBuilder validateGroup(Predicate<List<Integer>> condition, Exception exception) {
-        if (condition.test(numericValues)) {
-            throw new IllegalArgumentException(exception.message);
+    public ValidatorBuilder<T> validateIsInteger() {
+        try {
+            numericValue = Integer.parseInt((String) value);
+            return this;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(Exception.NOT_INTEGER.message);
         }
-        return this;
     }
 
-    public int get() {
-        return this.numericValue;
+    public T get() {
+        return value;
     }
 
-    public List<Integer> gets() {
-        return this.numericValues;
+    public int getNumericValue() {
+        return numericValue;
     }
-
 }

@@ -19,9 +19,9 @@ public class Money {
     private int validateMoney(final String inputMoney) {
         return ValidatorBuilder.from(inputMoney)
                 .validateIsInteger()
-                .validate(money -> money < LOTTO_PRICE, Exception.INVALID_MONEY_FORMAT)
-                .validate(money -> money % LOTTO_PRICE != 0, Exception.INDIVISIBLE_MONEY)
-                .get();
+                .validateInteger(money -> money < LOTTO_PRICE, Exception.INVALID_MONEY_FORMAT)
+                .validateInteger(money -> money % LOTTO_PRICE != 0, Exception.INDIVISIBLE_MONEY)
+                .getNumericValue();
     }
 
 }
