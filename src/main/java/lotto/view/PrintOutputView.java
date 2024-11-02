@@ -16,7 +16,6 @@ public class PrintOutputView {
     }
 
     public void printRequireWinningNumbers() {
-        System.out.println();
         System.out.println(REQUIRE_WINNING_NUMBERS.getText());
     }
 
