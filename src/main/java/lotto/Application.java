@@ -8,5 +8,7 @@ public class Application {
         // TODO: 프로그램 구현
         final InputView inputView = new InputView();
         final LottoController lottoController = new LottoController(inputView);
+
+        lottoController.run();
     }
 }

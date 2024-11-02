@@ -6,7 +6,7 @@ import lotto.constant.PurchaseAmountValidatorConstant;
 import java.math.BigInteger;
 
 public class PurchaseAmountValidator {
-    public void validate(String purchaseAmountRawInput) {
+    public static void validate(String purchaseAmountRawInput) {
         if (!isPositiveNumber(purchaseAmountRawInput)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }
@@ -21,15 +21,15 @@ public class PurchaseAmountValidator {
         }
     }
 
-    private boolean isPositiveNumber(String str) {
+    private static boolean isPositiveNumber(String str) {
         return str.matches("\\+?\\d+");
     }
 
-    private boolean hasWhiteSpace(String str) {
+    private static boolean hasWhiteSpace(String str) {
         return str.matches(".*\\s+.*");
     }
 
-    private boolean isOutOfRangePurchaseAmount(String purchaseAmount) {
+    private static boolean isOutOfRangePurchaseAmount(String purchaseAmount) {
         BigInteger amount = new BigInteger(purchaseAmount);
         BigInteger minAmount = BigInteger.valueOf(PurchaseAmountValidatorConstant.MIN_PURCHASE_AMOUNT.getValue());
         BigInteger maxAmount = BigInteger.valueOf(PurchaseAmountValidatorConstant.MAX_PURCHASE_AMOUNT.getValue());
@@ -37,7 +37,7 @@ public class PurchaseAmountValidator {
         return amount.compareTo(minAmount) < 0 || amount.compareTo(maxAmount) > 0;
     }
 
-    private boolean canDivideByThousand(String purchaseAmount) {
+    private static boolean canDivideByThousand(String purchaseAmount) {
         int amount = Integer.parseInt(purchaseAmount);
 
         return amount % PurchaseAmountValidatorConstant.THOUSAND.getValue() == 0;

@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoNumberRangeConstant;
 import lotto.constant.LottoNumbersConstant;
 
 import java.math.BigInteger;
@@ -9,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LottoNumbersValidator {
-    public void validate(String lottoNumbersInput) {
+    public static void validate(String lottoNumbersInput) {
         if (!isOnlyNumbersAndCommas(lottoNumbersInput)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBERS_AND_COMMAS_LOTTO_NUMBERS.getMessage());
         }
@@ -27,25 +26,22 @@ public class LottoNumbersValidator {
         }
     }
 
-    private boolean isOnlyNumbersAndCommas(String lottoNumbersInput) {
+    private static boolean isOnlyNumbersAndCommas(String lottoNumbersInput) {
         return lottoNumbersInput.matches("^[0-9,]+");
     }
 
-    private boolean isInValidFormat(String lottoNumbersInput) {
+    private static boolean isInValidFormat(String lottoNumbersInput) {
         return lottoNumbersInput.matches("^,.*|.*,,.*|.*,$");
     }
 
-    private boolean isNotSixNumbers(String lottoNumbersInput) {
-        return lottoNumbersInput.split(",").length !=
-                LottoNumbersConstant.LOTTO_NUMBERS_LENGTH.getValue();
+    private static boolean isNotSixNumbers(String lottoNumbersInput) {
+        return lottoNumbersInput.split(",").length != LottoNumbersConstant.LOTTO_NUMBERS_LENGTH.getValue();
     }
 
-    private boolean isOutOfRangeNumber(String lottoNumbersInput) {
+    private static boolean isOutOfRangeNumber(String lottoNumbersInput) {
         String[] numbers = lottoNumbersInput.split(",");
-        BigInteger minNumber = BigInteger.valueOf(
-                LottoNumbersConstant.MIN_LOTTO_NUMBER.getValue());
-        BigInteger maxNumber = BigInteger.valueOf(
-                LottoNumbersConstant.MAX_LOTTO_NUMBER.getValue());
+        BigInteger minNumber = BigInteger.valueOf(LottoNumbersConstant.MIN_LOTTO_NUMBER.getValue());
+        BigInteger maxNumber = BigInteger.valueOf(LottoNumbersConstant.MAX_LOTTO_NUMBER.getValue());
 
         for (String number : numbers) {
             BigInteger num = new BigInteger(number);
@@ -57,7 +53,7 @@ public class LottoNumbersValidator {
         return false;
     }
 
-    private boolean hasDuplicatedNumber(String lottoNumbersInput) {
+    private static boolean hasDuplicatedNumber(String lottoNumbersInput) {
         Set<String> uniqueNumbers = new HashSet<>();
         String[] numbers = lottoNumbersInput.split(",");
 
