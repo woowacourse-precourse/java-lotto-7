@@ -29,6 +29,10 @@ public class WinningStatistics {
         return new WinningStatistics(enumMap);
     }
 
+    private static double getReturnPercentage(double winningPrice, int purchaseAmount) {
+        return winningPrice / purchaseAmount * 100;
+    }
+
     public void saveWinningResult(Rank rank) {
         statistics.put(rank, statistics.get(rank) + 1);
     }
@@ -41,6 +45,6 @@ public class WinningStatistics {
         long winningPrice = statistics.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
-        return winningPrice / (double) purchaseAmount * 100;
+        return getReturnPercentage(winningPrice, purchaseAmount);
     }
 }

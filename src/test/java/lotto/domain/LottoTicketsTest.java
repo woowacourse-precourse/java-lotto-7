@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.Rank.*;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -59,7 +60,7 @@ class LottoTicketsTest {
         WinningStatistics winningStatistics = lottoTickets.getWinningStatistics(winningNumbers, bonusNumber);
 
         // then
-        assertThat( winningStatistics.getRankCount(SECOND)).isEqualTo(1);
-        assertThat( winningStatistics.getRankCount(THIRD)).isEqualTo(1);
+        assertThat(winningStatistics.getRankCount(SECOND)).isEqualTo(1);
+        assertThat(winningStatistics.getRankCount(THIRD)).isEqualTo(1);
     }
 }

@@ -1,12 +1,16 @@
 package lotto.domain;
 
-import static lotto.domain.Rank.*;
-import static org.assertj.core.api.Assertions.*;
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.NO_PRIZE;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Set;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
