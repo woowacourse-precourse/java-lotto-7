@@ -1,8 +1,13 @@
 package domain.consumer;
 
+import domain.error.InputErrorMessage;
 import domain.lotto.Lotto;
+import domain.lotto.LottoMachin;
 import domain.lotto.LottoPrice;
+import domain.rank.MatchCount;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Consumer {
     private List<Lotto> purchasedLottos;
@@ -26,6 +31,7 @@ public class Consumer {
     }
 
     public void selectBonusNumber(int bonusNumber) {
+        validateBonusNumberNotInWinningNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -38,10 +44,29 @@ public class Consumer {
     public boolean selectedBonusNumberIsEqualsTo(int expectedBonusNumber) {
         return bonusNumber == expectedBonusNumber;
     }
-    /**
-     * 소비자는 돈을 소지하고 있는다.
-     * 소비자는 로또를 저장할 수 있다.
-     * 소비자는 로또를 구매하기 위해 돈을 지불한다.
-     * 소비자는 자신이 입력한 당첨 번호를 저장하고 있어야 한다.
-     */
+
+    public Map<MatchCount, Integer> getCheckLottoResultBy(LottoMachin lottoMachin) {
+        Map<MatchCount, Integer> resultMatchCount = new LinkedHashMap<>();
+        for (Lotto purchasedLotto : this.purchasedLottos) {
+            int matchCount =
+                    lottoMachin.getMatchedLottoCount(purchasedLotto, this.selectWinnerLotto, this.bonusNumber);
+            if (isWithinValidRange(matchCount)) {
+                MatchCount convertMatchCount = MatchCount.from(matchCount);
+                resultMatchCount.put(convertMatchCount, resultMatchCount.getOrDefault(convertMatchCount, 0) + 1);
+            }
+        }
+        return resultMatchCount;
+    }
+    // TODO : Map 자료 구조에 초기화 설정
+
+
+    private boolean isWithinValidRange(int matchCount) {
+        return matchCount >= 3 && matchCount <= 7;
+    }
+
+    private void validateBonusNumberNotInWinningNumbers(int bonusNumber) {
+        if (selectWinnerLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(InputErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getErrorMessage());
+        }
+    }
 }
