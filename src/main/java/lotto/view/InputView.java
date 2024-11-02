@@ -1,10 +1,21 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import org.junit.platform.commons.util.StringUtils;
 
 public class InputView {
+    private static final String NUMBER_PATTERN = "\\+d";
+
     public String getString() {
-        return Console.readLine();
+        String input = Console.readLine();
+        validateEmptyString(input);
+        return input;
+    }
+
+    private void validateEmptyString(final String input) {
+        if (StringUtils.isBlank(input)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public int getInteger() {
@@ -21,7 +32,7 @@ public class InputView {
     }
 
     private boolean isNotNumber(final String input) {
-        return !input.matches("\\d+");
+        return !input.matches(NUMBER_PATTERN);
     }
 
     private void validateIntegerRange(final String input) {
