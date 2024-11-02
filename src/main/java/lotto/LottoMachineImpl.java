@@ -10,30 +10,19 @@ import java.util.List;
 
 public class LottoMachineImpl implements LottoMachine {
     @Override
-    public List<Lotto> createLottoTickets(String inputMoney) {
-        List<Lotto> lottoTickets = new ArrayList<>();
+    public List<Lotto> purchaseLottoTickets(String inputMoney) {
         int money = InputValidator.validateMoney(inputMoney);
         int count = money / 1000;
 
-        for (int i = 0; i < count; i++) {
-            Lotto newLottoTicket = new Lotto(pickLottoNumbers());
-            lottoTickets.add(newLottoTicket);
-        }
-        showCreateLottoTickets(count, lottoTickets);
-
-        return lottoTickets;
+        return createLottoTickets(count);
     }
 
     @Override
-    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers,
-                                                        String inputBonusNumber) {
+    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers, String inputBonusNumber) {
         List<Integer> winningNumbers = InputValidator.validateWiningNumbers(inputWinningNumbers);
         int bonusNumber = InputValidator.validateBonusNumber(winningNumbers, inputBonusNumber);
 
-        HashMap<LottoRank, Integer> winningResult = new HashMap<>();
-        for (LottoRank rank : LottoRank.values()) {
-            winningResult.put(rank, 0);
-        }
+        HashMap<LottoRank, Integer> winningResult = initWinningResult();
 
         for (Lotto lottoTicket : lottoTickets) {
             //당첨 개수를 센다.
@@ -61,21 +50,20 @@ public class LottoMachineImpl implements LottoMachine {
         return Math.round(profitRate * 100) / 100.0;
     }
 
+    private List<Lotto> createLottoTickets(int purchaseCount) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+
+        for (int i = 0; i < purchaseCount; i++) {
+            Lotto newLottoTicket = new Lotto(pickLottoNumbers());
+            lottoTickets.add(newLottoTicket);
+        }
+        return lottoTickets;
+    }
+
     private List<Integer> pickLottoNumbers() {
         List<Integer> pickedNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(pickedNumbers);
         return pickedNumbers;
-
-    }
-
-    private void showCreateLottoTickets(int count, List<Lotto> lottoTickets) {
-        System.out.println();
-        System.out.println(count + "개를 구매했습니다.");
-
-        for (Lotto lotto : lottoTickets) {
-            System.out.println(lotto);
-        }
-        System.out.println();
     }
 
     private int getMatchNumbers(Lotto lottoTicket, List<Integer> winningNumbers) {
@@ -98,6 +86,14 @@ public class LottoMachineImpl implements LottoMachine {
 
     private boolean isMatchBonusNumber(Lotto lottoTicket, int bonusNumber) {
         return lottoTicket.getNumbers().contains(bonusNumber);
+    }
+
+    private HashMap<LottoRank, Integer> initWinningResult() {
+        HashMap<LottoRank, Integer> winningResult = new HashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            winningResult.put(rank, 0);
+        }
+        return winningResult;
     }
 
     private void printWinningResult(HashMap<LottoRank, Integer> winningCounts) {

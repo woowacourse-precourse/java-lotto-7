@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -17,7 +16,7 @@ class LottoMachineImplTest {
         //given
         String money = "5000";
         //when
-        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(money);
+        List<Lotto> lottoTickets = lottoMachine.purchaseLottoTickets(money);
         //then
         Assertions.assertThat(lottoTickets.size()).isEqualTo(5);
         Assertions.assertThat(lottoTickets.get(1).getNumbers().size()).isEqualTo(LOTTO_NUMBER);
@@ -27,7 +26,7 @@ class LottoMachineImplTest {
     void 자동으로_생성된_로또_결과_출력_테스트() {
         //given
         String money = "5000";
-        List<Lotto> lottoTickets = lottoMachine.createLottoTickets(money);
+        List<Lotto> lottoTickets = lottoMachine.purchaseLottoTickets(money);
         //when
         lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
         //then

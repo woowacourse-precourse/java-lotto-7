@@ -15,7 +15,8 @@ public class Application {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 purchaseMoney = Console.readLine();
-                lottoTickets = lottoMachine.createLottoTickets(purchaseMoney);
+                lottoTickets = lottoMachine.purchaseLottoTickets(purchaseMoney);
+                showCreateLottoTickets(lottoTickets);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e. getMessage());
@@ -38,5 +39,14 @@ public class Application {
 
         Double profitRate = lottoMachine.calculateProfitRate(winningResult, purchaseMoney);
         System.out.println("총 수익률은 "+ profitRate + "%입니다.");
+    }
+
+    static private void showCreateLottoTickets(List<Lotto> lottoTickets) {
+        System.out.println("\n" + lottoTickets.size() + "개를 구매했습니다.");
+
+        for (Lotto lotto : lottoTickets) {
+            System.out.println(lotto);
+        }
+        System.out.println();
     }
 }
