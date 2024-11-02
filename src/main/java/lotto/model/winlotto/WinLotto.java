@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.model.winlotto;
+
+import lotto.model.Lotto;
 
 import java.util.Set;
 

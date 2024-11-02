@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.model.outcome;
+
+import lotto.model.PrizeGrade;
 
 import java.util.ArrayList;
 import java.util.List;

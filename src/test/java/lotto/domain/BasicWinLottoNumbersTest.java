@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.model.BasicWinLottoNumbers;
+import lotto.model.winlotto.BasicWinLottoNumbers;
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;

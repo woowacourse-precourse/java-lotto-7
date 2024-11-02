@@ -1,7 +1,7 @@
 package lotto.repository;
 
 import lotto.model.BoughtLottos;
-import lotto.model.LottoResult;
+import lotto.model.outcome.LottoResult;
 
 public interface Repository {
     

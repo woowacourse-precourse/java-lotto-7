@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.model.SpendingMoney;
+import lotto.model.condition.SpendingMoney;
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;

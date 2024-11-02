@@ -1,6 +1,11 @@
 package lotto.servcie;
 
 import lotto.model.*;
+import lotto.model.outcome.CountByPrizeGrade;
+import lotto.model.outcome.LottoBenefitRate;
+import lotto.model.outcome.LottoResult;
+import lotto.model.condition.SpendingMoney;
+import lotto.model.winlotto.WinLotto;
 import lotto.repository.Repository;
 
 public class LottoServiceImpl implements LottoService {

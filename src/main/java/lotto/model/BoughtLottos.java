@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.condition.SpendingMoney;
 import lotto.utils.Constants;
 
 import java.util.*;

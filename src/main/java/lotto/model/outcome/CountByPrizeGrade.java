@@ -1,4 +1,9 @@
-package lotto.model;
+package lotto.model.outcome;
+
+import lotto.model.BoughtLottos;
+import lotto.model.Lotto;
+import lotto.model.PrizeGrade;
+import lotto.model.winlotto.WinLotto;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;

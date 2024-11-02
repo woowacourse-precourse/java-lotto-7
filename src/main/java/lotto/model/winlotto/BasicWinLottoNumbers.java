@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.winlotto;
 
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;

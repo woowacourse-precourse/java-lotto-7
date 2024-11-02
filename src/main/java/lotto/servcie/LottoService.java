@@ -1,9 +1,9 @@
 package lotto.servcie;
 
-import lotto.model.SpendingMoney;
+import lotto.model.condition.SpendingMoney;
 import lotto.model.BoughtLottos;
-import lotto.model.LottoResult;
-import lotto.model.WinLotto;
+import lotto.model.outcome.LottoResult;
+import lotto.model.winlotto.WinLotto;
 
 public interface LottoService {
 
