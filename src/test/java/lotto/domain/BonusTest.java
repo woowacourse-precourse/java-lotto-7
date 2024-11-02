@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constant.Constant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +11,8 @@ class BonusTest {
     @DisplayName("보너스 범위 검증")
     public void bonusRangeTest() {
         //given
-        String bonus1 = "-1";
-        String bonus2 = "46";
+        String bonus1 = String.valueOf(Constant.START_INCLUSIVE - 1);
+        String bonus2 = String.valueOf(Constant.END_INCLUSIVE + 1);
         //expect
         assertThrows(IllegalArgumentException.class, () -> {new Bonus(bonus1);});
         assertThrows(IllegalArgumentException.class, () -> {new Bonus(bonus2);});

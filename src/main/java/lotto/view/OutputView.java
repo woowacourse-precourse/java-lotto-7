@@ -9,6 +9,7 @@
  */
 package lotto.view;
 
+import lotto.constant.Constant;
 import lotto.constant.Message;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
@@ -39,11 +40,11 @@ public class OutputView {
     }
 
     private void printWinningStatistics(int[] winningResult) {
-        System.out.println(Message.FIFTH_MESSAGE + winningResult[Rank.FIFTH.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
-        System.out.println(Message.FOURTH_MESSAGE + winningResult[Rank.FOURTH.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
-        System.out.println(Message.THIRD_MESSAGE + winningResult[Rank.THIRD.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
-        System.out.println(Message.SECOND_MESSAGE + winningResult[Rank.SECOND.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
-        System.out.println(Message.FIRST_MESSAGE + winningResult[Rank.FIRST.getRank()-1] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.FIFTH_MESSAGE + winningResult[Rank.FIFTH.getRank()- Constant.POSITIION_CORRENTION] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.FOURTH_MESSAGE + winningResult[Rank.FOURTH.getRank()-Constant.POSITIION_CORRENTION] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.THIRD_MESSAGE + winningResult[Rank.THIRD.getRank()-Constant.POSITIION_CORRENTION] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.SECOND_MESSAGE + winningResult[Rank.SECOND.getRank()-Constant.POSITIION_CORRENTION] + Message.COUNT_UNIT_MESSAGE);
+        System.out.println(Message.FIRST_MESSAGE + winningResult[Rank.FIRST.getRank()-Constant.POSITIION_CORRENTION] + Message.COUNT_UNIT_MESSAGE);
     }
 
     public void printRateOfReturn(double rateOfReturn) {

@@ -9,6 +9,7 @@
  */
 package lotto.controller;
 
+import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
 import lotto.domain.Bonus;
 import lotto.domain.PurchaseAmount;
@@ -96,7 +97,7 @@ public class LottoController {
 
     private void printNumberOfLottoPurchases(PurchaseAmount purchaseAmount) {
         int numberOfLotto = purchaseAmount.getNumberOfLotto();
-        if (numberOfLotto != 0) {
+        if (numberOfLotto != Constant.ZERO) {
             outputView.printPurchaseAmount(numberOfLotto);
         }
     }

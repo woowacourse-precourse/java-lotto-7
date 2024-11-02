@@ -9,6 +9,7 @@
  */
 package lotto.domain;
 
+import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
 
 import java.util.Arrays;
@@ -16,7 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private static final int SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,7 +25,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != SIZE) {
+        if (numbers.size() != Constant.LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
         }
         validateDuplication(numbers);
@@ -33,7 +33,7 @@ public class Lotto {
 
     private void validateDuplication(List<Integer> numbers) {
         HashSet<Integer> duplicatedNumbers = new HashSet<>(numbers);
-        if (duplicatedNumbers.size() != SIZE) {
+        if (duplicatedNumbers.size() != Constant.LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION_ERROR_MESSAGE);
         }
     }

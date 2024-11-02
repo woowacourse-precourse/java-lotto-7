@@ -19,7 +19,6 @@ public enum Rank {
     FIFTH(5,3,false,5000, (count,bonus) -> count == 3),
     NON(0,0,false,0, (count,bonus) -> count <= 2);
 
-    public static final int NUMBER_OF_RANKS = 5;
     private final int rank;
     private final int count;
     private final boolean bonus;

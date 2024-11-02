@@ -9,11 +9,10 @@
  */
 package lotto.domain;
 
+import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
 
 public class Bonus {
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
 
     private final int bonus;
 
@@ -38,7 +37,7 @@ public class Bonus {
     }
 
     private void validateRange(int bonus) {
-        if (bonus < START_INCLUSIVE || bonus > END_INCLUSIVE) {
+        if (bonus < Constant.START_INCLUSIVE || bonus > Constant.END_INCLUSIVE) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_RANGE_ERROR_MESSAGE);
         }
     }

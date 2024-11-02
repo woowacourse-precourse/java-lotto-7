@@ -9,6 +9,7 @@
  */
 package lotto.model;
 
+import lotto.constant.Constant;
 import lotto.domain.*;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class LottoCollection {
     }
 
     public int [] getWinningResult() {
-        int [] resultArray = new int [Rank.NUMBER_OF_RANKS];
+        int [] resultArray = new int [Constant.NUMBER_OF_RANKS];
         for (WonLotto wonLotto : resultList) {
             int rank = wonLotto.getRankNumber();
             if(rank != 0){

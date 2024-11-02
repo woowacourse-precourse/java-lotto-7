@@ -9,6 +9,7 @@
  */
 package lotto.service;
 
+import lotto.constant.Constant;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
 import lotto.model.LottoCollection;
@@ -36,6 +37,6 @@ public class LottoService {
         int totalWinnings = lottoCollection.getTotalWinnings();
         double purchaseAmount1 = purchaseAmount.getPurchaseAmount();
         double result = totalWinnings / purchaseAmount1;
-        return result * 100;
+        return result * Constant.PERCENTAGE;
     }
 }
