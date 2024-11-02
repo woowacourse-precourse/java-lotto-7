@@ -49,9 +49,9 @@ LottoRank : 당첨 등수 및 상금을 정보를 담당하는 객체
 - [x] Lotto 당첨 설명을 알려준다.
 
 LottoResult : 로또 당첨 정보를 관리하는 객체
-- [ ] Lotto 결과를 취합한다.
-- [ ] Lotto 결과를 알려준다.
-- [ ] Lotto 총 수입을 알려준다.
+- [x] Lotto 결과를 취합한다.
+- [x] Lotto 당첨 횟수를 알려준다.
+- [x] Lotto 총 수입을 알려준다.
 
 LottoUtils : Lotto 관련 utils 기능 담당 객체
 - [ ] 입력 개수만큼 로또를 생성해준다.
