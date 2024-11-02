@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasedLottoNumbers;
@@ -19,13 +20,9 @@ public class LottoRankingService {
         return rank;
     }
     public static int countMatches(Lotto lotto, List<Integer> purchasedLottoNumber) {
-        int matchCount = 0;
-        for (Integer number : purchasedLottoNumber) {
-            if (lotto.getNumbers().contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
+        return (int) purchasedLottoNumber.stream()
+                .filter(lotto.getNumbers() :: contains)
+                .count();
     }
 
     public static void updateRank(int[] rank, int matchCount, boolean hasBonus) {
@@ -52,10 +49,12 @@ public class LottoRankingService {
 
 
     public static double getTotalRate(int[] rank, int money) {
-        int total = rank[0] * 5000 + rank[1] * 50000 + rank[2] * 1500000 + rank[3] * 30000000 + rank[4] * 2000000000;
-        double totalRate = (double) total / money * 100;
-        totalRate = Math.round(totalRate * 10) / 10.0;
-        return totalRate;
+        int[] prizes = {5000, 50000, 1500000, 30000000, 2000000000};
+        int total = IntStream.range(0, rank.length)
+                .map(i -> rank[i] * prizes[i])
+                .sum();
+
+        return Math.round((double) total / money * 1000) / 10.0;
     }
 
 }
