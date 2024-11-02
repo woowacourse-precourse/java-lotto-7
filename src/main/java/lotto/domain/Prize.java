@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Optional;
 
-public enum WinningLottoCriteria {
+public enum Prize {
     FIFTH_PRIZE(3, false, 5_000),
     FOURTH_PRIZE(4, false, 50_000),
     THIRD_PRIZE(5, false, 1_500_000),
@@ -12,25 +12,25 @@ public enum WinningLottoCriteria {
     FIRST_PRIZE(6, false, 2_000_000_000),
     ;
 
-    private final int winningLottoMatchCount;
+    private final int equalLottoCount;
     private final boolean isMatchBonus;
     private final long money;
 
-    WinningLottoCriteria(int winningLottoMatchCount, boolean isMatchBonus, long money) {
-        this.winningLottoMatchCount = winningLottoMatchCount;
+    Prize(int winningLottoMatchCount, boolean isMatchBonus, long money) {
+        this.equalLottoCount = winningLottoMatchCount;
         this.isMatchBonus = isMatchBonus;
         this.money = money;
     }
 
-    public static Optional<WinningLottoCriteria> findPrize(int equalLottoCount, boolean isContainBonus) {
-        for (WinningLottoCriteria criteria : WinningLottoCriteria.values()) {
-            if (criteria.winningLottoMatchCount != equalLottoCount) {
+    public static Optional<Prize> findPrize(int equalLottoCount, boolean isMatchBonus) {
+        for (Prize prize : Prize.values()) {
+            if (prize.equalLottoCount != equalLottoCount) {
                 continue;
             }
-            if (equalLottoCount == 5 && criteria.isMatchBonus != isContainBonus) {
+            if (equalLottoCount == 5 && prize.isMatchBonus != isMatchBonus) {
                 continue;
             }
-            return Optional.of(criteria);
+            return Optional.of(prize);
         }
         return Optional.empty();
     }
@@ -42,9 +42,9 @@ public enum WinningLottoCriteria {
     @Override
     public String toString() {
         if (isMatchBonus) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s원)", winningLottoMatchCount, formatNumberWithCommas());
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원)", equalLottoCount, formatNumberWithCommas());
         }
-        return String.format("%d개 일치 (%s원)", winningLottoMatchCount, formatNumberWithCommas());
+        return String.format("%d개 일치 (%s원)", equalLottoCount, formatNumberWithCommas());
     }
 
     private String formatNumberWithCommas() {

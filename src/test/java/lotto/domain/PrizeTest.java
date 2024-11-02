@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class WinningLottoCriteriaTest {
+class PrizeTest {
 
     @Nested
     @DisplayName("일치하는 로또번호 갯수와 보너스 번호로 당첨 등수를 찾는 로직 테스트")
@@ -22,16 +22,16 @@ class WinningLottoCriteriaTest {
         void when6AndTrueOrFalseThenReturnFirstPrize(Boolean isContainBonus) {
             //given
             int equalLottoCount = 6;
-            WinningLottoCriteria expected = WinningLottoCriteria.FIRST_PRIZE;
+            Prize expected = Prize.FIRST_PRIZE;
 
             //when
-            Optional<WinningLottoCriteria> actual = WinningLottoCriteria.findPrize(equalLottoCount, isContainBonus);
+            Optional<Prize> actual = Prize.findPrize(equalLottoCount, isContainBonus);
 
             //then
             assertAll(
                     () -> assertThat(actual.isPresent()).isEqualTo(true),
                     () -> actual.ifPresent(
-                            winningLottoCriteria -> assertThat(winningLottoCriteria).isEqualTo(expected)
+                            actualPrize -> assertThat(actualPrize).isEqualTo(expected)
                     )
 
             );
@@ -43,16 +43,16 @@ class WinningLottoCriteriaTest {
             //given
             int equalLottoCount = 5;
             boolean isContainBonus = true;
-            WinningLottoCriteria expected = WinningLottoCriteria.SECOND_PRIZE;
+            Prize expected = Prize.SECOND_PRIZE;
 
             //when
-            Optional<WinningLottoCriteria> actual = WinningLottoCriteria.findPrize(equalLottoCount, isContainBonus);
+            Optional<Prize> actual = Prize.findPrize(equalLottoCount, isContainBonus);
 
             //then
             assertAll(
                     () -> assertThat(actual.isPresent()).isEqualTo(true),
                     () -> actual.ifPresent(
-                            winningLottoCriteria -> assertThat(winningLottoCriteria).isEqualTo(expected)
+                            actualPrize -> assertThat(actualPrize).isEqualTo(expected)
                     )
 
             );
@@ -64,16 +64,16 @@ class WinningLottoCriteriaTest {
             //given
             int equalLottoCount = 5;
             boolean isContainBonus = false;
-            WinningLottoCriteria expected = WinningLottoCriteria.THIRD_PRIZE;
+            Prize expected = Prize.THIRD_PRIZE;
 
             //when
-            Optional<WinningLottoCriteria> actual = WinningLottoCriteria.findPrize(equalLottoCount, isContainBonus);
+            Optional<Prize> actual = Prize.findPrize(equalLottoCount, isContainBonus);
 
             //then
             assertAll(
                     () -> assertThat(actual.isPresent()).isEqualTo(true),
                     () -> actual.ifPresent(
-                            winningLottoCriteria -> assertThat(winningLottoCriteria).isEqualTo(expected)
+                            actualPrize -> assertThat(actualPrize).isEqualTo(expected)
                     )
 
             );
@@ -85,16 +85,16 @@ class WinningLottoCriteriaTest {
         void when4AndTrueOrFalseThenReturnFirstPrize(Boolean isContainBonus) {
             //given
             int equalLottoCount = 4;
-            WinningLottoCriteria expected = WinningLottoCriteria.FOURTH_PRIZE;
+            Prize expected = Prize.FOURTH_PRIZE;
 
             //when
-            Optional<WinningLottoCriteria> actual = WinningLottoCriteria.findPrize(equalLottoCount, isContainBonus);
+            Optional<Prize> actual = Prize.findPrize(equalLottoCount, isContainBonus);
 
             //then
             assertAll(
                     () -> assertThat(actual.isPresent()).isEqualTo(true),
                     () -> actual.ifPresent(
-                            winningLottoCriteria -> assertThat(winningLottoCriteria).isEqualTo(expected)
+                            actualPrize -> assertThat(actualPrize).isEqualTo(expected)
                     )
 
             );
@@ -106,16 +106,16 @@ class WinningLottoCriteriaTest {
         void when3AndTrueOrFalseThenReturnFirstPrize(Boolean isContainBonus) {
             //given
             int equalLottoCount = 3;
-            WinningLottoCriteria expected = WinningLottoCriteria.FIFTH_PRIZE;
+            Prize expected = Prize.FIFTH_PRIZE;
 
             //when
-            Optional<WinningLottoCriteria> actual = WinningLottoCriteria.findPrize(equalLottoCount, isContainBonus);
+            Optional<Prize> actual = Prize.findPrize(equalLottoCount, isContainBonus);
 
             //then
             assertAll(
                     () -> assertThat(actual.isPresent()).isEqualTo(true),
                     () -> actual.ifPresent(
-                            winningLottoCriteria -> assertThat(winningLottoCriteria).isEqualTo(expected)
+                            actualPrize -> assertThat(actualPrize).isEqualTo(expected)
                     )
 
             );
@@ -126,10 +126,10 @@ class WinningLottoCriteriaTest {
         @DisplayName("당첨되지 않는 경우 Optional 빈객체 반환")
         void whenAllOtherCaseThenReturnOptionalEmpty(int equalLottoCount, Boolean isContainBonus) {
             //given
-            Optional<WinningLottoCriteria> expected = Optional.empty();
+            Optional<Prize> expected = Optional.empty();
 
             //when
-            Optional<WinningLottoCriteria> actual = WinningLottoCriteria.findPrize(equalLottoCount, isContainBonus);
+            Optional<Prize> actual = Prize.findPrize(equalLottoCount, isContainBonus);
 
             //then
             assertThat(actual).isEqualTo(expected);

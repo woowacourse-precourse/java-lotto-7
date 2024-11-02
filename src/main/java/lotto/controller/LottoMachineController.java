@@ -4,8 +4,8 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningCount;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import lotto.utils.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,30 +21,30 @@ public class LottoMachineController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = RetryUtil.retry(this::makePurchaseAmount);
+        PurchaseAmount purchaseAmount = RetryUtil.retry(this::readPurchaseAmount);
 
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount.getPurchaseAmount());
-        outputView.printBuyingLottos(lottoMachine.getLottoNumbers());
+        outputView.printBuyingLottos(lottoMachine.getBuyingLotto());
 
-        Lotto winningLotto = RetryUtil.retry(this::makeWinningLotto);
-        Bonus bonus = RetryUtil.retry(() -> makeBonus(winningLotto));
+        Lotto lotto = RetryUtil.retry(this::readLotto);
+        Bonus bonus = RetryUtil.retry(() -> readBonus(lotto));
 
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonus);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonus);
 
-        WinningCount winningCount = lottoMachine.calculateWinningCount(winningNumbers);
+        WinningResult winningCount = lottoMachine.calculateWinningCount(winningLotto);
         outputView.printWinningCount(winningCount.getWinning());
         outputView.printRateOfReturn(winningCount.getRateOfReturn(purchaseAmount));
     }
 
-    private PurchaseAmount makePurchaseAmount() {
+    private PurchaseAmount readPurchaseAmount() {
         return new PurchaseAmount(inputView.readPurchaseAmount());
     }
 
-    private Lotto makeWinningLotto() {
+    private Lotto readLotto() {
         return new Lotto(inputView.readWinningLotto());
     }
 
-    private Bonus makeBonus(Lotto winningLotto) {
+    private Bonus readBonus(Lotto winningLotto) {
         return new Bonus(inputView.readBonus(), winningLotto);
     }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.domain.validator.LottoValidator;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,8 +19,8 @@ public class Lotto {
 
     public Lotto(String invalidNumbers) {
         this(Arrays.stream(invalidNumbers.split(","))
-            .map(Integer::parseInt)
-            .toList());
+                .map(Integer::parseInt)
+                .toList());
     }
 
     public int getEqualCount(Lotto otherLotto) {
