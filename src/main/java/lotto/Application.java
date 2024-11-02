@@ -15,6 +15,9 @@ public class Application {
 
         List<Integer> winningNumbers = inputWinningNumbers();
         System.out.println("Winning numbers: " + winningNumbers);
+
+        int bonusNumber = inputBonusNumber(winningNumbers);
+        System.out.println("Bonus number: " + bonusNumber);
     }
 
     private static int readValidPurchaseAmount() {
@@ -71,6 +74,31 @@ public class Application {
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("Winning numbers must be between 1 and 45.");
             }
+        }
+    }
+
+    private static int inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            System.out.println("Enter the bonus number:");
+            String input = Console.readLine();
+
+            try {
+                int bonusNumber = Integer.parseInt(input);
+                validateBonusNumber(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("The bonus number must be between 1 and 45.");
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("The bonus number must not be one of the winning numbers.");
         }
     }
 }
