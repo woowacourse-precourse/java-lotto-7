@@ -24,6 +24,6 @@ public class LottoResultView {
         System.out.printf("%d개 일치 (%,d원) - %d개\n", numberMatchCount, prize, count);
     }
 
-    public void getProfit() {
+    public void readProfit() {
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class PurchaseView {
-    public String getPayment() {
+    public String readPayment() {
         System.out.println("구입금액을 입력해 주세요.");
         return Console.readLine();
     }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import lotto.model.LottoDraw;
 import lotto.model.LottoNumbers;
@@ -14,16 +14,16 @@ public class LottoController {
 
     public void purchaseLotto() {
         PurchaseView purchaseView = new PurchaseView();
-        String paymentInput = purchaseView.getPayment();
+        String paymentInput = purchaseView.readPayment();
         purchase = new Purchase(paymentInput);
         purchaseView.displayPurchaseResult(purchase.getLottoCount(), purchase.getPurchasedLottoTickets());
     }
 
     public void drawLotto() {
         LottoDrawView lottoDrawView = new LottoDrawView();
-        String drawNumbersInput = lottoDrawView.getDrawNumbers();
+        String drawNumbersInput = lottoDrawView.readDrawNumber();
         LottoNumbers drawNumbers = new LottoNumbers(drawNumbersInput);
-        String bonusNumberInput = lottoDrawView.getBonusNumber();
+        String bonusNumberInput = lottoDrawView.readBonusNumber();
         lottoDraw = new LottoDraw(drawNumbers, bonusNumberInput);
     }
 
@@ -32,6 +32,6 @@ public class LottoController {
         LottoResult lottoResult = new LottoResult(lottoDraw, purchase.getPurchasedLottoTickets(),
                 purchase.getPayment());
         lottoResultView.displayLottoWins(lottoResult.getLottoWinCount());
-        lottoResultView.getProfit();
+        lottoResultView.readProfit();
     }
 }
