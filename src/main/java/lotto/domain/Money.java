@@ -29,4 +29,12 @@ public class Money {
     }
 
 
+
+    public long getLottoQuantity() {
+        return amount / LOTTO_PRICE_UNIT;
+    }
+
+
+
+
 }

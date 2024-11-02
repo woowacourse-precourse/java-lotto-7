@@ -15,6 +15,7 @@ public class LottoController {
     private void initLotts(){
         View.promptForPurchaseAmount();
         Money money =  new Money(View.inputLottoPurchaseAmount());
+        return Lottos.purchaseLottos(money.getLottoQuantity());
 
     }
 
