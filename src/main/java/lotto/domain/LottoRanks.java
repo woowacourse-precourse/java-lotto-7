@@ -31,4 +31,7 @@ public class LottoRanks {
         }
     }
 
+    public List<LottoRank> getRanks() {
+        return ranks;
+    }
 }
