@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import static lotto.exception.Exception.LOTTO_NUMBER_DUPLICATED;
 import static lotto.exception.Exception.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.Exception.LOTTO_NUMBER_SIZE_MUST_BE_SIX;
 
@@ -7,8 +8,10 @@ import java.util.List;
 
 public class LottoNumbersValidator {
 
-    public static void validate() {
-
+    public static void validate(List<Integer> numbers) {
+        validateLottoNumberSize(numbers);
+        validateLottoNumberRange(numbers);
+        validateLottoNumberDuplicates(numbers);
     }
 
     private static void validateLottoNumberSize(List<Integer> numbers) {
@@ -21,6 +24,13 @@ public class LottoNumbersValidator {
         boolean isValid = numbers.stream().allMatch(number -> number >= 1 && number <= 45);
         if (!isValid) {
             throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    private static void validateLottoNumberDuplicates(List<Integer> numbers) {
+        long uniqueCount = numbers.stream().distinct().count();
+        if (uniqueCount != numbers.size()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 }
