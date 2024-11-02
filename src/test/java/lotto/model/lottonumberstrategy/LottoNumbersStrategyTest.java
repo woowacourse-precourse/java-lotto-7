@@ -13,7 +13,7 @@ class LottoNumbersStrategyTest {
     @Test
     void generateNumbers() {
         //given
-        RandomNumbersStrategy lottoNumbersStrategy = new LottoNumbersStrategy();
+        NumberGeneratorStrategy lottoNumbersStrategy = new LottoNumbersStrategy();
 
         //when
         List<Integer> numbers = lottoNumbersStrategy.generateNumbers();
@@ -27,7 +27,7 @@ class LottoNumbersStrategyTest {
     @Test
     void sortedRandomNumber() {
         //given
-        RandomNumbersStrategy lottoNumbersStrategy = new LottoNumbersStrategy();
+        NumberGeneratorStrategy lottoNumbersStrategy = new LottoNumbersStrategy();
 
         //when
         List<Integer> numbers = lottoNumbersStrategy.generateNumbers();

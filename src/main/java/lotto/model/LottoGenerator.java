@@ -2,14 +2,14 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.lottonumberstrategy.RandomNumbersStrategy;
+import lotto.model.lottonumberstrategy.NumberGeneratorStrategy;
 
 public class LottoGenerator {
 
-    private final RandomNumbersStrategy randomNumbersStrategy;
+    private final NumberGeneratorStrategy numberGeneratorStrategy;
 
-    public LottoGenerator(RandomNumbersStrategy randomNumbersStrategy) {
-        this.randomNumbersStrategy = randomNumbersStrategy;
+    public LottoGenerator(NumberGeneratorStrategy numberGeneratorStrategy) {
+        this.numberGeneratorStrategy = numberGeneratorStrategy;
     }
 
     public List<Lotto> issues(int quantity) {
@@ -21,7 +21,7 @@ public class LottoGenerator {
     }
 
     private Lotto issue() {
-        List<Integer> numbers = randomNumbersStrategy.generateNumbers();
+        List<Integer> numbers = numberGeneratorStrategy.generateNumbers();
         return Lotto.of(numbers);
     }
 }

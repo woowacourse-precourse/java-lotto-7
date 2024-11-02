@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoNumbersStrategy implements RandomNumbersStrategy {
+public class LottoNumbersStrategy implements NumberGeneratorStrategy {
 
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
