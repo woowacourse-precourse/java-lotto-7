@@ -1,9 +1,9 @@
 package lotto.validator;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import lotto.exception.ExceptionMessage;
+import lotto.model.Lotto;
 
 public class InputValidator {
     public static void validatePurchaseAmount(String purchaseAmount) {
@@ -15,7 +15,7 @@ public class InputValidator {
     public static void validateWinningNumbers(String winningNumbers) {
         checkEmpty(winningNumbers);
         List<Integer> parsedWinningNumbers = checkParsedWinningNumbers(winningNumbers);
-        checkWinningNumbersDuplicate(parsedWinningNumbers);
+        new Lotto(parsedWinningNumbers);
     }
 
     public static void validateBonusNumber(String winningNumbers, String bonusNumber) {
@@ -23,8 +23,10 @@ public class InputValidator {
         checkValidNumber(bonusNumber);
 
         List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbers);
+        int parsedBonusNumber = Integer.parseInt(bonusNumber);
 
-        checkBonusNumberDuplicate(parsedWinningNumbers, bonusNumber);
+        checkBonusNumberDuplicate(parsedWinningNumbers, parsedBonusNumber);
+        checkRangeNumber(parsedBonusNumber);
     }
 
     private static void checkEmpty(String purchaseAmount) {
@@ -54,9 +56,7 @@ public class InputValidator {
                 .map(number -> {
                     try {
                         int parsedNumber = Integer.parseInt(number);
-                        if (parsedNumber < 1 || parsedNumber > 45) {
-                            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
-                        }
+                        checkRangeNumber(parsedNumber);
                         return parsedNumber;
                     } catch (NumberFormatException e) {
                         throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT.getMessage());
@@ -65,9 +65,9 @@ public class InputValidator {
                 .toList();
     }
 
-    private static void checkWinningNumbersDuplicate(List<Integer> parsedWinningNumbers) {
-        if (parsedWinningNumbers.size() != new HashSet<>(parsedWinningNumbers).size()) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getMessage());
+    private static void checkRangeNumber(int parsedNumber) {
+        if (parsedNumber < 1 || parsedNumber > 45) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
@@ -78,9 +78,7 @@ public class InputValidator {
                 .toList();
     }
 
-    private static void checkBonusNumberDuplicate(List<Integer> parsedWinningNumbers, String bonusNumber) {
-        int parsedBonusNumber = Integer.parseInt(bonusNumber);
-
+    private static void checkBonusNumberDuplicate(List<Integer> parsedWinningNumbers, int parsedBonusNumber) {
         if (parsedWinningNumbers.contains(parsedBonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE.getMessage());
         }

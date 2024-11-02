@@ -7,8 +7,8 @@ public enum ExceptionMessage {
 
     INVALID_PURCHASE_AMOUNT("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),
 
-    WINNING_NUMBER_DUPLICATE("[ERROR] 당첨 번호에 중복되는 숫자가 존재합니다."),
-    INVALID_WINNING_NUMBERS_COUNT("[ERROR] 당첨 번호는 6개의 숫자여야 합니다."),
+    WINNING_NUMBER_DUPLICATE("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다."),
+    INVALID_WINNING_NUMBERS_COUNT("[ERROR] 로또 번호는 6개여야 합니다."),
 
     BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
 

@@ -6,6 +6,7 @@ import static lotto.view.Prompt.WINNING_NUMBERS;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
 import lotto.validator.InputValidator;
@@ -21,24 +22,33 @@ public class LottoController {
 
     public void run() {
         OutputView.displayPrompt(PURCHASE_AMOUNT);
-        String purchaseAmount = InputView.getInput();
-        InputValidator.validatePurchaseAmount(purchaseAmount);
+        String purchaseAmount = getValidInput(InputValidator::validatePurchaseAmount);
         List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
         String formattedLottoNumbers = lottoService.getFormattedLottoNumbers(lottos);
         OutputView.displayLottoNumber(lottos.size(), formattedLottoNumbers);
 
         OutputView.displayPrompt(WINNING_NUMBERS);
-        String winningNumbers = InputView.getInput();
-        InputValidator.validateWinningNumbers(winningNumbers);
+        String winningNumbers = getValidInput(InputValidator::validateWinningNumbers);
 
         OutputView.displayPrompt(BONUS_NUMBER);
-        String bonusNumber = InputView.getInput();
-        InputValidator.validateBonusNumber(winningNumbers, bonusNumber);
+        String bonusNumber = getValidInput(input -> InputValidator.validateBonusNumber(winningNumbers, input));
 
         Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
         OutputView.displayWinningResult(matchCounts);
 
         double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
         OutputView.displayYield(yield);
+    }
+
+    private String getValidInput(Consumer<String> validator) {
+        while (true) {
+            try {
+                String input = InputView.getInput();
+                validator.accept(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
