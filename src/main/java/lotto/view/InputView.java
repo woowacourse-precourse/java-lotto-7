@@ -11,7 +11,7 @@ import static lotto.exception.ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT;
 
 public class InputView {
     public int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println("\n" + "구입금액을 입력해 주세요.");
 
         try {
             return Integer.parseInt(Console.readLine());
