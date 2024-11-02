@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.model.Budget;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.PrizeLotto;
 import lotto.util.BudgetValidator;
@@ -27,6 +28,7 @@ public class LottoApplication {
         Lottos lottos = Lottos.from(budget);
         outputView.printLottos(lottos);
         PrizeLotto prizeLotto = getValidatedPrizeLotto();
+        LottoResult lottoResult = LottoResult.from(prizeLotto, lottos);
     }
 
     private Budget getValidatedBudget() {
