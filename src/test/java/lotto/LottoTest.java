@@ -39,4 +39,10 @@ class LottoTest {
         assertThatThrownBy(() -> LottoGame.validateThousandUnit(900))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력값에_공백이_존재하면_예외가_발생한다(){
+        assertThatThrownBy(() -> LottoGame.validateEmptyInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

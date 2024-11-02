@@ -54,6 +54,7 @@ public class LottoGame {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
+                validateEmptyInput(input);
                 List<Integer> winningNumbers = parseWinningNumbers(input);
                 return new Lotto(winningNumbers);
             }catch (IllegalArgumentException e){
@@ -67,6 +68,7 @@ public class LottoGame {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
+                validateEmptyInput(input);
                 Integer bonusNumber = Integer.valueOf(input);
                 validateNotDuplicate(winningNumbers, bonusNumber);
                 return bonusNumber;
@@ -102,6 +104,12 @@ public class LottoGame {
     public static void validateNotDuplicate(List<Integer> winningNumbers, Integer bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    public static void validateEmptyInput(String input){
+        if(input.isEmpty() || input.trim().isEmpty()){
+            throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
         }
     }
 }
