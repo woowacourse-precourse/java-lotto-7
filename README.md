@@ -45,7 +45,7 @@
 
 - [ ] 로또의 흐름 제어를 위한 Controller 구현
 - [ ] 로또 작업을 수행시킬 Service 구현
-    - [ ] 작업 내용을 저장할 Repository 구현
+    - [x] 작업 내용을 저장할 Repository 구현
 
 - [ ] AssertJ를 통한 기능 테스트
     - [ ] 검증 기능 테스트
