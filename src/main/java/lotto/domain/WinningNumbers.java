@@ -38,6 +38,10 @@ public class WinningNumbers {
         return validIntegerNumbers;
     }
 
+    public List<Integer> getNumbersList() {
+        return numbers.getNumbers();
+    }
+
     public Lotto getNumbers() {
         return numbers;
     }

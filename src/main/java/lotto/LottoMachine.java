@@ -6,6 +6,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbersGenerator;
+import lotto.domain.WinningInfo;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,6 +29,9 @@ public class LottoMachine {
 
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
+
+        checkWinningResult(winningNumbers, bonusNumber);
+
     }
 
     private Budget inputBudget() {
@@ -66,4 +70,20 @@ public class LottoMachine {
             }
         }
     }
+
+    private void checkWinningResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        for (Lotto lotto : purchasedLotto) {
+            int place = lotto.findPlace(winningNumbers, bonusNumber);
+            updateWinningTicketCount(place);
+        }
+    }
+
+    private void updateWinningTicketCount (int place) {
+        for (WinningInfo info : WinningInfo.values()) {
+            if (place == info.getPlace()) {
+                info.win();
+            }
+        }
+    }
+
 }
