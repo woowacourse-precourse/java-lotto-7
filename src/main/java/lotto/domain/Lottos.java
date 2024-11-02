@@ -14,4 +14,8 @@ public class Lottos {
         lottos.add(lotto);
     }
 
+    public long getLottoCount(){
+        return lottos.size();
+    }
+
 }

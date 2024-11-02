@@ -2,9 +2,11 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.message.RequestMessage.REQUEST_MONEY;
+
 public class RequestView {
     public static String getMoney(){
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(REQUEST_MONEY.getMessage());
         return Console.readLine();
     }
 }
