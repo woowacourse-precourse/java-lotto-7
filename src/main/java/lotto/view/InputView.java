@@ -65,17 +65,21 @@ public class InputView {
                 outputView.printStringLineFeed("\n".concat(BONUS_NUM_INPUT.value()));
                 String num = Console.readLine();
 
-                if (!num.matches("[0-9]+")) {
-                    throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
-                }
-                if (Integer.parseInt(num) < 1 || Integer.parseInt(num) > 45) {
-                    throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
-                }
+                validateBonusNumber(num);
 
                 return Integer.parseInt(num);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private void validateBonusNumber(String num) {
+        if (!num.matches("[0-9]+")) {
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getMessage());
+        }
+        if (Integer.parseInt(num) < 1 || Integer.parseInt(num) > 45) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
         }
     }
 }
