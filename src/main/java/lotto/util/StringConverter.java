@@ -8,7 +8,12 @@ public class StringConverter {
 
     public static int toInt(String value) {
         validateNotBlank(value);
-        return Integer.parseInt(value.trim());
+
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("숫자로 변환할 수 없는 값입니다.");
+        }
     }
 
 }
