@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class LottoGeneratorTest {
     @Test
     @DisplayName("요청한 개수 생성 검증")
-    void givenCount_whenGenerateLottos_thenShouldReturnCorrectCount() {
+    void 요청_개수_로또_생성_검증() {
         // given
         int count = 5;
 
