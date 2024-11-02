@@ -11,10 +11,10 @@ public class LottoService {
 
     private static final double ONE_HUNDRED_DECIMAL = 100.0;
 
+    private final InputFormatter inputFormatter;
     private PurchasedLotto purchasedLotto;
     private Lotto winningLottoNumbers;
     private WinningLotto winningLotto;
-    private final InputFormatter inputFormatter;
 
     public LottoService() {
         this.inputFormatter = new InputFormatter();
