@@ -10,7 +10,6 @@ public class Game {
     private final List<Integer> winningAmount = new ArrayList<>(List.of(0, 5, 50, 1500, 30000, 2000000));
 
     public Game(Lottos lottos, WinningNumbers winningNumbers) {
-
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
     }
@@ -23,10 +22,10 @@ public class Game {
         return winningNumbers;
     }
 
-
     public WinningCount getWinningCount() {
         return winningCount;
     }
+
     public List<Integer> getWinningAmount() {
         return winningAmount;
     }

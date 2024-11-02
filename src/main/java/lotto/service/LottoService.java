@@ -27,7 +27,7 @@ public class LottoService {
         countWinningLottos(game);
         WinningCount winningCount = game.getWinningCount();
         outputView.printWinningResult(winningCount);
-        float rateOfReturn = calculateRateOfReturn(game.getWinningAmount(), winningCount);
+        double rateOfReturn = getRateOfReturn(game.getWinningAmount(), winningCount);
         outputView.printRateOfReturn(rateOfReturn);
     }
 
@@ -58,11 +58,11 @@ public class LottoService {
         return 0;
     }
 
-    public float calculateRateOfReturn(List<Integer> winningAmount, WinningCount count) {
+    public double getRateOfReturn(List<Integer> winningAmount, WinningCount count) {
         List<Integer> winningCounts = count.getWinningCount();
         float size = winningCounts.stream().mapToInt(i -> i).sum();
         float profit = calculateProfit(winningAmount, winningCounts);
-        return Math.round(profit / size * 100);
+        return calculateRateOfReturn(size, profit);
     }
 
     public float calculateProfit(List<Integer> winningAmount, List<Integer> winningCounts) {
@@ -71,5 +71,9 @@ public class LottoService {
             sum += winningAmount.get(i) * winningCounts.get(i);
         }
         return sum;
+    }
+
+    public double calculateRateOfReturn(float size, float profit) {
+        return Math.round(profit / size * 1000) / 10.0;
     }
 }
