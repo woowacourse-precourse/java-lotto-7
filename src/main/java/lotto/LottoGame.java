@@ -1,11 +1,13 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Result;
+import lotto.domain.WinningNumbers;
+import lotto.view.InputView;
 
 public class LottoGame {
     private final InputView inputView;
     private final LottoMachine lottoMachine;
-    private Result result;
 
     public LottoGame() {
         this.inputView = new InputView();
@@ -13,21 +15,19 @@ public class LottoGame {
     }
 
     public void start() {
-        inputView.inputPurchaseAmount();
-
-        lottoMachine.purchaseLottos(inputView.getPurchaseAmount());
+        int purchaseAmount = inputView.inputPurchaseAmount();
+        lottoMachine.purchaseLottos(purchaseAmount);
         lottoMachine.printLottos();
 
-        inputView.inputWinningNumbers();
-        inputView.inputBonusNumber();
+        WinningNumbers winningNumbers = inputView.inputWinningNumbers();
+        BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
 
-        result = new Result(
+        Result result = new Result(
                 lottoMachine.getLottos(),
-                inputView.getWinningNumbers(),
-                inputView.getBonusNumber()
+                winningNumbers.getNumbers(),
+                bonusNumber.getBonusNumber()
         );
-
         result.calculate();
-        result.printResult(inputView.getPurchaseAmount());
+        result.printResult(purchaseAmount);
     }
 }
