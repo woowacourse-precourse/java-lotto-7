@@ -26,4 +26,8 @@ public class LottoService {
 
         return soldLotto.getLottoDetails().toString();
     }
+
+    public void saveWinningNumbers(List<Integer> winningNumbers){
+        new Lotto(winningNumbers);
+    }
 }
