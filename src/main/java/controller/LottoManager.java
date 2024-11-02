@@ -21,6 +21,7 @@ public class LottoManager {
         while (true) {
             try {
                 int lottoAmount = lottoMaker.getLottoCount(input.getPurchaseAmount());
+                lottoMaker.createLotto();
                 output.printPurchaseAmount(lottoAmount);
                 output.printNewLine();
                 break;
@@ -31,7 +32,7 @@ public class LottoManager {
     }
 
     private void printLottoNumbers() {
-        output.printLottoNumbers(lottoMaker.createLotto());
+        output.printLottoNumbers(lottoMaker.getLottoNumbers());
         output.printNewLine();
     }
 

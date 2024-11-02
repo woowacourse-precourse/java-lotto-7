@@ -38,6 +38,7 @@
     + [0] 생성 로또, 당첨 번호 저장 공간
     + [0] 금액에 따라 구입 가능 로또 개수 반환 - getLottoCount
     + [0] 로또 구매 개수에 따라 로또 생성 - createLotto
+    + [0] 생성된 로또 반환 - getLottoNumbers
     + [0] 당첨 번호 저장 - setWinningNumbers
     + [0] 보너스 번호 저장 - setBonusNumber
     + [0] 전체 로또에 대한 당첨 결과 생성 - createWinningResults
@@ -67,8 +68,11 @@
 
 
 ### exception package
-- Lotto class : 입력된 로또 번호에 대한 검증 진행
-    + [0]  입력한 로또 번호가 6개가 맞는지 검증 - validate
+- Lotto class : 생성된 로또 번호, 입력된 당첨 번호에 대한 검증 진행
+    + [0] 입력한 로또 번호가 6개가 맞는지 검증 - validate
+    + [0] 입력한 로또 번호가 음수인지 검증 - negativeValidate
+    + [0] 입력한 로또 번호가 중복인지 검증 - duplicateValidate
+    + [0] 입력한 로또 번호가 범위 내에 있는지 검증 - rangeValidate
 
 
 ## 구현 규칙

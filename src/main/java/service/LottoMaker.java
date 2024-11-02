@@ -1,5 +1,6 @@
 package service;
 
+import exception.Lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,17 +23,24 @@ public class LottoMaker {
         return purchaseAmount;
     }
 
-    public List<List<Integer>> createLotto() {
+    public void createLotto() {
         lottoTransform.createLottoNumbers(purchaseAmount);
-        return lottoNumbers;
+        for (List<Integer> lottoNumber : lottoNumbers) {
+            new Lotto(lottoNumber);
+        }
     }
 
     public void setWinningNumbers(String input) {
         lottoTransform.inputToWinningNumbers(input);
+        new Lotto(winningNumbers);
     }
 
     public void setBonusNumber(String input) { //model에서 값 변환 전 예외처리 위한 래핑
         bonusNumber = lottoTransform.inputToBonusNumber(input);
+    }
+
+    public List<List<Integer>> getLottoNumbers() {
+        return lottoNumbers;
     }
 
     public List<Integer> getWinningResults() {
@@ -43,6 +51,6 @@ public class LottoMaker {
     }
 
     public double getProfitRate() {
-        return lottoValidation.calculateProfitRate(purchaseAmount*ONE_LOTTO_PRICE);
+        return lottoValidation.calculateProfitRate(purchaseAmount * ONE_LOTTO_PRICE);
     }
 }
