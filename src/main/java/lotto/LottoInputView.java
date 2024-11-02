@@ -19,6 +19,19 @@ public class LottoInputView
         }
     }
 
+    public static List<Integer> lottoWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String numbers = Console.readLine().trim();
+        List<Integer> finalwinningNumbers = splitWinningNumbers(numbers);
+
+        return finalwinningNumbers;
+    }
+
+    public static List<Integer> splitWinningNumbers(String numbers) {
+
+    }
+
+
 
     private static void validatePurchaseLotto(int amount) {
         if (amount <= 0 || amount % 1000 != 0) {
