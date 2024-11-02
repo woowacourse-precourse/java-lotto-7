@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public class UserMoney {
-    private static final int PRICE = 1_000;
     public final int userMoney;
 
     public UserMoney(int userMoney) {
@@ -9,6 +8,6 @@ public class UserMoney {
     }
 
     public int calculateNumberOfLotto() {
-        return this.userMoney / PRICE;
+        return this.userMoney / CalculationUnit.USER_MONEY_PRICE.getUnit();
     }
 }

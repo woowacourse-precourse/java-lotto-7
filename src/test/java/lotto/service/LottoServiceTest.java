@@ -11,6 +11,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static lotto.domain.DefaultUserMoney.USER_MONEY;
+import static lotto.domain.DefaultUserMoney.USER_MONEY_TEN_THOUSAND;
+import static lotto.domain.CalculationUnit.PERCENTAGE;
+import static lotto.domain.CalculationUnit.USER_MONEY_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoServiceTest {
@@ -18,9 +22,9 @@ class LottoServiceTest {
     @Test
     void 발행한_로또를_반환() {
         LottoService lottoService = new LottoService();
-        LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(8000);
+        LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(USER_MONEY.getUnit());
 
-        assertThat(lottoTicketsDto.getLottoTickets()).hasSize(8);
+        assertThat(lottoTicketsDto.getLottoTickets()).hasSize(USER_MONEY.getUnit() / USER_MONEY_PRICE.getUnit());
     }
 
     @DisplayName("모든 구매한 로또와 당첨로또를 비교한다.")
@@ -60,8 +64,8 @@ class LottoServiceTest {
 
     static Stream<Arguments> provideUserMoneyAndRanks() {
         return Stream.of(
-                Arguments.of(8000, List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / 8000) * 100),
-                Arguments.of(10000, List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / 10000) * 100)
+                Arguments.of(USER_MONEY.getUnit(), List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / USER_MONEY.getUnit()) * PERCENTAGE.getUnit()),
+                Arguments.of(USER_MONEY_TEN_THOUSAND.getUnit(), List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / USER_MONEY_TEN_THOUSAND.getUnit()) * PERCENTAGE.getUnit())
         );
     }
 }

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -31,14 +33,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_MAX_NUMBER.getUnit()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> lottoNumbers = new HashSet<>(numbers);
-        if (lottoNumbers.size() < 6) {
+        if (lottoNumbers.size() < LOTTO_MAX_NUMBER.getUnit()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 중복됩니다.");
         }
     }

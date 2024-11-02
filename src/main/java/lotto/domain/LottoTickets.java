@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.domain.LottoConfig.LOTTO_START;
+import static lotto.domain.LottoConfig.LOTTO_END;
+import static lotto.domain.LottoConfig.LOTTO_MAX_NUMBER;
+
 public class LottoTickets {
-    private static final int START = 1;
-    private static final int END = 45;
-    private static final int COUNT = 6;
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(int numberOfTickets) {
@@ -19,7 +20,7 @@ public class LottoTickets {
     private List<Lotto> createLottoTickets(int numberOfTickets) {
         List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
-            List<Integer> randoms = Randoms.pickUniqueNumbersInRange(START, END, COUNT);
+            List<Integer> randoms = Randoms.pickUniqueNumbersInRange(LOTTO_START.getUnit(), LOTTO_END.getUnit(), LOTTO_MAX_NUMBER.getUnit());
             tickets.add(new Lotto(randoms));
         }
 

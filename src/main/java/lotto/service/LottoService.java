@@ -2,10 +2,7 @@ package lotto.service;
 
 import lotto.application.LottoDto;
 import lotto.application.LottoTicketsDto;
-import lotto.domain.Lotto;
-import lotto.domain.LottoTickets;
-import lotto.domain.Rank;
-import lotto.domain.UserMoney;
+import lotto.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +33,6 @@ public class LottoService {
             prizeSum += rank.getPrize();
         }
 
-        return (prizeSum / userMoney) * 100;
+        return (prizeSum / userMoney) * CalculationUnit.PERCENTAGE.getUnit();
     }
 }
