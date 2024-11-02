@@ -17,11 +17,11 @@ class CalculateResultTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         List<List<Integer>> userLottoNumbers = Arrays.asList(
-                Arrays.asList(1, 2, 3, 4, 5, 6), // 1등
-                Arrays.asList(1, 2, 3, 4, 5, 7), // 2등
-                Arrays.asList(1, 2, 3, 4, 8, 10), // 4등
-                Arrays.asList(1, 2, 3, 4, 8, 10), // 4등
-                Arrays.asList(1, 2, 3, 8, 9, 10), // 5등
+                Arrays.asList(1, 2, 3, 4, 5, 6), // 1등 (6개 일치)
+                Arrays.asList(1, 2, 3, 4, 5, 7), // 2등 (5개 일치 + 보너스 볼)
+                Arrays.asList(1, 2, 3, 4, 8, 10), // 4등 (4개 일치)
+                Arrays.asList(1, 2, 3, 4, 8, 10), // 4등 (4개 일치)
+                Arrays.asList(1, 2, 3, 8, 9, 10), // 5등 (3개 일치)
                 Arrays.asList(1, 2, 8, 9, 10, 11) // 꽝
         );
 
@@ -29,10 +29,10 @@ class CalculateResultTest {
 
         int[] results = calculateResult.calculateStatistics(winningNumbers, bonusNumber, userLottoNumbers);
 
-        assertThat(results[PrizeType.MATCHING_6.ordinal()]).isEqualTo(1); // 1등
-        assertThat(results[PrizeType.HAS_BONUS_WIN_MATCHING_5.ordinal()]).isEqualTo(1); // 2등
-        assertThat(results[PrizeType.MATCHING_5.ordinal()]).isEqualTo(0); // 3등
-        assertThat(results[PrizeType.MATCHING_4.ordinal()]).isEqualTo(2); // 4등
-        assertThat(results[PrizeType.MATCHING_3.ordinal()]).isEqualTo(1); // 5등
+        assertThat(results[PrizeType.PLACE_OF_1ST.ordinal()]).isEqualTo(1); // 1등
+        assertThat(results[PrizeType.PLACE_OF_2ST.ordinal()]).isEqualTo(1); // 2등
+        assertThat(results[PrizeType.PLACE_OF_3ST.ordinal()]).isEqualTo(0); // 3등
+        assertThat(results[PrizeType.PLACE_OF_4ST.ordinal()]).isEqualTo(2); // 4등
+        assertThat(results[PrizeType.PLACE_OF_5ST.ordinal()]).isEqualTo(1); // 5등
     }
 }

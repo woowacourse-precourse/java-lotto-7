@@ -4,10 +4,10 @@ import java.util.List;
 import lotto.constants.PrizeType;
 
 public class LottoStatisticsCalculator {
-    private final int PLACE_OF_1ST = 6;
-    private final int PLACE_OF_2ST = 5;
-    private final int PLACE_OF_3ST = 4;
-    private final int PLACE_OF_4ST = 3;
+    private final int MATCHING_6 = 6;
+    private final int MATCHING_5 = 5;
+    private final int MATCHING_4 = 4;
+    private final int MATCHING_3 = 3;
 
     public int[] calculateStatistics(List<Integer> winningNumbers, int bonusNumber, List<List<Integer>> lottoNumbers) {
         int[] results = new int[PrizeType.values().length];
@@ -21,16 +21,16 @@ public class LottoStatisticsCalculator {
     }
 
     private void updateResultsBasedOnMatchCount(int matchCount, int[] results, boolean hasBonus) {
-        if (matchCount == PLACE_OF_1ST) {
-            results[PrizeType.MATCHING_6.ordinal()]++;
-        } else if (matchCount == PLACE_OF_2ST && hasBonus) {
-            results[PrizeType.HAS_BONUS_WIN_MATCHING_5.ordinal()]++;
-        } else if (matchCount == PLACE_OF_2ST) {
-            results[PrizeType.MATCHING_5.ordinal()]++;
-        } else if (matchCount == PLACE_OF_3ST) {
-            results[PrizeType.MATCHING_4.ordinal()]++;
-        } else if (matchCount == PLACE_OF_4ST) {
-            results[PrizeType.MATCHING_3.ordinal()]++;
+        if (matchCount == MATCHING_6) {
+            results[PrizeType.PLACE_OF_1ST.ordinal()]++;
+        } else if (matchCount == MATCHING_5 && hasBonus) {
+            results[PrizeType.PLACE_OF_2ST.ordinal()]++;
+        } else if (matchCount == MATCHING_5) {
+            results[PrizeType.PLACE_OF_3ST.ordinal()]++;
+        } else if (matchCount == MATCHING_4) {
+            results[PrizeType.PLACE_OF_4ST.ordinal()]++;
+        } else if (matchCount == MATCHING_3) {
+            results[PrizeType.PLACE_OF_5ST.ordinal()]++;
         }
     }
 
