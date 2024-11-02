@@ -2,9 +2,11 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.WinningRank;
 import lotto.dto.WinningNumbersDto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.WinningResultDto;
@@ -44,12 +46,11 @@ public class Winning {
         return winningBonusNumber;
     }
 
-    private WinningResultsDto compareNumbers(List<Integer> userNumbers, Integer userBonusNumber){
+    public WinningResultsDto compareNumbers(List<Integer> userNumbers, Integer userBonusNumber){
         List<WinningResultDto> winningResultDtos = new ArrayList<>();
 
         for(WinningNumbersDto winningNumbers : winningTickets.values()){
             List<Integer> winningNumber = winningNumbers.getWinningNumber();
-
             Integer correctCount = compareEachNumbers(winningNumber, userNumbers);
             boolean isCorrectBonus = compareBonusNumber(winningNumbers.getWinningBonusNumber(), userBonusNumber);
 
@@ -73,5 +74,29 @@ public class Winning {
 
     private boolean compareBonusNumber(Integer winningBonusNumber, Integer userBonusNumber){
         return winningBonusNumber.equals(userBonusNumber);
+    }
+
+    public Map<WinningRank, Integer> lottoResult(WinningResultsDto winningResultsDto){
+        Map<WinningRank, Integer> rankCountMap = initializeRankCountMap();
+
+        for(int i = 0; i < winningResultsDto.getResults().size(); i++){
+            Integer winningScore = winningResultsDto.getResults().get(i).getWinningScore();
+            boolean bonusMatched = winningResultsDto.getResults().get(i).isBonusMatched();
+            
+            WinningRank rank = WinningRank.findByMatch(winningScore, bonusMatched);
+
+            if(rank != null){
+                rankCountMap.put(rank, rankCountMap.getOrDefault(rank, 0) + 1);
+            }
+        }
+        return rankCountMap;
+    }
+
+    public static Map<WinningRank, Integer> initializeRankCountMap() {
+        Map<WinningRank, Integer> rankCountMap = new EnumMap<>(WinningRank.class);
+        for (WinningRank rank : WinningRank.values()) {
+            rankCountMap.put(rank, 0);
+        }
+        return rankCountMap;
     }
 }
