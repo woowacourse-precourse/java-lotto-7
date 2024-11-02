@@ -1,18 +1,20 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import validator.Validator;
 
 public class InputView {
-    public static long inputPurchaseMoney() {
-        return inputPositiveNumber();
+    public static String inputPurchaseMoney() {
+        OutputView.printInputMessage(OutputMessage.INPUT_MONEY_MESSAGE);
+        return Console.readLine();
     }
 
-    public static long inputPositiveNumber() {
-        OutputView.printInputMoneyMessage();
-        String inputContent = Console.readLine();
-        Validator.validateLong(inputContent);
-        Validator.validatePositiveNumber(inputContent);
-        return Long.parseLong(inputContent);
+    public static String inputWinningNumbers() {
+        OutputView.printInputMessage(OutputMessage.INPUT_WINNING_NUMBERS_MESSAGE);
+        return Console.readLine();
+    }
+
+    public static String inputBonusWinningNumber() {
+        OutputView.printInputMessage(OutputMessage.INPUT_BONUS_WINNING_NUMBER_MESSAGE);
+        return Console.readLine();
     }
 }
