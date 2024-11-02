@@ -34,7 +34,7 @@ public class InputUtil {
     }
 
     public static void getBonusNumber(List<Integer> winningNumbers){
-        System.out.println(BONUS_NUMBER_INPUT);
+        System.out.println("\n"+BONUS_NUMBER_INPUT);
         String bonusNumber = Console.readLine();
         checkValidBonusNumber(bonusNumber, winningNumbers);
     }
