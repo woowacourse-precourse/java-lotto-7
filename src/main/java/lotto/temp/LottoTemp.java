@@ -17,6 +17,10 @@ public class LottoTemp {
         return io.receiveInput();
     }
 
+    public int convertInputToInt(String input) {
+        return io.convertStringToInt(input);
+    }
+
 
 
 }
