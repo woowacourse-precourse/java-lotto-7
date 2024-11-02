@@ -2,7 +2,9 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.enums.Rank;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,5 +34,29 @@ public class LottoController {
                 Arrays.stream(inputView.inputWinningNumbers().split(","))
                         .map(Integer::parseInt)
                         .toList();
+        String bonusNumber = inputView.inputBonusNumber();
+
+        lottoService.saveLottoRanks(winningNumbers, Integer.parseInt(bonusNumber));
+        Map<Rank, Integer> results = lottoService.getResults();
+
+        outputView.printWinningStatisticsHeader();
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) {
+                continue;
+            }
+            if (rank.isRequiresBonus()) {
+                outputView.printMatchWithBonusResult(
+                        rank.getMatchCount(),
+                        rank.getWinningAmount(),
+                        results.getOrDefault(rank, 0)
+                );
+                continue;
+            }
+            outputView.printMatchResult(
+                    rank.getMatchCount(),
+                    rank.getWinningAmount(),
+                    results.getOrDefault(rank, 0)
+            );
+        }
     }
 }

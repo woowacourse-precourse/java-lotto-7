@@ -31,4 +31,8 @@ public class LottoService {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public Map<Rank, Integer> getResults() {
+        return results;
+    }
 }

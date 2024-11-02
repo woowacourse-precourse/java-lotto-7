@@ -11,4 +11,16 @@ public class OutputView {
     public void printLottoNumbers(List<Integer> lottoNumbers) {
         System.out.println(lottoNumbers);
     }
+
+    public void printWinningStatisticsHeader() {
+        System.out.println("\n당첨 통계\n---");
+    }
+
+    public void printMatchResult(int matchCount, int winningAmount, int winningCount) {
+        System.out.println(matchCount + "개 일치 (" + winningAmount + "원) - " + winningCount + "개");
+    }
+
+    public void printMatchWithBonusResult(int matchCount, int winningAmount, int winningCount) {
+        System.out.println(matchCount + "개 일치, 보너스 볼 일치 (" + winningAmount + "원) - " + winningCount + "개");
+    }
 }
