@@ -6,12 +6,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoTransform {
     private static final int LOTTO_PRICE = 1000;
-    private static List<List<Integer>> lottoNumbers;
-    private static List<Integer> winningNumbers;
+    private final List<List<Integer>> lottoNumbers;
+    private final List<Integer> winningNumbers;
 
     public LottoTransform(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers) {
-        LottoTransform.lottoNumbers = lottoNumbers;
-        LottoTransform.winningNumbers = winningNumbers;
+        this.lottoNumbers = lottoNumbers;
+        this.winningNumbers = winningNumbers;
     }
 
     public void inputToWinningNumbers(String input) {

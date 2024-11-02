@@ -24,14 +24,18 @@
 
 
 - LottoValidation class
-    + [] 로또 중 당첨된 등수를 반환하는 기능 
-    + [] 수익률을 계산하는 기능 
+    + [0] 로또 1개당 정답 로또와 동일한 숫자 판단 - isMatchWinningNumbers
+    + [0] 로또 1개당 보너스 번호와 동일한 숫자 판단 - isMatchBonusNumber
+    + [0] 로또 1개에 대한 당첨 결과 - validateWinningResult
+    + [0] 로또 1개에 대한 당첨 결과 업데이트 - updateWinningResult
+    + [0] 수익률을 계산하는 기능 - calculateProfitRate
+    + [0] 전체 당첨금 계산 기능 - calculateTotalWinningAmount
 
 ### service package
 - LottoMaker class : model 기능을 통해 로또 로직 구현, 자료구조 저장 위치
     + [] 생성 로또, 당첨 번호 저장 공간
     + [] 생성한 로또 번호 반환 
-    + [] 당첨 등수 반환 
+    + [] 당첨 등수 반환  - getWinningResults
     + [] 수익률 반환 
 
 ### controller package
