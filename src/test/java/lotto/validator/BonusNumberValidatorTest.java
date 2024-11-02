@@ -13,6 +13,7 @@ class BonusNumberValidatorTest {
     @ValueSource(strings = {"aaa", "-1", "46", "5"})
     void validateBonusNumber(String bonusNumber) {
         String winningNumber = "1,2,3,4,5,6";
+
         assertThatThrownBy(() -> {
             BonusNumberValidator.validateBonusNumber(winningNumber, bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class)

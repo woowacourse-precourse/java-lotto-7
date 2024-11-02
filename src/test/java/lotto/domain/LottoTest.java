@@ -12,7 +12,7 @@ class LottoTest {
 
     @DisplayName("1개의 로또를 발행할 때 중복된 숫자가 없고 번호가 6개가 여야 한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,", "1,1,2,3,4,5"})
+    @ValueSource(strings = {"1,2,3,4,5,", "1,1,2,3,4,5", "1,2,3,4,5,6,7"})
     void validateLotto(String numbers) {
         // given
         String delimiter = ",";
