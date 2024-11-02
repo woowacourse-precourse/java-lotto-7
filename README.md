@@ -35,10 +35,10 @@
 
 - [x] 테스트용 랜덤 추출 로직 분리
 - [x] repository 계층 추가
-- [ ] dto mapping 계층 추가
 - [x] dto 및 validate 추가
+- [x] enum getMessage 가변인자 적용
 - [ ] 출력문 모아서 한 번에 출력하기 (like 쿼리 최적화)
-- [ ] enum getMessage 가변인자 적용
+- [ ] dto mapping 계층 추가
 - [ ] 불변 객체 적용
 - [ ] 테스트 리팩토링
 - [ ] 테스트 구체적으로 작성

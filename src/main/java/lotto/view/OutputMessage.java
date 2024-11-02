@@ -29,18 +29,6 @@ public enum OutputMessage {
         return String.format(message);
     }
 
-    public String getMessage(int content) {
-        return String.format(message, content);
-    }
-
-    public String getMessage(double content) {
-        return String.format(message, content);
-    }
-
-    public String getMessage(String content) {
-        return String.format(message, content);
-    }
-
     public String getMessage(List<Integer> lottoNumbers) {
         if (equals(LOTTO_NUMBERS)) {
             return String.format(message,
@@ -70,5 +58,9 @@ public enum OutputMessage {
             );
         }
         return String.format(message);
+    }
+
+    public String getMessage(Object... args) {
+        return String.format(message, args);
     }
 }
