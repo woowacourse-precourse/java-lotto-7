@@ -58,11 +58,18 @@ public class ValidatorTest {
     }
 
     private static Object[][] invalidNumberProvider() {
-        return new Object[][] {
+        return new Object[][]{
                 {5, 0, 4},
                 {1, 2, 4},
                 {10, 2, 8}
         };
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2147483647", "1", "11111"})
+    @DisplayName("INT 범위 테스트")
+    public void isIntegerTest(String input) {
+        assertThatNoException().isThrownBy(() -> Validator.isInteger(input));
     }
 
 }
