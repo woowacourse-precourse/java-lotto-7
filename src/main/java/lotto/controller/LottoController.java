@@ -13,6 +13,7 @@ public class LottoController {
 
     private void initLotts(){
         View.promptForPurchaseAmount();
+        View.inputLottoPurchaseAmount();
 
     }
 
