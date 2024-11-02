@@ -32,6 +32,10 @@ public class Lotto {
         return lottos;
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber.getNumber());
+    }
+
     private List<Integer> sort(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
