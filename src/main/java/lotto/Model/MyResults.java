@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model;
 
 public class MyResults {
     private Integer matches;//몇개 맞췄는지
