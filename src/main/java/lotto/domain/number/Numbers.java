@@ -5,6 +5,7 @@ import static lotto.resources.Constants.LOTTO_MIN_NUMBER;
 import static lotto.resources.Constants.LOTTO_TOTAL_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +32,7 @@ public class Numbers {
     }
 
     public List<Number> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class Numbers {
             return false;
         }
         final Numbers otherNumbers = (Numbers) obj;
-        return Objects.equals(this.numbers, otherNumbers.numbers);
+        return Objects.equals(numbers, otherNumbers.numbers);
     }
 
     @Override

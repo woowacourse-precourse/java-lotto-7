@@ -29,7 +29,7 @@ public class Lottos {
             return false;
         }
         Lottos otherLottos = (Lottos) obj;
-        return Objects.equals(this.lottos, otherLottos.lottos);
+        return Objects.equals(lottos, otherLottos.lottos);
     }
 
     @Override

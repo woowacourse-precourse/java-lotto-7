@@ -44,7 +44,7 @@ public class Number {
             return false;
         }
         final Number otherNumber = (Number) obj;
-        return Objects.equals(this.number, otherNumber.number);
+        return Objects.equals(number, otherNumber.number);
     }
 
     @Override
