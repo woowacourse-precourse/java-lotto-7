@@ -5,11 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 import static lotto.message.ErrorMessage.*;
 
 public class MoneyInputHandler {
-    public long getLottoCount() {
+    public long getLottoCount(String inputNum) {
         while (true){
             try {
-                String inputString = Console.readLine();
-                long rawMoney = Long.parseLong(inputString);
+                long rawMoney = Long.parseLong(inputNum);
                 return validateMoney(rawMoney);
             } catch (NumberFormatException e){
                 System.out.println(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
