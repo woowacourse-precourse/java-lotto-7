@@ -25,16 +25,19 @@ public class LottoValidation {
         incrementWinningResult(updateIndex);
     }
 
-
     public double calculateProfitRate(int purchaseAmount) {
         int totalWinningAmount = calculateTotalWinningAmount();
         return (double) totalWinningAmount / purchaseAmount;
     }
 
-    private int calculateTotalWinningAmount() {
-        return IntStream.range(0, winningResult.size())
-                .map(i -> WinningLotto.values()[i].getAmount() * winningResult.get(i))
-                .sum();
+    private int isMatchWinningNumbers(List<Integer> lottoNumber) {
+        int lottoMatchCount = 0;
+        for (Integer integer : lottoNumber) {
+            if (winningNumbers.contains(integer)) {
+                lottoMatchCount++;
+            }
+        }
+        return lottoMatchCount;
     }
 
     private int validateWinningResult(int matchCount, boolean matchBonus) {
@@ -50,18 +53,13 @@ public class LottoValidation {
         winningResult.set(index, winningResult.get(index) + 1);
     }
 
-    private int isMatchWinningNumbers(List<Integer> lottoNumber) {
-        int lottoMatchCount = 0;
-        for (Integer integer : lottoNumber) {
-            if (winningNumbers.contains(integer)) {
-                lottoMatchCount++;
-            }
-        }
-        return lottoMatchCount;
-    }
-
     private boolean isMatchBonusNumber(int bonusNumber) {
         return winningNumbers.contains(bonusNumber);
     }
 
+    private int calculateTotalWinningAmount() {
+        return IntStream.range(0, winningResult.size())
+                .map(i -> WinningLotto.values()[i].getAmount() * winningResult.get(i))
+                .sum();
+    }
 }
