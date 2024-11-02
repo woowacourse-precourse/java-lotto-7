@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import lotto.domain.LottoMatchedResult;
 import lotto.domain.Rank;
 import org.junit.jupiter.api.Test;
 
@@ -22,14 +21,15 @@ class WinningLottoTest {
         expected.merge(Rank.FIRST, 1, Integer::sum);
         expected.merge(Rank.SECOND, 1, Integer::sum);
 
-        List<LottoMatchedResult> matchedResults = new ArrayList<>();
-        matchedResults.add(new LottoMatchedResult(6, true));
-        matchedResults.add(new LottoMatchedResult(6, false));
-        matchedResults.add(new LottoMatchedResult(5, true));
+        List<Rank> matchedResults = new ArrayList<>();
+        matchedResults.add(Rank.FIRST);
+        matchedResults.add(Rank.FIRST);
+        matchedResults.add(Rank.SECOND);
 
-        winningLotto.addMatchedResultAsRank(matchedResults);
+        winningLotto.addAllMatchedRank(matchedResults);
         EnumMap<Rank, Integer> actual = winningLotto.getWinningStatistics();
 
         assertEquals(expected, actual);
     }
+
 }
