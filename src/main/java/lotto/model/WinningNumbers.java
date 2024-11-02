@@ -7,9 +7,7 @@ import java.util.List;
 import static lotto.global.enums.PrintMessage.*;
 
 public class WinningNumbers {
-
     private final List<Integer> winningNumber;
-
     private final Integer bonusNumber;
 
     public WinningNumbers(List<Integer> winningNumber, Integer bonusNumber) {

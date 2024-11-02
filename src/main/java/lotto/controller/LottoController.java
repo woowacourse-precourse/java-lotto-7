@@ -29,7 +29,6 @@ public class LottoController {
         lottoService.run(game);
     }
 
-
     private Integer getLottoCount() {
         outputView.printMessage(INPUT_PRICE);
         try {
