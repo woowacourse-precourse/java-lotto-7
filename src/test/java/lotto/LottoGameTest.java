@@ -1,6 +1,5 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -10,13 +9,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoGameTest {
@@ -129,7 +126,7 @@ class LottoGameTest {
         assertDoesNotThrow(() -> lottoGame.generateLottos(money));
     }
     // ------------------ generateLottos 관련 테스트 끝 --------------------
-    // ------------------ generateUserLotto 관련 테스트 끝 --------------------
+    // ------------------ generateWinningLotto 관련 테스트 끝 --------------------
     @Test
     @DisplayName("올바른 로또 번호 입력시 정상적으로 처리된다")
     void validateValidLottoNumbers() {
@@ -139,7 +136,7 @@ class LottoGameTest {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         
         // when
-        Lotto lotto = lottoGame.generateUserLotto();
+        Lotto lotto = lottoGame.generateWinningLotto();
         
         List<Integer> numbers = lotto.getNumbers();
         
@@ -161,7 +158,7 @@ class LottoGameTest {
         String input = "1,2,3,4,5\n1,2,3,4,5,6"; // 실패한 코드, 성공한 코드(반복을 끝내기 위해)
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         
-        lottoGame.generateUserLotto();
+        lottoGame.generateWinningLotto();
         
         // then
         String output = outContent.toString();
@@ -182,7 +179,7 @@ class LottoGameTest {
         Console.close(); // 기존 Scanner 초기화
         System.setIn(new ByteArrayInputStream((input + "\n" + "1,2,3,4,5,6").getBytes()));
         
-        lottoGame.generateUserLotto();
+        lottoGame.generateWinningLotto();
         
         // then
         String output = outContent.toString();
@@ -205,7 +202,7 @@ class LottoGameTest {
         Console.close(); // 기존 Scanner 초기화
         System.setIn(new ByteArrayInputStream((input + "\n" + "1,2,3,4,5,6").getBytes()));
         
-        lottoGame.generateUserLotto();
+        lottoGame.generateWinningLotto();
         
         // then
         String output = outContent.toString();
@@ -227,7 +224,7 @@ class LottoGameTest {
         Console.close(); // 기존 Scanner 초기화
         System.setIn(new ByteArrayInputStream((input + "\n" + "1,2,3,4,5,6").getBytes()));
         
-        lottoGame.generateUserLotto();
+        lottoGame.generateWinningLotto();
         
         // then
         String output = outContent.toString();
@@ -250,8 +247,8 @@ class LottoGameTest {
         System.setIn(new ByteArrayInputStream((input + "\n" + "1,2,3,4,5,6").getBytes()));
         
         // then
-        assertDoesNotThrow(() -> lottoGame.generateUserLotto());
+        assertDoesNotThrow(() -> lottoGame.generateWinningLotto());
     }
-        // ------------------ generateUserLotto 관련 테스트 끝 --------------------
+        // ------------------ generateWinningLotto 관련 테스트 끝 --------------------
     
 }

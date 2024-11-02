@@ -17,11 +17,11 @@ public class LottoGame {
         List<Lotto> generatedLottos = generateLottos(money);
         
         // 당첨 로또 번호 입력 받기
-        Lotto winningLottoNumbers = generateUserLotto();
+        Lotto winningLotto = generateWinningLotto();
         
     }
     
-    public Lotto generateUserLotto() {
+    public Lotto generateWinningLotto() {
         List<Integer> winningLottoNumbers = new ArrayList<>();
         
         System.out.println("당첨 번호를 입력해 주세요.");
