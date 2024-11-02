@@ -19,15 +19,11 @@ public class ParseHelper {
     }
 
     public List<Integer> parseIntegerList(String value, String delimiter) {
-        try {
-            String[] splitValue = value.split(delimiter);
+        String[] splitValue = value.split(delimiter);
 
-            return Arrays.stream(splitValue)
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
-        } catch (NumberFormatException exception) {
-            throw new NumberFormatException(CANT_PARSE_INT_ERROR_MESSAGE);
-        }
+        return Arrays.stream(splitValue)
+                .map(String::trim)
+                .map(this::parseInt)
+                .toList();
     }
 }
