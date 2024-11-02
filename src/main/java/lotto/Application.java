@@ -25,6 +25,14 @@ public class Application {
         String[] winningLottoInput = Console.readLine()
                 .trim()
                 .split(",");
+
+        validateWinningLottoInput(winningLottoInput);
+    }
+
+    private static void validateWinningLottoInput(String[] winningLottoInput) {
+        if (winningLottoInput.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
     }
 
     private static void validateAmountInput(String amountInput) {
