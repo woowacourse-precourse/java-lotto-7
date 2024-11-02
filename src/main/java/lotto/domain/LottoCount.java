@@ -1,13 +1,13 @@
 package lotto.domain;
 
-public class LottoCount {
+import static lotto.domain.LottoConstants.LOTTO_PRICE;
 
-    private static final int LOTTO_PRICE = 1000;
+public class LottoCount {
 
     private final int lottoCount;
 
     public LottoCount(int purchasedPrice) {
-        this.lottoCount = purchasedPrice / 1000;
+        this.lottoCount = purchasedPrice / LOTTO_PRICE;
     }
 
     public int getLottoCount() {

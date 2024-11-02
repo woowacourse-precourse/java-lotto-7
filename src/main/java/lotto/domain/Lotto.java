@@ -1,11 +1,10 @@
 package lotto.domain;
 
 import java.util.List;
+import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
 
 public class Lotto {
-
-    public static final int MIN = 1;
-    public static final int MAX = 45;
 
     private final List<Integer> numbers;
 
@@ -23,7 +22,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for(int number : numbers) {
-            if(number < MIN || number > MAX)
+            if(number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
