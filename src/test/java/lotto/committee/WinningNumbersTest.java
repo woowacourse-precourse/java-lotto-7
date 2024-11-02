@@ -1,18 +1,22 @@
-package lotto;
+package lotto.committee;
 
-import lotto.committee.WinningNumbers;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumbersTest {
 
-    WinningNumbers winningNumbers;
+    private List<List<Integer>> mainNumbers;
+    private List<Integer> bonusNumbers;
+
+    WinningNumbers winningNumbers = WinningNumbers.forTest(mainNumbers, bonusNumbers);
 
     @Test
     void 당첨번호_중_일반번호는_5개이다() {
-
+        assertThat()
     }
 
     @Test

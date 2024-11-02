@@ -10,7 +10,11 @@ public class WinningNumbers {
 
     private WinningNumbers(List<List<Integer>> mainNumbers, List<Integer> bonusNumbers) {
         this.mainNumbers = Collections.unmodifiableList(mainNumbers);
-        this.bonusNumbers = bonusNumbers;
+        this.bonusNumbers = Collections.unmodifiableList(bonusNumbers);
+    }
+
+    static WinningNumbers forTest(List<List<Integer>> mainNumbers, List<Integer> bonusNumbers) {
+        return new WinningNumbers(mainNumbers, bonusNumbers);
     }
 
     public WinningNumbers getWinningNumbers() {
