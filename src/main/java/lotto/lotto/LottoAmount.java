@@ -3,12 +3,17 @@ package lotto.lotto;
 public class LottoAmount {
 
     private static final int LOTTO_PURCHASE_UNIT_AMOUNT = 1000;
+
     private final int amount;
 
     public LottoAmount(int amount) {
         validatePositiveAmount(amount);
         validateLottoPurchaseAmount(amount);
         this.amount = amount;
+    }
+
+    public int getPurchaseLottoCount() {
+        return amount / LOTTO_PURCHASE_UNIT_AMOUNT;
     }
 
     private void validatePositiveAmount(int amount) {
