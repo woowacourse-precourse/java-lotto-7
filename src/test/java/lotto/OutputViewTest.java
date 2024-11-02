@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoFormat;
+import lotto.model.lotto.LottoPrintFormat;
 import lotto.model.lotto.LottoGenerator;
 import lotto.number_generator.LottoNumberGenerator;
 import lotto.number_generator.NumberGenerator;
@@ -30,7 +30,7 @@ public class OutputViewTest {
         numbers.sort(Integer::compareTo);
         String joinedNumbers = numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(LottoFormat.DELIMITER));
-        return LottoFormat.PREFIX + joinedNumbers + LottoFormat.SUFFIX;
+                .collect(Collectors.joining(LottoPrintFormat.DELIMITER));
+        return LottoPrintFormat.PREFIX + joinedNumbers + LottoPrintFormat.SUFFIX;
     }
 }
