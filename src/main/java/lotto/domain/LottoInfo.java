@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class LottoInfo {
     public static final int MIN_NUM_RANGE = 1;
