@@ -45,4 +45,12 @@ public class LottoTemp {
 
         return lottos;
     }
+
+    public void printTicketCount(int ticketCount){
+        io.printMessage(ticketCount + "개를 구매했습니다.");
+    }
+
+    public void printPurchaseLottoNumbers(List<Lotto> lottos){
+        lottos.forEach(lotto -> io.printMessage(lotto.toString()));
+    }
 }
