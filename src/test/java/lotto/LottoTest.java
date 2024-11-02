@@ -2,10 +2,13 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @Test
@@ -21,5 +24,27 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("로또 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    void createLottoWithInvalidRange(int invalidNumber) {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, invalidNumber)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("로또 번호가 정상적으로 생성되면 정렬된 상태로 저장된다")
+    @Test
+    void lottoNumbersShouldBeSorted() {
+        Lotto lotto = new Lotto(List.of(6, 4, 2, 1, 5, 3));
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @DisplayName("로또 번호가 특정 숫자를 포함하는지 확인할 수 있다")
+    @Test
+    void containsNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.contains(1)).isTrue();
+        assertThat(lotto.contains(7)).isFalse();
+    }
 }
