@@ -51,7 +51,7 @@ public class LottoController {
 
     private List<MatchCondition> getMatchConditions(LottoTicket lottoTicket) {
         WinningNumber winningNumber = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
         List<MatchCondition> matchConditions = lottoTicket.gatherMatchCondition(winningNumber, bonusNumber);
         Map<LottoRank, Integer> lottoRankCount = produceStatistics(matchConditions);
         outputView.printWinningStatistics(lottoRankCount);
@@ -65,9 +65,9 @@ public class LottoController {
         return WinningNumber.from(inputWinningNumbers);
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber getBonusNumber(WinningNumber winningNumber) {
         outputView.printBonusNumberInputMessage();
-        String inputBonusNumber = inputView.inputBonusNumber();
+        String inputBonusNumber = inputView.inputBonusNumber(winningNumber);
         System.out.println();
         return BonusNumber.from(inputBonusNumber);
     }

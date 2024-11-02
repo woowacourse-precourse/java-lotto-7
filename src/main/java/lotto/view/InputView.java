@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinningNumber;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.InputValidator;
 
@@ -14,12 +15,14 @@ public class InputView {
     public String inputWinningNumbers() {
         String input = inputWithValidation();
         InputValidator.validateDelimitedByComma(input);
+        InputValidator.validateInputNumberSix(input);
         return input;
     }
 
-    public String inputBonusNumber() {
+    public String inputBonusNumber(WinningNumber winningNumber) {
         String input = inputWithValidation();
         BonusNumberValidator.validateRange(input);
+        BonusNumberValidator.validateUniqueBonusNumber(winningNumber,input);
         return input;
     }
 
