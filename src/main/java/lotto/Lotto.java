@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,6 +28,15 @@ public class Lotto {
         }
         return false;
     }
+
+    public int findDuplicateNum(List<Integer> winningNumber){
+
+        List<Integer> matchNum = this.numbers.stream().filter(o -> winningNumber.stream()
+                .anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
+
+        return matchNum.size();
+    }
+
 
 
 

@@ -2,7 +2,9 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.Collections;
 import java.util.List;
+import lotto.enums.WinningType;
 import lotto.exception.CheckInput;
 
 public class InputConsole {
@@ -36,7 +38,14 @@ public class InputConsole {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 
+        CheckWinning.checkDuplicateNum(winningLottoNumbers, lottoList, bonusNum);
+        System.out.println("3개 일치 (5,000원) - " + WinningType.FIRST.getCount() + "개");
+        System.out.println("4개 일치 (50,000원) - " + WinningType.SECOND.getCount() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + WinningType.THIRD.getCount() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + WinningType.FOURTH_BONUS.getCount() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + WinningType.FIFTH.getCount() + "개");
 
+        System.out.println("총 수익률은 " + CheckWinning.calculateProfit(inputMoney) + "%입니다.");
     }
 
 }
