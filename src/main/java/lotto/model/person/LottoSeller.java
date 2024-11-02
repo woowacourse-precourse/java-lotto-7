@@ -6,7 +6,7 @@ import lotto.model.lottogenerator.LottoGenerator;
 import lotto.model.lottogenerator.RandomLottoNumberGenerator;
 
 public class LottoSeller {
-    private static final int UNIT_AMOUNT = 1000;
+    protected static final int LOTTO_UNIT_AMOUNT = 1000;
     private final LottoMachine lottoMachine;
 
     public LottoSeller() {
@@ -21,7 +21,7 @@ public class LottoSeller {
     }
 
     private int calculateLottoCount(final int amount) {
-        return amount / UNIT_AMOUNT;
+        return amount / LOTTO_UNIT_AMOUNT;
     }
 
     private void validate(final int amount) {
@@ -30,7 +30,7 @@ public class LottoSeller {
     }
 
     private void validateAmount(final int amount) {
-        if (amount % UNIT_AMOUNT != 0) {
+        if (amount % LOTTO_UNIT_AMOUNT != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원 단위로 투입되어야 합니다.");
         }
     }
