@@ -19,6 +19,6 @@ public class LottoController {
         LottoNumbersValidator.validate(lottoRequestDto.getLottoNumbers());
         BonusNumberValidator.validate(lottoRequestDto.getBonusNumber(),
                 lottoRequestDto.getLottoNumbers().split(","));
-
+        
     }
 }
