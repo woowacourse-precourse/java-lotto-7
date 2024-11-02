@@ -7,8 +7,8 @@ import lotto.domain.PurchaseAmount;
 public class UserInputService {
     private final Prompter prompter;
 
-    public UserInputService() {
-        this.prompter = new Prompter();
+    public UserInputService(Prompter prompter) {
+        this.prompter = prompter;
     }
 
     public PurchaseAmount createPurchaseAmount() {
