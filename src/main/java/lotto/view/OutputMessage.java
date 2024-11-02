@@ -42,22 +42,21 @@ public enum OutputMessage {
 
     public String getMessage(Rank rank, int rankCount) {
         if (equals(RANK_RESULT)) {
-            if (rank.equals(Rank.SECOND)) {
-                return String.format(
-                    RANK_RESULT_SECOND.message,
-                    rank.getMatchCount(),
-                    new DecimalFormat("###,###").format(rank.getPrice()),
-                    rankCount
-                );
-            }
             return String.format(
-                message,
+                getRankMessage(rank),
                 rank.getMatchCount(),
                 new DecimalFormat("###,###").format(rank.getPrice()),
                 rankCount
             );
         }
         return String.format(message);
+    }
+
+    private String getRankMessage(Rank rank) {
+        if (rank.equals(Rank.SECOND)) {
+            return RANK_RESULT_SECOND.message;
+        }
+        return RANK_RESULT.message;
     }
 
     public String getMessage(Object... args) {

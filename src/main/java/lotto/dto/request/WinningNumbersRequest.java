@@ -7,10 +7,12 @@ import java.util.List;
 
 public record WinningNumbersRequest(List<Integer> winningNumbers) {
 
+    private static final String DELIMITER = ",";
+
     public static WinningNumbersRequest from(String input) {
         try {
             return new WinningNumbersRequest(
-                Arrays.stream(input.split(","))
+                Arrays.stream(input.split(DELIMITER))
                     .mapToInt(Integer::parseInt)
                     .boxed()
                     .toList());
