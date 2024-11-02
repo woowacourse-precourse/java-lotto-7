@@ -44,9 +44,9 @@ WinningLotto : 당첨 로또를 담당하는 객체
 - [x] 보너스 번호를 알려준다.
 
 LottoRank : 당첨 등수 및 상금을 정보를 담당하는 객체
-- [ ] Lotto 결과를 알려준다.
-- [ ] Lotto 당첨 금액을 알려준다.
-- [ ] Lotto 당첨 설명을 알려준다.
+- [x] Lotto 결과를 알려준다.
+- [x] Lotto 당첨 금액을 알려준다.
+- [x] Lotto 당첨 설명을 알려준다.
 
 LottoResult : 로또 당첨 정보를 관리하는 객체
 - [ ] Lotto 결과를 취합한다.
