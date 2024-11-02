@@ -10,7 +10,7 @@ public class WinningStatistics {
     private static final int PERCENTAGE_MULTIPLIER = 100;
     private final Map<Rank, Integer> winningStatistics;
 
-    public WinningStatistics(Map<Rank, Integer> winningStatistics) {
+    public WinningStatistics() {
         this.winningStatistics = new HashMap<>();
         initializeWinningStatistics();
     }
