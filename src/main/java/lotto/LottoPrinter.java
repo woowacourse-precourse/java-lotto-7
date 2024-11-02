@@ -1,12 +1,15 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class LottoPrinter {
 
-    public static void printLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+    public static void printLotto(List<Lotto> issuedLottoTickets) {
+        issuedLottoTickets.forEach(i -> {
+            System.out.println(i.getNumbers());
+        });
     }
 
     public static void printStatistics(LottoResult lottoResult) {
