@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.message.ErrorMessage.BONUS_NUMBER_DUPLICATE;
 import static lotto.message.ErrorMessage.NON_INTEGER_LOTTO;
 
 public class WinningNumbers extends LottoForm {
@@ -22,6 +23,12 @@ public class WinningNumbers extends LottoForm {
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NON_INTEGER_LOTTO.getMessage());
+        }
+    }
+
+    public void validateDuplicate(int number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
 }

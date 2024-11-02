@@ -17,7 +17,8 @@ public class Application {
         Lottos lottos = lottoMachine.issue(lottoCount);
         showLottosInfo(lottos);
 
-        WinningNumbersInputHandler winningNumbersInputHandler = new WinningNumbersInputHandler();
-        WinningNumbers winningNumbers = winningNumbersInputHandler.getWinningNumbers();
+        WinningNumbersInputHandler NumbersInputHandler = new WinningNumbersInputHandler();
+        WinningNumbers winningNumbers = NumbersInputHandler.getWinningNumbers();
+        int bonusNumber = NumbersInputHandler.getBonusNumber(winningNumbers);
     }
 }

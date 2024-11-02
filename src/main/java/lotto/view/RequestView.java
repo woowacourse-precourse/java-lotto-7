@@ -15,7 +15,7 @@ public class RequestView {
         return Console.readLine();
     }
 
-    public static String getBonusNumber(){
+    public static String getBonusInput(){
         System.out.println(REQUEST_BONUS_NUMBER.getMessage());
         return Console.readLine();
     }
