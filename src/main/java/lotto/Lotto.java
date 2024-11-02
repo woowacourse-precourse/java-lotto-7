@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.InputValidator.MAX_NUMBER;
+import static lotto.InputValidator.MIN_NUMBER;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -31,7 +34,7 @@ public class Lotto {
         if (numbers.stream().distinct().count() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
         }
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)){
+        if (numbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)){
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 이외의 숫자는 입력할 수 없습니다.");
         }
     }

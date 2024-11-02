@@ -39,7 +39,7 @@ public class LottoGame {
     }
 
     public List<Lotto> generateLottos(int purchaseAmount){
-        int ticket = purchaseAmount / 1000;
+        int ticket = purchaseAmount / LOTTO_PRICE_UNIT;
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticket; i++) {
             lottos.add(Lotto.generate());

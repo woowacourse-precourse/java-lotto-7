@@ -4,6 +4,10 @@ import java.util.List;
 
 public class InputValidator {
 
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
+    public static final int LOTTO_PRICE_UNIT = 1000;
+
     public static void validateNumericNumber(String input){
         for (int i = 0; i < input.length(); i++) {
             if(!Character.isDigit(input.charAt(i))){
@@ -13,7 +17,7 @@ public class InputValidator {
     }
 
     public static void validateThousandUnit(int purchaseNumber){
-        if(purchaseNumber % 1000 != 0){
+        if(purchaseNumber % LOTTO_PRICE_UNIT!= 0){
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
         }
     }
@@ -39,7 +43,7 @@ public class InputValidator {
     }
 
     public static void validateBonusNumberRange(int bonusNumber){
-        if(bonusNumber < 1 || bonusNumber > 45){
+        if(bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 이내의 숫자만 입력 가능합니다.");
         }
     }
