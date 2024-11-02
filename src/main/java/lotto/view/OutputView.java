@@ -12,7 +12,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(String error) {
-        System.err.println(error);
+        System.out.println(error);
     }
 
     public void printLottos(List<Lotto> lottos) {
