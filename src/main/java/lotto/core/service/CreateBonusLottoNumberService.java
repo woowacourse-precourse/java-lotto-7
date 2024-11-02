@@ -1,6 +1,7 @@
 package lotto.core.service;
 
 import lotto.commons.numbers.Integers;
+import lotto.core.constants.Error;
 import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoNumberDto;
 import lotto.core.model.LottoNumber;
@@ -10,7 +11,7 @@ public class CreateBonusLottoNumberService {
     public LottoNumberDto create(String value, LottoDto winningLotto) {
         validateValue(value);
 
-        Integer intValue = Integers.parseIntOrThrow(value, "보너스 번호는 숫자만 입력해주세요.");
+        Integer intValue = Integers.parseIntOrThrow(value, Error.BonusNumber.INVALID_NUMBER_FORMAT);
         LottoNumber number = new LottoNumber(intValue);
 
         validateWinningLottoContains(winningLotto, number);
@@ -20,13 +21,13 @@ public class CreateBonusLottoNumberService {
 
     private void validateValue(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("보너스 번호를 입력해주세요.");
+            throw new IllegalArgumentException(Error.BonusNumber.REQUIRED_NUMBER);
         }
     }
 
     private void validateWinningLottoContains(LottoDto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.numbers().contains(bonusNumber.value())) {
-            throw new IllegalArgumentException("당첨 번호에 있는 번호는 보너스 번호로 입력할 수 없어요.");
+            throw new IllegalArgumentException(Error.BonusNumber.DUPLICATED_NUMBER);
         }
     }
 }

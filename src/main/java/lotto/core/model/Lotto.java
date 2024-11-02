@@ -3,6 +3,7 @@ package lotto.core.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import lotto.core.constants.Error;
 import lotto.core.dto.LottoDto;
 
 public class Lotto {
@@ -25,13 +26,13 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(Error.Lotto.INVALID_NUMBERS_LENGTH);
         }
     }
 
     private void validateDuplicated(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(Error.Lotto.INVALID_NUMBER_DUPLICATED);
         }
     }
 

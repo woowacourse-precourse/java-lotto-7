@@ -2,6 +2,7 @@ package lotto.core.model;
 
 import java.util.List;
 import lotto.commons.numbers.Integers;
+import lotto.core.constants.Error;
 import lotto.core.dto.LottoPurchaseAmountDto;
 
 public class LottoPurchaseAmount {
@@ -33,20 +34,20 @@ public class LottoPurchaseAmount {
 
     private static Integer parseString(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("로또 구입 금액을 입력해주세요.");
+            throw new IllegalArgumentException(Error.LottoPurchaseAmount.REQUIRED_AMOUNT);
         }
-        return Integers.parseIntOrThrow(value, "로또 구입 금액은 숫자만 입력해주세요.");
+        return Integers.parseIntOrThrow(value, Error.LottoPurchaseAmount.INVALID_AMOUNT_FORMAT);
     }
 
     private void validate(Integer value) {
         if (value == null) {
-            throw new IllegalArgumentException("로또 구입 금액을 입력해주세요.");
+            throw new IllegalArgumentException(Error.LottoPurchaseAmount.REQUIRED_AMOUNT);
         }
         if (value < BASE_AMOUNT) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000 이상의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(Error.LottoPurchaseAmount.BELOW_BASE_AMOUNT);
         }
         if (value % BASE_AMOUNT != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1000 단위의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(Error.LottoPurchaseAmount.INVALID_BASE_AMOUNT_UNIT);
         }
     }
 

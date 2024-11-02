@@ -1,5 +1,6 @@
 package lotto.core.model;
 
+import lotto.core.constants.Error;
 import lotto.core.dto.LottoNumberDto;
 
 public record LottoNumber(Integer value) {
@@ -10,7 +11,7 @@ public record LottoNumber(Integer value) {
 
     public LottoNumber {
         if (!LottoNumber.isNumber(value)) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(Error.LottoNumber.INVALID_NUMBER_RANGE);
         }
     }
 
