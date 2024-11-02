@@ -11,12 +11,12 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void displayPurchaseQuantity(int quantity) {
+    public void displayPurchaseQuantity(final int quantity) {
         System.out.println();
         System.out.printf("%d개를 구매했습니다.%n", quantity);
     }
 
-    public void displayLottoNumbers(List<Lotto> lottoTickets) {
+    public void displayLottoNumbers(final List<Lotto> lottoTickets) {
         String result = lottoTickets.stream()
                 .map(Lotto::getNumbers)
                 .map(List::toString)
@@ -32,7 +32,7 @@ public class OutputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void displayWinningResult(Map<Prize, Integer> result, double rateOfReturn) {
+    public void displayWinningResult(final Map<Prize, Integer> result,final double rateOfReturn) {
         System.out.println("\n당첨 통계\n---");
         String resultMessage = result.entrySet().stream()
                 .map(entry -> String.format(entry.getKey().getResultMessage(), entry.getValue()))
