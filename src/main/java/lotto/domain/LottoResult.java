@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class LottoResult {
 
@@ -14,5 +15,26 @@ public class LottoResult {
 
     public int getMatchesCount(Rank rank) {
         return result.getOrDefault(rank, 0);
+    }
+
+    public int calculateTotalPrize() {
+        return result.entrySet().stream()
+                .filter(this::isExist)
+                .mapToInt(this::calculateRank)
+                .sum();
+    }
+
+    private int calculateRank(Entry<Rank, Integer> result) {
+        Rank rank = result.getKey();
+        int winningCount = result.getValue();
+        return rank.getPrize() * winningCount;
+    }
+
+    private boolean isExist(Map.Entry<Rank, Integer> result) {
+        return result.getValue() > 0;
+    }
+
+    public int getPurchasePrice() {
+        return lottoCount * 1000;
     }
 }

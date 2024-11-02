@@ -1,11 +1,15 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchaseLotto;
 import lotto.domain.Rank;
+import lotto.domain.RateOfReturn;
 
 public class OutputView {
+
+    private static final String RATE_FORMAT = "#,##0.0";
 
     public static void printPurchaseInputText() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -34,5 +38,10 @@ public class OutputView {
         System.out.println("\n당첨 통계\n---");
         Arrays.stream(Rank.values())
                 .forEach(rank -> System.out.printf(rank.getLotteryStatistics(), lottoResult.getMatchesCount(rank)));
+    }
+
+    public static void printRateOfReturn(RateOfReturn rateOfReturn) {
+        DecimalFormat decimalFormat = new DecimalFormat(RATE_FORMAT);
+        System.out.printf("총 수익률은 %s%%입니다.", decimalFormat.format(rateOfReturn.getRateOfReturn()));
     }
 }

@@ -6,6 +6,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.NumberGenerator;
 import lotto.domain.PurchaseLotto;
 import lotto.domain.PurchasePrice;
+import lotto.domain.RateOfReturn;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,6 +27,7 @@ public class LottoController {
     private void startLottery(Lottery lottery) {
         LottoResult lottoResult = lottery.createLottoResult();
         OutputView.printWinningResult(lottoResult);
+        OutputView.printRateOfReturn(new RateOfReturn(lottoResult));
     }
 
     private Lottery prepareLottery() {
