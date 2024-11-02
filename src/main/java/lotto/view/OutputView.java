@@ -2,9 +2,12 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoWallet;
+import lotto.domain.LottoGame;
 
 public class OutputView {
+    public static void printError(IllegalArgumentException exceptionMessage) {
+        System.out.println(exceptionMessage.getMessage());
+    }
 
     public void printSpace() {
         System.out.println();
@@ -18,11 +21,9 @@ public class OutputView {
         System.out.println(count + PrintMessage.TICKET_COUNT.getMessage());
     }
 
-    public void printBoughtTicketNumbers(LottoWallet lottoWallet) {
-        List<Lotto> lottos = lottoWallet.getLottos();
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto);
-        }
+    public void printBoughtTicketNumbers(LottoGame lottoGame) {
+        List<Lotto> lottos = lottoGame.getPurchasedLottos();
+        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     public void printInputWinningNumbers() {
@@ -38,23 +39,23 @@ public class OutputView {
     }
 
     public void printMatchThree(int count) {
-        System.out.println(PrintMessage.MATCH_THREE.getMessage() + count);
+        System.out.println(PrintMessage.MATCH_THREE.getMessage() + count + PrintMessage.MATCH_END.getMessage());
     }
 
     public void printMatchFour(int count) {
-        System.out.println(PrintMessage.MATCH_FOUR.getMessage() + count);
+        System.out.println(PrintMessage.MATCH_FOUR.getMessage() + count + PrintMessage.MATCH_END.getMessage());
     }
 
     public void printMatchFive(int count) {
-        System.out.println(PrintMessage.MATCH_FIVE.getMessage() + count);
+        System.out.println(PrintMessage.MATCH_FIVE.getMessage() + count + PrintMessage.MATCH_END.getMessage());
     }
 
     public void printMatchFiveAndBonus(int count) {
-        System.out.println(PrintMessage.MATCH_FIVE_AND_BONUS.getMessage() + count);
+        System.out.println(PrintMessage.MATCH_FIVE_AND_BONUS.getMessage() + count + PrintMessage.MATCH_END.getMessage());
     }
 
     public void printMatchSix(int count) {
-        System.out.println(PrintMessage.MATCH_SIX.getMessage() + count);
+        System.out.println(PrintMessage.MATCH_SIX.getMessage() + count + PrintMessage.MATCH_END.getMessage());
     }
 
     public void printRateOfReturn(double rate) {

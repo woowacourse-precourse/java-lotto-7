@@ -11,12 +11,10 @@ public enum PrintMessage {
     MATCH_FIVE("5개 일치 (1,500,000원) - "),
     MATCH_FIVE_AND_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     MATCH_SIX("6개 일치 (2,000,000,000원) - "),
+    MATCH_END("개"),
     RATE_OF_RETURN_PART_START("총 수익률은 "),
     RATE_OF_RETURN_PART_END("%입니다.");
-
-
     private final String message;
-
 
     PrintMessage(String message) {
         this.message = message;
