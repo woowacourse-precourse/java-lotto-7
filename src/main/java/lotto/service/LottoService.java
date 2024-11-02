@@ -29,29 +29,40 @@ public class LottoService {
 
     public Map<Integer, Integer> winningDetermination(List<Integer> winningNumbers, int bonusNumber,
                                                       List<Lotto> lottos) {
-        Map<Integer, Integer> matchCounts = new HashMap<>();
+        Map<Integer, Integer> matchCounts = initializeMatchCounts();
 
+        lottos.forEach(lotto -> {
+            int matchCount = lotto.countMatchingNumbers(winningNumbers);
+            boolean isBonusMatch = lotto.containsBonusNumber(bonusNumber);
+
+            updateMatchCounts(matchCounts, matchCount, isBonusMatch);
+        });
+
+        return matchCounts;
+    }
+
+    private Map<Integer, Integer> initializeMatchCounts() {
+        Map<Integer, Integer> matchCounts = new HashMap<>();
         for (int count = 3; count <= 6; count++) {
             matchCounts.put(count, 0);
         }
-        matchCounts.put(-5, 0); //5개 + 보너스
-
-        lottos.stream()
-                .forEach(lotto -> {
-                    int matchCount = lotto.countMatchingNumbers(winningNumbers);
-                    boolean isBonusMatch = lotto.containsBonusNumber(bonusNumber);
-                    if (matchCount == 5 && isBonusMatch) {
-                        matchCounts.put(-5, matchCounts.get(-5) + 1);
-                        return;
-                    }
-                    if (matchCount == 5) {
-                        matchCounts.put(3, matchCounts.get(3) + 1);
-                        return;
-                    }
-                    if (matchCount >= 3) {
-                        matchCounts.put(matchCount, matchCounts.get(matchCount) + 1);
-                    }
-                });
+        matchCounts.put(-5, 0); // 5개 + 보너스
         return matchCounts;
+    }
+
+    private void updateMatchCounts(Map<Integer, Integer> matchCounts, int matchCount, boolean isBonusMatch) {
+        if (matchCount == 5 && isBonusMatch) {
+            matchCounts.put(-5, matchCounts.get(-5) + 1);
+            return;
+        }
+
+        if (matchCount == 5) {
+            matchCounts.put(5, matchCounts.get(5) + 1);
+            return;
+        }
+
+        if (matchCount >= 3) {
+            matchCounts.put(matchCount, matchCounts.get(matchCount) + 1);
+        }
     }
 }
