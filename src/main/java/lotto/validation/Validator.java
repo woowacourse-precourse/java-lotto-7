@@ -7,7 +7,6 @@ import lotto.enums.ErrorMessage;
 public class Validator {
     private static final String NUMBER_REGEX = "^[0-9]+$";
     private static final String DELIMITER_REGEX = "^[0-9]+(,[0-9]+)*$";
-    private static final Set<Integer> existNumbers = new HashSet<>();
 
     public static boolean isBlank(String inputCost) {
         if (inputCost.isBlank()) {
@@ -51,6 +50,8 @@ public class Validator {
     }
 
     public static void isDuplicateNumber(int parsedWinNumber) {
+        Set<Integer> existNumbers = new HashSet<>();
+
         if (existNumbers.contains(parsedWinNumber)) {
             throw new IllegalStateException(ErrorMessage.INPUT_NUMBER_DUPLICATE_ERROR.getMessage());
         }
