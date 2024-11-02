@@ -22,25 +22,25 @@ public class Converter {
     }
 
     public static MatchingCountResult matchingCounterResultConvert(int winningCount, int bonusCount) {
-        if (winningCount < 3) {
-            return new MatchingCountResult(WinningCondition.NO_MATCH, 0);
-        }
         if (winningCount == 3) {
-            return new MatchingCountResult(WinningCondition.MATCH_3, winningCount);
+            return new MatchingCountResult(WinningCondition.MATCH_3);
         }
         if (winningCount == 4) {
-            return new MatchingCountResult(WinningCondition.MATCH_4, winningCount);
+            return new MatchingCountResult(WinningCondition.MATCH_4);
         }
         if (winningCount == 5) {
             return checkBonusNumber(winningCount, bonusCount);
         }
-        return new MatchingCountResult(WinningCondition.MATCH_6, winningCount);
+        if (winningCount == 6) {
+            return new MatchingCountResult(WinningCondition.MATCH_6);
+        }
+        return new MatchingCountResult(WinningCondition.NO_MATCH);
     }
 
     private static MatchingCountResult checkBonusNumber(int winningCount, int bonusCount) {
         if (bonusCount == 1) {
-            return new MatchingCountResult(WinningCondition.MATCH_5_BONUS, winningCount);
+            return new MatchingCountResult(WinningCondition.MATCH_5_BONUS);
         }
-        return new MatchingCountResult(WinningCondition.MATCH_5, winningCount);
+        return new MatchingCountResult(WinningCondition.MATCH_5);
     }
 }
