@@ -34,4 +34,10 @@ public class Numbers {
             throw new IllegalArgumentException("숫자는 중복되지 않아야 합니다");
         }
     }
+
+    public int countOfOverlapped(Numbers numbers) {
+        return (int) this.values.stream()
+                .filter(numbers.values::contains)
+                .count();
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -49,5 +50,16 @@ class NumbersTest {
 
         assertThatCode(() -> Numbers.from(numbers))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    void countOfOverlappedTest() {
+        Numbers numbers1 = Numbers.from(List.of(1, 2, 3, 4, 5, 6));
+        Numbers numbers2 = Numbers.from(List.of(4, 5, 6, 7, 8, 9));
+        int expected = 3;
+
+        int actual = numbers1.countOfOverlapped(numbers2);
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
