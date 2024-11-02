@@ -1,7 +1,15 @@
 package lotto.domain;
 
-import java.util.Set;
+import java.util.*;
 
 public class Lottos {
-    Set<Lotto> lottos;
+    List<Lotto> lottos;
+
+    public Lottos(Collection<Lotto> lottos) {
+        this.lottos = new LinkedList<>(lottos);
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
