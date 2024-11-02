@@ -4,7 +4,9 @@ import static lotto.config.LottoRule.LOTTO_PRICE;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.generator.SortedLottoNumberGenerator;
 
 public class LottoService {
@@ -22,5 +24,13 @@ public class LottoService {
             lottos.add(new Lotto(sortedLottoNumberGenerator.generate()));
         }
         return lottos;
+    }
+
+    public LottoResult match(List<Lotto> lottos, List<Integer> winNumber, int bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
+        for (Lotto lotto : lottos) {
+            lottoResult.add(lotto.matchCount(winNumber, bonusNumber), lotto.bonus(bonusNumber));
+        }
+        return lottoResult;
     }
 }
