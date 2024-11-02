@@ -101,7 +101,7 @@
     │   │   └── user
     │   │       ├── BonusLotto.java
     │   │       ├── UserLotto.java
-    │   │       └── WinningLotto.java
+    │   │       └── WinningRank.java
     │   └── number
     │       ├── NumbersMaker.java
     │       └── RandomLottoNumberMaker.java
@@ -123,11 +123,11 @@
     - `LottoMatchService` : **사용자 로또<->랜덤 로또의 매칭과, 당첨 통계 업데이트를 요청한다.**
         - `UserLotto` : 로또 매칭시 자신의 매칭 결과를 반환한다.
         - `RandomLottos` : 자신과 사용자의 로또를 매칭한다.
-        - `WinningLotto` : 매칭 결과를 당첨 통계로 저장한다.
+        - `WinningRank` : 매칭 결과를 당첨 통계로 저장한다.
     - `YieldCalculateService` : **총 상금액을 받아와 수익률 계산을 한다.**
         - `YieldCalculator` : 수익률을 계산한다.
         - `Wallet` : 구매 금액 데이터를 제공하고 수익률을 저장 및 반환한다.
-        - `WinningLotto` : 당첨 통계 결과로 최종 상금을 계산하여 반환한다.
+        - `WinningRank` : 당첨 통계 결과로 최종 상금을 계산하여 반환한다.
 
 - 객체
     - `Wallet`
@@ -139,7 +139,7 @@
         - `bonusLotto` : 보너스 로또
     - `RandomLottos`
         - `lottos` : 사용자가 구매한 랜덤 로또들
-    - `WinningLotto`
+    - `WinningRank`
         - ranks : 매칭된 결과 당첨 통계
 
 - 계산기
