@@ -11,11 +11,11 @@ public class LottoPurchase {
         int ticketCount = purchaseAmount / 1000;
 
         System.out.println(ticketCount + "개를 구매했습니다.");
-        List<List<Integer>> lottoTickets = generateLottoTickets(ticketCount);
+        List<Lotto> lottoTickets = generateLottoTickets(ticketCount);
         printLottoTickets(lottoTickets);
     }
 
-    private int getPurchaseAmount() {
+    public int getPurchaseAmount() {
         while (true) {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
@@ -33,19 +33,19 @@ public class LottoPurchase {
         }
     }
 
-    private List<List<Integer>> generateLottoTickets(int ticketCount) {
-        List<List<Integer>> tickets = new ArrayList<>();
+    public List<Lotto> generateLottoTickets(int ticketCount) {
+        List<Lotto> tickets = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
-            List<Integer> ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            ticket.sort(Integer::compareTo);
-            tickets.add(ticket);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            numbers.sort(Integer::compareTo);
+            tickets.add(new Lotto(numbers));
         }
         return tickets;
     }
 
-    private void printLottoTickets(List<List<Integer>> lottoTickets) {
-        for (List<Integer> ticket : lottoTickets) {
-            System.out.println(ticket);
+    public void printLottoTickets(List<Lotto> lottoTickets) {
+        for (Lotto ticket : lottoTickets) {
+            System.out.println(ticket.getNumbers());
         }
     }
 
