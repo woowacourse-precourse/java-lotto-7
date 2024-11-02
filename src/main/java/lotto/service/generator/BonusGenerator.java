@@ -1,6 +1,5 @@
 package lotto.service.generator;
 
-import lotto.factory.BonusFactory;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 
@@ -8,10 +7,14 @@ public class BonusGenerator {
 
     private final Bonus bonus;
 
-    public BonusGenerator(Lotto winning, String bonus) {
+    private BonusGenerator(Lotto winning, String bonus) {
         Integer newBonus = change(bonus);
         validate(winning, newBonus);
-        this.bonus = BonusFactory.create(newBonus);
+        this.bonus = Bonus.create(newBonus);
+    }
+
+    public static BonusGenerator create(Lotto winning, String bonus) {
+        return new BonusGenerator(winning, bonus);
     }
 
     private Integer change(String bonus) {

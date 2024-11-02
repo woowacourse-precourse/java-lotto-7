@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.factory.BonusGeneratorFactory;
 import lotto.domain.Lotto;
 import lotto.service.generator.BonusGenerator;
 import lotto.view.InputView;
@@ -24,7 +23,7 @@ public class BonusController {
         outputView.printlnMessage(PrintMessage.INPUT_LOTTO_BONUS_NUMBER);
 
         String lottoBonus = inputView.inputUser();
-        return BonusGeneratorFactory.create(winning, lottoBonus);
+        return BonusGenerator.create(winning, lottoBonus);
     }
 
     public BonusGenerator getBonusGenerator() {

@@ -2,9 +2,6 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.factory.LottoGeneratorFactory;
-import lotto.factory.ResultCalculatorFactory;
-import lotto.factory.ResultGeneratorFactory;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.service.generator.LottoGenerator;
@@ -29,17 +26,17 @@ public class LottoController {
         Integer lottoCount = payment.getLottoCount();
         outputView.printBuyResult(lottoCount);
 
-        LottoGenerator lottoGenerator = LottoGeneratorFactory.create(lottoCount);
+        LottoGenerator lottoGenerator = LottoGenerator.create(lottoCount);
         lottoTicket = lottoGenerator.getLottoTicket();
         outputView.printLotto(lottoTicket);
     }
 
     public void showLottoWinningResult(Lotto winning, Bonus bonus) {
-        ResultGenerator resultGenerator = ResultGeneratorFactory.create(lottoTicket, winning, bonus); //수정 필요
+        ResultGenerator resultGenerator = ResultGenerator.create(lottoTicket, winning, bonus); //수정 필요
 
         outputView.printlnMessage(PrintMessage.LINE_SPACE);
         outputView.printlnMessage(PrintMessage.LOTTO_WINNING_RESULT_MESSAGE);
-        ResultCalculator resultCalculator = ResultCalculatorFactory.create(
+        ResultCalculator resultCalculator = ResultCalculator.create(
                 resultGenerator.getWinningResult(),
                 resultGenerator.getBonusResult());
         outputView.printWinningDetail(resultCalculator.getDetail());

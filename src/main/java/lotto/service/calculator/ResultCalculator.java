@@ -17,9 +17,13 @@ public class ResultCalculator {
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
     private final List<Integer> prize = List.of(2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000);
 
-    public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
+    private ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
         calculate(winningResult, bonusResult);
+    }
+
+    public static ResultCalculator create(List<Integer> winningResult, List<Integer> bonusResult) {
+        return new ResultCalculator(winningResult, bonusResult);
     }
 
     private void init(List<Integer> bonusResult) {

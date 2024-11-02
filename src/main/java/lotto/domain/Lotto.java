@@ -17,6 +17,10 @@ public class Lotto {
         this.numbers = sortNumber(numbers);
     }
 
+    public static Lotto create(List<Integer> number) {
+        return new Lotto(number);
+    }
+
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");

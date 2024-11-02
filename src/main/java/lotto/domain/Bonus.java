@@ -12,6 +12,10 @@ public class Bonus {
         this.number = number;
     }
 
+    public static Bonus create(Integer bonus) {
+        return new Bonus(bonus);
+    }
+
     private boolean IsNumberRangeIncorrect(Integer number) {
         return number < MIN_NUMBER_RANGE || number > MAX_NUMBER_RANGE;
     }
