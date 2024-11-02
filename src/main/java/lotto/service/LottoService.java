@@ -6,7 +6,6 @@ public class LottoService {
     public void makeLotto(int count) {
         LottoMachine machine = LottoMachine.getInstance();
         machine.createLottos(count);
-        printLottoNumbers();
     }
 
     public void printLottoNumbers() {
