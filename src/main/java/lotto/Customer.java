@@ -5,17 +5,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.numberSelector.NumberSelector;
 
 public class Customer {
     private int cost;
     private LottoShop lottoShop = new LottoShop();
     private Reader reader = new Reader();
 
-    public List<Lotto> buy() {
+    public List<Lotto> buy(NumberSelector selector) {
         int money = reader.readMoney();
         cost = money - (money % LottoShop.PRICE);
 
-        return lottoShop.buy(money);
+        return lottoShop.buy(money, selector);
     }
 
     public WinningLotto setWinningLotto() {
