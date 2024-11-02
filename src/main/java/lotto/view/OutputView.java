@@ -1,6 +1,8 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoPrize;
+import lotto.domain.LottoResult;
 import lotto.util.constant.LottoConstants;
 
 import java.util.ArrayList;
@@ -27,22 +29,49 @@ public class OutputView {
     /**
      * METHODS
      */
+
+    private static void printEmptyLine(){
+        System.out.println();
+    }
+
     public static void printPurchaseAmountPrompt() {
         System.out.println(MSG_INPUT_PURCHASE_MONEY);
     }
 
     public static void printWinnerNumbersPrompt() {
+        printEmptyLine();
         System.out.println(MSG_INPUT_WINNER_NUMBERS);
     }
 
     public static void printBonusNumbersPrompt() {
+        printEmptyLine();
         System.out.println(MSG_INPUT_BONUS_NUMBER);
     }
 
     public static void printNewLotto(List<Lotto> Lotto){
+        printEmptyLine();
         System.out.println( Lotto.size() + RESULT_NEW_LOTTO_COUNT );
         for (Lotto lotto : Lotto) {
             System.out.println(lotto);
         }
     }
+
+    public static void printWinningStatus(LottoResult lottoResult){
+        printEmptyLine();
+        System.out.println(RESULT_STATISTICS_HEADER);
+        for (LottoPrize prize : LottoPrize.values()) {
+            if(prize.getPrizeMoney() != ZERO)
+                System.out.println(prize.toString() + LottoResult.getPrizeCount(prize) + "개");
+        }
+    }
+
+    public static void printTotalProfit(float profit) {
+        System.out.println(RESULT_PROFIT_RATE_HEADER + profit + RESULT_PROFIT_RATE_TAIL);
+    }
+
+    public static void printErrorMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+    }
+
+
 }
