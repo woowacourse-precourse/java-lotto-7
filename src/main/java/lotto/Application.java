@@ -3,6 +3,7 @@ package lotto;
 public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
+        LottoCount lottoCount = new LottoCount();
 
         try {
             inputView.getLottoPurchaseAmount();
@@ -12,5 +13,6 @@ public class Application {
 
         inputView.getWinningNumber();
         inputView.getBonusNumber();
+        lottoCount.getLottoCount();
     }
 }
