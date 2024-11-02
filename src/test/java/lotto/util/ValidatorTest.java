@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -32,4 +33,20 @@ public class ValidatorTest {
     public void isDigitStringTest(String input) {
         assertThatNoException().isThrownBy(() -> Validator.isDigitString(input));
     }
+
+    @ParameterizedTest
+    @MethodSource("validNumberProvider")
+    @DisplayName("숫자가 범위 내에 있을 때 정상동작 테스트")
+    public void isNumberWithinRangeTest(int number, int minNumber, int maxNumber) {
+        assertThatNoException().isThrownBy(() -> Validator.isNumberWithinRange(number, minNumber, maxNumber));
+    }
+
+    private static Object[][] validNumberProvider() {
+        return new Object[][]{
+                {5, 1, 10},
+                {1, 1, 10},
+                {10, 1, 10}
+        };
+    }
+
 }
