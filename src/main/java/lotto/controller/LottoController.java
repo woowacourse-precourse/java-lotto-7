@@ -115,9 +115,13 @@ public class LottoController {
     }
 
     public List<Integer> stringListToIntList(List<String> stringList) {
-        return stringList.stream()
-            .map(Integer::parseInt)
-            .collect(Collectors.toList());
+        try {
+            return stringList.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
+        }
     }
 
     public int parseInt(String input) {

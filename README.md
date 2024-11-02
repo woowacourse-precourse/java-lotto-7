@@ -18,7 +18,7 @@ java-lotto-precourse
 - [x] 보너스 번호를 입력 받습니다.
   - [x] 번호의 범위 1~45 까지입니다.
   - [x] 보너스 번호는 당첨 번호와 중복되면 예외를 발생합니다.
-- [ ] 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킵니다.
+- [x] 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시킵니다.
 
 🚀 출력 요구 사항
 -----------------
