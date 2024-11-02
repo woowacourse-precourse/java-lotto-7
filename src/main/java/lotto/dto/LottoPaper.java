@@ -15,6 +15,10 @@ public class LottoPaper {
         this.lottos = lottos;
     }
 
+    public int count() {
+        return lottos.size();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
