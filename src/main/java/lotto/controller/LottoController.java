@@ -85,8 +85,7 @@ public class LottoController {
             }
             return bonus;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자만 입력 가능합니다.");
-            return null;
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
 
