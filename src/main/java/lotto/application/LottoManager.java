@@ -86,6 +86,11 @@ public class LottoManager {
     }
 
     private void validateWinningLotto(List<Integer> winningLottoNumbers, int bonusNumber) {
+        validateLottoNumbers(winningLottoNumbers);
+        validateBonusNumber(winningLottoNumbers, bonusNumber);
+    }
+
+    private void validateLottoNumbers(List<Integer> winningLottoNumbers) {
         if (winningLottoNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -95,10 +100,17 @@ public class LottoManager {
         if (winningLottoNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
         }
+    }
+
+    private void validateBonusNumber(List<Integer> winningLottoNumbers, int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이여야 합니다.");
         }
+        if (winningLottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
+
 
     private void responseLottoResult(WinningLotto winningLotto, int purchaseMoney) {
         Map<LottoPrize, Integer> lottoPrizeResult = lottoMachine.calculatePrize(winningLotto);
