@@ -28,10 +28,10 @@ public class LottoSeller {
 
     protected void isNumber(String input){
         if(input == null || input.isBlank() || input.isEmpty()){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getMessage());
         }
         if(!input.matches("[\\d]+")){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_POSITIVE_NUMBER.getMessage());
         }
         cash = Integer.parseInt(input);
     }
@@ -39,7 +39,7 @@ public class LottoSeller {
     protected void isDivisibleByThousand(){
         final int LOTTO_PRICE = 1000;
         if(cash == 0 || cash % LOTTO_PRICE > 0 ){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_DIVISIBLE_BY_THOUSAND.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
         lottoNumber = (cash / LOTTO_PRICE);
     }

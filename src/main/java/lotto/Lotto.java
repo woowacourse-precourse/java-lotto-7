@@ -32,7 +32,7 @@ public class Lotto {
 
         for(Integer Number: numbers){
             if((Number < LOTTO_MIN_NUM) || (Number > LOTTO_MAX_NUM)){
-                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getErrorMessage());
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE.getMessage());
             }
         }
     }
@@ -41,7 +41,7 @@ public class Lotto {
         List<Integer> duplicateNumbers = new ArrayList<>();
         for(Integer Number: numbers){
             if(duplicateNumbers.contains(Number)){
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getErrorMessage());
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
             }
             duplicateNumbers.add(Number);
         }
