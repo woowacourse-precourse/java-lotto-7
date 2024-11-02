@@ -1,10 +1,10 @@
 package lotto.validator;
 
 import java.util.Set;
-import java.util.TreeSet;
 
 public class WinningNumbersValidator {
-    public Set<Integer> validateWinningNumbers(String winningNumbersInput) {
+
+    public void validateWinningNumbers(String winningNumbersInput) {
         if (!winningNumbersInput.matches("^\\d+(,\\d+)*$")) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)를 기준으로, 6개 입력해 주세요.");
         }
@@ -13,7 +13,6 @@ public class WinningNumbersValidator {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,)를 기준으로, 6개 입력해 주세요.");
         }
 
-        Set<Integer> winningNumbers = new TreeSet<>();
         for (String inputNumber : inputNumbers) {
             if (!isNumeric(inputNumber)) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자로 입력해 주세요.");
@@ -26,13 +25,13 @@ public class WinningNumbersValidator {
             if (number > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
-            winningNumbers.add(number);
         }
+    }
+
+    public void validateDuplicateWinningNumbers(Set<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복일 수 없습니다.");
         }
-
-        return winningNumbers;
     }
 
     private static boolean isNumeric(String inputPrice) {
