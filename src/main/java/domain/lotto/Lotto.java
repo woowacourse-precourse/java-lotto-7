@@ -41,7 +41,7 @@ public class Lotto {
         }
     }
 
-    public void validateWinnerNumberRangeAndCount(List<Integer> numbers) {
+    private void validateWinnerNumberRangeAndCount(List<Integer> numbers) {
         if (Collections.min(numbers) < LottoCondition.START_INCLUSIVE.getConditionNumber()
                 || Collections.max(numbers) > LottoCondition.END_INCLUSIVE.getConditionNumber()) {
             throw new IllegalArgumentException(InputErrorMessage.WINNING_NUMBER_VALIDATION.getErrorMessage());
