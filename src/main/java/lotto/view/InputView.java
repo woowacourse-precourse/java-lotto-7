@@ -5,13 +5,12 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoEnum;
 import lotto.enums.OutputViewEnum;
 import lotto.utils.Utils;
 
 public class InputView {
     private static final int WINNING_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_RANGE = 1;
-    private static final int MAX_LOTTO_RANGE = 45;
 
     //inputPurchasePrice 구현
     public static BigDecimal inputPurchasePrice() {
@@ -53,7 +52,7 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage() + " : " + userInput);
         }
         List<BigDecimal> winningNumber = Arrays.stream(numbers).map(number -> new BigDecimal(number)).toList();
-        if (!Utils.areAllNumbersValidRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), winningNumber)) {
+        if (!Utils.areAllNumbersValidRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getRange()), new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getRange()), winningNumber)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage() + " : " + userInput);
         }
         if (!Utils.isDuplicateNumber(winningNumber)) {
@@ -76,9 +75,6 @@ public class InputView {
         if (!Utils.isDigitOnly(userInput)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage() + " : " + userInput);
         }
-//        if (!Utils.isInRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), count)) {
-//            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage() + " : " + userInput);
-//        }
         BigDecimal count = Utils.stringToNumber(userInput);
         if (Utils.isNumberInList(winningNumberData, count.intValue())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage() + " : " + userInput);

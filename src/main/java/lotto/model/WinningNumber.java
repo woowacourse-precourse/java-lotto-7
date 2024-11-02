@@ -1,13 +1,30 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.enums.LottoEnum;
+import lotto.utils.Utils;
+import lotto.enums.ErrorMessage;
+import java.math.BigDecimal;
 
 public class WinningNumber extends Lotto {
     private int bonusNumber;
 
-    public WinningNumber(List<Integer> numbers, int bonus_number) {
+    public WinningNumber(List<Integer> numbers, int bonusNumber) {
         super(numbers);
-        this.bonusNumber = bonus_number;
+        validateWinningNumber(numbers);
+        validateBonusNumber(BigDecimal.valueOf(bonusNumber));
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumber(List<Integer> numbers) {
+
+    }
+
+    private void validateBonusNumber(BigDecimal bonusNumber) {
+        if (!Utils.isInRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getRange()),
+                new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getRange()), bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
+        }
     }
 
     public int getWinningRank(Lotto oneLotto) {
