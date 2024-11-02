@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.BonusNumberValidation;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +11,7 @@ public class LottoHandler {
 
     private List<Lottos> lottos = new ArrayList<>();
     private Lotto winningLottoNumbers;
+    private int bonusNumber;
 
     public void buyLottos(int lottoTickets) {
         for(int num = 0; num < lottoTickets; num++) {
@@ -38,5 +41,14 @@ public class LottoHandler {
 
     public Lotto getWinningLottoNumbers() {
         return winningLottoNumbers;
+    }
+
+    public void setBonusNumber(int rawBonusNumber) {
+        BonusNumberValidation.validateNumberRange(rawBonusNumber);
+        this.bonusNumber = rawBonusNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

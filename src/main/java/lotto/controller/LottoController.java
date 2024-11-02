@@ -18,6 +18,7 @@ public class LottoController {
     public void start() {
         purchaseLotto();
         inputWinningNumbers();
+        inputBonusNumber();
     }
 
     private void purchaseLotto() {
@@ -33,5 +34,12 @@ public class LottoController {
         lottoHandler.inputWinningLottoNumbers(rawWinningNumbers);
         System.out.println(lottoHandler.getWinningLottoNumbers().getNumbers());
     }
+
+    private void inputBonusNumber() {
+        int rawBonusNumbers = Integer.parseInt(Console.readLine());
+        lottoHandler.setBonusNumber(rawBonusNumbers);
+        System.out.println(lottoHandler.getBonusNumber());
+    }
+
 
 }
