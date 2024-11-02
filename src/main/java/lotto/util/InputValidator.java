@@ -2,6 +2,7 @@ package lotto.util;
 
 import static lotto.Constant.MAX_NUMBER;
 import static lotto.Constant.MIN_NUMBER;
+import static lotto.Constant.MONEY_UNIT;
 import static lotto.Constant.NUMBER_COUNT;
 import static lotto.exception.ErrorMessage.BLANK_MONEY;
 import static lotto.exception.ErrorMessage.INVALID_NUMBER_COUNT;
@@ -13,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputValidator {
-    private static final int MONEY_UNIT = 1000;
-
     public static void validateMoney(String uncheckedMoney) {
         validateIsDigit(uncheckedMoney);
         validateIsMoneyFormat(uncheckedMoney);

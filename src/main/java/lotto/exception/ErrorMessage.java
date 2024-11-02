@@ -6,7 +6,8 @@ public enum ErrorMessage {
     DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
     BLANK_MONEY("아무 것도 입력하지 않았습니다."),
     NOT_DIGIT_FORMAT("숫자 형식으로 입력해야 합니다."),
-    NOT_DIVIDED_MONEY("1000원 단위로 입력해야 합니다.");
+    NOT_DIVIDED_MONEY("1000원 단위로 입력해야 합니다."),
+    DUPLICATE_BONUS_NUMBER("보너스 번호는 로또 번호와 중복될 수 없습니다.");
 
     private final static String EXCEPTION_HEADER = "[ERROR] ";
     private final String message;

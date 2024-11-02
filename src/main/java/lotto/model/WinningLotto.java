@@ -24,4 +24,14 @@ public class WinningLotto extends Lotto {
             }
         }
     }
+
+    public Rank calculateRank(Lotto lotto) {
+        int sameNumberCount = countSameNumber(lotto);
+        boolean isBonusNumberWinning = checkBonusNumberWinning(lotto);
+        return Rank.getRank(sameNumberCount, isBonusNumberWinning);
+    }
+
+    private boolean checkBonusNumberWinning(Lotto lotto) {
+        return lotto.hasNumber(bonusNumber);
+    }
 }
