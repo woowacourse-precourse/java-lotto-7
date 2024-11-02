@@ -29,7 +29,7 @@ public class Lotto {
 
     private void validateDuplicationNumbers(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(LottoError.LOTTO_NUMBERS_DUPLICATION.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class Lotto {
 
     private void validateLottoNumberCount(int numberCount, LottoConfig lottoConfig) {
         if (numberCount != lottoConfig.getLottoNumberCount()) {
-            throw new IllegalArgumentException(LottoError.LOTTO_WINNING_NUMBERS_COUNT.getMessage());
+            throw new IllegalArgumentException(LottoError.LOTTO_NUMBERS_COUNT.getMessage());
         }
     }
 
