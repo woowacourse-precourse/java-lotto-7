@@ -26,7 +26,7 @@ public class Consumer {
         return numbers;
     }
 
-    public List<Lotto> getLotto() {
+    public List<Lotto> getLottoTicket() {
         return this.lottoTicket;
     }
 }
