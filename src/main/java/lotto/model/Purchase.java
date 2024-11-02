@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.LottoConstant.PRICE;
+import static lotto.enums.LottoConstant.PRICE;
 
 import java.util.List;
 
@@ -14,6 +14,10 @@ public class Purchase {
         this.payment = Integer.parseInt(payment);
         this.lottoCount = this.payment / PRICE.getNumber();
         this.purchasedLottoTickets = new LottoTickets(this.lottoCount);
+    }
+
+    public int getPayment() {
+        return payment;
     }
 
     public int getLottoCount() {

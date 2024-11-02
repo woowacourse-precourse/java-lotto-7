@@ -10,7 +10,7 @@ public class LottoDraw {
     }
 
     public Integer getBonusNumber() {
-        return this.bonusNumber;
+        return bonusNumber;
     }
 
     public LottoNumbers getDrawNumbers() {

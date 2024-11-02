@@ -9,7 +9,7 @@ public class LottoNumbers {
     public LottoNumbers(final String lottoNumbers) {
         // TODO validate(lottoNumbers);
         List<String> lottoNumbersSplit = Arrays.asList(lottoNumbers.split(","));
-        this.lottoNumbers = lottoNumbersSplit.stream().map(Integer::parseInt).toList();
+        this.lottoNumbers = lottoNumbersSplit.stream().map(String::strip).map(Integer::parseInt).toList();
     }
 
     public List<Integer> getLottoNumbers() {

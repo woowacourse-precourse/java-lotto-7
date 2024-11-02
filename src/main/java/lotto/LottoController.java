@@ -2,8 +2,10 @@ package lotto;
 
 import lotto.model.LottoDraw;
 import lotto.model.LottoNumbers;
+import lotto.model.LottoResult;
 import lotto.model.Purchase;
 import lotto.view.LottoDrawView;
+import lotto.view.LottoResultView;
 import lotto.view.PurchaseView;
 
 public class LottoController {
@@ -23,5 +25,13 @@ public class LottoController {
         LottoNumbers drawNumbers = new LottoNumbers(drawNumbersInput);
         String bonusNumberInput = lottoDrawView.getBonusNumber();
         lottoDraw = new LottoDraw(drawNumbers, bonusNumberInput);
+    }
+
+    public void lottoResult() {
+        LottoResultView lottoResultView = new LottoResultView();
+        LottoResult lottoResult = new LottoResult(lottoDraw, purchase.getPurchasedLottoTickets(),
+                purchase.getPayment());
+        lottoResultView.displayLottoWins(lottoResult.getLottoWinCount());
+        lottoResultView.getProfit();
     }
 }

@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.LottoConstant.LOTTO_NUMBER_COUNT;
-import static lotto.LottoConstant.MAX_LOTTO_NUMBER;
-import static lotto.LottoConstant.MIN_LOTTO_NUMBER;
+import static lotto.enums.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.enums.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.enums.LottoConstant.MIN_LOTTO_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
