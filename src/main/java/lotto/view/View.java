@@ -8,10 +8,10 @@ public class View {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static long inputLottoPurchaseAmount() {
+    public static int inputLottoPurchaseAmount() {
         String amountInput = Console.readLine();
         validatePurchaseAmount(amountInput);
-        return Long.parseLong(amountInput);
+        return Integer.parseInt(amountInput);
     }
 
     private static void validatePurchaseAmount(String inputValue) {
