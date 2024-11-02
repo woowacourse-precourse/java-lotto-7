@@ -43,28 +43,38 @@ public class OutputView {
 
     public static void displayWinningResult(Map<Integer, Integer> winningResult) {
         StringBuilder result = new StringBuilder();
-        result.append(NEW_LINE.getSymbol() + WINNING_STATISTICS_HEADER + NEW_LINE.getSymbol()
-                + DIVIDER + NEW_LINE.getSymbol());
 
-        for (int i = 3; i <= 5; i++) {
-            if (i == 3) {
-                result.append(MATCH_3_MESSAGE);
-            }
-
-            if (i == 4) {
-                result.append(MATCH_4_MESSAGE);
-            }
-
-            if (i == 5) {
-                result.append(MATCH_5_MESSAGE);
-            }
-
-            result.append(winningResult.get(i) + NEW_LINE.getSymbol());
-        }
-
-        result.append(MATCH_5_BONUS_MESSAGE + winningResult.get(-5) + NEW_LINE.getSymbol());
-        result.append(MATCH_6_MESSAGE + winningResult.get(6) + NEW_LINE.getSymbol());
+        appendHeader(result);
+        appendWinningMessages(result, winningResult);
 
         System.out.println(result);
     }
+
+    private static void appendHeader(StringBuilder result) {
+        result.append(NEW_LINE.getSymbol())
+                .append(WINNING_STATISTICS_HEADER)
+                .append(NEW_LINE.getSymbol())
+                .append(DIVIDER)
+                .append(NEW_LINE.getSymbol());
+    }
+
+    private static void appendWinningMessages(StringBuilder result, Map<Integer, Integer> winningResult) {
+        Map<Integer, String> messages = prepareMessages();
+        messages.forEach((key, message) -> {
+            result.append(message)
+                    .append(winningResult.get(key))
+                    .append(NEW_LINE.getSymbol());
+        });
+    }
+
+    private static Map<Integer, String> prepareMessages() {
+        return Map.of(
+                3, MATCH_3_MESSAGE,
+                4, MATCH_4_MESSAGE,
+                5, MATCH_5_MESSAGE,
+                -5, MATCH_5_BONUS_MESSAGE,
+                6, MATCH_6_MESSAGE
+        );
+    }
+
 }
