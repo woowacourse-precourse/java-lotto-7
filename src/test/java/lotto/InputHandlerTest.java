@@ -25,4 +25,12 @@ public class InputHandlerTest {
         assertThatThrownBy(() -> InputHandler.toInt("22000000000"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호의 구분자가 쉼표가 아닌 경우 예외처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"1:2:3:4:5:6", "1-2-3-4-5-6", "1 2 3 4 5 6"})
+    void throwException_when_delimiterIsNotComma() {
+        assertThatThrownBy(() -> InputHandler.toNumbers("1:2:3:4:5:6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
