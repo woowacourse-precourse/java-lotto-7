@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.utils.validator;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -13,18 +13,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class AmountsValidatorTest {
 
-    private AmountsValidator amountsValidator;
-
-    @BeforeEach
-    void setUp(){
-        amountsValidator = new AmountsValidator();
-    }
-
     @DisplayName("1000이상 100000이하의 금액이 입력되었을 때, 정상작동한다.")
     @Test
     void Given_AmountsAreCorrect_When_CheckInput_Then_Success() {
 
-        assertThatCode(() -> amountsValidator.validateLottoAmount("1000"))
+        assertThatCode(() -> AmountsValidator.validateLottoAmount("1000"))
                 .doesNotThrowAnyException();
     }
 
@@ -32,7 +25,7 @@ class AmountsValidatorTest {
     @DisplayName("빈 문자열이 입력되었다면, 예외 처리된다.")
     @EmptySource
     void Given_AmountsAreEmptyString_When_CheckEmptyAmounts_Then_Error(String input) {
-        assertThatThrownBy(() -> amountsValidator.validateLottoAmount(input))
+        assertThatThrownBy(() -> AmountsValidator.validateLottoAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.EMPTY_AMOUNT.getMessage());
     }
@@ -41,7 +34,7 @@ class AmountsValidatorTest {
     @DisplayName("숫자가 아닌 값이 입력되었다면, 예외 처리된다.")
     @ValueSource(strings = "asd")
     void Given_AmountsAreNonNumeric_When_CheckNonNumeric_Then_Error(String input) {
-        assertThatThrownBy(() -> amountsValidator.validateLottoAmount(input))
+        assertThatThrownBy(() -> AmountsValidator.validateLottoAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NON_NUMERIC.getMessage());
     }
@@ -50,7 +43,7 @@ class AmountsValidatorTest {
     @DisplayName("1000원보다 적은 금액이 입력되면, 예외 처리된다.")
     @ValueSource(strings = "999")
     void Given_AmountsAreOverMinAmounts_When_CheckMinAmounts_Then_Error(String input) {
-        assertThatThrownBy(() -> amountsValidator.validateLottoAmount(input))
+        assertThatThrownBy(() -> AmountsValidator.validateLottoAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.UNDER_MIN_AMOUNTS.getMessage());
     }
@@ -59,7 +52,7 @@ class AmountsValidatorTest {
     @DisplayName("10만원이 넘는 금액이 입력되면, 예외 처리된다.")
     @ValueSource(strings = "100001")
     void Given_AmountsAreOverMaxAmounts_When_CheckMaxAmounts_Then_Error(String input) {
-        assertThatThrownBy(() -> amountsValidator.validateLottoAmount(input))
+        assertThatThrownBy(() -> AmountsValidator.validateLottoAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.OVER_MAX_AMOUNTS.getMessage());
     }
@@ -68,7 +61,7 @@ class AmountsValidatorTest {
     @DisplayName("1000원 단위가 아닌 금액이 입력되면, 예외 처리된다.")
     @ValueSource(strings = "1100")
     void Given_AmountsCanNotDivideByThousand_When_CheckDivisibilityByThousand_Then_Error(String input) {
-        assertThatThrownBy(() -> amountsValidator.validateLottoAmount(input))
+        assertThatThrownBy(() -> AmountsValidator.validateLottoAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.IS_NOT_DIVISIBLE_BY_THOUSAND_WON.getMessage());
     }
