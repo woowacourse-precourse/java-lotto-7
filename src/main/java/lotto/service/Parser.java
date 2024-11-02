@@ -23,6 +23,7 @@ public class Parser {
             LottoValidator.isLottoNumInRange(winningNum);
             winningNumbs.add(winningNum);
         }
+        LottoValidator.hasDuplicates(winningNumbs);
         return winningNumbs;
     }
 }
