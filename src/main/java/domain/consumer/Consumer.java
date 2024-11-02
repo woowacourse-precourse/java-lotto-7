@@ -46,7 +46,7 @@ public class Consumer {
     }
 
     public Map<MatchCount, Integer> getCheckLottoResultBy(LottoMachin lottoMachin) {
-        Map<MatchCount, Integer> resultMatchCount = new LinkedHashMap<>();
+        Map<MatchCount, Integer> resultMatchCount = initLottoResult();
         for (Lotto purchasedLotto : this.purchasedLottos) {
             int matchCount =
                     lottoMachin.getMatchedLottoCount(purchasedLotto, this.selectWinnerLotto, this.bonusNumber);
@@ -57,8 +57,14 @@ public class Consumer {
         }
         return resultMatchCount;
     }
-    // TODO : Map 자료 구조에 초기화 설정
 
+    private Map<MatchCount, Integer> initLottoResult() {
+        Map<MatchCount, Integer> resultMatchCount = new LinkedHashMap<>();
+        for (MatchCount matchCount :MatchCount.values()) {
+            resultMatchCount.put(matchCount, 0);
+        }
+        return resultMatchCount;
+    }
 
     private boolean isWithinValidRange(int matchCount) {
         return matchCount >= 3 && matchCount <= 7;

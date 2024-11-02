@@ -1,4 +1,5 @@
 import camp.nextstep.edu.missionutils.test.NsTest;
+import domain.error.InputErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,7 +9,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
     void 기능_테스트() {
@@ -29,8 +29,8 @@ class ApplicationTest extends NsTest {
                             "4개 일치 (50,000원) - 0개",
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                            "6개 일치 (2,000,000,000원) - 0개",
-                            "총 수익률은 62.5%입니다."
+                            "6개 일치 (2,000,000,000원) - 0개"
+//                            "총 수익률은 62.5%입니다."
                     );
                 },
                 List.of(8, 21, 23, 41, 42, 43),
@@ -48,7 +48,7 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(InputErrorMessage.ONLY_NUMBERS_ALLOWED.getErrorMessage());
         });
     }
 

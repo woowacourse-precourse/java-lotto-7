@@ -60,16 +60,28 @@ public class LottoMachin {
 
     public void printLottoWinningResult(Consumer consumer) {
         Output.println(OutputMessage.WINNING_STATISTICS.getOutputMessage());
-        // TODO : 리턴 결과를 받는다. ( HashMap 도 괜찮을것 같음)
-        Map< MatchCount, Integer> checkedLottoResult = consumer.getCheckLottoResultBy(this);
-        // TODO : 리턴 받은 자료구조를 출력 형식에 맞게 출력한다.
-        System.out.println(checkedLottoResult);
+        Map<MatchCount, Integer> checkedLottoResult = consumer.getCheckLottoResultBy(this);
+        StringBuilder stringBuilder = generateLottoResultStringFrom(checkedLottoResult);
+        System.out.println(stringBuilder.toString());
     }
+
     public int getMatchedLottoCount(Lotto purchasedLotto,
                                     Lotto winningNumbers,
                                     int bonusNumber) {
 
         return counter.count(purchasedLotto, winningNumbers, bonusNumber);
+    }
+
+    private StringBuilder generateLottoResultStringFrom(Map<MatchCount, Integer> checkedLottoResult) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<MatchCount, Integer> entrySet : checkedLottoResult.entrySet()) {
+            stringBuilder.append(entrySet.getKey().getOutputMessage());
+            stringBuilder.append(OutputMessage.DASH_SEPERATOR.getOutputMessage());
+            stringBuilder.append(entrySet.getValue());
+            stringBuilder.append(OutputMessage.COUNT_UNIT.getOutputMessage());
+            stringBuilder.append(OutputMessage.NEW_LINE.getOutputMessage());
+        }
+        return stringBuilder;
     }
     // TODO : 수익률을 계산한다.
 
