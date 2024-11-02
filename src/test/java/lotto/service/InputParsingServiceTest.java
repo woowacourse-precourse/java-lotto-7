@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.constant.LottoConfiguration;
 import lotto.generator.RawInputGenerator;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,5 +46,17 @@ class InputParsingServiceTest {
         assertThat(actualWinningLotto)
                 .usingRecursiveComparison()
                 .isEqualTo(expectedWinningLotto);
+    }
+
+    @DisplayName("보너스 번호에 대한 입력값 파싱")
+    @Test
+    void 보너스_번호에_대한_입력값_파싱() {
+        List<Integer> givenBannedNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int givenNumber = 11;
+        String rawNumber = String.valueOf(givenNumber);
+
+        BonusNumber actualBonusNumber = inputParsingService.parseBonusNumber(rawNumber, givenBannedNumbers);
+
+        assertThat(actualBonusNumber.getNumber()).isEqualTo(givenNumber);
     }
 }

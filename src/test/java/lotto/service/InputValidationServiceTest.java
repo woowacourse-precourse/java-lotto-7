@@ -79,4 +79,30 @@ class InputValidationServiceTest {
         );
     }
 
+
+    @DisplayName("올바른 보너스 번호의 입력을 검증")
+    @Test
+    void 올바른_보너스_번호의_입력을_검증() {
+        String givenRawBonusNumber = "10";
+        assertThatCode(() -> inputValidationService.validateBonusNumber(givenRawBonusNumber))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("잘못된 보너스 번호의 입력을 검증")
+    @ParameterizedTest(name = "\"{0}\"가 입력된 경우 : {1}")
+    @MethodSource
+    void 잘못된_보너스_번호의_입력을_검증(String inputNumber, String expectedExceptionMessage) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> inputValidationService.validateBonusNumber(inputNumber))
+                .withMessage(expectedExceptionMessage);
+    }
+
+    static Stream<Arguments> 잘못된_보너스_번호의_입력을_검증() {
+        return Stream.of(
+                Arguments.of(" ", ValidationFailMessage.EMPTY_INPUT.getMessage()),
+                Arguments.of("일곱", ValidationFailMessage.NON_NUMERIC_INPUT.getMessage()),
+                Arguments.of("99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage()),
+                Arguments.of("-99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage())
+        );
+    }
 }
