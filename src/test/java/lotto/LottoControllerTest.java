@@ -1,13 +1,6 @@
 package lotto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import com.sun.tools.javac.Main;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
 import lotto.controller.LottoController;
 import org.junit.jupiter.api.Test;
 
