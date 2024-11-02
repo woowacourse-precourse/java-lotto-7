@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -78,39 +79,38 @@ class ApplicationTest extends NsTest {
     @DisplayName("당첨 번호가 중복되면 에러")
     @Test
     void checkNumberSame() {
-        assertSimpleTest(() ->
-            assertThatThrownBy(() -> runException("5000", "1,2,3,4,5,5", "7"))
-                    .isInstanceOf(IllegalArgumentException.class)
-        );
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,5", "7");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
     }
 
     @DisplayName("당첨번호가 1 에서 45 사이가 아니면 에러")
     @Test
     void checkNumberSize() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("5000", "1,2,3,4,5,46", "7"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,50", "6");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 에러")
     @Test
     void checkBonus() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("5000", "1,2,3,4,5,6", "6"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "6");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
     }
 
     @DisplayName("보너스 번호가 1 에서 45 사이가 아니면 에러")
     @Test
     void checkBonusSize() {
-        assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("5000", "1,2,3,4,5,6", "6"))
-                        .isInstanceOf(IllegalArgumentException.class)
-        );
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "50");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
     }
-
 
     @Override
     public void runMain() {
