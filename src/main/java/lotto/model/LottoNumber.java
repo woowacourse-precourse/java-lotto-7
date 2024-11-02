@@ -4,8 +4,6 @@ import static lotto.common.constant.LottoNumber.LOTTO_NUMBER_LOWER_BOUND;
 import static lotto.common.constant.LottoNumber.LOTTO_NUMBER_UPPER_BOUND;
 import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_ERROR;
 
-import java.util.Objects;
-
 public class LottoNumber {
 
     private final int number;
@@ -43,6 +41,6 @@ public class LottoNumber {
 
     @Override
     public int hashCode() {
-        return Objects.hash(number);
+        return Integer.hashCode(number);
     }
 }
