@@ -17,7 +17,8 @@ public final class WinningBonusNumberValidation {
         return new Lotto(winningLottoNumbers);
     }
 
-    public static int getValidatedBonusNumber(Lotto winningLotto, String winningBonusNumber) throws IllegalArgumentException {
+    public static int getValidatedBonusNumber(Lotto winningLotto, String winningBonusNumber)
+            throws IllegalArgumentException {
         InputValidation.isNotBlank(winningBonusNumber);
         int bonusNumber = Lotto.getNumberIfInRange(winningBonusNumber);
         winningLotto.bonusNumberDuplicate(bonusNumber);
