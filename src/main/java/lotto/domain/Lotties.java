@@ -36,4 +36,8 @@ public class Lotties {
                 .map(Lotto::getNumbers)
                 .toList();
     }
+
+    public long getTotalLottoPrice() {
+        return (long) values.size() * LOTTO_PRICE;
+    }
 }
