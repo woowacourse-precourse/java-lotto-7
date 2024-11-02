@@ -10,19 +10,25 @@ import static lotto.constant.UtilConstants.MINIMUM_PRICE;
 
 public class LottoGame {
     private final LottoRepository lottoRepository;
-    private final Lotto userLotto;
+    private Lotto userLotto;
     private int bonusNumber;
     private int lottoCount;
 
-    public LottoGame(LottoRepository lottoRepository, Lotto userLotto, int bonusNumber, int inputCost){
+    public LottoGame(LottoRepository lottoRepository){
         this.lottoRepository = lottoRepository;
+    }
+
+    public void setDetails(Lotto userLotto, int bonusNumber){
         this.userLotto = userLotto;
         this.bonusNumber = bonusNumber;
-        this.lottoCount = inputCost/MINIMUM_PRICE;
+    }
+
+    public void setLottoCount(int purchaseAmount){
+        this.lottoCount = purchaseAmount/MINIMUM_PRICE;
     }
 
     public void generateLotto(){
-        for(int i = 0; i< lottoCount; i++){
+        for(int i = 0; i < lottoCount; i++){
             lottoRepository.saveLotto(generateSingleLotto());
         }
     }

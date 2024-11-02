@@ -33,7 +33,8 @@ class LottoTest {
         LottoRepository lottoRepository = new LottoRepository();
         int lottoCount = 6;
         int bonusNumber = 1;
-        LottoGame lottoGame = new LottoGame(lottoRepository, new Lotto(List.of(1,2,3,4,5,6)), bonusNumber, lottoCount);
+        LottoGame lottoGame = new LottoGame(lottoRepository);
+        lottoGame.setDetails(new Lotto(List.of(1,2,3,4,5,6)), bonusNumber);
         lottoGame.generateLotto();
 
         assertThat(lottoRepository.getLottos()).hasSize(5);
@@ -43,10 +44,9 @@ class LottoTest {
     @Test
     void 로또는_오름차순_정렬된다(){
         LottoRepository lottoRepository = new LottoRepository();
-        int lottoCount = 1;
         int bonusNumber = 1;
-        LottoGame lottoGame = new LottoGame(lottoRepository,new Lotto(List.of(1,2,3,4,5,6)), bonusNumber, lottoCount);
-
+        LottoGame lottoGame = new LottoGame(lottoRepository);
+        lottoGame.setDetails(new Lotto(List.of(11,2,3,4,5,6)), bonusNumber);
         lottoGame.generateLotto();
 
         List<Lotto> savedLottos = lottoRepository.getLottos();
@@ -59,7 +59,6 @@ class LottoTest {
                 break;
             }
         }
-
         assertTrue(isSorted, "로또 번호는 오름차순으로 정렬되어야 합니다.");
     }
 

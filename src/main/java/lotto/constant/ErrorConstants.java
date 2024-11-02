@@ -19,7 +19,7 @@ public enum ErrorConstants {
     }
 
     public String getMessage(){
-        return ERROR_MESSAGE_START + message;
+        return ERROR_MESSAGE_START.message + message;
     }
 
 }
