@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -20,6 +21,14 @@ public class Application {
         List<Integer> winningLottoNumbers = consoleHandler.inputWinningLottoNumbers();
         int bonusNumber = consoleHandler.inputWinningLottoBonusNumber();
         WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+
+        WinningCalculator winningCalculator = new WinningCalculator();
+
+        Map<Rank, Integer> winningCountsByRank = winningCalculator.calculateWinningCountsByRank(lottoStore, winningLotto, customer);
+        consoleHandler.printWinningResult(winningCountsByRank, lottoStore.getRankInfo());
+
+        double profitRate = winningCalculator.calculateProfitRate(lottoStore, winningCountsByRank, money);
+        consoleHandler.printProfitRate(profitRate);
     }
 
 }
