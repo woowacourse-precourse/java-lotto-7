@@ -2,19 +2,30 @@ package lotto.handler;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static lotto.message.ErrorMessage.INVALID_PURCHASE_AMOUNT;
+import static lotto.message.ErrorMessage.*;
 
 public class MoneyInputHandler {
-    public long readMoney() {
+    public long getLottoCount() {
         while (true){
             try {
                 String inputString = Console.readLine();
                 long rawMoney = Long.parseLong(inputString);
+                return validateMoney(rawMoney);
             } catch (NumberFormatException e){
-                System.out.println(INVALID_PURCHASE_AMOUNT.getMessage());
+                System.out.println(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private long validateMoney(long rawMoney) {
+        if (rawMoney < 0){
+            throw new IllegalArgumentException(NEGATIVE_PURCHASE_AMOUNT.getMessage());
+        }
+        if (rawMoney % 1000 != 0){
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT.getMessage());
+        }
+        return rawMoney / 1000;
     }
 }
