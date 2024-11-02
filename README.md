@@ -16,9 +16,14 @@
 10. 총 상금에 대한 수익률을 계산한다.
 11. 당첨 통계를 출력하는 메서드를 구현한다.
 12. 구매 금액을 입력받는 기능을 구현한다.
-    - [ ] 구매 금액이 숫자 이외의 입력값이면 'IllegalArgumentException' 을 발생시킨다.
-    - [ ] 구매 금액이 1000 단위가 아니면 'IllegalArgumentException' 을 발생시킨다.
-    - [ ] 구매 금액이 공백이면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 구매 금액이 숫자 이외의 입력값이면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 구매 금액이 1000 단위가 아니면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 구매 금액이 공백이면 'IllegalArgumentException' 을 발생시킨다.
 13. 당첨 번호를 입력받는 기능을 구현한다.
-    - [ ] 당첨 금액이 숫자 이외의 입력값이면 'IllegalArgumentException' 을 발생시킨다.
-    - [ ] 당첨 금액이 공백이면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 당첨 금액이 숫자 이외의 입력값이면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 당첨 금액이 공백이면 'IllegalArgumentException' 을 발생시킨다.
+14. 보너스 번호를 입력받는 기능을 구현한다.
+    - [x] 보너스 번호가 공백이면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 보너스 번호가 숫자 이외의 입력값이면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 보너스 번호가 지정된 범위를 넘으면 'IllegalArgumentException' 을 발생시킨다.
+    - [x] 보너스 번호가 담청 번호가 중복되면 'IllegalArgumentException' 을 발생시킨다.
