@@ -7,9 +7,9 @@ import lotto.dto.WinningResultDto;
 import java.util.stream.Collectors;
 
 public class OutputMaker {
-    private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.\n";
+    private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String RETURN_RATE = "총 수익률은 %.1f%%입니다.";
-    private static final String RESULT_MESSAGE = "당첨 통계\n---\n";
+    private static final String RESULT_MESSAGE = "\n당첨 통계\n---\n";
     private static final String CORRECT_CNT = "%d개 일치";
     private static final String BONUS_REQUIRED = ", 보너스 볼 일치";
     private static final String WINNING_AMOUNT = " (%,d원) - %d개";
@@ -20,7 +20,6 @@ public class OutputMaker {
         for (LottoDto lotto : lottosDto.getLottos()) {
             sb.append(makeLottoInfo(lotto));
         }
-        sb.append("\n");
         return sb.toString();
     }
 
