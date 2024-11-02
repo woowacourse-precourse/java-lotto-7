@@ -36,14 +36,7 @@ public class LottoMachine {
     }
 
     private List<Integer> createRandomLottoNum() {
-        Set<Integer> randomNum = new HashSet<>();
-
-        for (int i = 0; i < 6; i++) {
-            if (!randomNum.add(Randoms.pickNumberInRange(1, 45))) {
-                i--;
-            }
-        }
-        return randomNum.stream().toList();
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     private int calculatorLottoCount(int count) {
