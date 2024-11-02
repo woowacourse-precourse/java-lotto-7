@@ -10,6 +10,9 @@ import static lotto.validator.InputValidator.*;
 
 public class AmountValidator {
 
+    public AmountValidator() {
+    }
+
     public int processSetAmount() {
         return Integer.parseInt(
                 InputUtils.retryRequest(Input.request(Input.PURCHASE_AMOUNT_PROMPT),
@@ -19,28 +22,27 @@ public class AmountValidator {
     }
 
     private Boolean inputAmountValidation(String request) {
-        final String viewMessage = Input.PURCHASE_AMOUNT_PROMPT;
 
-        return nonEmpty(viewMessage, request) &&
-               isNumeric(viewMessage, request) &&
-               isPositiveNumeric(viewMessage, request) &&
-               isThousandUnit(viewMessage, request) &&
-               !isPurchaseAmountExceeded(viewMessage, request);
+        return nonEmpty(Input.PURCHASE_AMOUNT_PROMPT, request) &&
+               isNumeric(Input.PURCHASE_AMOUNT_PROMPT, request) &&
+               isPositiveNumeric(Input.PURCHASE_AMOUNT_PROMPT, request) &&
+               isThousandUnit(request) &&
+               isAmountUnderLimit(request);
     }
 
-    private Boolean isThousandUnit(String viewMessage, String input) {
+    private Boolean isThousandUnit(String input) {
         if (Integer.parseInt(input) % LottoConstants.LOTTO_UNIT_PRICE == 0) {
             return true;
         }
 
-        throw new RetryInputException(viewMessage, ErrorMessages.INVALID_FORMAT.getMessage());
+        throw new RetryInputException(Input.PURCHASE_AMOUNT_PROMPT, ErrorMessages.INVALID_FORMAT.getMessage());
     }
 
-    private Boolean isPurchaseAmountExceeded(String viewMessage, String input) {
-        if (Integer.parseInt(input) > LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT) {
+    private Boolean isAmountUnderLimit(String input) {
+        if (Integer.parseInt(input) <= LottoConstants.MAX_LOTTO_PURCHASE_AMOUNT) {
             return true;
         }
 
-        throw new RetryInputException(viewMessage, ErrorMessages.MAX_PURCHASE_LIMIT.getMessage());
+        throw new RetryInputException(Input.PURCHASE_AMOUNT_PROMPT, ErrorMessages.MAX_PURCHASE_LIMIT.getMessage());
     }
 }
