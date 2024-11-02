@@ -1,8 +1,5 @@
 package lotto.view;
 
-import java.util.List;
-import lotto.domain.Lotto;
-
 public class OutputLottosView {
 
     private static final String MESSAGE_TICKET_COUNT = "\n%d개를 구매했습니다.";

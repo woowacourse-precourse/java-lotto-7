@@ -13,7 +13,7 @@ public class LottoController {
         this.outputLottosView = new OutputLottosView();
     }
 
-    public static List<Lotto> lottoController(int amount) {
+    public static List<Lotto> setLottos(int amount) {
         int tickets = Service.purchaseTickets(amount);
         List<Lotto> lottos = Service.lottos(tickets);
         outputTickets(tickets);
