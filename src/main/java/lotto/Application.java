@@ -117,6 +117,8 @@ public class Application {
             }
         }
 
+        double yield = (double) totalPrize / account * 100;
+
     }
 
     public static int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {

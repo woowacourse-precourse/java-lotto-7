@@ -30,4 +30,4 @@
 | `로또생성`  | 당첨번호 저장      | 입력된 당첨 번호를 저장                     | white_check_mark |
 | `로또생성`  | 보너스 번호 저장    | 입력된 보너스 번호를 저장                    | :white_check_mark: |
 | `당첨통계`  | 당첨 확인        | 발급된 모든 로또의 당첨 결과를 기록                  | :white_check_mark: |
-| `당첨통계`  | 수익률 계산       | 총 수익률을 계산                         | :white_large_square: |
+| `당첨통계`  | 수익률 계산       | 총 수익률을 계산                         | :white_check_mark: |
