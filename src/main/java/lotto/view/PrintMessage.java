@@ -7,11 +7,11 @@ public enum PrintMessage {
     INPUT_LOTTO_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     INPUT_LOTTO_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     LOTTO_WINNING_RESULT_MESSAGE("당첨 통계\n---"),
-    LOTTO_FIFTH_PLACE_WINNING("3개 일치 (5,000원) - %d개\n"),
-    LOTTO_FOURTH_PLACE_WINNING("4개 일치 (50,000원) - %d개\n"),
-    LOTTO_THIRD_PLACE_WINNING("5개 일치 (1,500,000원) - %d개\n"),
-    LOTTO_SECOND_PLACE_WINNING("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
-    LOTTO_FIRST_PLACE_WINNING("6개 일치 (2,000,000,000원) - %d개\n"),
+    LOTTO_FIFTH_PLACE_WINNING("3개 일치 (5,000원) - %d개"),
+    LOTTO_FOURTH_PLACE_WINNING("4개 일치 (50,000원) - %d개"),
+    LOTTO_THIRD_PLACE_WINNING("5개 일치 (1,500,000원) - %d개"),
+    LOTTO_SECOND_PLACE_WINNING("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
+    LOTTO_FIRST_PLACE_WINNING("6개 일치 (2,000,000,000원) - %d개"),
     LOTTO_PROFIT_RATE("총 수익률은 %.1f%%입니다.\n"),
     LINE_SPACE("");
 
