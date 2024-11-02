@@ -61,10 +61,10 @@ public class LottoController {
     private int getBonusNumber(List<Integer> winningNumberData) {
         while (true) {
             try {
-                int bonus_number;
+                int bonusNumber;
 
-                bonus_number = InputView.inputBonusNumber(winningNumberData);
-                return bonus_number;
+                bonusNumber = InputView.inputBonusNumber(winningNumberData);
+                return bonusNumber;
             } catch (NumberFormatException e) {
                 OutputView.errorPrint(e.getMessage());
             } catch (IllegalArgumentException e) {

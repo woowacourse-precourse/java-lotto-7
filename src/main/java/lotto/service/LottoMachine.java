@@ -11,7 +11,7 @@ import lotto.model.Lotto;
 import lotto.utils.Utils;
 
 public class LottoMachine {
-    private List<Lotto> Tickets = new ArrayList<>();
+    private List<Lotto> tickets = new ArrayList<>();
     private int purchaseAmount;
 
     public List<Lotto> createLottoTicket(BigDecimal purchasePrice) {
@@ -21,9 +21,9 @@ public class LottoMachine {
 
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(createRandomLottoNum());
-            Tickets.add(lotto);
+            tickets.add(lotto);
         }
-        return Tickets;
+        return tickets;
     }
 
     private void validatePurchasePrice(BigDecimal purchasePrice) {
