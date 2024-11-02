@@ -16,16 +16,25 @@ public class GameManager {
         LottoShop lottoShop = new LottoShop();
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
         LottoSet lottoSet = lottoShop.buyLotto(price, randomLottoGenerator);
+        LottoWinningSet lottoWinningSet = readWinningLottoSet();
     }
 
     private int readPrice() {
         return Integer.parseInt(inputView.readPrice());
     }
 
+    private LottoWinningSet readWinningLottoSet() {
+        return new LottoWinningSet(readWinningNumber(), readVBonusNumber());
+    }
+
     private List<Integer> readWinningNumber() {
         return Arrays.stream(inputView.readWinningNumber())
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private int readVBonusNumber() {
+        return Integer.parseInt(inputView.readBonusNumber());
     }
 }
 
