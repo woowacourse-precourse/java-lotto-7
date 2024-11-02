@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static camp.nextstep.edu.missionutils.Console.close;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.view.ViewConstant.GET_BONUS_NUMBER;
 import static lotto.view.ViewConstant.GET_PURCHASE_MONEY;
@@ -26,10 +25,6 @@ public class Input {
         System.out.println(GET_BONUS_NUMBER);
 
         return getInput();
-    }
-
-    public void closeInput() {
-        close();
     }
 
     private String getInput() {

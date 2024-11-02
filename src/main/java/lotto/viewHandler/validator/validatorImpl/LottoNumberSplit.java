@@ -1,7 +1,7 @@
-package lotto.viewHandler.validator;
+package lotto.viewHandler.validator.validatorImpl;
 
-import lotto.viewHandler.Validator;
 import lotto.viewHandler.exception.NotLottoNumberSize;
+import lotto.viewHandler.validator.Validator;
 
 import java.util.List;
 

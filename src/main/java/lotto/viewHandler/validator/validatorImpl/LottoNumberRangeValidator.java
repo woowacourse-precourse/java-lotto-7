@@ -1,7 +1,7 @@
-package lotto.viewHandler.validator;
+package lotto.viewHandler.validator.validatorImpl;
 
-import lotto.viewHandler.Validator;
 import lotto.viewHandler.exception.NotLottoNumberRange;
+import lotto.viewHandler.validator.Validator;
 
 import static lotto.domain.Lotto.LOTTO_END_NUMBER;
 import static lotto.domain.Lotto.LOTTO_START_NUMBER;

@@ -1,11 +1,11 @@
 package lotto.viewHandler.validator;
 
 import lotto.viewHandler.exception.NotInteger;
+import lotto.viewHandler.validator.validatorImpl.ParseInt;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ParseIntTest {
     private final ParseInt validator;

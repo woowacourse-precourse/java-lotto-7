@@ -1,7 +1,7 @@
-package lotto.viewHandler.validator;
+package lotto.viewHandler.validator.validatorImpl;
 
-import lotto.viewHandler.Validator;
 import lotto.viewHandler.exception.NotInteger;
+import lotto.viewHandler.validator.Validator;
 
 import static lotto.viewHandler.exception.MyExceptionConstant.NOT_INTEGER;
 

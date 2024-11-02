@@ -5,10 +5,11 @@ import lotto.viewHandler.api.dto.input.BonusNumberDto;
 import lotto.viewHandler.api.dto.input.MoneyDto;
 import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 import lotto.viewHandler.api.message.ServerMessage;
-import lotto.viewHandler.validator.LottoNumberRangeValidator;
-import lotto.viewHandler.validator.LottoNumberSplit;
-import lotto.viewHandler.validator.LottoPurchaseUnitValidator;
-import lotto.viewHandler.validator.ParseInt;
+import lotto.viewHandler.validator.validatorImpl.LottoNumberRangeValidator;
+import lotto.viewHandler.validator.validatorImpl.LottoNumberSplit;
+import lotto.viewHandler.validator.validatorImpl.LottoPurchaseUnitValidator;
+import lotto.viewHandler.validator.validatorImpl.ParseInt;
+import lotto.viewHandler.validator.ValidatorImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

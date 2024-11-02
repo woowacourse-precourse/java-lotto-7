@@ -5,6 +5,7 @@ import lotto.viewHandler.api.message.ServerMessage;
 import lotto.viewHandler.api.dto.input.BonusNumberDto;
 import lotto.viewHandler.api.dto.input.MoneyDto;
 import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
+import lotto.viewHandler.validator.ValidatorImpl;
 
 public class ApiHandler {
     private final ValidatorImpl validator;

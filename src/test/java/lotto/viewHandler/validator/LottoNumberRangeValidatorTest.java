@@ -1,6 +1,7 @@
 package lotto.viewHandler.validator;
 
 import lotto.viewHandler.exception.NotLottoNumberRange;
+import lotto.viewHandler.validator.validatorImpl.LottoNumberRangeValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

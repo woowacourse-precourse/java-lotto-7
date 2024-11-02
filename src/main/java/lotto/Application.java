@@ -5,12 +5,12 @@ import lotto.service.LottoGameService;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.viewHandler.ApiHandler;
-import lotto.viewHandler.ValidatorImpl;
+import lotto.viewHandler.validator.ValidatorImpl;
 import lotto.viewHandler.ViewHandler;
-import lotto.viewHandler.validator.LottoNumberRangeValidator;
-import lotto.viewHandler.validator.LottoNumberSplit;
-import lotto.viewHandler.validator.LottoPurchaseUnitValidator;
-import lotto.viewHandler.validator.ParseInt;
+import lotto.viewHandler.validator.validatorImpl.LottoNumberRangeValidator;
+import lotto.viewHandler.validator.validatorImpl.LottoNumberSplit;
+import lotto.viewHandler.validator.validatorImpl.LottoPurchaseUnitValidator;
+import lotto.viewHandler.validator.validatorImpl.ParseInt;
 
 public class Application {
     public static void main(String[] args) {

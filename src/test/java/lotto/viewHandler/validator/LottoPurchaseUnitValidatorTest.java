@@ -1,10 +1,10 @@
 package lotto.viewHandler.validator;
 
 import lotto.viewHandler.exception.NotUnitPurchaseMoney;
+import lotto.viewHandler.validator.validatorImpl.LottoPurchaseUnitValidator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoPurchaseUnitValidatorTest {
     private final LottoPurchaseUnitValidator validator;
