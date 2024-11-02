@@ -1,6 +1,7 @@
 package lotto.constant.message;
 
 public enum ErrorMessage {
+
     INVALID_INPUT_TYPE("숫자가 아닌 값을 입력할 수 없습니다."),
     INVALID_MULTIPLE_AMOUNT("로또 구입 금액은 %d의 배수여야 합니다."),
     DUPLICATE_NUMBER("로또 번호는 중복될 수 없습니다."),
