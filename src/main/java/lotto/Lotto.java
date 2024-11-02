@@ -34,7 +34,7 @@ public class Lotto {
         return generatedLottos;
     }
 
-    private static Lotto generateLotto() {
+    public static Lotto generateLotto() {
         List<Integer> lottoNumbers = pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers);
     }
