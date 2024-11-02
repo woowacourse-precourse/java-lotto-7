@@ -16,6 +16,9 @@ public class Application {
         List<Lotto> purchasedLotto = customer.getLottos();
         consoleHandler.printLottoCount(purchasedLotto.size());
         consoleHandler.printPurchasedLotto(purchasedLotto);
+
+        List<Integer> winningLottoNumbers = consoleHandler.inputWinningLottoNumbers();
+        int bonusNumber = consoleHandler.inputWinningLottoBonusNumber();
     }
 
 }

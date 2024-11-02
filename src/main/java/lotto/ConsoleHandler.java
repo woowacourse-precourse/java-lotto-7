@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConsoleHandler {
 
@@ -39,6 +41,27 @@ public class ConsoleHandler {
 
     private void sortLottoNumbers(List<Integer> numbers) {
         numbers.sort(Integer::compareTo);
+    }
+
+    public List<Integer> inputWinningLottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbers = Console.readLine();
+        System.out.println();
+        return convertToNumbers(winningNumbers);
+    }
+
+    private List<Integer> convertToNumbers(String winningNumbers) {
+        String[] numbers = winningNumbers.split(",");
+        return Arrays.stream(numbers)
+                .map(this::invertNumber)
+                .collect(Collectors.toList());
+    }
+
+    public int inputWinningLottoBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+        System.out.println();
+        return invertNumber(bonusNumber);
     }
 
 }
