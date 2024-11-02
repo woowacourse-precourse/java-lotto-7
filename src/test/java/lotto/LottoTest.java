@@ -25,8 +25,8 @@ class LottoTest {
 
     @Test
     void Lotto_객체의_로또_번호를_오름차순으로_정렬한다() {
-        Lotto lotto = new Lotto(Arrays.asList(4, 9, 44, 32, 29, 1));
-        List<Integer> expected = Arrays.asList(1, 4, 9, 29, 32, 44);
+        Lotto lotto = new Lotto(List.of(4, 9, 44, 32, 29, 1));
+        List<Integer> expected = List.of(1, 4, 9, 29, 32, 44);
         assertEquals(lotto.getSortedLottoNumbers(), expected);
     }
 }
