@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.Messages.ErrorMessage;
 import lotto.Model.Lotto;
+import lotto.Model.MyResults;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -82,5 +83,16 @@ class LottoTest {
         );
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    @DisplayName("gradeLotto 정상 작동 테스트")
+    void gradeLottoTest(){
+        Lotto answerLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto targetLotto = new Lotto(List.of(1,2,3,4,5,8));
+        int bonus = 8;
+        MyResults actualMyResult = Lotto.gradeLotto(answerLotto, targetLotto, bonus);
+        MyResults expectedMyResult = new MyResults(5, true);
+        assertThat(actualMyResult.getMatches()).isEqualTo(expectedMyResult.getMatches());
+        assertThat(actualMyResult.getIsBonus()).isEqualTo(expectedMyResult.getIsBonus());
+    }
+
 }
