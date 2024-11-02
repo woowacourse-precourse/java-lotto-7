@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private final String PRINT_BOUGHT_AMOUNT = "%d개를 구매했습니다.\n";
+    private final String PRINT_BOUGHT_AMOUNT = "\n%d개를 구매했습니다.\n";
     private final String PRINT_LOTTO_NUMBERS_DELIMITER = ", ";
     private final String PRINT_LOTTO_NUMBERS_FORMAT = "[%s]\n";
     private final String PRINT_WINNING_STATISTIC = "당첨 통계\n---\n";

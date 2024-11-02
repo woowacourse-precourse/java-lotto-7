@@ -12,8 +12,8 @@ public class InputView {
     private final BuyingAmountValidator buyingAmountValidator = new BuyingAmountValidator();
     private final WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
     private static final String GET_BUYING_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String GET_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private static final String GET_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String GET_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.";
+    private static final String GET_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
 
     public int getBuyingAmount() {
         try {
