@@ -46,18 +46,17 @@ public class LottoController {
             outputView.printLottoNumbers(dto);
         }
 
-
         String hitLottoInput = inputView.PrintLottoInputMsg();
         String bonusNumberInput = inputView.PrintBonusLottoInputMsg();
         //여기에 유효성 검증
 
         lottoMainService.saveHitLotto(hitLottoInput, bonusNumberInput);
 
-        HitLottoDTO dto = hitLottoDAO.getAsDTO(); //
+        HitLottoDTO dto = lottoMainService.getAllHitLottosAsDTO();
 
         lottoMainService.retainLotto(allLottosAsDTO, dto.getAllHitNumbers());
 
-        StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();
+        StatisticsLottoDTO stats = lottoMainService.getAllStatisticsAsDTO();
         outputView.statisticStart(stats);
 
         long sumPrize = lottoMainService.sumPrize(stats);

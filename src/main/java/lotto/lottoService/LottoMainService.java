@@ -45,7 +45,10 @@ public class LottoMainService {
         HitLotto.getInstance(hitNumbers, bonusNumber);
     }
 
-    //todo ? 구현
+    public HitLottoDTO getAllHitLottosAsDTO() {
+        HitLotto hitLotto = HitLotto.getInstance(null, 0);  // 이미 초기화된 싱글톤 인스턴스를 가져옴
+        return new HitLottoDTO(hitLotto.getAllHitNumbers());
+        }
 
     // 로또 번호와 당첨 번호 비교 및 통계 저장
     public void retainLotto(List<LottoDTO> allLottos, List<Integer> hitLottos) {
@@ -55,6 +58,11 @@ public class LottoMainService {
             lottoNumber.retainAll(hitLottoNumber); // 두 세트의 공통 원소만 뽑아서 합친 세트
             saveLottoStatistics(lottoNumber);
         }
+    }
+
+    public StatisticsLottoDTO getAllStatisticsAsDTO() {
+        StatisticsLottoDTO stats = statisticsDAO.getStatisticsAsDTO();  // 이미 초기화된 싱글톤 인스턴스를 가져옴
+        return stats;
     }
 
     // 통계 저장
@@ -78,8 +86,7 @@ public class LottoMainService {
         long sumPrize = 0;
         for (int i = 3; i <= 6; i++) {
             if (i == 5) {
-                sumPrize +=
-                        LottoPrize.getPrize(i, false) * (stats.getHitNumberValue(i) - stats.getBonusNumberFrequency());
+                sumPrize += LottoPrize.getPrize(i, false) * (stats.getHitNumberValue(i) - stats.getBonusNumberFrequency());
                 sumPrize += LottoPrize.getPrize(i, true) * stats.getBonusNumberFrequency();
             }
             sumPrize += LottoPrize.getPrize(i, false) * stats.getHitNumberValue(i);
