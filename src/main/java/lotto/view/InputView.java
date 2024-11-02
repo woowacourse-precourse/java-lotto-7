@@ -1,12 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.PurchaseAmountDto;
+import lotto.dto.PurchaseTotalPriceInput;
 
 public class InputView {
 
-    public PurchaseAmountDto readPurchaseAmount() {
+    public PurchaseTotalPriceInput readPurchaseAmount() {
         String input = Console.readLine();
-        return new PurchaseAmountDto(input.trim());
+        return new PurchaseTotalPriceInput(input.trim());
     }
 }

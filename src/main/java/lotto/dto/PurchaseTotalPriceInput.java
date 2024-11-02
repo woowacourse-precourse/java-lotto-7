@@ -4,9 +4,9 @@ import lotto.exception.CustomIllegalArgumentException;
 
 import static lotto.exception.ErrorMessage.*;
 
-public record PurchaseAmountDto(String amount) {
+public record PurchaseTotalPriceInput(String amount) {
 
-    public PurchaseAmountDto {
+    public PurchaseTotalPriceInput {
         validate(amount);
     }
 
