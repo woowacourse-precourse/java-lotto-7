@@ -3,9 +3,11 @@ package lotto.controller;
 import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class LottoController {
@@ -23,6 +25,8 @@ public class LottoController {
 
         Lottos purchasedLottos = purchaseLotto(money);
         outputView.displayPurchasedLottos(purchasedLottos);
+
+        WinningLotto winningLotto = getWinningLotto();
     }
 
     private Money getLottoMoney() {
@@ -34,6 +38,13 @@ public class LottoController {
 
     private Lottos purchaseLotto(Money money) {
         return new LottoMachine().issueLottos(money.getPurchaseQuantity());
+    }
+
+    private WinningLotto getWinningLotto() {
+        outputView.requestWinningLotto();
+        List<Integer> inputWinningLotto = inputView.inputWinningLotto();
+
+        return WinningLotto.from(inputWinningLotto);
     }
 
     private <T> T repeatUntilValid(Supplier<T> supplier) {

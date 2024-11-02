@@ -4,7 +4,7 @@ import lotto.domain.Lottos;
 
 public class OutputView extends OutputWriter {
     public void requestLottoMoney() {
-        displayMessage("구입금액을 입력해주세요.");
+        displayMessage("구입금액을 입력해 주세요.");
     }
 
     public void displayPurchaseQuantity(int quantity) {
@@ -14,5 +14,10 @@ public class OutputView extends OutputWriter {
 
     public void displayPurchasedLottos(Lottos lottos) {
         lottos.forEach(lotto -> {displayMessage(lotto.getLottoString());});
+    }
+
+    public void requestWinningLotto() {
+        displayNewLine();
+        displayMessage("당첨 번호를 입력해 주세요.");
     }
 }
