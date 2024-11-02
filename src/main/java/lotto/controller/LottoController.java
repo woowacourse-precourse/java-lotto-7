@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
 import lotto.model.Purchase;
 import lotto.model.WinningHistory;
-import lotto.model.WinningNumbers;
+import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.Rank;
@@ -19,7 +19,7 @@ import static lotto.exception.ErrorMessage.ALREADY_EXIST_IN_WINNING_NUMBERS;
 
 public class LottoController {
     private Purchase purchase;
-    private WinningNumbers winningNumbers;
+    private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
     private PublishLotteries publishLotteries;
     private WinningHistory winningHistory;
@@ -50,7 +50,7 @@ public class LottoController {
     }
 
     private void showResult() {
-        printWinningStatistics();
+        printFinalStatistics();
     }
 
     private void inputPurchaseAmount() {
@@ -66,7 +66,7 @@ public class LottoController {
     }
 
     private void assignWinningNumbers() {
-        winningNumbers = repeatInputUntilSuccess(() -> new WinningNumbers(inputView.getWinningString()));
+        winningNumber = repeatInputUntilSuccess(() -> new WinningNumber(inputView.getWinningString()));
     }
 
     private void assignBonusNumber() {
@@ -78,16 +78,16 @@ public class LottoController {
     }
 
     private void checkBonusNumberDuplicate(int number) {
-        if (winningNumbers.get().contains(number)) {
+        if (winningNumber.get().contains(number)) {
             throw new InvalidBonusNumberException(ALREADY_EXIST_IN_WINNING_NUMBERS.getMessage());
         }
     }
 
-    private Map<Rank, Integer> getCalculateWinnings() {
-        List<Integer> winningNumbersToCompare = winningNumbers.get();
+    private Map<Rank, Integer> getWinningHistories() {
+        Map<Rank, Integer> winningCountOfEachRanks;
+        List<Integer> winningNumbersToCompare = winningNumber.get();
         List<Lotto> publishedLotteries = publishLotteries.get();
         int bonus = bonusNumber.get();
-        Map<Rank, Integer> winningCountOfEachRanks;
 
         winningHistory = new WinningHistory(winningNumbersToCompare, publishedLotteries, bonus);
         winningCountOfEachRanks = winningHistory.getWinningCountOfEachRank();
@@ -95,7 +95,7 @@ public class LottoController {
         return winningCountOfEachRanks;
     }
 
-    private double getCalculateTotalRateOfReturn() {
+    private double getTotalRateOfReturn() {
         int totalPrize = winningHistory.getTotalPrize();
         int purchasePrice = purchase.getPurchasePrice();
         double rateOfReturn = (double) totalPrize / purchasePrice * 100;
@@ -103,18 +103,18 @@ public class LottoController {
         return Math.round(rateOfReturn * 10) / 10.0;
     }
 
-    private void printCalculatedWinnings() {
-        Map<Rank, Integer> winningCountOfEachRanks = getCalculateWinnings();
+    private void printWinningHistories() {
+        Map<Rank, Integer> winningCountOfEachRanks = getWinningHistories();
         outputView.printWinnings(winningCountOfEachRanks);
     }
 
-    private void printCalculatedTotalRateOfReturn() {
-        double rateOfReturn = getCalculateTotalRateOfReturn();
+    private void printTotalRateOfReturn() {
+        double rateOfReturn = getTotalRateOfReturn();
         outputView.printRateOfReturn(rateOfReturn);
     }
 
-    private void printWinningStatistics() {
-        printCalculatedWinnings();
-        printCalculatedTotalRateOfReturn();
+    private void printFinalStatistics() {
+        printWinningHistories();
+        printTotalRateOfReturn();
     }
 }
