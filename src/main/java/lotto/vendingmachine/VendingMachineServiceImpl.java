@@ -32,12 +32,12 @@ public class VendingMachineServiceImpl implements VendingMachineService {
 
     @Override
     public void recordLottos(List<Lotto> lottos) {
-
+        vendingMachineRepository.save(lottos);
     }
 
     @Override
     public List<Lotto> getIssuedLottoTickets() {
-        return List.of();
+        return vendingMachineRepository.getStoredLottoTickets();
     }
 
 }
