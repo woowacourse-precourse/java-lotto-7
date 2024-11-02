@@ -10,11 +10,6 @@ public class InputView {
         OutputView.promptForAmount();
         String input = readLine();
 
-        try {
-            return Long.parseLong(input);
-        }
-        catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자로 바꿀 수 없음.");
-        }
+        return StringParser.parseLong(input);
     }
 }
