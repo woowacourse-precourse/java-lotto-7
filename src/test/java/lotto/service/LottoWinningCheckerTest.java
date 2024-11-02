@@ -38,7 +38,7 @@ class LottoWinningCheckerTest {
     public void 당첨번호에_숫자를_입력하지_않는_예외_테스트() throws Exception {
         Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,2,3,4,5,6a"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[Error] 숫자를 입력해주세요");
+                .hasMessage("[ERROR] 숫자를 입력해주세요");
     }
 
     @Test
@@ -59,7 +59,7 @@ class LottoWinningCheckerTest {
     public void 당첨번호가_5개인_경우_예외테스트() throws Exception{
         Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[Error] 당첨 번호는 6개 이어야 합니다.");
+                .hasMessage("[ERROR] 당첨 번호는 6개 이어야 합니다.");
         
     }
 
@@ -67,7 +67,7 @@ class LottoWinningCheckerTest {
     public void 당첨번호가_7개인_경우_예외테스트() throws Exception{
         Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[Error] 당첨 번호는 6개 이어야 합니다.");
+                .hasMessage("[ERROR] 당첨 번호는 6개 이어야 합니다.");
 
     }
 

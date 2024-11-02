@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.HashSet;
+import lotto.utils.Utils;
 import lotto.validation.LottoValidator;
 
 public class LottoWinningChecker {
@@ -32,7 +33,7 @@ public class LottoWinningChecker {
         try {
             returnNum = Integer.parseInt(inputString.trim());
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[Error] 숫자를 입력해주세요");
+            throw new NumberFormatException(Utils.makeErrorMessage("숫자를 입력해주세요"));
         }
         return returnNum;
     }
