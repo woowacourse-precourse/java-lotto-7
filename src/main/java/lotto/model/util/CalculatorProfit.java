@@ -17,6 +17,9 @@ public class CalculatorProfit {
 
         }
 
+        if (profitRate <= 0) {
+            return 0;
+        }
         return profitRate / buyAmount * 100;
     }
 }
