@@ -20,6 +20,11 @@ public class Application {
             lottoList.add(lotto);
             lotto.display();
         }
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] winningLottoInput = Console.readLine()
+                .trim()
+                .split(",");
     }
 
     private static void validateAmountInput(String amountInput) {
