@@ -137,6 +137,17 @@ public class InputParserTest {
         assertEquals(ErrorMessage.DUPLICATE_NUMBER_ERROR, exception.getMessage());
     }
 
+    @Test
+    public void 당첨_번호의_개수가_6개가_아닌_경우_테스트() {
+        String invalidInput = "1,2,3,4,6";
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> inputParser.parseWinningNumbers(invalidInput)
+        );
+        assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", exception.getMessage());
+    }
+
     // 보너스 번호 테스트 -----------
 
     @Test
