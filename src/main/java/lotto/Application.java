@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -9,7 +11,8 @@ public class Application {
         Customer customer = new Customer(money);
 
         LottoStore lottoStore = new LottoStore();
-        customer.buyLottoFrom(lottoStore);
+        customer.purchaseLottoFrom(lottoStore);
+
         List<Lotto> purchasedLotto = customer.getLottos();
         consoleHandler.printLottoCount(purchasedLotto.size());
         consoleHandler.printPurchasedLotto(purchasedLotto);
