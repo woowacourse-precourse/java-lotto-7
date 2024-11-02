@@ -11,6 +11,7 @@ import lotto.service.GenerateRandomNumbers;
 import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 import lotto.service.ProfitCalculatorService;
+import lotto.service.StringParser;
 import lotto.service.ValidatorService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,7 +27,7 @@ public class LottoController {
     public LottoController() {
         LottoService lottoService = new LottoService();
         this.generateRandomNumbers = new GenerateRandomNumbers();
-        this.inputView = new InputView(new ValidatorService(), lottoService);
+        this.inputView = new InputView(new ValidatorService(), lottoService, new StringParser());
         this.outputView = new OutputView();
         this.lottoResultService = new LottoResultService();
         this.profitCalculatorService = new ProfitCalculatorService();
@@ -46,10 +47,9 @@ public class LottoController {
         Guess guess = inputView.getBonusNumberInput(winningNumbers);
 
         List<Rank> results = lottoResultService.determineRanks(guess, purchasedLottos);
-        outputView.printWinningStatistics(results, purchaseAmount);
+        outputView.printWinningStatistics(results);
 
-        Map<Rank, Long> rankCount = results.stream()
-                .filter(rank -> rank != Rank.NONE)
+        Map<Rank, Long> rankCount = results.stream().filter(rank -> rank != Rank.NONE)
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
         double profitRate = profitCalculatorService.calculateProfit(rankCount, purchaseAmount);
         outputView.printProfitRate(profitRate);
