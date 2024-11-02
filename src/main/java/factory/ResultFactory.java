@@ -26,10 +26,10 @@ public class ResultFactory {
         result = initResult();
     }
 
-    private Map<Prize,Integer> initResult(){
+    private Map<Prize, Integer> initResult() {
         result = new EnumMap<>(Prize.class);
         Arrays.stream(Prize.values())
-            .forEach(prize -> result.put(prize,0));
+            .forEach(prize -> result.put(prize, 0));
         return result;
     }
 
@@ -37,8 +37,8 @@ public class ResultFactory {
         List<Lotto> lottos = lottoCollection.getLottos();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCount(winningLottoNum);
-            Prize prize = Prize.getPrize(matchCount,lotto.isContain(bonusNumber));
-            result.put(prize,result.get(prize)+1);
+            Prize prize = Prize.getPrize(matchCount, lotto.isContain(bonusNumber));
+            result.put(prize, result.get(prize) + 1);
         }
         return result;
     }
@@ -47,8 +47,8 @@ public class ResultFactory {
     public float getEarningRate(Amount amount) {
         int purchaseAmount = amount.getPurchaseAmount();
         int prizeAmount = 0;
-        for(Map.Entry<Prize,Integer> entry : result.entrySet()){
-            prizeAmount+=entry.getKey().getMoney() * entry.getValue();
+        for (Map.Entry<Prize, Integer> entry : result.entrySet()) {
+            prizeAmount += entry.getKey().getMoney() * entry.getValue();
         }
         return prizeAmount / (float) purchaseAmount * 100;
     }
