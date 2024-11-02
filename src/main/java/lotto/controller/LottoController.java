@@ -13,6 +13,7 @@ import lotto.view.OutputView;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static lotto.constant.CompareInteger.PRICE_MAXIMUM;
 import static lotto.constant.CompareInteger.PRICE_MINIMUM;
@@ -29,9 +30,9 @@ public class LottoController {
     }
 
     private int getLottoPrice() {
+        String inputPrice = InputView.readInput();
+        int price = inputToInt(inputPrice);
         try {
-            String inputPrice = InputView.readInput();
-            int price = inputToInt(inputPrice);
             validatePrice(price);
             return price / CompareInteger.PRICE_LOTTO.getNumber();
         } catch (IllegalArgumentException e) {
@@ -53,6 +54,7 @@ public class LottoController {
     private void printLottoTicket(Consumer consumer) {
         OutputView.changeLine();
         OutputView.printPurchaseCount(consumer.getLottoTicket().size());
+
         for (Lotto lotto : consumer.getLottoTicket()) {
             OutputView.printLottoTicket(lotto.getNumbers());
         }
@@ -61,6 +63,7 @@ public class LottoController {
     private List<Integer> getWinningNumber() {
         OutputView.printWinningNumberGuide();
         String input = InputView.readInput();
+
         try {
             WinningNumberValidator.validateInputComma(input);
             List<String> inputWinningNumber = Arrays.asList(input.split(","));
@@ -72,16 +75,18 @@ public class LottoController {
     }
 
     private Integer getBonusNumber(List<Integer> mainNumber) {
+        Integer bonusNumber = CompareInteger.ZERO.getNumber();
+        OutputView.printBonusNumberGuide();
+        String inputBonus = InputView.readInput();
+
         try {
-            OutputView.printBonusNumberGuide();
-            String inputBonus = InputView.readInput();
-            Integer bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
+            bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
             mainNumber.add(bonusNumber);
             WinningNumberValidator.validateDuplication(mainNumber);
             return bonusNumber;
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            mainNumber.remove(bonusNumber);
             return getBonusNumber(mainNumber);
         }
     }
