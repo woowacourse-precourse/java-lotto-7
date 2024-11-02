@@ -38,9 +38,9 @@ public class ResultFactoryTest {
 
     @Test
     void 당첨_테스트_2등() {
-        List<Integer> nums = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> nums = List.of(1, 2, 3, 4, 5, 8);
         WinningLottoNum winningLottoNum = new WinningLottoNum(nums);
-        BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "7");
+        BonusNumber bonusNumber = new BonusNumber(winningLottoNum, "6");
         ResultFactory resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
 
         Map<Integer, Integer> result = resultFactory.getResult();

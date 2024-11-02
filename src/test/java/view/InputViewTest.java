@@ -30,25 +30,14 @@ public class InputViewTest extends NsTest {
 
     @Test
     void 구매_문자열_입력_에러_테스트() {
-        InputView inputView = new StubInputView();
+        InputView inputView = new InputView();
         assertSimpleTest(() -> {
             run("abc");
-            inputView.purchaseAmount();
-            String output = output();
-            assertThat(output).contains("ERROR");
+            assertThatThrownBy(() -> inputView.purchaseAmount())
+                .isInstanceOf(IllegalArgumentException.class);
         });
     }
 
-    @Test
-    void 로또가격_에러_테스트() {
-        InputView inputView = new StubInputView();
-        assertSimpleTest(() -> {
-            run("1234");
-            inputView.purchaseAmount();
-            String output = output();
-            assertThat(output).contains("ERROR");
-        });
-    }
     @Override
     protected void runMain() {
 

@@ -30,30 +30,65 @@ public class LottoController {
     }
 
     public void run() {
-        int amount = inputView.purchaseAmount();
-        purchaseAmount = new Amount(amount);
-        lottoAmount = new LottoAmount(purchaseAmount.getPurchaseAmount());
-        outputView.printLottoAmount(lottoAmount);
-
-        makeLotto();
-        outputView.printLottos(lottoCollection);
-        makeWinningNum();
-        bonusNumber = new BonusNumber(winningLottoNum, inputView.bonusNum());
-
-        resultFactory = new ResultFactory(lottoCollection,winningLottoNum,bonusNumber);
-        outputView.printResult(resultFactory,purchaseAmount);
+        buyLotto();
+        inputWinningNum();
+        inputBonusNumber();
+        printResult();
     }
 
+    private void buyLotto() {
+        inputAmount();
+        lottoAmount = new LottoAmount(purchaseAmount.getPurchaseAmount());
+        outputView.printLottoAmount(lottoAmount);
+        makeLotto();
+        outputView.printLottos(lottoCollection);
+    }
 
+    private int inputAmount() {
+        int amount = 0;
+        while (true) {
+            try {
+                amount = inputView.purchaseAmount();
+                purchaseAmount = new Amount(amount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return amount;
+    }
 
-    private void makeWinningNum() {
-        WinningLottoNumFactory winningLottoNumFactory = new WinningLottoNumFactory(inputView.winingNumber());
-        winningLottoNum = winningLottoNumFactory.get();
+    private void inputWinningNum() {
+        while (true) {
+            try {
+                WinningLottoNumFactory winningLottoNumFactory = new WinningLottoNumFactory(inputView.winingNumber());
+                winningLottoNum = winningLottoNumFactory.get();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void inputBonusNumber() {
+        while (true) {
+            try {
+                bonusNumber = new BonusNumber(winningLottoNum, inputView.bonusNum());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void makeLotto() {
         for (int i = 0; i < lottoAmount.getCount(); i++) {
             lottoCollection.add(LottoFactory.make());
         }
+    }
+
+    private void printResult(){
+        resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
+        outputView.printResult(resultFactory, purchaseAmount);
     }
 }
