@@ -11,14 +11,14 @@ public class WinningNumber {
         bonusNumber = isValidBonusNumber(inputBonusNumber);
     }
 
-    public int calculateCorrectCount(Lotto lotto) {
+    public LottoRank calculateRank(Lotto lotto) {
         int correctCount = 0;
         for (int number : lotto.getNumbers()) {
             if (this.winningNumbers.contains(number)) {
                 correctCount++;
             }
         }
-        return correctCount;
+        return LottoRank.setUpRankByCorrectCount(correctCount, correctBonus(lotto));
     }
 
     public boolean correctBonus(Lotto lotto) {

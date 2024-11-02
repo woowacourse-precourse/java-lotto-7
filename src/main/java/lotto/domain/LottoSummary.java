@@ -16,23 +16,8 @@ public class LottoSummary {
 
     private void calculateLottoRank(List<Lotto> lottoTickets, WinningNumber winningNumber) {
         for (Lotto lotto : lottoTickets) {
-            int correctCount = winningNumber.calculateCorrectCount(lotto);
-            findOutRank(correctCount, winningNumber, lotto);
-        }
-    }
-
-    private void findOutRank(int correctCount, WinningNumber winningNumber, Lotto lotto) {
-        if (correctCount == 3) {
-            incrementCount(LottoRank.FIFTH_RANK);
-        } else if (correctCount == 4) {
-            incrementCount(LottoRank.FOURTH_RANK);
-        } else if (correctCount == 5) {
-            if (winningNumber.correctBonus(lotto)) {
-                incrementCount(LottoRank.SECOND_RANK);
-            }
-            incrementCount(LottoRank.THIRD_RANK);
-        } else if (correctCount == 6) {
-            incrementCount(LottoRank.FIRST_RANK);
+            LottoRank rank = winningNumber.calculateRank(lotto);
+            incrementCount(rank);
         }
     }
 

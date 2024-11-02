@@ -46,9 +46,9 @@ public class WinnerNumberTest {
         WinningNumber winningNumber = new WinningNumber(winningLotto, 7);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        int correctNumber = winningNumber.calculateCorrectCount(lotto);
+        LottoRank rank = winningNumber.calculateRank(lotto);
 
-        assertEquals(6, correctNumber);
+        assertEquals(LottoRank.FIRST_RANK, rank);
     }
 
     @Test
