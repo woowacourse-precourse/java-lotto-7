@@ -16,4 +16,17 @@ public class Parser {
         }
     }
 
+    public List<Integer> parseIntList(String input) throws IllegalArgumentException {
+        return splitByComma(input).stream()
+                .map(this::parseInt)
+                .collect(Collectors.toList());
+    }
+
+
+    private List<String> splitByComma(String input) {
+            if (input.isEmpty()) {
+                return List.of();
+            }
+            return Arrays.asList(input.trim().split(","));
+    }
 }
