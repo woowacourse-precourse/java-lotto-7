@@ -1,12 +1,21 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumbers {
     private List<Lotto> lottos;
 
-    public LottoNumbers() {
+    public LottoNumbers(int totalLottoPrice) {
+        this.lottos = new ArrayList<>();
+        int lottoCount = totalLottoPrice / 10;
+        for(int i = 0; i < lottoCount; i++){
+            this.lottos.add(new Lotto(createLotto()));
+        }
+    }
 
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
     private List<Integer> createLotto() {
