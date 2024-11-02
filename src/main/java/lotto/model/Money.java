@@ -1,15 +1,17 @@
 package lotto.model;
 
-public class Money {
+import static lotto.constant.ErrorMessage.*;
 
+public class Money {
+    public static final int LOTTO_PRICE = 1000;
     private final Integer money;
 
     public Money(Integer money) {
-        if (money < 1000){
-            throw new IllegalArgumentException("[ERROR] 로또 최소 구입 금액 1000원 입니다.");
+        if (money < LOTTO_PRICE){
+            throw new IllegalArgumentException(MINIMUM_PURCHASE_AMOUNT_ERROR_MESSAGE);
         }
-        if (money % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+        if (money % LOTTO_PRICE != 0){
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_DIVISIBILITY_ERROR_MESSAGE);
         }
         this.money = money;
     }
@@ -19,6 +21,6 @@ public class Money {
     }
 
     public Integer getBuyLottoCount(){
-        return money / 1000;
+        return money / LOTTO_PRICE;
     }
 }

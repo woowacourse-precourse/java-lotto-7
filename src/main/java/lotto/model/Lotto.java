@@ -1,9 +1,11 @@
 package lotto.model;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.constant.ErrorMessage.*;
+import static lotto.constant.NumberConstant.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,19 +16,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_SIZE_ERROR_MESSAGE);
         }
 
         for (Integer number : numbers) {
-            if(number < 1 || number > 45){
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45사이어야 합니다.");
+            if(number < LOTTO_NUMBER_MIN_RANGE || number > LOTTO_NUMBER_MAX_RANGE){
+                throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
             }
         }
 
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if(numbers.size() != numbersSet.size()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 다른 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
     public List<Integer> getNumbers() {

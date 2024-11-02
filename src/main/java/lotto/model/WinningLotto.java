@@ -2,13 +2,15 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.constant.ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WINNING_ERROR_MESSAGE;
+
 public class WinningLotto {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
     public WinningLotto(Lotto winningLotto, BonusNumber bonusNumber) {
         if(winningLotto.getNumbers().contains(bonusNumber.getBonusNumber())){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 담청 번호와 중복되면 안됩니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_WITH_WINNING_ERROR_MESSAGE);
         }
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

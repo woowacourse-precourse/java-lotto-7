@@ -8,7 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static lotto.constant.ErrorMessage.WINNING_NUMBER_FORMAT_ERROR_MESSAGE;
+import static lotto.constant.NumberConstant.*;
+
 public class LottoUtils {
+    public static final String SPLIT_REGEX = ",";
+
     public static List<Lotto> lottoGenerator(int lottoAmount) {
         return Stream.generate(() -> new Lotto(lottoNumberGenerator()))
                 .limit(lottoAmount)
@@ -16,16 +21,16 @@ public class LottoUtils {
     }
 
     private static List<Integer> lottoNumberGenerator(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE, LOTTO_NUMBER_MAX_RANGE, LOTTO_NUMBER_SIZE);
     }
 
     public static List<Integer> generateWinningNumber(String inputWinningNumber){
         try {
-            return Arrays.stream(inputWinningNumber.split(","))
+            return Arrays.stream(inputWinningNumber.split(SPLIT_REGEX))
                     .map(Integer::valueOf)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 가능합니다. 입력 형식을 확인해 주세요");
+            throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 }
