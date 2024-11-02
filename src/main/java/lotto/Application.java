@@ -32,5 +32,10 @@ public class Application {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
 
+        System.out.println(lottoCount + "개 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
+        }
+
     }
 }
