@@ -1,7 +1,21 @@
 package lotto;
 
+import static lotto.LottoConstants.COUNT_OF_LOTTO_NUMBERS;
+import static lotto.LottoConstants.LOTTO_PRICE;
+import static lotto.LottoConstants.MAX_LOTTO_NUMBER;
+import static lotto.LottoConstants.MIN_LOTTO_NUMBER;
+
+import java.math.BigInteger;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        InputView inputView = new InputView();
+        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                COUNT_OF_LOTTO_NUMBERS);
+        LottoMachine lottoMachine = new LottoMachine(lottoNumberGenerator);
+        LottoSeller lottoSeller = new LottoSeller(LOTTO_PRICE, lottoMachine);
+        LottoRetailer lottoRetailer = new LottoRetailer(lottoSeller);
+        BigInteger purchaseAmount = new BigInteger(inputView.requestPurchaseAmount());
+        LottoBuyer lottoBuyer = lottoRetailer.sellAsMuchAs(purchaseAmount);
     }
 }
