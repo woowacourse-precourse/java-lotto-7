@@ -3,14 +3,8 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.InputDTO;
 import lotto.dto.Lotto;
-import lotto.dto.WinningResultDTO;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class LottoNumberService {
     private static final int LOTTO_PRICE = 1000;
