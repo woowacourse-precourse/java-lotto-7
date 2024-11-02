@@ -26,6 +26,12 @@ public class Validator {
         }
     }
 
+    static void validateWinningNumber(String[] winningNumbersInput) {
+        if (winningNumbersInput.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
+        }
+    }
+
     static int validateBonusNumber(String bonusNumberInput, Lotto winningNumbersLotto) {
         try {
             int bonusNumber = Integer.parseInt(bonusNumberInput);

@@ -59,23 +59,25 @@ public class Application {
     public static Lotto scanWinningNumbers() {
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
-            String[] winningNumbersInput = Console.readLine().split(",");
-            List<Integer> winningNumbers = new ArrayList<>();
             try{
-                if (winningNumbersInput.length != 6) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
-                }
-
-                for (String winningNumber : winningNumbersInput) {
-                    int number = Validator.validateNumber(winningNumber);
-                    winningNumbers.add(number);
-                }
+                String[] winningNumbersInput = Console.readLine().split(",");
+                Validator.validateWinningNumber(winningNumbersInput);
+                List<Integer> winningNumbers = getWinningNumbers(winningNumbersInput);
 
                 return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static List<Integer> getWinningNumbers(String[] winningNumbersInput) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String winningNumber : winningNumbersInput) {
+            int number = Validator.validateNumber(winningNumber);
+            winningNumbers.add(number);
+        }
+        return winningNumbers;
     }
 
     public static int scanBonusNumber(Lotto winningNumbers) {
