@@ -1,6 +1,5 @@
 package lotto.service;
 
-import static java.util.stream.Collectors.toList;
 import static lotto.CommonSymbols.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
