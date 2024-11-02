@@ -3,14 +3,14 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-	public int readPurchaseAmount() {
+	public int readPurchaseAmountInput() {
 		String input = Console.readLine();
 		validatePurchaseAmount(input);
 
 		return Integer.parseInt(input);
 	}
 
-	public String readLottoNumbers() {
+	public String readLottoNumbersInput() {
 		String input = Console.readLine();
 		validateLottoNumbers(input);
 
