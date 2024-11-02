@@ -9,6 +9,7 @@ public class Validator {
     private static final String NUMBER_ERROR_MESSAGE = "입력은 숫자 형태여야 합니다.";
     private static final String POSITIVE_RANGE_ERROR_MESSAGE = "양수 범위 내에서 입력 가능합니다.";
     private static final String LOTTERY_RANGE_ERROR_MESSAGE = "로또 번호는 1부터 45 사이의 값이어야 합니다";
+    private static final String AMOUNT_UNIT_ERROR_MESSAGE = "입력은 1000단위어야 합니다.";
 
     private static final int LOTTERY_NUM_RANGE_FIRST = 1;
     private static final int LOTTERY_NUM_RANGE_LAST = 45;
@@ -42,6 +43,9 @@ public class Validator {
             checkIsNumber(purchaseInput);
             int num = Integer.parseInt(purchaseInput);
             checkIsPositiveNumber(num);
+            if (num % 1000 != 0) {
+                throw new IllegalArgumentException(AMOUNT_UNIT_ERROR_MESSAGE);
+            }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
         }
