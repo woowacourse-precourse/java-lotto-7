@@ -14,7 +14,7 @@ public class LottoRank {
     public static final LottoRank FIFTH = new LottoRank(3, false, 5000);
     public static final LottoRank MISS = new LottoRank(0, false, 0);
 
-    private static final List<LottoRank> ranks = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, MISS);
+    public static final List<LottoRank> ranks = List.of(FIRST, SECOND, THIRD, FOURTH, FIFTH, MISS);
 
     private LottoRank(int matchCount, boolean matchBonus, int prize) {
         this.matchCount = matchCount;
