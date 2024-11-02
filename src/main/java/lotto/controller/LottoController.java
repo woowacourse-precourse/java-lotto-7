@@ -32,6 +32,6 @@ public class LottoController {
         LottoResult lottoResult = new LottoResult(lottoDraw, purchase.getPurchasedLottoTickets(),
                 purchase.getPayment());
         lottoResultView.displayLottoWins(lottoResult.getLottoWinCount());
-        lottoResultView.readProfit();
+        lottoResultView.displayProfit(lottoResult.getLottoProfit());
     }
 }

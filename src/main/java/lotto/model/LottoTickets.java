@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoTickets {
     private final List<Lotto> lottoTickets = new ArrayList<Lotto>();
@@ -19,8 +20,10 @@ public class LottoTickets {
     private void purchaseLottoTickets(final int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getNumber(),
-                    MAX_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_COUNT.getNumber());
-            Collections.sort(lottoNumbers);
+                            MAX_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_COUNT.getNumber())
+                    .stream()
+                    .sorted()
+                    .collect(Collectors.toList());
             lottoTickets.add(new Lotto(lottoNumbers));
         }
     }

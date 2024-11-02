@@ -6,6 +6,7 @@ import lotto.enums.LottoWinInfo;
 
 public class LottoResult {
     private final EnumMap<LottoWinInfo, Integer> lottoWinCount = new EnumMap<>(LottoWinInfo.class);
+    private final Profit lottoProfit;
 
     {
         for (LottoWinInfo lottoWinInfo : LottoWinInfo.values()) {
@@ -15,6 +16,7 @@ public class LottoResult {
 
     public LottoResult(final LottoDraw lottoDraw, final List<Lotto> lottoTickets, final Integer payment) {
         countWinningLottoTickets(lottoDraw.getDrawNumbers(), lottoDraw.getBonusNumber(), lottoTickets);
+        lottoProfit = new Profit(lottoWinCount, payment);
     }
 
     private void countWinningLottoTickets(final LottoNumbers drawNumbers, final Integer bonusNumber,
@@ -35,5 +37,9 @@ public class LottoResult {
 
     public EnumMap<LottoWinInfo, Integer> getLottoWinCount() {
         return lottoWinCount;
+    }
+
+    public Profit getLottoProfit() {
+        return lottoProfit;
     }
 }
