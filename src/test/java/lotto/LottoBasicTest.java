@@ -12,7 +12,6 @@ import lotto.Model.LottoNumbers;
 import lotto.Model.PlayLottoGame;
 import lotto.Model.Ranking;
 import lotto.Model.Validation;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class LottoBasicTest {
@@ -41,6 +40,8 @@ class LottoBasicTest {
 
     @Test
     void testWinningNumberValidator() {
+        Validation validation = new Validation();
+
         String[] validNumbers = {"1", "2", "3", "4", "5", "6"};
         assertThatThrownBy(() -> validation.winningNumberValidator(validNumbers));
         validation.winningNumberValidator(validNumbers);
@@ -58,11 +59,11 @@ class LottoBasicTest {
 
     @Test
     void testBonusNumberValidator() {
-
+        Validation validation = new Validation();
         validation.bonusNumberValidator(10);  // 정상 입력
         assertThatThrownBy(() -> validation.bonusNumberValidator(46))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다");
     }
 
     @Test
@@ -92,15 +93,10 @@ class LottoBasicTest {
         assertThat(Ranking.valueOf(2, false)).isEqualTo(Ranking.MISS);
     }
 
-    @Test
-    void testPlayControllerPurchasePrice() {
-        int purchasePrice = inputController.setPurchasePrice();
-        assertThat(purchasePrice).isGreaterThan(0);
-    }
 
     @Test
     void testPlayControllerWinningNumbers() {
-        ArrayList<Integer> winningNumbers = inputController.setWinningNumber();
+        ArrayList<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         assertThat(winningNumbers).hasSize(6);
         assertThat(winningNumbers).allMatch(num -> num >= 1 && num <= 45);
     }

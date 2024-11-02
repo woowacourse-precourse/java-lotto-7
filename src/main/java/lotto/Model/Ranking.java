@@ -12,7 +12,7 @@ public enum Ranking {
     private final int matchingCount;
     private final int winningPrize;
     private final String message;
-    private final boolean requiresBonus;
+    private final boolean bonusState;
 
     private static final int WINNING_MIN_COUNT = 3;
 
@@ -20,11 +20,11 @@ public enum Ranking {
         this(matchingCount, winningPrize, message, false);
     }
 
-    Ranking(int matchingCount, int winningPrize, String message, boolean requiresBonus) {
+    Ranking(int matchingCount, int winningPrize, String message, boolean bonusState) {
         this.matchingCount = matchingCount;
         this.winningPrize = winningPrize;
         this.message = message;
-        this.requiresBonus = requiresBonus;
+        this.bonusState = bonusState;
     }
     //로또에서 당첨숫자 일치개수와 보너스 일치를 받아서 Rank를 정하는 로직
     public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
@@ -40,7 +40,7 @@ public enum Ranking {
     }
 
     private boolean isMatchingRank(int countOfMatch, boolean matchBonus) {
-        return this.matchingCount == countOfMatch && (!this.requiresBonus || matchBonus == this.requiresBonus);
+        return this.matchingCount == countOfMatch && (this.bonusState || matchBonus == this.bonusState);
     }
 
     public String getMessage() {

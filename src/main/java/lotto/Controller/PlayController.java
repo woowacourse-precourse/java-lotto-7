@@ -1,9 +1,9 @@
 package lotto.Controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import lotto.Lotto;
 import lotto.Model.EarningRate;
 import lotto.Model.LottoNumbers;
@@ -12,8 +12,7 @@ import lotto.Model.Ranking;
 import lotto.View.OutputView;
 
 public class PlayController {
-    private final InputController inputController;
-    private int gameNumber;
+    private final int gameNumber;
     private ArrayList<Integer> winningNumbers;
     private List<Lotto> lottoNumberList;
     private PlayLottoGame playLottoGame;
@@ -21,7 +20,7 @@ public class PlayController {
     private Map<Ranking, Integer> resultSet;
 
     public PlayController() {
-        inputController = new InputController();
+        InputController inputController = new InputController();
         gameNumber = inputController.setPurchasePrice();
         lottoNumberList = LottoNumbers.makeLottoList(gameNumber);
         winningNumbers = inputController.setWinningNumber();
@@ -36,7 +35,7 @@ public class PlayController {
     }
 
     private void initializeResultSet() {
-        resultSet = new HashMap<>();
+        resultSet = new TreeMap<>();
         for (Ranking rank : Ranking.values()) {
             resultSet.put(rank, 0);
         }
