@@ -22,7 +22,7 @@ public class PurchaseTotalPriceTest {
         @DisplayName("유효한 문자열이 주어질 경우 PurchaseAmount 객체를 생성한다.")
         public void 유효한_입력으로_PurchaseAmount_생성(String input) {
             PurchaseTotalPrice purchaseTotalPrice = PurchaseTotalPrice.from(input);
-            assertThat(purchaseTotalPrice.amount()).isEqualTo(Integer.parseInt(input));
+            assertThat(purchaseTotalPrice.totalPrice()).isEqualTo(Integer.parseInt(input));
         }
     }
 

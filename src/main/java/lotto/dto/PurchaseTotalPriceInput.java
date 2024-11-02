@@ -4,25 +4,25 @@ import lotto.exception.CustomIllegalArgumentException;
 
 import static lotto.exception.ErrorMessage.*;
 
-public record PurchaseTotalPriceInput(String amount) {
+public record PurchaseTotalPriceInput(String totalPrice) {
 
     public PurchaseTotalPriceInput {
-        validate(amount);
+        validate(totalPrice);
     }
 
-    private void validate(String amount) {
-        validatePurchaseAmountNotNull(amount);
-        validatePurchaseAmountNotEmpty(amount);
+    private void validate(String totalPrice) {
+        validateTotalPriceNotNull(totalPrice);
+        validateTotalPriceNotEmpty(totalPrice);
     }
 
-    private void validatePurchaseAmountNotNull(String amount) {
-        if (amount == null) {
+    private void validateTotalPriceNotNull(String totalPrice) {
+        if (totalPrice == null) {
             throw CustomIllegalArgumentException.from(NULL_INPUT);
         }
     }
 
-    private void validatePurchaseAmountNotEmpty(String amount) {
-        if (amount.isEmpty()) {
+    private void validateTotalPriceNotEmpty(String totalPrice) {
+        if (totalPrice.isEmpty()) {
             throw CustomIllegalArgumentException.from(EMPTY_INPUT);
         }
     }

@@ -5,7 +5,7 @@ import lotto.dto.PurchaseTotalPriceInput;
 
 public class InputView {
 
-    public PurchaseTotalPriceInput readPurchaseAmount() {
+    public PurchaseTotalPriceInput readPurchaseTotalPrice() {
         String input = Console.readLine();
         return new PurchaseTotalPriceInput(input.trim());
     }
