@@ -2,6 +2,7 @@ package lotto.constant.message;
 
 public enum ErrorMessage {
 
+    INVALID_NULL("입력 값은 null일 수 없습니다."),
     INVALID_NEGATIVE_NUMBER("음수는 입력할 수 없습니다."),
     INVALID_INPUT_TYPE("숫자가 아닌 값을 입력할 수 없습니다."),
     INVALID_MULTIPLE_AMOUNT("로또 구입 금액은 %d의 배수여야 합니다."),
