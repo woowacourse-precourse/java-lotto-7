@@ -13,6 +13,7 @@ public class OutputView {
     private static final String DELIMITER_NUMBER = ", ";
     private static final String BUY_LOTTO_COUNT_MESSAGE = NEXT_LINE + "{0}개를 구매했습니다.";
     private static final String WIN_INFORMATION_MESSAGE = "{0}개 일치 ({1}원) - {2}개";
+    private static final String WIN_SECOND_INFORMATION_MESSAGE = "{0}개 일치, 보너스 볼 일치 ({1}원) - {2}개";
     private static final String WIN_ALARM_MESSAGE = NEXT_LINE + "당첨 통계" + NEXT_LINE + "---";
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 {0}%입니다.";
 
@@ -33,6 +34,9 @@ public class OutputView {
     }
 
     private static String formatRank(Ranking rank, int count) {
+        if (rank.isSecond()) {
+            return MessageFormat.format(WIN_SECOND_INFORMATION_MESSAGE, rank.getMatchCount(), rank.getReward(), count);
+        }
         return MessageFormat.format(WIN_INFORMATION_MESSAGE, rank.getMatchCount(), rank.getReward(), count);
     }
 

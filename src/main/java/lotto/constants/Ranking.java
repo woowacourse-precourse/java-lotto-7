@@ -32,6 +32,11 @@ public enum Ranking {
         return isMatchFunction.test(count, isBonus);
     }
 
+    public boolean isSecond() {
+        return this.equals(SECOND);
+    }
+
+
     public int getMatchCount() {
         return matchCount;
     }
