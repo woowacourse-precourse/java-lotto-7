@@ -73,6 +73,7 @@ public class LottoGame {
                 rankResult.put(rank, rankResult.get(rank) + 1);
             }
         }
+        double rateOfReturn = calculateRateOfReturn(rankResult);
     }
 
     private Map<Rank, Integer> initializeRankResult() {
@@ -84,9 +85,18 @@ public class LottoGame {
     }
 
     private boolean isWinning(int sameNumberCount) {
-        if (sameNumberCount >= MIN_WINNING_COUNT) {
-            return true;
+        return sameNumberCount >= MIN_WINNING_COUNT;
+    }
+
+    private double calculateRateOfReturn(Map<Rank, Integer> rankResult) {
+        int money = lottos.size() * MONEY_UNIT;
+        int profit = 0;
+        for (Rank rank : rankResult.keySet()) {
+            int eachRankCount = rankResult.get(rank);
+            int prizeMoney = rank.getReward();
+            profit += (eachRankCount * prizeMoney);
         }
-        return false;
+        double rateOfReturn = (double) profit / money;
+        return rateOfReturn;
     }
 }
