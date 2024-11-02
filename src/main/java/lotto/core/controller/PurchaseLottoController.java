@@ -1,8 +1,7 @@
 package lotto.core.controller;
 
 import lotto.commons.command.Command;
-import lotto.commons.handler.Handler;
-import lotto.commons.lang.InputOverFlowException;
+import lotto.commons.handler.Repeat;
 import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoTicketDto;
 import lotto.core.service.CreateLottoPurchaseAmountService;
@@ -39,19 +38,11 @@ public class PurchaseLottoController implements Controller<Void, LottoTicketDto>
     }
 
     private LottoPurchaseAmountDto processInputLottoPurchaseAmount() {
-        LottoPurchaseAmountDto amount;
         this.inputLottoPurchaseAmountView.display("구매금액을 입력해 주세요.");
-        int count = 0;
-        do {
-            amount = Handler.runCatching(() -> {
-                String read = Command.read();
-                return this.createLottoPurchaseAmountService.create(read);
-            });
-            if (++count > 5) {
-                throw new InputOverFlowException();
-            }
-        } while (amount == null);
-        return amount;
+        return Repeat.doWhile(5, () -> {
+            String read = Command.read();
+            return this.createLottoPurchaseAmountService.create(read);
+        });
     }
 
     private LottoTicketDto processPublishLotto(LottoPurchaseAmountDto amount) {

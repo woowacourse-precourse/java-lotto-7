@@ -1,5 +1,8 @@
 package lotto.commons.logger;
 
+import java.util.Arrays;
+import lotto.commons.util.Collections;
+
 public class Logger {
 
     private static final String TXT_COLOR_RED = "\u001B[31m";
@@ -25,7 +28,10 @@ public class Logger {
     }
 
     public static void error(Throwable t) {
-        Logger.error(t.getMessage());
+        String content = t.getMessage();
+        content += "\n";
+        content += Collections.joinToString(Arrays.asList(t.getStackTrace()), "\n");
+        Logger.error(content);
     }
 
     private static void printError(String message) {

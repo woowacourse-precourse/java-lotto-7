@@ -1,7 +1,7 @@
 package lotto.core.controller;
 
 import lotto.commons.command.Command;
-import lotto.commons.handler.Handler;
+import lotto.commons.handler.Repeat;
 import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoNumberDto;
 import lotto.core.dto.LottoResultDto;
@@ -51,27 +51,19 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
     }
 
     private LottoDto processInputWinningLotto() {
-        LottoDto lotto;
-        do {
-            lotto = Handler.runCatching(() -> {
-                this.inputWinningLottoView.display("당첨 번호를 입력해 주세요.");
-                String read = Command.read();
-                return this.createWinningLottoService.create(read);
-            });
-        } while (lotto == null);
-        return lotto;
+        this.inputWinningLottoView.display("당첨 번호를 입력해 주세요.");
+        return Repeat.doWhile(5, () -> {
+            String read = Command.read();
+            return this.createWinningLottoService.create(read);
+        });
     }
 
     private LottoNumberDto processInputBonusLottoNumber(LottoDto winningLotto) {
-        LottoNumberDto bonusNumber;
-        do {
-            bonusNumber = Handler.runCatching(() -> {
-                this.inputBonusLottoNumberView.display("보너스 번호를 입력해 주세요.");
-                String read = Command.read();
-                return this.createBonusLottoNumberService.create(read, winningLotto);
-            });
-        } while (bonusNumber == null);
-        return bonusNumber;
+        this.inputBonusLottoNumberView.display("보너스 번호를 입력해 주세요.");
+        return Repeat.doWhile(5, () -> {
+            String read = Command.read();
+            return this.createBonusLottoNumberService.create(read, winningLotto);
+        });
     }
 
     private LottoResultDto processMatchLotto(LottoTicketDto ticket,

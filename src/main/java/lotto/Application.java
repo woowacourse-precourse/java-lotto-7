@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.commons.lang.InputOverFlowException;
 import lotto.commons.lang.ProgramExitException;
 import lotto.commons.logger.Logger;
 import lotto.core.controller.PurchaseLottoController;
@@ -43,6 +44,8 @@ public class Application {
             runnable.run();
         } catch (ProgramExitException e) {
             Logger.info(e.getMessage());
+        } catch (InputOverFlowException e) {
+            Logger.error(e.getMessage());
         } catch (Throwable e) {
             Logger.error(e);
         }
