@@ -18,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalStateException("[ERROR] 로또 번호는 "+ LOTTO_NUMBER_COUNT + "개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 "+ LOTTO_NUMBER_COUNT + "개여야 합니다.");
         }
     }
     
@@ -26,7 +26,7 @@ public class Lotto {
         HashSet<Integer> deDuplicatedNumbers = new HashSet<>(numbers);
 
         if (deDuplicatedNumbers.size() != numbers.size()) {
-            throw new IllegalStateException(NUMBER_DUPLICATE_ERROR.getMessage());
+            throw new IllegalArgumentException(NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
