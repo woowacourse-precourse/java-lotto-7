@@ -12,6 +12,10 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateOutOfRangeNumber(int bonusNumber) {
         if (bonusNumber > LotteryConst.MAX.getValue() || bonusNumber < LotteryConst.MIN.getValue()) {
             throw new IllegalArgumentException(ExceptionMessages.NUMBER_OUT_OF_RANGE.getMessage());

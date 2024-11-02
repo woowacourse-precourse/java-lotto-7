@@ -47,5 +47,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 보너스 번호로 입력한 번호가 당첨 번호에 이미 존재하는지 확인하기 위해 사용하는 메서드
+    public boolean isLottoContainThisNumber(int number) {
+        return numbers.contains(number);
+    }
 }
