@@ -1,5 +1,6 @@
 package lotto.ui;
 
+import lotto.model.Lotto;
 import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 import lotto.service.LottoCalculator;
@@ -12,7 +13,7 @@ public class OutputView {
         System.out.println(lotto + "개를 구매했습니다.");
     }
 
-    public static void lottoPrint(List<Integer> numbers) {
+    public static void lottoPrint(Lotto numbers) {
         System.out.println(numbers);
     }
 
