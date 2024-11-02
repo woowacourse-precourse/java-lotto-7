@@ -14,7 +14,7 @@ public class LottoView {
     }
 
     public void printTicketNumber(MoneyDTO moneyDTO) {
-        System.out.println(moneyDTO.getTicketNumber() + "개를 구매했습니다.");
+        System.out.println("\n"+moneyDTO.getTicketNumber() + "개를 구매했습니다.");
     }
 
     public void printLottos(LottoDTO lottoDTO) {
@@ -24,11 +24,11 @@ public class LottoView {
     }
 
     public void printCorrect() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
     public void printBonus() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
     //전체적으로 통계가 어떻게 나왔는지 출력
@@ -39,7 +39,7 @@ public class LottoView {
 
 
     public void printLottoResult() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         for (LottoRank lottoRank : LottoRank.values()) {
             System.out.println(lottoRank.getFormattedOutput());
         }

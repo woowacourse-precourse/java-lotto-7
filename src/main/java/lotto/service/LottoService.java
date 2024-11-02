@@ -34,27 +34,32 @@ public class LottoService {
 
     public void countMatchingNumbers(CorrectDTO correctDTO, LottoDTO lottoDTO) {
         Set<Integer> correctSet = new HashSet<>(correctDTO.getCorrects().getLotto());
+        LottoRank.resetCounts();
         for (Lotto lotto : lottoDTO.getLottos()) {
             Set<Integer> madeSet = new HashSet<>(lotto.getLotto());
+            
             //일치하는 개수 구하기
-            correctSet.retainAll(madeSet);
-            int correctNum = correctSet.size();
-
-            boolean bonusCheck = correctSet.contains(correctDTO.getBonus());
+            Set<Integer> tempCorrectSet = new HashSet<>(correctSet);
+            tempCorrectSet.retainAll(madeSet);
+            int correctNum = tempCorrectSet.size();
+            boolean bonusCheck = madeSet.contains(correctDTO.getBonus());
 
             //구한 조건에 맞는 rank를 enum에서 불러서 해당 rank의 개수를 증가
             LottoRank rank = LottoRank.valueOfMatch(correctNum, bonusCheck);
-            rank.incrementCount();
+            if (rank != null) {
+                rank.incrementCount();
+            }
         }
     }
 
-    public double calculateRateOfReturn(MoneyDTO moneyDTO) {
+    public RateOfReturnDTO calculateRateOfReturn(MoneyDTO moneyDTO) {
         int moneySum = 0;
         for (LottoRank rank : LottoRank.values()) {
             moneySum += (rank.getPrize() * rank.getCount());
         }
-        return (Math.round((double) moneySum / moneyDTO.getMoney() * 100) / 100.0);
+        double rateOfReturn = (double) moneySum / moneyDTO.getMoney() * 100;
+        return new RateOfReturnDTO(
+                Math.round(rateOfReturn * 100) / 100.0);
     }
-
 
 }

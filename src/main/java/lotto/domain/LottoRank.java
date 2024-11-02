@@ -54,4 +54,10 @@ public enum LottoRank {
     private String formatCurrency(int amount) {
         return String.format("%,d", amount);
     }
+
+    public static void resetCounts() {
+        for (LottoRank rank : LottoRank.values()) {
+            rank.count = 0;
+        }
+    }
 }
