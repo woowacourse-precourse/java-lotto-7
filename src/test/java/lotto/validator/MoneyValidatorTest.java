@@ -2,6 +2,7 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.model.Money;
 import org.assertj.core.util.VisibleForTesting;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class MoneyValidatorTest {
 
     MoneyValidator validator;
+    Money money;
 
     @VisibleForTesting
     @Test
@@ -64,41 +66,5 @@ public class MoneyValidatorTest {
     void long_변환_가능한경우_통과(String input) {
         validator = new MoneyValidator(input);
         validator.validateLong();
-    }
-
-    @VisibleForTesting
-    @ParameterizedTest
-    @ValueSource(strings = {"100000000000000", "0", "-1", "-1929310"})
-    void 설정범위를_벗어날_경우_예외발생(String input) {
-        assertThatThrownBy(() -> {
-            validator = new MoneyValidator(input);
-            validator.validateRange();
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @VisibleForTesting
-    @ParameterizedTest
-    @ValueSource(strings = {"100000000", "1", "00010289120"})
-    void 설정범위일_경우_통과(String input) {
-        validator = new MoneyValidator(input);
-        validator.validateRange();
-    }
-
-    @VisibleForTesting
-    @ParameterizedTest
-    @ValueSource(strings = {"1234", "1001", "102939100", "1", "200"})
-    void 거스름돈이_남는_경우_예외발생(String input) {
-        assertThatThrownBy(() -> {
-            validator = new MoneyValidator(input);
-            validator.validateNoRemainder();
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @VisibleForTesting
-    @ParameterizedTest
-    @ValueSource(strings = {"1000", "13289321000", "00000100000"})
-    void 거스름돈이_없는_경우_통과(String input) {
-        validator = new MoneyValidator(input);
-        validator.validateNoRemainder();
     }
 }
