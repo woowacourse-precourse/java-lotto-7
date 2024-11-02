@@ -1,11 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -18,6 +16,12 @@ public class Application {
 
         int bonusNumber = inputBonusNumber(winningNumbers);
         System.out.println("Bonus number: " + bonusNumber);
+
+        List<List<Integer>> lottoTickets = generateLottoTickets(purchaseAmount);
+        System.out.println("Generated Lotto Tickets:");
+        for (List<Integer> ticket : lottoTickets) {
+            System.out.println(ticket);
+        }
     }
 
     private static int readValidPurchaseAmount() {
@@ -100,5 +104,22 @@ public class Application {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("The bonus number must not be one of the winning numbers.");
         }
+    }
+
+    private static List<List<Integer>> generateLottoTickets(int purchaseAmount) {
+        int ticketCount = purchaseAmount / 1000;  // 로또 한 장 가격은 1,000원
+        List<List<Integer>> lottoTickets = new ArrayList<>();
+
+        for (int i = 0; i < ticketCount; i++) {
+            lottoTickets.add(generateSingleLotto());
+        }
+
+        return lottoTickets;
+    }
+
+    private static List<Integer> generateSingleLotto() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottoNumbers);  // 오름차순 정렬
+        return lottoNumbers;
     }
 }
