@@ -20,23 +20,34 @@ public class LottoController {
     }
 
     public void run() {
-        int money = getMoney();
-        int purchaseCount = money / 1000;
+        int purchaseMoney = getMoney();
+        int purchaseCount = calculatePurchaseCountBy(purchaseMoney);
 
         Lottos purchasedLottos = Lottos.purchase(purchaseCount);
         outputView.showPurchasedLottos(purchaseCount, purchasedLottos);
 
-        Lotto lottoWinningNumbers = getLottoWinningNumbers();
-        int lottoBonusNumber = getLottoBonusNumber();
-
-        WinningLotto winningLotto = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+        WinningLotto winningLotto = getWinningLotto();
 
         Map<LottoRank, Integer> lottoResult = purchasedLottos.lottoResultFrom(winningLotto);
         outputView.showLottoResult(lottoResult);
 
-        LottoRevenueCalculator lottoRevenueCalculator = LottoRevenueCalculator.of(lottoResult, money);
-        double revenue = lottoRevenueCalculator.calculateRevenue();
+        double revenue = calculateLottoRevenue(lottoResult, purchaseMoney);
         outputView.showLottoRevenue(revenue);
+    }
+
+    private double calculateLottoRevenue(Map<LottoRank, Integer> lottoResult, int purchaseMoney) {
+        LottoRevenueCalculator lottoRevenueCalculator = LottoRevenueCalculator.of(lottoResult, purchaseMoney);
+        return lottoRevenueCalculator.calculateRevenue();
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto lottoWinningNumbers = getLottoWinningNumbers();
+        int lottoBonusNumber = getLottoBonusNumber();
+        return createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+    }
+
+    private static int calculatePurchaseCountBy(int money) {
+        return money / 1000;
     }
 
     private int getMoney() {
