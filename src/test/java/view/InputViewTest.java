@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import lotto.exception.Exception;
 import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
@@ -42,4 +43,22 @@ class InputViewTest {
         }
     }
 
+    @Nested
+    class 당첨번호_입력_테스트 extends NsTest {
+        @DisplayName("구입금액 입력 성공 테스트")
+        @Test
+        void inputWinningNumbers_success() {
+            assertSimpleTest(() -> {
+                run("1,2,3,4,5,6");
+                assertThat(output()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+            });
+
+        }
+
+        @Override
+        protected void runMain() {
+            List<Integer> numbers = InputView.inputWinningNumbers();
+            System.out.println(numbers);
+        }
+    }
 }
