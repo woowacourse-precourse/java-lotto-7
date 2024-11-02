@@ -36,7 +36,10 @@ public class Application {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-
+        // 보너스 번호 입력 받기
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Integer bonusNumber = Integer.parseInt(Console.readLine());
+            // 유효성 검증 필요
 
     }
 }
