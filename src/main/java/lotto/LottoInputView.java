@@ -38,11 +38,17 @@ public class LottoInputView
 
     }
 
-    public static int lottoBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
+    public static int lottoBonusNumber(List<Integer> winningNumbers) {
+        try{
+            System.out.println("보너스 번호를 입력해 주세요.");
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            validateBonusNumbers(bonusNumber, winningNumbers);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return lottoBonusNumber(winningNumbers);
+        }
 
-        return bonusNumber;
     }
 
     public static List<Integer> tempWinningNumbers(String numbers) {

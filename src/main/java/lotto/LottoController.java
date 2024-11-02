@@ -3,6 +3,11 @@ package lotto;
 import java.util.List;
 
 public class LottoController {
+    private final LottoGame lottoGame;
+
+    public LottoController() {
+        this.lottoGame = new LottoGame();
+    }
 
     public void startGame() {
         int lottoPurchase = LottoInputView.lottoPurchaseAmount();
@@ -10,6 +15,9 @@ public class LottoController {
         LottoOutputView.printPurchasedLottoCount(makePurchasedLottos);
 
         List<Integer> winningNumbers = LottoInputView.lottoWinningNumbers();
+        // 보너스 번호 입력받는다.
+        int bonusNumber = LottoInputView.lottoBonusNumber(winningNumbers);
+        lottoGame.setLottoGame(new Lotto(winningNumbers), bonusNumber);
     }
 
     public int count (int lottoPurchase) {

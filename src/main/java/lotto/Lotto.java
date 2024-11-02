@@ -19,4 +19,20 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int getMatchCount(Lotto otherLotto) {
+        List<Integer> curwinningLotto = this.numbers;
+        List<Integer> tempLotto = otherLotto.getNumbers();
+
+
+        int match = 0;
+
+        for (Integer number : curwinningLotto) {
+            if (tempLotto.contains(number)) {
+                match++;
+            }
+        }
+
+        return match;
+    }
 }
