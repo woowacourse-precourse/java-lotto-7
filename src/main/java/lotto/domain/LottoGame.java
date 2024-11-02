@@ -8,21 +8,30 @@ import lotto.constant.Rank;
 
 public class LottoGame {
     public static void start() {
-        String amountInput = InputHandler.handleAmountInput();
-
-        int amount = Integer.parseInt(amountInput);
+        int amount = InputHandler.handleAmountInput();
         int lottoCount = amount / 1000;
         Lotto[] lottoArray = issueLotto(lottoCount);
-        List<Integer> winningLottoList = InputHandler.handleWinningLottoInput();
-        int bonusNumber = InputHandler.handleBonusNumberInput();
-        WinningLotto winningLotto = new WinningLotto(winningLottoList, bonusNumber);
+        WinningLotto winningLotto = generateWinningLotto();
+        WinnerResult winnerResult = generateWinnerResult(amount, lottoArray, winningLotto);
+
+        winnerResult.display();
+    }
+
+    private static WinnerResult generateWinnerResult(int amount, Lotto[] lottoArray, WinningLotto winningLotto) {
         WinnerResult winnerResult = new WinnerResult(amount);
+
         for (Lotto eachLotto : lottoArray) {
             Optional<Rank> optionalRank = eachLotto.calculateRank(winningLotto);
             optionalRank.ifPresent(winnerResult::add);
         }
 
-        winnerResult.display();
+        return winnerResult;
+    }
+
+    private static WinningLotto generateWinningLotto() {
+        List<Integer> winningLottoList = InputHandler.handleWinningLottoInput();
+        int bonusNumber = InputHandler.handleBonusNumberInput();
+        return new WinningLotto(winningLottoList, bonusNumber);
     }
 
     private static Lotto[] issueLotto(int lottoCount) {

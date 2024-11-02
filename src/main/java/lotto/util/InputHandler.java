@@ -7,7 +7,7 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.LottoGameIllegalArgumentException;
 
 public class InputHandler {
-    public static String handleAmountInput() {
+    public static int handleAmountInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String amountInput = Console.readLine().trim();
         try {
@@ -15,7 +15,7 @@ public class InputHandler {
         } catch (IllegalArgumentException e) {
             return handleAmountInput();
         }
-        return amountInput;
+        return Integer.parseInt(amountInput);
     }
 
     public static List<Integer> handleWinningLottoInput() {
