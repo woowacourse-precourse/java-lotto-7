@@ -9,6 +9,6 @@ public class LottoShopTest {
     @Test
     void 로또_구매_개수_계산() {
         LottoShop lottoShop = new LottoShop();
-        assertThat(lottoShop.calculatePurchaseCount(new PurchaseAmount(3000))).isEqualTo(3);
+        assertThat(lottoShop.calculatePurchaseCount(new PurchaseAmount("3000"))).isEqualTo(3);
     }
 }

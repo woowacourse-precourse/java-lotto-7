@@ -9,9 +9,22 @@ public class PurchaseAmount {
 
     private final int money;
 
-    public PurchaseAmount(int money) {
+    public PurchaseAmount(String input) {
+        int money = toInt(input);
         checkDivided(money);
         this.money = money;
+    }
+
+    private int toInt(String input) {
+        int money;
+
+        try {
+            money = Integer.parseInt(input);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
+        }
+
+        return money;
     }
 
     private void checkDivided(int money) {
