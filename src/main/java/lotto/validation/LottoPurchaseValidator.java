@@ -32,7 +32,7 @@ public class LottoPurchaseValidator {
     }
 
     private static void validatePurchaseUnit(String input) {
-        if (Integer.parseInt(input) % 1000 == 0) {
+        if (Integer.parseInt(input) % 1000 != 0) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_PURCHASE_MUST_BE_MULTIPLE_OF_THOUSAND);
         }
     }

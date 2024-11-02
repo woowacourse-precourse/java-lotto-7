@@ -19,7 +19,7 @@ public class LottoNumbersValidator {
     }
 
     private static void validateLottoRange(List<Integer> numbers) {
-        if (isLottoRange(numbers)) {
+        if (!isLottoRange(numbers)) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_RANGE_INVALID);
         }
     }
@@ -29,7 +29,7 @@ public class LottoNumbersValidator {
     }
 
     private static void validateDuplicate(List<Integer> numbers) {
-        if (containsDuplicates(numbers)) {
+        if (!containsDuplicates(numbers)) {
             throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_CANNOT_DUPLICATE);
         }
     }
