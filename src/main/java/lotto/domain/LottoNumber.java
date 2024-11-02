@@ -20,7 +20,7 @@ public class LottoNumber {
     }
 
     private static int toInt(String value) {
-        return Integer.parseInt(value);
+        return Integer.parseInt(value.trim());
     }
 
     private static boolean inRange(int number) {
