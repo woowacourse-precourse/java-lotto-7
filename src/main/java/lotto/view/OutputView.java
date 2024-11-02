@@ -15,6 +15,10 @@ public abstract class OutputView {
         });
     }
 
+    public static void lineBreaking() {
+        System.out.println();
+    }
+
     public static void printWinningStatistics(Map<Ranking, Integer> rankingMap) {
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -27,5 +31,9 @@ public abstract class OutputView {
             }
             System.out.printf("%d개 일치 (%,d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
         });
+    }
+
+    public static void printEarningRate(double earningRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", earningRate);
     }
 }

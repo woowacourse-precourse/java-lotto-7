@@ -19,6 +19,7 @@ public class Controller {
         int totalAmount;
         while (true) {
             String inputTotalAmount = InputView.requestAmountToPurchase();
+            OutputView.lineBreaking();
             try {
                 inputPurchaseAmountValidator.validate(inputTotalAmount);
                 totalAmount = Integer.parseInt(inputTotalAmount);
@@ -31,10 +32,12 @@ public class Controller {
         int lottoCount = totalAmount / 1000;
         List<Lotto> purchasedLottos = LottoListGenerator.generateLottos(lottoCount);
         OutputView.printPurchasedLottos(lottoCount, purchasedLottos);
+        OutputView.lineBreaking();
 
         JackpotNumbers jackpotNumbers = new JackpotNumbers();
         while (true) {
             String inputJackpotNumbers = InputView.requestJackpotNumbers();
+            OutputView.lineBreaking();
             try {
                 inputJackpotNumbersValidator.validate(inputJackpotNumbers);
                 List<Integer> intList = StringParser.toIntList(inputJackpotNumbers);
@@ -48,6 +51,7 @@ public class Controller {
 
         while (true) {
             String inputBonusNumber = InputView.requestBonusNumber();
+            OutputView.lineBreaking();
             try {
                 int bonusNumber = StringParser.toInt(inputBonusNumber);
                 jackpotNumbers.setBonusNumber(bonusNumber);
@@ -59,5 +63,7 @@ public class Controller {
 
         Map<Ranking, Integer> rankingMap = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
         OutputView.printWinningStatistics(rankingMap);
+        double earningRate = EarningRateCalculator.calculate(totalAmount, rankingMap);
+        OutputView.printEarningRate(earningRate);
     }
 }
