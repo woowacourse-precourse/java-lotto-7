@@ -1,14 +1,17 @@
 package lotto.domain;
 
+import static java.util.Collections.*;
+
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exception.DuplicateLottoNumberException;
-import lotto.exception.InvalidLottoSizeException;
+import lotto.common.constant.Constants;
+import lotto.common.exception.DuplicateLottoNumberException;
+import lotto.common.exception.InvalidLottoSizeException;
 
 public class Lotto {
-
-    private static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> lottoNumbers;
 
@@ -17,13 +20,17 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
+    public List<LottoNumber> getLottoNumbers() {
+        return Collections.unmodifiableList(lottoNumbers);
+    }
+
     private void validate(List<LottoNumber> lottoNumbers) {
         validateSize(lottoNumbers.size());
         validateDuplicate(lottoNumbers);
     }
 
     private void validateSize(int lottoSize) {
-        if (lottoSize != LOTTO_SIZE) {
+        if (lottoSize != Constants.LOTTO_SIZE) {
             throw new InvalidLottoSizeException(lottoSize);
         }
     }

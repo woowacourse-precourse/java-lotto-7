@@ -1,12 +1,10 @@
 package lotto.domain;
 
 import java.util.Objects;
-import lotto.exception.InvalidLottoNumberRangeException;
+import lotto.common.constant.Constants;
+import lotto.common.exception.InvalidLottoNumberRangeException;
 
 public class LottoNumber {
-
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
 
     private final int lottoNumber;
 
@@ -16,7 +14,7 @@ public class LottoNumber {
     }
 
     private void validateLottoNumber(int lottoNumber) {
-        if(lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER) {
+        if(lottoNumber < Constants.MIN_LOTTO_NUMBER || lottoNumber > Constants.MAX_LOTTO_NUMBER) {
             throw new InvalidLottoNumberRangeException(lottoNumber);
         }
     }
