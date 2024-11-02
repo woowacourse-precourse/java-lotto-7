@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGameInfo;
+import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 import lotto.service.LottoCalculator;
 import lotto.service.LottoGenerator;
@@ -20,14 +21,6 @@ public class LottoController {
         gameInfo.setPurchaseAmount(purchaseAmount);
         gameInfo.setLottotickets(purchaseAmount);
 
-        //당첨 번호
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-        gameInfo.setWinningNumber(winningNumbers);
-
-        //보너스번호
-        int bonusNumber = InputView.getBonusNumber(winningNumbers);
-        gameInfo.setBonusNumber(bonusNumber);
-
         //로또 생성
         int lottoTicketsCount = gameInfo.getLottotickets();
         OutputView.countLotto(lottoTicketsCount);
@@ -36,10 +29,26 @@ public class LottoController {
             OutputView.lottoPrint(lotto);
         }
 
+        //당첨 번호
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
+        gameInfo.setWinningNumber(winningNumbers);
+
+        //보너스번호
+        int bonusNumber = InputView.getBonusNumber(winningNumbers);
+        gameInfo.setBonusNumber(bonusNumber);
+
+
         //당첨계산
         LottoResult lottoResult = new LottoResult();
         for (int i = 0; i < lottoTicketsCount; i++) {
-            LottoCalculator.calculateRank(lottoTickets.get(i), gameInfo.getWinningNumber(), gameInfo.getBonusNumber());
+            LottoRank rank = LottoCalculator.calculateRank(
+                    lottoTickets.get(i),
+                    gameInfo.getWinningNumber(),
+                    gameInfo.getBonusNumber()
+            );
+            if (rank != LottoRank.LOSING) {
+                lottoResult.incrementRankCount(rank);
+            }
         }
 
         //결과 출력
