@@ -29,7 +29,7 @@ public class GameManager {
     }
 
     private LottoWinningSet readWinningLottoSet() {
-        return new LottoWinningSet(readWinningNumber(), readVBonusNumber());
+        return new LottoWinningSet(readWinningNumber(), readBonusNumber());
     }
 
     private List<Integer> readWinningNumber() {
@@ -38,7 +38,7 @@ public class GameManager {
                 .toList();
     }
 
-    private int readVBonusNumber() {
+    private int readBonusNumber() {
         return Integer.parseInt(inputView.readBonusNumber());
     }
 }
