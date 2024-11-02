@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 
 import java.util.List;
+import java.util.Map;
 
 public abstract class OutputView {
 
@@ -13,4 +15,14 @@ public abstract class OutputView {
         });
     }
 
+    public static void printWinningStatistics(Map<Ranking, Integer> rankingMap) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        rankingMap.forEach((ranking, count) -> {
+            if (ranking.isRequiresBonus()) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
+            }
+            System.out.printf("%d개 일치 (%d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
+        });
+    }
 }

@@ -2,11 +2,13 @@ package lotto.controller;
 
 import lotto.domain.JackpotNumbers;
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 import lotto.util.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
 
@@ -54,5 +56,8 @@ public class Controller {
                 e.printStackTrace();
             }
         }
+
+        Map<Ranking, Integer> rankingMap = RankingEvaluator.evaluateAll(purchasedLottos, jackpotNumbers);
+        OutputView.printWinningStatistics(rankingMap);
     }
 }

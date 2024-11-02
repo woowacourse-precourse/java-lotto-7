@@ -34,4 +34,12 @@ public class JackpotNumbers {
             throw new IllegalArgumentException(DUPLICATE_INPUT_NUMBER.getMessage());
         }
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

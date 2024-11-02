@@ -19,11 +19,27 @@ public enum Ranking {
     }
 
     public static Ranking getRanking(int matchingCount, boolean hasBonus) {
+        if (SECOND.getMatchingCount() == matchingCount && SECOND.isRequiresBonus() == hasBonus) {
+                return SECOND;
+        }
         for (Ranking ranking : values()) {
-            if (ranking.matchingCount == matchingCount && ranking.requiresBonus == hasBonus) {
+            if (ranking.matchingCount == matchingCount && ranking != SECOND) {
                 return ranking;
             }
         }
+
         return NONE;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
+
+    public boolean isRequiresBonus() {
+        return requiresBonus;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }
