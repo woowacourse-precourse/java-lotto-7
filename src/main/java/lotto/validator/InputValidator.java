@@ -12,7 +12,6 @@ public class InputValidator {
     public int validateNumber(String lottoPriceString) {
         try {
             int lottoPrice = Integer.parseInt(lottoPriceString);
-            validateNumberRange(lottoPrice);
             return lottoPrice;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력받은 문자열을 숫자로 변환할 수 없습니다.");

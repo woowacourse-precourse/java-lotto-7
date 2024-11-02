@@ -32,24 +32,6 @@ public class LottoService {
         return lottoList;
     }
 
-    public int validateLottoPrice(String lottoPrice) {
-        inputValidator.validateEmpty(lottoPrice);
-        int lottoPriceInt = inputValidator.validateNumber(lottoPrice);
-        inputValidator.validatePriceForm(lottoPriceInt);
-
-        return lottoPriceInt;
-    }
-
-    public void validateWinningNumbers(String lottoWinningNumbers) {
-        inputValidator.validateEmpty(lottoWinningNumbers);
-        inputValidator.validateNumbersForm(lottoWinningNumbers);
-    }
-
-    public void validateBonusNumbers(String lottoBonusNumber) {
-        inputValidator.validateEmpty(lottoBonusNumber);
-        inputValidator.validateNumber(lottoBonusNumber);
-    }
-
     public List<Integer> splitLottoWinningNumbers(String lottoWinningNumbers) {
         String[] lottoArray = lottoWinningNumbers.split(Constants.SEPARATOR);
         trimLottoWinningNumbers(lottoArray);
@@ -72,19 +54,24 @@ public class LottoService {
             lottoArray[i] = lottoArray[i].trim();
         }
     }
-    
-    
 
-    public Map<LottoRank, Integer> resultWinningLotto(int lottoNum) {
+    public LottoResult resultWinningLotto(int lottoNum) {
         Map<LottoRank, Integer> lottoResults = new HashMap<>();
+        LottoResult lottoResult = new LottoResult(lottoResults, 0);
+        lottoResult.init();
+
         for(int i=0; i<lottoNum; i++){
             int count = compareWinningLotto(i);
+            //System.out.println("count = " + count);
             LottoRank rankByMatchCount = LottoRank.getRankByMatchCount(count);
-            // lottoRank를 가지고 있는 (키) list를 찾아서 count를 한다
-            lottoResults.put(rankByMatchCount, lottoResults.getOrDefault(rankByMatchCount, 0) + 1);
+            //System.out.println("rankByMatchCount = " + rankByMatchCount);;
+            // lottoRank를 가지고 있는 (키) list를 찾아서 value를 count를 한다
+            if(rankByMatchCount != null){
+                lottoResults.put(rankByMatchCount, lottoResults.getOrDefault(rankByMatchCount, 0) + 1);
+            }
         }
 
-        return lottoResults;
+        return lottoResult;
     }
 
     private int compareWinningLotto(int i) {
@@ -97,15 +84,14 @@ public class LottoService {
         return count;
     }
 
-    public double calculateRate(Map<LottoRank, Integer> lottoResult, int lottoPriceInt) {
-        // 일치한 것에 대한 돈을 다 더한다
-        // 해당 돈 / 구입 금액 * 100
-        // 소수점 둘째자리까지 표현한다
-        int amount = sumAmount(lottoResult);
+    public LottoResult calculateRate(LottoResult result, int lottoPriceInt) {
+        int amount = sumAmount(result.getLottoResult());
         double rate = (amount / lottoPriceInt) * 100.0;
         rate = Math.round(rate * 100) / 100.0;
 
-        return rate;
+        result.setRate(rate);
+
+        return result;
     }
 
     private int sumAmount(Map<LottoRank, Integer> lottoResults) {
@@ -122,10 +108,6 @@ public class LottoService {
         // 쉼표를 모두 제거하고 int로 변환
         String noCommaStr = str.replace(",", "");
         return Integer.parseInt(noCommaStr);
-    }
-
-    public int convertBonusNumberInt(String lottoBonusNumber) {
-        return Integer.parseInt(lottoBonusNumber);
     }
 
     public void winningLotto(List<Integer> winningNumbers, int bonusNumber) {

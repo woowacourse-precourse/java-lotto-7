@@ -14,24 +14,69 @@ public class InputView {
     }
 
 
-    public String inputLottoPrice() {
-        System.out.println(Constants.PURCHASE_LOTTO_INPUT);
-        String lottoPrice = Console.readLine();
+    public int inputLottoPrice() {
+        while(true){
+            try {
+                System.out.println(Constants.PURCHASE_LOTTO_INPUT);
+                String lottoPrice = Console.readLine();
+                int LottoPriceInt = validateLottoPrice(lottoPrice);
+                System.out.println();
 
-        return lottoPrice;
+                return LottoPriceInt;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int validateLottoPrice(String lottoPrice) {
+        inputValidator.validateEmpty(lottoPrice);
+        int lottoPriceInt = inputValidator.validateNumber(lottoPrice);
+        inputValidator.validateNumberRange(lottoPriceInt);
+        inputValidator.validatePriceForm(lottoPriceInt);
+
+        return lottoPriceInt;
     }
 
     public String inputLottoWinningNumbers() {
-        System.out.println(Constants.WINNING_LOTTO_INPUT);
-        String WinningLotto = Console.readLine();
+        while(true){
+            try {
+                System.out.println(Constants.WINNING_LOTTO_INPUT);
+                String WinningLotto = Console.readLine();
+                validateWinningNumbers(WinningLotto);
+                System.out.println();
 
-        return WinningLotto;
+                return WinningLotto;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public String inputLottoBonusNumber() {
-        System.out.println(Constants.BONUS_NUMBER_INPUT);
-        String BonusNumber = Console.readLine();
+    public void validateWinningNumbers(String lottoWinningNumbers) {
+        inputValidator.validateEmpty(lottoWinningNumbers);
+        inputValidator.validateNumbersForm(lottoWinningNumbers);
+    }
 
-        return BonusNumber;
+    public int inputLottoBonusNumber() {
+        while(true){
+            try {
+                System.out.println(Constants.BONUS_NUMBER_INPUT);
+                String bonusNumber = Console.readLine();
+                int bonusNumberInt = validateBonusNumbers(bonusNumber);
+                System.out.println();
+
+                return bonusNumberInt;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public int validateBonusNumbers(String bonusNumber) {
+        inputValidator.validateEmpty(bonusNumber);
+        int bonusNumberInt = inputValidator.validateNumber(bonusNumber);
+
+        return bonusNumberInt;
     }
 }
