@@ -19,6 +19,9 @@ public enum OutputMessage {
     EXCEPTION("%n[ERROR] %s%n%n"),
     ;
 
+    private static final String DELIMITER = ", ";
+    private static final String MONEY_PATTERN = "###,###";
+
     private final String message;
 
     OutputMessage(String message) {
@@ -34,7 +37,7 @@ public enum OutputMessage {
             return String.format(message,
                 lottoNumbers.stream()
                     .map(String::valueOf)
-                    .collect(Collectors.joining(", "))
+                    .collect(Collectors.joining(DELIMITER))
             );
         }
         return String.format(message);
@@ -45,7 +48,7 @@ public enum OutputMessage {
             return String.format(
                 getRankMessage(rank),
                 rank.getMatchCount(),
-                new DecimalFormat("###,###").format(rank.getPrice()),
+                new DecimalFormat(MONEY_PATTERN).format(rank.getPrice()),
                 rankCount
             );
         }
