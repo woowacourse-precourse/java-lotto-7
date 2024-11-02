@@ -80,6 +80,38 @@
 
 ## domain
 
+### Buyer
+
+- 구매한 로또의 개수를 가져오는 기능 (getPurchaseCount)
+- 구매한 로또들을 가져오는 기능 (getPurchasedLottos)
+- 구매자의 동등성을 확인하는 기능 (equals)
+- 구매자의 해시코드를 가져오는 기능 (hashCode)
+
+### BuyerFactory
+
+- 구매 개수에 따라 랜덤 로또를 뽑는 구매자를 생성하는 기능 (createBuyer)
+- 구매 개수에 따라 테스트 로또를 뽑는 구매자를 생성하는 기능 (createTestBuyer)
+
+### BuyLottos
+
+- [x] Lotto 객체 리스트를 입력받아 Lottos 객체를 생성하는 기능 (of)
+- [x] 6개의 랜덤 로또를 생성하는 기능 (generateRandomLotto)
+- [x] Lottos 객체를 반환하는 기능 (getLottos)
+- [x] Lottos 객체의 동등성 비교 기능 (equals)
+- [x] Lottos 객체의 해시코드 생성 기능 (hashCode)
+- [x] Lottos 객체를 문자열로 출력하는 기능 (toString)
+
+### LottosCount
+
+- [x] 입금한 금액으로 구입할 수 있는 로또 개수를 생성하는 기능 (from)
+  - 입금한 금액은 0 이상 이어야 한다.
+  - 입금한 금액은 1000 단위로 나눠져야 한다.
+- [x] 구매한 로또의 개수를 반환받는 기능 (getLottosCount)
+- [x] 로또 개수의 동등성을 확인하는 기능 (equals)
+- [x] 로또의 해시코드를 반환받는 기능 (hashCode)
+
+---
+
 ### Lotto
 
 - [x] 로또를 발행하는 기능 (Lotto)
@@ -96,14 +128,6 @@
 - [x] 길이가 6인 배열을 입력받아 로또를 생성하는 기능 (createCustomLotto)
 - [x] 랜덤 숫자를 6개 뽑아 로또를 생성하는 기능 (createRandomLotto)
 
-### Lottos
-
-- [x] Lotto 객체 리스트를 입력받아 Lottos 객체를 생성하는 기능 (of)
-- [x] Lottos 객체를 반환하는 기능 (getLottos)
-- [x] Lottos 객체의 동등성 비교 기능 (equals)
-- [x] Lottos 객체의 해시코드 생성 기능 (hashCode)
-- [x] Lottos 객체를 문자열로 출력하는 기능 (toString)
-
 ### Number
 
 - [x] 숫자를 생성하는 기능 (from)
@@ -113,17 +137,18 @@
 
   - 로또 번호 범위 내의 숫자 중 하나를 무작위로 생성한다.
 
+- [x] 숫자를 반환하는 기능 (getNumber)
+- [x] Number 객체의 동등성을 비교하는 기능 (equals)
+- [x] Number 객체의 해시코드를 가져오는 기능 (hashCode)
+
 ### Numbers
 
 - [x] Numbers 객체를 생성하는 기능 (of)
 - [x] 랜덤 숫자 6개를 생성하는 기능 (generateSixRandomNumbers)
   - 로또 범위 내의 숫자 6개를 무작위로 생성한다.
-
-### Buyer
-
-- 로또를 구매하는 기능
-  - 로또를 몇개 살 수 있는지 계산한다.
-  - 계산한 개수만큼 로또를 구매한다.
+- [x] Numbers 객체를 반환하는 기능 (getNumbers)
+- [x] Numbers 객체의 동등성을 비교하는 기능 (equals)
+- [x] Numbers 객체의 해시코드를 가져오는 기능 (hashCode)
 
 ---
 
