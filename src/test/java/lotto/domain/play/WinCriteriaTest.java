@@ -1,7 +1,8 @@
-package lotto.domain.criteria;
+package lotto.domain.play;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
+import lotto.domain.rule.PrizeRank;
+import lotto.domain.ticket.Lotto;
+import lotto.domain.ticket.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

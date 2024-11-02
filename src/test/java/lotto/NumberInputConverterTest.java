@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto;
 
 import lotto.utils.NumberInputConverter;
 import org.junit.jupiter.api.DisplayName;
