@@ -18,6 +18,12 @@ public class WiningNumbers {
                 .toList();
     }
 
+    public int countOfMatch(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
     public boolean contains(LottoNumber bonusNumber) {
         return numbers.contains(bonusNumber);
     }

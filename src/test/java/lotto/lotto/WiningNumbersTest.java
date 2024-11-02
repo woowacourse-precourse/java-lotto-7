@@ -33,4 +33,17 @@ class WiningNumbersTest {
 
         assertThat(winingNumbers.contains(lottoNumber)).isEqualTo(expected);
     }
+
+    @Test
+    void 일치하는_숫자의_개수를_계산한다() {
+        // given
+        WiningNumbers winingNumbers = new WiningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto(List.of(5, 6, 7, 8, 9, 10));
+
+        // when
+        int countOfMatch = winingNumbers.countOfMatch(lotto);
+
+        // then
+        assertThat(countOfMatch).isEqualTo(2);
+    }
 }

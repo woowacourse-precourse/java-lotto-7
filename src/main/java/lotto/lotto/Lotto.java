@@ -18,6 +18,10 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers.contains(lottoNumber);
+    }
+
     private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != REQUIRED_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 " + REQUIRED_LOTTO_NUMBER_COUNT + "개여야 합니다.");
