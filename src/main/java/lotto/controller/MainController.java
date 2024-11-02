@@ -22,9 +22,12 @@ public class MainController {
 
     public void start(){
         purchaseLottos();
-        // 중복 검사 해야함
         setWinLottoNumbers();
         setWinLottoBonusNumber();
+        resultLotto();
+    }
+
+    private void resultLotto() {
         getLottoResultResponse response = lottoController.getLottoResult();
         OutputView.printLottoResult(response.result());
         OutputView.printLottoReturnRate(response.returnRate());
