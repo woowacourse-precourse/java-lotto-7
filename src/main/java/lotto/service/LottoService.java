@@ -7,7 +7,6 @@
 
     public class LottoService {
 
-
         public List<Lotto> purchaseLotto(Money money){
             LottoBuyer lottoBuyer = new LottoBuyer();
             lottoBuyer.buyLotto(money);
@@ -15,5 +14,5 @@
             return lottoBuyer.getLottoTickets();
         }
 
-        
+
     }
