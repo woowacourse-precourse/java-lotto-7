@@ -1,7 +1,5 @@
 package lotto.model;
 
-import java.util.List;
-
 public class BonusNumber {
     private final int bonusNumber;
     public BonusNumber(int bonusNumber){
