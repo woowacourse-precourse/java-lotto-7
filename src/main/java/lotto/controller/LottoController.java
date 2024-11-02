@@ -22,6 +22,7 @@ public class LottoController {
     public void run() {
         LottoPurchaseAmount lottoPurchaseAmount = inputLottoPurchaseAmount();
         Lottos lottos = buyLottos(lottoPurchaseAmount);
+        outputView.printLottos(lottos);
         WinningLottoNumbers winningLottoNumbers = makeWinningLottoNumbers();
         BonusLottoNumber bonusLottoNumber = makeBonusLottoNumber(winningLottoNumbers);
     }
@@ -32,10 +33,7 @@ public class LottoController {
     }
 
     private Lottos buyLottos(LottoPurchaseAmount lottoPurchaseAmount) {
-        Lottos lottos = lottoService.buyLottos(lottoPurchaseAmount);
-        outputView.printLottos(lottos);
-
-        return lottos;
+        return lottoService.buyLottos(lottoPurchaseAmount);
     }
 
     private WinningLottoNumbers makeWinningLottoNumbers() {
