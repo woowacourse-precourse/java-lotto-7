@@ -7,21 +7,17 @@ public class DrawResultRankTableHelper {
     private DrawResultRankTableHelper() {
     }
 
-    public static DrawResultRankTable initiate() {
-        return DrawResultRankTable.initiate();
-    }
-
     public static DrawResultRankTable oneSecondRankAndTwoThirdRank() {
         DrawResultRankTable initiate = DrawResultRankTable.initiate();
-        initiate.updateResultRankTable(RankCondition.SECOND);
-        initiate.updateResultRankTable(RankCondition.THIRD);
-        initiate.updateResultRankTable(RankCondition.THIRD);
+        initiate.updateIfPresent(RankCondition.SECOND);
+        initiate.updateIfPresent(RankCondition.THIRD);
+        initiate.updateIfPresent(RankCondition.THIRD);
         return initiate;
     }
 
     public static DrawResultRankTable oneFifthRank() {
         DrawResultRankTable initiate = DrawResultRankTable.initiate();
-        initiate.updateResultRankTable(RankCondition.FIFTH);
+        initiate.updateIfPresent(RankCondition.FIFTH);
         return initiate;
     }
 }

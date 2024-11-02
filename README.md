@@ -217,11 +217,12 @@
 
 ### [Enum] RankCondition
 
-| Method                                | Parameter        | Return Type | Implementation |
-|---------------------------------------|------------------|-------------|----------------|
-| getRankBy                             | Integer, Boolean | Rank        | ✅              |
-| hasEnoughCountToBeSecondRank          | int              | boolean     | ✅              |
-| calculateReceivableTotalPrizeAmountBy | int              | Money       | ✅              |
+| Method                                | Parameter        | Return Type         | Implementation |
+|---------------------------------------|------------------|---------------------|----------------|
+| getRankBy                             | Integer, Boolean | Rank                | ✅              |
+| sortedValuesExceptNone                | -                | List<RankCondition> | ✅              |
+| hasEnoughCountToBeSecondRank          | int              | boolean             | ✅              |
+| calculateReceivableTotalPrizeAmountBy | int              | Money               | ✅              |
 
 <br>
 
@@ -230,6 +231,15 @@
 | Method | Parameter              | Return Type   | Implementation |
 |--------|------------------------|---------------|----------------|
 | of     | BigDecimal, BigDecimal | RecoveryRatio | ✅              |
+
+<br>
+
+### DrawResultRankTable
+
+| Method           | Parameter     | Return Type | Implementation |
+|------------------|---------------|-------------|----------------|
+| updateIfPresent  | RankCondition | -           | ✅              |
+| totalPrizeAmount | -             | Money       | ✅              |
 
 <br>
 <br>

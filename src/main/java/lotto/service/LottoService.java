@@ -26,8 +26,8 @@ public class LottoService {
 
         lottos.initiateReadOnlyStream()
                 .forEach(lotto -> {
-                    RankCondition rank = rankEachLotto(lotto, drawResult, bonusNumber);
-                    rankTable.updateResultRankTable(rank);
+                    RankCondition rankCondition = rankEachLotto(lotto, drawResult, bonusNumber);
+                    rankTable.updateIfPresent(rankCondition);
                 });
 
         return rankTable;
