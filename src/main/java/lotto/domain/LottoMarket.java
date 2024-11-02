@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,8 +10,6 @@ import lotto.Lotto;
 public class LottoMarket {
 
     private final LottoMaker lottoMaker = new LottoMaker();
-
-    private static final int LOTTO_PRICE = 1000;
 
     public List<Lotto> buyLotto(int money) {
 

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.Constant.*;
+
 import java.util.List;
 import lotto.Lotto;
 
@@ -7,20 +9,11 @@ public class NumbersComparator {
 
     private static final int TOTAL_RANK_TYPES = 5;
 
-    private static final int FIRST_PLACE_MATCH_COUNT = 6;
-    private static final int SECOND_AND_THIRD_PLACE_MATCH_COUNT = 5;
-    private static final int FOURTH_PLACE_MATCH_COUNT = 4;
-    private static final int FIFTH_PLACE_MATCH_COUNT = 3;
-
-    private static final int FIRST_PLACE_INDEX = 0;
-    private static final int SECOND_PLACE_INDEX = 1;
-    private static final int THIRD_PLACE_INDEX = 2;
-    private static final int FOURTH_PLACE_INDEX = 3;
-    private static final int FIFTH_PLACE_INDEX = 4;
-
     private final List<Lotto> myLottos;
 
     private final WinningNumbers winningNumbers;
+
+    private int[] rank = new int[TOTAL_RANK_TYPES];
 
     public NumbersComparator(List<Lotto> lottos, WinningNumbers winningNumbers) {
         this.myLottos = lottos;
@@ -28,7 +21,6 @@ public class NumbersComparator {
     }
 
     public int[] determineRank() {
-        int[] rank = new int[TOTAL_RANK_TYPES];
         for (int i=0; i<myLottos.size(); i++) {
             List<Integer> myNumbers = myLottos.get(i).getNumbers();
             int matchCount = countMatchedNumbers(myNumbers);
