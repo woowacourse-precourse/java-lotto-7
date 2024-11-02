@@ -57,4 +57,28 @@ public class LottoService {
     public void initializeBonusNumber() {
         this.bonusNumber = inputView.inputBonusNumber();
     }
+
+    public void calculateLottoScore() {
+        for (Lotto lotto : lottoList) {
+            int matchCount = countMatches(lotto.getNumbers(), winnerLottoNumber.getNumbers());
+            boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
+
+            lottoScoreboard.calculateIncrementNumber(matchCount, bonusMatch);
+        }
+    }
+
+    private int countMatches(List<Integer> ticketNumbers, List<Integer> winnerNumbers) {
+        int matchCount = 0;
+        for (int number : ticketNumbers) {
+            if (winnerNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public void displayWinningResults() {
+        outputView.printScoreboard(lottoScoreboard);
+    }
+
 }
