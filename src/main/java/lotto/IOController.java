@@ -21,4 +21,8 @@ public class IOController {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return Console.readLine();
     }
+
+    public void printWinningStatistics(double statistic) {
+        System.out.println("총 수익률은 " + statistic + "%입니다.");
+    }
 }
