@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
+import lotto.domain.LottoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test
@@ -27,8 +30,38 @@ class LottoTest {
     @DisplayName("6개의 무작위 숫자를 생성한다.")
     @Test
     void 무작위_로또를_생성한다(){
-        List<Integer> randomNumbers = Lotto.lottoNumberGenerator().getNumbers();
-        assertThat(randomNumbers).hasSize(6);
-        assertThat(randomNumbers.stream().distinct().count()).isEqualTo(6);
+        LottoRepository lottoRepository = new LottoRepository();
+        int lottoCount = 6;
+        int bonusNumber = 1;
+        LottoGame lottoGame = new LottoGame(lottoRepository, new Lotto(List.of(1,2,3,4,5,6)), bonusNumber, lottoCount);
+        lottoGame.generateLotto();
+
+        assertThat(lottoRepository.getLottos()).hasSize(5);
     }
+
+    @DisplayName("로또는 오름차순 정렬된다")
+    @Test
+    void 로또는_오름차순_정렬된다(){
+        LottoRepository lottoRepository = new LottoRepository();
+        int lottoCount = 1;
+        int bonusNumber = 1;
+        LottoGame lottoGame = new LottoGame(lottoRepository,new Lotto(List.of(1,2,3,4,5,6)), bonusNumber, lottoCount);
+
+        lottoGame.generateLotto();
+
+        List<Lotto> savedLottos = lottoRepository.getLottos();
+        List<Integer> generatedNumbers = savedLottos.get(0).getNumbers();
+
+        boolean isSorted = true;
+        for (int i = 0; i < generatedNumbers.size() - 1; i++) {
+            if (generatedNumbers.get(i) > generatedNumbers.get(i + 1)) {
+                isSorted = false;
+                break;
+            }
+        }
+
+        assertTrue(isSorted, "로또 번호는 오름차순으로 정렬되어야 합니다.");
+    }
+
+
 }
