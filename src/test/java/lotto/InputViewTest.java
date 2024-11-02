@@ -66,6 +66,19 @@ public class InputViewTest extends NsTest {
                 .hasMessage(ErrorMessage.BONUS_RANGE.getError());
     }
 
+    @Test
+    @DisplayName("checkRangeListTest 정상 범위 테스트")
+    void checkRangeListTest(){
+        boolean isInRange = true;
+        assertThat(isInRange).isEqualTo(InputView.checkRangeList(List.of(1,2,3,4,5,6)));
+    }
+
+    @Test
+    @DisplayName("checkRangeListTest 범위 벗어난 테스트")
+    void checkRangeListTest2(){
+        boolean isInRange = true;
+        assertThat(!isInRange).isEqualTo(InputView.checkRangeList(List.of(1,2,3,4,5,66)));
+    }
 
     @Override
     public void runMain() {
