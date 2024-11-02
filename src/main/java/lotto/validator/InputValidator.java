@@ -4,7 +4,7 @@ import lotto.domain.Constants;
 
 public class InputValidator {
 
-    public void validateForm(int lottoPrice) {
+    public void validatePriceForm(int lottoPrice) {
         if(lottoPrice % Constants.PURCHASE_FORM != 0)
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위여야합니다.");
     }
@@ -30,4 +30,10 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 입력받은 문자열이 빈문자열 또는 null입니다.");
     }
 
+    public void validateNumbersForm(String lottoWinningNumbers) {
+        if(lottoWinningNumbers.startsWith(",") && lottoWinningNumbers.endsWith(",")){
+            throw new IllegalArgumentException("[ERROR] 입력받은 당첨번호의 문자열 형식이 불일치합니다.");
+            // 쉼표가 연달아 있을 경우에는?
+        }
+    }
 }

@@ -34,12 +34,13 @@ public class LottoService {
     public int validateLottoPrice(String lottoPrice) {
         inputValidator.validateEmpty(lottoPrice);
         int lottoPriceInt = inputValidator.validateNumber(lottoPrice);
-        inputValidator.validateForm(lottoPriceInt);
+        inputValidator.validatePriceForm(lottoPriceInt);
 
         return lottoPriceInt;
     }
 
     public void validateWinningNumbers(String lottoWinningNumbers) {
         inputValidator.validateEmpty(lottoWinningNumbers);
+        inputValidator.validateNumbersForm(lottoWinningNumbers);
     }
 }
