@@ -1,12 +1,15 @@
 package lotto.validation;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoValue;
+import lotto.util.Converter;
 
 public class BonusNumberValidator {
 
     public static void validateBonusNumber(String input) {
         validateNull(input);
         validateStartZero(input);
+        validateRange(input);
     }
 
     private static void validateNull(String input) {
@@ -21,4 +24,10 @@ public class BonusNumberValidator {
         }
     }
 
+    private static void validateRange(String input) {
+        long number = Converter.convertStringToLong(input);
+        if (number < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
+        }
+    }
 }

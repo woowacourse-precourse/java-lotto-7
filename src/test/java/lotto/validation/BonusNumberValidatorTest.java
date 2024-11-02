@@ -25,4 +25,13 @@ class BonusNumberValidatorTest {
             BonusNumberValidator.validateBonusNumber(input);
         });
     }
+
+    @DisplayName("입력된 수가 1~45의 범위가 아닌 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"48", "848"})
+    void validateRange(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BonusNumberValidator.validateBonusNumber(input);
+        });
+    }
 }
