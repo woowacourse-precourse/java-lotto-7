@@ -6,6 +6,8 @@ import lotto.exception.bonus.BonusErrorMessages;
 import java.util.List;
 
 public class BonusNumber {
+    private static final String POSITIVE_INTEGER_REGEX = "^[1-9]\\d*$";
+
     private final int number;
 
     public BonusNumber(String input, List<Integer> winningNumbers) {
@@ -23,7 +25,7 @@ public class BonusNumber {
     }
 
     private void checkIsPositiveInteger(String input) {
-        if (!input.matches("^[1-9]\\d*$")) {
+        if (!input.matches(POSITIVE_INTEGER_REGEX)) {
             throw new IllegalArgumentException(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
         }
     }

@@ -1,5 +1,6 @@
 package lotto.domain.winning;
 
+import lotto.common.LottoConstants;
 import lotto.exception.winningNumbers.WinningNumbersErrorMessages;
 
 import java.util.Arrays;
@@ -9,6 +10,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
+    private static final int EXPECTED_SIZE = 6;
+    private static final String NUMBER_DELIMITER = ",";
+    private static final String WHITESPACE_OR_TRAILING_COMMA_REGEX = ".*\\s.*|.*,$";
+    private static final String COMMA_SEPARATED_NUMBERS_REGEX = "^(-?\\d+,)*-?\\d+$";
+
     private final List<Integer> numbers;
 
     public WinningNumbers(String input) {
@@ -26,7 +32,7 @@ public class WinningNumbers {
     }
 
     private List<Integer> parseNumbers(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -38,7 +44,6 @@ public class WinningNumbers {
         checkRange(numbers);
     }
 
-
     private void checkEmptyOrNull(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_EMPTY.getMessage());
@@ -46,19 +51,19 @@ public class WinningNumbers {
     }
 
     private void checkWhitespaceOrTrailingComma(String input) {
-        if (input.contains(" ") || input.endsWith(",")) {
+        if (input.matches(WHITESPACE_OR_TRAILING_COMMA_REGEX)) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_WHITESPACE.getMessage());
         }
     }
 
     private void checkInvalidCharacters(String input) {
-        if (!input.matches("^(-?\\d+,)*-?\\d+$")) {
+        if (!input.matches(COMMA_SEPARATED_NUMBERS_REGEX)) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_DELIMITER.getMessage());
         }
     }
 
     private void checkSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != EXPECTED_SIZE) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.INVALID_SIZE.getMessage());
         }
     }
@@ -71,7 +76,7 @@ public class WinningNumbers {
     }
 
     private void checkRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < LottoConstants.MIN_LOTTO_NUMBER || num > LottoConstants.MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(WinningNumbersErrorMessages.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }

@@ -11,18 +11,23 @@ import lotto.domain.winning.WinningResult;
 import lotto.exception.lotto.LottoErrorMessages;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class LottoServiceImpl implements LottoService {
+    private static final int FULL_MATCH_COUNT = 6;
+    private static final int FIVE_MATCH_COUNT = 5;
+    private static final int FOUR_MATCH_COUNT = 4;
+    private static final int THREE_MATCH_COUNT = 3;
+    private static final double PERCENTAGE_MULTIPLIER = 100.0;
+    private static final String NUMERIC_REGEX = "\\d+";
+
     @Override
     public boolean validateAmount(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_EMPTY.getMessage());
         }
 
-        if (!input.matches("\\d+")) {
+        if (!input.matches(NUMERIC_REGEX)) {
             throw new IllegalArgumentException(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
         }
 
@@ -50,8 +55,8 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public double calculateEarningsRate(int totalPrize, int amount) {
-        double rate = ((double) totalPrize / amount) * 100;
-        return Math.round(rate * 100) / 100.0;
+        double rate = ((double) totalPrize / amount) * PERCENTAGE_MULTIPLIER;
+        return Math.round(rate * PERCENTAGE_MULTIPLIER) / PERCENTAGE_MULTIPLIER;
     }
 
     @Override
@@ -67,7 +72,7 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, LottoConstants.LOTTO_NUMBER_COUNT);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER, LottoConstants.LOTTO_NUMBER_COUNT);
         return new Lotto(randomNumbers);
     }
 
@@ -79,25 +84,23 @@ public class LottoServiceImpl implements LottoService {
         List<Integer> winningNums = winningNumbers.getNumbers();
 
         int matchCount = (int) lottoNumbers.stream().filter(winningNums::contains).count();
-
         boolean hasBonus = lottoNumbers.contains(bonusNumber.getNumber());
 
-        if (matchCount == 6) {
+        if (matchCount == FULL_MATCH_COUNT) {
             return Rank.FIRST;
         }
-        if (matchCount == 5 && hasBonus) {
+        if (matchCount == FIVE_MATCH_COUNT && hasBonus) {
             return Rank.SECOND;
         }
-        if (matchCount == 5) {
+        if (matchCount == FIVE_MATCH_COUNT) {
             return Rank.THIRD;
         }
-        if (matchCount == 4) {
+        if (matchCount == FOUR_MATCH_COUNT) {
             return Rank.FOURTH;
         }
-        if (matchCount == 3) {
+        if (matchCount == THREE_MATCH_COUNT) {
             return Rank.FIFTH;
         }
         return Rank.NO_WIN;
     }
 }
-

@@ -42,6 +42,6 @@ public class OutputView {
 
     public static void printEarningsRate(double earningsRate) {
         String formattedEarningsRate = earningsFormatter.format(earningsRate);
-        System.out.printf("총 수익률은 %s%%입니다.\n", formattedEarningsRate);
+        System.out.printf(ViewConstants.EARNINGS_RATE, formattedEarningsRate);
     }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningResult {
+    private static final int INITIAL_COUNT = 0;
+
     private final Map<Rank, Integer> rankCounts;
 
     public WinningResult(List<Rank> ranks) {
@@ -14,16 +16,12 @@ public class WinningResult {
     private Map<Rank, Integer> calculateRankCounts(List<Rank> ranks) {
         Map<Rank, Integer> counts = new HashMap<>();
         for (Rank rank : Rank.values()) {
-            counts.put(rank, 0);
+            counts.put(rank, INITIAL_COUNT);
         }
         for (Rank rank : ranks) {
             counts.put(rank, counts.get(rank) + 1);
         }
         return counts;
-    }
-
-    public int getRankCount(Rank rank) {
-        return rankCounts.getOrDefault(rank, 0);
     }
 
     public Map<Rank, Integer> getRankCounts() {
