@@ -11,15 +11,15 @@ public enum LottoRank {
     FIRST(6, 2_000_000_000);
 
     private final int correctCount;
-    private final int price;
+    private final long price;
 
-    LottoRank(int correctCount, int price) {
+    LottoRank(int correctCount, long price) {
         this.correctCount = correctCount;
         this.price = price;
     }
 
     public static LottoRank getRank(Lotto lotto, Lotto winner, Integer bonusBall) {
-        return findByCorrectCountAndBonusBall(lotto.getCorrectCount(winner), lotto.isBonusBallMatch(bonusBall));
+        return findByWinningCountAndBonusBall(lotto.winningCount(winner), lotto.isBonusBallMatch(bonusBall));
     }
 
     public static List<LottoRank> getRanks(List<Lotto> lottos, Lotto winner, Integer bonusBall) {
@@ -28,7 +28,7 @@ public enum LottoRank {
                 .toList();
     }
 
-    public static LottoRank findByCorrectCountAndBonusBall(int correctCount, boolean bonusBall) {
+    public static LottoRank findByWinningCountAndBonusBall(int correctCount, boolean bonusBall) {
         LottoRank rottoRank = Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.correctCount == correctCount)
                 .findAny()
@@ -49,7 +49,7 @@ public enum LottoRank {
         return condition;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 }
