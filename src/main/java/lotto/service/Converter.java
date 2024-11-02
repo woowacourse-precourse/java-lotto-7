@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.MatchingCountResult;
 import lotto.constant.WinningCondition;
+import lotto.dto.MatchingCountResult;
 
 public class Converter {
     public static MatchingCountResult matchingCounterResultConvert(int winningCount, int bonusCount) {
