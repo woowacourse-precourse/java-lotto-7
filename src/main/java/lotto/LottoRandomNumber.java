@@ -11,6 +11,10 @@ public class LottoRandomNumber implements RandomNumber {
     private static final int endNumber = 45;
     private static final int count = 6;
 
+    public LottoRandomNumber(){
+
+    }
+
     @Override
     public List<Integer> randomLottoNumbers(){
         return Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count);
