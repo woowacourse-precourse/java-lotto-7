@@ -4,7 +4,9 @@ public enum LottoRule {
 
     LOTTO_SIZE(6),
     MIN_NUMBER(1),
-    MAX_NUMBER(45);
+    MAX_NUMBER(45),
+    TICKET_PRICE(1_000),
+    MAXIMUM_PURCHASE_PRICE(100_000);
 
     private final int number;
 

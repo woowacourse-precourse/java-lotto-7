@@ -2,8 +2,6 @@ package lotto.exception;
 
 import static java.lang.String.format;
 import static lotto.controller.util.WinningNumberSplitter.DELIMITER;
-import static lotto.domain.LottoStore.MAXIMUM_PURCHASE_PRICE;
-import static lotto.domain.LottoStore.TICKET_PRICE;
 import static lotto.domain.constant.LottoRule.*;
 
 public enum ExceptionMessage {
@@ -20,10 +18,10 @@ public enum ExceptionMessage {
             format("잘못된 입력 형식입니다: %s다음 숫자를 입력해 주세요.", DELIMITER)
     ),
     INVALID_PURCHASING_UNIT(
-            format("%d원 단위로 구매해주세요.", TICKET_PRICE.intValue())
+            format("%d원 단위로 구매해주세요.", TICKET_PRICE.getNumber())
     ),
     INVALID_PURCHASING_PRICE(
-            format("최대 %d원까지 구매 가능합니다.", MAXIMUM_PURCHASE_PRICE.intValue())
+            format("최대 %d원까지 구매 가능합니다.", MAXIMUM_PURCHASE_PRICE.getNumber())
     ),
     INVALID_LOTTO_SIZE(
             format("로또 번호는 %d개여야 합니다.", LOTTO_SIZE.getNumber())
@@ -33,7 +31,6 @@ public enum ExceptionMessage {
                     MIN_NUMBER.getNumber(),
                     MAX_NUMBER.getNumber())
     );
-
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
