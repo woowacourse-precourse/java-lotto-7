@@ -37,4 +37,12 @@ class PrizeTest {
     void shouldReturnFifthPrizeWhenThreeNumbersMatch() {
         assertEquals(Prize.FIFTH, Prize.valueOf(3, false));
     }
+
+    @Test
+    @DisplayName("2개 이하 번호 일치 시 NONE 등수 반환")
+    void shouldReturnNonePrizeWhenTwoOrLessNumbersMatch() {
+        assertEquals(Prize.NONE, Prize.valueOf(2, false));
+        assertEquals(Prize.NONE, Prize.valueOf(1, false));
+        assertEquals(Prize.NONE, Prize.valueOf(0, false));
+    }
 }
