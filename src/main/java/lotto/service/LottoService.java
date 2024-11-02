@@ -7,7 +7,7 @@ import lotto.domain.lottomachine.LottoMachine;
 import lotto.dto.response.LottosResponse;
 
 import java.util.EnumMap;
-import java.util.List;
+import java.util.Map;
 
 public class LottoService {
 
@@ -34,5 +34,17 @@ public class LottoService {
     public EnumMap<Ranking, Integer> drawResult(Lotto winningNumber, Integer bonusNumber) {
         WinningNumbers winningNumbers = WinningNumbers.from(winningNumber, bonusNumber);
         return lottoMachine.draw(purchasedLottos, winningNumbers);
+    }
+
+    public double calculateEarningRate(EnumMap<Ranking, Integer> statistics) {
+        Money totalPrize = Money.ZERO;
+        for (Map.Entry<Ranking, Integer> rank : statistics.entrySet()) {
+            int amount = rank.getKey().getPrize() * rank.getValue();
+            Money prize = Money.from(amount);
+            totalPrize = totalPrize.plus(prize);
+        }
+        Money purchasedAmount = Money.from(purchasedLottos.getLottos().size() * 1000);
+        Money divide = totalPrize.divideWithRoundHalfUp(purchasedAmount);
+        return divide.doubleValue() * 100;
     }
 }

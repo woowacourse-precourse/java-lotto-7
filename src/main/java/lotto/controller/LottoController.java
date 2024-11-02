@@ -31,8 +31,9 @@ public class LottoController {
     public void run() {
         LottosResponse lottosResponse = getPurchasedLottos();
         outputView.printPurchasedLottos(lottosResponse);
-        EnumMap<Ranking, Integer> drawResult = getDrawResult();
-        outputView.printDrawResult(drawResult);
+        EnumMap<Ranking, Integer> statistics = getStatistics();
+        double earningRate = lottoService.calculateEarningRate(statistics);
+        outputView.printDrawResult(statistics, earningRate);
     }
 
     private LottosResponse getPurchasedLottos() {
@@ -46,7 +47,7 @@ public class LottoController {
         }
     }
 
-    private EnumMap<Ranking, Integer> getDrawResult() {
+    private EnumMap<Ranking, Integer> getStatistics() {
         Lotto winningNumber = getWinningNumber();
         return getBonusNumberAndDraw(winningNumber);
     }

@@ -21,17 +21,17 @@ public class LottoMachine {
     }
 
     public EnumMap<Ranking, Integer> draw(PurchasedLottos lottos, WinningNumbers winningNumbers) {
-        EnumMap<Ranking, Integer> rankings = new EnumMap<>(Ranking.class);
+        EnumMap<Ranking, Integer> statistics = new EnumMap<>(Ranking.class);
         for (Ranking ranking : Ranking.values()) {
-            rankings.put(ranking, 0);
+            statistics.put(ranking, 0);
         }
         for (Lotto lotto : lottos.getLottos()) {
             int matchingCount = lotto.getMatchingCount(winningNumbers.getWinningLotto());
             boolean hasBonusNumber = lotto.hasBonusNumber(winningNumbers.getBonusNumber());
             Ranking ranking = Ranking.getRanking(matchingCount, hasBonusNumber);
-            Integer count = rankings.get(ranking);
-            rankings.replace(ranking, count + 1);
+            Integer count = statistics.get(ranking);
+            statistics.replace(ranking, count + 1);
         }
-        return rankings;
+        return statistics;
     }
 }

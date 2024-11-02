@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
@@ -22,8 +23,16 @@ public class Money {
                 .compareTo(BigDecimal.ZERO) != ZERO_THRESHOLD;
     }
 
+    public Money plus(Money amount) {
+        return new Money(this.amount.add(amount.amount));
+    }
+
     public Money divide(Money money) {
         return new Money(this.amount.divideToIntegralValue(money.amount));
+    }
+
+    public Money divideWithRoundHalfUp(Money money) {
+        return new Money(this.amount.divide(money.amount, 4, RoundingMode.HALF_UP));
     }
 
     public boolean isGreaterThan(Money other) {
@@ -32,6 +41,10 @@ public class Money {
 
     public int intValue() {
         return amount.intValue();
+    }
+
+    public double doubleValue() {
+        return amount.doubleValue();
     }
 
     public boolean equals(Object object) {
