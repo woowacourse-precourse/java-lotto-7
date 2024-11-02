@@ -9,7 +9,16 @@ public class InputView {
         return readInt();
     }
 
+    public static String readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return read();
+    }
+
     private static int readInt() {
-        return Integer.parseInt(Console.readLine());
+        return Integer.parseInt(read());
+    }
+
+    private static String read() {
+        return Console.readLine();
     }
 }

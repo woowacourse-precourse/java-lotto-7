@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
 import lotto.domain.Won;
 import lotto.dto.LottoPaper;
@@ -16,5 +17,9 @@ public class LottoController {
 
         OutputView.renderPaper(paper);
         return paper;
+    }
+
+    public void match(LottoPaper lottoPaper) {
+        Lotto lotto = Lotto.fromString(InputView.readWinningNumbers());
     }
 }
