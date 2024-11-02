@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class InputParser {
 
-    public static List<Integer> parseNumbers(String input) {
+    public static List<Integer> parseStringToInt(String input) {
         StringTokenizer stringTokenizer = new StringTokenizer(input, ",");
         List<Integer> numbers = new ArrayList<>();
 

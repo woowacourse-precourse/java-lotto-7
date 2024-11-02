@@ -14,7 +14,7 @@ class InputParserTest {
         String input = "1,2,삼,4,5,6";
 
         assertThrows(IllegalArgumentException.class,
-                () -> InputParser.parseNumbers(input));
+                () -> InputParser.parseStringToInt(input));
     }
 
 }
