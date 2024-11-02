@@ -27,17 +27,34 @@ public class LottoPlay {
 
     public void drawLottos() {
         List<Integer> winningNumbers = this.lottoMachine.getWinningNumbers();
+        int bonusNumber = this.lottoMachine.getBonusNumber();
+
         for(Lotto lotto : this.user.getLottos()) {
             long matchCount = lotto.getNumbers().stream()
                     .filter(winningNumbers::contains)
                     .count();
-            if(matchCount == 5) {
-                if(lotto.getNumbers().contains(this.lottoMachine.getBonusNumber())) {
-                    this.user.addWinning(WinningLotto.SECOND);
-                }
-            }
-            // TODO : 2등과 3등 구분할 수 있도록 변경하기
-            user.addWinning(WinningLotto.from(matchCount));
+
+            WinningLotto rank = determineRank(matchCount, lotto, bonusNumber);
+            user.addWinning(rank);
         }
+    }
+
+    private WinningLotto determineRank(long matchCount, Lotto lotto, int bonusNumber) {
+        if(matchCount == 5) {
+            return drawBonus(lotto, bonusNumber);
+        }
+        return WinningLotto.from(matchCount);
+    }
+
+    private WinningLotto drawBonus(Lotto lotto, int bonusNumber) {
+        boolean hasBonus = isHasBonus(lotto, bonusNumber);
+        if(hasBonus) {
+            return WinningLotto.SECOND;
+        }
+        return WinningLotto.THIRD;
+    }
+
+    private boolean isHasBonus(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }
