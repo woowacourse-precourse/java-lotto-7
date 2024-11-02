@@ -11,7 +11,7 @@ import lotto.MatchingCountResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MatchingCountResultServiceTest {
+class LottoResultServiceTest {
     private LottoResultService lottoResultService;
     private LottoSeller lottoSeller;
 
@@ -34,7 +34,5 @@ class MatchingCountResultServiceTest {
 
         assertEquals(5, matchingCountResults.get(0).winningCondition().getMatchCount());
         assertFalse(matchingCountResults.get(1).winningCondition().isBonusMatch());
-
-
     }
 }
