@@ -16,7 +16,11 @@ public class LottoController {
         List<Lotto> allLottos = generator.generateLottos(price);
         OutputView.showLottoCount(allLottos.size());
         OutputView.showAllLottos(allLottos);
+
+        List<Integer> winNumbers = InputView.winInput();
+
     }
+
 
 
 
