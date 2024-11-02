@@ -1,6 +1,9 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public enum Score {
 
@@ -31,6 +34,16 @@ public enum Score {
                 .findFirst()
                 .orElse(ZERO);
     }
+
+    public static Map<Score, Integer> aggregate(List<Score> scores) {
+        return scores.stream()
+                .collect(Collectors.toMap(
+                        score -> score,
+                        score -> 1,
+                        Integer::sum
+                ));
+    }
+
 
     public int getMatchCount() {
         return matchCount;
