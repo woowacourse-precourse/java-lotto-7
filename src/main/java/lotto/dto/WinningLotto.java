@@ -3,6 +3,7 @@ package lotto.dto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.ErrorMessages;
 
 public class WinningLotto extends Lotto{
     private int bonusNumber;
@@ -15,7 +16,7 @@ public class WinningLotto extends Lotto{
         Set<Integer> numSet = new HashSet<>(numbers);
 
         if(!numSet.add(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호에 중복된 값이 입력되었습니다.");
+            throw new IllegalArgumentException(ErrorMessages.ERROR_DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }

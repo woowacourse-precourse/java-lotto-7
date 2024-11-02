@@ -1,6 +1,7 @@
 package lotto.domain.calculator;
 
 import lotto.domain.calculator.Calculator;
+import lotto.utils.ErrorMessages;
 
 public class PurchaseCalculator implements Calculator {
     private static final int LOTTO_PRICE = 1000;
@@ -17,13 +18,13 @@ public class PurchaseCalculator implements Calculator {
 
     private void validateMinimumAmount(int amount){
         if(amount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상의 금액이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.ERROR_MINIMUM_PURCHASE_AMOUNT.getMessage());
         }
     }
 
     private void validateDivisibleByLottoPrice(int amount){
         if(amount % LOTTO_PRICE != 0){
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 }

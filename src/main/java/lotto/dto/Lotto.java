@@ -3,6 +3,7 @@ package lotto.dto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +20,7 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
@@ -27,7 +28,7 @@ public class Lotto {
         Set<Integer> numSet = new HashSet<>(numbers);
 
         if(numSet.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 값이 입력되었습니다.");
+            throw new IllegalArgumentException(ErrorMessages.ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 }

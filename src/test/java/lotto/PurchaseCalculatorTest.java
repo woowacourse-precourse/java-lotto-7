@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.domain.calculator.Calculator;
 import lotto.domain.calculator.PurchaseCalculator;
+import lotto.utils.ErrorMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class PurchaseCalculatorTest {
         //when&then
         assertThrows(IllegalArgumentException.class, () -> {
             calculator.calculate(500);
-        }, "[ERROR] 구입 금액은 1,000원 이상의 금액이어야 합니다");
+        }, ErrorMessages.ERROR_MINIMUM_PURCHASE_AMOUNT.getMessage());
     }
 
     @Test
@@ -29,7 +30,7 @@ public class PurchaseCalculatorTest {
         //when&then
         assertThrows(IllegalArgumentException.class, () -> {
             calculator.calculate(1500);
-        }, "[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+        }, ErrorMessages.ERROR_INVALID_AMOUNT_UNIT.getMessage());
     }
 
     @Test
@@ -38,6 +39,6 @@ public class PurchaseCalculatorTest {
         int purchasedCount = calculator.calculate(4000);
 
         //then
-        assertEquals(4, purchasedCount, "[ERROR] 로또 구매 계산이 제대로 이루어지고 있지 않습니다.");
+        assertEquals(4, purchasedCount, ErrorMessages.ERROR_INCORRECT_LOTTO_PURCHASE_CALCULATION.getMessage());
     }
 }

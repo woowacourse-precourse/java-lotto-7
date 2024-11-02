@@ -12,6 +12,7 @@ import lotto.domain.LottoProcessor;
 import lotto.domain.calculator.Calculator;
 import lotto.domain.calculator.PurchaseCalculator;
 import lotto.domain.lottoGeneratir.RandomLottoGenerator;
+import lotto.utils.LottoMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +43,6 @@ public class LottoProcessorTest {
         System.setOut(originalOut); // 원래의 System.out으로 복원
         String output = outputStream.toString(); // 출력 내용 문자열로 변환
 
-        assertEquals("8개를 구매했습니다.", output.trim()); // 예상 출력과 비교
+        assertEquals("8"+ LottoMessages.PURCHASED_LOTTO_COUNT.getMessage(), output.trim()); // 예상 출력과 비교
     }
 }
