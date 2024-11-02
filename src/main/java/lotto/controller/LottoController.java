@@ -40,7 +40,7 @@ public class LottoController {
         LottoResult lottoResult = lottoMachine.winLotto(purchasedLotto, winningLotto);
 
         outputView.showWinStatus(lottoResult);
-        outputView.showProfit(lottoResult.getWinner(), lottoMachine.inMoney());
+        outputView.showProfit(lottoResult, lottoMachine.inMoney());
     }
 
     private BonusBall inputBonusNumber(Lotto lotto) {

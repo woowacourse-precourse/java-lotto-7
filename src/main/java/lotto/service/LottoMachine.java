@@ -1,9 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.Rank;
@@ -56,24 +54,28 @@ public class LottoMachine {
     }
 
     public LottoResult winLotto(PurchasedLottos purchasedLotto, WinningLotto winningLotto) {
-        long max = 0;
-        boolean bonus = false;
+        List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : purchasedLotto.getLottos()) {
+            boolean bonus = false;
             List<Integer> lottoNums = lotto.lottoNums();
-            long count = winningLotto.lottoNums()
-                    .stream()
-                    .filter(lottoNums::contains)
-                    .count();
-            max = Math.max(count, max);
+            long count = sameNumberCountOf(winningLotto, lottoNums);
             if (lottoNums.contains(winningLotto.bonusBall().getNum())) {
                 bonus = true;
             }
+            ranks.add(calculateRank(count, bonus));
         }
 
-        return new LottoResult(calculateRank(max, bonus));
+        return LottoResult.from(ranks);
     }
 
-    private static Rank calculateRank(long count, boolean bonus) {
+    private long sameNumberCountOf(WinningLotto winningLotto, List<Integer> lottoNums) {
+        return winningLotto.lottoNums()
+                .stream()
+                .filter(lottoNums::contains)
+                .count();
+    }
+
+    private Rank calculateRank(long count, boolean bonus) {
         return Rank.calculateRank(count, bonus);
     }
 }

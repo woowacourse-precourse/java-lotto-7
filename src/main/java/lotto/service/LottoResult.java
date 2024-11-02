@@ -2,27 +2,31 @@ package lotto.service;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import lotto.domain.Rank;
 
 public class LottoResult {
 
-    Map<Rank, Integer> result = new LinkedHashMap<>();
-    Rank winner;
+    private Map<Rank, Integer> result = new LinkedHashMap<>();
 
-    public LottoResult(Rank rank) {
+    private LottoResult() {
         for (Rank values : Rank.values()) {
             result.put(values, 0);
         }
-        result.put(rank, 1);
-        winner = rank;
+    }
+
+    public static LottoResult from(List<Rank> ranks) {
+        LottoResult lottoResult = new LottoResult();
+        Map<Rank, Integer> result = lottoResult.result;
+        for (Rank rank : ranks) {
+            result.put(rank, result.get(rank) + 1);
+        }
+
+        return lottoResult;
     }
     
     public Map<Rank, Integer> getResult() {
         return result;
-    }
-
-    public Rank getWinner() {
-        return winner;
     }
 }

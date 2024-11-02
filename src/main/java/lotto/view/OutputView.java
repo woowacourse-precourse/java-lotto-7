@@ -45,8 +45,12 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public void showProfit(Rank rank, int money) {
-        long sum = rank.getPrize();
+    public void showProfit(LottoResult lottoResult, int money) {
+        Map<Rank, Integer> result = lottoResult.getResult();
+        long sum = 0;
+        for (Rank rank : result.keySet()) {
+            sum += (rank.getPrize() * result.get(rank));
+        }
         System.out.printf("총 수익률은 %.1f%%입니다.", (((double)sum/money) * 100.0));
     }
 
