@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.global.constant.LottoConstant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PurchasedLottos {
@@ -12,7 +13,7 @@ public class PurchasedLottos {
 
     private PurchasedLottos(final int count) {
         purchaseLottos = new ArrayList<>();
-
+        generateRandomNumber(count);
     }
 
     public static PurchasedLottos from(final int count) {
@@ -28,5 +29,9 @@ public class PurchasedLottos {
             );
             purchaseLottos.add(Lotto.from(numbers));
         }
+    }
+
+    public List<Lotto> getPurchasedLottos() {
+        return Collections.unmodifiableList(purchaseLottos);
     }
 }
