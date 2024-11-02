@@ -16,4 +16,10 @@ public class OutputView {
                 .map(AutoLotto::getNumbers)
                 .forEach(System.out::println);
     }
+
+    public void error(String error) {
+        System.out.println(error + " 다시 입력하세요.");
+    }
+
+    //winningStatistics
 }

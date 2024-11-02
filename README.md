@@ -55,23 +55,23 @@
 
 ## InputView
 
-### 1. LottoTicketPrice - 로또 티켓 가격 입력
+### 1. getLottoPriceByUser - 로또 티켓 가격을 입력받는 뷰
 
-### 2. WinningNumber - 당첨 번호 입력 뷰
+### 2. getWinningLottoNumbers - 당첨 번호를 입력받는 뷰
 
-### 3. BonusNumber - 보너스 번호 입력 뷰
+### 3. getWinningLottoBonusNumber - 보너스 번호를 입력받는 뷰
 
 ## OutputView
 
 ### ResultView
 
-### 1. LottoTicketView - 발행한 로또 수량 및 번호 출력 뷰
+### 1. lottoCount - 발행한 로또 수량 출력 뷰
 
-### 2. WinningResultView - 당첨 내역 출력 뷰
+### 2. lottos - 발행한 로또 출력 뷰
 
-### 3. RateOfReturnView - 수익률 출력 뷰
+### 3. winningStatistics - 당첨통계 출력 뷰
 
-### ExceptionView - 예외 상황 시 에러 문구 출력 뷰 [ERROR] + 에러메시지
+### 4. error - 예외 상황 시 에러 문구 출력 뷰 
 
 # [Controller]
 

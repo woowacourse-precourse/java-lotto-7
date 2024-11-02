@@ -3,11 +3,11 @@ import lotto.domain.AutoLotto;
 import lotto.domain.message.LottoErrorMessage;
 import lotto.domain.message.LottoPriceErrorMessage;
 import lotto.domain.rule.LottoRules;
+import lotto.utils.DefaultErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.domain.WinningLotto;
@@ -89,6 +89,29 @@ public class LottoServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoErrorMessage.WINNING_NUMBER_FORMAT_ERROR.getMessage());
     }
+
+    @DisplayName("유효하지 않은 보너스 번호를 입력하면 예외가 발생한다. - 숫자 형식이 아닌 경우")
+    @Test
+    void setWinningLottoBonusNumberWithString() {
+        WinningLotto winningLotto = lottoService.createWinningLotto("1,2,3,4,5,6");
+        String invalidWinningNumber = "number";
+
+        assertThatThrownBy(() -> lottoService.setWinningLottoBonusNumber(winningLotto, invalidWinningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DefaultErrorMessage.INVALID_INTEGER_FORMAT.getMessage());
+    }
+
+    @DisplayName("유효하지 않은 보너스 번호를 입력하면 예외가 발생한다. - 범위를 벗어난 숫자가 포함된 경우")
+    @Test
+    void setWinningLottoBonusNumberWithOutOfRangeNumber() {
+        WinningLotto winningLotto = lottoService.createWinningLotto("1,2,3,4,5,6");
+        String invalidWinningNumber = "80";
+
+        assertThatThrownBy(() -> lottoService.setWinningLottoBonusNumber(winningLotto, invalidWinningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBER_IN_RANGE.getMessage());
+    }
+
 
 
 

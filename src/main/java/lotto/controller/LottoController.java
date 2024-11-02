@@ -26,6 +26,7 @@ public class LottoController {
         outputView.lottos(autoLottos);
         WinningLotto winningLotto = getWinningLottoOrReapeat();
         setWinningLottoBonusNumberOrRepeat(winningLotto);
+        //outputView.winningStatistics
 
     }
 
@@ -35,7 +36,7 @@ public class LottoController {
                 String inputLottoPrice = inputView.getLottoPriceByUser();
                 return lottoService.createAutoLottosByLottoPrice(inputLottoPrice);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + " " + "다시 입력하세요.");
+                outputView.error(e.getMessage());
             }
         }
     }
@@ -46,7 +47,7 @@ public class LottoController {
                 String inputWinningLottoNumbers = inputView.getWinningLottoNumbers();
                 return lottoService.createWinningLotto(inputWinningLottoNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + " " + "다시 입력하세요.");
+                outputView.error(e.getMessage());
             }
         }
     }
@@ -57,7 +58,7 @@ public class LottoController {
                 String inputWinningLottoBonusNumber = inputView.getWinningLottoBonusNumber();
                 return lottoService.setWinningLottoBonusNumber(winningLotto, inputWinningLottoBonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage() + " " + "다시 입력하세요.");
+                outputView.error(e.getMessage());
             }
         }
     }
