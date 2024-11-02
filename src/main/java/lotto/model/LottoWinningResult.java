@@ -26,7 +26,7 @@ public class LottoWinningResult {
     }
 
     private double calculatePercentage(long proceeds, int investmentAmount) {
-        return (double) proceeds / investmentAmount * 100;
+        return (double) proceeds / investmentAmount * 100.0;
     }
 
     public Map<LottoRank, Integer> getLottoWinningResult() {
