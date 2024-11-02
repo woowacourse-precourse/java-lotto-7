@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.enums.IOMessage;
 import lotto.enums.WinningType;
 
-public class outputView {
+public class OutputView {
   public void printQuantityOfLottos(int buyedLottosQuantity) {
     System.out.println(buyedLottosQuantity + IOMessage.PRINT_QUANTITY_OF_LOTTOS.getMessage());
   }
