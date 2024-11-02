@@ -27,7 +27,7 @@ public class LottoMachineController {
 
   public void runLottoMachine() {
 
-    this.money = new Money(inputView.readMoney());
+    tryReadMoney();
 
     int buyedLottosQuantity = money.buyedLottosQuantity();
 
@@ -54,4 +54,14 @@ public class LottoMachineController {
     outputView.printStatistic(winningStatistic1);
     outputView.printReturnRate(returnRate, winningStatistic1);
   }
+
+  private void tryReadMoney() {
+    try {
+      String inputMoney = inputView.readMoney();
+      this.money = new Money(inputMoney);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      tryReadMoney();
+    }
+}
 }
