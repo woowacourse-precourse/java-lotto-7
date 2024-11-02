@@ -1,12 +1,13 @@
 package lotto.ui;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InputViewTest extends NsTest {
+class InputViewTest  {
 
     private InputView inputView;
 
@@ -16,20 +17,14 @@ class InputViewTest extends NsTest {
     }
 
     @Test
-    void 숫자_입력_테스트() {
-        run("1000");
-        String result = inputView.userInput();
-        assertEquals("1000", result);
+    void 로또_티켓_발행() {
+        int result = inputView.processUserInput("1000");
+        assertEquals(1, result);
     }
 
-    @Test
-    void 숫자_아닌_입력_예외_발생() {
-        run("abc");
-        assertThrows(IllegalArgumentException.class, () -> inputView.userInput());
-    }
-
-    @Override
-    protected void runMain() {
-
+    @ParameterizedTest
+    @ValueSource(strings = {"1500", "1000j", "0", "-1000"})
+    void 유효하지_않은_입력_예외_발생(String input) {
+        assertThrows(IllegalArgumentException.class, () -> inputView.processUserInput(input));
     }
 }
