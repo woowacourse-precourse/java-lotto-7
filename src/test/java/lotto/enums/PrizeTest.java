@@ -25,4 +25,10 @@ class PrizeTest {
     void shouldReturnThirdPrizeWhenFiveNumbersMatchWithoutBonus() {
         assertEquals(Prize.THIRD, Prize.valueOf(5, false));
     }
+
+    @Test
+    @DisplayName("4개 번호 일치 시 FOURTH 등수 반환")
+    void shouldReturnFourthPrizeWhenFourNumbersMatch() {
+        assertEquals(Prize.FOURTH, Prize.valueOf(4, false));
+    }
 }
