@@ -1,14 +1,13 @@
 package lotto.view;
 
-import lotto.dto.PurchaseOverview;
-import lotto.dto.Quantity;
+import lotto.dto.*;
 
 public class OutputView {
-    private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
+    public void printPurchaseOverview(LottosDto lottosDto) {
+        System.out.println(OutputMaker.makePurchaseOverview(lottosDto));
+    }
 
-    public void printPurchaseOverview(Quantity quantity,
-                                      PurchaseOverview overview) {
-        System.out.println(String.format(PURCHASE_MESSAGE, quantity.getQuantity()));
-        System.out.println(overview.getOverview());
+    public void printWinningResult(WinningResultDto resultDto) {
+        System.out.println(OutputMaker.makeFinalResult(resultDto));
     }
 }
