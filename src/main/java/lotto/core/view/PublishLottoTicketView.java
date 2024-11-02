@@ -15,8 +15,7 @@ public class PublishLottoTicketView implements View<LottoTicketDto> {
         validateContent(content);
 
         List<LottoDto> lottos = content.lottos();
-
-        int count = content.lottos().size();
+        int count = content.amount().lottoCount();
         String lottoNumberContent = buildLottoNumberContent(lottos, count);
 
         System.out.println();
