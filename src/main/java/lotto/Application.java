@@ -50,5 +50,11 @@ public class Application {
             winningCounts[set1.size()]++;
             set1.addAll(winningNumbers);
         }
+
+        // 당첨 내역 출력
+        System.out.println("당첨 통계\n---");
+        for (int i = 0; i < 7; i++) {
+            System.out.println(i + "개 일치 (5,000원) - " + winningCounts[i] + "개");
+        }
     }
 }
