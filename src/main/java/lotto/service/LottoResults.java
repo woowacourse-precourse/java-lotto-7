@@ -22,15 +22,21 @@ public class LottoResults {
         }
     }
 
-    private int calculateMatchCount(WinningNumbers winningNumbers, Lotto lotto) {
-        int matchCount = 0;
-        List<Integer> winningNumbersList = winningNumbers.getWinningNumbers();
+    private Rank determineRank(WinningNumbers winningNumbers,BonusNumber bonusNumber,Lotto lotto){
+        int matchCount = calculateMatchCount(winningNumbers,lotto);
+        boolean bonusMatch = lotto.contains(bonusNumber.getBonusNumber());
+        return Rank.matchLotto(matchCount,bonusMatch);
+    }
 
-        for (Integer number : lotto.getNumbers()) {
-            if (winningNumbersList.contains(number)) {
+    private int calculateMatchCount(WinningNumbers winningNumbers, Lotto lotto) {
+        int matchCount =0;
+        List<Integer> winningNumber = winningNumbers.getWinningNumbers();
+        for (Integer number : winningNumber) {
+            if (winningNumber.contains(number)) {
                 matchCount++;
             }
         }
         return matchCount;
     }
+
 }
