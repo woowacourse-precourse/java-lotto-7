@@ -86,4 +86,10 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateWinningLottoRange(winningLottoInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_정수가_아닌_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Validator.validateBonusNumberInput("1j"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
