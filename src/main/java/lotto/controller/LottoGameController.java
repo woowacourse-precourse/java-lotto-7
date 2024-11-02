@@ -33,11 +33,10 @@ public class LottoGameController {
             lottoService.setWinningNumbers(winningNumbers, bonusNumber);
 
             // 3. 결과 계산 및 출력
-            resultHandler.calculateAndPrintResults();
-            resultHandler.printProfitRate(purchaseAmount);
+            resultHandler.calculateAndDisplayResults();
+            resultHandler.displayProfitRate(purchaseAmount);
         } finally {
             inputHandler.close();
         }
     }
-
 }

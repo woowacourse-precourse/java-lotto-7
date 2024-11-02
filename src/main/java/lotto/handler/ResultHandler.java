@@ -15,24 +15,38 @@ public class ResultHandler {
         this.outputView = outputView;
     }
 
-    public void calculateAndPrintResults() {
-        // 당첨 결과 계산 및 출력
-        Map<PrizeTier, Long> prizeCounts = lottoService.calculateResults();
+    public void calculateAndDisplayResults() {
+        Map<PrizeTier, Long> prizeCounts = getPrizeCounts();
+        Map<PrizeTier, Integer> integerPrizeCounts = convertToIntegerPrizeCounts(prizeCounts);
+        displayPrizeResults(integerPrizeCounts);
+    }
 
-        // Long 값을 Integer로 변환하여 OutputView에 전달
-        Map<PrizeTier, Integer> prizeCountsAsIntegers = prizeCounts.entrySet().stream()
+    private Map<PrizeTier, Long> getPrizeCounts() {
+        return retrieveResultsFromService();
+    }
+
+    private Map<PrizeTier, Long> retrieveResultsFromService() {
+        return lottoService.calculateResults();
+    }
+
+    private Map<PrizeTier, Integer> convertToIntegerPrizeCounts(Map<PrizeTier, Long> prizeCounts) {
+        return prizeCounts.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         entry -> entry.getValue().intValue()
                 ));
-
-        outputView.printWinningResults(prizeCountsAsIntegers);
     }
 
-    public void printProfitRate(int purchaseAmount) {
-        // 수익률 계산 및 출력
-        double profitRate = lottoService.calculateProfitRate(purchaseAmount);
+    private void displayPrizeResults(Map<PrizeTier, Integer> integerPrizeCounts) {
+        outputView.printWinningResults(integerPrizeCounts);
+    }
+
+    public void displayProfitRate(int purchaseAmount) {
+        double profitRate = getProfitRate(purchaseAmount);
         outputView.printProfitRate(profitRate);
     }
 
+    private double getProfitRate(int purchaseAmount) {
+        return lottoService.calculateProfitRate(purchaseAmount);
+    }
 }
