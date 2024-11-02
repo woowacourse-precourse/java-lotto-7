@@ -1,4 +1,4 @@
-package lotto.drawsystem;
+package lotto.drawsystem.result;
 
 import java.util.List;
 

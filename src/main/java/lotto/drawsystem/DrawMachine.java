@@ -1,5 +1,7 @@
 package lotto.drawsystem;
 
+import lotto.drawsystem.result.DrawResults;
+
 public class DrawMachine {
 
     public DrawResults runDraws(Integer amount) {
