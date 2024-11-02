@@ -19,7 +19,7 @@ public class BonusNum {
         this.bonusNum = bonusNum;
     }
 
-    public boolean isContained(Lotto lotto) {
+    public boolean isContained(final Lotto lotto) {
         return lotto.containsBonus(bonusNum);
     }
 

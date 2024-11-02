@@ -16,7 +16,7 @@ public class LottoResult {
         totalAmount = PrizeCalculator.calcTotalPrizeAmount(results);
     }
 
-    public double calculateRate(int purchasePrice) {
+    public double calculateRate(final int purchasePrice) {
         return ((double) totalAmount / purchasePrice) * 100;
     }
 

@@ -33,16 +33,6 @@ public class InputService {
         return new WinningLotto(lotto, bonusNum);
     }
 
-    private static <T> T executeWithRetry(Supplier<T> action) {
-        while (true) {
-            try {
-                return action.get();
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR + e.getMessage() + RETRY);
-            }
-        }
-    }
-
     private Lotto readWinningLottoNumbers() {
         return executeWithRetry(() -> {
             String input = inputView.readWinningNumbers();
@@ -58,4 +48,13 @@ public class InputService {
         });
     }
 
+    private static <T> T executeWithRetry(Supplier<T> action) {
+        while (true) {
+            try {
+                return action.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR + e.getMessage() + RETRY);
+            }
+        }
+    }
 }

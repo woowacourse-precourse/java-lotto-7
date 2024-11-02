@@ -19,22 +19,22 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    public Lotto(LottoNumGenerator lottoNumGenerator) {
+    public Lotto(final LottoNumGenerator lottoNumGenerator) {
         numbers = generateLottoNumbers(lottoNumGenerator);
     }
 
-    public int countMatchingNumbers(Set<Integer> winningNumbers) {
+    public int countMatchingNumbers(final Set<Integer> winningNumbers) {
         Set<Integer> purchasedNumbers = new HashSet<>(numbers);
         purchasedNumbers.retainAll(winningNumbers);
         return purchasedNumbers.size();
     }
 
-    public boolean containsBonus(int bonusNumber) {
+    public boolean containsBonus(final int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 
@@ -47,29 +47,29 @@ public class Lotto {
         return numbers.toString();
     }
 
-    private List<Integer> generateLottoNumbers(LottoNumGenerator lottoNumGenerator) {
+    private List<Integer> generateLottoNumbers(final LottoNumGenerator lottoNumGenerator) {
         return lottoNumGenerator.generateNumbers(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_COUNT);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateNumSize(numbers);
         validateLottoNum(numbers);
         validateDuplicated(numbers);
     }
 
-    private void validateNumSize(List<Integer> numbers) {
+    private void validateNumSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUM_COUNT_ERROR);
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
+    private void validateDuplicated(final List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException(LOTTO_NUM_DUPLICATED);
         }
     }
 
-    private void validateLottoNum(List<Integer> numbers) {
+    private void validateLottoNum(final List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < LOTTO_MIN_NUM || num > LOTTO_MAX_NUM)) {
             throw new IllegalArgumentException(LOTTO_NUM_RANGE_ERROR);
         }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RandomUniqueLottoNumGenerator implements LottoNumGenerator {
     @Override
-    public List<Integer> generateNumbers(int min, int max, int cnt) {
+    public List<Integer> generateNumbers(final int min, final int max, final int cnt) {
         return Randoms.pickUniqueNumbersInRange(min, max, cnt);
     }
 }

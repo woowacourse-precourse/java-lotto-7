@@ -29,13 +29,13 @@ public enum WinningResult {
     private final String placeMessage;
     private final int prizeAmount;
 
-    WinningResult(String match, String placeMessage, int prizeAmount) {
+    WinningResult(final String match, final String placeMessage, final int prizeAmount) {
         this.match = match;
         this.placeMessage = placeMessage;
         this.prizeAmount = prizeAmount;
     }
 
-    public static WinningResult fromMatchCount(String matchCount) {
+    public static WinningResult fromMatchCount(final String matchCount) {
         WinningResult winningResult = MATCH_WINNING_RESULT.get(matchCount);
         if (winningResult == null) {
             throw new IllegalArgumentException(MATCH_ERROR);
@@ -43,7 +43,7 @@ public enum WinningResult {
         return winningResult;
     }
 
-    public String makeSentence(int num) {
+    public String makeSentence(final int num) {
         String amount = numberFormat.format(prizeAmount);
         return String.format(TEMPLATE, placeMessage, amount, num);
     }

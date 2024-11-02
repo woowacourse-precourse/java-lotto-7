@@ -9,7 +9,7 @@ import java.util.List;
 public class LottoDto {
     private final List<Integer> numbers;
 
-    public LottoDto(Lotto lotto) {
+    public LottoDto(final Lotto lotto) {
         this.numbers = new ArrayList<>(lotto.getNumbers());
         numbers.sort(Comparator.naturalOrder());
     }

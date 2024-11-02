@@ -12,7 +12,7 @@ public class DefaultLottoResultCalculator implements LottoResultCalculator {
     private static final int MIN_MATCH_COUNT = 3;
 
     @Override
-    public Map<WinningResult, Integer> checkLottoResult(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
+    public Map<WinningResult, Integer> checkLottoResult(final List<Lotto> purchasedLottos, final WinningLotto winningLotto) {
         Map<WinningResult, Integer> results = initializeResults();
         for (Lotto lotto : purchasedLottos) {
             updateLottoResult(results, lotto, winningLotto);
@@ -26,7 +26,7 @@ public class DefaultLottoResultCalculator implements LottoResultCalculator {
         return results;
     }
 
-    private void updateLottoResult(Map<WinningResult, Integer> results, Lotto lotto, WinningLotto winningLotto) {
+    private void updateLottoResult(final Map<WinningResult, Integer> results, final Lotto lotto, final WinningLotto winningLotto) {
         int matchCount = winningLotto.countMatches(lotto);
         if (matchCount < MIN_MATCH_COUNT) {
             return;
@@ -36,7 +36,7 @@ public class DefaultLottoResultCalculator implements LottoResultCalculator {
         results.put(result, results.get(result) + 1);
     }
 
-    private WinningResult findResultAsMatchCount(int matchCount, boolean isBonusMatch) {
+    private WinningResult findResultAsMatchCount(final int matchCount, final boolean isBonusMatch) {
         if (matchCount == 5 && isBonusMatch) {
             return WinningResult.BONUS;
         }

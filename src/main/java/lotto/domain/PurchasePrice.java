@@ -9,7 +9,7 @@ public class PurchasePrice {
     private final int purchasePrice;
     private final int quantity;
 
-    public PurchasePrice(int purchasePrice) {
+    public PurchasePrice(final int purchasePrice) {
         validatePurchasePrice(purchasePrice);
         this.purchasePrice = purchasePrice;
         quantity = calculateQuantity();

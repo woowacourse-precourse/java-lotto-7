@@ -38,12 +38,12 @@ public class OutputView {
         System.out.print(sb);
     }
 
-    public void printTotalRate(double rate) {
+    public void printTotalRate(final double rate) {
         String format = String.format(TOTAL_RATE, rate);
         System.out.print(format + PERCENTAGE);
     }
 
-    private List<LottoDto> sortLottos(List<Lotto> lottos) {
+    private List<LottoDto> sortLottos(final List<Lotto> lottos) {
         return lottos.stream().map(LottoDto::new).toList();
     }
 

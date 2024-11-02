@@ -34,12 +34,12 @@ public class LottoController {
         printResult(lottoResult, rate);
     }
 
-    private void printPurchaseAmountAndLotto(int quantity, PurchasedLotto purchasedLotto) {
+    private void printPurchaseAmountAndLotto(final int quantity, final PurchasedLotto purchasedLotto) {
         outputView.printPurchaseAmount(quantity);
         outputView.printPurchasedLottos(purchasedLotto.getPurchasedLottos());
     }
 
-    private void printResult(LottoResult lottoResult, double rate) {
+    private void printResult(final LottoResult lottoResult, final double rate) {
         outputView.printLottoResults(lottoResult.getResults());
         outputView.printTotalRate(rate);
     }
