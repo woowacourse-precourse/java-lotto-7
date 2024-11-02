@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     public static Lotto newInstance() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,3, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45, 6);
         return new Lotto(randomNumbers);
     }
 
