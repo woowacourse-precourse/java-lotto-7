@@ -31,11 +31,11 @@
   - 보너스 볼 당첨 여부: hasBonus
   - 당첨 금액: amount 
   - Prize(int count, boolean hasBonus, int amount) 
-    - THREE(3, false, 5_000),
-    - FOUR(4, false, 50_000),
-    - FIVE(5, false, 1_500_000),
-    - BONUS(5, true, 30_000,000),
-    - SIX(6, false, 2_000_000_000)
+    - FIFTH(3, false, 5_000),
+    - FOURTH(4, false, 50_000),
+    - THIRD(5, false, 1_500_000),
+    - SECOND(5, true, 30_000,000),
+    - FIRST(6, false, 2_000_000_000)
   - toString()
     - DecimalFormat formatter = new DecimalFormat("###,###")   
     - return count + "개 일치 (" + formatter.format(amount) + ") - "
