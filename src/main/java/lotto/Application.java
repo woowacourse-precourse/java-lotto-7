@@ -20,8 +20,9 @@ public class Application {
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        String lottoInput = Console.readLine();
-        //List<Integer> winningNumbers = parseWinningNumbers(lottoInput);  // TODO : 로또 번호 파싱 및 검증 로직
+        String winningNumberInput = Console.readLine();
+        List<Integer> winningNumbers = WinningNumberParser.parse(winningNumberInput);
+
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());

@@ -1,6 +1,7 @@
 package lotto;
 
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -12,5 +13,19 @@ public class WinningNumberParserTest {
         List<Integer> expected = List.of(1, 4, 8, 5, 44, 43);
         List<Integer> actual = WinningNumberParser.parse(input);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void 숫자가_아닌_값을_입력하면_예외가_발생한다() {
+        String input = "1,4,8,a,.,43";
+        assertThatThrownBy(() -> WinningNumberParser.parse(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void 공백이_포함되면_예외가_발생한다() {
+        String input = "1,4,8, 9, 10,43";
+        assertThatThrownBy(() -> WinningNumberParser.parse(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
