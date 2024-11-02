@@ -31,8 +31,21 @@ public class LottoPrize {
         checkLottoDuplicate(lottoPrizeNumbers);
     }
 
+    public static LottoPrize createLottoBonus(List<Integer> lottoPrizeNumbers, Integer bonusNumber) {
+        validateBonusNumber(lottoPrizeNumbers, bonusNumber);
+        return new LottoPrize(lottoPrizeNumbers, bonusNumber);
+    }
+
+    private static void validateBonusNumber(List<Integer>lottoPrizeNumbers, Integer bonusNumber) {
+        checkLottoNumberRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, new ArrayList<>(bonusNumber));
+        checkDuplicateBonusNumber(lottoPrizeNumbers, bonusNumber);
+    }
+
     public List<Integer> getLottoPrizeNumbers() {
         return lottoPrizeNumbers;
     }
 
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }
