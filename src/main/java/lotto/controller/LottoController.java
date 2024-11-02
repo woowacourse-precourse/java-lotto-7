@@ -20,6 +20,8 @@ public class LottoController {
         Lotto lottoWinningNumbers = getLottoWinningNumbers();
         int lottoBonusNumber = getLottoBonusNumber();
 
+        WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+
     }
 
     private int getMoney() {
@@ -56,4 +58,15 @@ public class LottoController {
         }
     }
 
+
+    private WinningLottoNumbers createWinningLottoNumbers(Lotto lottoWinningNumbers, int lottoBonusNumber) {
+        while (true) {
+            try {
+                return new WinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                lottoBonusNumber = getLottoBonusNumber();
+            }
+        }
+    }
 }
