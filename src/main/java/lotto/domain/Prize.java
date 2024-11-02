@@ -23,7 +23,7 @@ public enum Prize {
         return matchCount;
     }
 
-    public boolean isMatchBonusNumber() {
-        return matchBonusNumber;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

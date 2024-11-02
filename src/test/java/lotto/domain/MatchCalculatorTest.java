@@ -26,7 +26,7 @@ class MatchCalculatorTest {
         lottos.add(new Lotto(new ArrayList<>(List.of(10, 11, 12, 13, 14, 15))));
         winningNumber.addBonusNumber(7);
 
-        MatchCalculator matchCalculator = new MatchCalculator(winningNumber, lottos);
+        MatchCalculator matchCalculator = new MatchCalculator(winningNumber, new Lottos(lottos, new PurchaseMoney(7000)));
         matchCalculator.calculatePrize();
         Map<Prize, Integer> prizes = matchCalculator.getPrizes();
 
@@ -36,5 +36,22 @@ class MatchCalculatorTest {
         Assertions.assertThat(prizes.get(Prize.FOURTH)).isEqualTo(1);
         Assertions.assertThat(prizes.get(Prize.FIFTH)).isEqualTo(1);
         Assertions.assertThat(prizes.get(Prize.NOTHING)).isEqualTo(2);
+    }
+
+    @DisplayName("수익률을 계산한다.")
+    @Test
+    void 수익률_계산_테스트() {
+        SequencedSet<Integer> winNum = new LinkedHashSet<>(List.of(1, 2, 3, 4, 5, 6));
+
+        WinningNumber winningNumber = new WinningNumber(winNum);
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 7, 11, 12))));
+        winningNumber.addBonusNumber(7);
+
+        MatchCalculator matchCalculator = new MatchCalculator(winningNumber, new Lottos(lottos, new PurchaseMoney(8000)));
+        matchCalculator.calculatePrize();
+        double result = matchCalculator.calculateEarnRate();
+
+        Assertions.assertThat(result).isEqualTo(62.5);
     }
 }

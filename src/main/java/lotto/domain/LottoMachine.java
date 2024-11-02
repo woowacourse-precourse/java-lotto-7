@@ -16,7 +16,7 @@ public class LottoMachine {
         this.purchaseMoney = purchaseMoney;
     }
 
-    public List<Lotto> createLotto() {
+    public Lottos createLottos() {
         List<Lotto> result = new ArrayList<>();
         int lottoAmount = purchaseMoney.getMoney() / NumberConstant.LOTTO_PRICE;
 
@@ -26,6 +26,6 @@ public class LottoMachine {
             result.add(lotto);
         }
 
-        return result;
+        return new Lottos(result, purchaseMoney);
     }
 }

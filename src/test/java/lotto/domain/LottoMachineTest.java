@@ -21,8 +21,8 @@ class LottoMachineTest {
         PurchaseMoney purchaseMoney = new PurchaseMoney(purchaseLottoPrice);
         LottoMachine lottoMachine = new LottoMachine(numberGenerator, purchaseMoney);
 
-        List<Lotto> lottos = lottoMachine.createLotto();
-
-        Assertions.assertThat(lottos.size()).isEqualTo(purchaseLottoPrice / LOTTO_PRICE);
+        Lottos lottos = lottoMachine.createLottos();
+        List<Lotto> result = lottos.getLottos();
+        Assertions.assertThat(result.size()).isEqualTo(purchaseLottoPrice / LOTTO_PRICE);
     }
 }

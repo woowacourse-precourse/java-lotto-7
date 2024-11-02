@@ -20,8 +20,8 @@ public class Application {
         NumberGenerator numberGenerator = new NumberGenerator();
         PurchaseMoney purchaseMoney = new PurchaseMoney(100000000);
         LottoMachine lottoMachine = new LottoMachine(numberGenerator, purchaseMoney);
-        List<Lotto> lotto = lottoMachine.createLotto();
-        MatchCalculator matchCalculator = new MatchCalculator(winNum, lotto);
+        Lottos lottos = lottoMachine.createLottos();
+        MatchCalculator matchCalculator = new MatchCalculator(winNum, lottos);
         matchCalculator.calculatePrize();
         Map<Prize, Integer> prizes = matchCalculator.getPrizes();
 
