@@ -2,7 +2,9 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import lotto.entity.PurchaseAmount;
+import lotto.entity.WinnerNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +38,18 @@ class LotteryMachineModelTest {
 
         // then
         assertThat(lotteryMachineModel.getPurchaseAmount().purchaseAmount()).isEqualTo(insertPurchaseAmount);
+    }
+
+    @Test
+    void settingWinnerNumber_당첨번호_저장에_성공한다() {
+        // given
+        List<Integer> winnerNumbers = List.of(1, 5, 2, 25, 39, 12);
+        WinnerNumber winnerNumber = new WinnerNumber(winnerNumbers);
+
+        // when
+        lotteryMachineModel.settingWinnerNumber(winnerNumber);
+
+        // then
+        assertThat(lotteryMachineModel.getWinnerNumber().numbers()).isEqualTo(winnerNumbers);
     }
 }
