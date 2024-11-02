@@ -16,7 +16,7 @@ public class Application {
 
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = lottoGenerator.generateLotto();
-            lotto.printLottoNumbers();
+            System.out.println(lotto.getSortedLottoNumbers());
         }
 
 
