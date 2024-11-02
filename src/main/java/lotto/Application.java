@@ -50,11 +50,20 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
         }
 
+        List<Integer> winningNumbers = new ArrayList<>();
         for (String number : inputs) {
             if (!number.matches("\\d+")) {
                 throw new IllegalArgumentException("[ERROR] 6개의 당첨번호를 쉼표(,)로 구분하여 입력해주세요.");
             }
+            winningNumbers.add(Integer.parseInt(number));
         }
+
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber < 0 || winningNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 6개의 당첨번호는 모두 1이상 45이하의 숫자입니다.");
+            }
+        }
+
 
 
     }
