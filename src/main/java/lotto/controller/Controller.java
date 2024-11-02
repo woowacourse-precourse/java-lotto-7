@@ -3,6 +3,9 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Model;
+import lotto.domain.util.InputValidatorUtil;
+import lotto.validator.AmountValidator;
+import lotto.validator.NumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,15 +28,11 @@ public class Controller {
     }
 
     private Model init() {
-        while (true) {
-            try {
-                String amount = input.readAmount();
-                return new Model(amount);
-            } catch (IllegalArgumentException e) {
-                output.printException(e.getMessage());
-            }
-        }
-
+        String amount = InputValidatorUtil.inputValidate(
+                input::readAmount,
+                new AmountValidator()
+        );
+        return new Model(amount);
     }
 
     private void printLottos(Model model) {
@@ -45,37 +44,23 @@ public class Controller {
     }
 
     private void winningNumbers(Model model) {
-        modelSetting(() -> {
-            String winningNumbers = input.readWinningNumbers();
-            model.setWinningNumbers(winningNumbers);
-        });
+        String winningNumbers = InputValidatorUtil.inputValidate(
+                input::readWinningNumbers,
+                new NumberValidator()
+        );
+        model.setWinningNumbers(winningNumbers);
     }
 
     private void bonusNumber(Model model) {
-        modelSetting(() -> {
-            String bonusNumber = input.readBonusNumber();
-            model.setBonusNumber(bonusNumber);
-        });
-    }
-
-    private void modelSetting(Setting setting) {
-        while (true) {
-            try {
-                setting.set();
-                return;
-            } catch (IllegalArgumentException e) {
-                output.printException(e.getMessage());
-            }
-        }
+        String bonusNumber = InputValidatorUtil.inputValidate(
+                input::readBonusNumber,
+                new NumberValidator()
+        );
+        model.setBonusNumber(bonusNumber);
     }
 
     private void printResult(Model model) {
-
         output.printWinningDetail(model.getWinningMap());
         output.printResult(model.calculate());
     }
-}
-
-interface Setting {
-    void set();
 }
