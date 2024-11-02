@@ -1,5 +1,6 @@
 package lotto.config;
 
+import java.util.Arrays;
 import lotto.model.Lotto;
 
 public enum LottoRule {
@@ -25,4 +26,14 @@ public enum LottoRule {
         return prize;
     }
 
+    public static LottoRule findByMatch(int matchCount, boolean hasBonus) {
+        return Arrays.stream(values())
+                .filter(i -> i.isRuleMatch(matchCount, hasBonus))
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    private boolean isRuleMatch(int matchCount, boolean hasBonus) {
+        return this.matchCount == matchCount && (!this.hasBonus || hasBonus);
+    }
 }
