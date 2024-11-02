@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.util.LottoConstant;
 import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
@@ -34,5 +35,11 @@ public class LottoController {
         return IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(lottoNumberGenerator.generate()))
                 .toList();
+    }
+
+    private WinningLotto createWinningLotto() {
+        List<Integer> winningNumbers = inputView.readWinningNumbers();
+        int bonusNumber = inputView.readBonusNumber();
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }
