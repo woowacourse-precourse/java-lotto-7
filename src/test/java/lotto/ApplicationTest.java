@@ -49,7 +49,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
-            runException("1000j");
+            runException("1000j", "1000");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

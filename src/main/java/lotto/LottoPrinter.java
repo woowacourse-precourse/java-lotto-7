@@ -5,6 +5,10 @@ import java.util.Map;
 
 public class LottoPrinter {
 
+    public static void printLotto(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
+    }
+
     public static void printStatistics(LottoResult lottoResult) {
         StringBuilder sb = new StringBuilder();
         sb.append("당첨 통계\n");
@@ -19,7 +23,7 @@ public class LottoPrinter {
                 }
         );
 
-        sb.append(String.format("총 수익률은 %.2f%%입니다.\n", lottoResult.getRateReturn()));
+        sb.append(String.format("총 수익률은 %s%%입니다.\n", formatRateReturn(lottoResult.getRateReturn())));
 
         System.out.println(sb);
     }
@@ -32,8 +36,11 @@ public class LottoPrinter {
         );
     }
 
-    public static void printLotto(Lotto lotto) {
-        System.out.println(lotto.getNumbers());
+    private static String formatRateReturn(double rateReturn) {
+        String formatted = String.format("%.2f", rateReturn);
+        return formatted.endsWith("0") ?
+                formatted.substring(0, formatted.length() - 1) :
+                formatted;
     }
 
 }
