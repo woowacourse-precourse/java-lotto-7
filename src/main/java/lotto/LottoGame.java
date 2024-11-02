@@ -66,6 +66,7 @@ public class LottoGame {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             bonusNumber = Integer.parseInt(checkPositiveNumber(Console.readLine()));
             checkBonusNumberRange(bonusNumber);
+            checkBonusNumberRedundancy(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             lottoBonusNumberInput();
@@ -86,6 +87,15 @@ public class LottoGame {
 
         for (List<Integer> lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber);
+        }
+    }
+
+    // 보너스 번호가 로또 번호와 중복되는 숫자가 있는지 검증하는 메서드
+    private void checkBonusNumberRedundancy(int number) {
+        for (Integer lottoNumber : lotto.getNumbers()) {
+            if (lottoNumber == number) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
+            }
         }
     }
 
