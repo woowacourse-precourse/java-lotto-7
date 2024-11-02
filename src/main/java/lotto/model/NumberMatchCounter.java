@@ -18,6 +18,7 @@ public class NumberMatchCounter {
         this.bonusNumber = bonusNumber;
         this.prizeCountMap = new EnumMap<>(Prize.class);
         initializePrizeCountMap();
+        countPrize();
     }
 
     private void initializePrizeCountMap() {
@@ -48,7 +49,6 @@ public class NumberMatchCounter {
     }
 
     public Map<Prize, Integer> getPrizeCounts() {
-        countPrize();
         return prizeCountMap;
     }
 }
