@@ -17,9 +17,9 @@ public class Parser {
     private final static String DELIMITER_COMMA = ",";
     private final static int PURCHASE_AMOUNT_UNITS = 1000;
     private final static int ZERO = 0;
-    private final static int WINNING_NUMBER_SIZE = 6;
-    private final static int MINIMUM_WINNING_NUMBER = 1;
-    private final static int MAXIMUM_WINNING_NUMBER = 45;
+    private final static int LOTTO_NUMBER_SIZE = 6;
+    private final static int MINIMUM_LOTTO_NUMBER = 1;
+    private final static int MAXIMUM_LOTTO_NUMBER = 45;
 
     public static int parsePurchaseAmount(String input) {
         int purchaseAmount = Integer.parseInt(input);
@@ -48,15 +48,15 @@ public class Parser {
     }
 
     private static void validateWinningNumber(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != WINNING_NUMBER_SIZE) {
+        if (winningNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR_COUNT_IS_NOT_6_WINNING_NUMBER_MESSAGE);
         }
         for (int winningNumber : winningNumbers) {
-            if (winningNumber < MINIMUM_WINNING_NUMBER || winningNumber > MAXIMUM_WINNING_NUMBER) {
+            if (winningNumber < MINIMUM_LOTTO_NUMBER || winningNumber > MAXIMUM_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(ERROR_OUT_OF_RANGE_WINNING_NUMBER_MESSAGE);
             }
         }
-        if (new HashSet<>(winningNumbers).size() != WINNING_NUMBER_SIZE) {
+        if (new HashSet<>(winningNumbers).size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR_DUPLICATE_WINNING_NUMBER_MESSAGE);
         }
     }
