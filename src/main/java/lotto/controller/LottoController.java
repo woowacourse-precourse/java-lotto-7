@@ -23,4 +23,16 @@ public class LottoController {
     public void getPurchaseMoney() {
         purchaseMoney = InputValidator.getValidPurchaseMoney();
     }
+
+    /**
+     * 구입 금액만큼 로또 발행
+     */
+    public void generateLotto() {
+        int size = purchaseMoney / 1000;
+        for (int i = 0; i < size; i++) {
+            List<Integer> lottoNumber = Lotto.generateLottoNumber();
+            List<Integer> sortedLottoNumbers = Lotto.sortNumbers(lottoNumber);
+            lottos.add(new Lotto(sortedLottoNumbers));
+        }
+    }
 }
