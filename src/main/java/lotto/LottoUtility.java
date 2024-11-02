@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,5 +28,9 @@ public class LottoUtility {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String prize = formatter.format(standard.getPrizeMoney());
         return standard.getMatchedNumberCount() + "개 일치 (" + prize + "원) - " + matchedCount + "개";
+    }
+
+    public static void printMessage(String message) {
+        System.out.println(message);
     }
 }
