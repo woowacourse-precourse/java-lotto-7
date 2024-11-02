@@ -13,13 +13,13 @@ public class LottoController {
 
     public void run() {
         try {
-            PurchasedPrice purchasedPrice = new PurchasedPrice(InputView.readNumber());
+            PurchasedPrice purchasedPrice = new PurchasedPrice(InputView.readPurchasedPrice());
 
             Lottos purchasedLottos = generate(purchasedPrice);
             OutputView.printPurchasedLottos(purchasedLottos);
 
             Lotto winningNumbers = new Lotto(InputView.readWinningNumbers());
-            BonusNumber bonusNumber = new BonusNumber(InputView.readNumber());
+            BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
 
 
         } catch(IllegalArgumentException e) {

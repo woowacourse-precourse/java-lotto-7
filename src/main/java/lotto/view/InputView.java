@@ -6,7 +6,21 @@ import java.util.List;
 
 public class InputView {
 
-    public static int readNumber() {
+    private static final String READ_PURCHASED_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String READ_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String READ_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
+    public static int readPurchasedPrice() {
+        System.out.println(READ_PURCHASED_PRICE_MESSAGE);
+        return readNumber();
+    }
+
+    public static int readBonusNumber() {
+        System.out.println(READ_BONUS_NUMBER_MESSAGE);
+        return readNumber();
+    }
+
+    private static int readNumber() {
         String buffer = readInput();
         try {
             return Integer.parseInt(buffer);
@@ -16,6 +30,7 @@ public class InputView {
     }
 
     public static List<Integer> readWinningNumbers() {
+        System.out.println(READ_WINNING_NUMBERS_MESSAGE);
         String buffer = readInput();
         return Parse.winningNumbers(buffer);
     }
