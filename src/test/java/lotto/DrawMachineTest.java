@@ -1,10 +1,6 @@
 package lotto;
 
-import java.util.List;
-import lotto.drawsystem.DrawMachine;
-import lotto.user.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import lotto.committee.DrawMachine;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

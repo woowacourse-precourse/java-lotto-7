@@ -1,34 +1,46 @@
 package lotto.committee;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.TreeSet;
-import lotto.drawsystem.DrawMachine;
 
 public class WinningNumbers {
 
-    private final List<Integer> mainNumbers;
-    private final Integer bonusNumber;
+    private final List<List<Integer>> mainNumbers;
+    private final List<Integer> bonusNumbers;
 
-    private WinningNumbers(List<Integer> mainNumbers, Integer bonusNumber) {
-        this.mainNumbers = mainNumbers;
-        this.bonusNumber = bonusNumber;
+    private WinningNumbers(List<List<Integer>> mainNumbers, List<Integer> bonusNumbers) {
+        this.mainNumbers = Collections.unmodifiableList(mainNumbers);
+        this.bonusNumbers = bonusNumbers;
     }
 
     public WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(mainNumbers, bonusNumber);
+        return new WinningNumbers(mainNumbers, bonusNumbers);
     }
 
     public List<Integer> getMainNumbers() {
-        return mainNumbers;
+        List<Integer> wonMainNumber = mainNumbers.getFirst();
+        return wonMainNumber;
     }
 
     public Integer getBonusNumber() {
-        return bonusNumber;
+        Integer wonBonusNumber = bonusNumbers.getFirst();
+        return wonBonusNumber;
     }
 
-    private WinningNumbers runWinningNumbers() {
-        DrawMachine drawMachine = new DrawMachine();
-         = drawMachine.runSingleDraw();
-
+    void addMainNumbers(List<Integer> mainNumbers) {
+        this.mainNumbers.add(mainNumbers);
     }
+
+    void addBonusNumber(Integer bonusNumber) {
+        bonusNumbers.add(bonusNumber);
+    }
+
+    public Integer getMainSize() {
+        return mainNumbers.size();
+    }
+
+    public Integer getBonusSize() {
+        return bonusNumbers.size();
+    }
+
 }
