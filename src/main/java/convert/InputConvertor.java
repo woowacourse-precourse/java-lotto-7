@@ -47,16 +47,16 @@ public class InputConvertor {
         }
     }
 
-    public int convertInputBonusNumber(String inputBonusNumber) {
+    public int convertInputBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
         Validate.isNumber(inputBonusNumber);
         int bonusNumber = Integer.parseInt(inputBonusNumber);
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 
-    private static void validateBonusNumber(int bonusNumber) {
+    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         // TODO : 당첨 번호와 다른지 검증하기
-//        Validate.isNotInWinningNumbers();
+        Validate.isNotInWinningNumbers(winningNumbers, bonusNumber);
         Validate.isPositiveNumber(bonusNumber);
         Validate.isOneBetweenFortyFive(bonusNumber);
     }
