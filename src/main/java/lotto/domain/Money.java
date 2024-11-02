@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Money {
@@ -33,6 +35,14 @@ public class Money {
         return this.amount.divide(money.amount);
     }
 
+    public BigDecimal ratePercentage(Money money) throws ArithmeticException {
+        BigDecimal thisDecimal = new BigDecimal(this.amount);
+        BigDecimal moneyDecimal = new BigDecimal(money.amount);
+        return thisDecimal.divide(moneyDecimal, 3, RoundingMode.HALF_UP)
+                .multiply(new BigDecimal("100"))
+                .setScale(1, RoundingMode.HALF_UP);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,4 +55,5 @@ public class Money {
     public int hashCode() {
         return Objects.hashCode(amount);
     }
+
 }

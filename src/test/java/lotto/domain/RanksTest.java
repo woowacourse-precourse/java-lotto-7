@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Stream;
@@ -46,6 +47,19 @@ class RanksTest {
                 Arguments.of(List.of(THIRD, FOURTH), BigInteger.valueOf(1_550_000)),
                 Arguments.of(List.of(SECOND, FIFTH), BigInteger.valueOf(30_005_000))
         );
+    }
+
+    @DisplayName("구입 금액에 따른 수익률을 계산하여 반환한다.")
+    @Test
+    void calculateProfitRate() {
+        List<Rank> rankList = List.of(FIFTH);
+        Ranks ranks = new Ranks(rankList);
+        Money purchaseAmount = new Money(BigInteger.valueOf(13000));
+
+        BigDecimal bigDecimal = ranks.calculateProfitRate(purchaseAmount);
+
+        assertThat(bigDecimal).isEqualTo(new BigDecimal("38.5"));
+
     }
 
 }

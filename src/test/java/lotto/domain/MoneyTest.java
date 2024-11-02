@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.FieldSource;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
@@ -72,6 +73,25 @@ class MoneyTest {
         Money money2 = new Money(BigInteger.valueOf(amount2));
 
         assertThat(money1.equals(money2)).isEqualTo(expected);
+    }
+
+    @DisplayName("금액을 받아 비율 백분율을 소수점 둘째 자리에서 반올림하여 반환한다.")
+    @Test
+    void calculatePercentage() {
+        Money dividend = new Money(BigInteger.valueOf(5000));
+        Money divisor = new Money(BigInteger.valueOf(7000));
+
+        assertThat(dividend.ratePercentage(divisor)).isEqualTo(new BigDecimal("71.4"));
+    }
+
+    @DisplayName("0으로 비율 백분율 계산 시 예외가 발생한다.")
+    @Test
+    void cannotCalculatePercentageWithZero() {
+        Money dividend = new Money(BigInteger.valueOf(12500));
+        Money divisor = new Money(BigInteger.valueOf(0));
+
+        assertThatThrownBy(() -> dividend.ratePercentage(divisor))
+                .isInstanceOf(ArithmeticException.class);
     }
 
 }

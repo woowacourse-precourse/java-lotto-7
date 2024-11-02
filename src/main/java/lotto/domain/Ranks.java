@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -21,6 +22,11 @@ public class Ranks {
             total = total.add(rank.getPrizeAmount());
         }
         return new Money(total);
+    }
+
+    public BigDecimal calculateProfitRate(Money purchaseAmount) {
+        Money totalPrizeAmount = totalPrizeAmount();
+        return totalPrizeAmount.ratePercentage(purchaseAmount);
     }
 
 }
