@@ -28,5 +28,15 @@ public class Application {
                     .collect(Collectors.joining(", ", "[", "]"));
             System.out.println(lottoFormat);
         }
+
+        // 당첨 번호 입력 받기
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputNumbers = Console.readLine();
+        List<Integer> winningNumbers = Arrays.stream(inputNumbers.split(",", -1))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+
+
     }
 }
