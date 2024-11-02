@@ -29,4 +29,13 @@ public enum LottoRank {
     public int getPrize() {
         return prize;
     }
+
+    public static LottoRank valueOf(int matchCount, boolean matchBonus) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == matchCount && (rank.matchBonus == matchBonus || !rank.matchBonus)) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
 }
