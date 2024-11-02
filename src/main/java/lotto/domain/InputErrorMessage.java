@@ -15,7 +15,9 @@ public enum InputErrorMessage {
     PURCHASE_AMOUNT_UNIT("로또 구입 금액은 1,000원 단위로 입력해 주세요."),
 
     PURCHASE_AMOUNT_ONLY_NUMBER("구입 금액은 숫자로 입력해 주세요."),
-    BONUS_LOTTO_ONLY_ONE_NUMBER("보너스 번호를 숫자 1개로 입력해주세요.");
+    BONUS_LOTTO_ONLY_ONE_NUMBER("보너스 번호를 숫자 1개로 입력해주세요."),
+
+    RANDOM_LOTTO_IS_NOT_GENERATED("랜덤 로또가 생성되지 않았습니다.");
 
     private final String message;
 

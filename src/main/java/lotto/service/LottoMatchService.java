@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.domain.InputErrorMessage.RANDOM_LOTTO_IS_NOT_GENERATED;
+
 import java.util.List;
 import lotto.domain.Rank;
 import lotto.domain.lottos.RandomLottos;
@@ -19,9 +21,9 @@ public class LottoMatchService {
 
     public void matchLottos() {
         if (randomLottos.isEmptyRandomLotto()) {
-            throw new IllegalStateException("랜덤 로또가 생서되지 않았습니다.");
+            throw new IllegalStateException(RANDOM_LOTTO_IS_NOT_GENERATED.getMessage());
         }
-        
+
         List<Rank> matchedResults = randomLottos.matchLottoAsRank(userLotto);
         winningLotto.addAllMatchedRank(matchedResults);
     }
