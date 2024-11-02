@@ -7,7 +7,7 @@ import lotto.domain.LottoPrize;
 public class OutputView {
     private static final String BUY_COUNT = "\n%d개를 구매했습니다.\n";
     private static final String RESULT_MESSAGE = "\n당첨 통계\n---";
-    private static final String WINNING_STATISTICS = "%d개 일치 (%d원) - %d개\n";
+    private static final String WINNING_STATISTICS = "%d개 일치 (%s원) - %d개\n";
     private static final String TOTAL_RETURN = "총 수익률은 %.1f%%입니다.\n";
 
     public static void lottoList(LottoMachine lottoMachine) {
@@ -26,9 +26,11 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
 
         for (LottoPrize value : LottoPrize.values()) {
+            String formatNum = String.format("%,d", value.getPrize());
+
             System.out.printf(WINNING_STATISTICS
                     , value.getMatch()
-                    , value.getPrize()
+                    , formatNum
                     , value.getCount());
         }
 
