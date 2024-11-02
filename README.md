@@ -14,7 +14,7 @@
   - 문자열이 비어있으면 `IllegalArgumentException`을 발생시키고 "[ERROR] 빈 문자열이 입력되었습니다."를 출력
   - 입력된 당첨 번호 부분에 1 ~ 45 의 정수가 아닌 것이 있다면 `IllegalArgumentException`을 발생시키고 "[ERROR] 로또 번호는 1부터 45까지의 정수여야 합니다."를 출력
   - 당첨 번호가 중복되어 입력되었다면 `IllegalArgumentException`을 발생시키고 "[ERROR] 중복된 당첨 번호가 존재합니다."를 출력
-  - ~~입력된 당첨 번호의 개수가 6개가 아니라면 `IllegalArgumentException`을 발생시키고 "[ERROR] 로또 번호는 6개여야 합니다."를 출력~~ (Lotto 클래스에 이미 구현됨)
+  - 입력된 당첨 번호의 개수가 6개가 아니라면 `IllegalArgumentException`을 발생시키고 "[ERROR] 로또 번호는 6개여야 합니다."를 출력
 - 보너스 번호 입력받기
   - 보너스 번호는 1 ~ 45 의 정수로만 이루어져야 하고 입력된 당첨 번호와 중복되면 안됨
   - 문자열이 비어있으면 `IllegalArgumentException`을 발생시키고 "[ERROR] 빈 문자열이 입력되었습니다."를 출력
