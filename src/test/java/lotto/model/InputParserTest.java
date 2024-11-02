@@ -57,7 +57,7 @@ public class InputParserTest {
             IllegalArgumentException.class,
             () -> inputParser.parsePurchaseAmount(negativeInput)
         );
-        assertEquals(ErrorMessage.NEGATIVE_AMOUNT_ERROR, exception.getMessage());
+        assertEquals(ErrorMessage.INVALID_AMOUNT_ERROR, exception.getMessage());
     }
 
     @Test

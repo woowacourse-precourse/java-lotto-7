@@ -11,9 +11,9 @@ public class InputValidator {
         }
     }
 
-    public static void validateNonNegativeAmount(int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException(ErrorMessage.NEGATIVE_AMOUNT_ERROR);
+    public static void validatePositiveAmount(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_ERROR);
         }
     }
 

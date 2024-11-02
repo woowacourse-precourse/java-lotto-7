@@ -13,7 +13,7 @@ public class InputParser {
             InputValidator.validateNonEmpty(input);
 
             int purchaseAmount = Integer.parseInt(input);
-            InputValidator.validateNonNegativeAmount(purchaseAmount);
+            InputValidator.validatePositiveAmount(purchaseAmount);
             InputValidator.validateAmountUnit(purchaseAmount);
 
             return divideByThousand(purchaseAmount);
