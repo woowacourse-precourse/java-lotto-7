@@ -20,7 +20,7 @@ public class Customer {
 
     public WinningLotto setWinningLotto() {
         List<Integer> numbers = reader.readLottoNumbers();
-        int bonusNum = reader.readBonusNumber();
+        int bonusNum = reader.readBonusNumber(numbers);
         return lottoShop.setWinningLotto(numbers, bonusNum);
     }
 
