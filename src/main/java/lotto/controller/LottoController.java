@@ -1,8 +1,6 @@
 package lotto.controller;
 
 import lotto.exception.InvalidBonusNumberException;
-import lotto.exception.InvalidPurchaseAmountException;
-import lotto.exception.InvalidWinningNumbersException;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
@@ -16,6 +14,7 @@ import lotto.model.Rank;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.common.RepeatInputUntilSuccess.repeatInputUntilSuccess;
 import static lotto.exception.ErrorMessage.ALREADY_EXIST_IN_WINNING_NUMBERS;
 
 public class LottoController {
@@ -55,15 +54,7 @@ public class LottoController {
     }
 
     private void inputPurchaseAmount() {
-        while (true) {
-            try {
-                int amount = inputView.getPurchaseAmount();
-                purchase = new Purchase(amount);
-                break;
-            } catch (InvalidPurchaseAmountException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        purchase = repeatInputUntilSuccess(() -> new Purchase(inputView.getPurchaseAmount()));
     }
 
     private void publishLotto() {
@@ -75,31 +66,20 @@ public class LottoController {
     }
 
     private void assignWinningNumbers() {
-        while (true) {
-            try {
-                String winningString = inputView.getWinningString();
-                winningNumbers = new WinningNumbers(winningString);
-                break;
-            } catch (InvalidWinningNumbersException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        winningNumbers = repeatInputUntilSuccess(() -> new WinningNumbers(inputView.getWinningString()));
     }
 
     private void assignBonusNumber() {
-        while (true) {
-            try {
-                int number = inputView.getBonusNumber();
+        bonusNumber = repeatInputUntilSuccess(() -> {
+            int number = inputView.getBonusNumber();
+            checkBonusNumberDuplicate(number);
+            return new BonusNumber(number);
+        });
+    }
 
-                if (winningNumbers.get().contains(number)) {
-                    throw new InvalidBonusNumberException(ALREADY_EXIST_IN_WINNING_NUMBERS.getMessage());
-                }
-
-                bonusNumber = new BonusNumber(number);
-                break;
-            } catch (InvalidBonusNumberException e) {
-                System.out.println(e.getMessage());
-            }
+    private void checkBonusNumberDuplicate(int number) {
+        if (winningNumbers.get().contains(number)) {
+            throw new InvalidBonusNumberException(ALREADY_EXIST_IN_WINNING_NUMBERS.getMessage());
         }
     }
 
@@ -128,13 +108,13 @@ public class LottoController {
         outputView.printWinnings(winningCountOfEachRanks);
     }
 
-    private void printCalculatedRateOfReturn() {
+    private void printCalculatedTotalRateOfReturn() {
         double rateOfReturn = getCalculateTotalRateOfReturn();
         outputView.printRateOfReturn(rateOfReturn);
     }
 
     private void printWinningStatistics() {
         printCalculatedWinnings();
-        printCalculatedRateOfReturn();
+        printCalculatedTotalRateOfReturn();
     }
 }
