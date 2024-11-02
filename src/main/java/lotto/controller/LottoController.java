@@ -20,7 +20,7 @@ public class LottoController {
     private final LottoNumberStatistics lottoNumberStatistics = new LottoNumberStatistics();
     private final LottoPlayer lottoPlayer = new LottoPlayer();
     private HashMap<Integer, String> winnerNumbers = new HashMap<>();
-    private HashMap<Integer, Integer> winningResults = new HashMap<>();
+    private HashMap<String, String> winningResults = new HashMap<>();
 
     List<Lotto> lotteryTickets = new ArrayList<>();
 
