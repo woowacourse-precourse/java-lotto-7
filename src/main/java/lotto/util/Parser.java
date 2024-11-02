@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Parser {
 
-    private Parser(){
+    private Parser() {
     }
 
     private static final String DELIMITERS = ",";
