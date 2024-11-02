@@ -44,4 +44,13 @@ public class LottoServiceTest {
         Assertions.assertThat(winningNumber).isInstanceOf(Lotto.class);
     }
 
+    @DisplayName("당첨 번호 입력시 1 ~ 45 사이의 자연수가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0,2,3,4,5,6", "1,2,3,4,5,46"})
+    void 당첨_번호_입력시_범위_예외_발생_테스트(String input) {
+        Assertions.assertThatThrownBy(() -> lottoService.parseWinningNumberForLotto(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+    }
+
 }
