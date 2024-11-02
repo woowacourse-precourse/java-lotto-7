@@ -46,7 +46,7 @@ public class WinningService {
         return lottoResult.getResult();
     }
 
-    public double getProfit(int purchaseAmount) {
+    public String getProfit(int purchaseAmount) {
         return Profit.calculate(lottoResult.getResult(), purchaseAmount);
     }
 

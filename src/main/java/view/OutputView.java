@@ -30,8 +30,8 @@ public class OutputView {
         printStatistics(lottoResult);
     }
 
-    public static void printProfit(double profit) {
-        System.out.printf(PROFIT_MESSAGE, profit);
+    public static void printProfit(String formatProfit) {
+        System.out.printf(PROFIT_MESSAGE, formatProfit);
     }
 
     private static void printStatistics(Map<WinningPrice, Integer> lottoResult) {
