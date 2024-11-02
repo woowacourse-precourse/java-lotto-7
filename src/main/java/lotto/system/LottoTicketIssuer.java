@@ -12,7 +12,7 @@ public class LottoTicketIssuer { // 로또 구매 금액을 입력받아 로또 
         this.quantity = totalPayment / TICKET_PRICE;
     }
 
-    public List<List<Integer>> issueLottoTickets() {
+    public List<LottoTicket> issueLottoTickets() {
         return LottoTicketFactory.generate(quantity);
     }
 }

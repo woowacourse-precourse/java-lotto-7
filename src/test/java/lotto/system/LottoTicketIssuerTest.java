@@ -18,13 +18,13 @@ class LottoTicketIssuerTest {
 
         // when
         LottoTicketIssuer issuer = new LottoTicketIssuer(totalPayment);
-        List<List<Integer>> tickets = issuer.issueLottoTickets();
+        List<LottoTicket> tickets = issuer.issueLottoTickets();
 
         // then : 생성된 티켓 수량이 예상과 일치하는지 확인
         assertEquals(expectedQuantity, tickets.size(), "생성된 티켓 수량이 예상과 일치하지 않습니다.");
 
         // then : 각 티켓의 숫자 개수가 6개인지 확인
-        tickets.forEach(ticket -> assertEquals(6, ticket.size(), "로또 티켓의 숫자 개수가 6개가 아닙니다."));
+        tickets.forEach(ticket -> assertEquals(6, ticket.getTicket().size(), "로또 티켓의 숫자 개수가 6개가 아닙니다."));
     }
 
     @Test

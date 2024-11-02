@@ -13,21 +13,25 @@ public class LottoTicketFactory { // 로또를 사면 로또 번호를 생성하
 
     private static final int VALID_SIZE = 6;
 
-    public static List<List<Integer>> generate(int quantity) {
-        if (quantity == 1)
+    public static List<LottoTicket> generate(int quantity) {
+        if (quantity == 1) {
             return List.of(generateSingleTicket());
+        }
         return generateTickets(quantity);
     }
 
-    static List<List<Integer>> generateTickets(int quantity) {
-        return IntStream
-                .range(0, quantity)
-                .mapToObj(i -> generateSingleTicket())
-                .collect(Collectors.toCollection(() -> new ArrayList<>(quantity)));
+    static List<LottoTicket> generateTickets(int quantity) {
+        return IntStream.range(0, quantity)
+                .mapToObj(i -> LottoTicket.of(generateUniqueNumbersInRange()))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    private static LottoTicket generateSingleTicket() {
+        return LottoTicket.of(generateUniqueNumbersInRange());
     }
 
 
-    static List<Integer> generateSingleTicket() {
+    static List<Integer> generateUniqueNumbersInRange() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_LOWER_BOUND, LOTTO_NUMBER_UPPER_BOUND, VALID_SIZE);
     }
 }
