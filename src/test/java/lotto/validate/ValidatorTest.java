@@ -8,8 +8,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ValidatorTest {
-    private static final int MIN = 1;
-    private static final int MAX = 45;
     private static final int PRICE = 1_000;
 
     @Test
@@ -48,7 +46,7 @@ class ValidatorTest {
         List<Integer> list = List.of(1, 2, 3, 4, 5, 45);
 
         // when
-        boolean result = Validator.inRangeList(MIN, MAX, list);
+        boolean result = Validator.inRangeList(list);
 
         // then
         assertEquals(true, result);
@@ -61,7 +59,7 @@ class ValidatorTest {
         List<Integer> list = List.of(1, 2, 3, 4, 5, 46);
 
         // when
-        boolean result = Validator.inRangeList(MIN, MAX, list);
+        boolean result = Validator.inRangeList(list);
 
         // then
         assertEquals(false, result);
@@ -74,7 +72,7 @@ class ValidatorTest {
         int n = 10;
 
         // when
-        boolean result = Validator.inRange(MIN, MAX, n);
+        boolean result = Validator.inRange(n);
 
         // then
         assertEquals(true, result);
@@ -87,7 +85,7 @@ class ValidatorTest {
         int n = 46;
 
         // when
-        boolean result = Validator.inRange(MIN, MAX, n);
+        boolean result = Validator.inRange(n);
 
         // then
         assertEquals(false, result);
