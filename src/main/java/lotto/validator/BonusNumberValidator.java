@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumberRangeConstant;
-import lotto.constant.LottoNumbersValidatorConstant;
+import lotto.constant.LottoNumbersConstant;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -31,9 +31,9 @@ public class BonusNumberValidator {
     private boolean isOutOfRange(String bonusNumberInput) {
         BigInteger number = new BigInteger(bonusNumberInput);
         BigInteger min_number = BigInteger.valueOf(
-                LottoNumberRangeConstant.MIN_LOTTO_NUMBER.getValue());
+                LottoNumbersConstant.MIN_LOTTO_NUMBER.getValue());
         BigInteger max_number = BigInteger.valueOf(
-                LottoNumberRangeConstant.MAX_LOTTO_NUMBER.getValue());
+                LottoNumbersConstant.MAX_LOTTO_NUMBER.getValue());
 
         return number.compareTo(min_number) < 0 || number.compareTo(max_number) > 0;
     }

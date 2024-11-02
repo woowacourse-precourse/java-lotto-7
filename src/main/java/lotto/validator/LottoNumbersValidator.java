@@ -2,7 +2,7 @@ package lotto.validator;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumberRangeConstant;
-import lotto.constant.LottoNumbersValidatorConstant;
+import lotto.constant.LottoNumbersConstant;
 
 import java.math.BigInteger;
 import java.util.HashSet;
@@ -37,15 +37,15 @@ public class LottoNumbersValidator {
 
     private boolean isNotSixNumbers(String lottoNumbersInput) {
         return lottoNumbersInput.split(",").length !=
-                LottoNumbersValidatorConstant.LOTTO_NUMBERS_LENGTH.getValue();
+                LottoNumbersConstant.LOTTO_NUMBERS_LENGTH.getValue();
     }
 
     private boolean isOutOfRangeNumber(String lottoNumbersInput) {
         String[] numbers = lottoNumbersInput.split(",");
         BigInteger minNumber = BigInteger.valueOf(
-                LottoNumberRangeConstant.MIN_LOTTO_NUMBER.getValue());
+                LottoNumbersConstant.MIN_LOTTO_NUMBER.getValue());
         BigInteger maxNumber = BigInteger.valueOf(
-                LottoNumberRangeConstant.MAX_LOTTO_NUMBER.getValue());
+                LottoNumbersConstant.MAX_LOTTO_NUMBER.getValue());
 
         for (String number : numbers) {
             BigInteger num = new BigInteger(number);
