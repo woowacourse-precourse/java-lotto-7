@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.result;
 
 import java.util.Collections;
 import java.util.EnumMap;
@@ -15,16 +15,6 @@ public class LottoResult {
 
     public void addResult(final Rank rank) {
         result.put(rank, result.get(rank) + 1);
-    }
-
-    public double calculateReturnRate(final Money money) {
-        int inputMoney = money.getAmount();
-        int profit = calculatePrize();
-        return ((double) profit / inputMoney) * 100;
-    }
-
-    private int calculatePrize() {
-        return Rank.calculateMoney(result);
     }
 
     public Map<Rank, Integer> getResult() {

@@ -11,10 +11,6 @@ public class BonusNumber {
         this.bonus = bonus;
     }
 
-    protected boolean isEqual(final int number) {
-        return bonus == number;
-    }
-
     private int convertToInt(final String bonusNumber) {
         try {
             return Integer.parseInt(bonusNumber);
