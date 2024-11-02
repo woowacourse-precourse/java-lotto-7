@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.function.BiFunction;
 
 public enum Prize {
@@ -20,5 +21,24 @@ public enum Prize {
         this.bonus = bonus;
         this.prize = prize;
         this.expression = expression;
+    }
+
+    public static Prize getPrize(int count, boolean bonus) {
+        return Arrays.stream(values())
+                .filter(prize -> prize.expression.apply(count, bonus))
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public long getPrize() {
+        return prize;
     }
 }
