@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -21,5 +22,15 @@ public class WinningNumbersTest {
         lottoNumbers.forEach(number -> assertThat(number).isBetween(1, 45));
 
         assertThat(winningNumbers.bonusBall()).isBetween(1, 45);
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는 경우 예외 처리")
+    @Test
+    void throwException_when_lottoNumberAndBonusBallAreDuplicated() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusBall = 6;
+
+        assertThatThrownBy(() -> new WinningNumbers(lotto, bonusBall))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
