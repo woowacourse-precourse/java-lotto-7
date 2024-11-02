@@ -13,7 +13,6 @@ public final class PurchaseAmountView {
                 String inputAmount = Input.inputMessage();
                 int purchaseQuantity = PurchaseAmountValidation.purchaseAmountValidationAndGetLottoQuantity(
                         inputAmount);
-                Output.printlnFormattedMessage(IOMessage.OUTPUT_PURCHASE_QUANTITY.getMessage(), purchaseQuantity);
                 return purchaseQuantity;
             } catch (IllegalArgumentException errorMessage) {
                 System.out.println(errorMessage.getMessage());
