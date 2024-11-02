@@ -4,7 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.domain.Rank;
-import lotto.domain.lottos.user.WinningLotto;
+import lotto.domain.lottos.user.WinningRank;
 
 public class WinningStatisticsPrinter {
     private final static String PRINT_RANK_FORMAT = "%d개 일치 (%s원) - %d개\n";
@@ -13,12 +13,12 @@ public class WinningStatisticsPrinter {
 
     private final static StringBuilder printout = new StringBuilder();
 
-    public static void print(WinningLotto winningLotto) {
-        System.out.print(getPrintout(winningLotto));
+    public static void print(WinningRank winningRank) {
+        System.out.print(getPrintout(winningRank));
     }
 
-    public static String getPrintout(WinningLotto winningLotto) {
-        EnumMap<Rank, Integer> ranks = winningLotto.getWinningStatistics();
+    public static String getPrintout(WinningRank winningRank) {
+        EnumMap<Rank, Integer> ranks = winningRank.getWinningStatistics();
 
         loopScore(ranks);
 

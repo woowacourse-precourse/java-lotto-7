@@ -11,11 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
-    private WinningLotto winningLotto;
+    private WinningRank winningLotto;
 
     @BeforeEach
     void setUp() {
-        winningLotto = new WinningLotto(new FinalPrizeCalculator());
+        winningLotto = new WinningRank(new FinalPrizeCalculator());
     }
 
     @Test

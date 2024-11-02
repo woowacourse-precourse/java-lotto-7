@@ -8,7 +8,7 @@ import lotto.domain.calculators.YieldCalculator;
 import lotto.domain.factory.UserSixLottoFactory;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.UserLotto;
-import lotto.domain.lottos.user.WinningLotto;
+import lotto.domain.lottos.user.WinningRank;
 import lotto.domain.number.RandomLottoNumberMaker;
 import lotto.service.LottoMatchService;
 import lotto.service.RandomLottoMarket;
@@ -28,30 +28,30 @@ public class MainController {
         Output.printPurchasedLottoList(wallet, randomLottos);
 
         UserLotto userLotto = createUserLotto();
-        WinningLotto winningLotto = new WinningLotto(new FinalPrizeCalculator());
+        WinningRank winningRank = new WinningRank(new FinalPrizeCalculator());
 
-        processLotto(randomLottos, userLotto, winningLotto, wallet);
+        processLotto(randomLottos, userLotto, winningRank, wallet);
 
-        Output.printLottoWinningStatistics(winningLotto);
+        Output.printLottoWinningStatistics(winningRank);
         Output.printRateOfReturn(wallet);
     }
 
     private void processLotto(
-            RandomLottos randomLottos, UserLotto userLotto, WinningLotto winningLotto, Wallet wallet) {
-        
-        matchLotto(randomLottos, userLotto, winningLotto);
-        calculateRateOfReturn(wallet, winningLotto);
+            RandomLottos randomLottos, UserLotto userLotto, WinningRank winningRank, Wallet wallet) {
+
+        matchLotto(randomLottos, userLotto, winningRank);
+        calculateRateOfReturn(wallet, winningRank);
     }
 
 
-    private void matchLotto(RandomLottos randomLottos, UserLotto userLotto, WinningLotto winningLotto) {
-        lottoMatchService = new LottoMatchService(randomLottos, userLotto, winningLotto);
+    private void matchLotto(RandomLottos randomLottos, UserLotto userLotto, WinningRank winningRank) {
+        lottoMatchService = new LottoMatchService(randomLottos, userLotto, winningRank);
         lottoMatchService.matchLottos();
     }
 
-    private void calculateRateOfReturn(Wallet wallet, WinningLotto winningLotto) {
+    private void calculateRateOfReturn(Wallet wallet, WinningRank winningRank) {
         YieldCalculator yieldCalculator = new YieldCalculator();
-        yieldCalculateService = new YieldCalculateService(yieldCalculator, wallet, winningLotto);
+        yieldCalculateService = new YieldCalculateService(yieldCalculator, wallet, winningRank);
         yieldCalculateService.calculateRateOfReturn();
     }
 

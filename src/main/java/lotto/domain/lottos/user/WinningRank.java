@@ -5,12 +5,12 @@ import java.util.List;
 import lotto.domain.Rank;
 import lotto.domain.calculators.FinalPrizeCalculator;
 
-public class WinningLotto {
+public class WinningRank {
     private final FinalPrizeCalculator finalPrizeCalculator;
 
     private final EnumMap<Rank, Integer> ranks = new EnumMap<>(Rank.class);
 
-    public WinningLotto(FinalPrizeCalculator finalPrizeCalculator) {
+    public WinningRank(FinalPrizeCalculator finalPrizeCalculator) {
         this.finalPrizeCalculator = finalPrizeCalculator;
         initRanks();
     }
