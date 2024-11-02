@@ -8,7 +8,6 @@ public class Constants {
     public static final int END_NUM = 45;
     public static final int LOTTO_COUNT = 6;
 
-
     private Constants() {
     }
 }

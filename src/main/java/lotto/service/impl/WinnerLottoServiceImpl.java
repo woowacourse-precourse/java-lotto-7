@@ -1,15 +1,9 @@
 package lotto.service.impl;
 
-import static lotto.utils.ErrorMessage.NOT_HAVE_BONUS_NUM;
-import static lotto.utils.ErrorMessage.NOT_SAVE_LOTTO_LIST;
 import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_LOTTO;
 
-import lotto.domain.LottoList;
 import lotto.domain.LottoNum;
-import lotto.domain.WinnerCountList;
 import lotto.domain.WinnerLotto;
-import lotto.domain.WinnerStatus;
-import lotto.dto.WinnerStatusDto;
 import lotto.repository.SingleRepository;
 import lotto.service.WinnerLottoService;
 

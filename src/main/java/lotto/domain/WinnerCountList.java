@@ -33,10 +33,6 @@ public class WinnerCountList {
         for (WinnerCount winnerCount : winnerCounts) {
             Integer reward = winnerCount.calculateReward();
 
-            if (reward == 0) {
-                continue;
-            }
-
             rewardMap.computeIfPresent(reward, (key, value) -> value + 1);
         }
         return new TreeMap<>(this.rewardMap);

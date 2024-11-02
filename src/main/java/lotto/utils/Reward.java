@@ -25,7 +25,7 @@ public enum Reward {
     public static Reward getReward(int matchedCount, boolean hasBonus) {
         return Arrays
                 .stream(values())
-                .filter(reward -> reward.matchCount == matchedCount && reward.hasBonus == hasBonus)
+                .filter(reward -> reward.isMatchCountAndHasBonus(matchedCount, hasBonus))
                 .findAny()
                 .orElseGet(() -> NO_REWARD);
     }
@@ -34,8 +34,21 @@ public enum Reward {
         return prize;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
+    }
+
+    private boolean isMatchCountAndHasBonus(int matchCount, boolean hasBonus) {
+        if (matchCount >= 6) {
+            return true;
+        }
+
+        if (matchCount <= 4 && hasBonus) {
+            matchCount += 1;
+            hasBonus = false;
+        }
+
+        return this.matchCount == matchCount && this.hasBonus == hasBonus;
     }
 }
 

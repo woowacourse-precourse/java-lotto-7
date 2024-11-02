@@ -1,6 +1,83 @@
 package lotto.domain;
 
-public class WinnerCountTest {
+import static lotto.utils.Reward.FIFTH;
+import static lotto.utils.Reward.FIRST;
+import static lotto.utils.Reward.FOURTH;
+import static lotto.utils.Reward.NO_REWARD;
+import static lotto.utils.Reward.SECOND;
+import static lotto.utils.Reward.THIRD;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    // 값을 주입받고 1,2,3,4,5 등이 원하는 대로 나오는지 테스트
+import java.util.List;
+import lotto.utils.Reward;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+class WinnerCountTest {
+
+    @Test
+    @DisplayName("상금 반환 테스트 + 보너스 미당첨")
+    void test1() {
+        // given
+
+        int allCorrectCnt = 6;
+        List<Integer> prizeList = List.of(FIRST.getPrize(), THIRD.getPrize(), FOURTH.getPrize(), FIFTH.getPrize());
+
+        for (int i = 0; i < prizeList.size(); i++) {
+            WinnerCount winnerCount = new WinnerCount(allCorrectCnt - i, false);
+
+            // when
+            Integer reward = winnerCount.calculateReward();
+
+            // then
+            Integer expected = prizeList.get(i);
+            assertEquals(expected, reward);
+        }
+    }
+
+    @Test
+    @DisplayName("상금 미반환 테스트 + 보너스 미당첨")
+    void test2() {
+        //given
+        for (int correct = 0; correct < 3; correct++) {
+            //then
+            Reward result = Reward.getReward(correct, false);
+
+            assertThat(result).isEqualTo(NO_REWARD);
+        }
+    }
+
+    @Test
+    @DisplayName("상금 반환 테스트 + 보너스 당첨")
+    void test5() {
+        // given
+        List<Reward> rewards = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST, FIRST);
+
+        for (int correct = 0; correct <= 5; correct++) {
+            // when
+            Reward result = Reward.getReward(correct + 2, true);
+
+            // then
+            assertThat(result).isEqualTo(rewards.get(correct));
+        }
+    }
+
+
+    @Test
+    @DisplayName("상금 1등 테스트")
+    void test3() {
+        Reward reward = Reward.getReward(6, true);
+        assertThat(reward).isEqualTo(FIRST);
+
+        reward = Reward.getReward(6, false);
+        assertThat(reward).isEqualTo(FIRST);
+    }
+
+    @Test
+    @DisplayName("상금 3등 테스트")
+    void test4() {
+        Reward reward = Reward.getReward(5, false);
+        assertThat(reward).isEqualTo(THIRD);
+    }
 }

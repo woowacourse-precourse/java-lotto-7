@@ -7,7 +7,7 @@ public class WinnerCount {
     private final int matchedCount;
     private final boolean hasBonus;
 
-    public WinnerCount(int matchedCount, boolean hasBonus) {
+    protected WinnerCount(int matchedCount, boolean hasBonus) {
         this.matchedCount = matchedCount;
         this.hasBonus = hasBonus;
     }
@@ -16,9 +16,12 @@ public class WinnerCount {
         return new WinnerCount(winnerCount, hasBonus);
     }
 
+
     protected Integer calculateReward() {
-        Reward reward = Reward.getReward(matchedCount, hasBonus);
+
+        Reward reward = Reward.getReward(this.matchedCount, this.hasBonus);
         return reward.getPrize();
     }
+
 
 }

@@ -10,6 +10,9 @@ public class RecoveryUtils {
 
     private static final Viewer viewer = LottoConfig.viewer();
 
+    private RecoveryUtils() {
+    }
+
     public static <T, R> R executeWithRetry(Supplier<T> inputSupplier, Function<T, R> processFunction) {
         while (true) {
             try {

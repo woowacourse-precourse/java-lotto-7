@@ -31,9 +31,7 @@ public class StatusServiceImpl implements StatusService {
         WinnerLotto winnerLotto = winnerLottoRepository.get()
                 .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
-        if (!winnerLotto.hasBonusNum()) {
-            throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
-        }
+        validHasBonusNum(winnerLotto);
 
         LottoList lottoList = lottoListRepository.get()
                 .orElseThrow(() -> new NullPointerException(NOT_SAVE_LOTTO_LIST.getMessage()));
@@ -43,5 +41,11 @@ public class StatusServiceImpl implements StatusService {
         winnerStatusRepository.save(winnerStatus);
 
         return winnerStatus.toDto();
+    }
+
+    private void validHasBonusNum(WinnerLotto winnerLotto) {
+        if (!winnerLotto.hasBonusNum()) {
+            throw new IllegalStateException(NOT_HAVE_BONUS_NUM.getMessage());
+        }
     }
 }
