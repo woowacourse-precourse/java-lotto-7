@@ -10,20 +10,20 @@ public class Application {
 
         int amount = Integer.parseInt(amountInput);
         int lottoCount = amount / 1000;
-
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            Lotto lotto = issueLotto();
-            lottoList.add(lotto);
-            lotto.display();
-        }
-
+        Lotto[] lottoArray = issueLotto(lottoCount);
         int[] winningLotto = InputHandler.handleWinningLottoInput();
         int bonusNumber = InputHandler.handleBonusNumberInput();
     }
 
-    private static Lotto issueLotto() {
-        List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(randomLottoNumbers);
+    private static Lotto[] issueLotto(int lottoCount) {
+        Lotto[] lottoArray = new Lotto[lottoCount];
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(randomLottoNumbers);
+            lottoArray[i] = lotto;
+            lotto.display();
+        }
+
+        return lottoArray;
     }
 }
