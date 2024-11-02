@@ -62,4 +62,8 @@ public class WinningStatics {
         result.win(this);
     }
 
+    public double getRateOfReturn(int count) {
+        int principal = count * Lotto.LOTTO_PRICE;
+        return (winnings / principal) * 100;
+    }
 }
