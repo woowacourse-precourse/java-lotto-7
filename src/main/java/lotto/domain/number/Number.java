@@ -1,4 +1,4 @@
-package lotto.domain.random;
+package lotto.domain.number;
 
 import static lotto.resources.Constants.LOTTO_MAX_NUMBER;
 import static lotto.resources.Constants.LOTTO_MIN_NUMBER;
@@ -15,14 +15,14 @@ public class Number {
         this.number = number;
     }
 
-    public static Number createNumber(final int number) {
+    public static Number from(final int number) {
         return new Number(number);
     }
 
     public static Number generateRandomNumber() {
         int randomNumber = Randoms.pickNumberInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
 
-        return createNumber(randomNumber);
+        return from(randomNumber);
     }
 
     private void validateNumber(final int number) {

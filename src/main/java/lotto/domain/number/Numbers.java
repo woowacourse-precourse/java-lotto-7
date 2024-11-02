@@ -1,4 +1,4 @@
-package lotto.domain.random;
+package lotto.domain.number;
 
 import static lotto.resources.Constants.LOTTO_MAX_NUMBER;
 import static lotto.resources.Constants.LOTTO_MIN_NUMBER;
@@ -15,9 +15,9 @@ public class Numbers {
         this.numbers = numbers;
     }
 
-    public static Numbers createNumbers(final List<Integer> numbers) {
+    public static Numbers of(final List<Integer> numbers) {
         List<Number> createdNumbers = numbers.stream()
-                .map(Number::createNumber)
+                .map(Number::from)
                 .toList();
 
         return new Numbers(createdNumbers);
@@ -27,7 +27,7 @@ public class Numbers {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
                 LOTTO_TOTAL_NUMBERS);
 
-        return createNumbers(randomNumbers);
+        return of(randomNumbers);
     }
 
     public List<Number> getNumbers() {

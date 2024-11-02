@@ -1,4 +1,4 @@
-package lotto.domain.random;
+package lotto.domain.number;
 
 import static lotto.resources.Constants.LOTTO_MAX_NUMBER;
 import static lotto.resources.Constants.LOTTO_MIN_NUMBER;
@@ -18,16 +18,16 @@ class NumberTest {
     void 정상_범위의_숫자를_생성해_본다() {
         int validNumber = LOTTO_MIN_NUMBER;
 
-        Number number = Number.createNumber(validNumber);
+        Number number = Number.from(validNumber);
 
-        assertThat(number).isEqualTo(Number.createNumber(validNumber));
+        assertThat(number).isEqualTo(Number.from(validNumber));
     }
 
     @DisplayName("숫자가 로또번호 범위를 벗어나면 예외가 발생한다.")
     @ParameterizedTest(name = "입력값: \"{0}\"")
     @ValueSource(ints = {LOTTO_MIN_NUMBER - 1, LOTTO_MAX_NUMBER + 1})
     void 랜덤_숫자가_로또번호_범위를_벗어나면_예외가_발생한다(int number) {
-        Assertions.assertThatThrownBy(() -> Number.createNumber(number))
+        Assertions.assertThatThrownBy(() -> Number.from(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_RANGE_LOTTO_NUMBER.getMessage());
     }
