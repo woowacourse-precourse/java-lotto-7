@@ -5,6 +5,9 @@ import java.util.Arrays;
 import lotto.config.validation.exception.ValidationException;
 import lotto.domain.WinningNumber;
 
+/**
+ * 당첨 번호를 입력받는 DTO 클래스
+ */
 public class WinningNumberReq {
 
     private static final String CONSOLE_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -14,7 +17,7 @@ public class WinningNumberReq {
 
     public static WinningNumber read() {
         System.out.println(CONSOLE_MESSAGE);
-        
+
         while (true) {
             try {
                 String input = Console.readLine().trim();

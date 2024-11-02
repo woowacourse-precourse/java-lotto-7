@@ -12,6 +12,9 @@ import lotto.domain.LottoRank;
 import lotto.domain.LottoRound;
 import lotto.domain.LottoRoundResult;
 
+/**
+ * 로또의 결과를 출력하는 DTO 클래스
+ */
 public class LottoResultRes extends FieldValidation {
 
     @NotNull

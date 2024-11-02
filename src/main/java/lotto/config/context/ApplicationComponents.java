@@ -7,6 +7,9 @@ import java.util.Optional;
 import lotto.config.context.annotation.Component;
 import lotto.config.context.scanner.ClassPathScanner;
 
+/**
+ * 클래스 컴포넌트를 관리하는 클래스
+ */
 public class ApplicationComponents {
 
     private static final Class<? extends Annotation> COMPONENT_ANNOTATION = Component.class;

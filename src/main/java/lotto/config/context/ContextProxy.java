@@ -11,7 +11,7 @@ import lotto.config.validation.Validation;
 import lotto.config.validation.annotation.Valid;
 
 /**
- * 메서드를 실행하기 이전 특정 작업을 수행하는 프록시 클래스
+ * 프록시 객체를 생성하는 클래스
  */
 public class ContextProxy implements InvocationHandler {
 

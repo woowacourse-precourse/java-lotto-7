@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import lotto.config.context.bean.ApplicationBeans;
 
 /**
- * 어플리케이션의 빈을 생성하고 관리하는 클래스
+ * 어플리케이션의 컨텍스트 상태를 관리하는 클래스
  */
 public class ApplicationContext {
 

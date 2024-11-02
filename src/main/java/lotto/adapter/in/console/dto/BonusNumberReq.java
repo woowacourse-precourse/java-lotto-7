@@ -4,6 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.config.validation.exception.ValidationException;
 import lotto.domain.BonusNumber;
 
+/**
+ * 보너스 번호를 입력받는 DTO 클래스
+ */
 public class BonusNumberReq {
 
     private static final String CONSOLE_MESSAGE = "보너스 번호를 입력해 주세요.";

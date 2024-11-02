@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 import lotto.config.context.ApplicationComponents;
 import lotto.config.context.ContextProxy;
 
+/**
+ * 빈을 생성하고 관리하는 클래스
+ */
 public class ApplicationBeans {
 
     private final Map<Class<?>, Object> beans = new ConcurrentHashMap<>();

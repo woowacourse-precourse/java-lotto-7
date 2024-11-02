@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 
 /**
- * 클래스 패스로부터 모든 클래스를 스캔하는 클래스
+ * 클래스 패스로부터 클래스를 스캔하는 클래스
  */
 public class ClassPathScanner {
 
@@ -59,7 +59,7 @@ public class ClassPathScanner {
         if (base.exists() && base.isDirectory()) {
             return findFromDirectory(base);
         }
-        
+
         if (base.exists() && base.isFile()) {
             Class<?> cls = extractClassFromFile(base).orElse(null);
             if (cls != null) {
