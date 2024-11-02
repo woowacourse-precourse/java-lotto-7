@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoInputHandler {
+    private static final String NUMBER_DELIMITER = ",";
 
     public static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요. (예: 1,2,3,4,5,6)");
@@ -23,7 +24,7 @@ public class LottoInputHandler {
     }
 
     private static List<Integer> parseNumbers(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(NUMBER_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
