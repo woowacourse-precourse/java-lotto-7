@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static lotto.constant.LottoConfig.Rank.*;
 
@@ -17,6 +18,22 @@ public class LottoPrize {
     public LottoPrize(Lotto lotto, Bonus bonus) {
         this.lotto = lotto;
         this.bonus = bonus;
+    }
+
+    public Double calculateRateOfReturn(Map<Rank, Integer> rankCount, Purchase purchase) {
+        long totalPrize = calculateTotalPrize(rankCount);
+        int cost = purchase.getCost();
+        return ((double) totalPrize / cost);
+    }
+
+    private long calculateTotalPrize(Map<Rank, Integer> rankCount) {
+        return Stream.of(values())
+                .mapToLong(rank -> calculatePrize(rankCount, rank))
+                .sum();
+    }
+
+    private long calculatePrize(Map<Rank, Integer> rankCount, Rank rank) {
+        return rankCount.getOrDefault(rank, 0) * rank.getPrizeMoney();
     }
 
     public Map<Rank, Integer> determineLottoPrizes(Lottos lottos) {

@@ -5,27 +5,27 @@ import lotto.constant.ErrorMessage;
 import static lotto.constant.PurchaseConfig.*;
 
 public class Purchase {
-    private final int price;
+    private final int cost;
 
-    public Purchase(int price) {
-        validatePurchaseRange(price);
-        validatePurchaseUnit(price);
-        this.price = price;
+    public Purchase(int cost) {
+        validatePurchaseRange(cost);
+        validatePurchaseUnit(cost);
+        this.cost = cost;
     }
 
-    private void validatePurchaseRange(int price) {
-        if (price < MIN_PURCHASE || price > MAX_PURCHASE) {
+    private void validatePurchaseRange(int cost) {
+        if (cost < MIN_PURCHASE || cost > MAX_PURCHASE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_RANGE.getMessage());
         }
     }
 
-    private void validatePurchaseUnit(int price) {
-        if (price % PURCHASE_UNIT != 0) {
+    private void validatePurchaseUnit(int cost) {
+        if (cost % PURCHASE_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
         }
     }
 
-    public int getPrice() {
-        return price;
+    public int getCost() {
+        return cost;
     }
 }

@@ -1,6 +1,9 @@
 package lotto;
 
+import lotto.constant.LottoConfig;
 import lotto.util.InputHandler;
+
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,7 +18,7 @@ public class Application {
 
         // 로또 결과
         LottoPrize lottoPrize = new LottoPrize(lotto, bonus);
-        lottoPrize.determineLottoPrizes(lottos);
-
+        Map<LottoConfig.Rank, Integer> result = lottoPrize.determineLottoPrizes(lottos);
+        Double rateOfReturn = lottoPrize.calculateRateOfReturn(result, purchase);
     }
 }

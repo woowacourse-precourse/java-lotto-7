@@ -13,10 +13,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoPrizeTest {
 
+    private Lotto lotto;
+    private Bonus bonus;
+    private LottoPrize lottoPrize;
     private List<Lotto> tickets = new ArrayList<>();
 
     @BeforeEach
     void setUp(){
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        bonus = new Bonus(7);
+        lottoPrize = new LottoPrize(lotto, bonus);
+
         tickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         tickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
         tickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
@@ -29,10 +36,6 @@ class LottoPrizeTest {
 
     @Test
     void rankLotto() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Bonus bonus = new Bonus(7);
-        LottoPrize lottoPrize = new LottoPrize(lotto, bonus);
-
         Lottos lottos = new Lottos(tickets);
         Map<Rank, Integer> rankCount = lottoPrize.determineLottoPrizes(lottos);
 
@@ -42,5 +45,15 @@ class LottoPrizeTest {
         assertThat(rankCount).containsEntry(Rank.FOURTH, 1);
         assertThat(rankCount).containsEntry(Rank.FIFTH, 1);
         assertThat(rankCount).containsEntry(Rank.NOTHING, 3);
+    }
+
+    @Test
+    void 수익률을_계산한다() {
+        Lottos lottos = new Lottos(tickets);
+        Map<Rank, Integer> rankCount = lottoPrize.determineLottoPrizes(lottos);
+        Purchase purchase = new Purchase(10000);
+
+        Double rateOfReturn = lottoPrize.calculateRateOfReturn(rankCount, purchase);
+        assertThat(rateOfReturn).isEqualTo(203_155.5);
     }
 }

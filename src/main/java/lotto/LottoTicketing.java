@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +18,7 @@ public class LottoTicketing {
     }
 
     private int calculateTicketCount(Purchase purchase) {
-        return purchase.getPrice() / PURCHASE_UNIT;
+        return purchase.getCost() / PURCHASE_UNIT;
     }
 
     private List<Lotto> createLottoTickets(int count) {

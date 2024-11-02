@@ -10,18 +10,18 @@ public class LottoConfig {
     }
 
     public enum Rank {
-        FIRST(6, BonusCheck.ALL, 2_000_000_000),
-        SECOND(5, BonusCheck.TRUE, 30_000_000),
-        THIRD(5, BonusCheck.FALSE, 1_500_000),
-        FOURTH(4, BonusCheck.ALL, 50_000),
-        FIFTH(3, BonusCheck.ALL, 5_000),
-        NOTHING(0, BonusCheck.ALL, 0);
+        FIRST(6, BonusCheck.ALL, 2_000_000_000L),
+        SECOND(5, BonusCheck.TRUE, 30_000_000L),
+        THIRD(5, BonusCheck.FALSE, 1_500_000L),
+        FOURTH(4, BonusCheck.ALL, 50_000L),
+        FIFTH(3, BonusCheck.ALL, 5_000L),
+        NOTHING(0, BonusCheck.ALL, 0L);
 
         private final int matchedCount;
         private final BonusCheck isBonusMatched;
-        private final int prizeMoney;
+        private final long prizeMoney;
 
-        Rank(int matchedCount, BonusCheck isBonusMatched, int prizeMoney) {
+        Rank(int matchedCount, BonusCheck isBonusMatched, long prizeMoney) {
             this.matchedCount = matchedCount;
             this.isBonusMatched = isBonusMatched;
             this.prizeMoney = prizeMoney;
@@ -35,7 +35,7 @@ public class LottoConfig {
             return isBonusMatched;
         }
 
-        public int getPrizeMoney() {
+        public long getPrizeMoney() {
             return prizeMoney;
         }
     }
