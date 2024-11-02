@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.utils.ErrorMessage.INVALID_LOTTO;
 import static lotto.utils.ErrorMessage.BONUS_NUMBER_DUPLICATION;
+import static lotto.utils.ErrorMessage.INVALID_RANGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoPrize;
 import lotto.domain.User;
+import lotto.utils.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -89,18 +91,29 @@ public class LottoController {
         while (true) {
             try {
                 int bonus = InputView.inputBonus();
-                return checkContains(winnerLotto, bonus);
+                return bonusValid(winnerLotto, bonus);
             } catch (IllegalArgumentException e) {
                 InputView.errorPrint(e.getMessage());
             }
         }
     }
 
-    private static int checkContains(Lotto winnerLotto, int bonus) {
+    private static int bonusValid(Lotto winnerLotto, int bonus) {
+        checkContains(winnerLotto, bonus);
+        checkSame(bonus);
+        return bonus;
+    }
+
+    private static void checkContains(Lotto winnerLotto, int bonus) {
         if (winnerLotto.getNumbers().contains(bonus)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
         }
-        return bonus;
+    }
+
+    private static void checkSame(int bonus) {
+        if (!(1 <= bonus && bonus <= 45)) {
+            throw new IllegalArgumentException(INVALID_RANGE);
+        }
     }
 
     private static List<Integer> numberParse() {
