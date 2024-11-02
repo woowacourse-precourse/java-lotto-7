@@ -3,7 +3,7 @@ package lotto.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.config.LottoRule;
 import lotto.generator.SortedLottoNumberGenerator;
 import lotto.service.LottoService;

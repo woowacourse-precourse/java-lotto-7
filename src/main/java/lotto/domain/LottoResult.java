@@ -6,17 +6,18 @@ public class LottoResult {
     private int third = 0;
     private int fourth = 0;
     private int fifth = 0;
+    private double profitRate = 0;
 
     public void add(int rank, boolean bonus) {
-        if(rank ==6){
+        if (rank == 6) {
             first++;
-        }else if(rank==5 && bonus){
+        } else if (rank == 5 && bonus) {
             second++;
-        }else if(rank==5){
+        } else if (rank == 5) {
             third++;
-        }else if(rank==4){
+        } else if (rank == 4) {
             fourth++;
-        }else if(rank==3){
+        } else if (rank == 3) {
             fifth++;
         }
     }
@@ -39,5 +40,11 @@ public class LottoResult {
 
     public int getFifth() {
         return fifth;
+    }
+
+    public double getProfitRate(int money) {
+        int prize = first * 2_000_000_000 + second * 30_000_000 + third * 1_500_000 + fourth * 50_000 + fifth * 5_000;
+        profitRate = prize /  (double)money;
+        return profitRate *100;
     }
 }
