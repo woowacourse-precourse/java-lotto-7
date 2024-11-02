@@ -40,6 +40,6 @@ class LottoGameTest {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         LottoGame customGame = new LottoGame(1000, () -> numbers);
         float earningRate = customGame.getEarningRate(numbers, 7);
-        Assertions.assertThat(earningRate).isEqualTo(2000000.0f);
+        Assertions.assertThat(earningRate).isEqualTo(200_000_000.0f);
     }
 }
