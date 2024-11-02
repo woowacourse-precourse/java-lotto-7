@@ -22,4 +22,8 @@ public class LottoGenerator {
         }
     }
 
+    public int getMoney(){
+        return money;
+    }
+
 }
