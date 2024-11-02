@@ -2,7 +2,8 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 import static lotto.exception.Exception.*;
-import static lotto.validator.LottoNumbersValidator.*;
+import static lotto.validator.BonusNumberValidator.validate;
+import static lotto.validator.LottoNumbersValidator.validate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +24,17 @@ public class InputView {
         List<Integer> numbers = parseToInteger(splitWinningNumbers(removeAllSpaces(input)));
         validate(numbers);
         return numbers;
+    }
+
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
+        try {
+            String input = readLine();
+            int bonusNumber = Integer.parseInt(input);
+            validate(bonusNumber, winningNumbers);
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static String removeAllSpaces(String input) {
