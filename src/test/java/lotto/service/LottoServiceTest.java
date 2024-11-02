@@ -1,5 +1,6 @@
 package lotto.service;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -15,6 +16,7 @@ class LottoServiceTest {
     private static final int MAX_NUM = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
 
+    @DisplayName("랜덤 로또 번호 생성 테스트")
     @Test
     void buyLotto() {
         int lottoCount = 5;
