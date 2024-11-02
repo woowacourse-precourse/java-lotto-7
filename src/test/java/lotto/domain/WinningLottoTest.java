@@ -40,139 +40,61 @@ class WinningLottoTest {
     }
 
     @Nested
-    @DisplayName("로또 체크 할때")
-    class winningLottoCheckLottoTest {
+    @DisplayName("당첨 로또 체크 테스트")
+    class WinningLottoCheckLottoTest {
         private final Lotto ticket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        public static Stream<Arguments> provideZeroRankLottoTestCases() {
+        private static Stream<Arguments> provideLottoRankTestCases() {
             return Stream.of(
-                    //로또번호가 0개 맞고 보너스가 맞지 않은 경우
-                    Arguments.of(List.of(7, 8, 9, 10, 11, 12), 13, 0),
-                    //로또번호가 1개 맞고 보너스 번호가 맞지 않은 경우
-                    Arguments.of(List.of(6, 7, 8, 9, 10, 11), 12, 1),
-                    //로또번호가 1개 맞고 보너스 번호도 맞은 경우
-                    Arguments.of(List.of(6, 7, 8, 9, 10, 11), 7, 1),
-                    //로또번호가 2개 맞고 보너스 번호가 맞지 않은 경우
-                    Arguments.of(List.of(5, 6, 7, 8, 9, 10), 11, 2),
-                    //로또번호가 2개 맞고 보너스 번호 맞은 경우
-                    Arguments.of(List.of(5, 6, 7, 8, 9, 10), 7, 2)
+                    // NONE 랭크
+                    Arguments.of("로또 번호 0개 맞고 보너스도 맞지 않을때 None 랭크를 반환한다"
+                            , List.of(7, 8, 9, 10, 11, 12), 13, 0, Rank.NONE),
+                    Arguments.of("로또 번호 1개 맞고 보너스도 맞지 않을때 None 랭크를 반환한다"
+                            , List.of(6, 7, 8, 9, 10, 11), 12, 1, Rank.NONE),
+                    Arguments.of("로또 번호 1개 맞고 보너스 번호 맞을때 None 랭크를 반환한다"
+                            , List.of(6, 7, 8, 9, 10, 11), 7, 1, Rank.NONE),
+                    Arguments.of("로또 번호 2개 맞고 보너스도 맞지 않을때 None 랭크를 반환한다"
+                            , List.of(5, 6, 7, 8, 9, 10), 11, 2, Rank.NONE),
+                    Arguments.of("로또 번호 2개 맞고 보너스 번호 맞을때 None 랭크를 반환한다"
+                            , List.of(5, 6, 7, 8, 9, 10), 7, 2, Rank.NONE),
+                    // FIFTH 랭크
+                    Arguments.of("로또 번호 3개 맞고 보너스도 맞지 않을때 FIFTH 랭크를 반환한다"
+                            , List.of(4, 5, 6, 7, 8, 9), 10, 3, Rank.FIFTH),
+                    Arguments.of("로또 번호 3개 맞고 보너스 번호 맞을때 FIFTH 랭크를 반환한다"
+                            , List.of(4, 5, 6, 7, 8, 9), 7, 3, Rank.FIFTH),
+                    // FOURTH 랭크
+                    Arguments.of("로또 번호 4개 맞고 보너스도 맞지 않을때 FOURTH 랭크를 반환한다"
+                            , List.of(3, 4, 5, 6, 7, 8), 9, 4, Rank.FOURTH),
+                    Arguments.of("로또 번호 4개 맞고 보너스 번호 맞을때 FOURTH 랭크를 반환한다"
+                            , List.of(3, 4, 5, 6, 7, 8), 8, 4, Rank.FOURTH),
+                    // THIRD 랭크
+                    Arguments.of("로또 번호 5개 맞고 보너스도 맞지 않을때 THIRD 랭크를 반환한다"
+                            , List.of(2, 3, 4, 5, 6, 7), 8, 5, Rank.THIRD),
+                    // SECOND 랭크
+                    Arguments.of("로또 번호 5개 맞고 보너스 번호 맞을때 SECOND 랭크를 반환한다"
+                            , List.of(2, 3, 4, 5, 6, 7), 7, 5, Rank.SECOND),
+                    // FIRST 랭크
+                    Arguments.of("로또 번호 6개 맞을때 FIRST 랭크를 반환한다"
+                            , List.of(1, 2, 3, 4, 5, 6), 7, 6, Rank.FIRST)
             );
         }
 
-        public static Stream<Arguments> provideFifthRankLottoTestCases() {
-            return Stream.of(
-                    //로또번호가 3개 맞고 보너스가 맞지 않은 경우
-                    Arguments.of(List.of(4, 5, 6, 7, 8, 9), 10, 3),
-                    //로또번호가 3개 맞고 보너스가 맞은 경우
-                    Arguments.of(List.of(4, 5, 6, 7, 8, 9), 7, 3)
-            );
-        }
-
-        public static Stream<Arguments> provideFourthRankLottoTestCases() {
-            return Stream.of(
-                    //로또번호가 4개 맞고 보너스가 맞지 않은 경우
-                    Arguments.of(List.of(3, 4, 5, 6, 7, 8), 9, 4),
-                    //로또번호가 4개 맞고 보너스가 맞은 경우
-                    Arguments.of(List.of(3, 4, 5, 6, 7, 8), 8, 4)
-            );
-        }
-
-        public static Stream<Arguments> provideThirdRankLottoTestCases() {
-            return Stream.of(
-                    //로또번호가 5개 맞고 보너스가 맞지 않은 경우
-                    Arguments.of(List.of(2, 3, 4, 5, 6, 7), 8, 5)
-            );
-        }
-
-        public static Stream<Arguments> provideSecondRankLottoTestCases() {
-            return Stream.of(
-                    //로또번호가 5개 맞고 보너스가 맞은 경우
-                    Arguments.of(List.of(2, 3, 4, 5, 6, 7), 7, 5)
-            );
-        }
-
-        @ParameterizedTest
-        @MethodSource("provideZeroRankLottoTestCases")
-        @DisplayName("NONE 랭크를 반환한다")
-        void rankingNoneTest(List<Integer> numbers, int bonusNumber, int expectedMatchCount) {
+        @ParameterizedTest(name = "{0}")
+        @MethodSource("provideLottoRankTestCases")
+        @DisplayName("로또 결과를 검증시")
+        void rankingTest(String description, List<Integer> numbers, int bonusNumber, int expectedMatchCount,
+                         Rank expectedRank) {
             // given
             WinningLotto winningLotto = new WinningLotto(ticket, bonusNumber);
             Lotto newTicket = new Lotto(numbers);
+
             // when
             LottoResult result = winningLotto.checkLotto(newTicket);
+
             // then
             assertThat(result.getMatchCount()).isEqualTo(expectedMatchCount);
-            assertThat(result.getRank()).isEqualTo(Rank.NONE);
+            assertThat(result.getRank()).isEqualTo(expectedRank);
         }
-
-        @ParameterizedTest
-        @MethodSource("provideFifthRankLottoTestCases")
-        @DisplayName("FIFTH 랭크를 반환한다")
-        void rankingFifthTest(List<Integer> numbers, int bonusNumber, int expectedMatchCount) {
-            // given
-            WinningLotto winningLotto = new WinningLotto(ticket, bonusNumber);
-            Lotto newTicket = new Lotto(numbers);
-            // when
-            LottoResult result = winningLotto.checkLotto(newTicket);
-            // then
-            assertThat(result.getMatchCount()).isEqualTo(expectedMatchCount);
-            assertThat(result.getRank()).isEqualTo(Rank.FIFTH);
-        }
-
-        @ParameterizedTest
-        @MethodSource("provideFourthRankLottoTestCases")
-        @DisplayName("FOURTH 랭크를 반환한다")
-        void rankingFourthTest(List<Integer> numbers, int bonusNumber, int expectedMatchCount) {
-            // given
-            WinningLotto winningLotto = new WinningLotto(ticket, bonusNumber);
-            Lotto newTicket = new Lotto(numbers);
-            // when
-            LottoResult result = winningLotto.checkLotto(newTicket);
-            // then
-            assertThat(result.getMatchCount()).isEqualTo(expectedMatchCount);
-            assertThat(result.getRank()).isEqualTo(Rank.FOURTH);
-        }
-
-        @Test
-        @DisplayName("로또번호가 5개 맞고 보너스가 맞지 않은 경우 THIRD 랭크를 반환한다")
-        void rankingThirdTest() {
-            // given
-            WinningLotto winningLotto = new WinningLotto(ticket, 8);
-            Lotto newTicket = new Lotto(List.of(2, 3, 4, 5, 6, 7));
-            // when
-            LottoResult result = winningLotto.checkLotto(newTicket);
-            // then
-            assertThat(result.getMatchCount()).isEqualTo(5);
-            assertThat(result.getRank()).isEqualTo(Rank.THIRD);
-        }
-
-        @Test
-        @DisplayName("로또번호가 5개 맞고 보너스가 맞은 경우 SECOND 랭크를 반환한다")
-        void rankingSecondTest() {
-            // given
-            WinningLotto winningLotto = new WinningLotto(ticket, 7);
-            Lotto newTicket = new Lotto(List.of(2, 3, 4, 5, 6, 7));
-            // when
-            LottoResult result = winningLotto.checkLotto(newTicket);
-            // then
-            assertThat(result.getMatchCount()).isEqualTo(5);
-            assertThat(result.getRank()).isEqualTo(Rank.SECOND);
-        }
-
-        @Test
-        @DisplayName("로또번호가 5개 맞고 보너스가 맞지 않은 경우 FIRST 랭크를 반환한다")
-        void rankingFirstTest() {
-            // given
-            WinningLotto winningLotto = new WinningLotto(ticket, 7);
-            Lotto newTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-            // when
-            LottoResult result = winningLotto.checkLotto(newTicket);
-            // then
-            assertThat(result.getMatchCount()).isEqualTo(6);
-            assertThat(result.getRank()).isEqualTo(Rank.FIRST);
-        }
-
     }
-
 
 }
