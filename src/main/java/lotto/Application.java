@@ -1,6 +1,7 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +23,17 @@ public class Application {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         inputWinningNumbers = Console.readLine();
 
+        List<String> winningNumbers = List.of(inputWinningNumbers.split(","));
+        List<Integer> winningNumbersInteger = stringListToIntegerList(winningNumbers);
+
+    }
+
+    public static List<Integer> stringListToIntegerList(List<String> stringList) {
+        List<Integer> intList = new ArrayList<>();
+        for(String s : stringList) {
+            intList.add(Integer.parseInt(s));
+        }
+        return intList;
     }
 
     public static List<Integer> sortAscendingInteger(List<Integer> integerList) {
