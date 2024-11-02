@@ -15,4 +15,8 @@ public class DrawResults {
     public void addMainNumbers(List<Integer> mainNumbers) {
         totalMainNumbers.add(mainNumbers);
     }
+
+    public void addBonusNumber(Integer bonusNumber) {
+        totalBonusNumbers.add(bonusNumber);
+    }
 }
