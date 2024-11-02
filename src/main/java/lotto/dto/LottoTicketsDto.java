@@ -13,4 +13,7 @@ public class LottoTicketsDto {
         return new LottoTicketsDto(tickets);
     }
 
+    public List<List<Integer>> getTickets() {
+        return List.copyOf(tickets);
+    }
 }
