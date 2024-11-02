@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoResultFormatter {
+public class LottoFormatter {
 
     public List<String> formatLottoNumbers(List<Lotto> lottos) {
         List<String> formattedLottoNumbers = new ArrayList<>();
