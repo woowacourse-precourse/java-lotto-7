@@ -52,4 +52,15 @@ class PriceValidatorTest {
 
         assertEquals(ErrorMessage.PRICE_NOT_DIVIDE_THOUSAND.getErrorMessage(), exception.getMessage());
     }
+
+    @DisplayName("입력한 값에 숫자 이외의 문자가 포함되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000j", "1200 "})
+    void validateOnlyNumbers(String input) {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            PriceValidator.validatePrice(input);
+        });
+
+        assertEquals(ErrorMessage.NOT_ALLOW_WITHOUT_NUMBER.getErrorMessage(), exception.getMessage());
+    }
 }
