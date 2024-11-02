@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.constant.Rank;
 import lotto.dto.LottoResult;
 
@@ -20,8 +21,8 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(Lotto ticket, int bonusNumber) {
-        return new WinningLotto(ticket, bonusNumber);
+    public static WinningLotto of(List<Integer> ticket, int bonusNumber) {
+        return new WinningLotto(Lotto.of(ticket), bonusNumber);
     }
 
     public LottoResult checkLotto(Lotto customerLotto) {

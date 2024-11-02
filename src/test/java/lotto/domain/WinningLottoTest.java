@@ -19,7 +19,7 @@ class WinningLottoTest {
     @Nested
     @DisplayName("당첨 로또를 생성할때")
     class winningLottoInitErrorTest {
-        private final Lotto ticket = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        private final List<Integer> ticket = List.of(1, 2, 3, 4, 5, 6);
 
         @ParameterizedTest
         @CsvSource(value = {"0", "46"})
@@ -42,7 +42,7 @@ class WinningLottoTest {
     @Nested
     @DisplayName("당첨 로또 체크 테스트")
     class WinningLottoCheckLottoTest {
-        private final Lotto ticket = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        private final List<Integer> ticket = List.of(1, 2, 3, 4, 5, 6);
 
         private static Stream<Arguments> provideLottoRankTestCases() {
             return Stream.of(
