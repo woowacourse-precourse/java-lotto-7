@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import java.util.List;
 import lotto.domain.LottoInfo;
 
 public class LottoValidator {
@@ -8,4 +9,27 @@ public class LottoValidator {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
+
+    public static void hasDuplicates(List<Integer> list) {
+        boolean isDuplicate = list.stream()
+                .distinct()
+                .count() != list.size();
+        if (isDuplicate) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        }
+    }
+
+    public static void validateWinningNumbsSize(String[] winningNumbsStrs) {
+        if (winningNumbsStrs.length != LottoInfo.WINNING_NUM_SIZE) {
+            throw new IllegalArgumentException("[Error] 당첨 번호는 6개 이어야 합니다.");
+        }
+    }
+
+    public static void validateEmptyString(String inputString) {
+        if (inputString.trim().isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 빈 문자열을 입력하였습니다.");
+        }
+    }
+
+
 }
