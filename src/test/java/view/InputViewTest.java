@@ -28,7 +28,6 @@ class InputViewTest {
                 run("1000");
                 assertThat(output()).isEqualTo("1000");
             });
-
         }
 
         @DisplayName("입력된 구입금액이 숫자가 아닐 때 예외")
@@ -57,7 +56,6 @@ class InputViewTest {
                 run("1,2,3,4,5,6");
                 assertThat(output()).isEqualTo("[1, 2, 3, 4, 5, 6]");
             });
-
         }
 
         @DisplayName("당첨번호 입력 개수 예외 테스트")
@@ -68,7 +66,6 @@ class InputViewTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LOTTO_NUMBER_SIZE_MUST_BE_SIX.getMessage());
             });
-
         }
 
         @DisplayName("당첨번호 입력 1~45가 아닐 때 예외 테스트")
@@ -79,7 +76,6 @@ class InputViewTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             });
-
         }
 
         @DisplayName("당첨번호 입력 중복일 때 예외 테스트")
@@ -90,7 +86,6 @@ class InputViewTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LOTTO_NUMBER_DUPLICATED.getMessage());
             });
-
         }
 
         @Override
@@ -109,7 +104,6 @@ class InputViewTest {
                 run("7");
                 assertThat(output()).isEqualTo("7");
             });
-
         }
 
         @DisplayName("보너스번호 입력 1~45가 아닐 때 예외 테스트")
@@ -120,7 +114,6 @@ class InputViewTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
             });
-
         }
 
         @DisplayName("보너스번호 입력 당첨번호와 중복일 때 예외 테스트")
@@ -131,7 +124,6 @@ class InputViewTest {
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(BONUS_NUMBER_DUPLICATED.getMessage());
             });
-
         }
 
         @Override
