@@ -30,21 +30,20 @@ public class Input {
         return amount;
     }
 
-    public List<Integer> getWinNumbersWithMessage() {
+    public Lotto getWinNumberLotto() {
         while (true) {
             try {
                 System.out.println(INPUT_WIN_NUMBER_MESSAGE);
-                return getValidatedWinNumbers();
+                List<Integer> numbers = getWinNumbers();
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private List<Integer> getValidatedWinNumbers() {
-        List<Integer> winNumbers = Parser.splitByDelimiter(Console.readLine());
-        inputValidator.validateWinNumber(winNumbers);
-        return winNumbers;
+    private List<Integer> getWinNumbers() {
+        return Parser.splitByDelimiter(Console.readLine());
     }
 
     public Integer getBonusNumberWithMessage() {

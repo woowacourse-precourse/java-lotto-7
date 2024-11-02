@@ -33,20 +33,4 @@ class InputValidatorTest {
             inputValidator.validateAmount(amount);
         });
     }
-
-    @ParameterizedTest
-    @MethodSource("inputValues")
-    void 당첨번호가_6개가_아니면_오류를_반환한다(List<Integer> inputValues) {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            inputValidator.validateWinNumber(inputValues);
-        });
-    }
-
-    static Stream<List<Integer>> inputValues() {
-        return Stream.of(
-                List.of(1, 2, 3),
-                List.of(4, 5, 6, 7, 10),
-                List.of(7, 100)
-        );
-    }
 }

@@ -14,10 +14,4 @@ public class InputValidator {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
     }
-
-    public void validateWinNumber(List<Integer> winNumbers) {
-        if (winNumbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_INPUT.getMessage());
-        }
-    }
 }
