@@ -8,8 +8,8 @@ public class BeanFactory {
     private static final ConcurrentHashMap<Class<?>, Object> beanContextHolder = new ConcurrentHashMap<>();
 
     @SuppressWarnings("unchecked")
-    public static <T> T findBean(Class<T> clazz) {
-        return (T) beanContextHolder.computeIfAbsent(clazz, BeanFactory::newInstance);
+    public static <T> T getBean(Class<T> requiredType) {
+        return (T) beanContextHolder.computeIfAbsent(requiredType, BeanFactory::newInstance);
     }
 
     @SuppressWarnings("unchecked")
