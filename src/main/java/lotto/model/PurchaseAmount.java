@@ -6,6 +6,7 @@ import lotto.exception.ErrorMessage;
 public class PurchaseAmount {
 
     private static final int STANDARD_AMOUNT_UNIT = 1000;
+    private static final int MAX_AMOUNT = 100000;
 
     private final int purchaseAmount;
 
@@ -23,6 +24,17 @@ public class PurchaseAmount {
     }
 
     private void validate(int purchaseAmount) {
+        validateExceedAmount(purchaseAmount);
+        validateDivisibleAmount(purchaseAmount);
+    }
+
+    private void validateExceedAmount(int purchaseAmount) {
+        if (purchaseAmount > MAX_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessage.EXCEED_PURCHASE_AMOUNT.getErrorMessage());
+        }
+    }
+
+    private void validateDivisibleAmount(int purchaseAmount) {
         if (purchaseAmount < STANDARD_AMOUNT_UNIT || purchaseAmount % STANDARD_AMOUNT_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDE_PURCHASE_AMOUNT.getErrorMessage());
         }
