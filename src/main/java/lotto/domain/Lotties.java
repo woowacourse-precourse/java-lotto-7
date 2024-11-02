@@ -30,4 +30,10 @@ public class Lotties {
 
         return totalPrice / LOTTO_PRICE;
     }
+
+    public List<Numbers> getLottoNumbers() {
+        return values.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }
