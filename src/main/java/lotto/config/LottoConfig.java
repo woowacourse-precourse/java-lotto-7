@@ -8,13 +8,13 @@ import lotto.service.LottoService;
 
 public class LottoConfig {
 
-    private static LottoRepository lottoRepository = new LottoRepository();
-    private static LottoPurchaseRepository lottoPurchaseRepository = new LottoPurchaseRepository();
-    private static WinningNumberRepository winningNumberRepository = new WinningNumberRepository();
+    private static final LottoRepository lottoRepository = new LottoRepository();
+    private static final LottoPurchaseRepository lottoPurchaseRepository = new LottoPurchaseRepository();
+    private static final WinningNumberRepository winningNumberRepository = new WinningNumberRepository();
 
-    private static LottoService lottoService = new LottoService(lottoRepository, lottoPurchaseRepository, winningNumberRepository);
+    private static final LottoService lottoService = new LottoService(lottoRepository, lottoPurchaseRepository, winningNumberRepository);
 
-    private static LottoController lottoController = new LottoController(lottoService);
+    private static final LottoController lottoController = new LottoController(lottoService);
 
     public static LottoController getLottoController() {
         return lottoController;

@@ -1,17 +1,13 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.dto.LottoPurchaseResponse;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.LottoException;
 import lotto.service.LottoService;
 import lotto.utils.LottoUtils;
-import lotto.view.Input;
-import lotto.view.Output;
 
 public class LottoController {
-
-    private final Input input = new Input();
-    private final Output output = new Output();
 
     private final LottoService lottoService;
 
@@ -19,32 +15,20 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void getLottoAmountInputMessage() {
-        input.printPurchaseAmountInputMessage();
-    }
-
-    public void saveLottoAmountInput() {
-        String input = Console.readLine();
-
+    public LottoPurchaseResponse saveLottoAmountInput(String request) {
         LottoException.throwIllegalArgumentException(
-            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(input)
+            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request)
         );
 
-        lottoService.saveLottoPurchase(input);
-        output.printPurchaseLotto(lottoService.createLottoNumbers());
+        lottoService.saveLottoPurchase(request);
+        return lottoService.createLottoNumbers();
     }
 
-    public void getLottoWinningNumberInputMessage() {
-        input.printWinningNumberInputMessage();
-    }
-
-    public void saveLottoWinningNumberInput() {
-        String input = Console.readLine();
-
+    public void saveLottoWinningNumberInput(String request) {
         LottoException.throwIllegalArgumentException(
-            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(input)
+            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request)
         );
 
-        lottoService.saveWinningNumber(input);
+        lottoService.saveWinningNumber(request);
     }
 }
