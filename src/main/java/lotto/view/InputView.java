@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.enums.OutputMessage;
 import lotto.exception.LottoNumberTypeValidator;
 import lotto.exception.MoneyTypeValidator;
 
@@ -19,7 +20,7 @@ public class InputView {
     public int getPurchasedMoney() {
         while (true) {
             try {
-                System.out.println(OutputView.INPUT_MONEY_MESSAGE);
+                System.out.println(OutputMessage.INPUT_MONEY_MESSAGE.getMessage());
                 return this.moneyTypeValidator.validateMoneyType(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -30,7 +31,7 @@ public class InputView {
     public List<Integer> getWinningNumbers() {
         while (true) {
             try {
-                System.out.println(OutputView.INPUT_WINNING_NUMBER_MESSAGE);
+                System.out.println(OutputMessage.INPUT_WINNING_NUMBER_MESSAGE.getMessage());
                 return this.lottoNumberTypeValidator.validateWinningNumbersType(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -41,7 +42,7 @@ public class InputView {
     public int getBonusNumber() {
         while (true){
             try {
-                System.out.println(OutputView.INPUT_BONUS_NUMBER_MESSAGE);
+                System.out.println(OutputMessage.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
                 return this.lottoNumberTypeValidator.validateBonusNumberType(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
