@@ -30,5 +30,10 @@ public class Application {
             System.out.println(iterator.next());
         }
         System.out.println("\n당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = new LinkedList<>();
+
+        for(String n:readLine().split(",")){
+            winningNumbers.add(Integer.parseInt(n));
+        }
     }
 }
