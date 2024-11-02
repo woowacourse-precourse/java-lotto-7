@@ -9,14 +9,16 @@ import lotto.model.Lotto;
 public class LottoMachineController {
     public static List<Lotto> issueLotto(int lottoTicketNumber){
         List<Lotto> lottoTickets = new ArrayList<>();
-
-        for(int i=0;i<lottoTicketNumber;i++){
+        int current = 0;
+        while(current < lottoTicketNumber) {
             List<Integer> ticket = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(ticket);
-            // 겹치는지 확인
-            lottoTickets.add(new Lotto(ticket));
+            Lotto newLotto = new Lotto(ticket);
+            if(!lottoTickets.contains(newLotto)) {
+                lottoTickets.add(newLotto);
+                current++;
+            }
         }
-
         return lottoTickets;
     }
 }
