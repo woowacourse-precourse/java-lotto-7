@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.exception.NumberFormatException;
+
 public class InputView extends InputReader {
     public int inputLottoMoney() {
         String inputLottoMoney = inputMessage();

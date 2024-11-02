@@ -1,12 +1,16 @@
 package lotto.controller;
 
+import lotto.domain.LottoMachine;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.function.Supplier;
+
 public class LottoController {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -14,7 +18,11 @@ public class LottoController {
     }
 
     public void run() {
-        Money money = getLottoMoney();
+        Money money = repeatUntilValid(this::getLottoMoney);
+        outputView.displayPurchaseQuantity(money.getPurchaseQuantity());
+
+        Lottos purchasedLottos = purchaseLotto(money);
+        outputView.displayPurchasedLottos(purchasedLottos);
     }
 
     private Money getLottoMoney() {
@@ -22,5 +30,18 @@ public class LottoController {
         int inputLottoMoney = inputView.inputLottoMoney();
 
         return Money.from(inputLottoMoney);
+    }
+
+    private Lottos purchaseLotto(Money money) {
+        return new LottoMachine().issueLottos(money.getPurchaseQuantity());
+    }
+
+    private <T> T repeatUntilValid(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return repeatUntilValid(supplier);
+        }
     }
 }

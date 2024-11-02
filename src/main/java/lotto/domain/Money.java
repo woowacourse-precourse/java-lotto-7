@@ -19,4 +19,8 @@ public class Money {
             throw new DivideMoneyException();
         }
     }
+
+    public int getPurchaseQuantity() {
+        return amount / 1000;
+    }
 }
