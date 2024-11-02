@@ -6,14 +6,22 @@ import java.util.List;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;
 import lotto.domain.ticket.Ticket;
+import lotto.repository.ticket.TicketCommonStorage;
 import lotto.repository.ticket.TicketReadRepository;
 import lotto.repository.ticket.TicketWriteRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("LottoReadService - 로또 조회 서비스")
 class TicketReadServiceTest {
+
+    @BeforeEach
+    void setUp() {
+        TicketCommonStorage.clear();
+    }
+
 
     private Ticket createTicket(Long id) {
         return Ticket.issue(id, createLottos());
