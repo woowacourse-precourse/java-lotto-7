@@ -3,6 +3,9 @@ package lotto.view;
 import static camp.nextstep.edu.missionutils.Console.*;
 import static lotto.exception.Exception.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class InputView {
     private static final String WINNING_NUMBER_DELIMITER = ",";
 
@@ -20,5 +23,15 @@ public class InputView {
 
     private static String[] splitWinningNumbers(String input) {
         return input.split(WINNING_NUMBER_DELIMITER);
+    }
+
+    private static List<Integer> parseToInteger(String[] numbers) {
+        try {
+            return Arrays.stream(numbers)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_WINNING_NUMBERS.getMessage());
+        }
     }
 }
