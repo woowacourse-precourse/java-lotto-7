@@ -12,24 +12,42 @@ public class UserInput {
     private static final String SEPARATOR = ",";
 
     public int getPurchaseAmount() {
-        String input = Console.readLine().trim();
-        validateEmptyInput(input);
-        return LottoShop.validatePurchaseAmount(input);
+        while (true){
+            try {
+                String input = Console.readLine().trim();
+                validateEmptyInput(input);
+                return LottoShop.validatePurchaseAmount(input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Lotto getWinningNumbers() {
-        String input = Console.readLine().trim();
-        validateEmptyInput(input);
-        validateContainsSeparator(input);
-        return new Lotto(Arrays.stream(input.split(SEPARATOR))
-                .map(UserInput::validateNumber)
-                .collect(Collectors.toCollection(ArrayList::new)));
+        while (true){
+            try {
+                String input = Console.readLine().trim();
+                validateEmptyInput(input);
+                validateContainsSeparator(input);
+                return new Lotto(Arrays.stream(input.split(SEPARATOR))
+                        .map(UserInput::validateNumber)
+                        .collect(Collectors.toCollection(ArrayList::new)));
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int getBonusNumber() {
-        String input = Console.readLine().trim();
-        validateEmptyInput(input);
-        return validateNumber(input);
+        while (true){
+            try {
+                String input = Console.readLine().trim();
+                validateEmptyInput(input);
+                return validateNumber(input);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validateEmptyInput(String input) {

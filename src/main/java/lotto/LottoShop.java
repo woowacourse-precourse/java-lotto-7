@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoShop {
@@ -13,7 +12,7 @@ public class LottoShop {
 
     private final List<Lotto> purChasedLotto = new ArrayList<>();
 
-    public LottoShop(int amount){
+    public LottoShop(int amount) {
         int count = getLottoCount(amount);
         while (count != ZERO_AMOUNT) {
             Lotto lotto = new Lotto(drawNumberList());
@@ -53,8 +52,8 @@ public class LottoShop {
         return amount % LOTTO_UNIT != ZERO_AMOUNT || amount == ZERO_AMOUNT;
     }
 
-    private List<Integer> drawNumberList(){
-        return Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_MINIMUM_NUMBER,Lotto.LOTTO_MAXIMUM_NUMBER,
+    private List<Integer> drawNumberList() {
+        return Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_MINIMUM_NUMBER, Lotto.LOTTO_MAXIMUM_NUMBER,
                 NUMBER_OF_DRAWS);
     }
 
