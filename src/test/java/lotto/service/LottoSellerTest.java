@@ -31,5 +31,11 @@ class LottoSellerTest {
         assertThat(lotto.size()).isEqualTo(count);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 1100, 8800, 999000, 3330000, 9900})
+    void 요금대로_로또를_제공한다(int amount) {
+        List<Lotto> lotto = lottoSeller.buyLotto(amount);
+        assertEquals(lotto.size(), amount / 1000);
+    }
 
 }
