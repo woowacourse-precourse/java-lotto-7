@@ -17,8 +17,9 @@ public final class InputView {
         return Console.readLine();
     }
 
-    public static void inputLottoNumber() {
-        print(LOTTO_NUMBER);
+    public static String inputLottoNumbers() {
+        print("\n" + LOTTO_NUMBER);
+        return Console.readLine();
     }
 
     public static void inputLottoBonus() {
