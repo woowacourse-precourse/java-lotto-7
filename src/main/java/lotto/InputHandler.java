@@ -17,7 +17,7 @@ public abstract class InputHandler {
             int purchaseAmount = Integer.parseInt(input);
 
             if (purchaseAmount % LOTTO_PRICE != 0) {
-                String message = String.format("구입금액은 %,d원 단위여야 합니다.");
+                String message = String.format("구입금액은 %,d원 단위여야 합니다.", LOTTO_PRICE);
                 throw createArgumentException(message, input);
             }
 
