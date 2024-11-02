@@ -18,7 +18,7 @@ public class Controller {
     private final PurchasedLottoNumbersService purchasedLottoNumbersService = new PurchasedLottoNumbersService();
     int userMoney;
 
-    public int divideByThousand() {
+    public int divideUserMoneyByThousand() {
         InputView.printRequestPurchaseAmountInput();
         String inputMoney = InputView.getUserInput();
         try{
@@ -28,7 +28,7 @@ public class Controller {
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             OutputView.printInputAgainPrompt();
-            return divideByThousand();
+            return divideUserMoneyByThousand();
         }
     }
 
@@ -77,7 +77,7 @@ public class Controller {
     }
 
     public void lottoStart(){
-        printResult(makeLottoAndBonusNumberCalculateRank(generatePurchasedLottoNumbers(divideByThousand())));
+        printResult(makeLottoAndBonusNumberCalculateRank(generatePurchasedLottoNumbers(divideUserMoneyByThousand())));
 
     }
 }
