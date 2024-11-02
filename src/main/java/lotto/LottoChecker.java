@@ -6,7 +6,8 @@ import java.util.Set;
 
 public class LottoChecker {
 
-    public static Rank check(List<Integer> userNumbers, WinningNumbers winningNumbers) {
+    public static Rank check(Lotto lotto, WinningNumbers winningNumbers) {
+        List<Integer> userNumbers = lotto.getNumbers();
         Set<Integer> winningSet = new HashSet<>(winningNumbers.getWinningNumbers());
 
         int matchCount = 0;
