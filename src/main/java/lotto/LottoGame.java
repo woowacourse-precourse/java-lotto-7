@@ -1,50 +1,73 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoGame {
-    private final LottoStore lottoStore = new LottoStore();
+    private final LottoStore lottoStore;
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public LottoGame() {
+        this.lottoStore = new LottoStore();
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+    }
 
     public void start() {
-        int amount = InputView.inputPurchaseAmount();
-        List<Lotto> purchasedLottos = lottoStore.buyLottos(amount);
-        OutputView.printPurchasedLottos(purchasedLottos);
-
-        List<Integer> winningNumbers = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-
-        calculateAndPrintResults(purchasedLottos, winningLotto, amount);
+        List<Lotto> purchasedLottos = purchaseLottos();
+        WinningLotto winningLotto = createWinningLotto();
+        Map<LottoRank, Integer> results = calculateResults(purchasedLottos, winningLotto);
+        printResults(results, calculateProfitRate(results, purchasedLottos.size()));
     }
 
-    private void calculateAndPrintResults(List<Lotto> purchasedLottos, WinningLotto winningLotto, int amount) {
-        int[] resultCount = new int[LottoRank.values().length];
-        int totalPrize = 0;
+    private List<Lotto> purchaseLottos() {
+        int amount = readPurchaseAmount();
+        List<Lotto> lottos = lottoStore.buyLottos(amount);
+        outputView.printPurchasedLottos(lottos);
+        outputView.printLottos(lottos);
+        return lottos;
+    }
 
-        for(Lotto lotto : purchasedLottos) {
-            int matchCount = countMatchingNumbers(lotto, winningLotto.getWinningNumbers());
-            boolean bonusMatch = lotto.getNumbers().contains(winningLotto.getBonusNumber());
-
-            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
-            resultCount[rank.ordinal()]++;
-            totalPrize += rank.getPrize();
+    private int readPurchaseAmount() {
+        try {
+            return inputView.inputPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readPurchaseAmount();
         }
-
-        double profitRate = calculateProfitRate(totalPrize, amount);
-        OutputView.printResult(resultCount, profitRate);
     }
 
-    private int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
-        int matchCount = 0;
-        for(int number : lotto.getNumbers()) {
-            if (winningNumbers.contains(number)) {
-                matchCount++;
-            }
+    private WinningLotto createWinningLotto() {
+        try {
+            List<Integer> numbers = inputView.inputWinningNumbers();
+            int bonusNumber = inputView.inputBonusNumber();
+            return new WinningLotto(new Lotto(numbers), bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createWinningLotto();
         }
-        return matchCount;
     }
 
-    private double calculateProfitRate(double totalPrize, int amount) {
-        return (double) totalPrize / amount * 100;
+    private Map<LottoRank, Integer> calculateResults(List<Lotto> lottos, WinningLotto winningLotto) {
+        return lottos.stream()
+                .map(winningLotto::match)
+                .collect(Collectors.groupingBy(
+                        rank -> rank,
+                        Collectors.collectingAndThen(Collectors.counting(), Long::intValue)
+                ));
+    }
+
+    private double calculateProfitRate(Map<LottoRank, Integer> results, int totalCount) {
+        long totalPrize = results.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+                .sum();
+        return (totalPrize * 100.0) / (totalCount * 1000);
+    }
+
+    private void printResults(Map<LottoRank, Integer> results, double profitRate) {
+        outputView.printResult(results, profitRate);
+
     }
 }
