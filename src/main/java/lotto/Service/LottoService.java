@@ -14,6 +14,7 @@ public class LottoService {
     private static final int START_LOTTO_NUMBER=1;
     private static final int END_LOTTO_NUMBER=45;
     private static final int LOTTO_COUNT=6;
+    private static final int LOTTO_PRICE=1000;
 
     public List<Lotto> purchaseLotto(int purchase_amount){
         purchaseAmount=purchase_amount;
@@ -27,7 +28,7 @@ public class LottoService {
         return lottos;
     }
     public int LottoNumber(int purchase_amount){
-        return purchase_amount/1000;
+        return purchase_amount/LOTTO_PRICE;
     }
     private Lotto getGenerateLotto(){
         List<Integer> lottoNumbers = new ArrayList<>();

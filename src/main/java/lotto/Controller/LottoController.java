@@ -10,7 +10,6 @@ import lotto.domain.UserLotto;
 import java.util.List;
 
 public class LottoController {
-    InputView inputView = new InputView();
     LottoService lottoService = new LottoService();
 
     public void run() {
