@@ -1,7 +1,5 @@
 package lotto.enums;
 
-import java.util.Arrays;
-
 public enum Rank {
     NONE(0, false, 0),
     FIFTH(3, false, 5_000),
