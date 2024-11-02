@@ -1,19 +1,27 @@
 package lotto.domain.number;
 
-import lotto.domain.lotto.Lotto;
-
+import java.util.Arrays;
 import java.util.List;
 
 public class WinningNumbers {
 
-    private final Lotto winningNumbers;
+    private static final String DELIMITER = ",";
 
-    private WinningNumbers(final Lotto winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    private final List<Integer> winningNumbers;
+
+    private WinningNumbers(final String input) {
+        this.winningNumbers = parseWinningNumbers(input);
     }
 
-    public static WinningNumbers from(final Lotto winningNumbers) {
-        return new WinningNumbers(winningNumbers);
+    public static WinningNumbers from(final String input) {
+        return new WinningNumbers(input);
+    }
+
+    private List<Integer> parseWinningNumbers(final String input) {
+        return Arrays.stream(input.split(DELIMITER))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public int countMatchedNumbers(final List<Integer> numbers) {
