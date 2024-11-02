@@ -2,7 +2,8 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
 import lotto.model.Amount;
 import lotto.model.LottoPublisher;
 import lotto.view.InputView;
@@ -72,24 +73,19 @@ public class LottoController {
 
     public int handleBonusInputError() {
         boolean validInput = false;
-        int bonusNumberInput = 0;
+        Bonus bonus;
 
         while (!validInput) {
             try {
-                outputView.printRequest(OutputView.REQUEST_BONUS_MESSAGE);
-                String input = inputView.readInput("");
-
+                String input = inputView.readInput(Bonus.getRequestMessage());
                 validationManager.isNotEmptyInput(input);
                 validationManager.isNumber(input);
-                bonusNumberInput = TypeConverter.ToNumber(input);
-                validInput = validationManager.isRangeValid(bonusNumberInput);
-
-
+                bonus = new Bonus(TypeConverter.ToNumber(input));
+                return bonus.getBonusNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return bonusNumberInput;
+        return 0;
     }
 }
