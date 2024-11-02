@@ -36,9 +36,9 @@ public class WinningNumbersValidator {
                     if (winningNumbersValidation(request)) {
                         this.winningNumbers = removeEmpty(divideString(request));
 
-                        return isSixWinningNumbers() &&
+                        return isSixWinningNumbers(winningNumbers) &&
                                hasNoDuplicates(Input.PURCHASE_AMOUNT_PROMPT, winningNumbers) &&
-                               isLottoNumberRange();
+                               isLottoNumberRange(winningNumbers);
                     }
                     return false;
                 }
@@ -69,7 +69,7 @@ public class WinningNumbersValidator {
         return numbers;
     }
 
-    private Boolean isSixWinningNumbers() {
+    private Boolean isSixWinningNumbers(List<String> winningNumbers) {
         if (winningNumbers.size() == LottoConstants.SIX_PICK) {
             return true;
         }
@@ -78,7 +78,7 @@ public class WinningNumbersValidator {
                 ErrorMessages.INVALID_WINNING_NUMBERS_COUNT.getMessage());
     }
 
-    private Boolean isLottoNumberRange() {
+    private Boolean isLottoNumberRange(List<String> winningNumbers) {
         winningNumbers.forEach(number -> {
 
             if (Integer.parseInt(number) < LottoConstants.MIN_BALL ||
