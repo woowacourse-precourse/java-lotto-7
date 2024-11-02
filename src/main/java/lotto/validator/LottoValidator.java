@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.Lotto;
+import lotto.constant.ErrorMessage;
 
 public class LottoValidator {
 
@@ -38,13 +39,13 @@ public class LottoValidator {
     //구매 금액에 숫자가 아닌 다른 것이 들어갈 때.
     private void purchaseAmountTypeValidator(String purchaseAmount) {
         if(!purchaseAmount.matches("-?\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액에는 숫자만 들어갈 수 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_TYPE_EXCEPTION);
         }
     }
     //음수인지 검증
     private void purchaseAmountPositiveValidator(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0이나 음수가 될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_RANGE_EXCEPTION);
         }
 
     }
@@ -52,7 +53,7 @@ public class LottoValidator {
     //1000원 단위인지 검증
     private void purchaseAmountUnitValidator (int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_UNIT_EXCEPTION);
         }
     }
 
@@ -62,7 +63,7 @@ public class LottoValidator {
         Set<Integer> uniqueNumbers = new HashSet<>(lottoNums);
 
         if (uniqueNumbers.size() != lottoNums.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 값이 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE_EXCEPTION);
         }
     }
 
@@ -71,7 +72,7 @@ public class LottoValidator {
         ArrayList<Integer> lottoNums = new ArrayList<>(lotto.getNumbers());
         for (Integer lottoNum : lottoNums) {
             if (lottoNum > 45 || lottoNum < 1) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45의 범위만 가능합니다.");
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_EXCEPTION);
             }
         }
     }
@@ -79,7 +80,7 @@ public class LottoValidator {
     //보너스 번호 1~45 범위 검증
     private void bonusNumRangeValidator (int bonusNum) {
         if (bonusNum > 45 || bonusNum < 1) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45의 범위만 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_EXCEPTION);
         }
     }
 
@@ -92,7 +93,7 @@ public class LottoValidator {
 
     private void lottoNumTypeValidator (String lottoNum) {
         if(!lottoNum.matches("-?\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_TYPE_EXCEPTION);
         }
     }
 
