@@ -9,9 +9,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class PrizeResultTest {
+class TotalGainTest {
 
-    PrizeResult prizeResult;
+    TotalGain totalGain;
 
     @BeforeEach
     void setUp(){
@@ -26,11 +26,11 @@ class PrizeResultTest {
 
         PaymentInput paymentInput=new PaymentInput("8000");
 
-        prizeResult=new PrizeResult(expected,paymentInput);
+        totalGain =new TotalGain(expected,paymentInput);
     }
 
     @Test
     void 수익률을_구한다(){
-        assertThat(prizeResult.calculateInvestment()).isEqualTo(62.5);
+        assertThat(totalGain.calculateInvestment()).isEqualTo(62.5);
     }
 }

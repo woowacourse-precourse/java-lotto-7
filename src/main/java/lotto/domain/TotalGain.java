@@ -2,14 +2,23 @@ package lotto.domain;
 
 import java.util.Map;
 
-public class PrizeResult {
+public class TotalGain {
     Map<Rank,Integer> prizeResult;
     PaymentInput paymentInput;
 
-    public PrizeResult(Map<Rank,Integer> prizeResult,PaymentInput paymentInput){
+    public TotalGain(Map<Rank,Integer> prizeResult, PaymentInput paymentInput){
         this.prizeResult=prizeResult;
         this.paymentInput=paymentInput;
     }
+
+    public Map<Rank, Integer> getPrizeResult() {
+        return prizeResult;
+    }
+
+    public PaymentInput getPaymentInput() {
+        return paymentInput;
+    }
+
 
     public double calculateInvestment(){
         long totalPrize=0;
