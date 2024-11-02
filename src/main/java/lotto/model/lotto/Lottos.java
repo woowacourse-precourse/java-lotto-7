@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.common.LottoConst;
 import lotto.error.ErrorMessage;
 import lotto.model.parseLotto.ParseLotto;
+import lotto.model.util.GeneraterLotto;
 
 public class Lottos {
     private List<Lotto> lottos;

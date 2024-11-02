@@ -3,7 +3,7 @@ package lotto.model.lotto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.common.WinMoneyMessage;
+import lotto.model.util.Mapping;
 
 public class Winstatus {
 
@@ -32,7 +32,7 @@ public class Winstatus {
                 bonusCount++;
             }
 
-            String key = mappingCountToKey(correctCount, bonusCount);
+            String key = Mapping.mappingCountToKey(correctCount, bonusCount);
 
             if (key.isEmpty()) {
                 continue;
@@ -56,38 +56,9 @@ public class Winstatus {
         return false;
     }
 
-    private static String mappingCountToKey(int count, int bonusCount) {
-        if (count == 3) {
-            return WinMoneyMessage.THREECOUNTKEY.getWinMoneyStr();
-        } else if (count == 4) {
-            return WinMoneyMessage.FOURCOUNTKEY.getWinMoneyStr();
-        } else if (count == 5) {
-            return WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr();
-        } else if (count == 5 && bonusCount == 1) {
-            return WinMoneyMessage.FIVEANDBONUSKEY.getWinMoneyStr();
-        } else if (count == 6) {
-            return WinMoneyMessage.SIXCOUNTKEY.getWinMoneyStr();
-        }
 
-        return "";
 
-    }
 
-    public static String mappingKeyToMoneyString(String key) {
-        if (key.equals(WinMoneyMessage.THREECOUNTKEY.getWinMoneyStr())) {
-            return WinMoneyMessage.THREERIGHT.getWinMoneyStr();
-        } else if (key.equals(WinMoneyMessage.FOURCOUNTKEY.getWinMoneyStr())) {
-            return WinMoneyMessage.FOURGRIGHT.getWinMoneyStr();
-        } else if (key.equals(WinMoneyMessage.FIVECOUNTKEY.getWinMoneyStr())) {
-            return WinMoneyMessage.FIVERIGHT.getWinMoneyStr();
-        } else if (key.equals(WinMoneyMessage.FIVEANDBONUSKEY.getWinMoneyStr())) {
-            return WinMoneyMessage.FIVEWRIGHTANDBONUS.getWinMoneyStr();
-        } else if (key.equals(WinMoneyMessage.SIXCOUNTKEY.getWinMoneyStr())) {
-            return WinMoneyMessage.SIXRIGHT.getWinMoneyStr();
-        }
-
-        return "";
-    }
 
     public Map<String, Integer> getStatus() {
         return status;

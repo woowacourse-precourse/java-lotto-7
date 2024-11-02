@@ -1,13 +1,13 @@
-package lotto.model.lotto;
+package lotto.model.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 import lotto.common.LottoConst;
+import lotto.model.lotto.Lotto;
 
 public class GeneraterLotto {
 
-    public static List<Lotto> generateLotto(List<Lotto> lottos,int lottoCount) {
+    public static List<Lotto> generateLotto(List<Lotto> lottos, int lottoCount) {
 
         for (int i = 0; i < lottoCount; i++) {
 
