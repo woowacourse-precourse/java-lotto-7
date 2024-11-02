@@ -23,7 +23,7 @@
 | `유효성검사` |              | 1~45 범위 내의 숫자인지 확인               | :white_large_square: |
 | `유효성검사` | 숫자 중복 확인     | 6개의 숫자가 서로 중복되지 않는지 확인           | :white_large_square: |
 | `유효성검사` | 보너스 번호 중복 확인 | 보너스 번호가 6개의 당첨 번호와 중복되지 않는지 확인   | :white_large_square: |
-| `로또생성`  | 로또 구매        | 입력된 금액에 맞는 로또 개수를 계산             | :white_large_square: |
+| `로또생성`  | 로또 구매        | 입력된 금액에 맞는 로또 개수를 계산             | :white_check_mark: |
 | `로또생성`  | 로또 발급        | 구매한 로또 개수만큼 로또 발급(저장)            | :white_large_square: |
 | `로또생성`  |              | 로또 한장 발급                         | :white_large_square: |
 | `로또생성`  | 당첨번호 저장      | 입력된 당첨 번호를 저장                    | :white_large_square: |
