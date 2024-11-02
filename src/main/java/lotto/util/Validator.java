@@ -11,8 +11,9 @@ public class Validator {
             throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_TYPE);
         }
 
-        if (Integer.parseInt(amountInput) % 1000 > 0) {
-            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_PRICE_UNIT);
+        int purchaseAmount = Integer.parseInt(amountInput);
+        if (purchaseAmount <= 0 || purchaseAmount % 1000 > 0) {
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_PURCHASE_AMOUNT);
         }
     }
 
