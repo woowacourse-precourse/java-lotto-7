@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.List;
 
 public class WinningNumber extends Lotto {
-    private int bonus_number;
+    private int bonusNumber;
 
     public WinningNumber(List<Integer> numbers, int bonus_number) {
         super(numbers);
-        this.bonus_number = bonus_number;
+        this.bonusNumber = bonus_number;
     }
 
     public int getWinningRank(Lotto oneLotto) {
@@ -20,7 +20,7 @@ public class WinningNumber extends Lotto {
                 matchedCount++;
             }
         }
-        if (oneLotto.getNumbers().contains(bonus_number)) {
+        if (oneLotto.getNumbers().contains(bonusNumber)) {
             matchedBonusNumber = true;
         }
 
