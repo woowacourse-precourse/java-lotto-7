@@ -28,12 +28,11 @@ public class PurchasedLottos {
     }
 
     private static List<Integer> generateRandomNumber() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 LottoConstant.MIN_LOTTO_NUMBER,
                 LottoConstant.MAX_LOTTO_NUMBER,
                 LottoConstant.LOTTO_SIZE
         ));
-        return numbers;
     }
 
     public List<Lotto> getPurchasedLottos() {

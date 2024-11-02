@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.lotto.PurchasedLottos;
 import lotto.domain.lotto.WinningLottos;
+import lotto.domain.number.BonusNumber;
 import lotto.domain.number.WinningNumbers;
 import lotto.domain.result.WinningResult;
 import lotto.global.constant.LottoConstant;
@@ -33,7 +34,7 @@ public class LottoController {
 
     private WinningResult checkWinningResult(PurchasedLottos purchasedLottos) {
         WinningNumbers winningNumbers = getWinningNumbers();
-        int bonusNumber = inputView.readBonusNumber();
+        BonusNumber bonusNumber = BonusNumber.from(inputView.readBonusNumber());
         return createWinningResult(purchasedLottos, winningNumbers, bonusNumber);
     }
 
@@ -44,7 +45,7 @@ public class LottoController {
     private WinningResult createWinningResult(
             PurchasedLottos purchasedLottos,
             WinningNumbers winningNumbers,
-            int bonusNumber
+            BonusNumber bonusNumber
     ) {
         WinningLottos winningLottos = WinningLottos.of(purchasedLottos, winningNumbers, bonusNumber);
         return WinningResult.of(winningLottos, purchasedLottos.getPurchasedLottos().size());

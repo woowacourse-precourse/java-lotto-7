@@ -29,8 +29,4 @@ public class WinningNumbers {
                 .filter(winningNumbers::contains)
                 .count();
     }
-
-    public boolean contains(final int number) {
-        return winningNumbers.contains(number);
-    }
 }

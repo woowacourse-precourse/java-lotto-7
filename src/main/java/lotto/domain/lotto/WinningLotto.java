@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import lotto.domain.number.BonusNumber;
 import lotto.domain.number.WinningNumbers;
 
 public class WinningLotto {
@@ -13,7 +14,7 @@ public class WinningLotto {
     public static WinningLotto createWinningLotto(
             final Lotto lotto,
             final WinningNumbers winningNumbers,
-            final int bonusNumber
+            final BonusNumber bonusNumber
     ) {
         int matchCount = getMatchCount(lotto, winningNumbers);
         boolean hasBonusNumber = hasBonusNumber(lotto, bonusNumber);
@@ -21,9 +22,8 @@ public class WinningLotto {
         return new WinningLotto(LottoRank.getLottoRank(matchCount, hasBonusNumber));
     }
 
-    private static boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
-        return lotto.getNumbers()
-                .contains(bonusNumber);
+    private static boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+        return bonusNumber.contains(lotto.getNumbers());
     }
 
     private static int getMatchCount(Lotto lotto, WinningNumbers winningNumbers) {
