@@ -9,6 +9,8 @@ public class LottoMachine {
 
     public void playMachine() {
         Purchase purchase = makePurchase();
+        Lottos lottos = makeLottos(purchase.numberOfPurchases());
+        showLottos(lottos);
         WinningNumbers winningNumbers = makeWinningNumbers();
         BonusNumber bonusNumber = makeBonusNumber();
     }
@@ -21,6 +23,19 @@ public class LottoMachine {
             System.out.println(e.getMessage());
             return makePurchase();
         }
+    }
+
+    private Lottos makeLottos(int numberOfPurchases) {
+        try {
+            Lottos lottos = new Lottos(numberOfPurchases);
+            return lottos;
+        } catch (IllegalStateException e) {
+            return makeLottos(numberOfPurchases);
+        }
+    }
+
+    private void showLottos(Lottos lottos) {
+
     }
 
     private WinningNumbers makeWinningNumbers() {
