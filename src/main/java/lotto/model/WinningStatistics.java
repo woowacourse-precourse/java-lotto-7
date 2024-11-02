@@ -29,7 +29,7 @@ public class WinningStatistics {
 
     public void process(Lotto lotto, WinningNumbers winningNumbers) {
         int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers.getWinningNumbers());
-        boolean isBonusMatch = checkBonusMatch(lotto, winningNumbers);
+        boolean isBonusMatch = checkBonusMatch(lotto.getNumbers(), winningNumbers.getBonusNumber());
         updateWinningStatistics(matchCount, isBonusMatch);
     }
 
@@ -39,8 +39,8 @@ public class WinningStatistics {
                 .count();
     }
 
-    public boolean checkBonusMatch(Lotto lotto, WinningNumbers winningNumbers) {
-        return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
+    public boolean checkBonusMatch(List<Integer> lottoNumbers, int bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
     }
 
     public void updateWinningStatistics(int matchCount, boolean isBonusMatch) {
