@@ -9,6 +9,8 @@ public enum Exception {
     LOTTO_NUMBER_SIZE_MUST_BE_SIX("로또 번호는 6개여야 합니다."),
     LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     LOTTO_NUMBER_DUPLICATED("로또 번호는 중복될 수 없습니다."),
+
+    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     ;
 
     private static final String PREFIX = "[ERROR] ";
