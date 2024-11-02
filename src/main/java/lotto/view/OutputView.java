@@ -36,4 +36,8 @@ public class OutputView {
     public void printWinningNumbers() {
         System.out.println(LINE_BREAK.getMessage() + LOTTO_NUMBERS.getMessage());
     }
+
+    public void printBonusNumber() {
+        System.out.println(LINE_BREAK.getMessage() + LOTTO_BONUS.getMessage());
+    }
 }

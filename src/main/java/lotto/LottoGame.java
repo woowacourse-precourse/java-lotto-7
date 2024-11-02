@@ -14,19 +14,15 @@ public class LottoGame {
     private static final OutputView outputView = Container.getInstance(OutputView.class);
 
     private static List<Lotto> lottoes = new ArrayList<>();
+    private static List<Integer> winningNumbers = new ArrayList<>();
     private static int amount = 0;
+    private static int bonusNumber = 0;
 
     public static void start() {
         getAmount();
         setLottoes();
 
         setNumbers();
-    }
-
-    public static void setNumbers() {
-        outputView.printWinningNumbers();
-        List<Integer> numbers = inputView.setWinningNumbers();
-        System.out.println(numbers);
     }
 
     private static void getAmount() {
@@ -38,5 +34,14 @@ public class LottoGame {
     private static void setLottoes() {
         lottoes = inputView.setLottoes(amount).lottoes();
         outputView.printLottoNumbers(lottoes);
+    }
+
+    private static void setNumbers() {
+        outputView.printWinningNumbers();
+        winningNumbers = inputView.setWinningNumbers();
+
+        outputView.printBonusNumber();
+        bonusNumber = inputView.setBonusNumber();
+        System.out.println(bonusNumber);
     }
 }
