@@ -22,7 +22,6 @@ class LottoTest {
 
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
     @Test
     void create_Lotto_should_be_pass() {
         // given

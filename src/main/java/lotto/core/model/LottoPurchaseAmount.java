@@ -1,10 +1,14 @@
 package lotto.core.model;
 
+import lotto.core.dto.LottoPurchaseAmountDto;
+
 public class LottoPurchaseAmount {
 
-    private static final int MIN_VALUE = 1000;
+    private static final int BASE_AMOUNT = 1000;
 
     private final Integer value;
+
+    private final Integer lottoCount;
 
     public LottoPurchaseAmount(String value) {
         this(LottoPurchaseAmount.parseString(value));
@@ -13,6 +17,11 @@ public class LottoPurchaseAmount {
     public LottoPurchaseAmount(Integer value) {
         validate(value);
         this.value = value;
+        this.lottoCount = this.value / BASE_AMOUNT;
+    }
+
+    public static LottoPurchaseAmount dtoOf(LottoPurchaseAmountDto dto) {
+        return new LottoPurchaseAmount(dto.value());
     }
 
     private static Integer parseString(String value) {
@@ -30,10 +39,10 @@ public class LottoPurchaseAmount {
         if (value == null) {
             throw new IllegalArgumentException("로또 구입 금액을 입력해주세요.");
         }
-        if (value < MIN_VALUE) {
+        if (value < BASE_AMOUNT) {
             throw new IllegalArgumentException("로또 구입 금액은 1000 이상의 숫자를 입력해주세요.");
         }
-        if (value % MIN_VALUE != 0) {
+        if (value % BASE_AMOUNT != 0) {
             throw new IllegalArgumentException("로또 구입 금액은 1000 단위의 숫자를 입력해주세요.");
         }
     }
@@ -43,6 +52,6 @@ public class LottoPurchaseAmount {
     }
 
     public Integer getLottoCount() {
-        return this.value / MIN_VALUE;
+        return this.lottoCount;
     }
 }

@@ -1,41 +1,40 @@
 package lotto.core.controller;
 
-import java.util.List;
 import lotto.commons.command.Command;
 import lotto.commons.handler.Handler;
-import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoPurchaseAmountDto;
+import lotto.core.dto.LottoTicketDto;
 import lotto.core.service.CreateLottoPurchaseAmountService;
-import lotto.core.service.PublishLottoService;
+import lotto.core.service.PublishLottoTicketService;
 import lotto.core.view.InputLottoPurchaseAmountView;
-import lotto.core.view.PublishLottoView;
+import lotto.core.view.PublishLottoTicketView;
 
-public class PurchaseLottoController implements Controller<Void, List<LottoDto>> {
+public class PurchaseLottoController implements Controller<Void, LottoTicketDto> {
 
     private final InputLottoPurchaseAmountView inputLottoPurchaseAmountView;
 
-    private final PublishLottoView publishLottoView;
+    private final PublishLottoTicketView publishLottoTicketView;
 
     private final CreateLottoPurchaseAmountService createLottoPurchaseAmountService;
 
-    private final PublishLottoService publishLottoService;
+    private final PublishLottoTicketService publishLottoTicketService;
 
     public PurchaseLottoController(InputLottoPurchaseAmountView inputLottoPurchaseAmountView,
-                                   PublishLottoView publishLottoView,
+                                   PublishLottoTicketView publishLottoTicketView,
                                    CreateLottoPurchaseAmountService createLottoPurchaseAmountService,
-                                   PublishLottoService publishLottoService) {
+                                   PublishLottoTicketService publishLottoTicketService) {
         this.inputLottoPurchaseAmountView = inputLottoPurchaseAmountView;
-        this.publishLottoView = publishLottoView;
+        this.publishLottoTicketView = publishLottoTicketView;
         this.createLottoPurchaseAmountService = createLottoPurchaseAmountService;
-        this.publishLottoService = publishLottoService;
+        this.publishLottoTicketService = publishLottoTicketService;
     }
 
     @Override
-    public List<LottoDto> request(Void unused) {
+    public LottoTicketDto request(Void unused) {
         LottoPurchaseAmountDto amount = this.processInputLottoPurchaseAmount();
-        List<LottoDto> data = this.processPublishLotto(amount);
-        this.displayPublishedLotto(data);
-        return data;
+        LottoTicketDto ticket = this.processPublishLotto(amount);
+        this.displayPublishedLotto(ticket);
+        return ticket;
     }
 
     private LottoPurchaseAmountDto processInputLottoPurchaseAmount() {
@@ -50,11 +49,11 @@ public class PurchaseLottoController implements Controller<Void, List<LottoDto>>
         return amount;
     }
 
-    private List<LottoDto> processPublishLotto(LottoPurchaseAmountDto amount) {
-        return this.publishLottoService.publish(amount);
+    private LottoTicketDto processPublishLotto(LottoPurchaseAmountDto amount) {
+        return this.publishLottoTicketService.publish(amount);
     }
 
-    private void displayPublishedLotto(List<LottoDto> data) {
-        this.publishLottoView.display(data);
+    private void displayPublishedLotto(LottoTicketDto ticket) {
+        this.publishLottoTicketView.display(ticket);
     }
 }

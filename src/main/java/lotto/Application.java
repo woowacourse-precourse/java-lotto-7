@@ -4,20 +4,20 @@ import lotto.commons.lang.ProgramExitException;
 import lotto.commons.logger.Logger;
 import lotto.core.controller.PurchaseLottoController;
 import lotto.core.service.CreateLottoPurchaseAmountService;
-import lotto.core.service.PublishLottoService;
+import lotto.core.service.PublishLottoTicketService;
 import lotto.core.view.InputLottoPurchaseAmountView;
-import lotto.core.view.PublishLottoView;
+import lotto.core.view.PublishLottoTicketView;
 
 public class Application {
     public static void main(String[] args) {
         Application.run(() -> {
             var purchaseLottoController = new PurchaseLottoController(
                     new InputLottoPurchaseAmountView(),
-                    new PublishLottoView(),
+                    new PublishLottoTicketView(),
                     new CreateLottoPurchaseAmountService(),
-                    new PublishLottoService()
+                    new PublishLottoTicketService()
             );
-            var lotto = purchaseLottoController.request(null);
+            var lottoTicket = purchaseLottoController.request(null);
         });
     }
 

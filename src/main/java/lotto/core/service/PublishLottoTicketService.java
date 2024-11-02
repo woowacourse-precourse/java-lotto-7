@@ -2,20 +2,22 @@ package lotto.core.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoPurchaseAmountDto;
+import lotto.core.dto.LottoTicketDto;
 import lotto.core.model.Lotto;
+import lotto.core.model.LottoTicket;
 
-public class PublishLottoService {
+public class PublishLottoTicketService {
 
-    public List<LottoDto> publish(LottoPurchaseAmountDto amount) {
+    public LottoTicketDto publish(LottoPurchaseAmountDto amount) {
         int count = amount.lottoCount();
-        List<LottoDto> lottoDtos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Lotto lotto = createLottoUntilSuccess();
-            lottoDtos.add(new LottoDto(lotto.getNumbers()));
+            lottos.add(lotto);
         }
-        return lottoDtos;
+        LottoTicket ticket = new LottoTicket(lottos);
+        return LottoTicketDto.modelOf(ticket);
     }
 
     private Lotto createLottoUntilSuccess() {
