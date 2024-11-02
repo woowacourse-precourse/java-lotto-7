@@ -25,12 +25,13 @@ public class Controller {
         outputView.printLottos(lottos);
 
         outputView.printResult(WINNING_START.getMessage());
+
         outputView.printResult(BONUS_START.getMessage());
         outputView.printResult(STATISTICS.getMessage());
     }
 
     private List<Lotto> pickLotto() {
-        int money = parser.parseMoney(inputView.inputString());
+        int money = getIntValue();
         int count = getCount(money);
         return lottoMachine.generateLottos(count);
     }
@@ -38,5 +39,9 @@ public class Controller {
     private int getCount(int money) {
         CashRegister cashRegister = new CashRegister(money);
         return cashRegister.calculateLottoCount();
+    }
+
+    private int getIntValue() {
+        return parser.parseToInt(inputView.inputString());
     }
 }
