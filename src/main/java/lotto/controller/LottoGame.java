@@ -74,6 +74,7 @@ public class LottoGame {
             }
         }
         double rateOfReturn = calculateRateOfReturn(rankResult);
+        outputView.printResult(rankResult, rateOfReturn);
     }
 
     private Map<Rank, Integer> initializeRankResult() {
@@ -96,7 +97,7 @@ public class LottoGame {
             int prizeMoney = rank.getReward();
             profit += (eachRankCount * prizeMoney);
         }
-        double rateOfReturn = (double) profit / money;
+        double rateOfReturn = (double) profit / money * 100;
         return rateOfReturn;
     }
 }
