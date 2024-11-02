@@ -2,20 +2,19 @@ package lotto.domain;
 
 import lotto.error.LottoErrorMessage;
 import lotto.error.NumberErrorMessage;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningNumbersTest {
-    @Test
-    void 당첨번호_갯수는_6개여야_한다() {
-        //given
-        List<String> numbers = List.of("1", "2", "3");
-
+    @ParameterizedTest
+    @MethodSource("provideMisSizeNumbers")
+    void 당첨번호_갯수는_6개여야_한다(List<String> numbers) {
         //when && then
         assertThatThrownBy(() -> new WinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -33,11 +32,9 @@ class WinningNumbersTest {
                 .hasMessageContaining(NumberErrorMessage.IS_NOT_NUMBER.getMessage());
     }
 
-    @Test
-    void 당첨번호는_1부터_45_사이여야_한다() {
-        //given
-        List<String> numbers = List.of("1", "2", "3", "4", "5", "46");
-
+    @ParameterizedTest
+    @MethodSource("provideOutOfRangeNumbers")
+    void 당첨번호는_1부터_45_사이여야_한다(List<String> numbers) {
         //when && then
         assertThatThrownBy(() -> new WinningNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -63,5 +60,19 @@ class WinningNumbersTest {
         //when && then
         assertThatCode(() -> new WinningNumbers(numbers))
                 .doesNotThrowAnyException();
+    }
+
+    static Stream<List<String>> provideMisSizeNumbers() {
+        return Stream.of(
+                List.of("1", "2", "3"),
+                List.of("1", "2", "3", "4", "5", "6", "6")
+        );
+    }
+
+    static Stream<List<String>> provideOutOfRangeNumbers() {
+        return Stream.of(
+                List.of("1", "2", "3", "4", "5", "46"),
+                List.of("0", "2", "3", "4", "5", "45")
+        );
     }
 }
