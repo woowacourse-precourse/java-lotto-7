@@ -7,9 +7,13 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto winningLotto, int bonusNumber) {
-        WinningNumberValidator.validateBonusNumber(winningLotto.getNumbers(), bonusNumber);
+        validate(winningLotto, bonusNumber);
         this.winningNumbers = winningLotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(Lotto winningLotto, int bonusNumber) {
+        WinningNumberValidator.validateBonusNumber(winningLotto.getNumbers(), bonusNumber);
     }
 
     public Lotto getWinningNumbers() {
