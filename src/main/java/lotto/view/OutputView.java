@@ -15,15 +15,17 @@ public class OutputView {
 	public void printPurchaseLottoResultMessage(int count, List<List<String>> purchaseLottoResult) {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("\n");
-		stringBuilder.append(count);
-		stringBuilder.append("개를 구매했습니다.");
-		stringBuilder.append("\n");
+		stringBuilder.append(getLottoCountMessage(count));
 		for (List<String> lotto : purchaseLottoResult) {
 			stringBuilder.append(getPurchaseLottoResult(lotto));
 			stringBuilder.append("\n");
 		}
 		stringBuilder.append("\n");
 		System.out.println(stringBuilder);
+	}
+
+	private String getLottoCountMessage(int count) {
+		return count + "개를 구매했습니다.\n";
 	}
 
 	private String getPurchaseLottoResult(List<String> lottoResult) {
