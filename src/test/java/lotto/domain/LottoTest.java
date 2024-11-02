@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import lotto.domain.Lotto;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,25 +9,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
-
     @Test
     void 로또_생성_테스트_성공() {
-        // given
-        List<Integer> numbers = new ArrayList<>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(4);
-        numbers.add(5);
-        numbers.add(6);
-
+        // given & when
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
 
-        // when
-        List<Integer> lottoNumbers = lotto.getNumbers();
-
         // then
-        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6}, lottoNumbers.toArray());
+        assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6}, lotto.getNumbers().toArray());
     }
 
     @Test
