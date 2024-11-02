@@ -5,8 +5,15 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 	public int readPurchaseAmount() {
 		String input = Console.readLine();
+		validatePurchaseAmount(input);
 
 		return Integer.parseInt(input);
+	}
+
+	private void validatePurchaseAmount(String input) {
+		validateNotBlank(input);
+		validateDigit(input);
+		validatePositive(input);
 	}
 
 	private void validateNotBlank(String input) {
