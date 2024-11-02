@@ -42,5 +42,8 @@ public class Lotto {
         return lottoticket.contains(bonusNumber);
     }
 
-    // TODO: 추가 기능 구현
+    public Set<LottoNumber> getLottoticket() {
+        return lottoticket;
+    }
+// TODO: 추가 기능 구현
 }
