@@ -6,14 +6,19 @@ import lotto.dto.request.LottoAmountRequest;
 import lotto.dto.response.LottoesResponse;
 import lotto.util.Container;
 import lotto.util.LottoAmountValidator;
+import lotto.util.WinningNumberParser;
+
+import java.util.List;
 
 public class InputView {
 
     private final LottoAmountValidator lottoAmountValidator;
+    private final WinningNumberParser winningNumberParser;
     private final LottoController lottoController;
 
     public InputView() {
         this.lottoAmountValidator = Container.getInstance(LottoAmountValidator.class);
+        this.winningNumberParser = Container.getInstance(WinningNumberParser.class);
         this.lottoController = Container.getInstance(LottoController.class);
     }
 
@@ -24,5 +29,10 @@ public class InputView {
 
     public LottoesResponse setLottoes(int amount) {
         return lottoController.makeLottoes(LottoAmountRequest.from(amount));
+    }
+
+    public List<Integer> setWinningNumbers() {
+        String numbers = Console.readLine();
+        return winningNumberParser.parseWinningNumbers(numbers);
     }
 }

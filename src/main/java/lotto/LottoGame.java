@@ -19,6 +19,14 @@ public class LottoGame {
     public static void start() {
         getAmount();
         setLottoes();
+
+        setNumbers();
+    }
+
+    public static void setNumbers() {
+        outputView.printWinningNumbers();
+        List<Integer> numbers = inputView.setWinningNumbers();
+        System.out.println(numbers);
     }
 
     private static void getAmount() {

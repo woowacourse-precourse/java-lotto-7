@@ -12,6 +12,10 @@ public enum Constants {
     ERROR_DIVISIBLE_AMOUNT("로또 구입 금액은 1000원 단위여야 합니다."),
     ERROR_LOTTO_COUNT("로또 번호는 6개여야 합니다."),
     ERROR_LOTTO_NUMBER("로또 번호는 1부터 45까지의 숫자여야 합니다."),
+    LINE_BREAK("\n"),
+    LEFT_BRACKET("["),
+    RIGHT_BRACKET("]"),
+    COMMA(", "),
     ;
 
     private final String message;

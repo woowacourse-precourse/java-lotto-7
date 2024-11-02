@@ -4,24 +4,20 @@ import lotto.domain.Lotto;
 
 import java.util.List;
 
-import static lotto.util.Constants.LOTTO_COUNT;
-import static lotto.util.Constants.LOTTO_START;
+import static lotto.util.Constants.*;
 
 public class OutputView {
-
-    private static final String LINE_BREAK = "\n";
-
     public void printStartMessage() {
         System.out.println(LOTTO_START.getMessage());
     }
 
     public void printCountMessage(int amount) {
-        System.out.println(LINE_BREAK + amount + LOTTO_COUNT.getMessage());
+        System.out.println(LINE_BREAK.getMessage() + amount + LOTTO_COUNT.getMessage());
     }
 
     public void printLottoNumbers(List<Lotto> lottoes) {
         for (Lotto lotto : lottoes) {
-            System.out.print("[");
+            System.out.print(LEFT_BRACKET.getMessage());
 
             int size = lotto.numbers().size();
 
@@ -29,11 +25,15 @@ public class OutputView {
                 System.out.print(lotto.numbers().get(i));
 
                 if (i < size - 1) {
-                    System.out.print(", ");
+                    System.out.print(COMMA.getMessage());
                 }
             }
 
-            System.out.print("]\n");
+            System.out.print(RIGHT_BRACKET.getMessage() + LINE_BREAK.getMessage());
         }
+    }
+
+    public void printWinningNumbers() {
+        System.out.println(LINE_BREAK.getMessage() + LOTTO_NUMBERS.getMessage());
     }
 }
