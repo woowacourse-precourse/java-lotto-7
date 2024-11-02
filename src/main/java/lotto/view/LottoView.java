@@ -49,6 +49,20 @@ public class LottoView {
         }
     }
 
+    public void getBonusInput(CorrectDTO correctDTO) {
+        while (true) {
+            String input = readLine();
+            try {
+                validateInput(input);
+                int bonus = parseInput(input);
+                correctDTO.setBonus(bonus);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     public int parseInput(String input) {
         try {
             return Integer.parseInt(input);
@@ -92,5 +106,7 @@ public class LottoView {
         }
         return lotto;
     }
+
+
 }
 
