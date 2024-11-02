@@ -40,7 +40,7 @@ public enum Result {
     }
 
     public String getStringBonus() {
-        if (SECOND.bonus) {
+        if (bonus) {
             return ", 보너스 볼 일치 ";
         }
         return "";
