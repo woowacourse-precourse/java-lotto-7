@@ -26,6 +26,14 @@ public class Validation {
         }
     }
 
+    public static void checkLottoNumberRange(int start, int end, List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (start > number || number > end) {
+                throw new IllegalArgumentException(LOTTO_ERROR_WRONG_LOTTO_RANGE.getMessage());
+            }
+        }
+    }
+
     public static void checkDuplicateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(LOTTO_ERROR_WRONG_LOTTO_DUPLICATE.getMessage());
