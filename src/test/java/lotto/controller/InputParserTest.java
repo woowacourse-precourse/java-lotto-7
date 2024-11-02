@@ -3,6 +3,7 @@ package lotto.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.exception.InputParserExceptionMessage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +34,20 @@ class InputParserTest {
                 () -> InputParser.parseIntegers(input));
 
         // then
-        assertEquals("숫자만 입력 가능합니다.", exception.getMessage());
+        assertEquals(InputParserExceptionMessage.NUMBER_ONLY.getMessage(), exception.getMessage());
+    }
+
+    @Test
+    void 실패__parseIntegers_요소가_없는경유() {
+        // given
+        String input = ",,";
+
+        // when
+        IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
+                () -> InputParser.parseIntegers(input));
+
+        // then
+        assertEquals(InputParserExceptionMessage.AT_LEAST_ONE_NUMBER.getMessage(), exception.getMessage());
     }
 
     // parseInteger() 메서드에 대한 테스트 코드 작성
@@ -61,6 +75,6 @@ class InputParserTest {
                 () -> InputParser.parseInteger(input));
 
         // then
-        assertEquals("숫자만 입력 가능합니다.", exception.getMessage());
+        assertEquals(InputParserExceptionMessage.NUMBER_ONLY.getMessage(), exception.getMessage());
     }
 }

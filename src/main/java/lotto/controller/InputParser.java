@@ -10,32 +10,34 @@ import lotto.exception.ExceptionUtils;
 public class InputParser {
 
     public static List<Integer> parseIntegers(String input) {
-        String[] split = input.split(",");
-
-        List<Integer> integers = null;
-        try {
-            integers = Arrays.stream(split).map(String::strip).map(Integer::parseInt).toList();
-        } catch (NumberFormatException error) {
-            throw ExceptionUtils.IllegalArgumentWithCause(NUMBER_ONLY, error);
-        }
-
-        if (integers.isEmpty()) {
+        if (input == null || input.isBlank()) {
             throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
         }
 
-        return integers;
+        List<Integer> numbers = Arrays.stream(input.split(","))
+                .map(String::strip)
+                .map(InputParser::parseSingleInteger)
+                .toList();
+        if (numbers.isEmpty()) {
+            throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
+        }
+        return numbers;
     }
 
     public static int parseInteger(String input) {
-        int integer;
+        if (input == null || input.isBlank()) {
+            throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
+        }
+        return parseSingleInteger(input);
+    }
 
+
+    private static int parseSingleInteger(String input) {
         try {
-            integer = Integer.parseInt(input);
+            return Integer.parseInt(input.strip());
         } catch (NumberFormatException error) {
             throw ExceptionUtils.IllegalArgumentWithCause(NUMBER_ONLY, error);
         }
-
-        return integer;
     }
 
 }

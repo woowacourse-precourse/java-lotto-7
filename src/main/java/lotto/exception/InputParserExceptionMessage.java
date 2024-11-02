@@ -1,7 +1,7 @@
 package lotto.exception;
 
 public enum InputParserExceptionMessage implements ExceptionMessage {
-    NUMBER_ONLY("숫자만 입력 가능합니다."),
+    NUMBER_ONLY("숫자만 입력 가능합니다. (혹은 정수 범위 초과"),
     AT_LEAST_ONE_NUMBER("최소 하나의 숫자는 입력해야 합니다.");
 
     private final String message;
