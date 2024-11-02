@@ -10,17 +10,25 @@ public class LottoPurchase {
     public int getPurchaseAmount() {
         while (true) {
             try {
-                System.out.println("구입 금액을 입력해 주세요.");
-                int amount = Integer.parseInt(Console.readLine().trim());
-                if (amount % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
-                }
+                int amount = requestPurchaseAmount();
+                validateAmount(amount);
                 return amount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력 가능합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private int requestPurchaseAmount() {
+        System.out.println("구입 금액을 입력해 주세요.");
+        return Integer.parseInt(Console.readLine().trim());
+    }
+
+    private void validateAmount(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 

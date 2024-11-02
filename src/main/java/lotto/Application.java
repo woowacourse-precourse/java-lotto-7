@@ -8,20 +8,34 @@ public class Application {
         WinningNumberInput winningNumberInput = new WinningNumberInput();
         LottoResult lottoResult = new LottoResult();
 
-        int purchaseAmount = lottoPurchase.getPurchaseAmount();
+        int purchaseAmount = getPurchaseAmount(lottoPurchase);
+        List<Lotto> purchasedLottos = generateAndPrintTickets(lottoPurchase, purchaseAmount);
+        getWinningNumbers(winningNumberInput);
+        printResultsAndYield(lottoResult, purchasedLottos, winningNumberInput, purchaseAmount);
+    }
+
+    private static int getPurchaseAmount(LottoPurchase lottoPurchase) {
+        return lottoPurchase.getPurchaseAmount();
+    }
+
+    private static List<Lotto> generateAndPrintTickets(LottoPurchase lottoPurchase, int purchaseAmount) {
         int ticketCount = purchaseAmount / 1000;
         List<Lotto> purchasedLottos = lottoPurchase.generateLottoTickets(ticketCount);
-
         System.out.println(ticketCount + "개를 구매했습니다.");
         lottoPurchase.printLottoTickets(purchasedLottos);
+        return purchasedLottos;
+    }
 
+    private static void getWinningNumbers(WinningNumberInput winningNumberInput) {
         winningNumberInput.inputWinningNumbers();
         winningNumberInput.inputBonusNumber();
+    }
 
+    private static void printResultsAndYield(LottoResult lottoResult, List<Lotto> purchasedLottos,
+                                             WinningNumberInput winningNumberInput, int purchaseAmount) {
         lottoResult.calculateResult(purchasedLottos, winningNumberInput.getWinningNumbers(),
                 winningNumberInput.getBonusNumber());
         lottoResult.printResults();
-
         double yield = lottoResult.calculateYield(purchaseAmount);
         System.out.printf("총 수익률은 %.1f%%입니다.\n", yield);
     }
