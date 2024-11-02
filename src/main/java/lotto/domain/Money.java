@@ -27,4 +27,12 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 금액은 0보다 커야합니다");
         }
     }
+
+    public int getTicket() {
+        return money / 1000;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }

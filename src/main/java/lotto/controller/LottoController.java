@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Money;
-
+import lotto.domain.generator.LottoGenerator;
+import lotto.domain.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,6 +13,10 @@ public class LottoController {
 
     public void start() {
         Money money = getMoney();
+        outputView.showTicket(money.getTicket());
+
+        List<Lotto> lottos = getLottos(money);
+//        outputView.showLottos(lottos);
     }
 
     private Money getMoney() {
@@ -23,4 +29,17 @@ public class LottoController {
             }
         }
     }
+
+    public List<Lotto> getLottos(Money money) {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+
+        while (true) {
+            try {
+                return lottoGenerator.generateLottoGroup(money.getTicket());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 }
