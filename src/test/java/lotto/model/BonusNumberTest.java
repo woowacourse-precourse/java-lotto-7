@@ -13,7 +13,7 @@ class BonusNumberTest {
     @MethodSource("bonusWithWinningNumbers")
     void 보너스_번호는_당첨_번호와_다른_숫자로_생성된다(int number, WinningNumbers winningNumbers) {
         //when & then
-        Assertions.assertThatCode(() -> new BonusNumber(number, winningNumbers))
+        Assertions.assertThatCode(() -> BonusNumber.create(number, winningNumbers))
                 .doesNotThrowAnyException();
     }
 
@@ -21,7 +21,7 @@ class BonusNumberTest {
     @MethodSource("wrongBonusWithWinningNumbers")
     void 보너스_번호가_당첨_번호와_중복되거나_범위에서_벗어나면_예외가_발생한다(int wrongNumber, WinningNumbers winningNumbers) {
         //when & then
-        Assertions.assertThatThrownBy(() -> new BonusNumber(wrongNumber, winningNumbers))
+        Assertions.assertThatThrownBy(() -> BonusNumber.create(wrongNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

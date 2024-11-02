@@ -1,11 +1,9 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.LottoPurchase;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
-import lotto.parser.StringParser;
 import lotto.view.InputReader;
 import lotto.view.OutputWriter;
 
@@ -23,8 +21,9 @@ public class LottoController {
         final LottoPurchase lottoPurchase = purchaseLotto();
         final Lottos lottos = createLotto(lottoPurchase);
         writer.purchasedLottos(lottoPurchase, lottos);
+
         final WinningNumbers winningNumbers = winningNumbers();
-        writer.winningNumbers(winningNumbers);
+        final BonusNumber bonusNumber = bonusNumber(winningNumbers);
     }
 
     private LottoPurchase purchaseLotto() {
@@ -45,6 +44,16 @@ public class LottoController {
         while (true) {
             try {
                 return reader.winningNumbers();
+            } catch (IllegalArgumentException ie) {
+                System.out.println(ie.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber bonusNumber(final WinningNumbers winningNumbers) {
+        while (true) {
+            try {
+                return reader.bonusNumber(winningNumbers);
             } catch (IllegalArgumentException ie) {
                 System.out.println(ie.getMessage());
             }

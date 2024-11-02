@@ -18,7 +18,7 @@ class LottosTest {
                 List.of(1, 2, 3, 4, 5, 6)
         ));
         WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        BonusNumber bonusNumber = BonusNumber.create(7, winningNumbers);
 
         //when
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);
@@ -34,7 +34,7 @@ class LottosTest {
                 List.of(1, 2, 3, 4, 5, 7)
         ));
         WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        BonusNumber bonusNumber = BonusNumber.create(7, winningNumbers);
 
         //when
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);
@@ -50,7 +50,7 @@ class LottosTest {
                 List.of(1, 2, 3, 4, 5, 8)
         ));
         WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        BonusNumber bonusNumber = BonusNumber.create(7, winningNumbers);
 
         //when
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);
@@ -66,7 +66,7 @@ class LottosTest {
                 List.of(1, 2, 3, 4, 8, 9)
         ));
         WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        BonusNumber bonusNumber = BonusNumber.create(7, winningNumbers);
 
         //when
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);
@@ -82,7 +82,7 @@ class LottosTest {
                 List.of(1, 2, 3, 8, 9, 10)
         ));
         WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        BonusNumber bonusNumber = BonusNumber.create(7, winningNumbers);
 
         //when
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);
@@ -97,7 +97,7 @@ class LottosTest {
         //given
         Lottos lottos = Lottos.create(numbers);
         WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
+        BonusNumber bonusNumber = BonusNumber.create(7, winningNumbers);
 
         //when
         final LottoResult result = lottos.check(winningNumbers, bonusNumber);

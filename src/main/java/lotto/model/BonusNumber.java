@@ -7,10 +7,14 @@ public class BonusNumber {
 
     private final Integer number;
 
-    public BonusNumber(final Integer number, final WinningNumbers winningNumbers) {
+    private BonusNumber(final Integer number, final WinningNumbers winningNumbers) {
         validateNumber(number);
         validateDuplicatedNumber(number, winningNumbers);
         this.number = number;
+    }
+
+    public static BonusNumber create(final Integer number, final WinningNumbers winningNumbers) {
+        return new BonusNumber(number, winningNumbers);
     }
 
     private void validateNumber(final Integer number) {
