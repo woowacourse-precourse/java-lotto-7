@@ -1,17 +1,13 @@
 package lotto;
 
-import static lotto.view.input.InputError.LOTTO_NUMBER_LENGTH_INVALID;
-
 import java.util.List;
-import lotto.validation.LottoNumberValidator;
-import lotto.view.input.InputError;
-import lotto.view.input.InvalidInputException;
+import lotto.validation.LottoNumbersValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumberValidator.validate(numbers);
+        LottoNumbersValidator.validate(numbers);
         this.numbers = numbers;
     }
 
