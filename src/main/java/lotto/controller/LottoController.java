@@ -5,6 +5,8 @@ import lotto.validation.LottoValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
@@ -34,6 +36,8 @@ public class LottoController {
         printLottoPurchasedDetail(lottos);
 
         //당첨 번호 입력
+        outputView.askWinningNumber();
+        List<Integer> winningNumber = getValidWinningNumber();
 
         //보너스 번호 입력
 
@@ -64,4 +68,15 @@ public class LottoController {
     private void printLottoPurchasedDetail(String lottos){
         outputView.lottoPurchasedDetail(lottos);
     }
+
+    private List<Integer> getValidWinningNumber(){
+        while (true) {
+            try {
+                String input = inputView.inputWinningNumber();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
 }
