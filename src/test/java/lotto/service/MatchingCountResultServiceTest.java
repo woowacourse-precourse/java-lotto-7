@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
-import lotto.LottoResult;
+import lotto.MatchingCountResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class LottoResultServiceTest {
+class MatchingCountResultServiceTest {
     private LottoResultService lottoResultService;
     private LottoSeller lottoSeller;
 
@@ -26,14 +26,14 @@ class LottoResultServiceTest {
 
     @Test
     void 당첨상태의_개수를_판별한다() {
-        List<LottoResult> lottoResults = lottoResultService.getWinningCount();
+        List<MatchingCountResult> matchingCountResults = lottoResultService.getWinningCount();
 
-        assertEquals(2, lottoResults.size());
-        assertEquals(5, lottoResults.get(0).winningCondition().getMatchCount());
-        assertTrue(lottoResults.get(0).winningCondition().isBonusMatch());
+        assertEquals(2, matchingCountResults.size());
+        assertEquals(5, matchingCountResults.get(0).winningCondition().getMatchCount());
+        assertTrue(matchingCountResults.get(0).winningCondition().isBonusMatch());
 
-        assertEquals(5, lottoResults.get(0).winningCondition().getMatchCount());
-        assertFalse(lottoResults.get(1).winningCondition().isBonusMatch());
+        assertEquals(5, matchingCountResults.get(0).winningCondition().getMatchCount());
+        assertFalse(matchingCountResults.get(1).winningCondition().isBonusMatch());
 
 
     }
