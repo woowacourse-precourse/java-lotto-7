@@ -1,56 +1,68 @@
 package lotto.controller;
 
+import java.util.Map;
 import lotto.model.dto.LottoNumbers;
-import lotto.model.dto.WinningStatistics;
-import lotto.model.LottoResult;
-import lotto.model.Money;
-import lotto.model.Rank;
+import lotto.model.dto.ResultStatistics;
 import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.LottoMachine;
-import lotto.model.lotto.Lottos;
 import lotto.model.lotto.WinningLotto;
-import lotto.model.lottogenerator.RandomLottoNumberGenerator;
+import lotto.model.person.LottoBuyer;
+import lotto.model.person.LottoSeller;
+import lotto.model.result.Rank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoMachine lottoMachine;
-    private Money money;
+    private final LottoSeller lottoSeller;
+    private final LottoBuyer lottoBuyer;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoMachine = new LottoMachine(new RandomLottoNumberGenerator());
+        this.lottoSeller = new LottoSeller();
+        this.lottoBuyer = new LottoBuyer();
     }
 
     public void play() {
-        Lottos lottos = buyLotto();
-        WinningLotto winningLotto = getWinningLotto();
-        LottoResult lottoResult = extractRank(lottos, winningLotto);
-        getResult(lottoResult);
+        purchaseAndPrintLottos();
+        final WinningLotto winningLotto = generateWinningLotto();
+        printResult(winningLotto);
     }
 
-    private Lottos buyLotto() {
+    private void buyLotto() {
         while (true) {
             try {
-                money = new Money(inputView.inputMoney());
-                final Lottos lottos = lottoMachine.execute(money.calculateLottoCount());
-                printBuyingLottos(money, lottos);
-                return lottos;
+                final int money = enterPurchaseAmount();
+                lottoBuyer.buyLotto(money, lottoSeller);
+                break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }
         }
     }
 
-    private WinningLotto getWinningLotto() {
+    private int enterPurchaseAmount() {
+        return inputView.inputMoney();
+    }
+
+    private void printBuyingLottos() {
+        outputView.printLottoCount(lottoBuyer.getLottoCount());
+        final LottoNumbers lottoNumbers = new LottoNumbers(lottoBuyer.getLottos());
+        outputView.printLottoNumbers(lottoNumbers);
+    }
+
+    private void purchaseAndPrintLottos() {
+        buyLotto();
+        printBuyingLottos();
+    }
+
+    private WinningLotto generateWinningLotto() {
         while (true) {
             try {
-                final Lotto lotto = new Lotto(inputView.inputLottoNumber());
-                final BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
+                final Lotto lotto = enterWinningLotto();
+                final BonusNumber bonusNumber = enterBonusNumber();
                 return new WinningLotto(lotto, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -58,27 +70,21 @@ public class LottoController {
         }
     }
 
-    private LottoResult extractRank(final Lottos lottos, final WinningLotto winningLotto) {
-        final LottoResult lottoResult = new LottoResult();
-        for (final Lotto lotto : lottos.getLottos()) {
-            int countOfMatch = winningLotto.calculateMatchCount(lotto);
-            boolean shotBonus = winningLotto.isContainBonus(lotto);
-            Rank rank = Rank.extractRanking(countOfMatch, shotBonus);
-            lottoResult.addResult(rank);
-        }
-        return lottoResult;
+    private Lotto enterWinningLotto() {
+        return new Lotto(inputView.inputLottoNumber());
     }
 
-    private void getResult(final LottoResult lottoResult) {
-        WinningStatistics winningStatistics = new WinningStatistics(lottoResult);
-        outputView.printResult(winningStatistics);
-        double rate = lottoResult.calculateReturnRate(money);
-        outputView.printProfit(rate);
+    private BonusNumber enterBonusNumber() {
+        return new BonusNumber(inputView.inputBonusNumber());
     }
 
-    private void printBuyingLottos(final Money money, final Lottos lottos) {
-        outputView.printLottoCount(money.calculateLottoCount());
-        LottoNumbers lottoNumbers = new LottoNumbers(lottos);
-        outputView.printLottoNumbers(lottoNumbers);
+    public void printResult(final WinningLotto winningLotto) {
+        printStatistics(winningLotto);
+    }
+
+    private void printStatistics(final WinningLotto winningLotto) {
+        final Map<Rank, Integer> result = lottoBuyer.checkWinningDegree(winningLotto);
+        ResultStatistics resultStatistics = new ResultStatistics(result);
+        outputView.printLottoResult(resultStatistics);
     }
 }

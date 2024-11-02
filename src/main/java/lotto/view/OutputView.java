@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.model.dto.LottoNumbers;
-import lotto.model.dto.WinningStatistics;
+import lotto.model.dto.ResultStatistics;
 
 public class OutputView {
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
@@ -21,9 +21,9 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printResult(final WinningStatistics winningStatistics) {
-        System.out.println(RESULT_MESSAGE + System.lineSeparator() + DIVIDER);
-        winningStatistics.getStatistics().forEach((rank, count) -> {
+    public void printLottoResult(final ResultStatistics resultStatistics) {
+        System.out.println(System.lineSeparator() + RESULT_MESSAGE + System.lineSeparator() + DIVIDER);
+        resultStatistics.getStatistics().forEach((rank, count) -> {
             System.out.printf("%s - %d개%s", rank.getMessage(), count, System.lineSeparator());
         });
     }
