@@ -1,9 +1,5 @@
 package lotto;
 
-import static lotto.LottoConstants.LOTTO_MAX_NUMBER;
-import static lotto.LottoConstants.LOTTO_MIN_NUMBER;
-import static lotto.LottoConstants.LOTTO_NUMBER_COUNT;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +18,9 @@ public class LottoMachine {
 
     private Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_MIN_NUMBER,
-                LOTTO_MAX_NUMBER,
-                LOTTO_NUMBER_COUNT
+                LottoConstants.LOTTO_MIN_NUMBER,
+                LottoConstants.LOTTO_MAX_NUMBER,
+                LottoConstants.LOTTO_NUMBER_COUNT
         );
         return new Lotto(numbers);
     }
@@ -37,7 +33,7 @@ public class LottoMachine {
         System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto);
         }
     }
 }

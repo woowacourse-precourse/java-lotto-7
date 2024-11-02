@@ -27,7 +27,7 @@ public class InputView {
                 validatePurchaseAmount(purchaseAmount);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+                System.out.println(ErrorMessages.PURCHASE_AMOUNT_NOT_NUMBER);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -35,8 +35,8 @@ public class InputView {
     }
 
     private void validatePurchaseAmount(int amount) {
-        if ((amount < LOTTO_PRICE) || ((amount % LOTTO_PRICE) != 0)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + LOTTO_PRICE + "원 단위여야 합니다.");
+        if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT);
         }
     }
 
@@ -49,7 +49,7 @@ public class InputView {
                 winningNumbers = parseWinningNumbers(input);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
+                System.out.println(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
                 winningNumbers = new HashSet<>();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -61,14 +61,14 @@ public class InputView {
     private Set<Integer> parseWinningNumbers(String input) {
         String[] splitNumbers = input.split(",");
         if (splitNumbers.length != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 " + LOTTO_NUMBER_COUNT + "개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_WINNING_NUMBER_COUNT);
         }
         Set<Integer> numbers = new HashSet<>();
         for (String numStr : splitNumbers) {
             int number = Integer.parseInt(numStr.trim());
             validateNumberRange(number);
             if (!numbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
+                throw new IllegalArgumentException(ErrorMessages.DUPLICATE_WINNING_NUMBER);
             }
         }
         return numbers;
@@ -84,7 +84,7 @@ public class InputView {
                 validateBonusNumber(bonusNumber, winningNumbers);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+                System.out.println(ErrorMessages.BONUS_NUMBER_NOT_NUMBER);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -94,15 +94,13 @@ public class InputView {
     private void validateBonusNumber(int bonusNumber, Set<Integer> winningNumbers) {
         validateNumberRange(bonusNumber);
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessages.BONUS_NUMBER_DUPLICATE);
         }
     }
 
     private void validateNumberRange(int number) {
         if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException(
-                    "[ERROR] 번호는 " + LOTTO_MIN_NUMBER + "부터 " + LOTTO_MAX_NUMBER
-                            + " 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
         }
     }
 
