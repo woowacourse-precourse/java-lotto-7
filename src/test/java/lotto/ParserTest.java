@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.validation.Parser;
+import lotto.util.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

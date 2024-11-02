@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.view.ErrorMessage.INVALID_PRICE;
+import static lotto.common.ErrorMessage.INVALID_PRICE;
 
 public class Money {
     private final int userInputMoney;

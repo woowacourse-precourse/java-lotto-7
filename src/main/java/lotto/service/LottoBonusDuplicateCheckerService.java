@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.view.ErrorMessage.DUPLICATE_BONUS_NUMBER;
+import static lotto.common.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 import lotto.model.Lotto;
 
 public class LottoBonusDuplicateCheckerService {

@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.view.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
-import static lotto.view.ErrorMessage.NUMBER_OUT_OF_RANGE;
+import static lotto.common.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.common.ErrorMessage.NUMBER_OUT_OF_RANGE;
 
 import java.util.HashSet;
 import java.util.List;

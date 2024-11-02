@@ -9,7 +9,7 @@ import lotto.model.Money;
 import lotto.service.LottoBonusDuplicateCheckerService;
 import lotto.service.LottoRankingService;
 import lotto.service.PurchasedLottoNumbersService;
-import lotto.validation.Parser;
+import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.model.Rank;
