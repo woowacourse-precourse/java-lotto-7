@@ -1,5 +1,6 @@
 package lotto.io;
 
+import static lotto.global.constant.Message.BONUS_NUMBER_INPUT_MESSAGE;
 import static lotto.global.constant.Message.PURCHASE_INPUT_MESSAGE;
 import static lotto.global.constant.Message.WINNING_NUMBER_INPUT_MESSAGE;
 
@@ -27,8 +28,11 @@ public class OutputView {
         println(WINNING_NUMBER_INPUT_MESSAGE);
     }
 
+    public void printBonusNumberInputMessage() {
+        println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
     private void println(String string) {
         System.out.println(string);
     }
-
 }
