@@ -19,8 +19,8 @@ class LottoShopImplTest {
         int purchaseAmount = 7000;
         //when
         LottoShopImpl lottoShopImpl = new LottoShopImpl(lottoMachine);
-        List<Lotto> lottos = lottoShopImpl.publish(purchaseAmount);
+        List<Lotto> lottoTickets = lottoShopImpl.publishTickets(purchaseAmount);
         //then
-        Assertions.assertThat(lottos.size()).isEqualTo(7);
+        Assertions.assertThat(lottoTickets.size()).isEqualTo(7);
     }
 }
