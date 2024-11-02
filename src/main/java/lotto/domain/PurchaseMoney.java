@@ -14,8 +14,8 @@ public class PurchaseMoney {
     }
 
     private void validateMoney(int money) {
-        validateDivideLottoPrice(money);
         validatePositiveNumber(money);
+        validateDivideLottoPrice(money);
         validateTotalAmount(money);
     }
 

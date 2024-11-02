@@ -4,27 +4,30 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.NumberConstant;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.SequencedSet;
 
 import static lotto.constant.NumberConstant.*;
 
 public class WinningNumber {
 
-    SequencedSet<Integer> winningNumber;
+    List<Integer> winningNumber;
     private Integer bonusNumber;
 
-    public WinningNumber(SequencedSet<Integer> winningNumber) {
-        validateSize(winningNumber);
-        this.winningNumber = winningNumber;
+    public WinningNumber(Lotto winningNumber) {
+        this.winningNumber = winningNumber.getNumbers();
     }
 
-    private void validateSize(SequencedSet<Integer> winningNumber) {
-        if (winningNumber.size() != LOTTO_NUMBER_PICK_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MATCHED_WINNING_NUMBER_COUNT.getMessage());
-        }
-    }
+//    private void validateSize(SequencedSet<Integer> winningNumber) {
+//        if (winningNumber.size() != LOTTO_NUMBER_PICK_COUNT) {
+//            throw new IllegalArgumentException(ErrorMessage.NOT_MATCHED_WINNING_NUMBER_COUNT.getMessage());
+//        }
+//    }
 
     public void addBonusNumber(final int number) {
+        if (this.bonusNumber != null) {
+            throw new IllegalArgumentException("이미 보너스 번호가 있습니다.");
+        }
         validateDuplicateNumber(number);
 
         this.bonusNumber = number;
@@ -36,8 +39,8 @@ public class WinningNumber {
         }
     }
 
-    public SequencedSet<Integer> getWinningNumber() {
-        return Collections.unmodifiableSequencedSet(winningNumber);
+    public List<Integer> getWinningNumber() {
+        return Collections.unmodifiableList(winningNumber);
     }
 
     public Integer getBonusNumber() {

@@ -11,8 +11,8 @@ import static lotto.constant.StringConstant.*;
 
 public class Parser {
 
-    public SequencedSet<Integer> ParseWinningNumber(String number) {
-        SequencedSet<Integer> result = new LinkedHashSet<>();
+    public List<Integer> ParseWinningNumber(String number) {
+        List<Integer> result = new ArrayList<>();
         String[] numbers = number.split(NUMBER_DELIMITER);
 
         for (String num : numbers) {

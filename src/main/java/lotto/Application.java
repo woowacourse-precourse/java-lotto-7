@@ -14,7 +14,7 @@ public class Application {
         // TODO: 프로그램 구현
 
         Parser parser = new Parser();
-        SequencedSet<Integer> numbers = parser.ParseWinningNumber("1,2,3,4,5,6");
+        Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningNumber winNum = new WinningNumber(numbers);
         winNum.addBonusNumber(7);
 
@@ -25,8 +25,6 @@ public class Application {
         MatchCalculator matchCalculator = new MatchCalculator(winNum, lottos);
         matchCalculator.calculatePrize();
         Map<Prize, Integer> prizes = matchCalculator.getPrizes();
-
-        prizes.forEach((key, value) -> System.out.printf("키 : %s, 밸류 : %s%n", key, value));
 
         OutputView outputView = new OutputView();
         outputView.purchaseLottoAmount(5);

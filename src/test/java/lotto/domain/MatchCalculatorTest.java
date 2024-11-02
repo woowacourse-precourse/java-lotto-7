@@ -13,8 +13,7 @@ class MatchCalculatorTest {
     @DisplayName("당첨 내역을 계산한다.")
     @Test
     void 당첨_내역_계산_테스트() {
-        SequencedSet<Integer> winNum = new LinkedHashSet<>(List.of(1, 2, 3, 4, 5, 6));
-
+        Lotto winNum = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningNumber winningNumber = new WinningNumber(winNum);
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))));
@@ -41,7 +40,7 @@ class MatchCalculatorTest {
     @DisplayName("수익률을 계산한다.")
     @Test
     void 수익률_계산_테스트() {
-        SequencedSet<Integer> winNum = new LinkedHashSet<>(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winNum = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         WinningNumber winningNumber = new WinningNumber(winNum);
         List<Lotto> lottos = new ArrayList<>();

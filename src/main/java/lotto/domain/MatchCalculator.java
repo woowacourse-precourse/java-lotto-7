@@ -26,7 +26,7 @@ public class MatchCalculator {
     public void calculatePrize() {
         for (Lotto lotto : lottos.getLottos()) {
             List<Integer> numbers = lotto.getNumbers();
-            SequencedSet<Integer> winningNumbers = winningNumber.getWinningNumber();
+            List<Integer> winningNumbers = winningNumber.getWinningNumber();
             int matchCount = (int) numbers.stream()
                     .filter(winningNumbers::contains)
                     .count();
