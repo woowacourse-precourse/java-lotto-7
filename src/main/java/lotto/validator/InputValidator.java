@@ -11,11 +11,11 @@ public class InputValidator {
     try {
       purchaseAmount = Integer.parseInt(amount);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("구입 금액은 숫자로 입력해야 합니다.");
+      throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
     }
 
     if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
-      throw new IllegalArgumentException("구입 금액은 1,000원 단위로 입력해야 합니다.");
+      throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
     return purchaseAmount;
   }
@@ -26,7 +26,7 @@ public class InputValidator {
         .collect(Collectors.toList());
 
     if (numbers.size() != 6 || hasInvalidRange(numbers)) {
-      throw new IllegalArgumentException("당첨 번호는 1~45 사이의 숫자 6개여야 합니다.");
+      throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자 6개여야 합니다.");
     }
     return numbers;
   }
@@ -36,10 +36,10 @@ public class InputValidator {
     try {
       parsedBonusNumber = Integer.parseInt(bonusNumber);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("보너스 번호는 숫자로 입력해야 합니다.");
+      throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해야 합니다.");
     }
     if (parsedBonusNumber < 1 || parsedBonusNumber > 45 || winningNumbers.contains(parsedBonusNumber)) {
-      throw new IllegalArgumentException("보너스 번호는 1~45 사이의 숫자 중 당첨 번호와 중복되지 않는 숫자여야 합니다.");
+      throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자 중 당첨 번호와 중복되지 않는 숫자여야 합니다.");
     }
     return parsedBonusNumber;
   }
