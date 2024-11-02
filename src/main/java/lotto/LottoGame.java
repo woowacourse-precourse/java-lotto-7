@@ -11,20 +11,20 @@ public class LottoGame {
             int lottoCount = getValidatedLottoCount();
             List<Lotto> purchasedLottos = generateLottos(lottoCount);
             printPurchasedLottos(purchasedLottos);
-            Map<String, Integer> resultCounts = getResultCounts(purchasedLottos);
+            Map<PrizeRank, Integer> resultCounts = getResultCounts(purchasedLottos);
             LottoResultPrinter.printResults(resultCounts);
         } catch (IllegalArgumentException e) {
             printErrorMessage(e);
         }
     }
 
-    private static int getValidatedLottoCount() {
+    private int getValidatedLottoCount() {
         int purchaseAmount = getPurchaseAmount();
         LottoValidator.validateAmount(purchaseAmount);
         return purchaseAmount / 1000;
     }
 
-    private static int getPurchaseAmount() {
+    private int getPurchaseAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
         try {
             return Integer.parseInt(Console.readLine());
@@ -49,13 +49,13 @@ public class LottoGame {
         }
     }
 
-    private Map<String, Integer> getResultCounts(List<Lotto> purchasedLottos) {
+    private Map<PrizeRank, Integer> getResultCounts(List<Lotto> purchasedLottos) {
         List<Integer> winningNumbers = LottoInputHandler.getWinningNumbers();
         int bonusNumber = LottoInputHandler.getBonusNumber(winningNumbers);
         return LottoResultCalculator.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
     }
 
-    private static void printErrorMessage(IllegalArgumentException e) {
+    private void printErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 }
