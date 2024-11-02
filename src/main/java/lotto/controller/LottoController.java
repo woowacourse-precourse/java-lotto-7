@@ -13,5 +13,9 @@ public class LottoController {
         return lotteryService.buyLotto(purchaseMoney);
     }
 
+    public List<String> confirmWinnings(List<String> winningNums, String bonusNum) {
+        return lotteryService.confirmWinnings(winningNums, bonusNum);
+    }
+
 
 }

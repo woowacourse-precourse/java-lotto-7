@@ -28,9 +28,9 @@ public class UserView {
         String bonus = receive(BONUS_NUM);
         checkDuplicateWithBonus(winning, bonus);
         //TODO: bonus가 winning에 있을 때 winning을 다시 받는 오류 수정 - bonus만 다시 받아야함
-//        lottoController.confirmWinnings(winning, bonus);
+        List<String> confirmResult = lottoController.confirmWinnings(winning, bonus);
+        print(confirmResult);
     }
-
 
     // 타입에 따라 Integer (money, bonus), List<Integer> (winning nums) 반환
     // 타입에 따라 입력 받은 값을 검증하고, 검증에 실패하면 재귀 호출(다시 입력)
