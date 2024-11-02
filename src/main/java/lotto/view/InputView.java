@@ -10,15 +10,16 @@ public class InputView {
     }
 
     public static Money inputPurchaseAmount() {
-        while (true) {
-            try {
-                printInputPurchaseAmount();
-                long amount = Long.parseLong(readLine());
-                return new Money(amount);
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입 금액은 숫자로 입력해 주세요.");
-                printRetryMessage();
-            }
+        printInputPurchaseAmount();
+        long amount = parseAmount(readLine());
+        return new Money(amount);
+    }
+
+    private static long parseAmount(String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해 주세요.");
         }
     }
 
