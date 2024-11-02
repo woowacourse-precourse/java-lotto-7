@@ -33,4 +33,8 @@ public enum LottoError {
     public String getMessage() {
         return String.format(ERROR_MESSAGE_FORMAT, message);
     }
+
+    public String getErrorMessageFormat() {
+        return ERROR_MESSAGE_FORMAT;
+    }
 }
