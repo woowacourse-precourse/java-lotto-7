@@ -171,6 +171,10 @@ public class LottoTemp {
         return ranks;
     }
 
+    public void printWinningResult(int matchCount, int prize, int rankCount){
+        io.printMessage(matchCount +"개 일치 (" + prize + "원) - " + rankCount + "개");
+    }
+
     public void printProfit(int profit) {
         io.printMessage("총 수익률은 " + profit + "%입니다.");
     }
