@@ -30,19 +30,19 @@ class LottoTest {
 
     @Test
     void 구매_금액이_숫자가_아니면_예외가_발생한다(){
-        assertThatThrownBy(() -> LottoGame.validateNumericNumber("1000j"))
+        assertThatThrownBy(() -> InputValidator.validateNumericNumber("1000j"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 구매_금액이_천단위가_아니면_예외가_발생한다(){
-        assertThatThrownBy(() -> LottoGame.validateThousandUnit(900))
+        assertThatThrownBy(() -> InputValidator.validateThousandUnit(900))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 입력값에_공백이_존재하면_예외가_발생한다(){
-        assertThatThrownBy(() -> LottoGame.validateEmptyInput(""))
+        assertThatThrownBy(() -> InputValidator.validateEmptyInput(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
