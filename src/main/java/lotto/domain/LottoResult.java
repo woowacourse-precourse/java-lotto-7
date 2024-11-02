@@ -23,8 +23,7 @@ public class LottoResult {
     }
 
     private void bonusNumberValidate(int bonusNumber) {
-        if (!(bonusNumber >= LottoConfig.LOTTO_MIN_NUMBER.getValue()
-                && bonusNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue())) {
+        if (isBonusNumberRangeValid(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스넘버는 1~45 사이의 정수여야 합니다.");
         }
         if (isLottoNumberDuplicated(bonusNumber)) {
@@ -32,8 +31,12 @@ public class LottoResult {
         }
     }
 
+    private boolean isBonusNumberRangeValid(int bonusNumber) {
+        return !(bonusNumber >= LottoConfig.LOTTO_MIN_NUMBER.getValue()
+                && bonusNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue());
+    }
+
     private boolean isLottoNumberDuplicated(int bonusNumber) {
-        Set<Integer> winningNumbersCopy = winningNumbers.getNumbers();
-        return winningNumbersCopy.contains(bonusNumber);
+        return winningNumbers.getNumbers().contains(bonusNumber);
     }
 }
