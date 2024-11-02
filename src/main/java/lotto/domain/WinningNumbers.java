@@ -13,7 +13,14 @@ public class WinningNumbers {
     public WinningNumbers(String inputNumbers) {
         List<String> numbersInString = parse(inputNumbers);
         this.numbers = validateInteger(numbersInString);
+        validateSixNumbers(numbers);
+    }
 
+    private List<String> parse(String inputNumbers) {
+        return Arrays.stream(inputNumbers.split(DELIMITER))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .toList();
     }
 
     private List<Integer> validateInteger(List<String> numbersInString) {
@@ -28,10 +35,9 @@ public class WinningNumbers {
         return parsedNumbers;
     }
 
-    private List<String> parse(String inputNumbers) {
-        return Arrays.stream(inputNumbers.split(DELIMITER))
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .toList();
+    private void validateSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new NumberFormatException();
+        }
     }
 }
