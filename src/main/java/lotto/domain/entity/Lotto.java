@@ -44,12 +44,12 @@ public class Lotto {
     private List<Integer> parseInputNumbers(String input) {
         return Arrays.stream(input.trim().split(SEPARATOR))
             .map(String::trim)
-            .peek(Lotto::validateEachNumber)
+            .peek(this::validateEachNumber)
             .map(Integer::valueOf)
             .collect(Collectors.toList());
     }
 
-    private static void validateEachNumber(String splitInput) {
+    private void validateEachNumber(String splitInput) {
         validator.validate(splitInput);
     }
 
