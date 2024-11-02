@@ -12,9 +12,11 @@ import static lotto.config.LottoRule.LOTTO_MIN_NUMBER;
 import static lotto.config.LottoRule.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
 import lotto.config.ErrorMessage;
 import lotto.config.LottoMessage;
 import lotto.config.LottoRule;
@@ -27,15 +29,19 @@ public class LottoInputView {
     }
 
     public static int getMoney() {
-        printInputMoney();
-        try {
-            int money = Integer.parseInt(Console.readLine());
-            if (money % LOTTO_PRICE.getValue() != 0) {
-                throw new IllegalArgumentException(INPUT_MONEY_DIVIDE_ERROR.getMessage());
+        while (true) {
+            printInputMoney();
+            try {
+                int money = Integer.parseInt(Console.readLine());
+                if (money % LOTTO_PRICE.getValue() != 0) {
+                    throw new IllegalArgumentException(INPUT_MONEY_DIVIDE_ERROR.getMessage());
+                }
+                return money;
+            } catch (NumberFormatException e) {
+                System.out.println(INPUT_MONEY_ERROR.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            return money;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_MONEY_ERROR.getMessage());
         }
     }
 
@@ -44,24 +50,29 @@ public class LottoInputView {
     }
 
     public static List<Integer> getWinNumber() {
-        printWinNumber();
-        List<Integer> winNumber = parseToIntegers(split(Console.readLine()));
-        if (isNotRange(winNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_WIN_NUMBER_RANGE_ERROR.getMessage());
-        }
+        while (true) {
+            printWinNumber();
+            try {
+                List<Integer> winNumber = parseToIntegers(split(Console.readLine()));
 
-        if (isDuplicated(winNumber)) {
-            throw new IllegalArgumentException(INPUT_WIN_NUMBER_DUPLICATE_ERROR.getMessage());
+                if (isNotRange(winNumber)) {
+                    throw new IllegalArgumentException(ErrorMessage.INPUT_WIN_NUMBER_RANGE_ERROR.getMessage());
+                }
+
+                if (isDuplicated(winNumber)) {
+                    throw new IllegalArgumentException(INPUT_WIN_NUMBER_DUPLICATE_ERROR.getMessage());
+                }
+
+                return winNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return winNumber;
     }
 
     private static boolean isNotRange(List<Integer> winNumber) {
-        return winNumber.stream()
-                .anyMatch(number -> number < LOTTO_MIN_NUMBER.getValue()
-                        || number > LOTTO_MAX_NUMBER.getValue());
+        return winNumber.stream().anyMatch(number -> number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue());
     }
-
 
     private static boolean isDuplicated(List<Integer> winNumber) {
         return new HashSet<>(winNumber).size() != LottoRule.LOTTO_SIZE.getValue();
@@ -77,32 +88,36 @@ public class LottoInputView {
 
     private static List<Integer> parseToIntegers(String[] numbers) {
         try {
-            return Arrays.stream(numbers)
-                    .map(Integer::parseInt)
-                    .toList();
+            return Arrays.stream(numbers).map(Integer::parseInt).toList();
         } catch (Exception e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_WIN_NUMBER_ERROR.getMessage());
         }
     }
 
     public static int getBonusNumber(List<Integer> winNumber) {
-        printBonusNumber();
-        int bonusNumber;
-        try {
-            bonusNumber = Integer.parseInt(Console.readLine());
-        } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_BONUS_NUMBER_ERROR.getMessage());
-        }
+        while (true) {
+            printBonusNumber();
+            try {
+                int bonusNumber;
+                try {
+                    bonusNumber = Integer.parseInt(Console.readLine());
+                } catch (Exception e) {
+                    throw new IllegalArgumentException(ErrorMessage.INPUT_BONUS_NUMBER_ERROR.getMessage());
+                }
 
-        if (isContain(winNumber, bonusNumber)) {
-            throw new IllegalArgumentException(INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR.getMessage());
-        }
+                if (isContain(winNumber, bonusNumber)) {
+                    throw new IllegalArgumentException(INPUT_BONUS_DUPLICATE_WIN_NUMBER_ERROR.getMessage());
+                }
 
-        if (isNotRange(bonusNumber)) {
-            throw new IllegalArgumentException(INPUT_BONUS_NUMBER_RANGE_ERROR.getMessage());
-        }
+                if (isNotRange(bonusNumber)) {
+                    throw new IllegalArgumentException(INPUT_BONUS_NUMBER_RANGE_ERROR.getMessage());
+                }
 
-        return bonusNumber;
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static void printBonusNumber() {
