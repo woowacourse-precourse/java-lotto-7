@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.domain.Winning;
 import lotto.common.Constants;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 
 public class LottoResultService {
     public Map<Winning, Integer> getWinnings(List<Lotto> lottos, List<Integer> winningNumbers, int bonus) {

@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Winning;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 import lotto.dto.LottoDto;
 import lotto.service.LottoResultService;
 import lotto.view.OutputView;

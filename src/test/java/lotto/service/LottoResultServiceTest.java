@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.Map;
 import lotto.config.AppConfig;
-import lotto.domain.Winning;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

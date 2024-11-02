@@ -31,6 +31,4 @@ public class LottoService {
         int count = payment / LottoConstants.PRICE;
         return lottoNumberGenerator.generateLottos(count);
     }
-
-
 }

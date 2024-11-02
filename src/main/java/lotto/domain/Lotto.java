@@ -26,7 +26,6 @@ public class Lotto {
         return numbers.size() != after.size();
     }
 
-    // TODO: 추가 기능 구현
     public Winning checkWinnings(List<Integer> winningNumbers, int bonus) {
         int count = 0;
         boolean matchedBonus = false;

@@ -93,8 +93,6 @@ class LottoServiceTest {
     @ParameterizedTest
     @ValueSource(ints = {3000, 4000, 5000})
     void 로또_발행_테스트(int payment) {
-        // given
-
         // when
         List<Lotto> lottos = lottoService.issueLottos(payment);
         List<Lotto> distinctLottos = lottos.stream().distinct().toList();
