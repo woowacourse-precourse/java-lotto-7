@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoExceptionTest {
-    String ERROR = "[ERROR] ";
+    private static final String ERROR = "[ERROR] ";
 
     @Test
     @DisplayName("IllegalArgumentException으로 잘 작동하는지")
