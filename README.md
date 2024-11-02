@@ -27,13 +27,15 @@
    - lotto 번호 validation check 및 저장 구현
 2. LottoGenerator
    - lotto 번호 랜덤 생성 기능 개발
-3. LottoChecker
+3. LottoShop
+   - 구매 금액에 따라 lotto 발행 
+4. LottoChecker
    - 발급된 랜덤번호와 당첨 번호 비교
-   - 보너스 번호 validation check
-4. LottoStatistics
+   - 보너스 번호 validation check 
+5. LottoStatistics
    - 당첨 내역 집계
    - 수익률 계산
    - 결과 출력 형식 관리
-5. InputValidator
+6. InputValidator
    - 입출력 프로세스 구현
    - 잘못된 입력값 validation check 하여 해당 부분부터 재입력
