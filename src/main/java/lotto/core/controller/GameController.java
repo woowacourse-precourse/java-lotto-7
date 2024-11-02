@@ -7,6 +7,7 @@ import lotto.core.domain.model.Lottos;
 import lotto.core.domain.model.Money;
 import lotto.core.domain.model.User;
 import lotto.core.view.OutputView;
+import lotto.system.Config.SystemConfig;
 
 
 public class GameController {
@@ -15,16 +16,27 @@ public class GameController {
     private Lotto answer;
     private int bonusNumber;
     private int ticketAmount;
+    private final SystemConfig systemConfig;
+
     private final InputController inputController;
     private final OutputView outputView;
 
-    public GameController(InputController inputController, OutputView outputView) {
+    private GameController(InputController inputController, OutputView outputView,SystemConfig config) {
         this.inputController = inputController;
         this.outputView = outputView;
         this.money = new Money();
         this.user = new User();
+        this.systemConfig = config;
+    }
+    public static GameController initialize(InputController inputController, OutputView outputView) {
+        SystemConfig config = SystemConfig.getInstance();
+        return new GameController(inputController,outputView,config);
     }
 
+    public void run() {
+        this.startGame();
+        this.showResult();
+    }
     public void startGame() {
         this.money = buyLottos();
         user = user.newInstance(money);
@@ -64,5 +76,6 @@ public class GameController {
         outputView.showBallCountResult(gameResult);
         outputView.showProfit(gameResult);
     }
+
 
 }
