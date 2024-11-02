@@ -10,9 +10,16 @@ import lotto.validator.WinningNumbersValidator;
 
 public class InputView {
 
-    private final PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-    private final WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
-    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+    private final PurchaseAmountValidator purchaseAmountValidator;
+    private final WinningNumbersValidator winningNumbersValidator;
+    private final BonusNumberValidator bonusNumberValidator;
+
+    public InputView(PurchaseAmountValidator purchaseAmountValidator, WinningNumbersValidator winningNumbersValidator,
+                     BonusNumberValidator bonusNumberValidator) {
+        this.purchaseAmountValidator = purchaseAmountValidator;
+        this.winningNumbersValidator = winningNumbersValidator;
+        this.bonusNumberValidator = bonusNumberValidator;
+    }
 
     public int inputPurchaseAmount() {
         String userInput;

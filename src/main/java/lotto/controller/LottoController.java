@@ -6,14 +6,19 @@ import lotto.domain.LottoMachine;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningStatistics;
 import lotto.generator.Generator;
-import lotto.generator.RandomGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
-    private final Generator generator = new RandomGenerator();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final Generator generator;
+
+    public LottoController(InputView inputView, OutputView outputView, Generator generator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.generator = generator;
+    }
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
