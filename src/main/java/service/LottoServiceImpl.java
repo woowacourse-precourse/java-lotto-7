@@ -2,6 +2,7 @@ package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import dto.LottoWinningNumbers;
+import dto.lottoDto.LottoResponse;
 import dto.lottoWinningResultDto.LottoWinningResult;
 import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
@@ -57,6 +58,15 @@ public class LottoServiceImpl implements LottoService {
         Collections.sort(lotto);
         return new Lotto(lotto);
     }
+
+    @Override
+    public void printIssuedLotto(LottoResponse lottoResponse) {
+        System.out.println(lottoResponse.lottoCount() + "개를 구매했습니다.");
+        for (Lotto lotto : lottoResponse.issuedLotto()) {
+            System.out.println(lotto.toString());
+        }
+    }
+
 
     @Override
     public LottoWinningResultRequest inputLottoWinningResult() {
