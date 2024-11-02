@@ -2,6 +2,9 @@ package lotto.controller;
 
 import lotto.domain.Money;
 import lotto.domain.Rank;
+import lotto.processor.BonusProcessor;
+import lotto.processor.Processor;
+import lotto.processor.WinNumbersProcessor;
 import lotto.service.WinService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,37 +31,11 @@ public class WinController {
         OutputView.printResult(result, profit);
     }
     public List<Integer> getWinNumbers(){
-        while(true){
-            try{
-                List<Integer> winNumbers = InputView.getLotto();
-                validateDuplicate(winNumbers);
-                return winNumbers;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
+        Processor<List<Integer>> winNumbersProcessor = new WinNumbersProcessor();
+        return winNumbersProcessor.process();
     }
     public int getBonusNumbers(List<Integer> winNumbers){
-        while(true){
-            try{
-                int bonus = InputView.getBonusNumber();
-                validateDuplicateBonus(winNumbers, bonus);
-                return bonus;
-            } catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void validateDuplicateBonus(List<Integer> numbers, int bonus){
-        if (numbers.contains(bonus)){
-            throw new IllegalArgumentException("[ERROR]: 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
-    }
-
-    private void validateDuplicate(List<Integer> numbers){
-        if (numbers.stream().distinct().count() != 6){
-            throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
-        }
+        Processor<Integer> bonusProcessor = new BonusProcessor(winNumbers);
+        return bonusProcessor.process();
     }
 }
