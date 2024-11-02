@@ -25,4 +25,14 @@ public class Lotto implements UniqueNumber {
     public boolean hasDuplicateNumber() {
         return numbers.size() != numbers.stream().distinct().count();
     }
+
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    public int calculateNumberOfMatch(List<Integer> numberOfCompare) {
+        return (int) numberOfCompare.stream()
+                .filter(numbers::contains)
+                .count();
+    }
 }

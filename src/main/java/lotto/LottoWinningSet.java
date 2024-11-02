@@ -3,8 +3,8 @@ package lotto;
 import java.util.List;
 
 public class LottoWinningSet implements UniqueNumber {
-    List<Integer> winningNumber;
-    int bonusNumber;
+    private final List<Integer> winningNumber;
+    private final int bonusNumber;
 
     public LottoWinningSet(List<Integer> winningNumber, int bonusNumber) {
         this.winningNumber = winningNumber;
@@ -15,5 +15,16 @@ public class LottoWinningSet implements UniqueNumber {
     public boolean hasDuplicateNumber() {
         return (winningNumber.size() != winningNumber.stream().distinct().count()
                 || winningNumber.contains(bonusNumber));
+    }
+
+    public int calculateMatchingNumberCount(Lotto lotto) {
+        return winningNumber.stream()
+                .filter(lotto::hasNumber)
+                .toList()
+                .size();
+    }
+
+    public boolean hasMatchingBonusNumber(Lotto lotto) {
+        return lotto.hasNumber(bonusNumber);
     }
 }

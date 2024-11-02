@@ -1,11 +1,14 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.io.InputView;
+import lotto.score.Prize;
 
 public class GameManager {
-    private InputView inputView;
+    private final InputView inputView;
 
     public GameManager() {
         inputView = new InputView();
@@ -14,9 +17,11 @@ public class GameManager {
     public void start() {
         int price = readPrice();
         LottoShop lottoShop = new LottoShop();
+        LottoJudge lottoJudge = new LottoJudge();
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
         List<Lotto> lottos = lottoShop.buyLotto(price, randomLottoGenerator);
         LottoWinningSet lottoWinningSet = readWinningLottoSet();
+        Map<Prize, Integer> LottoScore = new HashMap<>();
     }
 
     private int readPrice() {
