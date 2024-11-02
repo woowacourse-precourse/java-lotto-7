@@ -19,6 +19,7 @@ public class OutputView {
     private static final String MATCH_6_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String DIVIDER = "---";
+    private static final String COUNT_SUFFIX = "개";
     private static final String YIELD_MESSAGE = "총 수익률은 %s%%입니다.";
 
     public static void displayPrompt(Prompt prompt) {
@@ -35,7 +36,7 @@ public class OutputView {
         }
     }
 
-    public static void displayLottoNumber(int size, String formattedLottoNumbers) {
+    public static void displayLottoNumbers(int size, String formattedLottoNumbers) {
         String result = NEW_LINE.getSymbol() + size + PURCHASE_NOTICE_HEADER
                 + NEW_LINE.getSymbol() + formattedLottoNumbers + NEW_LINE.getSymbol();
 
@@ -51,6 +52,10 @@ public class OutputView {
         System.out.println(result);
     }
 
+    public static void displayErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     private static void appendHeader(StringBuilder result) {
         result.append(NEW_LINE.getSymbol())
                 .append(WINNING_STATISTICS_HEADER)
@@ -64,6 +69,7 @@ public class OutputView {
         messages.forEach((key, message) -> {
             result.append(message)
                     .append(matchCounts.get(key))
+                    .append(COUNT_SUFFIX)
                     .append(NEW_LINE.getSymbol());
         });
     }

@@ -45,6 +45,7 @@ public class InputValidator {
 
     private static void checkMultipleOfThousand(String purchaseAmount) {
         int parsedAmount = Integer.parseInt(purchaseAmount);
+
         if (parsedAmount % 1000 != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_AMOUNT.getMessage());
         }

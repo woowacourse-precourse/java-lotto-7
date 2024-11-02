@@ -21,23 +21,51 @@ public class LottoController {
     }
 
     public void run() {
-        OutputView.displayPrompt(PURCHASE_AMOUNT);
-        String purchaseAmount = getValidInput(InputValidator::validatePurchaseAmount);
+        String purchaseAmount = getPurchaseAmount();
         List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
-        String formattedLottoNumbers = lottoService.getFormattedLottoNumbers(lottos);
-        OutputView.displayLottoNumber(lottos.size(), formattedLottoNumbers);
 
-        OutputView.displayPrompt(WINNING_NUMBERS);
-        String winningNumbers = getValidInput(InputValidator::validateWinningNumbers);
+        displayFormattedLottoNumbers(lottos);
 
-        OutputView.displayPrompt(BONUS_NUMBER);
-        String bonusNumber = getValidInput(input -> InputValidator.validateBonusNumber(winningNumbers, input));
+        String winningNumbers = getWinningNumbers();
+        String bonusNumber = getBonusNumber(winningNumbers);
 
         Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
+
+        displayResults(matchCounts, purchaseAmount);
+    }
+
+    private void displayResults(Map<Integer, Integer> matchCounts, String purchaseAmount) {
         OutputView.displayWinningResult(matchCounts);
 
         double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
+
         OutputView.displayYield(yield);
+    }
+
+    private String getBonusNumber(String winningNumbers) {
+        OutputView.displayPrompt(BONUS_NUMBER);
+        String bonusNumber = getValidInput(input -> InputValidator.validateBonusNumber(winningNumbers, input));
+
+        return bonusNumber;
+    }
+
+    private String getWinningNumbers() {
+        OutputView.displayPrompt(WINNING_NUMBERS);
+        String winningNumbers = getValidInput(InputValidator::validateWinningNumbers);
+
+        return winningNumbers;
+    }
+
+    private void displayFormattedLottoNumbers(List<Lotto> lottos) {
+        String formattedLottoNumbers = lottoService.getFormattedLottoNumbers(lottos);
+
+        OutputView.displayLottoNumbers(lottos.size(), formattedLottoNumbers);
+    }
+
+    private String getPurchaseAmount() {
+        OutputView.displayPrompt(PURCHASE_AMOUNT);
+
+        return getValidInput(InputValidator::validatePurchaseAmount);
     }
 
     private String getValidInput(Consumer<String> validator) {
@@ -45,9 +73,10 @@ public class LottoController {
             try {
                 String input = InputView.getInput();
                 validator.accept(input);
+
                 return input;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.displayErrorMessage(e.getMessage());
             }
         }
     }
