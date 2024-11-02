@@ -21,5 +21,7 @@ public class LottoController {
 
         outputHandler.showWinningNumbersNavigateMessage();
         WinningNumbers winningNumbers = inputHandler.getWinningNumbersFromUser();
+
+        outputHandler.showBonusNumberNavigateMessage();
     }
 }
