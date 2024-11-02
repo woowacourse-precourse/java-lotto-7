@@ -24,6 +24,10 @@ public class LottoRankGroups {
         return filterPrize(rank -> rank.equals(targetRank));
     }
 
+    public int getRankSize() {
+        return ranks.size();
+    }
+
     private Long filterCount(Predicate<LottoRank> predicate) {
         return ranks.stream()
                 .filter(predicate)

@@ -1,18 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoController {
     private static final DecimalFormat formatter = new DecimalFormat("###,###");
+    private static final Long LOTTO_PRICE = 1000L;
 
     public Lotto createLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -41,6 +36,10 @@ public class LottoController {
                     getRankCondition(rank), getRankPrice(rank), getRankCount(groups, rank)));
         }
         return winningDetails;
+    }
+
+    public String getRateOfReturn(LottoRankGroups groups) {
+        return Math.round((double) groups.getAllPrize() / (groups.getRankSize() * LOTTO_PRICE) * 1000) / 10.0 + "%";
     }
 
     private List<String> lottosToString(List<Lotto> lottos) {
