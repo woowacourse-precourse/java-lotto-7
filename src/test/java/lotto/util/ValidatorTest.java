@@ -94,4 +94,21 @@ public class ValidatorTest {
                 {20000, 5000}
         };
     }
+
+
+    @ParameterizedTest
+    @MethodSource("invalidDivisibleNumber")
+    @DisplayName("숫자 입력이 특정 숫자로 나누어 떨어지지 않는 예외처리 테스트")
+    public void isDivisibleByExceptionTest(int number, int divisor) {
+        assertThatThrownBy(() -> Validator.isDivisibleBy(number, divisor))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Object[][] invalidDivisibleNumber() {
+        return new Object[][] {
+                {1000, 10000},
+                {1234, 1000},
+                {10000, 42}
+        };
+    }
 }
