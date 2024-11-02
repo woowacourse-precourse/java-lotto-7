@@ -12,6 +12,8 @@ public class OutputView {
     private final String PRINT_LOTTO_NUMBERS_FORMAT = "[%s]\n";
     private final String PRINT_WINNING_STATISTIC = "당첨 통계\n---\n";
     private final String PRINT_MATCH_COUNTS_FORMAT = "%d개 일치%s (%,d원) - %d개\n";
+    private final String BONUS_BALL_MATCHES = ", 보너스 볼 일치";
+    private final String BONUS_BALL_UNMATCHED = "";
     private final String PRINT_EARNING_RATIO_FORMAT = "총 수익률은 %s%%입니다.";
 
     public void printBoughtLottoNumbers(List<List<Integer>> lottos) {
@@ -36,10 +38,10 @@ public class OutputView {
             if (prize == Prize.LOSE) {
                 continue;
             } else if (prize.isBonusNumMatch()) {
-                sb.append(String.format(PRINT_MATCH_COUNTS_FORMAT, prize.getStandard(), ", 보너스 볼 일치", prize.getAmount(), matchCounts.get(prize)));
+                sb.append(String.format(PRINT_MATCH_COUNTS_FORMAT, prize.getStandard(), BONUS_BALL_MATCHES, prize.getAmount(), matchCounts.get(prize)));
                 continue;
             }
-            sb.append(String.format(PRINT_MATCH_COUNTS_FORMAT, prize.getStandard(), "", prize.getAmount(), matchCounts.get(prize)));
+            sb.append(String.format(PRINT_MATCH_COUNTS_FORMAT, prize.getStandard(), BONUS_BALL_UNMATCHED, prize.getAmount(), matchCounts.get(prize)));
         }
         return sb;
     }

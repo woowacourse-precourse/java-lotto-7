@@ -7,6 +7,7 @@ import lotto.exception.CannotDividedInThousandException;
 public class BuyingAmountValidator {
     private final int PRICE_OF_SINGLE_LOTTO = 1000;
     private final int MAX_BUYING_AMOUNT = 100000;
+    private final int ZERO = 0;
 
     public int validateBuyingAmount(String input) throws BuyingAmountException {
         int amount = validateFormat(input);
@@ -27,7 +28,7 @@ public class BuyingAmountValidator {
     }
 
     private void validateDivisionIntoThousand(int amount) {
-        if (amount % PRICE_OF_SINGLE_LOTTO != 0) {
+        if (amount % PRICE_OF_SINGLE_LOTTO != ZERO) {
             throw new CannotDividedInThousandException();
         }
     }

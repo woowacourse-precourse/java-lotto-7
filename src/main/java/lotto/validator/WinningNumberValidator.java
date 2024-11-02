@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumberValidator {
+    private final int MIN_LOTTO = 1;
+    private final int MAX_LOTTO = 45;
+    private final int LOTTO_NUMBER_QUANTITY = 6;
+    private final String LOTTO_NUM_DELIMITER = ",";
 
     public List<Integer> validateWinningNumbers(String input) throws IllegalLottoNumberException{
         String[] splitedWinningNums = validateQuantity(input);
@@ -32,7 +36,7 @@ public class WinningNumberValidator {
     private int validateFormat(String number) {
         try {
             int parsedNum = Integer.parseInt(number);
-            if (parsedNum <= 0 || parsedNum >= 46) {
+            if (parsedNum < MIN_LOTTO || parsedNum > MAX_LOTTO) {
                 throw new NumberFormatException();
             }
             return parsedNum;
@@ -42,8 +46,8 @@ public class WinningNumberValidator {
     }
 
     private String[] validateQuantity(String winningNums) {
-        String[] splitedWinningNums = winningNums.split(",");
-        if (splitedWinningNums.length != 6) {
+        String[] splitedWinningNums = winningNums.split(LOTTO_NUM_DELIMITER);
+        if (splitedWinningNums.length != LOTTO_NUMBER_QUANTITY) {
             throw new LottoNumberQuantityException();
         }
         return splitedWinningNums;
