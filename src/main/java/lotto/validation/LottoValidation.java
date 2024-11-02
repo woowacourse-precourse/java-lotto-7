@@ -7,11 +7,17 @@ public class LottoValidation {
         }
     }
 
-    public void validateParsing(String input){
+    public int validateParsing(String input){
         try{
-            Integer.parseInt(input);
+            return Integer.parseInt(input);
         }catch(IllegalArgumentException e){
             throw new IllegalArgumentException("[ERROR] Integer로 변환이 불가능합니다.");
+        }
+    }
+
+    public void validatePositive(int input){
+        if (input<=0){
+            throw new IllegalArgumentException("[ERROR] 양수를 입력해야 합니다.");
         }
     }
 }

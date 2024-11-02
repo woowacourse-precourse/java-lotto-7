@@ -24,12 +24,13 @@ public class LottoController {
     private int getValidPurchasePrice() {
         while (true) {
             try {
-                String unValidPurchasePrice = inputView.inputPurchasePrice();
+                String input = inputView.inputPurchasePrice();
 
-                lottoValidation.validateBlank(unValidPurchasePrice);
-                lottoValidation.validateParsing(unValidPurchasePrice);
+                lottoValidation.validateBlank(input);
+                int purchasePrice = lottoValidation.validateParsing(input);
+                lottoValidation.validatePositive(purchasePrice);
 
-                return Integer.parseInt(unValidPurchasePrice);
+                return purchasePrice;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

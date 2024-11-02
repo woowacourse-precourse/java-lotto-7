@@ -19,4 +19,10 @@ class LottoValidationTest {
         assertThatThrownBy(()->lottoValidation.validateParsing("일억"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력_금액이_양수가_아닐_경우_예외가_발생한다(){
+        assertThatThrownBy(()->lottoValidation.validatePositive(-5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
