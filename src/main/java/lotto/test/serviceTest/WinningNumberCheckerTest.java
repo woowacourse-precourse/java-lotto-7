@@ -2,6 +2,7 @@ package lotto.test.serviceTest;
 
 import lotto.Lotto;
 import lotto.service.WinningNumberChecker;
+import lotto.service.WinningNumberPool;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,36 +12,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningNumberCheckerTest {
     @Test
-    public void testSetWinningNumber() {
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        WinningNumberChecker winningNumberChecker = new WinningNumberChecker();
-        winningNumberChecker.setWinningNumber(winningNumbers);
-        assertThat(winningNumberChecker.getWinningNumbers()).containsExactlyElementsOf(winningNumbers);
-    }
-
-    @Test
-    public void testSetBonusNumber() {
-        WinningNumberChecker winningNumberChecker = new WinningNumberChecker();
-        int bonusNumber = 7;
-        winningNumberChecker.setBonusNumber(bonusNumber);
-        assertThat(winningNumberChecker.doesContainBonusNumber(new Lotto(Arrays.asList(bonusNumber,1,2,3,4,5)))).isTrue();
-    }
-
-    @Test
     public void testCountMatchingNumbers() {
-        WinningNumberChecker winningNumberChecker = new WinningNumberChecker();
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        winningNumberChecker.setWinningNumber(winningNumbers);
+        WinningNumberPool winningNumberPool = new WinningNumberPool();
+        winningNumberPool.setWinningNumber(winningNumbers);
+        WinningNumberChecker winningNumberChecker = new WinningNumberChecker(winningNumberPool);
         List<Integer> testNumbers = Arrays.asList(1, 2, 7, 8, 9, 10);
-        int matchCount = winningNumberChecker.countMatchingNumbers(testNumbers);
-        assertThat(matchCount).isEqualTo(2);
+        assertThat(winningNumberChecker.countMatchingNumbers(testNumbers)).isEqualTo(2);
     }
 
     @Test
     public void testDoesContainBonusNumber() {
-        WinningNumberChecker winningNumberChecker = new WinningNumberChecker();
-        int bonusNumber = 7;
-        winningNumberChecker.setBonusNumber(bonusNumber);
+        WinningNumberPool winningNumberPool = new WinningNumberPool();
+        winningNumberPool.setBonusNumber(7);
+        WinningNumberChecker winningNumberChecker = new WinningNumberChecker(winningNumberPool);
         Lotto lottoWithBonus = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
         Lotto lottoWithoutBonus = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         assertThat(winningNumberChecker.doesContainBonusNumber(lottoWithBonus)).isTrue();
@@ -49,8 +34,6 @@ public class WinningNumberCheckerTest {
 
     @Test
     public void run(){
-        testSetWinningNumber();
-        testSetBonusNumber();
         testCountMatchingNumbers();
         testDoesContainBonusNumber();
     }
