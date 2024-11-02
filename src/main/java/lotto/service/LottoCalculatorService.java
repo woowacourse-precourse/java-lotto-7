@@ -10,17 +10,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.domain.LottoRanking.*;
+
 public class LottoCalculatorService {
 
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int BONUS_NUMBER_INDEX = 6;
-    private static final int THREE_MATHE_NUMBER = 3;
-    private static final int FIVE_MATHE_NUMBER = 3;
+    private static final int THREE_MATHE_NUMBER = THREE_MATCH.getMatchNumber();
+    private static final int FIVE_MATHE_NUMBER = FIVE_MATCH.getMatchNumber();
 
     private final Map<LottoRanking, Integer> winningCount = new HashMap<>();
 
     public LottoCalculatorService() {
-        for (LottoRanking lottoRanking : LottoRanking.values()) {
+        for (LottoRanking lottoRanking : values()) {
             winningCount.put(lottoRanking, 0);
         }
     }
@@ -33,7 +35,7 @@ public class LottoCalculatorService {
             int duplicateNumber = 0;
             duplicateNumber = getDuplicateNumber(userLottoNumber, duplicateNumber, winningLotto);
 
-            duplicateNumberCalculate(userLottoNumber, duplicateNumber, winningLotto);
+            duplicateLottoNumberCalculate(userLottoNumber, duplicateNumber, winningLotto);
         }
 
         OutputView.printWinningHistory(winningCount);
@@ -53,13 +55,13 @@ public class LottoCalculatorService {
         return duplicateNumber;
     }
 
-    private void duplicateNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
-        for (LottoRanking ranking : LottoRanking.values()) {
-            countDuplicateNumber(userLottoNumber, ranking, duplicateNumber, winningLotto);
+    private void duplicateLottoNumberCalculate(UserLotto userLottoNumber, int duplicateNumber, List<Integer> winningLotto) {
+        for (LottoRanking ranking : values()) {
+            countDuplicateLottoNumber(userLottoNumber, ranking, duplicateNumber, winningLotto);
         }
     }
 
-    private void countDuplicateNumber(UserLotto userLottoNumber, LottoRanking ranking, int duplicateNumber, List<Integer> winningLotto) {
+    private void countDuplicateLottoNumber(UserLotto userLottoNumber, LottoRanking ranking, int duplicateNumber, List<Integer> winningLotto) {
         if (duplicateNumber < THREE_MATHE_NUMBER || duplicateNumber != ranking.getMatchNumber()) {
             return;
         }
