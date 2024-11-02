@@ -15,12 +15,6 @@ public class BonusNumber {
         return bonus == number;
     }
 
-    protected void validateDuplicated(final Lotto lotto) {
-        if (lotto.isContain(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
-        }
-    }
-
     private int convertToInt(final String bonusNumber) {
         try {
             return Integer.parseInt(bonusNumber);
@@ -33,5 +27,9 @@ public class BonusNumber {
         if (bonus < MIN_NUMBER || bonus > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1과 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    protected int getBonus() {
+        return bonus;
     }
 }
