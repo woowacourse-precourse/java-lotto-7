@@ -7,4 +7,5 @@ public class Application {
         LottoController controller = new LottoController();
         controller.lottoController();
     }
+
 }
