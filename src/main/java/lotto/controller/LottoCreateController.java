@@ -18,6 +18,7 @@ public class LottoCreateController {
 
 	public void run() {
 		Price price = getPurchasePrice();
+		LottoBundle lottoBundle = purchaseLotto(price);
 	}
 
 	private Price getPurchasePrice() {
