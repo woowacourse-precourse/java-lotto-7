@@ -22,4 +22,8 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return new ArrayList<>(lottos);
     }
+
+    public int getSize() {
+        return lottos.size();
+    }
 }

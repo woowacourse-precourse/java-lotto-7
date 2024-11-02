@@ -1,35 +1,25 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoResult;
+import lotto.controller.LottoPurchaseController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class OutputView {
 
-    private static final int LOTTO_PRICE = 1000;
-
-    public static Lottos showPurchasedLottos(long userPrice) {
-
-        long purchasedLottoCount = userPrice / LOTTO_PRICE;
+    public static void showPurchasedLottoCount(long purchasedLottoCount) {
         System.out.println(purchasedLottoCount + "개를 구매했습니다.");
+    }
 
-        Lottos lottos = Lottos.createLottos(new ArrayList<>());
-        for (int i = 0; i < purchasedLottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            Lotto lotto = Lotto.createLotto(numbers);
-            System.out.println(lotto.printLotto());
-            lottos.addLotto(lotto);
+    public static void showPurchasedLottos(Lottos lottos) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Lotto lotto : lottos.getLottos()) {
+            String printLotto = lotto.printLotto();
+            stringBuilder.append(printLotto + "\n");
         }
-        System.out.println();
-
-        return lottos;
+        System.out.println(stringBuilder);
     }
 
     public static void showPurchasedLottosStatus(LottoWinningNumbers lottoWinningNumbers, Lottos lottos, long userPurchaseMoney) {
