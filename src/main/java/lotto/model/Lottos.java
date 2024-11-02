@@ -12,4 +12,15 @@ public class Lottos {
     public int getSize() {
         return lottos.size();
     }
+
+    public String getLottos() {
+        StringBuilder lottoNumbers = new StringBuilder();
+
+        for (Lotto lotto : lottos) {
+            lottoNumbers.append(lotto.getLottoNumbers())
+                    .append("\n");
+        }
+
+        return lottoNumbers.toString();
+    }
 }

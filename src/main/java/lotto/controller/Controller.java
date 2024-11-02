@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,8 @@ public class Controller {
     public void run() {
         Money money = lottoService.getMoney();
 
-        // 구입 금액에 따른 로또 개수 테스트
-        System.out.println("로또 개수: " + money.getLottoTicket());
-
         Lottos lottos = purchaseLottos(money);
-        System.out.println(lottos.getSize());
+        OutputView.printLottoNumbers(lottos);
     }
 
     private Lottos purchaseLottos(Money money) {
