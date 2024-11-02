@@ -17,10 +17,10 @@ class LottoGeneratorTest {
         LottoGenerator generator = new LottoGenerator();
 
         // when
-        List<Lotto> lottos = generator.generateLottos(5000);
+        Lottos lottos = generator.generateLottos(5000);
 
         // then
-        assertThat(lottos).hasSize(5);
+        assertThat(lottos.getLottoCount()).isEqualTo(5);
     }
 
     @Test
@@ -31,11 +31,10 @@ class LottoGeneratorTest {
         LottoGenerator generator = new LottoGenerator(() -> fixedNumbers);
 
         // when
-        List<Lotto> lottos = generator.generateLottos(1000);
+        Lottos lottos = generator.generateLottos(1000);
 
         // then
-        assertThat(lottos).hasSize(1);
-        assertThat(lottos.getFirst().toString()).isEqualTo(fixedNumbers.toString());
+        assertThat(lottos.getLottoCount()).isEqualTo(1);
+        assertThat(lottos.toString()).contains(fixedNumbers.toString());
     }
-
 }
