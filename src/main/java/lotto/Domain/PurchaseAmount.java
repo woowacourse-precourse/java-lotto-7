@@ -1,6 +1,7 @@
 package lotto.Domain;
 
 import lotto.Messages.ErrorMessage;
+import lotto.Utils.Parser;
 import lotto.Utils.Validator;
 
 public class PurchaseAmount {
@@ -8,6 +9,8 @@ public class PurchaseAmount {
 
     public PurchaseAmount(String input) {
         validateInput(input);
+        int value = Parser.stringToInteger(input);
+
     }
 
     private static void validateInput(String input) {
