@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import java.util.List;
+
 import lotto.model.LottoBundle;
 import lotto.model.LottoCreator;
 import lotto.model.Price;
+import lotto.model.PurchaseLottoResultGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -34,6 +37,8 @@ public class LottoCreateController {
 
 	private LottoBundle purchaseLotto(Price price) {
 		LottoCreator lottoCreator = new LottoCreator();
-		return new LottoBundle(price, lottoCreator);
+		LottoBundle lottoBundle = new LottoBundle(price, lottoCreator);
+		PurchaseLottoResultGenerator purchaseLottoResultGenerator = new PurchaseLottoResultGenerator();
+		return lottoBundle;
 	}
 }
