@@ -7,6 +7,8 @@ import lotto.dto.MoneyDTO;
 import lotto.dto.WinningLottoDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.LottoBank;
+import lotto.model.LottoResult;
 import lotto.model.LottoSeller;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -40,6 +42,11 @@ public class LottoController {
         BonusNumber bonusNumber = new BonusNumber(bonusDTO.number());
         System.out.println();
 
+        LottoBank lottoBank = new LottoBank();
+        LottoResult lottoResult = lottoBank.evaluate(winningLotto, myLottos, bonusNumber);
 
+        outputView.printLottoResult(lottoResult);
+        double profitRate = lottoBank.calculateProfitRate(lottoResult, moneyDTO.money());
+        outputView.printProfitRate(profitRate);
     }
 }
