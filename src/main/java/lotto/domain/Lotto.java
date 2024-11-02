@@ -10,11 +10,12 @@ public class Lotto {
     public static final String NUMBER_SIZE_ERROR_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     public static final String NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 %d와 %d사이 숫자여야합니다.";
     public static final String NUMBER_DUPLICATE_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+
     private final List<Integer> numbers;
 
     private Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     public static Lotto of(List<Integer> numbers) {
@@ -66,6 +67,12 @@ public class Lotto {
             }
         }
         return matchedCount;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private boolean isNumberInList(Integer number) {
