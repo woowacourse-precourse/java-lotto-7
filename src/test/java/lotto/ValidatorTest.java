@@ -98,4 +98,10 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateBonusNumberInput("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_45보다_큰_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Validator.validateBonusNumberInput("46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
