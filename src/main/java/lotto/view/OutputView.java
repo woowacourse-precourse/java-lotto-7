@@ -8,6 +8,7 @@ public class OutputView {
     private static final String BUY_COUNT = "\n%d개를 구매했습니다.\n";
     private static final String RESULT_MESSAGE = "\n당첨 통계\n---";
     private static final String WINNING_STATISTICS = "%d개 일치 (%s원) - %d개\n";
+    private static final String BONUS_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String TOTAL_RETURN = "총 수익률은 %.1f%%입니다.\n";
 
     public static void lottoList(LottoMachine lottoMachine) {
@@ -26,11 +27,16 @@ public class OutputView {
         System.out.println(RESULT_MESSAGE);
 
         for (LottoPrize value : LottoPrize.values()) {
-            String formatNum = String.format("%,d", value.getPrize());
+            String prize = String.format("%,d", value.getPrize());
+
+            if (value.getMatch() == 55) {
+                System.out.printf(BONUS_MESSAGE, value.getCount());
+                continue;
+            }
 
             System.out.printf(WINNING_STATISTICS
                     , value.getMatch()
-                    , formatNum
+                    , prize
                     , value.getCount());
         }
 
