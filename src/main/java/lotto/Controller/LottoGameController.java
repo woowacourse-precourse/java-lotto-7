@@ -20,10 +20,19 @@ public class LottoGameController {
 
     private void ready() {
         game = LottoGame.create();
-        String amountInput = userInput.purchaseAmount();
-        PurchaseAmount amount = PurchaseAmount.from(amountInput);
-        LottoMachine machine = LottoMachine.create();
-        Lottos issuedLottos = machine.buyLottos(amount);
+        Lottos issuedLottos;
+        while (true) {
+            try {
+
+                String amountInput = userInput.purchaseAmount();
+                PurchaseAmount amount = PurchaseAmount.from(amountInput);
+                LottoMachine machine = LottoMachine.create();
+                issuedLottos = machine.buyLottos(amount);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         game.setIssuedLottos(issuedLottos);
     }
 
