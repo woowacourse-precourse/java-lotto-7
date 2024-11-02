@@ -28,19 +28,10 @@ public class OutputView {
         double rate = result.getRate();
 
         System.out.println(Constants.RESULT_LOTTO_OUTPUT);
-        List<Map.Entry<LottoRank, Integer>> sortedResults = sortLottoResultsByMatchCount(lottoResults);
-        for(Map.Entry<LottoRank, Integer> entry : sortedResults){
-            System.out.println(entry.getKey().getMatchCount()+"개 일치 ("+entry.getKey().getPrice()+"원) - "+lottoResults.get(entry.getKey())+"개");
+        for(LottoRank lottoRank : LottoRank.values()){
+            System.out.println(lottoRank.getMatch()+" - "+lottoResults.get(lottoRank)+"개");
         }
         System.out.println("총 수익률은 " + rate + "%입니다.");
-    }
-
-    private List<Map.Entry<LottoRank, Integer>> sortLottoResultsByMatchCount(Map<LottoRank, Integer> lottoResults) {
-        // Map의 엔트리를 리스트로 변환하고, matchCount를 기준으로 오름차순으로 정렬
-        return lottoResults.entrySet()
-                .stream()
-                .sorted(Comparator.comparingInt(entry -> entry.getKey().getMatchCount())) // matchCount 기준 정렬
-                .collect(Collectors.toList());
     }
 
 }

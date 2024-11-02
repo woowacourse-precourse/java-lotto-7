@@ -18,6 +18,10 @@ public class LottoWinningNumbers {
         return lottoWinningNumbers;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(List<Integer> numbers, int bonus){
         validateNum(numbers);
         validateRange(numbers);

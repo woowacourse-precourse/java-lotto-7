@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Constants;
 import lotto.validator.InputValidator;
 
-import java.util.List;
 
 public class InputView {
     private InputValidator inputValidator;

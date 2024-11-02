@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoWinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,9 +33,9 @@ public class LottoController {
         List<Integer> winningNumbers = lottoService.splitLottoWinningNumbers(lottoWinningNumbers);
 
         int bonusNumber = inputView.inputLottoBonusNumber();
-        lottoService.winningLotto(winningNumbers, bonusNumber);
+        LottoWinningNumbers winningNumbersSet = lottoService.winningLotto(winningNumbers, bonusNumber);
 
-        LottoResult resultWinningLotto = lottoService.resultWinningLotto(lottoNum);
+        LottoResult resultWinningLotto = lottoService.resultWinningLotto(winningNumbersSet, lottoNum);
         LottoResult result = lottoService.calculateRate(resultWinningLotto, lottoPriceInt);
 
         outputView.totalLotto(result);

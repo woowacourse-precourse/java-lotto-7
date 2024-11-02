@@ -2,7 +2,6 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
-import lotto.validator.InputValidator;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -10,12 +9,6 @@ import java.util.stream.Collectors;
 public class LottoService {
 
     private List<Lotto> lottoList = new ArrayList<>();
-    private InputValidator inputValidator;
-    private LottoWinningNumbers lottoWinning;
-
-    public LottoService() {
-        inputValidator = new InputValidator();
-    }
 
     public int purchaseLotto(int lottoPrice) {
         int lottoNum = lottoPrice / Constants.PURCHASE_FORM;
@@ -55,18 +48,24 @@ public class LottoService {
         }
     }
 
-    public LottoResult resultWinningLotto(int lottoNum) {
+    public LottoWinningNumbers winningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        LottoWinningNumbers lottoWinning = new LottoWinningNumbers(winningNumbers, bonusNumber);
+
+        return lottoWinning;
+    }
+
+    public LottoResult resultWinningLotto(LottoWinningNumbers lottoWinning, int lottoNum) {
         Map<LottoRank, Integer> lottoResults = new HashMap<>();
         LottoResult lottoResult = new LottoResult(lottoResults, 0);
         lottoResult.init();
+        int bonusNumber = lottoWinning.getBonusNumber();
 
         for(int i=0; i<lottoNum; i++){
-            int count = compareWinningLotto(i);
-            //System.out.println("count = " + count);
+            int count = compareWinningLotto(i, lottoWinning);
             LottoRank rankByMatchCount = LottoRank.getRankByMatchCount(count);
-            //System.out.println("rankByMatchCount = " + rankByMatchCount);;
-            // lottoRank를 가지고 있는 (키) list를 찾아서 value를 count를 한다
+            
             if(rankByMatchCount != null){
+                rankByMatchCount = compareBonusNumber(rankByMatchCount, bonusNumber);
                 lottoResults.put(rankByMatchCount, lottoResults.getOrDefault(rankByMatchCount, 0) + 1);
             }
         }
@@ -74,12 +73,21 @@ public class LottoService {
         return lottoResult;
     }
 
-    private int compareWinningLotto(int i) {
-        Set<Integer> set1 = new HashSet<>(lottoList.get(i).getNumbers());
-        Set<Integer> set2 = new HashSet<>(lottoWinning.getLottoWinningNumbers());
+    private LottoRank compareBonusNumber(LottoRank rankByMatchCount, int bonusNumber) {
+        if(rankByMatchCount.getMatchCount() == Constants.BONUS_MATCH_COUNT){
+            if(lottoList.contains(bonusNumber)){
+                return LottoRank.SECOND;
+            }
+        }
+        return rankByMatchCount;
+    }
 
-        set1.retainAll(set2);
-        int count = set1.size(); // 중복
+    private int compareWinningLotto(int i, LottoWinningNumbers lottoWinning) {
+        Set<Integer> lottoSet = new HashSet<>(lottoList.get(i).getNumbers());
+        Set<Integer> winSet = new HashSet<>(lottoWinning.getLottoWinningNumbers());
+
+        lottoSet.retainAll(winSet);
+        int count = lottoSet.size(); // 중복
 
         return count;
     }
@@ -108,9 +116,5 @@ public class LottoService {
         // 쉼표를 모두 제거하고 int로 변환
         String noCommaStr = str.replace(",", "");
         return Integer.parseInt(noCommaStr);
-    }
-
-    public void winningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        lottoWinning = new LottoWinningNumbers(winningNumbers, bonusNumber);
     }
 }
