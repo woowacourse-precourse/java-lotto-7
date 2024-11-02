@@ -27,5 +27,7 @@ public class LottoController {
         for (Lotto lotto : randomLottos.lottos()) {
             outputView.printNumbers(lotto.getNumbers());
         }
+
+        String winningNumbers = inputView.getWinningNumberInput();
     }
 }
