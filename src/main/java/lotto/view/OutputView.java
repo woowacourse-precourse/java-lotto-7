@@ -5,7 +5,8 @@ public class OutputView {
     enum Description {
         ASK_PURCHASE_PRICE("구입금액을 입력해 주세요."),
         LOTTO_COUNT("개를 구매했습니다."),
-        ASK_WINNING_NUMBER("당첨 번호를 입력해 주세요.");
+        ASK_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
+        ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
 
         private final String description;
 
@@ -33,5 +34,9 @@ public class OutputView {
 
     public void askWinningNumber(){
         System.out.println(Description.ASK_WINNING_NUMBER);
+    }
+
+    public void askBonusNumber(){
+        System.out.println(LINE_SEPARATOR + Description.ASK_BONUS_NUMBER);
     }
 }

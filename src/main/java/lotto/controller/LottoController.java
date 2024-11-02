@@ -41,6 +41,8 @@ public class LottoController {
         getValidWinningNumber();
 
         //보너스 번호 입력
+        outputView.askBonusNumber();
+        int bonusNumber = getValidBonusNumber();
 
         //당첨 결과 처리
 
@@ -80,6 +82,17 @@ public class LottoController {
                 lottoService.saveWinningNumbers(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidBonusNumber(){
+        while(true){
+            try{
+                String input = inputView.inputBonusNumber();
+                return Integer.parseInt(input);
+            }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
