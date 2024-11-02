@@ -30,7 +30,7 @@ public abstract class InputHandler {
     public static List<Integer> parseWinningNumbers(String input) {
        try {
             List<Integer> winningNumbers = new ArrayList<>(6);
-            String[] segments = input.split(",");
+            String[] segments = input.split("\\s*,\\s*");
 
             if (segments.length != 6)
                 throw createArgumentException("당첨 번호는 정확히 6개여야 합니다.", input);

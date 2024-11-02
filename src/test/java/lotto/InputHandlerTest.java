@@ -53,6 +53,17 @@ public class InputHandlerTest {
     }
 
     @Test
+    void allow_white_spaces_between_numbers() {
+        String input = "1, 2 ,3  ,   4 ,5,6";
+
+        List<Integer> winningNumbers = InputHandler.parseWinningNumbers(input);
+
+        assertThat(winningNumbers)
+            .hasSize(6)
+            .containsAll(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @Test
     void throw_exception_on_more_or_less_numbers_are_given() {
         String more = "1,2,3,4,5,6,7";
         String less = "1,2,3,4,5";
