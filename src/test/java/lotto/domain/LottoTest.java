@@ -31,7 +31,7 @@ class LottoTest {
     @MethodSource("provideRankingResult")
     void 당첨_정보와_비교해_당첨_순위_계산_한다(List<Integer> winningNumbers, int bonusNumber, Ranking expectedRanking) {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
-        WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = WinningLotto.of(Lotto.from(winningNumbers), bonusNumber);
         Ranking ranking = lotto.checkRanking(winningLotto);
 
         Assertions.assertThat(ranking).isEqualTo(expectedRanking);
