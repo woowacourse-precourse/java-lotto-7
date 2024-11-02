@@ -2,6 +2,7 @@ package lotto.validator;
 
 import java.util.regex.Pattern;
 import lotto.util.Errors;
+import lotto.util.InputParser;
 import lotto.util.MessageParser;
 import org.assertj.core.util.VisibleForTesting;
 
@@ -47,7 +48,7 @@ public class MoneyValidator extends Validator {
     @VisibleForTesting
     void validateLong() {
         try {
-            Long.parseLong(money);
+            InputParser.parseLong(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(MessageParser.combineMessages(Errors.NOT_A_LONG.getMessage()));
         }

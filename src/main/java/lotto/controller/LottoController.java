@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.Ticket;
 import lotto.service.TicketGenerator;
@@ -29,7 +30,7 @@ public class LottoController {
         List<Ticket> tickets = generator.getTickets();
         outputView.printTicketNumbers(tickets);
 
-        System.out.println(getLotto());
+        Lotto lotto = tryUntilSuccess(() -> new Lotto(getLotto()));
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {
