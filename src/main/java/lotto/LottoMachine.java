@@ -15,7 +15,6 @@ public class LottoMachine {
     public void start() {
         inputMoney();
         lottoGen();
-        Output.purchase(lottos);
         inputNum();
         inputBonus();
     }
@@ -68,5 +67,6 @@ public class LottoMachine {
         for(int i = 0; i< lottonum; i++) {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
+        Output.purchase(lottos);
     }
 }
