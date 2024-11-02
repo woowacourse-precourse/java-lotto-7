@@ -71,6 +71,6 @@ public class OutputView {
     }
 
     private void printReturnOnInvestment(double returnOnInvestment) {
-        System.out.println(RETURN_ON_INVESTMENT_IS.toString() +returnOnInvestment + PERCENT_IS.toString());
+        System.out.println(RETURN_ON_INVESTMENT_IS.getMessage() +returnOnInvestment + PERCENT_IS.getMessage());
     }
 }
