@@ -16,8 +16,6 @@ public class Controller {
         Lotto testLotto = LottoGenerator.createLotto();
 
         // 로또 생성 테스트
-        for (int num : testLotto.getNumbers()) {
-            System.out.print(num + " ");
-        }
+        System.out.println(testLotto.getLottoNumbers());
     }
 }
