@@ -22,7 +22,7 @@ public class WinningService {
     public Lottos generateLottoNumber(int purchaseAmount) {
         ticket = Ticket.from(purchaseAmount);
         for(int i=0; i<ticket.getQuantity(); i++) {
-            Lotto lotto = Lotto.from(RandomNumber.create());
+            Lotto lotto = new Lotto(RandomNumber.create());
             lottos.addLotto(lotto);
         }
         return lottos;
