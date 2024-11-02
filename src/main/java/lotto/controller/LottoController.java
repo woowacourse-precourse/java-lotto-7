@@ -70,6 +70,7 @@ public class LottoController {
     }
 
     private void validateMoney(int money) {
+        if (money <= 0) throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0이나 음수가 될 수 없습니다.");
         if (money % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
         }
