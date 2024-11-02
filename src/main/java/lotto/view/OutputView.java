@@ -73,6 +73,10 @@ public class OutputView {
         return profit.divide(purchasePrice) * 100;
     }
 
+    public static void renderError(String message) {
+        System.out.printf("[ERROR] %s\n", message);
+    }
+
     private static void printEmptySpace() {
         System.out.println();
     }

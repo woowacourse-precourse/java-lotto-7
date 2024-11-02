@@ -20,7 +20,11 @@ public class LottoNumber {
     }
 
     private static int toInt(String value) {
-        return Integer.parseInt(value.trim());
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("입력한 당첨번호가 숫자가 아닙니다.");
+        }
     }
 
     private static boolean inRange(int number) {
