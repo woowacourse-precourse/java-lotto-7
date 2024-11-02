@@ -13,11 +13,12 @@ public class LottoGame {
         int amount = Integer.parseInt(amountInput);
         int lottoCount = amount / 1000;
         Lotto[] lottoArray = issueLotto(lottoCount);
-        List<Integer> winningLotto = InputHandler.handleWinningLottoInput();
+        List<Integer> winningLottoList = InputHandler.handleWinningLottoInput();
         int bonusNumber = InputHandler.handleBonusNumberInput();
+        WinningLotto winningLotto = new WinningLotto(winningLottoList, bonusNumber);
         WinnerResult winnerResult = new WinnerResult(amount);
         for (Lotto eachLotto : lottoArray) {
-            Optional<Rank> optionalRank = eachLotto.calculateRank(winningLotto, bonusNumber);
+            Optional<Rank> optionalRank = eachLotto.calculateRank(winningLotto);
             optionalRank.ifPresent(winnerResult::add);
         }
 

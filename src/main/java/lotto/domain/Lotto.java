@@ -8,7 +8,7 @@ import lotto.constant.Rank;
 import lotto.util.Validator;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         Validator.validateLottoNumbers(numbers);
@@ -19,12 +19,12 @@ public class Lotto {
         System.out.println(this.numbers);
     }
 
-    public Optional<Rank> calculateRank(List<Integer> winningLotto, int bonusNumber) {
+    public Optional<Rank> calculateRank(WinningLotto winningLotto) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
-        numbersSet.retainAll(winningLotto);
+        numbersSet.retainAll(winningLotto.numbers);
         int matchCount = numbersSet.size();
 
-        return convertMatchCountAtRank(matchCount, bonusNumber);
+        return convertMatchCountAtRank(matchCount, winningLotto.bonusNumber);
     }
 
     private Optional<Rank> convertMatchCountAtRank(int matchCount, int bonusNumber) {
