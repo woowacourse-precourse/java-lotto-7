@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class LottoInputView
 {
     public static int LottoPurchaseAmount() {
@@ -16,6 +18,7 @@ public class LottoInputView
             return LottoPurchaseAmount();
         }
     }
+
 
     private static void validatePurchaseLotto(int amount) {
         if (amount <= 0 || amount % 1000 != 0) {
