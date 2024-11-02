@@ -19,6 +19,7 @@ import lotto.domain.factory.LottoFactory;
  */
 
 public record Wallet(PurchaseAmount amount, List<Lotto> lottos) {
+    private static final double LOTTO_PRICE = 1000;
 
     public Wallet(PurchaseAmount amount) {
         this(amount, purchaseLotto(amount));
@@ -48,5 +49,11 @@ public record Wallet(PurchaseAmount amount, List<Lotto> lottos) {
             winningDetail.updateScore(rank);
         }
         return winningDetail;
+    }
+
+    public double calculateReturnRate(long totalPrizeMonoy) {
+        int purchaseCount = lottos().size();
+        double purchaseAmount = purchaseCount * LOTTO_PRICE;
+        return (totalPrizeMonoy / purchaseAmount) * 100;
     }
 }

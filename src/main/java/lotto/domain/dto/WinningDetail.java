@@ -43,4 +43,10 @@ public class WinningDetail {
         return statistics.toString();
     }
 
+    public long calculateTotalPrizeMoney() {
+        return winningDetail.entrySet().stream()
+            .mapToLong(entry ->
+                (long)entry.getKey().getPrizeMoney() * entry.getValue())
+            .sum();
+    }
 }

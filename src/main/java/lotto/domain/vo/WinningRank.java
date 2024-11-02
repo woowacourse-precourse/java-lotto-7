@@ -1,13 +1,15 @@
 package lotto.domain.vo;
 
+import static lotto.view.OutputMessage.*;
+
 import java.util.Arrays;
 
 public enum WinningRank {
-    FIRST(6, false, 2_000_000_000, "6개"),
-    SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 "),
-    THIRD(5, false, 1_500_000, "5개"),
-    FOURTH(4, false, 50_000, "4개"),
     FIFTH(3, false, 5_000, "3개"),
+    FOURTH(4, false, 50_000, "4개"),
+    THIRD(5, false, 1_500_000, "5개"),
+    SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 "),
+    FIRST(6, false, 2_000_000_000, "6개"),
     NONE(0, false, 0, "");
 
     private final int matchCount;
@@ -23,7 +25,7 @@ public enum WinningRank {
     }
 
     public String getWinningMessage(int count) {
-        return String.format("%s 일치 (%,d원) - %d개\n",
+        return String.format(MATCH_RESULT.getMessage(),
             matchDescription,
             prizeMoney,
             count);
