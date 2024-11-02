@@ -19,6 +19,8 @@ public class LottoCreator {
 	}
 
 	private List<Integer> getRandomNumbers() {
-		return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+		numbers.sort(Integer::compareTo);
+		return numbers;
 	}
 }
