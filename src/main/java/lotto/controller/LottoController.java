@@ -13,6 +13,7 @@ public class LottoController {
 
     public void run() {
         try {
+
             PurchasedPrice purchasedPrice = new PurchasedPrice(InputView.readPurchasedPrice());
 
             Lottos purchasedLottos = generate(purchasedPrice);
@@ -20,6 +21,8 @@ public class LottoController {
 
             Lotto winningNumbers = new Lotto(InputView.readWinningNumbers());
             BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
+
+            printWinningResult(purchasedLottos, winningNumbers, bonusNumber);
 
 
         } catch(IllegalArgumentException e) {
@@ -32,4 +35,10 @@ public class LottoController {
         int lottoCount = purchasedPrice.getPurchasedPrice() / LOTTO_PRICE;
         return lottoService.generateLottos(lottoCount);
     }
+
+    private void printWinningResult(Lottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+        LottoRanks lottoRanks = lottoService.getResult(purchasedLottos, winningNumbers, bonusNumber);
+        OutputView.printResult(lottoRanks);
+    }
+
 }

@@ -21,4 +21,22 @@ public class LottoService {
         }
         return new Lottos(lottos, lottoCount);
     }
+
+    public LottoRanks getResult(Lottos purchasedLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+        LottoRanks ranks = new LottoRanks();
+
+        purchasedLottos.getLottos().forEach(lotto -> {
+            int matchCount = countMatchingNumbers(lotto, winningNumbers);
+            boolean bonusMatch = (matchCount == 5) && lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+            ranks.updateWinningCounts(matchCount, bonusMatch);
+        });
+
+        return ranks;
+    }
+
+    private int countMatchingNumbers(Lotto lotto, Lotto winningNumbers) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers.getNumbers()::contains)
+                .count();
+    }
 }
