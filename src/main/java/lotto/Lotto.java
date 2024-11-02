@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -33,4 +34,10 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    @Override
+    public String toString() {
+        return "[" + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(",")) + "]";
+    }
 }
