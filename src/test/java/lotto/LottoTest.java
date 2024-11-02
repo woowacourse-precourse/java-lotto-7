@@ -30,7 +30,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(100, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    /*@Test
+    @Test
     void 보너스_번호가_1미만_45초과이면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -41,5 +41,5 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
 
-    }*/
+    }
 }

@@ -32,9 +32,9 @@ public class MakeLottoNumbers {
         }
         System.out.println("당첨 번호를 입력해 주세요.");
         prize = Lotto.lottoNumber(Console.readLine());
-        //validate(prize, bonus)
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = Integer.parseInt(Console.readLine());
+        validate(prize, bonus);
         /*for (List<Integer> lottos: allLottoNumbers) {
             matchLottoNumbers(lottos,prize,bonus);
         }*/
