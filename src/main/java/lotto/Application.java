@@ -19,6 +19,7 @@ public class Application {
 
         List<Integer> winningLottoNumbers = consoleHandler.inputWinningLottoNumbers();
         int bonusNumber = consoleHandler.inputWinningLottoBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 
 }
