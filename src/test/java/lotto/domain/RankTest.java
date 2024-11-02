@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RankTest {
 
@@ -92,10 +94,10 @@ class RankTest {
     }
 
     @DisplayName("번호 2개 이하 일치 시 당첨 등수 없음")
-    @Test
-    void getRank_none() {
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2})
+    void getRank_none(int matchCount) {
         // given
-        int matchCount = 2;
         boolean hasBonus = false;
 
         // when
@@ -104,4 +106,5 @@ class RankTest {
         // then
         assertThat(rank).isEqualByComparingTo(Rank.NONE);
     }
+
 }

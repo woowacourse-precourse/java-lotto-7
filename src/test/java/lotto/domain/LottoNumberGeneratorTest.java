@@ -14,7 +14,7 @@ class LottoNumberGeneratorTest {
 
     @DisplayName("로또 숫자 6개가 정상적으로 생성된다.")
     @Test
-    void generate_testSize() {
+    void generate_sizeCheck() {
         // given
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
@@ -27,7 +27,7 @@ class LottoNumberGeneratorTest {
 
     @DisplayName("로또 숫자가 중복되지 않는다.")
     @Test
-    void generate_testDuplicate() {
+    void generate_duplicateCheck() {
         // given
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
@@ -35,13 +35,12 @@ class LottoNumberGeneratorTest {
         List<Integer> lottoNumbers = lottoNumberGenerator.generate();
 
         // then
-        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
-        assertThat(uniqueNumbers).hasSize(6);
+        assertThat(lottoNumbers).doesNotHaveDuplicates();
     }
 
     @DisplayName("로또 숫자 범위가 1부터 45 사이이다.")
     @Test
-    void generate_range() {
+    void generate_rangeCheck() {
         // given
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
@@ -54,7 +53,7 @@ class LottoNumberGeneratorTest {
 
     @DisplayName("로또 숫자가 오름차순으로 정렬된다.")
     @Test
-    void generate_testSorted() {
+    void generate_sortedCheck() {
         // given
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
@@ -62,9 +61,7 @@ class LottoNumberGeneratorTest {
         List<Integer> lottoNumbers = lottoNumberGenerator.generate();
 
         // then
-        List<Integer> sortedLottoNumbers = new ArrayList<>(lottoNumbers);
-        Collections.sort(sortedLottoNumbers);
-        assertThat(lottoNumbers).isEqualTo(sortedLottoNumbers);
+        assertThat(lottoNumbers).isSorted();
     }
 
 }
