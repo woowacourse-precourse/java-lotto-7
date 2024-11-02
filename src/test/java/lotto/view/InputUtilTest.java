@@ -31,7 +31,7 @@ public class InputUtilTest {
         });
         Throwable cause = exception.getCause();
         assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
-        assertEquals("[ERROR] 입력값은 자연수여야 합니다.", cause.getMessage());
+        assertEquals("[ERROR] 입력값은 공백없는 자연수여야 합니다.", cause.getMessage());
     }
 
     @Test
@@ -167,7 +167,7 @@ public class InputUtilTest {
         });
         Throwable cause = exception.getCause();
         assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
-        assertEquals("[ERROR] 입력값은 자연수여야 합니다.", cause.getMessage());
+        assertEquals("[ERROR] 입력값은 공백없는 자연수여야 합니다.", cause.getMessage());
     }
 
     @Test
@@ -181,6 +181,76 @@ public class InputUtilTest {
         });
         Throwable cause = exception.getCause();
         assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
-        assertEquals("[ERROR] 입력값은 자연수여야 합니다.", cause.getMessage());
+        assertEquals("[ERROR] 입력값은 공백없는 자연수여야 합니다.", cause.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외 발생")
+    void getBonusNumber_duplicateBonusNumber() throws Exception {
+        String invalidInput = "5"; // 보너스 번호가 이미 당첨 번호에 포함됨
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Method method = InputUtil.class.getDeclaredMethod("checkValidBonusNumber", String.class, List.class);
+        method.setAccessible(true);
+        InvocationTargetException exception = assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput, winningNumbers);
+        });
+        Throwable cause = exception.getCause();
+        assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
+        assertEquals("[ERROR] 중복된 번호가 있습니다.", cause.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되지 않을 때 정상 반환")
+    void getBonusNumber_validBonusNumber() throws Exception {
+        String validInput = "7"; // 보너스 번호가 당첨 번호에 포함되지 않음
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Method method = InputUtil.class.getDeclaredMethod("checkValidBonusNumber", String.class, List.class);
+        method.setAccessible(true);
+        method.invoke(input, validInput, winningNumbers);
+    }
+
+    @Test
+    @DisplayName("보너스 번호에 비숫자가 포함되었을 때 예외 발생")
+    void getBonusNumber_nonNumericInput() throws Exception {
+        String invalidInput = "a"; // 비숫자 입력
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Method method = InputUtil.class.getDeclaredMethod("checkValidBonusNumber", String.class, List.class);
+        method.setAccessible(true);
+        InvocationTargetException exception = assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput, winningNumbers);
+        });
+        Throwable cause = exception.getCause();
+        assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
+        assertEquals("[ERROR] 입력값은 공백없는 자연수여야 합니다.", cause.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 범위를 벗어난 숫자일 때 예외 발생")
+    void getBonusNumber_numberOutOfRange() throws Exception {
+        String invalidInput = "46"; // 범위를 벗어난 숫자
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Method method = InputUtil.class.getDeclaredMethod("checkValidBonusNumber", String.class, List.class);
+        method.setAccessible(true);
+        InvocationTargetException exception = assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput, winningNumbers);
+        });
+        Throwable cause = exception.getCause();
+        assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
+        assertEquals("[ERROR] 모든 번호는 1부터 45 사이의 숫자여야 합니다.", cause.getMessage());
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력에 공백이 포함된 유효한 입력 시")
+    void getBonusNumber_inputWithSpaces() throws Exception {
+        String invalidInput = " 7 ";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Method method = InputUtil.class.getDeclaredMethod("checkValidBonusNumber", String.class, List.class);
+        method.setAccessible(true);
+        InvocationTargetException exception = assertThrows(InvocationTargetException.class, () -> {
+            method.invoke(input, invalidInput, winningNumbers);
+        });
+        Throwable cause = exception.getCause();
+        assertTrue(cause instanceof IllegalArgumentException, "Exception should be IllegalArgumentException");
+        assertEquals("[ERROR] 입력값은 공백없는 자연수여야 합니다.", cause.getMessage());
     }
 }
