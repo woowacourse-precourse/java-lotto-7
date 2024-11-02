@@ -1,5 +1,7 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +12,14 @@ public class Lotto {
         validateDuplicateLottoNumber(numbers);
         validateLottoNumbersRange(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public static Lotto generateLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
     private void validateLottoNumberCount(List<Integer> numbers) {
@@ -29,7 +39,7 @@ public class Lotto {
     }
 
     private void validateLottoNumberRange(Integer number) {
-        if (isLottoNumberRange(number)) {
+        if (!isLottoNumberRange(number)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45사이의 숫자 입니다.");
         }
     }
