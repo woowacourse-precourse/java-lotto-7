@@ -7,9 +7,10 @@ import lotto.model.WinningCount;
 import java.text.MessageFormat;
 import java.util.List;
 
+import static lotto.global.enums.PrintMessage.RATE_OF_RETURN;
+import static lotto.global.enums.PrintMessage.WINNING_RESULT;
+
 public class OutputView {
-    private static final int START_INDEX = 1;
-    private static final int END_INDEX = 6;
     private static OutputView instance;
 
     public static OutputView getInstance() {
@@ -41,12 +42,12 @@ public class OutputView {
 
     public void printWinningResult(WinningCount count) {
         List<Integer> winningCount = count.getWinningCount();
-        String message = formattingMessage(PrintMessage.WINNING_RESULT, winningCount.subList(START_INDEX, END_INDEX).toArray());
+        String message = formattingMessage(WINNING_RESULT, winningCount.toArray());
         printMessage(message);
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        String message = formattingMessage(PrintMessage.RATE_OF_RETURN, rateOfReturn);
+        String message = formattingMessage(RATE_OF_RETURN, rateOfReturn);
         printMessage(message);
     }
 }

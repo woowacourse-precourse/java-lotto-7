@@ -45,16 +45,17 @@ public class LottoService {
         int count = (int) numbers.stream().filter(winningNumbers.getWinningNumber()::contains)
                 .count();
         boolean hasBonus = numbers.contains(winningNumbers.getBonusNumber());
+
         if (count == 6) {
             return 5;
         }
         if (count == 5 && hasBonus) {
             return 4;
         }
-        if (count < 3) {
-            return 0;
+        if (count >= 3) {
+            return count - 2;
         }
-        return count - 2;
+        return 0;
     }
 
     public float calculateRateOfReturn(List<Integer> winningAmount, WinningCount count) {
