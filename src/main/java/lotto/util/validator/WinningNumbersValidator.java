@@ -23,7 +23,7 @@ public class WinningNumbersValidator {
     private static void validateContent(String rawWinningNumbers) {
         for (int i = 0; i < rawWinningNumbers.length(); i++) {
             char c = rawWinningNumbers.charAt(i);
-            if (!(Character.isDigit(c) || isComma(c))) {
+            if (!(Character.isDigit(c) || isComma(c) || Character.isWhitespace(c))) {
                 throw new IllegalArgumentException(INVALID_CONTENT_WINNING_NUMBERS_ERROR_MESSAGE.getContent());
             }
         }

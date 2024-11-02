@@ -14,7 +14,7 @@ class WinningNumberParserTest {
     @Test
     void parseWinningNumbers() {
         //given
-        String rawWinningNumber = "1,2,3,4,5,6";
+        String rawWinningNumber = "1,2,3,4, 5,6";
 
         //when
         List<Integer> winningNumbers = WinningNumberParser.parseRawWinningNumbers(rawWinningNumber);

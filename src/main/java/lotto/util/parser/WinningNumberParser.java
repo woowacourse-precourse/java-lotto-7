@@ -15,6 +15,7 @@ public class WinningNumberParser {
         try {
             String[] contents = rawWinningNumber.split(REGEX);
             return Arrays.stream(contents)
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {

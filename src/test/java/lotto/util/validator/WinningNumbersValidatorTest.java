@@ -21,7 +21,7 @@ class WinningNumbersValidatorTest {
 
     @DisplayName("당첨 번호를 입력할 때 숫자와 콤마만 입력할 수 있다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3e", "qwffw, fwf,q", "1ae", "1 2", "1,2 ,3"})
+    @ValueSource(strings = {"1,2,3e", "qwffw, fwf,q", "1ae", "1a2", "1,2!,3"})
     void inputWithOtherChar(String rawWinningNumbers) {
         assertThatThrownBy(() -> WinningNumbersValidator.validate(rawWinningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
