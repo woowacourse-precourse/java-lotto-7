@@ -54,6 +54,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 구입_금액을_잘못_입력한_경우_다시_입력한다() {
+        assertSimpleTest(() -> {
+            run("1001", "8000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains("8개를 구매했습니다.");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
