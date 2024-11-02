@@ -12,6 +12,16 @@ public class PrizeLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int countWinningLottoMatched(Lotto lotto) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean isBonusNumberMatched(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
 
     public static PrizeLotto from(List<Integer> lottoNumbers, int bonusNumber) {
         Lotto winningLotto = new Lotto(lottoNumbers);
