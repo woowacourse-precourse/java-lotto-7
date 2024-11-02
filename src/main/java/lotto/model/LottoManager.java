@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoManager {
@@ -31,19 +32,29 @@ public class LottoManager {
     }
   }
 
-  public List<Lotto> generateLottos() {
+  public Lottos generateLottos() {
     List<Lotto> lottos = new ArrayList<>();
     for (int i = 0; i < calculateLottoCount(); i++) {
       lottos.add(generateSingleLotto());
     }
-    return lottos;
+    return new Lottos(lottos);
+  }
+
+  private Lotto generateSingleLotto() {
+    return new Lotto(provideSortedNumbers());
+  }
+
+  private List<Integer> provideSortedNumbers() {
+    List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, DEFAULT_LOTTO_SIZE));
+    randomNumbers.sort(Comparator.comparingInt(o -> o));
+    return randomNumbers;
   }
 
   private int calculateLottoCount() {
     return price / DEFAULT_LOTTO_PRICE;
   }
 
-  private Lotto generateSingleLotto() {
-    return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, DEFAULT_LOTTO_SIZE));
+  public int getPrice() {
+    return price;
   }
 }
