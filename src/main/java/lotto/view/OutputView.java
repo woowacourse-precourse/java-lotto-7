@@ -7,9 +7,7 @@ import java.util.EnumMap;
 
 public class OutputView {
 
-    private static final StringBuilder BUFFER = new StringBuilder();
-    private static final String NEW_LINE = "\n";
-    public static final String QUANTITY_OUTPUT_MESSAGE = "개를 구매했습니다.";
+    public static final String QUANTITY_OUTPUT_MESSAGE = "%n%d개를 구매했습니다.%n";
     public static final String STATISTIC_OUTPUT_MESSAGE = """
             
             당첨 통계
@@ -22,32 +20,15 @@ public class OutputView {
             총 수익률은 %,.1f%%입니다.
             """;
 
-    public void printPurchasedLottos(PurchasedLottos purchasedLottos) {
-        addLottoQuantityToBuffer(purchasedLottos);
-        addLottosToBuffer(purchasedLottos);
-        bufferClear();
-    }
-
     public void printError(String error) {
         System.out.println(error);
     }
 
-    private void addLottoQuantityToBuffer(PurchasedLottos purchasedLottos) {
-        BUFFER.append(NEW_LINE)
-                .append(purchasedLottos.getLottos().size())
-                .append(QUANTITY_OUTPUT_MESSAGE)
-                .append(NEW_LINE);
-    }
+    public void printPurchasedLottos(PurchasedLottos purchasedLottos) {
+        System.out.printf(QUANTITY_OUTPUT_MESSAGE, purchasedLottos.getQuantity());
 
-    private void addLottosToBuffer(PurchasedLottos purchasedLottos) {
         purchasedLottos.getLottos().forEach(lotto ->
-                BUFFER.append(lotto.getNumbers())
-                        .append(NEW_LINE));
-    }
-
-    private void bufferClear() {
-        System.out.print(BUFFER);
-        BUFFER.setLength(0);
+                System.out.println(lotto.getNumbers()));
     }
 
     public void printDrawResult(EnumMap<Ranking, Integer> drawResult, double earningRate) {

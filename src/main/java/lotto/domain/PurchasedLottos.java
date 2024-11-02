@@ -20,6 +20,10 @@ public class PurchasedLottos {
 //                .toList();
 //    }
 
+    public int getQuantity() {
+        return lottos.size();
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }
