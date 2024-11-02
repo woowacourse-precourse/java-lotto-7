@@ -42,7 +42,7 @@ public class LottoTransactionControllerTest {
 
     List<Lotto> lottos = controller.sellLotto(money);
 
-    controller.compareWinningNumbers(winningNumbers);
+    controller.compareWinningNumbers(winningNumbers, 45);
   }
 
 

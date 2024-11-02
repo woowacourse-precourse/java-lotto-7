@@ -33,7 +33,7 @@ public class LottoTransactionController {
     return lottos;
   }
 
-  public void compareWinningNumbers(List<Integer> winningNumbers) {
+  public void compareWinningNumbers(List<Integer> winningNumbers, Integer bonusNumber) {
 
     Set<Integer> _winningNumbers = new HashSet<>(winningNumbers);
     List<Lotto> lotttos = lottoTransaction.getPurchasedLottos();
@@ -44,7 +44,9 @@ public class LottoTransactionController {
       List<Integer> numbers = lotto.getNumbers();
       Set<Integer> _numbers = new HashSet<>(numbers);
       _numbers.retainAll(_winningNumbers);
-      System.out.println(numbers + "\t일치 갯수:" + _numbers.size()); // TODO test용 삭제 예정
+      System.out.println(numbers + "," + "보너스: " + bonusNumber); // TODO test용 삭제 예정
+      System.out.println("보너스 일치:" + _numbers.contains(bonusNumber) + "\t일치 갯수:"
+              + _numbers.size()); // TODO test용 삭제 예정
     }
   }
 
