@@ -3,7 +3,7 @@ package lotto.viewHandler.validator;
 import lotto.viewHandler.Validator;
 import lotto.viewHandler.exception.NotInteger;
 
-import static lotto.viewHandler.exception.Util.NOT_INTEGER;
+import static lotto.viewHandler.exception.MyExceptionUtil.NOT_INTEGER;
 
 public class ParseInt implements Validator<Integer, String> {
     @Override

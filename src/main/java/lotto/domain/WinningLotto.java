@@ -6,13 +6,13 @@ public class WinningLotto {
     private final Lotto winLotto;
     private final Integer bonusNumber;
 
-    protected WinningLotto(List<Integer> winningNumbers, Integer bonusNumber) {
-        this.winLotto = new Lotto(winningNumbers);
+    protected WinningLotto(Lotto winningLotto, Integer bonusNumber) {
+        this.winLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(List<Integer> winningNumbers, Integer bonusNumber) {
-        return new WinningLotto(winningNumbers, bonusNumber);
+    public static WinningLotto of(Lotto winningLotto, Integer bonusNumber) {
+        return new WinningLotto(winningLotto, bonusNumber);
     }
 
     public Lotto getWinLotto() {

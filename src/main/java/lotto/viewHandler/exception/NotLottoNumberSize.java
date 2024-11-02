@@ -16,8 +16,4 @@ public class NotLottoNumberSize extends MyException {
     public NotLottoNumberSize(Throwable cause) {
         super(cause);
     }
-
-    protected NotLottoNumberSize(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

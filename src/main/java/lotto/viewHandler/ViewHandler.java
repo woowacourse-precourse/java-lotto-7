@@ -3,12 +3,10 @@ package lotto.viewHandler;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.viewHandler.api.Api;
-import lotto.viewHandler.api.dto.output.PurchaseLottosDto;
-import lotto.viewHandler.api.dto.output.ResultAmountDto;
-import lotto.viewHandler.api.dto.output.ResultLottosDto;
-import lotto.viewHandler.api.message.ServerMessage;
+import lotto.dto.output.PurchaseLottosDto;
+import lotto.dto.output.ResultAmountDto;
+import lotto.dto.output.ResultLottosDto;
 import lotto.viewHandler.api.dto.input.BonusNumberDto;
-import lotto.viewHandler.api.dto.input.InputDto;
 import lotto.viewHandler.api.dto.input.MoneyDto;
 import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 import lotto.viewHandler.exception.MyException;
@@ -24,48 +22,49 @@ public class ViewHandler {
         this.output = output;
     }
 
-    public Api<InputDto> inputHandler() {
-        MoneyDto moneyDto = purchaseMoney();
-        WinningLottoNumbersDto numbersDto = getWinningNumbers();
-        BonusNumberDto bonusNumber = getBonusNumber();
+    public Api<MoneyDto> purchaseMoney() {
+        while (true) {
+            try {
+                String money = input.getPurchaseMoney();
+                return apiHandler.transformMoneyDto(money);
+            } catch (MyException e) {
+                output.viewExceptionMessage(e.getMessage());
+            }
+        }
+    }
 
-        input.closeInput();
-        return new Api<>(ServerMessage.클라이언트_성공, new InputDto(moneyDto, numbersDto, bonusNumber));
+    public Api<WinningLottoNumbersDto> getWinningNumbers() {
+        while (true) {
+            try {
+                String lottoNumbers = input.getWinningLottoNumbers();
+                return apiHandler.transformLottoNumbers(lottoNumbers);
+            } catch (MyException e) {
+                output.viewExceptionMessage(e.getMessage());
+            }
+        }
+    }
+
+    public Api<BonusNumberDto> getBonusNumber() {
+        while (true) {
+            try {
+                String bonusNumber = input.getBonusNumber();
+                return apiHandler.transformLottoBonusNumber(bonusNumber);
+            } catch (MyException e) {
+                output.viewExceptionMessage(e.getMessage());
+            }
+        }
     }
 
     public void outputHandler(Api api) {
+        exceptionHandler(api);
         purchaseHandler(api);
         resulLottoHandler(api);
         resultAmountHandler(api);
     }
 
-    private MoneyDto purchaseMoney() {
-        try{
-            String money = input.getPurchaseMoney();
-            Api<MoneyDto> dtoApi = apiHandler.transformMoneyDto(money);
-            return dtoApi.getData();
-        } catch (MyException e) {
-            throw e;
-        }
-    }
-
-    private WinningLottoNumbersDto getWinningNumbers() {
-        try{
-            String lottoNumbers = input.getWinningLottoNumbers();
-            Api<WinningLottoNumbersDto> numbersDtoApi = apiHandler.transformLottoNumbers(lottoNumbers);
-            return numbersDtoApi.getData();
-        } catch (MyException e) {
-            throw e;
-        }
-    }
-
-    private BonusNumberDto getBonusNumber() {
-        try{
-            String bonusNumber = input.getBonusNumber();
-            Api<BonusNumberDto> numberDtoApi = apiHandler.transformLottoBonusNumber(bonusNumber);
-            return numberDtoApi.getData();
-        } catch (MyException e) {
-            throw e;
+    private void exceptionHandler(Api api) {
+        if(api.getCode() != 500) {
+            output.viewExceptionMessage(api.getMessage());
         }
     }
 

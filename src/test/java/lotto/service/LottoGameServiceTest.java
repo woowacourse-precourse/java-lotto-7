@@ -22,7 +22,8 @@ class LottoGameServiceTest {
     @Test
     void 로또_당첨_로직_확인() {
         PurchaseLottos lottos = PurchaseLottos.of(createPurchaseLottos());
-        WinningLotto winningLotto = WinningLotto.of(List.of(1, 2, 3, 4, 5, 6), 10);
+        Lotto winLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = WinningLotto.of(winLotto, 10);
         LottoGameDto gameDto = new LottoGameDto(lottos, winningLotto);
         lottoGameService.game(gameDto);
         assertThat(ResultLotto.당첨1위.getCount()).isEqualTo(1);

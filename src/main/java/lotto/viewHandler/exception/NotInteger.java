@@ -16,8 +16,4 @@ public class NotInteger extends MyException {
     public NotInteger(Throwable cause) {
         super(cause);
     }
-
-    public NotInteger(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

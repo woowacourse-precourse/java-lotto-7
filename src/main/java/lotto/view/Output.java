@@ -1,14 +1,20 @@
 package lotto.view;
 
 import lotto.viewHandler.api.Api;
-import lotto.viewHandler.api.dto.output.PurchaseLottosDto;
-import lotto.viewHandler.api.dto.output.ResultAmountDto;
-import lotto.viewHandler.api.dto.output.ResultLottosDto;
+import lotto.dto.output.PurchaseLottosDto;
+import lotto.dto.output.ResultAmountDto;
+import lotto.dto.output.ResultLottosDto;
 
 import java.util.List;
 
 public class Output {
+    private final String EXCEPTION_PREFIX = "[ERROR] ";
+
     public Output() {
+    }
+
+    public void viewExceptionMessage(String e) {
+        System.out.println(EXCEPTION_PREFIX + e);
     }
 
     public void viewPurchaseLottos(Api<PurchaseLottosDto> api) {

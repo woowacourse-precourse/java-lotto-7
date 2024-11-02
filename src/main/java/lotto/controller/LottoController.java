@@ -1,46 +1,39 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.PurchaseLottos;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoGameDto;
 import lotto.service.LottoGameService;
-import lotto.viewHandler.ViewHandler;
-import lotto.viewHandler.api.Api;
-import lotto.viewHandler.api.dto.input.InputDto;
+import lotto.viewHandler.api.dto.input.BonusNumberDto;
 import lotto.viewHandler.api.dto.input.MoneyDto;
-
-import java.util.List;
+import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 
 public class LottoController {
     private final LottoGameService lottoGameService;
-    private final ViewHandler viewHandler;
 
-    public LottoController(LottoGameService lottoGameService, ViewHandler viewHandler) {
+    public LottoController(LottoGameService lottoGameService) {
         this.lottoGameService = lottoGameService;
-        this.viewHandler = viewHandler;
     }
 
-    public void lottoStart() {
-        Api<InputDto> inputDtoApi = viewHandler.inputHandler();
-        InputDto inputDto = inputDtoApi.getData();
-        PurchaseLottos purchaseLottos = purchaseLotto(inputDto);
-        WinningLotto winningLotto = createWinningLottoDto(inputDto);
-
-        lottoGameService.game(createGameDto(purchaseLottos, winningLotto));
+    public PurchaseLottos purchaseLotto(MoneyDto dto) {
+        return PurchaseLottos.of(dto.getMoney());
     }
 
-    private PurchaseLottos purchaseLotto(InputDto inputDto) {
-        MoneyDto moneyDto = inputDto.getMoneyDto();
-        return PurchaseLottos.of(moneyDto.getMoney());
+    public Lotto createWinningLotto(WinningLottoNumbersDto winningLottoNumbersDto) {
+        return new Lotto(winningLottoNumbersDto.getNumbers());
     }
 
-    private WinningLotto createWinningLottoDto(InputDto inputDto) {
-        List<Integer> winningLotto = inputDto.getWinningLottoNumbersDto().getNumbers();
-        Integer bonusNumber = inputDto.getBonusNumberDto().getNumber();
+    public WinningLotto createWinningLottoDto(Lotto winningLotto, BonusNumberDto bonusNumberdto) {
+        Integer bonusNumber = bonusNumberdto.getNumber();
         return WinningLotto.of(winningLotto, bonusNumber);
     }
 
-    private LottoGameDto createGameDto(PurchaseLottos purchaseLottos, WinningLotto winningLotto) {
+    public LottoGameDto createGameDto(PurchaseLottos purchaseLottos, WinningLotto winningLotto) {
         return new LottoGameDto(purchaseLottos, winningLotto);
+    }
+
+    public void runLottoGame(LottoGameDto dto) {
+        lottoGameService.game(dto);
     }
 }

@@ -1,4 +1,4 @@
-package lotto.viewHandler.api.dto.output;
+package lotto.dto.output;
 
 import lotto.domain.ResultLotto;
 
@@ -16,9 +16,10 @@ public class ResultAmountDto {
     }
 
     private Double transformDto(Integer money) {
-        return Arrays.stream(ResultLotto.values())
+        double amount = Arrays.stream(ResultLotto.values())
                 .filter(resultLotto -> resultLotto.getCount() != 0)
                 .mapToDouble(resultLotto -> resultLotto.getCount() * resultLotto.getLottoAmount())
                 .sum() / money;
+        return Math.round(amount * 10) / 10.0;
     }
 }

@@ -1,4 +1,4 @@
-package lotto.viewHandler.api.dto.output;
+package lotto.dto.output;
 
 import lotto.domain.ResultLotto;
 

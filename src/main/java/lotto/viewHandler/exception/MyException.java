@@ -1,6 +1,6 @@
 package lotto.viewHandler.exception;
 
-public abstract class MyException extends RuntimeException {
+public abstract class MyException extends IllegalArgumentException {
     public MyException() {
         super();
     }
@@ -15,9 +15,5 @@ public abstract class MyException extends RuntimeException {
 
     public MyException(Throwable cause) {
         super(cause);
-    }
-
-    protected MyException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
     }
 }
