@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,5 +41,9 @@ public class Lotto {
         if (lottoNumbers.size() < 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 중복됩니다.");
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }
