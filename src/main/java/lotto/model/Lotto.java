@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -8,31 +9,33 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers.stream()
-                .sorted()
+                .sorted(Comparator.comparingInt(LottoNumber::getValue))
                 .collect(Collectors.toList());
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<LottoNumber> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다." + numbers.size());
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+    private void validateDuplicate(List<LottoNumber> numbers) {
+        Set<LottoNumber> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }
 
-    public static List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static List<LottoNumber> generate() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -43,13 +46,14 @@ public class Lotto {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (!(obj instanceof Lotto lotto)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
+        Lotto lotto = (Lotto) o;
         return Objects.equals(numbers, lotto.numbers);
     }
 
