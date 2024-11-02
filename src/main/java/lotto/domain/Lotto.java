@@ -29,8 +29,9 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    public int getMatchNumberCount(Lotto winningLotto) {
+    public int countMatchNumber(Lotto winningLotto) {
         int matchCount = 0;
+
         for (Integer number : numbers) {
             if (winningLotto.containsNumber(number)) {
                 matchCount++;
@@ -53,6 +54,7 @@ public class Lotto {
 
     private void validateDuplicates(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
+
         if (numberSet.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR_NUMBER_DUPLICATE);
         }

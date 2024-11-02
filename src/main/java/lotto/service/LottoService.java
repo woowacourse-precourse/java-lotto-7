@@ -1,6 +1,6 @@
 package lotto.service;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -8,14 +8,14 @@ import lotto.domain.LottoRank;
 
 public class LottoService {
 
-    public Map<LottoRank, Integer> calculateWinningStatistics(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
-        Map<LottoRank, Integer> statistics = initializeStatisticsMap();
+    public Map<LottoRank, Integer> calculateWinningStatistics(List<Lotto> lottoTickets, Lotto winningLotto, int bonusNumber) {
+        Map<LottoRank, Integer> winningStatistics = initializeStatisticsMap();
 
-        for (Lotto userLotto : userLottos) {
-            LottoRank rank = determineLottoRank(winningLotto, bonusNumber, userLotto);
-            statistics.put(rank, statistics.get(rank) + 1);
+        for (Lotto lottoTicket : lottoTickets) {
+            LottoRank rank = getLottoRank(lottoTicket, winningLotto, bonusNumber);
+            winningStatistics.put(rank, winningStatistics.get(rank) + 1);
         }
-        return statistics;
+        return winningStatistics;
     }
 
     public long calculateTotalWinnings(Map<LottoRank, Integer> statistics) {
@@ -26,7 +26,6 @@ public class LottoService {
             int count = statistics.getOrDefault(rank, 0);
             totalWinnings += (long) prize * count;
         }
-
         return totalWinnings;
     }
 
@@ -34,17 +33,18 @@ public class LottoService {
         return Math.round((double) totalWinnings / totalPurchaseAmount * 1000) / 10.0;
     }
 
-    private LottoRank determineLottoRank(Lotto winningLotto, int bonusNumber, Lotto userLotto) {
-        int matchNumberCount = userLotto.getMatchNumberCount(winningLotto);
-        boolean isMatchBonusNumber = userLotto.containsNumber(bonusNumber);
+    private LottoRank getLottoRank(Lotto lottoTicket, Lotto winningLotto, int bonusNumber) {
+        int matchNumberCount = lottoTicket.countMatchNumber(winningLotto);
+        boolean isMatchBonusNumber = lottoTicket.containsNumber(bonusNumber);
         return LottoRank.findRank(matchNumberCount, isMatchBonusNumber);
     }
 
     private Map<LottoRank, Integer> initializeStatisticsMap() {
-        Map<LottoRank, Integer> statistics = new HashMap<>();
+        Map<LottoRank, Integer> winningStatistics = new EnumMap<>(LottoRank.class);
+
         for (LottoRank rank : LottoRank.values()) {
-            statistics.put(rank, 0);
+            winningStatistics.put(rank, 0);
         }
-        return statistics;
+        return winningStatistics;
     }
 }

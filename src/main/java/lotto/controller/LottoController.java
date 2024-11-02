@@ -26,9 +26,9 @@ public class LottoController {
         OutputView.displayLottoTickets(lottoTickets);
 
         Lotto winningLotto = inputProcessor.getWinningLotto();
-        int bonusLottoNumber = inputProcessor.getBonusNumber(winningLotto);
+        int bonusNumber = inputProcessor.getBonusNumber(winningLotto);
 
-        Map<LottoRank, Integer> lottoStatistics = lottoService.calculateWinningStatistics(lottoTickets, winningLotto, bonusLottoNumber);
+        Map<LottoRank, Integer> lottoStatistics = lottoService.calculateWinningStatistics(lottoTickets, winningLotto, bonusNumber);
         OutputView.displayWinningStatistics(lottoStatistics);
 
         long totalWinnings = lottoService.calculateTotalWinnings(lottoStatistics);
