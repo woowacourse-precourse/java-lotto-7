@@ -29,7 +29,7 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
 
-        return new Lotto(lottoWinningNumbers);
+        return Lotto.of(lottoWinningNumbers);
     }
 
     public int getLottoBonusNumberFromUser() {

@@ -7,9 +7,13 @@ import lotto.validator.LottoValidator;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         LottoValidator.validateLotto(numbers);
         this.numbers = sortNumbers(numbers);
+    }
+
+    public static Lotto of(List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

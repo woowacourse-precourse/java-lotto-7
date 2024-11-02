@@ -6,7 +6,7 @@ import java.util.List;
 public class RandomLottoGenerator {
 
     public Lotto generateLotto() {
-        return new Lotto(generateRandomNumbers());
+        return Lotto.of(generateRandomNumbers());
     }
 
     private List<Integer> generateRandomNumbers() {
