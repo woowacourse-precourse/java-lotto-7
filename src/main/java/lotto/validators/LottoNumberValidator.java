@@ -1,5 +1,6 @@
 package lotto.validators;
 
+import lotto.models.constants.LottoValues;
 import lotto.validators.constants.ErrorMessages;
 
 import java.util.List;
@@ -7,9 +8,6 @@ import java.util.Set;
 
 public class LottoNumberValidator implements NumberInputValidator {
     private static final String SPLIT_DELIMITER = ",";
-    private static final int ARRAY_SIZE = 6;
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
 
     @Override
     public boolean isValid(String input) {
@@ -24,20 +22,20 @@ public class LottoNumberValidator implements NumberInputValidator {
             }
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(ErrorMessages.ERROR_HEADER.getMessage() + e.getMessage());
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     public void checkArraySize(List<String> numbers) {
-        if (numbers.size() != ARRAY_SIZE) {
-            throw new IllegalArgumentException(ErrorMessages.INCORRECT_NUMBER_COUNT.getMessage());
+        if (numbers.size() != LottoValues.LOTTO_SIZE.getValue()) {
+            throw new IllegalArgumentException(ErrorMessages.INCORRECT_LOTTO_SIZE.getMessage());
         }
     }
 
     public void checkValueRange(String input) {
         int amount = Integer.parseInt(input);
-        if (amount < MIN_VALUE || amount > MAX_VALUE) {
+        if (amount < LottoValues.MIN_NUMBER.getValue() || amount > LottoValues.MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_NOT_WITHIN_RANGE.getMessage());
         }
     }

@@ -1,16 +1,16 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.models.constants.LottoValues;
 
 import java.util.List;
 
 public class Randomizer {
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
-    private static final int SIZE = 6;
-
     public static List<Integer> getRandomValues() {
-        List<Integer> randomValues = Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, SIZE);
+        int startInclusive = LottoValues.MIN_NUMBER.getValue();
+        int endInclusive = LottoValues.MAX_NUMBER.getValue();
+        int count = LottoValues.LOTTO_SIZE.getValue();
+        List<Integer> randomValues = Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
         return randomValues.stream().sorted().toList();
     }
 }

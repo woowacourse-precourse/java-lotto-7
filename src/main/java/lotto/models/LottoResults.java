@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResults {
+    private final int DEFAULT_MATCH_VALUE = 0;
     private final Map<RewardTable, Integer> matches = new HashMap<>();
 
     public void recordResult(int matchingNumbers) {
@@ -41,6 +42,6 @@ public class LottoResults {
         if (matches.containsKey(key)) {
             return matches.get(key);
         }
-        return 0;
+        return DEFAULT_MATCH_VALUE;
     }
 }
