@@ -1,13 +1,15 @@
 package lotto.model.lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lottogenerator.LottoGenerator;
 
 public class LottoMachine {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
+    private final LottoGenerator lottoGenerator;
+
+    public LottoMachine(final LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
+    }
 
     public Lottos execute(final int count) {
         final List<Lotto> lottos = new ArrayList<>();
@@ -18,7 +20,7 @@ public class LottoMachine {
     }
 
     private Lotto generate() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_COUNT);
+        final List<Integer> lotto = lottoGenerator.generate();
         return new Lotto(lotto);
     }
 }

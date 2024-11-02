@@ -10,6 +10,7 @@ import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoMachine;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.WinningLotto;
+import lotto.model.lottogenerator.RandomLottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,7 +23,7 @@ public class LottoController {
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.lottoMachine = new LottoMachine();
+        this.lottoMachine = new LottoMachine(new RandomLottoNumberGenerator());
     }
 
     public void play() {
