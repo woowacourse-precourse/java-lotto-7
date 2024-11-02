@@ -4,46 +4,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
-import lotto.LottoResult;
-import lotto.constant.WinningCondition;
+import lotto.MatchingCountResult;
 
 public class LottoResultService {
     private final LottoMatchingCounter lottoMatchingCounter;
     private final List<Lotto> purchaseLotto;
     private final String WINNING_COUNT = "winningCount";
     private final String BONUS_COUNT = "bonusCount";
+    private final LottoRateCalculator lottoRateCalculator;
 
     public LottoResultService(List<Lotto> purchaseLotto, List<Integer> winningNumbers, int bonusNumber) {
         lottoMatchingCounter = new LottoMatchingCounter(winningNumbers, bonusNumber);
         this.purchaseLotto = purchaseLotto;
+        this.lottoRateCalculator = new LottoRateCalculator();
     }
 
-    public List<LottoResult> getWinningCount() {
-        List<LottoResult> lottoResults = new ArrayList<>();
+    public List<MatchingCountResult> getWinningCount() {
+        List<MatchingCountResult> matchingCountResults = new ArrayList<>();
         for (Lotto lotto : purchaseLotto) {
             HashMap<String, Integer> matchingCount = lottoMatchingCounter.countMatchingNumbers(lotto);
-            LottoResult lottoResult = converter(matchingCount.get(WINNING_COUNT), matchingCount.get(BONUS_COUNT));
-            lottoResults.add(lottoResult);
+            MatchingCountResult matchingCountResult = Converter.matchingCounterResultConvert(
+                    matchingCount.get(WINNING_COUNT),
+                    matchingCount.get(BONUS_COUNT));
+            matchingCountResults.add(matchingCountResult);
         }
-        return lottoResults;
-    }
-
-    private LottoResult converter(int winningCount, int bonusCount) {
-        if (winningCount < 3) {
-            return new LottoResult(WinningCondition.NO_MATCH, 0);
-        }
-        if (winningCount == 3) {
-            return new LottoResult(WinningCondition.MATCH_3, winningCount);
-        }
-        if (winningCount == 4) {
-            return new LottoResult(WinningCondition.MATCH_4, winningCount);
-        }
-        if (winningCount == 5 && bonusCount == 0) {
-            return new LottoResult(WinningCondition.MATCH_5, winningCount);
-        }
-        if (winningCount == 5 && bonusCount == 1) {
-            return new LottoResult(WinningCondition.MATCH_5_BONUS, winningCount);
-        }
-        return new LottoResult(WinningCondition.MATCH_6, winningCount);
+        return matchingCountResults;
     }
 }
