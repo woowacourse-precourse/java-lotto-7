@@ -10,7 +10,10 @@ public class Application {
 
         String lottoText = Console.readLine();
         Lotto lotto = new Lotto(LottoText.ParseIntegerList(lottoText)); // String 변수 lottoText를 long형으로 변환 및 유효성 검사
-        lotto.getNumbers();
-        System.out.println(lotto.getNumbers());
+        System.out.println(lotto.getNumbers()); // 로또 번호
+
+        String bonusText = Console.readLine();
+        Bonus bonus = new Bonus(bonusText,lotto);
+        System.out.println(bonus.getBonus()); // 보너스 번호
     }
 }
