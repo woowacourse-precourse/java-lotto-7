@@ -1,11 +1,11 @@
-package lotto;
+package lotto.domain;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public final class Lottos {
     private final List<Lotto> lottos;
@@ -66,5 +66,12 @@ public final class Lottos {
         totalPrize += lottoResult.get("5등") * 5000;
 
         return totalPrize;
+    }
+
+    public void printLottoNumber() {
+        for (Lotto lotto : lottos)
+        System.out.println("["+lotto.getNumbers().stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "))+"]");
     }
 }

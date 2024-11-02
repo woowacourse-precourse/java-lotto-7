@@ -4,7 +4,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,8 +50,8 @@ class LottoTest {
     @Test
     void 입력된_금액_만큼_로또를_구매한다() {
 
-        List<Lotto> boughtLotto = Lotto.buyAsMoney(3000);
-        assertThat(boughtLotto.size()).isEqualTo(3);
+        Lottos boughtLotto = Lotto.buyAsMoney(3000);
+        assertThat(boughtLotto.getLottos().size()).isEqualTo(3);
     }
 
     @DisplayName("입력된 금액이 1000원 단위로 떨어지지 않으면 예외가 발생한다. ")

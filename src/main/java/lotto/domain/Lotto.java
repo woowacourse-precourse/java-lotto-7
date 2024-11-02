@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -13,19 +14,20 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static List<Lotto> buyAsMoney(int money) {
-        List<Lotto> boughtLottos = new ArrayList<>();
+    public static Lottos buyAsMoney(int money) {
+        List<Lotto> boughtlottos = new ArrayList<>();
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[Error] 구매금액은 1,000원단위로 입력주세요");
         }
         for (int i = 0; i < money / 1000; i++) {
-            boughtLottos.add(createLotto());
+            boughtlottos.add(createLotto());
         }
-        return boughtLottos;
+        return new Lottos(boughtlottos);
     }
 
     private static Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 
@@ -36,7 +38,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return List.copyOf(numbers);
     }
 
     public int countMatchingNumbers(Lotto winningLotto) {
