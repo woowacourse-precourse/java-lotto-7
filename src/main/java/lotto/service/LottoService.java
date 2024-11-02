@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.util.LottoNumberGenerator;
@@ -48,6 +49,19 @@ public class LottoService {
     private void validateRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+        }
+    }
+
+    public BonusNumber createBonusNumber(String inputBonusNumber, Lotto winningNumber) {
+        BonusNumber bonusNumber = BonusNumber.of(inputBonusNumber);
+        validateDuplicatedBonusNumber(bonusNumber.getNumber(), winningNumber);
+
+        return bonusNumber;
+    }
+
+    private void validateDuplicatedBonusNumber(int bonusNumber, Lotto winningNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 보너스 번호는 입력할 수 없습니다.");
         }
     }
 
