@@ -11,6 +11,7 @@ public class OutputView {
     private static final String AMOUNT_PURCHASE = "개를 구입했습니다.";
     private static final String WINNING_STATICS = "당첨 통계";
     private static final String DASH_LINE = "---";
+    private static final String EARNING_RATIO = "총 수익률은 %.1f%%입니다.";
 
     public void printLottoStatus(List<List<Integer>> Lottos) {
         System.out.println();
@@ -35,6 +36,6 @@ public class OutputView {
     }
 
     public void printEarning(Earning earning) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", earning.getEarning());
+        System.out.printf(EARNING_RATIO, earning.getEarning());
     }
 }
