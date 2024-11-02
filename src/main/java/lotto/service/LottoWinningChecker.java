@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.HashSet;
+import lotto.validation.LottoValidator;
 
 public class LottoWinningChecker {
     private static final int WINNING_NUM_SIZE = 6;
@@ -16,6 +17,7 @@ public class LottoWinningChecker {
         validateWinningNumbsSize(winningNumbsStrs);
         for (String winningNumStr : winningNumbsStrs) {
             int winningNum = changeStringToNum(winningNumStr);
+            LottoValidator.isLottoNumInRange(winningNum);
             winningNumbs.add(winningNum);
         }
     }

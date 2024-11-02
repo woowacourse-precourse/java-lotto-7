@@ -70,4 +70,28 @@ class LottoWinningCheckerTest {
                 .hasMessage("[Error] 당첨 번호는 6개 이어야 합니다.");
 
     }
+
+    @Test
+    public void 당첨번호에_45보다_큰수가_입력된_경우_예외테스트() throws Exception{
+        Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,2,3,4,5,46"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+    }
+
+    @Test
+    public void 당첨번호에_1보다_작은수가_입력된_경우_예외테스트() throws Exception{
+        Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("0,2,3,4,5,45"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+    }
+
+    @Test
+    public void 당첨번호에_음수가_입력된_경우_예외테스트() throws Exception{
+        Assertions.assertThatThrownBy(() -> lottoWinningChecker.setWinningNumbs("1,-2,3,4,5,45"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+
+    }
 }
