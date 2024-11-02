@@ -36,6 +36,7 @@ public class LottoService {
             int count = rankResults.get(rank);
             totalEarnings += rank.getPrize() * count;
         }
-        return (double) totalEarnings / purchaseMoney * 100;
+        double earningsRate = (double) totalEarnings / purchaseMoney * 100;
+        return Math.round(earningsRate * 100) / 100.0;
     }
 }
