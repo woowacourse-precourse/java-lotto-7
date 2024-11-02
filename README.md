@@ -16,6 +16,7 @@
 #### 🚫 예외처리
 
 - [x] 아무 값도 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
+- [ ] 공백을 포함한 숫자 이외의 문자가 포함된 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 0을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 로또 입력 금액이 1000 미만인 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 로또 입력 금액이 1000으로 나누어 떨어지지 않는 경우, ``IllegalArgumentException``을 발생시킨다.
