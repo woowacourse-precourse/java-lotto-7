@@ -31,4 +31,20 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public int size() {
+        return lottos.size();
+    }
+
+    /**
+     * 로또 번호 리스트를 출력 가능한 문자열 형식으로 반환합니다.
+     *
+     * @return 로또 번호 리스트의 문자열 표현
+     */
+    @Override
+    public String toString() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
+    }
 }
