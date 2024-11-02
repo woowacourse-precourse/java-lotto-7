@@ -14,6 +14,7 @@ import lotto.entity.Lotto;
 public class ConsoleOutput {
 
     public void printProfitStatistics(ProfitStatisticsDto input) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
