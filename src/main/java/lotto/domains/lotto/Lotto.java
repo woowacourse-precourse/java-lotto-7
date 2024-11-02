@@ -15,6 +15,11 @@ public class Lotto {
 		this.numbers = numbers;
 	}
 
+	@Override
+	public String toString() {
+		return numbers.toString();
+	}
+
 	private static void validate(List<Integer> numbers) {
 		validateLottoSize(numbers);
 		validateLottoNumberIsDuplicated(numbers);

@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.domains.customer.Customer;
 import lotto.domains.lotto.LottoTicketMachine;
-import lotto.domains.lotto.LottoTickets;
+import lotto.domains.lotto.LottoTicket;
 import lotto.util.TypeConverter;
 import lotto.view.InputInterface;
 import lotto.view.OutputInterface;
@@ -17,10 +17,13 @@ public class Application {
 		OutputInterface.printMessage(ticketAmount + OutputInterface.PURCHASE_AMOUNT.toString());
 		LottoTicketMachine lottoTicketMachine = new LottoTicketMachine(ticketAmount);
 
-		LottoTickets tickets = generateLottoTickets(lottoTicketMachine);
+		LottoTicket tickets = generateLottoTickets(lottoTicketMachine);
+		OutputInterface.printMessage(tickets.toString());
+		OutputInterface.printNewLine();
+
 	}
 
-	private static LottoTickets generateLottoTickets(LottoTicketMachine lottoTicketMachine) {
+	private static LottoTicket generateLottoTickets(LottoTicketMachine lottoTicketMachine) {
 		return lottoTicketMachine.generateLottoTickets();
 	}
 

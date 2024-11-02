@@ -12,9 +12,9 @@ public class LottoTicketMachine {
 		this.amount = amount;
 	}
 
-	public LottoTickets generateLottoTickets(){
+	public LottoTicket generateLottoTickets(){
 		return IntStream.range(0, amount)
 			.mapToObj(i -> new Lotto(LottoNumberGenerator.generateLottoNumbers()))
-			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTickets::new));
+			.collect(Collectors.collectingAndThen(Collectors.toList(), LottoTicket::new));
 	}
 }
