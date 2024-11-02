@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private final static int MIN = 1;
+    private final static int MAX = 45;
+    private final static int SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -38,14 +42,14 @@ public class Lotto {
 
 
     private void validateLottoLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE) {
             throw new IllegalArgumentException(SIX_LOTTO_INPUT.getMessage());
         }
     }
 
     private void validateLottoRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN || number > MAX) {
                 throw new IllegalArgumentException(LOTTO_RANGE.getMessage());
             }
         }
