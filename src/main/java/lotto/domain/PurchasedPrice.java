@@ -10,7 +10,7 @@ public class PurchasedPrice {
 
     private void validatePurchasedPrice(int purchasedPrice) {
         if(purchasedPrice % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 로또 한 장은 1000원입니다. 1000의 배수를 입력해주세요");
+            throw new IllegalArgumentException("[ERROR] 로또 한 장은 1000원입니다. 1000의 배수를 입력해주세요.");
         }
     }
 }
