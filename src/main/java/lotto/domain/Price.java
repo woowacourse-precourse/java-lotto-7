@@ -57,4 +57,8 @@ public class Price {
     public int divide(int price) {
         return this.price / price;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

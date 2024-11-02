@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 public enum WinningState {
 
@@ -22,10 +22,22 @@ public enum WinningState {
     }
 
     public static WinningState from(int matchCount, boolean hasBonus) {
-        return Arrays.stream(WinningState.values())
+        return WinningState.stream()
                 .filter(state -> state.matchCount == matchCount)
                 .filter(state -> state.hasBonus == hasBonus)
                 .findFirst()
                 .orElse(UNKNOWN);
+    }
+
+    public boolean isWinner() {
+        return this != WinningState.UNKNOWN;
+    }
+
+    public int calculatePrize(int count) {
+        return this.prize * count;
+    }
+
+    public static Stream<WinningState> stream() {
+        return Stream.of(WinningState.values());
     }
 }

@@ -15,4 +15,12 @@ public class LottoResult {
 
         return new LottoResult(countMatchNumbers, false);
     }
+
+    public boolean isWinner() {
+        return winningState.isWinner();
+    }
+
+    public WinningState getWinningState() {
+        return winningState;
+    }
 }

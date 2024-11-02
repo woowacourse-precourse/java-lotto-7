@@ -4,6 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Price;
 import lotto.domain.WinningNumbers;
+import lotto.domain.WinningStatistic;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 
@@ -28,5 +29,6 @@ public class LottoController {
 
         LotteryMachine lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
         lotteryMachine.draw(lottos);
+        WinningStatistic winningStatistic = lotteryMachine.generateWinningStatisticBy(price);
     }
 }
