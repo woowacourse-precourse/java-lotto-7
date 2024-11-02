@@ -17,9 +17,6 @@ public class Validator {
     public static final String NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 " + LottoConstants.RANDOM_LOWER_BOUND + "부터 " + LottoConstants.RANDOM_UPPER_BOUND + " 사이의 숫자여야 합니다.";
     public static final String LOTTO_NUMBER_COUNT_ERROR = "[ERROR] 로또 번호는 " + LottoConstants.NUMBER_OF_LOTTO + "개여야 합니다.";
 
-    public static final String MULTIPLE_BONUS_NUMBER_ERROR = "[ERROR] 보너스 번호는 하나의 숫자여야 합니다.";
-
-
     public static void validateNumber(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException(DEFAULT_INPUT_ERROR);
@@ -61,10 +58,4 @@ public class Validator {
         }
     }
 
-    public static void validateSingleBonusNumber(String input) {
-        if (input.contains(",")) {
-            throw new IllegalArgumentException(MULTIPLE_BONUS_NUMBER_ERROR);
-        }
-        validateNumber(input);
-    }
 }
