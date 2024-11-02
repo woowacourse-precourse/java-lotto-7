@@ -43,30 +43,30 @@
 ## 개발할 기능 목록
 
 1. **로또 번호 생성기**
-    -[x] `generateLotto`: 중복되지 않는 6개의 로또 번호 생성
-    -[x] `Guess`: 중복되지 않는 1개의 보너스 번호 생성
+    - [x] `generateLotto`: 중복되지 않는 6개의 로또 번호 생성
+    - [x] `Guess`: 중복되지 않는 1개의 보너스 번호 생성
 
 2. **로또 번호 유효성 검증기**
-    -[x] `validateLottoNumbers`: 입력된 로또 번호의 유효성을 검증
-    -[x] `validatorService` : 사용자 입력 과정에서의 유효성 검증
+    - [x] `validateLottoNumbers`: 입력된 로또 번호의 유효성을 검증
+    - [x] `validatorService` : 사용자 입력 과정에서의 유효성 검증
 
 3. **로또 구매 로직**
-    -[x] `purchaseLotto`: 구입 금액에 따른 로또 번호 리스트 생성 및 반환
+    - [x] `purchaseLotto`: 구입 금액에 따른 로또 번호 리스트 생성 및 반환
 
 4. **당첨 번호 비교 로직**
-    -[x] `determineRanks`: 로또 번호와 당첨 번호를 비교하여 결과 반환
-    -[x] `determineRank`: 일치 개수와 보너스 여부에 따른 당첨 등수 계산
+    - [x] `determineRanks`: 로또 번호와 당첨 번호를 비교하여 결과 반환
+    - [x] `determineRank`: 일치 개수와 보너스 여부에 따른 당첨 등수 계산
 
 5. **당첨 결과 집계 및 출력**
-    -[x] `printWinningStatistics`: 당첨 통계 출력
-    -[x] `printProfitRate`: 수익률 출력
+    - [x] `printWinningStatistics`: 당첨 통계 출력
+    - [x] `printProfitRate`: 수익률 출력
 
 6. **수익률 계산**
-    -[x] `calculateProfit`: 수익률 계산
+    - [x] `calculateProfit`: 수익률 계산
 
 7. **예외 처리**
-    -[x] `CommonException`: `IllegalArgumentException` 발생 시, 커스텀 Errorcode를 포함한 예외를 Throw
-    -[x] `FormatException` : `NumberFormatException` 발생 시, 커스텀 Errorcode를 포함한 예외를 Throw
+    - [x] `CommonException`: `IllegalArgumentException` 발생 시, 커스텀 Errorcode를 포함한 예외를 Throw
+    - [x] `FormatException` : `NumberFormatException` 발생 시, 커스텀 Errorcode를 포함한 예외를 Throw
 
 ## 출력 예제
 ```
@@ -100,14 +100,14 @@
 
 ```
 ## Java Enum
--[x] **Rank Enum**: 각 당첨 등수와 그에 따른 금액을 관리
+- [x] **Rank Enum**: 각 당첨 등수와 그에 따른 금액을 관리
     - `FIRST(6, false, 2_000_000_000)`
     - `SECOND(5, true, 30_000_000)`
     - `THIRD(5, false, 1_500_000)`
     - `FOURTH(4, false, 50_000)`
     - `FIFTH(3, false, 5_000)`
     - `NONE(0, false, 0)`
--[x] **ErrorCode Enum**: 예외 처리 사유 관리
+- [x] **ErrorCode Enum**: 예외 처리 사유 관리
     - `INVALID_PURCHASE_AMOUNT` : 구입 금액이 잘못 되었을 경우
     - `INVALID_LOTTO_NUMBER_COUNT` : 로또 번호의 개수가 잘못 되었을 경우
     - `INVALID_NUMBER_RANGE` : 로또 번호의 범위를 벗어 났을 경우
@@ -116,17 +116,17 @@
     - `PARSING_INTEGER_ERROR` : 정수로 변환할 수 없는 문자열이 입력 되었을 경우
 
 ## 테스트 명세
--[ ] **LottoGeneratorTest**
+- [ ] **LottoGeneratorTest**
     - 로또 번호 생성기의 범위 및 중복 여부 테스트
 
--[ ] **LottoValidatorTest**
+- [ ] **LottoValidatorTest**
     - 입력된 로또 번호의 유효성 검증 테스트
 
--[ ] **LottoComparerTest**
+- [ ] **LottoComparerTest**
     - 로또와 당첨 번호 비교 및 등수 계산 테스트
 
--[ ] **LottoResultCalculatorTest**
+- [ ] **LottoResultCalculatorTest**
     - 당첨 결과 집계 및 수익률 계산 테스트
 
--[ ] **ExceptionHandlerTest**
+- [ ] **ExceptionHandlerTest**
     - 잘못된 입력에 대한 예외 처리 테스트
