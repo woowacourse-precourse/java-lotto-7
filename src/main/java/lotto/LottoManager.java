@@ -6,10 +6,13 @@ import static lotto.Input.inputWinningNumber;
 import static lotto.InputParser.parseInt;
 import static lotto.InputParser.parseWinningNumber;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoManager {
     private static final int LOTTO_PRICE = 1000;
+    private final Map<Rank, Integer> winningRecord = new HashMap<>();
 
     public void run() {
         int purchaseAmount = parseInt(inputPurchaseAmount());
@@ -18,6 +21,14 @@ public class LottoManager {
         lottoes.forEach(Output::printLotto);
         List<Integer> winningNumber = parseWinningNumber(inputWinningNumber());
         int bonusNumber = parseInt(inputBonusNumber());
+        lottoes.stream()
+                .map(lotto -> lotto.checkRank(winningNumber, bonusNumber))
+                .forEach(this::saveRankOnRecord);
+    }
+
+    private void saveRankOnRecord(final Rank rank) {
+        int rankCount = winningRecord.getOrDefault(rank, 0);
+        winningRecord.put(rank, ++rankCount);
     }
 
     private List<Lotto> purchaseLottoes(final int purchaseAmount) {
