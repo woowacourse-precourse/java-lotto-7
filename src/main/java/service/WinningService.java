@@ -35,7 +35,7 @@ public class WinningService {
     public void winningStatistics(List<Integer> winningNumbers, List<Integer> lottoNumbers, int bonusNumber) {
         winning = Winning.of(winningNumbers, bonusNumber);
         int matchCount = WinningCalculator.countMatchingNumber(winning.getNumbers(), lottoNumbers);
-        boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(winning.getNumbers(),
+        boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(lottoNumbers,
                 winning.getBonusNumber());
         WinningPrice winningPrice = WinningPrice.of(matchCount, bonusNumberMatched);
         lottoResult.countWinningPrice(winningPrice);
