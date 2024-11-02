@@ -3,8 +3,10 @@ package model;
 import java.util.List;
 import java.util.stream.IntStream;
 import utils.WinningLotto;
+import utils.WinningResult;
 
 public class LottoValidation {
+    private static final int NO_MATCH = -1;
     private final List<Integer> winningNumbers;
     private final List<Integer> winningResult;
 
@@ -17,6 +19,9 @@ public class LottoValidation {
         int lottoMatchCount = isMatchWinningNumbers(lottoNumber);
         boolean isMatchBonusNumber = isMatchBonusNumber(bonusNumber);
         int updateIndex = validateWinningResult(lottoMatchCount, isMatchBonusNumber);
+        if (updateIndex == NO_MATCH) {
+            return;
+        }
         incrementWinningResult(updateIndex);
     }
 
@@ -33,22 +38,12 @@ public class LottoValidation {
     }
 
     private int validateWinningResult(int matchCount, boolean matchBonus) {
-        if (matchCount == 6) {
-            return 0;
+        for (WinningResult result : WinningResult.values()) {
+            if (result.getMatchCount() == matchCount && result.isMatchBonus() == matchBonus) {
+                return result.getResultIndex();
+            }
         }
-        if (matchCount == 5 && matchBonus) {
-            return 1;
-        }
-        if (matchCount == 5) {
-            return 2;
-        }
-        if (matchCount == 4) {
-            return 3;
-        }
-        if (matchCount == 3) {
-            return 4;
-        }
-        return -1;
+        return NO_MATCH;
     }
 
     private void incrementWinningResult(int index) {
