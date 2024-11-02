@@ -16,6 +16,4 @@ public class RankResult {
     public Map<WinningLotto, Long> getRankResult() {
         return this.rankResult;
     }
-
-
 }

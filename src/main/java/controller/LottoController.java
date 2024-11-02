@@ -13,7 +13,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LottoController {
-
+    
     private final InputView inputView = new InputView(new InputConvertor());
     private final OutputView outputView = new OutputView();
     private LottoPlay lottoPlay;
@@ -26,7 +26,7 @@ public class LottoController {
         playLotto();
     }
 
-    private void initLottoPlay(){
+    private void initLottoPlay() {
         User user = initUser();
         LottoMachine lottoMachine = initLottoMachine();
         this.lottoPlay = new LottoPlay(user, lottoMachine);

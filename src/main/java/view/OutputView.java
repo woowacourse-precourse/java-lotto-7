@@ -1,10 +1,7 @@
 package view;
 
 import domain.Lotto;
-import domain.RankResult;
-import domain.User;
 import domain.WinningLotto;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,13 +17,13 @@ public class OutputView {
 
     public void outputPurchaseLottoAmount(List<Lotto> lottos) {
         System.out.printf("%d" + PURCHASE_LOTTO_AMOUNT_MSG + "\n", lottos.size());
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
         System.out.println();
     }
 
-    public void outputWinningStatistics(Map<WinningLotto, Long> rankResult){
+    public void outputWinningStatistics(Map<WinningLotto, Long> rankResult) {
         System.out.printf(WINNING_STATISTIC_MSG);
         System.out.printf(FIFTH_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.FIFTH, 0L));
         System.out.printf(FOURTH_STATISTIC_MSG + "%d개%n", rankResult.getOrDefault(WinningLotto.FOURTH, 0L));

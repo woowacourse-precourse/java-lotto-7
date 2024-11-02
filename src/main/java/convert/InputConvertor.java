@@ -38,7 +38,7 @@ public class InputConvertor {
     }
 
     private void generateWinningNumbers(String inputWinningNumbers, List<Integer> winningNumbers) {
-        for(String inputWinningNumber : inputWinningNumbers.split(",")) {
+        for (String inputWinningNumber : inputWinningNumbers.split(",")) {
             isNumber(inputWinningNumber);
             Integer winningNumber = Integer.valueOf(inputWinningNumber);
             Validate.isPositiveNumber(winningNumber);
@@ -60,6 +60,4 @@ public class InputConvertor {
         Validate.isPositiveNumber(bonusNumber);
         Validate.isOneBetweenFortyFive(bonusNumber);
     }
-
-
 }

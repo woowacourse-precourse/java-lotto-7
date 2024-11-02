@@ -1,7 +1,5 @@
 package domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPlay {
@@ -15,12 +13,11 @@ public class LottoPlay {
         this.lottoMachine = lottoMachine;
     }
 
-
     public void drawLottos() {
         List<Integer> winningNumbers = this.lottoMachine.getWinningNumbers();
         int bonusNumber = this.lottoMachine.getBonusNumber();
 
-        for(Lotto lotto : this.user.getLottos()) {
+        for (Lotto lotto : this.user.getLottos()) {
             long matchCount = matchWinningNumberCount(lotto, winningNumbers);
 
             WinningLotto rank = determineRank(matchCount, lotto, bonusNumber);
@@ -37,7 +34,7 @@ public class LottoPlay {
     }
 
     private WinningLotto determineRank(long matchCount, Lotto lotto, int bonusNumber) {
-        if(matchCount == 5) {
+        if (matchCount == 5) {
             return drawBonus(lotto, bonusNumber);
         }
         return WinningLotto.from(matchCount);
@@ -45,7 +42,7 @@ public class LottoPlay {
 
     private WinningLotto drawBonus(Lotto lotto, int bonusNumber) {
         boolean hasBonus = isHasBonus(lotto, bonusNumber);
-        if(hasBonus) {
+        if (hasBonus) {
             return WinningLotto.SECOND;
         }
         return WinningLotto.THIRD;

@@ -1,6 +1,5 @@
 package service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lotto;
 import domain.User;
 import domain.WinningLotto;
@@ -19,7 +18,7 @@ public class UserService {
     public void issueLotto(User user) {
         int purchaseCount = user.getPurchaseCount();
         List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < purchaseCount; i++) {
+        for (int i = 0; i < purchaseCount; i++) {
             lottos.add(lottoGenerator.generateLotto());
         }
         user.updateLottos(lottos);
@@ -35,7 +34,7 @@ public class UserService {
         return (double) totalPrizeMoney / user.getAmount() * 100;
     }
 
-    private int calculateTotalPrizeMoney(User user){
+    private int calculateTotalPrizeMoney(User user) {
         return user.getWinningLottos().stream()
                 .mapToInt(WinningLotto::getPrizeMoney)
                 .sum();

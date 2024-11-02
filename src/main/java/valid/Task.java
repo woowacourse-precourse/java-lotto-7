@@ -4,7 +4,7 @@ public interface Task<T> {
     T run();
 
     static <T> T reTryTaskUntilSuccessful(Task<T> task) {
-        while(true) {
+        while (true) {
             try {
                 return task.run();
             } catch (IllegalArgumentException e) {
