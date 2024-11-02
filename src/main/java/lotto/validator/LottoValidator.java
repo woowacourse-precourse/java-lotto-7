@@ -9,38 +9,19 @@ import lotto.util.Regex;
 import org.assertj.core.util.VisibleForTesting;
 
 public class LottoValidator extends Validator {
-    private final String lotto;
-
-    public LottoValidator(String lotto) {
-        this.lotto = lotto;
+    public LottoValidator(String input) {
+        super(input);
     }
 
     public void validate() {
-        validateNotNull();
-        validateNotEmpty();
-        validateWholeNumber();
+        super.validate();
         validateListOfInteger();
     }
 
     @VisibleForTesting
-    void validateNotNull() {
-        if (lotto == null) {
-            throw new IllegalArgumentException(
-                    MessageParser.getErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
-        }
-    }
-
-    @VisibleForTesting
-    void validateNotEmpty() {
-        if (lotto.isBlank()) {
-            throw new IllegalArgumentException(
-                    MessageParser.getErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
-        }
-    }
-
-    @VisibleForTesting
+    @Override
     void validateWholeNumber() {
-        if (Arrays.stream(lotto.split(Regex.COMMA.getValue()))
+        if (Arrays.stream(super.input.split(Regex.COMMA.getValue()))
                 .anyMatch(number -> !Pattern.matches("-?\\d+", number))) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
@@ -50,7 +31,7 @@ public class LottoValidator extends Validator {
     @VisibleForTesting
     void validateListOfInteger() {
         try {
-            InputParser.parseListOfInteger(lotto);
+            InputParser.parseListOfInteger(super.input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     MessageParser.getErrorMessage(Errors.NOT_INTEGER.getMessage()));
