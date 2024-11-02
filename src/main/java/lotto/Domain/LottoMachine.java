@@ -1,22 +1,16 @@
 package lotto.Domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import lotto.Messages.ErrorMessage;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_STOCK = 10000;
-    private PurchaseAmount amount;
 
-    private LottoMachine(PurchaseAmount purchaseAmount) {
-        this.amount = purchaseAmount;
+    private LottoMachine() {
     }
 
-    public static LottoMachine from(PurchaseAmount purchaseAmount) {
-        validateAmount(purchaseAmount);
-
-        return new LottoMachine(purchaseAmount);
+    public static LottoMachine create() {
+        return new LottoMachine();
     }
 
     private static void validateAmount(PurchaseAmount purchaseAmount) {
@@ -44,23 +38,20 @@ public class LottoMachine {
         }
     }
 
-    private int calculateMaxLottos() {
+    private int calculateMaxLottos(PurchaseAmount amount) {
         return amount.getValue() / LOTTO_PRICE;
     }
 
-    private List<Lotto> generateLottos() {
-        int maxLottos = calculateMaxLottos();
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < maxLottos; i++) {
-            lottos.add(Lotto.create());
-        }
-
-        return lottos;
+    private Lottos generateLottos(int quantity) {
+        return Lottos.from(quantity);
     }
 
-    public void buyLottos(){
-        List<Lotto> lottos = generateLottos();
+    public Lottos buyLottos(PurchaseAmount amount) {
+        validateAmount(amount);
+
+        int quantity = calculateMaxLottos(amount);
+
+        return generateLottos(quantity);
     }
 
 }

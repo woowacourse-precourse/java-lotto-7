@@ -5,7 +5,7 @@ import lotto.Utils.Parser;
 import lotto.Utils.Validator;
 
 public class PurchaseAmount {
-    private int value;
+    private final int value;
 
     public int getValue() {
         return value;
