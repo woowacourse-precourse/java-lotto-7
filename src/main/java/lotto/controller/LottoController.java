@@ -9,24 +9,30 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Cost;
 import lotto.model.Lotto;
+import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final List<List<Integer>> lottoNumbers = new ArrayList<>();
+    private final OutputView outputView;
     private Lotto lotto;
     private int cost;
     private int bonusNumber;
-    private final List<List<Integer>> lottoNumbers = new ArrayList<>();
+
+    public LottoController(OutputView outputView) {
+        this.outputView = outputView;
+    }
 
     public void run() {
-        System.out.println("구입금액을 입력해 주세요.");
+        outputView.showStartComment();
 
         cost = requestCostInput();
 
         int purchaseCount = cost / 1000;
 
-        System.out.println();
+        outputView.showInsertNewLine();
 
-        System.out.println(purchaseCount + "개를 구매했습니다.");
+        outputView.showPurchaseResult(purchaseCount);
 
         for (int i = 0; i < purchaseCount; i++) {
             List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -35,22 +41,21 @@ public class LottoController {
             System.out.println(lottoNumbers.get(i));
         }
 
-        System.out.println();
+        outputView.showInsertNewLine();
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        outputView.showRequestLottoNumberComment();
 
         lotto = requestLottoNumberInput();
 
-        System.out.println();
+        outputView.showInsertNewLine();
 
-        System.out.println("보너스 번호를 입력해주세요.");
+        outputView.showRequestBonusNumberComment();
 
         bonusNumber = requestBonusNumberInput(lotto);
 
-        System.out.println();
+        outputView.showInsertNewLine();
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        outputView.showWinningStatistics();
 
         int threeMatched = 0;
         int fourMatched = 0;
@@ -89,11 +94,7 @@ public class LottoController {
             }
         }
 
-        System.out.println("3개 일치 (5,000원) - " + threeMatched + "개");
-        System.out.println("4개 일치 (50,000원) - " + fourMatched + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + fiveMatched + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + bonusMatched + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + allMatched + "개");
+        outputView.showWinningResult(threeMatched, fourMatched, fiveMatched, bonusMatched, allMatched);
 
         int totalWinnings = (5000 * threeMatched) + (50000 * fourMatched) +
                 (1500000 * fiveMatched) + (30000000 * bonusMatched) +
@@ -101,7 +102,7 @@ public class LottoController {
 
         double earningRatio = ((double) totalWinnings / cost) * 100;
         String formatEarningRatio = String.format("%,.1f", earningRatio);
-        System.out.println("총 수익률은 " + formatEarningRatio + "%입니다.");
+        outputView.showTotalEarningRatio(formatEarningRatio);
 
     }
 
@@ -110,10 +111,10 @@ public class LottoController {
             return BonusNumber.of(Integer.parseInt(Console.readLine().trim()), lotto).getBonusNumber();
 
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 보너스 번호는 숫자만 입력할 수 있습니다.");
+            outputView.showBonusNumberErrorMessage();
             return requestBonusNumberInput(lotto);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.showErrorMessage(e);
             return requestBonusNumberInput(lotto);
         }
     }
@@ -124,7 +125,7 @@ public class LottoController {
                     .map(Integer::parseInt)
                     .toList());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.showErrorMessage(e);
             return requestLottoNumberInput();
         }
     }
@@ -134,10 +135,10 @@ public class LottoController {
             return Cost.from(Integer.parseInt(Console.readLine().trim())).getCost();
 
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 금액은 숫자만 입력할 수 있습니다.");
+            outputView.showCostErrorMessage();
             return requestCostInput();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.showErrorMessage(e);
             return requestCostInput();
         }
     }
