@@ -1,6 +1,6 @@
 package view;
 
-import model.Money;
+import model.money.Money;
 
 public class PreProcessor {
 

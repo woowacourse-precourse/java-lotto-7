@@ -1,7 +1,6 @@
 package view.validator.money;
 
-import model.Money;
-import view.InputView;
+import model.money.Money;
 import view.PreProcessor;
 import view.validator.InputValidator;
 
