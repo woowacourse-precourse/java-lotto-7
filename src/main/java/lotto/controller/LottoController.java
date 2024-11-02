@@ -41,7 +41,7 @@ public class LottoController {
         }
     }
 
-    public List<Lotto> getLottos(Money money) {
+    private List<Lotto> getLottos(Money money) {
         LottoGenerator lottoGenerator = new LottoGenerator();
 
         while (true) {
@@ -53,7 +53,7 @@ public class LottoController {
         }
     }
 
-    public WinningLotto getWinningLotto() {
+    private WinningLotto getWinningLotto() {
         while (true) {
             List<Integer> winningNumbers = inputView.inputWinningNumber();
             int bonusNumber = inputView.inputBonusNumber();
