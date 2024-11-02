@@ -39,4 +39,10 @@ public class ScoreBoard {
         return rankCounts;
     }
 
+    public List<String> lottoResult() {
+        return lottos.stream()
+                .map(lotto -> lotto.getNumbers().toString())
+                .collect(Collectors.toList());
+    }
+
 }
