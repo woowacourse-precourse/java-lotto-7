@@ -7,7 +7,14 @@ import lotto.constant.ExceptionMessage;
 public record PurchaseAmount(Long purchaseAmount) {
 
     public PurchaseAmount {
+        validateNegative(purchaseAmount);
         validateNonThousandDivisibility(purchaseAmount);
+    }
+
+    private void validateNegative(Long number) {
+        if (number < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_AMOUNT_NOT_NEGATIVE);
+        }
     }
 
     private void validateNonThousandDivisibility(Long number) {

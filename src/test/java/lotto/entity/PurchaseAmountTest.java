@@ -11,7 +11,7 @@ class PurchaseAmountTest {
     private PurchaseAmount purchaseAmount;
 
     @Test
-    void validateNonThousandDivisibility_1000_으로_나누어떨어진다() {
+    void 모든_검증에_통과하여_정상적으로_생성된다() {
         // given
         Long number = 5000L;
 
@@ -33,6 +33,20 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_THOUSAND_DIVISIBILITY);
+
+    }
+
+    @Test
+    void validateNegative_구입금액은_음수가_될_수_없다() {
+        // given
+        Long number = -1000L;
+
+        // when
+        // then
+        assertThatThrownBy(() -> purchaseAmount = new PurchaseAmount(number))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.PURCHASE_AMOUNT_NOT_NEGATIVE);
 
     }
 }
