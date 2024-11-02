@@ -24,12 +24,14 @@ public class InputView {
     }
 
     public static List<Integer> winningNumberInput() {
+        printBlank();
         System.out.println(WINNING_NUMBER_MESSAGE);
         String userInput = Console.readLine();
         return splitAndConvertUserInput(userInput);
     }
 
     public static int bonusNumberInput() {
+        printBlank();
         System.out.println(BONUS_NUMBER_MESSAGE);
         String userInput = Console.readLine();
         validateOnlyNumber(userInput);
@@ -50,6 +52,10 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_ONLY_NUMBER.getMessage());
         }
+    }
+
+    private static void printBlank() {
+        System.out.println();
     }
 
 }
