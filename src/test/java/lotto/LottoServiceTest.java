@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGrade;
+import lotto.model.LottoResult;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,11 +15,13 @@ import org.junit.jupiter.api.Test;
 public class LottoServiceTest {
     Lotto winningLotto;
     int bonusNumber;
+    LottoResult lottoResult;
 
     @BeforeEach
     public void setUp() {
         winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         bonusNumber = 7;
+        lottoResult = new LottoResult();
     }
 
     @DisplayName("1~45사이의 중복되지 않은 랜덤한 수 6개를 생성합니다.")
@@ -72,4 +75,41 @@ public class LottoServiceTest {
                 .isEqualTo(LottoGrade.FIFTH_GRADE);
     }
 
+    @DisplayName("다른 로또 번호와의 중복되는 번호 개수를 반환한다.")
+    @Test
+    void 중복_로또_번호_개수_반환_테스트입니다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+        int expected = 5;
+        assertThat(LottoService.getCorrectNumberCount(lotto, winningLotto)).isEqualTo(expected);
+    }
+
+    @DisplayName("수익률 계산이 올바르게 수행되는지 테스트합니다.")
+    @Test
+    public void 수익률_계산_테스트_입니다() {
+        double rateOfReturn = LottoService.calculateRateOfReturn(200000, 100000);
+        assertThat(rateOfReturn).isEqualTo(100.0);
+
+        rateOfReturn = LottoService.calculateRateOfReturn(150000, 100000);
+        assertThat(rateOfReturn).isEqualTo(50.0);
+    }
+
+    @DisplayName("로또 당첨금 총합 계산이 올바르게 수행되는지 테스트합니다.")
+    @Test
+    public void 로또_당첨금_총합_계산_테스트_입니다() {
+        lottoResult.addGrade(LottoGrade.FIRST_GRADE);
+        lottoResult.addGrade(LottoGrade.SECOND_GRADE);
+        lottoResult.addGrade(LottoGrade.THIRD_GRADE);
+        lottoResult.addGrade(LottoGrade.FOURTH_GRADE);
+        lottoResult.addGrade(LottoGrade.FIFTH_GRADE);
+
+        int totalPrize = LottoService.sumLottoPrize(lottoResult);
+        assertThat(totalPrize).isEqualTo(
+                LottoGrade.FIRST_GRADE.getPrize() +
+                        LottoGrade.SECOND_GRADE.getPrize() +
+                        LottoGrade.THIRD_GRADE.getPrize() +
+                        LottoGrade.FOURTH_GRADE.getPrize() +
+                        LottoGrade.FIFTH_GRADE.getPrize()
+        );
+    }
 }

@@ -49,7 +49,10 @@ public class LottoService {
     public static int sumLottoPrize(LottoResult lottoResult) {
         int lottoValue = 0;
         for (LottoGrade lottoGrade : LottoGrade.values()) {
-            lottoValue += lottoGrade.getPrize() * lottoResult.getGradeCount(lottoGrade);
+            if (lottoGrade == LottoGrade.SIXTH_GRADE || lottoGrade == LottoGrade.SEVENTH_GRADE) {
+                continue;
+            }
+            lottoValue += (lottoGrade.getPrize() * lottoResult.getGradeCount(lottoGrade));
         }
         return lottoValue;
     }
