@@ -15,7 +15,8 @@ class BonusBallTest {
         int numbers = 7;
         WinningBalls winningBalls = new WinningBalls(List.of(1, 2, 3, 4, 5, 6));
         BonusBall bonusBall = BonusBall.of(numbers, winningBalls);
-        assertEquals(numbers, bonusBall.getNumber());
+        LottoNumber lottoNumber = new LottoNumber(7);
+        assertEquals(lottoNumber, bonusBall.getLottoNumber());
     }
 
     @DisplayName("보너스 당첨 번호와 당첨 번호가 겹치면 예외를 반환한다.")

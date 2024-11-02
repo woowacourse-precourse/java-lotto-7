@@ -7,8 +7,9 @@ public class BonusBall {
     private final LottoNumber lottoNumber;
 
     public static BonusBall of(int number, WinningBalls winningBalls) {
-        validateDuplicate(number, winningBalls);
-        return new BonusBall(new LottoNumber(number));
+        LottoNumber lottoNumber = new LottoNumber(number);
+        validateDuplicate(lottoNumber, winningBalls);
+        return new BonusBall(lottoNumber);
     }
 
     private static void validateDuplicate(int number, WinningBalls winningBalls) {
