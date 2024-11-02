@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.model.Amount;
 import lotto.model.LottoPublisher;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -30,27 +31,26 @@ public class LottoController {
 
     }
 
-    public int handleAmountInputError() {
+    public int handleAmountInputError() { //얘네들이 15줄을 넘는 이유는 기능이 3가지임 인풋 아웃풋 컨트롤 , 타당성 체크, 형변환
         boolean validInput = false;
-        int amountInput = 0;
+        Amount amount ;
 
         while (!validInput) {
             try {
-                outputView.printRequest(OutputView.REQUEST_AMOUNT_MESSAGE);
-                String input = inputView.readInput();
-
-                validationManager.isNotEmptyInput(input);
-                validationManager.isNumber(input);
-                validInput = validationManager.isDivideByThousand(input);
-
-                amountInput = TypeConverter.ToNumber(input);
-
+                String input = inputView.readInput(Amount.getRequestMessage());
+                validInput = isValidAmountInput(input);
+                amount = new Amount(TypeConverter.ToNumber(input));
+                return amount.getAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return amountInput;
+        return 0;
+    }
+    public boolean isValidAmountInput(String input) {
+        validationManager.isNotEmptyInput(input);
+        validationManager.isNumber(input);
+        return validationManager.isDivideByThousand(input);
     }
 
     public List<Integer> handleLottoNumberInputError() {
@@ -60,7 +60,7 @@ public class LottoController {
         while (!validInput) {
             try {
                 outputView.printRequest(OutputView.REQUEST_NUMBER_MESSAGE);
-                String lottoInput = inputView.readInput();
+                String lottoInput = inputView.readInput("");
 
                 validationManager.isNumbersDividedByComma(lottoInput); //정수와 쉼표로 이루어져있는지 확인
                 List<Integer> lottoNumbrs = TypeConverter.ToNumberList(lottoInput);
@@ -83,7 +83,7 @@ public class LottoController {
         while (!validInput) {
             try {
                 outputView.printRequest(OutputView.REQUEST_BONUS_MESSAGE);
-                String input = inputView.readInput();
+                String input = inputView.readInput("");
 
                 validationManager.isNotEmptyInput(input);
                 validationManager.isNumber(input);
