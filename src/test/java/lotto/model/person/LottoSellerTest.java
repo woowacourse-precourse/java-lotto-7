@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.person;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 

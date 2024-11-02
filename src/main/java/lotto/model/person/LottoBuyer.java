@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.person;
 
 import lotto.model.lotto.Lottos;
 
