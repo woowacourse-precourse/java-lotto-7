@@ -183,6 +183,18 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    public void 보너스_정상(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6","7");
+                    assertThat(output()).contains(
+                            "bonus: 7"
+                    );
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
