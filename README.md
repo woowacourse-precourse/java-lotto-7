@@ -20,3 +20,13 @@
 - 사용자가 잘못된 값을 입력한 경우 IllegalArgumentException을 발생
   - [ERROR] 로 시작하는 메세지 출력 후 그 부분부터 다시 입력 받는다.
   - Exception이 아닌, IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형 처리
+
+## 프로그래밍 요구사항
+- 함수(또는 메소드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+  - 함수(또는 메소드)가 한 가지 일만 잘 하도록 구현한다.
+- else 예약어를 쓰지 않는다.
+  - else의 대용 switch/case도 쓰지 않는다.
+  - 힌트 : if 조건절에서 return 하면 else를 쓰지 않아도 된다.
+- Enum을 사용해서 구현한다.
+- 구현한 기능에 대한 단위 테스트를 작성한다.
+  - UI 로직에 대한 단위 테스트는 작성하지 않는다.
