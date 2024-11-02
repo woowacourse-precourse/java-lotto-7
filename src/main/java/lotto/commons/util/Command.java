@@ -1,4 +1,4 @@
-package lotto.commons.command;
+package lotto.commons.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.commons.lang.ProgramExitException;

@@ -1,4 +1,4 @@
-package lotto.commons.handler;
+package lotto.commons.util;
 
 import java.util.function.Supplier;
 import lotto.commons.lang.InputOverFlowException;

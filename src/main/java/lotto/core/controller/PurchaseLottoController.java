@@ -1,7 +1,7 @@
 package lotto.core.controller;
 
-import lotto.commons.command.Command;
-import lotto.commons.handler.Repeat;
+import lotto.commons.util.Command;
+import lotto.commons.util.Repeat;
 import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoTicketDto;
 import lotto.core.service.CreateLottoPurchaseAmountService;
