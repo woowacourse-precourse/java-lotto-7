@@ -23,5 +23,4 @@ public class LottoGenerator {
         );
         return new Lotto(numbers);
     }
-
 }
