@@ -20,6 +20,7 @@ public class LottoController {
         int purchaseAmount = InputView.getPurchaseAmount();
         inputValidator.validatePurchaseAmount(purchaseAmount, LOTTO_PRICE);
         List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());
+        inputValidator.validateWinningNumbers(winningNumbers);
     }
 
 }
