@@ -4,16 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.parser.IntegerListParser;
+import lotto.helper.ParseHelper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class IntegerListParserTest {
+class ParseHelperTest {
 
-    private final IntegerListParser integerListParser;
+    private final ParseHelper parseHelper;
 
-    IntegerListParserTest() {
-        this.integerListParser = new IntegerListParser();
+    ParseHelperTest() {
+        this.parseHelper = new ParseHelper();
     }
 
 
@@ -25,7 +25,7 @@ class IntegerListParserTest {
         String delimiter = ",";
 
         // when
-        List<Integer> result = integerListParser.parse(value, delimiter);
+        List<Integer> result = parseHelper.parseIntegerList(value, delimiter);
 
         // then
         assertThat(result)
@@ -42,7 +42,7 @@ class IntegerListParserTest {
 
         // when & then
         assertThatThrownBy(
-                () -> integerListParser.parse(nonParsableValue, delimiter)
+                () -> parseHelper.parseIntegerList(nonParsableValue, delimiter)
         ).isInstanceOf(NumberFormatException.class);
     }
 }

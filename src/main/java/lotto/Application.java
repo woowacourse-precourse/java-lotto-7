@@ -1,18 +1,18 @@
 package lotto;
 
 import java.util.Map;
-import lotto.handler.ConsoleHandler;
 import java.util.List;
 import lotto.model.FirstRankLotto;
 import lotto.model.Lotto;
 import lotto.model.constant.LottoRank;
-import lotto.parser.IntegerListParser;
+import lotto.helper.ParseHelper;
 import lotto.service.FirstRankLottoService;
 import lotto.service.LottoRateOfReturnService;
 import lotto.service.LottoService;
 import lotto.service.LottoStatisticsService;
-import lotto.view.LottoRateOfReturnView;
+import lotto.view.ErrorView;
 import lotto.view.LottoStatisticsView;
+import lotto.view.LottoView;
 
 public class Application {
 
@@ -22,9 +22,7 @@ public class Application {
     private final FirstRankLottoService firstRankLottoService;
     private final LottoStatisticsService lottoStatisticsService;
     private final LottoRateOfReturnService lottoRateOfReturnService;
-    private final IntegerListParser integerListParser;
-    private final LottoStatisticsView lottoStatisticsView;
-    private final LottoRateOfReturnView lottoRateOfReturnView;
+    private final ParseHelper parseHelper;
 
     public Application() {
         this.client = new Client();
@@ -32,9 +30,7 @@ public class Application {
         this.firstRankLottoService = new FirstRankLottoService();
         this.lottoStatisticsService = new LottoStatisticsService();
         this.lottoRateOfReturnService = new LottoRateOfReturnService();
-        this.integerListParser = new IntegerListParser();
-        this.lottoStatisticsView = new LottoStatisticsView();
-        this.lottoRateOfReturnView = new LottoRateOfReturnView();
+        this.parseHelper = new ParseHelper();
     }
 
     public static void main(String[] args) {
@@ -53,15 +49,16 @@ public class Application {
     private void buyLotto() {
         while (client.getLottos().isEmpty()) {
             try {
-                int buyAmount = ConsoleHandler.inputIntValue("구입금액을 입력해 주세요.");
+                String input = LottoView.inputBuyAmount();
+                int buyAmount = parseHelper.parseInt(input);
                 List<Lotto> lottos = lottoService.buy(buyAmount);
                 client.addLotto(lottos);
             } catch (IllegalArgumentException exception) {
-                ConsoleHandler.announceError(exception.getMessage());
+                ErrorView.announceError(exception);
             }
         }
 
-        ConsoleHandler.announceBuyLottos(client.getLottos());
+        LottoView.announceBoughtLotto(client.getLottos());
     }
 
     private FirstRankLotto generateFirstRankLotto() {
@@ -74,13 +71,13 @@ public class Application {
     private void annouceLottoStatistics(FirstRankLotto firstRankLotto) {
         Map<LottoRank, Integer> lottoStatistics = getLottoStatistics(firstRankLotto);
 
-        lottoStatisticsView.announce(lottoStatistics);
+        LottoStatisticsView.announceStatistics(lottoStatistics);
     }
 
     private void annouceLottoRateOfReturn(FirstRankLotto firstRankLotto) {
         double rateOfReturn = getLottoRateOfReturn(firstRankLotto);
 
-        lottoRateOfReturnView.announce(rateOfReturn);
+        LottoStatisticsView.announcePercentOfReturn(rateOfReturn);
     }
 
     private Map<LottoRank, Integer> getLottoStatistics(FirstRankLotto firstRankLotto) {
@@ -100,12 +97,12 @@ public class Application {
 
         while (firstRankLottoNumbers == null) {
             try {
-                String input = ConsoleHandler.inputStringValue("당첨 번호를 입력해 주세요.");
-                List<Integer> parsedInput = integerListParser.parse(input, ",");
+                String input = LottoView.inputFirstRankNumbers();
+                List<Integer> parsedInput = parseHelper.parseIntegerList(input, ",");
                 firstRankLottoService.validateNumbers(parsedInput);
                 firstRankLottoNumbers = parsedInput;
             } catch (IllegalArgumentException exception) {
-                ConsoleHandler.announceError(exception.getMessage());
+                ErrorView.announceError(exception);
             }
         }
 
@@ -117,12 +114,12 @@ public class Application {
 
         while (bonusNumber == null) {
             try {
-                int input = ConsoleHandler.inputIntValue("보너스 번호를 입력해 주세요.");
-
-                firstRankLottoService.validateBonusNumber(firstRankLottoNumbers, input);
-                bonusNumber = input;
+                String input = LottoView.inputBonusNumber();
+                int parsedInput = parseHelper.parseInt(input);
+                firstRankLottoService.validateBonusNumber(firstRankLottoNumbers, parsedInput);
+                bonusNumber = parsedInput;
             } catch (IllegalArgumentException exception) {
-                ConsoleHandler.announceError(exception.getMessage());
+                ErrorView.announceError(exception);
             }
         }
 
