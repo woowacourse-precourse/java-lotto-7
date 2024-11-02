@@ -22,11 +22,19 @@ public class LottoGame {
 
     public float getEarningRate(List<Integer> choices, int bonusNumber) {
         int totalReward = lottoGroup.getTotalReward(choices, bonusNumber);
-        float earningRate = (float) totalReward / inputMoney;
+        float earningRate = (float) totalReward / inputMoney * 100;
         return Math.round(earningRate * 10) / 10.0f;
     }
 
     private int convertToCount(int money){
         return money / MONEY_THRESHOLD;
+    }
+
+    public String getPurchasedLotto(){
+        return lottoGroup.toString();
+    }
+
+    public List<Prize> getPrizes(List<Integer> choices, int bonusNumber){
+        return lottoGroup.getPrizes(choices, bonusNumber);
     }
 }
