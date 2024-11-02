@@ -1,6 +1,8 @@
 package lotto.view;
 
-import lotto.domain.Lottos;
+import lotto.domain.Lotto;
+
+import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
@@ -10,13 +12,12 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printLottoListPrompt(Lottos lottos) {
-        lottos.getLottos()
-                .forEach(lotto -> printMessage(formatLottoNumbers(lottos)));
+    public static void printLottoListPrompt(List<Lotto> lottos) {
+        lottos.forEach(lotto -> printMessage(formatLottoNumbers(lotto)));
     }
 
-    private static String formatLottoNumbers(Lottos lotto) {
-        return lotto.getLottos().stream()
+    private static String formatLottoNumbers(Lotto lotto) {
+        return lotto.getNumbers().stream()
                 .map(String::valueOf)
                 .collect(joining(", ", "[", "]"));
     }
