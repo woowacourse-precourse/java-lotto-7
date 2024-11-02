@@ -1,24 +1,36 @@
 package lotto.view;
 
-import java.util.List;
+import lotto.constant.Rank;
 import lotto.dto.GeneratedTickets;
-import lotto.dto.LottoResult;
+import lotto.dto.LottoResults;
 
 public class OutputView {
 
-    public static final String PURCHASED_TICKET_MESSAGE = "%d개를 구매했습니다.";
+    public static final String PURCHASED_TICKET_MESSAGE = "%d개를 구매했습니다.\n";
     public static final String WINNING_RESULT_MESSAGE = "당첨 통계\n---";
+    public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    public static final String NUMBER_OF_MATCHED_MESSAGE = " - %d개\n";
 
     public void printGeneratedTickets(GeneratedTickets generatedTicket) {
-        System.out.println(String.format(PURCHASED_TICKET_MESSAGE, generatedTicket.ticketCount()));
+        System.out.printf((PURCHASED_TICKET_MESSAGE), generatedTicket.ticketCount());
         generatedTicket.getTickets().forEach(System.out::println);
     }
 
-    public void printResult(List<LottoResult> results) {
+    public void printRank(LottoResults results) {
         System.out.println(WINNING_RESULT_MESSAGE);
-        for (LottoResult result : results) {
-            System.out.print(result.getRank().toString());
-            System.out.printf(" - %d개%n", result.getNumberOfMatched());
+        printRankResult(results);
+        printStatistics(results);
+    }
+
+    private void printRankResult(LottoResults results) {
+        Rank[] ranksInOrder = {Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST};
+        for (Rank rank : ranksInOrder) {
+            System.out.print(rank);
+            System.out.printf(NUMBER_OF_MATCHED_MESSAGE, results.getNumberOfMatched(rank));
         }
+    }
+
+    private void printStatistics(LottoResults results) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE, results.getPercentageOfMatched());
     }
 }
