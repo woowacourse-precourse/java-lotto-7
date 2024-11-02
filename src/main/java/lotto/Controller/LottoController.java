@@ -22,7 +22,7 @@ public class LottoController {
             PrintInput();
             PrintOutput();
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR]"+ e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     public void PrintInput(){
