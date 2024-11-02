@@ -68,6 +68,14 @@ public class WinningLotto {
         }
     }
 
+    public int countMatches(Lotto lotto) {
+        return lotto.countMatchingNumbers(winningNumbers);
+    }
+
+    public boolean isBonusMatched(Lotto lotto) {
+        return lotto.containsNumber(bonusNumber);
+    }
+
     public LottoWinningNumbersDTO toDto() {
         return new LottoWinningNumbersDTO(winningNumbers, bonusNumber);
     }
