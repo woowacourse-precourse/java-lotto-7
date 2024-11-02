@@ -1,6 +1,7 @@
 package lotto.util;
 
 import java.util.List;
+import java.util.Set;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoGameIllegalArgumentException;
 
@@ -24,6 +25,11 @@ public class Validator {
     public static void validateLottoNumbers(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != 6) {
             throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER);
+        }
+
+        Set<Integer> distinctLottoNumbers = Set.copyOf(lottoNumbers);
+        if (distinctLottoNumbers.size() != 6) {
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_REPETITION);
         }
     }
 
