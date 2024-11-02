@@ -4,6 +4,8 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.util.LottoOperator;
 
+import java.util.Arrays;
+
 import static lotto.constants.Purchase.LOTTO_PRICE_PER_UNIT;
 
 public class OutputView {
@@ -24,11 +26,11 @@ public class OutputView {
     }
 
     public void printRateOfReturn(int thousandUnitCount) {
-        int result = 0;
-        for (LottoOperator value : LottoOperator.values()) {
-            result += value.getRateOfReturn();
-        }
-        int amount = thousandUnitCount * LOTTO_PRICE_PER_UNIT;
-        System.out.println("총 수익률은 "+(result / amount) * 100+"%입니다.");
+        int purchaseAmount = thousandUnitCount * LOTTO_PRICE_PER_UNIT;
+        double winningsAmount = Arrays.stream(LottoOperator.values())
+                .mapToDouble(LottoOperator::getRateOfReturn)
+                .sum() - purchaseAmount;
+        double rateOfReturn = (winningsAmount / purchaseAmount) * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }
 }
