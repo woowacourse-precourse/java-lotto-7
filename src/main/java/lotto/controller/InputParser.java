@@ -10,10 +10,7 @@ import lotto.exception.ExceptionUtils;
 public class InputParser {
 
     public static List<Integer> parseIntegers(String input) {
-        if (input == null || input.isBlank()) {
-            throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
-        }
-
+        validate(input);
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(String::strip)
                 .map(InputParser::parseSingleInteger)
@@ -25,12 +22,15 @@ public class InputParser {
     }
 
     public static int parseInteger(String input) {
-        if (input == null || input.isBlank()) {
-            throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
-        }
+        validate(input);
         return parseSingleInteger(input);
     }
 
+    private static void validate(String input) {
+        if (input == null || input.isBlank()) {
+            throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
+        }
+    }
 
     private static int parseSingleInteger(String input) {
         try {
