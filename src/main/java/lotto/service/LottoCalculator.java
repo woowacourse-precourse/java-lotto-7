@@ -23,7 +23,7 @@ public class LottoCalculator {
     }
 
     public static double calculateReturn(int totalPrizeAmount, int purchaseAmount) {
-        double result = (double) totalPrizeAmount / purchaseAmount;
+        double result = (double) totalPrizeAmount / purchaseAmount * 100.0;
         return Math.round(result * 100.0) / 100.0;
     }
 }
