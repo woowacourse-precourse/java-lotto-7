@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.domain.lottos.Lotto;
 
-public class UserMainLottoFactory {
+public class UserSixLottoFactory {
     private final static String LOTTO_DELIMITER = ",";
 
     public Lotto make(String input) {

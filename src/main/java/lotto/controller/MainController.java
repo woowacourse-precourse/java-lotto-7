@@ -5,7 +5,7 @@ import lotto.domain.calculators.FinalPrizeCalculator;
 import lotto.domain.calculators.TicketCalculator;
 import lotto.domain.calculators.TicketCalculatorImpl;
 import lotto.domain.calculators.YieldCalculator;
-import lotto.domain.factory.UserMainLottoFactory;
+import lotto.domain.factory.UserSixLottoFactory;
 import lotto.domain.lottos.RandomLottos;
 import lotto.domain.lottos.user.UserLotto;
 import lotto.domain.lottos.user.WinningLotto;
@@ -65,7 +65,7 @@ public class MainController {
     }
 
     private void inputUserMainSixLottoBuild(UserLotto.Builder builder) {
-        UserMainLottoFactory factory = new UserMainLottoFactory();
+        UserSixLottoFactory factory = new UserSixLottoFactory();
 
         while (true) {
             try {

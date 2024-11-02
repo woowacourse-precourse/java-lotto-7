@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserMainLottoFactoryTest {
-    private final UserMainLottoFactory factory = new UserMainLottoFactory();
+    private final UserSixLottoFactory factory = new UserSixLottoFactory();
 
 
     @DisplayName("6자리 숫자가 같은지 확인")
