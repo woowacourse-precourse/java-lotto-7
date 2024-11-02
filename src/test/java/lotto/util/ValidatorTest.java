@@ -174,4 +174,20 @@ public class ValidatorTest {
         };
     }
 
+    @ParameterizedTest
+    @MethodSource("validListAndInputProvider")
+    @DisplayName("기존 리스트에 입력받은 인자 존재하는 지 테스트")
+    public void isNotInListTest(List<Integer> list, Integer input) {
+        assertThatNoException().isThrownBy(() -> Validator.isNotInList(list, input));
+    }
+
+    private static Object[][] validListAndInputProvider() {
+        return new Object[][]{
+                {List.of(1, 2, 3, 4, 5), 6},
+                {List.of(12, 34, 56, 67) ,89}
+        };
+    }
+
+
+
 }
