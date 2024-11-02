@@ -30,26 +30,61 @@ public class PlayLotto {
         // 숫자 입력 검증
         while (true) {
             try {
-                return Integer.parseInt(input);
+                int amount = Integer.parseInt(input);
+                if (amount % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+                }
+                return amount;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
+                input = Console.readLine(); // 다시 입력 받기
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
                 input = Console.readLine(); // 다시 입력 받기
             }
         }
     }
 
     private WinningLotto inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] winningNumbersInput = Console.readLine().split(",");
         List<Integer> winningNumbers = new ArrayList<>();
-        for (String number : winningNumbersInput) {
-            winningNumbers.add(Integer.parseInt(number.trim()));
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String[] winningNumbersInput = Console.readLine().split(",");
+
+            if (winningNumbersInput.length != 6) {
+                System.out.println("[ERROR] 입력된 당첨 번호는 6개여야 합니다.");
+                continue; // 다시 입력 받기
+            }
+
+            winningNumbers.clear(); // 이전 입력 초기화
+            boolean isValid = true;
+            for (String number : winningNumbersInput) {
+                int num = Integer.parseInt(number.trim());
+                if (num < 1 || num > 45) {
+                    System.out.println("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    isValid = false;
+                    break; // 유효하지 않은 번호가 있으면 반복 종료
+                }
+                winningNumbers.add(num);
+            }
+
+            if (!isValid) {
+                continue; // 유효하지 않은 경우 다시 입력 받기
+            }
+
+            System.out.println("보너스 번호를 입력해 주세요.");
+            int bonusNumber;
+            while (true) {
+                bonusNumber = Integer.parseInt(Console.readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                } else {
+                    break; // 유효한 보너스 번호면 반복 종료
+                }
+            }
+
+            return new WinningLotto(winningNumbers, bonusNumber);
         }
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = Integer.parseInt(Console.readLine());
-
-        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     private void printResult() {
