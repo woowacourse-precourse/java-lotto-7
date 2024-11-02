@@ -21,8 +21,10 @@ public class OutputView {
         System.out.println("---");
         List<MatchingCountResult> matchingCountResults = lottoResult.matchingCountResults();
         for (MatchingCountResult matchingCountResult : matchingCountResults) {
-            System.out.print(matchingCountResult.winningCondition().toString());
-            System.out.print(matchingCountResult.conditionCount() + "개");
+            if (matchingCountResult.getWinningCondition().getMatchCount() > 0) {
+                System.out.print(matchingCountResult.getWinningCondition().toString());
+                System.out.print(matchingCountResult.getConditionCount() + "개" + "\n");
+            }
         }
         System.out.println("총 수익률은 " + lottoResult.rate() + "%" + "입니다.");
     }
