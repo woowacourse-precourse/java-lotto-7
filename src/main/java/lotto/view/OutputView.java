@@ -37,7 +37,7 @@ public class OutputView {
     public static void printPrizeStats(LottoMatcher lottoMatcher, LottoPurchaseMoney invested) {
         System.out.printf(PRIZE_START_MESSAGE);
 
-        for (Prize prize : Prize.values()) {
+        for (Prize prize : Prize.prizesOrderedBy(Prize.earningAscending())) {
             System.out.printf(
                     PRIZE_FORMAT,
                     prize.getDescription(),
