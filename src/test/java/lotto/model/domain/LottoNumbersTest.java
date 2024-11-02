@@ -35,14 +35,15 @@ public class LottoNumbersTest {
     @Test
     void test_4() {
         LottoNumbers lottoNumbers = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
-        assertTrue(lottoNumbers.hasNumber(6));
+        LottoNumber lottoNumber = new LottoNumber(6);
+        assertTrue(lottoNumbers.hasNumber(lottoNumber));
     }
 
     @DisplayName("숫자모음들끼리 몇 개 같은지 반환한다")
     @Test
     void test_5() {
         LottoNumbers lottoNumbers1 = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> numbers = List.of(1, 2, 3, 41, 42, 43);
-        assertEquals(3, lottoNumbers1.countDuplicatingNumbers(numbers));
+        LottoNumbers lottoNumbers2 = new LottoNumbers(List.of(1, 2, 3, 41, 42, 43));
+        assertEquals(3, lottoNumbers1.countDuplicatingNumbers(lottoNumbers2));
     }
 }

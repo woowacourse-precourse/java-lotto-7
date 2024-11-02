@@ -38,13 +38,13 @@ public class LottoNumbers {
                 .toList();
     }
 
-    public boolean hasNumber(int number) {
-        return getNumbers().contains(number);
+    public boolean hasNumber(LottoNumber number) {
+        return this.lottoNumbers.contains(number);
     }
 
-    public int countDuplicatingNumbers(List<Integer> other) {
-        return (int) getNumbers().stream()
-                .filter(other::contains)
+    public int countDuplicatingNumbers(LottoNumbers other) {
+        return (int) this.lottoNumbers.stream()
+                .filter(other::hasNumber)
                 .count();
     }
 }

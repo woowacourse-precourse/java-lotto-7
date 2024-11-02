@@ -24,11 +24,11 @@ public class Lotto {
     }
 
     public int countDuplicatingCount(LottoNumbers lottoNumbers) {
-        return this.lottoNumbers.countDuplicatingNumbers(lottoNumbers.getNumbers());
+        return this.lottoNumbers.countDuplicatingNumbers(lottoNumbers);
     }
 
-    public int countDuplicatingCount(int number) {
-        if(lottoNumbers.hasNumber(number)) {
+    public int countDuplicatingCount(LottoNumber LottoNumber) {
+        if(lottoNumbers.hasNumber(LottoNumber)) {
             return 1;
         }
         return 0;
