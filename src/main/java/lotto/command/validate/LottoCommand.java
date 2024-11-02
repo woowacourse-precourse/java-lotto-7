@@ -2,6 +2,7 @@ package lotto.command.validate;
 
 import static lotto.common.constant.Lotto.LOTTO_MAXIMUM_NUMBER;
 import static lotto.common.constant.Lotto.LOTTO_MINIMUM_NUMBER;
+import static lotto.common.constant.Lotto.LOTTO_NUMBER_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +39,11 @@ public class LottoCommand implements ValidateCommand {
   private List<Integer> validateNumbers(String[] rawNumbers) {
     List<Integer> lottoNumbers = validateLottoNumbers(rawNumbers);
     validateDistinct(lottoNumbers);
+    validateCount(lottoNumbers);
     return lottoNumbers;
   }
+
+
 
   private List<Integer> validateLottoNumbers(String[] rawNumbers) {
     List<Integer> numbers = new ArrayList<>();
@@ -56,6 +60,13 @@ public class LottoCommand implements ValidateCommand {
         .count();
     if (distinctCount != lottoNumbers.size()) {
       throw new InputException(ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT);
+    }
+  }
+
+  private void validateCount(List<Integer> lottoNumbers) {
+    if (lottoNumbers.size() != LOTTO_NUMBER_COUNT) {
+      throw new InputException(ExceptionEnum.LOTTO_NUMBER_COUNT_NOT_AVAILABLE,
+          String.valueOf(lottoNumbers.size()));
     }
   }
 
