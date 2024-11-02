@@ -32,6 +32,23 @@ public class LottoController {
         outputView.printTotalProfitRate(profitRate);
     }
 
+    private String enterPurchaseAmount() {
+        outputView.printPurchaseAmountInputMessage();
+        return inputView.inputPurchaseAmount();
+    }
+
+    private void printPurchaseCount(PurchaseAmount purchaseAmount) {
+        int count = purchaseAmount.countLottoQuantity();
+        System.out.println();
+        outputView.printPurchaseCount(count);
+    }
+
+    private void displayPurchasedLottoNumbers(List<Lotto> ticket) {
+        for (Lotto lotto : ticket) {
+            outputView.printPurchasedLottoNumbers(lotto.getNumbers());
+        }
+    }
+
     private List<MatchCondition> getMatchConditions(LottoTicket lottoTicket) {
         WinningNumber winningNumber = getWinningNumber();
         BonusNumber bonusNumber = getBonusNumber();
@@ -41,10 +58,18 @@ public class LottoController {
         return matchConditions;
     }
 
-    private double getProfitRate(List<MatchCondition> matchConditions, String enteredPurchaseAmount) {
-        long totalWinningAmount = profitCalculator.calculateTotalWinningAmount(matchConditions);
-        long lottoPurchaseAmount = Convertor.convertToLong(enteredPurchaseAmount);
-        return profitCalculator.calculateProfitRate(totalWinningAmount, lottoPurchaseAmount);
+    private WinningNumber getWinningNumber() {
+        outputView.printWinningNumbersInputMessage();
+        String inputWinningNumbers = inputView.inputWinningNumbers();
+        System.out.println();
+        return WinningNumber.from(inputWinningNumbers);
+    }
+
+    private BonusNumber getBonusNumber() {
+        outputView.printBonusNumberInputMessage();
+        String inputBonusNumber = inputView.inputBonusNumber();
+        System.out.println();
+        return BonusNumber.from(inputBonusNumber);
     }
 
     private Map<LottoRank, Integer> produceStatistics(List<MatchCondition> matchConditions) {
@@ -52,32 +77,9 @@ public class LottoController {
         return lottoResult.produceStatistics(matchConditions);
     }
 
-    private BonusNumber getBonusNumber() {
-        outputView.printBonusNumberInputMessage();
-        String inputBonusNumber = inputView.inputBonusNumber();
-        return BonusNumber.from(inputBonusNumber);
-    }
-
-    private WinningNumber getWinningNumber() {
-        outputView.printWinningNumbersInputMessage();
-        String inputWinningNumbers = inputView.inputWinningNumbers();
-        return WinningNumber.from(inputWinningNumbers);
-    }
-
-    private void displayPurchasedLottoNumbers(List<Lotto> ticket) {
-        for (Lotto lotto : ticket) {
-            outputView.printPurchasedLottoNumbers(lotto.getNumbers());
-        }
-    }
-
-    private void printPurchaseCount(PurchaseAmount purchaseAmount) {
-        int count = purchaseAmount.countLottoQuantity();
-        System.out.println();
-        outputView.printPurchaseCount(count);
-    }
-
-    private String enterPurchaseAmount() {
-        outputView.printPurchaseAmountInputMessage();
-        return inputView.inputPurchaseAmount();
+    private double getProfitRate(List<MatchCondition> matchConditions, String enteredPurchaseAmount) {
+        long totalWinningAmount = profitCalculator.calculateTotalWinningAmount(matchConditions);
+        long lottoPurchaseAmount = Convertor.convertToLong(enteredPurchaseAmount);
+        return profitCalculator.calculateProfitRate(totalWinningAmount, lottoPurchaseAmount);
     }
 }
