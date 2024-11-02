@@ -2,24 +2,29 @@ package lotto.controller;
 
 import static lotto.view.ViewConstants.VIEW_DELIMITER;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.LottoBuyer;
+import lotto.domain.LottoTicket;
+import lotto.service.LottoRetailer;
 import lotto.view.InputValidator;
-import lotto.view.InputView;
 
 public class LottoController {
-    private final InputView inputView;
-    private final InputValidator inputValidator;
+    private final LottoRetailer lottoRetailer;
 
-    public LottoController(InputView inputView, InputValidator inputValidator) {
-        this.inputView = inputView;
-        this.inputValidator = inputValidator;
+    public LottoController(LottoRetailer lottoRetailer) {
+        this.lottoRetailer = lottoRetailer;
     }
 
-    public List<Integer> deliverNumbers() {
-        String input = inputView.requestWinningLottoNumbers();
+    public LottoBuyer buyLottosWith(BigInteger purchaseAmount) {
+        return lottoRetailer.sellAsMuchAs(purchaseAmount);
+    }
+
+    public LottoTicket extractLottoNumbers(String input, InputValidator inputValidator) {
         inputValidator.validateDigitAndDelimiterOnly(input);
-        return extractNumbers(input);
+        List<Integer> numbers = extractNumbers(input);
+        return lottoRetailer.createWinningLotto(numbers);
     }
 
     private List<Integer> extractNumbers(String input) {
