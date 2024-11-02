@@ -1,10 +1,6 @@
 package lotto.view;
 
 public class OutputView {
-    public void lineFeed() {
-        System.out.println();
-    }
-
     public void print(String string) {
         System.out.println(string);
     }

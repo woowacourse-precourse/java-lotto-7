@@ -28,6 +28,7 @@ public class LottoController {
         printLottoNumbers(wallet);
         WinningLotto winningLotto = inputWinningLotto();
         WinningDetail detail = wallet.winningDetail(winningLotto);
+        printWinningDetail(detail);
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -80,4 +81,9 @@ public class LottoController {
         }
     }
 
+    private void printWinningDetail(WinningDetail detail) {
+        outputView.print(RESULT_HEADER);
+        String statistics = detail.generateWinningStatistics();
+        outputView.print(statistics);
+    }
 }

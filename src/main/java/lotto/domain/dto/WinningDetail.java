@@ -1,5 +1,6 @@
 package lotto.domain.dto;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -29,4 +30,17 @@ public class WinningDetail {
     public void updateScore(WinningRank rank) {
         winningDetail.replace(rank, winningDetail.getOrDefault(rank, 0) + UPDATE_SCORE);
     }
+
+    public String generateWinningStatistics() {
+        StringBuilder statistics = new StringBuilder();
+
+        Arrays.stream(WinningRank.values())
+            .filter(rank -> rank != WinningRank.NONE)
+            .forEach(rank ->
+                statistics.append(rank.getWinningMessage(winningDetail.get(rank)))
+            );
+
+        return statistics.toString();
+    }
+
 }
