@@ -4,6 +4,7 @@ import lotto.Model.Lotto;
 import lotto.Model.LottoResult;
 import lotto.Model.LottoStatistics;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class OutputView {
 
     public static void showAllLottos(List<Lotto> allLottos){
         for (Lotto lotto : allLottos) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
             Collections.sort(numbers);
-            System.out.println(lotto.getNumbers());
+            System.out.println(numbers);
         }
     }
 
