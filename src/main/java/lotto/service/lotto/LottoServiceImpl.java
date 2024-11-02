@@ -77,19 +77,13 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private Rank determineRank(Lotto lotto, WinningContext context) {
-        WinningNumbers winningNumbers = context.getWinningNumbers();
-        BonusNumber bonusNumber = context.getBonusNumber();
-
-        List<Integer> lottoNumbers = lotto.getNumbers();
-        List<Integer> winningNums = winningNumbers.getNumbers();
-
-        int matchCount = (int) lottoNumbers.stream().filter(winningNums::contains).count();
-        boolean hasBonus = lottoNumbers.contains(bonusNumber.getNumber());
+        int matchCount = getMatchCount(lotto, context);
+        boolean hasBonus = hasBonusNumber(lotto, context.getBonusNumber());
 
         if (matchCount == FULL_MATCH_COUNT) {
             return Rank.FIRST;
         }
-        if (matchCount == FIVE_MATCH_COUNT && hasBonus) {
+        if (isSecondPlace(matchCount, hasBonus)) {
             return Rank.SECOND;
         }
         if (matchCount == FIVE_MATCH_COUNT) {
@@ -102,5 +96,19 @@ public class LottoServiceImpl implements LottoService {
             return Rank.FIFTH;
         }
         return Rank.NO_WIN;
+    }
+
+    private int getMatchCount(Lotto lotto, WinningContext context) {
+        return (int) lotto.getNumbers().stream()
+                .filter(context.getWinningNumbers().getNumbers()::contains)
+                .count();
+    }
+
+    private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber.getNumber());
+    }
+
+    private boolean isSecondPlace(int matchCount, boolean hasBonus) {
+        return matchCount == FIVE_MATCH_COUNT && hasBonus;
     }
 }
