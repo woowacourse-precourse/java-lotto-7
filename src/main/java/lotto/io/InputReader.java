@@ -2,6 +2,7 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.ErrorHandler;
 import lotto.Validator;
 
 public class InputReader {
@@ -15,6 +16,7 @@ public class InputReader {
             Validator.validatePurchaseAmount(purchaseAmount);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
+            ErrorHandler.print(e.getMessage());
             return readPurchaseAmount();
         }
     }
@@ -26,6 +28,7 @@ public class InputReader {
             Validator.validateWinningNumbers(winningNumbers);
             return winningNumbers;
         } catch (IllegalArgumentException e) {
+            ErrorHandler.print(e.getMessage());
             return readWinningNumbers();
         }
     }
@@ -37,6 +40,7 @@ public class InputReader {
             Validator.validateBonusNumber(bonusNumber, winningNumbers);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
+            ErrorHandler.print(e.getMessage());
             return readBonusNumber(winningNumbers);
         }
     }
