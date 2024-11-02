@@ -24,35 +24,64 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = tryPurchaseAmount();
-
-        LottoGenerator lottoGenerator = new LottoGenerator(new LottoNumbersStrategy());
-        int quantity = purchaseAmount.calculateQuantity();
-        Lottos lottos = lottoGenerator.issues(quantity);
-
-        outputView.printQuantity(quantity);
-        outputView.printLottos(lottos);
+        PurchaseAmount purchaseAmount = tryInputPurchaseAmount();
+        Lottos lottos = issueLottos(purchaseAmount);
 
         WinningNumbers winningNumbers = issueWinningNumbers();
 
-        LottoWinningResult winningResult = getLottoWinningResult(lottos, winningNumbers);
-        outputView.printLottoWinningResult(winningResult.getLottoWinningResult());
+        LottoWinningResult winningResult = getWinningResult(lottos, winningNumbers);
+        getRateOfReturn(winningResult, purchaseAmount);
+    }
 
+    private Lottos issueLottos(PurchaseAmount purchaseAmount) {
+        int quantity = purchaseAmount.calculateQuantity();
+        Lottos lottos = issueLottoByQuantity(quantity);
+
+        displayIssuedLottoByQuantity(quantity, lottos);
+        return lottos;
+    }
+
+    private Lottos issueLottoByQuantity(int quantity) {
+        LottoGenerator lottoGenerator = new LottoGenerator(new LottoNumbersStrategy());
+        return lottoGenerator.issues(quantity);
+    }
+
+    private void displayIssuedLottoByQuantity(int quantity, Lottos lottos) {
+        outputView.printQuantity(quantity);
+        outputView.printLottos(lottos);
+    }
+
+    private WinningNumbers issueWinningNumbers() {
+        Lotto winningLottoNumbers = tryInputWinningLottoNumbers();
+        return tryInputBonusNumber(winningLottoNumbers);
+    }
+
+    private LottoWinningResult getWinningResult(Lottos lottos, WinningNumbers winningNumbers) {
+        LottoWinningResult winningResult = calculateWinningByLotto(lottos, winningNumbers);
+
+        displayWinningResult(winningResult);
+        return winningResult;
+    }
+
+    private void displayWinningResult(LottoWinningResult winningResult) {
+        outputView.printLottoWinningResult(winningResult.getLottoWinningResult());
+    }
+
+    private void getRateOfReturn(LottoWinningResult winningResult, PurchaseAmount purchaseAmount) {
         double rateOfReturn = winningResult.calculateRateOfReturn(purchaseAmount);
+        displayRateOfReturn(rateOfReturn);
+    }
+
+    private void displayRateOfReturn(double rateOfReturn) {
         outputView.printRateOrReturn(rateOfReturn);
     }
 
-    private LottoWinningResult getLottoWinningResult(Lottos lottos, WinningNumbers winningNumbers) {
+    private LottoWinningResult calculateWinningByLotto(Lottos lottos, WinningNumbers winningNumbers) {
         LottoWinningCalculator winningCalculator = new LottoWinningCalculator(new LottoWinningStrategy());
         return winningCalculator.calculateWinningResult(lottos, winningNumbers);
     }
 
-    private WinningNumbers issueWinningNumbers() {
-        Lotto winningLottoNumbers = tryWinningLottoNumbers();
-        return tryBonusNumber(winningLottoNumbers);
-    }
-
-    private PurchaseAmount tryPurchaseAmount() {
+    private PurchaseAmount tryInputPurchaseAmount() {
         while (true) {
             try {
                 outputView.printPurchaseAmountMessage();
@@ -64,7 +93,7 @@ public class LottoController {
         }
     }
 
-    private Lotto tryWinningLottoNumbers() {
+    private Lotto tryInputWinningLottoNumbers() {
         while (true) {
             try {
                 outputView.printWinningNumbersMessage();
@@ -76,7 +105,7 @@ public class LottoController {
         }
     }
 
-    private WinningNumbers tryBonusNumber(Lotto winningLottoNumbers) {
+    private WinningNumbers tryInputBonusNumber(Lotto winningLottoNumbers) {
         while (true) {
             try {
                 outputView.printBonusNumberMessage();
