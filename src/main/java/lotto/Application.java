@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.Optional;
 
 public class Application {
     public static void main(String[] args) {
@@ -12,14 +13,22 @@ public class Application {
         Lotto[] lottoArray = issueLotto(lottoCount);
         List<Integer> winningLotto = InputHandler.handleWinningLottoInput();
         int bonusNumber = InputHandler.handleBonusNumberInput();
-
+        WinnerResult winnerResult = new WinnerResult(amount);
         for (Lotto eachLotto : lottoArray) {
-            eachLotto.match(winningLotto);
+            Optional<Rank> rank = eachLotto.match(winningLotto, bonusNumber);
+            if (rank.isEmpty()) {
+                continue;
+            }
+
+            winnerResult.add(rank.get());
         }
+
+        winnerResult.display();
     }
 
     private static Lotto[] issueLotto(int lottoCount) {
         Lotto[] lottoArray = new Lotto[lottoCount];
+        System.out.println(lottoCount + "개를 구매했습니다.");
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(randomLottoNumbers);

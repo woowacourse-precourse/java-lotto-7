@@ -19,6 +19,10 @@ public enum Rank {
         this.messageFunction = messageFunction;
     }
 
+    public int getPrizeMoney() {
+        return this.prizeMoney;
+    }
+
     public String getMessage() {
         return this.messageFunction.apply(this);
     }
