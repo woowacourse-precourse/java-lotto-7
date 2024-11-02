@@ -39,6 +39,21 @@ class LottoMachineTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호와 보너스 번호로 당첨 로또를 생성할 수 있다.")
+    @Test
+    void 당첨_번호와_보너스_번호로_당첨_로또를_생성할_수_있다() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        // when
+        WinningLotto winningLotto = lottoMachine.generateWinningLotto(lotto, bonusNumber);
+
+        // then
+        Assertions.assertThat(winningLotto.getWinningNumberList()).isEqualTo(lotto.getNumbers());
+        Assertions.assertThat(winningLotto.getBonusNumber()).isEqualTo(bonusNumber);
+    }
+
     private static Stream<Arguments> generatePriceAndCountList() {
         return Stream.of(
                 Arguments.of(1000, 1),
