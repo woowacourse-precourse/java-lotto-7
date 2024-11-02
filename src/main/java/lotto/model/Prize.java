@@ -30,15 +30,15 @@ public enum Prize {
         return rank;
     }
 
-    Long getMoney() {
+    public Long getMoney() {
         return money;
     }
 
-    int getConditionOfMatchCount() {
+    public int getConditionOfMatchCount() {
         return lottoWinningStrategy.getConditionOfMatchCount();
     }
 
-    boolean isBonusNumberRequired() {
+    public boolean isBonusNumberRequired() {
         return lottoWinningStrategy.isBonusNumberRequired();
     }
 }
