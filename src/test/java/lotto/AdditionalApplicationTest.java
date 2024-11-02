@@ -24,20 +24,6 @@ public class AdditionalApplicationTest {
 
 
 //
-//    @Test
-//    void 보너스번호가_일치하면_true를_반환한다() {
-//        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7)));
-//
-//        assertThat(Application.drawBonusNumber(lotto, defaultBonusNumber)).isTrue();
-//    }
-//
-//    @Test
-//    void 보너스번호가_불일치하면_false를_반환한다() {
-//        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
-//
-//        assertThat(Application.drawBonusNumber(lotto, defaultBonusNumber)).isFalse();
-//    }
-//
 //    @ParameterizedTest
 //    @MethodSource("lottoWithWinningRankProvider")
 //    void 로또의_당첨_등수를_확인한다(WinningRank expectedWinningRank, int matchingAmount, List<Integer> numbers) {

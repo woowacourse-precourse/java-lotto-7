@@ -13,4 +13,8 @@ public class BonusNumber {
             throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
         }
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

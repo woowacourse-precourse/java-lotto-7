@@ -70,4 +70,20 @@ class LottoTest {
                 new Object[]{0, Arrays.asList(8, 9, 10, 11, 12, 13)} //0개 일치
         );
     }
+
+    @Test
+    void 보너스번호가_일치하면_true를_반환한다() {
+        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 7)));
+        int bonusNumber = 7;
+
+        assertThat(lotto.contains(bonusNumber)).isTrue();
+    }
+
+    @Test
+    void 보너스번호가_불일치하면_false를_반환한다() {
+        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        int bonusNumber = 7;
+
+        assertThat(lotto.contains(bonusNumber)).isFalse();
+    }
 }

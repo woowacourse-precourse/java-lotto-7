@@ -39,14 +39,16 @@ public class Lotto {
     public int checkMatchingAmountWith(List<Integer> numbers) {
         int matchingAmount = 0;
         for (int number : numbers) {
-            if (numbers.contains(number)) {
+            if (contains(number)) {
                 matchingAmount++;
             }
         }
         return matchingAmount;
     }
 
-
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);

@@ -20,7 +20,8 @@ public class LottoMachine {
 
     public void checkLottoWinningResult(Lottos lottos, WinningNumber winningNumber, BonusNumber bonusNumber) {
         for (Lotto lotto : lottos.getLottos()) {
-            int matchingAmount = lotto.checkMatchingAmountWith(winningNumber.getNumbers());
+            int matchingWinnerNumberAmount = lotto.checkMatchingAmountWith(winningNumber.getNumbers());
+            boolean matchesBonusNumber = lotto.contains(bonusNumber.getBonusNumber());
         }
     }
 }
