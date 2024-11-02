@@ -14,7 +14,7 @@ public class Lottos {
     }
 
     public void addLotto(LottoNumberGenerator lottoNumberGenerator) {
-        List<Integer> numbers = lottoNumberGenerator.generate();
+        List<Integer> numbers = new ArrayList<>(lottoNumberGenerator.generate());
         Collections.sort(numbers);
         lottos.add(new Lotto(numbers));
     }
