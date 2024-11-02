@@ -80,7 +80,7 @@
 - [x] 발행된 로또를 오름차순으로 정렬하는 기능
 - [x] 입력한 당첨 번호와 보너스 번호로 로또 번호를 맞추는 기능
 - [x] 1등부터 5등까지 당첨 내역을 집계하는 기능
-- [ ] 수익률을 계산하는 기능
+- [x] 총 수익률을 계산하는 기능
 - [x] 잘못된 입력을 할 경우 `IllegalArgumentException`을 발생시키고, "[ERROR]"로 시작하는 에러 메세지를 출력 후 그 부분부터 다시 입력을 받는 기능
     - `Exception`이 아닌 `llegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형으로 처리해야 한다.
 

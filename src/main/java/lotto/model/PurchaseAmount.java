@@ -44,4 +44,8 @@ public class PurchaseAmount {
     public int hashCode() {
         return Objects.hashCode(purchaseAmount);
     }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

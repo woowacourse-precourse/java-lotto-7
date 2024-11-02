@@ -36,8 +36,9 @@ public class LottoController {
         WinningNumbers winningNumbers = issueWinningNumbers();
 
         LottoWinningResult winningResult = getLottoWinningResult(lottos, winningNumbers);
-        outputView.printWinningResultMessage();
         outputView.printLottoWinningResult(winningResult.getLottoWinningResult());
+
+        double rateOfReturn = winningResult.calculateRateOfReturn(purchaseAmount);
     }
 
     private LottoWinningResult getLottoWinningResult(List<Lotto> lottos, WinningNumbers winningNumbers) {

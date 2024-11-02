@@ -14,6 +14,21 @@ public class LottoWinningResult {
         return new LottoWinningResult(lottoRankResult);
     }
 
+    public double calculateRateOfReturn(PurchaseAmount purchaseAmount) {
+        long proceeds = calculateTotalWinningPrice();
+        int investmentAmount = purchaseAmount.getPurchaseAmount();
+        return calculatePercentage(proceeds, investmentAmount);
+    }
+
+    private long calculateTotalWinningPrice() {
+        return this.lottoWinningResult.entrySet().stream()
+                .mapToLong(rank -> rank.getKey().getWinningAmount() * rank.getValue()).sum();
+    }
+
+    private double calculatePercentage(long proceeds, int investmentAmount) {
+        return (double) proceeds / investmentAmount * 100;
+    }
+
     public Map<LottoRank, Integer> getLottoWinningResult() {
         return lottoWinningResult;
     }
