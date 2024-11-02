@@ -10,6 +10,7 @@ public class InputView {
 
     private final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public int inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
@@ -18,9 +19,13 @@ public class InputView {
 
     private int readPurchaseAmount() {
         String input = Console.readLine();
-        int purchaseAmount = parsePurchaseAmount(input);
-        validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+        try {
+            int purchaseAmount = parsePurchaseAmount(input);
+            validatePurchaseAmount(purchaseAmount);
+            return purchaseAmount;
+        } catch (IllegalArgumentException e) {
+            return readPurchaseAmount();
+        }
     }
 
     private int parsePurchaseAmount(String input) {
@@ -96,5 +101,36 @@ public class InputView {
             }
         }
         return true;
+    }
+
+    public int inputBonusNumber() {
+        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+        return readBonusNumber();
+    }
+
+    private int readBonusNumber() {
+        String input = Console.readLine();
+        try {
+            int bonusNumber = parseBonusNumber(input);
+            validateBonusNumberInRange(bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return readBonusNumber();
+        }
+    }
+
+    private int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            return readBonusNumber();
+        }
+    }
+
+    private void validateBonusNumberInRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 }
