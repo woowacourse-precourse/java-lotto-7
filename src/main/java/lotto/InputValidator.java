@@ -29,7 +29,7 @@ public class InputValidator {
     }
 
     public static void validateEmptyInput(String input){
-        if(input.isEmpty() || input.trim().isEmpty()){
+        if(input == null || input.trim().isEmpty()){
             throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
         }
     }
