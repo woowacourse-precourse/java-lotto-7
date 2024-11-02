@@ -3,12 +3,10 @@ package lotto.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static lotto.domain.LottoGenerator.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoGeneratorTest {
@@ -19,7 +17,7 @@ class LottoGeneratorTest {
     @BeforeEach
     void setUp() {
         lottoGenerator = new LottoGenerator();
-        lottos = lottoGenerator.generateLottos(10);
+        lottos = lottoGenerator.generateLotto(10);
     }
 
     @Test

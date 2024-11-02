@@ -5,18 +5,17 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class LottoGenerator {
 
     public static final int START_INCLUSIVE = 1;
     public static final int END_INCLUSIVE = 45;
     public static final int COUNT = 6;
-    public static final int ZERO = 0;
 
-    public List<Lotto> generateLottos(int tickets) {
-        return IntStream.range(ZERO, tickets)
-                .mapToObj(ticketCount -> new Lotto(generateLottoNumbers()))
+    public List<Lotto> generateLotto(int ticket) {
+        return Stream.generate(() -> new Lotto(generateLottoNumbers()))
+                .limit(ticket)
                 .collect(Collectors.toList());
     }
 
