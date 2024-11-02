@@ -31,4 +31,10 @@ class PrizeTest {
     void shouldReturnFourthPrizeWhenFourNumbersMatch() {
         assertEquals(Prize.FOURTH, Prize.valueOf(4, false));
     }
+
+    @Test
+    @DisplayName("3개 번호 일치 시 FIFTH 등수 반환")
+    void shouldReturnFifthPrizeWhenThreeNumbersMatch() {
+        assertEquals(Prize.FIFTH, Prize.valueOf(3, false));
+    }
 }
