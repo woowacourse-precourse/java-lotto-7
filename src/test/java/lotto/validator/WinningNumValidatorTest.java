@@ -1,10 +1,13 @@
 package lotto.validator;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_CHAR;
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_DUPLICATE;
 import static lotto.constant.ExceptionMessage.INVALID_BONUS_RANGE;
 import static lotto.constant.ExceptionMessage.INVALID_WINNING_CHAR;
 import static lotto.constant.ExceptionMessage.INVALID_WINNING_COUNT;
 import static lotto.constant.ExceptionMessage.INVALID_WINNING_DELIMITER;
+import static lotto.constant.ExceptionMessage.INVALID_WINNING_DUPLICATE;
 import static lotto.constant.ExceptionMessage.INVALID_WINNING_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -60,14 +63,46 @@ class WinningNumValidatorTest extends NsTest {
         );
     }
 
+    @Test
+    @DisplayName("당첨 번호는 중복될 수 없다.")
+    void 당첨_번호_중복_예외_테스트() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("8000", "1,2,3,3,4,5"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(INVALID_WINNING_DUPLICATE.getMessage())
+        );
+    }
+
+    @ParameterizedTest
+    @CsvSource({"10,", "10 "})
+    @DisplayName("보너스 번호는 숫자 외의 문자를 포함할 수 없다.")
+    void 보너스_번호_문자_종류_예외_테스트(String bonus) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", bonus))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(INVALID_BONUS_CHAR.getMessage())
+        );
+    }
+
     @ParameterizedTest
     @CsvSource({"0", "46"})
-    @DisplayName("보너스 번호는 1 이상 45 이하의 숫자여야 한다.")
-    void 보너스_번호_범위_예외_테스트(String winning) {
+    @DisplayName("보너스 번호는 1 이상 45 이하여야 한다.")
+    void 보너스_번호_범위_예외_테스트(String bonus) {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("8000", winning))
+                assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", bonus))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(INVALID_BONUS_RANGE.getMessage())
+        );
+    }
+
+    @ParameterizedTest
+    @CsvSource({"1", "6"})
+    @DisplayName("보너스 번호는 당첨 번호 중 그 어느 것과도 중복될 수 없다.")
+    void 보너스_번호_중복_예외_테스트(String bonus) {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("8000", "1,2,3,4,5,6", bonus))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(INVALID_BONUS_DUPLICATE.getMessage())
         );
     }
 
