@@ -18,13 +18,14 @@ public class ObjectFactory {
     private final OutputView outputView = new OutputView();
     private final InputValidator inputValidator = new InputValidator();
     private final InputParser inputParser = new InputParser();
+    private final LotteryMachineModel lotteryMachineModel = new LotteryMachineModel();
 
     public final PurchaseAmountController purchaseAmountController() {
         return new PurchaseAmountController(inputView, outputView, purchaseAmountService());
     }
 
     public final WinnerNumberController winnerNumberController() {
-        return new WinnerNumberController(inputView, winnerNumberService());
+        return new WinnerNumberController(inputView, outputView, winnerNumberService());
     }
 
     public final BonusNumberController bonusNumberController() {
@@ -32,12 +33,11 @@ public class ObjectFactory {
     }
 
     public final PurchaseAmountService purchaseAmountService() {
-        LotteryMachineModel lotteryMachineModel = new LotteryMachineModel();
         return new PurchaseAmountService(inputValidator, inputParser, lotteryMachineModel);
     }
 
     public final WinnerNumberService winnerNumberService() {
-        return new WinnerNumberService(inputValidator, inputParser);
+        return new WinnerNumberService(inputValidator, inputParser, lotteryMachineModel);
     }
 
     public final BonusNumberService bonusNumberService() {

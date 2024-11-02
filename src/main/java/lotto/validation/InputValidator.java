@@ -17,12 +17,4 @@ public class InputValidator {
             throw new IllegalArgumentException(ExceptionMessage.WINNER_NUMBER_INPUT_INVALID_CHARACTER);
         }
     }
-
-    public void validateCommaPosition(String[] winnerNumbers) {
-        for (String winnerNumber : winnerNumbers) {
-            if (winnerNumber.isBlank()) {
-                throw new IllegalArgumentException(ExceptionMessage.WINNER_NUMBER_INVALID_COMMA_POSITION);
-            }
-        }
-    }
 }

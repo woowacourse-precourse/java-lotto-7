@@ -1,10 +1,8 @@
 package lotto.service;
 
-import static lotto.constant.Policy.LOTTO_NUMBER_MAX;
-import static lotto.constant.Policy.LOTTO_NUMBER_MIN;
-
-import java.util.Arrays;
-import lotto.constant.ExceptionMessage;
+import java.util.List;
+import lotto.entity.WinnerNumber;
+import lotto.model.LotteryMachineModel;
 import lotto.parse.InputParser;
 import lotto.validation.InputValidator;
 
@@ -12,31 +10,24 @@ public class WinnerNumberService {
 
     private final InputValidator inputValidator;
     private final InputParser inputParser;
+    private final LotteryMachineModel lotteryMachineModel;
 
-    public WinnerNumberService(InputValidator inputValidator, InputParser inputParser) {
+    public WinnerNumberService(InputValidator inputValidator, InputParser inputParser,
+                               LotteryMachineModel lotteryMachineModel) {
         this.inputValidator = inputValidator;
         this.inputParser = inputParser;
+        this.lotteryMachineModel = lotteryMachineModel;
     }
 
-    public void validate(String input) {
+    public void save(String input) {
+        validateInput(input);
+        List<Integer> parseNumbers = inputParser.parseWinnerNumber(input);
+        WinnerNumber winnerNumber = new WinnerNumber(parseNumbers);
+        lotteryMachineModel.settingWinnerNumber(winnerNumber);
+    }
+
+    private void validateInput(String input) {
         inputValidator.validateInputIsEmpty(input);
         inputValidator.validateValidCharacter(input);
-        String[] winnerNumbers = inputParser.parseWinnerNumber(input);
-        inputValidator.validateCommaPosition(winnerNumbers);
-        validateInRangeNumber(winnerNumbers);
-    }
-
-    private void validateInRangeNumber(String[] winnerNumbers) {
-        boolean isValid = Arrays.stream(winnerNumbers)
-                .map(Integer::parseInt)
-                .allMatch(this::isInRangeNumber);
-
-        if (!isValid) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_INVALID_RANGE);
-        }
-    }
-
-    private boolean isInRangeNumber(Integer number) {
-        return number >= LOTTO_NUMBER_MIN && number <= LOTTO_NUMBER_MAX;
     }
 }
