@@ -5,10 +5,10 @@ import lotto.Messages.ErrorMessage;
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_STOCK = 10000;
-    private PurchaseAmount purchaseAmount;
+    private PurchaseAmount amount;
 
     private LottoMachine(PurchaseAmount purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
+        this.amount = purchaseAmount;
     }
 
     public static LottoMachine from(PurchaseAmount purchaseAmount) {
@@ -42,4 +42,7 @@ public class LottoMachine {
         }
     }
 
+    public int calculateMaxLottos(){
+        return amount.getValue() / LOTTO_PRICE;
+    }
 }
