@@ -1,9 +1,9 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.exception.Exception.LOTTO_NUMBER_DUPLICATED;
 import static lotto.exception.Exception.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.exception.Exception.LOTTO_NUMBER_SIZE_MUST_BE_SIX;
-import static lotto.validator.LottoNumbersValidator.validate;
 import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -76,6 +76,17 @@ class InputViewTest {
                 assertThatThrownBy(() -> runException("1,2,3,4,5,46"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+            });
+
+        }
+
+        @DisplayName("당첨번호 입력 중복일 때 예외 테스트")
+        @Test
+        void inputWinningNumbers_fail_duplicate() {
+            assertSimpleTest(() -> {
+                assertThatThrownBy(() -> runException("1,2,3,4,5,5"))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(LOTTO_NUMBER_DUPLICATED.getMessage());
             });
 
         }
