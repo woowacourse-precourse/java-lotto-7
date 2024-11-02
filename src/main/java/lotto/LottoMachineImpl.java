@@ -55,21 +55,25 @@ public class LottoMachineImpl implements LottoMachine {
             totalPrizeMoney += rank.getPrizeMoney() * winningResult.get(rank);
         }
 
-        double profitRate = ((double) totalPrizeMoney / totalSpent);
-        return Math.round(profitRate * 100) / 1000.0;
+        double profitRate = ((double) totalPrizeMoney / totalSpent) * 100;
+        return Math.round(profitRate * 100) / 100.0;
     }
 
     private List<Integer> pickLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> pickedNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(pickedNumbers);
+        return pickedNumbers;
+
     }
 
     private void showCreateLottoTickets(int count, List<Lotto> lottoTickets) {
+        System.out.println();
         System.out.println(count + "개를 구매했습니다.");
 
         for (Lotto lotto : lottoTickets) {
-            Collections.sort(lotto.getNumbers());
             System.out.println(lotto);
         }
+        System.out.println();
     }
 
     private int getMatchNumbers(Lotto lottoTicket, List<Integer> winningNumbers) {
@@ -95,6 +99,8 @@ public class LottoMachineImpl implements LottoMachine {
 
     private void printWinningResult(HashMap<LottoRank, Integer> winningCounts) {
         System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + winningCounts.get(RANK_5) + "개");
         System.out.println("4개 일치 (50,000원) - " + winningCounts.get(RANK_4) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + winningCounts.get(RANK_3) + "개");
