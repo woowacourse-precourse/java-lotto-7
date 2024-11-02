@@ -78,8 +78,8 @@ public class LottoController {
     private void assignWinningNumbers() {
         while (true) {
             try {
-                String winningString = inputView.getWinningString();
-                winningNumber = new WinningNumber(winningString);
+                String input = inputView.getWinningNumber();
+                winningNumber = new WinningNumber(input);
                 break;
             } catch (InvalidWinningNumbersException e) {
                 System.out.println(e.getMessage());

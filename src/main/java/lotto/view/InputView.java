@@ -19,7 +19,7 @@ public class InputView {
         }
     }
 
-    public String getWinningNumbers() {
+    public String getWinningNumber() {
         System.out.println("\n" + "당첨 번호를 입력해 주세요.");
 
         String winningString = Console.readLine();
