@@ -12,6 +12,10 @@ public class Investment {
         validGreaterThanZero();
     }
 
+    public int getQuantity() {
+        return initialInvestment.divide(BigInteger.valueOf(1000)).intValue();
+    }
+
     private void validGreaterThanZero() {
         if (initialInvestment.compareTo(BigInteger.ZERO) < 0) {
             throw new IllegalArgumentException("금액은 0 이상이어야 합니다.");
