@@ -7,14 +7,25 @@ public class LottoResultPrinter {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        int totalPrize = calculateTotalPrize(resultCounts);
+        printPrizeCounts(resultCounts);
+        printYield(totalPrize, calculateTotalAmountSpent(resultCounts));
+    }
+
+    private static void printPrizeCounts(Map<PrizeRank, Integer> resultCounts) {
+        for (PrizeRank rank : PrizeRank.values()) {
+            int count = resultCounts.getOrDefault(rank, 0);
+            System.out.printf("%s - %d개\n", rank.getLabel(), count);
+        }
+    }
+
+    private static int calculateTotalPrize(Map<PrizeRank, Integer> resultCounts) {
         int totalPrize = 0;
         for (PrizeRank rank : PrizeRank.values()) {
             int count = resultCounts.getOrDefault(rank, 0);
             totalPrize += count * rank.getPrize();
-            System.out.printf("%s - %d개\n", rank.getLabel(), count);
         }
-
-        printYield(totalPrize, calculateTotalAmountSpent(resultCounts));
+        return totalPrize;
     }
 
     private static void printYield(int totalPrize, int totalAmountSpent) {
@@ -27,7 +38,6 @@ public class LottoResultPrinter {
         for (int count : resultCounts.values()) {
             totalTickets += count;
         }
-        return totalTickets * 1000; // 로또 한 장당 1,000원
+        return totalTickets * 1000;
     }
 }
-
