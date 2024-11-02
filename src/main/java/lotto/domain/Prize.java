@@ -34,10 +34,6 @@ public enum Prize {
         return count;
     }
 
-    public boolean isBonus() {
-        return bonus;
-    }
-
     public long getPrize() {
         return prize;
     }

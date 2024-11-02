@@ -5,7 +5,6 @@ public class Money {
 
     public Money(int money) {
         validatePositive(money);
-//        validateIsZero(money);
         validateDivide(money);
         this.money = money;
     }
@@ -19,12 +18,6 @@ public class Money {
     private void validateDivide(int money) {
         if (!(money % 1000 == 0)) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원으로 나누어 떨어져야 합니다.");
-        }
-    }
-
-    private void validateIsZero(int money) {
-        if(money == 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 0보다 커야합니다");
         }
     }
 

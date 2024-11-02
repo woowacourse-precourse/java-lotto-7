@@ -38,12 +38,4 @@ public class WinningLotto {
     public boolean isBonusMatched(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
-
-    public Lotto getWinningLotto() {
-        return winningLotto;
-    }
-
-    public Integer getBonusNumber() {
-        return bonusNumber;
-    }
 }
