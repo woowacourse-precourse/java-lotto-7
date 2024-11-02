@@ -44,6 +44,7 @@ class LottoMachinTest {
         System.setIn(originalIn);  // 입력 스트림 복원
         System.setOut(originalOut); // 출력 스트림 복원
         output.reset(); // 출력 스트림 초기화
+        Console.close();
     }
 
     @DisplayName("로또 머신이 판매한 로또의 갯수와 실제 구매자가 받은 로또의 개수 비교 테스트")
@@ -101,7 +102,7 @@ class LottoMachinTest {
             inputNumbers.add(Integer.parseInt(number));
         }
         Lotto expected = new Lotto(inputNumbers);
-        expected.sortLottoNumbers();
+//        expected.sortLottoNumbers();
 
         LottoMachin lottoMachin = new LottoMachin();
         lottoMachin.inputWinningNumbersTo(consumer);
@@ -136,10 +137,16 @@ class LottoMachinTest {
     @DisplayName("로또 머신이 구매자에게 보너스 번호를 입력받는 숫자 성공 테스트")
     @Test
     void inputBonusNumberToConsumerSuccessTest() {
-        String input = "1";
+        String input = "1,2,3,4,5,6";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
+        machine.inputWinningNumbersTo(consumer);
 
+        Console.close();
+
+        input = "7";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         machine.inputBonusNumbersTo(consumer);
+
         assertTrue(consumer.selectedBonusNumberIsEqualsTo(Integer.parseInt(input)));
     }
 
@@ -165,4 +172,20 @@ class LottoMachinTest {
                 .hasMessage(InputErrorMessage.WINNING_NUMBER_VALIDATION.getErrorMessage());
     }
 
+    @DisplayName("로또 머신이 구매자에게 보너스 번호를 입력받는 숫자와 당첨번호 중복 테스트")
+    @Test
+    void inputBonusNumberToConsumerFailDuplicateWithinWinningNumberTest() {
+        String input = "1,2,3,4,5,6";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        machine.inputWinningNumbersTo(consumer);
+
+        Console.close();
+
+        input = "1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        assertThatThrownBy(() -> machine.inputBonusNumbersTo(consumer))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(InputErrorMessage.BONUS_NUMBER_NOT_IN_WINNING_NUMBERS.getErrorMessage());
+    }
 }
