@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
+import lotto.LottoResult;
 import lotto.MatchingCountResult;
 
 public class LottoResultService {
@@ -11,12 +12,17 @@ public class LottoResultService {
     private final List<Lotto> purchaseLotto;
     private final String WINNING_COUNT = "winningCount";
     private final String BONUS_COUNT = "bonusCount";
-    private final LottoRateCalculator lottoRateCalculator;
+    private final int UNIT = 1000;
 
     public LottoResultService(List<Lotto> purchaseLotto, List<Integer> winningNumbers, int bonusNumber) {
         lottoMatchingCounter = new LottoMatchingCounter(winningNumbers, bonusNumber);
         this.purchaseLotto = purchaseLotto;
-        this.lottoRateCalculator = new LottoRateCalculator();
+    }
+
+    public LottoResult getLottoResult() {
+        List<MatchingCountResult> matchingCountResults = getWinningCount();
+        double lottoRate = getLottoRate(matchingCountResults);
+        return new LottoResult(matchingCountResults, lottoRate);
     }
 
     public List<MatchingCountResult> getWinningCount() {
@@ -29,5 +35,10 @@ public class LottoResultService {
             matchingCountResults.add(matchingCountResult);
         }
         return matchingCountResults;
+    }
+
+    private double getLottoRate(List<MatchingCountResult> matchingCountResults) {
+        int purchaseAmount = purchaseLotto.size() * UNIT;
+        return LottoRateCalculator.calculateReturnOfRate(purchaseAmount, matchingCountResults);
     }
 }
