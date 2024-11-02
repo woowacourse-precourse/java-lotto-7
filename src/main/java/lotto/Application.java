@@ -10,9 +10,7 @@ public class Application {
         List<Lotto> lottoPaper = (new Generate(cost)).getLottoPaper();
         Output.printLotto(lottoPaper);
 
-        final List<Integer> winningNumbers = Arrays.stream(Input.getWinNumbers().split(","))
-                .map(Integer::parseInt)
-                .toList();
+        final List<Integer> winningNumbers = Input.getWinNumbers();
         System.out.println();
 
         final int bonus = Input.getBonusNumber(winningNumbers);
