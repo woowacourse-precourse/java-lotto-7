@@ -8,9 +8,12 @@ import java.util.function.Supplier;
 
 public class LottoGenerator {
     private final Supplier<List<Integer>> randomNumbers;
+    private static final Integer START_NUMBER = 1;
+    private static final Integer END_NUMBER = 45;
+    private static final Integer TOTAL_COUNT = 6;
 
     public LottoGenerator() {
-        this(() -> Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        this(() -> Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, TOTAL_COUNT));
     }
 
     public LottoGenerator(Supplier<List<Integer>> randomNumbers) {
