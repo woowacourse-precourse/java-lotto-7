@@ -8,8 +8,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoNumberValidatorTest {
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 46})
+    void 보너스_번호가_1이상_45이하가_아니면_IllegalArgumentException_예외가_발생한다(int bonusNumber) {
+        assertThrows(IllegalArgumentException.class,
+                () -> LottoNumberValidator.validateRange(bonusNumber));
+    }
 
     @Test
     void 로또_번호의_개수가_6개가_아니면_IllegalArgumentException_예외가_발생한다() {

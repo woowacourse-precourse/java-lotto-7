@@ -20,13 +20,14 @@ public class LottoNumberValidator {
                 });
     }
 
+    public static void validateRange(int number) {
+        if (number < MINIMUM || number > MAXIMUM) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45까지의 숫자로만 이루어져야해요.");
+        }
+    }
+
     public static void validateRange(List<Integer> numbers) {
-        numbers
-                .forEach(number -> {
-                    if (number < MINIMUM || number > MAXIMUM) {
-                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45까지의 숫자로만 이루어져야해요.");
-                    }
-                });
+        numbers.forEach(LottoNumberValidator::validateRange);
     }
 
     public static void validateNumbersRequired(List<Integer> numbers) {
