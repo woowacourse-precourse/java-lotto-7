@@ -11,4 +11,12 @@ public class WinningLotto {
         BonusNumberValidator.validateBonusNumber(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }
