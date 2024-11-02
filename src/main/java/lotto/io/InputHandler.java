@@ -13,7 +13,7 @@ public class InputHandler implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         Console.close();
     }
 }
