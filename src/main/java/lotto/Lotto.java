@@ -32,9 +32,5 @@ public class Lotto {
         }
     }
 
-    //로또 번호 생성
-    private Lotto generate() {
-        List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(generatedNumbers);
-    }
+
 }
