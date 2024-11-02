@@ -1,5 +1,7 @@
 package lotto.io;
 
+import java.util.function.Function;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.lotto.LottoAmount;
 import lotto.lotto.LottoNumber;
@@ -13,34 +15,25 @@ public class ConsoleInputHandler implements InputHandler {
 
     @Override
     public LottoAmount inputPurchaseAmount() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                return inputConverter.convertToLottoAmount(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return retryInput("구입금액을 입력해 주세요.", inputConverter::convertToLottoAmount);
     }
 
     @Override
     public WiningNumbers inputWiningNumbers() {
-        while (true) {
-            try {
-                System.out.println("\n당첨 번호를 입력해 주세요.");
-                return inputConverter.convertToWiningNumbers(Console.readLine().split(NUMBER_DELIMITER));
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return retryInput("\n당첨 번호를 입력해 주세요.",
+                input -> inputConverter.convertToWiningNumbers(input.split(NUMBER_DELIMITER)));
     }
 
     @Override
     public LottoNumber inputBonusNumber() {
+        return retryInput("\n보너스 번호를 입력해 주세요.", inputConverter::convertToBonusNumber);
+    }
+
+    private <T> T retryInput(String message, Function<String, T> converter) {
         while (true) {
             try {
-                System.out.println("\n보너스 번호를 입력해 주세요.");
-                return inputConverter.convertToBonusNumber(Console.readLine());
+                System.out.println(message);
+                return converter.apply(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
