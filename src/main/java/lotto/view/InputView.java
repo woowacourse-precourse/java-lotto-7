@@ -4,6 +4,8 @@ import static camp.nextstep.edu.missionutils.Console.*;
 import static lotto.exception.Exception.*;
 
 public class InputView {
+    private static final String WINNING_NUMBER_DELIMITER = ",";
+
     public static int inputPurchaseAmount() {
         try {
             return Integer.parseInt(readLine());
@@ -14,5 +16,9 @@ public class InputView {
 
     private static String removeAllSpaces(String input) {
         return input.replace(" ", "");
+    }
+
+    private static String[] splitWinningNumbers(String input) {
+        return input.split(WINNING_NUMBER_DELIMITER);
     }
 }
