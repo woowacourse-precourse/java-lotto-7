@@ -28,4 +28,29 @@ public class LottoMachine {
 
         return new WinningLotto(winLottoNumbers, bonus);
     }
+
+
+    public static Map<Lotto,Prize> compareWin2Lotto(List<Lotto> lottos, WinningLotto winningLotto) {
+        Map<Lotto,Prize> lottoPrizeMap = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            int machCount = winningLotto.getMatchCount(lotto);
+            boolean bonusMatch = winningLotto.isBonusMatch(lotto);
+            Prize prize = selectPrize(machCount, bonusMatch);
+            lottoPrizeMap.put(lotto, prize);
+        }
+        return lottoPrizeMap;
+    }
+
+    private static Prize selectPrize(int matchCount, boolean bonusMatch) {
+        for(Prize prize : Prize.values()) {
+            if(prize.getNormalNumber() == matchCount && prize.getBonusNumber() == bonusMatch) {
+                return prize;
+            }
+        }
+        return null;
+    }
+
+
+
+
 }
