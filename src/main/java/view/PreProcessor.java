@@ -33,4 +33,8 @@ public class PreProcessor {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public static Integer stringToInteger(String input) {
+        return Integer.parseInt(input);
+    }
 }

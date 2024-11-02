@@ -8,6 +8,7 @@ public class InputView {
 
     private static final String ASK_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String ASK_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     private final Reader reader;
     private final Writer writer;
@@ -50,5 +51,11 @@ public class InputView {
             writer.printErrorMessage(e.getMessage());
             return readWinningNumber();
         }
+    }
+
+    public Integer readBonus() {
+        writer.printSout(ASK_BONUS_NUMBER);
+        String input = reader.readInput();
+        return PreProcessor.stringToInteger(input);
     }
 }
