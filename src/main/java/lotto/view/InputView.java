@@ -16,9 +16,10 @@ public class InputView {
         return Integer.parseInt(rawMoney);
     }
 
-    public String lottoNumsInput() {
+    public String[] lottoNumsInput() {
         System.out.printf(ASK_LOTTO_NUM_INPUT);
-        return Console.readLine();
+        String rawNumbers = Console.readLine();
+        return rawNumbers.split(",");
     }
 
     public int lottoBonusNumInput() {

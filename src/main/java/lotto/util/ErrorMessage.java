@@ -7,7 +7,8 @@ public enum ErrorMessage {
     LOTTO_IS_NOT_FIT_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
     LOTTO_NUMS_DUPLICATION("[ERROR] 로또 번호가 중복됩니다."),
     LOTTO_NUM_OUT_OF_RANGE(String.format("[ERROR] 로또 번호는 %d와 %d 사이의 숫자여야 합니다.",
-            Constants.LOTTO_RANGE_START, Constants.LOTTO_RANGE_END));
+            Constants.LOTTO_RANGE_START, Constants.LOTTO_RANGE_END)),
+    LOTTO_NUM_IS_NOT_NUM("[ERROR] 로또 번호는 숫자여아 합니다.");
 
     private final String msg;
 

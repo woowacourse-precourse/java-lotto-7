@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lotto.service.LottoResult;
 import lotto.util.ErrorMessage;
@@ -57,13 +58,22 @@ public class LottoController {
     private Lotto inputWinningLotto() {
         while (true) {
             try {
-                String rawNumbers = inputView.lottoNumsInput();
-                return new Lotto(Arrays.stream(rawNumbers.split(","))
-                        .map(Integer::parseInt)
-                        .toList());
+                String[] rawNumbers = inputView.lottoNumsInput();
+                List<Integer> numbers = toIntegerList(rawNumbers);
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private List<Integer> toIntegerList(String[] numbers) {
+        try {
+            return Arrays.stream(numbers)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_IS_NOT_NUM.getMsg());
         }
     }
 
