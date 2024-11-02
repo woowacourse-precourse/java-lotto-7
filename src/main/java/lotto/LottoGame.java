@@ -11,11 +11,14 @@ public class LottoGame {
 
     private int purchaseAmount;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
+    private Lotto lotto;
 
     public void start() {
         purchaseAmountInput();
+        lottoWinningNumberInput();
     }
 
+    // 첫 번째 입력
     private void purchaseAmountInput() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
@@ -28,6 +31,28 @@ public class LottoGame {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             purchaseAmountInput();
+        }
+    }
+
+    // 두 번째 입력
+    private void lottoWinningNumberInput() {
+        try {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+
+            List<String> winningNumber = List.of(Console.readLine().split(","));
+            List<Integer> winningNumbers = new ArrayList<>();
+
+            for (String number : winningNumber) {
+                winningNumbers.add(Integer.parseInt(checkPositiveNumber(number)));
+            }
+
+            Collections.sort(winningNumbers);
+
+            lotto = new Lotto(winningNumbers);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            lottoWinningNumberInput();
         }
     }
 
