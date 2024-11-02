@@ -1,11 +1,20 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 public class LottoView {
-    public String inputLottoPrice() {
+    private static final String WINNING_DELIMITER = ",";
+
+    public BigDecimal inputLottoPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        return convertStringToBigDecimal(Console.readLine());
+    }
+
+    private static BigDecimal convertStringToBigDecimal(String str) {
+        return new BigDecimal(Integer.parseInt(str));
     }
 
     public void printLottoCount(int lottoCount) {
@@ -16,18 +25,20 @@ public class LottoView {
         System.out.println(lottoNumbers);
     }
 
-    public String inputWinningNumber() {
+    public List<Integer> inputWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
         System.out.println();
-        return winningNumber;
+        return Arrays.stream(winningNumber.split(WINNING_DELIMITER))
+                .map(Integer::parseInt)
+                .toList();
     }
 
-    public String inputBonusNumber() {
+    public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         System.out.println();
-        return bonusNumber;
+        return Integer.parseInt(bonusNumber);
     }
 
     public void printWinningTrace(String winningTrace) {

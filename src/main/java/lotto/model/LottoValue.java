@@ -12,7 +12,11 @@ public class LottoValue {
 
     public LottoValue(BigDecimal lottoPrice) {
         this.lottoPrice = lottoPrice;
-    this.lottoCount = lottoPrice.divide(BigDecimal.valueOf(LOTTO_PRICE_DIVISOR), WINING_RATE_DECIMAL_PLACE, HALF_UP)
+        this.lottoCount = calculateCount(lottoPrice);
+    }
+
+    private static int calculateCount(BigDecimal lottoPrice) {
+        return lottoPrice.divide(BigDecimal.valueOf(LOTTO_PRICE_DIVISOR), WINING_RATE_DECIMAL_PLACE, HALF_UP)
                 .intValue();
     }
 

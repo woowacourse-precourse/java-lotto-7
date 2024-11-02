@@ -26,7 +26,7 @@ public enum Winning {
         return value;
     }
 
-    public static Winning fromCount(int value) {
+    public static Winning getFromValue(int value) {
         return Arrays.stream(Winning.values())
                 .filter(winning -> winning.getValue() == value)
                 .findFirst()

@@ -35,13 +35,13 @@ public class Lotto {
         return sb.toString();
     }
 
-    public int confirmWinning(List<Integer> winningNumbers) {
+    public int correctCount(List<Integer> winningNumbers) {
         return (int) winningNumbers.stream()
                 .filter(numbers::contains)
                 .count();
     }
 
-    public boolean confirmBonus(int bonusNumber) {
+    public boolean isBonus(int bonusNumber) {
         return numbers.stream().anyMatch(number -> number == bonusNumber);
     }
 }

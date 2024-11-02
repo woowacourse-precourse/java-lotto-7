@@ -4,7 +4,7 @@ import static java.math.RoundingMode.HALF_UP;
 import static lotto.model.Winning.FIVE;
 import static lotto.model.Winning.FIVE_BONUS;
 import static lotto.model.Winning.NONE;
-import static lotto.model.Winning.fromCount;
+import static lotto.model.Winning.getFromValue;
 import static lotto.model.Winning.values;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -33,14 +33,23 @@ public class Lottos {
         return sb.toString();
     }
 
-    public void winningByWinningAndBonusNumber(List<Integer> winningNumber, int bonusNumber) {
-        lottos.keySet().forEach(lotto -> {
-            lottos.put(lotto, fromCount(lotto.confirmWinning(winningNumber)));
-            if (lotto.confirmBonus(bonusNumber) && lottos.get(lotto) == FIVE) {
-                lottos.put(lotto, FIVE_BONUS);
-            }
-            lottos.get(lotto).increaseCount();
-        });
+    public void setByCorrectCount(List<Integer> winningNumber, int bonusNumber) {
+        lottos.keySet()
+                .forEach(lotto -> setByWinningNumber(winningNumber, bonusNumber, lotto)
+                .increaseCount());
+    }
+
+    private Winning setByWinningNumber(List<Integer> winningNumber, int bonusNumber, Lotto lotto) {
+        Winning winning = lottos.get(lotto);
+        int correctCount = lotto.correctCount(winningNumber);
+
+        lottos.put(lotto, getFromValue(correctCount));
+
+        if (lotto.isBonus(bonusNumber) && winning == FIVE) {
+            lottos.put(lotto, FIVE_BONUS);
+        }
+
+        return winning;
     }
 
     public String toStringWinningMessageAndCount() {
