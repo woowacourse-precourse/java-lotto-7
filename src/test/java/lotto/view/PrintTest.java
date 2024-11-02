@@ -43,8 +43,12 @@ class PrintTest {
   @Test
   public void printGeneratedTest() throws Exception{
     // 출력값 예시
+    String gievn = "8개를 구매했습니다.";
     // 사용자 입력을 읽으면
+    int amount = input.readAmount();
+    int lottoCounts = input.getLottoCounts(amount);
     // 입력 값에 기반하여 요청을 전달하고
+    handler.generateLotto(lottoCounts);
     // 요청받은만큼 로또를 발행한다
     // 로또 발행 결과를 전달함으로써 요청값에 응답한다
     // 응답 내용을 출력한다
