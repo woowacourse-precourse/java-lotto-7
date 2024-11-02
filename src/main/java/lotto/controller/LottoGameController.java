@@ -16,7 +16,14 @@ public final class LottoGameController {
     }
 
     public void run() {
-        setupLottoTickets();
+        while (true) {
+            try {
+                setupLottoTickets();
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.print(e.getMessage());
+            }
+        }
     }
 
     private void setupLottoTickets() {
