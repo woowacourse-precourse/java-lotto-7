@@ -7,10 +7,10 @@ import lotto.dto.WinningNumbersDto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Winning {
-    private Map<Integer, WinningNumbersDto> winningTickets = new HashMap<>();
+    private final Map<Integer, WinningNumbersDto> winningTickets = new HashMap<>();
 
-    public Winning(Map<Integer, WinningNumbersDto> winningTickets) {
-        this.winningTickets = winningTickets;
+    public Winning(int userPurchaseCount) {
+        makeWinningTickets(userPurchaseCount);
     }
 
     public Map<Integer, WinningNumbersDto> getWinningTickets() {
@@ -19,7 +19,7 @@ public class Winning {
 
     private WinningNumbersDto makeWinningNumbers(){
         List<Integer> winningNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        int winning = Randoms.pickNumberInRange(1, 45);
+        int winning =getWinningBonusNumber(winningNumbers);
         return new WinningNumbersDto(winningNumbers, winning);
     }
 
@@ -28,5 +28,14 @@ public class Winning {
             WinningNumbersDto winningNumbersDto = makeWinningNumbers();
             winningTickets.put(i+1 , winningNumbersDto);
         }
+    }
+
+    private Integer getWinningBonusNumber(List<Integer> winningNumbers){
+        int winningBonusNumber = 0;
+        do {
+            winningBonusNumber = Randoms.pickNumberInRange(1, 45);
+        } while (winningNumbers.contains(winningBonusNumber));
+
+        return winningBonusNumber;
     }
 }
