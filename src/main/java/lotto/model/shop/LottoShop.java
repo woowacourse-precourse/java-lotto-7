@@ -6,7 +6,7 @@ import lotto.model.number_generator.RandomNumberGenerator;
 
 public class LottoShop {
 
-    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1_000;
 
     public Lottos purchaseRandomLottos(int money, RandomNumberGenerator randomNumberGenerator) {
 
