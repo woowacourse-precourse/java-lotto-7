@@ -6,6 +6,8 @@ import lotto.exception.InputException;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_MINIMUM_BOUND = 1;
+    private static final int LOTTO_MAXIMUM_BOUND = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,6 +18,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateDuplicatedNumber(numbers);
+        validateRangeOfNumbers(numbers);
     }
 
     private void validateLottoSize(List<Integer> numbers) {
@@ -34,5 +37,18 @@ public class Lotto {
         return (int) numbers.stream()
                 .distinct()
                 .count();
+    }
+
+    private void validateRangeOfNumbers(List<Integer> numbers) {
+        if (isNotInValidRange(numbers)) {
+            throw InputException.from(ErrorMessage.LOTTO_NUMBER_HAS_OUT_OF_BOUND_NUMBER);
+        }
+    }
+
+    private boolean isNotInValidRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number ->
+                        number < LOTTO_MINIMUM_BOUND || number > LOTTO_MAXIMUM_BOUND
+                );
     }
 }
