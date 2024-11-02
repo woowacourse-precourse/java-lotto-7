@@ -11,8 +11,8 @@ import lotto.model.lotto.validator.LottoStoreValidator;
 public class LottoStore {
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public LottoStore(Long amount) {
-        this(new RandomLottoGenerator(), amount);
+    public LottoStore(Long purchaseAmount) {
+        this(new RandomLottoGenerator(), purchaseAmount);
     }
 
     public LottoStore(LottoGenerator lottoGenerator, long purchaseAmount) {

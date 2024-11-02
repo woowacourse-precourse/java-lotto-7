@@ -1,6 +1,5 @@
 package lotto.exception;
 
-import static lotto.util.LottoConstants.BONUS_NUMBER_COUNT;
 import static lotto.util.LottoConstants.LOTTO_NUMBERS_COUNT;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;

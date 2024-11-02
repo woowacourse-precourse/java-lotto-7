@@ -18,13 +18,13 @@ class LottoPrizeInfoTest {
             "2, false, NONE",
             "0, false, NONE"
     })
-    void 정확한_상금이_반환된다(int matchCount, boolean bonusMatch, LottoPrizeInfo expectedPrize) {
+    void 정확한_상금이_반환된다(int matchCount, boolean hasBonus, LottoPrizeInfo expectedPrize) {
         // Act
-        LottoPrizeInfo prizeInfo = LottoPrizeInfo.getPrizeByMatch(matchCount, bonusMatch);
+        LottoPrizeInfo prizeInfo = LottoPrizeInfo.getPrizeByMatch(matchCount, hasBonus);
 
         // Assert
         assertEquals(expectedPrize, prizeInfo,
                 () -> String.format("matchCount=%d, bonusMatch=%b일 때 예상 상금 %d와 실제 상금 %d가 일치하지 않습니다.",
-                        matchCount, bonusMatch, expectedPrize, prizeInfo));
+                        matchCount, hasBonus, expectedPrize, prizeInfo));
     }
 }

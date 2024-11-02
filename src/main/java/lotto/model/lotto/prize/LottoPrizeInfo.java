@@ -1,5 +1,7 @@
 package lotto.model.lotto.prize;
 
+import java.util.Arrays;
+
 public enum LottoPrizeInfo {
     FIRST_PRIZE(6, false, 2_000_000_000L),
     SECOND_PRIZE(5, true, 30_000_000L),
@@ -9,12 +11,12 @@ public enum LottoPrizeInfo {
     NONE(0, false, 0L);
 
     private final int matchCount;
-    private final boolean requiresBonus;
+    private final boolean hasBonus;
     private final long prizeAmount;
 
-    LottoPrizeInfo(int matchCount, boolean requiresBonus, long prizeAmount) {
+    LottoPrizeInfo(int matchCount, boolean hasBonus, long prizeAmount) {
         this.matchCount = matchCount;
-        this.requiresBonus = requiresBonus;
+        this.hasBonus = hasBonus;
         this.prizeAmount = prizeAmount;
     }
 
@@ -23,12 +25,10 @@ public enum LottoPrizeInfo {
     }
 
 
-    public static LottoPrizeInfo getPrizeByMatch(int matchCount, boolean bonusMatch) {
-        for (LottoPrizeInfo prize : values()) {
-            if (prize.matchCount == matchCount && prize.requiresBonus == bonusMatch) {
-                return prize;
-            }
-        }
-        return NONE;
+    public static LottoPrizeInfo getPrizeByMatch(int matchCount, boolean hasBonus) {
+        return Arrays.stream(values())
+                .filter(prize -> prize.matchCount == matchCount && prize.hasBonus == hasBonus)
+                .findFirst()
+                .orElse(NONE);
     }
 }
