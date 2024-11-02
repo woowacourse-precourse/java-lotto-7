@@ -4,6 +4,7 @@ import lotto.domain.Lottery;
 import lotto.domain.NumberGenerator;
 import lotto.domain.PurchaseLotto;
 import lotto.domain.PurchasePrice;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,7 +25,10 @@ public class LottoController {
         PurchasePrice purchasePrice = InputView.inputPurchasePrice();
         PurchaseLotto purchaseLotto = createLottoTickets(purchasePrice);
 
-        return new Lottery(purchaseLotto);
+        OutputView.printWinningNumberInputText();
+        WinningNumber winningNumber = InputView.inputWinningNumber();
+
+        return new Lottery(purchaseLotto, winningNumber);
     }
 
     private PurchaseLotto createLottoTickets(PurchasePrice purchasePrice) {

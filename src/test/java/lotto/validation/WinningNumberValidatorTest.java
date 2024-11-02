@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoNumberValidatorTest {
+class WinningNumberValidatorTest {
 
     @DisplayName("아무 값도 입력하지 않으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     void validateNull(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber(input);
+            WinningNumberValidator.validateWinningNumber(input);
         });
     }
 
@@ -22,7 +22,7 @@ class LottoNumberValidatorTest {
     @Test
     void validateNotComma() {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber("1 2 3 4 5 7");
+            WinningNumberValidator.validateWinningNumber("1 2 3 4 5 7");
         });
     }
 
@@ -30,7 +30,7 @@ class LottoNumberValidatorTest {
     @Test
     void validateSeparatorContinue() {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber("1,2,3,4,5,,,7");
+            WinningNumberValidator.validateWinningNumber("1,2,3,4,5,,,7");
         });
     }
 
@@ -39,7 +39,7 @@ class LottoNumberValidatorTest {
     @ValueSource(strings = {"1,2,3, ,5,,,7", "1,2,3,   ,5,,,7"})
     void validateNoEmptyBetweenCommas(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber(input);
+            WinningNumberValidator.validateWinningNumber(input);
         });
     }
 
@@ -48,7 +48,7 @@ class LottoNumberValidatorTest {
     @ValueSource(strings = {"1,2,3,4,5", "1,2,3,4,5,6,7"})
     void validateNotSixNumbers(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber(input);
+            WinningNumberValidator.validateWinningNumber(input);
         });
     }
 
@@ -57,7 +57,7 @@ class LottoNumberValidatorTest {
     @ValueSource(strings = {"1,2,03,4,5,7", "1,2,0,4,5,6", "1,2,044,4,5,6"})
     void validateStartWithZero(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber(input);
+            WinningNumberValidator.validateWinningNumber(input);
         });
     }
 
@@ -66,7 +66,7 @@ class LottoNumberValidatorTest {
     @ValueSource(strings = {"1,2,3,4,3,7", "11,2,0,4,5,11"})
     void validateNumberDuplicate(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber(input);
+            WinningNumberValidator.validateWinningNumber(input);
         });
     }
 
@@ -75,7 +75,7 @@ class LottoNumberValidatorTest {
     @ValueSource(strings = {"1,2,3,4,3,71", "11,2,24,4,5,111"})
     void validateRange(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoNumberValidator.validateLottoNumber(input);
+            WinningNumberValidator.validateWinningNumber(input);
         });
     }
 }

@@ -6,9 +6,9 @@ import lotto.enums.Delimiter;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoValue;
 
-public class LottoNumberValidator {
+public class WinningNumberValidator {
 
-    public static void validateLottoNumber(String input) {
+    public static void validateWinningNumber(String input) {
         validateNull(input);
         validateSeparatorNotComma(input);
         validateSeparatorContinue(input);

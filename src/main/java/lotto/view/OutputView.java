@@ -18,4 +18,8 @@ public class OutputView {
                 .forEach(lotto -> lottoTickets.append(lotto).append("\n"));
         System.out.println(lottoTickets);
     }
+
+    public static void printWinningNumberInputText() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }
