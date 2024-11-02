@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.service;
+
+import lotto.domain.Lotto;
 
 public class InputValidator {
     private static final String ERROR_NOT_POSITIVE_NUMBER = "[ERROR] 입력 값은 양수여야 합니다.";

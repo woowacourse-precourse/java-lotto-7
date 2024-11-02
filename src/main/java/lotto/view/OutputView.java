@@ -2,8 +2,8 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 public class OutputView {
     private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";

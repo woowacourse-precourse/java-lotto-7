@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -2,7 +2,7 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.model.LottoRank;
+import lotto.domain.LottoRank;
 import org.junit.jupiter.api.Test;
 
 public class LottoRankTest {

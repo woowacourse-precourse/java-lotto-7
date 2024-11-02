@@ -3,8 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
-import lotto.model.InputValidator;
-import lotto.model.Lotto;
+import lotto.service.InputValidator;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 
 public class InputValidatorTest {

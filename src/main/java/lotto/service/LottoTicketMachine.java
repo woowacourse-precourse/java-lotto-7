@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class LottoTicketMachine {
     public static final int LOTTO_TICKET_PRICE = 1000;

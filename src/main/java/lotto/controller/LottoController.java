@@ -2,11 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.InputProcessor;
-import lotto.model.Lotto;
-import lotto.model.LottoTicketMachine;
-import lotto.model.LottoRank;
-import lotto.model.LottoService;
+import lotto.service.InputProcessor;
+import lotto.domain.Lotto;
+import lotto.service.LottoTicketMachine;
+import lotto.domain.LottoRank;
+import lotto.service.LottoService;
 import lotto.view.OutputView;
 
 public class LottoController {

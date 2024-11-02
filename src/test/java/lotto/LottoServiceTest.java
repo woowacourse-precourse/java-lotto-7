@@ -6,9 +6,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.LottoService;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.Test;
 
 public class LottoServiceTest {
