@@ -13,7 +13,26 @@ public enum LottoGrade {
     SEVENTH_GRADE(7, 1, 0),
     ;
 
+    private final int ranking;
+    private final int correctCount;
+    private final int prize;
+
     LottoGrade(int ranking, int correctCount, int prize) {
+        this.ranking = ranking;
+        this.correctCount = correctCount;
+        this.prize = prize;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 
     public static LottoGrade getGrade(int correctCount, boolean isCorrectBonus) {
