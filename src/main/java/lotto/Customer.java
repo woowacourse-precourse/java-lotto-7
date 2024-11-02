@@ -20,4 +20,8 @@ public class Customer {
     public int getMoney() {
         return money;
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

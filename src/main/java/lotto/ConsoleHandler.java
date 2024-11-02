@@ -18,4 +18,8 @@ public class ConsoleHandler {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
+
+    public void printLottoCount(int lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
+    }
 }
