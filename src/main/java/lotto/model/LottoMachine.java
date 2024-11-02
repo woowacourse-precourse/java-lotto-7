@@ -4,13 +4,16 @@ import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
+import static lotto.common.error.AppErrorType.DIVIDED_BY_PRICE_ERROR;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.common.error.AppException;
 
 public class LottoMachine {
     public List<Lotto> buyLottoByPrice(int money) {
+        validateDivideByUnit(money);
         int count = money / LOTTO_UNIT_PRICE;
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
@@ -24,6 +27,12 @@ public class LottoMachine {
         }
 
         return lottoList;
+    }
+
+    private void validateDivideByUnit(int money) {
+        if (money <= 0 || money % LOTTO_UNIT_PRICE != 0) {
+            throw new AppException(DIVIDED_BY_PRICE_ERROR);
+        }
     }
 
     public WinningLotto generateWinningLotto(Lotto lotto, int winningBonusNumber) {

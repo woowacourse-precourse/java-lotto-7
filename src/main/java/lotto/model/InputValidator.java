@@ -2,9 +2,7 @@ package lotto.model;
 
 import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
-import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
 import static lotto.common.AppConstant.SPLIT_DELIMITER;
-import static lotto.common.error.AppErrorType.DIVIDED_BY_PRICE_ERROR;
 import static lotto.common.error.AppErrorType.NEGATIVE_NUMBER_ERROR;
 import static lotto.common.error.AppErrorType.NUMBER_RANGE_ERROR;
 import static lotto.common.error.AppErrorType.PARSE_NUMBER_ERROR;
@@ -17,7 +15,6 @@ public class InputValidator {
     public void validateInputMoney(String input) {
         validateParseNumber(input);
         validatePositiveNumber(input);
-        validateDivideByUnit(input);
     }
 
     public void validateInputWinningNumber(String input) {
@@ -49,14 +46,6 @@ public class InputValidator {
 
         if (parsedInput <= 0) {
             throw new AppException(NEGATIVE_NUMBER_ERROR);
-        }
-    }
-
-    private void validateDivideByUnit(String input) {
-        int parsedInput = Integer.parseInt(input);
-
-        if (parsedInput % LOTTO_UNIT_PRICE != 0) {
-            throw new AppException(DIVIDED_BY_PRICE_ERROR);
         }
     }
 
