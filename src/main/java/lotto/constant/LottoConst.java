@@ -11,4 +11,5 @@ public class LottoConst {
     public static final String COMMA = ",";
     public static final int MIN_LOTTO_NUM = 1;
     public static final int MAX_LOTTO_NUM = 45;
+    public static final int ROUNDING_SCALE = 3;
 }

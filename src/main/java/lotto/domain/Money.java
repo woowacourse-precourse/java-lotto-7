@@ -34,7 +34,7 @@ public class Money {
 
     private String calculateRateOfReturn(BigDecimal income) {
         BigDecimal rateOfReturn = income
-            .divide(BigDecimal.valueOf(money), 3, RoundingMode.HALF_UP)
+            .divide(BigDecimal.valueOf(money), LottoConst.ROUNDING_SCALE, RoundingMode.HALF_UP)
             .multiply(BigDecimal.valueOf(LottoConst.PERCENTAGE));
         return String.format("%.1f", rateOfReturn);
     }
