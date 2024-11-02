@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,5 +36,15 @@ public class Lotto { // 일급컬렉션으로 사용
                 throw new IllegalArgumentException("[ERROR] 숫자의 범위는 1~45까지 입니다.");
             }
         }
+    }
+
+    public List<Integer> getNumbers() {
+        List<Integer> lottoNumbers = new ArrayList<>();
+
+        for (Integer number : numbers) {
+            lottoNumbers.add(number);
+        }
+
+        return lottoNumbers;
     }
 }
