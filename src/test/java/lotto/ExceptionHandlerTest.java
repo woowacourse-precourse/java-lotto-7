@@ -20,7 +20,7 @@ public class ExceptionHandlerTest {
 
     @Test
     void 구입_금액이_천원_단위가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> ExceptionHandler.isThousandDivisible(10220))
+        assertThatThrownBy(() -> ExceptionHandler.isLottoPriceDivisible(10220))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

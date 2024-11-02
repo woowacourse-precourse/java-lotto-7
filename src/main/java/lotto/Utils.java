@@ -26,13 +26,6 @@ public class Utils {
         return commaSeperatedNumber;
     }
 
-    public static List<Lotto> issueLottos(int issueAmount) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < issueAmount; i++) {
-            lottos.add(Lotto.issue());
-        }
-        return lottos;
-    }
 
     public static String calculateProfitRate(int purchaseAmount) {
         long profit = 0;

@@ -1,18 +1,28 @@
 package lotto;
 
-import static lotto.ExceptionHandler.hasDuplicates;
-import static lotto.ExceptionHandler.isLottoNumber;
-import static lotto.ExceptionHandler.isPositiveNumber;
-import static lotto.ExceptionHandler.isThousandDivisible;
 import static lotto.ExceptionHandler.validateLottoNumber;
-import static lotto.IOProcessor.readCommaSeperatedText;
-import static lotto.IOProcessor.readNumber;
-import static lotto.Utils.convertToSortedNumber;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+enum LottoMeta {
+    LOTTO_MIN(1),
+    LOTTO_MAX(45),
+    LOTTO_SIZE(6),
+    LOTTO_PRICE(1000);
+
+    private final int value;
+
+    LottoMeta(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,57 +36,17 @@ public class Lotto {
         return numbers;
     }
 
-    public static int readPurchaseAmount() {
-        InputPrompt prompt = InputPrompt.PURCHASE;
-        int purchaseAmount = 0;
-        while (true) {
-            try {
-                purchaseAmount = readNumber(prompt.getGuide());
-                isPositiveNumber(purchaseAmount);
-                isThousandDivisible(purchaseAmount);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return purchaseAmount;
-    }
 
     public static int getIssueAmount(int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / LottoMeta.LOTTO_PRICE.getValue();
     }
 
-    public static int readBonusNumber(List<Integer> numbers) {
-        InputPrompt prompt = InputPrompt.BONUS_NUMBER;
-        int bonusNumber = 0;
-        while (true) {
-            try {
-                bonusNumber = readNumber(prompt.getGuide());
-                isLottoNumber(bonusNumber);
-                hasDuplicates(numbers, bonusNumber);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    public static List<Lotto> issueLottos(int issueAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < issueAmount; i++) {
+            lottos.add(Lotto.issue());
         }
-        return bonusNumber;
-    }
-
-    public static List<Integer> readWinningNumbers() {
-        InputPrompt prompt = InputPrompt.WINNING_NUMBERS;
-        List<String> winningNumbersText;
-        List<Integer> winningNumbers;
-        while (true) {
-            try {
-                winningNumbersText = readCommaSeperatedText(prompt.getGuide());
-                winningNumbers = convertToSortedNumber(winningNumbersText);
-                validateLottoNumber(winningNumbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return winningNumbers;
+        return lottos;
     }
 
     public static Lotto issue() {

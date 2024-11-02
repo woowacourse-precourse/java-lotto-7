@@ -24,28 +24,25 @@ enum ExceptionMessage {
 }
 
 public class ExceptionHandler {
-    private static final int LOTTO_MIN = 1;
-    private static final int LOTTO_MAX = 45;
-
     public static void isEmpty(String input) {
-        ExceptionMessage exception = ExceptionMessage.EMPTY_INPUT;
         if (input == null || input.isEmpty()) {
+            ExceptionMessage exception = ExceptionMessage.EMPTY_INPUT;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
     public static void isOnlyNumber(String input) {
-        ExceptionMessage exception = ExceptionMessage.NOT_ONLY_NUMBER;
         if (!input.chars().allMatch(Character::isDigit)) {
+            ExceptionMessage exception = ExceptionMessage.NOT_ONLY_NUMBER;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
     public static void isBigNumber(String input) {
-        ExceptionMessage exception = ExceptionMessage.OUT_OF_RANGE_NUMBER;
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
+            ExceptionMessage exception = ExceptionMessage.OUT_OF_RANGE_NUMBER;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
@@ -57,29 +54,32 @@ public class ExceptionHandler {
     }
 
     public static void isPositiveNumber(int input) {
-        ExceptionMessage exception = ExceptionMessage.NOT_POSITIVE_NUMBER;
         if (input <= 0) {
+            ExceptionMessage exception = ExceptionMessage.NOT_POSITIVE_NUMBER;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
-    public static void isThousandDivisible(int input) {
-        ExceptionMessage exception = ExceptionMessage.NOT_THOUSAND_DIVISIBLE;
-        if (input % 1000 != 0) {
+    /**
+     * 구입 금액이 로또 가격(미션 요구사항에서는 1,000)으로 나누어 떨어지지 않으면 예외를 발생한다.
+     */
+    public static void isLottoPriceDivisible(int input) {
+        if (input % LottoMeta.LOTTO_PRICE.getValue() != 0) {
+            ExceptionMessage exception = ExceptionMessage.NOT_THOUSAND_DIVISIBLE;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
     public static void isLottoNumber(int input) {
-        ExceptionMessage exception = ExceptionMessage.NOT_LOTTO_NUMBER;
-        if (input < LOTTO_MIN || input > LOTTO_MAX) {
+        if (input < LottoMeta.LOTTO_MIN.getValue() || input > LottoMeta.LOTTO_MAX.getValue()) {
+            ExceptionMessage exception = ExceptionMessage.NOT_LOTTO_NUMBER;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
     public static void validateLottoNumber(List<Integer> input) {
-        ExceptionMessage exception = ExceptionMessage.INVALID_LOTTO_SIZE;
-        if (input.size() != 6) {
+        if (input.size() != LottoMeta.LOTTO_SIZE.getValue()) {
+            ExceptionMessage exception = ExceptionMessage.INVALID_LOTTO_SIZE;
             throw new IllegalArgumentException(exception.getMessage());
         }
         for (int number : input) {
@@ -88,19 +88,25 @@ public class ExceptionHandler {
         hasDuplicates(input);
     }
 
-    // 숫자 리스트 내에 중복값이 존재하면 예외를 발생한다.
+    /**
+     * 숫자 리스트 내에 중복값이 존재하면 예외를 발생한다.
+     */
     public static void hasDuplicates(List<Integer> numbers) {
-        ExceptionMessage exception = ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
         List<Integer> distinctNumbers = numbers.stream().distinct().toList();
         if (distinctNumbers.size() != numbers.size()) {
+            ExceptionMessage exception = ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }
 
     // 인자로 받은 숫자가 숫자 리스트 내에 존재하면 예외를 발생한다.
+
+    /**
+     * 인자로 받은 숫자가 숫자 리스트 내에 존재하면 예외를 발생한다.
+     */
     public static void hasDuplicates(List<Integer> numbers, int value) {
-        ExceptionMessage exception = ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
         if (numbers.contains(value)) {
+            ExceptionMessage exception = ExceptionMessage.DUPLICATE_LOTTO_NUMBER;
             throw new IllegalArgumentException(exception.getMessage());
         }
     }

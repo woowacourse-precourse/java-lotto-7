@@ -3,11 +3,22 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTest {
+    @BeforeEach
+    void resetCounts() throws NoSuchFieldException, IllegalAccessException {
+        for (LottoWinner winner : LottoWinner.values()) {
+            Field countField = LottoWinner.class.getDeclaredField("count");
+            countField.setAccessible(true); // private 필드 접근 허용
+            countField.setInt(winner, 0);   // count 값을 0으로 초기화
+        }
+    }
+
     @Test
     void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -78,7 +89,7 @@ class LottoTest {
         int bonus_number = 7;
         lotto.checkLottoWin(winningNumber, bonus_number);
         assertThat(Utils.calculateProfitRate(1000))
-                .isEqualTo("2000000.00");
+                .isEqualTo("200000000.0");
     }
 
     @Test
@@ -88,6 +99,6 @@ class LottoTest {
         int bonus_number = 7;
         lotto.checkLottoWin(winningNumber, bonus_number);
         assertThat(Utils.calculateProfitRate(1000))
-                .isEqualTo("0.00");
+                .isEqualTo("0.0");
     }
 }

@@ -15,10 +15,6 @@ public enum LottoWinner {
         this.count = count;
     }
 
-    public int getPrize() {
-        return prize;
-    }
-
     public int getCount() {
         return count;
     }
