@@ -33,7 +33,9 @@ public class Application {
 
             List<Lotto> lottoNumbers = new ArrayList<>();
             for (int i = 0; i < lottoCount; i++) {
-                lottoNumbers.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+                List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                Collections.sort(numbers);
+                lottoNumbers.add(new Lotto(numbers));
                 System.out.println(lottoNumbers.get(i).getNumbers());
             }
             System.out.println("당첨 번호를 입력해 주세요.");
