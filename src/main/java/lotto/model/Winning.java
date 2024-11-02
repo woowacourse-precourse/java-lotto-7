@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class Winning {
 
     private WinningNumbersDto makeWinningNumbers(){
         List<Integer> winningNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(winningNumbers);
         int winning =getWinningBonusNumber(winningNumbers);
         return new WinningNumbersDto(winningNumbers, winning);
     }
