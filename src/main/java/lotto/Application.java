@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,6 +19,8 @@ public class Application {
         List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
 
         printPurchasedLottos(purchasedLottos);
+
+        Set<Integer> winningNumbers = readWinningNumbers();
 
 
     }
@@ -49,7 +53,21 @@ public class Application {
         }
     }
 
+    private static Set<Integer> readWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] input = Console.readLine().split(",");
+        Set<Integer> winningNumbers = Arrays.stream(input)
+                .map(Integer::parseInt)
+                .collect(Collectors.toSet());
+        validateWinningNumbers(winningNumbers);
+        return winningNumbers;
+    }
 
+    private static void validateWinningNumbers(Set<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6 || winningNumbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 범위 내의 중복되지 않은 숫자 6개여야 합니다.");
+        }
+    }
 }
 
 
