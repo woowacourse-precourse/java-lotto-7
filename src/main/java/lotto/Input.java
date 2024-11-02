@@ -9,22 +9,43 @@ import java.util.List;
 public class Input {
 
     public static int getCost() {
-//        System.out.println("구입금액을 임력해 주세요.");
-        System.out.println("Input Purchase Cost");
-        return Integer.parseInt(Console.readLine());
+        int cost;
+
+        while (true) {
+            cost = inputCost();
+            break;
+        }
+
+        return cost;
+    }
+
+    public static int inputCost() {
+        int cost = 0;
+
+        try {
+            System.out.println("구입금액을 임력해 주세요.");
+            cost = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 구매 비용은 숫자만 입력할 수 있습니다.");
+        }
+
+        return cost;
     }
 
     public static List<Integer> getWinNumbers() {
         List<Integer> numbers = new ArrayList<>();
+
         while (true) {
             numbers = inputWinners();
             break;
         }
+
         return numbers;
     }
 
     public static List<Integer> inputWinners() {
         List<Integer> numbers = new ArrayList<>();
+
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
             numbers = Arrays.stream(Console.readLine().split(","))
@@ -39,15 +60,18 @@ public class Input {
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
         }
+
         return numbers;
     }
 
     public static int getBonusNumber(List<Integer> winningNumbers) {
         int num = 0;
+
         while (true) {
             num = inputBonusNumber(winningNumbers);
             break;
         }
+
         return num;
     }
 
@@ -68,5 +92,4 @@ public class Input {
 
         return num;
     }
-
 }
