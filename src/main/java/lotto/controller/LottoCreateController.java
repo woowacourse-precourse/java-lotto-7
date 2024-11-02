@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.model.LottoBundle;
+import lotto.model.LottoCreator;
 import lotto.model.Price;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -27,5 +29,10 @@ public class LottoCreateController {
 			outputView.printErrorMessage(exception.getMessage());
 			return getPurchasePrice();
 		}
+	}
+
+	private LottoBundle purchaseLotto(Price price) {
+		LottoCreator lottoCreator = new LottoCreator();
+		return new LottoBundle(price, lottoCreator);
 	}
 }
