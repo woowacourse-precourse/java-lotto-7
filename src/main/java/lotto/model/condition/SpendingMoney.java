@@ -3,7 +3,7 @@ package lotto.model.condition;
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;
 
-import static lotto.utils.StringValidator.hasNotDigits;
+import static lotto.utils.StringValidator.containsNotDigit;
 import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.hasBlank;
 
@@ -30,7 +30,7 @@ public class SpendingMoney {
         if (hasBlank(numberToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
         }
-        if (hasNotDigits(numberToValidate)) {
+        if (containsNotDigit(numberToValidate)) {
             throw new IllegalArgumentException(ExceptionMessage.NO_DIGIT_INPUT.toString());
         }
         if (isNotLongRange(numberToValidate)) {

@@ -3,7 +3,7 @@ package lotto.model.winlotto;
 import lotto.utils.Constants;
 import lotto.utils.ExceptionMessage;
 
-import static lotto.utils.StringValidator.hasNotDigits;
+import static lotto.utils.StringValidator.containsNotDigit;
 import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.hasBlank;
 import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
@@ -23,7 +23,7 @@ public class BonusWinLottoNumber {
         if (hasBlank(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
         }
-        if (hasNotDigits(bonusNumber)) {
+        if (containsNotDigit(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.NO_DIGIT_INPUT.toString());
         }
         if (isOutOfRangeLottoNumber(bonusNumber)) {

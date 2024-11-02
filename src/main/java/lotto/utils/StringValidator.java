@@ -12,8 +12,13 @@ public final class StringValidator {
         return lineToValidate.contains(" ");
     }
     
-    public static boolean hasNotDigits(String lineToValidate) {
-        return !lineToValidate.matches("^[0-9]+$");
+    public static boolean containsNotDigit(String lineToValidate) {
+        for (int i = 0; i < lineToValidate.length(); i++) {
+            if (!Character.isDigit(lineToValidate.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isOutOfRangeLottoNumber(String lineToValidate) {
