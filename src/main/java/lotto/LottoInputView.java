@@ -92,9 +92,16 @@ public class LottoInputView
         }
     }
 
-    private static void validateBonusNumbers(int bonusNumber){
+    private static void validateBonusNumbers(int bonusNumber,List<Integer> winningNumbers){
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+
+        Set<Integer> uniqueBonusNumbers = new HashSet<>(winningNumbers);
+        uniqueBonusNumbers.add(bonusNumber);
+
+        if (uniqueBonusNumbers.size() != (winningNumbers.size() + 1)) {
+            throw new IllegalArgumentException("보너스 번호와 당첨 번호는 중복되어서는 안됩니다.");
         }
     }
 }
