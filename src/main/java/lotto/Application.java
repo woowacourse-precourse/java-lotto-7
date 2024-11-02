@@ -39,6 +39,13 @@ public class Application {
             tickets.add(lotto);
         }
 
+        // 로또 출력하기
+        System.out.println(numberOfLottos + "개를 구매했습니다.");
+        for (Lotto ticket : tickets) {
+            System.out.println(ticket);
+        }
+
+
     }
 
     static public int buyLotto(int amount) {
