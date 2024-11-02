@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import constants.ErrorMessage;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -23,5 +24,20 @@ public class LottoNumberTest {
         assertThatThrownBy(() -> LottoNumber.from(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_NUMBER_RANGE);
+    }
+
+    @Test
+    void to_string() {
+        assertThat(LottoNumber.from(1).toString()).isEqualTo("1");
+    }
+
+    @Test
+    void 숫자_간_비교() {
+        LottoNumber one = LottoNumber.from(1);
+        LottoNumber two = LottoNumber.from(2);
+
+        assertThat(two.compareTo(one)).isEqualTo(1);
+        assertThat(one.compareTo(one)).isEqualTo(0);
+        assertThat(one.compareTo(two)).isEqualTo(-1);
     }
 }

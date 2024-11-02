@@ -9,25 +9,25 @@ public class Lotto {
 
     private static final int LOTTO_SIZE = 6;
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<LottoNumber> numbers) {
         validateSize(numbers);
         checkDuplicate(numbers);
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
         }
     }
 
-    private void checkDuplicate(List<Integer> numbers) {
+    private void checkDuplicate(List<LottoNumber> numbers) {
         if (new HashSet<>(numbers).size() < numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
         }
@@ -59,6 +59,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        return numbers.stream().map(Object::toString).toList().toString();
     }
 }

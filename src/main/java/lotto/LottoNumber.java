@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private static final int LOWER_BOUND = 1;
     private static final int UPPER_BOUND = 45;
@@ -35,5 +35,15 @@ public class LottoNumber {
         if (number < LOWER_BOUND || number > UPPER_BOUND) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE);
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
+
+    @Override
+    public int compareTo(LottoNumber lottoNumber) {
+        return number - lottoNumber.number;
     }
 }

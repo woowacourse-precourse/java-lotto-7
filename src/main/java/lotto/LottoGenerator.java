@@ -22,14 +22,14 @@ public class LottoGenerator {
         return new Lottos(lottoGroup);
     }
 
-    public Lotto createLotto(List<Integer> numbers) {
+    public Lotto createLotto(List<LottoNumber> numbers) {
         return new Lotto(numbers);
     }
 
-    public List<Integer> createNumbers() {
+    public List<LottoNumber> createNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_LOWER_BOUND, NUMBER_UPPER_BOUND,
                 LOTTO_PICK_COUNT);
         sort(numbers);
-        return numbers;
+        return numbers.stream().map(LottoNumber::from).toList();
     }
 }

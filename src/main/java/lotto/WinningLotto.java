@@ -8,7 +8,7 @@ public class WinningLotto {
 
     private static final String SEPARATOR = ",";
 
-    private final List<Integer> winningNumbers;
+    private final List<LottoNumber> winningNumbers;
     private final int bonusNumber;
 
     public WinningLotto(String winningNumbers, String bonusNumber) {
@@ -16,8 +16,10 @@ public class WinningLotto {
         this.bonusNumber = toInt(bonusNumber);
     }
 
-    private List<Integer> parse(String winningNumbers) {
-        return splitBySeparator(winningNumbers).stream().map(this::toInt).toList();
+    private List<LottoNumber> parse(String winningNumbers) {
+        return splitBySeparator(winningNumbers).stream()
+                .map(number -> LottoNumber.from(toInt(number)))
+                .toList();
     }
 
     private List<String> splitBySeparator(String text) {
@@ -28,12 +30,12 @@ public class WinningLotto {
         return Integer.parseInt(bonusNumber);
     }
 
-    public Long countWinnings(List<Integer> numbers) {
+    public Long countWinnings(List<LottoNumber> numbers) {
         return winningNumbers.stream().filter(numbers::contains).count();
     }
 
-    public boolean containsBonus(List<Integer> numbers) {
-        return numbers.contains(bonusNumber);
+    public boolean containsBonus(List<LottoNumber> numbers) {
+        return numbers.contains(LottoNumber.from(bonusNumber));
     }
 
     @Override

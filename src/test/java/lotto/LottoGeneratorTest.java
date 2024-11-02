@@ -22,7 +22,8 @@ public class LottoGeneratorTest {
 
     @Test
     void 로또_하나_생성() {
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        List<LottoNumber> numbers = List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3),
+                LottoNumber.from(4), LottoNumber.from(5), LottoNumber.from(6));
         LottoGenerator lottoGenerator = new LottoGenerator();
         assertThat(lottoGenerator.createLotto(numbers)).isEqualTo(new Lotto(numbers));
     }
