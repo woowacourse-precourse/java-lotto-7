@@ -8,17 +8,16 @@ import lotto.validation.WinningBonusNumberValidation;
 
 public final class WinningBonusNumberView {
     public static void winningBonusNumber() {
-        winningNumberInput();
+        Lotto winninglotto = winningNumberInput();
+        System.out.println(winninglotto);
     }
 
-    private static void winningNumberInput() {
+    private static Lotto winningNumberInput() {
         while (true) {
             try {
                 Output.printlnMessage(IOMessage.INPUT_WINNING_NUMBER.getMessage());
                 String winningNumber = Input.inputMessage();
-                Lotto winninglotto = WinningBonusNumberValidation.winningNumberValidation(winningNumber);
-                System.out.println(winninglotto);
-                return;
+                return WinningBonusNumberValidation.getValidatedWinningNumbers(winningNumber);
             } catch (IllegalArgumentException errorMessage) {
                 System.out.println(errorMessage.getMessage());
             }
