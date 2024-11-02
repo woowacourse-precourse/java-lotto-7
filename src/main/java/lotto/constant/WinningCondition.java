@@ -1,5 +1,8 @@
 package lotto.constant;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public enum WinningCondition {
     NO_MATCH(0, false, 0, ""),
     MATCH_3(3, false, 5_000, "3개 일치"),
@@ -37,11 +40,9 @@ public enum WinningCondition {
     }
 
     public String prizeAmountToString() {
-        StringBuilder printAmount = new StringBuilder();
-        printAmount.append("(");
-        String amount = String.valueOf(prizeAmount).replace("_", ",");
-        printAmount.append(amount).append("원").append(")").append(" ");
-        return printAmount.toString();
+        NumberFormat formatter = NumberFormat.getInstance(Locale.KOREA);
+        String formattedAmount = formatter.format(prizeAmount);
+        return "(" + formattedAmount + "원) ";
     }
 
 }
