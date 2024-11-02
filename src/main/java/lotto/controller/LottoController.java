@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.WinningLottoResultDTO;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -25,9 +26,19 @@ public class LottoController {
         outputView.printBuyLottoCount(buyLottoCount);
 
         List<String> formattedLottoNumbers = lottoService.formatBuyLottoNumbersResult();
-
         for (String formattedLottoNumber : formattedLottoNumbers) {
             outputView.printLottoNumbers(formattedLottoNumber);
+        }
+
+        String winningNumbers = inputView.inputWinningNumbers();
+        String bonusNumber = inputView.inputBonusNumber();
+
+        lottoService.recordWinningLottoInfo(winningNumbers, bonusNumber);
+        List<WinningLottoResultDTO> formatWinningLottoResults = lottoService.formatWinningLottoResults();
+
+        outputView.printBeforeWinningLottoInfo();
+        for (WinningLottoResultDTO winningLottoResultDTO : formatWinningLottoResults) {
+            outputView.printWinningLottoInfo(winningLottoResultDTO.getMatchedCount(), winningLottoResultDTO.getPrize(), winningLottoResultDTO.getCount());
         }
     }
 }

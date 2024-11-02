@@ -3,12 +3,15 @@ package lotto.service;
 import lotto.domain.Lotto.Lotto;
 import lotto.domain.Lotto.LottoGenerator;
 import lotto.domain.Lotto.LottoManager;
-import lotto.domain.Lotto.LottoFormatter;
+import lotto.domain.LottoFormatter;
+import lotto.domain.WinningLotto.WinningLottoInfo;
 import lotto.domain.WinningLotto.WinningLottoManager;
+import lotto.dto.WinningLottoResultDTO;
 import lotto.parser.business.LottoParser;
 import lotto.parser.util.ParseUtils;
 import lotto.utils.RandomNumbersSelector;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +50,17 @@ public class LottoService {
             boolean hasBonusNumber = hasBonusNumberInLottoNumbers(parsedBonusNumber, lotto);
             winningLottoManager.recordWinningLotto(matchedCount, hasBonusNumber);
         }
+    }
+
+    public List<WinningLottoResultDTO> formatWinningLottoResults() {
+        List<WinningLottoResultDTO> formatResults = new ArrayList<>();
+        WinningLottoInfo[] winningLottoInfos = WinningLottoInfo.values();
+
+        for (WinningLottoInfo winningLottoInfo : winningLottoInfos) {
+            formatResults.add(new WinningLottoResultDTO(winningLottoInfo.getMatchedCount(), winningLottoInfo.getPrize(), winningLottoInfo.getCount()));
+        }
+
+        return formatResults;
     }
 
     private int calculateEqualWinningNumberBySingleLotto(List<Integer> winningNumbers, Lotto lotto) {

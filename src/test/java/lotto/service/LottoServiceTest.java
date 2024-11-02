@@ -2,7 +2,7 @@ package lotto.service;
 
 import lotto.domain.Lotto.LottoGenerator;
 import lotto.domain.Lotto.LottoManager;
-import lotto.domain.Lotto.LottoFormatter;
+import lotto.domain.LottoFormatter;
 import lotto.domain.WinningLotto.WinningLottoManager;
 import lotto.validator.LottoValidator;
 import org.junit.jupiter.api.BeforeEach;

@@ -10,10 +10,10 @@ public class InputView {
         return buyLottoMoney;
     }
 
-    public String inputWinNumbers() {
+    public String inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winNumbers = Console.readLine();
-        return winNumbers;
+        String winningNumbers = Console.readLine();
+        return winningNumbers;
     }
 
     public String inputBonusNumber() {

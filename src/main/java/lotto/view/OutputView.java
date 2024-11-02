@@ -10,10 +10,13 @@ public class OutputView {
         System.out.println("[" + lottoNumber + "]");
     }
 
-    public void printWinningData(String agreementCount, String winningMoney, String winningCount) {
+    public void printBeforeWinningLottoInfo() {
         System.out.println("당첨 통계");
         System.out.println("----");
-        System.out.print(agreementCount + "개 일치 (" + winningMoney + ") - " + "개");
+    }
+
+    public void printWinningLottoInfo(int matchedCount, int prize, int count) {
+        System.out.println(matchedCount + "개 일치 (" + prize + ") - " + count + "개");
     }
 
     public void printReteOfReturn(String rateOfReturn) {
