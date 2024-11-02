@@ -4,15 +4,18 @@ public enum CompareInteger {
     PRICE_LOTTO(1000),
     PRICE_MINIMUM(1000),
     PRICE_MAXIMUM(100000),
-    ZERO(0);
+    ZERO(0),
+    LOTTO_NUMBER_MINIMUM(1),
+    LOTTO_NUMBER_MAXIMUM(45),
+    LOTTO_NUMBER_COUNT(6);
 
     private final Integer number;
 
-    CompareInteger(Integer number){
+    CompareInteger(Integer number) {
         this.number = number;
     }
 
-    public Integer getNumber(){
+    public Integer getNumber() {
         return number;
     }
 }
