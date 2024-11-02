@@ -45,7 +45,7 @@ public class LottoGame {
                 makeLottos(lottoCount);
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                outputView.printErrorMessage(e);
             }
         }
     }
@@ -69,23 +69,29 @@ public class LottoGame {
 
     private void makeWinningNumber() {
         List<Integer> winningLottoNumbers;
-        while (true) {
-            try {
-                winningLottoNumbers = inputView.getWinningLottoNumber();
-                break;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        winningLottoNumbers = receiveWinningLottoNumbers();
         while (true) {
             try {
                 int bonusNumber = inputView.getBonusNumber();
                 winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
                 break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                outputView.printErrorMessage(e);
             }
         }
+    }
+
+    private List<Integer> receiveWinningLottoNumbers() {
+        List<Integer> winningLottoNumbers;
+        while (true) {
+            try {
+                winningLottoNumbers = inputView.getWinningLottoNumber();
+                break;
+            } catch (Exception e) {
+                outputView.printErrorMessage(e);
+            }
+        }
+        return winningLottoNumbers;
     }
 
     private void makeRankResult() {

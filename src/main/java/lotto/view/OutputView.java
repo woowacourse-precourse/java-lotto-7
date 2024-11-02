@@ -41,4 +41,8 @@ public class OutputView {
         System.out.println(FIRST_RANK + rankResult.get(Rank.FIRST) + COUNT_STRING);
         System.out.println(RETURN_RATE_BEGIN_STRING + String.format("%.1f", rateOfReturn) + RETURN_RATE_END_STRING);
     }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }
