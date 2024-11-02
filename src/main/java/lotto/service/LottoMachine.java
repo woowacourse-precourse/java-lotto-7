@@ -12,9 +12,11 @@ import lotto.utils.Utils;
 
 public class LottoMachine {
     private List<Lotto> Tickets = new ArrayList<>();
+    private int purchaseAmount;
 
     public List<Lotto> createLottoTicket(BigDecimal purchasePrice) {
         validatePurchasePrice(purchasePrice);
+        this.purchaseAmount = purchasePrice.intValue();
         int count = calculatorLottoCount(purchasePrice.intValue());
 
         for (int i = 0; i < count; i++) {
@@ -37,7 +39,7 @@ public class LottoMachine {
         Set<Integer> randomNum = new HashSet<>();
 
         for (int i = 0; i < 6; i++) {
-            if (!randomNum.add(Randoms.pickNumberInRange(1,45))) {
+            if (!randomNum.add(Randoms.pickNumberInRange(1, 45))) {
                 i--;
             }
         }
@@ -46,5 +48,9 @@ public class LottoMachine {
 
     private int calculatorLottoCount(int count) {
         return count / 1000;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

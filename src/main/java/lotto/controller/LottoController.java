@@ -21,6 +21,8 @@ public class LottoController {
         WinningNumber winningNumber = new WinningNumber(winningNumberData, bonusNum);
         WinningResult winningResult = getWinningResult(tickets, winningNumber);
         OutputView.printWinningResults(winningResult);
+        double profitRate = winningResult.calculateProfitRate(lottoMachine.getPurchaseAmount());
+        OutputView.printProfitRate(profitRate);
     }
 
     private List<Lotto> buyLotto() {
