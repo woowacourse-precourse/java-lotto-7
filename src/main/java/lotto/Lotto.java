@@ -39,6 +39,12 @@ public class Lotto {
         });
     }
 
+    protected void containBonusNumber(Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 로또 번호가 로또 번호와 중복되면 안 됩니다");
+        }
+    }
+
     // TODO: 추가 기능 구현
 
 }
