@@ -5,8 +5,7 @@ import java.util.Map;
 import lotto.helper.ParseHelper;
 import lotto.model.FirstRankLotto;
 import lotto.model.Lotto;
-import lotto.model.constant.LottoRank;
-import lotto.service.LottoRateOfReturnService;
+import lotto.model.LottoStatistics;
 import lotto.service.LottoService;
 import lotto.service.LottoStatisticsService;
 import lotto.view.ErrorView;
@@ -18,13 +17,11 @@ public class LottoController {
     private final ParseHelper parseHelper;
     private final LottoService lottoService;
     private final LottoStatisticsService lottoStatisticsService;
-    private final LottoRateOfReturnService lottoRateOfReturnService;
 
     public LottoController() {
         this.parseHelper = new ParseHelper();
         this.lottoService = new LottoService();
         this.lottoStatisticsService = new LottoStatisticsService();
-        this.lottoRateOfReturnService = new LottoRateOfReturnService();
     }
 
     public List<Lotto> buyLotto() {
@@ -45,14 +42,18 @@ public class LottoController {
     }
 
     public void announceStatistics(List<Lotto> lottos, FirstRankLotto firstRankLotto) {
-        Map<LottoRank, Integer> lottoStatistics = lottoStatisticsService.getStatistics(lottos, firstRankLotto);
+        LottoStatistics statistics = lottoStatisticsService.getStatistics(lottos, firstRankLotto);
 
-        LottoStatisticsView.announceStatistics(lottoStatistics);
+        LottoStatisticsView.announceStatistics(statistics);
     }
 
-    public void annouceLottoRateOfReturn(List<Lotto> lottos, FirstRankLotto firstRankLotto) {
-        double percentRateOfReturn = lottoRateOfReturnService.getRateOfReturn(lottos, firstRankLotto) * 100;
+//    public void announceStatistics(List<Lotto> lottos, FirstRankLotto firstRankLotto) {
+//
+//        LottoStatisticsView.announceStatistics(lottoStatistics);
+//    }
 
-        LottoStatisticsView.announcePercentOfReturn(percentRateOfReturn);
-    }
+//    public void annouceLottoRateOfReturn(List<Lotto> lottos, FirstRankLotto firstRankLotto) {
+//
+//        LottoStatisticsView.announcePercentOfReturn(percentRateOfReturn);
+//    }
 }

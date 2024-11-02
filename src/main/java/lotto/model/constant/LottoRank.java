@@ -1,19 +1,23 @@
 package lotto.model.constant;
 
-import java.util.List;
-
 public enum LottoRank {
-    FIRST(2_000_000_000),
-    SECOND(30_000_000),
-    THIRD(1_500_000),
-    FOURTH(50_000),
-    FIFTH(5_000),
-    OTHERS(0);
+    FIRST(1, 2_000_000_000),
+    SECOND(2, 30_000_000),
+    THIRD(3, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(5, 5_000),
+    OTHERS(6, 0);
 
+    private final int number;
     private final int winningPrize;
 
-    LottoRank(int winningPrize) {
+    LottoRank(int number, int winningPrize) {
+        this.number = number;
         this.winningPrize = winningPrize;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public int getWinningPrize() {

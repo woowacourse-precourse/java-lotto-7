@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.FirstRankLotto;
 import lotto.model.Lotto;
+import lotto.model.LottoStatistics;
 import lotto.model.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,15 +34,16 @@ class LottoStatisticsServiceTest {
         FirstRankLotto firstRankLotto = generateFirstRankLotto();
 
         // when
-        Map<LottoRank, Integer> statistics = lottoStatisticsService.getStatistics(lottos, firstRankLotto);
+        LottoStatistics statistics = lottoStatisticsService.getStatistics(lottos, firstRankLotto);
+        Map<LottoRank, Integer> matchedByRank = statistics.getMatchedByRank();
 
         // then
-        assertThat(statistics.get(LottoRank.FIRST)).isEqualTo(1);
-        assertThat(statistics.get(LottoRank.SECOND)).isEqualTo(1);
-        assertThat(statistics.get(LottoRank.THIRD)).isEqualTo(1);
-        assertThat(statistics.get(LottoRank.FOURTH)).isEqualTo(1);
-        assertThat(statistics.get(LottoRank.FIFTH)).isEqualTo(1);
-        assertThat(statistics.get(LottoRank.OTHERS)).isEqualTo(1);
+        assertThat(matchedByRank.get(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(matchedByRank.get(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(matchedByRank.get(LottoRank.THIRD)).isEqualTo(1);
+        assertThat(matchedByRank.get(LottoRank.FOURTH)).isEqualTo(1);
+        assertThat(matchedByRank.get(LottoRank.FIFTH)).isEqualTo(1);
+        assertThat(matchedByRank.get(LottoRank.OTHERS)).isEqualTo(1);
     }
 
     private static FirstRankLotto generateFirstRankLotto() {

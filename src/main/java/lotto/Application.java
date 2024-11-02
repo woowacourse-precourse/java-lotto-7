@@ -27,6 +27,5 @@ public class Application {
         FirstRankLotto firstRankLotto = firstRankLottoController.generateFirstRankLotto();
 
         lottoController.announceStatistics(lottos, firstRankLotto);
-        lottoController.annouceLottoRateOfReturn(lottos, firstRankLotto);
     }
 }
