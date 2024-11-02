@@ -20,7 +20,9 @@ public enum ErrorMessage {
     NUMBER_OUT_OF_RANGE("[ERROR] 당첨 숫자 풀에 생성된 숫자가 유효 범위를 벗어났습니다."),
 
     NULL_LOTTO_NUMBERS("[ERROR] 로또 번호 리스트는 NULL일 수 없습니다."),
-    EMPTY_LOTTO_NUMBERS("[ERROR] 로또 번호 리스트는 비어 있을 수 없습니다.");
+    EMPTY_LOTTO_NUMBERS("[ERROR] 로또 번호 리스트는 비어 있을 수 없습니다."),
+
+    NEGATIVE_OR_ZERO_TICKET_COUNT("[ERROR] 티켓 수는 1 이상이어야 합니다."),
     ;
 
     private final String message;
