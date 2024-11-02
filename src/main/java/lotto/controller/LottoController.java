@@ -11,13 +11,10 @@ import lotto.model.shop.LottoShop;
 import lotto.util.retryer.Retryer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.response.LottoScoreResponse;
 import lotto.view.response.LottoScoreResponses;
 import lotto.view.response.PurchaseLottoResponse;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LottoController {
 
@@ -39,9 +36,7 @@ public class LottoController {
         List<Score> scores = calculateScores(lottos, winningLotto);
         double profitRate = calculateProfitRate(scores);
 
-        LottoScoreResponses lottoScoreResponses = getLottoScoreResponses(scores);
-
-        printResult(lottoScoreResponses, profitRate);
+        printResult(LottoScoreResponses.from(Score.aggregate(scores)), profitRate);
     }
 
     private Lottos purchaseLotto() {
@@ -70,30 +65,5 @@ public class LottoController {
     private void printResult(LottoScoreResponses lottoScoreResponses, double profitRate) {
         outputView.printScores(lottoScoreResponses);
         outputView.printProfitRate(profitRate);
-    }
-
-    private LottoScoreResponses getLottoScoreResponses(List<Score> scores) {
-        Map<LottoScoreResponse, Integer> lottoScoreResponses = initializeLottoScoreResponses();
-
-        mergeToLottoScoreResponses(scores, lottoScoreResponses);
-
-        return LottoScoreResponses.from(lottoScoreResponses);
-    }
-
-    private Map<LottoScoreResponse, Integer> initializeLottoScoreResponses() {
-        Map<LottoScoreResponse, Integer> lottoScoreResponseMap = new LinkedHashMap<>();
-
-        for (Score score : Score.values()) {
-            LottoScoreResponse response = LottoScoreResponse.from(score);
-            lottoScoreResponseMap.put(response, 0);
-        }
-
-        return lottoScoreResponseMap;
-    }
-
-    private void mergeToLottoScoreResponses(List<Score> scores, Map<LottoScoreResponse, Integer> lottoScoreResponses) {
-        scores.forEach(score ->
-                lottoScoreResponses.merge(LottoScoreResponse.from(score), 1, Integer::sum)
-        );
     }
 }
