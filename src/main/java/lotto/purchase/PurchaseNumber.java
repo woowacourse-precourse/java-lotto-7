@@ -16,8 +16,15 @@ public class PurchaseNumber {
         this.number = number;
     }
 
-    public static int parse(String money) {
-         return isValid(Integer.parseInt(money)) / LOTTO_PRICE;
+    public static int parse(String input) {
+        int money = 0;
+        try{
+            money = Integer.parseInt(input);
+        } catch (NumberFormatException numberFormatException){
+            throw new IllegalArgumentException(INVALID_LOTTO_PRICE);
+        }
+
+         return isValid(money) / LOTTO_PRICE;
     }
 
     public int getNumber() {
@@ -28,6 +35,8 @@ public class PurchaseNumber {
         if (money % LOTTO_PRICE == 0) {
             return money;
         }
+
+        System.out.println(INVALID_LOTTO_PRICE);
         throw new IllegalArgumentException(INVALID_LOTTO_PRICE);
     }
 

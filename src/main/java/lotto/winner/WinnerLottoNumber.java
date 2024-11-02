@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinnerLottoNumber {
-    private static final String LOTTO_SIZE_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String LOTTO_SIZE_ERROR = "로또 번호는 6개여야 합니다.";
     private List<LottoNumber> lottoNumbers;
 
     private WinnerLottoNumber(List<LottoNumber> lottoNumbers) {

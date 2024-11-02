@@ -6,8 +6,8 @@ import lotto.winner.WinnerLottoNumber;
 import java.util.*;
 
 public class Lotto {
-    private static final String LOTTO_SIZE_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String LOTTO_DUPLICATE_ERROR = "[ERROR] 로또 번호 중복이 있습니다.";
+    private static final String LOTTO_SIZE_ERROR = "로또 번호는 6개여야 합니다.";
+    private static final String LOTTO_DUPLICATE_ERROR = "로또 번호 중복이 있습니다.";
     private static final int MIN_NUMBER = 3;
 
     private final List<LottoNumber> numbers;
