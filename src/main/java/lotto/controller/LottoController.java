@@ -7,9 +7,9 @@ import lotto.view.OutputView;
 
 public class LottoController {
     public void purchase() {
-        Amount amount = Amount.of(InputView.readLottoPurchaseAmount());
-        LottoTicket ticket = LottoTicket.of(amount.getNumber() / 1000);
-        OutputView.printLottoCount(amount.getNumber() / 1000);
+        Amount amount = Amount.from(InputView.readLottoPurchaseAmount());
+        LottoTicket ticket = LottoTicket.of(amount.getValue() / 1000);
+        OutputView.printLottoCount(amount.getValue() / 1000);
         OutputView.printLottoTicket(ticket);
     }
 }

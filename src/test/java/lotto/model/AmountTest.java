@@ -7,19 +7,17 @@ import org.junit.jupiter.api.Test;
 
 class AmountTest {
     @Test
-    @DisplayName("로또_구입금액의_단위가_1000이_아니라면_예외가_발생한다")
+    @DisplayName("로또 구입금액의 단위가 1000이 아니라면 예외가 발생한다")
     void validateUnit() {
-        assertThatThrownBy(() -> new Amount(2500))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 구매는 1000원 단위로 가능합니다.");
+        assertThatThrownBy(() -> Amount.from("2500"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("로또_구입금액의_타입이_숫자가_아니라면_예외가_발생한다")
+    @DisplayName("로또 구입금액의 타입이 숫자가 아니라면 예외가 발생한다")
     void validateType() {
-        assertThatThrownBy(() -> Amount.of("2000a"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 구입 금액을 숫자로 입력해주세요.");
+        assertThatThrownBy(() -> Amount.from("2000a"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

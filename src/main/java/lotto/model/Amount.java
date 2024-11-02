@@ -1,15 +1,17 @@
 package lotto.model;
 
+import lotto.util.NumberUtil;
+
 public class Amount {
-    private final int number;
+    private final int value;
 
     public Amount(int number) {
         validateUnit(number);
-        this.number = number;
+        this.value = number;
     }
 
-    public static Amount of(String number) {
-        return new Amount(validateType(number));
+    public static Amount from(String number) {
+        return new Amount(NumberUtil.parseInt(number));
     }
 
     private void validateUnit(int number) {
@@ -18,15 +20,7 @@ public class Amount {
         }
     }
 
-    private static int validateType(String number) {
-        try {
-            return Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액을 숫자로 입력해주세요.");
-        }
-    }
-
-    public int getNumber() {
-        return number;
+    public int getValue() {
+        return value;
     }
 }
