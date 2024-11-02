@@ -33,7 +33,7 @@ public class PurchaseAmount {
         }
     }
 
-    public int divideLottoPrice() {
+    public int calculatePurchaseCount() {
         return money / LOTTO_PRICE;
     }
 
