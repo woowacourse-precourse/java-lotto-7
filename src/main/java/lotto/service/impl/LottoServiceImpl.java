@@ -6,6 +6,7 @@ import lotto.domain.LottoList;
 import lotto.domain.Money;
 import lotto.dto.LottoListDto;
 import lotto.dto.MoneyDto;
+import lotto.exception.EntityNotFoundException;
 import lotto.repository.SingleRepository;
 import lotto.service.LottoService;
 
@@ -31,7 +32,7 @@ public class LottoServiceImpl implements LottoService {
     @Override
     public LottoListDto generateLottoList() {
         Money money = moneyRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_MONEY.getMessage()));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_MONEY.getMessage()));
 
         LottoList lottoList = LottoList.generate(money);
         lottoListRepository.save(lottoList);

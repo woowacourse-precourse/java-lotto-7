@@ -19,7 +19,7 @@ class MoneyRepositoryTest {
         moneyRepository.save(expect);
 
         // when
-        Money result = moneyRepository.get().orElseThrow(NullPointerException::new);
+        Money result = moneyRepository.get().orElseThrow(EntityNotFoundException::new);
 
         assertThat(result).isEqualTo(expect);
     }

@@ -7,6 +7,7 @@ import lotto.domain.Money;
 import lotto.domain.ProfitRate;
 import lotto.domain.WinnerStatus;
 import lotto.dto.ProfitRateResultDto;
+import lotto.exception.EntityNotFoundException;
 import lotto.repository.SingleRepository;
 import lotto.service.ProfitRateService;
 
@@ -24,10 +25,10 @@ public class ProfitRateServiceImpl implements ProfitRateService {
     @Override
     public ProfitRateResultDto calculate() {
         Money money = moneyRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_MONEY.getMessage()));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_MONEY.getMessage()));
 
         WinnerStatus winnerStatus = winnerStatusRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_STATUS.getMessage()));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_WINNER_STATUS.getMessage()));
 
         ProfitRate profitRate = ProfitRate.create(money, winnerStatus);
         return profitRate.toDto();

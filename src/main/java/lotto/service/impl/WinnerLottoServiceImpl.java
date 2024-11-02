@@ -4,6 +4,7 @@ import static lotto.utils.ErrorMessage.NOT_SAVE_WINNER_LOTTO;
 
 import lotto.domain.LottoNum;
 import lotto.domain.WinnerLotto;
+import lotto.exception.EntityNotFoundException;
 import lotto.repository.SingleRepository;
 import lotto.service.WinnerLottoService;
 
@@ -28,7 +29,7 @@ public class WinnerLottoServiceImpl implements WinnerLottoService {
         LottoNum lottoBonusNum = LottoNum.create(bonusNumber);
 
         WinnerLotto winnerLotto = winnerLottoRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_LOTTO.getMessage()));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
         winnerLotto.addBonusNum(lottoBonusNum);
 

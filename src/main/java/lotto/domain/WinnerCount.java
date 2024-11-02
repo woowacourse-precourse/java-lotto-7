@@ -16,7 +16,6 @@ public class WinnerCount {
         return new WinnerCount(winnerCount, hasBonus);
     }
 
-
     protected Integer calculateReward() {
         Reward reward = Reward.getReward(this.matchedCount, this.hasBonus);
         return reward.getPrize();

@@ -9,6 +9,7 @@ import lotto.domain.WinnerCountList;
 import lotto.domain.WinnerLotto;
 import lotto.domain.WinnerStatus;
 import lotto.dto.WinnerStatusDto;
+import lotto.exception.EntityNotFoundException;
 import lotto.repository.SingleRepository;
 import lotto.service.StatusService;
 
@@ -29,12 +30,12 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public WinnerStatusDto calculateStatus() {
         WinnerLotto winnerLotto = winnerLottoRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_WINNER_LOTTO.getMessage()));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_WINNER_LOTTO.getMessage()));
 
         validHasBonusNum(winnerLotto);
 
         LottoList lottoList = lottoListRepository.get()
-                .orElseThrow(() -> new NullPointerException(NOT_SAVE_LOTTO_LIST.getMessage()));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_SAVE_LOTTO_LIST.getMessage()));
 
         WinnerCountList winnerCountList = WinnerCountList.of(lottoList, winnerLotto);
         WinnerStatus winnerStatus = WinnerStatus.create(winnerCountList);
