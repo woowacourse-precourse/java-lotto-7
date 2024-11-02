@@ -27,13 +27,27 @@ public class LottoService {
     public PurchaseLottosResponse purchaseLottos(Long purchaseAmount) {
         moneyManagerRepository.add(new MoneyManager(purchaseAmount));
         Integer count = lottoManager.getPurchasableLottos(purchaseAmount);
-        List<Lotto> lottos = lottoManager.purchase(count);
-        lottos.forEach(lottoRepository::add);
+        List<Lotto> lottos = issueLottos(count);
         List<List<Integer>> allLottoNumbers = lottos.stream()
                 .map(Lotto::getNumbers)
                 .toList();
 
         return PurchaseLottosResponse.of(count, allLottoNumbers);
+    }
+
+    private List<Lotto> issueLottos(Integer count) {
+        List<Lotto> lottos = lottoManager.purchase(count);
+        lottos.forEach(lottoRepository::add);
+        return lottos;
+    }
+
+    public void setWinLottoNumbers(List<Integer> numbers) {
+        winLottoRepository.add(new WinLotto(numbers));
+    }
+
+    public void setWinLottoBonusNumber(Integer number) {
+        WinLotto winLotto = winLottoRepository.getWinLotto();
+        winLotto.setBonusNumber(number);
     }
 
     public getLottoResultResponse getLottoResult() {
@@ -48,14 +62,5 @@ public class LottoService {
         return result.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getValue() * entry.getKey().getPrize())
                 .sum();
-    }
-
-    public void setWinLottoNumbers(List<Integer> numbers) {
-        winLottoRepository.add(new WinLotto(numbers));
-    }
-
-    public void setWinLottoBonusNumber(Integer number) {
-        WinLotto winLotto = winLottoRepository.getWinLotto();
-        winLotto.setBonusNumber(number);
     }
 }
