@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.exception.InputException;
 
 public class InputValidator {
-    private static final String NUMBER_REGX = "[1-9]";
+    private static final String NUMBER_REGX = "^[1-9]\\d*$";
 
     public static void validateMultiNumberInput(List<String> numbers) {
         boolean isAllNumeric = numbers.stream()
