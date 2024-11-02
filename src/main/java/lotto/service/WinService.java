@@ -6,7 +6,6 @@ import lotto.domain.Rank;
 import lotto.repository.LottoRepository;
 import lotto.repository.ResultRepository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +25,7 @@ public class WinService {
         for (Lotto lotto : lottos){
             Rank rank = findRank(
                     findMatchCount(winNumbers, lotto),
-                    isMatchBonus(winNumbers, bonus));
+                    isMatchBonus(lotto, bonus));
 
             if (rank != null){
                 resultRepository.addResult(rank);
@@ -50,11 +49,8 @@ public class WinService {
         return null;
     }
 
-    private boolean isMatchBonus(List<Integer> winNumbers, int bonus){
-        if (winNumbers.contains(bonus)){
-            return true;
-        }
-        return false;
+    private boolean isMatchBonus(Lotto lotto, int bonus){
+        return lotto.getNumbers().contains(bonus);
     }
 
     private int findMatchCount(List<Integer> winNumbers, Lotto lotto) {
