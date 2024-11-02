@@ -11,7 +11,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
-    private Lotto winningLotto;
+    private Lotto winningNumber;
     private Lottos lottos;
     private Money money;
     private int count;
@@ -31,7 +31,18 @@ public class LottoController {
         this.lottos = new Lottos(count);
         OutputView.printBoughtLottos(lottos);
 
-        this.winningLotto = lottoService.getWinningNumbers();
+        this.winningNumber = lottoService.getWinningNumbers();
         this.bonusNumber = lottoService.getBonusNumber();
+
+        calculatePrize();
+    }
+
+    private void calculatePrize() {
+        long totalPrize = lottoService.getTotalPrize(lottos, winningNumber, bonusNumber);
+        double earningRate = calculateEarningRate(totalPrize);
+    }
+
+    private double calculateEarningRate(long totalPrize) {
+        return (double) totalPrize /  money.getValue() * 100;
     }
 }
