@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Lotto {
     
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    
     private final List<LottoNumber> numbers;
 
     public Lotto(List<LottoNumber> numbers) {
