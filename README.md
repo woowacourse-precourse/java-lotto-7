@@ -76,6 +76,7 @@
 #### 🚫 예외처리
 
 - [ ] 아무 값도 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
+- [ ] 0을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 1~45 범위의 수가 아닌 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 공백을 포함하여 숫자 이외의 값을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 당첨 번호와 중복되는 숫자를 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
