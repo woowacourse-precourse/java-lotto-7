@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -41,6 +42,11 @@ class LottoTest {
         assertThatThrownBy(() -> lottoGame.checkPositiveNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 입력한 값은 숫자(양수)여야 합니다.");
+    }
+
+    @Test
+    void 로또_발급_테스트() {
+        assertSimpleTest(() -> lottoGame.LottoIssuance(5000));
     }
 
     @Test
