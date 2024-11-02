@@ -42,14 +42,16 @@ class TicketReadRepositoryTest {
     }
 
     @Test
-    @DisplayName("존재하지 않는 ID로 조회시 실패")
-    void 존재하지않는_ID로_조회시_실패() {
+    @DisplayName("존재하지 않는 ID로 조회시 빈 Optional 반환")
+    void 존재하지않는_ID로_조회시_빈_Optional반환() {
         // given
         TicketReadRepository repository = new TicketReadRepository();
 
+        // when
+        Optional<Ticket> result = repository.findById(999L);
+
         // expect
-        Assertions.assertThatThrownBy(() -> repository.findById(999L))
-                .isInstanceOf(NullPointerException.class);
+        Assertions.assertThat(result).isEmpty();
     }
 
 }

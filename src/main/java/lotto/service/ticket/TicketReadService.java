@@ -11,7 +11,8 @@ public class TicketReadService {
     }
 
     public Ticket getById(Long ticketId) {
-        return repository.findById(ticketId).orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 티켓 ID 입니다."));
+        return repository.findById(ticketId)
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재 하지 않는 티켓 ID 입니다."));
     }
 
 }
