@@ -11,10 +11,10 @@ import static lotto.exception.ErrorMessage.INVALID_NUMBER_RANGE;
 import static lotto.model.Lotto.MAX_LOTTO_NUMBER;
 import static lotto.model.Lotto.MIN_LOTTO_NUMBER;
 
-public class WinningNumbers {
+public class WinningNumber {
     private List<Integer> winningNumbers;
 
-    public WinningNumbers(String winningString) {
+    public WinningNumber(String winningString) {
         createLottoByWinningString(winningString);
     }
 
