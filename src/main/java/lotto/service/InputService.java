@@ -43,7 +43,7 @@ public class InputService {
         return cost / LOTTO_PRICE;
     }
 
-    public int validateWinningNumber(List<Integer> winningNumbers, String element) {
+    public int validateWinningNumber(String element) {
         if (!isNumber(element)) {
             throw new CustomException(ExceptionMessage.ERROR_MESSAGE_IS_NOT_NUMBER);
         }
@@ -58,14 +58,20 @@ public class InputService {
         String[] parsedElements = winningNumber.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String element : parsedElements) {
-            int number = validateWinningNumber(winningNumbers, element);
+            int number = validateWinningNumber(element);
             winningNumbers.add(number);
         }
         return winningNumbers;
     }
 
     public int validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
-        return validateWinningNumber(winningNumbers, bonusNumber);
+        int number = validateWinningNumber(bonusNumber);
+        for (Integer winningNumber : winningNumbers) {
+            if (number == winningNumber) {
+                throw new CustomException(ExceptionMessage.ERROR_MESSAGE_DUPLICATED_LOTTO_NUMBER);
+            }
+        }
+        return number;
     }
 
 }

@@ -124,7 +124,7 @@ public class InputServiceTest {
     void 당첨_번호_요소가_유효하면_숫자로_반환된다(String element) {
         List<Integer> testWinningNumbers = new ArrayList<>(Arrays.asList(1, 10, 20));
         int expected = Integer.parseInt(element);
-        assertThat(inputService.validateWinningNumber(testWinningNumbers, element)).isEqualTo(expected);
+        assertThat(inputService.validateWinningNumber(element)).isEqualTo(expected);
     }
 
     @DisplayName("당첨 번호 요소가 수가 아니면 예외가 발생한다. ")
@@ -132,7 +132,7 @@ public class InputServiceTest {
     @ValueSource(strings = {"~", "1번", ""})
     void 당첨_번호_요소가_수가_아니면_예외가_발생한다(String element) {
         List<Integer> testWinningNumbers = new ArrayList<>(Arrays.asList(1, 10, 20));
-        assertThatThrownBy(() -> inputService.validateWinningNumber(testWinningNumbers, element))
+        assertThatThrownBy(() -> inputService.validateWinningNumber(element))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR_MESSAGE_IS_NOT_NUMBER.toString());
     }
@@ -141,8 +141,7 @@ public class InputServiceTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "46"})
     void 당첨_번호_요소가_로또_번호_범위의_수가_아니면_예외가_발생한다(String element) {
-        List<Integer> testWinningNumbers = new ArrayList<>(Arrays.asList(1, 10, 20));
-        assertThatThrownBy(() -> inputService.validateWinningNumber(testWinningNumbers, element))
+        assertThatThrownBy(() -> inputService.validateWinningNumber(element))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.ERROR_MESSAGE_IS_NOT_IN_LOTTO_NUMBER_RANGE.toString());
     }
