@@ -34,6 +34,10 @@ public class UserInput {
         String[] winNumbersInput = readLine().split(",");
 
         validWinNumbersInput(winNumbersInput);
+
+        for (String winNumber : winNumbersInput) {
+            this.winNumbers.add(Integer.parseInt(winNumber));
+        }
     }
 
 
