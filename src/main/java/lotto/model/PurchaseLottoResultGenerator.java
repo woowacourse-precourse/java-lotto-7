@@ -18,4 +18,10 @@ public class PurchaseLottoResultGenerator {
 		}
 		return result;
 	}
+
+	private List<Integer> getLottoNumbers(List<LottoNumber> numbers) {
+		return numbers.stream()
+				.map(LottoNumber::getNumber)
+				.toList();
+	}
 }
