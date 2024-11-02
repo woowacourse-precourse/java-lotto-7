@@ -5,6 +5,7 @@ import static lotto.constants.CommonConstants.LOTTO_NUMBER_MAX;
 import static lotto.constants.CommonConstants.LOTTO_NUMBER_MIN;
 import static lotto.constants.CommonConstants.LOTTO_PRICE;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,11 +21,10 @@ public class ValidatorService {
     }
 
     public void validateParsing(String input) {
-        String[] numbers = input.split(",");
         try {
-            for (String number : numbers) {
-                Integer.parseInt(number.trim());
-            }
+            Arrays.stream(input.split(","))
+                    .map(String::trim)
+                    .forEach(Integer::parseInt);
         } catch (NumberFormatException e) {
             throw new CommonException(ErrorCode.PARSING_INTEGER_ERROR);
         }
