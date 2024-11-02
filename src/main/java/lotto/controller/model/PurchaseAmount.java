@@ -2,21 +2,21 @@ package lotto.controller.model;
 
 import lotto.constants.ErrorMessages;
 
-public class PurChaseAmount {
+public class PurchaseAmount {
     static final int PURCHASE_UNIT_AMOUNT = 1000;
     static final int MAX_PURCHASE_AMOUNT = 100000;
     static final int MIN_PURCHASE_AMOUNT = 1000;
 
     private final int amount;
 
-    private PurChaseAmount(String userInput) {
+    private PurchaseAmount(String userInput) {
         int inputAmount = convertToValidType(userInput);
         validate(inputAmount);
         amount = inputAmount;
     }
 
-    public static PurChaseAmount from(String userInput) {
-        return new PurChaseAmount(userInput);
+    public static PurchaseAmount from(String userInput) {
+        return new PurchaseAmount(userInput);
     }
 
     private void validate(int userInput) {

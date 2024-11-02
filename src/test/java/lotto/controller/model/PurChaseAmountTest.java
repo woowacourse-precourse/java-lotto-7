@@ -14,7 +14,7 @@ class PurChaseAmountTest {
         String input = "5000";
 
         // when
-        PurChaseAmount purChaseAmount = PurChaseAmount.from(input);
+        PurchaseAmount purChaseAmount = PurchaseAmount.from(input);
 
         // then
         assertThat(purChaseAmount.getAmount()).isEqualTo(5000);
@@ -23,36 +23,36 @@ class PurChaseAmountTest {
     @Test
     void 최소_금액보다_적게_구매했을_때_예외_발생() {
         // given
-        String input = String.valueOf(PurChaseAmount.MIN_PURCHASE_AMOUNT - 1);
+        String input = String.valueOf(PurchaseAmount.MIN_PURCHASE_AMOUNT - 1);
 
         // when
         // then
-        assertThatThrownBy(() -> PurChaseAmount.from(input))
+        assertThatThrownBy(() -> PurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.MIN_AMOUNT.formatMessage(PurChaseAmount.MIN_PURCHASE_AMOUNT));
+                .hasMessage(ErrorMessages.MIN_AMOUNT.formatMessage(PurchaseAmount.MIN_PURCHASE_AMOUNT));
     }
 
     @Test
     void 최대_금액보다_많게_구매했을_때_예외_발생() {
         // given
-        String input = String.valueOf(PurChaseAmount.MAX_PURCHASE_AMOUNT + 1);
+        String input = String.valueOf(PurchaseAmount.MAX_PURCHASE_AMOUNT + 1);
 
         // when
         // then
-        assertThatThrownBy(() -> PurChaseAmount.from(input))
+        assertThatThrownBy(() -> PurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.MAX_AMOUNT.formatMessage(PurChaseAmount.MAX_PURCHASE_AMOUNT));
+                .hasMessage(ErrorMessages.MAX_AMOUNT.formatMessage(PurchaseAmount.MAX_PURCHASE_AMOUNT));
     }
 
     @Test
     void 설정된_단위로_구매하지_않는다면_예외_발생() {
         // given
-        String input = String.valueOf(PurChaseAmount.PURCHASE_UNIT_AMOUNT + 1);
+        String input = String.valueOf(PurchaseAmount.PURCHASE_UNIT_AMOUNT + 1);
 
         // when
         // then
-        assertThatThrownBy(() -> PurChaseAmount.from(input))
+        assertThatThrownBy(() -> PurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessages.UNIT_AMOUNT.formatMessage(PurChaseAmount.PURCHASE_UNIT_AMOUNT));
+                .hasMessage(ErrorMessages.UNIT_AMOUNT.formatMessage(PurchaseAmount.PURCHASE_UNIT_AMOUNT));
     }
 }
