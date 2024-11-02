@@ -2,7 +2,6 @@ package lotto.purchase;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.purchase.PaymentExtractor;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
