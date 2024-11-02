@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public enum LottoRank {
@@ -19,6 +20,10 @@ public enum LottoRank {
         this.prizeMoney = prizeMoney;
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
+    }
+
+    public static List<LottoRank> rankListWithBonus() {
+        return Arrays.stream(LottoRank.values()).filter(lotto -> lotto.matchBonus).toList();
     }
 
     public static LottoRank by(int matchCount, boolean matchBonus) {

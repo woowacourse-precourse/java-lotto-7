@@ -38,14 +38,16 @@ public class Lotto {
 
     public LottoRank getRankFrom(WinningLotto winningLotto) {
         List<Integer> winningNumberList = winningLotto.getWinningNumberList();
-        List<Integer> list = this.numbers.stream().filter(winningNumberList::contains).toList();
+        int matchCount = this.numbers.stream().filter(winningNumberList::contains).toList().size();
+        List<LottoRank> bonusRankList = LottoRank.rankListWithBonus();
+        List<Integer> matchCountListOfBonusRank = bonusRankList.stream().map(rank -> rank.matchCount).toList();
 
-        if (list.size() == LottoRank.RANK_2.matchCount) {
+        if (matchCountListOfBonusRank.contains(matchCount)) {
             int bonusNumber = winningLotto.getBonusNumber();
 
-            return LottoRank.by(list.size(), numbers.contains(bonusNumber));
+            return LottoRank.by(matchCount, numbers.contains(bonusNumber));
         }
 
-        return LottoRank.by(list.size(), false);
+        return LottoRank.by(matchCount, false);
     }
 }
