@@ -29,7 +29,6 @@ public class LottoValidator {
         long distinctCount = numbers.stream()
                 .distinct()
                 .count();
-        System.out.println(numbers);
         int count = numbers.size();
         if (distinctCount != count) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
