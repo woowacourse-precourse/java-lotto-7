@@ -72,11 +72,17 @@ public class LottoController {
     }
 
     private Integer getBonusNumber(List<Integer> mainNumber) {
-        OutputView.printBonusNumberGuide();
-        String inputBonus = InputView.readInput();
-        Integer bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
-        mainNumber.add(bonusNumber);
-        WinningNumberValidator.validateDuplication(mainNumber);
-        return bonusNumber;
+        try {
+            OutputView.printBonusNumberGuide();
+            String inputBonus = InputView.readInput();
+            Integer bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
+            mainNumber.add(bonusNumber);
+            WinningNumberValidator.validateDuplication(mainNumber);
+            return bonusNumber;
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getBonusNumber(mainNumber);
+        }
     }
 }
