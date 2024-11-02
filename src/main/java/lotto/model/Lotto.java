@@ -1,6 +1,7 @@
 package lotto.model;
 
-import lotto.constant.Constant;
+import lotto.constant.ExceptionConstant;
+import lotto.constant.LottoConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +17,14 @@ public class Lotto {
     }
 
     private void validateSize(List<LottoNumber> numbers) {
-        if (numbers.size() != Constant.LOTTO_SIZE) {
-            throw new IllegalArgumentException(Constant.ERROR_MESSAGE + Constant.LOTTO_NUMBER_MESSAGE  + Constant.LOTTO_SIZE + "개여야 합니다.");
+        if (numbers.size() != LottoConstant.LOTTO_SIZE) {
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_NUMBER_MESSAGE  + LottoConstant.LOTTO_SIZE + "개여야 합니다.");
         }
     }
 
     private void validateDuplicate(List<LottoNumber> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(Constant.ERROR_MESSAGE + Constant.LOTTO_NUMBER_MESSAGE + "중복될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE + ExceptionConstant.LOTTO_NUMBER_MESSAGE + "중복될 수 없습니다.");
         }
     }
 

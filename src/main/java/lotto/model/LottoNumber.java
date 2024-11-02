@@ -1,6 +1,7 @@
 package lotto.model;
 
-import lotto.constant.Constant;
+import lotto.constant.ExceptionConstant;
+import lotto.constant.LottoConstant;
 
 public record LottoNumber(int number) {
     public LottoNumber {
@@ -8,8 +9,8 @@ public record LottoNumber(int number) {
     }
 
     private void validateRange(int number) {
-        if (number < Constant.LOTTO_MIN_NUMBER || number > Constant.LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException(Constant.ERROR_MESSAGE+Constant.LOTTO_NUMBER_MESSAGE+Constant.LOTTO_MIN_NUMBER+" 부터 "+Constant.LOTTO_MAX_NUMBER+" 사이여야 합니다.");
+        if (number < LottoConstant.LOTTO_MIN_NUMBER || number > LottoConstant.LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE+ ExceptionConstant.LOTTO_NUMBER_MESSAGE+ LottoConstant.LOTTO_MIN_NUMBER+" 부터 "+ LottoConstant.LOTTO_MAX_NUMBER+" 사이여야 합니다.");
         }
     }
 }
