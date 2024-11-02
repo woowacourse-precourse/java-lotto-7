@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.model.Input;
+import lotto.model.Money;
+import lotto.model.WinningNumber;
 import lotto.service.InputService;
 import lotto.view.InputView;
 
@@ -13,9 +14,13 @@ public class InputController {
         this.inputService = new InputService(inputView);
     }
 
-    public Input getInput() {
+    public Money getMoney() {
         int buy = inputService.getValidBuyInput();
-        Set<String> winningNum = inputService.getValidWinningNumInput();
-        return new Input(buy, winningNum);
+        return new Money(buy);
+    }
+
+    public WinningNumber getWinningNumber() {
+        Set<Integer> winnginNumber = inputService.getValidWinningNumInput();
+        return new WinningNumber(winnginNumber);
     }
 }

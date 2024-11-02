@@ -16,19 +16,19 @@ public class InputService {
     public int getValidBuyInput() {
         while (true) {
             try {
-                String buy = inputView.getBuy();
-                return inputParser.parseBuy(buy); // 검증 및 파싱된 결과 반환
+                String money = inputView.getBuy();
+                return inputParser.parseBuy(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public Set<String> getValidWinningNumInput() {
+    public Set<Integer> getValidWinningNumInput() {
         while (true) {
             try {
                 String winningNum = inputView.getWinningNum();
-                return inputParser.parseWinningNumbers(winningNum); // 검증 및 파싱된 결과 반환
+                return inputParser.parseWinningNumbers(winningNum);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

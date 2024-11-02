@@ -12,9 +12,10 @@ public class InputParser {
         return Integer.parseInt(inputBuy);
     }
 
-    public Set<String> parseWinningNumbers(String winningNumInput) {
-        Set<String> numbers = Arrays.stream(winningNumInput.split(","))
+    public Set<Integer> parseWinningNumbers(String winningNumInput) {
+        Set<Integer> numbers = Arrays.stream(winningNumInput.split(","))
                 .map(String::trim)
+                .map(Integer::parseInt)
                 .collect(Collectors.toCollection(TreeSet::new));
         ValidationUtils.validateWinningNumbers(numbers);
         return numbers;

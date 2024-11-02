@@ -1,36 +1,34 @@
 package lotto.util;
 
+import lotto.message.ErrorMessage;
+
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class ValidationUtils {
 
     public static void validateBuyAmount(String buyInput) {
-        // 빈 문자열 입력 시 예외 발생
         if (buyInput == null || buyInput.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액을 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_PURCHASE_AMOUNT.getMessage());
         }
 
         try {
             int buy = Integer.parseInt(buyInput);
-
-            // 양수가 아니거나 1,000원 단위가 아닌 경우 예외 발생
             if (buy <= 0 || buy % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getMessage());
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 하며, int 범위를 초과할 수 없습니다.", e);
+            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_PURCHASE_AMOUNT.getMessage(), e);
         }
     }
 
-    public static void validateWinningNumbers(Set<String> numbers) {
+    public static void validateWinningNumbers(Set<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복 없이 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage());
         }
 
-        for (String num : numbers) {
-            if (!Pattern.matches("\\d+", num) || Integer.parseInt(num) < 1 || Integer.parseInt(num) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        for (Integer num : numbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_RANGE.getMessage());
             }
         }
     }
