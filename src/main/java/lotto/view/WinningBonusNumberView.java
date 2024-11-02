@@ -9,7 +9,7 @@ import lotto.validation.WinningBonusNumberValidation;
 public final class WinningBonusNumberView {
     public static void winningBonusNumber() {
         Lotto winninglotto = winningNumberInput();
-        System.out.println(winninglotto);
+        int bonusNumber = bonusNumberInput();
     }
 
     private static Lotto winningNumberInput() {
@@ -18,6 +18,17 @@ public final class WinningBonusNumberView {
                 Output.printlnMessage(IOMessage.INPUT_WINNING_NUMBER.getMessage());
                 String winningNumber = Input.inputMessage();
                 return WinningBonusNumberValidation.getValidatedWinningNumbers(winningNumber);
+            } catch (IllegalArgumentException errorMessage) {
+                System.out.println(errorMessage.getMessage());
+            }
+        }
+    }
+
+    private static int bonusNumberInput() {
+        while (true) {
+            try {
+                Output.printlnMessage(IOMessage.INPUT_BONUS_NUMBER.getMessage());
+                return 0;
             } catch (IllegalArgumentException errorMessage) {
                 System.out.println(errorMessage.getMessage());
             }
