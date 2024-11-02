@@ -2,6 +2,7 @@ package lotto.core.controller;
 
 import lotto.commons.util.Command;
 import lotto.commons.util.Repeat;
+import lotto.core.constants.InputViewHeader;
 import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoTicketDto;
 import lotto.core.service.CreateLottoPurchaseAmountService;
@@ -38,7 +39,7 @@ public class PurchaseLottoController implements Controller<Void, LottoTicketDto>
     }
 
     private LottoPurchaseAmountDto processInputLottoPurchaseAmount() {
-        this.inputLottoPurchaseAmountView.display("구매금액을 입력해 주세요.");
+        this.inputLottoPurchaseAmountView.display(InputViewHeader.IN_LOTTO_PURCHASE_AMOUNT_VIEW);
         return Repeat.doWhile(5, () -> {
             String read = Command.read();
             return this.createLottoPurchaseAmountService.create(read);

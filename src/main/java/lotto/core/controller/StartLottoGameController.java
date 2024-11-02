@@ -2,6 +2,7 @@ package lotto.core.controller;
 
 import lotto.commons.util.Command;
 import lotto.commons.util.Repeat;
+import lotto.core.constants.InputViewHeader;
 import lotto.core.dto.LottoDto;
 import lotto.core.dto.LottoNumberDto;
 import lotto.core.dto.LottoResultDto;
@@ -51,7 +52,7 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
     }
 
     private LottoDto processInputWinningLotto() {
-        this.inputWinningLottoView.display("당첨 번호를 입력해 주세요.");
+        this.inputWinningLottoView.display(InputViewHeader.IN_WINNING_LOTTO_VIEW);
         return Repeat.doWhile(5, () -> {
             String read = Command.read();
             return this.createWinningLottoService.create(read);
@@ -59,7 +60,7 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
     }
 
     private LottoNumberDto processInputBonusLottoNumber(LottoDto winningLotto) {
-        this.inputBonusLottoNumberView.display("보너스 번호를 입력해 주세요.");
+        this.inputBonusLottoNumberView.display(InputViewHeader.IN_BONUS_LOTTO_NUMBER_VIEW);
         return Repeat.doWhile(5, () -> {
             String read = Command.read();
             return this.createBonusLottoNumberService.create(read, winningLotto);
