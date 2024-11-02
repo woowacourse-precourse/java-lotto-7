@@ -15,8 +15,8 @@ public class OutputView {
         System.out.println("----");
     }
 
-    public void printWinningLottoInfo(int matchedCount, int prize, int count) {
-        System.out.println(matchedCount + "개 일치 (" + prize + ") - " + count + "개");
+    public void printWinningLottoInfo(int matchedCount, String prize, int count) {
+        System.out.println(matchedCount + "개 일치 (" + prize + "원) - " + count + "개");
     }
 
     public void printReteOfReturn(String rateOfReturn) {

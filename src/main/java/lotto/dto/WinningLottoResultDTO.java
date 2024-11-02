@@ -2,10 +2,10 @@ package lotto.dto;
 
 public class WinningLottoResultDTO {
     private final int matchedCount;
-    private final int prize;
+    private final String prize;
     private final int count;
 
-    public WinningLottoResultDTO(int matchedCount, int prize, int count) {
+    public WinningLottoResultDTO(int matchedCount, String prize, int count) {
         this.matchedCount = matchedCount;
         this.prize = prize;
         this.count = count;
@@ -15,7 +15,7 @@ public class WinningLottoResultDTO {
         return matchedCount;
     }
 
-    public int getPrize() {
+    public String getPrize() {
         return prize;
     }
 

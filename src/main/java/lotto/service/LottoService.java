@@ -10,6 +10,7 @@ import lotto.dto.WinningLottoResultDTO;
 import lotto.parser.business.LottoParser;
 import lotto.parser.util.ParseUtils;
 import lotto.utils.RandomNumbersSelector;
+import lotto.utils.SortUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,7 +34,8 @@ public class LottoService {
         for (int i = 0; i < buyLottoCount; i++) {
             List<Integer> randomNumbers = RandomNumbersSelector.selectRandomNumbers();
             List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers(randomNumbers);
-            lottoManager.createLottosByRandomNumbers(lottoNumbers);
+            List<Integer> sortedLottoNumbers = SortUtils.sortNumbers(lottoNumbers);
+            lottoManager.createLottosByRandomNumbers(sortedLottoNumbers);
         }
     }
 
@@ -57,7 +59,7 @@ public class LottoService {
         WinningLottoInfo[] winningLottoInfos = WinningLottoInfo.values();
 
         for (WinningLottoInfo winningLottoInfo : winningLottoInfos) {
-            formatResults.add(new WinningLottoResultDTO(winningLottoInfo.getMatchedCount(), winningLottoInfo.getPrize(), winningLottoInfo.getCount()));
+            formatResults.add(new WinningLottoResultDTO(winningLottoInfo.getMatchedCount(), winningLottoInfo.getFormattedPrize(), winningLottoInfo.getCount()));
         }
 
         return formatResults;

@@ -1,6 +1,5 @@
 package lotto.domain.Lotto;
 
-import lotto.utils.SortUtils;
 import lotto.validator.LottoValidator;
 
 import java.util.HashSet;
@@ -17,8 +16,7 @@ public class LottoGenerator {
     public List<Integer> generateLottoNumbers(List<Integer> randomNumbers) {
         lottoValidator.validateLottoRange(randomNumbers);
         validateDuplicationLottoNumbers(randomNumbers);
-
-        return SortUtils.sortNumbers(randomNumbers);
+        return randomNumbers;
     }
 
     private void validateDuplicationLottoNumbers(List<Integer> randomNumbers) {

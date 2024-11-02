@@ -22,7 +22,7 @@ public class LottoGeneratorTest {
     @Test
     void 로또번호_생성_기능_테스트() {
         List<Integer> randomNumbers = Arrays.asList(10, 5, 3, 6, 7, 8);
-        List<Integer> expectedNumbers = Arrays.asList(3, 5, 6, 7, 8, 10);
+        List<Integer> expectedNumbers = Arrays.asList(10, 5, 3, 6, 7, 8);
 
         List<Integer> lottoNumbers = lottoGenerator.generateLottoNumbers(randomNumbers);
 

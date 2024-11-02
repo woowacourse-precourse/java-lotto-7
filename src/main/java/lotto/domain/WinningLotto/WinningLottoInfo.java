@@ -1,5 +1,7 @@
 package lotto.domain.WinningLotto;
 
+import java.text.NumberFormat;
+
 public enum WinningLottoInfo {
     NO_MATCH(0, 0),
     THREE_MATCH(3, 5000),
@@ -28,6 +30,11 @@ public enum WinningLottoInfo {
 
     public int getCount() {
         return count;
+    }
+
+    public String getFormattedPrize() {
+        NumberFormat formatter = NumberFormat.getInstance();
+        return formatter.format(prize);
     }
 
     public void incrementCount() {
