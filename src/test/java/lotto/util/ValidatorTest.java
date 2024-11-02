@@ -49,4 +49,20 @@ public class ValidatorTest {
         };
     }
 
+    @ParameterizedTest
+    @MethodSource("invalidNumberProvider")
+    @DisplayName("숫자가 범위 내에 포함되지 않는 예외 테스트")
+    public void isNumberWithinRangeExceptionTest(int number, int minNumber, int maxNumber) {
+        assertThatThrownBy(() -> Validator.isNumberWithinRange(number, minNumber, maxNumber)).isInstanceOf(
+                IllegalArgumentException.class);
+    }
+
+    private static Object[][] invalidNumberProvider() {
+        return new Object[][] {
+                {5, 0, 4},
+                {1, 2, 4},
+                {10, 2, 8}
+        };
+    }
+
 }
