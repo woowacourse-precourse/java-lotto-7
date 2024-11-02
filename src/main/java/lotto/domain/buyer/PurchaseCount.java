@@ -8,9 +8,8 @@ public class PurchaseCount {
     private final int purchaseCount;
 
     private PurchaseCount(final int money) {
-        int purchaseCount = money / THOUSND_UNIT;
-        validateMoney(purchaseCount);
-        this.purchaseCount = purchaseCount;
+        validateMoney(money);
+        this.purchaseCount = money / THOUSND_UNIT;
     }
 
     public static PurchaseCount from(final int money) {
