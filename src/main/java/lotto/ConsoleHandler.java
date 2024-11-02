@@ -64,4 +64,26 @@ public class ConsoleHandler {
         return invertNumber(bonusNumber);
     }
 
+    public void printWinningResult(Map<Rank, Integer> winningCountsByRank, Map<Rank, PrizeInfo> rankInfo) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        rankInfo.keySet().stream()
+                .filter(rank -> rank.getPrintOrder() != null)
+                .sorted(Comparator.comparingInt(Rank::getPrintOrder))
+                .forEach(rank -> {
+                    PrizeInfo prizeInfo = rankInfo.get(rank);
+                    int winningCount = winningCountsByRank.getOrDefault(rank, 0);
+                    printRankResult(prizeInfo, winningCount);
+                });
+    }
+
+    private void printRankResult(PrizeInfo prizeInfo, int winningCount) {
+        System.out.print(prizeInfo.getMatchCount() + "개 일치");
+        if (prizeInfo.isMatchBonus()) {
+            System.out.print(", 보너스 볼 일치");
+        }
+        System.out.print(" (" + prizeInfo.getPrize() + "원) - ");
+        System.out.println(winningCount + "개");
+    }
 }
