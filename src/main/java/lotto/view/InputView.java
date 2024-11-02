@@ -2,6 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.*;
 import static lotto.exception.Exception.*;
+import static lotto.validator.LottoNumbersValidator.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +16,13 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_PURCHASE_AMOUNT.getMessage());
         }
+    }
+
+    public static List<Integer> inputWinningNumbers() {
+        String input = readLine();
+        List<Integer> numbers = parseToInteger(splitWinningNumbers(removeAllSpaces(input)));
+        validate(numbers);
+        return numbers;
     }
 
     private static String removeAllSpaces(String input) {
