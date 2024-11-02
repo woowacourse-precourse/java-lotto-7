@@ -46,8 +46,8 @@ public class WinningNumberValidator {
             validateNumeric(number.trim());
             int parseNumber = Integer.parseInt(number);
             validateOutOfRange(parseNumber);
-            duplicateCheckNumbers.add(parseNumber);
             isDuplicate(parseNumber);
+            duplicateCheckNumbers.add(parseNumber);
         }
     }
 
