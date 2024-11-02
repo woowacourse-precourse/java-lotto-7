@@ -7,11 +7,15 @@ public class LottoRateCalculator {
     public static double calculateReturnOfRate(int purchaseAmount, List<MatchingCountResult> countResults) {
         double profit = 0;
         for (MatchingCountResult matchingCountResult : countResults) {
-            int count = matchingCountResult.conditionCount();
-            int amount = matchingCountResult.winningCondition().getPrizeAmount();
-            profit += count * amount;
+            double prize = matchingCountResult.getWinningCondition().getPrizeAmount();
+            profit += matchingCountResult.getConditionCount() * prize;
         }
-        return (profit / purchaseAmount) * 100;
+        double rate = (profit / purchaseAmount) * 100;
+        return roundUpToSecondDecimal(rate);
+    }
+
+    public static double roundUpToSecondDecimal(double value) {
+        return Math.ceil(value * 100) / 100;
     }
 
 }

@@ -14,8 +14,9 @@ class LottoRateCalculatorTest {
      */
     @Test
     void 수익률을_계산한다() {
-        MatchingCountResult matchingCountResult1 = new MatchingCountResult(WinningCondition.MATCH_3, 1);
-        List<MatchingCountResult> matchingCountResults = List.of(matchingCountResult1);
+        MatchingCountResult matchingCountResult = new MatchingCountResult(WinningCondition.MATCH_3);
+        matchingCountResult.addCount();
+        List<MatchingCountResult> matchingCountResults = List.of(matchingCountResult);
         int amount = 8000;
         double rate = LottoRateCalculator.calculateReturnOfRate(8000, matchingCountResults);
         assertEquals(62.5, rate);
