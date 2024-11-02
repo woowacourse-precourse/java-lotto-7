@@ -30,4 +30,16 @@ class LottoTest {
         List<Integer> actual = lotto.getSortedLottoNumbers();
         assertEquals(expected, actual);
     }
+
+    @Test
+    void 로또_번호가_1미만이면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 0, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 로또_번호가_45초과면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

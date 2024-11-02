@@ -16,6 +16,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateUnique(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -35,7 +36,7 @@ public class Lotto {
         int minLottoNumber = MIN_NUMBER.getValue();
         int maxLottoNumber = MAX_NUMBER.getValue();
         boolean isValidRange = numbers.stream()
-                .allMatch(number -> number < minLottoNumber && number > maxLottoNumber);
+                .allMatch(number -> number >= minLottoNumber && number <= maxLottoNumber);
         if (!isValidRange) {
             throw new IllegalArgumentException("[ERROR] " + minLottoNumber + " - " + maxLottoNumber + "사이의 수를 입력하세요");
         }
