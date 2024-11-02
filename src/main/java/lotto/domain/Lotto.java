@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import lotto.constant.LotteryConst;
 import lotto.exception.ExceptionMessages;
@@ -21,8 +21,8 @@ public class Lotto {
     }
 
     private void validateNumbersAmount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LotteryConst.AMOUNT.getValue()) {
+            throw new IllegalArgumentException(ExceptionMessages.LOTTO_ELEM_AMOUNT.getMessage());
         }
     }
 
@@ -34,13 +34,8 @@ public class Lotto {
     }
 
     private void validateOutOfRangeNumber(List<Integer> numbers) {
-        Integer maxVal = numbers.stream()
-                .max(Comparator.comparing(x -> x))
-                .orElseThrow();
-
-        Integer minVal = numbers.stream()
-                .min(Comparator.comparing(x -> x))
-                .orElseThrow();
+        int maxVal = Collections.max(numbers);
+        int minVal = Collections.min(numbers);
 
         if (maxVal > LotteryConst.MAX.getValue() || minVal < LotteryConst.MIN.getValue()) {
             throw new IllegalArgumentException(ExceptionMessages.NUMBER_OUT_OF_RANGE.getMessage());

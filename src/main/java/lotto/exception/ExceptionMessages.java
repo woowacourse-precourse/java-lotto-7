@@ -8,6 +8,7 @@ public enum ExceptionMessages {
     AMOUNT_CANNOT_DIVISIBLE("[ERROR] 금액이 1,000원 단위로 나누어 떨어지지 않습니다! 다시 입력해주세요."),
     EMPTY_ELEM_EXIST("[ERROR] 당첨 번호에 공백이 존재합니다! 다시 입력해주세요."),
     ENDS_WITH_COMMA("[ERROR] 입력하신 당첨 번호가 콤마(,)로 끝납니다! 다시 입력해주세요."),
+    LOTTO_ELEM_AMOUNT("[ERROR] 로또 번호는 6개여야 합니다. 다시 입력해주세요."),
     DUPLICATED_NUMBER_EXIST("[ERROR] 당첨 번호에 중복되는 숫자가 존재합니다! 다시 입력해주세요."),
     NUMBER_OUT_OF_RANGE("[ERROR] 입력하신 번호가 1 ~ 45 사이의 숫자가 아닙니다! 다시 입력해주세요."),
     NUMBER_ALREADY_EXIST("[ERROR] 입력하신 번호는 이미 당첨 번호에 존재합니다! 다시 입력해주세요.");
