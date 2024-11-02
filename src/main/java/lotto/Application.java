@@ -12,6 +12,10 @@ public class Application {
             System.out.println("구입금액을 입력해 주세요.");
             String buyAmountInput = Console.readLine();
 
+            if (buyAmountInput == null | buyAmountInput.isEmpty()) {
+                throw new IllegalArgumentException("[ERROR] 값을 입력해야 합니다.");
+            }
+
             int buyAmount;
             try {
                 buyAmount = Integer.parseInt(buyAmountInput);
