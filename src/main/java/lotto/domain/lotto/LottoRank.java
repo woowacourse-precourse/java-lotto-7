@@ -19,7 +19,7 @@ public enum LottoRank {
         this.price = price;
     }
 
-    public LottoRank getLottoRank(int matchCount, boolean hasBonusNumber) {
+    public static LottoRank getLottoRank(int matchCount, boolean hasBonusNumber) {
         if (matchCount == SECOND.matchCount && hasBonusNumber) {
             return SECOND;
         }
