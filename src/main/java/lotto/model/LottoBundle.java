@@ -19,6 +19,10 @@ public class LottoBundle {
 		return lottos;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
 	private int calculateCount(int price) {
 		return price / SINGLE_LOTTO_PRICE;
 	}
