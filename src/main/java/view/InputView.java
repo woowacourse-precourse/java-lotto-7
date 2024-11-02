@@ -16,31 +16,40 @@ public class InputView {
 
         List<Integer> lottoNumbers = Arrays.stream(number.split(","))
                                         .map(Integer::parseInt)
-                                        .toList(); // 리스트에 담기
+                                        .toList();
 
         return lottoNumbers;
     }
 
-    public int getBonusNumber(){
-        return Integer.parseInt(Console.readLine());
+    public String getBonusNumber(){
+        return Console.readLine();
+    }
+
+    public int validateBonusNumber(String bonusNumber){
+        checkNumber(bonusNumber);
+        if(Integer.parseInt(bonusNumber)>45) throw new IllegalArgumentException("[ERROR] 보너스 번호는 45 이하여야 합니다.");
+        return Integer.parseInt(bonusNumber);
     }
 
     public int validateLottoMoney(String lottoMoney){
-        if(!lottoMoney.matches(NUMERIC_REGEX)){
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 숫자만 입력할 수 있습니다.");
-        }
-
-        if(Integer.parseInt(lottoMoney) < 0){
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 양수만 입력할 수 있습니다.");
-        }
+        checkNumber(lottoMoney);
 
         if(Integer.parseInt(lottoMoney) % 1000!=0){
-            throw new IllegalArgumentException("[ERROR] 로또 금액은 1000원 단위로만 입력할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로만 입력할 수 있습니다.");
         }
 
         return Integer.parseInt(lottoMoney);
     }
 
+    private static void checkNumber(String number) {
+        if(!number.matches(NUMERIC_REGEX)){
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
+        }
+
+        if(Integer.parseInt(number) < 0){
+            throw new IllegalArgumentException("[ERROR] 양수만 입력할 수 있습니다.");
+        }
+    }
 
 
 
