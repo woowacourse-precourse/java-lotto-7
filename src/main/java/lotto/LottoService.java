@@ -18,7 +18,9 @@ public class LottoService {
     public List<List<Integer>> getTickets(int numberOfTickets) {
         List<List<Integer>> tickets = new ArrayList<>();
         for (int i = 0; i < numberOfTickets; i++) {
-            tickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            tickets.add(ticket);
+            System.out.println(ticket);
         }
 
         return tickets;

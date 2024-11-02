@@ -9,11 +9,12 @@ public class Application {
 
         System.out.println("구입금액을 입력해 주세요.");
         String purchase = Console.readLine();
+        System.out.println();
 
         int numberOfTickets = lottoService.getNumberOfTickets(purchase);
-
+        System.out.println(numberOfTickets + "개를 구매했습니다.");
         List<List<Integer>> tickets = lottoService.getTickets(numberOfTickets);
+        System.out.println();
 
-        // 추가 예정
     }
 }
