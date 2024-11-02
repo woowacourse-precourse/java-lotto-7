@@ -43,9 +43,7 @@ class InputValidationServiceTest {
                 Arguments.of("  ", ValidationFailMessage.EMPTY_INPUT.getMessage()),
                 Arguments.of("만원", ValidationFailMessage.NON_NUMERIC_INPUT.getMessage()),
                 Arguments.of("99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage()),
-                Arguments.of("-99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage()),
-                Arguments.of("0", ValidationFailMessage.ZERO_OR_MINUS_INPUT.getMessage()),
-                Arguments.of("-1", ValidationFailMessage.ZERO_OR_MINUS_INPUT.getMessage())
+                Arguments.of("-99999999999999", ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage())
         );
     }
 }

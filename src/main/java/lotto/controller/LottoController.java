@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constant.OutputMessage;
+import lotto.model.PurchasePrice;
 import lotto.service.InputParsingService;
 import lotto.service.InputValidationService;
 import lotto.view.InputView;
@@ -26,10 +27,10 @@ public class LottoController {
     }
 
     public void runLotto() {
-        int purchasePrice = inputPurchasePrice();
+        PurchasePrice purchasePrice = inputPurchasePrice();
     }
 
-    private int inputPurchasePrice() {
+    private PurchasePrice inputPurchasePrice() {
         outputView.printMessage(OutputMessage.PURCHASE_PRICE_INPUT_MESSAGE);
         String rawPurchasePrice = inputView.inputContent();
         inputValidationService.validatePurchasePrice(rawPurchasePrice);

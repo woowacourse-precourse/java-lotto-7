@@ -9,7 +9,6 @@ public class InputValidationService {
         isBlank(rawPurchasePrice);
         isNonNumeric(rawPurchasePrice);
         isOutOfParseRange(rawPurchasePrice);
-        isZeroOrMinus(rawPurchasePrice);
     }
 
     private void isBlank(String input) {
@@ -29,13 +28,6 @@ public class InputValidationService {
             Integer.parseInt(numericInput);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage());
-        }
-    }
-
-    private void isZeroOrMinus(String numericInput) {
-        int parseResult = Integer.parseInt(numericInput);
-        if (parseResult <= 0) {
-            throw new IllegalArgumentException(ValidationFailMessage.ZERO_OR_MINUS_INPUT.getMessage());
         }
     }
 }
