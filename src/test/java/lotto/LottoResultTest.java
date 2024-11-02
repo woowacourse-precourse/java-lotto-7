@@ -3,17 +3,14 @@ package lotto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
-import org.junit.jupiter.api.DisplayName;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoResultTest {
-
     @Test
-    @DisplayName("당첨 결과 초기화 검증")
-    void initializeLottoResult() {
+    void 당첨_결과_초기화_검증() {
         LottoResult result = new LottoResult(1000);
 
         assertThat(result.getRankCounts()).containsOnlyKeys(LottoRank.values());
@@ -21,49 +18,45 @@ class LottoResultTest {
     }
 
     @Test
-    @DisplayName("1등 당첨 결과 계산")
     void 일등_당첨_결과_테스트() {
         LottoResult result = new LottoResult(1000);
-        Lotto userLotto = new Lotto(List.of(1,2,3,4,5,6));
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        result.addWinningResult(userLotto, winningLotto, 7);
+        result.addWinningResult(userLotto, winningLotto);
 
         assertThat(result.getRankCounts().get(LottoRank.FIRST)).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("2등 당첨 결과 계산")
     void 이등_당첨_결과_테스트() {
         LottoResult result = new LottoResult(1000);
-        Lotto userLotto = new Lotto(List.of(1,2,3,4,5,7));
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        result.addWinningResult(userLotto, winningLotto, 7);
+        result.addWinningResult(userLotto, winningLotto);
 
         assertThat(result.getRankCounts().get(LottoRank.SECOND)).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("3등 당첨 결과 계산")
     void 삼등_당첨_결과_테스트() {
         LottoResult result = new LottoResult(1000);
-        Lotto userLotto = new Lotto(List.of(1,2,3,4,5,8));
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        result.addWinningResult(userLotto, winningLotto, 7);
+        result.addWinningResult(userLotto, winningLotto);
 
         assertThat(result.getRankCounts().get(LottoRank.THIRD)).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("수익률 계산")
-    void calculateProfitRate() {
+    void 수익률_계산_테스트() {
         LottoResult result = new LottoResult(1000);
-        Lotto userLotto = new Lotto(List.of(1,2,3,4,5,6));
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        result.addWinningResult(userLotto, winningLotto, 7);
+        result.addWinningResult(userLotto, winningLotto);
 
         assertThat(result.calculateProfitRate()).isEqualTo(200000000.0);
     }
