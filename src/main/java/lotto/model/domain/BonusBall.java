@@ -4,18 +4,11 @@ import lotto.model.ErrorMessage;
 
 public class BonusBall {
 
-    private final int number;
+    private final LottoNumber lottoNumber;
 
     public static BonusBall of(int number, WinningBalls winningBalls) {
-        validateRange(number);
         validateDuplicate(number, winningBalls);
-        return new BonusBall(number);
-    }
-
-    private static void validateRange(int number) {
-        if (number < 0 || number > 46) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
+        return new BonusBall(new LottoNumber(number));
     }
 
     private static void validateDuplicate(int number, WinningBalls winningBalls) {
@@ -24,12 +17,12 @@ public class BonusBall {
         }
     }
 
-    private BonusBall(int number) {
-        this.number = number;
+    private BonusBall(LottoNumber lottoNumber) {
+        this.lottoNumber = lottoNumber;
     }
 
     public int getNumber() {
-        return this.number;
+        return this.lottoNumber.getNumber();
     }
 }
 
