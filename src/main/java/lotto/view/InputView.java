@@ -7,5 +7,9 @@ public class InputView {
 		return Console.readLine();
 	}
 
-
+	private void validateNotBlank(String input) {
+		if (input.isBlank()) {
+			System.out.println("[ERROR] 입력값은 비어있지 않아야 합니다.");
+		}
+	}
 }
