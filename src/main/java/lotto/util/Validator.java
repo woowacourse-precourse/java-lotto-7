@@ -1,4 +1,6 @@
-package lotto;
+package lotto.util;
+
+import lotto.Lotto;
 
 public class Validator {
     public int validatePurchasePrice(String purchasePriceInput) {

@@ -1,6 +1,6 @@
 package lotto.config;
 
-import lotto.Validator;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
