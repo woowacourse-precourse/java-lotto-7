@@ -66,6 +66,14 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 가격입력_비정상_음수(){
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
