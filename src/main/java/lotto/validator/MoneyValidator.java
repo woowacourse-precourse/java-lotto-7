@@ -13,10 +13,6 @@ public class MoneyValidator extends Validator {
         this.money = money;
     }
 
-    public String getMoney() {
-        return money;
-    }
-
     public void validate() {
         validateNotNull();
         validateNotEmpty();
