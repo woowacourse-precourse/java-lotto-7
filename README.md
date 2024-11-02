@@ -23,8 +23,7 @@
 - 보너스 번호를 입력받고 저장한다 + 유효검사
 
 - 랜덤 로또와 <-> 사용자 로또를 매칭한다.
-  -
-        - 결과 1개 = 랜덤 로또 1개 <-> (입력한 로또+보너스)
+    - 결과 1개 = 랜덤 로또 1개 <-> (입력한 로또+보너스)
 - 당첨 통계를 출력한다.
 
 
@@ -80,49 +79,51 @@
 
 ---
 
-```java
-lotto
-├──Application.java
-├──controller
-│   └──MainController.java
-├──domain
-│   ├──InputErrorMessage.java
-│   ├──Rank.java
-│   ├──Wallet.java
-│   ├──calculators
-│   │   ├──TicketCalculator.java
-│   │   ├──TicketCalculatorImpl.java
-│   │   └──YieldCalculator.java
-│   ├──factory
-│   │   └──UserMainLottoFactory.java
-│   ├──lottos
-│   │   ├──Lotto.java
-│   │   ├──RandomLottos.java
-│   │   └──user
-│   │       ├──BonusLotto.java
-│   │       ├──UserLotto.java
-│   │       └──WinningLotto.java
-│   └──number
-│       ├──NumbersMaker.java
-│       └──RandomLottoNumberMaker.java
-├──service
-│   ├──LottoMatchService.java
-│   ├──RandomLottoMarket.java
-│   └──YieldCalculateService.java
-└──view
-    ├──Input.java
-    ├──Output.java
-    └──WinningStatisticsPrinter.java
+```
+    lotto
+    ├── Application.java
+    ├── controller
+    │   └── MainController.java
+    ├── domain
+    │   ├── InputErrorMessage.java
+    │   ├── Rank.java
+    │   ├── Wallet.java
+    │   ├── calculators
+    │   │   ├── FinalPrizeCalculator.java
+    │   │   ├── TicketCalculator.java
+    │   │   ├── TicketCalculatorImpl.java
+    │   │   └── YieldCalculator.java
+    │   ├── factory
+    │   │   └── UserMainLottoFactory.java
+    │   ├── lottos
+    │   │   ├── Lotto.java
+    │   │   ├── RandomLottos.java
+    │   │   └── user
+    │   │       ├── BonusLotto.java
+    │   │       ├── UserLotto.java
+    │   │       └── WinningLotto.java
+    │   └── number
+    │       ├── NumbersMaker.java
+    │       └── RandomLottoNumberMaker.java
+    ├── service
+    │   ├── LottoMatchService.java
+    │   ├── RandomLottoMarket.java
+    │   └── YieldCalculateService.java
+    └── view
+        ├── Input.java
+        ├── Output.java
+        └── WinningStatisticsPrinter.java
+
 
 ```
 
 - 서비스
-    - `RandomLottoMarket` : **입력받은 구매금액으로 티켓을 계산하고 랜덤 로또를 만든다.**
+    - `RandomLottoMarket` : **입력받은 구매금액으로 티켓 개수 계산과, 랜덤 로또 생성을 요청한다.**
         - `TicketCalculator` : 티켓 개수(로또 구매 가능 개수)를 계산한다.
-        - `NumbersMaker` : 랜덤 숫자 6개를 생성한다.
+        - `RandomLottos` : 랜덤 숫자 6개를 생성한다.
         - `Wallet` : 구매 금액 데이터를 제공하고 티켓을 저장 및 반환한다.
-    - `LottoMatchService` : **사용자 로또<->랜덤 로또를 매칭을 하고 매칭된 결과 당첨 통계로 업데이트한다.**
-        - `UserLotto` : 로또 매칭과 자신의 매칭된 결과를 반환한다.
+    - `LottoMatchService` : **사용자 로또<->랜덤 로또의 매칭과, 당첨 통계 업데이트를 요청한다.**
+        - `UserLotto` : 로또 매칭시 자신의 매칭 결과를 반환한다.
         - `RandomLottos` : 자신과 사용자의 로또를 매칭한다.
         - `WinningLotto` : 매칭 결과를 당첨 통계로 저장한다.
     - `YieldCalculateService` : **총 상금액을 받아와 수익률 계산을 한다.**
@@ -146,12 +147,13 @@ lotto
 - 계산기
     - TicketCalculator(interface) - `TicketCalculatorImpl` : 구입 금액과 로또 1장당 가격으로 티켓 개수 계산한다.
     - `YieldCalculator` : 구입 금액과 최종 상금으로 수익률 계산한다
+    - `FinalPrizeCalculator` : 당첨 통계로 최종 상금을 계산한다.
 
 - 숫자 생성
     - NumbersMaker(interface) - `RandomLottoNumberMaker` : 6개 로또 랜덤 숫자를 생성한다.
 
 - 팩토리
-    - `UserMainLottoFactory` : 사용자가 입력한 6개 로또를 콤마(,) 기준으로 나누어 Lotto객체를 생성한다.
+    - `UserSixLottoFactory` : 사용자가 입력한 6개 로또를 콤마(,) 기준으로 나누어 Lotto객체를 생성한다.
 
 - 정책
     - Rank(Enum) : 당첨 순위, 6개 로또 매칭 개수, 보너스 점수 매칭 상태, 총 상금 금액을 상수로 관리하고, 매칭 결과에 해당되는 당첨 순위를 찾아 반환한다.
