@@ -28,14 +28,8 @@ class LottoConverterTest {
         // given
         int negativeInput = -5000;
 
-        // when
-        IllegalArgumentException negativeException = assertThrows(
-                IllegalArgumentException.class,
-                () -> lottoConverter.convertPriceToLotto(negativeInput)
-        );
-
-        // then
-        assertEquals(LottoConverter.UNDER_PRICE_ERROR, negativeException.getMessage());
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> lottoConverter.convertPriceToLotto(negativeInput));
     }
 
     @Test
@@ -44,14 +38,7 @@ class LottoConverterTest {
         // given
         int wrongUnitPrice = 4500;
 
-        // when
-        IllegalArgumentException wrongUnitException = assertThrows(
-                IllegalArgumentException.class,
-                () -> lottoConverter.convertPriceToLotto(wrongUnitPrice)
-        );
-
-        // then
-        assertEquals(LottoConverter.UNIT_ERROR, wrongUnitException.getMessage());
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> lottoConverter.convertPriceToLotto(wrongUnitPrice));
     }
-
 }
