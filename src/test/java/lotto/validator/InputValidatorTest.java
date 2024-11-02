@@ -23,13 +23,12 @@ public class InputValidatorTest {
     }
 
     @Test
-    @DisplayName("구입 금액, 보너스 번호, 당첨 번호가 공백 또는 null인 경우 예외 발생")
-    void 공백_또는_null_테스트() {
+    @DisplayName("구입 금액, 당첨 번호가 공백 또는 null인 경우 예외 발생")
+    void 구입_금액_당첨_번호_공백_또는_null_테스트() {
         // given
         List<Consumer<String>> validators = Arrays.asList(
                 InputValidator::validatePurchaseAmount,
-                InputValidator::validateWinningNumbers,
-                InputValidator::validateBonusNumber
+                InputValidator::validateWinningNumbers
         );
 
         List<String> invalidInputs = Arrays.asList("", null);
@@ -41,6 +40,21 @@ public class InputValidatorTest {
                                 .isInstanceOf(IllegalArgumentException.class)
                                 .hasMessage(ExceptionMessage.EMPTY_INPUT.getMessage())
                 )
+        );
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 공백 또는 null인 경우 예외 발생")
+    void 보너스_번호_공백_또는_null_테스트() {
+        // given
+        List<String> invalidInputs = Arrays.asList("", null);
+        String winningNumbers = "1,2,3,4,5,6";
+
+        // when & then
+        invalidInputs.forEach(bonusNumber ->
+                assertThatThrownBy(() -> InputValidator.validateBonusNumber(winningNumbers, bonusNumber))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessage(ExceptionMessage.EMPTY_INPUT.getMessage())
         );
     }
 
@@ -72,10 +86,11 @@ public class InputValidatorTest {
     @DisplayName("보너스 번호가 1-45 사이의 숫자가 아닌 경우 예외 발생")
     void 보너스_번호_범위_테스트() {
         // given
+        String winningNumbers = "1,2,3,4,5";
         String bonusNumber = "46";
 
         // when & then
-        assertThatThrownBy(() -> InputValidator.validateBonusNumber(bonusNumber))
+        assertThatThrownBy(() -> InputValidator.validateBonusNumber(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
     }
