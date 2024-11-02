@@ -3,6 +3,7 @@ package lotto.domain;
 public class Money {
     private long amount;
     private static final long MINIMUM_LOTTO_PRICE = 1000;
+    private static final long LOTTO_PRICE_UNIT = 1000;
 
     public Money(long money) {
         validateMoney(money);
@@ -11,7 +12,7 @@ public class Money {
 
     private void validateMoney(long money) {
         validateMinimumAmount(money);
-        validateUnit(money);
+        validateDivisibleByLottoPrice(money);
 
     }
 
@@ -21,8 +22,8 @@ public class Money {
         }
     }
 
-    private void validateUnit(long money) {
-        if (money % MINIMUM_LOTTO_PRICE != 0) {
+    private void validateDivisibleByLottoPrice(long money) {
+        if (money % LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException("로또 구매는 1000원 단위로 가능합니다");
         }
     }
