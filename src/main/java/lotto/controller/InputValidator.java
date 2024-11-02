@@ -1,11 +1,11 @@
 package lotto.controller;
 
-import static lotto.exception.ErrorBase.BLANK_BONUS_NUMBER;
-import static lotto.exception.ErrorBase.BLANK_PURCHASE_AMOUNT;
+import static lotto.exception.ErrorBase.BONUS_NUMBER_BLANK;
+import static lotto.exception.ErrorBase.BONUS_NUMBER_NON_NUMERIC;
+import static lotto.exception.ErrorBase.PURCHASE_AMOUNT_BLANK;
 import static lotto.exception.ErrorBase.BLANK_WINNING_NUMBERS;
-import static lotto.exception.ErrorBase.NON_NUMERIC_BONUS_NUMBER;
-import static lotto.exception.ErrorBase.NON_NUMERIC_PURCHASE_AMOUNT;
-import static lotto.exception.ErrorBase.NON_NUMERIC_WINNING_NUMBERS;
+import static lotto.exception.ErrorBase.PURCHASE_AMOUNT_NON_NUMERIC;
+import static lotto.exception.ErrorBase.WINNING_NUMBERS_NON_NUMERIC;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,18 +14,18 @@ import org.junit.platform.commons.util.StringUtils;
 
 public class InputValidator {
     public static Long validatePurchaseAmount(String input) {
-        validateNotBlank(input, BLANK_PURCHASE_AMOUNT.getMessage());
-        return parseLong(input, NON_NUMERIC_PURCHASE_AMOUNT.getMessage());
+        validateNotBlank(input, PURCHASE_AMOUNT_BLANK.getMessage());
+        return parseLong(input, PURCHASE_AMOUNT_NON_NUMERIC.getMessage());
     }
 
     public static List<Integer> validateWinningLottos(String input) {
         validateNotBlank(input, BLANK_WINNING_NUMBERS.getMessage());
-        return parseIntegerList(input, NON_NUMERIC_WINNING_NUMBERS.getMessage());
+        return parseIntegerList(input, WINNING_NUMBERS_NON_NUMERIC.getMessage());
     }
 
     public static Integer validateBonusNumber(String input) {
-        validateNotBlank(input, BLANK_BONUS_NUMBER.getMessage());
-        return parseInteger(input, NON_NUMERIC_BONUS_NUMBER.getMessage());
+        validateNotBlank(input, BONUS_NUMBER_BLANK.getMessage());
+        return parseInteger(input, BONUS_NUMBER_NON_NUMERIC.getMessage());
     }
 
     private static void validateNotBlank(String input, String errorMessage) {

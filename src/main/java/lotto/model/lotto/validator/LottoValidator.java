@@ -1,10 +1,12 @@
 package lotto.model.lotto.validator;
 
+import static lotto.exception.ErrorBase.LOTTO_NUMBERS_DUPLICATE;
+import static lotto.exception.ErrorBase.LOTTO_NUMBERS_INVALID_SIZE;
+import static lotto.exception.ErrorBase.LOTTO_NUMBERS_OUT_OF_RANGE;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MAX;
 import static lotto.util.LottoConstants.LOTTO_NUMBER_MIN;
 
 import java.util.List;
-import lotto.exception.InvalidLottoNumberException;
 
 public class LottoValidator {
     public static void validate(List<Integer> numbers) {
@@ -15,13 +17,13 @@ public class LottoValidator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_INVALID_SIZE.getMessage());
         }
     }
 
     private static void validateDuplicates(List<Integer> numbers) {
         if (numbers.stream().distinct().count() < numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에는 중복된 숫자가 있을 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE.getMessage());
         }
     }
 
@@ -30,8 +32,7 @@ public class LottoValidator {
                 .anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX);
 
         if (outOfRange) {
-            throw new InvalidLottoNumberException(
-                    "[ERROR] 로또 번호는 " + LOTTO_NUMBER_MIN + "부터 " + LOTTO_NUMBER_MAX + " 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 }
