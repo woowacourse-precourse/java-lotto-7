@@ -27,15 +27,15 @@ class BonusNumberTest {
 
     private static Stream<Arguments> bonusWithWinningNumbers() {
         return Stream.of(
-                Arguments.of(7, new WinningNumbers(List.of(1, 2, 3, 4, 5, 6)))
+                Arguments.of(7, WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6)))
         );
     }
 
     private static Stream<Arguments> wrongBonusWithWinningNumbers() {
         return Stream.of(
-                Arguments.of(0, new WinningNumbers(List.of(1, 2, 3, 4, 5, 6))),
-                Arguments.of(46, new WinningNumbers(List.of(1, 2, 3, 4, 5, 6))),
-                Arguments.of(6, new WinningNumbers(List.of(1, 2, 3, 4, 5, 6)))
+                Arguments.of(0, WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6))),
+                Arguments.of(46, WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6))),
+                Arguments.of(6, WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6)))
         );
     }
 }

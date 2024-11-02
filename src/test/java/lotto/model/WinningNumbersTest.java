@@ -13,20 +13,20 @@ class WinningNumbersTest {
 
     @Test
     void 당첨_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> WinningNumbers.create(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
     @MethodSource("provideWinningNumbersInWrongRange")
     void 범위에서_벗어난_당첨_번호가_있으면_예외가_발생한다(List<Integer> wrongNumbers) {
-        assertThatThrownBy(() -> new WinningNumbers(wrongNumbers))
+        assertThatThrownBy(() -> WinningNumbers.create(wrongNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

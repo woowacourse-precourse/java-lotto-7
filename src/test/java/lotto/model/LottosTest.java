@@ -17,7 +17,7 @@ class LottosTest {
         Lottos lottos = Lottos.create(List.of(
                 List.of(1, 2, 3, 4, 5, 6)
         ));
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
 
         //when
@@ -33,7 +33,7 @@ class LottosTest {
         Lottos lottos = Lottos.create(List.of(
                 List.of(1, 2, 3, 4, 5, 7)
         ));
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
 
         //when
@@ -49,7 +49,7 @@ class LottosTest {
         Lottos lottos = Lottos.create(List.of(
                 List.of(1, 2, 3, 4, 5, 8)
         ));
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
 
         //when
@@ -65,7 +65,7 @@ class LottosTest {
         Lottos lottos = Lottos.create(List.of(
                 List.of(1, 2, 3, 4, 8, 9)
         ));
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
 
         //when
@@ -81,7 +81,7 @@ class LottosTest {
         Lottos lottos = Lottos.create(List.of(
                 List.of(1, 2, 3, 8, 9, 10)
         ));
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
 
         //when
@@ -96,7 +96,7 @@ class LottosTest {
     void 일치하는_개수가_3개_미만이면_꽝이다(List<List<Integer>> numbers) {
         //given
         Lottos lottos = Lottos.create(numbers);
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningNumbers);
 
         //when

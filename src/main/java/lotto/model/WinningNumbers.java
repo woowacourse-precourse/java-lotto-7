@@ -7,11 +7,15 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public WinningNumbers(final List<Integer> numbers) {
+    private WinningNumbers(final List<Integer> numbers) {
         validateNumbers(numbers);
         validateNumberRange(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
+    }
+
+    public static WinningNumbers create(final List<Integer> numbers) {
+        return new WinningNumbers(numbers);
     }
 
     private void validateNumbers(List<Integer> numbers) {
@@ -25,7 +29,8 @@ public class WinningNumbers {
         for (Integer number : numbers) {
             if (number < Lotto.MINIMUM_THRESHOLD || number > Lotto.MAXIMUM_THRESHOLD) {
                 throw new IllegalArgumentException(
-                        ErrorConstant.ERROR.getContent() + " 당첨 번호는 " + Lotto.MINIMUM_THRESHOLD + "이상, " + Lotto.MAXIMUM_THRESHOLD
+                        ErrorConstant.ERROR.getContent() + " 당첨 번호는 " + Lotto.MINIMUM_THRESHOLD + "이상, "
+                                + Lotto.MAXIMUM_THRESHOLD
                                 + "이하만 가능합니다.");
             }
         }
@@ -51,7 +56,8 @@ public class WinningNumbers {
         for (Integer lottoNumber : lottoNumbers) {
             if (this.numbers.contains(lottoNumber)) {
                 correctCount++;
-            };
+            }
+            ;
         }
         return CorrectCount.of(correctCount);
     }
