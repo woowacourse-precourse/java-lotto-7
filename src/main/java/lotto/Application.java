@@ -1,7 +1,20 @@
 package lotto;
 
+import lotto.service.ApplicationService;
+
 public class Application {
+    private final ApplicationService applicationService;
+
+    public Application() {
+        this.applicationService = new ApplicationService();
+    }
+
+    public void run() {
+        this.applicationService.run();
+    }
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Application app = new Application();
+        app.run();
     }
 }
