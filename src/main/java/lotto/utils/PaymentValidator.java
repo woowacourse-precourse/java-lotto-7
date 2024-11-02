@@ -1,0 +1,92 @@
+package lotto.utils;
+
+import lotto.error.PaymentErrorMessage;
+
+import java.math.BigInteger;
+
+public class PaymentValidator {
+
+    static final int MIN_PAYMENT = 0;
+    static final int INTEGER_INDEX = 0;
+    static final int DECIMAL_INDEX = 1;
+    static final int MAX_SPLIT_PAYMENT_LENGTH = 2;
+    static final int PRICE_OF_LOTTO = 1000;
+    static final String INTEGER_FORMAT = "-?\\d+";
+    static final String DELIMITER = "\\.";
+    static final long LOTTO_OBJECT_SIZE = 200L;
+    static final double ALLOW_LOTTO_OBJECT_SIZE_RATE = 0.1;
+
+    public boolean validate(String paymentInput) {
+        String[] splitPayment = paymentInput.split(DELIMITER);
+        String integerPart = splitPayment[INTEGER_INDEX];
+
+        validateFormat(splitPayment, integerPart);
+        validateMaxValue(integerPart);
+        validateNumber(integerPart);
+
+        return true;
+    }
+
+    private void validateFormat(String[] splitPayment, String integerPart) {
+        if (splitPayment.length > MAX_SPLIT_PAYMENT_LENGTH) {
+            throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
+        }
+
+        if (hasDecimal(splitPayment)) {
+            String decimalPart = splitPayment[DECIMAL_INDEX];
+            validateHasOnlyZero(decimalPart);
+        }
+
+        if (!integerPart.matches(INTEGER_FORMAT)) {
+            throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
+        }
+    }
+
+    private void validateMaxValue(String integerPart) {
+        BigInteger freeMemory = calcFreeMemory();
+        BigInteger totalLottoObjectSize = calcTotalLottoObjectSize(integerPart);
+
+        if (freeMemory.compareTo(totalLottoObjectSize) < 0) {
+            throw new IllegalArgumentException(PaymentErrorMessage.EXCEED_MAX_PAYMENT.getMessage());
+        }
+    }
+
+    private BigInteger calcFreeMemory() {
+        Runtime runtime = Runtime.getRuntime();
+        return BigInteger.valueOf((long) (runtime.freeMemory() * ALLOW_LOTTO_OBJECT_SIZE_RATE));
+    }
+
+    private BigInteger calcTotalLottoObjectSize(String integerPart) {
+        return new BigInteger(integerPart).multiply(BigInteger.valueOf(LOTTO_OBJECT_SIZE));
+    }
+
+    private void validateNumber(String integerPart) {
+        long payment = Long.parseLong(integerPart);
+
+        if (payment < MIN_PAYMENT) {
+            throw new IllegalArgumentException(PaymentErrorMessage.NEGATIVE_PAYMENT.getMessage());
+        }
+
+        if (payment % PRICE_OF_LOTTO > 0) {
+            throw new IllegalArgumentException(PaymentErrorMessage.NOT_MULTIPLE_OF_THOUSAND_PAYMENT.getMessage());
+        }
+    }
+
+    private void validateHasOnlyZero(String decimalPart) {
+        if (!hasOnlyZero(decimalPart)) {
+            throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
+        }
+    }
+
+    private boolean hasDecimal(String[] splitPayment) {
+        return splitPayment.length == MAX_SPLIT_PAYMENT_LENGTH;
+    }
+
+    private boolean hasOnlyZero(String decimalPart) {
+        return countZero(decimalPart) == decimalPart.length();
+    }
+
+    private long countZero(String decimalPart) {
+        return decimalPart.chars().filter(ch -> ch == '0').count();
+    }
+}
