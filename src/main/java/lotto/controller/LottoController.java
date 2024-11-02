@@ -32,9 +32,9 @@ public class LottoController {
 
     private WinningNumbers inputWinningNumbers() {
         Lotto winnerLotto=  inputLotto();
-        BonusNumber bonus = inpuBonus();
+        BonusNumber bonusNumber = inpuBonus();
 
-
+        return new WinningNumbers(winnerLotto,bonusNumber);
     }
 
 
@@ -45,7 +45,9 @@ public class LottoController {
     }
 
     private  BonusNumber inpuBonus(){
-
+        View.promptForWinningBonusNumber();
+        int winningBonusNumberInput=   View.inputWinningBonusNumber();
+        return new BonusNumber(winningBonusNumberInput);
     }
 
 
