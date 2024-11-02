@@ -2,7 +2,7 @@ package view;
 
 import factory.ResultFactory;
 import java.util.Map;
-import lotto.Lotto;
+import model.Lotto;
 import model.Amount;
 import model.LottoAmount;
 import model.LottoCollection;
@@ -10,7 +10,7 @@ import model.LottoCollection;
 public class OutputView {
 
     private static final String PRINT_LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
-    private static final String PRINT_RESULT_MESSAGE = "당첨 통계"+System.lineSeparator()+"___";
+    private static final String PRINT_RESULT_MESSAGE = "당첨 통계" + System.lineSeparator() + "___";
     private static final String PRINT_CORRECT_THREE = "3개 일치 (5,000원) - ";
     private static final String PRINT_CORRECT_FOUR = "4개 일치 (50,000원) - ";
     private static final String PRINT_CORRECT_FIVE = "5개 일치 (1,500,000원) - ";
@@ -52,11 +52,11 @@ public class OutputView {
          */
         System.out.println();
         System.out.println(PRINT_RESULT_MESSAGE);
-        System.out.println(PRINT_CORRECT_THREE + result.get(5)+"개");
-        System.out.println(PRINT_CORRECT_FOUR + result.get(4)+"개");
-        System.out.println(PRINT_CORRECT_FIVE + result.get(3)+"개");
-        System.out.println(PRINT_CORRECT_FIVE_BONUS + result.get(2)+"개");
-        System.out.println(PRINT_CORRECT_SIX + result.get(1)+"개");
+        System.out.println(PRINT_CORRECT_THREE + result.get(5) + "개");
+        System.out.println(PRINT_CORRECT_FOUR + result.get(4) + "개");
+        System.out.println(PRINT_CORRECT_FIVE + result.get(3) + "개");
+        System.out.println(PRINT_CORRECT_FIVE_BONUS + result.get(2) + "개");
+        System.out.println(PRINT_CORRECT_SIX + result.get(1) + "개");
         System.out.println(PRINT_EARNING_RATE_MESSAGE_FRONT + String.format("%.1f", earningRate)
             + PRINT_EARNING_RATE_MESSAGE_BACK);
     }

@@ -87,7 +87,7 @@ public class LottoController {
         }
     }
 
-    private void printResult(){
+    private void printResult() {
         resultFactory = new ResultFactory(lottoCollection, winningLottoNum, bonusNumber);
         outputView.printResult(resultFactory, purchaseAmount);
     }

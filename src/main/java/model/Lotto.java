@@ -1,15 +1,14 @@
-package lotto;
+package model;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import validation.Validation;
+
+import static error.ErrorMessage.LOTTO_NUM_SIX_ERROR;
+import static error.ErrorMessage.LOTTO_NUM_DUPLICATE_ERROR;
 
 public class Lotto {
 
     private final List<Integer> numbers;
-    private static final String LOTTO_NUM_SIX_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final String LOTTO_NUM_DUPLICATE_ERROR = "[ERROR] 로또 번호는 중복될 수 없습니다.";
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

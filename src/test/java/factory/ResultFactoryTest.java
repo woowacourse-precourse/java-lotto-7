@@ -2,7 +2,7 @@ package factory;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import model.Lotto;
 import model.BonusNumber;
 import model.LottoCollection;
 import model.WinningLottoNum;

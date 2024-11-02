@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import model.Lotto;
 import model.Amount;
 import model.BonusNumber;
 import model.LottoCollection;
@@ -54,7 +54,7 @@ public class ResultFactory {
         return result;
     }
 
-    public float getEarningRate(Amount amount){
+    public float getEarningRate(Amount amount) {
         int purchaseAmount = amount.getPurchaseAmount();
         int prizeAmount = 0;
         prizeAmount += result.get(FIRST) * FIRST_PRIZE;
@@ -63,7 +63,7 @@ public class ResultFactory {
         prizeAmount += result.get(FOURTH) * FOURTH_PRIZE;
         prizeAmount += result.get(FIFTH) * FIFTH_PRIZE;
 
-        return prizeAmount / (float)purchaseAmount * 100;
+        return prizeAmount / (float) purchaseAmount * 100;
     }
 
 

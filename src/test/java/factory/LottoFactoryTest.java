@@ -2,7 +2,7 @@ package factory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.Lotto;
+import model.Lotto;
 import org.junit.jupiter.api.Test;
 
 public class LottoFactoryTest {

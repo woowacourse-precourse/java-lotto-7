@@ -1,11 +1,12 @@
 package model;
 
+import static error.ErrorMessage.WINNING_NUM_CONTAIN_BONUS_NUM_ERROR;
+
 import java.util.List;
 import validation.Validation;
 
 public class BonusNumber {
 
-    private static final String WINNING_NUM_CONTAIN_BONUS_NUM_ERROR = "[ERROR] 당첨번호에 보너스 숫자가 존재합니다";
     private final int bonusNum;
 
     public BonusNumber(WinningLottoNum winningLottoNum, String input) {

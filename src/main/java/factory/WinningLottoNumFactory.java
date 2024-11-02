@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 import model.WinningLottoNum;
 import validation.Validation;
 
+import static error.ErrorMessage.INPUT_WINNING_LOTTO_NUM_ERROR;
+
 public class WinningLottoNumFactory {
 
     private final String input;
     private List<Integer> nums;
-    private static final String INPUT_WINNING_LOTTO_NUM_ERROR = "[ERROR] 당첨 번호는 6개여야 합니다.";
-
     private static final int WINNING_LOTTO_NUM_LEN = 6;
 
     public WinningLottoNumFactory(String input) {
