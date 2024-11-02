@@ -83,7 +83,7 @@ class LottoResultTest {
                 new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18))
         );
         Lottos lottos = new Lottos(lottoList);
-        assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(166.6);
+        assertThat(lottoResult.getProfitRate(lottos)).isEqualTo(333.3);
     }
 
     @Test
