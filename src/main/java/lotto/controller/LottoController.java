@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoRank;
+import lotto.model.LottoRevenueCalculator;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -32,6 +33,10 @@ public class LottoController {
 
         Map<LottoRank, Integer> lottoResult = purchasedLottos.lottoResultFrom(winningLotto);
         outputView.showLottoResult(lottoResult);
+
+        LottoRevenueCalculator lottoRevenueCalculator = LottoRevenueCalculator.of(lottoResult, money);
+        double revenue = lottoRevenueCalculator.calculateRevenue();
+        outputView.showLottoRevenue(revenue);
     }
 
     private int getMoney() {
