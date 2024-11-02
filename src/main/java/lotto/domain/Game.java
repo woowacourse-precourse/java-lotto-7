@@ -2,23 +2,62 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Game {
     private static final int LOTTO_MAX_COUNT = 100;
 
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
     private List<Integer> winningNumbers;
+    private int bonusNumber;
     private List<Lotto> winningLottos;
 
+    public Game(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        validateLottoMaxCount(lottos);
+        this.lottos = lottos;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+        this.winningLottos = new ArrayList<>();
+    }
 
-    // 생성자
     public Game(List<Lotto> lottos) {
         validateLottoMaxCount(lottos);
         this.lottos = lottos;
-        this.winningNumbers = new ArrayList<>();
     }
 
     // 당첨 결과 비교
+    public int[] compareNumbers(List<Integer> winningNumbers) {
+        int[] results = new int[5];
+
+        for (Lotto lotto : lottos) {
+            int correctCount = (int) lotto.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+
+            updateResults(results, correctCount, lotto);
+        }
+
+        return results;
+    }
+
+    private void updateResults(int[] results, int correctCount, Lotto lotto) {
+        switch (correctCount) {
+            case 3 -> results[0]++;
+            case 4 -> results[1]++;
+            case 5 -> checkBonusNumberMatch(results, lotto);
+            case 6 -> results[4]++;
+        }
+        winningLottos.add(lotto);
+    }
+
+    private void checkBonusNumberMatch(int[] results, Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            results[2]++;
+            return;
+        }
+        results[3]++;
+    }
 
 
 
