@@ -37,4 +37,19 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        String string = "[";
+        string += numbers.get(0);
+        for (int i = 1; i < 6; i++) {
+            string += ", " + numbers.get(i);
+        }
+        string += "]";
+
+        return string;
+    }
 }
