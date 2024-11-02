@@ -3,9 +3,6 @@ package lotto.validator;
 import lotto.enums.ExceptionMessage;
 import lotto.util.Converter;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 public class LottoValidator implements  Validator{
@@ -17,7 +14,6 @@ public class LottoValidator implements  Validator{
         validateNull(input);
         validateFormat(input);
         validateNumbersRange(input);
-        validateDuplicateNumber(input);
     }
 
     private void validateFormat(String input) {
@@ -31,14 +27,6 @@ public class LottoValidator implements  Validator{
                 .anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER);
         if (hasInvalidNumber) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE.getMessage());
-        }
-    }
-
-    private void validateDuplicateNumber(String input) {
-        List<Integer> numberList = Converter.toNumberList(input);
-        Set<Integer> numberSet = new HashSet<>(numberList);
-        if (numberSet.size() != numberList.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 
