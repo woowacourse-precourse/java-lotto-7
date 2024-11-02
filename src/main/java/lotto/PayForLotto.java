@@ -5,6 +5,10 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class PayForLotto {
     int lottoPayout;
 
+    public PayForLotto() {
+        payForLotto();
+    }
+
     public void payForLotto() {
         try {
             printGuideMessage();
