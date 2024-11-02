@@ -6,11 +6,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoBuyer {
+public class LottoManager {
 
     private final List<Lotto> lottoTickets;
 
-    public LottoBuyer() {
+    public LottoManager() {
         this.lottoTickets = new ArrayList<>();
     }
 

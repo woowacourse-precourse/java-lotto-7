@@ -27,7 +27,16 @@ public class LottoController {
 
         OutputView.showBuyLottos(lottos.size(), formattedLottos);
 
-        
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNumbersInput = InputView.readLine();
+        Set<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(","))
+            .map(Integer::parseInt)
+            .collect(Collectors.toSet());
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(InputView.readLine());
+
+
 
     }
 

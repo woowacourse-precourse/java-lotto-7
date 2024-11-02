@@ -2,16 +2,16 @@
 
     import java.util.List;
     import lotto.domain.Lotto;
-    import lotto.domain.LottoBuyer;
+    import lotto.domain.LottoManager;
     import lotto.domain.Money;
 
     public class LottoService {
 
         public List<Lotto> purchaseLotto(Money money){
-            LottoBuyer lottoBuyer = new LottoBuyer();
-            lottoBuyer.buyLotto(money);
+            LottoManager lottoManager = new LottoManager();
+            lottoManager.buyLotto(money);
 
-            return lottoBuyer.getLottoTickets();
+            return lottoManager.getLottoTickets();
         }
 
 
