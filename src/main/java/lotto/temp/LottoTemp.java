@@ -69,4 +69,13 @@ public class LottoTemp {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public void printRequestBonusNumber(){
+        io.printMessage("보너스 번호를 입력해 주세요.");
+    }
+
+    public String inputBonusNumber() {
+        return io.receiveInput();
+    }
+
 }
