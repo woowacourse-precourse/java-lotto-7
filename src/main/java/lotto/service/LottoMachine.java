@@ -62,7 +62,7 @@ public class LottoMachine {
             List<Integer> lottoNums = lotto.lottoNums();
             long count = winningLotto.lottoNums()
                     .stream()
-                    .filter(num -> lottoNums.contains(num))
+                    .filter(lottoNums::contains)
                     .count();
             max = Math.max(count, max);
             if (lottoNums.contains(winningLotto.bonusBall().getNum())) {

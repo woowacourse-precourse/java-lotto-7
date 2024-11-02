@@ -66,4 +66,18 @@ class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_NUMBER.getMsg());
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "  ", "         "})
+    void 돈_숫자_아닌_공백_입력(String rawMoney) {
+        // given
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(rawMoney.getBytes());
+        System.setIn(inputStream);
+
+        // when
+        // then
+        Assertions.assertThatThrownBy(() -> { inputView.lottoMoneyInput(); })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.NOT_NUMBER.getMsg());
+    }
 }
