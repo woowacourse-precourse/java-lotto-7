@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.format.dto;
 
 import lotto.domain.LottoRank;
 

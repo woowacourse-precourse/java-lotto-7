@@ -1,8 +1,6 @@
 package lotto.format;
 
-import lotto.domain.LottoRank;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.WritableAssertionInfo;
+import lotto.domain.LottoMatch;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,15 +8,15 @@ import java.util.List;
 import static lotto.domain.LottoRank.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LottoRankMessageFormatterTest {
+class LottoMatchMessageFormatterTest {
 
     @Test
     void 당첨_통계_출력() {
         //given
-        List<LottoRank> lottoRanks = List.of(SECOND, THIRD, FOURTH, FIFTH, FIFTH, NO_RANK);
+        LottoMatch lottoMatch = new LottoMatch(List.of(SECOND, THIRD, FOURTH, FIFTH, FIFTH, NO_RANK));
 
         //when
-        String format = new LottoRankMessageFormatter().format(lottoRanks);
+        String format = new LottoMatchMessageFormatter().format(lottoMatch);
 
         //then
         assertThat(format).isEqualTo(answer());
