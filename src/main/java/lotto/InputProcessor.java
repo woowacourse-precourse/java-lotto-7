@@ -123,6 +123,10 @@ public class InputProcessor {
     }
 
     public List<Integer> getVictoryNumbers() {
-        return victoryNumbers;
+        return new ArrayList<>(victoryNumbers);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
