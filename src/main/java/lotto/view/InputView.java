@@ -4,11 +4,12 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class InputView {
-    public static String readInputMoney() {
+    public static int readInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        return Integer.parseInt(Console.readLine());
     }
 
     /**
@@ -26,12 +27,16 @@ public class InputView {
         for (String splitString : Console.readLine().split(",")) {
             try {
                 int number = Integer.parseInt(splitString.trim());
+
+                if (number < 1 && number > 45) {
+                    throw new IllegalArgumentException("[ERROR] 번호는 1~45인 숫자만 입력 할 수 있습니다.");
+                }
                 if (numbers.contains(number)) {
                     throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
                 }
                 numbers.add(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 로또번호는 1~45까지의 숫자만 입력할 수 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 번호는 숫자만 입력할 수 있습니다.");
             }
         }
 
@@ -40,5 +45,23 @@ public class InputView {
         }
 
         return Collections.unmodifiableList(numbers);
+    }
+
+    public static int readBonusNumber(Lotto LottoNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 번호는 숫자만 입력 할 수 있습니다.");
+        }
+
+        if (LottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 입력하신 보너스 번호는 이미 당첨 번호에 존재합니다.");
+        }
+        if (bonusNumber < 1 && bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1~45인 숫자만 입력 할 수 있습니다.");
+        }
+        return bonusNumber;
     }
 }
