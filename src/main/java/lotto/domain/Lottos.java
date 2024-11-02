@@ -2,6 +2,7 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -28,6 +29,8 @@ public class Lottos {
     }
 
 
-
+    public  List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
 
 }
