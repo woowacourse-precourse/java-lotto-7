@@ -28,6 +28,12 @@ public class InputView {
 		return input;
 	}
 
+	public String readWinningNumbersInput() {
+		String input = Console.readLine();
+
+		return input;
+	}
+
 	private void validatePurchaseAmount(String input) {
 		validateNotBlank(input);
 		validateDigit(input);
