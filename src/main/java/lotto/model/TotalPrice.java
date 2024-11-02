@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Map;
+
+import lotto.enums.ErrorMessage;
 import lotto.enums.WinningType;
 
 public class TotalPrice implements ReturnRate {
@@ -38,10 +40,14 @@ public class TotalPrice implements ReturnRate {
 
   @Override
   public double calculateReturnRate(Money money) {
-    return Math.round(
+    try {
+      return Math.round(
             (this.totalPrice / (double) money.getMoney())
                 * PERCENTAGE_FOR_CALCULATION
                 * DECIMAL_ROUNDING_PLACE)
         / (double) DECIMAL_ROUNDING_PLACE;
+    } catch (ArithmeticException e) {
+      throw new ArithmeticException(ErrorMessage.INVALID_CALCULATE.getMessage());
+    }
   }
 }

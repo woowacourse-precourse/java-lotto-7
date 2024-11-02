@@ -9,7 +9,9 @@ public enum ErrorMessage implements SystemMessage {
   INVALID_WINNING_NUMBERS_QUANTITY("보너스 번호는 1개, 당첨 번호는 6개여야 합니다. 다시 시도해주세요."),
   INVALID_LOTTO_QUANTITY("로또 번호는 6개여야 합니다. 다시 발행하겠습니다."),
   DUPLICATE_LOTTO_NUMBER("중복된 로또 번호가 있습니다. 다시 발행하겠습니다."),
-  INVALID_LOTTO_NUMBER("로또 번호는 1부터 45 사이의 숫자여야 합니다. 다시 발행하겠습니다.");
+  INVALID_LOTTO_NUMBER("로또 번호는 1부터 45 사이의 숫자여야 합니다. 다시 발행하겠습니다."),
+  INVALID_CALCULATE("계산 과정에서 예상치 못한 오류가 발생했습니다.");
+
 
   private final String ERROR_LOG_LEVEL = "[ERROR] ";
   private final String message;
