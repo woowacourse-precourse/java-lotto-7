@@ -43,7 +43,7 @@ public class PurchaseAmountTest {
 
         assertThatThrownBy(() -> PurchaseAmount.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.RANGE_OUT_PURCHASE_AMOUNT.getMessage());
+                .hasMessage(ErrorMessage.INTEGER_OUT_PURCHASE_AMOUNT.getMessage());
     }
 
 }

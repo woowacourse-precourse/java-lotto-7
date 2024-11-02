@@ -19,11 +19,18 @@ public class LottoMachine {
     private static void validateAmount(PurchaseAmount purchaseAmount) {
         int amount = purchaseAmount.getValue();
         checkMinimum(amount);
+        checkDivisible(amount);
     }
 
     private static void checkMinimum(int amount) {
         if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    private static void checkDivisible(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_PURCHASE_AMOUNT.getMessage());
         }
     }
 

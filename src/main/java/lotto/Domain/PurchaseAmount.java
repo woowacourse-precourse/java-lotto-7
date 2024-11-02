@@ -49,7 +49,7 @@ public class PurchaseAmount {
 
     private static void checkInteger(String input) {
         if (!Validator.isInteger(input)) {
-            throw new IllegalArgumentException(ErrorMessage.RANGE_OUT_PURCHASE_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INTEGER_OUT_PURCHASE_AMOUNT.getMessage());
         }
     }
 
