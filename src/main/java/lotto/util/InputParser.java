@@ -1,20 +1,15 @@
 package lotto.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class InputParser {
 
     public static List<Integer> parseStringToInt(String input) {
-        StringTokenizer stringTokenizer = new StringTokenizer(input, ",");
-        List<Integer> numbers = new ArrayList<>();
-
         try {
-            while (stringTokenizer.hasMoreElements()) {
-                numbers.add(Integer.parseInt(stringTokenizer.nextToken()));
-            }
+            List<Integer> numbers = Arrays.stream(input.split(","))
+                    .map(Integer :: parseInt)
+                    .collect(Collectors.toList());
             Collections.sort(numbers);
 
             return numbers;
