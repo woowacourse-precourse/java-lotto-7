@@ -1,8 +1,5 @@
 package lotto;
 
-import constants.Constants;
-import constants.ErrorMessage;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,20 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<LottoNumber> numbers) {
-        validateSize(numbers);
-        checkDuplicate(numbers);
-    }
-
-    private void validateSize(List<LottoNumber> numbers) {
-        if (numbers.size() != Constants.LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
-        }
-    }
-
-    private void checkDuplicate(List<LottoNumber> numbers) {
-        if (new HashSet<>(numbers).size() < numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.EXISTS_DUPLICATE_NUMBER);
-        }
+        LottoValidator.validate(numbers);
     }
 
     public int matchNumbers(WinningLotto winningLotto) {

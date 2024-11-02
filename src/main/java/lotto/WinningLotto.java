@@ -1,6 +1,5 @@
 package lotto;
 
-import constants.Constants;
 import constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +22,7 @@ public class WinningLotto {
                 .map(this::toLottoNumber)
                 .toList();
 
-        validateSize(lottoNumbers);
+        LottoValidator.validate(lottoNumbers);
 
         return lottoNumbers;
     }
@@ -42,12 +41,6 @@ public class WinningLotto {
         }
 
         return LottoNumber.from(number);
-    }
-
-    private void validateSize(List<LottoNumber> lottoNumbers) {
-        if (lottoNumbers.size() != Constants.LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
-        }
     }
 
     public int countWinnings(List<LottoNumber> numbers) {

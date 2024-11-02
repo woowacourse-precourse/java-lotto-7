@@ -50,4 +50,14 @@ public class LottosTest {
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,7", "6");
         assertThat(lottos.hasBonus(lotto, winningLotto)).isTrue();
     }
+
+    @Test
+    void Lottos_크기_확인() {
+        Lotto lotto = new Lotto(
+                List.of(LottoNumber.from(1), LottoNumber.from(2), LottoNumber.from(3), LottoNumber.from(4),
+                        LottoNumber.from(5), LottoNumber.from(6)));
+        Lottos lottos = new Lottos(List.of(lotto));
+
+        assertThat(lottos.size()).isEqualTo(1);
+    }
 }

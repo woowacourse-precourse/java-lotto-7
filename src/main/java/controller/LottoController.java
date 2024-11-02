@@ -1,7 +1,6 @@
 package controller;
 
 import lotto.LottoGenerator;
-import lotto.LottoShop;
 import lotto.Lottos;
 import lotto.PurchaseAmount;
 import lotto.RevenueCalculator;
@@ -40,8 +39,7 @@ public class LottoController {
     }
 
     private int computePurchaseCount(PurchaseAmount purchaseAmount) {
-        LottoShop lottoShop = new LottoShop();
-        return lottoShop.calculatePurchaseCount(purchaseAmount);
+        return purchaseAmount.calculatePurchaseCount();
     }
 
     private Lottos issueLottos(int purchaseCount) {
