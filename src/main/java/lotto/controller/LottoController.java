@@ -35,6 +35,7 @@ public class LottoController {
         PurchasePrice purchasePrice = inputPurchasePrice();
         List<Lotto> issuedLotto = lottoIssueService.issueLotto(purchasePrice);
         printIssuedLotto(issuedLotto);
+        Lotto winningLotto = inputWinningLotto();
     }
 
     private PurchasePrice inputPurchasePrice() {
@@ -47,5 +48,12 @@ public class LottoController {
     private void printIssuedLotto(List<Lotto> issuedLotto) {
         outputView.printIssuedLottoCount(issuedLotto.size());
         outputView.printIssuedLotto(issuedLotto);
+    }
+
+    private Lotto inputWinningLotto() {
+        outputView.printWinningNumberInputMessage();
+        String rawWinningNumber = inputView.inputContent();
+        inputValidationService.validateWinningNumber(rawWinningNumber);
+        return inputParsingService.parseWinningLotto(rawWinningNumber);
     }
 }

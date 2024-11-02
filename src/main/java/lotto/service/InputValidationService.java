@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.List;
+import lotto.constant.LottoConfiguration;
 import lotto.constant.RegularExpression;
 import lotto.constant.ValidationFailMessage;
 
@@ -28,6 +30,37 @@ public class InputValidationService {
             Integer.parseInt(numericInput);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ValidationFailMessage.OUT_OF_PARSE_RANGE.getMessage());
+        }
+    }
+
+    public void validateWinningNumber(String rawWinningNumber) {
+        isBlank(rawWinningNumber);
+        hasBlankElement(rawWinningNumber, LottoConfiguration.WINNING_NUMBER_DELIMITER);
+        existNonNumericElement(rawWinningNumber, LottoConfiguration.WINNING_NUMBER_DELIMITER);
+        existOutOfParseRangeElement(rawWinningNumber, LottoConfiguration.WINNING_NUMBER_DELIMITER);
+    }
+
+    private void hasBlankElement(String separableInput, String delimiter) {
+        if (separableInput.startsWith(delimiter) || separableInput.endsWith(delimiter)) {
+            throw new IllegalArgumentException();
+        }
+        List<String> elements = List.of(separableInput.split(delimiter));
+        for (String element : elements) {
+            isBlank(element);
+        }
+    }
+
+    private void existNonNumericElement(String separableInput, String delimiter) {
+        List<String> elements = List.of(separableInput.split(delimiter));
+        for (String element : elements) {
+            isNonNumeric(element);
+        }
+    }
+
+    private void existOutOfParseRangeElement(String separableInput, String delimiter) {
+        List<String> elements = List.of(separableInput.split(delimiter));
+        for (String element : elements) {
+            isNonNumeric(element);
         }
     }
 }

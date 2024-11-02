@@ -6,11 +6,16 @@ import lotto.model.Lotto;
 public class OutputView {
 
     public static final String PURCHASE_PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
+    public static final String WINNING_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String ISSUED_LOTTO_PRINTING_START_MESSAGE = "%d개를 구매했습니다.";
     public static final String ISSUED_LOTTO_PRINT_MESSAGE = "[%s]";
 
     public void printPurchasePriceInputMessage() {
         System.out.println(PURCHASE_PRICE_INPUT_MESSAGE);
+    }
+
+    public void printWinningNumberInputMessage() {
+        System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
     }
 
     public void printIssuedLottoCount(int count) {
