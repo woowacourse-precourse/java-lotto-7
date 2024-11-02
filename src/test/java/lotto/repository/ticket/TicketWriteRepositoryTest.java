@@ -8,8 +8,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("WriteTicketRepository - 티켓 저장 저장소")
-class WriteTicketRepositoryTest {
+@DisplayName("TicketWriteRepository - 티켓 저장 저장소")
+class TicketWriteRepositoryTest {
     private Ticket createTicket(Long id) {
         return Ticket.issue(id, createLottos());
     }
@@ -24,7 +24,7 @@ class WriteTicketRepositoryTest {
     @DisplayName("티켓 저장 성공")
     void 티켓_저장_성공() {
         // given
-        WriteTicketRepository repository = new WriteTicketRepository();
+        TicketWriteRepository repository = new TicketWriteRepository();
         Ticket ticket = createTicket(1L);
 
         // when

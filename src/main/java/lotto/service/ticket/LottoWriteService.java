@@ -5,11 +5,11 @@ import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;
 
-public class LottoService {
+public class LottoWriteService {
     private final int ZERO = 0;
     private final NumberGenerator numberGenerator;
 
-    public LottoService(NumberGenerator numberGenerator) {
+    public LottoWriteService(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 

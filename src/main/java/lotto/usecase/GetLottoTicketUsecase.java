@@ -1,16 +1,16 @@
 package lotto.usecase;
 
 import lotto.dto.TicketResponse;
-import lotto.service.ticket.ReadTicketService;
+import lotto.service.ticket.TicketReadService;
 
 public class GetLottoTicketUsecase {
-    private final ReadTicketService readTicketService;
+    private final TicketReadService ticketReadService;
 
-    public GetLottoTicketUsecase(ReadTicketService readTicketService) {
-        this.readTicketService = readTicketService;
+    public GetLottoTicketUsecase(TicketReadService ticketReadService) {
+        this.ticketReadService = ticketReadService;
     }
 
     public TicketResponse execute(Long ticketId) {
-        return TicketResponse.from(readTicketService.getById(ticketId));
+        return TicketResponse.from(ticketReadService.getById(ticketId));
     }
 }

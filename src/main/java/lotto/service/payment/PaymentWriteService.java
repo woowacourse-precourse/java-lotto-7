@@ -5,17 +5,17 @@ import lotto.domain.payment.LottoPrice;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.payment.Payment;
 import lotto.domain.payment.PaymentResult;
-import lotto.repository.paymnet.PaymentRepository;
+import lotto.repository.paymnet.PaymentWriteRepository;
 import lotto.service.IdGenerator;
 
-public class PaymentService {
+public class PaymentWriteService {
 
-    private final PaymentRepository paymentRepository;
+    private final PaymentWriteRepository paymentWriteRepository;
 
     private final IdGenerator idGenerator;
 
-    public PaymentService(PaymentRepository paymentRepository, IdGenerator idGenerator) {
-        this.paymentRepository = paymentRepository;
+    public PaymentWriteService(PaymentWriteRepository paymentWriteRepository, IdGenerator idGenerator) {
+        this.paymentWriteRepository = paymentWriteRepository;
         this.idGenerator = idGenerator;
     }
 
@@ -24,7 +24,7 @@ public class PaymentService {
 
         Payment validatedPayment = payment.validate();
         PaymentResult result = validatedPayment.execute();
-        paymentRepository.save(result.getCompletedPayment());
+        paymentWriteRepository.save(result.getCompletedPayment());
 
         return result.getLottoCount();
     }

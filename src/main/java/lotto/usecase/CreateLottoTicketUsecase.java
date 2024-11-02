@@ -3,28 +3,28 @@ package lotto.usecase;
 import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lottos;
-import lotto.service.payment.PaymentService;
-import lotto.service.ticket.LottoService;
-import lotto.service.ticket.WriteTicketService;
+import lotto.service.payment.PaymentWriteService;
+import lotto.service.ticket.LottoWriteService;
+import lotto.service.ticket.TicketWriteService;
 
 public class CreateLottoTicketUsecase {
-    private final PaymentService paymentService;
-    private final LottoService lottoService;
-    private final WriteTicketService writeTicketService;
+    private final PaymentWriteService paymentWriteService;
+    private final LottoWriteService lottoWriteService;
+    private final TicketWriteService ticketWriteService;
 
-    public CreateLottoTicketUsecase(PaymentService paymentService,
-                                    LottoService lottoService,
-                                    WriteTicketService writeTicketService) {
+    public CreateLottoTicketUsecase(PaymentWriteService paymentWriteService,
+                                    LottoWriteService lottoWriteService,
+                                    TicketWriteService ticketWriteService) {
 
-        this.paymentService = paymentService;
-        this.lottoService = lottoService;
-        this.writeTicketService = writeTicketService;
+        this.paymentWriteService = paymentWriteService;
+        this.lottoWriteService = lottoWriteService;
+        this.ticketWriteService = ticketWriteService;
     }
 
     public Long execute(ThousandWons krMoney) {
-        LottoQuantity lottoQuantity = paymentService.pay(krMoney);
-        Lottos lottos = lottoService.create(lottoQuantity);
-        Long ticketId = writeTicketService.create(lottos);
+        LottoQuantity lottoQuantity = paymentWriteService.pay(krMoney);
+        Lottos lottos = lottoWriteService.create(lottoQuantity);
+        Long ticketId = ticketWriteService.create(lottos);
 
         return ticketId;
     }

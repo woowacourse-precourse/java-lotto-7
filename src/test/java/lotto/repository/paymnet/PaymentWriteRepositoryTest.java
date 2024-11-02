@@ -7,14 +7,14 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("PaymentRepository - 결제 저장소")
-class PaymentRepositoryTest {
+@DisplayName("PaymentWriteRepository - 결제 저장소")
+class PaymentWriteRepositoryTest {
 
     @Test
     @DisplayName("결제 정보 저장 성공")
     void 결제_정보_저장_성공() {
         // given
-        PaymentRepository repository = new PaymentRepository();
+        PaymentWriteRepository repository = new PaymentWriteRepository();
 
         Payment payment = Payment.initialize(
                 1L,

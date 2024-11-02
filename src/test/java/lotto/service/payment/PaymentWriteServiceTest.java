@@ -2,7 +2,7 @@ package lotto.service.payment;
 
 import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.domain.payment.LottoQuantity;
-import lotto.repository.paymnet.PaymentRepository;
+import lotto.repository.paymnet.PaymentWriteRepository;
 import lotto.service.IdGenerator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,17 +10,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
-@DisplayName("PaymentService - 결제 서비스")
-class PaymentServiceTest {
-    private PaymentRepository paymentRepository;
+@DisplayName("PaymentWriteService - 결제 서비스")
+class PaymentWriteServiceTest {
+    private PaymentWriteRepository paymentWriteRepository;
     private IdGenerator idGenerator;
-    private PaymentService paymentService;
+    private PaymentWriteService paymentWriteService;
 
     @BeforeEach
     void setUp() {
-        paymentRepository = new PaymentRepository();
+        paymentWriteRepository = new PaymentWriteRepository();
         idGenerator = new PaymentIdGenerator();
-        paymentService = new PaymentService(paymentRepository, idGenerator);
+        paymentWriteService = new PaymentWriteService(paymentWriteRepository, idGenerator);
     }
 
 
@@ -31,7 +31,7 @@ class PaymentServiceTest {
         ThousandWons money = ThousandWons.of("5000");
 
         // when
-        LottoQuantity quantity = paymentService.pay(money);
+        LottoQuantity quantity = paymentWriteService.pay(money);
 
         // then
         Assertions.assertThat(quantity.getValue()).isEqualTo(5);
@@ -44,7 +44,7 @@ class PaymentServiceTest {
         ThousandWons money = ThousandWons.of("1000");
 
         // when
-        LottoQuantity quantity = paymentService.pay(money);
+        LottoQuantity quantity = paymentWriteService.pay(money);
 
         // then
         Assertions.assertThat(quantity.getValue()).isEqualTo(1);
