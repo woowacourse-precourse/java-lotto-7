@@ -4,8 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberSorter {
-    public static List<Integer> sortAscending(List<Integer> numbers) {
+    public static void sortAscending(List<Integer> numbers) {
         Collections.sort(numbers);
-        return numbers;
     }
 }
