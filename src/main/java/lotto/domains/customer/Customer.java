@@ -8,9 +8,10 @@ public class Customer {
 		this.money = money;
 	}
 
-	public int calculateAmount(int money) {
+	public int calculateAmount() {
 		return money / LOTTO_COST;
 	}
+
 
 	//당첨 계산 메소드
 }
