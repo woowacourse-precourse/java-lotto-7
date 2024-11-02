@@ -19,6 +19,10 @@ public class Payment {
         return payment / PRICE;
     }
 
+    public double divide(long profit) {
+        return (double) profit / payment;
+    }
+
     public int getPayment() {
         return payment;
     }
