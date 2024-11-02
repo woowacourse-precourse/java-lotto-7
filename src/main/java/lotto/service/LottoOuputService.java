@@ -22,12 +22,13 @@ public class LottoOuputService {
     }
 
     public void outputIssueLotto(LottoIssue lottoIssue) {
-        lottoView.print(OUTPUT_PURCHASE_COUNT, lottoIssue.getLottos().size());
+        lottoView.println(OUTPUT_PURCHASE_COUNT, lottoIssue.getLottos().size());
         lottoView.output(issueLottoMessageFormatter, lottoIssue);
     }
 
     public void outPutLottoRank(LottoMatch ranks) {
-        lottoView.print(OUTPUT_LOTTO_STATISTIC);
+        lottoView.println(OUTPUT_LOTTO_STATISTIC);
+        lottoView.print(OUTPUT_LOTTO_STATISTIC_DELIMITER);
         lottoView.output(lottoRankMessageFormatter, ranks);
     }
 

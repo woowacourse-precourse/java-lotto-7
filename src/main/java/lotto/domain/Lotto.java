@@ -28,19 +28,19 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.message());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO.getMessage());
+            throw new IllegalArgumentException(DUPLICATE_LOTTO.message());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(LottoNumberRange::excludeRange)) {
-            throw new IllegalArgumentException(EXCLUDE_LOTTO_RANGE.getMessage());
+            throw new IllegalArgumentException(EXCLUDE_LOTTO_RANGE.message());
         }
     }
 }

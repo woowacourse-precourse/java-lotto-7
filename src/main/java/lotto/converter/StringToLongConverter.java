@@ -9,7 +9,7 @@ public class StringToLongConverter implements TypeConverter<String, Long> {
         try {
             return Long.valueOf(target);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(CONVERT_STRING_TO_NUMBER.getMessage());
+            throw new IllegalArgumentException(CONVERT_STRING_TO_NUMBER.message());
         }
     }
 }

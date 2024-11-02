@@ -18,7 +18,7 @@ public class LottoBonusNumber {
 
     private void validate(int number) {
         if (excludeRange(number)) {
-            throw new IllegalArgumentException(EXCLUDE_BONUS_RANGE.getMessage());
+            throw new IllegalArgumentException(EXCLUDE_BONUS_RANGE.message());
         }
     }
 }

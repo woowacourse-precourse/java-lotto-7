@@ -2,9 +2,9 @@ package lotto.message;
 
 public interface Message {
 
-    String getMessage();
+    String message();
 
-    default String getFormatMessage(Object... args) {
-        return String.format(getMessage(), args);
+    default String format(Object... args) {
+        return String.format(message(), args);
     }
 }

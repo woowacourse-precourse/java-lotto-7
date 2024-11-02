@@ -31,12 +31,12 @@ public class LottoInputService {
     }
 
     public Lotto inputJackPotLotto() {
-        lottoView.print(INPUT_JACKPOT_LOTTO);
+        lottoView.println(INPUT_JACKPOT_LOTTO);
         return lottoView.input(lottoInputProcessor);
     }
 
     public LottoBonusNumber inputLottoBonusNumber() {
-        lottoView.print(INPUT_BONUS_NUMBER);
+        lottoView.println(INPUT_BONUS_NUMBER);
         return lottoView.input(lottoBonusNumberInputProcessor);
     }
 }

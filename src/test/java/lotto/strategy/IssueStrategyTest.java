@@ -31,7 +31,12 @@ public class IssueStrategyTest {
     @Test
     void 테스트_위한_수동_로또_발행_방법_인터페이스_구현체() {
         //given
-        IssueStrategy issueStrategy = ManualIssueStrategy.ofList(List.of(10, 11, 12, 13, 14, 15));
+        IssueStrategy issueStrategy = ManualIssueStrategy.ofList(
+                List.of(10, 11, 12, 13, 14, 15),
+                List.of(20, 21, 22, 23, 24, 25),
+                List.of(30, 31, 32, 33, 34, 35),
+                List.of(40, 41, 42, 43, 44, 45)
+        );
 
         //then
         assertNumbersByIssueStrategy(issueStrategy);

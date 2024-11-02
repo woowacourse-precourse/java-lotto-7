@@ -32,13 +32,13 @@ public class LottoPurchaseMoney {
 
     private void validateUnitMoney(long money) {
         if (money % LOTTO_MONEY_UNIT != 0) {
-            throw new IllegalArgumentException(INVALID_UNIT_PURCHASE_MONEY.getMessage());
+            throw new IllegalArgumentException(INVALID_UNIT_PURCHASE_MONEY.message());
         }
     }
 
     private void validateMinMoney(long money) {
         if (money <= MIN_LOTTO_PURCHASE_MONEY) {
-            throw new IllegalArgumentException(INVALID_MIN_PURCHASE_MONEY.getMessage());
+            throw new IllegalArgumentException(INVALID_MIN_PURCHASE_MONEY.message());
         }
     }
 }

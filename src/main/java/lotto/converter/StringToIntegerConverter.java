@@ -9,7 +9,7 @@ public class StringToIntegerConverter implements TypeConverter<String, Integer> 
          try {
             return Integer.valueOf(target);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(CONVERT_STRING_TO_NUMBER.getMessage());
+            throw new IllegalArgumentException(CONVERT_STRING_TO_NUMBER.message());
         }
     }
 }

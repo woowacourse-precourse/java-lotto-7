@@ -23,7 +23,7 @@ public class LottoJackpot {
 
     private void validate(Lotto lotto, LottoBonusNumber bonusNumber) {
         if (lotto.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException(EQUALS_LOTTO_BONUS.getMessage());
+            throw new IllegalArgumentException(EQUALS_LOTTO_BONUS.message());
         }
     }
 }

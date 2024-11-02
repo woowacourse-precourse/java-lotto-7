@@ -11,6 +11,8 @@ import static java.lang.String.join;
 import static java.util.stream.Collectors.joining;
 import static lotto.domain.LottoRank.*;
 import static lotto.message.OutputMessage.*;
+import static lotto.message.SymbolMessage.BASIC_DELIMITER;
+import static lotto.message.SymbolMessage.NEW_LINE;
 
 public class LottoMatchMessageFormatter implements MessageFormatter<LottoMatch> {
 
@@ -23,7 +25,7 @@ public class LottoMatchMessageFormatter implements MessageFormatter<LottoMatch> 
         return FORMAT_ORDER.stream()
                 .map(rank -> toLottoRankCount(rank, target))
                 .map(this::formatRankCountMessage)
-                .collect(joining(NEW_LINE));
+                .collect(joining(NEW_LINE.message()));
     }
 
     private LottoRankCountMessageDto toLottoRankCount(LottoRank rank, LottoMatch target) {
@@ -42,7 +44,7 @@ public class LottoMatchMessageFormatter implements MessageFormatter<LottoMatch> 
     }
 
     private static String formatCountMessage(long count) {
-        return OUTPUT_LOTTO_RANK_COUNT.getFormatMessage(count);
+        return OUTPUT_LOTTO_RANK_COUNT.format(count);
     }
 
     private String formatRankMessage(LottoRank rank) {
@@ -53,14 +55,14 @@ public class LottoMatchMessageFormatter implements MessageFormatter<LottoMatch> 
     }
 
     private String formatPrizeMoneyMessage(LottoRank rank) {
-        return OUTPUT_LOTTO_PRIZE_MONEY.getFormatMessage(rank.getPrizeMoney());
+        return OUTPUT_LOTTO_PRIZE_MONEY.format(rank.getPrizeMoney());
     }
 
     private String formatMatchCountMessage(LottoRank rank) {
-        String message = OUTPUT_LOTTO_MATCH_COUNT.getFormatMessage(rank.getMatchCount());
+        String message = OUTPUT_LOTTO_MATCH_COUNT.format(rank.getMatchCount());
 
         if (rank.isBonusNumber()) {
-            return join(BASIC_DELIMITER, message, OUTPUT_LOTTO_MATCH_BONUS_NUMBER.getMessage());
+            return join(BASIC_DELIMITER.message(), message, OUTPUT_LOTTO_MATCH_BONUS_NUMBER.message());
         }
 
         return message;
