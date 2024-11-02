@@ -45,4 +45,16 @@ class LottoTest {
         assertThatThrownBy(() -> InputValidator.validateEmptyInput(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호가_숫자가_아니면_예외가_발생한다(){
+        assertThatThrownBy(() -> LottoGame.parseWinningNumbers("a,b,c,d,e,f"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호가_숫자가_아니면_예외가_발생한다(){
+        assertThatThrownBy(() -> InputValidator.validateBonusNumber("dkjf"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

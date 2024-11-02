@@ -71,6 +71,7 @@ public class LottoGame {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 validateEmptyInput(input);
+                validateBonusNumber(input);
                 Integer bonusNumber = Integer.valueOf(input);
                 validateNotDuplicate(winningNumbers, bonusNumber);
                 return bonusNumber;
@@ -84,8 +85,14 @@ public class LottoGame {
         String[] tokens = input.split(",");
         ArrayList<Integer> winningNumbers = new ArrayList<>();
         for (String token : tokens) {
-            winningNumbers.add(Integer.parseInt(token));
+            try {
+                winningNumbers.add(Integer.parseInt(token));
+            }catch (IllegalArgumentException e){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자만 입력 가능합니다.");
+            }
         }
         return winningNumbers;
     }
+
+
 }

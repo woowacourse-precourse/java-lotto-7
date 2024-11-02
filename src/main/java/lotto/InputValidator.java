@@ -29,4 +29,12 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 입력값은 비어있을 수 없습니다.");
         }
     }
+
+    public static void validateBonusNumber(String input){
+        try {
+            Integer.valueOf(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+        }
+    }
 }
