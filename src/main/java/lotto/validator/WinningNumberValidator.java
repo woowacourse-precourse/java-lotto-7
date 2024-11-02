@@ -16,17 +16,22 @@ public class WinningNumberValidator {
         validateLastComma(input);
     }
 
-    public static List<Integer> validateInputNumber(List<String> input) throws IllegalArgumentException {
+    public static List<Integer> validateInputWinningNumber(List<String> input) throws IllegalArgumentException {
         validateCount(input);
-        validateDuplication(input);
         List<Integer> winningNumber = new ArrayList<>();
         for (String separatedInput : input) {
-            validateOnlyInteger(separatedInput);
-            Integer inputNumber = Integer.parseInt(separatedInput);
-            validateNumberScope(inputNumber);
+            Integer inputNumber = getValidatedNumber(separatedInput);
             winningNumber.add(inputNumber);
         }
+        validateDuplication(winningNumber);
         return winningNumber;
+    }
+
+    public static Integer getValidatedNumber(String input) throws IllegalArgumentException{
+        validateOnlyInteger(input);
+        Integer inputNumber = Integer.parseInt(input);
+        validateNumberScope(inputNumber);
+        return inputNumber;
     }
 
     private static void validateDoubletComma(String input) throws IllegalArgumentException {
@@ -47,8 +52,8 @@ public class WinningNumberValidator {
         }
     }
 
-    private static void validateDuplication(List<String> input) throws IllegalArgumentException {
-        Set<String> deduplication = new HashSet<>(input);
+    private static void validateDuplication(List<Integer> input) throws IllegalArgumentException {
+        Set<Integer> deduplication = new HashSet<>(input);
         if (deduplication.size() != input.size()) {
             throw new IllegalArgumentException(WinningNumberRule.DUPLICATION.getMessage());
         }
