@@ -29,6 +29,7 @@ public class WinningNumberInputHandler extends InputHandler{
     public void validateInput() {
         throwExceptionWhenInputIsInvalid();
         throwExceptionWhenInputIsNotInRange1To45();
+        throwExceptionWhenWinningNumberHasDuplicate();
     }
 
     private String[] splitNumbers(String input) {
@@ -53,6 +54,12 @@ public class WinningNumberInputHandler extends InputHandler{
     private void throwExceptionWhenInputIsNotInRange1To45() {
         if(!Validation.isInRange1To45(stringInputParseInteger(winningNumber))){
             throwIllegalArgumentException("당첨 번호의 숫자는 1부터 45까지의 범위안에서 입력해 주세요.");
+        }
+    }
+
+    private void throwExceptionWhenWinningNumberHasDuplicate() {
+        if(!Validation.isUnique(stringInputParseInteger(winningNumber))){
+            throwIllegalArgumentException("당첨 번호의 숫자들은 중복되서는 안됩니다.");
         }
     }
 }
