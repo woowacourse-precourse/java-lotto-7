@@ -24,4 +24,8 @@ public class BuyLottoController {
         return this.buyPrice.getPrice() / 1000;
     }
 
+    public Integer getBuyPrice() {
+        return this.buyPrice.getPrice();
+    }
+
 }
