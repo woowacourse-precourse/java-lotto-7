@@ -1,7 +1,9 @@
-package lotto;
+package lotto.presentation;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.LottoGame;
+import lotto.domain.LottoGenerateStrategy;
 
 public class LottoController {
     private static final int MONEY_THRESHOLD = 1000;

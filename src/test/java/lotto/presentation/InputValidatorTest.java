@@ -1,4 +1,4 @@
-package lotto;
+package lotto.presentation;
 
 import java.util.List;
 import lotto.global.ErrorMessage;

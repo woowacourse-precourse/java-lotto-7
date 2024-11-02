@@ -1,4 +1,4 @@
-package lotto;
+package lotto.presentation;
 
 import java.util.Arrays;
 import java.util.HashSet;

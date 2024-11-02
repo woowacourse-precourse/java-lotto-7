@@ -1,9 +1,10 @@
-package lotto;
+package lotto.presentation;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.Prize;
 
 public class LottoResultFormatter {
     private final Map<Prize, Integer> prizes;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.presentation;
 
 public class OutputView {
     private static final String PURCHASE_AMOUNT_IS = "개를 구매했습니다.";
