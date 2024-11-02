@@ -1,16 +1,12 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import java.util.stream.Stream;
 import lotto.message.ExceptionMessage;
+import lotto.model.domain.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -106,39 +102,5 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_WINNING_NUMBER_FORMAT_EXCEPTION);
-    }
-
-    @DisplayName("번호 범위 테스트(당첨 번호)")
-    @ParameterizedTest
-    @ValueSource(strings = {"200,12,5", "0,1,2,3"})
-    void validateNumberAreaTest(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.NUMBER_AREA_EXCEPTION);
-    }
-
-    @DisplayName("중복 번호 테스트(당첨 번호)")
-    @ParameterizedTest
-    @ValueSource(strings = {"1,1,1,1,45"})
-    void validateNumberDuplicationTest(String input) {
-        assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.NUMBER_DUPLICATION_EXCEPTION);
-    }
-
-    @DisplayName("당첨 번호 정상 입력 테스트(당첨 번호)")
-    @ParameterizedTest
-    @MethodSource("generateData")
-    void validWinningNumberTest(String input, List<Integer> expected) {
-        assertThat(inputValidator.validateInputWinningNumber(input))
-                .hasSameSizeAs(expected)
-                .containsAll(expected);
-    }
-
-    static Stream<Arguments> generateData() {
-        return Stream.of(
-                Arguments.of("2,3,4,5,6,8", List.of(2, 3, 4, 5, 6, 8)),
-                Arguments.of("10,11,23,24,26,27", List.of(10, 11, 23, 24, 26, 27))
-        );
     }
 }
