@@ -176,9 +176,13 @@ View
         <td rowspan="1">OutputCommand</td>
             <td>✅출력 로직 개선</td> 
                 <td rowspan="1">refactor-output</tr><tr> 
+    <td rowspan="1">로또 컨트롤러</td>
+            <td rowspan="1"><b><em>LottoController</em></b></td>
+                <td>✅로직 조합</td> 
+                    <td rowspan="1">dev/controller</tr><tr> 
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
-            <td>⬜ 컴포넌트 의존성 주입</td> 
+            <td>⬜컴포넌트 의존성 주입</td> 
                 <td rowspan="1"></tr><tr> 
 </tr>
 </table>
