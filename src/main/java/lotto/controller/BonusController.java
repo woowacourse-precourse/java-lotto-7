@@ -31,7 +31,6 @@ public class BonusController {
     private BonusGenerator inputLottoBonus(Lotto winning) {
         try {
             outputView.printlnMessage(PrintMessage.INPUT_LOTTO_BONUS_NUMBER);
-
             String lottoBonus = inputView.inputUser();
             return BonusGenerator.create(winning, lottoBonus);
         } catch (IllegalArgumentException e) {
