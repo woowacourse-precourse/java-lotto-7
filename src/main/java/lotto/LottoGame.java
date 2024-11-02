@@ -1,15 +1,23 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
-    public static void main(String[] args) {
+    public void start() {
         try {
             int lottoCount = getValidatedLottoCount();
-            printPurchasedLottos(lottoCount);
+            List<Lotto> purchasedLottos = generateLottos(lottoCount);
+            List<Integer> winningNumbers = LottoInputHandler.getWinningNumbers();
+            int bonusNumber = LottoInputHandler.getBonusNumber(winningNumbers);
+
+            Map<String, Integer> resultCounts = LottoResultCalculator.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
+            LottoResultPrinter.printResults(resultCounts);
         } catch (IllegalArgumentException e) {
-            printErrorMessage(e);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -28,11 +36,19 @@ public class LottoGame {
         }
     }
 
-    private static void printPurchasedLottos(int lottoCount) {
-        System.out.println(lottoCount + "개를 구매했습니다.");
+    private List<Lotto> generateLottos(int lottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = LottoNumberGenerator.generate();
-            System.out.println(lottoNumbers);
+            List<Integer> numbers = LottoNumberGenerator.generate();
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
+    private void printPurchasedLottos(List<Lotto> purchasedLottos) {
+        System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
 
