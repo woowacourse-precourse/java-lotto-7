@@ -20,6 +20,13 @@ public class LottoGame {
 
     }
 
+    private void generateLottoTickets(int purchaseAmount) {
+        int ticketCount= purchaseAmount/LOTTO_PRICE;
+        System.out.println(ticketCount+"개 를 구매했습니다");
+        purchasedTickets=new LottoTickets(ticketCount);
+        purchasedTickets.printTickets();
+    }
+
     private int inputPurchaseAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
         String input = Console.readLine();
