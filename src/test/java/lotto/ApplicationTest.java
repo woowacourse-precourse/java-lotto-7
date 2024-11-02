@@ -66,6 +66,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호 입력시 기본 당첨 번호와 보너스 번호가 중복시 예외처리입니다.")
+    @Test
+    void 기본_당첨_번호와_보너스_번호가_중복시_예외_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "6", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

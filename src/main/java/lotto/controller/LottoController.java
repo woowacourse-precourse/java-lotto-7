@@ -18,10 +18,28 @@ public class LottoController {
         LottoTicketsDto lottoTicketsDto = lottoService.createLottoTickets(userMoney);
         printLottoTickets(lottoTicketsDto);
 
-        List<Rank> userRanks = lottoService.calculateRank(lottoTicketsDto, readWinningLotto(), readBonusNumber());
+        List<Rank> userRanks = calculateUserLottoTicketsRank(lottoTicketsDto);
         printUserRanks(userRanks);
 
         printRateOfReturn(lottoService.calculateRateOfReturn(userMoney, userRanks));
+    }
+
+    private List<Rank> calculateUserLottoTicketsRank(LottoTicketsDto lottoTicketsDto) {
+        List<Integer> winningLottoNumbers;
+        int bonusNumber;
+        List<Rank> userRanks;
+        while (true) {
+            try {
+                winningLottoNumbers = readWinningLotto();
+                bonusNumber = readBonusNumber();
+                validateDuplicationOfLottoNumber(winningLottoNumbers, bonusNumber);
+                userRanks = lottoService.calculateRank(lottoTicketsDto, winningLottoNumbers, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return userRanks;
     }
 
     private int readUserMoney() {
@@ -34,7 +52,12 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-
         return userMoney;
+    }
+
+    private void validateDuplicationOfLottoNumber(List<Integer> winningLottoNumbers, int bonusNumber) {
+        if (winningLottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 기본 당첨 숫자와 보너스 숫자가 중복됩니다.");
+        }
     }
 }
