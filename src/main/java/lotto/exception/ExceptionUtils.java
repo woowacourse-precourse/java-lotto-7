@@ -1,11 +1,11 @@
 package lotto.exception;
 
 public class ExceptionUtils {
-    public static Exception IllegalArgument(ExceptionMessage message) {
+    public static IllegalArgumentException IllegalArgument(ExceptionMessage message) {
         return new IllegalArgumentException(message.getMessage());
     }
 
-    public static Exception IllegalArgumentWithCause(ExceptionMessage message, Throwable cause) {
+    public static IllegalArgumentException IllegalArgumentWithCause(ExceptionMessage message, Throwable cause) {
         return new IllegalArgumentException(message.getMessage(), cause);
     }
 }
