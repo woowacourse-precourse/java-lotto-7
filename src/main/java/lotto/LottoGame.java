@@ -10,12 +10,14 @@ public class LottoGame {
     private static final int MAX_LOTTO_PRICE = 100000;
 
     private int purchaseAmount;
+    private int bonusNumber;
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
     private Lotto lotto;
 
     public void start() {
         purchaseAmountInput();
         lottoWinningNumberInput();
+        lottoBonusNumberInput();
     }
 
     // 첫 번째 입력(구입 금액)
@@ -57,6 +59,15 @@ public class LottoGame {
     }
 
     // 세 번째 입력(보너스 번호)
+    private void lottoBonusNumberInput() {
+        try {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            bonusNumber = Integer.parseInt(checkPositiveNumber(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            lottoBonusNumberInput();
+        }
+    }
 
 
     // 금액에 맞게 로또를 발급하는 메서드
