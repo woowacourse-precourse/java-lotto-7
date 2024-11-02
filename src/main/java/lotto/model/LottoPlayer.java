@@ -1,11 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPlayer {
 
-    private List<Lotto> autoNumbers;
+    private List<Lotto> autoNumbers = new ArrayList<>();
 
     public List<Lotto> purchase(int money) {
         int number = money / 1000;
