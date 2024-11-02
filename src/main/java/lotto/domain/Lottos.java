@@ -15,12 +15,12 @@ public class Lottos {
         return lottos.size();
     }
 
-    public List<Rank> draw(Draw draw) {
+    public Ranks draw(Draw draw) {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos) {
             Rank rank = draw.compare(lotto);
             ranks.add(rank);
         }
-        return ranks;
+        return new Ranks(ranks);
     }
 }

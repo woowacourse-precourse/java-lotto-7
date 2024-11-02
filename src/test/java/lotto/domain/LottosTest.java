@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.provider.DefinedNumberProvider;
+import lotto.domain.provider.RandomNumberProvider;
 import lotto.domain.validator.DefaultRangeValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +17,7 @@ class LottosTest {
 
     @BeforeEach
     void setUp() {
-        DefinedNumberProvider numberProvider = new DefinedNumberProvider(1, 2, 3, 4, 5, 6);
+        RandomNumberProvider numberProvider = new RandomNumberProvider();
         DefaultRangeValidator rangeValidator = new DefaultRangeValidator();
         this.lotto = new Lotto(numberProvider, rangeValidator);
 
@@ -40,9 +40,9 @@ class LottosTest {
         List<Lotto> lottoList = List.of(lotto, lotto, lotto);
         Lottos lottos = new Lottos(lottoList);
 
-        List<Rank> ranks = lottos.draw(draw);
+        Ranks ranks = lottos.draw(draw);
 
-        assertThat(ranks).hasSize(3);
+        assertThat(ranks.count()).isEqualTo(3);
     }
 
 }
