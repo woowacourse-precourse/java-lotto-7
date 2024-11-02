@@ -21,6 +21,8 @@ public class LottoApplication {
         List<Lotto> lottos = purchaseLotto();
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
+
+        Result result = getResult(lottos, winningNumbers, bonusNumber);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -40,5 +42,10 @@ public class LottoApplication {
     private int getBonusNumber(List<Integer> winningNumbers) {
         InputMessage.bonusNumber();
         return inputReader.readBonusNumber(winningNumbers);
+    }
+
+    private Result getResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Calculator calculator = new Calculator(lottos, winningNumbers, bonusNumber);
+        return calculator.calculateResult();
     }
 }
