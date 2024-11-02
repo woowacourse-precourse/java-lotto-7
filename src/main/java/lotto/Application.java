@@ -68,7 +68,18 @@ public class Application {
         }
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
+        String bonusInput = Console.readLine();
+        if (!bonusInput.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
+        }
+        int bonusNumber = Integer.parseInt(bonusInput);
+        if (bonusNumber < 0 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1이상 45이하의 숫자입니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호 6개와 중복될 수 없습니다.");
+        }
+
 
     }
 }
