@@ -6,7 +6,7 @@ import java.util.List;
 
 public class User {
 
-    public int cost() {
+    public int inputCost() {
         int cost;
 
         while (true) {
@@ -29,7 +29,7 @@ public class User {
         return cost;
     }
 
-    public Lotto lotto() {
+    public Lotto inputPurchaseLottos() {
         List<Integer> userLottoNumbers = new ArrayList<>();
         String[] userLotto = Console.readLine().split(",");
 
@@ -40,7 +40,7 @@ public class User {
         return new Lotto(userLottoNumbers);
     }
 
-    public int bonus() {
+    public int inputBonusNumber() {
         int bonus;
 
         while (true) {
