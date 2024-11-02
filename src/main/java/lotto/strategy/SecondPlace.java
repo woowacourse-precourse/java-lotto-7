@@ -2,6 +2,7 @@ package lotto.strategy;
 
 import java.util.List;
 import java.util.Map;
+import lotto.message.Place;
 
 public class SecondPlace implements PlaceAuction {
 
@@ -18,10 +19,14 @@ public class SecondPlace implements PlaceAuction {
 
     @Override
     public void add(Integer count) {
-        if (bonusResult.get(count).equals(1)) {
+        if (IsEqualToTrue(bonusResult.get(count))) {
             placeMap.put(SECOND_PLACE, placeMap.get(SECOND_PLACE) + 1);
             return;
         }
         placeMap.put(THIRD_PLACE, placeMap.get(THIRD_PLACE) + 1);
+    }
+
+    private boolean IsEqualToTrue(Integer bonus) {
+        return bonus.equals(Place.TRUE.getNumber());
     }
 }

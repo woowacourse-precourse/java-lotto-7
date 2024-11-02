@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.message.Place;
 
 public class ResultGenerator {
 
@@ -35,10 +36,14 @@ public class ResultGenerator {
 
     private void countBonus(Lotto lotto, Bonus bonus) {
         if (lotto.getNumbers().contains(bonus.getNumber())) {
-            bonusResult.add(1);
+            add(Place.TRUE);
             return;
         }
-        bonusResult.add(0);
+        add(Place.FALSE);
+    }
+
+    private void add(Place place) {
+        bonusResult.add(place.getNumber());
     }
 
     public List<Integer> getWinningResult() {
