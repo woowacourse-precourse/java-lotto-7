@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,8 @@ public final class Lottos {
     public void printLottoNumber() {
         for (Lotto lotto : lottos)
         System.out.println("["+lotto.getNumbers().stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", "))+"]");
+                        .sorted(Comparator.naturalOrder())
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(", "))+"]");
     }
 }

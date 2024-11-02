@@ -60,7 +60,7 @@ class LottosTest {
         //given
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonunsNumber = 10;
-        int usingMoney = 40000;
+        int usingMoney = 150000;
 
         //when
         Lottos mylottos = new Lottos(List.of(
@@ -72,6 +72,6 @@ class LottosTest {
 
         //then
         double returns = mylottos.calculateReturns(lottoResult, usingMoney);
-        Assertions.assertThat(returns).isEqualTo(37.5);
+        Assertions.assertThat(returns).isEqualTo(10.0);
     }
 }

@@ -10,7 +10,7 @@ public class LottoController {
     public void run() {
         int inpuMoney = InputView.readInputMoney();
         Lottos lottos = Lotto.buyAsMoney(inpuMoney);
-        System.out.println(lottos.getLottos().size() + "개를 구매하셨습니다");
+        System.out.println(lottos.getLottos().size() + "개를 구매했습니다.");
         lottos.printLottoNumber();
 
         Lotto winningLotto = new Lotto(InputView.readAndSplitWinningNumber());
@@ -24,7 +24,7 @@ public class LottoController {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +lottoResult.get("2등") + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " +lottoResult.get("1등") + "개");
 
-
-
+        double returnsByLottos = lottos.calculateReturns(lottoResult, inpuMoney);
+        System.out.printf("총 수익률은 %.1f%%입니다.", returnsByLottos);
     }
 }

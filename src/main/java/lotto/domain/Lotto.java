@@ -22,19 +22,18 @@ public class Lotto {
     }
 
     public static Lottos buyAsMoney(int money) {
-        List<Lotto> boughtlottos = new ArrayList<>();
+        List<Lotto> boughtLottos = new ArrayList<>();
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[Error] 구매금액은 1,000원단위로 입력주세요");
         }
         for (int i = 0; i < money / 1000; i++) {
-            boughtlottos.add(createLotto());
+            boughtLottos.add(createLotto());
         }
-        return new Lottos(boughtlottos);
+        return new Lottos(boughtLottos);
     }
 
     private static Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 
