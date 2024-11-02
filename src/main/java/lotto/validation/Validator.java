@@ -8,26 +8,31 @@ import java.util.List;
 
 public class Validator {
     private static final LottoView lottoView = new LottoView();
+    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_LENGTH = 6;
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
+
 
     public static int validateLottoCount() {
-        int price;
+        int inputPrice;
         try {
-            price = Integer.parseInt(lottoView.input.price());
+            inputPrice = Integer.parseInt(lottoView.input.price());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
-        if (price <= 0) {
+        if (inputPrice <= 0) {
             throw new IllegalArgumentException(ErrorMessage.NEGATIVE_OR_ZERO.getMessage());
         }
-        if (price % 1000 != 0) {
+        if (inputPrice % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
         }
-        return price / 1000;
+        return inputPrice / LOTTO_PRICE;
     }
 
     public static List<Integer> validateWinningNumber(String[] inputWinningNumber) {
         List<Integer> winningNumber = new ArrayList<>();
-        if (inputWinningNumber.length != 6) {
+        if (inputWinningNumber.length != LOTTO_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_COUNT.getMessage());
         }
         for (String strNumber : inputWinningNumber) {
@@ -37,12 +42,12 @@ public class Validator {
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
             }
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
                 throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }
             winningNumber.add(number);
         }
-        if (new HashSet<>(winningNumber).size() != 6) {
+        if (new HashSet<>(winningNumber).size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
 
@@ -56,7 +61,7 @@ public class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT.getMessage());
         }
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
         }
         if (winningNumber.contains(bonusNumber)) {
