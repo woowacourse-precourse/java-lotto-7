@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.dto.LottoStatus;
 import lotto.dto.LottoTicketStatus;
 
@@ -18,10 +19,9 @@ public class LottoTicket {
 
     public LottoTicketStatus getLottoTicketStatus() {
 
-        List<LottoStatus> lottoStatuses = new ArrayList<>();
-        lottos.stream()
+        List<LottoStatus> lottoStatuses = lottos.stream()
                 .map(Lotto::getStatus)
-                .forEach(lottoStatuses::add);
+                .collect(Collectors.toList());
 
         return new LottoTicketStatus(lottoStatuses);
     }
