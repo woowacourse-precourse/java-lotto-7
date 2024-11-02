@@ -29,6 +29,11 @@ public class Lotto {
         return new ArrayList<>(this.numbers);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     private void validate(List<Integer> numbers) {
         validateCount(numbers);
         validateRange(numbers);
