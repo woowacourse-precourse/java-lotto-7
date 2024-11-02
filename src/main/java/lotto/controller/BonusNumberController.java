@@ -21,6 +21,7 @@ public class BonusNumberController {
             try {
                 inputView.printBonusNumberInput();
                 bonusNumberService.save(inputView.getInput());
+                outputView.printEmptyLine();
 
                 break;
             } catch (IllegalArgumentException e) {

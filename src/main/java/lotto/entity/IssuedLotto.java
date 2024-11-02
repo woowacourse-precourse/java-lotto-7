@@ -8,4 +8,16 @@ public record IssuedLotto(
 
     public IssuedLotto {
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            if (!sb.isEmpty()) {
+                sb.append("\n");
+            }
+            sb.append(lotto);
+        }
+        return sb.toString();
+    }
 }

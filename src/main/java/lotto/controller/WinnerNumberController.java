@@ -21,6 +21,7 @@ public class WinnerNumberController {
             try {
                 inputView.printWinnerNumberInput();
                 winnerNumberService.save(inputView.getInput());
+                outputView.printEmptyLine();
 
                 break;
             } catch (IllegalArgumentException e) {

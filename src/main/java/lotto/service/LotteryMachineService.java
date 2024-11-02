@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.constant.Constant.EMPTY_LINE;
 import static lotto.constant.Policy.LOTTO_NUMBER_MAX;
 import static lotto.constant.Policy.LOTTO_NUMBER_MIN;
 import static lotto.constant.Policy.LOTTO_PRICE;
@@ -27,15 +28,16 @@ public class LotteryMachineService {
         long purchaseCount = getPurchaseCount(purchaseAmount);
         sb.append(purchaseCount);
         sb.append(Message.BUY_LOTTO);
+        sb.append(EMPTY_LINE);
 
-        issue(purchaseCount);
+        issue(purchaseCount, sb);
     }
 
     private long getPurchaseCount(PurchaseAmount purchaseAmount) {
         return purchaseAmount.purchaseAmount() / LOTTO_PRICE;
     }
 
-    private void issue(long purchaseCount) {
+    private void issue(long purchaseCount, StringBuilder sb) {
         List<Lotto> lottos = new ArrayList<>();
         for (long i = 0; i < purchaseCount; i++) {
             lottos.add(generate());
@@ -43,6 +45,8 @@ public class LotteryMachineService {
 
         IssuedLotto issuedLotto = new IssuedLotto(lottos);
         lotteryMachineModel.settingIssuedLotto(issuedLotto);
+        sb.append(issuedLotto);
+        sb.append(EMPTY_LINE);
     }
 
     private Lotto generate() {
