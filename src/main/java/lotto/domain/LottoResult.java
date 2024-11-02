@@ -18,6 +18,13 @@ public class LottoResult {
         this.winningLotto = winningLotto;
     }
 
+    private void calculateTotalRank(List<Lotto> lottos) {
+        lottos.forEach(lotto -> {
+            Rank rank = calculateLottoRank(lotto);
+            rankCount.put(rank, rankCount.get(rank) + 1);
+        });
+    }
+
     private Rank calculateLottoRank(Lotto lotto) {
         int matchCount = winningLotto.countMatchNumbers(lotto);
         boolean matchBonus = winningLotto.matchBonusNumber(lotto);
