@@ -20,6 +20,7 @@ public class LottoController {
     public void run() {
         LottoAmount lottoAmount = purchaseLottos();
         Lottos lottos = lottoMachine.issueLottos(lottoAmount);
+        outputView.outputIssuedLottos(lottos);
     }
 
     private LottoAmount purchaseLottos() {

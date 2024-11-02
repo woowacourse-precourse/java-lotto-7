@@ -7,10 +7,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.controller.LottoController;
 import lotto.model.Lotto;
+import lotto.service.LottoMachine;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
+        LottoController lottoController = new LottoController(
+                new InputView(), new OutputView(), new LottoMachine()
+        );
+        lottoController.run();
 //        int lottoAmount = purchaseLottos();
 //        List<Lotto> lottos = issueLottos(lottoAmount);
 //        printIssuedLottos(lottos);
