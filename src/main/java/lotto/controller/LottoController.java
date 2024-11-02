@@ -16,12 +16,12 @@ import lotto.util.validator.WinningNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class Controller {
+public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
 
-    public Controller(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
     }
