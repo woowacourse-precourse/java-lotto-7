@@ -32,7 +32,7 @@ public class InputView {
         try {
             writer.printSout(ASK_PURCHASE_AMOUNT);
             String input = reader.readInput();
-            InputValidatorFacade.MoneyValidators(input);
+            InputValidatorFacade.moneyValidators(input);
             return PreProcessor.stringToMoney(input);
         } catch (IllegalArgumentException e) {
             writer.printErrorMessage(e.getMessage());
@@ -41,8 +41,14 @@ public class InputView {
     }
 
     public Lotto readWinningNumber() {
-        writer.printSout(ASK_WINNING_NUMBER);
-        String input = reader.readInput();
-        return PreProcessor.stringToLotto(input);
+        try {
+            writer.printSout(ASK_WINNING_NUMBER);
+            String input = reader.readInput();
+            InputValidatorFacade.winningNumValidators(input);
+            return PreProcessor.stringToLotto(input);
+        } catch (IllegalArgumentException e) {
+            writer.printErrorMessage(e.getMessage());
+            return readWinningNumber();
+        }
     }
 }

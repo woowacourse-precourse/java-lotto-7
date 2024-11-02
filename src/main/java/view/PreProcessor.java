@@ -21,9 +21,16 @@ public class PreProcessor {
         return Lotto.from(numbers);
     }
 
-    public static List<String> stringToList(String input) {
+    public static List<String> stringToStringList(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::strip)
+                .toList();
+    }
+
+    public static List<Integer> stringToIntegerList(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::strip)
+                .map(Integer::parseInt)
                 .toList();
     }
 }
