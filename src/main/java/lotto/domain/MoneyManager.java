@@ -5,12 +5,13 @@ import lotto.util.Formatter;
 public class MoneyManager {
 
     private static final Long MONEY_UNIT = 1000L;
+    private static final Long MONEY_MIN = 0L;
 
     private final Long purchaseMoney;
     private Long prizeMoney;
 
     public MoneyManager(Long purchaseMoney) {
-        validationPurchaseMoney(purchaseMoney);
+        validatePurchaseMoney(purchaseMoney);
         this.purchaseMoney = purchaseMoney;
     }
 
@@ -18,7 +19,18 @@ public class MoneyManager {
         this.prizeMoney = prizeMoney;
     }
 
-    private void validationPurchaseMoney(Long money) {
+    private void validatePurchaseMoney(Long money) {
+        validateMoneyUnit(money);
+        validateMoneyRange(money);
+    }
+
+    private void validateMoneyRange(Long money) {
+        if (money < MONEY_MIN) {
+            throw new IllegalArgumentException(String.format("%s원 이상을 입력해주세요.", Formatter.formatToCurrency(MONEY_MIN)));
+        }
+    }
+
+    private void validateMoneyUnit(Long money) {
         if (money % MONEY_UNIT != 0) {
             throw new IllegalArgumentException(String.format("%s원 단위로 입력해주세요.", Formatter.formatToCurrency(MONEY_UNIT)));
         }
