@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class LottoStaticsHandler {
+public class LottoStaticsOutputHandler {
     private LottoService lottoService;
 
-    public LottoStaticsHandler(LottoService lottoService) {
+    public LottoStaticsOutputHandler(LottoService lottoService) {
         this.lottoService = lottoService;
     }
 
@@ -34,7 +34,7 @@ public class LottoStaticsHandler {
 
     public void printReturn(List<Rank> ranks, int purchaseAmount) {
         double returnRate = lottoService.calculateReturn(ranks, purchaseAmount);
-        String text = String.format("총 수익률은 %.2f%입니다.", returnRate);
+        String text = String.format("총 수익률은 %.2f%%입니다.", returnRate);
         System.out.println(text);
     }
 }
