@@ -4,9 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.utils.ErrorMessages;
+import lotto.utils.NumberConstants;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -19,7 +20,7 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NumberConstants.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
@@ -30,5 +31,19 @@ public class Lotto {
         if(numSet.size() != numbers.size()){
             throw new IllegalArgumentException(ErrorMessages.ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    public int countMatchingNumbers(WinningLotto winningLotto) {
+        int matchingCount = (int) this.numbers.stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+        return matchingCount;
+    }
+
+    public boolean isMatchBonus(WinningLotto winningLotto){
+        if (this.numbers.contains(winningLotto.getBonusNumber())) {
+            return true;
+        }
+        return false;
     }
 }

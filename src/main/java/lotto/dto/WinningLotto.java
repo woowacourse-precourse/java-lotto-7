@@ -9,6 +9,7 @@ public class WinningLotto extends Lotto{
     private int bonusNumber;
     public WinningLotto(List<Integer> numbers, int bonusNumber) {
         super(numbers);
+        validateUniqueNumbers(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -18,5 +19,13 @@ public class WinningLotto extends Lotto{
         if(!numSet.add(bonusNumber)){
             throw new IllegalArgumentException(ErrorMessages.ERROR_DUPLICATE_BONUS_NUMBER.getMessage());
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return super.numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
