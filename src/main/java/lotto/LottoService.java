@@ -25,4 +25,9 @@ public class LottoService {
         return issuedLottos;
     }
 
+    public void showLottoNumbers(Lotto[] issuedLottos) {
+        for (Lotto lotto : issuedLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
 }

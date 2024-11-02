@@ -26,4 +26,8 @@ public class Lotto {
     public void addBonusNumber(int boundNumber) {
         this.numbers.add(boundNumber);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
