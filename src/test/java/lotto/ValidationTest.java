@@ -25,7 +25,7 @@ class ValidationTest {
         lotto_numbers = new ArrayList<>();
     }
 
-    @DisplayName("로또 6개 이상 오류 메시지 출력")
+    @DisplayName("로또 번호가 6개 초과 오류 메시지 출력")
     @Test
     void 로또_입력값이_6을_초과() {
         //given
@@ -36,6 +36,20 @@ class ValidationTest {
                 checkLottoSize(lotto_numbers, LOTTO_MAX_LENGTH));
 
         // then
+        assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", throwable.getMessage());
+    }
+
+    @DisplayName("로또 번호가 6개 미만 오류 메시지 출력")
+    @Test
+    void 로또_입력값이_6미만() {
+        //given
+        lotto_numbers = Utils.randomLottoNumbers(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_MAX_LENGTH - 1);
+
+        //when
+        Throwable throwable = assertThrows(IllegalArgumentException.class, () ->
+                checkLottoSize(lotto_numbers, LOTTO_MAX_LENGTH));
+
+        //then
         assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", throwable.getMessage());
     }
 
@@ -84,5 +98,29 @@ class ValidationTest {
         assertEquals("[ERROR] 로또 번호가 중복됩니다.", throwable.getMessage());
     }
 
+    @DisplayName("로또 당첨 번호 입력 정상")
+    @Test
+    void 로또_당첨번호_정상입력() {
+        //given
+        String lottoPrizeNumber = "1,2,3,4,5,6";
+
+        //when //then
+        assertDoesNotThrow(() ->
+                checkInputTypeNumbers(lottoPrizeNumber));
+    }
+
+    @DisplayName("로또 당청 번호 문자 입력 오류")
+    @Test
+    void 로또_당첨번호_문자입력() {
+        //given
+        String lottoPrizeNumber = "1,2,3,4,5,a";
+
+        //when
+        Throwable throwable = assertThrows(IllegalArgumentException.class, () ->
+                checkInputTypeNumbers(lottoPrizeNumber));
+
+        //then
+        assertEquals("[ERROR] 숫자를 입력해주세요.", throwable.getMessage());
+    }
 
 }

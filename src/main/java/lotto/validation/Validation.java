@@ -13,8 +13,17 @@ public class Validation {
         }
     }
 
+    public static void checkInputTypeNumbers(String number) {
+        String[] splitNumber = number.split(",");
+        for (String num : splitNumber) {
+            if (!num.chars().allMatch(Character::isDigit)) {
+                throw new IllegalArgumentException(LOTTO_ERROR_ONLY_NUMBER.getMessage());
+            }
+        }
+    }
+
     public static void checkLottoSize(List<Integer> lottoNumbers, Integer maxLength) {
-        if (lottoNumbers.size() > maxLength) {
+        if (lottoNumbers.size() != maxLength) {
             throw new IllegalArgumentException(LOTTO_ERROR_WRONG_LOTTO_SIZE.getMessage());
         }
     }
