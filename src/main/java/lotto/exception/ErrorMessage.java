@@ -11,9 +11,10 @@ public enum ErrorMessage {
     INVALID_PURCHASE_MIN("구매 금액은 1000원 이상이여야합니다."),
     // 보너스 숫자 예외 메시지
     INVALID_BONUS_NUMBER_RANGE("보너스 숫자는 1에서 45사이의 숫자여야합니다."),
-    INVALID_BONUS_NUMBER_DUPLICATE("보너스 숫자는 당첨 숫자와 달라야합니다.");
     INVALID_BONUS_NUMBER_TYPE("보너스 숫자는 숫자만 입력 가능합니다."),
     INVALID_BONUS_NUMBER_DUPLICATE("보너스 숫자는 당첨 숫자와 달라야합니다."),
+    // 당첨 숫자 예외 메시지
+    INVALID_WINNER_NUMBER_TYPE("당첨 숫자를 쉼표(,)를 기준으로 구분하여 입력해야합니다.");
 
     private static final String PREFIX = "[ERROR] ";
     private final String message;
