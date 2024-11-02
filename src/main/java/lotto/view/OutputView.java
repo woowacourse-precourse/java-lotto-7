@@ -13,6 +13,10 @@ public class OutputView {
         printMessage(String.format(PURCHASED_NUM_LOTTO, numLotto));
     }
 
+    public void printExitMessage(String message) {
+        printMessage(message);
+    }
+
     private void printNewLine() {
         printMessage("");
     }
