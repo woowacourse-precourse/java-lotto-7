@@ -40,6 +40,16 @@ public class UserInput {
         }
     }
 
+    public void bonusNumberInput() {
+
+        System.out.println("보너스 번호를 입력해주세요.");
+
+        String bonusNumberInput = readLine();
+
+        validBonusNumberInput(bonusNumberInput);
+
+        this.bonusNumber = Integer.parseInt(bonusNumberInput);
+    }
 
     private void validPurchaseAmountInput(String input) {
 
@@ -87,6 +97,26 @@ public class UserInput {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 " + lottoNumberMin + "부터 " +
                         lottoNumberMax + " 사이의 숫자여야 합니다.");
             }
+        }
+    }
+
+    private void validBonusNumberInput(String bonusNumberInput) {
+
+        int bonusNumber;
+
+        try {
+            bonusNumber = Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
+
+        if (bonusNumber < lottoNumberMin || bonusNumber > lottoNumberMax) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 " + lottoNumberMin + "부터 " +
+                    lottoNumberMax + " 사이의 숫자여야 합니다.");
+        }
+
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 
