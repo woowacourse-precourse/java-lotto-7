@@ -44,28 +44,24 @@ public class LottoController {
     private double getProfitRate(List<MatchCondition> matchConditions, String enteredPurchaseAmount) {
         long totalWinningAmount = profitCalculator.calculateTotalWinningAmount(matchConditions);
         long lottoPurchaseAmount = Convertor.convertToLong(enteredPurchaseAmount);
-        double profitRate = profitCalculator.calculateProfitRate(totalWinningAmount, lottoPurchaseAmount);
-        return profitRate;
+        return profitCalculator.calculateProfitRate(totalWinningAmount, lottoPurchaseAmount);
     }
 
     private Map<LottoRank, Integer> produceStatistics(List<MatchCondition> matchConditions) {
         LottoResult lottoResult = new LottoResult();
-        Map<LottoRank, Integer> lottoRankCount = lottoResult.produceStatistics(matchConditions);
-        return lottoRankCount;
+        return lottoResult.produceStatistics(matchConditions);
     }
 
     private BonusNumber getBonusNumber() {
         outputView.printBonusNumberInputMessage();
         String inputBonusNumber = inputView.inputBonusNumber();
-        BonusNumber bonusNumber = BonusNumber.from(inputBonusNumber);
-        return bonusNumber;
+        return BonusNumber.from(inputBonusNumber);
     }
 
     private WinningNumber getWinningNumber() {
         outputView.printWinningNumbersInputMessage();
         String inputWinningNumbers = inputView.inputWinningNumbers();
-        WinningNumber winningNumber = WinningNumber.from(inputWinningNumbers);
-        return winningNumber;
+        return WinningNumber.from(inputWinningNumbers);
     }
 
     private void displayPurchasedLottoNumbers(List<Lotto> ticket) {
