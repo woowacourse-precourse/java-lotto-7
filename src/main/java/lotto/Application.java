@@ -20,7 +20,9 @@ public class Application {
         int purchasedLottoCount= price/1000;
         System.out.println(purchasedLottoCount+"개를 구매했습니다.");
 
-        lottoTickets = lottoGenerator.generate(price);
-
+        lottoTickets = lottoGenerator.generate(purchasedLottoCount);
+        for (Lotto lotto : lottoTickets){
+            System.out.println(lotto.getNumbers());
+        }
     }
 }
