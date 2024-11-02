@@ -1,11 +1,7 @@
 package lotto.view.message;
 
-public enum InteractionMessage {
+public enum OutputMessage {
     // TODO: 문장으로 읽히는 enum 이름
-    // TODO: i/o 출력문 여기 다 때려박아도 되나?
-    ENTER_MONEY("구입금액을 입력해 주세요."),
-    ENTER_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
-    ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     PURCHASE_AMOUNT("%d개를 구매했습니다."),
     WINNING_STATISTICS("당첨 통계"),
     SEPARATOR("---"),
@@ -18,7 +14,7 @@ public enum InteractionMessage {
 
     private final String message;
 
-    InteractionMessage(String message) {
+    OutputMessage(String message) {
         this.message = message;
     }
 
