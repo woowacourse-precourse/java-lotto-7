@@ -3,9 +3,9 @@ package lotto.viewHandler.validator;
 import lotto.viewHandler.exception.NotUnitPurchaseMoney;
 import lotto.viewHandler.Validator;
 
-import static lotto.viewHandler.exception.MyExceptionUtil.MONEY_UNIT;
-import static lotto.viewHandler.exception.MyExceptionUtil.NOT_MONEY_UNIT;
-import static lotto.viewHandler.exception.MyExceptionUtil.ZERO;
+import static lotto.viewHandler.exception.MyExceptionConstant.MONEY_UNIT;
+import static lotto.viewHandler.exception.MyExceptionConstant.NOT_MONEY_UNIT;
+import static lotto.viewHandler.exception.MyExceptionConstant.ZERO;
 
 public class LottoPurchaseUnitValidator implements Validator<Void, Integer> {
     @Override

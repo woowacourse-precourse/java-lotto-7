@@ -2,9 +2,9 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.close;
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.view.ViewUtil.GET_BONUS_NUMBER;
-import static lotto.view.ViewUtil.GET_PURCHASE_MONEY;
-import static lotto.view.ViewUtil.GET_WIN_LOTTO_NUMBER;
+import static lotto.view.ViewConstant.GET_BONUS_NUMBER;
+import static lotto.view.ViewConstant.GET_PURCHASE_MONEY;
+import static lotto.view.ViewConstant.GET_WIN_LOTTO_NUMBER;
 
 
 public class Input {

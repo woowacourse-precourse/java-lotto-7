@@ -3,9 +3,9 @@ package lotto.viewHandler.validator;
 import lotto.viewHandler.Validator;
 import lotto.viewHandler.exception.NotLottoNumberRange;
 
-import static lotto.viewHandler.exception.MyExceptionUtil.LOTTO_END_NUMBER;
-import static lotto.viewHandler.exception.MyExceptionUtil.LOTTO_START_NUMBER;
-import static lotto.viewHandler.exception.MyExceptionUtil.NOT_LOTTO_NUMBER_RANGE;
+import static lotto.viewHandler.exception.MyExceptionConstant.LOTTO_END_NUMBER;
+import static lotto.viewHandler.exception.MyExceptionConstant.LOTTO_START_NUMBER;
+import static lotto.viewHandler.exception.MyExceptionConstant.NOT_LOTTO_NUMBER_RANGE;
 
 public class LottoNumberRangeValidator implements Validator<Void, Integer> {
     @Override

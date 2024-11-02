@@ -6,13 +6,16 @@ import java.util.stream.Stream;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class PurchaseLottos {
+    private final Integer money;
     private final List<Lotto> lottos;
 
     protected PurchaseLottos(Integer money) {
+        this.money = money;
         this.lottos = purchaseLottos(money);
     }
 
     protected PurchaseLottos(List<Lotto> lottos) {
+        this.money = lottos.size();
         this.lottos = lottos;
     }
 
@@ -22,6 +25,10 @@ public class PurchaseLottos {
 
     public static PurchaseLottos of(List<Lotto> lottos) {
         return new PurchaseLottos(lottos);
+    }
+
+    public Integer getMoney() {
+        return money;
     }
 
     public List<Lotto> getLottos() {

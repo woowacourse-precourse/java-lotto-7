@@ -63,7 +63,7 @@ public class ViewHandler {
     }
 
     private void exceptionHandler(Api api) {
-        if(api.getCode() != 500) {
+        if(api.getCode() != 200) {
             output.viewExceptionMessage(api.getMessage());
         }
     }
