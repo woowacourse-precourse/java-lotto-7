@@ -52,7 +52,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
-        numbers.forEach(this::validateRange);
+        numbers.forEach(this::validateNumberRange);
         validateDuplicate(numbers);
     }
 
@@ -62,7 +62,7 @@ public class Lotto {
         }
     }
 
-    private void validateRange(Integer number) {
+    private void validateNumberRange(Integer number) {
         if (number < Constant.MIN_LOTTO_NUMBER || number > Constant.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.OUT_RANGE_LOTTO_NUMBER.getMessage());
         }
