@@ -57,4 +57,7 @@ public class LottoResults {
         return matchCount;
     }
 
+    public SequencedMap<Rank, Integer> getLottoResults() {
+        return lottoResults;
+    }
 }
