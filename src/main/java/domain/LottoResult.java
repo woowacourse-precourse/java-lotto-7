@@ -1,12 +1,12 @@
 package domain;
 
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LottoResult {
 
-    public final Map<WinningPrice, Integer> result = new HashMap<>();
+    public final Map<WinningPrice, Integer> result = new LinkedHashMap<>();
 
     private LottoResult() {
         for (WinningPrice price : WinningPrice.values()) {

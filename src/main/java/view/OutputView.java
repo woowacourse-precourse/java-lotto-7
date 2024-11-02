@@ -6,6 +6,12 @@ import java.util.Map;
 public class OutputView {
 
     private static String TICKET_QUANTITY_MESSAGE = "%s개를 구매했습니다.";
+    private static String WINNING_STATISTICS_MESSAGE = "당첨통계";
+    private static String BOUNDARY = "-";
+    private static int BOUNDARY_REPEAT_COUNT = 3;
+    private static String MATCH_COUNT = "%s개";
+    private static String BLANK_BOUNDARY = " - ";
+
 
     private OutputView() {
     }
@@ -17,9 +23,35 @@ public class OutputView {
     }
 
     public static void printResult(Map<WinningPrice, Integer> lottoResult) {
+        printBlank();
+        printWinningStatisticMessage();
+        printBoundary();
+        printStatistics(lottoResult);
+    }
+
+    private static void printStatistics(Map<WinningPrice, Integer> lottoResult) {
         for (WinningPrice winningPrice : lottoResult.keySet()) {
-            System.out.println(winningPrice.getDescription() +" " + lottoResult.get(winningPrice));
+            if (winningPrice == WinningPrice.LOSE) {
+                continue;
+            }
+            System.out.print(winningPrice.getDescription() + BLANK_BOUNDARY);
+            printMatchCount(lottoResult.get(winningPrice));
         }
+
+    }
+
+
+    private static void printMatchCount(int count) {
+        System.out.printf(MATCH_COUNT, count);
+        printBlank();
+    }
+
+    private static void printBoundary() {
+        System.out.println(BOUNDARY.repeat(BOUNDARY_REPEAT_COUNT));
+    }
+
+    private static void printWinningStatisticMessage() {
+        System.out.println(WINNING_STATISTICS_MESSAGE);
     }
 
     private static void printBlank() {
