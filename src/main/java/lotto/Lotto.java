@@ -3,6 +3,8 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -40,8 +42,8 @@ public class Lotto {
             }
         }
 
-        if (count == Constant.LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
-            count = Constant.LOTTO_BONUS_CORRECT;
+        if (count == LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
+            count = LOTTO_BONUS_CORRECT;
         }
 
         LottoEnum.increaseWinnerCount(count);

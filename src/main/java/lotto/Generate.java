@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class Generate {
     int cost;
 
@@ -16,7 +18,7 @@ public class Generate {
     public List<Lotto> getLottoPaper() {
         List<Lotto> lotto = new ArrayList<>();
 
-        for (int round = 0; round < cost / Constant.LOTTO_CHARGE; round++) {
+        for (int round = 0; round < cost / LOTTO_CHARGE; round++) {
             List<Integer> subGame = getSubGame();
             lotto.add(new Lotto(subGame));
         }
@@ -25,7 +27,7 @@ public class Generate {
     }
 
     public List<Integer> getSubGame() {
-        List<Integer> subGame = Randoms.pickUniqueNumbersInRange(Constant.LOTTO_START, Constant.LOTTO_END, Constant.LOTTO_NUMBERS_LIMIT);
+        List<Integer> subGame = Randoms.pickUniqueNumbersInRange(LOTTO_START, LOTTO_END, LOTTO_NUMBERS_LIMIT);
         Collections.sort(subGame);
 
         return subGame;

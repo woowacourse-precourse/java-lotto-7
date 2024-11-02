@@ -1,40 +1,39 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class Output {
     public static void printLotto(List<Lotto> values) {
-        System.out.println(values.size() + "개를 구매했습니다.");
-        for (int i = 0; i < values.size(); i++) {
-            System.out.println(Arrays.toString(values.get(i).getNumbers().toArray()));
+        System.out.println("\n" + values.size() + "개를 구매했습니다.");
+        for (Lotto value : values) {
+            System.out.println(Arrays.toString(value.getNumbers().toArray()));
         }
+
         System.out.println();
     }
 
     public static void printWinner(int cost) {
         System.out.println("당첨 통계\n---");
-
-        for (LottoEnum lotto : LottoEnum.values()) {
-            if (lotto.getPrizeAmount() == 0) {
+        for (LottoEnum value : LottoEnum.values()) {
+            if (value.getPrize() == 0) {
                 break;
             }
-            if (lotto.getMatchCount() == Constant.LOTTO_BONUS_CORRECT) {
-                System.out.println("5개 일치, 보너스 볼 일치 (" + getPrizeToString(lotto.getPrizeAmount()) + "원) - " + lotto.getWinnerCount() + "개");
+            if (value.getMatchCount() == LOTTO_BONUS_CORRECT) {
+                System.out.println("5개 일치, 보너스 볼 일치 (" + prizeToString(value.getPrize()) + "원) - " + value.getWinnerCount() + "개");
                 continue;
             }
-            System.out.println(lotto.getMatchCount() + "개 일치 (" + getPrizeToString(lotto.getPrizeAmount()) + "원) - " + lotto.getWinnerCount() + "개");
+            System.out.println(value.getMatchCount() + "개 일치 (" + prizeToString(value.getPrize()) + "원) - " + value.getWinnerCount() + "개");
         }
 
-        System.out.println("총 수익률은 " + getRevenue(cost) + "% 입니다.");
+        System.out.println("총 수익률은 " + new DecimalFormat("#,###.0").format((LottoEnum.sum() / cost) * 100) + "%입니다.");
     }
 
-    public static double getRevenue(int cost) {
-        return LottoEnum.sum() / cost;
-    }
-
-    public static String getPrizeToString(int prize) {
+    public static String prizeToString(int prize) {
         return NumberFormat.getNumberInstance().format(prize);
     }
 }
