@@ -1,22 +1,22 @@
 package lotto;
 
 public enum Result {
-    FIRST(2000000000, 0, 6, false),
-    SECOND(30000000, 0, 5, true),
-    THIRD(1500000, 0, 5, false),
-    FOURTH(50000, 0, 4, false),
-    FIFTH(5000, 0, 3, false);
+    FIFTH(3, false, 5000, 0),
+    FOURTH(4, false, 50000, 0),
+    THIRD(5, false, 1500000, 0),
+    SECOND(5, true, 30000000, 0),
+    FIRST(6, false, 2000000000, 0);
 
+    private final int matches;
     private final double money;
     private int count;
-    private final int matches;
     private final boolean bonus;
 
-    Result(int money, int count, int matches, boolean bonus) {
-        this.money = money;
-        this.count = count;
+    Result(int matches, boolean bonus, int money, int count) {
         this.matches = matches;
         this.bonus = bonus;
+        this.money = money;
+        this.count = count;
     }
 
     public double getMoney() {
@@ -38,5 +38,13 @@ public enum Result {
     public boolean getBonus() {
         return bonus;
     }
+
+    public String getStringBonus() {
+        if (SECOND.bonus) {
+            return ", 보너스 볼 일치 ";
+        }
+        return "";
+    }
+
 }
 
