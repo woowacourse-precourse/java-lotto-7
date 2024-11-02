@@ -37,6 +37,10 @@ public class Lotto {
                         .anyMatch(Predicate.isEqual(o)))
                 .count();
 
+        if (countSameNumbers == 6) {
+            countSameNumbers++;
+        }
+
         // 5개의 번호가 일치하는 경우, 보너스 번호 일치 여부 확인
         if (countSameNumbers == 5) {
             Optional<Integer> filterResult = numbers.stream()
@@ -46,10 +50,6 @@ public class Lotto {
             if (filterResult.isPresent()) {
                 countSameNumbers++;
             }
-        }
-
-        if (countSameNumbers == 6) {
-            countSameNumbers++;
         }
         return countSameNumbers;
     }
