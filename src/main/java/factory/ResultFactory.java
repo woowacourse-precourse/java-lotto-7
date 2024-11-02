@@ -43,12 +43,13 @@ public class ResultFactory {
         return result;
     }
 
-
     public float getEarningRate(Amount amount) {
         int purchaseAmount = amount.getPurchaseAmount();
         int prizeAmount = 0;
         for (Map.Entry<Prize, Integer> entry : result.entrySet()) {
-            prizeAmount += entry.getKey().getMoney() * entry.getValue();
+            int money = entry.getKey().getMoney();
+            int winCount = entry.getValue();
+            prizeAmount += money * winCount;
         }
         return prizeAmount / (float) purchaseAmount * 100;
     }

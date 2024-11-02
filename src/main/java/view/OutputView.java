@@ -46,17 +46,21 @@ public class OutputView {
         int winCount = prizeEntry.getValue();
         String result="";
         if(prize == Prize.SECOND){
-            return String.format(PRINT_CORRECT_BONUS_MESSAGE
-                ,prize.getMatchCount()
-                ,String.format("%,d",prize.getMoney())
-                ,winCount);
+            return secondPrizeMessage(prize,winCount);
         }
         if(prize != Prize.ZERO) {
-            return String.format(PRINT_CORRECT_MESSAGE
-                , prize.getMatchCount()
-                , String.format("%,d", prize.getMoney())
-                , winCount);
+            return otherPrizeMessage(prize,winCount);
         }
         return result;
+    }
+
+    private String secondPrizeMessage(Prize prize,int winCount){
+        return String.format(PRINT_CORRECT_BONUS_MESSAGE
+            ,prize.getMatchCount(),String.format("%,d",prize.getMoney()),winCount);
+    }
+
+    private String otherPrizeMessage(Prize prize,int winCount){
+        return String.format(PRINT_CORRECT_MESSAGE
+            , prize.getMatchCount(), String.format("%,d", prize.getMoney()), winCount);
     }
 }

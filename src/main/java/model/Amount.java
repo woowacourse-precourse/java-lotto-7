@@ -16,5 +16,4 @@ public class Amount {
         return purchaseAmount;
     }
 
-
 }

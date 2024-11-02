@@ -31,4 +31,10 @@ public class ValidationTest {
         assertThatThrownBy(() -> Validation.overInput(100001))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 로또금액_나머지_에러_테스트(){
+        assertThatThrownBy(() -> Validation.divideByLottoValue(1234))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }
