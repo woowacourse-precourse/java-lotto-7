@@ -7,6 +7,7 @@ import domain.User;
 import java.util.List;
 import service.LottoMachineService;
 import service.UserService;
+import util.LottoGenerator;
 import valid.Task;
 import view.InputView;
 import view.OutputView;
@@ -17,7 +18,7 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
     private LottoPlay lottoPlay;
 
-    private final UserService userService = new UserService();
+    private final UserService userService = new UserService(new LottoGenerator());
     private final LottoMachineService lottoMachineService = new LottoMachineService();
 
     public void run() {
