@@ -1,14 +1,16 @@
 package lotto.input;
 
 import static lotto.exception.ExceptionMessage.*;
-import static lotto.input.WinningNumberProcessor.validateAndParse;
+import static lotto.input.WinningNumberProcessor.processWinningNumbers;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 public class WinningNumberProcessorTest {
     @DisplayName("빈 문자열 또는 공백인 경우 - IllegalArgumentException 반환")
@@ -17,7 +19,7 @@ public class WinningNumberProcessorTest {
     @ValueSource(strings = {"  ", "\t", "\n"})
     void testEmptyOrBlankInput(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(input))
+                .isThrownBy(() -> processWinningNumbers(input))
                 .withMessage(EMPTY_INPUT.getMessage());
     }
 
@@ -26,23 +28,38 @@ public class WinningNumberProcessorTest {
     @ValueSource(strings = {", 1, 2, 3, 4, 5", ", 1, 2, 3, 4, 5, 6,", ", 1, 2, 3, 4, 5, 6,"})
     void testInputWithComma(String input) {
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(input))
+                .isThrownBy(() -> processWinningNumbers(input))
                 .withMessage(INVALID_COMMA_POSITION.getMessage());
     }
 
     @DisplayName("문자가 포함된 경우 - IllegalArgumentException 반환")
     @Test
-    void testStringInput(){
+    void testStringInput() {
         // given
         String input = "1,2,3, 사, 5, 6";
 
         // when, then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> validateAndParse(input))
-                .withMessage(INVALID_COMMA_POSITION.getMessage());
+                .isThrownBy(() -> processWinningNumbers(input))
+                .withMessage(NON_NUMERIC_INPUT.getMessage());
     }
 
+    @DisplayName("유효한 입력 - List<Integer> 반환")
+    @ParameterizedTest
+    @MethodSource("provideValidInput")
+    void testValidInput(String input, List<Integer> expected) {
+        // given & when
+        List<Integer> result = processWinningNumbers(input);
 
+        // then
+        assertEquals(expected, result);
+    }
 
-
+    static Stream<Arguments> provideValidInput() {
+        return Stream.of(
+                Arguments.of("1, 2, 3, 4, 5, 6", List.of(1, 2, 3, 4, 5, 6)),
+                Arguments.of("1 , 2 , 3", List.of(1, 2, 3)),
+                Arguments.of(" 1 , 2,  3  ,  4, 5, 6, 7", List.of(1, 2, 3, 4, 5, 6, 7))
+        );
+    }
 }
