@@ -7,6 +7,8 @@ import java.util.Objects;
 
 public class WinningLotto {
 
+    private static final int LOTTO_SIZE = 6;
+
     private static final String SEPARATOR = ",";
 
     private final List<LottoNumber> winningNumbers;
@@ -22,19 +24,31 @@ public class WinningLotto {
                 .map(number -> LottoNumber.from(toInt(number)))
                 .toList();
 
-        if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
-        }
+        validateSize(lottoNumbers);
 
         return lottoNumbers;
     }
 
-    private List<String> splitBySeparator(String text) {
-        return Arrays.stream(text.split(SEPARATOR)).toList();
+    private List<String> splitBySeparator(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(SEPARATOR)).toList();
     }
 
-    private int toInt(String bonusNumber) {
-        return Integer.parseInt(bonusNumber);
+    private int toInt(String textNumber) {
+        int bonusNumber;
+
+        try {
+            bonusNumber = Integer.parseInt(textNumber);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS);
+        }
+
+        return bonusNumber;
+    }
+
+    private void validateSize(List<LottoNumber> lottoNumbers) {
+        if (lottoNumbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
+        }
     }
 
     public Long countWinnings(List<LottoNumber> numbers) {
