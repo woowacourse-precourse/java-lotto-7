@@ -22,6 +22,13 @@ public class LottoResults {
         }
     }
 
+    public void calculateResults(LottoTickets lottoTickets , WinningNumbers winningNumbers , BonusNumber bonusNumber){
+        for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
+            Rank rank = determineRank(winningNumbers,bonusNumber,lottoTicket);
+            lottoResults.put(rank,lottoResults.get(rank)+1);
+        }
+    }
+
     private Rank determineRank(WinningNumbers winningNumbers,BonusNumber bonusNumber,Lotto lotto){
         int matchCount = calculateMatchCount(winningNumbers,lotto);
         boolean bonusMatch = lotto.contains(bonusNumber.getBonusNumber());
