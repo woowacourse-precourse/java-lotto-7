@@ -12,13 +12,16 @@ public class InputView {
         return Integer.parseInt(readLine());
     }
 
-    // TODO: 당첨 번호 입력받기
     public int[] getWinningNum() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         return Arrays.stream(readLine().split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
     // TODO: 보너스 번호 입력받기
+    public int getBonusNum() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(readLine());
+    }
 }
 
 
