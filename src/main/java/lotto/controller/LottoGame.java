@@ -1,14 +1,15 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.service.LottoGenerator;
 import lotto.view.InputUtil;
-import lotto.view.OutputUtil;
+import lotto.view.OutputView;
 
 public class LottoGame {
     public void run(){
         int purchaseAmount = InputUtil.getLottoCount(InputUtil.getPurchaseAmount());
-        OutputUtil.printPurchaseAmountMessage(purchaseAmount);
-        OutputUtil.printUserLotto(OutputUtil.generateLottoNumbers(purchaseAmount));
+        OutputView.printPurchaseAmountMessage(purchaseAmount);
+        OutputView.printUserLotto(LottoGenerator.generateLottoNumbers(purchaseAmount));
         List<Integer> winningNumbers = InputUtil.getWinningNumbers();
         InputUtil.getBonusNumber(winningNumbers);
     }
