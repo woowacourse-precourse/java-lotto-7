@@ -1,19 +1,22 @@
 package lotto.domain.buyer;
 
-import lotto.domain.lotto.Lottos;
+import static lotto.domain.buyer.LottosCount.from;
+
+;
 
 public class BuyerFactory {
 
     public static Buyer createBuyer(final int purchaseMoney) {
-        final PurchaseCount purchaseCount = PurchaseCount.from(purchaseMoney);
-        final Lottos purchasedLottos = Lottos.generateRandomLottos(purchaseCount);
+        final LottosCount LottosCount = from(purchaseMoney);
 
-        return new Buyer(purchaseCount, purchasedLottos);
+        final BuyLottos buyLottos = BuyLottos.generateRandomLottos(LottosCount);
+
+        return new Buyer(LottosCount, buyLottos);
     }
 
-    public static Buyer createTestBuyer(final int purchaseMoney, final Lottos customLottos) {
-        final PurchaseCount purchaseCount = PurchaseCount.from(purchaseMoney);
+    public static Buyer createTestBuyer(final int purchaseMoney, final BuyLottos customLottos) {
+        final LottosCount LottosCount = from(purchaseMoney);
 
-        return new Buyer(purchaseCount, customLottos);
+        return new Buyer(LottosCount, customLottos);
     }
 }

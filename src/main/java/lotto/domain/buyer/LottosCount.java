@@ -6,16 +6,16 @@ import static lotto.resources.ErrorMessages.NEGATIVE_QUANTITY_MONEY;
 
 import java.util.Objects;
 
-public class PurchaseCount {
-    private final int purchaseCount;
+public class LottosCount {
+    private final int LottosCount;
 
-    private PurchaseCount(final int money) {
+    private LottosCount(final int money) {
         validateMoney(money);
-        this.purchaseCount = money / THOUSAND_UNIT;
+        this.LottosCount = money / THOUSAND_UNIT;
     }
 
-    public static PurchaseCount from(final int money) {
-        return new PurchaseCount(money);
+    public static LottosCount from(final int money) {
+        return new LottosCount(money);
     }
 
     private void validateMoney(final int money) {
@@ -35,8 +35,8 @@ public class PurchaseCount {
         }
     }
 
-    public int getPurchaseCount() {
-        return purchaseCount;
+    public int getLottosCount() {
+        return LottosCount;
     }
 
     @Override
@@ -47,13 +47,13 @@ public class PurchaseCount {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        final PurchaseCount otherPurchaseCount = (PurchaseCount) obj;
-        return Objects.equals(purchaseCount, otherPurchaseCount.purchaseCount);
+        final LottosCount otherLottosCount = (LottosCount) obj;
+        return Objects.equals(LottosCount, otherLottosCount.LottosCount);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(purchaseCount);
+        return Objects.hashCode(LottosCount);
     }
 
 }

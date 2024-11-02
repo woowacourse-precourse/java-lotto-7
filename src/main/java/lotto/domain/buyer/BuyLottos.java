@@ -1,30 +1,31 @@
-package lotto.domain.lotto;
+package lotto.domain.buyer;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import lotto.domain.buyer.PurchaseCount;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoFactory;
 
-public class Lottos {
+public class BuyLottos {
     private final List<Lotto> lottos;
 
-    private Lottos(final List<Lotto> lottos) {
+    private BuyLottos(final List<Lotto> lottos) {
         this.lottos = new ArrayList<>(lottos);
     }
 
-    public static Lottos of(final List<Lotto> lottos) {
-        return new Lottos(lottos);
+    public static BuyLottos of(final List<Lotto> lottos) {
+        return new BuyLottos(lottos);
     }
 
-    public static Lottos generateRandomLottos(final PurchaseCount purchaseCount) {
+    public static BuyLottos generateRandomLottos(final LottosCount LottosCount) {
         final List<Lotto> lottos = new ArrayList<>();
 
-        for (int idx = 0; idx < purchaseCount.getPurchaseCount(); idx++) {
+        for (int idx = 0; idx < LottosCount.getLottosCount(); idx++) {
             lottos.add(LottoFactory.createRandomLotto());
         }
 
-        return Lottos.of(lottos);
+        return BuyLottos.of(lottos);
     }
 
     public List<Lotto> getLottos() {
@@ -39,7 +40,7 @@ public class Lottos {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Lottos otherLottos = (Lottos) obj;
+        BuyLottos otherLottos = (BuyLottos) obj;
         return Objects.equals(lottos, otherLottos.lottos);
     }
 
@@ -50,12 +51,12 @@ public class Lottos {
 
     @Override
     public String toString() {
-        StringBuilder purchasedLottos = new StringBuilder();
+        StringBuilder buyLottos = new StringBuilder();
 
         for (Lotto lotto : lottos) {
-            purchasedLottos.append(lotto.toString());
+            buyLottos.append(lotto.toString());
         }
 
-        return purchasedLottos.toString();
+        return buyLottos.toString();
     }
 }
