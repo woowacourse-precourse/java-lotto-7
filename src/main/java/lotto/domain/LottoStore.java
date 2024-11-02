@@ -8,7 +8,7 @@ public enum LottoStore {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public Integer getMaxPurchasableLottos(Long purchaseAmount) {
+    public Integer getPurchasableLottos(Long purchaseAmount) {
         return (int) (purchaseAmount / LOTTO_PRICE);
     }
 

@@ -3,18 +3,18 @@ package lotto.domain;
 import java.util.List;
 
 public enum LottoRank {
-    FAIL(2, 0, false),
-    THREE(3, 5000, false),
-    FOUR(4, 50000, false),
-    FIVE(5, 1500000, false),
-    FIVE_BONUS(5, 30000000, true),
-    SIX(6, 2000000000, false);
+    FAIL(2, 0L, false),
+    THREE(3, 5000L, false),
+    FOUR(4, 50000L, false),
+    FIVE(5, 1500000L, false),
+    FIVE_BONUS(5, 30000000L, true),
+    SIX(6, 2000000000L, false);
 
     private final Integer matchedCount;
-    private final Integer prize;
+    private final Long prize;
     private final boolean isBonusNumber;
 
-    LottoRank(Integer matchedCount, Integer prize, boolean isBonusNumber) {
+    LottoRank(Integer matchedCount, Long prize, boolean isBonusNumber) {
         this.matchedCount = matchedCount;
         this.prize = prize;
         this.isBonusNumber = isBonusNumber;
@@ -32,7 +32,7 @@ public enum LottoRank {
         return FAIL;
     }
 
-    public Integer getPrize() {
+    public Long getPrize() {
         return prize;
     }
 

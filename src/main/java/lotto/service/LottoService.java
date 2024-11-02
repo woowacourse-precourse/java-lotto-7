@@ -3,7 +3,9 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoStore;
+import lotto.domain.MoneyManager;
 import lotto.domain.repository.LottoRepository;
+import lotto.domain.repository.MoneyManagerRepository;
 import lotto.dto.response.PurchaseLottosResponse;
 import lotto.dto.response.getLottoResultResponse;
 
@@ -15,14 +17,17 @@ public class LottoService {
 
     private final LottoStore lottoStore;
     private final LottoRepository lottoRepository;
+    private final MoneyManagerRepository moneyManagerRepository;
 
-    public LottoService(LottoRepository lottoRepository) {
+    public LottoService(LottoRepository lottoRepository, MoneyManagerRepository moneyManagerRepository) {
         this.lottoStore = LottoStore.INSTANCE;
         this.lottoRepository = lottoRepository;
+        this.moneyManagerRepository = moneyManagerRepository;
     }
 
     public PurchaseLottosResponse purchaseLottos(Long purchaseAmount) {
-        Integer count = lottoStore.getMaxPurchasableLottos(purchaseAmount);
+        moneyManagerRepository.add(new MoneyManager(purchaseAmount));
+        Integer count = lottoStore.getPurchasableLottos(purchaseAmount);
         List<Lotto> lottos = lottoStore.purchase(count);
         lottos.forEach(lottoRepository::save);
         List<List<Integer>> allLottoNumbers = lottos.stream()
@@ -41,8 +46,9 @@ public class LottoService {
                 )
         );
         result.remove(LottoRank.FAIL);
-
-        return getLottoResultResponse.of(result, calculatePrizeMoney(result));
+        MoneyManager moneyManager = moneyManagerRepository.getMoneyManger();
+        moneyManager.setPrizeMoney(calculatePrizeMoney(result));
+        return getLottoResultResponse.of(result, moneyManager.getReturnRate());
     }
 
     private Long calculatePrizeMoney(Map<LottoRank, Integer> result) {

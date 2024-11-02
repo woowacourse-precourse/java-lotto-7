@@ -32,6 +32,8 @@ public class OutputView {
     }
 
     public static void printLottoResult(Map<LottoRank, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (LottoRank rank : LottoRank.values()) {
             if (rank == LottoRank.FAIL) {
                 continue;
@@ -48,7 +50,7 @@ public class OutputView {
         System.out.printf(" (%s원) - %d개%n", Formatter.formatToCurrency(rank.getPrize()), result.getOrDefault(rank, 0));
     }
 
-    public static void printLottoReturnRate(Long purchaseAmount, Long prizeAmount) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", ((float) prizeAmount / purchaseAmount) * 100);
+    public static void printLottoReturnRate(double returnRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
     }
 }

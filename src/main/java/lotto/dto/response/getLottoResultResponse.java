@@ -6,9 +6,9 @@ import java.util.Map;
 
 public record getLottoResultResponse(
         Map<LottoRank, Integer> result,
-        Long prizeMoney
+        double returnRate
 ) {
-    public static getLottoResultResponse of(Map<LottoRank, Integer> result, Long prize) {
-        return new getLottoResultResponse(result, prize);
+    public static getLottoResultResponse of(Map<LottoRank, Integer> result, double returnRate) {
+        return new getLottoResultResponse(result, returnRate);
     }
 }
