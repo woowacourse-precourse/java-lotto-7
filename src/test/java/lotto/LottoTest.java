@@ -31,10 +31,8 @@ class LottoTest {
     @Test
     void 무작위_로또를_생성한다(){
         LottoRepository lottoRepository = new LottoRepository();
-        int lottoCount = 6;
-        int bonusNumber = 1;
         LottoGame lottoGame = new LottoGame(lottoRepository);
-        lottoGame.setDetails(bonusNumber);
+        lottoGame.setLottoCount(5000);
         lottoGame.generateLotto();
 
         assertThat(lottoRepository.getLottos()).hasSize(5);
@@ -44,9 +42,8 @@ class LottoTest {
     @Test
     void 로또는_오름차순_정렬된다(){
         LottoRepository lottoRepository = new LottoRepository();
-        int bonusNumber = 1;
         LottoGame lottoGame = new LottoGame(lottoRepository);
-        lottoGame.setDetails(bonusNumber);
+        lottoGame.setLottoCount(1000);
         lottoGame.generateLotto();
 
         List<Lotto> savedLottos = lottoRepository.getLottos();

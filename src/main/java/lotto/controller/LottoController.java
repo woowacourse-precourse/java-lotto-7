@@ -33,8 +33,6 @@ public class LottoController {
         runStatisticOutput();
         runBonusNumberInput();
 
-        System.out.println(lottoRepository.getBonusNumber());
-
         OutputView.printStatisticOutput();
         runStatisticOutput();
     }
@@ -100,6 +98,6 @@ public class LottoController {
         }
     }
     private void runStatisticOutput(){
-
+        lottoGame.calculateMatchingNumbers();
     }
 }

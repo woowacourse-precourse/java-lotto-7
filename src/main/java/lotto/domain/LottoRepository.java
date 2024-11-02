@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static lotto.constant.UtilConstants.SEPARATOR;
@@ -12,7 +9,9 @@ public class LottoRepository {
     private final List<Lotto> lottoTickets = new ArrayList<>();
     private List<Integer> lottoPlaceCount;
     private Lotto winningLotto;
+    private HashSet<Integer> winningLottoComparable = new HashSet<>();
     private int bonusNumber;
+    private int profit;
 
     public LottoRepository(){
         lottoPlaceCount = new ArrayList<>(Collections.nCopies(5,0));
@@ -35,8 +34,8 @@ public class LottoRepository {
         return Collections.unmodifiableList(lottoPlaceCount);
     }
 
-    public List<Integer> getWinningLotto(){
-        return Collections.unmodifiableList(winningLotto.getNumbers());
+    public Set<Integer> getWinningLotto(){
+        return Collections.unmodifiableSet(winningLottoComparable);
     }
 
     public int getBonusNumber(){
@@ -46,10 +45,15 @@ public class LottoRepository {
     public void createWinningLotto(String input){
         List<Integer> winningNumbers = parseInput(input);
         winningLotto = new Lotto(winningNumbers);
+        winningLottoComparable = new HashSet<>(winningLotto.getNumbers());
     }
 
     public void setBonusNumber(String bonusNumber){
         this.bonusNumber = Integer.parseInt(bonusNumber);
+    }
+
+    public void increaseProfit(int money){
+        profit += money;
     }
 
     private List<Integer> parseInput(String input){
