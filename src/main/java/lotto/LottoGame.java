@@ -72,7 +72,8 @@ public class LottoGame {
                 String input = Console.readLine();
                 validateEmptyInput(input);
                 validateBonusNumber(input);
-                Integer bonusNumber = Integer.valueOf(input);
+                int bonusNumber = Integer.valueOf(input);
+                validateBonusNumberRange(bonusNumber);
                 validateNotDuplicate(winningNumbers, bonusNumber);
                 return bonusNumber;
             }catch (IllegalArgumentException e){

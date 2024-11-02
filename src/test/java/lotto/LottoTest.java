@@ -57,4 +57,10 @@ class LottoTest {
         assertThatThrownBy(() -> InputValidator.validateBonusNumber("dkjf"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_지정된_범위를_넘으면_예외가_발생한다(){
+        assertThatThrownBy(() -> InputValidator.validateBonusNumberRange(90))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

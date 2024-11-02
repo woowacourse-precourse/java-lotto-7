@@ -37,4 +37,10 @@ public class InputValidator {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
         }
     }
+
+    public static void validateBonusNumberRange(int bonusNumber){
+        if(bonusNumber < 1 || bonusNumber > 45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 이내의 숫자만 입력 가능합니다.");
+        }
+    }
 }
