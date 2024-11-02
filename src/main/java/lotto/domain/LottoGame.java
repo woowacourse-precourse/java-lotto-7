@@ -32,12 +32,26 @@ public class LottoGame {
         Lotto[] lottoArray = new Lotto[lottoCount];
         System.out.println(lottoCount + "개를 구매했습니다.");
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(randomLottoNumbers);
+            Lotto lotto = issueRandomLotto();
             lottoArray[i] = lotto;
             lotto.display();
         }
 
         return lottoArray;
+    }
+
+    private static Lotto issueRandomLotto() {
+        boolean randomLottoNumbersValid = false;
+        Lotto lotto = null;
+
+        while (!randomLottoNumbersValid) {
+            List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            try {
+                lotto = new Lotto(randomLottoNumbers);
+                randomLottoNumbersValid = true;
+            } catch (IllegalArgumentException ignored) {}
+        }
+
+        return lotto;
     }
 }
