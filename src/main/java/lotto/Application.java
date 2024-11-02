@@ -118,6 +118,7 @@ public class Application {
         }
 
         double yield = (double) totalPrize / account * 100;
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
 
     }
 
