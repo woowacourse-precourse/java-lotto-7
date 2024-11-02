@@ -4,6 +4,7 @@ import static lotto.LottoRule.LOTTO_PRICE;
 import static lotto.LottoRule.WINNING_PRIZE_TABLE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,14 +36,6 @@ public class Player {
         for (int i = 0; i < lottoAmount; i++) {
             lottos.add(machine.issue());
         }
-    }
-
-    public String getLottoDescription() {
-        StringBuilder sb = new StringBuilder();
-        for (Lotto lotto : lottos) {
-            sb.append(lotto.describe() + "\n");
-        }
-        return sb.toString();
     }
 
     public void evalutateLottos(List<Integer> winningNumbers, int bonusNumber) {
@@ -81,5 +74,13 @@ public class Player {
 
     public int getLottoAmount() {
         return this.lottoAmount;
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
+
+    public int[] getWinningCounts() {
+        return winningCounts.clone();
     }
 }

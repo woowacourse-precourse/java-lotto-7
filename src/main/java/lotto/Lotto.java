@@ -42,9 +42,9 @@ public class Lotto {
         return 0;
     }
 
-    public String describe() {
+    public List<Integer> getSortedNumbers() {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
-        return sortedNumbers.toString();
+        return sortedNumbers;
     }
 }

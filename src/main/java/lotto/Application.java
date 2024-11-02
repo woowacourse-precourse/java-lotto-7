@@ -7,32 +7,29 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
     public static void main(String[] args) {
+        Printer printer = new Printer(System.out);
         InputHandler inputHandler = new InputHandler();
         Player player = new Player();
 
-        System.out.println("구입급액을 입력해 주세요.");
+        printer.purchaseAmountPrompt();
         int purchaseAmount = getInput(inputHandler::parsePurchaseAmount);
         player.buyLottos(purchaseAmount);
 
-        System.out.println();
-        System.out.printf("%d개를 구매했습니다.\n", player.getLottoAmount());
-        System.out.println(player.getLottoDescription());
+        printer.linebreak();
+        printer.purchased(player);
 
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        printer.linebreak();
+        printer.winningNumberPrompt();
         List<Integer> winningNumbers = getInput(inputHandler::parseWinningNumbers);
 
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        printer.linebreak();
+        printer.bonusNumberPrompt();
         int bonusNumber = getInput(inputHandler::parseBonusNumber);
 
         player.evalutateLottos(winningNumbers, bonusNumber);
 
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println(player.getWinningResult());
-        System.out.printf("총 수익률은 %.1f%%입니다.", player.getRateOfReturn());
+        printer.linebreak();
+        printer.summary(player);
     }
 
     /**
