@@ -47,6 +47,7 @@ public class InputHandler {
     }
 
     private static String getInput(String message) {
+        System.out.println("");
         System.out.println(message);
         return Console.readLine().trim();
     }

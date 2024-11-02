@@ -54,6 +54,6 @@ class LottoPrizeTest {
         Purchase purchase = new Purchase(10000);
 
         Double rateOfReturn = lottoPrize.calculateRateOfReturn(rankCount, purchase);
-        assertThat(rateOfReturn).isEqualTo(203_155.5);
+        assertThat(rateOfReturn).isEqualTo(20_315_550.0);
     }
 }

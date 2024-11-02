@@ -23,7 +23,8 @@ public class LottoPrize {
     public Double calculateRateOfReturn(Map<Rank, Integer> rankCount, Purchase purchase) {
         long totalPrize = calculateTotalPrize(rankCount);
         int cost = purchase.getCost();
-        return ((double) totalPrize / cost);
+        double result = ((double) totalPrize / cost) * 100;
+        return Math.round(result * 10) / 10.0;
     }
 
     private long calculateTotalPrize(Map<Rank, Integer> rankCount) {

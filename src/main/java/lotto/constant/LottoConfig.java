@@ -10,12 +10,12 @@ public class LottoConfig {
     }
 
     public enum Rank {
-        FIRST(6, BonusCheck.ALL, 2_000_000_000L),
-        SECOND(5, BonusCheck.TRUE, 30_000_000L),
-        THIRD(5, BonusCheck.FALSE, 1_500_000L),
-        FOURTH(4, BonusCheck.ALL, 50_000L),
+        NOTHING(0, BonusCheck.ALL, 0L),
         FIFTH(3, BonusCheck.ALL, 5_000L),
-        NOTHING(0, BonusCheck.ALL, 0L);
+        FOURTH(4, BonusCheck.ALL, 50_000L),
+        THIRD(5, BonusCheck.FALSE, 1_500_000L),
+        SECOND(5, BonusCheck.TRUE, 30_000_000L),
+        FIRST(6, BonusCheck.ALL, 2_000_000_000L);
 
         private final int matchedCount;
         private final BonusCheck isBonusMatched;
