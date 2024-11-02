@@ -13,14 +13,14 @@ public class InputValidatorTest {
 
     @Test
     void 구매금액이_음수이면_예외가_발생합니다() {
-        assertThatThrownBy(() -> validator.validatePurchaseAmount("-5000"))
+        assertThatThrownBy(() -> validator.validateTotalPurchaseAmount("-5000"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력 값은 양수여야 합니다.");
     }
 
     @Test
     void 구매금액이_숫자가_아니면_예외가_발생합니다() {
-        assertThatThrownBy(() -> validator.validatePurchaseAmount("a"))
+        assertThatThrownBy(() -> validator.validateTotalPurchaseAmount("a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 입력 값은 양수여야 합니다.");
     }
@@ -51,7 +51,7 @@ public class InputValidatorTest {
 
     @Test
     void 당첨번호가_숫자가_아니면_예외가_발생한다() {
-        assertThatThrownBy(() -> validator.validateWinningNumber("a, 2, 3, 4, 5, 6"))
+        assertThatThrownBy(() -> validator.validateWinningNumbers("a, 2, 3, 4, 5, 6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 숫자와 쉼표만 포함해야 합니다.");
     }

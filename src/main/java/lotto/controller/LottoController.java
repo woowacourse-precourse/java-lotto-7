@@ -12,27 +12,27 @@ import lotto.view.OutputView;
 public class LottoController {
     private final LottoService lottoService;
     private final InputProcessor inputProcessor;
-    private final LottoTicketMachine lottoMachine;
+    private final LottoTicketMachine lottoTicketMachine;
 
     public LottoController() {
         this.lottoService = new LottoService();
         this.inputProcessor = new InputProcessor();
-        this.lottoMachine = new LottoTicketMachine();
+        this.lottoTicketMachine = new LottoTicketMachine();
     }
 
     public void run() {
         int totalPurchaseAmount = inputProcessor.getTotalPurchaseAmount();
-        List<Lotto> lottoTickets = lottoMachine.purchaseLottoTickets(totalPurchaseAmount);
+        List<Lotto> lottoTickets = lottoTicketMachine.purchaseLottoTickets(totalPurchaseAmount);
         OutputView.displayLottoTickets(lottoTickets);
 
-        Lotto winningLotto = inputProcessor.getWinningLotto();
-        int bonusNumber = inputProcessor.getBonusNumber(winningLotto);
+        Lotto winningNumbers = inputProcessor.getWinningNumbers();
+        int bonusNumber = inputProcessor.getBonusNumber(winningNumbers);
 
-        Map<LottoRank, Integer> lottoStatistics = lottoService.calculateWinningStatistics(lottoTickets, winningLotto, bonusNumber);
-        OutputView.displayWinningStatistics(lottoStatistics);
+        Map<LottoRank, Integer> lottoStats = lottoService.calculateLottoStats(lottoTickets, winningNumbers, bonusNumber);
+        OutputView.displayWinningStatistics(lottoStats);
 
-        long totalWinnings = lottoService.calculateTotalWinnings(lottoStatistics);
-        double profitRate = lottoService.calculateProfitRate(totalWinnings, totalPurchaseAmount);
+        long totalWinningAmount = lottoService.calculateTotalWinningAmount(lottoStats);
+        double profitRate = lottoService.calculateProfitRate(totalWinningAmount, totalPurchaseAmount);
         OutputView.displayProfitRate(profitRate);
     }
 }

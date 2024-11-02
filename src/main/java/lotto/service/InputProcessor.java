@@ -17,23 +17,22 @@ public class InputProcessor {
 
     public int getTotalPurchaseAmount() {
         while (true) {
-            String input = InputView.readPurchaseAmount();
+            String inputTotalPurchaseAmount = InputView.readTotalPurchaseAmount();
             try {
-                inputValidator.validatePurchaseAmount(input);
-                return Integer.parseInt(input);
+                inputValidator.validateTotalPurchaseAmount(inputTotalPurchaseAmount);
+                return Integer.parseInt(inputTotalPurchaseAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.displayErrorMessage(e.getMessage());
             }
         }
     }
 
-    public Lotto getWinningLotto() {
+    public Lotto getWinningNumbers() {
         while (true) {
-            String input = InputView.readWinningNumbers();
+            String inputWinningNumbers = InputView.readWinningNumbers();
             try {
-                inputValidator.validateWinningNumber(input);
-                List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER_COMMA))
-                        .map(String::trim)
+                inputValidator.validateWinningNumbers(inputWinningNumbers);
+                List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(DELIMITER_COMMA))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 return new Lotto(winningNumbers);
@@ -43,12 +42,12 @@ public class InputProcessor {
         }
     }
 
-    public int getBonusNumber(Lotto winningLotto) {
+    public int getBonusNumber(Lotto winningNumbers) {
         while (true) {
-            String input = InputView.readBonusNumber();
+            String inputBonusNumber = InputView.readBonusNumber();
             try {
-                inputValidator.validateBonusNumber(input, winningLotto);
-                return Integer.parseInt(input.trim());
+                inputValidator.validateBonusNumber(inputBonusNumber, winningNumbers);
+                return Integer.parseInt(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.displayErrorMessage(e.getMessage());
             }

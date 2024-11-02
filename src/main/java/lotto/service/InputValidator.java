@@ -9,53 +9,57 @@ public class InputValidator {
     private static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨번호와 중복되지 않는 숫자여야 합니다.";
     private static final String ERROR_NOT_POSITIVE_NUMBER_OR_COMMA = "[ERROR] 당첨 번호는 숫자와 쉼표만 포함해야 합니다.";
 
-    private static final String POSITIVE_NUMBER_SEPARATED_BY_COMMA_REGEX = "^([1-9]\\d*)(,[1-9]\\d*)*$";
+    private static final String POSITIVE_NUMBERS_SEPARATED_BY_COMMA_REGEX = "^([1-9]\\d*)(,[1-9]\\d*)*$";
     private static final String POSITIVE_NUMBER_REGEX = "^[1-9]\\d*$";
 
     private static final int LOTTO_TICKET_PRICE = 1000;
     private static final int LOTTO_NUMBER_MIN = 1;
     private static final int LOTTO_NUMBER_MAX = 45;
 
-    public void validatePurchaseAmount(String input) {
-        validatePositiveNumber(input);
-        validateDivisibleByLottoPrice(input);
+    public void validateTotalPurchaseAmount(String totalPurchaseAmount) {
+        validatePositiveNumber(totalPurchaseAmount);
+        validateDivisibleByLottoPrice(totalPurchaseAmount);
     }
 
-    public void validateWinningNumber(String input) {
-        if (!input.matches(POSITIVE_NUMBER_SEPARATED_BY_COMMA_REGEX)) {
-            throw new IllegalArgumentException(ERROR_NOT_POSITIVE_NUMBER_OR_COMMA);
-        }
+    public void validateWinningNumbers(String winningNumbers) {
+        validatePositiveNumbersSeparatedByComma(winningNumbers);
     }
 
-    public void validateBonusNumber(String input, Lotto winningLotto) {
-        validatePositiveNumber(input);
-        validateNumberInRange(input);
-        validateBonusNumberDuplicate(winningLotto, input);
+    public void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
+        validatePositiveNumber(bonusNumber);
+        validateNumberInRange(bonusNumber);
+        validateBonusNumberDuplicate(bonusNumber, winningNumbers);
     }
 
-    private void validatePositiveNumber(String input) {
-        if (!input.matches(POSITIVE_NUMBER_REGEX)) {
+    private void validatePositiveNumber(String numbers) {
+        if (!numbers.matches(POSITIVE_NUMBER_REGEX)) {
             throw new IllegalArgumentException(ERROR_NOT_POSITIVE_NUMBER);
         }
     }
 
-    private void validateDivisibleByLottoPrice(String input) {
-        int purchaseAmount = Integer.parseInt(input.trim());
-        if (purchaseAmount % LOTTO_TICKET_PRICE != 0) {
+    private void validateDivisibleByLottoPrice(String totalPurchaseAmount) {
+        int parsedPurchaseAmount = Integer.parseInt(totalPurchaseAmount);
+        if (parsedPurchaseAmount % LOTTO_TICKET_PRICE != 0) {
             throw new IllegalArgumentException(ERROR_NOT_DIVISIBLE_BY_LOTTO_PRICE);
         }
     }
 
-    private void validateNumberInRange(String input) {
-        int bonusNumber = Integer.parseInt(input.trim());
-        if (bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX) {
+    private static void validatePositiveNumbersSeparatedByComma(String winningNumbers) {
+        if (!winningNumbers.matches(POSITIVE_NUMBERS_SEPARATED_BY_COMMA_REGEX)) {
+            throw new IllegalArgumentException(ERROR_NOT_POSITIVE_NUMBER_OR_COMMA);
+        }
+    }
+
+    private void validateNumberInRange(String bonusNumber) {
+        int parsedBonusNumber = Integer.parseInt(bonusNumber);
+        if (parsedBonusNumber < LOTTO_NUMBER_MIN || parsedBonusNumber > LOTTO_NUMBER_MAX) {
             throw new IllegalArgumentException(ERROR_NUMBER_OUT_OF_RANGE);
         }
     }
 
-    private void validateBonusNumberDuplicate(Lotto winningLotto, String input) {
-        int bonusNumber = Integer.parseInt(input.trim());
-        if (winningLotto.containsNumber(bonusNumber)) {
+    private void validateBonusNumberDuplicate(String bonusNumber, Lotto winningNumbers) {
+        int parsedBonusNumber = Integer.parseInt(bonusNumber);
+        if (winningNumbers.containsNumber(parsedBonusNumber)) {
             throw new IllegalArgumentException(ERROR_BONUS_NUMBER_DUPLICATE);
         }
     }
