@@ -1,10 +1,13 @@
 package lotto.service;
 
+import java.util.List;
+import lotto.domain.Lotto;
+
 public class LottoService {
 
-    public void purchaseLotto(int buyPrice){
+    public List<Lotto> purchaseLotto(int buyPrice){
         validateBuyPrice(buyPrice);
-        
+
     }
 
     public void validateBuyPrice(int buyPrice) {

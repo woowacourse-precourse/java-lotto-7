@@ -13,7 +13,8 @@ public class LottoController {
 
     public void run(){
         int buyPrice = InputView.buyPrice();
-        lottoService.
+        lottoService.purchaseLotto(buyPrice);
+
     }
 
 
