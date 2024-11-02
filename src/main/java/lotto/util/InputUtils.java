@@ -10,8 +10,9 @@ public class InputUtils {
 
     public static String retryRequest(String input, Predicate<String> validator) {
         String result = input;
-        while (validator.test(result)) {
+        while (true) {
             try {
+                validator.test(result);
                 return result;
 
             } catch (RetryInputException e) {
@@ -22,6 +23,5 @@ public class InputUtils {
                 Console.close();
             }
         }
-        return result;
     }
 }

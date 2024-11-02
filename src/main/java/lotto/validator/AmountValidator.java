@@ -6,7 +6,7 @@ import lotto.status.LottoConstants;
 import lotto.util.InputUtils;
 import lotto.view.Input;
 
-import static lotto.validator.CommonValidator.*;
+import static lotto.validator.InputValidator.*;
 
 public class AmountValidator {
 

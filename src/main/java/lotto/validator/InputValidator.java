@@ -2,6 +2,7 @@ package lotto.validator;
 
 import lotto.exception.RetryInputException;
 import lotto.status.ErrorMessages;
+import lotto.util.RegexUtils;
 
 import java.util.Set;
 
@@ -17,7 +18,6 @@ public class InputValidator {
 
     }
 
-
     public Set<Integer> getWinningNumbers() {
         return winningNumbers;
     }
@@ -26,16 +26,31 @@ public class InputValidator {
         return bonus;
     }
 
-
-    private void isRegexCheck(String viewMessage, String input) {
-        if (!input.matches("^,*(-?\\d+,*)*$")) {
-            throw new RetryInputException(viewMessage, ErrorMessages.INVALID_FORMAT.getMessage());
+    public static Boolean nonEmpty(String viewMessage, String input) {
+        if (!input.isEmpty()) {
+            return true;
         }
+
+        throw new RetryInputException(viewMessage, input);
+    }
+
+    public static Boolean isNumeric(String viewMessage, String input) {
+        if (RegexUtils.isNumeric(input)) {
+            return true;
+        }
+
+        throw new RetryInputException(viewMessage, ErrorMessages.NON_NUMERIC.getMessage());
+    }
+
+    public static Boolean isPositiveNumber(String viewMessage, String input) {
+        if (RegexUtils.isPositiveNumeric(input)) {
+            return true;
+        }
+
+        throw new RetryInputException(viewMessage, ErrorMessages.NON_POSITIVE_NUMERIC.getMessage());
     }
 
 
-    private Boolean isLottoNumberRange(String viewMessage, String request) {
-        return true;
-    }
+
 
 }
