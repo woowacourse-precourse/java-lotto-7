@@ -11,13 +11,9 @@ public class GeneraterLotto {
 
         for (int i = 0; i < lottoCount; i++) {
 
-            List<Integer> lottoNumbers = new ArrayList<>();
-
-            for (int j = 0; j < LottoConst.LOTTONUMBERCOUNT.getLottoConst(); j++) {
-                int randomNum = Randoms.pickNumberInRange(LottoConst.STARTRANGENUMBER.getLottoConst(),
-                        LottoConst.ENDRANGENUMBER.getLottoConst());
-                lottoNumbers.add(randomNum);
-            }
+            List<Integer> lottoNumbers =
+                    Randoms.pickUniqueNumbersInRange(LottoConst.STARTRANGENUMBER.getLottoConst(),
+                            LottoConst.ENDRANGENUMBER.getLottoConst(), LottoConst.LOTTONUMBERCOUNT.getLottoConst());
 
             lottos.add(new Lotto(lottoNumbers));
         }
