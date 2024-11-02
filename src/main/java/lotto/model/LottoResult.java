@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.constant.WinningType;
@@ -10,7 +10,10 @@ public class LottoResult {
     private final Map<WinningType, Integer> result;
 
     private LottoResult() {
-        this.result = new HashMap<>();
+        this.result = new LinkedHashMap<>();
+        for (WinningType type : WinningType.values()) {
+            this.result.put(type, 0);
+        }
     }
 
     public static LottoResult create() {

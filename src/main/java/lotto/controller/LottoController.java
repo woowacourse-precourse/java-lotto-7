@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.BonusNumber;
 import lotto.model.LottoPurchase;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.view.InputReader;
@@ -24,6 +25,9 @@ public class LottoController {
 
         final WinningNumbers winningNumbers = winningNumbers();
         final BonusNumber bonusNumber = bonusNumber(winningNumbers);
+
+        final LottoResult result = lottos.check(winningNumbers, bonusNumber);
+        writer.lottoResult(result);
     }
 
     private LottoPurchase purchaseLotto() {

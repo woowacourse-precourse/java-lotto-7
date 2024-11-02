@@ -1,7 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map.Entry;
+import lotto.constant.WinningType;
 import lotto.model.LottoPurchase;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 
 public class OutputWriter {
@@ -10,6 +13,21 @@ public class OutputWriter {
         System.out.println("\n" + lottoPurchase.getLottoCount() + "개를 구매했습니다.");
         for (List<Integer> purchasedLotto : lottos.getPurchasedLottos()) {
             System.out.println(purchasedLotto);
+        }
+    }
+
+    public void lottoResult(final LottoResult result) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+
+        for (Entry<WinningType, Integer> entry : result.getResult().entrySet()) {
+            final WinningType type = entry.getKey();
+            if (type.equals(WinningType.NONE)) {
+                continue;
+            }
+            System.out.print(type.getCorrectCount() + "개 일치 ");
+            System.out.print("(" + String.format("%,d", type.getPrice()) + "원)" + " - ");
+            System.out.println(entry.getValue() + "개");
         }
     }
 }

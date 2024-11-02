@@ -6,12 +6,12 @@ import lotto.model.CorrectCount;
 
 public enum WinningType {
 
-    FIRST(6, c -> c.getCount() == 6 && !c.hasBonus(), "6개 번호 일치", 2_000_000_000L),
-    BONUS(5, c -> c.getCount() == 5 && c.hasBonus(), "5개 번호 + 보너스 번호 일치", 30_000_000L),
-    THIRD(5, c -> c.getCount() == 5 && !c.hasBonus(), "5개 번호 일치", 1_500_000L),
-    FOURTH(4, c -> c.getCount() == 4 && !c.hasBonus(), "4개 번호 일치", 50_000L),
+    NONE(0, c -> c.getCount() < 3 && !c.hasBonus(), "3개 미만 번호 일치", 0L),
     FIFTH(3, c -> c.getCount() == 3 && !c.hasBonus(), "3개 번호 일치", 5_000L),
-    NONE(0, c -> c.getCount() < 3 && !c.hasBonus(), "3개 미만 번호 일치", 0L);
+    FOURTH(4, c -> c.getCount() == 4 && !c.hasBonus(), "4개 번호 일치", 50_000L),
+    THIRD(5, c -> c.getCount() == 5 && !c.hasBonus(), "5개 번호 일치", 1_500_000L),
+    BONUS(5, c -> c.getCount() == 5 && c.hasBonus(), "5개 번호 + 보너스 번호 일치", 30_000_000L),
+    FIRST(6, c -> c.getCount() == 6 && !c.hasBonus(), "6개 번호 일치", 2_000_000_000L);
 
     private Integer correctCount;
     private Predicate<CorrectCount> expression;
