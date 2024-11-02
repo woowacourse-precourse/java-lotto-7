@@ -16,6 +16,7 @@ public class OutputHandler {
         showNewLine();
         showLottoCountMessage(lottos);
         showEachLottoNumbers(lottos);
+        showNewLine();
     }
 
     public void showWinningNumbersNavigateMessage() {
