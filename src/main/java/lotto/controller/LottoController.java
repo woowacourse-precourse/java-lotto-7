@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.User;
+import lotto.domain.WinningNumber;
 import lotto.service.SystemService;
 import lotto.validator.exception.LottoException;
 import lotto.view.input.InputView;
@@ -23,8 +23,8 @@ public class LottoController {
     public void startLottoSimulation() {
         User user = purchaseLotto();
         Lotto winningLotto = inputWinningNumbers();
-        BonusNumber bonusNumber = inputBonusNumber(winningLotto);
-        outputResult(user, winningLotto, bonusNumber);
+        WinningNumber winningNumber = inputBonusNumber(winningLotto);
+        outputResult(user, winningNumber);
     }
 
     private User purchaseLotto() {
@@ -51,7 +51,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber inputBonusNumber(Lotto winningLotto) {
+    private WinningNumber inputBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
                 String bonusNumber = inputView.inputBonusNumber();
@@ -62,9 +62,9 @@ public class LottoController {
         }
     }
 
-    private void outputResult(User user, Lotto winningLotto, BonusNumber bonusNumber) {
+    private void outputResult(User user, WinningNumber winningNumber) {
         outputView.displayMessage(OutputMessage.WINNING_STATISTICS.getOutputMessage());
         outputView.displayMessage(OutputMessage.HYPHEN.getOutputMessage());
-        outputView.displayStatistics(systemService.generateResult(user, winningLotto, bonusNumber));
+        outputView.displayStatistics(systemService.generateResult(user, winningNumber));
     }
 }
