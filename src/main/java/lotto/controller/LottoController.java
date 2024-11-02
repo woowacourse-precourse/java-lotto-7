@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.WinningLottoNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,15 +15,45 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void run(){
-        outputView.showMoneyInputComments();
-        int money = inputView.getMoneyFromUser();
+    public void run() {
+        int money = getMoney();
+        Lotto lottoWinningNumbers = getLottoWinningNumbers();
+        int lottoBonusNumber = getLottoBonusNumber();
 
-        outputView.showLottoWinningNumberInputComments();
-        List<Integer> lottoWinningNumber = inputView.getLottoWinningNumberFromUser();
+    }
 
-        outputView.showLottoBonusNumberInputComments();
-        int lottoBonusNumber = inputView.getLottoBonusNumberFromUser();
+    private int getMoney() {
+        while (true) {
+            try {
+                outputView.showMoneyInputComments();
+                return inputView.getMoneyFromUser();
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto getLottoWinningNumbers() {
+        while (true) {
+            try {
+                outputView.showLottoWinningNumbersInputComments();
+                return inputView.getLottoWinningNumbersFromUser();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getLottoBonusNumber() {
+        while (true) {
+            try {
+                outputView.showLottoBonusNumberInputComments();
+                return inputView.getLottoBonusNumberFromUser();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
 }
