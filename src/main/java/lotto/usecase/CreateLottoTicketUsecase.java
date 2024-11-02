@@ -3,9 +3,9 @@ package lotto.usecase;
 import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lottos;
-import lotto.service.LottoService;
-import lotto.service.PaymentService;
-import lotto.service.TicketService;
+import lotto.service.payment.PaymentService;
+import lotto.service.service.LottoService;
+import lotto.service.service.TicketService;
 
 public class CreateLottoTicketUsecase {
     private final PaymentService paymentService;

@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.payment;
 
 import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.domain.payment.LottoPrice;
@@ -6,6 +6,7 @@ import lotto.domain.payment.LottoQuantity;
 import lotto.domain.payment.Payment;
 import lotto.domain.payment.PaymentResult;
 import lotto.repository.PaymentRepository;
+import lotto.service.IdGenerator;
 
 public class PaymentService {
 

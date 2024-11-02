@@ -1,8 +1,9 @@
-package lotto.service;
+package lotto.service.service;
 
 import lotto.domain.ticket.Lottos;
 import lotto.domain.ticket.Ticket;
 import lotto.repository.WriteTicketRepository;
+import lotto.service.IdGenerator;
 
 public class TicketService {
 

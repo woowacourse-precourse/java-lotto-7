@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.service;
 
 import java.util.stream.IntStream;
 import lotto.domain.payment.LottoQuantity;
@@ -21,5 +21,5 @@ public class LottoService {
                         .toList()
         );
     }
-    
+
 }

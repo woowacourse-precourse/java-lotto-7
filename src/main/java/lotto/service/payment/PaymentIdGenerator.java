@@ -1,6 +1,7 @@
-package lotto.service;
+package lotto.service.payment;
 
 import java.util.concurrent.atomic.AtomicLong;
+import lotto.service.IdGenerator;
 
 public class PaymentIdGenerator implements IdGenerator {
 
