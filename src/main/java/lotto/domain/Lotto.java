@@ -18,13 +18,15 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
-        LottoException.throwIllegalArgumentException(ExceptionMessage.ONLY_LOTTO_SIZE_SIX, validateLottoSize(numbers));
+        LottoException.throwIllegalArgumentException(ExceptionMessage.ONLY_LOTTO_SIZE_SIX, !validateLottoSize(numbers));
     }
 
     private boolean validateLottoSize(List<Integer> numbers) {
         return numbers.size() == 6;
     }
-
-    // TODO: 추가 기능 구현
 }

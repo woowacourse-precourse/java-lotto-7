@@ -31,6 +31,6 @@ public class LottoController {
         );
 
         lottoService.saveLottoPurchase(input);
-        lottoService.createLottoNumbers();
+        output.printPurchaseLotto(lottoService.createLottoNumbers());
     }
 }
