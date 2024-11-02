@@ -9,7 +9,7 @@ import lotto.view.Input;
 public class LottoController {
     private LottoGenerator generator = new LottoGenerator();
 
-    public void start() {
+    public void run() {
         try {
             int purchaseAmount = Input.inputPurchaseAmount();
             List<Lotto> purchasedLottos = generator.generateLottos(purchaseAmount);
