@@ -27,10 +27,19 @@
 - 사용자와의 상호작용, 입출력 기능 : view.InputView, view.OutputView
 
 
-- input, output을 담당하는 controller와 Service/Model을 연결 : controller.LottoController
+- 세부 controller와 view를 연결 : controller.MainController
 
 
-- 사용자의 입력을 받는 기능, 입력 예외처리 : controller.InputController
+- 사용자에게 받는 입력을 담당하는 controller, 입력 예외처리 : controller.InputController
 
 
-- 사용자에게 설명서를 제공, 로또 당첨 결과를 출력하는 기능 : controller.OutputController
+- 사용자에게 받은 입력 처리를 담당하는 controller.LottoController
+
+
+- 사용자에게 보여줄 출력을 담당하는 controller : controller.OutputController
+
+
+- 수를 원하는 형식의 문자열로 변환하는 기능 : util.NumberToString
+
+
+- 입력 예외처리와 유효한 입력을 받을 때까지 입력을 반복하는 기능 : util.LottoException, util.LottoUtils
