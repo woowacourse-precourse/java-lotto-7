@@ -30,13 +30,17 @@ public class LottoPlay {
         int bonusNumber = this.lottoMachine.getBonusNumber();
 
         for(Lotto lotto : this.user.getLottos()) {
-            long matchCount = lotto.getNumbers().stream()
-                    .filter(winningNumbers::contains)
-                    .count();
+            long matchCount = matchWinningNumberCount(lotto, winningNumbers);
 
             WinningLotto rank = determineRank(matchCount, lotto, bonusNumber);
             user.addWinning(rank);
         }
+    }
+
+    private long matchWinningNumberCount(Lotto lotto, List<Integer> winningNumbers) {
+        return lotto.getNumbers().stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     private WinningLotto determineRank(long matchCount, Lotto lotto, int bonusNumber) {
