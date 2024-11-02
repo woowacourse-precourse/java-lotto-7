@@ -28,7 +28,7 @@ public class LottoService {
         moneyManagerRepository.add(new MoneyManager(purchaseAmount));
         Integer count = lottoManager.getPurchasableLottos(purchaseAmount);
         List<Lotto> lottos = lottoManager.purchase(count);
-        lottos.forEach(lottoRepository::save);
+        lottos.forEach(lottoRepository::add);
         List<List<Integer>> allLottoNumbers = lottos.stream()
                 .map(Lotto::getNumbers)
                 .toList();

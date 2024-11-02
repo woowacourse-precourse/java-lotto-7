@@ -9,7 +9,7 @@ public class LottoRepository {
 
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public void save(Lotto lotto) {
+    public void add(Lotto lotto) {
         lottos.add(lotto);
     }
 
