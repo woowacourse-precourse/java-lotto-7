@@ -115,6 +115,10 @@ public class View {
         }
     }
 
+    public static void printException(IllegalArgumentException e) {
+        System.out.println("[ERROR] : " + e.getMessage());
+    }
+
 
     private static void validateNumeric(String inputValue) {
         try {
