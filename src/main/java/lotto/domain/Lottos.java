@@ -12,13 +12,13 @@ public class Lottos {
     private static final int LOTTO_SIZE=6;
 
 
-    public Lottos(int count){
+    public Lottos(long count){
     lottos = new ArrayList<>();
     generateRandomNumber(count);
 
 }
 
-    private void generateRandomNumber(int count) {
+    private void generateRandomNumber(long count) {
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     MIN_LOTTO_NUMBER,
