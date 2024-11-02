@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,9 +20,10 @@ public class WinningNumbers {
     public WinningNumbers(String inputNumbers) {
         List<String> numbersInString = parse(inputNumbers);
         this.numbers = validateInteger(numbersInString);
-        validateSixNumbers(numbers);
-        validateRange(numbers);
-        validateDuplicated(numbers);
+        validateSixNumbers();
+        validateRange();
+        validateDuplicated();
+        sortNumbers();
     }
 
     private List<String> parse(String inputNumbers) {
@@ -43,13 +45,13 @@ public class WinningNumbers {
         return parsedNumbers;
     }
 
-    private void validateSixNumbers(List<Integer> numbers) {
+    private void validateSixNumbers() {
         if (numbers.size() != 6) {
             throw new NumberFormatException();
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private void validateRange() {
         boolean isRange = numbers.stream()
                 .allMatch(number -> number >= NUMBERS_RANGE_START && number <= NUMBERS_RANGE_END);
 
@@ -58,7 +60,7 @@ public class WinningNumbers {
         }
     }
 
-    private void validateDuplicated(List<Integer> numbers) {
+    private void validateDuplicated() {
         Set<Integer> validatedNumbers = new HashSet<>();
 
         for (Integer number : numbers) {
@@ -68,6 +70,9 @@ public class WinningNumbers {
         }
     }
 
+    private void sortNumbers() {
+        Collections.sort(numbers);
+    }
     public List<Integer> getNumbers() {
         return numbers;
     }
