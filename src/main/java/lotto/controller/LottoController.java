@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
+import lotto.domain.WinningNumber;
 import lotto.enums.InputMessage;
 import lotto.enums.OutputMessage;
 import lotto.service.LottoService;
@@ -33,6 +34,7 @@ public class LottoController {
         printAllLottoNumbers();
 
         inputWinningNumber();
+        validateWinningNumber();
     }
 
     public void inputPurchaseAmount() {
@@ -69,11 +71,32 @@ public class LottoController {
     }
 
     public void inputWinningNumber() {
-        inputView.printMessage(InputMessage.INPUT_WINNING_NUMBER);
-        winningNumber = inputView.inputWinningNumber();
+        boolean isValidInput = false;
 
-        // 비어있으면 에러메시지 띄우고 처음으로 돌아가는 작업도 추가해야함
-        lottoService.validateInputWinNumber(winningNumber);
+        do {
+            inputView.printMessage(InputMessage.INPUT_WINNING_NUMBER);
+            winningNumber = inputView.inputWinningNumber();
+            try {
+                validateWinningNumber();
+
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            } catch (IllegalStateException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        } while (!isValidInput);
     }
+
+    public void validateWinningNumber() {
+        // split 전, 검증
+        lottoService.validateInputWinNumber(winningNumber);
+
+        String[] splitWinningNumber = lottoService.splitWinningNumber(winningNumber);
+
+        // split 후, 검증
+        WinningNumber validWinNumber = lottoService.validateSplitWinNumber(splitWinningNumber);
+    }
+
 
 }
