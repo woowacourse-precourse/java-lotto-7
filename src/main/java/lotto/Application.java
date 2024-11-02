@@ -15,7 +15,13 @@ public class Application {
 		int ticketAmount = customer.calculateAmount();
 
 		OutputInterface.printMessage(ticketAmount + OutputInterface.PURCHASE_AMOUNT.toString());
+		LottoTicketMachine lottoTicketMachine = new LottoTicketMachine(ticketAmount);
 
+		LottoTickets tickets = generateLottoTickets(lottoTicketMachine);
+	}
+
+	private static LottoTickets generateLottoTickets(LottoTicketMachine lottoTicketMachine) {
+		return lottoTicketMachine.generateLottoTickets();
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
