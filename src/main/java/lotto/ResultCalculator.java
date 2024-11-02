@@ -19,6 +19,21 @@ public class ResultCalculator {
         return result;
     }
 
+    public int getTotalPrize(Map<Rank, Integer> results) {
+        int totalPrize = 0;
+
+        for (Rank rank : Rank.values()) {
+            int count = results.getOrDefault(rank, 0);
+            totalPrize += rank.getWinningPrize() * count;
+        }
+
+        return totalPrize;
+    }
+
+    public double calculateProfit(int totalPrize, int amount) {
+        return (double) totalPrize / amount * 100;
+    }
+
     private int countMatches(List<Integer> lottos, List<Integer> winningNumber) {
         int count = 0;
 
