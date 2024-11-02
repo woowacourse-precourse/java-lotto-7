@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.util;
 
 public class Constants { // 하드 코딩되어있는 것들
 

@@ -1,14 +1,12 @@
 package lotto.view;
 
-import lotto.domain.Constants;
+import lotto.util.Constants;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OutputView {
     public void printLotto(List<Lotto> lottoList, int lottoNum) {

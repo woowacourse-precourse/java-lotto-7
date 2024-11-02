@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.domain.Constants;
+import lotto.util.Constants;
 
 public class InputValidator {
 

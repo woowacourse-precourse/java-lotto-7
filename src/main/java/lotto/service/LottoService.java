@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
+import lotto.util.Constants;
 
 import java.util.*;
 import java.util.stream.Collectors;
