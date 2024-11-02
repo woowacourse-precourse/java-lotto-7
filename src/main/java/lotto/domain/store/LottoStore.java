@@ -8,6 +8,8 @@ import lotto.domain.generate.LottoNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoStore {
 
@@ -22,16 +24,11 @@ public class LottoStore {
 
     public Lottos issueLottos(final int pay) {
         validatePayment(pay);
-
-        final int lottoCount = pay / LOTTO_PRICE;
-
-        final List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(generateLotto());
-        }
-
-        return new Lottos(lottos);
+        return new Lottos(
+                Stream.generate(this::generateLotto)
+                        .limit(pay / LOTTO_PRICE)
+                        .toList()
+        );
     }
 
     private Lotto generateLotto() {

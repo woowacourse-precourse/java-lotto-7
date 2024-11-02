@@ -24,7 +24,7 @@ public class LottoController {
     public LottoController() {
         this.lottoStore = new LottoStore(new RandomLottoNumberGenerator());
         this.lottoRankPrize = new LottoRankPrize();
-        this.inputView = new ConsoleInputView(new InputParser());
+        this.inputView = new ConsoleInputView();
         this.outputView = new ConsoleOutputView();
     }
 

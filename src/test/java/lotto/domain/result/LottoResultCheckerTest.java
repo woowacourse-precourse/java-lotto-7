@@ -15,9 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoResultCheckerTest {
-
-    private final InputParser inputParser = new InputParser();
-
+    
     @Test
     void 로또_단건_결과에_따른_결과값_반환_테스트() {
         // given

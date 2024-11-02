@@ -1,6 +1,7 @@
 package lotto.ui.parser;
 
 import lotto.ui.exception.InputException;
+import lotto.ui.exception.InputExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoInputParserTest {
+class InputParserTest {
 
     private final InputParser inputParser = new InputParser();
 
@@ -33,5 +34,16 @@ class LottoInputParserTest {
 
         // then
         assertThat(winningNumbers.stream().mapToInt(Integer::intValue).sum()).isEqualTo(21);
+    }
+
+    @Test
+    void 입력받은_문자열에_공백이_존재하는경우() {
+        // given
+        final String winningNumberInput = "1 , 2, 3, 4, 5, 6";
+
+        // when & then
+        assertThatThrownBy(() -> {
+            inputParser.inputToWinningNumbers(winningNumberInput);
+        }).isInstanceOf(InputException.class).hasMessage(InputExceptionMessage.INVALID_NUMBER_FORMAT.getErrorMessage());
     }
 }

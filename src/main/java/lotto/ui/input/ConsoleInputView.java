@@ -9,24 +9,14 @@ import java.util.List;
 
 public class ConsoleInputView implements InputView {
 
-    private final InputParser inputParser;
-
-    public ConsoleInputView(final InputParser lottoInputParser) {
-        this.inputParser = lottoInputParser;
-    }
+    private final InputParser inputParser = new InputParser();
 
     @Override
     public int inputPayment() {
-        do {
-            System.out.println("구입금액을 입력해 주세요.");
-            String input = Console.readLine();
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
 
-            try {
-                return Integer.parseInt(input);
-            } catch (NumberFormatException e) {
-                throw new InputException(InputExceptionMessage.INVALID_NUMBER_FORMAT);
-            }
-        } while (true);
+        return inputParser.paymentAmount(input);
     }
 
     @Override
