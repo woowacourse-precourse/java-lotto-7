@@ -91,6 +91,8 @@ public class LottoController {
         while(true){
             try{
                 String input = inputView.inputBonusNumber();
+                lottoValidation.validateBlank(input);
+                lottoValidation.validateParsing(input);
                 return Integer.parseInt(input);
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
