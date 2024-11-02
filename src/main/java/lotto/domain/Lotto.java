@@ -2,8 +2,8 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -11,7 +11,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicated(numbers);
         this.numbers = numbers;
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+        }
     }
 
     public static Lottos buyAsMoney(int money) {
