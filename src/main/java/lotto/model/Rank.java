@@ -52,7 +52,7 @@ public enum Rank {
     }
 
     private static boolean isSecondRank(int correctCount, int bonusCount){
-        return correctCount == 5 && bonusCount == 1;
+        return correctCount == SECOND_RANK.correctCount && bonusCount == SECOND_RANK.bonusCount;
     }
 
 }

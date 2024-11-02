@@ -6,8 +6,7 @@ import lotto.model.LottoResult;
 import lotto.model.Rank;
 import lotto.model.User;
 
-import static lotto.Constants.MINIMUM_WINNING_CORRECT_COUNT;
-import static lotto.Constants.NEW_LINE;
+import static lotto.Constants.*;
 import static lotto.utils.Utils.*;
 import static lotto.message.OutputMessage.*;
 public class OutputView {
@@ -30,7 +29,7 @@ public class OutputView {
     }
 
     private static OutputMessage getLottoStatisticMessage(Rank rank){
-        if(rank.getCorrectCount() == 5 && rank.getBonusCount() == 1){
+        if(rank.getCorrectCount() == SECOND_RANK_CORRECT_COUNT && rank.getBonusCount() == SECOND_RANK_BONUS_COUNT){
             return OUTPUT_WINNING_STATISTIC_BONUS;
         }
         return OUTPUT_WINNING_STATISTIC;

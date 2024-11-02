@@ -9,4 +9,6 @@ public class Constants {
     public static final int LOTTO_MAX_NUM = 45;
     public static final int LOTTO_PICK_NUM = 6;
     public static final int MINIMUM_WINNING_CORRECT_COUNT = 3;
+    public static final int SECOND_RANK_CORRECT_COUNT = 5;
+    public static final int SECOND_RANK_BONUS_COUNT = 5;
 }
