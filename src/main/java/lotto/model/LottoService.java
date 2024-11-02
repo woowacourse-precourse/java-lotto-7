@@ -50,7 +50,7 @@ public class LottoService {
 
     public double calculateEarningRate(RankCounter rankCounter, Integer lottoPurchaseAmount) {
         double totalPrizeAmount = calculateTotalPrizeAmount(rankCounter);
-        double earningRate = totalPrizeAmount / lottoPurchaseAmount;
+        double earningRate = totalPrizeAmount / lottoPurchaseAmount * 100;
         return roundToDecimalPlaces(earningRate);
     }
 
