@@ -10,7 +10,6 @@ public class LottoRequestDto {
         this.lottoNumbers = lottoNumbers;
         this.bonusNumber = bonusNumber;
     }
-
     public String getPurchaseAmount() {
         return this.purchaseAmount;
     }

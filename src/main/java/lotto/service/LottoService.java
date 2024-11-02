@@ -15,7 +15,7 @@ public class LottoService {
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto createLotto() {
+    public static Lotto createLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
