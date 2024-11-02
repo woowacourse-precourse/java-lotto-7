@@ -23,14 +23,14 @@ public class LottoPurchaseMoneyTest {
     class FeatureTest {
         @ParameterizedTest
         @DisplayName("로또 개수로 변환")
-        @MethodSource("moneyToLottoCount")
+        @MethodSource("moneyToLottoCountArguments")
         void 로또_개수로_변환(final int money, final int lottoCount) {
             LottoPurchaseMoney purchaseMoney = new LottoPurchaseMoney(money);
 
             assertThat(purchaseMoney.toLottoCount()).isEqualTo(lottoCount);
         }
 
-        static Stream<Arguments> moneyToLottoCount() {
+        static Stream<Arguments> moneyToLottoCountArguments() {
             return Stream.of(
                     Arguments.of(LOTTO_PRICE, 1),
                     Arguments.of(LOTTO_PRICE * 3, 3),
