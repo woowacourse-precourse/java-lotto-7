@@ -1,5 +1,7 @@
 package lotto.custom.view;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.custom.constants.NumberConstants;
 import lotto.custom.model.Lotto;
@@ -17,7 +19,9 @@ public class OutputView {
 
     public void displayLottos(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers); // 오름차순으로 정렬
+            System.out.println(sortedNumbers);
         }
     }
 
