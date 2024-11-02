@@ -5,12 +5,12 @@ import java.util.Objects;
 public class LottoScoreResponse {
 
     private final int matchCount;
-    private final boolean isBonusMatch;
+    private final boolean containsBonus;
     private final int prize;
 
-    private LottoScoreResponse(int matchCount, boolean isBonusMatch, int prize) {
+    private LottoScoreResponse(int matchCount, boolean containsBonus, int prize) {
         this.matchCount = matchCount;
-        this.isBonusMatch = isBonusMatch;
+        this.containsBonus = containsBonus;
         this.prize = prize;
     }
 
@@ -22,8 +22,8 @@ public class LottoScoreResponse {
         return matchCount;
     }
 
-    public boolean isBonusMatch() {
-        return isBonusMatch;
+    public boolean containsBonus() {
+        return containsBonus;
     }
 
     public int getPrize() {
@@ -38,11 +38,11 @@ public class LottoScoreResponse {
         if (!(o instanceof LottoScoreResponse that)) {
             return false;
         }
-        return matchCount == that.matchCount && isBonusMatch == that.isBonusMatch && prize == that.prize;
+        return matchCount == that.matchCount && containsBonus == that.containsBonus && prize == that.prize;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(matchCount, isBonusMatch, prize);
+        return Objects.hash(matchCount, containsBonus, prize);
     }
 }
