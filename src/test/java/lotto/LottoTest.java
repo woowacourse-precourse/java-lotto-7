@@ -1,11 +1,12 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.domain.Lotto;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @Test
@@ -21,5 +22,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호_오름차순_출력() {
+        Lotto lotto = new Lotto(List.of(36, 29, 8, 24, 31, 12));
+        String expected = "[8, 12, 24, 29, 31, 36]";
+        assertThat(lotto.toString()).isEqualTo(expected);
+    }
 }
