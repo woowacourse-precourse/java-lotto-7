@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -58,6 +59,10 @@ public class Lotto {
     }
 
     public List<Integer> toIntList() {
+        return new ArrayList<>(intList());
+    }
+
+    private List<Integer> intList() {
         return this.numbers.stream().map(LottoNumber::value).toList();
     }
 
