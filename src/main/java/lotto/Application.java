@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -15,7 +14,6 @@ public class Application {
 
         final int bonus = Input.getBonusNumber(winningNumbers);
         System.out.println();
-
 
         Lottos lottos = new Lottos(lottoPaper);
         lottos.searchAll(winningNumbers, bonus);
