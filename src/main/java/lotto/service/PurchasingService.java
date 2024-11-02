@@ -2,7 +2,9 @@ package lotto.service;
 
 public class PurchasingService {
 
-    public int purchaseTickets(int payment) {
-        int numberOfTicket = payment / 1_000;
+    public int purchaseTickets(String inputPayment) {
+        int payment = Integer.parseInt(inputPayment);
+        return payment / 1_000;
     }
+
 }

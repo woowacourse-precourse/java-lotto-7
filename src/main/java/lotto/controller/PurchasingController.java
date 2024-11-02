@@ -13,11 +13,11 @@ public class PurchasingController {
         this.paymentValidator = validator;
     }
 
-    public void purchaseLottoTickets() {
+    public int purchaseLottoTickets() {
         String inputPayment = inputPaymentView.getPayment();
         paymentValidator.validPayment(inputPayment);
         PurchasingService purchasing = new PurchasingService();
-        purchasing.purchaseTickets(inputPayment);
+         return purchasing.purchaseTickets(inputPayment);
     }
 
 }
