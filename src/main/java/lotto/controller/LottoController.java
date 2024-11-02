@@ -70,6 +70,7 @@ public class LottoController {
     private List<Integer> toIntegerList(String[] numbers) {
         try {
             return Arrays.stream(numbers)
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
