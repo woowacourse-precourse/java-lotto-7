@@ -33,4 +33,15 @@ public class Lotto {
     public List<Integer> getSortedNumbers() {
         return numbers.stream().sorted().toList();
     }
+
+    public int getMatchingNumberCount(List<Integer> winningNumbers) {
+        return (int) this.numbers.stream()
+                .filter(number -> winningNumbers.stream().anyMatch(w -> w == number))
+                .count();
+    }
+
+    public boolean isBonusNumberMatched(int bonus) {
+        return this.numbers.stream().anyMatch(number -> number == bonus);
+    }
 }
+
