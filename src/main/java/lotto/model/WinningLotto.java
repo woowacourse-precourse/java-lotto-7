@@ -5,6 +5,7 @@ import java.util.List;
 
 public class WinningLotto {
     private List<Integer> winningLotto;
+    private int bonusNumber;
 
     public WinningLotto(){
         this.winningLotto = new ArrayList<>();
@@ -15,8 +16,11 @@ public class WinningLotto {
         this.winningLotto = lotto.getLottoDetails();
     }
 
-    public List<Integer> getWinningLotto() {
+    public List<Integer> getWinningLotto(){
         return new ArrayList<>(winningLotto);
+    }
+    public int getBonusNumber(){
+        return bonusNumber;
     }
 
     public void validateBonusNumber(int bonusNumber, int max, int min){
@@ -26,5 +30,10 @@ public class WinningLotto {
         if (bonusNumber<min || bonusNumber>max){
             throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1~45 입니다.");
         }
+        addBonusNumber(bonusNumber);
+    }
+
+    private void addBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }
