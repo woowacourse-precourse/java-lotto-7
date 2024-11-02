@@ -1,9 +1,9 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoResult;
-import lotto.MatchingCountResult;
+import lotto.dto.LottoResult;
+import lotto.dto.MatchingCountResult;
+import lotto.model.Lotto;
 
 public class OutputView {
     public static void displayPurchaseCount(int count) {

@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.MatchingCountResult;
+import lotto.dto.MatchingCountResult;
 
 public class LottoRateCalculator {
     public static double calculateReturnOfRate(int purchaseAmount, List<MatchingCountResult> countResults) {

@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.HashMap;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class LottoMatchingCounter {
     private final String WINNING_COUNT = "winningCount";

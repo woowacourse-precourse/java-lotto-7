@@ -2,7 +2,7 @@ package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

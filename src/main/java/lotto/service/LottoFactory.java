@@ -2,7 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class LottoFactory {
     public Lotto createLotto() {

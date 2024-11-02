@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class LottoSeller {
     private final LottoFactory lottoFactory = new LottoFactory();

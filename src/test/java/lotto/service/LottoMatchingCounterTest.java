@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
 
 class LottoMatchingCounterTest {
