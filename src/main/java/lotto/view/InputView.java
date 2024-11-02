@@ -14,7 +14,7 @@ public class InputView {
     }
     public WinningNumbers getWinning(){
         println("당첨 번호를 입력해 주세요.");
-        return new WinningNumbers(new Lotto(Console.readLine()));
+        return new WinningNumbers(Console.readLine());
     }
 
 }

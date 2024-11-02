@@ -18,10 +18,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto(String line){
-        validateWinning(line);
-        this.numbers = lineToNumbers(line);
-    }
 
     private void validate(List<Integer> numbers) {
         isDuplicated(numbers);
@@ -48,16 +44,6 @@ public class Lotto {
                 throw new InputException(ExceptionMessage.NUMBER_RANGE_ERROR);
             }
         }
-    }
-
-
-    private static List<Integer> lineToNumbers(String line) {
-        String[] splitLine = line.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String num : splitLine) {
-            numbers.add(Integer.parseInt(num));
-        }
-        return numbers;
     }
 
     public List<Integer> getNumbers() {
