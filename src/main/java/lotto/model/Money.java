@@ -21,4 +21,8 @@ public class Money {
     public double getEarningRate(Money earned) {
         return TO_PERCENTAGE * earned.money / this.money;
     }
+
+    public int toInteger() {
+        return money;
+    }
 }
