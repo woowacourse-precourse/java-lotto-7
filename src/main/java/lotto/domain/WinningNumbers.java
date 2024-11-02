@@ -2,7 +2,9 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbers {
 
@@ -19,6 +21,7 @@ public class WinningNumbers {
         this.numbers = validateInteger(numbersInString);
         validateSixNumbers(numbers);
         validateRange(numbers);
+        validateDuplicated(numbers);
     }
 
     private List<String> parse(String inputNumbers) {
@@ -52,6 +55,16 @@ public class WinningNumbers {
 
         if (!isRange) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        Set<Integer> validatedNumbers = new HashSet<>();
+
+        for (Integer number : numbers) {
+            if (!validatedNumbers.add(number)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 }
