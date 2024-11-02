@@ -21,7 +21,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @DisplayName("로또 구입금액은 0이하이면 예외가 발생한다.")
     @Test
     void 로또_구입금액은_0이하이면_예외가_발생한다() {
