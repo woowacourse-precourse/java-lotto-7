@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.ErrorMessage;
+import lotto.dto.LottoRequestDto;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -16,17 +17,24 @@ public class InputView {
         return rawInput.trim();
     }
 
-    public String getPurchaseAmount() {
+    public LottoRequestDto getLottoRequest() {
+        String purchaseAmount = getPurchaseAmount();
+        String lottoNumbers = getLottoNumbers();
+        String bonusNumber = getBonusNumber();
+        return new LottoRequestDto(purchaseAmount, lottoNumbers, bonusNumber);
+    }
+
+    private String getPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         return readLine();
     }
 
-    public String getLottoNumbers() {
+    private String getLottoNumbers() {
         System.out.println(LOTTO_NUMBERS_INPUT_MESSAGE);
         return readLine();
     }
 
-    public String getBonusNumber() {
+    private String getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         return readLine();
     }
