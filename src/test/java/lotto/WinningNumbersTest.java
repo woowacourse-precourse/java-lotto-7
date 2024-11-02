@@ -33,4 +33,14 @@ public class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(lotto, bonusBall))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 1부터 45까지의 숫자가 아닌 경우 예외 처리")
+    @Test
+    void throwException_when_bonusBallIsNotBetween1And45() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusBall = 46;
+
+        assertThatThrownBy(() -> new WinningNumbers(lotto, bonusBall))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

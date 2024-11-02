@@ -1,13 +1,14 @@
 package lotto;
 
+import static lotto.Constants.LOTTO_MAX_NUMBER;
+import static lotto.Constants.LOTTO_MIN_NUMBER;
+import static lotto.Constants.LOTTO_SIZE;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_MIN = 1;
-    private static final int LOTTO_NUMBER_MAX = 45;
-    private static final int LOTTO_NUMBER_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -30,16 +31,16 @@ public class Lotto {
     }
 
     private static boolean hasInvalidSize(List<Integer> numbers) {
-        return numbers.size() != LOTTO_NUMBER_SIZE;
+        return numbers.size() != LOTTO_SIZE;
     }
 
     private static boolean hasInvalidRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(n -> n < Lotto.LOTTO_NUMBER_MIN || n > Lotto.LOTTO_NUMBER_MAX);
+                .anyMatch(n -> n < LOTTO_MIN_NUMBER || n > LOTTO_MAX_NUMBER);
     }
 
     private boolean hasDuplicate(List<Integer> numbers) {
-        return Set.copyOf(numbers).size() != LOTTO_NUMBER_SIZE;
+        return Set.copyOf(numbers).size() != LOTTO_SIZE;
     }
 
     public List<Integer> getNumbers() {
