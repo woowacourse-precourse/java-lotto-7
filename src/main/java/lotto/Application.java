@@ -13,5 +13,10 @@ public class Application {
         // 1000 단위, 숫자 여부 검증 필요
         int lottoCount = inputCash / 1000;
 
+        // 로또 생성 과정
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6);))
+        }
     }
 }
