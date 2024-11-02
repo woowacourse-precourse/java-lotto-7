@@ -1,22 +1,30 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.format.MessageFormatter;
 import lotto.message.Message;
 import lotto.processor.InputProcessor;
 
 public class LottoView {
 
-    public <T> T input(InputProcessor<T> processor, Message message) {
+    public <T> T input(InputProcessor<T> processor) {
         try {
-            print(message);
             return processor.process(Console.readLine());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             print(e.getMessage());
-            return input(processor, message);
+            return input(processor);
         }
     }
 
-    private void print(Message message) {
+    public <T> void output(MessageFormatter<T> formatter, T target) {
+        print(formatter.format(target));
+    }
+
+    public void print(Message message, Object... args) {
+        print(message.getFormatMessage(args));
+    }
+
+    public void print(Message message) {
         print(message.getMessage());
     }
 
