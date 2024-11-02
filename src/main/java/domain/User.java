@@ -44,4 +44,8 @@ public class User {
     public int getAmount() {
         return this.amount;
     }
+
+    public double getRateOfReturn() {
+        return this.rateOfReturn;
+    }
 }
