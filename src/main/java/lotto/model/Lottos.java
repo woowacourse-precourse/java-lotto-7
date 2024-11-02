@@ -13,7 +13,7 @@ public final class Lottos {
         purchaseLottos(purchaseQuantity);
     }
 
-    public void purchaseLottos(int purchaseQuantity) {
+    private void purchaseLottos(int purchaseQuantity) {
         for (int i = 0; i < purchaseQuantity; i++) {
             List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(
                     LottoConstants.MIN_LOTTO_NUMBER,
