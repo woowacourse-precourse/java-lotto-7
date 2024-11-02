@@ -54,7 +54,7 @@ public class BonusNumberServiceTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() -> bonusNumberService.run(winningNumbers, "1 2"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(CustomErrorMessages.SPACE_BETWEEN_NUMBERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.SPACE_BETWEEN_NUMBERS);
     }
 
     @DisplayName("서비스_보너스번호입력_보너스번호와당첨번호가같을때_테스트") // 고칠 것

@@ -10,4 +10,6 @@ public class ErrorMessages {
     public static final String INVALID_CHARACTERS = "[ERROR] 입력에 유효하지 않은 문자가 포함되어있습니다.";
 
     public static final String INT_OUT_OF_BOUNDS = "[ERROR] 입력된 숫자가 int 타입의 범위를 초과합니다.";
+
+    public static final String SPACE_BETWEEN_NUMBERS = "[ERROR] 숫자와 숫자 사이에 공백이 존재합니다.";
 }

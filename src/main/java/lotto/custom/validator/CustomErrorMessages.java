@@ -9,7 +9,5 @@ public class CustomErrorMessages {
 
     public static final String LOTTO_NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
-    public static final String SPACE_BETWEEN_NUMBERS = "[ERROR] 숫자와 숫자 사이에 공백이 존재합니다.";
-
     public static final String BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 달라야 합니다.";
 }

@@ -21,7 +21,7 @@ public class WinningNumberService {
         inputValidator.validateWinningNumbersInput(input);
         String filteredComma = cleanConsecutiveCommas(input);
         List<Integer> winningNumbers = trimWinningNumbers(splitByComma(filteredComma));
-        inputValidator.validateLottoNumbers(winningNumbers);
+        inputValidator.validateWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 

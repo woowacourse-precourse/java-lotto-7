@@ -50,7 +50,7 @@ public class WinningNumberServiceTest {
     void 서비스_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트() {
         assertThatThrownBy(() -> winningNumberService.run("1, 2, 3, 4 5 6"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(CustomErrorMessages.SPACE_BETWEEN_NUMBERS);
+                .hasMessage(lotto.custom.common.ErrorMessages.SPACE_BETWEEN_NUMBERS);
     }
 
     @DisplayName("서비스_당첨번호입력_숫자가6개가아닐때_테스트")
