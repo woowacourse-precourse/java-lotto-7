@@ -82,4 +82,8 @@ public class LottoTemp {
         io.printMessage("당첨 통계");
         io.printMessage("---");
     }
+
+    public void printProfit(int profit) {
+        io.printMessage("총 수익률은 " + profit + "%입니다.");
+    }
 }
