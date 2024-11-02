@@ -7,6 +7,7 @@ public enum Exception {
 
     ONLY_NUMERIC_INPUT_FOR_WINNING_NUMBERS("당첨 번호는 숫자만 입력할 수 있습니다."),
     LOTTO_NUMBER_SIZE_MUST_BE_SIX("로또 번호는 6개여야 합니다."),
+    LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     ;
 
     private static final String PREFIX = "[ERROR] ";
