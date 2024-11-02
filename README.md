@@ -14,7 +14,15 @@
 
 ### 🎟️ Lotto
 
-- [x] 당첨 번호와 보너스 번호를 입력받아 비교하여 일치하는 수를 반환한다.
+- [x] WinnerLotto를 입력받아 비교하여 Rank를 반환한다.
+  - [x] 일치하는 번호가 3개보다 적다면 Optioonal.empty를 반환한다.
+  - [x] 일치하는 번호가 5개이고, 보너스 볼이 일치한다면 Second Rank를 반환한다.
+  - [x] 일치하는 번호가 3개 이상이라면이라면 Rank를 반환한다.
+
+## 🏅 WinningLotto
+
+- [x] Lotto 인스턴스를 상속받는다.
+- [x] Lotto에서 멤버 변수에 접근이 가능하도록 한다.
 
 ### 🛠️ InputHandler
 
@@ -49,3 +57,14 @@
       - [x] 당첨 번호가 6개가 아니라면 `IllegalArgumentException`을 발생시킨다.
     - [x] 로또 당첨 번호가 1~45 사이의 숫자인지 검사한다.
       - [x] 로또 당첨 번호가 1~45 사이의 숫자가 아니라면 `IllegalArgumentException`을 발생시킨다.
+
+### ⚠️ ErrorMessage
+
+- [x] 각 값에 맞는 error message를 정의한다.
+- [x] error message 반환 시 `[ERROR]` 접두사를 붙인다.
+
+### 🚨 LottoGameIllegalArgumentException
+
+- [x] `IllegalArgumentException`을 상속받아 `IllegalArgumentException`예외처럼 처리할 수 있도록 한다.
+- [x] `ErrorMessage`를 받아, 예외를 초기화 한다.
+- [x] 초기화 시 예외 메시지를 출력한다.
