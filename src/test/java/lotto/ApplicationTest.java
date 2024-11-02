@@ -66,6 +66,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 예외_테스트_가격_1000_미만() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
     void 예외_테스트_당첨_번호_형식_1() {
         assertSimpleTest(() -> {
             runException("1000", "1 2 3 4 5 6");
