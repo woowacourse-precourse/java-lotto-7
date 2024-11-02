@@ -37,4 +37,8 @@ public class LottoCreate {
                 .collect(Collectors.joining("\n"));
         return lottoList.size() + "개를 구매했습니다.\n" + lottoListString;
     }
+
+    public List<Lotto> getLottoList() {
+        return lottoList;
+    }
 }
