@@ -66,7 +66,7 @@ public class LotteryTest {
             Lottery lottery = new Lottery(winningLotto, bonusNumber, pickedLottos);
 
             // When
-            Map<LottoRank, BigDecimal> result = lottery.calculateWinningResult();
+            LottoResult result = lottery.getLottoResult();
 
             // Then
             Map<LottoRank, BigDecimal> expected = new HashMap<>() {{
@@ -77,7 +77,29 @@ public class LotteryTest {
                 put(LottoRank.FIFTH, BigDecimal.ZERO);
                 put(LottoRank.NON_MATCH, BigDecimal.ZERO);
             }};
-            assertThat(result).containsExactlyInAnyOrderEntriesOf(expected);
+            assertThat(result).extracting("result").isEqualTo(expected);
+        }
+    }
+
+    @Nested
+    @DisplayName("수익률 계산 테스트")
+    class 수익률_계산_테스트 {
+
+        @Test
+        @DisplayName("수익률을 계산한다")
+        void 성공_계산() {
+            // Given
+            Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            LottoNumber bonusNumber = new LottoNumber(10);
+            List<Lotto> pickedLottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                    new Lotto(List.of(1, 2, 3, 4, 5, 10)));
+            Lottery lottery = new Lottery(winningLotto, bonusNumber, pickedLottos);
+
+            // When
+            BigDecimal profitRate = lottery.calculateProfitRate();
+
+            // Then
+            assertThat(profitRate).isEqualTo(new BigDecimal("101500000.0"));
         }
     }
 }

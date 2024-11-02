@@ -29,4 +29,8 @@ public enum LottoRank {
                 .findFirst()
                 .orElse(NON_MATCH);
     }
+
+    public BigDecimal getAward() {
+        return award;
+    }
 }
