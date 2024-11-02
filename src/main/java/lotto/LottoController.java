@@ -16,5 +16,6 @@ public class LottoController {
         Price price = inputHandler.getPriceFromUser();
 
         Lottos lottos = lotteryCashier.purchaseBy(price);
+        outputHandler.showPurchasedLottos(lottos);
     }
 }

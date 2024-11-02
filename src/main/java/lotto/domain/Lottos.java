@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -12,5 +13,9 @@ public class Lottos {
 
     public int size() {
         return lottos.size();
+    }
+
+    public List<Lotto> toUnmodifiableList() {
+        return Collections.unmodifiableList(lottos);
     }
 }
