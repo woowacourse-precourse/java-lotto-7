@@ -17,6 +17,9 @@ public class Application {
         outputView.buyCountPrint();
         outputView.lottosPrint();
 
+        inputView.winNumber();
+        inputView.bonus();
+
 
     }
 }
