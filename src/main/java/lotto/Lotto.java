@@ -21,7 +21,19 @@ public class Lotto {
         return numbers;
     }
 
-    public int compare(Lotto comp, int bonus) {
+    public int compare(List<Integer> comp, int bonus) {
+        numbers.removeAll(comp);
+        if(numbers.size() == 3)
+            return 5;
+        if(numbers.size() == 2)
+            return 4;
+        if(numbers.isEmpty())
+            return 1;
+        if(numbers.size() == 1) {
+            if(numbers.contains(bonus))
+                return 2;
+            return 3;
+        }
         return 0;
     }
 }
