@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.PurchasePrice.LOTTO_UNIT;
-
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
