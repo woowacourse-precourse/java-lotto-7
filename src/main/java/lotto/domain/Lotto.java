@@ -42,14 +42,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getNumber()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage(LOTTO_SIZE.getNumber()));
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber()));
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
     }

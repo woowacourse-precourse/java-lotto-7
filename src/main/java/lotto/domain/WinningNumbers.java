@@ -33,7 +33,7 @@ public class WinningNumbers {
 
     private void validateBonusNumber(Integer bonusNumber) {
         if (bonusNumber < MIN_NUMBER.getNumber() || bonusNumber > MAX_NUMBER.getNumber()) {
-            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber()));
+            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
 

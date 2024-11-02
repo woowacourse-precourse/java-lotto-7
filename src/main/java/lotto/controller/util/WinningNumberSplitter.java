@@ -22,13 +22,13 @@ public class WinningNumberSplitter {
 
     private void validateDelimiterFormat(String input) {
         if (INVALID_NUMBER_AND_COMMA_REGEX.matcher(input).find()) {
-            throw new IllegalArgumentException(INVALID_DELIMITER_FORMAT.getMessage(DELIMITER));
+            throw new IllegalArgumentException(INVALID_DELIMITER_FORMAT.getMessage());
         }
     }
 
     private void validateEndFormat(String input) {
         if (input.endsWith(DELIMITER)) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_FORMAT.getMessage(DELIMITER));
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_FORMAT.getMessage());
         }
     }
 }
