@@ -12,7 +12,6 @@ public class Calculator {
     }
 
     public static double calculateProfitPercent(long totalWinningMoney, int purchaseAmount) {
-        return (totalWinningMoney / (double) purchaseAmount) / 10;
+        return (totalWinningMoney / (double) purchaseAmount) / 10.0;
     }
-
 }

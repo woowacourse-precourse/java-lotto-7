@@ -18,8 +18,8 @@ public class LottoPurchase {
     }
 
     private static void validatePositive(int amount) {
-        if (amount <= 1000) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000보다 큰 숫자여야 합니다.");
+        if (amount < 1000) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 999원 보다 큰 숫자여야 합니다.");
         }
     }
 
