@@ -14,7 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Rank calculateLotto(List<Integer> winningLotto, int bonusNumber) {
+    public Rank calculateRank(List<Integer> winningLotto, int bonusNumber) {
         int basicCount = 0;
         int bonusCount = 0;
 
