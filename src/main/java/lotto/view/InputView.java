@@ -8,7 +8,7 @@ import lotto.view.global.MessageType;
 public class InputView {
 
     public String enterAmount() {
-        ConsoleWriter.printlnMessage(MessageType.START_MESSAGE.getMessage());
+        ConsoleWriter.printlnMessage(MessageType.INPUT_AMOUNT.getMessage());
         return ConsoleReader.enterMessage();
     }
 }
