@@ -4,6 +4,8 @@ import static lotto.resources.Constants.THOUSND_UNIT;
 import static lotto.resources.ErrorMessages.INVALID_THOUSAND_UNIT_MONEY;
 import static lotto.resources.ErrorMessages.NEGATIVE_QUANTITY_MONEY;
 
+import java.util.Objects;
+
 public class PurchaseCount {
     private final int purchaseCount;
 
@@ -36,4 +38,22 @@ public class PurchaseCount {
     public int getPurchaseCount() {
         return purchaseCount;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final PurchaseCount otherPurchaseCount = (PurchaseCount) obj;
+        return Objects.equals(purchaseCount, otherPurchaseCount.purchaseCount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(purchaseCount);
+    }
+
 }
