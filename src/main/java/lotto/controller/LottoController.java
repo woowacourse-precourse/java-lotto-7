@@ -28,8 +28,9 @@ public class LottoController {
         WinningNumber winningNumber = pickWinningNumber();
         BonusNumber bonusNumber = pickBonusNumber(winningNumber);
         WinningResults winningResults = lottoMachine.checkLottoWinningResult(lottos, winningNumber, bonusNumber);
-    }
+        outputWinningResults(winningResults);
 
+    }
 
     private LottoAmount purchaseLottos() {
         try {
@@ -59,6 +60,12 @@ public class LottoController {
             outputView.outputExceptionMessage(e.getMessage());
             return pickBonusNumber(winningNumber);
         }
+    }
+
+    private void outputWinningResults(WinningResults winningResults) {
+        outputView.outputWinningResultStartLine();
+        outputView.outputWinningRanks(winningResults);
+
     }
 
 }

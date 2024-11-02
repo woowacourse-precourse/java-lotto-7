@@ -1,5 +1,10 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public enum WinningRank {
     FIRST(1, 6, 2000000000),
     SECOND(2, 5, 30000000),
@@ -28,6 +33,12 @@ public enum WinningRank {
         return FAIL;
     }
 
+    public static List<WinningRank> findRanksExceptFail() {
+        List<WinningRank> winningRanks = new ArrayList<>(List.of(WinningRank.values()));
+        winningRanks.remove(WinningRank.FAIL);
+        return Collections.unmodifiableList(winningRanks);
+    }
+
     private static WinningRank fromMatchesBonusNumber(WinningRank winningRank, int matchingAmount, boolean matchesBonusNumber) {
         if (matchingAmount == 5) {
             if (matchesBonusNumber) {
@@ -36,5 +47,17 @@ public enum WinningRank {
             return WinningRank.THIRD;
         }
         return winningRank;
+    }
+
+    public int getMatchingAmount() {
+        return matchingAmount;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getRank() {
+        return rank;
     }
 }
