@@ -59,7 +59,6 @@ public class Controller {
         outputView.printLottoTicketStatus(lottoTicketStatus);
     }
 
-
     private Lotto getWinningLotto() {
         while (true) {
             try {
