@@ -5,7 +5,7 @@ public enum InputError {
     PURCHASE_AMOUNT_EMPTY("구입금액을 입력되지 않았어요. 다시 입력해주세요."),
     PURCHASE_AMOUNT_INVALID("구입금액에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요."),
     PURCHASE_AMOUNT_UNDER_BASE_LIMIT("구입금액이 최소 구입금액보다 작아요. 다시 입력해주세요."),
-    PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND("구입금액은 1000원 단위여야 해요. 다시 입력해주세요."),
+    PURCHASE_AMOUNT_UNIT_INVALID("구입금액은 1000원 단위여야 해요. 다시 입력해주세요."),
 
     LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1과 45 사이의 숫자여야 해요. 다시 입력해주세요."),
     LOTTO_NUMBER_INVALID("로또 번호에 숫자가 아닌 문자가 포함되어 있어요. 다시 입력해주세요."),

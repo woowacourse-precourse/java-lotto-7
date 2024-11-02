@@ -76,7 +76,7 @@ class InputValidatorTest {
         InputValidator inputValidator = new InputValidator();
         assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(InputError.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+                .hasMessageContaining(InputError.PURCHASE_AMOUNT_UNIT_INVALID.getMessage());
     }
 
     @DisplayName("당첨 번호에 쉼표와 자연수 외의 문자가 포함된 경우 예외가 발생한다.")

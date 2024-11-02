@@ -37,7 +37,7 @@ public class InputValidator {
 
     private void validateIsMultipleOfBaseAmount(int purchaseAmount) {
         if (purchaseAmount % LottoRule.PURCHASE_AMOUNT_UNIT != ZERO) {
-            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.getMessage());
+            throw new IllegalArgumentException(InputError.PURCHASE_AMOUNT_UNIT_INVALID.getMessage());
         }
     }
 
