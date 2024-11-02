@@ -9,29 +9,28 @@ import lotto.domain.Rank;
 
 public class LottoResultAnalysisService {
 
-    private final List<Integer> winningNumbers;
+    private final Lotto winningNumbers;
 
     public LottoResultAnalysisService(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
+        this.winningNumbers = new Lotto(winningNumbers);
     }
 
     public List<Rank> generateWinningResults(List<Lotto> lottos) {
         List<Rank> results = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
-            int matchedCount = countDuplicate(numbers);
+            int matchedCount = countDuplicate(lotto);
 
             results.add(Rank.findByMatchedCount(matchedCount));
         }
         return results;
     }
 
-    private int countDuplicate(List<Integer> numbers) {
-        Set<Integer> uniqueWinningNumber = new HashSet<>(winningNumbers);
+    private int countDuplicate(Lotto lotto) {
+        Set<Integer> uniqueWinningNumber = new HashSet<>(winningNumbers.getNumbers());
         int count = 0;
 
-        for (int num : numbers) {
+        for (int num : lotto.getNumbers()) {
             if(!uniqueWinningNumber.add(num)) {
                 count++;
             }
