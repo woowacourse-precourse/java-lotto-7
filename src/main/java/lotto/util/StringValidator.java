@@ -6,8 +6,12 @@ public class StringValidator {
     }
 
     public static void validateNotBlank(String value) {
-        if (value == null || value.trim().isEmpty()) {
-            throw new IllegalArgumentException("문자열은 null이거나 공백일 수 없습니다.");
+        if (value == null) {
+            throw new IllegalArgumentException("문자열은 null일 수 없습니다.");
+        }
+
+        if (value.trim().isEmpty()) {
+            throw new IllegalArgumentException("문자열은 공백일 수 없습니다.");
         }
     }
 
