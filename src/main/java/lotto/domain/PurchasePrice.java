@@ -8,6 +8,7 @@ public class PurchasePrice {
     private final long price;
 
     public PurchasePrice(String price) {
+        PriceValidator.validatePrice(price);
         this.price = Converter.convertStringToLong(price);
     }
 

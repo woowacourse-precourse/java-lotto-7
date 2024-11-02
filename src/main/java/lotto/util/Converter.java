@@ -20,4 +20,14 @@ public class Converter {
     public static int convertStringToInt(String input) {
         return Integer.parseInt(input);
     }
+
+    public static String convertIntToString(int input) {
+        return Integer.toString(input);
+    }
+
+    public static String convertListToString(List<Integer> input) {
+        return input.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
+    }
 }

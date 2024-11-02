@@ -2,12 +2,15 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.util.Converter;
+import lotto.validation.WinningNumberValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        WinningNumberValidator.validateWinningNumber(Converter.convertListToString(numbers));
         this.numbers = numbers;
     }
 
