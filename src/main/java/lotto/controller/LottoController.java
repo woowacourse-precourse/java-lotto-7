@@ -29,6 +29,8 @@ public class LottoController {
         outputView.printLotto(lotto, lottoNum);
 
         String lottoWinningNumbers = inputView.inputLottoWinningNumbers();
+        lottoService.validateWinningNumbers(lottoWinningNumbers);
+
         String lottoBonusNumber = inputView.inputLottoBonusNumber();
         lottoService.winningLotto(lottoWinningNumbers, lottoBonusNumber);
 
