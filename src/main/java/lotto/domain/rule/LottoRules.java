@@ -8,6 +8,7 @@ public enum LottoRules {
     AUTO_LOTTO_PRICE(1000);
 
 
+
     private final int value;
 
     LottoRules(int value) {

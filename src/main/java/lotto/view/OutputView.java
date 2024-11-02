@@ -1,8 +1,12 @@
 package lotto.view;
 
 import lotto.domain.AutoLotto;
+import lotto.domain.rule.LottoRules;
+import lotto.domain.rule.WinningRules;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -21,5 +25,24 @@ public class OutputView {
         System.out.println(error + " 다시 입력하세요.");
     }
 
-    //winningStatistics
+    public void winningStatistics(Map<WinningRules, Long> results) {
+        DecimalFormat currencyFormat = new DecimalFormat("#,###");
+        winningStatisticsStart();
+        for (WinningRules rank : WinningRules.values()) {
+            if (rank != WinningRules.NO_MATCH) {
+                System.out.printf("%d개 일치%s (%s원) - %d개\n",
+                        rank.getMatchCount(),
+                        rank == WinningRules.FIVE_MATCH_WITH_BONUS ? ", 보너스 볼 일치" : "",
+                        currencyFormat.format(rank.getPrize()),
+                        results.getOrDefault(rank,0L));
+            }
+        }
+    }
+
+    private void winningStatisticsStart() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
+
 }

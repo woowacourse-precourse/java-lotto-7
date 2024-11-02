@@ -22,6 +22,10 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumber(String inputBonusNumber) {
         validateNullOrEmpty(inputBonusNumber);
         validateParsableToInt(inputBonusNumber);

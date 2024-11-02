@@ -2,11 +2,13 @@ package lotto.controller;
 
 import lotto.domain.AutoLotto;
 import lotto.domain.WinningLotto;
+import lotto.domain.rule.LottoRules;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
@@ -26,7 +28,7 @@ public class LottoController {
         outputView.lottos(autoLottos);
         WinningLotto winningLotto = getWinningLottoOrReapeat();
         setWinningLottoBonusNumberOrRepeat(winningLotto);
-        //outputView.winningStatistics
+        outputView.winningStatistics(lottoService.calculateResults(autoLottos, winningLotto));
 
     }
 
