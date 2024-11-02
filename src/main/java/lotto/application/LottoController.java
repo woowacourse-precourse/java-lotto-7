@@ -29,6 +29,7 @@ public class LottoController {
         List<Lotto> issuedLotto = lottoTicketIssueService.issueLotto();
         outPutView.printBoughtLotto(issuedLotto);
         splitCommaAndConvertToList(inputView.readWinningNumbers());
+        inputView.readBonusNumber();
     }
 
     private void splitCommaAndConvertToList(String winningNumber) {
