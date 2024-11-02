@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
+
     private int money;
     private List<Lotto> lottos = new ArrayList<>();
 
@@ -24,4 +25,5 @@ public class Customer {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoStore {
+
     public static final int LOTTO_PRICE = 1000;
     private LottoGenerator lottoGenerator;
 
@@ -32,4 +33,5 @@ public class LottoStore {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + LOTTO_PRICE + "원 단위여야 합니다.");
         }
     }
+
 }
