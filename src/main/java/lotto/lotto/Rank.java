@@ -44,4 +44,12 @@ public enum Rank {
     private static boolean isSecondRank(int count, boolean isMatchBonusNumber) {
         return count == SECOND.matchingCount && isMatchBonusNumber;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getMatchingCount() {
+        return matchingCount;
+    }
 }
