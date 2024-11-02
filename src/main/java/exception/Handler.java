@@ -16,7 +16,7 @@ public class Handler {
         return money;
     }
 
-    private static boolean moneyIsValid(int money) {
+    protected static boolean moneyIsValid(int money) {
         if (money % lotto.Lotto.Price.PRICE != 0) {
             Message message = new Message(Integer.toString(money));
             String exceptionMessage = message.getMessage(Message.INVALID_MONEY);

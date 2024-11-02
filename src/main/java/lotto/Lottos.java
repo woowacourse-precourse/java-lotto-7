@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.Lotto.Rank;
 
-public class Collection {
+public class Lottos {
     public final int NUMBER;
 
-    private Collection(int number) {
+    private Lottos(int number) {
         this.NUMBER = number;
     }
 
@@ -45,12 +45,12 @@ public class Collection {
             Input input = new Input();
             String lottoInputNumbers = input.getInput();
             try {
-                parsedInput = Collection.parsed(lottoInputNumbers);
+                parsedInput = Lottos.parsed(lottoInputNumbers);
             } catch (IllegalArgumentException ex) {
                 Handler.handleException(lottoInputNumbers, Message.INVALID_INPUT_STRING);
                 continue;
             }
-            sortedNumbers = Collection.getSorted(parsedInput);
+            sortedNumbers = Lottos.getSorted(parsedInput);
             validator = Handler.isValid(sortedNumbers);
         }
         return new Lotto(sortedNumbers);
@@ -65,7 +65,7 @@ public class Collection {
             Input input = new Input();
             String inputBonusNumber = input.getInput();
             try {
-                bonusNumberContainer = Collection.parsed(inputBonusNumber);
+                bonusNumberContainer = Lottos.parsed(inputBonusNumber);
                 bonusNumber = bonusNumberContainer.getFirst();
                 if (bonusNumberContainer.size() != 1) {
                     throw new IllegalArgumentException();
@@ -85,8 +85,6 @@ public class Collection {
         return bonusNumber;
     }
 
-
-
     public static List<Integer> countRank(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : lottos) {
@@ -94,11 +92,33 @@ public class Collection {
             ranks.add(rank);
         }
         List<Integer> counter = new ArrayList<>();
-        counter.add(ranks.stream().filter(x -> x.equals(Rank.FIRST)).toList().size());
-        counter.add(ranks.stream().filter(x -> x.equals(Rank.SECOND)).toList().size());
-        counter.add(ranks.stream().filter(x -> x.equals(Rank.THIRD)).toList().size());
-        counter.add(ranks.stream().filter(x -> x.equals(Rank.FOURTH)).toList().size());
-        counter.add(ranks.stream().filter(x -> x.equals(Rank.FIFTH)).toList().size());
+        List<Rank> entireRanks = List.of(Rank.FIRST,Rank.SECOND,Rank.THIRD,Rank.FOURTH,Rank.FIFTH);
+        for (Rank rank: entireRanks) {
+            counter.add(ranks.stream().filter(x -> x.equals(rank)).toList().size());
+        }
         return counter;
     }
+
+    public static int getGainedMoney(List<Integer> rank) {
+        int gainedMoney = 0;
+        for (int i = 0; i < rank.size(); i++) {
+            gainedMoney += rank.get(i) * lotto.Lotto.value.get(i);
+        }
+        return gainedMoney;
+    }
+
+    public static float getRateOfReturn(int gainedMoney, int lottoNumber) {
+        return (float) gainedMoney / lottoNumber / lotto.Lotto.Price.PRICE * 100;
+    }
+
+    public static String getResult(List<Integer> rank, int lottoNumber) {
+        int gainedMoney = Lottos.getGainedMoney(rank);
+        float rateOfReturn = Lottos.getRateOfReturn(gainedMoney, lottoNumber);
+
+        List<String> valueWithComma = lotto.Lotto.valueWithComma;
+        return io.Print.RESULT.formatted(valueWithComma.get(4), rank.get(4), valueWithComma.get(3), rank.get(3),
+                valueWithComma.get(2), rank.get(2), valueWithComma.get(1), rank.get(1), valueWithComma.get(0),
+                rank.get(0), rateOfReturn);
+    }
+
 }

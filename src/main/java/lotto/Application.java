@@ -8,17 +8,17 @@ public class Application {
         int lottoNumber = exception.Handler.getLottoNumber();
 
         io.Print.print(lottoNumber + io.Print.NUMBER_PRINT_MESSAGE);
-        List<Lotto> lottos = lotto.Collection.getLottos(lottoNumber);
+        List<Lotto> lottos = Lottos.getLottos(lottoNumber);
         lotto.Lotto.printLottos(lottos);
 
         io.Print.print(io.Print.NUMBERS_INPUT_MESSAGE);
-        Lotto winningLotto = lotto.Collection.getWinningLotto();
+        Lotto winningLotto = Lottos.getWinningLotto();
 
         io.Print.print(io.Print.BONUS_NUMBER_INPUT_MESSAGE);
-        int bonusNumber = lotto.Collection.getBonusNumber(winningLotto);
+        int bonusNumber = Lottos.getBonusNumber(winningLotto);
 
-        List<Integer> rank = lotto.Collection.countRank(lottos, winningLotto, bonusNumber);
-        String statistic = io.Print.getStatistic(rank, lottoNumber);
+        List<Integer> rank = Lottos.countRank(lottos, winningLotto, bonusNumber);
+        String statistic = Lottos.getResult(rank, lottoNumber);
         io.Print.print(statistic);
     }
 }

@@ -1,7 +1,5 @@
 package io;
 
-import java.util.List;
-
 public class Print {
     public static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NUMBER_PRINT_MESSAGE = "개를 구매했습니다.";
@@ -28,16 +26,4 @@ public class Print {
         System.out.println(print.message);
     }
 
-    public static String getStatistic(List<Integer> rank, int lottoNumber) {
-        int gainedMoney = 0;
-        for (int i = 0; i < rank.size(); i++) {
-            gainedMoney += rank.get(i) * lotto.Lotto.value.get(i);
-        }
-        float rate = (float) gainedMoney / lottoNumber / lotto.Lotto.Price.PRICE * 100;
-
-        List<String> valueWithComma = lotto.Lotto.valueWithComma;
-        return RESULT.formatted(valueWithComma.get(4), rank.get(4), valueWithComma.get(3), rank.get(3),
-                valueWithComma.get(2), rank.get(2), valueWithComma.get(1), rank.get(1), valueWithComma.get(0),
-                rank.get(0), rate);
-    }
 }

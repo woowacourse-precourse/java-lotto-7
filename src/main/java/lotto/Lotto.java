@@ -35,26 +35,23 @@ public class Lotto {
 
     public static Rank getRank(Lotto lotto, Lotto winningLotto, int bonusNumber) {
         int count = lotto.numbers.stream().filter(x -> winningLotto.numbers.contains(x)).toList().size();
-        if (count == 6) {
-            return Rank.FIRST;
-        }
-        if (count == 5) {
+        List<Rank> ranks = List.of(Rank.NONE, Rank.NONE, Rank.NONE, Rank.FIFTH, Rank.FOURTH, Rank.NONE, Rank.FIRST);
+        if (count == 5 && lotto.numbers.contains(bonusNumber)) {
             return Rank.SECOND;
         }
-        if (count == 4 && winningLotto.numbers.contains(bonusNumber)) {
+        if (count == 5 && !lotto.numbers.contains(bonusNumber)) {
             return Rank.THIRD;
         }
-        if (count == 4 && !winningLotto.numbers.contains(bonusNumber)) {
-            return Rank.FOURTH;
-        }
-        if (count == 3) {
-            return Rank.FIFTH;
-        }
-        return Rank.NONE;
+        return ranks.get(count);
     }
 
     public static final List<Integer> value = List.of(2000000000, 30000000, 1500000, 50000, 5000);
 
-    public static final List<String> valueWithComma = lotto.Lotto.value.stream().map(x -> String.format("%,d", x))
+
+    public static String getNumberWithComma(int number) {
+        return String.format("%,d", number);
+    }
+
+    public static final List<String> valueWithComma = lotto.Lotto.value.stream().map(lotto.Lotto::getNumberWithComma)
             .toList();
 }
