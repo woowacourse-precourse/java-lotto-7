@@ -2,12 +2,13 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.model.service.LottoGenerateService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class LottoGeneratorTest {
-    private final LottoGenerator lottoGenerator = new LottoGenerator();
+class LottoGenerateServiceTest {
+    private final LottoGenerateService lottoGenerator = new LottoGenerateService();
 
     @DisplayName("로또 생성 테스트")
     @ParameterizedTest

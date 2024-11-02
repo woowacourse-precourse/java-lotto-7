@@ -1,11 +1,11 @@
-package lotto.model;
+package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.domain.Lotto;
 
-public class LottoGenerator {
+public class LottoGenerateService {
 
     public List<Lotto> generateLottos(int amount) {
         int countOfGenerate = amount / 1000;
