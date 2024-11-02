@@ -12,35 +12,13 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int purchaseAmount = calculatePurchaseAmount(scanPurchasePrice());
-        Lotto winningNumbersLotto;
 
         List<Lotto> lottos = generateLottos(purchaseAmount);
         printLottos(purchaseAmount, lottos);
 
-        while (true) {
-            System.out.println("\n당첨 번호를 입력해 주세요.");
-            String[] winningNumbersInput = Console.readLine().split(",");
-            List<Integer> winningNumbers = new ArrayList<>();
-            try{
-                if (winningNumbersInput.length != 6) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
-                }
-
-                for (String winningNumber : winningNumbersInput) {
-                    int number = Validator.validateNumber(winningNumber);
-                    winningNumbers.add(number);
-                }
-
-                winningNumbersLotto = new Lotto(winningNumbers);
-
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Lotto winningNumbersLotto = scanWinningNumbers();
 
         int bonusNumber;
-
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String bonusNumberInput = Console.readLine();
@@ -106,6 +84,28 @@ public class Application {
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             lotto.printLotto();
+        }
+    }
+
+    public static Lotto scanWinningNumbers() {
+        while (true) {
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String[] winningNumbersInput = Console.readLine().split(",");
+            List<Integer> winningNumbers = new ArrayList<>();
+            try{
+                if (winningNumbersInput.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.(쉼표(,)로 구분)");
+                }
+
+                for (String winningNumber : winningNumbersInput) {
+                    int number = Validator.validateNumber(winningNumber);
+                    winningNumbers.add(number);
+                }
+
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
