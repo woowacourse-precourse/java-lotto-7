@@ -1,7 +1,7 @@
 package lotto;
 
-import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_COUNT_ERROR;
-import static lotto.common.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR;
+import static lotto.common.exception.ErrorMessage.LOTTO_NUMBERS_COUNT_ERROR;
+import static lotto.common.exception.ErrorMessage.LOTTO_NUMBERS_DUPLICATION_ERROR;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -47,7 +47,7 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_COUNT_ERROR.message());
+                .hasMessage(LOTTO_NUMBERS_COUNT_ERROR.message());
     }
 
     @Test
@@ -65,7 +65,7 @@ class LottoTest {
         // when & then
         assertThatThrownBy(() -> Lotto.from(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LOTTO_NUMBER_DUPLICATION_ERROR.message());
+                .hasMessage(LOTTO_NUMBERS_DUPLICATION_ERROR.message());
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
