@@ -39,7 +39,8 @@ class LottoMachineImplTest {
         List<Integer> lottoTicket = List.of(1, 2, 3, 40, 41, 42);
         List<Lotto> lottoTickets = List.of(new Lotto(lottoTicket));
         //when
-        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers, bonusNumber);
+        HashMap<LottoRank, Integer> winningResult = lottoMachine.getWinningResult(lottoTickets, winningNumbers,
+                bonusNumber);
         Integer winningNumber = winningResult.get(LottoRank.RANK_5);
         //then
         Assertions.assertThat(winningNumber).isEqualTo(1);

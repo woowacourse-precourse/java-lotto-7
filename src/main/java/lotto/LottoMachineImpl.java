@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.LottoRank.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +12,7 @@ public class LottoMachineImpl implements LottoMachine {
     @Override
     public List<Lotto> createLottoTickets(String inputMoney) {
         List<Lotto> lottoTickets = new ArrayList<>();
-        int money = InputValidater.validateMoney(inputMoney);
+        int money = InputValidator.validateMoney(inputMoney);
         int count = money / 1000;
 
         for (int i = 0; i < count; i++) {
@@ -24,9 +25,10 @@ public class LottoMachineImpl implements LottoMachine {
     }
 
     @Override
-    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers, String inputBonusNumber) {
-        List<Integer> winningNumbers = InputValidater.validateWiningNumbers(inputWinningNumbers);
-        int bonusNumber = InputValidater.validateBonusNumber(winningNumbers, inputBonusNumber);
+    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers,
+                                                        String inputBonusNumber) {
+        List<Integer> winningNumbers = InputValidator.validateWiningNumbers(inputWinningNumbers);
+        int bonusNumber = InputValidator.validateBonusNumber(winningNumbers, inputBonusNumber);
 
         HashMap<LottoRank, Integer> winningResult = new HashMap<>();
         for (LottoRank rank : LottoRank.values()) {
@@ -86,7 +88,8 @@ public class LottoMachineImpl implements LottoMachine {
         return count;
     }
 
-    private void updateWinningResult(int matchCount, Lotto lottoTicket, int bonusNumber, HashMap<LottoRank, Integer> winningResult) {
+    private void updateWinningResult(int matchCount, Lotto lottoTicket, int bonusNumber,
+                                     HashMap<LottoRank, Integer> winningResult) {
         boolean isBonusNumber = isMatchBonusNumber(lottoTicket, bonusNumber);
         LottoRank key = getRank(matchCount, isBonusNumber);
         int value = winningResult.get(key) + 1;

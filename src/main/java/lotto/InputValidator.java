@@ -1,18 +1,16 @@
 package lotto;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
-public class InputValidater {
+public class InputValidator {
     public static List<Integer> validateWiningNumbers(String inputWinningNumbers) {
-        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers
-                .split(","))
+        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(","))
                 .map(Integer::parseInt)
-                .toList();                              
+                .toList();
 
         //당첨 번호가 1 ~ 45 사이의 값이 아닐 때 (공통)
-        for (int winningNumber: winningNumbers) {
+        for (int winningNumber : winningNumbers) {
             validateNumberRange(winningNumber);
         }
         //당첨 번호가 총 개수가 6개가 아닐 때
@@ -55,7 +53,7 @@ public class InputValidater {
         }
     }
 
-    static private int isNumber(String target){
+    static private int isNumber(String target) {
         try {
             return Integer.parseInt(target);
         } catch (NumberFormatException e) {
