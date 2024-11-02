@@ -11,12 +11,20 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkLottoNumberRange(numbers);
+        checkRedundancy(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+    }
+
+    // 중복된 로또 번호가 있는지 확인하는 메서드
+    private void checkRedundancy(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
         }
     }
 
