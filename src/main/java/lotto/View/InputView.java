@@ -1,7 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
+import lotto.Model.Lotto;
 import lotto.Messages.ErrorMessage;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Messages.ErrorMessage;
@@ -68,4 +68,5 @@ public class Lotto {
 
         return myresult;
     }
+
 }

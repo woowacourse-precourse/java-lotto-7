@@ -1,9 +1,8 @@
 package lotto.View;
 
-import lotto.Lotto;
+import lotto.Model.Lotto;
 import lotto.Messages.StateMessage;
-import lotto.MyResults;
-import lotto.WinningDetails;
+import lotto.Model.WinningDetails;
 
 public class OutputView {
     public static final String LOTTO_AMOUNT_PHRASE = "구입금액을 입력해 주세요.";
