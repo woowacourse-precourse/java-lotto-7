@@ -13,10 +13,17 @@ public enum Constants {
     ERROR_LOTTO_COUNT("로또 번호는 6개여야 합니다."),
     ERROR_LOTTO_NUMBER("로또 번호는 1부터 45까지의 숫자여야 합니다."),
     ERROR_BONUS_NUMBER("보너스 번호는 1부터 45까지의 숫자여야 합니다."),
+    WINNING_THREE_COUNT("3개 일치 (5000원) - "),
+    WINNING_FOUR_COUNT("4개 일치 (50000원) - "),
+    WINNING_FIVE_COUNT("5개 일치 (1500000원) - "),
+    WINNING_FIVE_COUNT_BONUS("5개 일치, 보너스 볼 일치 (30000000원) - "),
+    WINNING_SIX_COUNT("6개 일치 (2000000000원) - "),
+    EA("개"),
     LINE_BREAK("\n"),
     LEFT_BRACKET("["),
     RIGHT_BRACKET("]"),
     COMMA(", "),
+    LINES("---"),
     ;
 
     private final String message;

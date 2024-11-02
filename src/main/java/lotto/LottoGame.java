@@ -1,12 +1,15 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 import lotto.util.Container;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
@@ -15,6 +18,8 @@ public class LottoGame {
 
     private static List<Lotto> lottoes = new ArrayList<>();
     private static List<Integer> winningNumbers = new ArrayList<>();
+    private static Map<Ranking, Integer> result = new LinkedHashMap<>();
+
     private static int amount = 0;
     private static int bonusNumber = 0;
 
@@ -23,6 +28,8 @@ public class LottoGame {
         setLottoes();
 
         setNumbers();
+
+        result();
     }
 
     private static void getAmount() {
@@ -42,6 +49,21 @@ public class LottoGame {
 
         outputView.printBonusNumber();
         bonusNumber = inputView.setBonusNumber();
-        System.out.println(bonusNumber);
+    }
+
+    private static void result() {
+        outputView.printWinningStatistics();
+
+        for (int i = 0; i < lottoes.size(); i++) {
+            Lotto lotto = lottoes.get(i);
+
+            int matchCount = lotto.matchCount(winningNumbers);
+            boolean isBonusNumber = lotto.contains(bonusNumber);
+
+            Ranking ranking = Ranking.valueOf(matchCount, isBonusNumber);
+            result.put(ranking, result.getOrDefault(ranking, 0) + 1);
+        }
+
+        outputView.printResult(result);
     }
 }
