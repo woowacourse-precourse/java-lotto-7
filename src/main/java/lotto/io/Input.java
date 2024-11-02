@@ -8,39 +8,43 @@ public class Input {
     private static final Pattern isWinningNumberPattern = Pattern.compile("^(0?[1-9]|[1-3][0-9]|4[0-5])(,(0?[1-9]|[1-3][0-9]|4[0-5])){5}$");
 
     public static String inputPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String price = Console.readLine();
-        try {
-            validatePrice(price);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputPrice();
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            String price = Console.readLine();
+            try {
+                validatePrice(price);
+                return price;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return price;
     }
 
     public static String inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumber = Console.readLine();
-        try {
-            validateWinningNumber(winningNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputWinningNumber();
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String winningNumber = Console.readLine();
+            try {
+                validateWinningNumber(winningNumber);
+                return winningNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
-        return winningNumber;
     }
 
     public static String inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        try {
-            validateBonusNumber(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return inputBonusNumber();
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusNumber = Console.readLine();
+            try {
+                validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return bonusNumber;
     }
 
     private static void validatePrice(String input) throws IllegalArgumentException {
