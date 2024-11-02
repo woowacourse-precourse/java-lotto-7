@@ -4,6 +4,7 @@ import static lotto.common.AppConstant.SPLIT_DELIMITER;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
@@ -29,26 +30,26 @@ public class LottoController {
     }
 
     public void run() {
-        Integer money = inputMoney();
-        List<Lotto> boughtLottoList = lottoMachine.buyLottoByPrice(money);
-        outputView.printBoughtLottoList(boughtLottoList);
+        List<Lotto> boughtLottoList = attempt(this::buyLottoByPrice);
 
         WinningLotto winningLotto = inputWinningLotto();
         LottoStatistic lottoStatistic = lottoMachine.generateLottoStatistic(winningLotto, boughtLottoList);
         outputView.printLottoStatistic(lottoStatistic);
     }
 
+    private List<Lotto> buyLottoByPrice() {
+        Integer money = inputMoney();
+        List<Lotto> lottoList = lottoMachine.buyLottoByPrice(money);
+        outputView.printBoughtLottoList(lottoList);
+
+        return lottoList;
+    }
+
     private Integer inputMoney() {
-        try {
-            String rawMoney = inputView.inputMoney();
-            inputValidator.validateInputMoney(rawMoney);
+        String rawMoney = inputView.inputMoney();
+        inputValidator.validateInputMoney(rawMoney);
 
-            return Integer.parseInt(rawMoney);
-        } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
-
-            return inputMoney();
-        }
+        return Integer.parseInt(rawMoney);
     }
 
     private WinningLotto inputWinningLotto() {
@@ -84,6 +85,15 @@ public class LottoController {
             outputView.printException(exception.getMessage());
 
             return attemptWinningBonusNumberExcluding(numberList);
+        }
+    }
+
+    private <T> T attempt(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printException(exception.getMessage());
+            return attempt(supplier);
         }
     }
 }
