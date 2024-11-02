@@ -33,4 +33,5 @@ public class CountByPrizeGrade {
     public Iterable<? extends Map.Entry<PrizeGrade, Integer>> getEntrySet() {
         return Collections.unmodifiableMap(countByPrizeGrade).entrySet();
     }
+
 }

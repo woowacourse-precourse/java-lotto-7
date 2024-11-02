@@ -48,4 +48,5 @@ public enum PrizeGrade {
     public long getMoney() {
         return money;
     }
+
 }

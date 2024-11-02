@@ -1,6 +1,7 @@
 package lotto.utils;
 
 public enum ExceptionMessage {
+
     EMPTY_INPUT("빈 칸입니다. 형식에 맞게 입력하세요."),
     BLANK_INPUT("공백(띄어쓰기) 없이 입력하세요."),
     NO_DIGIT_INPUT("숫자(양의 정수)를 입력하세요."),

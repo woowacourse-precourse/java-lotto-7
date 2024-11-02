@@ -71,5 +71,7 @@ public class BoughtLottos implements Iterable<Lotto> {
             index++;
             return lotto;
         }
+
     }
+
 }

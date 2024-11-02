@@ -27,6 +27,4 @@ public final class StringValidator {
         }
     }
 
-
-    
 }

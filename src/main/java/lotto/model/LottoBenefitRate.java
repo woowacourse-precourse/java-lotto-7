@@ -34,5 +34,4 @@ public class LottoBenefitRate {
         return rate.toString();
     }
 
-
 }

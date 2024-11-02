@@ -29,4 +29,5 @@ public class ConsoleInputView implements InputView {
         System.out.println(ENTER_BONUS_LOTTO_NUMBER);
         return Console.readLine();
     }
+
 }
