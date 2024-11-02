@@ -8,4 +8,8 @@ public class LottoChecker {
                 .count();
     }
 
+    public static boolean isMatchedBonus(Lotto issuedLotto, LottoBonus lottoBonus) {
+        return issuedLotto.getNumbers().contains(lottoBonus.getBonus());
+    }
+
 }
