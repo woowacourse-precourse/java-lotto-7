@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Input {
 
     public static int getCost() {
@@ -16,9 +18,20 @@ public class Input {
         return Console.readLine();
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> winningNumbers) {
 //        System.out.println("보너스 번호를 입력해 주세요");
         System.out.println("Input Bonus Number");
-        return Integer.parseInt(Console.readLine());
+        int num = 0;
+        boolean check = true;
+
+        while (check) {
+            num = Integer.parseInt(Console.readLine());
+            if (winningNumbers.contains(num)) {
+                System.out.println("중복이 발생되었습니다 : " + num);
+                continue;
+            }
+            check = false;
+        }
+        return num;
     }
 }

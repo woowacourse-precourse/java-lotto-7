@@ -15,7 +15,7 @@ public class Application {
                 .toList();
         System.out.println();
 
-        final int bonus = Input.getBonusNumber();
+        final int bonus = Input.getBonusNumber(winningNumbers);
         System.out.println();
 
 
