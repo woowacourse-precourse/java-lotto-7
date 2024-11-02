@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Ranking;
@@ -21,9 +22,7 @@ public class OutputView {
     public void showLottos(Lottos lottos) {
         System.out.println();
         System.out.println(String.format(LOTTO_COUNT_FORMAT, lottos.getLottos().size()));
-        lottos.getLottos().forEach(lotto -> {
-            System.out.println(lotto.getNumbers());
-        });
+        lottos.getLottos().forEach(Lotto::printSortedNumbers);
         System.out.println();
     }
 

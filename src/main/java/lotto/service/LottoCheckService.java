@@ -58,6 +58,6 @@ public class LottoCheckService {
             sumOfRevenue += (long) ranking.getWinningPrize() * results.get(ranking);
         }
 
-        return Math.round((double) sumOfRevenue / purchaseAmount * 100) / 100.0;
+        return Math.round((double) sumOfRevenue / purchaseAmount * 1000) / 10.0;
     }
 }

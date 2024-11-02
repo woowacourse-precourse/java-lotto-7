@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +21,12 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers.stream().toList();
+    }
+
+    public void printSortedNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(this.numbers);
+        Collections.sort(sortedNumbers);
+        System.out.println(sortedNumbers);
     }
 
     private void validateNumberCount(final List<Integer> numbers) {

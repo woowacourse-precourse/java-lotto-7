@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Scanner;
 
 public class InputView {
@@ -12,19 +13,19 @@ public class InputView {
 
     public String enterPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
-//        return Console.readLine();
-        return scanner.nextLine();
+        return Console.readLine();
+//        return scanner.nextLine();
     }
 
     public String enterWinningNumber() {
         System.out.println(WINNING_NUMBER_MESSAGE);
-//        return Console.readLine();
-        return scanner.nextLine();
+        return Console.readLine();
+//        return scanner.nextLine();
     }
 
     public String enterBonusNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
-//        return Console.readLine();
-        return scanner.nextLine();
+        return Console.readLine();
+//        return scanner.nextLine();
     }
 }
