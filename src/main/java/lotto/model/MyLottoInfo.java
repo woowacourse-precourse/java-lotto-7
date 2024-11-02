@@ -53,6 +53,10 @@ public class MyLottoInfo {
         return lottos;
     }
 
+    public void lottoResult(int count, boolean isBonusNumberMatch){
+
+    }
+
     public List<Lotto> getMyLotteries() {
         return myLotteries;
     }
