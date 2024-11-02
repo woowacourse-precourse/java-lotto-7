@@ -10,9 +10,9 @@ public class LottoGenerator {
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_NUMBERS_COUNT = 6;
 
-    public List<Lotto> generateLottos(int purchaseAmount) {
+    public List<Lotto> generateLottos(int numberOfLottos) {
         List<Lotto> lottos = new ArrayList<>();
-        while (lottos.size() < purchaseAmount / 1000) { // TODO 따로 빼기
+        while (lottos.size() < numberOfLottos) {
             lottos.add(generateRandomLotto());
         }
         return lottos;
