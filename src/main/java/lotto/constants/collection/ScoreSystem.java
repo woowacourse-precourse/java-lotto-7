@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * ScoreSytem과 SystemReward는 Score 객체에 들어가게 되는 점수 관련 세팅입니다.
+ * ScoreSystem과 SystemReward는 Score 객체에 들어가게 되는 점수 관련 세팅입니다.
  * DEFAULT는 점수 산출용 기록판이라고 생각하시면 될 것 같습니다.
  * 기록판의 구조는 ( 조합 List(겹치는 숫자, 보너스 숫자 일치 여부), 조합 등장 횟수) 입니다.
  */
