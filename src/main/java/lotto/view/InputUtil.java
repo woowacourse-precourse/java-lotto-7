@@ -2,14 +2,13 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class InputUtil {
     private static final String PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_NUMBER_ERROR = "[ERROR] 입력값은 자연수여야 합니다.";
+    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_NUMBER_ERROR = "[ERROR] 입력값은 공백없는 자연수여야 합니다.";
     private static final String INPUT_UNDER_ERROR = "[ERROR] 구입 금액은 1,000원 이상이어야 합니다.";
     private static final String INPUT_UNIT_ERROR = "[ERROR] 구입 금액은 1,000원 단위여야 합니다.";
     private static final String INPUT_FORMAT_ERROR = "[ERROR] 입력 형식이 올바르지 않습니다. 번호는 쉼표(,)로 구분하여 6개를 입력해야 합니다.";
@@ -34,7 +33,13 @@ public class InputUtil {
         return parseWinningNumbers(input);
     }
 
-    public static List<Integer> parseWinningNumbers(String input){
+    public static void getBonusNumber(List<Integer> winningNumbers){
+        System.out.println(BONUS_NUMBER_INPUT);
+        String bonusNumber = Console.readLine();
+        checkValidBonusNumber(bonusNumber, winningNumbers);
+    }
+
+    private static List<Integer> parseWinningNumbers(String input){
         String[] tokens = splitInput(input);
         validateNumberCount(tokens);
         return parseAndValidateNumbers(tokens);
@@ -42,20 +47,19 @@ public class InputUtil {
 
     private static List<Integer> parseAndValidateNumbers(String[] tokens) {
         List<Integer> numbers = new ArrayList<>();
-        Set<Integer> uniqueNumbers = new HashSet<>();
 
         for(String token : tokens){
             validateNumeric(token);
             validateNumberRange(token);
             int number = convertToInt(token);
-            validateUniqueNumber(number, uniqueNumbers);
+            validateUniqueNumber(number, numbers);
             numbers.add(number);
         }
         return numbers;
     }
 
-    private static void validateUniqueNumber(int number, Set<Integer> uniqueNumbers){
-        if(!uniqueNumbers.add(number)){
+    private static void validateUniqueNumber(int number, List<Integer> uniqueNumbers){
+        if(uniqueNumbers.contains(number)){
             throw new IllegalArgumentException(INPUT_DUPLICATE_ERROR);
         }
     }
@@ -68,6 +72,13 @@ public class InputUtil {
 
     private static String[] splitInput(String input){
         return input.split(",");
+    }
+
+    private static void checkValidBonusNumber(String input, List<Integer> winnigNumbers) {
+        validateNumeric(input);
+        validateNumberRange(input);
+        int number = Integer.parseInt(input);
+        validateUniqueNumber(number, winnigNumbers);
     }
 
     private static void validateNumberRange(String input) {
