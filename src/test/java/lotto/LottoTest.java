@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.LottoController;
 import lotto.model.Bonus;
+import lotto.model.Buy;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,6 +65,22 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 100)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1에서 45 사이의 숫자를 입력해야 합니다.");
+    }
+
+    @Test
+    void 구매_금액_천단위_아니면_예외가_발생한다(){
+        assertThatThrownBy(() -> new Buy(-10003))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 구매 금액 단위는 1000원 단위 입니다.");
+
+    }
+
+    @Test
+    void 구매_금액_양수가_아니면_예외가_발생한다(){
+        assertThatThrownBy(() -> new Buy(-1000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 구매 금액은 양수만 입력해 주세요.");
+
     }
 
 
