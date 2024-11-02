@@ -80,4 +80,22 @@ class LottoServiceTest {
         assertThat(lottoTickets.get(0).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
         assertThat(lottoTickets.get(9).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
     }
+
+    @Test
+    @DisplayName("여러 장의 로또 티켓 생성 확인: 오름차순")
+    void createLottoTickets_ascendingOrder() {
+        // given
+        List<Integer> fixedResults = Arrays.asList(12, 11, 10, 9, 8, 7);
+        testRandomUtil = new TestRandomUtil(fixedResults);
+        lottoService = new LottoService(testRandomUtil);
+        Integer lottoCount = 10;
+
+        // when
+        List<Lotto> lottoTickets = lottoService.createLottoTickets(lottoCount);
+
+        // then
+        assertThat(lottoTickets).hasSize(10);
+        assertThat(lottoTickets.get(0).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
+        assertThat(lottoTickets.get(9).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
+    }
 }
