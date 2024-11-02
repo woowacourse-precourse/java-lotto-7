@@ -21,6 +21,7 @@ public class RandomNumber {
         while (randomNumbers.size() != LOTTO_LENGTH) {
             int randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
             verifyDuplicateRandomNumber(randomNumbers, randomNumber);
+            Collections.sort(randomNumbers);
         }
         return Collections.unmodifiableList(randomNumbers);
     }
