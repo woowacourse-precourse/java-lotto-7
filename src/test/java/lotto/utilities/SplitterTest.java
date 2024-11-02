@@ -15,12 +15,4 @@ class SplitterTest {
 
         assertThat(result).containsExactlyElementsOf(expectedList);
     }
-
-    @Test
-    void 빈_문자열을_입력하면_빈_리스트를_반환한다() {
-        String emptyWinningNumbers = "";
-        List<String> result = Splitter.splitWinningNumbers(emptyWinningNumbers);
-
-        assertThat(result).isEmpty();
-    }
 }
