@@ -6,9 +6,10 @@ public class LottoService {
 
     private final MoneyInputView moneyInputView = new MoneyInputView();
 
-    public int getMoney() {
+    public Money getMoney() {
         String inputMoney = moneyInputView.inputMoney();
+        int money = Integer.parseInt(inputMoney);
 
-        return Integer.parseInt(inputMoney);
+        return new Money(money);
     }
 }
