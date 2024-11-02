@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +18,13 @@ public class Lotto {
         this.numbers = numbers.stream()
                 .sorted(Comparator.comparingInt(LottoNumber::getValue))
                 .collect(Collectors.toList());
+    }
+
+    public static Lotto from(String numbers) {
+        return new Lotto(
+                Arrays.stream(numbers.split(","))
+                        .map(LottoNumber::from)
+                        .collect(Collectors.toList()));
     }
 
     private void validate(List<LottoNumber> numbers) {
