@@ -113,8 +113,6 @@
         ├── Input.java
         ├── Output.java
         └── WinningStatisticsPrinter.java
-
-
 ```
 
 - 서비스
