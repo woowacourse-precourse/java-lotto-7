@@ -16,6 +16,8 @@ public class Application {
     public static void main(String[] args) {
         readUserInput();
 
+        initLottoCountByWinning();
+
         for (int i = 0; i < numOfLotto; i++) {
             Lotto lotto = lottos.get(i);
 
@@ -23,6 +25,8 @@ public class Application {
             boolean isBonusMatched = lotto.checkBonusNumberMatch(bonusNumber);
 
             WinningCount winningCount = WinningCount.from(numberOfWinningNumber, isBonusMatched);
+            if(winningCount == null) continue;
+
             lottoCountByWinning.put(winningCount, lottoCountByWinning.get(winningCount) + 1);
         }
 

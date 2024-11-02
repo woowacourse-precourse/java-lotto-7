@@ -41,6 +41,6 @@ public enum WinningCount {
             }
         }
 
-        throw new IllegalArgumentException("[ERROR] 당첨 번호와 일치하는 개수는 3 이상 6이하의 숫자여야 합니다.");
+        return null;
     }
 }
