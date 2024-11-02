@@ -1,22 +1,28 @@
 package controller;
 
-import convert.InputConvertor;
 import domain.LottoMachine;
 import domain.LottoPlay;
 import domain.User;
 import java.util.List;
 import service.UserService;
-import util.LottoGenerator;
+import util.DependencyFactory;
 import valid.Task;
 import view.InputView;
 import view.OutputView;
 
 public class LottoController {
 
-    private final InputView inputView = new InputView(new InputConvertor());
-    private final OutputView outputView = new OutputView();
-    private final UserService userService = new UserService(new LottoGenerator());
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final UserService userService;
     private LottoPlay lottoPlay;
+
+    public LottoController(DependencyFactory factory) {
+        this.inputView = factory.getInputView();
+        this.outputView = factory.getOutputView();
+        this.userService = factory.getUserService();
+    }
+
 
     public void run() {
         initLottoPlay();
