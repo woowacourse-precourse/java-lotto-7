@@ -31,6 +31,7 @@ class RandomLottoNumberGeneratorTest {
     void 로또_번호_중복_테스트() {
         List<Integer> lottoNumbers = randomLottoNumberGenerator.generate();
         Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+
         assertThat(uniqueNumbers).hasSize(LottoConstants.LOTTO_NUMBER_COUNT);
     }
 
@@ -39,6 +40,7 @@ class RandomLottoNumberGeneratorTest {
         List<Integer> lottoNumbers = randomLottoNumberGenerator.generate();
         List<Integer> sortedNumbers = new ArrayList<>(lottoNumbers);
         Collections.sort(sortedNumbers);
+
         assertThat(lottoNumbers).isEqualTo(sortedNumbers);
     }
 }

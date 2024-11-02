@@ -12,8 +12,10 @@ class WinningLottoTest {
 
     @Test
     void 당첨_번호_보너스_번호_생성_테스트() {
-        WinningLotto winningLotto = new WinningLotto(VALID_WINNING_NUMBERS, VALID_BONUS_NUMBER);
-        assertThat(winningLotto.getWinningLotto().getNumbers()).isEqualTo(VALID_WINNING_NUMBERS);
+        Lotto winningLottoNumbers = new Lotto(VALID_WINNING_NUMBERS);
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, VALID_BONUS_NUMBER);
+
+        assertThat(winningLotto.getWinningNumbers().getNumbers()).isEqualTo(VALID_WINNING_NUMBERS);
         assertThat(winningLotto.getBonusNumber()).isEqualTo(VALID_BONUS_NUMBER);
     }
 }
