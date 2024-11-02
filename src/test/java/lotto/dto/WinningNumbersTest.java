@@ -1,15 +1,15 @@
 package lotto.dto;
 
+import static lotto.exception.ErrorMessage.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.exception.CustomIllegalArgumentException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATE;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class WinningNumbersTest {
 
@@ -43,6 +43,28 @@ class WinningNumbersTest {
             assertThatThrownBy(() -> new WinningNumbers(lottoNumbers, bonusNumber))
                     .isInstanceOf(CustomIllegalArgumentException.class)
                     .hasMessage(BONUS_NUMBER_DUPLICATE.getMessage());
+        }
+
+        @Test
+        @DisplayName("로또 번호가 null일 경우 예외를 발생시킨다.")
+        void 로또_번호가_null일_경우_예외를_발생시킨다() {
+            List<Integer> lottoNumbers = null;
+            int bonusNumber = 7;
+
+            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers, bonusNumber))
+                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .hasMessage(NULL_LOTTO_NUMBERS.getMessage());
+        }
+
+        @Test
+        @DisplayName("로또 번호가 빈 리스트일 경우 예외를 발생시킨다.")
+        void 로또_번호가_빈_리스트일_경우_예외를_발생시킨다() {
+            List<Integer> lottoNumbers = List.of();
+            int bonusNumber = 7;
+
+            assertThatThrownBy(() -> new WinningNumbers(lottoNumbers, bonusNumber))
+                    .isInstanceOf(CustomIllegalArgumentException.class)
+                    .hasMessage(EMPTY_LOTTO_NUMBERS.getMessage());
         }
     }
 }
