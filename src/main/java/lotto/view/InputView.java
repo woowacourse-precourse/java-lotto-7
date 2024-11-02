@@ -5,6 +5,9 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.ExceptionHandler;
 import lotto.util.LottoValueUtil;
 
+import java.util.List;
+import java.util.Set;
+
 public class InputView {
 
     public int readLottoAmount() {
@@ -13,6 +16,15 @@ public class InputView {
             return LottoValueUtil.toLottoAmount(input);
         } catch (IllegalArgumentException e) {
             return readLottoAmount();
+        }
+    }
+
+    public Set<Integer> readWinningNumbers(){
+        try {
+            String input = readLine();
+            return LottoValueUtil.toWinningNumbers(input);
+        }catch (IllegalArgumentException e){
+            return readWinningNumbers();
         }
     }
 

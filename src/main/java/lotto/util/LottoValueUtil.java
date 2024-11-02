@@ -3,7 +3,16 @@ package lotto.util;
 import lotto.exception.ErrorMessage;
 import lotto.exception.ExceptionHandler;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class LottoValueUtil {
+
+    private final static String DELIMITER = ",";
+
     public static int toLottoAmount(String input) {
         try{
             int amount = Integer.parseInt(input);
@@ -16,6 +25,30 @@ public class LottoValueUtil {
         } catch (IllegalArgumentException e){
             ExceptionHandler.inputException(ErrorMessage.INVALID_AMOUNT);
         }
-        return -1;
+        throw new IllegalArgumentException("[ERROR] 처리 중 오류가 발생했습니다.");
+    }
+
+    public static Set<Integer> toWinningNumbers (String input){
+        try {
+            Set<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
+                    .map(String::trim)
+                    .mapToInt(Integer::parseInt)
+                    .peek(i -> {
+                        if(i>45 || i<1){
+                            throw new IllegalArgumentException();
+                        }
+                    })
+                    .boxed()
+                    .collect(Collectors.toSet());
+            if(winningNumbers.size()==6){
+                return winningNumbers;
+            }
+            throw new IllegalArgumentException();
+        } catch (NumberFormatException e){
+            ExceptionHandler.inputException(ErrorMessage.INVALID_LOTTO_NUMBER);
+        } catch (IllegalArgumentException e){
+            ExceptionHandler.inputException(ErrorMessage.INVALID_LOTTO_NUMBER);
+        }
+        throw new IllegalArgumentException("[ERROR]: 처리 중 오류가 발생했습니다.");
     }
 }

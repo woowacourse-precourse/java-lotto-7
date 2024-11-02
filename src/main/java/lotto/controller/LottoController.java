@@ -5,6 +5,9 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+import java.util.Set;
+
 public class LottoController {
 
     private final LottoService lottoService;
@@ -23,7 +26,8 @@ public class LottoController {
     public void run(){
         int lottoCount = readLottoCount();
         Lottos lottos = IssueLottos(lottoCount);
-
+        Set<Integer> winningNumbers = readWinningNumbers();
+//        int bonusNumber =
     }
 
     public int readLottoCount(){
@@ -36,5 +40,10 @@ public class LottoController {
         Lottos lottos = lottoService.issueLottos(lottoCount);
         outputView.purchaseLottoMessage(lottoCount, lottos);
         return lottos;
+    }
+
+    public Set<Integer> readWinningNumbers(){
+        outputView.winningNumberMessage();
+        return inputView.readWinningNumbers();
     }
 }
