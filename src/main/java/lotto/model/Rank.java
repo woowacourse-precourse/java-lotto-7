@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.exception.ErrorMessage.NOT_EXIST_RANK_STATE;
+
 import java.util.Arrays;
 
 public enum Rank {
@@ -21,7 +23,7 @@ public enum Rank {
         Rank rank = Arrays.stream(values())
                 .filter(value -> value.sameCount == sameCount)
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalStateException(NOT_EXIST_RANK_STATE.getMessage()));
         if (rank == SECOND && !isBonusNumberWinning) {
             rank = THIRD;
         }
