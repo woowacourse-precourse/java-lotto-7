@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,12 +10,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import lotto.domains.lotto.Lotto;
 
 class LottoTest {
-    @DisplayName("로또 클래스가 올바르게 생성된다.")
+    @DisplayName("Lotto 클래스가 올바르게 생성된다.")
     @Test
     void 로또_클래스가_올바르게_생성된다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        assertThat(lotto).isInstanceOf(Lotto.class);
+        assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))).isInstanceOf(Lotto.class);
     }
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다")
