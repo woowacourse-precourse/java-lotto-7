@@ -31,22 +31,6 @@ public class AdditionalApplicationTest {
 //        assertThat(testNumbers.get(lottoNumbersIndex)).isLessThan(testNumbers.get(lottoNumbersIndex + 1));
 //    }
 
-
-//    @Test
-//    void 당첨번호_null일시_예외() {
-//        String testNumber = null;
-//
-//        assertThatIllegalArgumentException().isThrownBy(() -> Application.validateInputValue(testNumber))
-//                .withMessage("[ERROR] 값을 입력해주세요.");
-//    }
-//
-//    @ParameterizedTest
-//    @ValueSource(strings = {"", " "})
-//    void 당첨번호_빈_문자열일시_예외(String testNumber) {
-//        assertThatIllegalArgumentException().isThrownBy(
-//                        () -> Application.validateInputValue(testNumber))
-//                .withMessage("[ERROR] 값을 입력해주세요.");
-//    }
 //
 //    @ParameterizedTest
 //    @CsvSource(value = {"0:1", "1:2", "2:3", "3:4", "4:5", "5:6"}, delimiter = ':')

@@ -3,7 +3,6 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import lotto.Application;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -57,5 +56,23 @@ public class InputValidatorTest {
                         () -> InputValidator.validateInputInteger(testNumber))
                 .withMessage("[ERROR] 10자리 이하의 금액을 입력해주세요.");
     }
+
+    @Test
+    void 당첨번호_null일시_예외() {
+        String testNumber = null;
+
+        assertThatIllegalArgumentException().isThrownBy(() -> InputValidator.validateGeneralValueInput(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " "})
+    void 당첨번호_빈_문자열일시_예외(String testNumber) {
+        assertThatIllegalArgumentException().isThrownBy(
+                        () -> InputValidator.validateGeneralValueInput(testNumber))
+                .withMessage("[ERROR] 값을 입력해주세요.");
+    }
+
+
 
 }

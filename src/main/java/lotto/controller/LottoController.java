@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.LottoAmount;
 import lotto.model.Lottos;
+import lotto.model.WinningNumber;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,6 +22,7 @@ public class LottoController {
         LottoAmount lottoAmount = purchaseLottos();
         Lottos lottos = lottoMachine.issueLottos(lottoAmount);
         outputView.outputIssuedLottos(lottos);
+        String winningNumberInput = inputView.inputWinningNumber();
     }
 
     private LottoAmount purchaseLottos() {
