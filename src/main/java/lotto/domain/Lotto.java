@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public Lotto(String[] rawNumbers) {
+        this.numbers = convertToIntegerList(rawNumbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -37,6 +42,17 @@ public class Lotto {
         Set<Integer> duplication = new HashSet<>(numbers);
         if (duplication.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMS_DUPLICATION.getMsg());
+        }
+    }
+
+    private List<Integer> convertToIntegerList(String[] numbers) {
+        try {
+            return Arrays.stream(numbers)
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_IS_NOT_NUM.getMsg());
         }
     }
 

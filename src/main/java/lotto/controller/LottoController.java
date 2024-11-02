@@ -59,22 +59,10 @@ public class LottoController {
         while (true) {
             try {
                 String[] rawNumbers = inputView.lottoNumsInput();
-                List<Integer> numbers = toIntegerList(rawNumbers);
-                return new Lotto(numbers);
+                return new Lotto(rawNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private List<Integer> toIntegerList(String[] numbers) {
-        try {
-            return Arrays.stream(numbers)
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_IS_NOT_NUM.getMsg());
         }
     }
 
