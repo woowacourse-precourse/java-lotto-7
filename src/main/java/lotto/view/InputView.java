@@ -38,6 +38,7 @@ public class InputView {
         return inputValue;
     }
 
+    // TODO: mainNumber 외 정수 검증 ㄱㄱ
     private static void validate(String inputValue) throws IllegalArgumentException { // TODO: 적절한 Exception로 수정
         if (inputValue == null || inputValue.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
