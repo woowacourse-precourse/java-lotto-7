@@ -26,11 +26,11 @@ public enum Prize {
                 .orElse(Prize.NO_PRIZE);
     }
 
-    public Integer getRank() {
+    Integer getRank() {
         return rank;
     }
 
-    public Long getMoney() {
+    Long getMoney() {
         return money;
     }
 }
