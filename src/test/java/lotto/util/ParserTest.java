@@ -114,7 +114,7 @@ class ParserTest {
     @DisplayName("입력 문자열 정수로 변환: 중간에 공백 - 예외 테스트")
     void parseInputToInt_internalWhiteSpace() {
         // given
-        String input = "1 3";
+        String input = "1 000";
 
         // when & then
         assertThatThrownBy(() -> Parser.parseInputToInt(input))
