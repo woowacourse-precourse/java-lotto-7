@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.generator.LottoNumberGenerator;
 
 public class Lottos {
+
     private final List<Lotto> lottos;
 
     public Lottos() {
@@ -21,4 +22,5 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return List.copyOf(lottos);
     }
+
 }

@@ -21,4 +21,5 @@ public class WinningStatistics {
     public Map<WinningRank, Integer> getStatistics() {
         return statistics;
     }
+    
 }

@@ -7,6 +7,7 @@ import static lotto.message.MessageConstants.MESSAGE_SECOND;
 import static lotto.message.MessageConstants.MESSAGE_THIRD;
 
 public enum WinningRank {
+    
     FIFTH(3, MESSAGE_FIFTH, 5_000),
     FOURTH(4, MESSAGE_FOURTH, 50_000),
     THIRD(5, MESSAGE_THIRD, 1_500_000),
@@ -40,4 +41,5 @@ public enum WinningRank {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
 }
