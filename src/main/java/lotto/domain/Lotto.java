@@ -10,11 +10,28 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        Collections.sort(this.numbers);
     }
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = sortNumbers();
+
+        List<String> formattedNumbers = sortedNumbers.stream()
+                .map(String::valueOf)
+                .toList();
+
+        return "[" + String.join(", ", formattedNumbers) + "]";
+    }
+
+    private List<Integer> sortNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
+        return sortedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -28,12 +45,4 @@ public class Lotto {
         }
     }
 
-    @Override
-    public String toString() {
-        List<String> formattedNumbers = numbers.stream()
-                .map(String::valueOf)
-                .toList();
-
-        return "[" + String.join(", ", formattedNumbers) + "]";
-    }
 }
