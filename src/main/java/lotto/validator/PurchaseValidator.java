@@ -6,8 +6,9 @@ public class PurchaseValidator {
 
     public boolean validatePurchaseAmount(String purchaseAmount) {
         try {
-            isEmptyPurchaseAmount(purchaseAmount);
+
             purchaseAmount = purchaseAmount.replaceAll(" ", "");
+            isEmptyPurchaseAmount(purchaseAmount);
             isRightPurchaseAmount(purchaseAmount);
             isRightPurchasePrice(Integer.parseInt(purchaseAmount));
             return true;
