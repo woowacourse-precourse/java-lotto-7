@@ -7,6 +7,7 @@ import static lotto.constant.LottoConstant.VALID_LOTTO_NUMBER_COUNT;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import lotto.validator.LottoValidator;
 
 public class PublishLotto {
@@ -36,6 +37,19 @@ public class PublishLotto {
     }
 
     public List<Integer> getPublishLottoNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof PublishLotto)) return false;
+        PublishLotto other = (PublishLotto) obj;
+        return this.numbers.equals(other.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 }

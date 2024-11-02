@@ -20,7 +20,7 @@ public class PublishLottoService {
     public void publishLotto() {
         for (int i = 0; i < publishCount.getPublishCount(); i++) {
             PublishLotto publishLotto = PublishLotto.from(lottoValidator);
-            publishLottoRepository.save(publishLotto); // 생성한 객체를 리스트에 추가
+            publishLottoRepository.save(publishLotto);
         }
     }
 

@@ -24,7 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoControllerTest {
 
     private LottoController lottoController;
-//    private InputStream originalIn;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +38,6 @@ public class LottoControllerTest {
     @AfterEach
     void tearDown() {
         Console.close();
-//        System.setIn(originalIn); // 원래 입력 스트림으로 복원
     }
 
     @Test
@@ -126,6 +124,7 @@ public class LottoControllerTest {
             .hasMessage("입력 형식이 올바르지 않습니다.");
     }
 
+    //PublishLottoservice
     @Test
     void 구매_금액에_맞게_로또_발행하는지_확인() {
         // Given
