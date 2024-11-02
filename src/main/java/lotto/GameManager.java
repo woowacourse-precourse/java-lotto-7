@@ -1,8 +1,11 @@
 package lotto;
 
+import static lotto.score.Prize.NO_PRIZE;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.io.InputView;
 import lotto.io.OutputView;
 import lotto.score.Prize;
@@ -29,7 +32,16 @@ public class GameManager {
         LottoWinningSet lottoWinningSet = readWinningLottoSet();
         Map<Prize, Integer> lottoScore = lottoJudge.calculateLottoScore(lottos, lottoWinningSet);
         outputView.printWinningStatisticMessage();
+        printLottoScore(lottoScore);
         int prizeMoney = yieldCalculator.calculatePrizeMoney(lottoScore);
+    }
+
+    private void printLottoScore(Map<Prize, Integer> lottoScore) {
+        String lottoScoreToString = Arrays.stream(Prize.values())
+                .filter(prize -> prize != NO_PRIZE)
+                .map(prize -> prize.formatScoreDetails(lottoScore.get(prize)))
+                .collect(Collectors.joining("\n"));
+        System.out.println(lottoScoreToString);
     }
 
     private int readPrice() {

@@ -1,11 +1,11 @@
 package lotto.score;
 
 public enum Prize {
-    FIRST_PRIZE(6, "6개 일치 (2,000,000,000원)", 2000000000),
-    SECOND_PRIZE(5, "5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
-    THIRD_PRIZE(5, "5개 일치 (1,500,000원)", 1500000),
-    FOURTH_PRIZE(4, "4개 일치 (50,000원)", 50000),
     FIFTH_PRIZE(3, "3개 일치 (5,000원)", 5000),
+    FOURTH_PRIZE(4, "4개 일치 (50,000원)", 50000),
+    THIRD_PRIZE(5, "5개 일치 (1,500,000원)", 1500000),
+    SECOND_PRIZE(5, "5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000),
+    FIRST_PRIZE(6, "6개 일치 (2,000,000,000원)", 2000000000),
     NO_PRIZE(0, "당첨 안됨 (0원)", 0);
 
     private final int numberOfMatches;
@@ -37,11 +37,15 @@ public enum Prize {
         return NO_PRIZE;
     }
 
-    public String getWinningMessage() {
+    private String getWinningMessage() {
         return winningMessage;
     }
 
     public int calculatePrizeMoney(int count) {
         return prizeMoney * count;
+    }
+
+    public String formatScoreDetails(int count) {
+        return String.format("%s - %d개", getWinningMessage(), count);
     }
 }
