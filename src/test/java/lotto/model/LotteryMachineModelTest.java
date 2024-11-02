@@ -3,9 +3,12 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.ExceptionMessage;
 import lotto.entity.BonusNumber;
+import lotto.entity.IssuedLotto;
+import lotto.entity.Lotto;
 import lotto.entity.PurchaseAmount;
 import lotto.entity.WinnerNumber;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,5 +104,33 @@ class LotteryMachineModelTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.BONUS_NUMBER_DUPLICATED);
+    }
+
+    @Test
+    void settingIssuedLotto_발매된_로또_저장에_성공한다() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(lotto);
+        IssuedLotto issuedLotto = new IssuedLotto(lottos);
+
+        // when
+        lotteryMachineModel.settingIssuedLotto(issuedLotto);
+
+        // then
+        assertThat(lotteryMachineModel.getIssuedLotto().lottos()).isEqualTo(lottos);
+    }
+
+    @Test
+    void consumePurchaseAmount_구매금액_소모에_성공한다() {
+        // given
+        PurchaseAmount purchaseAmount = new PurchaseAmount(8000L);
+        lotteryMachineModel.insertPurchaseAmount(purchaseAmount);
+
+        // when
+        lotteryMachineModel.consumePurchaseAmount();
+
+        // then
+        assertThat(lotteryMachineModel.getPurchaseAmount().purchaseAmount()).isEqualTo(0L);
     }
 }
