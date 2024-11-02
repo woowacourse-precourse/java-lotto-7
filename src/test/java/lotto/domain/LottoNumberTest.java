@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -16,9 +15,4 @@ public class LottoNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void test(){
-        LottoNumber lottoNumber = LottoNumber.valueOf(10);
-        System.out.println(lottoNumber.getNumber());
-    }
 }

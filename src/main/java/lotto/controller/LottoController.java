@@ -21,7 +21,7 @@ public class LottoController {
         checkLottoResult(lottoTicket, winningLotto);
     }
 
-    private LottoTicket buyLotto(LottoStore lottoStore){
+    private LottoTicket buyLotto(final LottoStore lottoStore){
         int amount =  Retry.retryOnException(() -> InputView.inputPurchaseAmount());
         LottoTicket lottoTicket = lottoStore.buyLottoTicket(amount);
         OutputView.printLottoTicketInformation(lottoTicket.getAllLottoNumbers(), lottoTicket.getLottoCount());
@@ -33,7 +33,7 @@ public class LottoController {
         return Retry.retryOnException(() -> WinningLotto.of(winLotto, InputView.inputBonusNumber()));
     }
 
-    private void checkLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto){
+    private void checkLottoResult(final LottoTicket lottoTicket, final WinningLotto winningLotto){
         EnumMap<Ranking, Integer> lottoResult = lottoTicket.checkRanking(winningLotto);
         double profitRate = lottoTicket.calculateProfitRate(winningLotto);
         OutputView.printWinStatistics(profitRate, lottoResult);

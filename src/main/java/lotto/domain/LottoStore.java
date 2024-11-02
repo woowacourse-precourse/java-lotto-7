@@ -15,7 +15,7 @@ public class LottoStore {
         this.numbersGenerator = numbersGenerator;
     }
 
-    public LottoTicket buyLottoTicket(int price) {
+    public LottoTicket buyLottoTicket(final int price) {
         LottoStoreValidator.validatePurchaseAmount(price);
         return new LottoTicket(IntStream.range(0, price / LOTTO_PRICE.getValue())
                 .mapToObj(i -> Lotto.from(numbersGenerator.createNumbers()))

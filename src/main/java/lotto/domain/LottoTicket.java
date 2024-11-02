@@ -13,11 +13,11 @@ public class LottoTicket {
 
     private final List<Lotto> lottos;
 
-    public LottoTicket(List<Lotto> lottos) {
+    public LottoTicket(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public EnumMap<Ranking, Integer> checkRanking(WinningLotto winningLotto) {
+    public EnumMap<Ranking, Integer> checkRanking(final WinningLotto winningLotto) {
         EnumMap<Ranking, Integer> rankingMap = new EnumMap<>(Ranking.class);
         lottos.stream()
                 .map(lotto -> lotto.checkRanking(winningLotto))
@@ -25,13 +25,13 @@ public class LottoTicket {
         return rankingMap;
     }
 
-    public double calculateProfitRate(WinningLotto winningLotto) {
+    public double calculateProfitRate(final WinningLotto winningLotto) {
         long totalReward = calculateTotalReward(checkRanking(winningLotto));
         int purchaseAmount = calculatePurchaseAmount();
         return (double) totalReward / purchaseAmount * PERCENTAGE_UNIT;
     }
 
-    private long calculateTotalReward(EnumMap<Ranking, Integer> rankingMap) {
+    private long calculateTotalReward(final EnumMap<Ranking, Integer> rankingMap) {
         return rankingMap.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();

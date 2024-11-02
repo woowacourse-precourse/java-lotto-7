@@ -6,15 +6,15 @@ public class ExceptionUtils {
     private ExceptionUtils() {
     }
 
-    public static void throwIllegalArgument(String message) {
+    public static void throwIllegalArgument(final String message) {
         throw new IllegalArgumentException(formatMessage(message));
     }
 
-    public static void throwIllegalState(String message) {
+    public static void throwIllegalState(final String message) {
         throw new IllegalStateException(formatMessage(message));
     }
 
-    private static String formatMessage(String message) {
+    private static String formatMessage(final String message) {
         return String.format(ERROR_MESSAGE, message);
     }
 }

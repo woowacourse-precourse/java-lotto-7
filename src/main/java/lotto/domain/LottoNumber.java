@@ -19,7 +19,7 @@ public class LottoNumber {
                 .forEach(NUMBER_POOL::add);
     }
 
-    private LottoNumber(int number) {
+    private LottoNumber(final int number) {
         this.number = number;
     }
 
