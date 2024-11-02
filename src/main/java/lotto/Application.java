@@ -29,6 +29,18 @@ public class Application {
         validateWinningLottoInput(winningLottoInput);
         int[] winningLotto = convertWinningLottoInputToIntArray(winningLottoInput);
         validateWinningLotto(winningLotto);
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumberInput = Console.readLine().trim();
+        int bonusNumber = validateBonusNumberInput(bonusNumberInput);
+    }
+
+    private static int validateBonusNumberInput(String bonusNumberInput) {
+        try {
+            return Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+        }
     }
 
     private static void validateWinningLottoInput(String[] winningLottoInput) {
