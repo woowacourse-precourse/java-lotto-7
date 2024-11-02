@@ -63,4 +63,11 @@ class LottoTempTest {
                 List.of(1,2,3,4,5,6))).containsExactly(6,5,4,3,2);
     }
 
+    @Test
+    @DisplayName("보너스 번호와 로또가 일치하는지 확인하는 테스트")
+    void compareBonusNumber(){
+        assertThat(lottoTemp.checkBonusNumber(new Lotto(List.of(1,2,3,4,5,6)),6)).isTrue();
+        assertThat(lottoTemp.checkBonusNumber(new Lotto(List.of(1,2,3,4,5,6)),7)).isFalse();
+    }
+
 }

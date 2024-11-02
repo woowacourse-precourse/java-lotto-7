@@ -98,6 +98,10 @@ public class LottoTemp {
         return matches;
     }
 
+    public boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
     public void printProfit(int profit) {
         io.printMessage("총 수익률은 " + profit + "%입니다.");
     }
