@@ -13,16 +13,28 @@ public class Cost {
     }
 
     private void validateCost(int cost){
-        if (cost % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.");
-        }
+        isValidUnitCost(cost);
 
+        isCostNegative(cost);
+
+        isCostNotDuplicated(cost);
+    }
+
+    private void isCostNotDuplicated(int cost) {
+        if (cost == 0 || String.valueOf(cost).isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
+        }
+    }
+
+    private void isCostNegative(int cost) {
         if (cost < 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 음수를 입력할 수 없습니다.");
         }
+    }
 
-        if (cost == 0 || String.valueOf(cost).isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
+    private void isValidUnitCost(int cost) {
+        if (cost % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.");
         }
     }
 
