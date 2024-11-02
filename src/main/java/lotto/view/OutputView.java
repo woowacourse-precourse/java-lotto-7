@@ -2,8 +2,10 @@ package lotto.view;
 
 import lotto.Lotto;
 import lotto.constant.MessageConstants;
+import lotto.constant.Prize;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public static void requestPurchaseAmount() {
@@ -23,12 +25,27 @@ public class OutputView {
         System.out.println(MessageConstants.REQUEST_BONUS_NUMBER);
     }
 
-    public static void printWinningStatistics(String benefitRate) {
+    public static void printResult(String benefitRate, Map<Prize, Integer> prizeResults) {
         System.out.println(MessageConstants.WINNING_STATISTICS);
         System.out.println(MessageConstants.STATISTICS_DIVIDER);
-
-        //결과 출력
-
+        printWinningResults(prizeResults);
         System.out.println(String.format(MessageConstants.TOTAL_RETURN_RATE, benefitRate));
+    }
+
+    public static void printWinningResults(Map<Prize, Integer> prizeResults) {
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.NONE) {
+                break;
+            }
+            String resultMessage = MessageConstants.MATCH_RESULT_FORMAT;
+            if (prize.isBonusMatch()) {
+                resultMessage = MessageConstants.MATCH_BONUS_RESULT_FORMAT;
+            }
+            System.out.println(String.format(
+                    resultMessage,
+                    prize.getMatchCount(),
+                    prize.getPrize(),
+                    prizeResults.get(prize)));
+        }
     }
 }
