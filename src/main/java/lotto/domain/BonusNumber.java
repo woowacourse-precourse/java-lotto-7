@@ -30,6 +30,10 @@ public class BonusNumber {
         return Objects.hashCode(number);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validateOutOfRange(int number) {
         if (number < MIN_NUM || number > MAX_NUM) {
             throw new IllegalArgumentException(OUT_OF_RANGE);

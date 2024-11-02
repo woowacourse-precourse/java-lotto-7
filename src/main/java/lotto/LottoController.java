@@ -25,5 +25,8 @@ public class LottoController {
 
         outputHandler.showBonusNumberNavigateMessage();
         BonusNumber bonusNumber = inputHandler.getBonusNumberFromUser();
+
+        LotteryMachine lotteryMachine = new LotteryMachine(winningNumbers, bonusNumber);
+        lotteryMachine.draw(lottos);
     }
 }
