@@ -151,7 +151,7 @@ public class Application {
                 result += ", 보너스 볼 일치 ";
             }
 
-            result += "(" + formatter.format(winningCount.getAmountToWin()).replace(",", ", ") + "원)";
+            result += "(" + formatter.format(winningCount.getAmountToWin()) + "원)";
             result += " - " + lottoCountByWinning.get(winningCount) + "개";
             System.out.println(result);
         }
