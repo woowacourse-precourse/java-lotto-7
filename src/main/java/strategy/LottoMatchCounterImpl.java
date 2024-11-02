@@ -9,7 +9,8 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
         int purchasedLottLeftPointer = 0;
         int winningLottoLeftPointer = 0;
 
-        while (purchasedLottLeftPointer < 6) {
+        while (purchasedLottLeftPointer < 6 && winningLottoLeftPointer < 6) {
+
             if (isMatch(purchasedLotto, selectWinnerLotto, purchasedLottLeftPointer, winningLottoLeftPointer)) {
                 matchCount++;
                 purchasedLottLeftPointer++;
@@ -25,8 +26,8 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
 
             winningLottoLeftPointer++;
         }
-        if (hasFiveMatchesWithBonus(selectWinnerLotto, bonusNumber, matchCount)) {
-            matchCount++;
+        if (hasFiveMatchesWithBonus(purchasedLotto, bonusNumber, matchCount)) {
+            matchCount += 2;
         }
         return matchCount;
     }
@@ -44,7 +45,7 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
                 .get(winningLottoLeftPointer);
     }
 
-    private boolean hasFiveMatchesWithBonus(Lotto selectwinningLotto, int bonusNumber, int matchCount) {
-        return selectwinningLotto.getNumbers().contains(bonusNumber) && matchCount == 5;
+    private boolean hasFiveMatchesWithBonus(Lotto purchasedLottLeftPointer, int bonusNumber, int matchCount) {
+        return purchasedLottLeftPointer.getNumbers().contains(bonusNumber) && matchCount == 5;
     }
 }
