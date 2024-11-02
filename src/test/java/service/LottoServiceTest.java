@@ -22,7 +22,7 @@ class LottoServiceTest {
         Money money = new Money("1000");
 
         // when
-        BigInteger number = money.convertMoneyToNumber();
+        BigInteger number = lottoService.calculatePurchasableLottoCount(money);
         BigInteger expected = new BigInteger("1");
 
         // then
@@ -35,7 +35,7 @@ class LottoServiceTest {
         Money money = new Money("12345678900000000000000000000000000000000000000000");
 
         // when
-        BigInteger number = money.convertMoneyToNumber();
+        BigInteger number = lottoService.calculatePurchasableLottoCount(money);
         BigInteger expected = new BigInteger("12345678900000000000000000000000000000000000000");
 
         // then
@@ -49,7 +49,7 @@ class LottoServiceTest {
 
         // when
         List<Lotto> lottos = lottoService.issueLotto(purchasableLottoCount);
-        int expected = 10;
+        int expected = 11;
 
         // then
         Assertions.assertThat(lottos.size()).isEqualTo(expected);
