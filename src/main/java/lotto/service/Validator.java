@@ -3,7 +3,10 @@ package lotto.service;
 import lotto.util.Constant;
 import lotto.util.ErrorCode;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validator {
 
@@ -26,19 +29,18 @@ public class Validator {
     }
 
     public void validateWinningNumbers(String winningNumbers) {
-        String[] splittedWinningNumbers = winningNumbers.split(",");
+        List<String> splittedWinningNumbers = Arrays.asList(winningNumbers.split(","));
+        Set<Integer> kindOfNumbers = new HashSet<>();
 
-        int cnt = 0;
         for (String winningNumber : splittedWinningNumbers) {
-            cnt++;
             if (!winningNumber.matches(Constant.BALL_NUMBER_RANGE_CHECK_REGEX)) {
                 throw ErrorCode.INVALID_WINNING_NUMBER.exception();
             }
 
-            if (cnt > 6) { break; }
+            kindOfNumbers.add(Integer.parseInt(winningNumber.strip()));
         }
 
-        if (cnt != 6) {
+        if (kindOfNumbers.size() != 6) {
             throw ErrorCode.INVALID_WINNING_NUMBER.exception();
         }
     }
