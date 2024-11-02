@@ -21,6 +21,7 @@ public class Application {
         //가격 정상 입력 테스트용
         System.out.println("price: "+price);
 
+
     }
 
     public static int getPrice(String priceInput) throws IllegalArgumentException{
@@ -33,9 +34,10 @@ public class Application {
             throw new IllegalArgumentException(ERRORMESSAGE);
         }
 
-        if(price<=0) {
+        if(price<=0 || price%1000!=0) {
             throw new IllegalArgumentException(ERRORMESSAGE);
         }
+
 
         return price;
     }
