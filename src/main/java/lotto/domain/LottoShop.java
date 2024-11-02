@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoShop {
     public static final int MAX_PURCHASE_AMOUNT = 100_000;
