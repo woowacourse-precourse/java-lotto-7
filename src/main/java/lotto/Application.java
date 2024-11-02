@@ -10,20 +10,8 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int purchaseAmount = 0;
+        int purchaseAmount = scanPurchasePrice() / 1000;
         Lotto winningNumbersLotto;
-
-        while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
-            try {
-                String purchasePriceInput = Console.readLine();
-                int purchasePrice = Validator.validatePurchasePrice(purchasePriceInput);
-                purchaseAmount = purchasePrice / 1000;
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
 
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         List<Lotto> myLottos = new ArrayList<>();
@@ -91,6 +79,18 @@ public class Application {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeRankCounts.get(PrizeRank.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + prizeRankCounts.get(PrizeRank.FIRST) + "개");
         System.out.println("총 수익률은 "+ String.format("%.1f", rateOfReturn) +"%입니다.");
+    }
+
+    public static int scanPurchasePrice() {
+        while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                String purchasePriceInput = Console.readLine();
+                return Validator.validatePurchasePrice(purchasePriceInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     static void printLottos(List<Lotto> lottos) {
