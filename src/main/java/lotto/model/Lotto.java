@@ -12,27 +12,8 @@ public class Lotto {
     }
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        Validator.lottoNumberValidate(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-        }
-
-        for (int n : numbers) {
-            if (!(n >= 1 && n <= 45)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 인 정수를 입력 해야 합니다.");
-            }
-        }
-
-        List<Integer> distinctList = numbers.stream()
-                .distinct()
-                .toList();
-        if (numbers.size() != distinctList.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복이 되는 로또 번호가 없어야 합니다.");
-        }
     }
 
     // 당첨 결과 계산 기능

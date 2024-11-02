@@ -6,9 +6,8 @@ import java.util.List;
 import lotto.Result;
 
 public class User {
-
     public User(String money) {
-        validate(money);
+        Validator.purchasePriceValidate(money);
         this.money = Integer.parseInt(money);
     }
 
@@ -30,44 +29,9 @@ public class User {
         return lotteryTickets;
     }
 
-    private void validate(String money) {
-        if (!money.matches("-?\\d+") || money.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] "
-                    + "0 이상의 1000 단위로 나누어 떨어지는 숫자를 "
-                    + "공백없이 입력해야합니다."
-                    + " ex)8000");
-        }
-
-        int number = Integer.parseInt(money);
-        if (number < 0 || (number % 1000) != 0) {
-            throw new IllegalArgumentException("[ERROR] "
-                    + "0 이상의 1000 단위로 나누어 떨어지는 숫자를 "
-                    + "공백없이 입력해야합니다."
-                    + " ex)8000");
-        }
-    }
-
     public void specifyBonusNumber(String bonusNumber, List<Integer> numbers) {
-        bonusNumberValidate(bonusNumber, numbers);
+        Validator.bonusNumberValidate(bonusNumber, numbers);
         this.bonusNumber = Integer.parseInt(bonusNumber);
-    }
-
-    private void bonusNumberValidate(String bonusNumber, List<Integer> numbers) {
-        if (!bonusNumber.matches("-?\\d+") || bonusNumber.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] "
-                    + "보너스 점수는 1~45인 숫자를 공백 없이 입력 해야 합니다.");
-        }
-
-        int number = Integer.parseInt(bonusNumber);
-        if (!(number >= 1 && number <= 45)) {
-            throw new IllegalArgumentException("[ERROR] "
-                    + "보너스 점수는 1~45인 숫자를 공백 없이 입력 해야 합니다.");
-        }
-
-        if (numbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] "
-                    + "당첨 번호와 중복 되지 않는 보너스 번호를 사용 해야 합니다.");
-        }
     }
 
     public void moneyToTicket(int money) {
