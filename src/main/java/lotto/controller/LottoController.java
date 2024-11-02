@@ -32,7 +32,7 @@ public class LottoController {
             LottoValidator.validateInputMoney(inputMoney);
             return Integer.parseInt(inputMoney);
         } catch (IllegalArgumentException error) {
-            System.err.println(error.getMessage());
+            outputView.printErrorMessage(error.getMessage());
         }
         return getMoney();
     }
