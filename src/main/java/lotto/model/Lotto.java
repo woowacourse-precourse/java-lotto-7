@@ -6,7 +6,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
+        validateRange(numbers);
         this.numbers = numbers;
     }
 
@@ -14,11 +15,17 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateRange(List<Integer> numbers){
+        for (int number : numbers){
+            if (number<0 || number>45){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 이어야 합니다.");
+            }
+        }
+    }
 }

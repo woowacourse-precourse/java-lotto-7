@@ -22,5 +22,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @DisplayName("당첨 번호 범위를 벗어나는 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void validateRange(){
+        assertThatThrownBy(()->new Lotto(List.of(1,2,3,46,5,6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
