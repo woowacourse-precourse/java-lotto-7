@@ -12,6 +12,7 @@ public class LottoResult {
     private final int purchaseAmount;
     private final WinningLotto winningLotto;
     private int totalPrize;
+    private double returnRate;
 
     public LottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
         this.rankCount = new HashMap<>();
@@ -36,5 +37,9 @@ public class LottoResult {
         totalPrize =  rankCount.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
+    }
+
+    public void calculateReturnRate() {
+        returnRate = (totalPrize * 100.0) / purchaseAmount;
     }
 }
