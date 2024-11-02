@@ -88,4 +88,19 @@ class LottoTest {
         // Then
         assertEquals(3, matchCount); // 1, 2, 3이 일치
     }
+
+    @Test
+    @DisplayName("보너스 번호와 일치할 경우 true 반환")
+    void shouldReturnTrueWhenBonusNumberMatches() {
+        // Given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        int bonusNumber = 6;
+
+        // When
+        boolean bonusMatch = lotto.hasBonusNumber(bonusNumber);
+
+        // Then
+        assertTrue(bonusMatch);
+    }
 }
