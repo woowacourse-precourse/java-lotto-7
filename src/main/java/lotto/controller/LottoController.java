@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.constant.OutputMessage;
 import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
 import lotto.service.InputParsingService;
@@ -35,12 +34,18 @@ public class LottoController {
     public void runLotto() {
         PurchasePrice purchasePrice = inputPurchasePrice();
         List<Lotto> issuedLotto = lottoIssueService.issueLotto(purchasePrice);
+        printIssuedLotto(issuedLotto);
     }
 
     private PurchasePrice inputPurchasePrice() {
-        outputView.printMessage(OutputMessage.PURCHASE_PRICE_INPUT_MESSAGE);
+        outputView.printPurchasePriceInputMessage();
         String rawPurchasePrice = inputView.inputContent();
         inputValidationService.validatePurchasePrice(rawPurchasePrice);
         return inputParsingService.parsePurchasePrice(rawPurchasePrice);
+    }
+
+    private void printIssuedLotto(List<Lotto> issuedLotto) {
+        outputView.printIssuedLottoCount(issuedLotto.size());
+        outputView.printIssuedLotto(issuedLotto);
     }
 }

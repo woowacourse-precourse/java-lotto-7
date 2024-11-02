@@ -19,7 +19,7 @@ public class Lotto {
         validateNumberCount(numbers);
         validateNumberDuplication(numbers);
         validateNumberRange(numbers);
-        this.numbers = numbers;
+        this.numbers = alignNumber(numbers);
     }
 
     private void validateNumberCount(List<Integer> numbers) {
@@ -44,5 +44,18 @@ public class Lotto {
                 || number > LottoConfiguration.LOTTO_NUMBER_RANGE_END) {
             throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER_EXCEPTION_MESSAGE);
         }
+    }
+
+    private List<Integer> alignNumber(List<Integer> numbers) {
+        return numbers.stream().sorted().toList();
+    }
+
+    public String printLottoNumbers() {
+        List<String> targetNumbers = numbers.stream().map(String::valueOf).toList();
+        return String.join(", ", targetNumbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 }
