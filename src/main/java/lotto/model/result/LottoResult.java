@@ -23,8 +23,7 @@ public class LottoResult {
 
     protected long calculateWinningMoney() {
         return result.entrySet().stream()
-                .filter(entry -> entry.getValue() > 0)
-                .mapToLong(entry -> entry.getKey().getWinningMoney())
+                .mapToLong(entry -> (long) entry.getKey().getWinningMoney() * entry.getValue())
                 .sum();
     }
 }
