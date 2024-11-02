@@ -21,7 +21,7 @@ public class Price {
     }
 
     private void validate(int value) {
-        if(value > 2000000000) {
+        if(value > 100000) {
             throw new IllegalArgumentException("[ERROR] " + "로또 최대 구입 금액은 2,000,000,000원 입니다.");
         }
         if (value == 0 || value % 1000 != 0) {
