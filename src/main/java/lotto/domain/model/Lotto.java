@@ -32,4 +32,8 @@ public class Lotto {
             throw new LottoNumberException(Error.DUPLICATED_NUMBER);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
