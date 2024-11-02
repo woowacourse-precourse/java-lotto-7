@@ -4,22 +4,34 @@ import java.util.Arrays;
 
 public enum LottoRank {
 
-    FIRST(6, false, 2_000_000_000L),
-    SECOND(5, true, 30_000_000L),
-    THIRD(5, false, 1_500_000L),
-    FOURTH(4, false, 50_000L),
-    FIFTH(3, false, 5_000L),
-    NO_RANK(0, false, 0L)
+    FIRST(6, 2_000_000_000L, false),
+    SECOND(5, 30_000_000L, true),
+    THIRD(5, 1_500_000L, false),
+    FOURTH(4, 50_000L, false),
+    FIFTH(3, 5_000L, false),
+    NO_RANK(0, 0L, false)
     ;
 
     private final long matchCount;
-    private final boolean isBonusNumber;
     private final long prizeMoney;
+    private final boolean isBonusNumber;
 
-    LottoRank(long matchCount, boolean isBonusNumber, long prizeMoney) {
+    LottoRank(long matchCount, long prizeMoney, boolean isBonusNumber) {
         this.matchCount = matchCount;
-        this.isBonusNumber = isBonusNumber;
         this.prizeMoney = prizeMoney;
+        this.isBonusNumber = isBonusNumber;
+    }
+
+    public long getMatchCount() {
+        return matchCount;
+    }
+
+    public long getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public boolean isBonusNumber() {
+        return isBonusNumber;
     }
 
     public static LottoRank valueOf(long matchCount, boolean isBonusNumber) {
@@ -27,10 +39,6 @@ public enum LottoRank {
                 .filter(rank -> rank.matches(matchCount, isBonusNumber))
                 .findFirst()
                 .orElse(NO_RANK);
-    }
-
-    public long getPrizeMoney() {
-        return prizeMoney;
     }
 
     private boolean matches(long matchCount, boolean isBonusNumber) {

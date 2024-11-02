@@ -12,13 +12,13 @@ public class LottoBonusNumber {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validate(int number) {
         if (excludeRange(number)) {
             throw new IllegalArgumentException(EXCLUDE_BONUS_RANGE.getMessage());
         }
-    }
-
-    public int getNumber() {
-        return number;
     }
 }
