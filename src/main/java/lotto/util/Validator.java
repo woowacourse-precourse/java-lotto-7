@@ -20,13 +20,6 @@ public class Validator {
         }
     }
 
-    public static void validateWinningNumbers(String winningLottoInput, String bonusNumberInput) {
-        List<Integer> winningLotto = Parser.parseToIntegerList(winningLottoInput);
-
-        validateLotto(winningLotto);
-        validateBonusNumber(winningLottoInput, bonusNumberInput);
-    }
-
     public static void validateLotto(List<Integer> lotto) {
         if (!isLottoNumberCountValid(lotto)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT_ERROR.getMessage());
@@ -39,14 +32,14 @@ public class Validator {
         }
     }
 
-    private static void validateBonusNumber(String winningLottoInput, String bonusNumberInput) {
+    public static void validateBonusNumber(List<Integer> winningLotto, String bonusNumberInput) {
         if (!isNumeric(bonusNumberInput)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.getMessage());
         }
         if (!isValidNumberRange(bonusNumberInput)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR.getMessage());
         }
-        if (isDuplicateWithWinningLotto(winningLottoInput, bonusNumberInput)) {
+        if (isDuplicateWithWinningLotto(winningLotto, bonusNumberInput)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER_ERROR.getMessage());
         }
     }
@@ -91,8 +84,7 @@ public class Validator {
         return uniqueNumbers.size() == lottoNumbers.size();
     }
 
-    private static boolean isDuplicateWithWinningLotto(String winningLottoInput, String bonusNumberInput) {
-        List<Integer> winningLotto = Parser.parseToIntegerList(winningLottoInput);
+    private static boolean isDuplicateWithWinningLotto(List<Integer> winningLotto, String bonusNumberInput) {
         int bonusNumber = Integer.parseInt(bonusNumberInput);
 
         return winningLotto.contains(bonusNumber);

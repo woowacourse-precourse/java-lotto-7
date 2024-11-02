@@ -1,16 +1,21 @@
 package lotto.domain;
 
-import lotto.util.Parser;
-import lotto.util.Validator;
+import java.util.List;
 
 public class WinningNumbers {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningNumbers(String winningLottoInput, String bonusNumberInput) {
-        Validator.validateWinningNumbers(winningLottoInput, bonusNumberInput);
+    public WinningNumbers(List<Integer> winningLottoInput, int bonusNumberInput) {
+        this.winningLotto = new Lotto(winningLottoInput);
+        this.bonusNumber = bonusNumberInput;
+    }
 
-        this.winningLotto = new Lotto(Parser.parseToIntegerList(winningLottoInput));
-        this.bonusNumber = Integer.parseInt(bonusNumberInput);
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
