@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.LotteryConst;
@@ -12,6 +13,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getUnmodifiableNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
