@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.PrizeLotto;
 import lotto.util.BudgetValidator;
 import lotto.util.LottoNumberParser;
 import lotto.view.ErrorView;
@@ -25,7 +26,7 @@ public class LottoApplication {
         Budget budget = getValidatedBudget();
         Lottos lottos = Lottos.from(budget);
         outputView.printLottos(lottos);
-        Lotto winningLotto = getValidatedWinningLotto();
+        PrizeLotto prizeLotto = getValidatedPrizeLotto();
     }
 
     private Budget getValidatedBudget() {
@@ -34,6 +35,19 @@ public class LottoApplication {
                 String inputBudget = inputView.getBudget();
                 BudgetValidator.validateInputBudget(inputBudget);
                 return new Budget(Integer.parseInt(inputBudget));
+            } catch (IllegalArgumentException e) {
+                errorView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private PrizeLotto getValidatedPrizeLotto() {
+        Lotto winningLotto = getValidatedWinningLotto();
+        while (true) {
+            try {
+                String inputBonusNumber = inputView.getBonusNumber();
+                int bonusNumber = LottoNumberParser.parseBonusNumber(inputBonusNumber);
+                return new PrizeLotto(winningLotto, bonusNumber);
             } catch (IllegalArgumentException e) {
                 errorView.printError(e.getMessage());
             }
