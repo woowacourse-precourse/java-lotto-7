@@ -7,19 +7,29 @@ import java.util.List;
 public class LottoController {
     public void run() {
         // input
-        int purchaseAmount = getPurchaseAmount();
+        int lottoCount = getLottoCount();
+        List<Lotto> lottoList = issueLotto(lottoCount);
         List<Integer> winningNumbers = getWinningNumbers();
         winningNumbers.add(getBonusNumber());
     }
 
-    private int getPurchaseAmount() {
+    private List<Lotto> issueLotto(int lottoCount) {
+        List<Lotto> lottoList = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            lottoList.add(Lotto.getLotto());
+        }
+
+        return lottoList;
+    }
+
+    private int getLottoCount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int purchaseAmount = parseInt(input);
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 입력된 금액이 1,000원으로 나누어 떨어지지 않습니다.");
         }
-        return purchaseAmount;
+        return purchaseAmount / 1000;
     }
 
     private List<Integer> getWinningNumbers() {
@@ -44,9 +54,9 @@ public class LottoController {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력된 금액이 정수가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 정수가 아닙니다.");
         } catch (NullPointerException e) {
-            throw new IllegalArgumentException("[ERROR] 입력된 금액이 없습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
         }
     }
 
