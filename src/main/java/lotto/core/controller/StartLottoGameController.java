@@ -45,8 +45,8 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
     public Void request(LottoTicketDto ticket) {
         LottoDto winningLotto = processInputWinningLotto();
         LottoNumberDto bonusNumber = processInputBonusLottoNumber(winningLotto);
-        LottoResultDto winningResult = processMatchLotto(ticket, winningLotto, bonusNumber);
-        displayLottoResult(winningResult);
+        LottoResultDto winningResult = this.matchWinningLottoService.match(ticket, winningLotto, bonusNumber);
+        this.matchWinningLottoView.display(winningResult);
         return null;
     }
 
@@ -64,15 +64,5 @@ public class StartLottoGameController implements Controller<LottoTicketDto, Void
             String read = Command.read();
             return this.createBonusLottoNumberService.create(read, winningLotto);
         });
-    }
-
-    private LottoResultDto processMatchLotto(LottoTicketDto ticket,
-                                             LottoDto winningLotto,
-                                             LottoNumberDto bonusNumber) {
-        return this.matchWinningLottoService.match(ticket, winningLotto, bonusNumber);
-    }
-
-    private void displayLottoResult(LottoResultDto result) {
-        this.matchWinningLottoView.display(result);
     }
 }
