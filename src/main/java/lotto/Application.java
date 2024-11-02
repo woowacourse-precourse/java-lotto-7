@@ -1,6 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -20,6 +26,19 @@ public class Application {
 
         //가격 정상 입력 테스트용
         System.out.println("price: "+price);
+
+        int amount=price/1000;
+        ArrayList<Lotto> lottos=new ArrayList<>();
+        for(int i=0;i<amount;i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            lottos.add(new Lotto(numbers));
+        }
+
+        System.out.println(amount+"개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
 
 
     }
