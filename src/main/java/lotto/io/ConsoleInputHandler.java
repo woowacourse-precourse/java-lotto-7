@@ -10,6 +10,12 @@ public class ConsoleInputHandler implements InputHandler {
     private static final String NUMBER_DELIMITER = ",";
 
     @Override
+    public int inputPurchaseAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
+    @Override
     public List<Integer> inputLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] splitNumbers = Console.readLine().split(NUMBER_DELIMITER);
