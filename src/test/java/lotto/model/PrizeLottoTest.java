@@ -42,4 +42,38 @@ class PrizeLottoTest {
         Assertions.assertThatThrownBy(() -> PrizeLotto.from(winningLottoNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void 우승번호_갯수_세기() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        List<Integer> prizeLottoNumbers = List.of(10, 20, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        PrizeLotto prizeLotto = PrizeLotto.from(prizeLottoNumbers, bonusNumber);
+
+        // when
+        int matched = prizeLotto.countWinningLottoMatched(lotto);
+
+        // then
+        Assertions.assertThat(matched).isEqualTo(4);
+    }
+
+    @Test
+    public void 보너스번호_맞춤_판단() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 7);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        List<Integer> prizeLottoNumbers = List.of(10, 20, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        PrizeLotto prizeLotto = PrizeLotto.from(prizeLottoNumbers, bonusNumber);
+
+        // when
+        boolean isBonusNumberMatched = prizeLotto.isBonusNumberMatched(lotto);
+
+        // then
+        Assertions.assertThat(isBonusNumberMatched).isTrue();
+    }
 }
