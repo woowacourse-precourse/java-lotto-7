@@ -59,4 +59,20 @@ public class Lotto {
             }
         }
     }
+
+    /**
+     * 당첨 번호와 일치하는 숫자 개수를 반환합니다.
+     *
+     * @param winningNumbers 당첨 번호 리스트
+     * @return 일치하는 숫자 개수
+     */
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
 }
