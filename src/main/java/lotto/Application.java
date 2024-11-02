@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -64,7 +62,10 @@ public class Application {
             }
         }
 
-
+        Set<Integer> numbers = new HashSet<>(winningNumbers);
+        if (winningNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 6개의 당첨번호는 서로 중복되지 않아야 합니다.");
+        }
 
     }
 }
