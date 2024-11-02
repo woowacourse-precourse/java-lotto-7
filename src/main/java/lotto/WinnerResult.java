@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import lotto.constant.Rank;
 
 public class WinnerResult {
     private final Map<Rank, Integer> winningResult = new LinkedHashMap<>();

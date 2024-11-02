@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import lotto.constant.Rank;
 
 public class Lotto {
     private final List<Integer> numbers;

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Optional;
+import lotto.constant.Rank;
 
 public class LottoGame {
     public static void start() {
