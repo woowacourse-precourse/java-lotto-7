@@ -38,27 +38,13 @@ public class LottoService {
     }
 
     private Rank getRank(LottoGame lottoGame, Lotto lotto){
-        int correctCount = getCorrectCount(lottoGame.getWinningNumbers(), lotto.getNumbers());
-        int bonusCount = getBonusCount(lottoGame.getBonusNumber(), lotto.getNumbers());
+        List<Integer> winningNumbers = lottoGame.getWinningNumbers();
+        int bonusNumber = lottoGame.getBonusNumber();
+
+        int correctCount = lotto.getWinningCount(winningNumbers);
+        int bonusCount = lotto.getBonusCount(bonusNumber);
 
         return Rank.getRank(correctCount, bonusCount);
-    }
-
-    private int getCorrectCount(List<Integer> winningNumbers, List<Integer> lottoNumbers){
-        int correctCount = 0;
-        for(int winningNumber : winningNumbers){
-            if(lottoNumbers.contains(winningNumber)){
-                correctCount++;
-            }
-        }
-        return correctCount;
-    }
-
-    private int getBonusCount(int bonusNumber, List<Integer> lottoNumbers){
-        if(lottoNumbers.contains(bonusNumber)){
-            return 1;
-        }
-        return  0;
     }
 
     public double getReturnRate(User user, LottoResult lottoResult){
