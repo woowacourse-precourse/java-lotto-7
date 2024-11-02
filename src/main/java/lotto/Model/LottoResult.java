@@ -22,6 +22,10 @@ public enum LottoResult {
     public int getWinningAmount() {
         return winningAmount;
     }
+
+    public String getFormattedWinningAmount() {
+        return String.format("%,d", winningAmount);
+    }
 }
 
 
