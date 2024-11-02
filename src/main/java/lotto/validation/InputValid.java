@@ -18,11 +18,11 @@ public class InputValid {
 
     public static Lotto checkNumber(String input) throws IllegalArgumentException {
         String[] numstr = input.split(",");
-        HashSet<Integer> numbers = new HashSet<>();
+        List<Integer> numbers = new ArrayList<>();
         for(String eachstr : numstr) {
             numbers.add(checkEachNum(eachstr));
         }
-        return new Lotto(new ArrayList<>(numbers));
+        return new Lotto(numbers);
     }
 
     public static int checkBonus(String input, Lotto win) throws IllegalArgumentException {
