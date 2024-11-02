@@ -7,27 +7,37 @@ import lotto.domain.LottoTicket;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningLottoTicket;
 import lotto.handler.InputHandler;
+import lotto.handler.LottoHandler;
 import lotto.handler.OutputHandler;
-import lotto.util.WinningInfo;
 
 public class LottoController {
-    private InputHandler inputHandler;
-    private OutputHandler outputHandler;
+    private static final int PRICE_PER_LOTTO = 1000;
+    private final InputHandler inputHandler;
+    private final OutputHandler outputHandler;
+    private final LottoHandler lottoHandler;
 
-    public LottoController(InputHandler inputHandler, OutputHandler outputHandler) {
+    public LottoController(InputHandler inputHandler, OutputHandler outputHandler, LottoHandler lottoHandler) {
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;
+        this.lottoHandler = lottoHandler;
     }
 
     public void lottoStart() {
-        try {
-            int purchaseMoney = inputHandler.getPurchasePrice();
-            WinningLottoTicket winningLottoTicket = makeWinningLottoTicket(purchaseMoney / 1000);
-            LottoTicket lottoTicket = makeLottoTicket();
-            List<Double> matchNumbers = compareNumbers(winningLottoTicket, lottoTicket);
-            double rateOfReturn = calculateRateOfReturn(matchNumbers, purchaseMoney);
+        int purchaseMoney;
+        WinningLottoTicket winningLottoTicket;
+        LottoTicket lottoTicket;
 
-            outputHandler.printPurchaseResult(purchaseMoney / 1000, winningLottoTicket.getWinningNumbers());
+        try {
+            purchaseMoney = inputHandler.getPurchasePrice();
+            winningLottoTicket = makeWinningLottoTicket(purchaseMoney / PRICE_PER_LOTTO);
+
+            outputHandler.printPurchaseResult(purchaseMoney / PRICE_PER_LOTTO, winningLottoTicket.getWinningNumbers());
+
+            lottoTicket = makeLottoTicket();
+
+            List<Double> matchNumbers = lottoHandler.compareNumbers(winningLottoTicket, lottoTicket);
+            double rateOfReturn = lottoHandler.calculateRateOfReturn(matchNumbers, purchaseMoney);
+
             outputHandler.printLottoResult(matchNumbers, rateOfReturn);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -51,24 +61,5 @@ public class LottoController {
         int bonusNumber = inputHandler.getBonusNumber();
 
         return new LottoTicket(numbers, bonusNumber);
-    }
-
-    // 입력된 당첨 번호와 발급받은 로또 번호를 대조하여 일치하는 번호의 갯수를 반환
-    private List<Double> compareNumbers(WinningLottoTicket winningLottoTicket, LottoTicket lottoTicket) {
-        return winningLottoTicket.determineWin(lottoTicket.getLottoNumbers(),
-                lottoTicket.getBonusNumber());
-    }
-
-    private double calculateRateOfReturn(List<Double> matchCounts, int purchaseMoney) {
-        double prizeMoney = 0;
-
-        // 총 당첨 금액 계산
-        for (Double matchCount : matchCounts) {
-            prizeMoney += WinningInfo.getWinningInfoByMatchCount(matchCount).getReturnMoney();
-        }
-
-        // 수익률을 계산하여 소수점 둘째 자리에서 반올림
-        double rateOfReturn = (prizeMoney / purchaseMoney) * 100;
-        return Math.round(rateOfReturn * 10) / 10.0;
     }
 }
