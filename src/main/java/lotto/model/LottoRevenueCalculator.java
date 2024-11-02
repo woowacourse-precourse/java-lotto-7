@@ -20,7 +20,7 @@ public class LottoRevenueCalculator {
                 .stream()
                 .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
                 .sum();
-        return (double) moneyEarned / moneySpent;
+        return (double) moneyEarned / moneySpent * 100;
     }
 
 }
