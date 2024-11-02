@@ -17,4 +17,10 @@ public class LottoResult {
         this.purchaseAmount = lottos.size() * LottoConstant.LOTTO_PURCHASE_AMOUNT.getIntValue();
         this.winningLotto = winningLotto;
     }
+
+    private Rank calculateLottoRank(Lotto lotto) {
+        int matchCount = winningLotto.countMatchNumbers(lotto);
+        boolean matchBonus = winningLotto.matchBonusNumber(lotto);
+        return Rank.valueOf(matchCount, matchBonus);
+    }
 }

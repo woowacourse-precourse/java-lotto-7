@@ -17,4 +17,20 @@ public enum Rank {
         this.prize = prize;
         this.description = description;
     }
+
+    public static Rank valueOf(int matchCount, boolean matchBonus) {
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5) {
+            return matchBonus ? SECOND : THIRD;
+        }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 3) {
+            return FIFTH;
+        }
+        return NONE;
+    }
 }
