@@ -1,14 +1,25 @@
 package lotto;
 
+import java.util.List;
+
 public class LottoDrawingMachine {
     private final Lotto winningLotto;
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public LottoDrawingMachine(Lotto winningLotto, int bonusNumber) {
         this.winningLotto = winningLotto;
         validateRange(bonusNumber);
         validateBonusNumberUnique(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public WinningStatics matchWinningLotto(List<Lotto> purChasedLotto) {
+        WinningStatics winningStatics = new WinningStatics();
+        for (Lotto lotto : purChasedLotto) {
+            MatchResult result = this.winningLotto.match(lotto, this.bonusNumber);
+            winningStatics.recordMatch(result);
+        }
+        return winningStatics;
     }
 
     private void validateRange(int input) {

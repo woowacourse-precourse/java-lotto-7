@@ -1,26 +1,31 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Collections.sort;
+import java.util.*;
 
 public class Lotto {
     public static final int LOTTO_MINIMUM_NUMBER = 1;
     public static final int LOTTO_MAXIMUM_NUMBER = 45;
+    public static final int LOTTO_PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplication(numbers);
         validateRange(numbers);
-        sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public MatchResult match(Lotto lotto, int bonusNumber) {
+        int match = (int) this.numbers.stream()
+                .filter(lotto.getNumbers()::contains)
+                .count();
+        boolean bonus = lotto.getNumbers().contains(bonusNumber);
+        return MatchResult.valueOf(match, bonus);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -42,6 +47,4 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45 사이여야 합니다.");
         }
     }
-
-
 }
