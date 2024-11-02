@@ -1,6 +1,5 @@
 package lotto.model.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.domain.BonusBall;
@@ -13,10 +12,10 @@ public class Lottos {
     private static final Long LOTTO_PRICE = 1_000L;
     private final List<Lotto> lottos;
 
-    public static Lottos from(Long count) {
+    public static Lottos from(Long count, NumberGenerator numberGenerator) {
         ArrayList<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> distintNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> distintNumbers = numberGenerator.generate();
             lottos.add(new Lotto(distintNumbers));
         }
         return new Lottos(lottos);

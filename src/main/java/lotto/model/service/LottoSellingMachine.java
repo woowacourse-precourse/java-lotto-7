@@ -7,7 +7,7 @@ public class LottoSellingMachine {
     public Lottos sell(Long money) {
         validateMoney(money);
         Long lottoCount = calculateLottoCount(money);
-        return Lottos.from(lottoCount);
+        return Lottos.from(lottoCount, new RandomNumberGenerator());
     }
 
     private void validateMoney(Long money) {

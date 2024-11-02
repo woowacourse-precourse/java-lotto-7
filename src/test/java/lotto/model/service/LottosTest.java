@@ -16,7 +16,7 @@ class LottosTest {
     @DisplayName("로또 6개를 산다")
     @Test
     void test_1() {
-        Lottos lottos = Lottos.from(6L);
+        Lottos lottos = Lottos.from(6L, () -> List.of(1, 2, 3, 4, 5, 6));
         assertEquals(6, lottos.getSize());
     }
 
