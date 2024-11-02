@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.view.InputView.getBonusNumber;
 import static lotto.view.InputView.getPurchase;
 import static lotto.view.InputView.getWinningNumbers;
 
@@ -10,5 +11,7 @@ public class LottoController {
         int purchase = getPurchase();
 
         List<Integer> winningNumbers = getWinningNumbers();
+
+        int bonusNumber = getBonusNumber();
     }
 }

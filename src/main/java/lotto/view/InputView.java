@@ -11,9 +11,11 @@ public class InputView {
     }
 
     public static int getPurchase() {
-        String purchase = readLine();
-        validateNumericInput(purchase);
-        return Integer.parseInt(purchase);
+        return getValidateIntegerInput();
+    }
+
+    public static int getBonusNumber() {
+        return getValidateIntegerInput();
     }
 
     public static List<Integer> getWinningNumbers() {
@@ -27,6 +29,12 @@ public class InputView {
         return splitWinningNumbers.stream()
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private static int getValidateIntegerInput() {
+        String purchase = readLine();
+        validateNumericInput(purchase);
+        return Integer.parseInt(purchase);
     }
 
     private static void validateNumericInput(String input) {
