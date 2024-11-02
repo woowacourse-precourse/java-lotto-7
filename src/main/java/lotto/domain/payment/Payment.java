@@ -25,13 +25,14 @@ public class Payment {
     }
 
     public Payment validate() {
-        validatePayment();
+        validateStatusPending();
+        validatePurchaseAmount();
 
         return new Payment(id, money, lottoPrice, PAYABLE);
     }
 
     public PaymentResult execute() {
-        validatePayment();
+        validateStatusPayable();
 
         return createPaymentResult();
     }
@@ -46,14 +47,15 @@ public class Payment {
         return new PaymentResult(completedPayment, LottoQuantity.of(count));
     }
 
-    private void validatePayment() {
-        validatePaymentStatus();
-        validatePurchaseAmount();
-    }
-
-    private void validatePaymentStatus() {
+    private void validateStatusPending() {
         if (status != PENDING) {
             throw new IllegalStateException("[ERROR] 결제 대기 상태가 아닙니다.");
+        }
+    }
+
+    private void validateStatusPayable() {
+        if (status != PAYABLE) {
+            throw new IllegalStateException("[ERROR] 결제 가능한 상태가 아닙니다.");
         }
     }
 
