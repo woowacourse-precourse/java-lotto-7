@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoNumberSorterTest {
     @Test
-    void sortAscending() {
+    void 로또_번호가_오름차순으로_정렬된다() {
         //given
         List<Integer> list = Arrays.asList(43, 15, 5, 11, 23, 7);
 
