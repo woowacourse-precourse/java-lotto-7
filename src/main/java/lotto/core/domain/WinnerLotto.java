@@ -6,29 +6,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.core.validate.InputValidate;
-import lotto.system.input.InputView;
 
 public class WinnerLotto {
 
     private Lotto winningNumber;
     private Integer bonusNumber;
     private final Map<ScoreBoard, Integer> scoreResult;
-    private final InputView inputView;
     private final InputValidate inputValidate;
 
     public WinnerLotto() {
         this.scoreResult = new HashMap<>();
-        this.inputView = new InputView();
         this.inputValidate = new InputValidate();
     }
 
-    public void createWinnerLotto() {
-        this.winningNumber = inputWinningNumber();
-        this.bonusNumber = inputBonusNumber();
+    public void createWinnerLotto(String inputNumbers,String BonusNumber) {
+        this.winningNumber = inputWinningNumber(inputNumbers);
+        this.bonusNumber = inputBonusNumber(BonusNumber);
     }
 
-    public Lotto inputWinningNumber() {
-        String inputNumbers = inputView.showInputLottoNumberMessage();
+    public Lotto inputWinningNumber(String inputNumbers) {
         List<Integer> validatedCompleteNumbers = winningNumbersValidate(inputNumbers);
         return new Lotto(validatedCompleteNumbers);
     }
@@ -38,9 +34,8 @@ public class WinnerLotto {
         return inputValidate.inputNumbersIntegerValidate(givenNumberStrings);
     }
 
-    public Integer inputBonusNumber() {
-        String inputNumber = inputView.showInputBonusNumberMessage();
-        return lottoBonusNumberValidate(inputNumber);
+    public Integer inputBonusNumber(String BonusNumber) {
+        return lottoBonusNumberValidate(BonusNumber);
     }
 
     private Integer lottoBonusNumberValidate(String inputNumber) {
@@ -57,8 +52,8 @@ public class WinnerLotto {
         }
     }
 
-    public void showResultBoard() {
-        ScoreBoard.showResultBoard(scoreResult, 0);
+    public List<ScoreBoard.ResultDto> getResultBoard() {
+        return ScoreBoard.generateResultBoard(scoreResult, 0);
     }
 
     public Integer calculatePrize() {

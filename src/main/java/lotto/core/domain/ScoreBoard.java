@@ -1,9 +1,9 @@
 package lotto.core.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.system.output.OutputView;
 
 public enum ScoreBoard {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원)"),
@@ -44,11 +44,30 @@ public enum ScoreBoard {
         return totalPrize;
     }
 
-    public static void showResultBoard(Map<ScoreBoard, Integer> scoreResult, int matchDefault) {
+    public static List<ResultDto> generateResultBoard(Map<ScoreBoard, Integer> scoreResult, int matchDefault) {
         List<ScoreBoard> scoreBoards = Arrays.asList(FIRST, SECOND, THIRD, FOURTH, FIFTH);
+        List<ResultDto> results = new ArrayList<>();
+
         for (ScoreBoard scoreBoard : scoreBoards) {
             int count = scoreResult.getOrDefault(scoreBoard, matchDefault);
-            OutputView.showResultOfBoard(scoreBoard.situation, count);
+            results.add(new ResultDto(scoreBoard.situation, count));
+        }
+        return results;
+    }
+
+    public static class ResultDto {
+        private final String situation;
+        private final int count;
+        public ResultDto(String situation, int count) {
+            this.situation = situation;
+            this.count = count;
+        }
+        public String getSituation() {
+            return situation;
+        }
+
+        public int getCount() {
+            return count;
         }
     }
 }

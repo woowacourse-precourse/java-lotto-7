@@ -1,33 +1,36 @@
 package lotto.system.output;
 
 import java.util.concurrent.BlockingQueue;
-import lotto.system.SystemIO;
+import lotto.system.message.Message;
+import lotto.system.message.MessageType;
 
 public class OutputTask implements Runnable {
-    private BlockingQueue<String> messageQueue;
-    private volatile boolean isRunning = true;
+    private final BlockingQueue<Message> outputMessageQueue;
+    private volatile boolean isRunning = false;
 
-    public OutputTask(BlockingQueue<String> messageQueue) {
-        this.messageQueue = messageQueue;
+    public OutputTask(BlockingQueue<Message> messageQueue) {
+        this.outputMessageQueue = messageQueue;
+    }
+
+    public void start() {
+        isRunning = true;
     }
 
     @Override
     public void run() {
-        try {
-            while (isRunning) {
-                String message = messageQueue.take();
-                processOutput(message);
-                if ("exit".equalsIgnoreCase(message)) {
-                    isRunning = false;
-                }
+        while (isRunning) {
+            if (Thread.currentThread().isInterrupted()) {
+                break;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            Message message = outputMessageQueue.poll();
+            if (message != null && message.getType() == MessageType.SYSTEM_OUTPUT) {
+                processOutput(message.getContent());
+            }
         }
     }
 
-    private void processOutput(Object message) {
-        SystemIO.showMessageToConsole(message);
+    private void processOutput(String message) {
+        System.out.println(message);
     }
 
     public void stop() {
