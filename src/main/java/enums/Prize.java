@@ -3,11 +3,11 @@ package enums;
 import java.text.DecimalFormat;
 
 public enum Prize {
-    FIRST("6개 일치", (int) 2e9),
-    SECOND("5개 일치, 보너스 볼 일치", (int) 3e7),
-    THIRD("5개 일치", 1500000),
+    FIFTH("3개 일치", 5000),
     FOURTH("4개 일치", 50000),
-    FIFTH("3개 일치", 5000);
+    THIRD("5개 일치", 1500000),
+    SECOND("5개 일치, 보너스 볼 일치", (int) 3e7),
+    FIRST("6개 일치", (int) 2e9);
 
     private final String description;
     private final int money;
