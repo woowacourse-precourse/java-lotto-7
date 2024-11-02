@@ -10,6 +10,7 @@ import java.util.List;
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
+    private static final String COMMA = ",";
     private final OutputView outputView;
     private final InputView inputView;
     private final LottoValidation lottoValidation;
@@ -37,7 +38,7 @@ public class LottoController {
 
         //당첨 번호 입력
         outputView.askWinningNumber();
-        List<Integer> winningNumber = getValidWinningNumber();
+        getValidWinningNumber();
 
         //보너스 번호 입력
 
@@ -69,14 +70,15 @@ public class LottoController {
         outputView.lottoPurchasedDetail(lottos);
     }
 
-    private List<Integer> getValidWinningNumber(){
+    private void getValidWinningNumber(){
         while (true) {
             try {
                 String input = inputView.inputWinningNumber();
                 lottoValidation.validateBlank(input);
-                List<String> splitNumber = List.of(input.split(","));
+                List<String> splitNumber = List.of(input.split(COMMA));
                 List<Integer> winningNumbers = lottoValidation.validateParsing(splitNumber);
                 lottoService.saveWinningNumbers(winningNumbers);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
