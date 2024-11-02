@@ -15,6 +15,8 @@ public class LottoService {
     private LottoWinningNumbers lottoWinning;
     private int lottoNum;
 
+    private int lottoPriceInt;
+
     public LottoService() {
         inputValidator = new InputValidator();
     }
@@ -36,7 +38,7 @@ public class LottoService {
 
     public int validateLottoPrice(String lottoPrice) {
         inputValidator.validateEmpty(lottoPrice);
-        int lottoPriceInt = inputValidator.validateNumber(lottoPrice);
+        lottoPriceInt = inputValidator.validateNumber(lottoPrice);
         inputValidator.validatePriceForm(lottoPriceInt);
 
         return lottoPriceInt;
@@ -97,13 +99,24 @@ public class LottoService {
         return count;
     }
 
-    public int resultRate() {
+    public double resultRate() {
         // 일치한 것에 대한 돈을 다 더한다
         // 해당 돈 / 구입 금액 * 100
         // 소수점 둘째자리까지 표현한다
         int amount = 0;
         for(LottoRank lottoRank: lottoResults.keySet()){
-            amount = lottoRank.getPrice() * lottoResults.get(lottoRank)
+            amount += convertToInt(lottoRank.getPrice()) * lottoResults.get(lottoRank);
         }
+
+        double rate = (amount / lottoPriceInt) * 100.0;
+        rate = Math.round(rate * 100) / 100.0;
+
+        return rate;
+    }
+
+    public static int convertToInt(String str) {
+        // 쉼표를 모두 제거하고 int로 변환
+        String noCommaStr = str.replace(",", "");
+        return Integer.parseInt(noCommaStr);
     }
 }

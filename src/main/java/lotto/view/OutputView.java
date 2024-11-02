@@ -19,7 +19,7 @@ public class OutputView {
         }
     }
 
-    public void totalLotto(Map<LottoRank, Integer> lottoResult, int rate) {
+    public void totalLotto(Map<LottoRank, Integer> lottoResult, double rate) {
         System.out.println(Constants.RESULT_LOTTO_OUTPUT);
     }
 }
