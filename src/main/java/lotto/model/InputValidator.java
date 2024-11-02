@@ -46,12 +46,6 @@ public class InputValidator {
         validateRangeNumber(input);
     }
 
-    public void validateBonusNumberExcluding(int bonusNumber, List<Integer> numberList) {
-        if (numberList.contains(bonusNumber)) {
-            throw new InputException(BONUS_NUMBER_DUPLICATE_ERROR);
-        }
-    }
-
     private void validateParseNumber(String input) {
         try {
             Integer.parseInt(input);
