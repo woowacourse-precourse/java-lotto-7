@@ -1,6 +1,6 @@
 package lotto.domain.buyer;
 
-import static lotto.resources.Constants.THOUSND_UNIT;
+import static lotto.resources.Constants.THOUSAND_UNIT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -26,7 +26,7 @@ class BuyerTest {
 
         customLottos = Lottos.of(Arrays.asList(customLotto1, customLotto2, customLotto3));
 
-        testBuyer = BuyerFactory.createTestBuyer(THOUSND_UNIT, customLottos);
+        testBuyer = BuyerFactory.createTestBuyer(THOUSAND_UNIT, customLottos);
     }
 
     @DisplayName("구매한 로또 개수와 Lottos 객체가 동일하면 equals 하다.")
@@ -37,7 +37,7 @@ class BuyerTest {
         Lotto cloneCustomLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
         Lottos cloneCustomLottos = Lottos.of(Arrays.asList(cloneCustomLotto1, cloneCustomLotto2, cloneCustomLotto3));
 
-        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(THOUSND_UNIT, cloneCustomLottos);
+        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(THOUSAND_UNIT, cloneCustomLottos);
 
         assertThat(testBuyer).isEqualTo(cloneTestBuyer);
     }
@@ -50,7 +50,7 @@ class BuyerTest {
         Lotto cloneCustomLotto3 = LottoFactory.createCustomLotto(Arrays.asList(21, 22, 23, 24, 25, 26));
         Lottos cloneCustomLottos = Lottos.of(Arrays.asList(cloneCustomLotto3, cloneCustomLotto2, cloneCustomLotto1));
 
-        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(THOUSND_UNIT, cloneCustomLottos);
+        Buyer cloneTestBuyer = BuyerFactory.createTestBuyer(THOUSAND_UNIT, cloneCustomLottos);
 
         assertThat(testBuyer).isNotEqualTo(cloneTestBuyer);
 

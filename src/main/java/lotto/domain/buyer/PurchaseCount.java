@@ -1,6 +1,6 @@
 package lotto.domain.buyer;
 
-import static lotto.resources.Constants.THOUSND_UNIT;
+import static lotto.resources.Constants.THOUSAND_UNIT;
 import static lotto.resources.ErrorMessages.INVALID_THOUSAND_UNIT_MONEY;
 import static lotto.resources.ErrorMessages.NEGATIVE_QUANTITY_MONEY;
 
@@ -11,7 +11,7 @@ public class PurchaseCount {
 
     private PurchaseCount(final int money) {
         validateMoney(money);
-        this.purchaseCount = money / THOUSND_UNIT;
+        this.purchaseCount = money / THOUSAND_UNIT;
     }
 
     public static PurchaseCount from(final int money) {

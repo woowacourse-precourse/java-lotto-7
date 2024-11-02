@@ -1,6 +1,6 @@
 package lotto.domain.buyer;
 
-import static lotto.resources.Constants.THOUSND_UNIT;
+import static lotto.resources.Constants.THOUSAND_UNIT;
 import static lotto.resources.Constants.ZERO;
 import static lotto.resources.ErrorMessages.INVALID_THOUSAND_UNIT_MONEY;
 import static lotto.resources.ErrorMessages.NEGATIVE_QUANTITY_MONEY;
@@ -18,16 +18,16 @@ class PurchaseCountTest {
     private static Stream<Arguments> provideMoneyTestCases() {
         return Stream.of(
                 Arguments.of(ZERO, ZERO),
-                Arguments.of(THOUSND_UNIT, 1),
-                Arguments.of(THOUSND_UNIT * 10, 10),
-                Arguments.of(THOUSND_UNIT * 100, 100)
+                Arguments.of(THOUSAND_UNIT, 1),
+                Arguments.of(THOUSAND_UNIT * 10, 10),
+                Arguments.of(THOUSAND_UNIT * 100, 100)
         );
     }
 
     @DisplayName("1000원 단위로 떨어지지 않은 돈 액수를 입력하면 예외가 발생한다.")
     @Test
     void 돈_액수가_1000원_단위로_떨어지지않으면_예외가_발생한다() {
-        assertThatThrownBy(() -> PurchaseCount.from(THOUSND_UNIT - 1))
+        assertThatThrownBy(() -> PurchaseCount.from(THOUSAND_UNIT - 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_THOUSAND_UNIT_MONEY.getMessage());
     }
@@ -35,7 +35,7 @@ class PurchaseCountTest {
     @DisplayName("돈 액수가 음수이면 예외가 발생한다.")
     @Test
     void 돈_액수가_음수이면_예외가_발생한다() {
-        assertThatThrownBy(() -> PurchaseCount.from(-1 * THOUSND_UNIT))
+        assertThatThrownBy(() -> PurchaseCount.from(-1 * THOUSAND_UNIT))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NEGATIVE_QUANTITY_MONEY.getMessage());
     }
