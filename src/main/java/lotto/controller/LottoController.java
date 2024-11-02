@@ -15,17 +15,16 @@ import static lotto.view.OutputView.printWinningStatistics;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.BonusNumber;
+import lotto.model.Deposit;
 import lotto.model.Lotto;
 import lotto.model.MatchingRecord;
 import lotto.model.Rank;
 import lotto.model.WinningNumbers;
 
 public class LottoController {
-    private static final int PURCHASE_UNIT = 1000;
-
     public void run() {
-        int purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottos = issueLottos(purchaseAmount);
+        Deposit deposit = getPurchaseAmount();
+        List<Lotto> lottos = issueLottos(deposit.getNumberOfLottoes());
         printPurchasedLottos(lottos);
         WinningNumbers winningNumbers = getWinningNumbers();
         BonusNumber bonusNumber = getBonusNumber(winningNumbers);
@@ -33,14 +32,14 @@ public class LottoController {
         getStatistics(matchingRecords, lottos, winningNumbers, bonusNumber);
         printWinningStatistics(matchingRecords);
         double wholeCashPrize = calculateWholeCashPrize(matchingRecords);
-        printEarningsRate(((wholeCashPrize / (double) purchaseAmount) * 100));
+        printEarningsRate(((wholeCashPrize / (double) deposit.getPurchaseAmount()) * 100));
     }
 
-    private int getPurchaseAmount() {
+    private Deposit getPurchaseAmount() {
         while (true) {
             try {
-                int purchaseAmount = parsePurchaseAmount(askPurchaseAmount());
-                return purchaseAmount;
+                int purchaseAmount = parsePurchaseAmount(askPurchaseAmount()); // 정수화된 구입 금액
+                return new Deposit(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,9 +49,8 @@ public class LottoController {
     private WinningNumbers getWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbersUnvalidated = parseWinningNumbers(askWinningNumbers());
-                WinningNumbers winningNumbers = new WinningNumbers(winningNumbersUnvalidated);
-                return winningNumbers;
+                List<Integer> winningNumbers = parseWinningNumbers(askWinningNumbers());
+                return new WinningNumbers(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -62,16 +60,15 @@ public class LottoController {
     private BonusNumber getBonusNumber(WinningNumbers winningNumbers) {
         while (true) {
             try {
-                BonusNumber bonusNumber = new BonusNumber(winningNumbers, parseBonusNumber(askBonusNumber()));
-                return bonusNumber;
+                return new BonusNumber(winningNumbers, parseBonusNumber(askBonusNumber()));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private List<Lotto> issueLottos(int purchaseAmount) {
-        return IntStream.range(0, purchaseAmount / PURCHASE_UNIT)
+    private List<Lotto> issueLottos(int numberOfLottoes) {
+        return IntStream.range(0, numberOfLottoes)
                 .mapToObj(i -> new Lotto(pickUniqueNumbersInRange(1, 45, 6))).toList();
     }
 
