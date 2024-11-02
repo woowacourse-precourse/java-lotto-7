@@ -48,8 +48,8 @@ public class User {
     public Double lateOfReturn() {
         double returnMoney = 0;
         for (Result result : Result.values()) {
-            returnMoney += result.getMoney() * result.getCount();
+            returnMoney += (double) result.getMoney() * result.getCount();
         }
-        return (returnMoney / money) * 100;
+        return (double) Math.round((returnMoney / money) * 100);
     }
 }

@@ -8,7 +8,7 @@ public enum Result {
     FIRST(6, false, 2000000000, 0);
 
     private final int matches;
-    private final double money;
+    private final int money;
     private int count;
     private final boolean bonus;
 
@@ -19,7 +19,7 @@ public enum Result {
         this.count = count;
     }
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
     }
 
