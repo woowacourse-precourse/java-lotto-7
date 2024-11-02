@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -68,8 +69,7 @@ class LottoTest {
     @Test
     @DisplayName("Lotto는 중복값을 허용하지 않는다")
     void testLottoDuplicateValidation() {
-        List<Component> duplicateList = Arrays.asList('a', 'a', 'b', 'c', 'd', 'e')
-                .stream()
+        List<Component> duplicateList = Stream.of('a', 'a', 'b', 'c', 'd', 'e')
                 .map(ComponentChar::new)
                 .collect(Collectors.toList());
 
