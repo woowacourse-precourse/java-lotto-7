@@ -27,7 +27,7 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLottoOrReapeat();
         setWinningLottoBonusNumberOrRepeat(winningLotto);
         outputView.winningResult(lottoService.calculateResults(autoLottos, winningLotto));
-
+        outputView.winningStatisticst(lottoService.calculateWinningStatistics(lottoService.calculateResults(autoLottos, winningLotto), autoLottos));
     }
 
     private List<AutoLotto> getValidAutoLottoOrRepeat() {

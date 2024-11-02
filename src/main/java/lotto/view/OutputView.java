@@ -38,10 +38,15 @@ public class OutputView {
         }
     }
 
+    public void winningStatisticst(float winningStatistics) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", winningStatistics);
+    }
+
     private void winningStatisticsStart() {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
     }
+
 
 }

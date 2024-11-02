@@ -3,11 +3,14 @@ import lotto.domain.AutoLotto;
 import lotto.domain.message.LottoErrorMessage;
 import lotto.domain.message.LottoPriceErrorMessage;
 import lotto.domain.rule.LottoRules;
+import lotto.domain.rule.WinningRules;
 import lotto.utils.DefaultErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.domain.WinningLotto;
@@ -110,6 +113,79 @@ public class LottoServiceTest {
         assertThatThrownBy(() -> lottoService.setWinningLottoBonusNumber(winningLotto, invalidWinningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBER_IN_RANGE.getMessage());
+    }
+
+    // 수익률
+    @Test
+    void testReturnRate_0Percent() {
+        LottoService lottoService = new LottoService();
+        List<AutoLotto> autoLottos = lottoService.createAutoLottosByLottoPrice("8000");
+        WinningLotto winningLotto = WinningLotto.createWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoService.setWinningLottoBonusNumber(winningLotto, "7");
+
+        float result = lottoService.calculateWinningStatistics(Map.of(
+                WinningRules.THREE_MATCH, 0L,
+                WinningRules.FOUR_MATCH, 0L,
+                WinningRules.FIVE_MATCH, 0L,
+                WinningRules.FIVE_MATCH_WITH_BONUS, 0L,
+                WinningRules.SIX_MATCH, 0L
+        ), autoLottos);
+
+        assertThat(result).isEqualTo(0.0f);
+    }
+
+    @Test
+    void testReturnRate_62_5Percent() {
+        LottoService lottoService = new LottoService();
+        List<AutoLotto> autoLottos = lottoService.createAutoLottosByLottoPrice("8000");
+        WinningLotto winningLotto = WinningLotto.createWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoService.setWinningLottoBonusNumber(winningLotto, "7");
+
+        float result = lottoService.calculateWinningStatistics(Map.of(
+                WinningRules.THREE_MATCH, 1L,
+                WinningRules.FOUR_MATCH, 0L,
+                WinningRules.FIVE_MATCH, 0L,
+                WinningRules.FIVE_MATCH_WITH_BONUS, 0L,
+                WinningRules.SIX_MATCH, 0L
+        ), autoLottos);
+
+        assertThat(result).isEqualTo(62.5f);
+    }
+
+    @Test
+    void testReturnRate_125Percent() {
+        LottoService lottoService = new LottoService();
+        List<AutoLotto> autoLottos = lottoService.createAutoLottosByLottoPrice("8000");
+        WinningLotto winningLotto = WinningLotto.createWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoService.setWinningLottoBonusNumber(winningLotto, "7");
+
+        float result = lottoService.calculateWinningStatistics(Map.of(
+                WinningRules.THREE_MATCH, 2L,
+                WinningRules.FOUR_MATCH, 0L,
+                WinningRules.FIVE_MATCH, 0L,
+                WinningRules.FIVE_MATCH_WITH_BONUS, 0L,
+                WinningRules.SIX_MATCH, 0L
+        ), autoLottos);
+
+        assertThat(result).isEqualTo(125.0f);
+    }
+
+    @Test
+    void testReturnRate_25000000Percent() {
+        LottoService lottoService = new LottoService();
+        List<AutoLotto> autoLottos = lottoService.createAutoLottosByLottoPrice("8000");
+        WinningLotto winningLotto = WinningLotto.createWinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoService.setWinningLottoBonusNumber(winningLotto, "7");
+
+        float result = lottoService.calculateWinningStatistics(Map.of(
+                WinningRules.THREE_MATCH, 0L,
+                WinningRules.FOUR_MATCH, 0L,
+                WinningRules.FIVE_MATCH, 0L,
+                WinningRules.FIVE_MATCH_WITH_BONUS, 0L,
+                WinningRules.SIX_MATCH, 1L
+        ), autoLottos);
+
+        assertThat(result).isEqualTo(25000000.0f);
     }
 
 

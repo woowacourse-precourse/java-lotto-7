@@ -55,6 +55,20 @@ public class LottoService {
                 ));
     }
 
+    public float calculateWinningStatistics(Map<WinningRules, Long> results, List<AutoLotto> autoLottos) {
+        long totalPrize = 0;
+        for (WinningRules rank : WinningRules.values()) {
+            if (rank != WinningRules.NO_MATCH) {
+                totalPrize += rank.getPrize() * results.getOrDefault(rank, 0L);
+            }
+        }
+        double winningStatistics = ((double) totalPrize / (autoLottos.size() * 1000L)) * 100;
+
+        return (float) Math.round(winningStatistics * 100) / 100.0f;
+    }
+
+
+
     private WinningRules determineWinningRule(AutoLotto autoLotto, WinningLotto winningLotto) {
         int matchCount = countMatchingNumbers(autoLotto, winningLotto);
         boolean bonusMatch = autoLotto.getNumbers().contains(winningLotto.getBonusNumber());
@@ -66,7 +80,6 @@ public class LottoService {
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
     }
-
 
     private void validateDefaultInputPrice(String inputPrice) {
         validateNullOrEmpty(inputPrice);

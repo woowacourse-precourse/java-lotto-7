@@ -16,12 +16,12 @@ public class Lotto {
     }
 
     public static AutoLotto createRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
                 LottoRules.MIN_NUMBER.getValue(),
                 LottoRules.MAX_NUMBER.getValue(),
                 LottoRules.NUMBER_COUNT.getValue()
-        );
-        randomNumbers.sort(Integer::compareTo);
+        ));
+        randomNumbers.sort(Integer::compareTo); // 이제 정렬 가능
         return new AutoLotto(randomNumbers);
     }
 
