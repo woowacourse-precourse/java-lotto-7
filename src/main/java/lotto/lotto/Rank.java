@@ -8,7 +8,7 @@ public enum Rank {
 
     FIRST(2_000_000_000, 6),
     SECOND(30_000_000, 5),
-    THIRD(150_000, 5),
+    THIRD(1_500_000, 5),
     FOURTH(50_000, 4),
     FIFTH(5_000, 3),
     NONE(0, 0);
@@ -33,7 +33,7 @@ public enum Rank {
 
     public static Map<Rank, Integer> initializeRankSummary() {
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank != NONE)
+//                .filter(rank -> rank != NONE)
                 .collect(Collectors.toMap(rank -> rank, rank -> 0));
     }
 

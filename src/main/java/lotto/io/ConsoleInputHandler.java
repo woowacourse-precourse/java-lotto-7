@@ -19,13 +19,13 @@ public class ConsoleInputHandler implements InputHandler {
 
     @Override
     public WiningNumbers inputWiningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         return inputConverter.convertToWiningNumbers(Console.readLine().split(NUMBER_DELIMITER));
     }
 
     @Override
     public LottoNumber inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return inputConverter.convertToBonusNumber(Console.readLine());
     }
 }

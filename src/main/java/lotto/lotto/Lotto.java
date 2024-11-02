@@ -42,6 +42,7 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers.stream()
                 .map(LottoNumber::getValue)
+                .sorted()
                 .toList();
     }
 }

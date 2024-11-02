@@ -1,7 +1,10 @@
 package lotto.lotto;
 
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoWiningNumbers {
 
@@ -22,7 +25,7 @@ public class LottoWiningNumbers {
             Rank rank = match(lotto);
             rankSummary.put(rank, rankSummary.get(rank) + 1);
         }
-        return rankSummary;
+        return sortRankSummaryByAmount(rankSummary);
     }
 
     private void validate(WiningNumbers winingNumbers, LottoNumber bonusNumber) {
@@ -35,5 +38,12 @@ public class LottoWiningNumbers {
         int countOfMatch = winingNumbers.countOfMatch(lotto);
         boolean matchBonus = winingNumbers.contains(bonusNumber);
         return Rank.determine(countOfMatch, matchBonus);
+    }
+
+    private LinkedHashMap<Rank, Integer> sortRankSummaryByAmount(Map<Rank, Integer> rankSummary) {
+        return rankSummary.keySet().stream()
+                .sorted(Comparator.comparing(Rank::getAmount))
+                .collect(Collectors.toMap(rank -> rank, rankSummary::get, (oldValue, newValue) -> oldValue,
+                        LinkedHashMap::new));
     }
 }
