@@ -23,40 +23,37 @@ class WinningNumberTest {
     @Test
     @DisplayName("당첨 번호가 6자리가 아니면 예외를 발생한다.")
     void winningNumbersTest1() {
-        Validator<String> numberValidator = new NumberValidator();
         String winningNumbers = "1,2,3,4,5";
 
-        assertThatThrownBy(() -> numberValidator.validate(winningNumbers))
+        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("당첨 번호가 중복되면 예외를 발생한다.")
     void winningNumbersTest2() {
-        Validator<String> numberValidator = new NumberValidator();
+        Validator numberValidator = new NumberValidator();
         String winningNumbers = "1,2,3,4,5,5";
 
-        assertThatThrownBy(() -> numberValidator.validate(winningNumbers))
+        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("당첨 번호가 숫자가 아니면 예외를 발생한다.")
     void winningNumbersTest3() {
-        Validator<String> numberValidator = new NumberValidator();
         String winningNumbers = "1,2,3,a,5,6";
 
-        assertThatThrownBy(() -> numberValidator.validate(winningNumbers))
+        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("당첨 번호가 1 ~ 45 사이의 숫자가 아니면 예외를 발생한다.")
     void winningNumbersTest4() {
-        Validator<String> numberValidator = new NumberValidator();
         String winningNumbers = "0,2,3,4,5,6";
 
-        assertThatThrownBy(() -> numberValidator.validate(winningNumbers))
+        assertThatThrownBy(() -> WinningNumber.create(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
