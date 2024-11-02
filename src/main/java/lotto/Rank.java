@@ -24,6 +24,16 @@ public enum Rank {
     int getWinningPrize() {
         return winningPrize;
     }
+
+    public static Rank getRank(int balls, boolean bonus) {
+        for (Rank rank : values()) {
+            if (rank.balls == balls && rank.bonus == bonus) {
+                return rank;
+            }
+        }
+        return null;
+    }
+
 }
 
 
