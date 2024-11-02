@@ -30,4 +30,11 @@ public class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ENTERED_INVALID_NUMBER);
     }
+
+    @Test
+    void 입력된_보너스번호가_유효하지_않은_경우_예외() {
+        assertThatThrownBy(() -> new WinningLotto("1:2:3:4:5:6", "7,8"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ENTERED_INVALID_NUMBER);
+    }
 }
