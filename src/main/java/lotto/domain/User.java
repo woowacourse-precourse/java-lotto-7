@@ -8,7 +8,7 @@ import static lotto.util.CreateLottoNumber.createLotto;
 
 public class User {
 
-    private final int buyingPrice; // 수익률 계산할 때 필요함
+    private final int buyingPrice;
     private int winningPrice = 0;
     private final List<UserLotto> userLotto = new ArrayList<>();
 

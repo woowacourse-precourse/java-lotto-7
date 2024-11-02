@@ -11,6 +11,10 @@ import static lotto.constants.Constants.*;
 
 public class CreateLottoNumber {
 
+    public static UserLotto createLotto() {
+        return new UserLotto(sortNumber(createNumber()));
+    }
+
     private static List<Integer> createNumber() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_PICK_NUMBER_SIZE);
     }
@@ -19,9 +23,5 @@ public class CreateLottoNumber {
         List<Integer> numberList = new ArrayList<>(numbers);
         Collections.sort(numberList);
         return numberList;
-    }
-
-    public static UserLotto createLotto() {
-        return new UserLotto(sortNumber(createNumber()));
     }
 }

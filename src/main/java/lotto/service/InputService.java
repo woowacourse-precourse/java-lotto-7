@@ -13,6 +13,13 @@ import static lotto.view.InputView.*;
 
 public class InputService {
 
+    public User inputUser() {
+        User user = new User(priceValidate());
+        OutputView.buyLottoQuantity(user);
+        OutputView.buyLottoNumber(user);
+        return user;
+    }
+
     private int priceValidate() {
         try {
             PriceValidate validate = new PriceValidate(inputLottoMoney());
@@ -23,11 +30,10 @@ public class InputService {
         }
     }
 
-    public User inputUser() {
-        User user = new User(priceValidate());
-        OutputView.buyLottoQuantity(user);
-        OutputView.buyLottoNumber(user);
-        return user;
+    public Lotto setWinningLotto() {
+        Lotto lotto = setLotto();
+        setBonusNumber(lotto);
+        return lotto;
     }
 
     private List<Integer> lottoNumberValidate() {
@@ -48,12 +54,6 @@ public class InputService {
             System.out.println(e.getMessage());
             return bonusNumberValidate();
         }
-    }
-
-    public Lotto setWinningLotto() {
-        Lotto lotto = setLotto();
-        setBonusNumber(lotto);
-        return lotto;
     }
 
     private Lotto setLotto() {
