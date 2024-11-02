@@ -10,7 +10,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoPrize;
 import lotto.domain.User;
-import lotto.utils.ErrorMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
