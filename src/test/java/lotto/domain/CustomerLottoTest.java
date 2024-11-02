@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.Rank;
 import lotto.dto.LottoResult;
+import lotto.dto.LottoResults;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,24 +36,19 @@ class CustomerLottoTest {
 
         WinningLotto winningLotto = new WinningLotto(winningTicket, bonusNumber);
         // when
-        List<LottoResult> result = customerLotto.compareWinningLotto(winningLotto);
-
+        LottoResults lottoResults = customerLotto.compareWinningLotto(winningLotto);
+        List<LottoResult> result = lottoResults.getResults();
         // then
         assertSoftly(softly -> {
             assertThat(result.get(0).getRank()).isEqualTo(Rank.FIRST);
-            assertThat(result.get(0).getNumberOfMatched()).isEqualTo(Rank.FIRST.getMatchingNumber());
 
             assertThat(result.get(1).getRank()).isEqualTo(Rank.SECOND);
-            assertThat(result.get(1).getNumberOfMatched()).isEqualTo(Rank.SECOND.getMatchingNumber());
 
             assertThat(result.get(2).getRank()).isEqualTo(Rank.THIRD);
-            assertThat(result.get(2).getNumberOfMatched()).isEqualTo(Rank.THIRD.getMatchingNumber());
 
             assertThat(result.get(3).getRank()).isEqualTo(Rank.FOURTH);
-            assertThat(result.get(3).getNumberOfMatched()).isEqualTo(Rank.FOURTH.getMatchingNumber());
 
             assertThat(result.get(4).getRank()).isEqualTo(Rank.FIFTH);
-            assertThat(result.get(4).getNumberOfMatched()).isEqualTo(Rank.FIFTH.getMatchingNumber());
         });
 
     }

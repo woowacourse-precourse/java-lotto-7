@@ -4,20 +4,13 @@ import lotto.constant.Rank;
 
 public class LottoResult {
     private final Rank rank;
-    private final int numberOfMatched;
 
-
-    private LottoResult(Rank rank, int numberOfMatched) {
+    private LottoResult(Rank rank) {
         this.rank = rank;
-        this.numberOfMatched = numberOfMatched;
     }
 
-    public static LottoResult of(Rank rank, int numberOfMatched) {
-        return new LottoResult(rank, numberOfMatched);
-    }
-
-    public int getNumberOfMatched() {
-        return numberOfMatched;
+    public static LottoResult of(Rank rank) {
+        return new LottoResult(rank);
     }
 
     public Rank getRank() {

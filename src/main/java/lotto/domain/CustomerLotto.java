@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.LottoResult;
+import lotto.dto.LottoResults;
 
 public class CustomerLotto {
     private final List<Lotto> tickets;
@@ -15,10 +16,11 @@ public class CustomerLotto {
         return new CustomerLotto(tickets);
     }
 
-    public List<LottoResult> compareWinningLotto(WinningLotto winningLotto) {
-        return tickets.stream()
+    public LottoResults compareWinningLotto(WinningLotto winningLotto) {
+        List<LottoResult> lottoResults = tickets.stream()
                 .map(winningLotto::checkLotto)
                 .toList();
+        return LottoResults.of(lottoResults);
     }
 
     public List<Lotto> getTickets() {

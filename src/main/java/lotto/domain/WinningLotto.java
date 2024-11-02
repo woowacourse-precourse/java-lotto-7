@@ -21,12 +21,12 @@ public class WinningLotto {
     }
 
     public LottoResult checkLotto(Lotto customerLotto) {
-        int numberOfMatched = getNumberOfMatched(customerLotto);
+        int matchedCount = getMatchedCount(customerLotto);
         boolean containsBonus = hasContainsBonusNumber(customerLotto);
 
-        Rank rank = getRank(numberOfMatched, containsBonus);
+        Rank rank = getRank(matchedCount, containsBonus);
 
-        return LottoResult.of(rank, numberOfMatched);
+        return LottoResult.of(rank);
     }
 
     private void validateDuplicate(int bonusNumber) {
@@ -45,7 +45,7 @@ public class WinningLotto {
         return ticket.getNumbers().stream().anyMatch(n -> n == bonusNumber);
     }
 
-    private int getNumberOfMatched(Lotto customerLotto) {
+    private int getMatchedCount(Lotto customerLotto) {
         return ticket.getMatchedCount(customerLotto.getNumbers());
     }
 
