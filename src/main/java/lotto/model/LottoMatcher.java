@@ -10,7 +10,11 @@ public class LottoMatcher {
     public LottoMatcher(Lottos lottos, WinningLotto winningLotto) {
         countByPrize = new HashMap<>();
         for (Lotto lotto : lottos.toList()) {
-            Prize prize = Prize.getPrize((int) winningLotto.countMatch(lotto), winningLotto.hasBonusNumberIn(lotto));
+            Prize prize = Prize.getPrize(
+                    winningLotto.countLottoNumberMatch(lotto),
+                    winningLotto.hasBonusNumberIn(lotto)
+            );
+
             if (prize == null) {
                 continue;
             }

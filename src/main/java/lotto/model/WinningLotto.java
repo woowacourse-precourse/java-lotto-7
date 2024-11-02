@@ -18,7 +18,7 @@ public class WinningLotto {
         }
     }
 
-    public long countMatch(Lotto toCheck) {
+    public int countLottoNumberMatch(Lotto toCheck) {
         return lotto.countMatch(toCheck);
     }
 
