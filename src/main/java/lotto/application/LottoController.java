@@ -6,13 +6,15 @@ import lotto.service.LottoNumberGeneratorService;
 import lotto.service.LottoTicketBuyingService;
 import lotto.service.LottoTicketIssueService;
 import lotto.view.InputView;
+import lotto.view.OutPutView;
 
 public class LottoController {
     private final InputView inputView;
+    private final OutPutView outPutView;
 
-
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, OutPutView outPutView) {
         this.inputView = inputView;
+        this.outPutView = outPutView;
     }
 
     public void run() {
@@ -22,6 +24,6 @@ public class LottoController {
         LottoTicketIssueService lottoTicketIssueService = new LottoTicketIssueService(lottoTicketAmount,
                 lottoNumberGeneratorService);
         List<Lotto> issuedLotto = lottoTicketIssueService.issueLotto();
-
+        outPutView.printBoughtLotto(issuedLotto);
     }
 }
