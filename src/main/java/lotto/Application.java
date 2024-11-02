@@ -1,6 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Application {
 
@@ -9,6 +14,7 @@ public class Application {
     public static void main(String[] args) {
 
         int purchaseAmount = readPurchaseAmount();
+        List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
 
 
     }
@@ -24,6 +30,15 @@ public class Application {
         if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
         }
+    }
+
+    private static List<Lotto> generateLottos(int purchaseAmount) {
+        int numberOfLottos = purchaseAmount / LOTTO_PRICE;
+        return IntStream.range(0, numberOfLottos)
+                .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                        .stream().sorted().collect(Collectors.toList())))
+                .collect(Collectors.toList());
+
     }
 }
 
