@@ -1,9 +1,7 @@
 package lotto.model;
-
 import lotto.exceptions.LottoDuplicateNumberException;
 import lotto.exceptions.LottoInvalidCountException;
 import lotto.exceptions.LottoNumberRangeException;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

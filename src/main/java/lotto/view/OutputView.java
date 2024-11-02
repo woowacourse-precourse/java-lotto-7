@@ -1,9 +1,7 @@
 package lotto.view;
-
 import lotto.dto.LottoStatisticDTO;
 import lotto.model.Lotto;
 import lotto.model.LottoStatistics;
-
 import java.util.List;
 
 public class OutputView {

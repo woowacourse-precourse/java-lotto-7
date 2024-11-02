@@ -1,5 +1,4 @@
 package lotto.controller;
-
 import lotto.exceptions.LottoNumberRangeException;
 import lotto.exceptions.LottoPriceUnder1000Exception;
 
@@ -13,8 +12,8 @@ public class LottoValidator {
         }
     }
 
-    public void isValidBounusNumber(int bounusNumber) {
-        if(bounusNumber < 1 || bounusNumber > 45) {
+    public void isValidBonusNumber(int bonusNumber) {
+        if(bonusNumber < 1 || bonusNumber > 45) {
             throw new LottoNumberRangeException();
         }
     }

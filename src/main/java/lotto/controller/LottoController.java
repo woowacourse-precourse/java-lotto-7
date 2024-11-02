@@ -78,7 +78,7 @@ public class LottoController {
         while (true) {
             try {
                 int bonusNumber = InputView.readBonusNumber();
-                validator.isValidBounusNumber(bonusNumber);
+                validator.isValidBonusNumber(bonusNumber);
                 return bonusNumber;
             } catch(LottoException e) {
                 ErrorView.displayError(e);
