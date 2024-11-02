@@ -5,6 +5,7 @@ import static lotto.global.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_SIZE;
 import static lotto.global.util.Validator.validateLotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto implements UniqueNumber {
     private final List<Integer> numbers;
@@ -35,4 +36,12 @@ public class Lotto implements UniqueNumber {
                 .filter(numbers::contains)
                 .count();
     }
+
+    @Override
+    public String toString() {
+        return "[" + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ")) + "]";
+    }
+
 }
