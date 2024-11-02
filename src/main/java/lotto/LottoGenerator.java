@@ -2,8 +2,8 @@ package lotto;
 
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-
 import static lotto.LottoConstants.*;
+
 public class LottoGenerator {
     public int getLottoCount(int budget) {
         if (budget < PRICE_PER_LOTTO.getValue()) {
