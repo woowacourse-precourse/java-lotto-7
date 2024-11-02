@@ -1,6 +1,7 @@
 package lotto.core.model;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public enum WinningRank {
@@ -64,5 +65,19 @@ public enum WinningRank {
             }
         }
         return null;
+    }
+
+    public String formatDisplay() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.matchCount);
+        builder.append("개 일치");
+        if (this.isBonus) {
+            builder.append(", 보너스 볼 일치");
+        }
+        builder.append(" (");
+        builder.append(decimalFormat.format(this.winningAmount));
+        builder.append("원)");
+        return builder.toString();
     }
 }

@@ -15,7 +15,8 @@ class LottoTicketTest {
                 new Lotto(List.of(2, 4, 6, 10, 11, 40)),
                 new Lotto(List.of(10, 20, 31, 42, 44, 45))
         );
-        LottoTicket ticket = new LottoTicket(lottos);
+        LottoPurchaseAmount amount = LottoPurchaseAmount.lottosOf(lottos);
+        LottoTicket ticket = new LottoTicket(amount, lottos);
         // then
         Assertions.assertEquals(lottos, ticket.getLottos());
         Assertions.assertEquals(3, ticket.count());
@@ -31,7 +32,8 @@ class LottoTicketTest {
                 new Lotto(List.of(2, 4, 6, 10, 11, 40)), // count: 6, bonus: false => RANK_1
                 new Lotto(List.of(2, 8, 11, 24, 32, 41)) // count: 2, bonus: false => null
         );
-        LottoTicket ticket = new LottoTicket(lottos);
+        LottoPurchaseAmount amount = LottoPurchaseAmount.lottosOf(lottos);
+        LottoTicket ticket = new LottoTicket(amount, lottos);
         // when
         Lotto winningLotto = new Lotto(List.of(2, 4, 6, 10, 11, 40));
         LottoNumber bonusNumber = new LottoNumber(45);

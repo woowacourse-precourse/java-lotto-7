@@ -1,22 +1,28 @@
 package lotto.core.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.core.dto.LottoTicketDto;
 
 public class LottoTicket {
 
+    private LottoPurchaseAmount amount;
+
     private final List<Lotto> lottos;
 
-    public LottoTicket(List<Lotto> lottos) {
+    public LottoTicket(LottoPurchaseAmount amount, List<Lotto> lottos) {
+        this.amount = amount;
         this.lottos = lottos;
     }
 
     public static LottoTicket dtoOf(LottoTicketDto dto) {
+        LottoPurchaseAmount amount = LottoPurchaseAmount.dtoOf(dto.amount());
         List<Lotto> lottos = dto.lottos().stream().map(Lotto::dtoOf).toList();
-        return new LottoTicket(lottos);
+        return new LottoTicket(amount, lottos);
+    }
+
+    public LottoPurchaseAmount getAmount() {
+        return this.amount;
     }
 
     public List<Lotto> getLottos() {
@@ -28,7 +34,7 @@ public class LottoTicket {
     }
 
     public List<WinningRank> getWinningRanks(Lotto winningLotto, LottoNumber bonusNumber) {
-        Set<WinningRank> winningRanks = new HashSet<>();
+        List<WinningRank> winningRanks = new ArrayList<>();
         for (Lotto lotto : this.lottos) {
             int matchCount = lotto.getMatchCount(winningLotto);
             boolean matchBonus = lotto.containsBonusNumber(bonusNumber);
@@ -36,6 +42,6 @@ public class LottoTicket {
             if (matchRank == null) continue;
             winningRanks.add(matchRank);
         }
-        return new ArrayList<>(winningRanks);
+        return winningRanks;
     }
 }

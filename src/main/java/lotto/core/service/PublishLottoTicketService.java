@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.core.dto.LottoPurchaseAmountDto;
 import lotto.core.dto.LottoTicketDto;
 import lotto.core.model.Lotto;
+import lotto.core.model.LottoPurchaseAmount;
 import lotto.core.model.LottoTicket;
 
 public class PublishLottoTicketService {
@@ -16,7 +17,7 @@ public class PublishLottoTicketService {
             Lotto lotto = createLottoUntilSuccess();
             lottos.add(lotto);
         }
-        LottoTicket ticket = new LottoTicket(lottos);
+        LottoTicket ticket = new LottoTicket(LottoPurchaseAmount.dtoOf(amount), lottos);
         return LottoTicketDto.modelOf(ticket);
     }
 

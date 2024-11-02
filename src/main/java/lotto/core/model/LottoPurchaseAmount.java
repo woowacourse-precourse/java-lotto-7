@@ -1,5 +1,6 @@
 package lotto.core.model;
 
+import java.util.List;
 import lotto.core.dto.LottoPurchaseAmountDto;
 
 public class LottoPurchaseAmount {
@@ -22,6 +23,11 @@ public class LottoPurchaseAmount {
 
     public static LottoPurchaseAmount dtoOf(LottoPurchaseAmountDto dto) {
         return new LottoPurchaseAmount(dto.value());
+    }
+
+    public static LottoPurchaseAmount lottosOf(List<Lotto> lottos) {
+        Integer value = lottos.size() * BASE_AMOUNT;
+        return new LottoPurchaseAmount(value);
     }
 
     private static Integer parseString(String value) {

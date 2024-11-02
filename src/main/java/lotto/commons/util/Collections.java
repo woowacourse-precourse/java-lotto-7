@@ -1,5 +1,8 @@
 package lotto.commons.util;
 
+import java.math.BigDecimal;
+import java.util.function.Function;
+
 public class Collections {
     public static <T> String joinToString(Iterable<T> list) {
         return Collections.joinToString(list, "");
@@ -21,5 +24,13 @@ public class Collections {
         }
         builder.append(suffix);
         return builder.toString();
+    }
+
+    public static <T> BigDecimal sumOf(Iterable<T> list, Function<T, BigDecimal> func) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (T element : list) {
+            sum = sum.add(func.apply(element));
+        }
+        return sum;
     }
 }
