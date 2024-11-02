@@ -4,10 +4,14 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.InputException;
 import lotto.global.ErrorCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InputView {
 
     int money;
     int count;
+    ArrayList<List<Integer>> lotto = new ArrayList<>();
 
     public void buyMoney() {
         int m = -1;
@@ -28,13 +32,5 @@ public class InputView {
         }
         this.money = m;
         this.count = m / 1000;
-    }
-    
-    @Override
-    public String toString() {
-        return "InputView{" +
-                "money=" + money +
-                ", count=" + count +
-                '}';
     }
 }

@@ -1,6 +1,6 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.service.Lottos;
 
 public class Application {
     public static void main(String[] args) {
@@ -9,7 +9,14 @@ public class Application {
         InputView inputView = new InputView();
         inputView.buyMoney();
 
-        System.out.println(inputView.toString());
+        Lottos lottos = new Lottos(inputView.money, inputView.count);
+        lottos.lottoDraw();
+
+        OutputView outputView = new OutputView(lottos.count, lottos.lotto);
+
+        outputView.buyCountPrint();
+        outputView.lottosPrint();
+
 
     }
 }
