@@ -15,7 +15,7 @@ public enum LottoPrize {
 
     private LottoPrize(int matchNumber, int prize){
         this.matchNumber = matchNumber;
-        this.prize = matchNumber;
+        this.prize = prize;
     }
 
     public int getMatchNumber() {
