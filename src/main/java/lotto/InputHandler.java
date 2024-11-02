@@ -22,8 +22,10 @@ public abstract class InputHandler {
             }
 
             return purchaseAmount;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw createArgumentException("잘못된 금액 형식입니다.", input);
+        } catch (IllegalArgumentException e) {
+            throw e;
         }
     }
 
@@ -53,9 +55,11 @@ public abstract class InputHandler {
             }
 
             return winningNumbers;
-       } catch (Exception e) {
+       } catch (NumberFormatException e) {
             throw createArgumentException("잘못된 번호 형식입니다.", input);
-       } 
+       } catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     public static int parseBonusNumber(String input) {
@@ -68,8 +72,10 @@ public abstract class InputHandler {
             }
 
             return bonusNumber;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw createArgumentException("잘못된 보너스 변호 형식입니다.", input);
+        } catch (IllegalArgumentException e) {
+            throw e;
         }
     }
 
