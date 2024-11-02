@@ -2,7 +2,10 @@ package view;
 
 import lotto.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class outputView {
     public int three;
@@ -26,24 +29,38 @@ public class outputView {
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
     }
 
-    public void amountPurchase(int number)
+    public void amountPurchase()
     {
-        System.out.println(number + Message.PURCHASED_COUNT.getMessage());
+        System.out.println(usedPrice/value + Message.PURCHASED_COUNT.getMessage());
     }
 
-    public void randomNumber(List<Lotto> numbers)
+    public List<List<Integer>> randomNumber(List<Lotto> numbers)
     {
         usedPrice=numbers.size()*value;
-        StringBuilder result = new StringBuilder();
-        for(Lotto list: numbers)
-        {
+
+        List<List<Integer>> resultList = new ArrayList<>();
+
+        for (Lotto list : numbers) {
+            List<Integer> numberList = new ArrayList<>(list.getNumbers());
+            resultList.add(numberList);
+        }
+
+        return resultList;
+
+    }
+
+    public void printNumberLists(List<List<Integer>> numberLists) {
+        for (List<Integer> numberList : numberLists) {
+            StringBuilder result = new StringBuilder();
             result.append(Message.OPEN_BRACKET.getMessage());
-            for(int number : list.getNumbers())
-            {
-                if(result.length()>1)
+
+            for (int i = 0; i < numberList.size(); i++) {
+                if (i > 0) {
                     result.append(Message.COMMA.getMessage());
-                result.append(number);
+                }
+                result.append(numberList.get(i));
             }
+
             result.append(Message.CLOSE_BRACKET.getMessage());
             System.out.println(result);
         }
@@ -58,7 +75,6 @@ public class outputView {
     {
         System.out.println(Message.BONUS.getMessage());
     }
-    //랜덤 번호 6자리를 "[ ]" 사이에 ", "로 구분하여 출력 반복횟수는 구입 금액 횟수만큼
 
     public void printWinningStatistics() {
         System.out.println(Message.WINNING_STATISTICS);
@@ -70,20 +86,33 @@ public class outputView {
         System.out.println(Message.MATCH_6.getMessage() + six + Message.UNIT.getMessage());
 
         profit();
-        System.out.println(Message.TOTAL_YIELD.getMessage() + totalPrice + Message.ENDING);
+        System.out.println(Message.TOTAL_YIELD.getMessage() + totalPrice + Message.ENDING.getMessage());
     }
-    //당첨 통계 출력
-    //(당첨금 합계)/(구매 금액 중 사용한 금액)을 수익률을 출력함
 
-    public void inputPrice(int three, int four, int five,
-                           int fiveAndBonus, int six)
+    public void inputPrice(List<Integer> nums)
     {
-        this.three=three;
-        this.four=four;
-        this.five=five;
-        this.fiveAndBonus=fiveAndBonus;
-        this.six=six;
+        this.three=nums.get(0);
+        this.four=nums.get(1);
+        this.five=nums.get(2);
+        this.fiveAndBonus=nums.get(3);
+        this.six=nums.get(4);
     }
+
+    public void inputUsedPrice(int price)
+    {
+        usedPrice=price;
+    }
+
+    public List<Lotto> choose()
+    {
+        List<Lotto> temp = new ArrayList<>();
+        for(int i=0; i<usedPrice/value; i++)
+        {
+            temp.add(new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)));
+        }
+        return temp;
+    }
+
 
 
     private void profit()

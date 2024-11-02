@@ -9,41 +9,36 @@ import java.util.NoSuchElementException;
 
 
 public class Inputview {
-    private final int purchaseNumber;
-    private final Lotto lottoNumbers;
-    private final int bonus;
+    private int purchaseNumber;
+    private Lotto lottoNumbers;
+    private int bonus;
 
-    public Inputview()
-    {
-        this.purchaseNumber = Purchase(safeReadLine());
-        this.lottoNumbers = winningNumbr(safeReadLine());
-        this.bonus = bonusNumber(safeReadLine());
-    }
 
-    public int Purchase(String num)
+    public int Purchase()
     {
-        int number=stringToInt(num);
+        int number=stringToInt(safeReadLine());
         if(number<1000)
             throw new IllegalArgumentException("[ERROR] 입력한 금액이 작습니다.");
 
         return number;
     }
 
-    public Lotto winningNumbr(String num)
+    public Lotto winningNumbr()
     {
-        String[] splitedNumber = splitByComma(num);
+        String[] splitedNumber = splitByComma(safeReadLine());
         List<Integer> numbers = new ArrayList<>();
 
         for(String nums : splitedNumber)
             numbers.add(stringToInt(nums));
 
+        this.lottoNumbers= new Lotto(numbers);
         return new Lotto(numbers);
     }
 
 
-    public int bonusNumber(String num)
+    public int bonusNumber()
     {
-        int number=stringToInt(num);
+        int number=stringToInt(safeReadLine());
         validateNumberInRange(number);
 
         if(lottoNumbers.getNumbers().contains(number))
