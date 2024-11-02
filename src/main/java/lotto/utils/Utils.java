@@ -16,6 +16,10 @@ public class Utils {
         return (value.compareTo(min) >= 0 && value.compareTo(max) <= 0);
     }
 
+    public static boolean isInRange(int min, int max, int value) {
+        return (min >= value && max <= value);
+    }
+
     //문자열을 int로 바꾸는 메서드
     public static int stringToInteger(String input) {
         return Integer.parseInt(input);
@@ -45,6 +49,15 @@ public class Utils {
 
     public static boolean areAllNumbersValidRange(BigDecimal min, BigDecimal max, List<BigDecimal> numbers) {
         for (BigDecimal number : numbers) {
+            if (!Utils.isInRange(min, max, number)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean areAllNumbersValidRange(int min, int max, List<Integer> numbers) {
+        for (Integer number : numbers) {
             if (!Utils.isInRange(min, max, number)) {
                 return false;
             }
