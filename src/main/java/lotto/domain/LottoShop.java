@@ -1,12 +1,26 @@
 package lotto.domain;
 
-public class LottoShop {
-    private final int LOTTO_UNIT_PRICE = 1_000;
-    private final int NO_REMAINDER = 0;
+import java.util.List;
+import lotto.Lotto;
 
-    public void buyLotto(int money) {
+public class LottoShop {
+    public static final int LOTTO_UNIT_PRICE = 1_000;
+    public static final int NO_REMAINDER = 0;
+
+    private final LottoTicketFactory lottoTicketFactory;
+
+    public LottoShop(LottoTicketFactory lottoTicketFactory) {
+        this.lottoTicketFactory = lottoTicketFactory;
+    }
+
+    public List<Lotto> purchaseLottoTickets(int money) {
         validateMinimumPurchaseAmount(money);
         validateThousandUnitAmount(money);
+        return lottoTicketFactory.generateLottoTickets(calculateTicketCount(money));
+    }
+
+    private int calculateTicketCount(int money) {
+        return money / LOTTO_UNIT_PRICE;
     }
 
     private void validateThousandUnitAmount(int money) {
