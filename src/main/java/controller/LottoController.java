@@ -20,32 +20,46 @@ public class LottoController {
     }
 
     public void start() {
-        // 구매 금액 입력
-        String answer = input.inputPurchaseAmount();
-        PurchaseAmount purchaseAmount = new PurchaseAmount(answer);
+        PurchaseAmount purchaseAmount = enterPurchaseAmount();
 
-        // 로또 개수 계산
-        LottoShop lottoShop = new LottoShop();
-        int purchaseCount = lottoShop.calculatePurchaseCount(purchaseAmount);
+        int purchaseCount = computePurchaseCount(purchaseAmount);
         output.showLottoPurchaseCount(purchaseCount);
 
-        // 로또 발행
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        Lottos lottos = lottoGenerator.createLottos(purchaseCount);
+        Lottos lottos = issueLottos(purchaseCount);
         output.showCreatedLottos(lottos);
 
-        // 당첨 번호, 보너스 번호 입력
+        WinningLotto winningLotto = issueWinningLotto();
+
+        matchLottoAndWinningLotto(lottos, winningLotto);
+
+        output.showWinningStatistics(computeRevenue(purchaseAmount));
+    }
+
+    private PurchaseAmount enterPurchaseAmount() {
+        return new PurchaseAmount(input.inputPurchaseAmount());
+    }
+
+    private int computePurchaseCount(PurchaseAmount purchaseAmount) {
+        LottoShop lottoShop = new LottoShop();
+        return lottoShop.calculatePurchaseCount(purchaseAmount);
+    }
+
+    private Lottos issueLottos(int purchaseCount) {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        return lottoGenerator.createLottos(purchaseCount);
+    }
+
+    private WinningLotto issueWinningLotto() {
         String winningNumbers = input.inputWinningNumbers();
         String bonusNumber = input.inputBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
 
-        // 로또와 당첨로또 비교
+    private void matchLottoAndWinningLotto(Lottos lottos, WinningLotto winningLotto) {
         lottos.compare(winningLotto);
+    }
 
-        // 수익률 계산
-        double revenueRate = RevenueCalculator.calculateRevenue(purchaseAmount);
-
-        // 당첨 통계
-        output.showWinningStatistics(revenueRate);
+    private double computeRevenue(PurchaseAmount purchaseAmount) {
+        return RevenueCalculator.calculateRevenue(purchaseAmount);
     }
 }
