@@ -5,14 +5,16 @@ import lotto.model.ErrorMessage;
 
 public class LottoNumbers {
 
-    private List<Integer> numbers;
+    private static final int LOTTO_SIZE = 6;
+    private final List<LottoNumber> lottoNumbers;
 
-    public LottoNumbers(List<Integer> numbers) {
-        validateSize(numbers);
-        validateRange(numbers);
-        validateDuplicate(numbers);
+    public LottoNumbers(List<Integer> lottoNumbers) {
+        validateSize(lottoNumbers);
+        validateDuplicate(lottoNumbers);
 
-        this.numbers = numbers;
+        this.lottoNumbers =lottoNumbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validateDuplicate(List<Integer> numbers) {
@@ -25,42 +27,23 @@ public class LottoNumbers {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
-        numbers.stream()
-                .forEach(this::validateRange);
-    }
-
-    private void validateRange(int number) {
-        if (number < 0 || number > 46) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
-        }
-    }
-
     public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (!(obj instanceof LottoNumbers)) return false;
-
-        LottoNumbers other = (LottoNumbers) obj;
-        return this.numbers.equals(other.numbers);
+        return lottoNumbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList();
     }
 
     public boolean hasNumber(int number) {
-        return this.numbers.contains(number);
+        return getNumbers().contains(number);
     }
 
     public int countDuplicatingNumbers(List<Integer> other) {
-        return (int) this.numbers.stream()
+        return (int) getNumbers().stream()
                 .filter(other::contains)
                 .count();
     }
