@@ -6,8 +6,8 @@ import lotto.view.View;
 
 public class LottoController {
     public void run(){
-        Lottos lottos =initLotts();
-        System.out.println();
+        Lottos purchasedLottos =initLotts();
+        printPurchaseResult(purchasedLottos);
 
 
 
@@ -17,11 +17,16 @@ public class LottoController {
     private Lottos initLotts(){
         View.promptForPurchaseAmount();
         Money money =  new Money(View.inputLottoPurchaseAmount());
+
+
         return new Lottos(money.getLottoQuantity());
 
     }
 
-
+    private void printPurchaseResult(Lottos purchasedLottos) {
+        System.out.println();
+        View.printPurchaseResult(purchasedLottos);
+    }
 
 
 }
