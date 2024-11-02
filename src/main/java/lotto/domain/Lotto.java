@@ -1,9 +1,9 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import lotto.validator.LottoValidator;
-import lotto.validator.Validator;
+import java.util.Set;
 
 public class Lotto {
 
@@ -15,8 +15,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Validator<List<Integer>> validator = new LottoValidator();
-        validator.validate(numbers);
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        Set<Integer> number = new HashSet<>(numbers);
+        if (number.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
+        }
     }
 
     public long winningCount(List<Integer> winningNumbers, Map<String, Integer> map) {
