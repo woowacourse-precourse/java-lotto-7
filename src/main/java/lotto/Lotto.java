@@ -18,7 +18,7 @@ public class Lotto {
         return "[%s]".formatted(String.join(", ", numbers.stream().sorted().map(Object::toString).toList()));
     }
 
-    public static List<Lotto> generateLottos(long purchaseCount) {
+    public static List<Lotto> generateLottos(int purchaseCount) {
         Validator.checkPositiveNumber(purchaseCount);
         List<Lotto> generatedLottos = new ArrayList<>();
 

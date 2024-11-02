@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    public static long getAmountFromUser() {
+    public static int getAmountFromUser() {
         OutputView.promptForAmount();
         String input = readLine();
 
-        return StringParser.parseLong(input);
+        return StringParser.parseInt(input);
     }
 }

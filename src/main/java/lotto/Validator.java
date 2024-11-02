@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Validator {
-    public static void checkValidPurchaseCount(long amount) {
+    public static void checkValidPurchaseCount(int amount) {
         checkPositiveNumber(amount);
 
         if (amount % 1000 != 0)
@@ -19,7 +19,7 @@ public class Validator {
         }
     }
 
-    public static void checkPositiveNumber(long number) {
+    public static void checkPositiveNumber(int number) {
         if (!(number > 0)) {
             throw new IllegalArgumentException("[ERROR] 양수가 아닙니다.");
         }

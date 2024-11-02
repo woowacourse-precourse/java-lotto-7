@@ -3,16 +3,16 @@ package lotto;
 import java.util.List;
 
 public class LottoMachine {
-    private static final long LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     public void run() {
-        long purchaseCount = getPurchaseCountFromUser();
+        int purchaseCount = getPurchaseCountFromUser();
         List<Lotto> lottos = Lotto.generateLottos(purchaseCount);
         OutputView.printLottos(lottos);
     }
 
-    private long getPurchaseCountFromUser() {
-        long amount = InputView.getAmountFromUser();
+    private int getPurchaseCountFromUser() {
+        int amount = InputView.getAmountFromUser();
         Validator.checkValidPurchaseCount(amount);
         return amount / LOTTO_PRICE;
     }
