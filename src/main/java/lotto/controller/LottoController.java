@@ -44,7 +44,7 @@ public class LottoController {
                 lottoService.addBonusNumber(winningLotto, bonusNumber);
                 return ;
             } catch (IllegalArgumentException exception) {
-
+                lottoOutputView.printExceptionMessage(exception);
             }
         }
     }
@@ -55,6 +55,7 @@ public class LottoController {
                 String winningNumber = lottoInputView.getWinningNumber();
                 return lottoService.createWinningLotto(winningNumber);
             } catch (IllegalArgumentException exception) {
+                lottoOutputView.printExceptionMessage(exception);
             }
         }
     }
