@@ -3,6 +3,7 @@ package lotto.custom.controller;
 import java.util.List;
 import lotto.custom.model.Lottos;
 import lotto.custom.service.BonusNumberService;
+import lotto.custom.service.CalculateYieldService;
 import lotto.custom.service.LottoPurchaseService;
 import lotto.custom.service.LottoResultCheckerService;
 import lotto.custom.service.WinningNumberService;
@@ -14,6 +15,7 @@ public class LottoController {
     private final WinningNumberService winningNumberService;
     private final BonusNumberService bonusNumberService;
     private final LottoResultCheckerService lottoResultCheckerService;
+    private final CalculateYieldService calculateYieldService;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -23,6 +25,7 @@ public class LottoController {
         this.winningNumberService = new WinningNumberService();
         this.bonusNumberService = new BonusNumberService();
         this.lottoResultCheckerService = new LottoResultCheckerService();
+        this.calculateYieldService = new CalculateYieldService();
 
         this.inputView = new InputView();
         this.outputView = new OutputView();
@@ -38,6 +41,8 @@ public class LottoController {
 
         List<Integer> result = lottoResultCheckerService.run(myLottoTickets, winningNumbers, bonusNumber);
         outputView.displayLottoResult(result);
+        double yield = calculateYieldService.run(result, myLottoTickets);
+        outputView.displayLottoYield(yield);
     }
 
     public Lottos tryPurchaseLotto() {

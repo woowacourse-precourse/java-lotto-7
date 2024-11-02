@@ -34,4 +34,9 @@ public class OutputView {
                     result.get(index++) + "개");
         }
     }
+
+    public void displayLottoYield(double yield) {
+        String formattedYield = String.format("%.1f", yield);
+        System.out.println("총 수익률은 " + formattedYield + "%입니다.");
+    }
 }
