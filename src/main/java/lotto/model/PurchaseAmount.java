@@ -11,7 +11,8 @@ public class PurchaseAmount {
     private final int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) {
-        validate(purchaseAmount);
+        validateExceedAmount(purchaseAmount);
+        validateDivisibleAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
@@ -21,11 +22,6 @@ public class PurchaseAmount {
 
     public int calculateQuantity() {
         return this.purchaseAmount / STANDARD_AMOUNT_UNIT;
-    }
-
-    private void validate(int purchaseAmount) {
-        validateExceedAmount(purchaseAmount);
-        validateDivisibleAmount(purchaseAmount);
     }
 
     private void validateExceedAmount(int purchaseAmount) {
