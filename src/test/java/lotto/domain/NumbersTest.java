@@ -62,4 +62,24 @@ class NumbersTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void containsTest_whenContainNumber_returnsTrue() {
+        Numbers numbers = Numbers.from(List.of(1, 2, 3, 4, 5, 6));
+        Number number = new Number(6);
+
+        boolean actual = numbers.contains(number);
+
+        assertThat(actual).isTrue();
+    }
+
+    @Test
+    void containsTest_whenNotContainNumber_returnsFalse() {
+        Numbers numbers = Numbers.from(List.of(1, 2, 3, 4, 5, 6));
+        Number number = new Number(7);
+
+        boolean actual = numbers.contains(number);
+
+        assertThat(actual).isFalse();
+    }
 }

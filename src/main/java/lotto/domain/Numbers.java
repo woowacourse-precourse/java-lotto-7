@@ -40,4 +40,8 @@ public class Numbers {
                 .filter(numbers.values::contains)
                 .count();
     }
+
+    public boolean contains(Number number) {
+        return values.contains(number);
+    }
 }
