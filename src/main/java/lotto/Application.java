@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.LottoRank.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +11,10 @@ public class Application {
 
     public static void main(String[] args) {
         List<Lotto> lottoTickets = purchaseLottoTickets();
+        showCreateLottoTickets(lottoTickets);
 
         HashMap<LottoRank, Integer> winningResult = getWinningResult(lottoTickets);
+        showWinningResult(winningResult);
 
         calculateProfitRate(winningResult, lottoTickets.size());
     }
@@ -21,11 +25,9 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 String purchaseMoney = Console.readLine();
 
-                List<Lotto> lottoTickets = lottoMachine.purchaseLottoTickets(purchaseMoney);
-                showCreateLottoTickets(lottoTickets);
-                return lottoTickets;
+                return lottoMachine.purchaseLottoTickets(purchaseMoney);
             } catch (IllegalArgumentException e) {
-                System.out.println(e. getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -47,7 +49,7 @@ public class Application {
 
     static private void calculateProfitRate(HashMap<LottoRank, Integer> winningResult, int purchaseNumber) {
         Double profitRate = lottoMachine.calculateProfitRate(winningResult, purchaseNumber);
-        System.out.println("총 수익률은 "+ profitRate + "%입니다.");
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 
     static private void showCreateLottoTickets(List<Lotto> lottoTickets) {
@@ -57,5 +59,15 @@ public class Application {
             System.out.println(lotto);
         }
         System.out.println();
+    }
+
+    static private void showWinningResult(HashMap<LottoRank, Integer> winningResult) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + winningResult.get(RANK_5) + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningResult.get(RANK_4) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningResult.get(RANK_3) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.get(RANK_2) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.get(RANK_1) + "개");
     }
 }
