@@ -7,7 +7,6 @@ import lotto.exception.InvalidWinningNumbersException;
 
 import static lotto.exception.ErrorMessage.EMPTY_INPUT_IS_NOT_POSSIBLE;
 import static lotto.exception.ErrorMessage.INVALID_NUMBER_FORMAT;
-import static lotto.exception.ErrorMessage.INVALID_WINNING_NUMBERS_FORMAT;
 
 public class InputView {
     public int getPurchaseAmount() {
@@ -20,7 +19,7 @@ public class InputView {
         }
     }
 
-    public String getWinningString() {
+    public String getWinningNumbers() {
         System.out.println("\n" + "당첨 번호를 입력해 주세요.");
 
         String winningString = Console.readLine();
@@ -42,10 +41,6 @@ public class InputView {
     private void checkEnteredWinningStringIsValid(String winningString) {
         if (winningString.isEmpty()) {
             throw new InvalidWinningNumbersException(EMPTY_INPUT_IS_NOT_POSSIBLE.getMessage());
-        }
-
-        if (!winningString.matches("^-?\\d+(,-?\\d+){5}")) {
-            throw new InvalidWinningNumbersException(INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
     }
 }
