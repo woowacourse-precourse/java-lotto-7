@@ -17,6 +17,10 @@ public class Lotto {
         ValidLotto.checkDuplicateNumber(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public boolean hasNumber(int number) {
         return numbers.contains(number);
     }
