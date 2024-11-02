@@ -14,6 +14,8 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
+        Validator.validateUniqueNumbers(numbers);
+        numbers.forEach(Validator::validateNumberRange);
     }
 
     // TODO: 추가 기능 구현
