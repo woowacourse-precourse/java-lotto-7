@@ -2,7 +2,6 @@ package service;
 
 import dto.LottoWinningNumbers;
 import dto.lottoWinningResultDto.LottoWinningResult;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
@@ -22,21 +21,8 @@ class LottoServiceTest {
         Money money = new Money("1000");
 
         // when
-        BigInteger number = lottoService.calculatePurchasableLottoCount(money);
-        BigInteger expected = new BigInteger("1");
-
-        // then
-        Assertions.assertThat(number).isEqualTo(expected);
-    }
-
-    @Test
-    public void 입금_금액이_많아도_로또_구매_수로_바꿔준다() {
-        // given
-        Money money = new Money("12345678900000000000000000000000000000000000000000");
-
-        // when
-        BigInteger number = lottoService.calculatePurchasableLottoCount(money);
-        BigInteger expected = new BigInteger("12345678900000000000000000000000000000000000000");
+        int number = lottoService.calculatePurchasableLottoCount(money);
+        int expected = 1;
 
         // then
         Assertions.assertThat(number).isEqualTo(expected);
@@ -45,7 +31,7 @@ class LottoServiceTest {
     @Test
     public void 로또를_구매_수_만큼_발행_해야_한다() {
         // given
-        BigInteger purchasableLottoCount = new BigInteger("11");
+        int purchasableLottoCount = 11;
 
         // when
         List<Lotto> lottos = lottoService.issueLotto(purchasableLottoCount);
@@ -67,6 +53,7 @@ class LottoServiceTest {
                 {1, 2, 3, 4, 5, 6}, // 전체 일치 총 3개
                 {1, 2, 3, 4, 5, 7}, // 5개일치, 보너스 볼 일치
                 {1, 2, 3, 4, 5, 7}, // 5개일치, 보너스 볼 일치 총 2개
+                {1, 2, 3, 4, 5, 8}, // 5개일치, 보너스 볼 불일치 총 1개
                 {2, 3, 4, 5, 8, 9}, // 4개 일치 총 1개
                 {2, 3, 4, 8, 9, 10}, // 3개 일치 총 1개
                 {7, 8, 9, 10, 11, 12} // 0개 일치 총 1개
@@ -82,7 +69,7 @@ class LottoServiceTest {
         // when
         // TODO: 로또 당첨 결과를 도출하는 메서드
         LottoWinningResult lottoWinningResult = lottoService.analyzeWinningResult(lottoWinningNumbers, lottos);
-        LottoWinningResult expected = new LottoWinningResult();
+        LottoWinningResult expected = new LottoWinningResult(3, 2, 1, 1, 1);
 
         // then
         Assertions.assertThat(lottoWinningResult).isEqualTo(expected);
@@ -92,16 +79,14 @@ class LottoServiceTest {
     public void 로또_당첨_결과를_바탕으로_수익률을_계산_해야_한다() { // TODO: 이거까지 다 만들면 commit
         // given
         // 로또 당첨 결과
-        LottoWinningResult lottoWinningResult = new LottoWinningResult();
-
+        LottoWinningResult lottoWinningResult = new LottoWinningResult(1, 0, 0, 0, 0);
+        int lottoCount = 2000000;
         // when
         // TODO: 당첨 결과를 가지고 무언가를 하는 친구와 예상 값
-        double lottoRateOfReturn = lottoService.analyzeLottoRateOfReturn(lottoWinningResult);
-        double expected = 0;
+        double lottoRateOfReturn = lottoService.analyzeLottoRateOfReturn(lottoWinningResult, lottoCount);
+        double expected = 100;
 
         // then
         Assertions.assertThat(lottoRateOfReturn).isEqualTo(expected);
     }
-
-
 }
