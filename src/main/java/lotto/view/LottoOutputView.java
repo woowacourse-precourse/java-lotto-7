@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.LottoRank;
+import lotto.enums.LottoRank;
 
 public class LottoOutputView {
 
@@ -42,5 +42,9 @@ public class LottoOutputView {
     private void printResultMessage() {
         System.out.println("당첨 통계");
         System.out.println("-----------------");
+    }
+
+    public void printExceptionMessage(IllegalArgumentException exception) {
+        System.out.println("[ERROR] " + exception.getMessage());
     }
 }

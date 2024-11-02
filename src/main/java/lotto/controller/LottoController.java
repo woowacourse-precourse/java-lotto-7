@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.model.LottoRank;
 import lotto.model.LottoResult;
 import lotto.model.LottoTicket;
 import lotto.model.WinningLotto;
@@ -66,6 +65,7 @@ public class LottoController {
                 String purchaseMoney = lottoInputView.getLottoPurchaseMoney();
                 return lottoService.createLottoTicket(purchaseMoney);
             } catch (IllegalArgumentException exception) {
+                lottoOutputView.printExceptionMessage(exception);
             }
         }
     }
