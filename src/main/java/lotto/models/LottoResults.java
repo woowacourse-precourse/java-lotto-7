@@ -19,7 +19,7 @@ public class LottoResults {
         return null;
     }
 
-    public void recordResult(int matchingNumbers) {
+    public void recordMatch(int matchingNumbers) {
         if (matchingNumbers < 3) {
             return;
         }

@@ -33,7 +33,7 @@ public class LottoHandler {
     public void findMatches(List<Integer> winningNumbers, int bonusNumber, LottoResults lottoResults) {
         for (Lotto ticket : this.tickets) {
             int matches = ticket.getMatches(winningNumbers, bonusNumber);
-            lottoResults.recordResult(matches);
+            lottoResults.recordMatch(matches);
         }
     }
 }
