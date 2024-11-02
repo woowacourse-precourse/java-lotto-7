@@ -93,9 +93,9 @@
     - [x] 매치 횟수와 보너스매치가 4등에 부합할 때 True를 반환한다.
     - [x] 매치 횟수와 보너스매치가 5등에 부합할 때 True를 반환한다.
 
-- [ ] WinningStatisticsTest.java
-    - [ ] 각 랭크별 당첨 횟수는 0으로 초기화한다.
-    - [ ] 각 랭크별 당첨 횟수를 증가한다.
+- [x] WinningStatisticsTest.java
+    - [x] 각 랭크별 당첨 횟수는 0으로 초기화한다.
+    - [x] 각 랭크별 당첨 횟수를 증가한다.
 
 - [ ] WinningStatisticsCalculatorTest.java
     - [ ] 당첨 통계를 계산한다.
