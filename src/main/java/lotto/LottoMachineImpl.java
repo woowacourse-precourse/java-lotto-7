@@ -18,29 +18,18 @@ public class LottoMachineImpl implements LottoMachine {
     }
 
     @Override
-    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers, String inputBonusNumber) {
+    public HashMap<LottoRank, Integer> getWinningResult(List<Lotto> lottoTickets, String inputWinningNumbers,
+                                                        String inputBonusNumber) {
         List<Integer> winningNumbers = InputValidator.validateWiningNumbers(inputWinningNumbers);
         int bonusNumber = InputValidator.validateBonusNumber(winningNumbers, inputBonusNumber);
 
-        HashMap<LottoRank, Integer> winningResult = initWinningResult();
-
-        for (Lotto lottoTicket : lottoTickets) {
-            //당첨 개수를 센다.
-            int matchCount = getMatchNumbers(lottoTicket, winningNumbers);
-            //등수를 확인하고 업데이트 한다.
-            if (matchCount >= 3) {
-                updateWinningResult(matchCount, lottoTicket, bonusNumber, winningResult);
-            }
-        }
-        //당첨 결과를 출력한다.
-        printWinningResult(winningResult);
-        return winningResult;
+        return countWinningTickets(lottoTickets, winningNumbers, bonusNumber);
     }
 
     @Override
     public Double calculateProfitRate(HashMap<LottoRank, Integer> winningResult, String purchaseMoney) {
         int totalSpent = Integer.parseInt(purchaseMoney);
-
+        
         int totalPrizeMoney = 0;
         for (LottoRank rank : values()) {
             totalPrizeMoney += rank.getPrizeMoney() * winningResult.get(rank);
@@ -58,6 +47,21 @@ public class LottoMachineImpl implements LottoMachine {
             lottoTickets.add(newLottoTicket);
         }
         return lottoTickets;
+    }
+
+    private HashMap<LottoRank, Integer> countWinningTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers,
+                                                            int bonusNumber) {
+        HashMap<LottoRank, Integer> winningResult = initWinningResult();
+
+        for (Lotto lottoTicket : lottoTickets) {
+            //당첨 개수를 센다.
+            int matchCount = getMatchNumbers(lottoTicket, winningNumbers);
+            //등수를 확인하고 업데이트 한다.
+            if (matchCount >= 3) {
+                updateWinningResult(matchCount, lottoTicket, bonusNumber, winningResult);
+            }
+        }
+        return winningResult;
     }
 
     private List<Integer> pickLottoNumbers() {
@@ -94,16 +98,5 @@ public class LottoMachineImpl implements LottoMachine {
             winningResult.put(rank, 0);
         }
         return winningResult;
-    }
-
-    private void printWinningResult(HashMap<LottoRank, Integer> winningCounts) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + winningCounts.get(RANK_5) + "개");
-        System.out.println("4개 일치 (50,000원) - " + winningCounts.get(RANK_4) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winningCounts.get(RANK_3) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningCounts.get(RANK_2) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winningCounts.get(RANK_1) + "개");
     }
 }
