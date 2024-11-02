@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -23,7 +24,10 @@ public class Application {
         List<List<Integer>> lottoNumbers = new LinkedList<>();
 
         for(int i = 0; i < numberOfPurchases; i++){
-            lottoNumbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> pickedNumbers = new LinkedList<>();
+            pickedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(pickedNumbers);
+            lottoNumbers.add(pickedNumbers);
         }
         ListIterator<List<Integer>> iterator = lottoNumbers.listIterator();
         while(iterator.hasNext()){
@@ -35,5 +39,10 @@ public class Application {
         for(String n:readLine().split(",")){
             winningNumbers.add(Integer.parseInt(n));
         }
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(readLine());
+
+        System.out.println("\n당첨 통계\n---");
+
     }
 }
