@@ -15,10 +15,8 @@ public class LottoPrice {
         return new LottoPrice(BASIC_PRICE);
     }
 
-    public LottoPrice validateAffordable(ThousandWons money) {
+    public void validateAffordable(ThousandWons money) {
         validateNotLessThanPrice(money.getValue());
-
-        return this;
     }
 
     private void validateNotLessThanPrice(int moneyAmount) {
