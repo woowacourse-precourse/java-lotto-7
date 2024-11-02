@@ -24,7 +24,7 @@ public class WinningNumbersInputHandlerTest {
     }
 
 
-    @DisplayName("정수가 아닌 입력값이 들어오면 예외가 발생한다")
+    @DisplayName("보너스 번호로 정수가 아닌 입력값이 들어오면 예외가 발생한다")
     @Test
     void nonIntegerExceptionTest() {
         // given
@@ -36,7 +36,7 @@ public class WinningNumbersInputHandlerTest {
                 .hasMessage(NON_INTEGER_PURCHASE_AMOUNT.getMessage());
     }
 
-    @DisplayName("로또 번호의 범위가 아닌 숫자가 들어오면 예외가 발생한다")
+    @DisplayName("보너스 번호로 로또 번호의 범위가 아닌 숫자가 들어오면 예외가 발생한다")
     @Test
     void numberScopeExceptionTest() {
         // given
@@ -48,7 +48,7 @@ public class WinningNumbersInputHandlerTest {
                 .hasMessage(LOTTO_SCOPE_ERROR.getMessage());
     }
 
-    @DisplayName("당첨 번호와 중복되는 보너스 번호가 입력되면 예외가 발생한다")
+    @DisplayName("보너스 번호로 당첨 번호와 중복되는 숫자가 입력되면 예외가 발생한다")
     @Test
     void duplicateExceptionTest() {
         // given

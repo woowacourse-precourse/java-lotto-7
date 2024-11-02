@@ -15,6 +15,7 @@ public class WinningNumbersInputHandler {
         while (true) {
             try {
                 String input = getInputNumbers();
+//                validateNumbersInput();
                 return new WinningNumbers(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
