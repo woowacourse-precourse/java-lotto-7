@@ -23,7 +23,7 @@ public class Lotto {
         Set<Integer> numSet = new HashSet<>(numbers);
 
         if (numSet.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_LOTTO_NUMBER.getErrorMessage());
         }
     }
 
