@@ -5,7 +5,6 @@ import lotto.constant.ErrorMessage;
 import static lotto.constant.PurchaseConfig.*;
 
 public class Purchase {
-
     private final int price;
 
     public Purchase(int price) {
@@ -24,5 +23,9 @@ public class Purchase {
         if (price % PURCHASE_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_UNIT.getMessage());
         }
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

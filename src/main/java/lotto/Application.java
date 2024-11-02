@@ -7,5 +7,11 @@ public class Application {
         Purchase purchase = InputHandler.repeatInputOrderPrice();
         Lotto lotto = InputHandler.repeatInputLottoNumber();
         Bonus bonus = InputHandler.repeatInputBonusNumber(lotto);
+        LottoPrize lottoPrize = new LottoPrize(lotto, bonus);
+
+        LottoTicketing lottoTicketing = new LottoTicketing();
+        Lottos lottos = lottoTicketing.issueTickets(purchase);
+
+
     }
 }
