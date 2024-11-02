@@ -1,4 +1,4 @@
-package lotto.service.service;
+package lotto.service.ticket;
 
 import lotto.domain.ticket.Ticket;
 import lotto.repository.ticket.ReadTicketRepository;

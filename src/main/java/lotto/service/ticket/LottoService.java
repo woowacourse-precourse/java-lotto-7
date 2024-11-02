@@ -1,4 +1,4 @@
-package lotto.service.service;
+package lotto.service.ticket;
 
 import java.util.stream.IntStream;
 import lotto.domain.payment.LottoQuantity;

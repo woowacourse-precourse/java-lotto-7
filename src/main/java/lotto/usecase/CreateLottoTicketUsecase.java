@@ -4,8 +4,8 @@ import lotto.domain.common.ThousandWons.ThousandWons;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lottos;
 import lotto.service.payment.PaymentService;
-import lotto.service.service.LottoService;
-import lotto.service.service.WriteTicketService;
+import lotto.service.ticket.LottoService;
+import lotto.service.ticket.WriteTicketService;
 
 public class CreateLottoTicketUsecase {
     private final PaymentService paymentService;
