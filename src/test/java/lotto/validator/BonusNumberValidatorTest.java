@@ -1,6 +1,8 @@
 package lotto.validator;
 
+import static lotto.exception.Exception.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.validator.BonusNumberValidator.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
@@ -14,5 +16,16 @@ class BonusNumberValidatorTest {
         int bonusNumber = 7;
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         assertDoesNotThrow(() -> validate(bonusNumber, numbers));
+    }
+
+    @DisplayName("보너스 숫자가 1~45가 아닐 때 예외 테스트")
+    @Test
+    void validateBonusNumberRange_fail() {
+        int bonusNumber = 56;
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> validate(bonusNumber, numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
     }
 }
