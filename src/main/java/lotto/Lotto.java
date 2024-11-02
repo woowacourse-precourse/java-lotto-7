@@ -1,6 +1,11 @@
 package lotto;
 
+import lotto.constant.ErrorMessage;
+
 import java.util.List;
+
+import static lotto.constant.LottoConfig.*;
+
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,11 +16,30 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        validateLottoCount(numbers);
+        validateDuplicate(numbers);
+        validateLottoRange(numbers);
+    }
+    
+    private void validateLottoCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_COUNT) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_COUNT.getMessage());
         }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_DUPLICATION.getMessage());
+        }
+    }
+
+    private void validateLottoRange(List<Integer> numbers) {
+        numbers.forEach(this::validateLottoNumberRange);
+    }
+
+    private void validateLottoNumberRange(int number) {
+        if(number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }
 }

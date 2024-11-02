@@ -21,4 +21,5 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
 }
