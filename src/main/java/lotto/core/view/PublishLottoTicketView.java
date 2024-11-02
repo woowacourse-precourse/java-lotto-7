@@ -14,14 +14,24 @@ public class PublishLottoTicketView implements View<LottoTicketDto> {
         validateContent(content);
 
         List<LottoDto> lottos = content.lottos();
+
         int count = content.lottos().size();
+        String lottoNumberContent = buildLottoNumberContent(lottos, count);
+
         System.out.println();
         System.out.println(count + "개를 구매했습니다.");
+        System.out.print(lottoNumberContent);
+    }
+
+    private String buildLottoNumberContent(List<LottoDto> lottos, int count) {
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = lottos.get(i).numbers();
-            String lotto = Collections.joinToString(numbers, ", ", "[", "]");
-            System.out.println(lotto);
+            String content = Collections.joinToString(numbers, ", ", "[", "]");
+            builder.append(content);
+            builder.append("\n");
         }
+        return builder.toString();
     }
 
     private void validateContent(LottoTicketDto content) {
