@@ -17,5 +17,7 @@ public class LottoController {
 
         Lottos lottos = lotteryCashier.purchaseBy(price);
         outputHandler.showPurchasedLottos(lottos);
+
+        outputHandler.showWinningNumbersNavigateMessage();
     }
 }

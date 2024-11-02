@@ -6,6 +6,7 @@ public class OutputHandler {
 
     private static final String PRICE_INPUT_NAVIGATE = "구입금액을 입력해 주세요.";
     private static final String PURCHASED_MESSAGE_TEMPLATE = "%d개를 구매했습니다.";
+    private static final String WINNING_NUMBERS_INPUT_NAVIGATE = "당첨 번호를 입력해 주세요.";
 
     public void showPriceInputNavigateMessage() {
         System.out.println(PRICE_INPUT_NAVIGATE);
@@ -15,6 +16,10 @@ public class OutputHandler {
         showNewLine();
         showLottoCountMessage(lottos);
         showEachLottoNumbers(lottos);
+    }
+
+    public void showWinningNumbersNavigateMessage() {
+        System.out.println(WINNING_NUMBERS_INPUT_NAVIGATE);
     }
 
     private void showLottoCountMessage(Lottos lottos) {
