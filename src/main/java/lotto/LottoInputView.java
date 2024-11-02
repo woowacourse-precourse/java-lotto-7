@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoInputView
 {
-    public static int LottoPurchaseAmount() {
+    public static int lottoPurchaseAmount() {
         try {
             System.out.println("구입 금액을 입력해 주세요.");
             int amount = Integer.parseInt(Console.readLine());
@@ -15,7 +15,7 @@ public class LottoInputView
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
             // 다시 입력 받는다.
-            return LottoPurchaseAmount();
+            return lottoPurchaseAmount();
         }
     }
 
