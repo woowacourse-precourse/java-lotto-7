@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.enums.Rank;
@@ -26,6 +27,13 @@ public class LottoService {
             Rank rank = Rank.getRank(count, lotto.containsBonusNumber(bonusNumber));
             results.put(rank, results.getOrDefault(rank, 0) + 1);
         });
+    }
+
+    public long calculateWinningAmount() {
+        return results.entrySet().stream()
+                .filter(entry -> entry.getValue() > 0)
+                .mapToLong(entry -> (long) entry.getKey().getWinningAmount() * entry.getValue())
+                .sum();
     }
 
     public List<Lotto> getLottos() {
