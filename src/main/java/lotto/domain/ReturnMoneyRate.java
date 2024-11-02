@@ -3,10 +3,10 @@ package lotto.domain;
 import java.util.Map;
 
 public class ReturnMoneyRate {
-    public int calculateSum(Map<String, Integer> result) {
+    public int calculateSum(Map<Integer, Integer> result) {
         int sum = 0;
-        for (int winningMoney : result.values()) {
-            sum += winningMoney;
+        for (int key : result.keySet()) {
+            sum += key * result.get(key);
         }
         return sum;
     }

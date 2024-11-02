@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoRanking {
-    public Map<String, Integer> calculateRank(List<Lotto> issuedLottos, List<Integer> winningNumbers, int bonusNumber) {
-        Map<String, Integer> result = initResult();
+
+    public Map<Integer, Integer> calculateRank(List<Lotto> issuedLottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Integer, Integer> result = initResult();
 
         for (Lotto lotto : issuedLottos) {
             updateResult(result, lotto, winningNumbers, bonusNumber);
@@ -14,51 +15,51 @@ public class LottoRanking {
         return result;
     }
 
-    private Map<String, Integer> initResult() {
-        Map<String, Integer> result = new HashMap<>();
+    private Map<Integer, Integer> initResult() {
+        Map<Integer, Integer> result = new HashMap<>();
         for (Rank rank : Rank.values()) {
-            result.put(rank.getDescription(), 0);
+            result.put(rank.getWinningMoney(), 0);
         }
         return result;
     }
 
-    private void updateResult(Map<String, Integer> result, Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    private void updateResult(Map<Integer, Integer> result, Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchedCount = matchCount(lotto.getNumbers(), winningNumbers);
         boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
-        String rankDescription = getRankDescription(matchedCount, hasBonus);
-        if(rankDescription!=null) {
-            result.put(rankDescription, result.get(rankDescription) + 1);
+        int winningMoney = getWinningMoney(matchedCount, hasBonus);
+        if(winningMoney!=0) {
+            result.put(winningMoney, result.get(winningMoney) + 1);
         }
     }
 
     private int matchCount(List<Integer> numbers, List<Integer> winningNumbers) {
-        int matchCount = 0;
+        int matchedCount = 0;
         for (int number : numbers) {
             if (winningNumbers.contains(number)) {
-                matchCount++;
+                matchedCount++;
             }
         }
-        return matchCount;
+        return matchedCount;
     }
 
-    private String getRankDescription(int matchedCount, boolean hasBonus) {
+    private Integer getWinningMoney(int matchedCount, boolean hasBonus) {
         if (matchedCount == 6) {
-            return Rank.SIX.getDescription();
+            return Rank.SIX.getWinningMoney();
         }
         if (matchedCount == 5 && hasBonus) {
-            return Rank.BONUS.getDescription();
+            return Rank.BONUS.getWinningMoney();
         }
 
         if (matchedCount == 5) {
-            return Rank.FIVE.getDescription();
+            return Rank.FIVE.getWinningMoney();
         }
         if (matchedCount == 4) {
-            return Rank.FOUR.getDescription();
+            return Rank.FOUR.getWinningMoney();
         }
         if (matchedCount == 3) {
-            return Rank.THREE.getDescription();
+            return Rank.THREE.getWinningMoney();
         }
-        return null;
+        return 0;
     }
 
 

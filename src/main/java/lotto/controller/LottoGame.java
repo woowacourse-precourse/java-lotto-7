@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.LottoRanking;
 import lotto.domain.ReturnMoneyRate;
+import lotto.validator.BonusValidator;
 import lotto.validator.MoneyValidator;
 import lotto.validator.NumberValidator;
 import lotto.view.InputView;
@@ -15,17 +16,14 @@ import java.util.Map;
 
 public class LottoGame {
     private int money;
+    private List<Integer> winningNumbers;
+    private int bonus;
 
     public void initMoney() {
         while (true) {
             try {
                 String inputMoney = InputView.getMoney();
-                MoneyValidator.validateInputMoney(inputMoney);
-
-                money = Integer.parseInt(inputMoney);
-                MoneyValidator.validateMoney(money);
-                MoneyValidator.validatePurchaseAmount(money);
-
+                validateMoneyInput(inputMoney);
                 break;
             }
             catch (IllegalArgumentException e) {
@@ -34,6 +32,15 @@ public class LottoGame {
         }
         InputView.getCount(money);
         issueLotto(money);
+    }
+
+    private void validateMoneyInput(String inputMoney) {
+        MoneyValidator.validateMoneyInputNotNull(inputMoney);
+        MoneyValidator.validateMoneyIsNumeric(inputMoney);
+
+        money = Integer.parseInt(inputMoney);
+        MoneyValidator.validateMoneyPositive(money);
+        MoneyValidator.validateMoneyDivisibleByThousand(money);
     }
 
     private void issueLotto(int money) {
@@ -45,48 +52,44 @@ public class LottoGame {
     }
 
     private void initWinningLotto(List<Lotto> issuedLottos) {
-        List<Integer> winningNumbers = getWinningNumbersFromUser();
-        int bonusNumber = getBonusNumberFromUser(winningNumbers);
-        calculateLotto(issuedLottos, winningNumbers, bonusNumber);
+        winningNumbers = getValidatedWinningNumbers();
+        bonus = getValidatedBonusNumber(winningNumbers);
+        calculateLottoResult(issuedLottos, winningNumbers, bonus);
     }
 
-    private List<Integer> getWinningNumbersFromUser() {
-        List<Integer> winningNumbers;
+    private List<Integer> getValidatedWinningNumbers() {
         while (true) {
             try {
-                String winning = InputView.getWinningNumbers();
-                String[] winningNum = winning.split(",");
-                NumberValidator.validateInput(winningNum);
-                winningNumbers = convertToIntegerList(winningNum);
-                new Lotto(winningNumbers);
-                NumberValidator.validateNumberRange(winningNumbers);
-                NumberValidator.validateNoDuplicates(winningNumbers);
-                break;
+                String winningInput = InputView.getWinningNumbers();
+                return validateWinningNumbers(winningInput);
             } catch (IllegalArgumentException e) {
                 OutputView.displayErrorMessage(e);
             }
         }
-        return winningNumbers;
     }
 
-    private List<Integer> convertToIntegerList(String[] winningNum) {
-        List<Integer> result = new ArrayList<>();
-        for (String s : winningNum) {
-            result.add(Integer.parseInt(s.trim()));
+    private List<Integer> validateWinningNumbers(String winningInput) {
+        String[] parsedWinningNumbers= winningInput.split(",");
+        NumberValidator.validateWinningNumbersAreNumeric(parsedWinningNumbers);
+
+        List<Integer> numbers = convertToIntegerList(parsedWinningNumbers);
+        new Lotto(numbers);
+        return numbers;
+    }
+
+    private List<Integer> convertToIntegerList(String[] winningNumberSplit) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String s : winningNumberSplit) {
+            numbers.add(Integer.parseInt(s.trim()));
         }
-        return result;
+        return numbers;
     }
 
-    private int getBonusNumberFromUser(List<Integer> winningNumbers) {
-        int bonus = -1;
+    private int getValidatedBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                String bonusNumber = InputView.getBonusNumber();
-                NumberValidator.validateInputBonus(bonusNumber);
-                bonus = Integer.parseInt(bonusNumber.trim());
-                NumberValidator.validateBonusNumberRange(bonus);
-                NumberValidator.validateNoDuplicatesBonus(winningNumbers, bonus);
-
+                String bonusInput = InputView.getBonusNumber();
+                bonus = validateBonusNumber(bonusInput);
                 break;
             } catch (IllegalArgumentException e) {
                 OutputView.displayErrorMessage(e);
@@ -95,20 +98,30 @@ public class LottoGame {
         return bonus;
     }
 
-    private void calculateLotto(List<Lotto> issuedLottos, List<Integer> winningNumbers, int bonusNumber) {
+    private int validateBonusNumber(String bonusInput) {
+        BonusValidator.validateBonusIsNumeric(bonusInput);
+
+        bonus = Integer.parseInt(bonusInput.trim());
+        BonusValidator.validateBonusNumberRange(bonus);
+        BonusValidator.validateBonusNotDuplicated(winningNumbers, bonus);
+
+        return bonus;
+    }
+
+    private void calculateLottoResult(List<Lotto> issuedLottos, List<Integer> winningNumbers, int bonusNumber) {
         LottoRanking lottoRanking = new LottoRanking();
-        Map<String, Integer> result = lottoRanking.calculateRank(issuedLottos, winningNumbers, bonusNumber);
+        Map<Integer, Integer> result = lottoRanking.calculateRank(issuedLottos, winningNumbers, bonusNumber);
 
         OutputView.displayResult(result);
 
         calculateReturnMoneyRate(result);
     }
 
-    private void calculateReturnMoneyRate(Map<String, Integer> result) {
+    private void calculateReturnMoneyRate(Map<Integer, Integer> result) {
         ReturnMoneyRate returnMoneyRate = new ReturnMoneyRate();
-        int sum = returnMoneyRate.calculateSum(result);
-        double moneyRate = returnMoneyRate.calculateRate(sum, money);
+        int totalWinnings = returnMoneyRate.calculateSum(result);
+        double rateOfReturn = returnMoneyRate.calculateRate(totalWinnings, money);
 
-        OutputView.displayMoneyRate(moneyRate);
+        OutputView.displayMoneyRate(rateOfReturn);
     }
 }

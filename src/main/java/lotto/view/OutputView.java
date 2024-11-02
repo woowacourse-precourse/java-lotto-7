@@ -34,7 +34,7 @@ public class OutputView {
         }
     }
 
-    public static void displayResult(Map<String, Integer> result) {
+    public static void displayResult(Map<Integer, Integer> result) {
         DecimalFormat formatter = new DecimalFormat("###,###");
 
         System.out.println();
@@ -44,14 +44,14 @@ public class OutputView {
         for (Rank rank : Rank.values()) {
             String description = rank.getDescription();
             String moneyResult = formatter.format(rank.getWinningMoney());
-            int countResult = result.get(description);
+            int countResult = result.get(rank.getWinningMoney());
             System.out.println(description + " (" + moneyResult + "원) - " + countResult +"개");
         }
     }
 
-    public static void displayMoneyRate(double moneyRate) {
+    public static void displayMoneyRate(double rateOfMoney) {
         DecimalFormat formatter = new DecimalFormat("#,##0.0");
-        System.out.println("총 수익률은 "+ formatter.format(moneyRate) + "%입니다.");
+        System.out.println("총 수익률은 "+ formatter.format(rateOfMoney) + "%입니다.");
     }
 
     public static void displayErrorMessage(IllegalArgumentException e) {
