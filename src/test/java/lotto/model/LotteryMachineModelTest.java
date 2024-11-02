@@ -1,8 +1,11 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.ExceptionMessage;
+import lotto.entity.BonusNumber;
 import lotto.entity.PurchaseAmount;
 import lotto.entity.WinnerNumber;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,5 +54,37 @@ class LotteryMachineModelTest {
 
         // then
         assertThat(lotteryMachineModel.getWinnerNumber().numbers()).isEqualTo(winnerNumbers);
+    }
+
+    @Test
+    void settingBonusNumber_당첨번호_저장에_성공한다() {
+        // given
+        Integer number = 7;
+        BonusNumber bonusNumber = new BonusNumber(number);
+
+        // when
+        lotteryMachineModel.settingBonusNumber(bonusNumber);
+
+        // then
+        assertThat(lotteryMachineModel.getBonusNumber().number()).isEqualTo(number);
+    }
+
+    @Test
+    void settingBonusNumber_당첨번호와_중복되어_실패한다() {
+        // given
+        List<Integer> winnerNumbers = List.of(1, 2, 3, 4, 5, 6);
+        WinnerNumber winnerNumber = new WinnerNumber(winnerNumbers);
+        lotteryMachineModel.settingWinnerNumber(winnerNumber);
+
+        Integer number = 6;
+        BonusNumber bonusNumber = new BonusNumber(number);
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> lotteryMachineModel.settingBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.BONUS_NUMBER_DUPLICATED);
     }
 }

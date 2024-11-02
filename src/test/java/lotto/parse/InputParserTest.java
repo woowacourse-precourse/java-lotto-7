@@ -96,4 +96,44 @@ class InputParserTest {
                 .extracting(Throwable::getMessage)
                 .isEqualTo(ExceptionMessage.WINNER_NUMBER_INVALID_COMMA_POSITION);
     }
+
+    @Test
+    void parseBonusAmount_입력으로_들어온_보너스_번호를_성공적으로_Integer로_파싱한다() {
+        // given
+        String input = "7";
+
+        // when
+        Integer bonusNumber = inputParser.parseBonusAmount(input);
+
+        // then
+        assertThat(String.valueOf(bonusNumber)).isEqualTo(input);
+    }
+
+    @Test
+    void parseBonusAmount_보너스번호에_문자가_있으면_실패한다() {
+        // given
+        String bonusNumber = "문자123";
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> inputParser.parseBonusAmount(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.BONUS_NUMBER_MUST_INTEGER);
+    }
+
+    @Test
+    void parseBonusAmount_구매금액이_Integer타입의_범위를_벗어나면_실패한다() {
+        // given
+        String purchaseAmount = "123123213321";
+
+        // when
+
+        // then
+        assertThatThrownBy(() -> inputParser.parseBonusAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .extracting(Throwable::getMessage)
+                .isEqualTo(ExceptionMessage.BONUS_NUMBER_MUST_INTEGER);
+    }
 }

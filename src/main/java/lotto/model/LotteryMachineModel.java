@@ -26,6 +26,10 @@ public class LotteryMachineModel {
         return winnerNumber;
     }
 
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
+
     public void insertPurchaseAmount(PurchaseAmount purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }
