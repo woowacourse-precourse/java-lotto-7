@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.exception.LottoExceptionStatus.*;
-import static lotto.exception.LottoExceptionStatus.INVALID_WINNING_NUMBER_DUPLICATE;
 import static lotto.properties.LottoProperties.*;
 
 public class Lotto {
@@ -38,14 +37,14 @@ public class Lotto {
 
     private void isGeneratedSixNumbers(List<Integer> numbers){
         if(numbers.size() != 6){
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_SIZE.getMessage());
+            throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_SIZE.getMessage());
         }
     }
 
     private void isDuplicate(List<Integer> numbers) {
         Set<Integer> checkDuplicate = new HashSet<>(numbers);
         if(checkDuplicate.size() != 6){
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(INVALID_GENERATED_LOTTO_NUMBERS_DUPLICATE.getMessage());
         }
     }
 
