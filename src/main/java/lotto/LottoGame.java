@@ -1,30 +1,30 @@
 package lotto;
 
 import lotto.domain.BonusNumber;
-import lotto.domain.LottoMachine;
+import lotto.domain.LottoGenerator;
 import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 
 public class LottoGame {
     private final InputView inputView;
-    private final LottoMachine lottoMachine;
+    private final LottoGenerator lottoGenerator;
 
     public LottoGame() {
         this.inputView = new InputView();
-        this.lottoMachine = new LottoMachine();
+        this.lottoGenerator = new LottoGenerator();
     }
 
     public void start() {
         int purchaseAmount = inputView.inputPurchaseAmount();
-        lottoMachine.purchaseLottos(purchaseAmount);
-        lottoMachine.printLottos();
+        lottoGenerator.purchaseLottos(purchaseAmount);
+        lottoGenerator.printLottos();
 
         WinningNumbers winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
 
         Result result = new Result(
-                lottoMachine.getLottos(),
+                lottoGenerator.getLottos(),
                 winningNumbers.getNumbers(),
                 bonusNumber.getBonusNumber()
         );

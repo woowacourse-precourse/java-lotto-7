@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.constants.LottoMachineConstants.LOTTO_PRICE;
+import static lotto.constants.LottoGeneratorConstants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.ErrorMessages;

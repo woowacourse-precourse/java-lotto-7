@@ -4,10 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.LottoConstants;
-import lotto.constants.LottoMachineConstants;
+import lotto.constants.LottoGeneratorConstants;
 
-public class LottoMachine {
-    private static final int LOTTO_PRICE = LottoMachineConstants.LOTTO_PRICE;
+public class LottoGenerator {
+    private static final int LOTTO_PRICE = LottoGeneratorConstants.LOTTO_PRICE;
 
     private final List<Lotto> lottos = new ArrayList<>();
 
