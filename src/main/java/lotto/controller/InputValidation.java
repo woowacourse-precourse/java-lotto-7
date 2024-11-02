@@ -17,8 +17,8 @@ public class InputValidation {
         while (true) {
             try {
                 return moneyCheck();
-            } catch (Exception e) {
-                System.out.println(e.getMessage()); // 모든 예외를 한 번에 처리
+            } catch (NullPointerException | IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -45,7 +45,7 @@ public class InputValidation {
     }
 
     public void checkNumberForm(String input) {
-        if (!input.matches("\\d+")) { // 숫자로만 이루어졌는지 확인
+        if (!input.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자(양수)만 입력 가능합니다.");
         }
     }
@@ -55,8 +55,8 @@ public class InputValidation {
         while (true) {
             try {
                 return winningNumbersCheck();
-            } catch (Exception e) {
-                System.out.println(e.getMessage()); // 모든 예외를 한 번에 처리
+            } catch (NullPointerException | IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -96,8 +96,8 @@ public class InputValidation {
         while (true) {
             try {
                 return bonusNumberCheck(winningNumbers);
-            } catch (Exception e) {
-                System.out.println(e.getMessage()); // 모든 예외를 한 번에 처리
+            } catch (NullPointerException | IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

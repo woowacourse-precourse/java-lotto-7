@@ -16,7 +16,7 @@ public class PrintView {
         System.out.println("---");
         int index = 0;
         for (LottoPrize prize : LottoPrize.values()) {
-            System.out.println(prize.getCondition() + " (" + prize.getStringPrize() + "원) - " + winLottiesNumber.get(index));
+            System.out.println(prize.getCondition() + " (" + prize.getStringPrize() + "원) - " + winLottiesNumber.get(index)+"개");
             index++;
         }
         System.out.println("총 수익률은 "+earnRate+"%입니다.");
