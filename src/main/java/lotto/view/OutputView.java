@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public void printLottos(List<Lotto> lottos) {
-        lottos.forEach(System.out::println);
+        lottos.forEach(i -> System.out.println(i.getNumbers()));
     }
 
     public void printResult(LottoResult lottoResult) {

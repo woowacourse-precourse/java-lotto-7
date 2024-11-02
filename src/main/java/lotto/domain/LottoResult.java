@@ -22,6 +22,8 @@ public class LottoResult {
 
         initializeRankCount();
         calculateTotalRank(lottos);
+        calculateTotalPrize();
+        calculateReturnRate();
     }
 
     private void initializeRankCount() {
