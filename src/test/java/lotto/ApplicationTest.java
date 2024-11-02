@@ -52,9 +52,9 @@ class ApplicationTest extends NsTest {
     @Test
     void 보너스_번호_입력_유효성_검사_테스트() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 3;
+        int bonus = 3;
 
-        assertThatThrownBy(() -> Validator.validateBonusNumber(bonusNumber, winningNumbers))
+        assertThatThrownBy(() -> Validator.validateBonusNumber(bonus, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
     }
