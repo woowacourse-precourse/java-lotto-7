@@ -1,23 +1,22 @@
 package lotto.draw;
 
 import java.util.Arrays;
-import java.util.List;
 
-public enum Winning {
+public enum Rank {
 
     FIRST(2_000_000_000, 6, false),
     SECOND(30_000_000, 5, true),
     THIRD(1_500_000, 5, false),
     FOURTH(50_000, 4, false),
     FIFTH(5_000, 3, false),
-    LOSING_TICKET(0, 0 | 1 | 2, false);
+    LOSING_TICKET(0, -1, false);
 
     private final int prizeMoney;
     private final int matchingCount;
     private final boolean bonus;
 
 
-    Winning(int prizeMoney, int matchingCount, boolean bonus) {
+    Rank(int prizeMoney, int matchingCount, boolean bonus) {
         this.prizeMoney = prizeMoney;
         this.matchingCount = matchingCount;
         this.bonus = bonus;
@@ -27,7 +26,7 @@ public enum Winning {
         return this.prizeMoney * count;
     }
 
-    public static Winning getWinningRank(int matchingCount, boolean bonus) {
+    public static Rank getWinningRank(int matchingCount, boolean bonus) {
         if (bonus) {
             return SECOND;
         } else if (matchingCount == 0 || matchingCount == 1 || matchingCount == 2) {
