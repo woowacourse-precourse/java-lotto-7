@@ -14,18 +14,17 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
-
     public LottoController(LottoService lottoService,
                            InputView inputView,
-                           OutputView outputView){
+                           OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public void run(){
+    public void run() {
         int lottoAmount = readLottoAmount();
-        int lottoCount = lottoAmount/1000;
+        int lottoCount = lottoAmount / 1000;
         Lottos lottos = IssueLottos(lottoCount);
         WinningNumbers winningNumbers = readWinningNumbers();
         readBonusNumber(winningNumbers);
@@ -33,23 +32,23 @@ public class LottoController {
         outputView.resultMessage(lottoResult, lottoAmount);
     }
 
-    public int readLottoAmount(){
+    public int readLottoAmount() {
         outputView.amountMessage();
-        return  inputView.readLottoAmount();
+        return inputView.readLottoAmount();
     }
 
-    public Lottos IssueLottos(int lottoCount){
+    public Lottos IssueLottos(int lottoCount) {
         Lottos lottos = lottoService.issueLottos(lottoCount);
         outputView.purchaseLottoMessage(lottoCount, lottos);
         return lottos;
     }
 
-    public WinningNumbers readWinningNumbers(){
+    public WinningNumbers readWinningNumbers() {
         outputView.winningNumberMessage();
         return new WinningNumbers(inputView.readWinningNumbers());
     }
 
-    public void readBonusNumber(WinningNumbers winningNumbers){
+    public void readBonusNumber(WinningNumbers winningNumbers) {
         outputView.bonusNumberMessage();
         inputView.readBonusNumber(winningNumbers);
     }

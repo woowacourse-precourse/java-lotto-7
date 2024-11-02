@@ -22,36 +22,36 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoPrize matchedResult(Lotto lotto){
+    public LottoPrize matchedResult(Lotto lotto) {
         int matchCount = 0;
         boolean isMatchedBonusNumber = false;
 
-        for (int number : this.numbers){
-            if(lotto.getNumbersValue().contains(number)){
+        for (int number : this.numbers) {
+            if (lotto.getNumbersValue().contains(number)) {
                 matchCount++;
             }
         }
-        if(lotto.getNumbersValue().contains(bonusNumber)){
+        if (lotto.getNumbersValue().contains(bonusNumber)) {
             isMatchedBonusNumber = true;
         }
         return getResult(matchCount, isMatchedBonusNumber);
     }
 
-    private LottoPrize getResult(int matchCount, boolean isMatchBonusNumber){
+    private LottoPrize getResult(int matchCount, boolean isMatchBonusNumber) {
 
-        if(matchCount == 6){
+        if (matchCount == 6) {
             return LottoPrize.FIRST;
         }
-        if(matchCount == 5 && isMatchBonusNumber){
+        if (matchCount == 5 && isMatchBonusNumber) {
             return LottoPrize.SECOND;
         }
-        if(matchCount == 5){
+        if (matchCount == 5) {
             return LottoPrize.THIRD;
         }
-        if(matchCount == 4){
+        if (matchCount == 4) {
             return LottoPrize.FOURTH;
         }
-        if(matchCount == 3) {
+        if (matchCount == 3) {
             return LottoPrize.FIFTH;
         }
 

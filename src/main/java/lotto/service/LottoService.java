@@ -21,7 +21,6 @@ public class LottoService {
                 .map(winningNumbers::matchedResult)
                 .filter(lottoPrize -> !LottoPrize.NONE.equals(lottoPrize))
                 .toList());
-
     }
 
     private Lotto issueLotto() {
