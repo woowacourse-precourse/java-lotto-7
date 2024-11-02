@@ -1,7 +1,9 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.controller.dto.BonusNumberSaveRequest;
 import lotto.controller.dto.LottoPurchaseResponse;
+import lotto.controller.dto.WinningNumberSaveResponse;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.WinningNumber;
@@ -38,11 +40,16 @@ public class LottoService {
         return LottoPurchaseResponse.of(lottoPurchase, lottoList);
     }
 
-    public void saveWinningNumber(String input) {
+    public WinningNumberSaveResponse saveWinningNumber(String input) {
         List<String> divideBySeparator = LottoUtils.divideBySeparator(",", input);
-        List<Integer> winningNumber = LottoUtils.convertToIntegerList(divideBySeparator);
+        List<Integer> result = LottoUtils.convertToIntegerList(divideBySeparator);
 
-        winningNumberRepository.save(WinningNumber.to(winningNumber));
+        WinningNumber winningNumber = WinningNumber.to(result);
+        winningNumberRepository.save(winningNumber);
+
+        int index = winningNumberRepository.findIndexByWinningNumber(winningNumber);
+
+        return new WinningNumberSaveResponse(index, winningNumber);
     }
 
     private List<Integer> getRandomNumbers() {
@@ -57,5 +64,11 @@ public class LottoService {
         }
 
         return lottoList;
+    }
+
+    public void saveBonusNumber(BonusNumberSaveRequest request) {
+        WinningNumber winningNumber = winningNumberRepository.findByIndex(request.index());
+        int bonusNumber = LottoUtils.parseInt(request.bonusNumber());
+        winningNumber.setBonusNumber(bonusNumber);
     }
 }

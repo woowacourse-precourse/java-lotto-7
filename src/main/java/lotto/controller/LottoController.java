@@ -1,7 +1,8 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.dto.BonusNumberSaveRequest;
 import lotto.controller.dto.LottoPurchaseResponse;
+import lotto.controller.dto.WinningNumberSaveResponse;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.LottoException;
 import lotto.service.LottoService;
@@ -24,11 +25,19 @@ public class LottoController {
         return lottoService.createLottoNumbers();
     }
 
-    public void saveLottoWinningNumberInput(String request) {
+    public WinningNumberSaveResponse saveLottoWinningNumberInput(String request) {
         LottoException.throwIllegalArgumentException(
             ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request)
         );
 
-        lottoService.saveWinningNumber(request);
+        return lottoService.saveWinningNumber(request);
+    }
+
+    public void saveBonusNumber(BonusNumberSaveRequest request) {
+        LottoException.throwIllegalArgumentException(
+            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(request.bonusNumber())
+        );
+
+        lottoService.saveBonusNumber(request);
     }
 }

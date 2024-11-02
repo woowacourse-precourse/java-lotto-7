@@ -22,6 +22,10 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         LottoException.throwIllegalArgumentException(ONLY_LOTTO_SIZE_SIX, !validateLottoSize(numbers));
         LottoException.throwIllegalArgumentException(ONLY_NUMBER_ONE_TO_FORTY_FIVE, !validateLottoNumbers(numbers));

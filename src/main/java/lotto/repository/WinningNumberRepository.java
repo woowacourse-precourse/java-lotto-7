@@ -25,8 +25,12 @@ public class WinningNumberRepository {
         winningNumbers.clear();
     }
 
-    public void findByIndex(int index) {
-        winningNumbers.get(index);
+    public WinningNumber findByIndex(int index) {
+        return winningNumbers.get(index);
+    }
+
+    public int findIndexByWinningNumber(WinningNumber winningNumber) {
+        return winningNumbers.indexOf(winningNumber);
     }
 
     public WinningNumber findOne() {

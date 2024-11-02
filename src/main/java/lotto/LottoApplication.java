@@ -2,7 +2,9 @@ package lotto;
 
 import lotto.config.LottoConfig;
 import lotto.controller.LottoController;
+import lotto.controller.dto.BonusNumberSaveRequest;
 import lotto.controller.dto.LottoPurchaseResponse;
+import lotto.controller.dto.WinningNumberSaveResponse;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -22,7 +24,14 @@ public class LottoApplication {
 
         //당첨 번호 입력 및 저장
         userInput = input.printWinningNumberInputMessage();
-        controller.saveLottoWinningNumberInput(userInput);
+        WinningNumberSaveResponse winningNumberSaveResponse = controller.saveLottoWinningNumberInput(userInput);
+
+        //key값 저장
+        int index = winningNumberSaveResponse.winningNumberIndex();
+
+        //보너스 번호 입력 및 저장
+        userInput = input.printBonusNumberInputMessage();
+        controller.saveBonusNumber(new BonusNumberSaveRequest(index, userInput));
     }
 
 }

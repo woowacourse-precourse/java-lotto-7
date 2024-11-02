@@ -39,6 +39,8 @@ public class WinningNumber {
     }
 
     public void setBonusNumber(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
+
         this.bonusNumber = bonusNumber;
     }
 
@@ -50,5 +52,19 @@ public class WinningNumber {
         LottoException.throwIllegalArgumentException(
             NOT_DUPLICATE_NUMBER_IN_WINNING_NUMBER, LottoUtils.hasDuplicateNumber(winningNumber)
         );
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        LottoException.throwIllegalArgumentException(
+            ONLY_NUMBER_ONE_TO_FORTY_FIVE, !isBonusNumberInRange(bonusNumber)
+        );
+
+        LottoException.throwIllegalArgumentException(
+            NOT_DUPLICATE_NUMBER_IN_WINNING_NUMBER, winningNumber.contains(bonusNumber)
+        );
+    }
+
+    private boolean isBonusNumberInRange(int number) {
+        return number >= 1 && number <= 45;
     }
 }
