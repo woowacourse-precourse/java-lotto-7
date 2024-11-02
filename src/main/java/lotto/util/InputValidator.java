@@ -5,13 +5,17 @@ import static lotto.Constant.MIN_NUMBER;
 import static lotto.Constant.MONEY_UNIT;
 import static lotto.Constant.NUMBER_COUNT;
 import static lotto.exception.ErrorMessage.BLANK_MONEY;
+import static lotto.exception.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.exception.ErrorMessage.INVALID_NUMBER_COUNT;
 import static lotto.exception.ErrorMessage.NOT_DIGIT_FORMAT;
 import static lotto.exception.ErrorMessage.NOT_DIVIDED_MONEY;
 import static lotto.exception.ErrorMessage.OUT_OF_RANGE_NUMBER;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputValidator {
     public static void validateMoney(String uncheckedMoney) {
@@ -23,6 +27,7 @@ public class InputValidator {
         validateNumberCount(lottoNumber);
         validateEachIsDigit(lottoNumber);
         validateEachInRange(lottoNumber);
+        validateDuplication(lottoNumber);
     }
 
     public static void validateBonusNumber(String bonusNumber) {
@@ -67,6 +72,18 @@ public class InputValidator {
         String[] splitNumbers = splitAndTrim(lottoNumber);
         for (String splitNumber : splitNumbers) {
             validateIsInRange(splitNumber);
+        }
+    }
+
+    private static void validateDuplication(String lottoNumber) {
+        List<Integer> numbers = Arrays.stream(lottoNumber.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 
