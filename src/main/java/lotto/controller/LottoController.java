@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.Lottos;
-import lotto.model.WinningLottoNumbers;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,7 +26,7 @@ public class LottoController {
         Lotto lottoWinningNumbers = getLottoWinningNumbers();
         int lottoBonusNumber = getLottoBonusNumber();
 
-        WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+        WinningLotto winningLottoNumbers = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
 
     }
 
@@ -65,10 +65,10 @@ public class LottoController {
     }
 
 
-    private WinningLottoNumbers createWinningLottoNumbers(Lotto lottoWinningNumbers, int lottoBonusNumber) {
+    private WinningLotto createWinningLottoNumbers(Lotto lottoWinningNumbers, int lottoBonusNumber) {
         while (true) {
             try {
-                return new WinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+                return new WinningLotto(lottoWinningNumbers, lottoBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 lottoBonusNumber = getLottoBonusNumber();
