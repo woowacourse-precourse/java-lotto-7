@@ -1,9 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
 import java.util.List;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.DefaultDuplicateValidator;
