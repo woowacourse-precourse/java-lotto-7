@@ -19,10 +19,8 @@ public class LottoController {
 
         List<Integer> winNumbers = InputView.winInput();
 
+        int bonus = InputView.bonusInput(winNumbers);
+
     }
-
-
-
-
 }
 
