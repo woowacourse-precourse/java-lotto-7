@@ -11,4 +11,5 @@ public class Customer {
     public int getLottoTickets() {
         return lottoTickets;
     }
+
 }
