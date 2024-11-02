@@ -8,4 +8,3 @@ public class Application {
         System.out.println("구입한 로또 수: " + lottoCount);
     }
 }
-
