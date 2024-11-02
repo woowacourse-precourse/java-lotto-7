@@ -52,4 +52,8 @@ public class OutputView {
             System.out.printf("%s - %d개%n", rankInfo.get(rank), count);
         }
     }
+
+    public void printTotalProfitRate(double profitRate) {
+        System.out.printf(Message.TOTAL_PROFIT_RATE.getMessage(), profitRate);
+    }
 }
