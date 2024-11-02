@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.utils;
+
+import lotto.domain.LottoRankType;
 
 import java.util.List;
 
