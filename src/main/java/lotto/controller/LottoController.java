@@ -2,6 +2,9 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Money;
+import lotto.domain.Prize;
+import lotto.domain.PrizeResult;
+import lotto.domain.ProfitCalculator;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -21,6 +24,8 @@ public class LottoController {
 
         WinningLotto winningLotto = getWinningLotto();
 
+        double profitRatio = calculateResult(money, lottos, winningLotto);
+        outputView.showProfitRate(profitRatio);
     }
 
     private Money getMoney() {
@@ -57,5 +62,20 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+    private double calculateResult(Money money, List<Lotto> lottos, WinningLotto winningLotto) {
+        PrizeResult prizeResult = new PrizeResult(lottos, winningLotto);
+
+        System.out.println("당첨 통계\n---");
+        for (Prize prize : Prize.values()) {
+            if (prize != Prize.NONE) {
+                System.out.printf("%d개 일치 (%d원) - %d개\n",
+                        prize.getCount(),
+                        prize.getPrize(),
+                        prizeResult.getPrizeCount().get(prize));
+            }
+        }
+        ProfitCalculator profitCalculator = new ProfitCalculator(money, prizeResult);
+        return profitCalculator.calculateProfitRatio();
     }
 }

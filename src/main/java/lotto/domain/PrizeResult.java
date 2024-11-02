@@ -31,4 +31,8 @@ public class PrizeResult {
             prizeCount.put(prize, prizeCount.get(prize)+1);
         }
     }
+
+    public Map<Prize, Integer> getPrizeCount() {
+        return prizeCount;
+    }
 }

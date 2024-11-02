@@ -28,4 +28,22 @@ public class WinningLotto {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다");
         }
     }
+
+    public int countMatchingNumbers(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
+    }
+
+    public boolean isBonusMatched(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }
