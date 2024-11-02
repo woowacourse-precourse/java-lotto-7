@@ -123,6 +123,66 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    public void 당첨번호_비정상_중복(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,5", "7");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_모자람(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5", "7");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_음수(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,-5,-3", "7");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_경계벗어남(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "0,2,3,4,50,46", "7");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
+    @Test
+    public void 당첨번호_비정상_이상한값(){
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "0,2,3,4,50,java", "7");
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE
+                    );
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
