@@ -19,10 +19,8 @@ public class LottoStatisticsView {
         System.out.println("6개 일치 (" + NumberFormat.getInstance().format(LottoRank.FIRST.getWinningPrize()) + "원) - " + statistics.getOrDefault(LottoRank.FIRST, 0) + "개");
     }
 
-    public static void announcePercentOfReturn(double rateOfReturn) {
-        double percent = rateToPercent(rateOfReturn);
-
-        System.out.println("총 수익률은 " + Math.round(percent * 100.0) / 100.0 + "%입니다.");
+    public static void announcePercentOfReturn(double percentRateOfReturn) {
+        System.out.println("총 수익률은 " + Math.round(percentRateOfReturn * 100.0) / 100.0 + "%입니다.");
     }
 
     private static double rateToPercent(double rateOfReturn) {
