@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.constant.Prize;
+import lotto.model.LottoTickets;
 
 public class OutputView {
     public void displayPurchasePriceRequest() {

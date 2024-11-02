@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.constant.Prize;
+import lotto.model.LottoTickets;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
@@ -25,9 +26,11 @@ public class LottoController {
         PurchasePrice purchasePrice = requestPurchasePrice();
         responsePurchaseQuantity(purchasePrice);
 
-        List<Lotto> lottoTickets = generateLottoTickets(purchasePrice.calculateQuantity());
+        LottoTickets lottoTickets = generateLottoTickets(purchasePrice);
+        responseLottoTickets(lottoTickets);
+
         WinningNumbers winningNumbers = requestWinningNumbers();
-        LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
+        LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets.getTickets(), winningNumbers);
         double rateOfReturn = calculateRateOfReturn(result, purchasePrice.value());
         outputView.displayWinningResult(result, rateOfReturn);
     }
@@ -39,19 +42,26 @@ public class LottoController {
     }
 
     private void responsePurchaseQuantity(PurchasePrice purchasePrice) {
-        int quantity = purchasePrice.calculateQuantity();
-        outputView.displayPurchaseQuantity(quantity);
+        outputView.displayPurchaseQuantity(purchasePrice.calculateQuantity());
     }
 
-    private List<Lotto> generateLottoTickets(int quantity) {
+    private LottoTickets generateLottoTickets(PurchasePrice purchasePrice) {
         List<Lotto> lottoTickets = new ArrayList<>();
+        int quantity = purchasePrice.calculateQuantity();
         for (int count = 0; count < quantity; count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottoTickets.add(new Lotto(numbers));
+            lottoTickets.add(generateLotto());
         }
-        outputView.displayLottoNumbers(lottoTickets);
 
-        return lottoTickets;
+        return new LottoTickets(lottoTickets);
+    }
+
+    private Lotto generateLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto((numbers));
+    }
+
+    private void responseLottoTickets(LottoTickets lottoTickets) {
+        outputView.displayLottoNumbers(lottoTickets.getTickets());
     }
 
     private WinningNumbers requestWinningNumbers() {
