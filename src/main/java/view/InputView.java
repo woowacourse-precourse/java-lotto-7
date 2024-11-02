@@ -31,15 +31,10 @@ public class InputView {
             writer.printSout(ASK_PURCHASE_AMOUNT);
             String input = reader.readInput();
             InputValidatorFacade.MoneyValidators(input);
-            return stringToMoney(input);
+            return PreProcessor.stringToMoney(input);
         } catch (IllegalArgumentException e) {
             writer.printErrorMessage(e.getMessage());
             return readPurchaseAmount();
         }
-    }
-
-    public Money stringToMoney(String input) {
-        long purchaseAmount = Long.parseLong(input);
-        return Money.from(purchaseAmount);
     }
 }

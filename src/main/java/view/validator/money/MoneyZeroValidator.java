@@ -2,6 +2,7 @@ package view.validator.money;
 
 import model.Money;
 import view.InputView;
+import view.PreProcessor;
 import view.validator.InputValidator;
 
 public class MoneyZeroValidator extends InputValidator {
@@ -14,7 +15,7 @@ public class MoneyZeroValidator extends InputValidator {
 
     @Override
     public void validate(String input) {
-        Money money = InputView.getInstance().stringToMoney(input);
+        Money money = PreProcessor.stringToMoney(input);
 
         if (money.isZero(money)) {
             throw new IllegalArgumentException("구입금액은 0일 수 없습니다.");
