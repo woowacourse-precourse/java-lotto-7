@@ -19,19 +19,31 @@ public class LottoController {
     }
 
     public void run() {
-        Purchase purchase = new Purchase(inputView.purchaseInput());
+        Purchase purchase = null;
+        while (purchase == null) {
+            try {
+                purchase = new Purchase(inputView.purchaseInput());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         LottoGenerator lottos = new LottoGenerator(purchase.numberOfLotto());
-
         outputView.printLottoStatus(lottos.getLottos());
 
-        String winningNum = inputView.winningNumberInput();
-        String bounsNumber = inputView.bonusInput();
+        WinningNumber winningNumber = null;
+        while (winningNumber == null) {
+            try {
+                String winningNum = inputView.winningNumberInput();
+                String bonusNumber = inputView.bonusInput();
+                winningNumber = new WinningNumber(winningNum, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        WinningNumber winningNumber = new WinningNumber(winningNum, bounsNumber);
         WinningStatics winningStatics = new WinningStatics();
         winningStatics.numOfWinnings(lottos.getLottos(), winningNumber);
-
         outputView.printWinningStatics(winningStatics);
 
         int purchaseAmount = purchase.getAmount();
