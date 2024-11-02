@@ -19,7 +19,7 @@ class LottoExceptionTest {
             throw lottoException;
         });
         // then
-        assertEquals(ErrorMessage.NOT_SIX_NUM, illegalArgumentException.getMessage());
+        assertEquals(ErrorMessage.NOT_SIX_NUM.getMessage(), illegalArgumentException.getMessage());
     }
 
     @Test
