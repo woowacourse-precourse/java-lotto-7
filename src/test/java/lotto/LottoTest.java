@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,5 +33,12 @@ class LottoTest {
         LottoPurchase lottoPurchase = new LottoPurchase(purchaseAmount);
 
         assertEquals(lottoPurchase.getPurchasedLottoCount(), lottoCount);
+    }
+
+    @Test
+    void 발행한_로또_번호_오름차순_정렬_테스트() {
+        Lotto lotto = new Lotto(List.of(30, 20, 21, 2, 45, 44));
+
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(2, 20, 21, 30, 44, 45));
     }
 }
