@@ -17,7 +17,19 @@ public enum PrintMessage {
             "6개 일치 (2,000,000,000원) - {4}개"),
     RATE_OF_RETURN("\n총 수익률은 {0}%입니다."),
 
-
+    //ErrorMessage
+    //Lotto
+    INVALID_LOTTO_NUMBER_COUNT("[ERROR] 로또 번호는 6개여야 합니다."),
+    NOT_ALLOWED_DUPLICATE_LOTTO_NUMBER("[ERROR] 로또 번호는 중복되지 않아야 합니다."),
+    //WinningNumbers
+    INVALID_WINNING_NUMBER_COUNT("[ERROR] 당첨 번호는 6개여야 합니다"),
+    INVALID_NUMBER_RANGE("[ERROR] 번호는 1이상 45 이하의 숫자로 이루어져야 합니다."),
+    NOT_ALLOWED_DUPLICATE_WINNING_NUMBER("[ERROR] 당첨 번호는 중복되지 않아야 합니다."),
+    NOT_ALLOWED_DUPLICATE_BONUS_NUMBER("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다."),
+    //FormatValidator
+    PRICE_FORMAT_ERROR("\n[ERROR] 구입금액이 1000의 배수가 아닙니다."),
+    WINNING_NUMBER_FORMAT_ERROR("\n[ERROR] 당첨 번호 입력은 쉼표와 숫자만으로 이루어져야 합니다."),
+    BONUS_NUMBER_FORMAT_ERROR("\n[ERROR] 보너스 번호 입력은 숫자만으로 이루어져야 합니다."),
     ;
     final String message;
 

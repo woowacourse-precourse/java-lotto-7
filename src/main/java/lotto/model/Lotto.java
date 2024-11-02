@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.global.enums.PrintMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.global.enums.PrintMessage.NOT_ALLOWED_DUPLICATE_LOTTO_NUMBER;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -14,11 +17,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
         HashSet<Integer> set = new HashSet<>(numbers);
         if (set.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(NOT_ALLOWED_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 

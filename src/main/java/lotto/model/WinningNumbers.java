@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.global.enums.PrintMessage.*;
+
 public class WinningNumbers {
 
     private final List<Integer> winningNumber;
@@ -18,21 +20,21 @@ public class WinningNumbers {
 
     private void validate(List<Integer> winningNumbers, Integer bonusNumber) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다");
+            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT.getMessage());
         }
 
         boolean flag = winningNumbers.stream().allMatch(this::validateRange);
         if (!flag || !validateRange(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1이상 45 이하의 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
 
         HashSet<Integer> set = new HashSet<>(winningNumbers);
         if (set.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(NOT_ALLOWED_DUPLICATE_WINNING_NUMBER.getMessage());
         }
 
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(NOT_ALLOWED_DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 
@@ -43,6 +45,7 @@ public class WinningNumbers {
     private List<Integer> sortNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().toList();
     }
+
     public List<Integer> getWinningNumber() {
         return Collections.unmodifiableList(winningNumber);
     }
