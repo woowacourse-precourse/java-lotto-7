@@ -7,16 +7,16 @@ import java.util.Set;
 public class Lotto {
     private static final int LOTTO_NUMBERS_SIZE = 6;
 
-    private final List<Integer> lottoNumbers;
+    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> lottoNumbers) {
-        validateSize(lottoNumbers);
-        validateDuplicate(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+    public Lotto(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+        this.numbers = numbers;
     }
 
-    private void validateSize(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는" + LOTTO_NUMBERS_SIZE + "개여야 합니다.");
         }
     }
@@ -28,7 +28,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
