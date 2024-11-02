@@ -38,6 +38,10 @@ public class LottoTicket {
                 .toList();
     }
 
+    public List<Lotto> getTicket() {
+        return ticket;
+    }
+
     private void validateNonEmptyTicket(List<Lotto> lottos) {
         if (lottos.isEmpty()) {
             throw new IllegalArgumentException("로또 티켓은 하나 이상의 로또를 포함해야 합니다.");
