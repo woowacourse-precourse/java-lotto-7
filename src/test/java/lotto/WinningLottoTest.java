@@ -28,6 +28,6 @@ public class WinningLottoTest {
     void 입력된_당첨_번호가_유효하지_않은_경우_예외(String winningNumbers) {
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, "7"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_WINNING_NUMBERS);
+                .hasMessage(ErrorMessage.ENTERED_INVALID_NUMBER);
     }
 }

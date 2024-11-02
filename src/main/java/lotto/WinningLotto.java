@@ -12,16 +12,16 @@ public class WinningLotto {
     private static final String SEPARATOR = ",";
 
     private final List<LottoNumber> winningNumbers;
-    private final int bonusNumber;
+    private final LottoNumber bonusNumber;
 
     public WinningLotto(String winningNumbers, String bonusNumber) {
         this.winningNumbers = parse(winningNumbers);
-        this.bonusNumber = toInt(bonusNumber);
+        this.bonusNumber = toLottoNumber(bonusNumber);
     }
 
     private List<LottoNumber> parse(String winningNumbers) {
         List<LottoNumber> lottoNumbers = splitBySeparator(winningNumbers).stream()
-                .map(number -> LottoNumber.from(toInt(number)))
+                .map(this::toLottoNumber)
                 .toList();
 
         validateSize(lottoNumbers);
@@ -33,16 +33,16 @@ public class WinningLotto {
         return Arrays.stream(winningNumbers.split(SEPARATOR)).toList();
     }
 
-    private int toInt(String textNumber) {
-        int bonusNumber;
+    private LottoNumber toLottoNumber(String textNumber) {
+        int number;
 
         try {
-            bonusNumber = Integer.parseInt(textNumber);
+            number = Integer.parseInt(textNumber);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS);
+            throw new IllegalArgumentException(ErrorMessage.ENTERED_INVALID_NUMBER);
         }
 
-        return bonusNumber;
+        return LottoNumber.from(number);
     }
 
     private void validateSize(List<LottoNumber> lottoNumbers) {
@@ -56,7 +56,7 @@ public class WinningLotto {
     }
 
     public boolean containsBonus(List<LottoNumber> numbers) {
-        return numbers.contains(LottoNumber.from(bonusNumber));
+        return numbers.contains(bonusNumber);
     }
 
     @Override
