@@ -30,6 +30,15 @@ class LottoMachineTest {
         Assertions.assertThat(lottoList.size()).isEqualTo(count);
     }
 
+    @DisplayName("구입할 금액이 로또금액 단위가 아닐 경우 에러가 발생한다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1234", "900", "-1", "0"})
+    void 구입할_금액이_로또금액_단위가_아닐_경우_에러가_발생한다(int price) {
+        Assertions.assertThatThrownBy(() -> {
+            lottoMachine.buyLottoByPrice(price);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
+
     private static Stream<Arguments> generatePriceAndCountList() {
         return Stream.of(
                 Arguments.of(1000, 1),
