@@ -27,9 +27,9 @@ public class UtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1.2", "1", "-1"})
+    @ValueSource(strings = {"0", "1", "-1"})
     public void isFloatTest(String input) {
-        assertTrue(RegexUtils.isFloat(input));
+        assertTrue(RegexUtils.isNumeric(input));
     }
 
     @ParameterizedTest
