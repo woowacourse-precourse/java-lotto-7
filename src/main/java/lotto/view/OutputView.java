@@ -24,6 +24,7 @@ public class OutputView {
     }
 
     public void printLottoRequest() {
+        System.out.println();
         System.out.println(Outputs.LOTTO_REQUEST.getMessage());
     }
 }

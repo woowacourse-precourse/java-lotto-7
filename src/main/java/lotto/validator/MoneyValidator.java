@@ -24,7 +24,7 @@ public class MoneyValidator extends Validator {
     void validateNotNull() {
         if (money == null) {
             throw new IllegalArgumentException(
-                    MessageParser.getMoneyErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
         }
     }
 
@@ -32,7 +32,7 @@ public class MoneyValidator extends Validator {
     void validateNotEmpty() {
         if (money.isBlank()) {
             throw new IllegalArgumentException(
-                    MessageParser.getMoneyErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
         }
     }
 
@@ -40,7 +40,7 @@ public class MoneyValidator extends Validator {
     void validateWholeNumber() {
         if (!Pattern.matches("-?\\d+", money)) {
             throw new IllegalArgumentException(
-                    MessageParser.getMoneyErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
         }
     }
 
@@ -50,7 +50,7 @@ public class MoneyValidator extends Validator {
             InputParser.parseLong(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
-                    MessageParser.getMoneyErrorMessage(Errors.NOT_A_LONG.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NOT_A_LONG.getMessage()));
         }
     }
 }

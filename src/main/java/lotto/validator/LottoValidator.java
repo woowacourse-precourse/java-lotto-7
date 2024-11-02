@@ -26,7 +26,7 @@ public class LottoValidator extends Validator {
     void validateNotNull() {
         if (lotto == null) {
             throw new IllegalArgumentException(
-                    MessageParser.getLottoErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
         }
     }
 
@@ -34,7 +34,7 @@ public class LottoValidator extends Validator {
     void validateNotEmpty() {
         if (lotto.isBlank()) {
             throw new IllegalArgumentException(
-                    MessageParser.getLottoErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NULL_OR_EMPTY_INPUT.getMessage()));
         }
     }
 
@@ -43,7 +43,7 @@ public class LottoValidator extends Validator {
         if (Arrays.stream(lotto.split(Regex.COMMA.getValue()))
                 .anyMatch(number -> !Pattern.matches("-?\\d+", number))) {
             throw new IllegalArgumentException(
-                    MessageParser.getLottoErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
         }
     }
 
@@ -53,7 +53,7 @@ public class LottoValidator extends Validator {
             InputParser.parseListOfInteger(lotto);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
-                    MessageParser.getLottoErrorMessage(Errors.NOT_INTEGER.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NOT_INTEGER.getMessage()));
         }
     }
 }

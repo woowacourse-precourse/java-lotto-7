@@ -30,7 +30,7 @@ public class Money {
         if (amount < Constants.MIN_MONEY.getNumber()
                 || amount > Constants.MAX_MONEY.getLong()) {
             throw new IllegalArgumentException(
-                    MessageParser.getMoneyErrorMessage(Errors.NOT_IN_RANGE.getMessage()));
+                    MessageParser.getErrorMessage(Errors.NOT_IN_MONEY_RANGE.getMessage()));
         }
     }
 
@@ -38,7 +38,7 @@ public class Money {
     void validateNoRemainder(long amount) {
         if (amount % Constants.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(
-                    MessageParser.getMoneyErrorMessage(Errors.REMAINDER_EXISTENT.getMessage()));
+                    MessageParser.getErrorMessage(Errors.REMAINDER_EXISTENT.getMessage()));
         }
     }
 }
