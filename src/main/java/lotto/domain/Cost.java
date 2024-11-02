@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static lotto.exception.ErrorMessages.*;
+import static lotto.util.Validator.isInteger;
+import static lotto.util.Validator.isPositive;
 
 public class Cost {
     int value;
@@ -18,20 +20,6 @@ public class Cost {
         if(!isDividedThousand(value)){
             throw new IllegalArgumentException(DIVISIBLE_BY_THOUSAND_COST_ERROR);
         }
-    }
-
-    public boolean isInteger(String value){
-        try{
-            Integer.parseInt(value);
-            return true;
-        } catch (NumberFormatException e){
-            return false;
-        }
-    }
-
-    public boolean isPositive(String value){
-        int castedValue = Integer.parseInt(value);
-        return castedValue > 0;
     }
 
     public boolean isDividedThousand(String value){
