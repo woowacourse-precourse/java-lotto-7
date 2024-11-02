@@ -13,33 +13,43 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    public void run(){
+    public void run() {
+        Money money = getMoney();
+        List<Lotto> lottos = buyLottos(money);
+        displayLottos(lottos);
+        WinningNumbers winningLotto = getWinningNumbers();
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto);
+        displayResult(money, lottoResult);
+    }
+
+    private Money getMoney() {
         int buyPrice = InputView.buyPrice();
-        Money money = new Money(buyPrice);
+        return new Money(buyPrice);
+    }
+
+    private List<Lotto> buyLottos(Money money) {
         LottoManager lottoManager = new LottoManager();
         lottoManager.buyLotto(money);
-        List<Lotto> lottos = lottoManager.getLottoTickets();
+        return lottoManager.getLottoTickets();
+    }
 
+    private void displayLottos(List<Lotto> lottos) {
         List<String> formattedLottos = lottos.stream()
             .map(lotto -> lotto.getNumbers().stream().sorted().toList().toString())
             .collect(Collectors.toList());
-
         OutputView.showBuyLottos(lottos.size(), formattedLottos);
-
-        Set<Integer> winningNumbers = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusNumber();
-
-        WinningNumbers winningLotto = new WinningNumbers(winningNumbers, bonusNumber);
-
-        LottoResult lottoResult = new LottoResult(lottos, winningLotto);
-
-        double percent = money.getPercent(lottoResult.getTotalPrize());
-
-        OutputView.showLottoResult(lottoResult.getMatch3Count(),lottoResult.getMatch4Count(),
-            lottoResult.getMatch5Count(),lottoResult.getMatch5WithBonusCount(),
-            lottoResult.getMatch6Count(),percent);
-
     }
 
+    private WinningNumbers getWinningNumbers() {
+        Set<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumber();
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
 
+    private void displayResult(Money money, LottoResult lottoResult) {
+        double percent = money.getPercent(lottoResult.getTotalPrize());
+        OutputView.showLottoResult(lottoResult.getMatch3Count(), lottoResult.getMatch4Count(),
+            lottoResult.getMatch5Count(), lottoResult.getMatch5WithBonusCount(),
+            lottoResult.getMatch6Count(), percent);
+    }
 }

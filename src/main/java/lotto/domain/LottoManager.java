@@ -1,13 +1,12 @@
 package lotto.domain;
 
-import static lotto.contant.Constants.LOTTO_PRICE;
+import static lotto.domain.Money.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManager {
-
     private final List<Lotto> lottoTickets;
 
     public LottoManager() {
