@@ -11,7 +11,8 @@ public class LottoPlay {
         List<Lotto> lottoList = GeneratorLotto.createLotto(purchaseAmount);
         Lotto winningNumbers = input.getWinningNumbers();
         System.out.println(winningNumbers.toString());
-        input.getBonusNumber(winningNumbers);
+        int bonusNumber = input.getBonusNumber(winningNumbers);
+        MatchingLotto.matchingLotto(lottoList, winningNumbers, bonusNumber);
     }
 
 }
