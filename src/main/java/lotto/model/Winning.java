@@ -30,7 +30,7 @@ public enum Winning {
     }
 
     public static Winning getFromValue(int value) {
-        return Arrays.stream(Winning.values())
+        return Arrays.stream(values())
                 .filter(winning -> winning.getValue() == value)
                 .findFirst()
                 .orElse(NONE);
@@ -55,7 +55,7 @@ public enum Winning {
                 .append(count)
                 .append("개");
     }
-
+    
     public BigDecimal multiplyCount() {
         return new BigDecimal(count * price);
     }

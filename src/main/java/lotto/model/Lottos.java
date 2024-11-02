@@ -7,11 +7,9 @@ import static lotto.model.Winning.FIVE_BONUS;
 import static lotto.model.Winning.NONE;
 import static lotto.model.Winning.getFromValue;
 import static lotto.model.Winning.getTotalWinningPrice;
-import static lotto.model.Winning.values;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +26,7 @@ public class Lottos {
                 lottos.put(createLotto(), NONE));
     }
 
-    private static Lotto createLotto() {
+    private Lotto createLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 

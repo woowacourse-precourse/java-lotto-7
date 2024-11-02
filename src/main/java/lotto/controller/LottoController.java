@@ -1,11 +1,10 @@
 package lotto.controller;
 
-import static lotto.model.Winning.*;
+import static lotto.model.Winning.toStringWithoutNone;
 
 import java.util.List;
 import lotto.model.LottoValue;
 import lotto.model.Lottos;
-import lotto.model.Winning;
 import lotto.view.LottoView;
 
 public class LottoController {

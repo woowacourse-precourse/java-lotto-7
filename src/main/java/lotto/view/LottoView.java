@@ -13,7 +13,7 @@ public class LottoView {
         return convertStringToBigDecimal(Console.readLine());
     }
 
-    private static BigDecimal convertStringToBigDecimal(String str) {
+    private BigDecimal convertStringToBigDecimal(String str) {
         return new BigDecimal(Integer.parseInt(str));
     }
 
