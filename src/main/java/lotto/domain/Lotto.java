@@ -20,4 +20,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    @Override
+    public String toString() {
+        numbers.sort(Integer::compareTo);
+        return numbers.toString();
+    }
 }
