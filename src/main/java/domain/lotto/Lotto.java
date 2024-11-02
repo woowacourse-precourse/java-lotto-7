@@ -2,6 +2,7 @@ package domain.lotto;
 
 import domain.error.InputErrorMessage;
 import domain.error.LottoErrorMessage;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,11 +12,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateWinnerNumberRangeAndCount(numbers);
-        this.numbers = numbers;
-    }
-
-    public void sortLottoNumbers() {
-        numbers.sort(Integer::compareTo);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     @Override

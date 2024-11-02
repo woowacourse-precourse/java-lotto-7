@@ -5,12 +5,21 @@ import domain.lotto.Lotto;
 public class LottoMatchCounterImpl implements LottoMatchCounter {
     @Override
     public int count(Lotto purchasedLotto, Lotto selectWinnerLotto, int bonusNumber) {
+        int matchCount = countMatchingNumbers(purchasedLotto, selectWinnerLotto);
+
+        if (hasFiveMatchesWithBonus(purchasedLotto, bonusNumber, matchCount)) {
+            // 7 = Five Match && BonusNumber Match
+            matchCount += 2;
+        }
+        return matchCount;
+    }
+
+    private int countMatchingNumbers(Lotto purchasedLotto, Lotto selectWinnerLotto) {
         int matchCount = 0;
         int purchasedLottLeftPointer = 0;
         int winningLottoLeftPointer = 0;
 
         while (purchasedLottLeftPointer < 6 && winningLottoLeftPointer < 6) {
-
             if (isMatch(purchasedLotto, selectWinnerLotto, purchasedLottLeftPointer, winningLottoLeftPointer)) {
                 matchCount++;
                 purchasedLottLeftPointer++;
@@ -26,11 +35,10 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
 
             winningLottoLeftPointer++;
         }
-        if (hasFiveMatchesWithBonus(purchasedLotto, bonusNumber, matchCount)) {
-            matchCount += 2;
-        }
+
         return matchCount;
     }
+
 
     private boolean isMatch(Lotto purchasedLotto, Lotto selectWinnerLotto, int purchasedLottLeftPointer,
                             int winningLottoLeftPointer) {
@@ -46,6 +54,7 @@ public class LottoMatchCounterImpl implements LottoMatchCounter {
     }
 
     private boolean hasFiveMatchesWithBonus(Lotto purchasedLottLeftPointer, int bonusNumber, int matchCount) {
-        return purchasedLottLeftPointer.getNumbers().contains(bonusNumber) && matchCount == 5;
+        return matchCount == 5 &&
+                purchasedLottLeftPointer.getNumbers().contains(bonusNumber);
     }
 }

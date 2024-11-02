@@ -33,7 +33,6 @@ public class LottoMachin {
                     LottoCondition.COUNT.getConditionNumber()))
             );
         }
-        lottos.forEach(Lotto::sortLottoNumbers);
         return lottos;
     }
 
@@ -50,7 +49,6 @@ public class LottoMachin {
     public void inputWinningNumbersTo(Consumer consumer) {
         Output.println(OutputMessage.ENTER_WINNER_NUMBERS.getOutputMessage());
         Lotto selectWinnerLotto = Input.inputWinningNumbers(Console.readLine());
-        selectWinnerLotto.sortLottoNumbers();
         consumer.selectWinnerNumbers(selectWinnerLotto);
     }
 
