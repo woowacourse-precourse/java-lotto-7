@@ -7,4 +7,8 @@ public class WinningNumberInputHandler extends InputHandler{
     public void validateInput() {
 
     }
+
+    private String[] splitNumbers() {
+        return winningNumber.split(",");
+    }
 }
