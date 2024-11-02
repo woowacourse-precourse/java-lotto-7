@@ -27,11 +27,24 @@ public class Application {
                 .split(",");
 
         validateWinningLottoInput(winningLottoInput);
+        int[] winningLotto = convertWinningLottoInputToIntArray(winningLottoInput);
     }
 
     private static void validateWinningLottoInput(String[] winningLottoInput) {
         if (winningLottoInput.length != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static int[] convertWinningLottoInputToIntArray(String[] winningLottoInput) {
+        int[] winningLotto = new int[6];
+        try {
+            for (int lottoIndex = 0; lottoIndex < winningLottoInput.length; lottoIndex++) {
+                winningLotto[lottoIndex] = Integer.parseInt(winningLottoInput[lottoIndex].trim());
+            }
+            return winningLotto;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
         }
     }
 
