@@ -1,7 +1,6 @@
 package lotto.domain.entity;
 
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.Map;
 
 import lotto.domain.vo.WinningRank;
@@ -37,5 +36,5 @@ public class WinningDetail {
                 (long)entry.getKey().getPrizeMoney() * entry.getValue())
             .sum();
     }
-    
+
 }

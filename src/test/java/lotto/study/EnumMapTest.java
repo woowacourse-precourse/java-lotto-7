@@ -13,10 +13,6 @@ class EnumMapTest {
         MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
     }
 
-    enum Status {
-        ACTIVE, INACTIVE, PENDING
-    }
-
     @Test
     @DisplayName("EnumMap 기본 동작 테스트")
     void basicEnumMapTest() {
