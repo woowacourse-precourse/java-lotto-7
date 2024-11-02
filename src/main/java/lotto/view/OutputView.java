@@ -5,7 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoRank;
 
 public class OutputView {
-    public void printLottoTicket(List<Lotto> lottoTickets) {
+    public static void printLottoTicket(List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getNumbers());

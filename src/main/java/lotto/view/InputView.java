@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public int inputPurchase() {
+    public static int inputPurchase() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         return validatePurchase(input);
     }
 
-    public List<Integer> WinNumbers() {
+    public static List<Integer> WinNumbers() {
         System.out.println("당첨 번호를 입력해주세요.");
         String input = Console.readLine();
         return validateWinNumber(input);
     }
 
-    public int BonusNumber() {
+    public static int BonusNumber() {
         System.out.println("보너스 번호를 입력해주세요.");
         String input = Console.readLine();
         return validateBonusNumber(input);
