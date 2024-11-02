@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum ErrorMessage {
+public enum InputErrorMessage {
     INVALID_PURCHASE_AMOUNT("[ERROR] 구입 금액은 1,000원 단위의 양수여야 합니다."),
     EMPTY_PURCHASE_AMOUNT("[ERROR] 구입 금액을 입력해 주세요."),
     NON_NUMERIC_PURCHASE_AMOUNT("[ERROR] 구입 금액은 숫자여야 하며, int 범위를 초과할 수 없습니다."),
@@ -9,7 +9,7 @@ public enum ErrorMessage {
 
     private final String message;
 
-    ErrorMessage(String message) {
+    InputErrorMessage(String message) {
         this.message = message;
     }
 
