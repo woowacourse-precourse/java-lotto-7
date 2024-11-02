@@ -1,5 +1,6 @@
 package lotto.domain.input;
 
+import lotto.util.ErrorMessage;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class InputValidator {
             int convertedNumber = Integer.parseInt(input);
             return convertedNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주시길 바랍니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getMessage());
         }
     }
 
@@ -40,7 +41,7 @@ public class InputValidator {
      */
     public static void isValidUnit(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해 주시길 바랍니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_UNIT.getMessage());
         }
     }
 
@@ -80,7 +81,7 @@ public class InputValidator {
             }
             return numbers;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주시길 바랍니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getMessage());
         }
     }
 
@@ -89,7 +90,7 @@ public class InputValidator {
      */
     public static void isValidLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 당첨 번호를 입력해 주시길 바랍니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH.getMessage());
         }
     }
 
@@ -99,7 +100,7 @@ public class InputValidator {
     public static void isDuplicate(List<Integer> numbers) {
         Set<Integer> convertedSet = new HashSet<>(numbers);
         if (convertedSet.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 당첨 번호를 입력해 주시길 바랍니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_PRIZE_NUMBER.getMessage());
         }
     }
 
@@ -124,7 +125,7 @@ public class InputValidator {
     public static void isDuplicateWithPrizeNumber(List<Integer> prizeNumbers, int bonusNumber) {
         for (Integer prizeNumber : prizeNumbers) {
             if (prizeNumber == bonusNumber) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
             }
         }
     }
