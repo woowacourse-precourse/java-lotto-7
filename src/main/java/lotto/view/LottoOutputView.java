@@ -24,7 +24,7 @@ public class LottoOutputView {
     }
 
     private void printEarningRate(double totalEarnings) {
-        System.out.println(totalEarnings);
+        System.out.println("총 수익률은 " + totalEarnings + "%입니다.");
     }
 
     private void printRankResult(Map<LottoRank, Integer> rankResults) {
