@@ -5,9 +5,9 @@ import java.util.List;
 
 public class WinningNumbers {
 
-    public static List<String> generateWinningNumbers(String winningNumber) {
-        List<String> winningNumberCollection = new ArrayList<>();
-        winningNumberCollection.add(winningNumber);
+    public static List<Integer> generateWinningNumbers(String winningNumber) {
+        List<Integer> winningNumberCollection = new ArrayList<>();
+        winningNumberCollection.add(Integer.parseInt(winningNumber));
         return winningNumberCollection;
     }
 }
