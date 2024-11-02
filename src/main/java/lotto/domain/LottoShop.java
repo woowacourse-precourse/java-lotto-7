@@ -7,9 +7,9 @@ public class LottoShop {
         this.lottoTickets = lottoTickets;
     }
 
-//    public LottoTickets getLottoTickets() {
-//        return lottoTickets;
-//    }
+    public LottoTickets getLottoTickets() {
+        return lottoTickets;
+    }
 
     public static LottoShop buyLotteries(LottoCount lottoCount) {
         long purchasedLotteriesCount = lottoCount.getCount();
