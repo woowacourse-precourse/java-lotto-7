@@ -31,9 +31,9 @@ public class LottoGame {
     private static Lotto[] issueLotto(int lottoCount) {
         Lotto[] lottoArray = new Lotto[lottoCount];
         System.out.println(lottoCount + "개를 구매했습니다.");
-        for (int i = 0; i < lottoCount; i++) {
+        for (int lottoIndex = 0; lottoIndex < lottoCount; lottoIndex++) {
             Lotto lotto = issueRandomLotto();
-            lottoArray[i] = lotto;
+            lottoArray[lottoIndex] = lotto;
             lotto.display();
         }
 
