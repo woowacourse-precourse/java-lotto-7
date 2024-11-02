@@ -1,15 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import lotto.Lotto;
-import lotto.InputView;
-import lotto.LottoController;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,7 +12,7 @@ public class Application {
         int inputPrice = 0;
         int turn, bonusNumber;
 
-        InputView inputView = new InputView();
+        LottoInput lottoInput = new LottoInput();
         LottoController lottoController = new LottoController();
 
         lottoController.play();
@@ -37,14 +32,14 @@ public class Application {
         }
 
         // 당첨 번호를 입력받기
-        String[] inputNumbers = inputView.getWinningNumbers().split(",");
+        String[] inputNumbers = lottoInput.getWinningNumbers().split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String inputNumber : inputNumbers) {
             winningNumbers.add(Integer.parseInt(inputNumber));
         }
 
         // 보너스 번호를 입력받기
-        bonusNumber = Integer.parseInt(inputView.getBonusNumber());
+        bonusNumber = Integer.parseInt(lottoInput.getBonusNumber());
 
         // 당첨 통계 구하기
         System.out.println("\n당첨 통계\n---");

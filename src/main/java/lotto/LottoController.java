@@ -1,11 +1,9 @@
 package lotto;
 
-import lotto.InputView;
-
 public class LottoController {
     public int purchaseAmount;
     public int lottoCount;
-    private static final InputView inputView = new InputView();
+    private static final LottoInput LOTTO_INPUT = new LottoInput();
 
     public void play() {
         this.purchaseAmount = getAmount();
@@ -16,7 +14,7 @@ public class LottoController {
     private static int getAmount() {
         while (true) {
             try {
-                return validatePurchaseAmount(inputView.getPurchaseAmount());
+                return validatePurchaseAmount(LOTTO_INPUT.getPurchaseAmount());
             }catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
