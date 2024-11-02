@@ -4,8 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import lotto.message.ExceptionMessage;
-import lotto.message.SuccessMessage;
+import lotto.enumValue.CommonMessage;
 import lotto.util.Input;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
@@ -27,7 +26,7 @@ public class MoneyValidationTest extends NsTest {
     void money_ticket_정답_케이스(int index) {
         assertSimpleTest(() -> {
             run(DATA_SET_CORRECT[index]);
-            assertThat(output()).contains(SuccessMessage.SUCCESS_TEST_MONEY_TICKET.getSuccessDescription());
+            assertThat(output()).contains(CommonMessage.SUCCESS_TEST_MONEY_TICKET.getMessange());
         });
     }
 
@@ -35,7 +34,7 @@ public class MoneyValidationTest extends NsTest {
     @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6})
     void money_ticket_예외_케이스(int index) {
         run(DATA_SET_WRONG[index]);
-        assertThat(output()).contains(ExceptionMessage.ERROR_TEST.getErrorDescription());
+        assertThat(output()).contains(CommonMessage.ERROR.getMessange());
     }
 
     @Override

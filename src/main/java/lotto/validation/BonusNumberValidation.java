@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.ExceptionMessage;
 
 import java.util.List;
 

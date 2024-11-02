@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.ExceptionMessage;
 
 public class MoneyValidation {
     public static void isPositiveNumber(int money) {

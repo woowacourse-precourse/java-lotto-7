@@ -1,6 +1,6 @@
 package lotto.util.validationTest;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.CommonMessage;
 import lotto.validation.BonusNumberValidation;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +17,6 @@ public class BonusNumberValidationTest {
     void 당첨_번호_보너스_번호_중복_예외_테스트() {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> BonusNumberValidation.duplicateChecker(1, lottoNumbers))
-                .withMessageContaining(ExceptionMessage.ERROR_TEST.getErrorDescription());
+                .withMessageContaining(CommonMessage.ERROR.getMessange());
     }
 }

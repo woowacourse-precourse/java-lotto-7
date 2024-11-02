@@ -1,6 +1,6 @@
 package lotto.util.validationTest;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.CommonMessage;
 import lotto.validation.WinningNumberValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WinningNumberValidationTest {
-    private final String errorMessage = ExceptionMessage.ERROR_TEST.getErrorDescription();
+    private final String errorMessage = CommonMessage.ERROR.getMessange();
     private final List[] exception = new ArrayList[]{
             new ArrayList<>(Arrays.asList(1, 2, 3, 4)),
             new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7)),

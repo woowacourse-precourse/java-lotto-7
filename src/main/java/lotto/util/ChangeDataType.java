@@ -8,7 +8,7 @@ public class ChangeDataType {
         List<Integer> resultValue = new ArrayList<>();
 
         for (String value : inputValue) {
-            resultValue.add(Integer.parseInt(value));
+            resultValue.add(Integer.parseInt(value.strip()));
         }
 
         return resultValue;

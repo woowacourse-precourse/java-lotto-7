@@ -1,6 +1,6 @@
 package lotto.util.validationTest;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.CommonMessage;
 import lotto.validation.CommonValidation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommonValidationTest {
-    private final String errorMessage = ExceptionMessage.ERROR_TEST.getErrorDescription();
+    private final String errorMessage = CommonMessage.ERROR.getMessange();
     private final String[] exceptionValues = new String[]{"", "a", ":", "3.4"};
     private final String[] correctValues = new String[]{" 1,2,3 ", "5"};
     private final int[] exceptionValues1to45 = new int[]{0, -1, 46, 100};

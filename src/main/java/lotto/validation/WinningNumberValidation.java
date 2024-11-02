@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.ExceptionMessage;
 import lotto.util.ChangeDataType;
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ public class WinningNumberValidation {
     public static List<Integer> isIntegerType(String[] inputValues) {
         try {
             for (String value : inputValues) {
-                CommonValidation.isIntegerType(value);
+                CommonValidation.isIntegerType(value.strip());
             }
 
             return ChangeDataType.stringArrayToIntegerList(inputValues);

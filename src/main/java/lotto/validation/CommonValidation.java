@@ -1,6 +1,6 @@
 package lotto.validation;
 
-import lotto.message.ExceptionMessage;
+import lotto.enumValue.ExceptionMessage;
 
 public class CommonValidation {
     public static String isEmpty(String value) {
