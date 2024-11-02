@@ -28,6 +28,7 @@ public final class WinningBonusNumberView {
         while (true) {
             try {
                 Output.printlnMessage(IOMessage.INPUT_BONUS_NUMBER.getMessage());
+                String bonusNumber = Input.inputMessage();
                 return 0;
             } catch (IllegalArgumentException errorMessage) {
                 System.out.println(errorMessage.getMessage());
