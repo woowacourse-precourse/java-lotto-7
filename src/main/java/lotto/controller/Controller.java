@@ -27,8 +27,9 @@ public class Controller {
     }
 
     public void run() {
+        int purchaseAmount = getPurchaseAmount();
+        LottoTicket lottoTicket = LottoStore.purchaseLottoTicket(purchaseAmount);
 
-        LottoTicket lottoTicket = purchaseLottoTicket();
         printLottoTicketStatus(lottoTicket);
 
         Lotto winningLotto = getWinningLotto();
@@ -38,18 +39,6 @@ public class Controller {
         WinningStatistics winningStatistics = lottoCalculator.getWinningStatistics(lottoTicket);
 
         printWinningStatistics(winningStatistics);
-
-    }
-
-    private LottoTicket purchaseLottoTicket() {
-        while (true) {
-            try {
-                int purchaseAmount = getPurchaseAmount();
-                return LottoStore.purchaseLottoTicket(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
     }
 
     private int getPurchaseAmount() {
