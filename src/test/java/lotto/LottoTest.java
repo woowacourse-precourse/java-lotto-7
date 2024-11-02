@@ -1,6 +1,5 @@
 package lotto;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,14 @@ class LottoTest {
     }
 
     @Test
-    void 구매_금액이_양수가_아니면_예외가_발생한다() {
+    void 로또_번호가_1보다_작거나_45보다_크면_예외가_발생한다() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+    }
+
+    @Test
+    void 입력한_값이_양수가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> lottoGame.checkPositiveNumber("-1"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 입력한 값은 숫자(양수)여야 합니다.");
