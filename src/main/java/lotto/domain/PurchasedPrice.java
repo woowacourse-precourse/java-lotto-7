@@ -13,4 +13,8 @@ public class PurchasedPrice {
             throw new IllegalArgumentException("[ERROR] 로또 한 장은 1000원입니다. 1000의 배수를 입력해주세요.");
         }
     }
+
+    public int getPurchasedPrice() {
+        return purchasedPrice;
+    }
 }
