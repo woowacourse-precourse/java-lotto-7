@@ -10,7 +10,7 @@ public class OutputView {
     private final String PRINT_BOUGHT_AMOUNT = "\n%d개를 구매했습니다.\n";
     private final String PRINT_LOTTO_NUMBERS_DELIMITER = ", ";
     private final String PRINT_LOTTO_NUMBERS_FORMAT = "[%s]\n";
-    private final String PRINT_WINNING_STATISTIC = "당첨 통계\n---\n";
+    private final String PRINT_WINNING_STATISTIC = "\n당첨 통계\n---\n";
     private final String PRINT_MATCH_COUNTS_FORMAT = "%d개 일치%s (%,d원) - %d개\n";
     private final String BONUS_BALL_MATCHES = ", 보너스 볼 일치";
     private final String BONUS_BALL_UNMATCHED = "";
