@@ -22,4 +22,14 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
+
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean containsBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

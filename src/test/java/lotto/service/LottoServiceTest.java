@@ -34,7 +34,7 @@ public class LottoServiceTest {
 
         List<Lotto> lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 27)),
                 new Lotto(Arrays.asList(1, 2, 3, 9, 10, 11)),
                 new Lotto(Arrays.asList(3, 4, 5, 6, 7, 8))
         );
@@ -44,8 +44,8 @@ public class LottoServiceTest {
 
         // then
         assertThat(matchCounts.get(6)).isEqualTo(1);
-        assertThat(matchCounts.get(5)).isEqualTo(2);
         assertThat(matchCounts.get(4)).isEqualTo(1);
         assertThat(matchCounts.get(3)).isEqualTo(1);
+        assertThat(matchCounts.get(-5)).isEqualTo(1);
     }
 }
