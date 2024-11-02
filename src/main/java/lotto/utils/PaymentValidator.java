@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.error.PaymentErrorMessage;
+import lotto.model.lotto.LottoNumber;
 
 import java.math.BigInteger;
 
@@ -11,13 +12,12 @@ public class PaymentValidator {
     static final int DECIMAL_INDEX = 1;
     static final int MAX_SPLIT_PAYMENT_LENGTH = 2;
     static final int PRICE_OF_LOTTO = 1000;
-    static final String INTEGER_FORMAT = "-?\\d+";
-    static final String DELIMITER = "\\.";
+    static final String DOT = "\\.";
     static final long LOTTO_OBJECT_SIZE = 200L;
     static final double ALLOW_LOTTO_OBJECT_SIZE_RATE = 0.1;
 
     public boolean validate(String paymentInput) {
-        String[] splitPayment = paymentInput.split(DELIMITER);
+        String[] splitPayment = paymentInput.split(DOT);
         String integerPart = splitPayment[INTEGER_INDEX];
 
         validateFormat(splitPayment, integerPart);
@@ -37,7 +37,7 @@ public class PaymentValidator {
             validateHasOnlyZero(decimalPart);
         }
 
-        if (!integerPart.matches(INTEGER_FORMAT)) {
+        if (!integerPart.matches(LottoNumber.FORMAT)) {
             throw new IllegalArgumentException(PaymentErrorMessage.WRONG_PAYMENT_FORMAT.getMessage());
         }
     }
