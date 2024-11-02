@@ -7,9 +7,10 @@ public class InputView {
     private static final String LOTTO_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public String inputMoney() {
+    public int inputMoney() {
         System.out.println(MONEY_INPUT_MESSAGE);
-        return Console.readLine();
+        String money = Console.readLine();
+        return convertToInt(money);
     }
 
     public String inputLottoNumber() {
@@ -20,5 +21,13 @@ public class InputView {
     public String inputBonusNumber() {
         System.out.println(System.lineSeparator() + BONUS_NUMBER_INPUT_MESSAGE);
         return Console.readLine();
+    }
+
+    private int convertToInt(final String amount) {
+        try {
+            return Integer.parseInt(amount);
+        } catch (final NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
     }
 }
