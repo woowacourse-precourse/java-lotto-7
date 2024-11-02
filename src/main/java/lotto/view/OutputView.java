@@ -44,4 +44,8 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat(RATE_FORMAT);
         System.out.printf("총 수익률은 %s%%입니다.", decimalFormat.format(rateOfReturn.getRateOfReturn()));
     }
+
+    public static void printErrorMessage(IllegalArgumentException exception) {
+        System.out.println(exception.getMessage());
+    }
 }
