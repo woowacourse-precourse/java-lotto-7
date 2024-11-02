@@ -16,13 +16,13 @@ public class Application {
         PaymentController paymentController = new PaymentController(inputView, outputView);
 
         LottoController lottoController = new LottoController(outputView);
-        lottoController.showLottoDetail(paymentController.getPayment());
+        lottoController.showTicket(paymentController.getPayment());
 
         WinningController winningController = new WinningController(inputView, outputView);
         BonusController bonusController = new BonusController(inputView, outputView,
                 winningController.getWinningGenerator().getWinning());
 
-        lottoController.showLottoWinningResult(
+        lottoController.showWinningResult(
                 winningController.getWinningGenerator().getWinning(),
                 bonusController.getBonusGenerator().getBonus()
         );
