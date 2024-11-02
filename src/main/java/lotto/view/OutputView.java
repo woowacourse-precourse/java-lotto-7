@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class OutputView {
-    private final static String NEW_LINE = System.getProperty("line.separator");
+    private final static String NEW_LINE = System.lineSeparator();
     private final static String LOTTO_COUNT_STRING = "개를 구매했습니다.";
     private final static String WINNING_STATISTIC_STRING = "당첨 통계\n---";
     private final static String FIFTH_RANK = "3개 일치 (5,000원) - ";
