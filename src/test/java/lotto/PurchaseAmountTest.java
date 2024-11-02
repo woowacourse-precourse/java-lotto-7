@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.Domain.PurchaseAmount;
 import lotto.Messages.ErrorMessage;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -34,6 +35,15 @@ public class PurchaseAmountTest {
         assertThatThrownBy(() -> new PurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_NUMERIC_PURCHASE_AMOUNT.getMessage());
+    }
+
+    @Test
+    public void 구입_금액_입력값이_정수범위가_아니면_예외처리() {
+        String input = String.valueOf(Integer.MAX_VALUE + 1L);
+
+        assertThatThrownBy(() -> new PurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.RANGE_PURCHASE_AMOUNT.getMessage());
     }
 
 }
