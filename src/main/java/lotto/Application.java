@@ -6,6 +6,7 @@ import net.bytebuddy.implementation.bytecode.assign.primitive.VoidAwareAssigner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -66,7 +67,9 @@ public class Application {
         lottos = new ArrayList<>();
 
         for (int i = 0; i < numOfLotto; i++) {
-            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(uniqueNumbers);
+            lottos.add(new Lotto(uniqueNumbers));
         }
 
         return lottos;
@@ -80,6 +83,8 @@ public class Application {
                 .toList();
 
         result.forEach(Application::validateLottoNumber);
+
+
         return result;
     }
 
