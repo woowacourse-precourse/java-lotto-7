@@ -17,12 +17,17 @@ public class InputConsole {
         int lottoNum = LottoList.lottoNumber(inputMoney);
         System.out.println("\n" + lottoNum + "개를 구매했습니다.");
 
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> lottoList;
         lottoList = LottoList.drawingLotto(lottoNum);
 
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers());
         }
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String winningLottoNum = readLine();
+
+        Lotto winningLottoNumbers = CheckInput.checkLottoNumbers(winningLottoNum);
 
     }
 
