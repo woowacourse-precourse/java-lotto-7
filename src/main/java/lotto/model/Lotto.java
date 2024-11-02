@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.Result;
 
@@ -36,34 +37,33 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    // 당첨 결과 계산 기능
     public void matcheNumber(List<List<Integer>> lotteryTickets, int bonusNumber) {
         bonusNumberDistinctValidate(bonusNumber);
-        for (List<Integer> lts : lotteryTickets) {
-            int count = matchCount(lts, bonusNumber);
-            resultCountUp(count);
-        }
-    }
+        for (List<Integer> lotteryTicket : lotteryTickets) {
+            int matches = matchCount(lotteryTicket);
 
-    private int matchCount(List<Integer> lts, int bonusNumber) {
-        int count = 0;
-        for (Integer n : lts) {
-            if (numbers.contains(n)) {
-                count++;
+            if (matches == 5 && lotteryTicket.contains(bonusNumber)) {
+                Result.SECOND.incrementCount();
+                continue;
             }
-        }
 
-        if (count == 5 && lts.contains(bonusNumber)) {
-            count += 2;
+            incrementCount(matches, bonusNumber, lotteryTicket);
         }
-        return count;
     }
 
-    private void resultCountUp(int count) {
+    private int matchCount(List<Integer> lotteryTicket) {
+        List<Integer> copyNumbers = new ArrayList<>(numbers);
+        copyNumbers.retainAll(lotteryTicket);
+        return copyNumbers.size();
+    }
+
+    private void incrementCount(int matches, int bonusNumber, List<Integer> lotteryTicket) {
         for (Result result : Result.values()) {
-            if (result.getMatches() == count) {
-                result.increamentCount();
+            if (result.getMatches() == matches && !result.getBonus()) {
+                result.incrementCount();
             }
         }
     }
+
 }
