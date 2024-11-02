@@ -14,3 +14,5 @@
    - [x] generate randomly 6 numbers
    - [x] validate numbers **whether number is duplicated or not** 
    - [x] sort numbers in ascending order
+- manage Internal Lotto data
+   - [ ] verify duplicated numbers
