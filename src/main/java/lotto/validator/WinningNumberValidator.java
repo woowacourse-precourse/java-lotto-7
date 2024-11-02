@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LottoNumberValidator {
+public class WinningNumberValidator {
 
     public List<Integer> validateWinningNumbers(String input) throws IllegalLottoNumberException{
         String[] splitedWinningNums = validateQuantity(input);
