@@ -17,8 +17,6 @@ public class Validator {
     private static final String WINNING_NUMBER_OPERATOR = ",";
     private static final String DUPLICATE_NUMBER_ERROR = "중복된 숫자는 입력할 수 없습니다.";
 
-    private final IOController ioController = new IOController();
-
     private void checkIsNumber(String input) {
         try {
             Integer.parseInt(input);
@@ -45,8 +43,7 @@ public class Validator {
             int num = Integer.parseInt(purchaseInput);
             checkIsPositiveNumber(num);
         } catch (IllegalArgumentException e) {
-            System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
-            ioController.inputPurchaseAmount();
+            throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
         }
     }
 
@@ -69,8 +66,7 @@ public class Validator {
                 throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
-            ioController.inputWinningNumbers();
+            throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
         }
     }
 
@@ -81,8 +77,7 @@ public class Validator {
             checkIsPositiveNumber(num);
             checkIsLotteryRange(num);
         } catch (IllegalArgumentException e) {
-            System.out.println(COMMON_ERROR_MESSAGE + e.getMessage());
-            ioController.inputBonusNumber();
+            throw new IllegalArgumentException(COMMON_ERROR_MESSAGE +  e.getMessage());
         }
     }
 }
