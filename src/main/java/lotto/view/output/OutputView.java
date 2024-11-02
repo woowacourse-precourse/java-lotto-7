@@ -5,6 +5,14 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoShop;
 
 public class OutputView {
+    public static void printError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void printLine() {
+        System.out.println();
+    }
+
     public static void printPurchasePrice() {
         System.out.println(OutputMessage.INPUT_PURCHASE_PRICE.message);
     }
