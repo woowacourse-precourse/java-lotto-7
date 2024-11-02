@@ -98,7 +98,7 @@ public class LottoController {
             try {
                 outputView.printWinningNumbersMessage();
                 List<Integer> winningLottoNumbers = inputView.inputWinningLottoNumbers();
-                return Lotto.of(winningLottoNumbers);
+                return Lotto.from(winningLottoNumbers);
             } catch (IllegalArgumentException exception) {
                 outputView.printErrorMessage(exception.getMessage());
             }

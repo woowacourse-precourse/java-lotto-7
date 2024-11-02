@@ -17,7 +17,7 @@ class WinningNumbersTest {
     @Test
     void createWinningNumbers() {
         //given
-        Lotto winningLottoNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLottoNumbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         //when
@@ -32,7 +32,7 @@ class WinningNumbersTest {
     @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
     void duplicateWinningNumbers(int bonusNumber) {
         //given
-        Lotto winningLottoNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLottoNumbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         //when //then
         assertThatThrownBy(() -> WinningNumbers.of(winningLottoNumbers, bonusNumber))
@@ -45,7 +45,7 @@ class WinningNumbersTest {
     @ValueSource(strings = {"7", "8", "9", "10", "11", "12"})
     void nonDuplicateWinningNumbers(int bonusNumber) {
         //given
-        Lotto winningLottoNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLottoNumbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         //when //then
         assertThatCode(() -> WinningNumbers.of(winningLottoNumbers, bonusNumber))

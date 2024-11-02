@@ -23,6 +23,6 @@ public class LottoGenerator {
 
     private Lotto issue() {
         List<Integer> numbers = numberGeneratorStrategy.generateNumbers();
-        return Lotto.of(numbers);
+        return Lotto.from(numbers);
     }
 }

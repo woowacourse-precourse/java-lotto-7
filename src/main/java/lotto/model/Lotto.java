@@ -20,7 +20,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto of(List<Integer> numbers) {
+    public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
     }
 

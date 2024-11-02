@@ -39,7 +39,7 @@ class LottoTest {
     @Test
     void duplicateBonusNumber() {
         //given
-        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 3;
 
         //when
@@ -53,8 +53,8 @@ class LottoTest {
     @Test
     void countMatches() {
         //given
-        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         //when
         int matchCount = winningNumbers.countMatches(lotto);

@@ -39,7 +39,7 @@ class BonusNumberTest {
     @Test
     void isContains() {
         //given
-        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = BonusNumber.from(3);
 
         //when

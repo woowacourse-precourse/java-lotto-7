@@ -15,8 +15,8 @@ class LottoWinningStrategyTest {
     @Test
     void calculateRank() {
         //given
-        Lotto lotto = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningLottoNumbers = Lotto.of(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningLottoNumbers = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         WinningNumbers winningNumbers = WinningNumbers.of(winningLottoNumbers, 7);
 
