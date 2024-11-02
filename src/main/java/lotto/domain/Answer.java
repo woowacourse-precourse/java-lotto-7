@@ -7,26 +7,24 @@ public class Answer {
     private final LottoNumber bonusNumber;
 
     public Answer(List<Integer> numbers, int bonus) {
-        Lotto lottoNumbers = new Lotto(numbers);
-        LottoNumber bonusNumber = new LottoNumber(bonus);
-        validate(lottoNumbers, bonusNumber);
-        this.lottoNumbers = lottoNumbers;
-        this.bonusNumber = bonusNumber;
+        validate(numbers, bonus);
+        this.lottoNumbers = new Lotto(numbers);
+        this.bonusNumber = new LottoNumber(bonus);
     }
 
-    public LottoResult getResult(List<Lotto> lottos) {
-        List<LottoPrize> prizes = lottos.stream().map(this::match).toList();
-        return new LottoResult(prizes);
+    public WinningResult getResult(List<Lotto> lottos) {
+        List<WinningPrize> prizes = lottos.stream().map(this::match).toList();
+        return new WinningResult(prizes);
     }
 
-    LottoPrize match(Lotto lotto) {
+    WinningPrize match(Lotto lotto) {
         int matches = lotto.getFilteredCount(this.lottoNumbers::contains);
         int bonus = lotto.getFilteredCount(bonusNumber::equals);
-        return LottoPrize.getPrize(matches, bonus);
+        return WinningPrize.getPrize(matches, bonus);
     }
 
-    private void validate(Lotto lottoNumbers, LottoNumber bonusNumber) {
-        if (lottoNumbers.contains(bonusNumber)) {
+    private void validate(List<Integer> numbers, int bonus) {
+        if (numbers.contains(bonus)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정답 번호와 중복될 수 없습니다.");
         }
     }

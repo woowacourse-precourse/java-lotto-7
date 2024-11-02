@@ -4,16 +4,20 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-class LottoResult {
-    private final Map<LottoPrize, Integer> prizeCount;
+public class WinningResult {
+    private final Map<WinningPrize, Integer> prizeCount;
     private final int totalCount;
 
-    LottoResult(List<LottoPrize> prizes) {
+    WinningResult(List<WinningPrize> prizes) {
         totalCount = prizes.size();
-        prizeCount = new EnumMap<>(LottoPrize.class);
-        for (LottoPrize prize : prizes) {
+        prizeCount = new EnumMap<>(WinningPrize.class);
+        for (WinningPrize prize : prizes) {
             prizeCount.put(prize, prizeCount.getOrDefault(prize, 0) + 1);
         }
+    }
+
+    public int get(WinningPrize prize) {
+        return prizeCount.getOrDefault(prize, 0);
     }
 
     public double getTotalRate() {
@@ -24,7 +28,7 @@ class LottoResult {
 
     private long calculateTotalPrice() {
         long total = 0;
-        for (Map.Entry<LottoPrize, Integer> entry : prizeCount.entrySet()) {
+        for (Map.Entry<WinningPrize, Integer> entry : prizeCount.entrySet()) {
             total += entry.getKey().getPrizeMoney() * entry.getValue();
         }
 

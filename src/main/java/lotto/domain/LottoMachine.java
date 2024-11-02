@@ -4,7 +4,7 @@ import java.util.List;
 
 import lotto.domain.utils.NumbersGenerator;
 
-public class LottoMachine {
+class LottoMachine {
     private final NumbersGenerator numbersGenerator;
 
     LottoMachine(NumbersGenerator numbersGenerator) {

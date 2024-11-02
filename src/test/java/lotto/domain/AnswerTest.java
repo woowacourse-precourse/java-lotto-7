@@ -19,8 +19,8 @@ class AnswerTest {
         Answer answer = new Answer(List.of(1, 2, 3, 4, 5, 6), 7);
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoPrize prize = answer.match(lotto);
+        WinningPrize prize = answer.match(lotto);
 
-        assertThat(prize).isEqualTo(LottoPrize.FIRST);
+        assertThat(prize).isEqualTo(WinningPrize.FIRST);
     }
 }
