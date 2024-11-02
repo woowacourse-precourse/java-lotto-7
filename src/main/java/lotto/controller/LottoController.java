@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.model.Lottos;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -26,8 +28,10 @@ public class LottoController {
         Lotto lottoWinningNumbers = getLottoWinningNumbers();
         int lottoBonusNumber = getLottoBonusNumber();
 
-        WinningLotto winningLottoNumbers = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
+        WinningLotto winningLotto = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
 
+        Map<LottoRank, Integer> lottoResult = purchasedLottos.lottoResultFrom(winningLotto);
+        outputView.showLottoResult(lottoResult);
     }
 
     private int getMoney() {
