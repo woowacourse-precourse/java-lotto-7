@@ -33,4 +33,18 @@ class MoneyTest {
         //then
         assertEquals(rateOfReturn, "62.5");
     }
+
+    @Test
+    void BigDecimal_수익률_구하기_테스트() {
+        //given
+        Money money = new Money(1000000000);
+        LinkedHashMap<Rank, Integer> result = new LinkedHashMap<>();
+        result.put(Rank.FIRST, 3);
+
+        //when
+        String rateOfReturn = money.getRateOfReturn(result);
+
+        //then
+        assertEquals(rateOfReturn, "600.0");
+    }
 }
