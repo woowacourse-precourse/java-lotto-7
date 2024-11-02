@@ -14,16 +14,18 @@ public class InputView {
     }
 
 
-    public int inputLottoPrice() {
+    public String inputLottoPrice() {
         System.out.println(Constants.PURCHASE_LOTTO_INPUT);
-        String lottoPriceString = Console.readLine();
-
-        int lottoPrice = inputValidator.validate(lottoPriceString);
+        String lottoPrice = Console.readLine();
 
         return lottoPrice;
     }
 
     public String inputLottoWinningNumbers() {
+        System.out.println(Constants.WINNING_LOTTO_INPUT);
+        String WinningLotto = Console.readLine();
+
+        return WinningLotto;
     }
 
     public String inputLottoBonusNumber() {

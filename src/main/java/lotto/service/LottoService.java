@@ -3,12 +3,18 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Constants;
 import lotto.domain.Lotto;
+import lotto.validator.InputValidator;
 
 import java.util.List;
 
 public class LottoService {
 
     private List<Lotto> lottoList;
+    private InputValidator inputValidator;
+
+    public LottoService() {
+        inputValidator = new InputValidator();
+    }
 
     public int purchaseLotto(int lottoPrice) {
         int lottoNum = lottoPrice / Constants.PURCHASE_FORM;
@@ -23,5 +29,11 @@ public class LottoService {
             lottoList.add(lotto);
         }
         return lottoList;
+    }
+
+    public int validateLottoPrice(String lottoPrice) {
+        int lottoPriceInt = inputValidator.validate(lottoPrice);
+
+        return lottoPriceInt;
     }
 }
