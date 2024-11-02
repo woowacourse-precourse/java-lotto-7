@@ -61,7 +61,7 @@ class HandlerTest {
     String given = "1,2,3,4,5,6";
     // split으로 두번 잘라서 배열에서 조회한다 (On²)
     // 스트림을 활용한다
-    List<Integer> actual = Arrays.stream(given.split(",\\s"))
+    List<Integer> actual = Arrays.stream(given.split("\\s,"))
         .map(Integer::parseInt)
         .collect(Collectors.toList()); // NumberFormatException
 
