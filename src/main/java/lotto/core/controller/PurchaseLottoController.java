@@ -32,8 +32,8 @@ public class PurchaseLottoController implements Controller<Void, LottoTicketDto>
     @Override
     public LottoTicketDto request(Void unused) {
         LottoPurchaseAmountDto amount = this.processInputLottoPurchaseAmount();
-        LottoTicketDto ticket = this.processPublishLotto(amount);
-        this.displayPublishedLotto(ticket);
+        LottoTicketDto ticket = this.publishLottoTicketService.publish(amount);
+        this.publishLottoTicketView.display(ticket);
         return ticket;
     }
 
@@ -43,13 +43,5 @@ public class PurchaseLottoController implements Controller<Void, LottoTicketDto>
             String read = Command.read();
             return this.createLottoPurchaseAmountService.create(read);
         });
-    }
-
-    private LottoTicketDto processPublishLotto(LottoPurchaseAmountDto amount) {
-        return this.publishLottoTicketService.publish(amount);
-    }
-
-    private void displayPublishedLotto(LottoTicketDto ticket) {
-        this.publishLottoTicketView.display(ticket);
     }
 }
