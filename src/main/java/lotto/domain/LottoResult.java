@@ -11,6 +11,7 @@ public class LottoResult {
     private final Map<Rank, Integer> rankCount;
     private final int purchaseAmount;
     private final WinningLotto winningLotto;
+    private int totalPrize;
 
     public LottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
         this.rankCount = new HashMap<>();
@@ -29,5 +30,11 @@ public class LottoResult {
         int matchCount = winningLotto.countMatchNumbers(lotto);
         boolean matchBonus = winningLotto.matchBonusNumber(lotto);
         return Rank.valueOf(matchCount, matchBonus);
+    }
+
+    private void calculateTotalPrize() {
+        totalPrize =  rankCount.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 }
