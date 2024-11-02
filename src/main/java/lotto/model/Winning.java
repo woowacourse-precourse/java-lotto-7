@@ -1,7 +1,10 @@
 package lotto.model;
 
+import static java.math.BigDecimal.ZERO;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicReference;
 
 public enum Winning {
     NONE(0, "불일치", 0),
@@ -48,5 +51,15 @@ public enum Winning {
 
     public BigDecimal multiplyCount() {
         return new BigDecimal(count * price);
+    }
+
+    public static AtomicReference<BigDecimal> getTotalWinningPrice() {
+        AtomicReference<BigDecimal> totalWinningPrice = new AtomicReference<>(ZERO);
+        Arrays.stream(values())
+                .filter(winning -> winning != NONE)
+                .forEach(winning -> {
+                    totalWinningPrice.updateAndGet(p -> p.add(winning.multiplyCount()));
+                });
+        return totalWinningPrice;
     }
 }
