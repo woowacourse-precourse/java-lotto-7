@@ -1,5 +1,8 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.Randoms.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,5 +19,23 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return "[%s]".formatted(String.join(", ", numbers.stream().sorted().map(Object::toString).toList()));
+    }
+
+    public static List<Lotto> generateLottos(long purchaseCount) {
+        List<Lotto> generatedLottos = new ArrayList<>();
+
+        for (int i = 0; i < purchaseCount; i++) {
+            generatedLottos.add(Lotto.generateLotto());
+        }
+
+        return generatedLottos;
+    }
+
+    private static Lotto generateLotto() {
+        List<Integer> lottoNumbers = pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(lottoNumbers);
+    }
 }
