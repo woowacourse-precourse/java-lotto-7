@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.constant.Prize;
+import lotto.constant.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
@@ -48,14 +48,13 @@ class LottoControllerTest {
     @DisplayName("당첨 번호와 맞춰보기")
     void matchingLotto(){
         //when
-        HashMap<Prize, Integer> result = lottoController.matchingLotto();
-        result.forEach((key, value) -> System.out.println("Key: " + key + ", Value: " + value));
+        HashMap<Rank, Integer> result = lottoController.matchingLotto();
 
         //then
-        assertThat(result.get(Prize.THREE)).isEqualTo(1);
-        assertThat(result.get(Prize.FOUR)).isEqualTo(2);
-        assertThat(result.get(Prize.FIVE)).isEqualTo(1);
-        assertThat(result.get(Prize.FIVE_AND_BONUS)).isEqualTo(1);
-        assertThat(result.get(Prize.SIX)).isEqualTo(1);
+        assertThat(result.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(result.get(Rank.FOURTH)).isEqualTo(2);
+        assertThat(result.get(Rank.THIRD)).isEqualTo(1);
+        assertThat(result.get(Rank.SECOND)).isEqualTo(1);
+        assertThat(result.get(Rank.FIRST)).isEqualTo(1);
     }
 }

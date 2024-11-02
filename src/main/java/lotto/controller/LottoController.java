@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.constant.Prize;
+import lotto.constant.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
@@ -89,14 +89,17 @@ public class LottoController {
         outputView.printLotto(lottos);
     }
 
-    public void printResult(){
-        HashMap<Prize, Integer> result = matchingLotto();
+    public void printResult(){ //결과 출력
+        HashMap<Rank, Integer> result = matchingLotto();
         outputView.printResult(result);
     }
 
-    public HashMap<Prize, Integer> matchingLotto(){ //로또 맞추기
-        HashMap<Prize, Integer> result;
-        result = lottoManager.matchingLotto();
-        return result;
+    public HashMap<Rank, Integer> matchingLotto(){ //로또 맞추기
+        return lottoManager.matchingLotto();
+    }
+
+    public void printProfitRate(){ //수익률 출력
+        double profitRate = lottoManager.calculateFinalResult();
+        outputView.printProfitRate(profitRate);
     }
 }

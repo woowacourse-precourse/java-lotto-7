@@ -2,23 +2,25 @@ package lotto.model;
 
 import lotto.constant.Constants;
 import lotto.constant.ErrorMessage;
-import lotto.constant.Prize;
+import lotto.constant.Rank;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class LottoManager {
 
-    private PurchaseQuantity purchaseQuantity; //구매 수량
+    private PurchaseQuantity purchaseQuantity; //판매 수량
 
-    private Lotto winningLotto; //당첨 로또
+    private Lotto winningLotto; //당첨 번호 로또
 
-    private BonusNumber bonusNumber;
+    private BonusNumber bonusNumber; //보너스 번호
 
-    private HashMap<Prize, Integer> result;
+    private HashMap<Rank, Integer> result; //로또 결과
 
     private List<Lotto> lottos; //발행한 로또
+
 
     public LottoManager(){
         lottos = new ArrayList<>();
@@ -49,7 +51,9 @@ public class LottoManager {
         for(int i=0;i< purchaseQuantity.getPurchaseQuantity(); i++){
             List<Integer> numbers = pickUniqueNumbersInRange(Constants.LOTTO_NUMBER_START_RANGE.getConstant(),
                     Constants.LOTTO_NUMBER_END_RANGE.getConstant(), Constants.LOTTO_SIZE.getConstant());
-            Collections.sort(numbers);
+            List<Integer> sortedNumbers = numbers.stream()
+                    .sorted()
+                    .toList();
             lottoList.add(new Lotto(numbers));
         }
         setLottos(lottoList);
@@ -60,26 +64,26 @@ public class LottoManager {
         this.lottos = lottos;
     }
 
-    public HashMap<Prize, Integer> matchingLotto(){
+    public HashMap<Rank, Integer> matchingLotto(){
         initializePrize();
         for(Lotto lotto: lottos){
             List<Integer> win = winningLotto.getNumbers();
             List<Integer> lotto1 = lotto.getNumbers();
             Integer matchingCount = getMatchingCount(win, lotto1);
-            Prize prize = findIndex(matchingCount);
-            if(prize==null) continue;
-            if(prize.equals(Prize.FIVE) && lotto1.contains(bonusNumber.getBonus())) prize = Prize.FIVE_AND_BONUS;
-            saveResult(prize);
+            Rank rank = findIndex(matchingCount);
+            if(rank ==null) continue;
+            if(rank.equals(Rank.THIRD) && lotto1.contains(bonusNumber.getBonus())) rank = Rank.SECOND;
+            saveResult(rank);
         }
         return result;
     }
 
     private void initializePrize(){
-        result.put(Prize.THREE, 0);
-        result.put(Prize.FOUR, 0);
-        result.put(Prize.FIVE, 0);
-        result.put(Prize.FIVE_AND_BONUS, 0);
-        result.put(Prize.SIX, 0);
+        result.put(Rank.FIFTH, 0);
+        result.put(Rank.FOURTH, 0);
+        result.put(Rank.THIRD, 0);
+        result.put(Rank.SECOND, 0);
+        result.put(Rank.FIRST, 0);
     }
 
     private Integer getMatchingCount(List<Integer> win, List<Integer> lotto1) {
@@ -88,15 +92,30 @@ public class LottoManager {
         return intersection.size();
     }
 
-    private Prize findIndex(Integer matchingCount){
-        if(Objects.equals(matchingCount, Prize.THREE.getCount())) return Prize.THREE;
-        if(Objects.equals(matchingCount, Prize.FOUR.getCount())) return Prize.FOUR;
-        if(Objects.equals(matchingCount, Prize.FIVE.getCount())) return Prize.FIVE;
-        if(Objects.equals(matchingCount, Prize.SIX.getCount())) return Prize.SIX;
+    private Rank findIndex(Integer matchingCount){
+        if(Objects.equals(matchingCount, Rank.FIFTH.getCount())) return Rank.FIFTH;
+        if(Objects.equals(matchingCount, Rank.FOURTH.getCount())) return Rank.FOURTH;
+        if(Objects.equals(matchingCount, Rank.THIRD.getCount())) return Rank.THIRD;
+        if(Objects.equals(matchingCount, Rank.FIRST.getCount())) return Rank.FIRST;
         return null;
     }
 
-    private void saveResult(Prize prize){
-        result.replace(prize, result.get(prize)+1);
+    private void saveResult(Rank rank){
+        result.replace(rank, result.get(rank)+1);
+    }
+
+    public double calculateFinalResult(){
+        long totalPrize = calculateTotalPrize(result);
+        return calculateProfitRate(totalPrize, purchaseQuantity.getPurchaseQuantity());
+    }
+
+    private static long calculateTotalPrize(Map<Rank, Integer> result) {
+        return (long) result.entrySet().stream()
+                .mapToDouble(entry -> Rank.convertPrize(entry.getKey()) * entry.getValue())
+                .sum();
+    }
+
+    private static double calculateProfitRate(long totalPrize, Integer purchaseQuantity) {
+        return ((double) totalPrize / (purchaseQuantity * Constants.DIVISOR.getConstant())) * 100;
     }
 }
