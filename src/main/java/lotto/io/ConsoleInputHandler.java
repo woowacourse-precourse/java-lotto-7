@@ -1,13 +1,14 @@
 package lotto.io;
 
-import java.util.Arrays;
-import java.util.List;
-
 import camp.nextstep.edu.missionutils.Console;
+import lotto.lotto.LottoNumber;
+import lotto.lotto.WiningNumbers;
 
 public class ConsoleInputHandler implements InputHandler {
 
     private static final String NUMBER_DELIMITER = ",";
+
+    private final InputConverter inputConverter = new InputConverter();
 
     @Override
     public int inputPurchaseAmount() {
@@ -16,17 +17,14 @@ public class ConsoleInputHandler implements InputHandler {
     }
 
     @Override
-    public List<Integer> inputLottoNumbers() {
+    public WiningNumbers inputWiningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] splitNumbers = Console.readLine().split(NUMBER_DELIMITER);
-        return Arrays.stream(splitNumbers)
-                .map(Integer::parseInt)
-                .toList();
+        return inputConverter.convertToWiningNumbers(Console.readLine().split(NUMBER_DELIMITER));
     }
 
     @Override
-    public int inputBonusNumber() {
+    public LottoNumber inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return inputConverter.convertToBonusNumber(Console.readLine());
     }
 }
