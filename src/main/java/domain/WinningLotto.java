@@ -32,4 +32,8 @@ public enum WinningLotto {
     private boolean isEqual(long input) {
         return input == this.correctCount;
     }
+
+    public int getPrizeMoney() {
+        return this.prizeMoney;
+    }
 }
