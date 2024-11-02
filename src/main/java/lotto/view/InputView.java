@@ -2,12 +2,16 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoConstants;
 import lotto.enums.NotificationMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
+
+    private final static String DELIMITER = ",";
+
     public static int getPurchaseAmount() {
         while (true) {
             try {
@@ -17,15 +21,16 @@ public class InputView {
 
                 validatePurchaseAmount(purchaseAmount);
 
+                System.out.println(NotificationMessage.DIVIDER.getMessage());
                 return purchaseAmount;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(ErrorMessage.INVALID_AMOUNT.getMessage());
             }
         }
     }
 
     private static void validatePurchaseAmount(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LottoConstants.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
         }
     }
@@ -33,9 +38,9 @@ public class InputView {
     public static List<Integer> getWinningNumbers() {
         System.out.println(NotificationMessage.WINNING_NUMBERS.getMessage());
 
-        String[] inputs = Console.readLine().trim().split(",");
-        if (inputs.length != 6) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS.getMessage());
+        String[] inputs = Console.readLine().trim().split(DELIMITER);
+        if (inputs.length != LottoConstants.LOTTO_NUMBERS_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT.getMessage());
         }
 
         List<Integer> numbers = new ArrayList<>();
@@ -44,6 +49,7 @@ public class InputView {
             numbers.add(Integer.parseInt(input.trim()));
         }
 
+        System.out.println(NotificationMessage.DIVIDER.getMessage());
         return numbers;
     }
 
