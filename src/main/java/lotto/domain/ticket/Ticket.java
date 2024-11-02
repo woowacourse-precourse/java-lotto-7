@@ -1,5 +1,7 @@
 package lotto.domain.ticket;
 
+import java.util.List;
+
 public class Ticket {
     private final Long id;
     private final Lottos lottos;
@@ -22,6 +24,14 @@ public class Ticket {
         return lottos;
     }
 
+    public List<List<Integer>> getLottosValue() {
+        return lottos.getValue();
+    }
+
+    public int getLottosSize() {
+        return lottos.getLottosSize();
+    }
+
     private static void validate(Long id, Lottos lottos) {
         validateId(id);
         validateLottos(lottos);
@@ -38,5 +48,5 @@ public class Ticket {
             throw new IllegalArgumentException("[ERROR] 로또 목록은 null일 수 없습니다.");
         }
     }
-    
+
 }

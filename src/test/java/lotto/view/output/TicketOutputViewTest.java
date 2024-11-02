@@ -5,7 +5,6 @@ import lotto.dto.TicketResponse;
 import org.junit.jupiter.api.Test;
 
 class TicketOutputViewTest {
-
     @Test
     void 동작테스트() {
         TicketResponse ticketResponse = new TicketResponse(2, List.of(

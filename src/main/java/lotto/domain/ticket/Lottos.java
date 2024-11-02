@@ -3,6 +3,7 @@ package lotto.domain.ticket;
 import static java.util.Collections.unmodifiableList;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -14,6 +15,20 @@ public class Lottos {
     public static Lottos of(List<Lotto> lottos) {
         validate(lottos);
         return new Lottos(lottos);
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getLottosSize() {
+        return lottos.size();
+    }
+
+    public List<List<Integer>> getValue() {
+        return lottos.stream()
+                .map(lotto -> lotto.getNumbers())
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private static void validate(List<Lotto> lottos) {
@@ -33,11 +48,4 @@ public class Lottos {
         }
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
-    public int getLottosSize() {
-        return lottos.size();
-    }
 }

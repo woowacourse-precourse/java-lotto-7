@@ -4,6 +4,7 @@ import static lotto.domain.ticket.LottoNumberRule.END_INCLUSIVE;
 import static lotto.domain.ticket.LottoNumberRule.SIZE;
 import static lotto.domain.ticket.LottoNumberRule.START_INCLUSIVE;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +22,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
     private static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
@@ -33,7 +38,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     private static void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
