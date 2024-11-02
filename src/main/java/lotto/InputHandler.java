@@ -64,7 +64,7 @@ public class InputHandler {
 
     public void bonusNumberValidator(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호에 보너스번호와 중복된 숫자가 존재합니다.")
+            throw new IllegalArgumentException("[ERROR] 당첨번호에 보너스번호와 중복된 숫자가 존재합니다.");
         }
     }
 

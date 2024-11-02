@@ -32,4 +32,17 @@ class InputHandlerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨번호에 중복된 숫자가 존재합니다.");
     }
+
+    @Test
+    void 로또_당첨번호에_보너스번호가_존재할_경우_예외_발생() {
+        // Given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 3;
+        // When
+        InputHandler inputHandler = new InputHandler();
+        // Then
+        Assertions.assertThatThrownBy(() -> inputHandler.bonusNumberValidator(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨번호에 보너스번호와 중복된 숫자가 존재합니다.");
+    }
 }
