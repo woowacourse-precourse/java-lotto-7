@@ -14,8 +14,9 @@ public class Constants {
     public static final String BONUS_NUMBER_RANGE = "보너스 번호는 1 ~ 45 범위 안의 숫자여야 합니다.";
     public static final String BONUS_NUMBER_MUST_NUMBER = "보너스 번호는 숫자여야 합니다.";
 
-
-
+    public static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    public static final String INPUT_WiNNiNG_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public static final int LOTTO_MIN_NUMBER = 1;
     public static final int LOTTO_MAX_NUMBER = 45;
