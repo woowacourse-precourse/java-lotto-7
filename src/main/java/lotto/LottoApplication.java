@@ -23,6 +23,8 @@ public class LottoApplication {
         int bonusNumber = getBonusNumber(winningNumbers);
 
         Result result = getResult(lottos, winningNumbers, bonusNumber);
+
+        outputPrinter.printResult(result);
     }
 
     private List<Lotto> purchaseLotto() {
