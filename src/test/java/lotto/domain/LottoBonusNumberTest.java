@@ -1,13 +1,16 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.enums.LottoConfig;
 import lotto.enums.LottoError;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoBonusNumberTest {
@@ -49,4 +52,12 @@ public class LottoBonusNumberTest {
                 .hasMessageMatching(LottoError.getErrorMessageFormat());
     }
 
+    @DisplayName("isMatch() 테스트, 보너스 넘버와 매개변수가 일치하는지 체크")
+    @ParameterizedTest
+    @CsvSource(value = {"7:7:true", "8:8:true", "7:9:false", "8:7:false"}, delimiter = ':')
+    void isMatch(int bonusNum, int number, boolean result){
+        BonusNumber bonusNumber = BonusNumber.ofNumberAndWinningLottoAndConfig(bonusNum ,winningLotto, CONFIG);
+
+        assertThat(bonusNumber.isMatch(number)).isEqualTo(result);
+    }
 }
