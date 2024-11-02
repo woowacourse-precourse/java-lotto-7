@@ -1,9 +1,10 @@
-            package lotto.domain;
+package lotto.domain;
 
 import java.util.List;
 import lotto.domain.dto.LottoDetail;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,6 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+    }
+
+    public LottoDetail toDTO() {
+        return new LottoDetail(numbers);
     }
     // TODO: 추가 기능 구현
 }
