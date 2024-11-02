@@ -16,8 +16,8 @@ public class OutputView implements Output {
     }
 
     @Override
-    public void printLotto(List<Lotto> lottos) {
-        lottos.stream()
+    public void printLottoTicket(List<Lotto> lottoTicket) {
+        lottoTicket.stream()
                 .map(lotto -> lotto.getNumbers().toString())
                 .forEach(System.out::println);
     }

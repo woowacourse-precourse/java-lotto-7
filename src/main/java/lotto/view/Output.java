@@ -9,7 +9,7 @@ public interface Output {
 
     void printBuyResult(Integer purchase);
 
-    void printLotto(List<Lotto> lottos);
+    void printLottoTicket(List<Lotto> lottoTicket);
 
     void printWinningDetail(List<String> winning);
 

@@ -26,7 +26,7 @@ public class LottoController {
 
         LottoGenerator lottoGenerator = LottoGenerator.create(lottoCount);
         lottoTicket = lottoGenerator.getLottoTicket();
-        outputView.printLotto(lottoTicket);
+        outputView.printLottoTicket(lottoTicket);
         outputView.printlnMessage(PrintMessage.LINE_SPACE);
     }
 
