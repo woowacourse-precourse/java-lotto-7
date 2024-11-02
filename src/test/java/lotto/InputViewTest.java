@@ -50,6 +50,22 @@ public class InputViewTest extends NsTest {
                 .hasMessage(ErrorMessage.BONUS_DUPLICATE.getError());
     }
 
+    @Test
+    @DisplayName("checkBonusRange 정상 작동 테스트")
+    void checkBonusRangeTest(){
+        int bonusNumber = 6;
+        assertThatNoException().isThrownBy(()-> inputView.checkBonusRange(bonusNumber));
+    }
+
+    @Test
+    @DisplayName("checkBonusRange 범위를 넘는 것 입력 시")
+    void checkBonusRangeErrorTest(){
+        int bonusNumber = 46;
+        assertThatThrownBy(() -> inputView.checkBonusRange(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.BONUS_RANGE.getError());
+    }
+
 
     @Override
     public void runMain() {
