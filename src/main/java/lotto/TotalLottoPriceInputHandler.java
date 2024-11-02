@@ -22,4 +22,10 @@ public class TotalLottoPriceInputHandler extends InputHandler{
         }
     }
 
+    private void throwExceptionWhenInputIsInvalidNumber() {
+        if(!isValidPrice()) {
+            throwIllegalArgumentException("구입금액은 1000원 단위로만 입력 가능합니다.");
+        }
+    }
+
 }
