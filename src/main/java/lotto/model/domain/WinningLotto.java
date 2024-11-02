@@ -18,4 +18,8 @@ public class WinningLotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }
