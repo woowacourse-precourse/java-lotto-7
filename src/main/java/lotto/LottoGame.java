@@ -8,6 +8,8 @@ import java.util.List;
 public class LottoGame {
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_LOTTO_PRICE = 100000;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
 
     private int purchaseAmount;
     private int bonusNumber;
@@ -63,6 +65,7 @@ public class LottoGame {
         try {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             bonusNumber = Integer.parseInt(checkPositiveNumber(Console.readLine()));
+            checkBonusNumberRange(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             lottoBonusNumberInput();
@@ -83,6 +86,13 @@ public class LottoGame {
 
         for (List<Integer> lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber);
+        }
+    }
+
+    // 보너스 번호가 로또 번호의 최솟값과 최댓값을 벗어났는지 검증하는 메서드
+    private void checkBonusNumberRange(int number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
         }
     }
 
