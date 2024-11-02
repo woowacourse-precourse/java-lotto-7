@@ -1,7 +1,7 @@
 package lotto.validation;
 
 import java.util.Arrays;
-import lotto.view.input.InputError;
+import lotto.view.input.InputErrorMessage;
 import lotto.view.input.InvalidInputException;
 
 public class LottoNumberValidator {
@@ -19,13 +19,13 @@ public class LottoNumberValidator {
 
     private static void validateNotNullOrEmpty(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new InvalidInputException(InputError.CANNOT_BE_NULL_OR_EMPTY);
+            throw new InvalidInputException(InputErrorMessage.CANNOT_BE_NULL_OR_EMPTY);
         }
     }
 
     private static void validateHasComma(String input) {
         if (!input.contains(",")) {
-            throw new InvalidInputException(InputError.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+            throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
     }
 
@@ -33,7 +33,7 @@ public class LottoNumberValidator {
         String[] inputs = input.split(",");
         long count = Arrays.stream(inputs).filter(String::isEmpty).count();
         if (count > 0) {
-            throw new InvalidInputException(InputError.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+            throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
     }
 
@@ -48,7 +48,7 @@ public class LottoNumberValidator {
             try {
                 Integer.parseInt(string);
             } catch (NumberFormatException e) {
-                throw new InvalidInputException(InputError.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+                throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
             }
         });
     }
@@ -58,13 +58,13 @@ public class LottoNumberValidator {
                 .map(Integer::parseInt)
                 .allMatch(number -> number > 0);
         if (!allPositive) {
-            throw new InvalidInputException(InputError.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+            throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
     }
 
     private static void validateIsNumber(String input) {
         if (input == null || input.isEmpty()) {
-            throw new InvalidInputException(InputError.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+            throw new InvalidInputException(InputErrorMessage.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
         }
     }
 

@@ -1,6 +1,6 @@
 package lotto.view.input;
 
-public enum InputError {
+public enum InputErrorMessage {
     ERROR("[ERROR] "),
     CANNOT_BE_NULL_OR_EMPTY(ERROR + "값은 비워둘 수 없습니다."),
     INTEGER_REQUIRED(ERROR + "숫자만 입력 가능합니다."),
@@ -14,11 +14,8 @@ public enum InputError {
 
     final String message;
 
-    InputError(String message) {
+    InputErrorMessage(String message) {
         this.message = message;
     }
 
-//    public String getMessage() {
-//        return message;
-//    }
 }
