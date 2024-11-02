@@ -1,5 +1,7 @@
 package lotto.configuration;
 
+import java.util.Arrays;
+
 public enum Prize {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -19,15 +21,10 @@ public enum Prize {
     }
 
     public static Prize findPrize(int matchCount, boolean matchBonus) {
-        for (Prize prize : Prize.values()) {
-            if (isMatchingPrizeWithBonus(prize, matchBonus, matchCount)) {
-                return prize;
-            }
-            if (isMatchingPrizeWithoutBonus(prize, matchBonus, matchCount)) {
-                return prize;
-            }
-        }
-        return NONE;
+        return Arrays.stream(Prize.values())
+                .filter(prize -> isMatchingPrize(prize, matchBonus, matchCount))
+                .findFirst()
+                .orElse(NONE);
     }
 
     public int getMatchCount() {
@@ -38,15 +35,11 @@ public enum Prize {
         return prizeMoney;
     }
 
-    private static boolean isMatchingPrizeWithBonus(Prize prize, boolean matchBonus, int matchCount) {
-        return prize.matchBonus != null
-                && prize.matchBonus == matchBonus
-                && prize.matchCount == matchCount;
+    private static boolean isMatchingPrize(Prize prize, boolean matchBonus, int matchCount) {
+        return (prize.matchBonus != null && prize.matchBonus == matchBonus && prize.matchCount == matchCount) ||
+               (prize.matchBonus == null && (prize.matchCount == matchCount || (prize.matchCount == matchCount + 1
+                                                                                && matchBonus)));
     }
 
-    private static boolean isMatchingPrizeWithoutBonus(Prize prize, boolean matchBonus, int matchCount) {
-        return prize.matchBonus == null
-                && (prize.matchCount == matchCount
-                    || (prize.matchCount == matchCount + 1 && matchBonus));
-    }
+
 }
