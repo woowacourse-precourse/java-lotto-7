@@ -32,4 +32,8 @@ public class LottoPrinter {
         );
     }
 
+    public static void printLotto(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
+    }
+
 }
