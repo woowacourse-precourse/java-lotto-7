@@ -1,4 +1,7 @@
-package view;
+package lotto.view;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Validate {
 
@@ -18,6 +21,17 @@ public class Validate {
         }
 
         return Integer.parseInt(lottoMoney);
+    }
+
+    public List<Integer> validateLottoNumber(String lottoNumber){
+        List<String> lottoNumbers = Arrays.stream(lottoNumber.split(","))
+                .toList();
+
+        for (String number : lottoNumbers) {
+            checkNumber(number);
+            if(Integer.parseInt(number)>45) throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하여야 합니다.");
+        }
+        return List.of(Integer.parseInt(lottoNumber));
     }
 
     private static void checkNumber(String number) {

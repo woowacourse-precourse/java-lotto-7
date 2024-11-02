@@ -1,24 +1,30 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
 
-    public void getMoneyInput(){
+    private final Validate validate;
+
+    public InputView(Validate validate) {
+        this.validate = validate;
+    }
+
+
+    public int getMoneyInput(){
         System.out.println("구입 입력을 입력해주세요.");
-        getLottoMoney();
+       return validate.validateLottoMoney(getLottoMoney());
     }
 
-    public void getLottoInput(){
+    public List<Integer> getLottoInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
-        getLottoNumber();
+        return validate.validateLottoNumber(getLottoNumber());
     }
 
-    public void getBonusInput(){
+    public int getBonusInput(){
         System.out.printf("보너스 번호 입력해 주세요.");
-        getBonusNumber();
+        return validate.validateBonusNumber(getBonusNumber());
     }
 
     public String getLottoMoney(){
@@ -27,15 +33,6 @@ public class InputView {
 
     public String getLottoNumber(){
         return Console.readLine();
-    }
-
-    public List<Integer> getLottoNumber(String number){
-
-        List<Integer> lottoNumbers = Arrays.stream(number.split(","))
-                                        .map(Integer::parseInt)
-                                        .toList();
-
-        return lottoNumbers;
     }
 
     public String getBonusNumber(){
