@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import net.bytebuddy.implementation.bytecode.assign.primitive.VoidAwareAssigner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,8 +27,17 @@ public class Application {
         lottos = createLottos();
         lottos.forEach(System.out::println);
 
-        System.out.println("당첨 번호를 입력해 주새요.");
-        winningNumbers = readWinningNumbers();
+        boolean isValidInput = false;
+
+        while(!isValidInput){
+            try {
+                System.out.println("당첨 번호를 입력해 주새요.");
+                winningNumbers = readWinningNumbers();
+                isValidInput = true;
+            }catch(IllegalArgumentException e){
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
 
 
     }
@@ -54,8 +64,18 @@ public class Application {
     private static List<Integer> readWinningNumbers(){
         String input = Console.readLine();
 
-        return Arrays.stream(input.split(","))
+        List<Integer> result = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
+
+        result.forEach(Application::validateLottoNumber);
+        return result;
     }
+
+    private static void validateLottoNumber(int num){
+        if (num < 1 || num > 45){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
 }
