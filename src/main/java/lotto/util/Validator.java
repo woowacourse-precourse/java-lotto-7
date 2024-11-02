@@ -2,28 +2,30 @@ package lotto.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.ErrorMessage;
+import lotto.constant.LottoGameIllegalArgumentException;
 
 public class Validator {
     public static void validateAmountInput(String amountInput) {
         if (!amountInput.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_TYPE);
         }
 
         if (Integer.parseInt(amountInput) % 1000 > 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액 단위는 1000원 단위 이상이어야 합니다.");
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_PRICE_UNIT);
         }
     }
 
     public static void validateWinningLottoInput(String[] winningLottoInput) {
         if (winningLottoInput.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER);
         }
     }
 
     public static void validateWinningLotto(List<Integer> winningLotto) {
         for (int lottoNumber : winningLotto) {
             if (lottoNumber < 1 || lottoNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45사이여야 합니다.");
+                throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE);
             }
         }
     }
@@ -36,7 +38,7 @@ public class Validator {
             }
             return winningLotto;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_TYPE);
         }
     }
 
@@ -44,7 +46,7 @@ public class Validator {
         try {
             return Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_TYPE);
         }
     }
 }
