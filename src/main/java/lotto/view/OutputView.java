@@ -29,11 +29,11 @@ public class OutputView {
         // TODO: winningCount, profitRate 자료형 객체로?
         System.out.println(WINNING_STATISTICS);
         System.out.println(SEPARATOR);
-        formatAndPrint(THREE_MATCHES, winningCount.get(0));
-        formatAndPrint(FOUR_MATCHES, winningCount.get(1));
-        formatAndPrint(FIVE_MATCHES, winningCount.get(2));
-        formatAndPrint(FIVE_BONUS_MATCHES, winningCount.get(3));
-        formatAndPrint(SIX_MATCHES, winningCount.get(4));
+        formatAndPrint(THREE_MATCH, winningCount.get(0));
+        formatAndPrint(FOUR_MATCH, winningCount.get(1));
+        formatAndPrint(FIVE_MATCH, winningCount.get(2));
+        formatAndPrint(FIVE_BONUS_MATCH, winningCount.get(3));
+        formatAndPrint(SIX_MATCH, winningCount.get(4));
         formatAndPrint(TOTAL_RETURN, profitRate);
     }
 
