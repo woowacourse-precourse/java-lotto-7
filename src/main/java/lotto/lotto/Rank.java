@@ -1,6 +1,8 @@
 package lotto.lotto;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public enum Rank {
 
@@ -27,6 +29,12 @@ public enum Rank {
                 .filter(rank -> rank != SECOND && rank.matchingCount == count)
                 .findFirst()
                 .orElse(NONE);
+    }
+
+    public static Map<Rank, Integer> initializeRankSummary() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != NONE)
+                .collect(Collectors.toMap(rank -> rank, rank -> 0));
     }
 
     private static boolean isSecondRank(int count, boolean isMatchBonusNumber) {

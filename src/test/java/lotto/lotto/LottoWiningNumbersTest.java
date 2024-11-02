@@ -2,8 +2,10 @@ package lotto.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.entry;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,17 +24,23 @@ class LottoWiningNumbersTest {
     }
 
     @Test
-    void 로또_1장의_결과를_구한다() {
+    void 로또의_결과를_구한다() {
         // given
         WiningNumbers winingNumbers = new WiningNumbers(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(7);
         LottoWiningNumbers lottoWiningNumbers = new LottoWiningNumbers(winingNumbers, bonusNumber);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoAmount lottoAmount = new LottoAmount(1000);
+        Lottos lottos = Lottos.purchase(lottoAmount, new StubLottoGenerator());
 
         // when
-        Rank rank = lottoWiningNumbers.match(lotto);
+        Map<Rank, Integer> rankSummary = lottoWiningNumbers.matchAll(lottos);
 
         // then
-        assertThat(rank).isEqualTo(Rank.FIRST);
+        assertThat(rankSummary).contains(entry(Rank.FIRST, 1),
+                entry(Rank.SECOND, 0),
+                entry(Rank.THIRD, 0),
+                entry(Rank.FOURTH, 0),
+                entry(Rank.FIFTH, 0)
+        );
     }
 }
