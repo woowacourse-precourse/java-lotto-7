@@ -11,9 +11,13 @@ public class Lotto {
 
     private final LottoNumbers numbers;
 
-    public Lotto(LottoNumbers numbers) {
+    private Lotto(LottoNumbers numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto from(LottoNumbers lottoNumbers) {
+        return new Lotto(lottoNumbers);
     }
 
     public static Lotto generateBy(RandomNumberGenerator randomLottoNumberGenerator) {
