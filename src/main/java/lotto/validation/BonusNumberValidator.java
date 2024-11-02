@@ -10,6 +10,7 @@ public class BonusNumberValidator {
         validateNull(input);
         validateStartZero(input);
         validateRange(input);
+        validateNumericInput(input);
     }
 
     private static void validateNull(String input) {
@@ -19,7 +20,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateStartZero(String input) {
-        if (input.trim().equals("0") || input.trim().matches("^0\\d+")) {
+        if (input.equals("0") || input.matches("^0\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_START_WITH_ZERO.getErrorMessage());
         }
     }
@@ -28,6 +29,12 @@ public class BonusNumberValidator {
         long number = Converter.convertStringToLong(input);
         if (number < LottoValue.MIN_LOTTO_NUMBER_RANGE.getValue() || number > LottoValue.MAX_LOTTO_NUMBER_RANGE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.ALLOW_ONE_TO_FORTY_FIVE.getErrorMessage());
+        }
+    }
+
+    private static void validateNumericInput(String input) {
+        if (!input.matches("^\\d+$")) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_WITHOUT_NUMBER.getErrorMessage());
         }
     }
 }

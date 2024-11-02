@@ -34,4 +34,13 @@ class BonusNumberValidatorTest {
             BonusNumberValidator.validateBonusNumber(input);
         });
     }
+
+    @DisplayName("공백을 포함하여 숫자가 아닌 값을 입력한 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"45=", "*", "23 "})
+    void validateWithoutNumber(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BonusNumberValidator.validateBonusNumber(input);
+        });
+    }
 }

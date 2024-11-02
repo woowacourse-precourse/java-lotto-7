@@ -78,7 +78,7 @@
 - [x] 아무 값도 입력하지 않은 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 0을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [x] 1~45 범위의 수가 아닌 경우, ``IllegalArgumentException``을 발생시킨다.
-- [ ] 공백을 포함하여 숫자 이외의 값을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
+- [x] 공백을 포함하여 숫자 이외의 값을 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 당첨 번호와 중복되는 숫자를 입력한 경우, ``IllegalArgumentException``을 발생시킨다.
 - [ ] 잘못된 값을 입력할 경우, ``[ERROR]``로 시작하는 에러 메시지를 출력하고 다시 입력받는다.
 
