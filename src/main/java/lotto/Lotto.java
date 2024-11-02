@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Winning;
+import lotto.domain.constant.LottoRank;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,6 +26,13 @@ public class Lotto {
 
     private boolean matchBonusNumber(Integer number) {
         return numbers.contains(number);
+    }
+
+    public LottoRank getRank(Winning winning) {
+        int matchingNumbers = matchWinningNumbers(winning.getNumbers());
+        boolean isBonusMatch = matchBonusNumber(winning.getBonusNumber());
+
+        return LottoRank.valueOf(matchingNumbers, isBonusMatch);
     }
 
 }
