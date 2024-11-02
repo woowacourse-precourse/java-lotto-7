@@ -29,4 +29,11 @@ public class UserLotto {
     public List<Lotto> getUserLotto() {
         return userLotto;
     }
+
+    // 유저 로또 (index) 한 줄을 반환
+    public List<Integer> getAtLotto(int index) {
+        List<Integer> atLotto = new ArrayList<>();
+        atLotto = userLotto.get(index).getNumbers();
+        return atLotto;
+    }
 }
