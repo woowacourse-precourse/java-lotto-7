@@ -15,8 +15,12 @@ public class LottoList {
 
     public void printLottoList() {
 
+        System.out.println();
+        System.out.printf("%d개를 구매했습니다", lottoList.size());
+        System.out.println();
+
         for (Lotto lotto : lottoList) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
             Collections.sort(numbers);
             System.out.println(numbers);
         }

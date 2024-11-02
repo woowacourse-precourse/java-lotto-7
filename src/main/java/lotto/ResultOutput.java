@@ -9,6 +9,7 @@ public class ResultOutput {
 
     public void printResult() {
 
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 

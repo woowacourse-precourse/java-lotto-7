@@ -42,6 +42,7 @@ public class UserInput {
 
     public void bonusNumberInput() {
 
+        System.out.println();
         System.out.println("보너스 번호를 입력해주세요.");
 
         String bonusNumberInput = readLine();
