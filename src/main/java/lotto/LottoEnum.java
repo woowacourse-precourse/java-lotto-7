@@ -19,6 +19,10 @@ public enum LottoEnum {
         this.winnerCount = winnerCount;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public int getPrizeAmount() {
         return prizeAmount;
     }
