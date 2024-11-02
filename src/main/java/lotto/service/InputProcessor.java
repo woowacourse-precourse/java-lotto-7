@@ -8,6 +8,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class InputProcessor {
+    private static final String DELIMITER_COMMA = ",";
     private final InputValidator inputValidator;
 
     public InputProcessor() {
@@ -31,7 +32,7 @@ public class InputProcessor {
             String input = InputView.readWinningNumbers();
             try {
                 inputValidator.validateWinningNumber(input);
-                List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER_COMMA))
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());

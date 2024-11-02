@@ -10,9 +10,11 @@ public class Lotto {
     private static final String ERROR_NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_NUMBER_DUPLICATE = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     private static final String ERROR_NUMBER_SIZE = "[ERROR] 로또 번호는 6개여야 합니다.";
-    private static final int LOTTO_SIZE = 6;
+
     private static final int LOTTO_NUMBER_MIN = 1;
     private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -27,14 +29,18 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    public boolean containsNumber(int number) {
-        return numbers.contains(number);
+    public int getMatchNumberCount(Lotto winningLotto) {
+        int matchCount = 0;
+        for (Integer number : numbers) {
+            if (winningLotto.containsNumber(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
-    public int getMatchNumberCount(Lotto winningLotto) {
-        return (int) numbers.stream()
-                .filter(winningLotto::containsNumber)
-                .count();
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
     }
 
     private void validateNumberRange(List<Integer> numbers) {
