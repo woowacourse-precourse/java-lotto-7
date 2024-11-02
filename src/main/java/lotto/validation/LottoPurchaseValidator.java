@@ -21,7 +21,7 @@ public class LottoPurchaseValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InvalidInputException(InputErrorMessage.POSITIVE_NUMBER_REQUIRED);
+            throw new InvalidInputException(InputErrorMessage.INTEGER_REQUIRED);
         }
     }
 
