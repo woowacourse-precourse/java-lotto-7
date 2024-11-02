@@ -11,6 +11,10 @@ public class output {
         System.out.println(count + Request_Messages.OUTPUT_TOTAL_COUNT);
     }
 
+    public static void printSummaryMessage(){
+        System.out.println(Request_Messages.SUMMARY);
+    }
+
     public static void printLottos(List<Lotto> Lottos){
         for (Lotto lotto : Lottos) {
             System.out.println(lotto.getNumbers());

@@ -6,8 +6,10 @@ import static lotto.view.input.readWinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.CalculateResult;
 import lotto.model.Lotto;
 import lotto.constants.Error_Messages;
+import lotto.model.SingleResult;
 
 public class lottoController {
     public static int checkTotalAmountIfValid(int totalAmount){
@@ -44,5 +46,10 @@ public class lottoController {
         return readBonusNumber();
     }
 
+    public static List<SingleResult> getSummary(List<Lotto> lottos, Lotto winningLotto, int bonusNumber){
+        CalculateResult calculator = new CalculateResult(winningLotto, bonusNumber);
+        calculator.calculateMatches(lottos);
+        return calculator.getResults();
+    }
 
 }
