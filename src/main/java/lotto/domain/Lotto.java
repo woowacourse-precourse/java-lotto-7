@@ -21,7 +21,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -29,6 +28,7 @@ public class Lotto {
         if (numbers.size() != SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE);
         }
+        validateDuplication(numbers);
     }
 
     private void validateDuplication(List<Integer> numbers) {
