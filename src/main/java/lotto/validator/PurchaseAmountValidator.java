@@ -19,7 +19,7 @@ public class PurchaseAmountValidator {
         try {
             purchaseAmount = Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(PARSE_INT_ERROR.getMassage());
+            System.out.println(PARSE_INT_ERROR.getMessage());
             return true;
         }
         return false;
@@ -31,7 +31,7 @@ public class PurchaseAmountValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(CAN_NOT_PURCHASE.getMassage());
+            System.out.println(CAN_NOT_PURCHASE.getMessage());
             return true;
         }
         return false;

@@ -24,7 +24,7 @@ public class BonusNumberValidator {
         try {
             bonusNumber = Integer.parseInt(userInput);
         } catch (IllegalArgumentException e) {
-            System.out.println(PARSE_INT_ERROR.getMassage());
+            System.out.println(PARSE_INT_ERROR.getMessage());
             return true;
         }
         return false;
@@ -36,7 +36,7 @@ public class BonusNumberValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(INVALID_NUMBER_ERROR.getMassage());
+            System.out.println(INVALID_NUMBER_ERROR.getMessage());
             return true;
         }
         return false;
@@ -48,7 +48,7 @@ public class BonusNumberValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(DUPLICATE_WINNING_NUMBERS_ERROR.getMassage());
+            System.out.println(DUPLICATE_WINNING_NUMBERS_ERROR.getMessage());
             return true;
         }
         return false;

@@ -9,13 +9,13 @@ public enum ErrorMessage {
     DUPLICATE_WINNING_NUMBERS_ERROR("[ERROR] 보너스 번호는 당첨 번호에 없는 번호이어야 합니다."),
     DUPLICATE_LOTTO_NUMBERS_ERROR("[ERROR] 로또 번호는 중복이 없어야 합니다.");
 
-    private final String massage;
+    private final String message;
 
-    ErrorMessage(String massage) {
-        this.massage = massage;
+    ErrorMessage(String message) {
+        this.message = message;
     }
 
-    public String getMassage() {
-        return massage;
+    public String getMessage() {
+        return message;
     }
 }

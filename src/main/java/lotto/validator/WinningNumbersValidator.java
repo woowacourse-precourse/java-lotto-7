@@ -27,7 +27,7 @@ public class WinningNumbersValidator {
                     .map(Integer::parseInt)
                     .toList();
         } catch (IllegalArgumentException e) {
-            System.out.println(PARSE_INT_NUMBERS_ERROR.getMassage());
+            System.out.println(PARSE_INT_NUMBERS_ERROR.getMessage());
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public class WinningNumbersValidator {
                 }
             });
         } catch (IllegalArgumentException e) {
-            System.out.println(INVALID_NUMBER_ERROR.getMassage());
+            System.out.println(INVALID_NUMBER_ERROR.getMessage());
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ public class WinningNumbersValidator {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(INVALID_NUMBER_SIZE_ERROR.getMassage());
+            System.out.println(INVALID_NUMBER_SIZE_ERROR.getMessage());
             return true;
         }
         return false;

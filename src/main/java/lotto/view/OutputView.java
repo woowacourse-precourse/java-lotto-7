@@ -9,15 +9,12 @@ import static lotto.domain.Rank.THIRD;
 import java.util.List;
 import lotto.domain.LottoTickets;
 import lotto.domain.WinningStatistics;
+import lotto.message.OutputMessage;
 
 public class OutputView {
-    private static final String PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_COUNT_MESSAGE = "개를 구매했습니다.";
-    private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBERS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public void showPurchaseAmountInputMessage() {
-        System.out.println(PURCHASE_INPUT_MESSAGE);
+        System.out.println(OutputMessage.PURCHASE_INPUT_MESSAGE.getMessage());
     }
 
 
@@ -27,7 +24,7 @@ public class OutputView {
     }
 
     private void showLottoCount(int count) {
-        System.out.println(count + PURCHASE_COUNT_MESSAGE);
+        System.out.println(count + OutputMessage.PURCHASE_COUNT_MESSAGE.getMessage());
     }
 
     private void showLottoNumbers(List<String> lottoNumbers) {
@@ -35,11 +32,11 @@ public class OutputView {
     }
 
     public void showWinningNumbersInputMessage() {
-        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
+        System.out.println(OutputMessage.WINNING_NUMBERS_INPUT_MESSAGE.getMessage());
     }
 
     public void showBonusNumberInputMessage() {
-        System.out.println(BONUS_NUMBERS_INPUT_MESSAGE);
+        System.out.println(OutputMessage.BONUS_NUMBERS_INPUT_MESSAGE.getMessage());
     }
 
     public void showResult(WinningStatistics winningStatistics) {

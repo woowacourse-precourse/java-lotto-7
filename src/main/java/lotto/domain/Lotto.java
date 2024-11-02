@@ -40,7 +40,7 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.stream().distinct().count() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_ERROR.getMassage());
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBERS_ERROR.getMessage());
         }
     }
 }
