@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.generator;
 
 import lotto.factory.BonusFactory;
 import lotto.domain.Bonus;

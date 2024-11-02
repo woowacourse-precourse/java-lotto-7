@@ -1,6 +1,6 @@
 package lotto.factory;
 
-import lotto.service.WinningGenerator;
+import lotto.service.generator.WinningGenerator;
 
 public class WinningGeneratorFactory {
 

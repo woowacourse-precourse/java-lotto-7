@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.generator;
 
 import java.util.Arrays;
 import java.util.List;

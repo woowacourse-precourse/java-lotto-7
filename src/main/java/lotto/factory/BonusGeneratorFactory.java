@@ -1,7 +1,7 @@
 package lotto.factory;
 
 import lotto.domain.Lotto;
-import lotto.service.BonusGenerator;
+import lotto.service.generator.BonusGenerator;
 
 public class BonusGeneratorFactory {
 

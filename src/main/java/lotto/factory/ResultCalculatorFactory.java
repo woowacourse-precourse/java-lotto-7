@@ -1,7 +1,7 @@
 package lotto.factory;
 
 import java.util.List;
-import lotto.service.ResultCalculator;
+import lotto.service.calculator.ResultCalculator;
 
 public class ResultCalculatorFactory {
 

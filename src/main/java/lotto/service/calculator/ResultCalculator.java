@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.calculator;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,10 +7,10 @@ import lotto.factory.ResultCalculatorFactory;
 import lotto.factory.ResultGeneratorFactory;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.service.LottoGenerator;
+import lotto.service.generator.LottoGenerator;
 import lotto.service.Payment;
-import lotto.service.ResultCalculator;
-import lotto.service.ResultGenerator;
+import lotto.service.calculator.ResultCalculator;
+import lotto.service.generator.ResultGenerator;
 import lotto.view.OutputView;
 import lotto.view.PrintMessage;
 
