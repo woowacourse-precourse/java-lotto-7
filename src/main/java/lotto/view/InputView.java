@@ -14,6 +14,11 @@ public class InputView {
         return read();
     }
 
+    public static int readBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return readInt();
+    }
+
     private static int readInt() {
         return Integer.parseInt(read());
     }
@@ -21,4 +26,5 @@ public class InputView {
     private static String read() {
         return Console.readLine();
     }
+
 }

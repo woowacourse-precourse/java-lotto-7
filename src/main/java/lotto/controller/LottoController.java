@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
+import lotto.domain.WinningLotto;
 import lotto.domain.Won;
 import lotto.dto.LottoPaper;
 import lotto.generator.RandomLottoNumberGenerator;
@@ -21,5 +22,7 @@ public class LottoController {
 
     public void match(LottoPaper lottoPaper) {
         Lotto lotto = Lotto.fromString(InputView.readWinningNumbers());
+        int bonus = InputView.readBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(lotto, bonus);
     }
 }
