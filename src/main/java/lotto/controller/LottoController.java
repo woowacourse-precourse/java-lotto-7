@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lottery;
 import lotto.domain.NumberGenerator;
 import lotto.domain.PurchaseLotto;
@@ -28,7 +29,10 @@ public class LottoController {
         OutputView.printWinningNumberInputText();
         WinningNumber winningNumber = InputView.inputWinningNumber();
 
-        return new Lottery(purchaseLotto, winningNumber);
+        OutputView.printBonusNumberInputText();
+        BonusNumber bonusNumber = InputView.inputBonusNumber(winningNumber);
+
+        return new Lottery(purchaseLotto, winningNumber, bonusNumber);
     }
 
     private PurchaseLotto createLottoTickets(PurchasePrice purchasePrice) {
