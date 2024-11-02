@@ -23,27 +23,27 @@ public class BonusNumberViewTest {
     @DisplayName("winngNumbers와 중복된 보너스 번호 입력 시 에러 테스트")
     @Test
     void validateDuplicateExceptionTest(){
-        System.setIn(IoMock.consoleReadline("1"));
+        System.setIn(IoMock.consoleReadLine("1"));
 
-        assertThatThrownBy(() -> view.read())
+        assertThatThrownBy(view::read)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("숫자가 아닌 입력값 에러 테스트")
     @Test
     void validateNumericExceptionTest(){
-        System.setIn(IoMock.consoleReadline("a"));
+        System.setIn(IoMock.consoleReadLine("a"));
 
-        assertThatThrownBy(() -> view.read())
+        assertThatThrownBy(view::read)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("빈문자열 입력 시 에러 테스트")
     @Test
     void validateEmptryExceptionTest() {
-        System.setIn(IoMock.consoleReadline("\n"));
+        System.setIn(IoMock.consoleReadLine("\n"));
 
-        Assertions.assertThatThrownBy(() -> view.read())
+        Assertions.assertThatThrownBy(view::read)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

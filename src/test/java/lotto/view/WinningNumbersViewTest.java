@@ -19,18 +19,18 @@ public class WinningNumbersViewTest {
     @DisplayName("숫자가 아닌 입력값 에러 테스트")
     @Test
     void validateNumericExceptionTest() {
-        System.setIn(IoMock.consoleReadline("a,v,b"));
+        System.setIn(IoMock.consoleReadLine("a,v,b"));
 
-        assertThatThrownBy(() -> view.read())
+        assertThatThrownBy(view::read)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("빈문자열 입력 시 에러 테스트")
     @Test
     void validateEmptyExceptionTest() {
-        System.setIn(IoMock.consoleReadline("\n"));
+        System.setIn(IoMock.consoleReadLine("\n"));
 
-        assertThatThrownBy(() -> view.read())
+        assertThatThrownBy(view::read)
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
