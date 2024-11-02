@@ -9,6 +9,7 @@ public class Input {
     public static int purchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
         String text = Console.readLine();
+        System.out.println();
         return getNumber(text);
     }
 
@@ -20,12 +21,20 @@ public class Input {
             int number = getNumber(s);
             numbers.add(number);
         }
-        return numbers;
+        Lotto lotto = new Lotto(numbers);
+        System.out.println();
+        return lotto.getNumbers();
     }
 
-    public static int inputBonus(){
+    public static int inputBonus(List<Integer> winNumber){
         System.out.println("보너스 번호를 입력해 주세요.");
         String text = Console.readLine();
+        System.out.println();
+        for (Integer i : winNumber) {
+            if (getNumber(text) == i) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 동일합니다.");
+            }
+        }
         return getNumber(text);
     }
 
