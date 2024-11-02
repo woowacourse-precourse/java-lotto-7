@@ -45,4 +45,11 @@ class LottosTest {
         assertEquals(Prize.FOURTH, results.get(3)); // 4개 일치 - 4등
         assertEquals(Prize.FIFTH, results.get(4));  // 3개 일치 - 5등
     }
+
+    @Test
+    @DisplayName("Lottos 객체의 size 메서드가 로또 개수를 올바르게 반환하는지 테스트")
+    void shouldReturnCorrectSize() {
+        // When & Then
+        assertEquals(5, lottos.size());
+    }
 }
