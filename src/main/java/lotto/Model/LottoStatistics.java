@@ -6,10 +6,10 @@ import java.util.Map;
 
 public class LottoStatistics {
     private final Map<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
-    private final int purchaseAmount;
+    private final int price;
 
-    public LottoStatistics(int purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
+    public LottoStatistics(int price) {
+        this.price = price;
         initializeResultCounts();
     }
 
@@ -42,7 +42,7 @@ public class LottoStatistics {
 
     public double calculateProfitRate(){
         int totalPrize = calculateTotalPrize();
-        double profitRate = ((double) totalPrize / purchaseAmount) * 100;
+        double profitRate = ((double) totalPrize / price) * 100;
         String formattedProfitRate = String.format("%.1f", profitRate);
         return Double.parseDouble(formattedProfitRate);
     }
