@@ -41,5 +41,14 @@ public class Application {
         Integer bonusNumber = Integer.parseInt(Console.readLine());
             // 유효성 검증 필요
 
+        // 당첨 여부 확인
+        int[] winningCounts = new int[7];
+        Set<Integer> set1 = new HashSet<>(winningNumbers);
+        for (Lotto lotto : lottos) {
+            Set<Integer> set2 = new HashSet<>(lotto.getNumbers());
+            set1.retainAll(set2);
+            winningCounts[set1.size()]++;
+            set1.addAll(winningNumbers);
+        }
     }
 }
