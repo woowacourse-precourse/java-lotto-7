@@ -7,7 +7,7 @@ import lotto.core.enums.WinningRank;
 
 public class LottoTicket {
 
-    private LottoPurchaseAmount amount;
+    private final LottoPurchaseAmount amount;
 
     private final List<Lotto> lottos;
 

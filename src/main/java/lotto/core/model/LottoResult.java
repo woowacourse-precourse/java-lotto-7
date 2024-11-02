@@ -8,9 +8,9 @@ import lotto.core.enums.WinningRank;
 
 public class LottoResult {
 
-    private LottoTicket ticket;
+    private final LottoTicket ticket;
 
-    private List<WinningRank> winningRanks;
+    private final List<WinningRank> winningRanks;
 
     public LottoResult(LottoTicket ticket, List<WinningRank> winningRanks) {
         this.ticket = ticket;

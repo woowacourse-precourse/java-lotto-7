@@ -5,9 +5,9 @@ import lotto.core.dto.LottoNumberDto;
 
 public record LottoNumber(Integer value) {
 
-    private static Integer MIN_VALUE = 1;
+    private static final Integer MIN_VALUE = 1;
 
-    private static Integer MAX_VALUE = 45;
+    private static final Integer MAX_VALUE = 45;
 
     public LottoNumber {
         if (!LottoNumber.isNumber(value)) {
