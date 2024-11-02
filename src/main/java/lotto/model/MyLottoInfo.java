@@ -36,6 +36,7 @@ public class MyLottoInfo {
 
     private Map<Rank, Integer> initResult(){
         Map<Rank, Integer> result = new LinkedHashMap<>();
+        result.put(Rank.NONE, 0);
         result.put(Rank.FIFTH_PLACE, 0);
         result.put(Rank.FOURTH_PLACE, 0);
         result.put(Rank.THIRD_PLACE, 0);
@@ -44,8 +45,17 @@ public class MyLottoInfo {
         return result;
     }
 
+    public void getResultPerLotto(WinningLotto winningLotto) {
+        myLotteries.forEach(lotto ->
+                lottoResult(
+                        CheckLotto.countEqualLottoNumbers(lotto, winningLotto.getWinningLotto().getNumbers()),
+                        CheckLotto.checkContainsBonusNumber(lotto, winningLotto.getBonusNumber())
+                )
+        );
+    }
+
     private int calculateQuantities(){
-        return this.purchaseLottoCount / LOTTO_PRICE;
+        return this.purchaseAmount / LOTTO_PRICE;
     }
 
     private List<Lotto> generateLotto(){
@@ -56,7 +66,7 @@ public class MyLottoInfo {
         return lottos;
     }
 
-    public void lottoResult(int count, boolean isBonusNumberMatch) {
+    private void lottoResult(int count, boolean isBonusNumberMatch) {
         Rank rank = determineRank(count, isBonusNumberMatch);
         updateRevenue(rank);
         updateResult(rank);
@@ -82,7 +92,7 @@ public class MyLottoInfo {
         return purchaseLottoCount;
     }
     public double getRevenuePercentage() {
-        revenuePercentage = ((double) revenue / purchaseAmount) * LOTTO_REVENUE_PERCENTAGE;
+        revenuePercentage = ((double) revenue / (double) purchaseAmount) * LOTTO_REVENUE_PERCENTAGE;
         return revenuePercentage;
     }
 
