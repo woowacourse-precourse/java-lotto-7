@@ -18,6 +18,22 @@ public class LottoController {
     private int bonusNumber;
 
     /**
+     * 컨트롤러 실행
+     */
+    public void start() {
+        getPurchaseMoney();
+        generateLotto();
+        OutputView.printMyLottos(lottos);
+
+        getPrizeNumberAndBonusNumber();
+        prizeSystem = new PrizeSystem(prizeNumbers, bonusNumber);
+        prizeSystem.checkPrizeResult(lottos);
+
+        OutputView.printPrizeResult(prizeSystem.getPrizeCount());
+        OutputView.printProfit(prizeSystem.getProfit(purchaseMoney));
+    }
+
+    /**
      * 사용자로부터 구입 금액 입력 받기
      */
     public void getPurchaseMoney() {
