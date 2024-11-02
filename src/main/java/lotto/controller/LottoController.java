@@ -16,13 +16,12 @@ public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
     private final ValidationManager validationManager;
-    private final LottoPublisher lottoPublisher;
+    //private final LottoPublisher lottoPublisher;
 
-    public LottoController(InputView inputView, OutputView outputView, ValidationManager validationManager, LottoPublisher lottoPublisher) {
+    public LottoController(InputView inputView, OutputView outputView, ValidationManager validationManager) {
         this.outputView = outputView;
         this.inputView = inputView;
         this.validationManager = validationManager;
-        this.lottoPublisher = lottoPublisher;
     }
 
     public void play() {

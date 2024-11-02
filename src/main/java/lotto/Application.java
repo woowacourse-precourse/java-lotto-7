@@ -12,8 +12,8 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         ValidationManager validationManager = new ValidationManager();
-        LottoPublisher lottoPublisher = new LottoPublisher();
-        LottoController lottoController = new LottoController(inputView, outputView, validationManager, lottoPublisher);
+
+        LottoController lottoController = new LottoController(inputView, outputView, validationManager);
 
         lottoController.play();
     }
