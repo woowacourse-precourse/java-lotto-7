@@ -28,8 +28,7 @@ public class Application {
         int amount=price/1000;
         ArrayList<Lotto> lottos=new ArrayList<>();
         for(int i=0;i<amount;i++) {
-            List<Integer> numbers = null;
-            Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
