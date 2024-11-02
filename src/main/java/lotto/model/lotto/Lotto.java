@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoFormat.NUMBER_COUNT) {
+        if (numbers.size() != LottoPrintFormat.NUMBER_COUNT) {
             throw new IllegalArgumentException(LottoErrorMessage.INVALID_NUMBERS_COUNT.getMessage());
         }
 
@@ -25,14 +25,14 @@ public class Lotto {
     }
 
     public String numbersToString() {
-        return LottoFormat.PREFIX + getJoinedNumbers() + LottoFormat.SUFFIX;
+        return LottoPrintFormat.PREFIX + getJoinedNumbers() + LottoPrintFormat.SUFFIX;
     }
 
     private String getJoinedNumbers() {
         numbers.sort(Integer::compareTo);
         return numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(LottoFormat.DELIMITER));
+                .collect(Collectors.joining(LottoPrintFormat.DELIMITER));
     }
     // TODO: 추가 기능 구현
 }
