@@ -12,10 +12,6 @@ public class LottoGenerator {
         this.randomNumbersStrategy = randomNumbersStrategy;
     }
 
-    public static LottoGenerator from(RandomNumbersStrategy randomNumbersStrategy) {
-        return new LottoGenerator(randomNumbersStrategy);
-    }
-
     public List<Lotto> issues(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {

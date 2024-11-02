@@ -6,12 +6,8 @@ public class LottoWinningResult {
 
     private final Map<LottoRank, Integer> lottoWinningResult;
 
-    private LottoWinningResult(Map<LottoRank, Integer> lottoRankResult) {
+    public LottoWinningResult(Map<LottoRank, Integer> lottoRankResult) {
         this.lottoWinningResult = lottoRankResult;
-    }
-
-    public static LottoWinningResult from(Map<LottoRank, Integer> lottoRankResult) {
-        return new LottoWinningResult(lottoRankResult);
     }
 
     public double calculateRateOfReturn(PurchaseAmount purchaseAmount) {

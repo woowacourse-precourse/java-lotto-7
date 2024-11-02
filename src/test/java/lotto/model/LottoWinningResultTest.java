@@ -18,7 +18,7 @@ LottoWinningResultTest {
         lottoRank.put(LottoRank.FIFTH, 2);
         lottoRank.put(LottoRank.FOURTH, 1);
 
-        LottoWinningResult lottoWinningResult = LottoWinningResult.from(lottoRank);
+        LottoWinningResult lottoWinningResult = new LottoWinningResult(lottoRank);
         PurchaseAmount purchaseAmount = PurchaseAmount.from(8000);
 
         //when

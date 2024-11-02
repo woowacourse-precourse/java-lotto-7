@@ -14,7 +14,7 @@ class LottoWinningCalculatorTest {
     @Test
     void calculateWinningResult() {
         //given
-        Lottos lottos = Lottos.from(List.of(
+        Lottos lottos = new Lottos(List.of(
                 Lotto.of(List.of(1, 2, 3, 4, 5, 6)),
                 Lotto.of(List.of(7, 8, 9, 10, 11, 12))
         ));
@@ -23,7 +23,7 @@ class LottoWinningCalculatorTest {
                 Lotto.of(List.of(1, 2, 3, 4, 5, 6)), 7
         );
 
-        LottoWinningCalculator winningCalculator = LottoWinningCalculator.from(new LottoWinningStrategy());
+        LottoWinningCalculator winningCalculator = new LottoWinningCalculator(new LottoWinningStrategy());
 
         //when
         LottoWinningResult lottoWinningResult = winningCalculator.calculateWinningResult(lottos, winningNumbers);
