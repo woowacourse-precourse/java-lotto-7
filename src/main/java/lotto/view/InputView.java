@@ -10,31 +10,32 @@ import java.util.List;
 import lotto.domain.Guess;
 import lotto.enums.ErrorCode;
 import lotto.exception.CommonException;
+import lotto.exception.FormatException;
 import lotto.service.LottoService;
+import lotto.service.StringParser;
 import lotto.service.ValidatorService;
 
 public class InputView {
 
     private final ValidatorService validatorService;
     private final LottoService lottoService;
+    private final StringParser stringParser;
 
-    public InputView(ValidatorService validatorService, LottoService lottoService) {
+    public InputView(ValidatorService validatorService, LottoService lottoService, StringParser stringParser) {
         this.validatorService = validatorService;
         this.lottoService = lottoService;
+        this.stringParser = stringParser;
     }
 
     public int getPurchaseInput() {
         System.out.println(INPUT_PROMPT_PURCHASE_AMOUNT);
         while (true) {
             try {
-                int amount = Integer.parseInt(Console.readLine());
+                int amount = stringParser.parseToInteger(Console.readLine());
                 validatorService.validatePurchaseAmount(amount);
                 return amount;
-            } catch (CommonException e) {
+            } catch (CommonException | FormatException e) {
                 System.out.println(e.getMessage());
-                System.out.println(INPUT_PROMPT_RETYPE);
-            } catch (NumberFormatException ne) {
-                System.out.println("[ERROR] " + ErrorCode.PARSING_INTEGER_ERROR.getMessage());
                 System.out.println(INPUT_PROMPT_RETYPE);
             }
         }
