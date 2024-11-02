@@ -4,10 +4,6 @@ package lotto;
 import lotto.io.Input;
 import lotto.io.View;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 
 public class Application {
     private final Integer price;
@@ -16,7 +12,7 @@ public class Application {
     private final WinningChecker winningChecker;
 
     public Application() {
-        Lotto winningNumber = new Lotto(toLotto(Input.inputWinningNumber()));
+        Lotto winningNumber = Lotto.of(Input.inputWinningNumber(), ",");
         Integer bonusNumber = Integer.parseInt(Input.inputBonusNumber());
 
         this.price = Integer.parseInt(Input.inputPrice());
@@ -65,10 +61,4 @@ public class Application {
         return winningChecker;
     }
 
-    private List<Integer> toLotto(String input) {
-        return Arrays.stream(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
 }

@@ -45,6 +45,14 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public static Lotto of(String input, String delimiter) {
+         List<Integer> numbers = Arrays.stream(input.split(delimiter))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+         return new Lotto(numbers);
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(numbers.stream().sorted().toArray());
