@@ -19,6 +19,8 @@ public class OutputView {
             + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"
             + "6개 일치 (2,000,000,000원) - %d개\n";
 
+    private static final String PROFIT_RATIO_VIEW = "총 수익률은 %.f%입니다.";
+
     public static void showLottoNumbers(List<Lotto> myLottos) {
         System.out.println(BUYING_LOTTO_VIEW);
 
@@ -41,6 +43,11 @@ public class OutputView {
                 lottoResult[2],
                 lottoResult[1],
                 lottoResult[0]);
+        System.out.println();
+    }
+
+    public static void showProfitRatio(float profitRatio) {
+        System.out.printf(PROFIT_RATIO_VIEW, profitRatio);
         System.out.println();
     }
 }
