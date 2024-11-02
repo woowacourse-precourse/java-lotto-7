@@ -65,9 +65,7 @@ public class NumberList extends ArrayList<Integer> {
             addNewNumber(newNumber);
         }
 
-        sortAscending();
-
-        return this;
+        return sortAscending();
 
     }
 
@@ -76,6 +74,5 @@ public class NumberList extends ArrayList<Integer> {
 
         return this;
     }
-
 
 }
