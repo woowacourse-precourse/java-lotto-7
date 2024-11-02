@@ -30,11 +30,17 @@ public class MainController {
         UserLotto userLotto = createUserLotto();
         WinningLotto winningLotto = new WinningLotto(new FinalPrizeCalculator());
 
-        matchLotto(randomLottos, userLotto, winningLotto);
-        calculateRateOfReturn(wallet, winningLotto);
+        processLotto(randomLottos, userLotto, winningLotto, wallet);
 
         Output.printLottoWinningStatistics(winningLotto);
         Output.printRateOfReturn(wallet);
+    }
+
+    private void processLotto(
+            RandomLottos randomLottos, UserLotto userLotto, WinningLotto winningLotto, Wallet wallet) {
+        
+        matchLotto(randomLottos, userLotto, winningLotto);
+        calculateRateOfReturn(wallet, winningLotto);
     }
 
 
@@ -58,13 +64,13 @@ public class MainController {
 
     private UserLotto createUserLotto() {
         UserLotto.Builder builder = new UserLotto.Builder();
-        inputUserMainSixLottoBuild(builder);
-        inputUserBonusLottoBuild(builder);
+        inputUserMainSixLottoBuilder(builder);
+        inputUserBonusLottoBuilder(builder);
 
         return builder.build();
     }
 
-    private void inputUserMainSixLottoBuild(UserLotto.Builder builder) {
+    private void inputUserMainSixLottoBuilder(UserLotto.Builder builder) {
         UserSixLottoFactory factory = new UserSixLottoFactory();
 
         while (true) {
@@ -77,7 +83,7 @@ public class MainController {
         }
     }
 
-    private void inputUserBonusLottoBuild(UserLotto.Builder builder) {
+    private void inputUserBonusLottoBuilder(UserLotto.Builder builder) {
         while (true) {
             try {
                 builder.bonusLotto(Input.inputBonusLotto());

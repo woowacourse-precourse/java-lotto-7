@@ -20,12 +20,17 @@ public class LottoMatchService {
     }
 
     public void matchLottos() {
-        if (randomLottos.isEmptyRandomLotto()) {
-            throw new IllegalStateException(RANDOM_LOTTO_IS_NOT_GENERATED.getMessage());
-        }
+        validateRandomLottoEmpty();
 
         List<Rank> matchedResults = randomLottos.matchLottoAsRank(userLotto);
         winningLotto.addAllMatchedRank(matchedResults);
+    }
+
+
+    private void validateRandomLottoEmpty() {
+        if (randomLottos.isEmptyRandomLotto()) {
+            throw new IllegalStateException(RANDOM_LOTTO_IS_NOT_GENERATED.getMessage());
+        }
     }
 
 }

@@ -15,9 +15,9 @@ public class UserSixLottoFactory {
 
     public Lotto make(String input) {
         String[] separatedInputValues = input.split(LOTTO_DELIMITER);
-        List<Integer> lottoNumber = convertToNumbers(separatedInputValues);
+        List<Integer> lottoNumbers = convertToNumbers(separatedInputValues);
 
-        return new Lotto(lottoNumber);
+        return new Lotto(lottoNumbers);
     }
 
     private List<Integer> convertToNumbers(String[] strArray) {
@@ -34,13 +34,11 @@ public class UserSixLottoFactory {
     }
 
     private static int changeToNumber(String value) {
-        int num;
         try {
-            num = Integer.parseInt(value);
+            return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LOTTO_ONLY_NUMBER.getMessage());
+            throw new NumberFormatException(LOTTO_ONLY_NUMBER.getMessage());
         }
-        return num;
     }
 
 
@@ -50,7 +48,6 @@ public class UserSixLottoFactory {
             throw new IllegalArgumentException(LOTTO_INCORRECT_DELIMITER.getMessage());
         }
     }
-
 
     private static void validateEmpty(String value) {
         if (value.isEmpty()) {

@@ -11,19 +11,21 @@ public class WinningStatisticsPrinter {
     private final static String PRINT_SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private final static String PRIZE_MONEY_FORMAT = "%,d";
 
+    private final static StringBuilder printout = new StringBuilder();
+
     public static void print(WinningLotto winningLotto) {
         System.out.print(getPrintout(winningLotto));
     }
 
     public static String getPrintout(WinningLotto winningLotto) {
-        StringBuilder printout = new StringBuilder();
         EnumMap<Rank, Integer> ranks = winningLotto.getWinningStatistics();
-        loopScore(printout, ranks);
+
+        loopScore(ranks);
 
         return printout.toString();
     }
 
-    private static void loopScore(StringBuilder printout, Map<Rank, Integer> ranks) {
+    private static void loopScore(Map<Rank, Integer> ranks) {
         for (Map.Entry<Rank, Integer> entry : ranks.entrySet()) {
             Rank rank = entry.getKey();
 

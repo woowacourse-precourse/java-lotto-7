@@ -14,13 +14,11 @@ public class RandomLottos {
         this.numbersMaker = numbersMaker;
     }
 
-    public List<Rank> matchLottoAsRank(UserLotto userLotto) {
+    public List<Rank> matchLottoAsRank(final UserLotto userLotto) {
         List<Rank> ranksResult = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
-            int mainLottoMatchedCount = userLotto.getMainLottoMatchedCount(lotto);
-            boolean isMatchedBonus = userLotto.isContainBonusLotto(lotto);
-            Rank rank = Rank.findRank(mainLottoMatchedCount, isMatchedBonus);
+            Rank rank = getRank(userLotto, lotto);
 
             if (rank.equals(Rank.NOTHING)) {
                 continue;
@@ -30,13 +28,20 @@ public class RandomLottos {
         return ranksResult;
     }
 
-    public void makeLottos(int ticket) {
-        for (int i = 0; i < ticket; i++) {
-            lottos.add(makeLotto());
+    private Rank getRank(UserLotto userLotto, Lotto lotto) {
+        int mainLottoMatchedCount = userLotto.getMainLottoMatchedCount(lotto);
+        boolean isMatchedBonus = userLotto.isContainBonusLotto(lotto);
+
+        return Rank.findRank(mainLottoMatchedCount, isMatchedBonus);
+    }
+
+    public void makeLottos(int tickets) {
+        for (int i = 0; i < tickets; i++) {
+            lottos.add(makeOneLotto());
         }
     }
 
-    private Lotto makeLotto() {
+    private Lotto makeOneLotto() {
         List<Integer> randomNumbers = numbersMaker.make();
         return new Lotto(randomNumbers);
     }
@@ -45,7 +50,7 @@ public class RandomLottos {
         return lottos.isEmpty();
     }
 
-    
+
     @Override
     public String toString() {
         StringBuilder printout = new StringBuilder();

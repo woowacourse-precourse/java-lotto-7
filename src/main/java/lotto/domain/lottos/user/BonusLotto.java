@@ -12,6 +12,7 @@ public class BonusLotto {
     public boolean isContainedMainLotto(Lotto lotto) {
         return lotto.isContainNumber(bonus);
     }
+    
 
     @Override
     public String toString() {
