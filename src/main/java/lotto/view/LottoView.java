@@ -36,7 +36,6 @@ public class LottoView {
 
 
     public MoneyDTO getMoneyInput() {
-
         //제대로 된 값이 입력받을 때까지 반복
         while (true) {
             String input = readLine();
@@ -51,11 +50,10 @@ public class LottoView {
     }
 
     public int parseInput(String input) {
-
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.", e);
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
 
@@ -72,20 +70,24 @@ public class LottoView {
         while (true) {
             String input = readLine();
             try {
-                validateInput(input);
-                Lotto lotto = new Lotto(sliceToken(input));
-                return new CorrectDTO(lotto);
+                return validateAndParseLottoInput(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    public CorrectDTO validateAndParseLottoInput(String input){
+        validateInput(input);
+        Lotto lotto = new Lotto(sliceToken(input));
+        return new CorrectDTO(lotto);
+    }
 
     private List<Integer> sliceToken(String input) {
         String[] tokens = input.split(",");
         List<Integer> lotto = new ArrayList<>();
         for (String token : tokens) {
+            token = token.trim();
             lotto.add(parseInput(token));
         }
         return lotto;
