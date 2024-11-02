@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-
 import lotto.enums.WinningType;
 import lotto.model.Lottos;
 import lotto.model.Money;
@@ -26,33 +25,16 @@ public class LottoMachineController {
   }
 
   public void runLottoMachine() {
-
     tryReadMoney();
-
-    int buyedLottosQuantity = money.buyedLottosQuantity();
-
-    outputView.printQuantityOfLottos(buyedLottosQuantity);
-
-    lottos = Lottos.createLottos(buyedLottosQuantity);
-
-    String allLottos = lottos.allLottosToString();
-    outputView.printAllLottos(allLottos);
-
-    String inputWinningNumbers = inputView.readWinningNumbers();
-    String inputBonusNumber = inputView.readBonusNumber();
-
-    this.winningNumbers = new WinningNumbers(inputWinningNumbers, inputBonusNumber);
-    
-    winningStatistic = WinningStatistic.createWinningStatistic(winningNumbers, lottos);
-
-    List<WinningType> winningStatistic1 = winningStatistic.getWinningStatistic();
-
-    totalPrice = TotalPrice.sumAllPrice(winningStatistic1);
-
-    double returnRate = totalPrice.calculateReturnRate(money);
-
-    outputView.printStatistic(winningStatistic1);
-    outputView.printReturnRate(returnRate, winningStatistic1);
+    int buyedLottosQuantity = getLottosQuantity();
+    printQuantityOfLottos(buyedLottosQuantity);
+    tryMakeLotto(buyedLottosQuantity);
+    printAllLottos(lottos.allLottosToString());
+    tryReadBonusAndWinningNumbers();
+    List<WinningType> winningResults = getWinningStatistic(winningNumbers, lottos);
+    printStatistic(winningResults);
+    double returnRate = getReturnRate(winningResults);
+    printReturnRate(returnRate, winningResults);
   }
 
   private void tryReadMoney() {
@@ -63,5 +45,57 @@ public class LottoMachineController {
       System.out.println(e.getMessage());
       tryReadMoney();
     }
-}
+  }
+
+  private int getLottosQuantity() {
+    return money.buyedLottosQuantity();
+  }
+
+  private void printQuantityOfLottos(int buyedLottosQuantity) {
+    outputView.printQuantityOfLottos(buyedLottosQuantity);
+  }
+
+  private void tryMakeLotto(int buyedLottosQuantity) {
+    try {
+      lottos = Lottos.createLottos(buyedLottosQuantity);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      tryMakeLotto(buyedLottosQuantity);
+    }
+  }
+
+  private void printAllLottos(String allLottos) {
+    outputView.printAllLottos(allLottos);
+  }
+
+  private void tryReadBonusAndWinningNumbers() {
+    try {
+      String inputWinningNumbers = inputView.readWinningNumbers();
+      String inputBonusNumber = inputView.readBonusNumber();
+      this.winningNumbers = new WinningNumbers(inputWinningNumbers, inputBonusNumber);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
+      tryReadBonusAndWinningNumbers();
+    }
+  }
+
+  private List<WinningType> getWinningStatistic(WinningNumbers winningNumbers, Lottos lottos) {
+    winningStatistic = WinningStatistic.createWinningStatistic(winningNumbers, lottos);
+
+    return winningStatistic.getWinningStatistic();
+  }
+
+  private double getReturnRate(List<WinningType> winningResults) {
+    totalPrice = TotalPrice.sumAllPrice(winningResults);
+
+    return totalPrice.calculateReturnRate(money);
+  }
+
+  private void printStatistic(List<WinningType> winningResults) {
+    outputView.printStatistic(winningResults);
+  }
+
+  private void printReturnRate(double returnRate, List<WinningType> winningResults) {
+    outputView.printReturnRate(returnRate, winningResults);
+  }
 }
