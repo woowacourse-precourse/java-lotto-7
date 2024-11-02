@@ -73,4 +73,19 @@ class LottoTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new Lotto(outOfRangeNumbers));
         assertEquals(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage(), exception.getMessage());
     }
+
+    @Test
+    @DisplayName("당첨 번호와 일치하는 개수 확인 테스트")
+    void shouldReturnCorrectMatchingCount() {
+        // Given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 7, 8, 9);
+
+        // When
+        int matchCount = lotto.countMatchingNumbers(winningNumbers);
+
+        // Then
+        assertEquals(3, matchCount); // 1, 2, 3이 일치
+    }
 }
