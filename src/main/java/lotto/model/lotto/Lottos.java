@@ -24,8 +24,8 @@ public class Lottos {
 
     }
 
-    public void generateLotto(){
-        GeneraterLotto.generateLotto(lottos,lottosCount);
+    public void generateLotto() {
+        GeneraterLotto.generateLotto(lottos, lottosCount);
     }
 
     public void addLotto(Lotto lotto) {
@@ -42,8 +42,18 @@ public class Lottos {
         return false;
     }
 
-    public List<Lotto> getLotto() {
+    public void lottosSort() {
+        for (Lotto lotto : lottos) {
+            lotto.numbersSort();
+        }
+    }
+
+    public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public int getLottosCount() {
+        return lottosCount;
     }
 
 }

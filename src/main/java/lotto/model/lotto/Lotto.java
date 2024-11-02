@@ -21,7 +21,13 @@ public class Lotto {
         }
     }
 
+    protected void numbersSort(){
+        numbers.stream().sorted();
+    }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
 
 }

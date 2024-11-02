@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.model.lotto.Lottos;
 import lotto.model.parseLotto.ParseLotto;
 import lotto.view.InputView;
+import lotto.view.OutView;
 
 public class LottoController {
 
@@ -14,15 +15,20 @@ public class LottoController {
     private Integer bonusNumber;
 
     public void run(){
+
+        //입출력 로직
         buyAmount = InputView.inputBuyAmount();
         winNumbersStr = InputView.inputWinNumbers();
         bonusNumber = InputView.inputBonusNumber();
-
         winNumbers = ParseLotto.splitWinNumber(winNumbersStr);
 
+        //로또 발행
         Lottos lottos = new Lottos(winNumbers, buyAmount);
         lottos.generateLotto();
+        lottos.lottosSort();
 
+        //발행한 로또 출력
+        OutView.generatedLottoPrint(lottos.getLottosCount(), lottos);
     }
 
 }

@@ -34,7 +34,7 @@ class LottoTest {
 
         lottos.generateLotto();
 
-        assertThat(lottos.getLotto().size()).isEqualTo(2);
+        assertThat(lottos.getLottos().size()).isEqualTo(2);
     }
 
 
