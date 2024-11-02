@@ -17,6 +17,7 @@ public class WinningNumberValidator {
     }
 
     public static List<Integer> validateInputNumber(List<String> input) throws IllegalArgumentException {
+        validateCount(input);
         validateDuplication(input);
         List<Integer> winningNumber = new ArrayList<>();
         for (String separatedInput : input) {
@@ -50,6 +51,12 @@ public class WinningNumberValidator {
         Set<String> deduplication = new HashSet<>(input);
         if (deduplication.size() != input.size()) {
             throw new IllegalArgumentException(WinningNumberRule.DUPLICATION.getMessage());
+        }
+    }
+
+    private static void validateCount(List<String> input){
+        if(input.size() != CompareInteger.LOTTO_NUMBER_COUNT.getNumber()){
+            throw new IllegalArgumentException(WinningNumberRule.COUNT.getMessage());
         }
     }
 
