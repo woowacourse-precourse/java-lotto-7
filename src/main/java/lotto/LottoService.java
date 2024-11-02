@@ -5,9 +5,11 @@ import lotto.enums.WinningStatistics;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
@@ -61,6 +63,15 @@ public class LottoService {
             if (stat.getMatchCount() == matchCount) {
                 stat.setCount(stat.getCount() + 1);
             }
+        }
+    }
+
+    public void showWinningStatistics() {
+        System.out.println(OutputMessage.WINNING_STATISTICS_MESSAGE.getMessage());
+        for (int i = WinningStatistics.values().length - 1; i >= 0; i--) {
+            WinningStatistics stat = WinningStatistics.values()[i];
+            String formattedPrize = NumberFormat.getNumberInstance(Locale.US).format(stat.getPrize());
+            System.out.println(stat.getMatchCount() + "개 일치 (" + formattedPrize + "원) - " + stat.getCount() + "개");
         }
     }
 }
