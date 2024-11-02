@@ -13,14 +13,25 @@ public class User {
 
     public List<List<Integer>> lotteryTickets = new ArrayList<>();
 
-    public User(int money) {
+    public User(String money) {
         validate(money);
-        this.money = money;
+        this.money = Integer.parseInt(money);
     }
 
-    private void validate(int money) {
-        if (money < 0 || (money % 1000) != 0) {
-            throw new IllegalArgumentException("[ERROR] 0원 이상의 1000원 단위로 나누어 떨어지는 금액을 입력해야합니다.");
+    private void validate(String money) {
+        if (!money.matches("-?\\d+") || money.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "0 이상의 1000 단위로 나누어 떨어지는 숫자를 "
+                    + "공백없이 입력해야합니다."
+                    + " ex)8000");
+        }
+
+        int number = Integer.parseInt(money);
+        if (number < 0 || (number % 1000) != 0) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "0 이상의 1000 단위로 나누어 떨어지는 숫자를 "
+                    + "공백없이 입력해야합니다."
+                    + " ex)8000");
         }
     }
 

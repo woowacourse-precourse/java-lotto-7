@@ -14,7 +14,7 @@ public class UserTest {
 
     @Test
     void 발행_횟수_만큼_로또_발행_되는지_테스트() {
-        User user = new User(8000);
+        User user = new User("8000");
         user.moneyToTicket(user.money);
 
         int actual = user.lotteryTickets.size();
@@ -23,22 +23,23 @@ public class UserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1000, 1234, 18009})
-    void 구입_금액이_음수일때와_1000원_으로_나누어_떨어지지_않으면_예외가_발생한다(int value) {
+    @ValueSource(strings = {"-1000", "1234", " ", "천만원", " 1000 "})
+    void 공백없이_0원_이상의_1000원_단위로_나누어_떨어지는_숫자가_아니라면_예외가_발생한다(String value) {
         assertThatThrownBy(() -> new User(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 보너스_점수_1_부터_45_까지의_정수가_아닐_때_예외가_발생한다() {
-        User user = new User(1000);
+        User user = new User("1000");
         assertThatThrownBy(() -> user.specifyBonusNumber(47))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
     @Test
     void 수익률() {
-        User user = new User(8000); // 8장 발행 한다고 치고
+        User user = new User("8000"); // 8장 발행 한다고 치고
         user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
         user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
         user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));

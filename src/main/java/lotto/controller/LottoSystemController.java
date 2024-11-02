@@ -20,7 +20,7 @@ public class LottoSystemController {
         User user = null;
         while (user == null) {
             try {
-                user = new User(Integer.parseInt(inputView.inputAmount()));
+                user = new User(inputView.inputAmount());
                 user.moneyToTicket(user.money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
