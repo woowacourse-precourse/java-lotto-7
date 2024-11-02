@@ -19,15 +19,18 @@
 │          │
 │          ├─domain // 로또의 생성 및 관리
 │          │      DrawNumber.java // 랜덤 번호 생성
+│          │      IssueRandomLotto.java // 랜덤 번호를 넣은 로또를 LottoPool에 추가
 │          │      LottoPool.java // 생성된 로또 관리
 │          │
 │          ├─game // 로또 추첨 후 당첨 과정 전체
-│          │      LottoGame.java
+│          │      LoopForException.java // 예외 발생 시 반복 입력
+│          │      LottoGame.java // 로또 게임 전반
 │          │
 │          ├─service // 여러 서비스 클래스
 │          │      LottoConverter.java // 당첨 번호 -> 로또 변환, 돈 -> 로또 변환
 │          │      ValidChecker.java // 입력 유효성 검사
 │          │      WinningNumberChecker.java // 당첨 번호와 생성된 번호 대조
+│          │      WinningNumberPool.java // 당첨 번호 및 보너스 번호 관리
 │          │      WinningStatisticsManager.java // 당첨 통계 관리
 │          │
 │          ├─test // 테스트 패키지
@@ -35,12 +38,14 @@
 │          │  │
 │          │  ├─domainTest
 │          │  │      DrawNumberTest.java
+│          │  │      IssueRandomLottoTest.java
 │          │  │      LottoPoolTest.java
 │          │  │
 │          │  └─serviceTest
 │          │          LottoConverterTest.java
 │          │          ValidCheckerTest.java
 │          │          WinningNumberCheckerTest.java
+│          │          WinningNumberPoolTest.java
 │          │          WinningStatisticsManagerTest.java
 │          │
 │          └─ui // 입출력
@@ -48,10 +53,10 @@
 │                  OutputManager.java
 │
 └─test
-    └─java
-        └─lotto
-                ApplicationTest.java
-                LottoTest.java
+└─java
+└─lotto
+ApplicationTest.java
+LottoTest.java
 ```
 ## 입출력 예시
 ### 입력
