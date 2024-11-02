@@ -30,6 +30,7 @@ public class LottoController {
         responseLottoTickets(lottoTickets);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
+
         LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets.getTickets(), winningNumbers);
         double rateOfReturn = calculateRateOfReturn(result, purchasePrice.value());
         outputView.displayWinningResult(result, rateOfReturn);
@@ -37,8 +38,7 @@ public class LottoController {
 
     private PurchasePrice requestPurchasePrice() {
         outputView.displayPurchasePriceRequest();
-        int priceInput = inputView.getInteger();
-        return PurchasePrice.from(priceInput);
+        return new PurchasePrice(inputView.getInteger());
     }
 
     private void responsePurchaseQuantity(PurchasePrice purchasePrice) {
@@ -77,6 +77,7 @@ public class LottoController {
 
     private List<Integer> parseNumbers(String input) {
         List<String> numbers = List.of(input.split(","));
+        // TODO: List<String> validate 필요함
         return numbers.stream()
                 .map(Integer::parseInt)
                 .toList();
