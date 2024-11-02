@@ -7,6 +7,7 @@ import lotto.constant.PriceRule;
 import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
 import lotto.validator.PriceValidator;
+import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -57,8 +58,14 @@ public class LottoController {
 
     private void getWinningNumber(){
         OutputView.printWinningNumberGuide();
-        List<String> inputWinningNumber = Arrays.asList(InputView.readInput().split(","));
-        validateWinningNumber(inputWinningNumber);
+        String input = InputView.readInput();
+        try {
+            WinningNumberValidator.validateInputComma(input);
+            List<String> inputWinningNumber = Arrays.asList(input.split(","));
+            validateWinningNumber(inputWinningNumber);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private void validateWinningNumber(List<String> inputWinningNumber){
