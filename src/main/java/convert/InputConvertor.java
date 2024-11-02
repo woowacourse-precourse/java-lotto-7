@@ -6,15 +6,8 @@ import valid.Validate;
 
 public class InputConvertor {
 
-    private void validateWinningNumbers(List<Integer> winningNumbers) {
-        Validate.isDuplicated(winningNumbers);
-        Validate.isSixNumbers(winningNumbers);
-    }
-
-    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        Validate.isNotInWinningNumbers(winningNumbers, bonusNumber);
-        Validate.isPositiveNumber(bonusNumber);
-        Validate.isOneBetweenFortyFive(bonusNumber);
+    private static void isNumber(String input) {
+        Validate.isNumber(input);
     }
 
     public int convertPurchaseAmount(String inputPurchaseAmount) {
@@ -24,10 +17,6 @@ public class InputConvertor {
 
         validatePurchaseAmount(purchaseAmount);
         return purchaseAmount;
-    }
-
-    private void isNumber(String input) {
-        Validate.isNumber(input);
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
@@ -53,10 +42,21 @@ public class InputConvertor {
         }
     }
 
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        Validate.isDuplicated(winningNumbers);
+        Validate.isSixNumbers(winningNumbers);
+    }
+
     public int convertInputBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
         Validate.isNumber(inputBonusNumber);
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         validateBonusNumber(bonusNumber, winningNumbers);
         return bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        Validate.isNotInWinningNumbers(winningNumbers, bonusNumber);
+        Validate.isPositiveNumber(bonusNumber);
+        Validate.isOneBetweenFortyFive(bonusNumber);
     }
 }
