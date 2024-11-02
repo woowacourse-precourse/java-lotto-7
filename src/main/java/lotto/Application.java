@@ -47,9 +47,14 @@ public class Application {
                 .toList();
 
         if (inputs.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개 입니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 입니다.");
         }
 
+        for (String number : inputs) {
+            if (!number.matches("\\d+")) {
+                throw new IllegalArgumentException("[ERROR] 6개의 당첨번호를 쉼표(,)로 구분하여 입력해주세요.");
+            }
+        }
 
 
     }
