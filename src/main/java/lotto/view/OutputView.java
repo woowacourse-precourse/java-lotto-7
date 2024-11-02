@@ -25,7 +25,8 @@ public class OutputView {
         Map<Rank, Long> rankCounts = results.stream()
                 .collect(Collectors.groupingBy(LottoResult::getRank, Collectors.counting()));
 
-        for (Rank rank : Rank.values()) {
+        for (int i = Rank.values().length - 1; i >= 0; i--) { //역순으로 5등 결과부터 출력
+            Rank rank = Rank.values()[i];
             if (rank != Rank.NONE) {
                 String message = getRankMessage(rank, rankCounts.getOrDefault(rank, 0L));
                 System.out.println(message);
@@ -35,11 +36,10 @@ public class OutputView {
 
     private String getRankMessage(Rank rank, long count) {
         String formattedWinningAmount = MONEY_FORMAT.format(rank.getWinnings());
-        return switch (rank) {
-            case FIRST -> String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
-            case SECOND -> String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
-            default -> String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
-        };
+        if (rank.equals(Rank.SECOND)) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
+        }
+        return String.format("%d개 일치 (%s원) - %d개", rank.getMatchCount(), formattedWinningAmount, count);
     }
 
     public void printProfitRate(double profitRate) {
