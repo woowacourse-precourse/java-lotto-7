@@ -19,14 +19,6 @@ public class Player {
     private int purchaseAmount = 0;
     private int lottoAmount = 0;
     private boolean evaluated = false;
-    private String[] winningPlaceDescriptionFormats = {
-        "",
-        "6개 일치 (2,000,000,000원) - %d개\n",
-        "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",
-        "5개 일치 (1,500,000원) - %d개\n",
-        "4개 일치 (50,000원) - %d개\n",
-        "3개 일치 (5,000원) - %d개\n",
-    };
 
     public void buyLottos(int purchaseAmount) {
         evaluated = false;
@@ -52,17 +44,6 @@ public class Player {
             totalPrize += winningCounts[i] * WINNING_PRIZE_TABLE[i];
         }
         evaluated = true;
-    }
-
-    public String getWinningResult() {
-        if (!evaluated)
-            throw new IllegalStateException("[ERROR] 로또 추첨을 하지 않았습니다.");
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 5; i > 0; i--) {
-            sb.append(String.format(winningPlaceDescriptionFormats[i], winningCounts[i]));
-        }
-        return sb.toString();
     }
 
     public float getRateOfReturn() {

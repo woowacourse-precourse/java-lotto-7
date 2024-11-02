@@ -68,7 +68,6 @@ public abstract class InputHandler {
             if (bonusNumber < RANGE_LOW || bonusNumber > RANGE_HIGH) {
                 String message = String.format("당첨 번호는 %d 부터 %d 사이여야 합니다. ", RANGE_LOW, RANGE_HIGH);
                 throw createArgumentException(message, input);
-
             }
 
             return bonusNumber;
