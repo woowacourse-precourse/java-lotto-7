@@ -28,12 +28,28 @@ public enum Ranking {
   }
 
   public static Ranking valueOf(int count, boolean matchBonus) {
-    if (count == FIRST.winCount) return FIRST;
-    if (count == SECOND.winCount && matchBonus) return SECOND;
-    if (count == THIRD.winCount) return THIRD;
-    if (count == FOURTH.winCount) return FOURTH;
-    if (count == FIFTH.winCount) return FIFTH;
-    if (count == NONE.winCount) return NONE;
+    if (count == FIRST.winCount) {
+      return FIRST;
+    }
+    if (count == SECOND.winCount && matchBonus) {
+      return SECOND;
+    }
+    if (count == THIRD.winCount) {
+      return THIRD;
+    }
+    if (count == FOURTH.winCount) {
+      return FOURTH;
+    }
+    if (count == FIFTH.winCount) {
+      return FIFTH;
+    }
+    if (count < FIFTH.winCount) {
+      return NONE;
+    }
     throw new IllegalArgumentException("[ERROR] 일치하는 등수가 없습니다.");
+  }
+
+  public static String printRaningMsg(Ranking ranking) {
+    return ranking.getMessage();
   }
 }
