@@ -3,6 +3,8 @@ package lotto.utils.parser;
 import static lotto.constants.ErrorMessage.CANT_DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER;
 import static lotto.constants.ErrorMessage.INPUT_BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.constants.ErrorMessage.ONLY_INTEGER_ALLOWED;
+import static lotto.constants.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constants.LottoConstant.MIN_LOTTO_NUMBER;
 
 import java.util.List;
 import lotto.dto.LottoNumbers;
@@ -22,7 +24,7 @@ public class BonusNumberParser {
     }
 
     private static void checkBonusNumberRange(int bonusNumber) {
-        if (!(bonusNumber >= 1 && bonusNumber <= 45)){
+        if (!(bonusNumber >= MIN_LOTTO_NUMBER && bonusNumber <= MAX_LOTTO_NUMBER)){
             throw new IllegalArgumentException(INPUT_BONUS_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }
