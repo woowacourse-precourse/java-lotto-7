@@ -6,13 +6,14 @@ import lotto.io.View;
 
 
 public class Application {
+    private static final String COMMA = ",";
     private final Integer price;
     private final LottoGenerator lottoGenerator;
     private final LottoResult lottoResult;
     private final WinningChecker winningChecker;
 
     public Application() {
-        Lotto winningNumber = Lotto.of(Input.inputWinningNumber(), ",");
+        Lotto winningNumber = Lotto.generateWinningNumber(Input.inputWinningNumber(), COMMA);
         Integer bonusNumber = Integer.parseInt(Input.inputBonusNumber());
 
         this.price = Integer.parseInt(Input.inputPrice());

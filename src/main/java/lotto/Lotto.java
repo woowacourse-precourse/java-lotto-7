@@ -45,7 +45,7 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public static Lotto of(String input, String delimiter) {
+    public static Lotto generateWinningNumber(String input, String delimiter) {
          List<Integer> numbers = Arrays.stream(input.split(delimiter))
                 .map(String::trim)
                 .map(Integer::parseInt)
