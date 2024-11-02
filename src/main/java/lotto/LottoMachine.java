@@ -8,6 +8,7 @@ public class LottoMachine {
     public void run() {
         long purchaseCount = getPurchaseCountFromUser();
         List<Lotto> lottos = Lotto.generateLottos(purchaseCount);
+        OutputView.printLottos(lottos);
     }
 
     private long getPurchaseCountFromUser() {
