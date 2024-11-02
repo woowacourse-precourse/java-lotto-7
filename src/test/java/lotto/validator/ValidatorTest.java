@@ -26,7 +26,7 @@ public class ValidatorTest {
         winningLotto.add(2);
         winningLotto.add(3);
 
-        assertThatThrownBy(()-> Validator.validateNumberCount(winningLotto))
+        assertThatThrownBy(()-> Validator.validateLottoNumberCount(winningLotto))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -48,7 +48,7 @@ public class ValidatorTest {
     void 구분자가_콤마가_아닌_다른_문자이면_예외가_발생한다() {
         String input = "1*2,3,4,5,6";
 
-        assertThatThrownBy(()-> Validator.validateInputWinningLottoFormat(input))
+        assertThatThrownBy(()-> Validator.validateInputWinningNumberFormat(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -56,7 +56,7 @@ public class ValidatorTest {
     void 구분자가_콤마가_아닌_다른_문자이면_예외가_발생한다2() {
         String input = "1 2,3,4,5,6";
 
-        assertThatThrownBy(()-> Validator.validateInputWinningLottoFormat(input))
+        assertThatThrownBy(()-> Validator.validateInputWinningNumberFormat(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,7 +64,7 @@ public class ValidatorTest {
     void 공백문자가_있으면_예외가_발생한다() {
         String input = "1,2,3,4,5,6 ";
 
-        assertThatThrownBy(()-> Validator.validateInputWinningLottoFormat(input))
+        assertThatThrownBy(()-> Validator.validateInputWinningNumberFormat(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

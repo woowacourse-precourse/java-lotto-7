@@ -22,9 +22,10 @@ public class LottoController {
 
     public void proceed() {
         int lottoAmount = inputLottoAmount();
-        int lottoTicketNumber = Calculator.calculateLottoTicketNumber(lottoAmount);
-        List<Lotto> userLottos = LottoMachineController.issueLotto(lottoTicketNumber);
-        output.printLottoTicket(userLottos, lottoTicketNumber);
+        int lottoTicketCount = Calculator.calculateLottoTicketNumber(lottoAmount);
+
+        List<Lotto> userLottos = LottoMachineController.issueLotto(lottoTicketCount);
+        output.printLottoTicket(userLottos, lottoTicketCount);
 
         Lotto winningLotto = new Lotto(inputWinningNumber());
         int bonusNumber = inputBonusNumber(winningLotto);

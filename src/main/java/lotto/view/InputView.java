@@ -16,7 +16,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
         System.out.println();
-        return Validator.validateWinningLotto(winningNumber);
+        return Validator.validateWinningNumber(winningNumber);
     }
 
     public int inputBonusNumber() {

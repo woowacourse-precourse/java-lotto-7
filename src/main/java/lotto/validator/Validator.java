@@ -22,16 +22,16 @@ public class Validator {
         return amount;
     }
 
-    public static List<Integer> validateWinningLotto(String inputWinningLotto) {
+    public static List<Integer> validateWinningNumber(String inputWinningLotto) {
         List<Integer> winningLotto = new ArrayList<>();
-        validateInputWinningLottoFormat(inputWinningLotto);
+        validateInputWinningNumberFormat(inputWinningLotto);
         List<String> numbers = List.of(inputWinningLotto.split(","));
         for (String number : numbers) {
             int winningLottoNumber = validateNumeric(number);
             validateLottoNumberRange(winningLottoNumber);
             winningLotto.add(winningLottoNumber);
         }
-        validateNumberCount(winningLotto);
+        validateLottoNumberCount(winningLotto);
         validateLottoDuplicate(winningLotto);
         return winningLotto;
     }
@@ -62,7 +62,7 @@ public class Validator {
         }
     }
 
-    public static void validateNumberCount(List<Integer> winningLotto) {
+    public static void validateLottoNumberCount(List<Integer> winningLotto) {
         if (winningLotto.size() != 6) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_NUMBER_COUNT);
         }
@@ -75,7 +75,7 @@ public class Validator {
         }
     }
 
-    public static void validateInputWinningLottoFormat(String input) {
+    public static void validateInputWinningNumberFormat(String input) {
         String regex = "[^0-9,]";
         if (Pattern.compile(regex).matcher(input).find()) {
             throw new IllegalArgumentException(ERROR_INVALID_LOTTO_FORMAT);

@@ -5,8 +5,8 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class OutputView {
-    public void printLottoTicket(List<Lotto> lottoTickets, int lottoTicketNumber) {
-        System.out.println(lottoTicketNumber + "개를 구매했습니다.");
+    public void printLottoTicket(List<Lotto> lottoTickets, int lottoTicketCount) {
+        System.out.println(lottoTicketCount + "개를 구매했습니다.");
         for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getNumbers());
         }
