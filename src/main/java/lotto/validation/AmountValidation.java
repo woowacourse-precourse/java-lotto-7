@@ -4,6 +4,9 @@ import lotto.exception.AmountException;
 
 public class AmountValidation {
 
+    private static final int TICKET_COST = 1000;
+    private static final int COUNT_ZERO = 0;
+
     public static void amountValidation(String purchaseAmount) {
         int amount = isNumber(purchaseAmount);
         isThousand(amount);
@@ -11,7 +14,7 @@ public class AmountValidation {
     }
 
     public static int isNumber(String purchaseAmount) {
-        int amount = 0;
+        int amount = COUNT_ZERO;
         try {
             amount = Integer.parseInt(purchaseAmount);
         } catch (IllegalArgumentException e) {
@@ -21,13 +24,13 @@ public class AmountValidation {
     }
 
     public static void isThousand(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount % TICKET_COST != COUNT_ZERO) {
             AmountException.exceptionAmountThousand();
         }
     }
 
     public static void isOverZero(int amount) {
-        if (amount <= 0) {
+        if (amount <= COUNT_ZERO) {
             AmountException.exceptionAmountZero();
         }
     }
