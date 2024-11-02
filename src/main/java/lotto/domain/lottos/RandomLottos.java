@@ -2,27 +2,42 @@ package lotto.domain.lottos;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.LottoMatchedResult;
+import lotto.domain.Rank;
 import lotto.domain.lottos.user.UserLotto;
+import lotto.domain.number.NumbersMaker;
 
 public class RandomLottos {
-    private final List<Lotto> lottos;
+    private final NumbersMaker numbersMaker;
+    private final List<Lotto> lottos = new ArrayList<>();
 
-    public RandomLottos(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public RandomLottos(NumbersMaker numbersMaker) {
+        this.numbersMaker = numbersMaker;
     }
 
-    public List<LottoMatchedResult> matchLotto(UserLotto userLotto) {
-        List<LottoMatchedResult> matchedResult = new ArrayList<>();
+    public List<Rank> matchLottoAsRank(UserLotto userLotto) {
+        List<Rank> ranksResult = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
             int mainLottoMatchedCount = userLotto.getMainLottoMatchedCount(lotto);
             boolean isMatchedBonus = userLotto.isContainBonusLotto(lotto);
+            Rank rank = Rank.findRank(mainLottoMatchedCount, isMatchedBonus);
 
-            matchedResult.add(new LottoMatchedResult(mainLottoMatchedCount, isMatchedBonus));
+            ranksResult.add(rank);
         }
-        return matchedResult;
+        return ranksResult;
     }
+
+    public void makeLottos(int ticket) {
+        for (int i = 0; i < ticket; i++) {
+            lottos.add(makeLotto());
+        }
+    }
+
+    private Lotto makeLotto() {
+        List<Integer> randomNumbers = numbersMaker.make();
+        return new Lotto(randomNumbers);
+    }
+
 
     @Override
     public String toString() {
