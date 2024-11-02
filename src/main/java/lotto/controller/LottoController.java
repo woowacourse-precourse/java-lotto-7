@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.constant.Prize;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningNumbers;

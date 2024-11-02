@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.constant.Prize;
 
 public class OutputView {
