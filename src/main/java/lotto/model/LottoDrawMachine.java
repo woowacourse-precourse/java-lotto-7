@@ -32,16 +32,17 @@ public class LottoDrawMachine {
     }
 
     public Double calculateEarningsRate() {
-        int totalWinningPrice = sumTotalEarnings();
-        return (double) (totalWinningPrice / (lottos.size() * 1000));
+        long totalWinningPrice = sumTotalEarnings();
+        long purchaseAmount = lottos.size() * 1000L;
+        return (double) totalWinningPrice / purchaseAmount * 100;
     }
 
-    private int sumTotalEarnings() {
-        int total = 0;
+    private long sumTotalEarnings() {
+        long total = 0L;
         for (Map.Entry<Rank, Integer> entry : winningResult.entrySet()) {
             Rank rank = entry.getKey();
             int count = entry.getValue();
-            if (count == 0) continue;
+            if (count == 0 || rank.equals(Rank.NONE)) continue;;
             total += rank.price() * count;
         }
         return total;

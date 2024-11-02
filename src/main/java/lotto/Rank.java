@@ -4,19 +4,19 @@ import java.text.NumberFormat;
 import java.util.stream.Stream;
 
 public enum Rank {
-    FIRST(6, false, 2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false, 1500000),
-    FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000),
-    NONE(-1, false, 0)
+    FIRST(6, false, 2_000_000_000L),
+    SECOND(5, true, 30_000_000L),
+    THIRD(5, false, 1_500_000L),
+    FOURTH(4, false, 50_000L),
+    FIFTH(3, false, 5_000L),
+    NONE(-1, false, 0L)
     ;
 
     private final int count;
     private final boolean hasBonus;
-    private final int price;
+    private final long price;
 
-    Rank(int count, boolean hasBonus, int price) {
+    Rank(int count, boolean hasBonus, long price) {
         this.count = count;
         this.hasBonus = hasBonus;
         this.price = price;
@@ -30,7 +30,7 @@ public enum Rank {
         return this.hasBonus;
     }
 
-    public int price() {
+    public long price() {
         return this.price;
     }
 

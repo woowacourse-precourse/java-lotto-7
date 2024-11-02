@@ -97,5 +97,24 @@ class LottoDrawMachineTest {
         assertThat(result.get(Rank.FIFTH)).isEqualTo(2);
     }
 
+    @Test
+    void 발행한_로또가_1장이고_일치하는_번호가_3개인_경우_수익률을_계산한다() {
+        // given
+        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        List<Integer> winningNumbers = List.of(1, 2, 3, 14, 15, 16);
+        int bonus = 7;
+        LottoDrawMachine lottoDrawMachine = new LottoDrawMachine(lottos, winningNumbers, bonus);
+
+        // when
+        lottoDrawMachine.compareLottoToWinning();
+        Double earningsRate = lottoDrawMachine.calculateEarningsRate();
+        int winningSum = 5000;
+        int purchaseAmount = 8000;
+        Double result = (double) winningSum / purchaseAmount * 100;
+
+        // then
+        assertThat(earningsRate).isEqualTo(result);
+    }
+
 
 }
