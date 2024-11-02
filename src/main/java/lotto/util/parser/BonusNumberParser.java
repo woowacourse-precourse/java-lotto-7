@@ -1,5 +1,6 @@
 package lotto.util.parser;
 
+import static lotto.message.ErrorMessage.EMPTY_INPUT_BONUS_NUMBER_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.NOT_NUMERIC_BONUS_NUMBER_ERROR_MESSAGE;
 
 public class BonusNumberParser {
@@ -20,7 +21,7 @@ public class BonusNumberParser {
 
     private static void validateRawBonusNumber(String rawBonusNumber) {
         if (rawBonusNumber.isBlank()) {
-            throw new IllegalArgumentException("보너스 번호 입력시 빈 문자열을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT_BONUS_NUMBER_ERROR_MESSAGE.getContent());
         }
     }
 }
