@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.enums.WinningType;
 
-public class TotalPrice {
+public class TotalPrice implements ReturnRate{
   public static final int FIRST_PLACE_PRICE = 2000000000;
   public static final int SECOND_PLACE_PRICE = 30000000;
   public static final int THIRD_PLACE_PRICE = 1500000;
@@ -36,6 +36,7 @@ public class TotalPrice {
     return new TotalPrice(totalPrice);
   }
 
+  @Override
   public double calculateReturnRate(Money money) {
     return Math.round(
             (this.totalPrice / (double) money.getMoney())
