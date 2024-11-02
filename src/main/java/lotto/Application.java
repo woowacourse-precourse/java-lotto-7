@@ -22,6 +22,6 @@ public class Application {
         Lottos lottos = new Lottos(lottoPaper);
         lottos.searchAll(winningNumbers, bonus);
 
-        Output.printWinner();
+        Output.printWinner(cost);
     }
 }
