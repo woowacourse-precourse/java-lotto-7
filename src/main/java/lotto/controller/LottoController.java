@@ -1,21 +1,23 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.View;
 
 public class LottoController {
     public void run(){
-        initLotts();
+        Lottos lottos =initLotts();
+        System.out.println();
 
 
 
 
     }
 
-    private void initLotts(){
+    private Lottos initLotts(){
         View.promptForPurchaseAmount();
         Money money =  new Money(View.inputLottoPurchaseAmount());
-        return Lottos.purchaseLottos(money.getLottoQuantity());
+        return new Lottos(money.getLottoQuantity());
 
     }
 
