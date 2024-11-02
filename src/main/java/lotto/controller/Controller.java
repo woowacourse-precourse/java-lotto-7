@@ -8,6 +8,7 @@ import lotto.model.LottoCalculator;
 import lotto.model.LottoStore;
 import lotto.model.LottoTicket;
 import lotto.parser.BonusNumberParser;
+import lotto.parser.PurchaseAmountParser;
 import lotto.parser.WinningNumberParser;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
@@ -55,8 +56,9 @@ public class Controller {
         while (true) {
             try {
                 String rawPurchaseAmount = inputView.readRawPurchaseAmount();
-                PurchaseAmountValidator.validate(rawPurchaseAmount);
-                return Integer.parseInt(rawPurchaseAmount);
+                int purchaseAmount = PurchaseAmountParser.parseRawPurchaseAmount(rawPurchaseAmount);
+                PurchaseAmountValidator.validate(purchaseAmount);
+                return purchaseAmount;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }

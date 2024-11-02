@@ -4,13 +4,17 @@ import static lotto.message.ErrorMessage.DUPLICATED_NUMBER_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.INVALID_NUMBER_COUNT_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.dto.LottoStatus;
 
 public class Lotto {
+
+    private final static int MAX_LOTTO_NUMBER_COUNT = 6;
+    private final static int MIN_LOTTO_NUMBER = 1;
+    private final static int MAX_LOTTO_NUMBER = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,8 +22,7 @@ public class Lotto {
         validateNumbersRange(numbers);
         validateDuplication(numbers);
 
-        this.numbers = new ArrayList<>(numbers);
-        this.numbers.sort(Comparator.naturalOrder());
+        this.numbers = initLottoNumbers(numbers);
     }
 
     public LottoStatus getStatus() {
@@ -27,13 +30,13 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MAX_LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT_ERROR_MESSAGE.getContent());
         }
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
-        for(int number : numbers) {
+        for (int number : numbers) {
             validateNumberRange(number);
         }
     }
@@ -44,17 +47,24 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(int number){
+    private void validateNumberRange(int number) {
         if (!isValidNumber(number)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE_ERROR_MESSAGE.getContent());
         }
     }
 
     private boolean isValidNumber(int number) {
-        return 1 <= number && number <= 45;
+        return MIN_LOTTO_NUMBER <= number && number <= MAX_LOTTO_NUMBER;
     }
 
     private boolean isDuplicated(List<Integer> numbers) {
-        return new HashSet<Integer>(numbers).size() != numbers.size();
+        HashSet<Integer> notDuplicatedNumbers = new HashSet<>(numbers);
+        return notDuplicatedNumbers.size() != numbers.size();
+    }
+
+    private List<Integer> initLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

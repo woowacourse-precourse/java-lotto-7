@@ -72,9 +72,11 @@ public class LottoCalculator {
 
     private int getCorrectNumberCount(List<Integer> numbers) {
         int correctNumberCount = 0;
+        LottoStatus winningLottoStatus = winningLotto.getStatus();
+        List<Integer> winningNumbers = winningLottoStatus.getNumbers();
 
         for (int number : numbers) {
-            if (winningLotto.getStatus().getNumbers().contains(number)) {
+            if (winningNumbers.contains(number)) {
                 correctNumberCount++;
             }
         }

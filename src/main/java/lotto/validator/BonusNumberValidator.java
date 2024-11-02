@@ -9,6 +9,9 @@ import lotto.model.Lotto;
 
 public class BonusNumberValidator {
 
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+
     public static void validate(Lotto winningLotto, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
         validateDuplication(winningLotto, bonusNumber);
@@ -21,7 +24,7 @@ public class BonusNumberValidator {
     }
 
     private static boolean isValidRange(int bonusNumber) {
-        return 1 <= bonusNumber && bonusNumber <= 45;
+        return LOTTO_MIN_NUMBER <= bonusNumber && bonusNumber <= LOTTO_MAX_NUMBER;
     }
 
     private static void validateDuplication(Lotto winningLotto, int bonusNumber) {

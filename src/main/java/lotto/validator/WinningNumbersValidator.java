@@ -6,6 +6,8 @@ import static lotto.message.ErrorMessage.INVALID_CONTENT_WINNING_NUMBERS_ERROR_M
 
 public class WinningNumbersValidator {
 
+    private static final char COMMA = ',';
+
     public static void validate(String rawWinningNumbers) {
         validateNotEmptyString(rawWinningNumbers);
         validateContent(rawWinningNumbers);
@@ -38,6 +40,6 @@ public class WinningNumbersValidator {
     }
 
     private static boolean isComma(char c) {
-        return c == ',';
+        return c == COMMA;
     }
 }

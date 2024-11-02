@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.model.Rank.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.dto.LottoStatus;
@@ -32,7 +33,6 @@ public class OutputView {
             printLottoStatus(lottoStatus);
         }
     }
-
 
     public void printWinningStatistics(WinningStatistics winningStatistics) {
         printStatisticsStartMessage();

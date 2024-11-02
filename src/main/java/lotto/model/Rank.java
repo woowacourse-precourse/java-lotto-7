@@ -21,7 +21,6 @@ public enum Rank {
         this.prize = prize;
         this.message = message;
         this.correctCont = correctCont;
-
     }
 
     public static Rank determineRank(int correctCont, boolean containBonusNumber) {
@@ -41,9 +40,5 @@ public enum Rank {
 
     public long getPrize() {
         return prize;
-    }
-
-    public int getCorrectCont() {
-        return correctCont;
     }
 }

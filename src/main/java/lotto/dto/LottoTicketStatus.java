@@ -3,6 +3,7 @@ package lotto.dto;
 import java.util.List;
 
 public class LottoTicketStatus {
+
     List<LottoStatus> lottoStatuses;
 
     public LottoTicketStatus(List<LottoStatus> lottoStatuses) {
