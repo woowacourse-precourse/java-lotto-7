@@ -3,9 +3,9 @@ package lotto.controller;
 import static lotto.constant.core.LottoControllerConstant.*;
 
 import java.util.List;
-import lotto.model.LottoService;
-import lotto.model.Parser;
-import lotto.model.Validator;
+import lotto.service.LottoService;
+import lotto.util.Parser;
+import lotto.util.Validator;
 import lotto.model.RankCounter;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.WinningLotto;

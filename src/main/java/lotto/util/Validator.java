@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.util;
 
 import static lotto.constant.message.ErrorMessage.*;
 import static lotto.constant.core.ValidatorConstant.*;

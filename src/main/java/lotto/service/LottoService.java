@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.service;
 
 import static lotto.constant.core.LottoServiceConstant.*;
 
@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.category.Rank;
+import lotto.model.RankCounter;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.WinningLotto;
-import lotto.model.util.RandomUtil;
+import lotto.util.random.RandomUtil;
 
 public class LottoService {
 

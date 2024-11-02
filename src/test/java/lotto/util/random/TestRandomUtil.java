@@ -1,8 +1,8 @@
-package lotto.model.util;
+package lotto.util.random;
 
 import java.util.List;
 
-public class TestRandomUtil implements RandomUtil{
+public class TestRandomUtil implements RandomUtil {
 
     private final List<Integer> fixedResults;
 

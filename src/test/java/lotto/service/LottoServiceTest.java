@@ -1,13 +1,14 @@
-package lotto.model;
+package lotto.service;
 
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.category.Rank;
+import lotto.model.RankCounter;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.WinningLotto;
-import lotto.model.util.TestRandomUtil;
+import lotto.util.random.TestRandomUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
