@@ -24,5 +24,6 @@ public class Application {
         int bonusNumbers = Integer.parseInt(Console.readLine());
 
         game.UpdateWinnings(winningNumbers, bonusNumbers);
+        game.PrintWinnings();
     }
 }
