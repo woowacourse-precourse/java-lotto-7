@@ -4,7 +4,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.repository.LottoRepository;
 import lotto.repository.LottoRepositoryImpl;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
