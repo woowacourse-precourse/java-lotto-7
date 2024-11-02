@@ -9,6 +9,8 @@ import lotto.util.InputFormatter;
 
 public class LottoService {
 
+    private static final double ONE_HUNDRED_DECIMAL = 100.0;
+
     private PurchasedLotto purchasedLotto;
     private Lotto winningLottoNumbers;
     private WinningLotto winningLotto;
@@ -44,6 +46,6 @@ public class LottoService {
     }
 
     public double getRateOfReturn() {
-        return LottoRank.getTotalPrize() * 100.0 / purchasedLotto.getMoney();
+        return LottoRank.getTotalPrize() * ONE_HUNDRED_DECIMAL / purchasedLotto.getMoney();
     }
 }
