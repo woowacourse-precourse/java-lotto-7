@@ -7,33 +7,22 @@ import static lotto.constant.LottoConstant.MIN_PURCHASE_AMOUNT;
 import static lotto.constant.LottoConstant.PRICE;
 import static lotto.constant.LottoConstant.SIZE_NUMBERS;
 
-public enum Error {
-
-    MIN_AMOUNT_PURCHASE("최소 " + MIN_PURCHASE_AMOUNT + " 개 이상 구매할 수 있습니다."),
-    MAX_AMOUNT_PURCHASE("최대 " + MAX_PURCHASE_AMOUNT + " 개 까지 구매할 수 있습니다."),
-    INVALID_UNIT_PURCHASE("반드시 " + PRICE + "원 단위로만 구매할 수 있습니다."),
-
-    SIZE_LOTTO_NUMBERS("로또 번호는 반드시 " + SIZE_NUMBERS + "개여야 합니다."),
-    DUPLICATED_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
-    RANGE_LOTTO_NUMBER("로또 번호는 반드시 " + MIN_NUMBER + "이상 " + MAX_NUMBER + "이하여야 합니다."),
-
-    SIZE_WINNING_NUMBERS("당첨 번호는 " + SIZE_NUMBERS + "개여야 합니다."),
-    DUPLICATED_WINNING_NUMBERS("당첨 번호는 중복될 수 없습니다."),
-    RANGE_WINNING_NUMBER("당첨 번호는 반드시 " + MIN_NUMBER + "이상 " + MAX_NUMBER + "이하여야 합니다."),
-
-    DUPLICATED_WINNING_BONUS_NUMBERS("당첨 번호와 보너스 번호는 겹칠 수 없습니다."),
-    RANGE_BONUS_NUMBER("당첨 번호는 반드시 " + MIN_NUMBER + "이상 " + MAX_NUMBER + "이하여야 합니다.");
+public class Error {
 
     private static final String PREFIX = "[ERROR]";
 
-    private final String message;
+    public static final String MIN_AMOUNT_PURCHASE = String.format("%s 최소 %d개 이상 구매할 수 있습니다.", PREFIX, MIN_PURCHASE_AMOUNT);
+    public static final String MAX_AMOUNT_PURCHASE = String.format("%s 최대 %d개 까지만 구매할 수 있습니다.", PREFIX, MAX_PURCHASE_AMOUNT);
+    public static final String INVALID_UNIT_PURCHASE = String.format("%s 반드시 %d원 단위로만 구매할 수 있습니다.", PREFIX, PRICE);
 
-    Error(String message) {
-        this.message = message;
-    }
+    public static final String SIZE_LOTTO_NUMBERS = String.format("%s 로또 번호는 반드시 %d개여야 합니다.", PREFIX, SIZE_NUMBERS);
+    public static final String DUPLICATED_LOTTO_NUMBERS = String.format("%s 로또 번호는 중복될 수 없습니다.", PREFIX);
+    public static final String RANGE_LOTTO_NUMBER = String.format("%s 로또 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
 
-    @Override
-    public String toString() {
-        return PREFIX + " " + message;
-    }
+    public static final String SIZE_WINNING_NUMBERS = String.format("%s 당첨 번호는 반드시 %d개여야 합니다.", PREFIX, SIZE_NUMBERS);
+    public static final String DUPLICATED_WINNING_NUMBERS = String.format("%s 당첨 번호는 중복될 수 없습니다.", PREFIX);
+    public static final String RANGE_WINNING_NUMBER = String.format("%s 당첨 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
+
+    public static final String DUPLICATED_WINNING_BONUS_NUMBERS = String.format("%s 당첨 번호와 보너스 번호는 겹칠 수 없습니다.", PREFIX);
+    public static final String RANGE_BONUS_NUMBER = String.format("%s 보너스 번호는 %d이상 %d이하만 가능합니다.", PREFIX, MIN_NUMBER, MAX_NUMBER);
 }
