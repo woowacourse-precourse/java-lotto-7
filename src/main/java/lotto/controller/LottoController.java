@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Amount;
+import lotto.model.LottoMatchEvaluator;
 import lotto.model.LottoPublisher;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -31,6 +32,8 @@ public class LottoController {
         List<List<Integer>> publishedLotto = lottoPublisher.getPublishedLotto();
         outputView.printPublishedLotto(publishedLotto);
         int validBonusNumber = handleBonusInputError();
+        LottoMatchEvaluator lottoMatchEvaluator = new LottoMatchEvaluator(validLottoNumbers,validBonusNumber,lottoPublisher);
+        System.out.println(lottoMatchEvaluator.getLottoResults());
 
     }
 

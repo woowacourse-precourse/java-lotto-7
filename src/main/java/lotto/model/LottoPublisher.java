@@ -2,6 +2,8 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoPublisher {
@@ -17,6 +19,7 @@ public class LottoPublisher {
         for (int i = 0; i < repeatCount; i++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
                     LOTTO_NUMBERS_COUNT);
+            Collections.sort(lotto);
             publishedLotto.add(lotto);
         }
         publishedBonusLotto = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER,LOTTO_MAX_NUMBER,repeatCount);
