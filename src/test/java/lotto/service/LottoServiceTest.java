@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import org.assertj.core.api.Assertions;
@@ -51,6 +53,27 @@ public class LottoServiceTest {
         Assertions.assertThatThrownBy(() -> lottoService.parseWinningNumberForLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호 입력시 BonusNumber 객체로 생성되어야 한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"34", "25", "36", "45", "15", "26"})
+    void 보너스_번호_입력시_BonusNumber_객체로_생성되어야_한다(String input) {
+        Lotto winningNumber = lottoService.parseWinningNumberForLotto("1,2,3,4,5,6");
+        BonusNumber bonusNumber = lottoService.createBonusNumber(input, winningNumber);
+
+        Assertions.assertThat(bonusNumber).isInstanceOf(BonusNumber.class);
+    }
+
+    @DisplayName("보너스 번호 입력시 당첨 번호와 중복되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
+    void 보너스_번호_입력시_당첨_번호와_중복_예외_발생_테스트(String input) {
+        Lotto winningNumber = lottoService.parseWinningNumberForLotto("1,2,3,4,5,6");
+
+        Assertions.assertThatThrownBy(() -> lottoService.createBonusNumber(input, winningNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호와 중복되는 보너스 번호는 입력할 수 없습니다.");
     }
 
 }
