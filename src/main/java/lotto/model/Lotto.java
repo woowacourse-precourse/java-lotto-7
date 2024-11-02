@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,19 +28,11 @@ public class Lotto {
         return (numberNotDuplicated.size() != numbers.size());
     }
 
-    private List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 
     public boolean hasNumber(int number) {
         return numbers.contains(number);
-    }
-
-    public int getCorrectNumberCount(Lotto winningLotto) {
-        List<Integer> winningLottoNumbers = new ArrayList<>(winningLotto.getNumbers());
-        int totalSize = winningLottoNumbers.size() + this.numbers.size();
-        winningLottoNumbers.addAll(numbers);
-        Set<Integer> mergeLottoNumbers = new HashSet<>(winningLottoNumbers);
-        return totalSize - mergeLottoNumbers.size();
     }
 }

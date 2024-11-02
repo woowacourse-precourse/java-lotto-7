@@ -40,13 +40,4 @@ class LottoTest {
     void 로또_번호에_수가_존재하면_False를_반환한다() {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6)).hasNumber(7)).isFalse();
     }
-
-    @DisplayName("다른 로또 번호와의 중복되는 번호 개수를 반환한다.")
-    @Test
-    void 다른_로또_번호와의_중복되는_번호_개수를_반환한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
-        int expected = 5;
-        assertThat(lotto.getCorrectNumberCount(winningLotto)).isEqualTo(expected);
-    }
 }
