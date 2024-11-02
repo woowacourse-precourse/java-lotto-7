@@ -1,6 +1,10 @@
 package lotto.enums;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public enum LottoRank {
     FIRST(6, 2_000_000_000L),
@@ -35,5 +39,19 @@ public enum LottoRank {
                 .filter(lottoRank -> lottoRank.matchCount == matchCount)
                 .findFirst()
                 .orElse(NO_REWARD);
+    }
+
+    public static Map<LottoRank, String> getRankInfo() {
+        return Arrays.stream(values())
+                .filter(lottoRank -> lottoRank != NO_REWARD)
+                .collect(Collectors.toMap(
+                        lottoRank -> lottoRank,
+                        lottoRank -> String.format("%s개 일치 (%s원)", lottoRank.getMatchCount(), formatPrizeMoney(lottoRank.getMoney()))
+                ));
+    }
+
+    private static String formatPrizeMoney(long prizeMoney) {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+        return numberFormat.format(prizeMoney);
     }
 }
