@@ -17,7 +17,7 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         // when
-        LottoResult lottoResult = LottoResult.from(lotto, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(lotto, winningNumbers, bonusNumber);
 
         // then
         assertThat(lottoResult.getRank()).isEqualTo(Rank.FIRST);
@@ -32,7 +32,7 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         // when
-        LottoResult lottoResult = LottoResult.from(lotto, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(lotto, winningNumbers, bonusNumber);
 
         // then
         assertThat(lottoResult.getRank()).isEqualTo(Rank.SECOND);
@@ -47,7 +47,7 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         // when
-        LottoResult lottoResult = LottoResult.from(lotto, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(lotto, winningNumbers, bonusNumber);
 
         // then
         assertThat(lottoResult.getRank()).isEqualTo(Rank.THIRD);
@@ -62,7 +62,7 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         // when
-        LottoResult lottoResult = LottoResult.from(lotto, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(lotto, winningNumbers, bonusNumber);
 
         // then
         assertThat(lottoResult.getRank()).isEqualTo(Rank.FOURTH);
@@ -77,7 +77,7 @@ class LottoResultTest {
         int bonusNumber = 7;
 
         // when
-        LottoResult lottoResult = LottoResult.from(lotto, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(lotto, winningNumbers, bonusNumber);
 
         // then
         assertThat(lottoResult.getRank()).isEqualTo(Rank.FIFTH);
@@ -92,7 +92,7 @@ class LottoResultTest {
         int bonusNumber = 9;
 
         // when
-        LottoResult lottoResult = LottoResult.from(lotto, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(lotto, winningNumbers, bonusNumber);
 
         // then
         assertThat(lottoResult.getRank()).isEqualTo(Rank.NONE);

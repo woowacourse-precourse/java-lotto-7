@@ -31,7 +31,7 @@ public class LottoController {
         List<Integer> winningNumbers = inputController.getWinningNumbers();
         int bonusNumber = inputController.getBonusNumber(winningNumbers);
 
-        WinningResultCalculator resultsCalculator = WinningResultCalculator.from(issuedLottos, winningNumbers, bonusNumber);
+        WinningResultCalculator resultsCalculator = WinningResultCalculator.of(issuedLottos, winningNumbers, bonusNumber);
         outputView.printResults(resultsCalculator.getResults());
 
         double profitRate = resultsCalculator.calculateProfitRate(purchaseAmount);

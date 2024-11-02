@@ -9,7 +9,7 @@ public class LottoResult {
         this.rank = rank;
     }
 
-    public static LottoResult from(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+    public static LottoResult of(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = lotto.countMatchingNumbers(winningNumbers);
         boolean hasBonus = lotto.containsBonusNumber(bonusNumber);
         Rank rank = Rank.getRank(matchCount, hasBonus);

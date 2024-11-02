@@ -11,9 +11,9 @@ public class WinningResultCalculator {
         this.results = results;
     }
 
-    public static WinningResultCalculator from(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static WinningResultCalculator of(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         List<LottoResult> results = lottos.stream()
-                .map(lotto -> LottoResult.from(lotto, winningNumbers, bonusNumber))
+                .map(lotto -> LottoResult.of(lotto, winningNumbers, bonusNumber))
                 .collect(Collectors.toList());
         return new WinningResultCalculator(results);
     }

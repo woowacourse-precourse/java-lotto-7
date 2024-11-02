@@ -27,7 +27,7 @@ class WinningResultCalculatorTest {
                 List.of(1, 2, 3, 4, 5, 6),  // 1등
                 List.of(1, 2, 3, 4, 5, 7)   // 2등
         ));
-        WinningResultCalculator resultCalculator = WinningResultCalculator.from(lottos, winningNumbers, bonusNumber);
+        WinningResultCalculator resultCalculator = WinningResultCalculator.of(lottos, winningNumbers, bonusNumber);
 
         // when
         List<LottoResult> lottoResults = resultCalculator.getResults();
@@ -46,7 +46,7 @@ class WinningResultCalculatorTest {
                 List.of(1, 2, 3, 4, 5, 6),  // 1등
                 List.of(1, 2, 3, 4, 5, 7)   // 2등
         ));
-        WinningResultCalculator resultCalculator = WinningResultCalculator.from(lottos, winningNumbers, bonusNumber);
+        WinningResultCalculator resultCalculator = WinningResultCalculator.of(lottos, winningNumbers, bonusNumber);
 
         // when
         int totalWinnings = resultCalculator.calculateTotalWinnings();
@@ -65,7 +65,7 @@ class WinningResultCalculatorTest {
                 List.of(1, 2, 3, 4, 5, 6),  // 1등
                 List.of(1, 2, 3, 4, 5, 7)   // 2등
         ));
-        WinningResultCalculator resultCalculator = WinningResultCalculator.from(lottos, winningNumbers, bonusNumber);
+        WinningResultCalculator resultCalculator = WinningResultCalculator.of(lottos, winningNumbers, bonusNumber);
 
         // when
         double profitRate = resultCalculator.calculateProfitRate(purchaseAmount);
@@ -86,7 +86,7 @@ class WinningResultCalculatorTest {
                 List.of(8, 9, 10, 11, 12, 13), // 0개 일치
                 List.of(14, 15, 16, 17, 18, 19) // 0개 일치
         ));
-        WinningResultCalculator resultCalculator = WinningResultCalculator.from(sampleLottos, winningNumbers, bonusNumber);
+        WinningResultCalculator resultCalculator = WinningResultCalculator.of(sampleLottos, winningNumbers, bonusNumber);
 
         // when
         int totalWinnings = resultCalculator.calculateTotalWinnings();
