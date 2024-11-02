@@ -24,7 +24,7 @@ public class PurchaseAmountService {
 
     private void printLotto() {
         List<Lotto> lottos = lottoRepository.findAll();
-        for(Lotto lotto: lottos) {
+        for (Lotto lotto : lottos) {
             OutputView.printLottoNumbers(lotto.getNumbers());
         }
     }

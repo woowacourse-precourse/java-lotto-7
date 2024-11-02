@@ -21,24 +21,24 @@ public class BonusNumberValidator {
     }
 
     private static void validateBlank(final String input) {
-        if(input.isBlank()) {
+        if (input.isBlank()) {
             throw new BlankBonusNumberException();
         }
     }
 
     private static void validateNumber(final String input) {
-        if(!input.matches(REGEX_NUMBER)) {
+        if (!input.matches(REGEX_NUMBER)) {
             throw new NotNumberBonusNumberException();
         }
     }
 
     private static void validateRange(final int number) {
-        if(!(MIN_NUMBER <= number && number <= MAX_NUMBER)) {
+        if (!(MIN_NUMBER <= number && number <= MAX_NUMBER)) {
             throw new InvalidRangeBonusNumberException();
         }
     }
 
     private static int convert(final String input) {
-       return Integer.parseInt(input);
+        return Integer.parseInt(input);
     }
 }

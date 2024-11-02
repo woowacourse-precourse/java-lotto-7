@@ -40,7 +40,7 @@ public enum WinningStatistics {
                 return;
             }
 
-            if(statistics.match == value) {
+            if (statistics.match == value) {
                 statistics.count++;
             }
         }

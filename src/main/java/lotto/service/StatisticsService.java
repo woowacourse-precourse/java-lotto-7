@@ -35,24 +35,24 @@ public class StatisticsService {
 
     private void findMatchingNumber(final List<Lotto> lottos, final WinningNumbers winningNumbers,
                                     final BonusNumber bonusNumber) {
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             Check check = matchCount(lotto, winningNumbers, bonusNumber);
             updateCount(check.cnt, check.bonusNumberCheck);
         }
     }
 
     private Check matchCount(final Lotto lotto, final WinningNumbers winningNumbers,
-                                               final BonusNumber bonusNumber) {
+                             final BonusNumber bonusNumber) {
         int cnt = 0;
         boolean bonusNumberCheck = false;
         List<Integer> lottoNumbers = lotto.getNumbers();
-        for(int number: winningNumbers.getNumbers()) {
+        for (int number : winningNumbers.getNumbers()) {
             if (lottoNumbers.contains(number)) {
                 cnt++;
             }
         }
 
-        if(cnt == SECOND.getMatchValue() && lottoNumbers.contains(bonusNumber.getValue())) {
+        if (cnt == SECOND.getMatchValue() && lottoNumbers.contains(bonusNumber.getValue())) {
             bonusNumberCheck = true;
         }
 
@@ -60,8 +60,8 @@ public class StatisticsService {
     }
 
     private void showStatistics() {
-        for(WinningStatistics statistics : values()) {
-            if(statistics.getPrice() == SECOND.getPrice()) {
+        for (WinningStatistics statistics : values()) {
+            if (statistics.getPrice() == SECOND.getPrice()) {
                 OutputView.printSecondPrize(statistics);
                 continue;
             }
@@ -74,14 +74,15 @@ public class StatisticsService {
         float winningProfit = 0;
 
         WinningStatistics[] winningStatistics = WinningStatistics.values();
-        for(WinningStatistics winningStatistic: winningStatistics) {
+        for (WinningStatistics winningStatistic : winningStatistics) {
             winningProfit += winningStatistic.getPrice() * winningStatistic.getCount();
         }
 
         int purchaseAmount = purchaseAmountRepository.find().getValue();
         int price = purchaseAmount * THOUSAND_VALUE;
-        OutputView.printProfit(winningProfit / price  * PROFIT_PERCENT);
+        OutputView.printProfit(winningProfit / price * PROFIT_PERCENT);
     }
 
-    private record Check(int cnt, boolean bonusNumberCheck){}
+    private record Check(int cnt, boolean bonusNumberCheck) {
+    }
 }

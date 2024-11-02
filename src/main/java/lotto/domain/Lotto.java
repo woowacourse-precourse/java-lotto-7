@@ -24,11 +24,11 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> checkNumbers = new HashSet<>();
-        for(int number: numbers) {
+        for (int number : numbers) {
             checkNumbers.add(number);
         }
 
-        if(numbers.size() != checkNumbers.size()) {
+        if (numbers.size() != checkNumbers.size()) {
             throw new NotDuplicatedNumberException();
         }
     }

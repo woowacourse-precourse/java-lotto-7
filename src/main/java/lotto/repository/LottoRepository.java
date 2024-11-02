@@ -10,7 +10,7 @@ public class LottoRepository {
     private static final LottoRepository lottoRepository = new LottoRepository();
     private final List<Lotto> lottos = new ArrayList<>();
 
-    private LottoRepository(){
+    private LottoRepository() {
 
     }
 

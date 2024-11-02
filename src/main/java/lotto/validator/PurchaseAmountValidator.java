@@ -10,37 +10,37 @@ public class PurchaseAmountValidator {
     public static PurchaseAmountDto validate(final String input) {
         validateBlank(input);
         validateNumber(input);
-        int convertNumber =  convert(input);
+        int convertNumber = convert(input);
         validateNonZero(convertNumber);
         validateMultipleOfThousand(convertNumber);
         return new PurchaseAmountDto(convertNumber / AMOUNT_UNIT);
     }
 
-    private static void validateBlank (final String input) {
-        if(input.isBlank()) {
+    private static void validateBlank(final String input) {
+        if (input.isBlank()) {
             throw new BlankAmountException();
         }
     }
 
     private static void validateNumber(final String input) {
-        if(!input.matches(REGEX_NUMBER)) {
+        if (!input.matches(REGEX_NUMBER)) {
             throw new NotPositiveNumberException();
         }
     }
 
     private static void validateNonZero(final int amount) {
-        if(amount == 0) {
+        if (amount == 0) {
             throw new ZeroAmountException();
         }
     }
 
     private static void validateMultipleOfThousand(final int amount) {
-        if(amount % AMOUNT_UNIT != 0) {
+        if (amount % AMOUNT_UNIT != 0) {
             throw new InvalidAmountUnitException();
         }
     }
 
     private static int convert(String input) {
-        return Integer.parseInt(input.replaceAll(" ",""));
+        return Integer.parseInt(input.replaceAll(" ", ""));
     }
 }

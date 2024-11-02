@@ -44,11 +44,11 @@ public class OutputView {
     }
 
     public static void printProfit(final float profit) {
-        System.out.println(String.format(PROFIT_FORMAT,profit));
+        System.out.println(String.format(PROFIT_FORMAT, profit));
     }
 
     public static void printNotSecondPrize(WinningStatistics statistics) {
-        System.out.println(String.format(MATCH_EXCEPT_SECOND_FORMAT,statistics.getMatchValue(),
+        System.out.println(String.format(MATCH_EXCEPT_SECOND_FORMAT, statistics.getMatchValue(),
                 convert(statistics.getPrice()),
                 statistics.getCount()));
     }

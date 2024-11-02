@@ -16,6 +16,6 @@ public class BonusNumberRepository {
     }
 
     public BonusNumber find() {
-       return new BonusNumber(value);
+        return new BonusNumber(value);
     }
 }

@@ -28,42 +28,42 @@ public class WinningNumbersValidator {
     }
 
     private static void validateBlank(final String input) {
-        if(input.isBlank()) {
+        if (input.isBlank()) {
             throw new BlankWinningNumbersException();
         }
     }
 
     private static void validateDelimiter(final String input) {
-        if(input.matches(REGEX_INPUT_RULE)) {
+        if (input.matches(REGEX_INPUT_RULE)) {
             throw new InvalidRuleException();
         }
     }
 
     private static void validateNumberRange(final List<Integer> numbers) {
-        for(int number: numbers) {
+        for (int number : numbers) {
             checkRange(number);
         }
     }
 
     private static void validateDuplicate(final List<Integer> numbers) {
         Set<Integer> removeDuplicate = new HashSet<>();
-        for(int number: numbers) {
+        for (int number : numbers) {
             removeDuplicate.add(number);
         }
 
-        if(removeDuplicate.size() != numbers.size()) {
+        if (removeDuplicate.size() != numbers.size()) {
             throw new DuplicatedNumberException();
         }
     }
 
     private static void validateNumberSize(final List<Integer> numbers) {
-        if(numbers.size() != NUMBER_SIZE) {
+        if (numbers.size() != NUMBER_SIZE) {
             throw new InvalidNumberCountException();
         }
     }
 
     private static void checkRange(final int number) {
-        if(!(number >= MIN_NUMBER && number <= MAX_NUMBER)) {
+        if (!(number >= MIN_NUMBER && number <= MAX_NUMBER)) {
             throw new InvalidRangeException();
         }
     }
