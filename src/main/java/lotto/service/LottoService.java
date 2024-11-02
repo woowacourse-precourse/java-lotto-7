@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.application.LottoDto;
 import lotto.application.LottoTicketsDto;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
@@ -17,12 +18,12 @@ public class LottoService {
         return new LottoTicketsDto(new LottoTickets(numberOfTickets));
     }
 
-    public List<Rank> calculateRank(List<List<Integer>> lottoTickets, List<Integer> winningNumber, int bonusNumber) {
+    public List<Rank> calculateRank(LottoTicketsDto lottoTicketsDto, List<Integer> winningNumber, int bonusNumber) {
         List<Rank> rankResult = new ArrayList<>();
         Lotto winningLotto = new Lotto(winningNumber);
 
-        for (List<Integer> lottoTicket : lottoTickets) {
-            Lotto lotto = new Lotto(lottoTicket);
+        for (LottoDto lottoTicketDto : lottoTicketsDto.getLottoTickets()) {
+            Lotto lotto = new Lotto(lottoTicketDto.getLotto());
             rankResult.add(lotto.calculateRank(winningLotto.getNumbers(), bonusNumber));
         }
 

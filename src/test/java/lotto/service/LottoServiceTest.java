@@ -28,7 +28,8 @@ class LottoServiceTest {
     @MethodSource("provideLottoTicketsAndWinningNumberAndBonusNumber")
     void 모든_구매한_로또와_당첨로또를_비교한다(List<List<Integer>> lottoTickets, List<Integer> winningNumber, int bonusNumber, List<Rank> expectedRanks) {
         LottoService lottoService = new LottoService();
-        List<Rank> ranks = lottoService.calculateRank(lottoTickets, winningNumber, bonusNumber);
+        LottoTicketsDto lottoTicketsDto = new LottoTicketsDto(lottoTickets);
+        List<Rank> ranks = lottoService.calculateRank(lottoTicketsDto, winningNumber, bonusNumber);
 
         assertThat(ranks).containsExactlyElementsOf(expectedRanks);
     }
@@ -63,5 +64,4 @@ class LottoServiceTest {
                 Arguments.of(10000, List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / 10000) * 100)
         );
     }
-
 }

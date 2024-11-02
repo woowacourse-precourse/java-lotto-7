@@ -13,6 +13,19 @@ public class LottoTicketsDto {
         this.lottoTickets = getLottoTickets(lottoTickets);
     }
 
+    public LottoTicketsDto(List<List<Integer>> lottoTickets) {
+        this.lottoTickets = createLottoTicketsDto(lottoTickets);
+    }
+
+    public List<LottoDto> createLottoTicketsDto(List<List<Integer>> lottoTickets) {
+        List<LottoDto> lottoTicketDto = new ArrayList<>();
+        for (List<Integer> lottoTicket : lottoTickets) {
+            lottoTicketDto.add(new LottoDto(lottoTicket));
+        }
+
+        return lottoTicketDto;
+    }
+
     private List<LottoDto> getLottoTickets(LottoTickets lottoTickets) {
         List<LottoDto> lottoTicketDto = new ArrayList<>();
 
