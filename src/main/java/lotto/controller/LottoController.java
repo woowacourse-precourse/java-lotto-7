@@ -26,7 +26,7 @@ public class LottoController {
         Lottos purchasedLottos = purchaseLotto(money);
         outputView.displayPurchasedLottos(purchasedLottos);
 
-        WinningLotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = repeatUntilValid(this::getWinningLotto);
     }
 
     private Money getLottoMoney() {
