@@ -9,7 +9,7 @@ public class PayForLotto {
         payForLotto();
     }
 
-    public void payForLotto() {
+    private void payForLotto() {
         try {
             printGuideMessage();
             getUserPay();
@@ -19,11 +19,11 @@ public class PayForLotto {
         }
     }
 
-    public void printGuideMessage() {
+    private void printGuideMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void getUserPay() {
+    private void getUserPay() {
         String userInput = readLine();
         userInput = removeBlank(userInput);
         checkIsBlank(userInput);
@@ -32,15 +32,15 @@ public class PayForLotto {
         checkMoneyUnit(lottoPayout);
     }
 
-    public String removeBlank(String input) {
+    private String removeBlank(String input) {
         return input.replaceAll(" ", "");
     }
 
-    public int castInputType(String input) {
+    private int castInputType(String input) {
         return Integer.parseInt(input);
     }
 
-    public void checkIsOnlyNumber(String input) {
+    private void checkIsOnlyNumber(String input) {
         String ERROR_MESSAGE = "[ERROR] 구입금액은 숫자뿐이어야 합니다.";
         try {
             castInputType(input);
@@ -49,7 +49,7 @@ public class PayForLotto {
         }
     }
 
-    public void checkMoneyUnit(int input) {
+    private void checkMoneyUnit(int input) {
         String ERROR_MESSAGE = "[ERROR] 구입금액은 1,000원 단위여야 합니다.";
         int REMAINDER = input % 1000;
         if (REMAINDER != 0) {
@@ -57,7 +57,7 @@ public class PayForLotto {
         }
     }
 
-    public void checkIsBlank(String input) {
+    private void checkIsBlank(String input) {
         String ERROR_MESSAGE = "[ERROR] 금액을 입력하지 않았습니다.";
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR_MESSAGE);
