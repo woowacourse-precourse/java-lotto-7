@@ -73,7 +73,11 @@
     + [0] 입력한 로또 번호가 음수인지 검증 - negativeValidate
     + [0] 입력한 로또 번호가 중복인지 검증 - duplicateValidate
     + [0] 입력한 로또 번호가 범위 내에 있는지 검증 - rangeValidate
-
+  
+- PurchaseAmount class : 구매 금액에 대한 검증 진행
+    + [0] 입력한 값이 숫자인지 검증 - numberValidate
+    + [0] 입력한 구매 금액이 1000원 이상인지 검증 - rangeValidate
+    + [0] 입력한 구매 금액이 1000원 단위인지 검증 - unitValidate
 
 ## 구현 규칙
 - 메서드 길이는 15라인 이내로 구성한다.

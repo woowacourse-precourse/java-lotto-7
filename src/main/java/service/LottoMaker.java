@@ -1,6 +1,7 @@
 package service;
 
 import exception.Lotto;
+import exception.PurchaseAmount;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,7 @@ public class LottoMaker {
     private final LottoValidation lottoValidation = new LottoValidation(winningNumbers, winningResult);
 
     public int getLottoCount(String amount) {
+        new PurchaseAmount(amount);
         purchaseAmount = lottoTransform.getLottoCount(amount);
         return purchaseAmount;
     }
