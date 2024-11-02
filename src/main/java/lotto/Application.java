@@ -1,12 +1,16 @@
 package lotto;
 
+import java.util.Map;
 import lotto.handler.ConsoleHandler;
 import java.util.List;
 import lotto.model.FirstRankLotto;
 import lotto.model.Lotto;
+import lotto.model.constant.LottoRank;
 import lotto.parser.IntegerListParser;
 import lotto.service.FirstRankLottoService;
 import lotto.service.LottoService;
+import lotto.service.LottoStatisticsService;
+import lotto.view.LottoStatisticsView;
 
 public class Application {
 
@@ -14,13 +18,17 @@ public class Application {
 
     private final LottoService lottoService;
     private final FirstRankLottoService firstRankLottoService;
+    private final LottoStatisticsService lottoStatisticsService;
     private final IntegerListParser integerListParser;
+    private final LottoStatisticsView lottoStatisticsView;
 
     public Application() {
         this.client = new Client();
         this.lottoService = new LottoService();
         this.firstRankLottoService = new FirstRankLottoService();
+        this.lottoStatisticsService = new LottoStatisticsService();
         this.integerListParser = new IntegerListParser();
+        this.lottoStatisticsView = new LottoStatisticsView();
     }
 
     public static void main(String[] args) {
@@ -32,6 +40,7 @@ public class Application {
     private void run() {
         buyLotto();
         FirstRankLotto firstRankLotto = generateFirstRankLotto();
+        annouceLottoStatistics(firstRankLotto);
     }
 
     private void buyLotto() {
@@ -53,6 +62,18 @@ public class Application {
         int bonusNumber = generateBonusNumber(firstRankLottoNumbers);
 
         return new FirstRankLotto(firstRankLottoNumbers, bonusNumber);
+    }
+
+    private void annouceLottoStatistics(FirstRankLotto firstRankLotto) {
+        Map<LottoRank, Integer> lottoStatistics = getLottoStatistics(firstRankLotto);
+
+        lottoStatisticsView.announce(lottoStatistics);
+    }
+
+    private Map<LottoRank, Integer> getLottoStatistics(FirstRankLotto firstRankLotto) {
+        List<Lotto> lottos = client.getLottos();
+
+        return lottoStatisticsService.getStatistics(lottos, firstRankLotto);
     }
 
     private List<Integer> generateFirstRankLottoNumbers() {
