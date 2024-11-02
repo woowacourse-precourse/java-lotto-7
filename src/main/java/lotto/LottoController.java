@@ -4,15 +4,26 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class LottoController {
     public void run() {
-        int lottoCount = getLottoCount();
-        List<Lotto> lottoList = Lotto.issueLottoList(lottoCount);
+        int lottoCount = repeatUntilSuccess(this::getLottoCount);
+        List<Lotto> lottoList = repeatUntilSuccess(() -> Lotto.issueLottoList(lottoCount));
         printLottoList(lottoList);
-        List<Integer> winningNumbers = getWinningNumbers();
-        winningNumbers.add(getBonusNumber());
+        List<Integer> winningNumbers = repeatUntilSuccess(this::getWinningNumbers);
+        winningNumbers.add(repeatUntilSuccess(this::getBonusNumber));
         printWinningStatistics(lottoList, winningNumbers);
+    }
+
+    private <T> T repeatUntilSuccess(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get(); // 성공 시 결과 반환
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void printWinningStatistics(List<Lotto> lottoList, List<Integer> winningNumbers) {
@@ -43,9 +54,14 @@ public class LottoController {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int purchaseAmount = parseInt(input);
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 입력된 금액이 1,000원으로 나누어 떨어지지 않습니다.");
+        try {
+            if (purchaseAmount % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 입력된 금액이 1,000원으로 나누어 떨어지지 않습니다.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getLocalizedMessage());
         }
+
         return purchaseAmount / 1000;
     }
 

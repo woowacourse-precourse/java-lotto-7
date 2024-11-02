@@ -21,8 +21,7 @@ public class LottoService {
         for (int rank = 1; rank < 6; rank++) {
             prize += winningStatistics.getOrDefault(rank, 0) * getPrize(rank);
         }
-        double returnRate = prize / (double) lottoCount * 100;
-        return (double) returnRate;
+        return prize / (double) lottoCount * 100;
     }
 
 
