@@ -13,12 +13,16 @@ import lotto.Lotto;
 import model.Money;
 import view.InputView;
 import view.InputViewImpl;
+import view.OutputView;
+import view.OutputViewImpl;
 
 public class LottoServiceImpl implements LottoService {
     private final InputView inputView;
+    private final OutputView outputView;
 
     public LottoServiceImpl() {
         this.inputView = new InputViewImpl();
+        this.outputView = new OutputViewImpl();
     }
 
     @Override
@@ -122,6 +126,7 @@ public class LottoServiceImpl implements LottoService {
         return 0;
     }
 
+    @Override
     public double analyzeLottoRateOfReturn(LottoWinningResult lottoWinningResult, int lottoCount) {
         double money = lottoCount * 1000;
         double lottoWinningAmount
@@ -135,6 +140,6 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public void printAnalyzedLottoStatus(LottoWinningResultResponse lottoWinningResultResponse) {
-        
+        outputView.printLottoResult(lottoWinningResultResponse);
     }
 }
