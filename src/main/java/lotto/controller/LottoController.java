@@ -5,9 +5,6 @@ import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.LottoHandler;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class LottoController {
 
     private Customer customer;
@@ -20,6 +17,7 @@ public class LottoController {
 
     public void start() {
         purchaseLotto();
+        inputWinningNumbers();
     }
 
     private void purchaseLotto() {
@@ -28,6 +26,12 @@ public class LottoController {
         customer.buyLottoTickets(rawInputMoney);
         lottoHandler.buyLottos(customer.getLottoTickets());
         System.out.println(lottoHandler.getLottoList());
-
     }
+
+    private void inputWinningNumbers() {
+        String rawWinningNumbers = Console.readLine();
+        lottoHandler.inputWinningLottoNumbers(rawWinningNumbers);
+        System.out.println(lottoHandler.getWinningLottoNumbers().getNumbers());
+    }
+
 }
