@@ -5,7 +5,7 @@ public class Application {
         Input input = new Input(new InputValidator());
 
         Lotto winNumberLotto = input.getWinNumberLotto();
-//        Integer bonus = input.getBonusNumberWithMessage();
+        WinLotto winLotto = input.getBonusNumber(winNumberLotto);
 //        Integer amountWithMessage = input.getAmountWithMessage();
     }
 }

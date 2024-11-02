@@ -46,11 +46,11 @@ public class Input {
         return Parser.splitByDelimiter(Console.readLine());
     }
 
-    public Integer getBonusNumberWithMessage() {
+    public WinLotto getBonusNumber(Lotto lotto) {
         while (true) {
             try {
                 System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-                return getValidatedBonusNumber();
+                return new WinLotto(lotto, getValidatedBonusNumber());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
