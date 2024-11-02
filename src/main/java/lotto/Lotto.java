@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +17,20 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
+    }
 }
