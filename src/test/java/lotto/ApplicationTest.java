@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Model.Lotto;
+import lotto.Model.LottoGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,6 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    void 구입금액에_따른_로또_수량_생성_테스트() {
+        LottoGenerator generator = new LottoGenerator();
+        List<Lotto> lottos = generator.generateLottos(3000);
+        assertThat(lottos).hasSize(3);
+    }
 
     @Test
     void 기능_테스트() {
