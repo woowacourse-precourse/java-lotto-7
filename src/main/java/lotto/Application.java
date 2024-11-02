@@ -44,6 +44,8 @@ public class Application {
 
         int prizeMoneyAmount = calculateTotalPrizeMoney(lottoResultCount);
         double rateEarning = (double) prizeMoneyAmount / purchaseAmountInt * 100;
+        rateEarning = Math.round(rateEarning * 100) / 100.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateEarning);
     }
 
     public static int calculateTotalPrizeMoney(Map<LottoResult, Integer> lottoResultCount) {
