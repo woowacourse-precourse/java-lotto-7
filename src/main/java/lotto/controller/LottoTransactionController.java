@@ -27,6 +27,8 @@ public class LottoTransactionController {
       lottos.add(lotto);
     }
     System.out.println(count + "개를 구매했습니다."); // TODO 출력 처리 이동
+    lottoTransaction.setPurchasedLottos(lottos);
+    lottoTransaction.setAmount(amount);
 
     return lottos;
   }
