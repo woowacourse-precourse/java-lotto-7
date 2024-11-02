@@ -11,7 +11,7 @@ public class InputView {
     private String readLine() {
         String rawInput = Console.readLine();
         if (rawInput == null) {
-            throw new IllegalArgumentException(ErrorMessage.NULL_INPUT_ERROR);
+            throw new IllegalArgumentException(ErrorMessage.NULL_INPUT.getMessage());
         }
         return rawInput.trim();
     }
