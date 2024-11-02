@@ -14,14 +14,19 @@ public class LottoController {
 
     public void run(){
         PrintInput();
+        PrintOutput();
     }
     public void PrintInput(){
-        String amount_str =InputView.purchaseAmount();
-        PlayerAmount(amount_str);
-        String number_str =InputView.sixLottoNumber();
-        lottoNum(number_str);
-        String bonusnum_str=InputView.bonusLottoNumber();
-        bonusNum(bonusnum_str);
+        try{
+            String amount_str =InputView.purchaseAmount();
+            PlayerAmount(amount_str);
+            String number_str =InputView.sixLottoNumber();
+            lottoNum(number_str);
+            String bonusnum_str=InputView.bonusLottoNumber();
+            bonusNum(bonusnum_str);
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR]"+ e.getMessage());
+        }
     }
     public void PlayerAmount(String amount_str){
         purchaseAmount = new PurchaseAmount(amount_str);
@@ -42,5 +47,8 @@ public class LottoController {
     }
     public void bonusNum(String bonusNum_str){
         BonusNumber bonusNumber=new BonusNumber(bonusNum_str);
+    }
+    public void PrintOutput(){
+        OutputView.printTotal();
     }
 }
