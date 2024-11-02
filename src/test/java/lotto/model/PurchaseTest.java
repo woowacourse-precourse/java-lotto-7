@@ -28,6 +28,13 @@ class PurchaseTest {
     }
 
     @Test
+    @DisplayName("입력된 구입 금액을 기반으로 구입 로또 개수를 반환한다.")
+    void getPurchaseCount() {
+        Purchase purchase = new Purchase(10000);
+        Assertions.assertEquals(purchase.getPurchaseCount(), 10);
+    }
+
+    @Test
     @DisplayName("구입 금액이 1,000원 단위가 아닌 경우 예외가 발생한다.")
     void invalidPriceNotMultipleOfOneTicketPrice() {
         assertThatThrownBy(() -> new Purchase(1500))
