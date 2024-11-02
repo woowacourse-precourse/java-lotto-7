@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class InputDecodingServiceTest {
+class InputParsingServiceTest {
 
     private InputParsingService inputParsingService;
 
@@ -17,9 +17,9 @@ class InputDecodingServiceTest {
         inputParsingService = new InputParsingService();
     }
 
-    @DisplayName("검증 완료된 구매 금액에 대한 입력값 디코딩")
+    @DisplayName("구매 금액에 대한 입력값 파싱")
     @Test
-    void 검증_완료된_구매_금액에_대한_입력값_디코딩() {
+    void 구매_금액에_대한_입력값_파싱() {
         int givenPrice = LottoConfiguration.LOTTO_PRICE * 15;
         String rawPurchasePrice = String.valueOf(givenPrice);
 
