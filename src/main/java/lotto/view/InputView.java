@@ -10,7 +10,13 @@ public class InputView {
     private final Parser parser = new Parser();
 
     public int readLottoPurchasePrice() {
-        return readNumber(PURCHASE_PRICE_INPUT_MESSAGE, readLottoPurchasePrice());
+        System.out.println(PURCHASE_PRICE_INPUT_MESSAGE);
+        try {
+            return parser.parseLottoPurchasePrice(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        return readLottoPurchasePrice();
     }
 
     public List<Integer> readWinningLottoNumbers() {
@@ -24,16 +30,12 @@ public class InputView {
     }
 
     public int readBonusLottoNumber() {
-        return readNumber(BONUS_LOTTO_NUMBER_MESSAGE, readBonusLottoNumber());
-    }
-
-    private int readNumber(String message, int readBonusLottoNumber) {
-        System.out.println(message);
+        System.out.println(BONUS_LOTTO_NUMBER_MESSAGE);
         try {
             return parser.parseStringToInteger(Console.readLine());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return readBonusLottoNumber;
+        return readBonusLottoNumber();
     }
 }
