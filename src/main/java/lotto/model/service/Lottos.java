@@ -2,6 +2,7 @@ package lotto.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.NumberGenerator;
 import lotto.model.domain.BonusBall;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.Rank;

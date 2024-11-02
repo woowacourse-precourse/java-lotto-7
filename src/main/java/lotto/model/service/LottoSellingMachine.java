@@ -1,6 +1,7 @@
 package lotto.model.service;
 
 import lotto.model.ErrorMessage;
+import lotto.model.RandomNumberGenerator;
 
 public class LottoSellingMachine {
 
