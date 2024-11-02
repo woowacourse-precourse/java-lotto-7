@@ -5,7 +5,7 @@ import java.util.List;
 public class LottoTotal {
     public LottoTotal(){
     }
-    public int[] winningLotto(List<Integer> randomLottoNumber,List<Integer> winsNumber) {
+    public static int[] winningLotto(List<Integer> randomLottoNumber,List<Integer> winsNumber) {
         int batchSize = 6;
         int[] count=new int[7];
         for (int i = 0; i <= randomLottoNumber.size() - batchSize; i += batchSize) {
@@ -15,7 +15,7 @@ public class LottoTotal {
         }
         return count;
     }
-    private int countMatches(List<Integer> currentLottoSet, List<Integer> winsNumber) {
+    private static int countMatches(List<Integer> currentLottoSet, List<Integer> winsNumber) {
         int matchCount = 0;
         for (Integer number : currentLottoSet) {
             if (winsNumber.contains(number)) {
@@ -25,18 +25,19 @@ public class LottoTotal {
         return matchCount;
     }
 
-    private void updateCount(int[] count, int matchCount) {
+    private static void updateCount(int[] count, int matchCount) {
         if (matchCount > 2) {
             count[matchCount]++;
         }
     }
-    public int bonusMatches(int bonusNum,List<Integer> winsNumber){
-        int correct=0;
-        for (Integer number : winsNumber) {
-            if (winsNumber.contains(number)) {
-                correct++;
+    public static int[] bonusMatches(int bonusNum,List<Integer> randomLottoNumber,int[] count){
+        int batchSize = 6;
+        for (int i = 0; i <= randomLottoNumber.size() - batchSize; i += batchSize) {
+            List<Integer> currentLottoSet = randomLottoNumber.subList(i, i + batchSize);
+            if (currentLottoSet.contains(bonusNum)&&(count[5]!=0)) {
+                count[2]++;
             }
         }
-        return correct;
+        return count;
     }
 }
