@@ -34,4 +34,17 @@ class LottoServiceTest {
         // then
         assertThat(result).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("로또 구입 금액으로 로또 티켓 수량을 계산: 최대 로또 구입 금액")
+    void calculateLottoCount_largePurchaseAmount() {
+        // given
+        Integer lottoPurchaseAmount = 2147483000;
+
+        // when
+        Integer result = lottoService.calculateLottoCount(lottoPurchaseAmount);
+
+        // then
+        assertThat(result).isEqualTo(2147483);
+    }
 }
