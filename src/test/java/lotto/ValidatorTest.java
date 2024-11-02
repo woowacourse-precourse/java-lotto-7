@@ -29,4 +29,10 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAmountInput("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 구입_금액이_입력되지_않은_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> Validator.validateAmountInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
