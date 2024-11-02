@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.PriceRule.MATCH_NUMBER;
+import static lotto.constant.PriceRule.MATCH_NUMBER;
 
 public class NumberValidator {
 
