@@ -6,11 +6,11 @@ import static lotto.constant.ErrorMessage.NOT_PURCHASE_AMOUNT_FORMAT;
 public class PurchaseAmount {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
     private static final int PURCHASE_AMOUNT_REMAIN = 0;
-    private final int purchaseAmount;
+    private final int purchasePrice;
 
     public PurchaseAmount(int purchasePrice) {
         validatePurchasePrice(purchasePrice);
-        purchaseAmount = purchasePrice / PURCHASE_AMOUNT_UNIT;
+        this.purchasePrice = purchasePrice;
     }
 
     private void validatePurchasePrice(int purchasePrice) {
@@ -19,7 +19,11 @@ public class PurchaseAmount {
     }
 
     public int getPurchaseAmount() {
-        return purchaseAmount;
+        return purchasePrice / PURCHASE_AMOUNT_UNIT;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
     }
 
     private void isPurchaseAmountLessThanThousand(int purchasePrice) {

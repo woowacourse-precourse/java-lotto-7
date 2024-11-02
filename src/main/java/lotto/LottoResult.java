@@ -1,10 +1,13 @@
 package lotto;
 
+import static lotto.constant.ExtraText.NEW_LINE;
 import static lotto.constant.LottoWinnings.FIFTH_PLACE;
 import static lotto.constant.LottoWinnings.FIRST_PLACE;
 import static lotto.constant.LottoWinnings.FOURTH_PLACE;
 import static lotto.constant.LottoWinnings.SECOND_PLACE;
 import static lotto.constant.LottoWinnings.THIRD_PLACE;
+import static lotto.constant.PrintFormattedText.LOTTO_EARNING_RATES;
+import static lotto.constant.PrintFormattedText.LOTT_WINNING_RESULT;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -85,5 +88,23 @@ public class LottoResult {
                 lottoSameCount.get(LottoWinnings.FIFTH_PLACE) + PLUS_WINNING_COUNT);
     }
 
+    public String printTotalWinningCount() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<LottoWinnings, Integer> sameCount : lottoSameCount.entrySet()) {
+            sb.append(LOTT_WINNING_RESULT.format(sameCount.getKey().getLottoWinnings(), sameCount.getValue()));
+            sb.append(NEW_LINE.getText());
+        }
+        return sb.toString();
+    }
+
+    public String calculateEarningRate(int purchasePrice) {
+        double earningRate = INIT_EARNING_RATE;
+        for (Map.Entry<LottoWinnings, Integer> winnings : LOTTO_WINNINGS.entrySet()) {
+            earningRate += winnings.getValue() * lottoSameCount.get(winnings.getKey());
+        }
+        earningRate = earningRate / purchasePrice;
+        earningRate *= PERCENT_VALUE;
+        return LOTTO_EARNING_RATES.format(earningRate);
+    }
 
 }
