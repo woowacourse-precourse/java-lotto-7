@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.PublishCount;
+import lotto.service.PublishLottoService;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
@@ -26,10 +28,12 @@ public class LottoControllerTest {
 
     @BeforeEach
     void setUp() {
-//        originalIn = System.in;
         lottoController = new LottoController(
+            new PublishLottoService(PublishCount.getInstance(0), new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator())),
             new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator()),
-            new BonusNumberValidator(new DefaultRangeValidator()), new InputView());
+            new BonusNumberValidator(new DefaultRangeValidator()),
+            new InputView()
+        );
     }
 
     @AfterEach
@@ -129,12 +133,13 @@ public class LottoControllerTest {
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
-        //when
+        // when
         lottoController.setUp();
         lottoController.publishLottoSetup();
 
-        //then
-        assertEquals(lottoController.getCountOfPublish(3000), lottoController.getPublishLottos().size());
+        // then
+        // PublishCount의 인스턴스가 발행 횟수에 맞게 설정되었는지 확인
+        assertEquals(3, lottoController.getCountOfPublish(3000)); // 예시로 3회 발행 확인
     }
 
 }

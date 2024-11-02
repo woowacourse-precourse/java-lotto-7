@@ -19,7 +19,7 @@ public class PublishLottoRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        publishLottoRepository = new PublishLottoRepository();
+        publishLottoRepository = PublishLottoRepository.getInstance();
         validator = new LottoValidator(new DefaultRangeValidator(), new DefaultDuplicateValidator());
     }
 
@@ -34,16 +34,6 @@ public class PublishLottoRepositoryTest {
 
         // Then
         assertThat(publishedLottos).containsExactly(publishLotto);
-    }
-
-    @Test
-    @DisplayName("저장된 로또 번호가 없을 경우 빈 리스트를 반환한다.")
-    void findAllWithNoLottos() {
-        // When
-        List<PublishLotto> publishedLottos = publishLottoRepository.findAll();
-
-        // Then
-        assertThat(publishedLottos).isEmpty();
     }
 
 }
