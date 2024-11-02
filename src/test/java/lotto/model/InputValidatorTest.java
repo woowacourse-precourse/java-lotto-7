@@ -4,8 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -118,7 +122,7 @@ class InputValidatorTest {
 
     @DisplayName("중복 번호 테스트(당첨 번호)")
     @ParameterizedTest
-    @ValueSource(strings = {"1,1,1,1,45",})
+    @ValueSource(strings = {"1,1,1,1,45"})
     void validateNumberDuplicationTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -128,8 +132,17 @@ class InputValidatorTest {
 
     @DisplayName("당첨 번호 정상 입력 테스트(당첨 번호)")
     @ParameterizedTest
-    @ValueSource(strings = {"2,3,4,5,6,8"})
-    void validWinningNumberTest(String input) {
-        assertThat(inputValidator.validateInputWinningNumber(input)).containsExactly(2, 3, 4, 5, 6, 8);
+    @MethodSource("generateData")
+    void validWinningNumberTest(String input, List<Integer> expected) {
+        assertThat(inputValidator.validateInputWinningNumber(input))
+                .hasSameSizeAs(expected)
+                .containsAll(expected);
+    }
+
+    static Stream<Arguments> generateData() {
+        return Stream.of(
+                Arguments.of("2,3,4,5,6,8", List.of(2, 3, 4, 5, 6, 8)),
+                Arguments.of("10,11,23,24,26,27", List.of(10, 11, 23, 24, 26, 27))
+        );
     }
 }
