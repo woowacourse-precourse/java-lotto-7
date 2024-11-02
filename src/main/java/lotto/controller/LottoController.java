@@ -33,7 +33,6 @@ public class LottoController {
         outputView.showAllLottoNums(purchasedLotto);
 
         Lotto lotto = inputWinningLotto();
-
         BonusBall bonusNumbers = inputBonusNumber(lotto);
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumbers);
 
@@ -62,7 +61,7 @@ public class LottoController {
                 return new Lotto(Arrays.stream(rawNumbers.split(","))
                         .map(Integer::parseInt)
                         .toList());
-            } catch (NumberFormatException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
