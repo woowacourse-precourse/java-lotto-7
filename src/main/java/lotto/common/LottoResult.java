@@ -20,6 +20,10 @@ public enum LottoResult {
         this.winningAmount = winningAmount;
     }
 
+    public int getWinningAmount() {
+        return this.winningAmount;
+    }
+
     public static LottoResult getWinningStatus(final int matchedCount, final boolean bonusNumberMatched) {
         return Arrays.stream(LottoResult.values())
                 .filter(resultStatus -> matchedCount == resultStatus.matchedCount && bonusNumberMatched == resultStatus.bonusNumberMatched)
