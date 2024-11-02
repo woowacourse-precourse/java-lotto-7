@@ -14,7 +14,7 @@ public class WinningNumValidator extends Validator{
         validateNumberOfLottoNum(lottoNums);
         for (String lottoNum : lottoNums) {
             validateInt(lottoNum);
-            validateRange(input);
+            validateRange(lottoNum);
         }
         validateDuplicate(lottoNums);
     }
