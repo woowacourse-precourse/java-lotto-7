@@ -22,4 +22,18 @@ class CashTest {
             .hasMessageContaining("[ERROR] 로또 1장의 가격은 1,000원 입니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 2000, 50000, 99000})
+    void 로또_구매_금액이_최대값을_초과하지_않으면_예외가_발생하지_않는다(int amount) {
+        assertDoesNotThrow(() -> new Cash(amount));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {101000, 1000000})
+    void 로또_구매_금액이_최대값을_초과하면_예외가_발생한다(int amount) {
+        assertThatThrownBy(() -> new Cash(amount))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 로또 1회차당 구매 금액은 최대 10만원 입니다.");
+    }
+
 }
