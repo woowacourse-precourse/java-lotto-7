@@ -26,8 +26,8 @@ public class LottoMachine {
         return lottoList;
     }
 
-    public WinningLotto generateWinningLotto(List<Integer> winningNumber, int winningBonusNumber) {
-        return new WinningLotto(winningNumber, winningBonusNumber);
+    public WinningLotto generateWinningLotto(Lotto lotto, int winningBonusNumber) {
+        return new WinningLotto(lotto, winningBonusNumber);
     }
 
     public LottoStatistic generateLottoStatistic(WinningLotto winningLotto, List<Lotto> lottoList) {

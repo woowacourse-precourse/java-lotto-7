@@ -56,7 +56,7 @@ public class LottoController {
         Lotto lotto = attempt(this::generateLotto);
         Integer bonusNumber = attempt(this::inputWinningBonusNumber);
 
-        return lottoMachine.generateWinningLotto(lotto.getNumbers(), bonusNumber);
+        return lottoMachine.generateWinningLotto(lotto, bonusNumber);
     }
 
     private Lotto generateLotto() {
