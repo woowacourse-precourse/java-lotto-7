@@ -36,6 +36,17 @@ public class Lotto {
         return numbers.contains(lottoNumber.getNumber());
     }
 
+    public int countMatchingNumber(final Lotto winningLotto) {
+        return (int) numbers.stream()
+                .filter(number -> winningLotto.contains(new LottoNumber(number)))
+                .count();
+    }
+
+    public boolean doesMatchBonusNumber(final LottoNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(lottoNumber -> lottoNumber == bonusNumber.getNumber());
+    }
+
     private List<Integer> sort(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()

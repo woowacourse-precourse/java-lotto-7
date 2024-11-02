@@ -159,4 +159,43 @@ class LottoTest {
             assertThat(lotto.contains(lottoNumber)).isEqualTo(contains);
         }
     }
+
+    @Nested
+    @DisplayName("두 로또 일치 개수 세기 테스트")
+    class 두_로또_일치개수_테스트 {
+
+        @Test
+        @DisplayName("일치 개수를 센다")
+        void 성공_일치개수() {
+            // Given
+            Lotto pickedLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            Lotto winningLotto = new Lotto(List.of(1, 2, 3, 10, 11, 12));
+
+            // When
+            int count = pickedLotto.countMatchingNumber(winningLotto);
+
+            // Then
+            assertThat(count).isEqualTo(3);
+        }
+    }
+
+    @Nested
+    @DisplayName("로또와 로또 번호 일치 개수 세기 테스트")
+    class 로또_로또번호_일치개수_테스트 {
+
+        @ParameterizedTest
+        @CsvSource({"1,true", "7,false"})
+        @DisplayName("일치 개수를 센다")
+        void 성공_일치개수(int number, boolean expected) {
+            // Given
+            Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+            LottoNumber lottoNumber = new LottoNumber(number);
+
+            // When
+            boolean doesMatch = lotto.doesMatchBonusNumber(lottoNumber);
+
+            // Then
+            assertThat(doesMatch).isEqualTo(expected);
+        }
+    }
 }
