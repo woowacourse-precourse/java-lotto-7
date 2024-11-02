@@ -6,8 +6,15 @@ import domain.User;
 import domain.WinningLotto;
 import java.util.ArrayList;
 import java.util.List;
+import util.LottoGenerator;
 
 public class UserService {
+
+    private final LottoGenerator lottoGenerator;
+
+    public UserService(LottoGenerator lottoGenerator) {
+        this.lottoGenerator = lottoGenerator;
+    }
 
     public User init(int amount) {
         return new User(amount);
@@ -17,9 +24,7 @@ public class UserService {
         int purchaseCount = user.getPurchaseCount();
         List<Lotto> lottos = new ArrayList<>();
         for(int i = 0; i < purchaseCount; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lotto.ascNumber();
-            lottos.add(lotto);
+            lottos.add(lottoGenerator.generateLotto());
         }
         user.updateLottos(lottos);
     }
