@@ -93,4 +93,14 @@ class LottoTempTest {
                 .containsEntry("3등",1)
                 .containsEntry("꽝",1);
     }
+
+    @Test
+    @DisplayName("수익률 계산을 제대로 하는지 확인하는 테스트")
+    void calculateProfit(){
+        assertThat(lottoTemp.calculateProfit(5000, 5000)).isEqualTo(100);
+        assertThat(lottoTemp.calculateProfit(2000, 0)).isEqualTo(0);
+        assertThat(lottoTemp.calculateProfit(10000, 5000)).isEqualTo(50);
+        assertThat(lottoTemp.calculateProfit(3000, 10000)).isEqualTo(333.3f);
+        assertThat(lottoTemp.calculateProfit(9000, 5000)).isEqualTo(55.6f);
+    }
 }
