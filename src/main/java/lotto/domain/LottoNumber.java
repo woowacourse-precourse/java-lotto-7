@@ -37,4 +37,8 @@ public class LottoNumber {
         return String.valueOf(number);
     }
 
+    public Integer toInteger() {
+        return number;
+    }
+
 }

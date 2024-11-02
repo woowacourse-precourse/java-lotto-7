@@ -20,6 +20,10 @@ public class Lotto {
             .collect(Collectors.joining(", ", "[", "]"));
     }
 
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers.stream().map(LottoNumber::toInteger).toList());
+    }
+
     // TODO: 에러 메시지가 6개 이상일 때 enum 으로 관리!
     // TODO: 추후 메서드 분리
     private void validate(List<Integer> numbers) {
