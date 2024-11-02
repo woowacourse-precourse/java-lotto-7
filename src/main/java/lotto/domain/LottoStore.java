@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.exception.LottoException;
 import lotto.util.LottoNumberGenerator;
 
 public class LottoStore {
@@ -20,10 +21,10 @@ public class LottoStore {
 
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "원 이상이어야 합니다.");
+            throw new IllegalArgumentException(LottoException.LOWER_PURCHASE_AMOUNT);
         }
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "원 단위여야 합니다.");
+            throw new IllegalArgumentException(LottoException.INVALID_PURCHASE_AMOUNT);
         }
     }
 
