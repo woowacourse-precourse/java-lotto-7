@@ -65,4 +65,11 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateLottoNumbers(winningLottoInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 랜덤_번호가_중복된_값을_포함하는_경우_예외가_발생한다() {
+        List<Integer> winningLottoInput = new ArrayList<>(List.of(1, 2, 3, 4, 5, 5));
+        assertThatThrownBy(() -> Validator.validateLottoNumbers(winningLottoInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
