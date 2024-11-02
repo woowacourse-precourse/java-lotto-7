@@ -8,29 +8,29 @@ import java.util.Set;
 public class Utils {
 
     //숫자 인지 확인
-    public static boolean isDigitOnly (String input) {
+    public static boolean isDigitOnly(String input) {
         return input.matches("\\d+");
     }
 
-    public static boolean isInRange (BigDecimal min, BigDecimal max, BigDecimal value) {
+    public static boolean isInRange(BigDecimal min, BigDecimal max, BigDecimal value) {
         return (value.compareTo(min) >= 0 && value.compareTo(max) <= 0);
     }
 
     //문자열을 int로 바꾸는 메서드
-    public static int stringToInteger (String input) {
+    public static int stringToInteger(String input) {
         return Integer.parseInt(input);
     }
 
     //입력을 숫자로 바꾸는 메서드
-    public static BigDecimal stringToNumber (String input) {
+    public static BigDecimal stringToNumber(String input) {
         return new BigDecimal(input);
     }
 
-    public static boolean isDivisibleByThousand (int num) {
+    public static boolean isDivisibleByThousand(int num) {
         return (num % 1000 == 0);
     }
 
-    public static boolean allElementsAreDigits (String[] input) {
+    public static boolean allElementsAreDigits(String[] input) {
         for (String target : input) {
             if (!Utils.isDigitOnly(target)) {
                 return false;
@@ -39,11 +39,11 @@ public class Utils {
         return true;
     }
 
-    public static boolean checkSizeEqual (String[] input, int size) {
+    public static boolean checkSizeEqual(String[] input, int size) {
         return input.length == size;
     }
 
-    public static boolean areAllNumbersValidRange (BigDecimal min, BigDecimal max, List<BigDecimal> numbers) {
+    public static boolean areAllNumbersValidRange(BigDecimal min, BigDecimal max, List<BigDecimal> numbers) {
         for (BigDecimal number : numbers) {
             if (!Utils.isInRange(min, max, number)) {
                 return false;
@@ -52,7 +52,7 @@ public class Utils {
         return true;
     }
 
-    public static <T> boolean isDuplicateNumber (List<T> numbers) {
+    public static <T> boolean isDuplicateNumber(List<T> numbers) {
         Set<T> uniqueNumbers = new HashSet<>();
         for (T number : numbers) {
             if (!uniqueNumbers.add(number)) {

@@ -48,10 +48,12 @@ public class InputView {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage() + " : " + userInput);
         }
         if (!Utils.checkSizeEqual(numbers, LottoEnum.WINNING_NUMBER_COUNT.getNumber())) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage() + " : " + userInput);
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_WINNING_NUMBER_COUNT.getMessage() + " : " + userInput);
         }
         List<BigDecimal> winningNumber = Arrays.stream(numbers).map(number -> new BigDecimal(number)).toList();
-        if (!Utils.areAllNumbersValidRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()), new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()), winningNumber)) {
+        if (!Utils.areAllNumbersValidRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
+                new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()), winningNumber)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage() + " : " + userInput);
         }
         if (!Utils.isDuplicateNumber(winningNumber)) {

@@ -9,7 +9,7 @@ public enum OutputViewEnum {
 
     private final String message;
 
-    OutputViewEnum (String message) {
+    OutputViewEnum(String message) {
         this.message = message;
     }
 

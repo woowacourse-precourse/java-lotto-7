@@ -7,6 +7,5 @@ public class Application {
         LottoController lottoController = new LottoController();
 
         lottoController.run();
-        // TODO: 프로그램 구현
     }
 }
