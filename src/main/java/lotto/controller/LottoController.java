@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 import lotto.util.LottoConstant;
 import lotto.util.LottoNumberGenerator;
@@ -27,6 +28,10 @@ public class LottoController {
         List<Lotto> lottos = createLottos(amount);
         outputView.printPurchaseCount(lottos.size());
         outputView.printLottos(lottos);
+
+        WinningLotto winningLotto = createWinningLotto();
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto);
+        outputView.printResult(lottoResult);
     }
 
     private List<Lotto> createLottos(int amount) {
