@@ -28,6 +28,12 @@ public class UserInput {
         return winningNumbersOutput;
     }
 
+    public void compareWinningNumbersWithBonus(int bonus, List<Integer> winningNumbers) {
+        if(winningNumbers.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
     private List<Integer> convertInputWinningNumbersToOutput(String winningNumbers) {
         String[] inputWinningNumbers = winningNumbers.split(",");
 
