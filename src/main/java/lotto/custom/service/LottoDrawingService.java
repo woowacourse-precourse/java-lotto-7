@@ -10,19 +10,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.custom.validator.InputValidator;
 
-public class WinningNumberService {
+public class LottoDrawingService {
     private final InputValidator inputValidator;
 
-    public WinningNumberService() {
+    public LottoDrawingService() {
         this.inputValidator = new InputValidator();
     }
 
-    public List<Integer> run(String input) {
+    public List<Integer> drawWinningNumbers(String input) {
         inputValidator.validateWinningNumbersInput(input);
         String filteredComma = cleanConsecutiveCommas(input);
         List<Integer> winningNumbers = trimWinningNumbers(splitByComma(filteredComma));
         inputValidator.validateWinningNumbers(winningNumbers);
         return winningNumbers;
+    }
+
+    public int drawBonusNumber(List<Integer> winningNumbers, String bonusNumberInput) {
+        inputValidator.validateBonusNumberInput(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput.trim());
+        inputValidator.validateBonusNumbers(winningNumbers, bonusNumber);
+        return bonusNumber;
     }
 
     public String cleanConsecutiveCommas(String input) {

@@ -2,11 +2,10 @@ package lotto.custom.controller;
 
 import java.util.List;
 import lotto.custom.model.Lottos;
-import lotto.custom.service.BonusNumberService;
 import lotto.custom.service.CalculateYieldService;
+import lotto.custom.service.LottoDrawingService;
 import lotto.custom.service.LottoPurchaseService;
 import lotto.custom.service.LottoResultCheckerService;
-import lotto.custom.service.WinningNumberService;
 import lotto.custom.view.InputView;
 import lotto.custom.view.OutputView;
 
@@ -15,8 +14,7 @@ public class LottoController {
     private final OutputView outputView;
 
     private final LottoPurchaseService lottoPurchaseService;
-    private final WinningNumberService winningNumberService;
-    private final BonusNumberService bonusNumberService;
+    private final LottoDrawingService lottoDrawingService;
 
     private final LottoResultCheckerService lottoResultCheckerService;
     private final CalculateYieldService calculateYieldService;
@@ -24,10 +22,9 @@ public class LottoController {
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        
+
         this.lottoPurchaseService = new LottoPurchaseService();
-        this.winningNumberService = new WinningNumberService();
-        this.bonusNumberService = new BonusNumberService();
+        this.lottoDrawingService = new LottoDrawingService();
 
         this.lottoResultCheckerService = new LottoResultCheckerService();
         this.calculateYieldService = new CalculateYieldService();
@@ -66,7 +63,7 @@ public class LottoController {
         while (true) {
             try {
                 String winningNumbersInput = inputView.inputWinningNumbers();
-                winningNumbers = winningNumberService.run(winningNumbersInput);
+                winningNumbers = lottoDrawingService.drawWinningNumbers(winningNumbersInput);
                 break; // 예외가 발생하지 않으면 루프 종료
             } catch (IllegalArgumentException e) {
                 outputView.displayErrorMessage(e.getMessage());
@@ -80,7 +77,7 @@ public class LottoController {
         while (true) {
             try {
                 String bonusNumberInput = inputView.inputBonusNumber();
-                bonusNumber = bonusNumberService.run(winningNumbers, bonusNumberInput);
+                bonusNumber = lottoDrawingService.drawBonusNumber(winningNumbers, bonusNumberInput);
                 break; // 예외가 발생하지 않으면 루프 종료
             } catch (IllegalArgumentException e) {
                 outputView.displayErrorMessage(e.getMessage());

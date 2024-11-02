@@ -11,12 +11,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningNumberServiceTest {
-    private final WinningNumberService winningNumberService = new WinningNumberService();
+    private final LottoDrawingService lottoDrawingService = new LottoDrawingService();
 
     @DisplayName("서비스_당첨번호입력_NULL일때_테스트")
     @Test
     void 서비스_당첨번호입력_NULL일때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run(null))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers(null))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(lotto.custom.common.ErrorMessages.NULL_INPUT);
     }
@@ -24,7 +24,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_빈문자열일때_테스트")
     @Test
     void 서비스_당첨번호입력_빈문자열일때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run(""))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(lotto.custom.common.ErrorMessages.EMPTY_INPUT);
     }
@@ -32,7 +32,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_공백으로구성되어있을때_테스트")
     @Test
     void 서비스_당첨번호입력_공백으로구성되어있을때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run("   "))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("   "))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(lotto.custom.common.ErrorMessages.WHITESPACE_ONLY);
     }
@@ -40,7 +40,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_쉼표공백숫자를제외한문자가존재할때_테스트")
     @Test
     void 서비스_당첨번호입력_쉼표공백숫자를제외한문자가존재할때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run("1, 2, 3*4,5,6"))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3*4,5,6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_CHARACTERS);
     }
@@ -48,7 +48,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트")
     @Test
     void 서비스_당첨번호입력_숫자와숫자사이에공백이존재할때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run("1, 2, 3, 4 5 6"))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3, 4 5 6"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(lotto.custom.common.ErrorMessages.SPACE_BETWEEN_NUMBERS);
     }
@@ -56,7 +56,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_숫자가6개가아닐때_테스트")
     @Test
     void 서비스_당첨번호입력_숫자가6개가아닐때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run("1, 2, 3, 4"))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3, 4"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(CustomErrorMessages.LOTTO_NUMBER_COUNT);
     }
@@ -64,7 +64,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_숫자가중복될때_테스트")
     @Test
     void 서비스_당첨번호입력_숫자가증복될때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run("1, 2, 3, 4, 5, 5"))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3, 4, 5, 5"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(CustomErrorMessages.LOTTO_NUMBERS_MUST_BE_UNIQUE);
     }
@@ -72,7 +72,7 @@ public class WinningNumberServiceTest {
     @DisplayName("서비스_당첨번호입력_숫자의범위가1에서45가아닐때_테스트")
     @Test
     void 서비스_당첨번호입력_숫자의범위가1에서45가아닐때_테스트() {
-        assertThatThrownBy(() -> winningNumberService.run("1, 2, 3, 4, 5, 46"))
+        assertThatThrownBy(() -> lottoDrawingService.drawWinningNumbers("1, 2, 3, 4, 5, 46"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
     }
@@ -81,7 +81,7 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_쉼표정리메소드_연속된쉼표제거_테스트() {
         String input = "1,,,2,,,3,4,5,6";
-        String result = winningNumberService.cleanConsecutiveCommas(input);
+        String result = lottoDrawingService.cleanConsecutiveCommas(input);
         assertThat(result).isEqualTo("1,2,3,4,5,6");
     }
 
@@ -89,7 +89,7 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_쉼표정리메소드_앞뒤단일쉼표제거_테스트() {
         String input = ",1,2,3,4,5,6,";
-        String result = winningNumberService.cleanConsecutiveCommas(input);
+        String result = lottoDrawingService.cleanConsecutiveCommas(input);
         assertThat(result).isEqualTo("1,2,3,4,5,6");
     }
 
@@ -97,7 +97,7 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_쉼표정리메소드_앞뒤연속된쉼표제거_테스트() {
         String input = ",,,1,2,3,4,5,6,,,";
-        String result = winningNumberService.cleanConsecutiveCommas(input);
+        String result = lottoDrawingService.cleanConsecutiveCommas(input);
         assertThat(result).isEqualTo("1,2,3,4,5,6");
     }
 
@@ -105,7 +105,7 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_문자열분리메소드_테스트() {
         String input = "1,2,3,4,5,6";
-        List<String> result = winningNumberService.splitByComma(input);
+        List<String> result = lottoDrawingService.splitByComma(input);
         assertThat(result).containsExactly("1", "2", "3", "4", "5", "6");
     }
 
@@ -113,7 +113,7 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_앞뒤공백제거메소드_단일공백_테스트() {
         List<String> input = Arrays.asList(" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ");
-        List<Integer> result = winningNumberService.trimWinningNumbers(input);
+        List<Integer> result = lottoDrawingService.trimWinningNumbers(input);
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
@@ -121,14 +121,14 @@ public class WinningNumberServiceTest {
     @Test
     void 서비스_앞뒤공백제거메소드_연속공백_테스트() {
         List<String> input = Arrays.asList("  1 ", "  2  ", "   3   ", "  4  ", "  5  ", "  6  ");
-        List<Integer> result = winningNumberService.trimWinningNumbers(input);
+        List<Integer> result = lottoDrawingService.trimWinningNumbers(input);
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @DisplayName("서비스_전체실행_테스트")
     @Test
     void 서비스_전체실행_테스트() {
-        List<Integer> result = winningNumberService.run("1, 2, 3, 4, 5, 6");
+        List<Integer> result = lottoDrawingService.drawWinningNumbers("1, 2, 3, 4, 5, 6");
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
