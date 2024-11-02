@@ -42,4 +42,8 @@ public class LottoResult {
     public void calculateReturnRate() {
         returnRate = (totalPrize * 100.0) / purchaseAmount;
     }
+
+    public int getCountByRank(Rank rank) {
+        return rankCount.get(rank);
+    }
 }

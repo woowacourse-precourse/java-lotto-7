@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -18,7 +19,19 @@ public class OutputView {
         lottos.forEach(System.out::println);
     }
 
+    public void printResult(LottoResult lottoResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Arrays.stream(Rank.values())
+                .forEach(rank -> printRankCount(rank, lottoResult.getCountByRank(rank)));
+    }
+
     private void printRankCount(Rank rank, int count) {
+        if(rank == Rank.NONE) {
+            return;
+        }
+
         System.out.printf((WINNING_RANK_FORMAT) + "%n",
                 rank.getDescription(),
                 rank.getPrize(),
