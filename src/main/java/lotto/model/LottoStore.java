@@ -4,7 +4,7 @@ import static lotto.constants.GlobalLottoConst.UNIT;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.util.random.RandomNumberUtils;
+import lotto.util.random.LottoNumberGenerator;
 
 public class LottoStore {
 
@@ -23,7 +23,7 @@ public class LottoStore {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNumbers = RandomNumberUtils.getLottoNumbers();
+            List<Integer> randomNumbers = LottoNumberGenerator.getLottoNumbers();
             Lotto lotto = new Lotto(randomNumbers);
             lottos.add(lotto);
         }
