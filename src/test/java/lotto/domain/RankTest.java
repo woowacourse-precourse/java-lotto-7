@@ -11,14 +11,14 @@ public class RankTest {
     @DisplayName("매치된 숫자의 개수와 보너스 매치 여부에 따라 Rank 객체를 반환한다.")
     @ParameterizedTest
     @CsvSource({
-            "6, false, FIRST",
-            "5, true, SECOND",
-            "5, false, THIRD",
-            "4, false, FOURTH",
-            "3, false, FIFTH",
-            "2, false, MISS",
-            "1, false, MISS",
-            "0, false, MISS"
+            "6, false, SIX_MATCHES",
+            "5, true, FIVE_MATCHES_WITH_BONUS",
+            "5, false, FIVE_MATCHES",
+            "4, false, FOUR_MATCHES",
+            "3, false, THREE_MATCHES",
+            "2, false, NO_MATCH",
+            "1, false, NO_MATCH",
+            "0, false, NO_MATCH"
     })
     void Rank_반환_테스트(int matchCount, boolean bonusMatch, Rank expectedRank) {
         Rank actualRank = Rank.valueOf(matchCount, bonusMatch);
