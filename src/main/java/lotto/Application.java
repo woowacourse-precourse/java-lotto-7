@@ -19,9 +19,7 @@ public class Application {
 
         List<List<Integer>> lottoTickets = generateLottoTickets(purchaseAmount);
         System.out.println("Generated Lotto Tickets:");
-        for (List<Integer> ticket : lottoTickets) {
-            System.out.println(ticket);
-        }
+        printLottoTickets(lottoTickets);
     }
 
     private static int readValidPurchaseAmount() {
@@ -121,5 +119,13 @@ public class Application {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lottoNumbers);  // 오름차순 정렬
         return lottoNumbers;
+    }
+
+    private static void printLottoTickets(List<List<Integer>> lottoTickets) {
+        System.out.println(lottoTickets.size() + " tickets purchased.");
+
+        for (List<Integer> ticket : lottoTickets) {
+            System.out.println(ticket);
+        }
     }
 }
