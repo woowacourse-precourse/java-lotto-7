@@ -9,4 +9,13 @@ public class PointResult {
         this.point = point;
         this.bonusPoint = bonusPoint;
     }
+
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public Integer getBonusPoint() {
+        return bonusPoint;
+    }
 }

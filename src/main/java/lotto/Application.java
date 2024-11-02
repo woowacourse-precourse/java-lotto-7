@@ -65,8 +65,6 @@ public class Application {
         }
 
         List<Integer> lottoRanks = new ArrayList<>();
-        var rankCounts = calculateRankCounts(lottoRanks);
-        var totalPrize = calculateTotalPrize(rankCounts);
 
         for (Lotto purchasedLotto : purchasedLottos) {
             var pointResult = Lotto.compareLotto(winningLotto, bonusNumber, purchasedLotto);
@@ -74,7 +72,10 @@ public class Application {
             lottoRanks.add(lottoRank.getCalculatedLottoRank());
         }
 
-        // TODO: 추가 기능 구현
+        var rankCounts = calculateRankCounts(lottoRanks);
+        var totalPrize = calculateTotalPrize(rankCounts);
+
+        printRankCounts(rankCounts);
     }
 
     public static Integer validateNumberRange(Integer number) {
@@ -154,5 +155,13 @@ public class Application {
             totalPrize += count * prize;
         }
         return totalPrize;
+    }
+
+    public static void printRankCounts(Map<Integer, Integer> rankCounts) {
+        System.out.printf("3개 일치 (5,000원) - %d개%n", rankCounts.getOrDefault(5, 0));
+        System.out.printf("4개 일치 (50,000원) - %d개%n", rankCounts.getOrDefault(4, 0));
+        System.out.printf("5개 일치 (1,500,000원) - %d개%n", rankCounts.getOrDefault(3, 0));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", rankCounts.getOrDefault(2, 0));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", rankCounts.getOrDefault(1, 0));
     }
 }
