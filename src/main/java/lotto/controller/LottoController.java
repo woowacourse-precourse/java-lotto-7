@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -15,17 +18,19 @@ public class LottoController {
 
     public void run(){
         getMoneyAndBuyLotto();
+        List<Lotto> lottos = getMoneyAndBuyLotto();
     }
 
-    public void getMoneyAndBuyLotto(){
-        try{
-            outputView.showHowMuchMoneyToBuyLotto();
-            int moneyForLotto = inputView.getLottoBuyMoney();
-            LottoGenerator lottoGenerator = LottoGenerator.of(moneyForLotto);
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            getMoneyAndBuyLotto();
+    public List<Lotto> getMoneyAndBuyLotto(){
+        while (true) {
+            try {
+                outputView.showHowMuchMoneyToBuyLotto();
+                int moneyForLotto = inputView.getLottoBuyMoney();
+                LottoGenerator lottoGenerator = LottoGenerator.of(moneyForLotto);
+                return lottoGenerator.publicLottos(); // 입력이 올바르면 로또 리스트 반환
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
