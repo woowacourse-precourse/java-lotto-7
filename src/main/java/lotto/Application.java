@@ -33,7 +33,7 @@ public class Application {
 
             List<Lotto> lottoNumbers = new ArrayList<>();
             for (int i = 0; i < lottoCount; i++) {
-                List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+                List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
                 Collections.sort(numbers);
                 lottoNumbers.add(new Lotto(numbers));
                 System.out.println(lottoNumbers.get(i).getNumbers());
