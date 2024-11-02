@@ -22,6 +22,14 @@ public enum Prize {
         this.money = money;
     }
 
+    public int getMatch() {
+        return match;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
     public long getMoney() {
         return money;
     }

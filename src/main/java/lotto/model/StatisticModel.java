@@ -15,13 +15,17 @@ public class StatisticModel {
 
     public StatisticModel() {
         this.prizes = new LinkedHashMap<>();
-        prizes.put(Prize.FIRST, 0L);
-        prizes.put(Prize.SECOND, 0L);
-        prizes.put(Prize.THIRD, 0L);
-        prizes.put(Prize.FOURTH, 0L);
         prizes.put(Prize.FIFTH, 0L);
+        prizes.put(Prize.FOURTH, 0L);
+        prizes.put(Prize.THIRD, 0L);
+        prizes.put(Prize.SECOND, 0L);
+        prizes.put(Prize.FIRST, 0L);
 
         prizeMoney = 0L;
+    }
+
+    public Map<Prize, Long> getPrizes() {
+        return prizes;
     }
 
     public void setPurchaseAmount(PurchaseAmount purchaseAmount) {

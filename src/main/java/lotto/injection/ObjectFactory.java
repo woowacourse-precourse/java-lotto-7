@@ -37,7 +37,7 @@ public class ObjectFactory {
     }
 
     public final LotteryMachineController lotteryMachineController() {
-        return new LotteryMachineController(lotteryMachineService());
+        return new LotteryMachineController(outputView, lotteryMachineService());
     }
 
     public final PurchaseAmountService purchaseAmountService() {

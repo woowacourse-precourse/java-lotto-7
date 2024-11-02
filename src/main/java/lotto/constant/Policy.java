@@ -8,4 +8,5 @@ public class Policy {
     public final static Integer LOTTO_NUMBER_MAX = 45;
     public final static Integer LOTTO_SIZE = 6;
     public final static Integer LOTTO_PRICE = 1000;
+    public final static String LOTTO_PRICE_FORMAT = "%,d";
 }

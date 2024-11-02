@@ -4,11 +4,14 @@ import static lotto.constant.Constant.EMPTY_LINE;
 import static lotto.constant.Policy.LOTTO_NUMBER_MAX;
 import static lotto.constant.Policy.LOTTO_NUMBER_MIN;
 import static lotto.constant.Policy.LOTTO_PRICE;
+import static lotto.constant.Policy.LOTTO_PRICE_FORMAT;
 import static lotto.constant.Policy.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import lotto.constant.Message;
 import lotto.entity.BonusNumber;
@@ -91,5 +94,32 @@ public class LotteryMachineService {
     private void savePrize(int match, boolean bonus) {
         Optional<Prize> prize = Prize.getPrize(match, bonus);
         prize.ifPresent(statisticModel::add);
+    }
+
+    public void getStatistic(StringBuilder sb) {
+        sb.append(Message.PRIZE_STATISTIC);
+        Map<Prize, Long> prizes = statisticModel.getPrizes();
+        for (Entry<Prize, Long> entry : prizes.entrySet()) {
+            Prize prize = entry.getKey();
+            Long count = entry.getValue();
+            appendResult(sb, prize, count);
+        }
+    }
+
+    private void appendResult(StringBuilder sb, Prize prize, Long count) {
+        sb.append(EMPTY_LINE);
+        sb.append(prize.getMatch());
+        sb.append(Message.PRIZE_MATCH_MESSAGE);
+
+        if (prize.isBonus()) {
+            sb.append(Message.PRIZE_BONUS_MESSAGE);
+        }
+
+        sb.append(Message.PRIZE_MONEY_PREFIX);
+        sb.append(String.format(LOTTO_PRICE_FORMAT, prize.getMoney()));
+        sb.append(Message.PRIZE_MONEY_SUFFIX);
+
+        sb.append(count);
+        sb.append(Message.PRIZE_COUNT_SUFFIX);
     }
 }
