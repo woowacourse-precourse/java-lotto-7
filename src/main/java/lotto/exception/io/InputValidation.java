@@ -30,8 +30,12 @@ public class InputValidation {
     }
 
     public static void validateDelimiter(String input) {
-        if (!input.matches(WINNING_NUMBERS_DELIMITER)) {
+        if (isNotMatches(input)) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_DELIMITER.getErrorMessage());
         }
+    }
+
+    private static boolean isNotMatches(String input) {
+        return !input.matches(WINNING_NUMBERS_DELIMITER);
     }
 }
