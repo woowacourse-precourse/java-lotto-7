@@ -19,6 +19,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     public LottoResponse toLottoResponse() {
         return new LottoResponse(numbers);
     }
