@@ -46,8 +46,11 @@ public class LottoCreateService {
     }
 
     public List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX,
-            LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(
+            LOTTO_NUMBER_MIN,
+            LOTTO_NUMBER_MAX,
+            LOTTO_NUMBER_COUNT
+        );
     }
 
 }
