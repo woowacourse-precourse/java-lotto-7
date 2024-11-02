@@ -8,16 +8,15 @@ public class View {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public static int inputLottoPurchaseAmount() {
+    public static long inputLottoPurchaseAmount() {
         String amountInput = Console.readLine();
         validatePurchaseAmount(amountInput);
-        return Integer.parseInt(amountInput);
+        return Long.parseLong(amountInput);
     }
 
     private static void validatePurchaseAmount(String inputValue) {
         validateNumeric(inputValue);
         validateEmpty(inputValue);
-
     }
 
     private static void validateEmpty(String inputValue) {
@@ -28,11 +27,9 @@ public class View {
 
     private static void validateNumeric(String inputValue) {
         try {
-            Integer.parseInt(inputValue);
+            Long.parseLong(inputValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자 형식이 아닙니다.");
         }
     }
-
-
 }
