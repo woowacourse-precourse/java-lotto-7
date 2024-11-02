@@ -12,7 +12,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String readWinningNumber() {
+    public static String readUserNumber() {
         System.out.println(REQUEST_USER_NUMBER);
         return Console.readLine();
     }
