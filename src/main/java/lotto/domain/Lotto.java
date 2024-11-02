@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
 
@@ -19,8 +20,8 @@ public class Lotto {
         String[] numbers = getNumbers(input);
         Arrays.stream(numbers).forEach(Lotto::validateNumeric);
         return new Lotto(Arrays.stream(numbers)
-                .map(Integer::parseInt)
-                .toList());
+                .map(Lotto::parseInt)
+                .collect(Collectors.toList()));
     }
 
     private static void validateBlank(String input) {
@@ -32,6 +33,14 @@ public class Lotto {
     private static void validateNumeric(String input) {
         if (!input.matches(Constant.NUMERIC_PATTERN)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    private static int parseInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.TOO_BIG_LOTTO_NUMBER.getMessage());
         }
     }
 

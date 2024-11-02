@@ -8,6 +8,7 @@ public enum ErrorMessage {
     UNDER_THOUSAND_PURCHASE_AMOUNT("[ERROR] 구입 금액은 최소 1,000원 이상이어야 합니다."),
     NOT_THOUSAND_UNIT_PURCHASE_AMOUNT("[ERROR] 구입 금액은 1,000원 단위여야 합니다."),
     BLANK_WINNING_NUMBER("[ERROR] 당첨 번호를 입력하지 않았습니다."),
+    TOO_BIG_LOTTO_NUMBER("[ERROR] 로또 번호가 너무 큽니다."),
     NOT_NUMERIC_LOTTO_NUMBER("[ERROR] 로또 번호는 숫자여야 합니다."),
     NOT_LOTTO_NUMBER_COUNT_SIX("[ERROR] 로또 번호는 6개여야 합니다."),
     OUT_RANGE_LOTTO_NUMBER("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다."),
