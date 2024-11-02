@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.LottoConstants.NUMBER_COUNT;
+
 import java.util.List;
 
 public class WinningNumbers {
@@ -7,7 +9,7 @@ public class WinningNumbers {
     private final int bonusNumber;
 
     public WinningNumbers() {
-        winningNumbers = RandomMaker.getRandomNumbers(7);
+        winningNumbers = RandomMaker.getRandomNumbers(NUMBER_COUNT + 1);
         bonusNumber = winningNumbers.getLast();
         winningNumbers.removeLast();
     }
