@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,8 +22,9 @@ public class LottoService {
         List<Lotto> newLotto = new ArrayList<>();
         for (int i = 0; i < M / 1000; i++) {
             List<Integer> pickNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            pickNum.sort(Comparator.naturalOrder());
-            Lotto lotto = new Lotto(pickNum);
+            List<Integer> modifiableList = new ArrayList<>(pickNum);
+            Collections.sort(modifiableList);
+            Lotto lotto = new Lotto(modifiableList);
             newLotto.add(lotto);
         }
         return newLotto;
