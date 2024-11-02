@@ -7,6 +7,8 @@ public class Lotto {
     private static final String TO_STRING_PREFIX = "[";
     private static final String TO_STRING_DELIMITER = ", ";
     private static final String TO_STRING_SUFFIX = "]";
+    private static final int DELIMITER_SIZE = 2;
+    private static final int MAX_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != MAX_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
@@ -30,7 +32,7 @@ public class Lotto {
         StringBuilder sb = new StringBuilder();
         sb.append(TO_STRING_PREFIX)
                 .append(attachNumbersWithDelimiter())
-                .delete(sb.length() - 2, sb.length())
+                .delete(sb.length() - DELIMITER_SIZE, sb.length())
                 .append(TO_STRING_SUFFIX);
         return sb.toString();
     }
