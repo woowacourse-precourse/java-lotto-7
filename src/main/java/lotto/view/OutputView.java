@@ -1,8 +1,6 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 
@@ -10,9 +8,7 @@ public class OutputView {
     public void printLottoTicket(List<Lotto> lottoTickets, int lottoTicketNumber){
         System.out.println(lottoTicketNumber + "개를 구매했습니다.");
         for(Lotto lotto : lottoTickets){
-            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
-            Collections.sort(numbers);
-            System.out.println(numbers);
+            System.out.println(lotto.getNumbers());
         }
         System.out.println();
     }
