@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.model.LottoModel;
+import lotto.validation.Constant;
 
 import java.util.List;
 
@@ -15,31 +16,29 @@ public class LottoService {
         lottoModel.generateLottos(lottoCount);
     }
 
-    public void winningCount(List<Integer> winningNumber, int i, int[] ans, int bonusNumber) {
+    public void winningCount(List<Integer> winningNumber, int index, int[] winningCount, int bonusNumber) {
         int total = 0;
         for (Integer winVal : winningNumber) {
-            if (lottoModel.getLottoNumbers(i).contains(winVal)) {
-                total++;
-            }
+            if (lottoModel.getLottoNumbers(index).contains(winVal)) total++;
         }
-        if (total == 3) ans[0]++;
-        if (total == 4) ans[1]++;
+
+        if (total == 3) winningCount[Constant.WIN_THREE]++;
+        if (total == 4) winningCount[Constant.WIN_FOUR]++;
         if (total == 5) {
-            if (lottoModel.getLottoNumbers(i).contains(bonusNumber)) {
-                ans[3]++;
+            if (lottoModel.getLottoNumbers(index).contains(bonusNumber)) {
+                winningCount[Constant.WIN_FIVE_BONUS]++;
                 return;
             }
-            ans[2]++;
+            winningCount[Constant.WIN_FIVE]++;
         }
-        if (total == 6) ans[4]++;
+        if (total == 6) winningCount[Constant.WIN_SIX]++;
     }
 
-    public double getRate(int lottoCount, int[] ans) {
-        int price = lottoCount * 1000;
-        long sum = 0;
-        sum = ans[0] * 5000L + ans[1] * 50000L + ans[2] * 1500000L
-                + ans[3] * 30000000L + ans[4] * 2000000000L;
-        double rate = ((double)sum / price) * 100;
-        return rate;
+    public double getRate(int lottoCount, int[] winningCount) {
+        int price = lottoCount * Constant.LOTTO_PRICE;
+        long sum = winningCount[Constant.WIN_THREE] * 5000L + winningCount[Constant.WIN_FOUR] * 50000L
+                + winningCount[Constant.WIN_FIVE] * 1500000L + winningCount[Constant.WIN_FIVE_BONUS] * 30000000L
+                + winningCount[Constant.WIN_SIX] * 2000000000L;
+        return ((double) sum / price) * 100;
     }
 }
