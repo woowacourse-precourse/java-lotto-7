@@ -64,15 +64,27 @@ class LottoServiceTest {
         LottoWinningNumbers winningNumbers = new LottoWinningNumbers(winning, bonusNumber);
 
         //when
-        Map<LottoPrize, Integer> result = lottoService.drawWinners(lotts, winningNumbers);
-        int sum = result.values()
-                .stream()
-                .mapToInt(Integer::valueOf)
-                .sum();
+        List<LottoPrize> lottoPrizes = lottoService.drawWinners(lotts, winningNumbers);
 
         //then
-        assertThat(result).hasSize(5);
-        assertThat(sum).isEqualTo(7);
+        assertThat(lottoPrizes).hasSize(7);
+    }
+
+    @Test
+    public void 상금_수익률_계산() {
+        //given
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
+        lottoPrizes.add(LottoPrize.FIFTH);
+        lottoPrizes.add(LottoPrize.FOURTH);
+        int purchaseAmount = 7000;
+
+        //when
+        double profitRatio = lottoService.calculateProfitRatio(purchaseAmount, lottoPrizes);
+
+        //then
+        double expectedRatio = 785.7;
+        assertThat(profitRatio).isEqualTo(expectedRatio);
+
     }
 
 }

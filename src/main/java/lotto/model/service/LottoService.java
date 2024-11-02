@@ -1,8 +1,6 @@
 package lotto.model.service;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import lotto.model.domain.LottoConstant;
 import java.util.ArrayList;
@@ -28,18 +26,25 @@ public class LottoService {
         return lottos;
     }
 
-    public Map<LottoPrize, Integer> drawWinners(List<Lotto> lottos, LottoWinningNumbers lottoWinningNumbers) {
-        Map<LottoPrize, Integer> winners = new HashMap<>();
+    public List<LottoPrize> drawWinners(List<Lotto> lottos, LottoWinningNumbers lottoWinningNumbers) {
+        List<LottoPrize> winners = new ArrayList<>();
 
         Set<Integer> winningNumberSet = new HashSet<>(lottoWinningNumbers.getNumbers());
 
         for (Lotto lotto : lottos) {
             LottoPrize prize = getPrizeIfWinner(lotto, winningNumberSet, lottoWinningNumbers.getBonusNumber());
             if (prize != null) {
-                winners.put(prize, winners.getOrDefault(prize, 0) + 1);
+                winners.add(prize);
             }
         }
         return winners;
+    }
+
+    public double calculateProfitRatio(int purchaseAmount, List<LottoPrize> winners) {
+        int totalAmount = winners.stream()
+                .mapToInt(LottoPrize::getPrize)
+                .sum();
+        return calculatePercent(totalAmount, purchaseAmount);
     }
 
 
@@ -49,6 +54,11 @@ public class LottoService {
         lottoNumberSet.retainAll(winningNumberSet);
 
         return LottoPrize.findBy(lottoNumberSet.size(), isBonusCorrect);
+    }
+
+    private double calculatePercent(int part, int whole) {
+        double percent = ((double) part / whole) * 100;
+        return Math.round(percent * 10) / 10.0;
     }
 
 

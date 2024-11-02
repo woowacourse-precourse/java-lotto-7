@@ -33,9 +33,9 @@ public enum LottoPrize {
                 return LottoPrize.SECOND;
             }
             return LottoPrize.THIRD;
-
+            
         }
-        
+
         return Arrays.stream(LottoPrize.values())
                 .filter(prize -> prize.correctCount == correctCount)
                 .findFirst()
