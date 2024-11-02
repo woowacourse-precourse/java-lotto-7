@@ -8,8 +8,12 @@ public class InputHandler {
     public static String handleAmountInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String amountInput = Console.readLine().trim();
-        validateAmountInput(amountInput);
-
+        try {
+            validateAmountInput(amountInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return handleAmountInput();
+        }
         return amountInput;
     }
 
