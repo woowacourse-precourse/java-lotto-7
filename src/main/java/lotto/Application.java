@@ -1,10 +1,14 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
-        lotto.buyLotto();
+        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
+        List<List<Integer>> list = lottoNumberGenerator.generateLottoNumbers();
+        for (List<Integer> integers : list) {
+            System.out.println(integers);
+        }
     }
 }

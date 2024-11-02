@@ -18,19 +18,19 @@ public class Lotto {
         }
     }
 
-    public int buyLotto() {
+    public static int buyLotto() {
         System.out.println("구입 금액을 입력해 주세요.");
         while (true) {
             try {
                 int amount = Integer.parseInt(Console.readLine());
 
                 if (amount % 1000 != 0 || amount == 0) {
-                    System.out.println("구입 금액은 1,000원 단위여야 합니다.");
+                    System.out.println("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
                     continue;
                 }
                 return (amount / 1000);
             } catch (NumberFormatException e) {
-                System.out.println("숫자로만 입력해주세요.");
+                System.out.println("[ERROR] 숫자로만 입력해주세요.");
             }
         }
     }
