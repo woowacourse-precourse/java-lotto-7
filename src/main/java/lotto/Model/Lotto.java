@@ -58,17 +58,21 @@ public class Lotto {
 
         if (matchingCount == 6) {
             return 1;
-        } else if (matchingCount == 5 && hasBonusMatch) {
-            return 2;
-        } else if (matchingCount == 5) {
-            return 3;
-        } else if (matchingCount == 4) {
-            return 4;
-        } else if (matchingCount == 3) {
-            return 5;
-        } else {
-            return 0;
         }
+        if (matchingCount == 5 && hasBonusMatch) {
+            return 2;
+        }
+        if (matchingCount == 5) {
+            return 3;
+        }
+        if (matchingCount == 4) {
+            return 4;
+        }
+        if (matchingCount == 3) {
+            return 5;
+        }
+
+        return 0;
     }
 
     public List<Integer> findMatchNumber() {
