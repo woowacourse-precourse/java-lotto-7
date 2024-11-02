@@ -42,4 +42,8 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_RANGE.getMessage());
         }
     }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
 }

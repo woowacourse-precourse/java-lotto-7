@@ -4,7 +4,8 @@ import lotto.io.InputHandler;
 
 public class Application {
     public static void main(String[] args) {
-        InputHandler.repeatInputOrderPrice();
-        InputHandler.repeatInputLottoNumber();
+        Purchase purchase = InputHandler.repeatInputOrderPrice();
+        Lotto lotto = InputHandler.repeatInputLottoNumber();
+        Bonus bonus = InputHandler.repeatInputBonusNumber(lotto);
     }
 }

@@ -7,15 +7,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Parser {
-
     private static final String DELIMITER = ",";
+
+    public static Bonus parseBonusNumber(String input) {
+        int number = Parser.parseNumber(input);
+        return new Bonus(number);
+    }
 
     public static Purchase parsePurchase(String input) {
         int number = Parser.parseNumber(input);
         return new Purchase(number);
     }
 
-    public static Lotto parseLottoNumber(String input) {
+    public static Lotto parseLotto(String input) {
         List<Integer> numbers = Arrays.stream(input.split(DELIMITER))
                 .map(Parser::parseNumber)
                 .collect(Collectors.toList());

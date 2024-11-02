@@ -1,19 +1,34 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
-import lotto.Parser;
-import lotto.Purchase;
+import lotto.*;
+import lotto.constant.ErrorMessage;
 
 import java.util.function.Function;
 
-public class InputHandler {
+import static lotto.constant.IOMessage.*;
 
-    private static final String ORDER_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+public class InputHandler {
+    public static Bonus repeatInputBonusNumber(Lotto lotto) {
+        while (true) {
+            try {
+                Bonus bonus = repeatInput(Parser::parseBonusNumber, BONUS_NUMBER_INPUT_MESSAGE);
+                validateDuplicatedWithLotto(lotto, bonus);
+                return bonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void validateDuplicatedWithLotto(Lotto lotto, Bonus bonus) {
+        if(lotto.getNumbers().contains(bonus.getNumber())){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_DUPLICATION.getMessage());
+        }
+    }
 
     public static Lotto repeatInputLottoNumber() {
-        return repeatInput(Parser::parseLottoNumber, LOTTO_NUMBER_INPUT_MESSAGE);
+        return repeatInput(Parser::parseLotto, LOTTO_NUMBER_INPUT_MESSAGE);
     }
 
     public static Purchase repeatInputOrderPrice() {
