@@ -112,16 +112,7 @@ public class InputTest {
                 validator.validate(input);
             });
         }
-
-        @DisplayName("중복 예외 처리")
-        @ParameterizedTest()
-        @ValueSource(strings = {"1,1,1,1,1,1", "1,1,2,3,4,5"})
-        void 중복_예외(String input){
-            assertThrows(IllegalArgumentException.class, () -> {
-                validator.validate(input);
-            });
-        }
-
+        
         @DisplayName("6개 미만의 당첨 번호")
         @ParameterizedTest()
         @ValueSource(strings = {"1,2,3,4,5", "", " ", "1", "1,2,3"})

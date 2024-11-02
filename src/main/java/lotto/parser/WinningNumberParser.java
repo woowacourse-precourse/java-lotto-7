@@ -7,11 +7,12 @@ import java.util.stream.Collectors;
 
 public class WinningNumberParser {
     private static final String SEPARATOR = ",";
-    public List<String> parseWinningNumber(String input){
+    public List<Integer> parseWinningNumber(String input){
 
         List<String> separatedInput = separateInput(input);
         return separatedInput.stream()
             .map(this::trimElement)
+            .map(Integer::parseInt)
             .collect(Collectors.toList());
     }
 

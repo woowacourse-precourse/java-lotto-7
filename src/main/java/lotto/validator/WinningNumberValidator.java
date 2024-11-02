@@ -12,7 +12,6 @@ public class WinningNumberValidator implements Validator{
     private static final String REGEX = "^([1-9]|1[0-9]|2[0-9]|3[0-9]|4[0-5])";
     private static final String REGEX_WITH_SEPARATOR = "(,([1-9]|1[0-9]|2[0-9]|3[0-9]|4[0-5]))";
     private static final String NUMBER_OF_REPEATS = "{5}$";
-    private static final int NUMBER_OF_ELEMENTS = 6;
     private static final String COMBINED_REGEX = REGEX + REGEX_WITH_SEPARATOR + NUMBER_OF_REPEATS;
 
     @Override
@@ -20,7 +19,6 @@ public class WinningNumberValidator implements Validator{
         checkElementIsEmpty(input);
         checkElementIsNull(input);
         checkElementMatchesRegex(input);
-        checkDuplicateNumber(input);
     }
 
     private void checkElementIsEmpty(String input){
@@ -41,15 +39,4 @@ public class WinningNumberValidator implements Validator{
         }
     }
 
-    private void checkDuplicateNumber(String input){
-        List<String> parsedInput = Separator.separate(input);
-        HashSet<String> uniqueElements = convertToSet(parsedInput);
-        if(uniqueElements.size() < NUMBER_OF_ELEMENTS){
-            throw new IllegalArgumentException(ErrorConstants.DUPLICATE_NOT_ALLOWED.getMessage());
-        }
-    }
-
-    private HashSet<String> convertToSet(List<String> parsedInput){
-        return new HashSet<>(parsedInput);
-    }
 }

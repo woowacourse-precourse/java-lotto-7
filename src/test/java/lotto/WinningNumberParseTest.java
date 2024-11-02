@@ -26,8 +26,8 @@ public class WinningNumberParseTest {
         @ParameterizedTest()
         @ValueSource(strings = {"1,2,3,4,5,6", "1,2,3,4,5,6,", "1 ,2 ,3,4, 5, 6            ,"})
         void 당첨번호_콤마기준_파싱(String input){
-            List<String> parsedInput = parser.parseWinningNumber(input);
-            assertThat(parsedInput).containsExactly("1","2","3","4","5","6");
+            List<Integer> parsedInput = parser.parseWinningNumber(input);
+            assertThat(parsedInput).containsExactly(1,2,3,4,5,6);
         }
     }
 }
