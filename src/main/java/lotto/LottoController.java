@@ -3,23 +3,40 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     public void run() {
-        // input
         int lottoCount = getLottoCount();
-        List<Lotto> lottoList = issueLotto(lottoCount);
+        List<Lotto> lottoList = Lotto.issueLottoList(lottoCount);
+        printLottoList(lottoList);
         List<Integer> winningNumbers = getWinningNumbers();
         winningNumbers.add(getBonusNumber());
+        printWinningStatistics(lottoList, winningNumbers);
     }
 
-    private List<Lotto> issueLotto(int lottoCount) {
-        List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottoList.add(Lotto.getLotto());
-        }
+    private void printWinningStatistics(List<Lotto> lottoList, List<Integer> winningNumbers) {
 
-        return lottoList;
+        LottoService lottoService = new LottoService();
+
+        Map<Integer, Integer> stat = lottoService.calcWinningStatistics(lottoList, winningNumbers);
+        double returnRate = lottoService.calcReturnRate(stat, lottoList.size());
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + stat.getOrDefault(5, 0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + stat.getOrDefault(4, 0) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + stat.getOrDefault(3, 0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + stat.getOrDefault(2, 0) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + stat.getOrDefault(1, 0) + "개");
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
+    }
+
+    private void printLottoList(List<Lotto> lottoList) {
+        System.out.println(lottoList.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottoList) {
+            lotto.printNumbers();
+        }
+        System.out.println();
     }
 
     private int getLottoCount() {
@@ -40,6 +57,9 @@ public class LottoController {
             int number = parseInt(input);
             validateLottoNumber(number);
             winningNumbers.add(number);
+        }
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
         return winningNumbers;
     }
@@ -65,6 +85,7 @@ public class LottoController {
         String input = Console.readLine();
         int bonusNumber = parseInt(input);
         validateLottoNumber(bonusNumber);
+        System.out.println();
         return bonusNumber;
     }
 
