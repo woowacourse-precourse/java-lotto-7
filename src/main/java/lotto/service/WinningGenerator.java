@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.Factory.LottoFactory;
+import lotto.factory.LottoFactory;
 import lotto.domain.Lotto;
 
 public class WinningGenerator {

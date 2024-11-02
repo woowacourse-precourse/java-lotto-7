@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.Factory.WalletFactory;
+import lotto.factory.WalletFactory;
 import lotto.domain.Wallet;
 
 public class Payment {

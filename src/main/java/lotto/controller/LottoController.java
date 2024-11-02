@@ -2,10 +2,9 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Factory.LottoFactory;
-import lotto.Factory.LottoGeneratorFactory;
-import lotto.Factory.ResultCalculatorFactory;
-import lotto.Factory.ResultGeneratorFactory;
+import lotto.factory.LottoGeneratorFactory;
+import lotto.factory.ResultCalculatorFactory;
+import lotto.factory.ResultGeneratorFactory;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.service.LottoGenerator;

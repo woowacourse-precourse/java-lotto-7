@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Factory.BonusGeneratorFactory;
+import lotto.factory.BonusGeneratorFactory;
 import lotto.domain.Lotto;
 import lotto.service.BonusGenerator;
 import lotto.view.InputView;

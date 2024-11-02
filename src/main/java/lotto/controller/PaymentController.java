@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Factory.PaymentFactory;
+import lotto.factory.PaymentFactory;
 import lotto.service.Payment;
 import lotto.view.InputView;
 import lotto.view.OutputView;

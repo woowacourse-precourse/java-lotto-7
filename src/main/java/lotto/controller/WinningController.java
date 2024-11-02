@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Factory.WinningGeneratorFactory;
+import lotto.factory.WinningGeneratorFactory;
 import lotto.service.WinningGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;

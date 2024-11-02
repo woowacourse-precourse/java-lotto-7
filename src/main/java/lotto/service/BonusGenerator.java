@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.Factory.BonusFactory;
+import lotto.factory.BonusFactory;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 
