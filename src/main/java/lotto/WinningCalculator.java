@@ -66,4 +66,14 @@ public class WinningCalculator {
         return totalPrizeMoney;
     }
 
+    // 수익률 게산
+    public double calculateProfitRate(int purchasedMoney, int totalPrizeMoney) {
+        double result = (double)totalPrizeMoney / purchasedMoney;
+        return roundToTwoDecimalPlaces(result);
+    }
+
+    private double roundToTwoDecimalPlaces(double value) {
+        return Math.round(value * 100) / 100.0;
+    }
+
 }
