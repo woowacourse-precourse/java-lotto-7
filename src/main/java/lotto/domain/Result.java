@@ -35,6 +35,18 @@ public class Result {
         results.put(rank, results.get(rank) + 1);
     }
 
+    public double calculateProfitRate(Payment payment) {
+        return payment.divide(getTotalProfit()) * 100;
+    }
+
+    private long getTotalProfit() {
+        return results.keySet().stream()
+                .mapToLong(
+                        rank -> rank.calculatePrize(results.get(rank))
+                )
+                .sum();
+    }
+
     public int getCount(Rank rank) {
         return results.get(rank);
     }
