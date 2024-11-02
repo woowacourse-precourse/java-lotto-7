@@ -8,16 +8,16 @@ import lotto.model.Lotto;
 import lotto.util.ParsingUtils;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.InputValidator;
+import lotto.view.ErrorView;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class LottoInputHandler {
     private final InputView inputView;
-    private final OutputView outputView;
+    private final ErrorView errorView;
 
-    public LottoInputHandler(InputView inputView, OutputView outputView) {
+    public LottoInputHandler(InputView inputView, ErrorView errorView) {
         this.inputView = inputView;
-        this.outputView = outputView;
+        this.errorView = errorView;
     }
 
     public int getPurchaseAmount() {
@@ -54,7 +54,7 @@ public class LottoInputHandler {
                 validateInput(parsedInput, validationFunction);
                 return parsedInput;
             } catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
+                errorView.printErrorMessage(e.getMessage());
             }
         }
     }

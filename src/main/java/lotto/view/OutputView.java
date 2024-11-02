@@ -24,10 +24,7 @@ public class OutputView {
         System.out.printf(ViewMessage.PROFIT_RATE.getMessage(), profitRate);
     }
 
-    public void printErrorMessage(String errorMessage) {
-        System.out.println(errorMessage);
-    }
-
+   
     private void printPurchaseCount(int count) {
         System.out.printf(ViewMessage.LOTTO_COUNT_PURCHASED.getMessage(), count);
     }

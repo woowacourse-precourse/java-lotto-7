@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.handler.LottoInputHandler;
 import lotto.handler.ResultHandler;
 import lotto.service.LottoService;
+import lotto.view.ErrorView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,11 +12,14 @@ public class LottoGameController {
     private final LottoService lottoService;
     private final LottoInputHandler inputHandler;
     private final ResultHandler resultHandler;
+
+
     private final OutputView outputView;
 
-    public LottoGameController(LottoService lottoService, InputView inputView, OutputView outputView) {
+    public LottoGameController(LottoService lottoService, InputView inputView, ErrorView errorView,
+                               OutputView outputView) {
         this.lottoService = lottoService;
-        this.inputHandler = new LottoInputHandler(inputView, outputView);
+        this.inputHandler = new LottoInputHandler(inputView, errorView);
         this.resultHandler = new ResultHandler(lottoService, outputView);
         this.outputView = outputView;
     }

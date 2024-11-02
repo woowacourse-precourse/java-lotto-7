@@ -3,8 +3,8 @@ package lotto.handler;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.view.ErrorView;
 import lotto.view.InputView;
-import lotto.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,10 +13,13 @@ public class LottoInputHandlerTest {
 
     private LottoInputHandler lottoInputHandler;
     private TestInputView inputView;
+    private ErrorView errorView;
 
     @BeforeEach
     void setUp() {
         inputView = new TestInputView();
+        errorView = new ErrorView();
+
     }
 
     @Test
@@ -24,8 +27,7 @@ public class LottoInputHandlerTest {
     void testGetPurchaseAmount() {
         String nextInput = "5000";
         inputView.setNextInput(nextInput);
-        OutputView outputView = new OutputView();
-        lottoInputHandler = new LottoInputHandler(inputView, outputView);
+        lottoInputHandler = new LottoInputHandler(inputView, errorView);
         int amount = lottoInputHandler.getPurchaseAmount();
         assertEquals(5000, amount);
     }
@@ -35,8 +37,7 @@ public class LottoInputHandlerTest {
     void testGetWinningNumbers() {
         String nextInput = "1,2,3,4,5,6";
         inputView.setNextInput(nextInput);
-        OutputView outputView = new OutputView();
-        lottoInputHandler = new LottoInputHandler(inputView, outputView);
+        lottoInputHandler = new LottoInputHandler(inputView, errorView);
         List<Integer> winningNumbers = lottoInputHandler.getWinningNumbers();
         assertEquals(List.of(1, 2, 3, 4, 5, 6), winningNumbers);
     }
@@ -46,8 +47,7 @@ public class LottoInputHandlerTest {
     void testGetBonusNumber() {
         String nextInput = "7";
         inputView.setNextInput(nextInput);
-        OutputView outputView = new OutputView();
-        lottoInputHandler = new LottoInputHandler(inputView, outputView);
+        lottoInputHandler = new LottoInputHandler(inputView, errorView);
         int bonusNumber = lottoInputHandler.getBonusNumber(List.of(1, 2, 3, 4, 5, 6));
         assertEquals(7, bonusNumber);
     }

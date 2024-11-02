@@ -9,6 +9,7 @@ import java.util.List;
 import lotto.service.LottoService;
 import lotto.service.PrizeCalculator;
 import lotto.util.LottoTicketGenerator;
+import lotto.view.ErrorView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,8 @@ class LottoGameControllerTest extends NsTest {
         LottoService lottoService = new LottoService(new LottoTicketGenerator(), new PrizeCalculator());
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
-        controller = new LottoGameController(lottoService, inputView, outputView);
+        ErrorView errorView = new ErrorView();
+        controller = new LottoGameController(lottoService, inputView, errorView, outputView);
     }
 
     @Test
