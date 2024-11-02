@@ -27,9 +27,9 @@ class LottoGeneratorTest {
         LottoGenerator lottoGenerator = new LottoGenerator(randomNumberListGenerator, sorter);
 
         //when
-        Numbers numbers = lottoGenerator.generate();
+        Lotto lotto = lottoGenerator.generate();
 
         //then
-        assertNotNull(numbers);
+        assertNotNull(lotto);
     }
 }

@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Numbers {
+public class Lotto {
     private final List<LottoNumber> numbers;
 
-    public Numbers(List<LottoNumber> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
@@ -26,10 +26,10 @@ public class Numbers {
         }
     }
 
-    public int matchCount(Numbers otherNumbers) {
+    public int matchCount(Lotto otherLotto) {
         int count = 0;
         for (LottoNumber number : this.numbers) {
-            if (otherNumbers.numbers.contains(number)) {
+            if (otherLotto.numbers.contains(number)) {
                 count++;
             }
         }

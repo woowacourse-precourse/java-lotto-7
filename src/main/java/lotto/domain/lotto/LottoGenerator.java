@@ -19,7 +19,7 @@ public class LottoGenerator {
         this.sorter = sorter;
     }
 
-    public Numbers generate() {
+    public Lotto generate() {
 
         List<Integer> lottoNumbers = randomNumberListGenerator.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
                 COUNT);
@@ -31,6 +31,6 @@ public class LottoGenerator {
             numbers.add(new LottoNumber(number));
         }
 
-        return new Numbers(numbers);
+        return new Lotto(numbers);
     }
 }
