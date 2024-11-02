@@ -73,13 +73,14 @@ public class LottoMachine {
 
     public void calculate() {
         long[] count = new long[6];
-        long total = 0;
 
         for(Lotto l : lottos) {
             count[l.getRank(win.getNumbers(), bonus)]++;
         }
-        total = sum(count);
-        Output.statistic(count, "15");
+        long total = sum(count);
+        double interest = ((double)total / (double)money) * 100;
+        interest = Math.round(interest*10)/10.0;
+        Output.statistic(count, interest);
     }
 
     public long sum(long[] count) {
