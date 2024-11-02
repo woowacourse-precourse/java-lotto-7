@@ -6,7 +6,7 @@ import lotto.dto.PurchaseAmountUserInput;
  * @author : jiffyin7@gmail.com
  * @since : 24. 10. 31.
  */
-public class PurchaseAmount implements Amount {
+public class PurchaseAmount implements Amount<Integer> {
   private int amount;
 
   private PurchaseAmount (int amount) {
@@ -18,7 +18,7 @@ public class PurchaseAmount implements Amount {
   }
 
   @Override
-  public int getAmount() {
+  public Integer getAmount() {
     return this.amount;
   }
 
