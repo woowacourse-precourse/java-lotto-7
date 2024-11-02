@@ -36,7 +36,7 @@ public class LottoGame {
 
     private void generateLottoTickets(int purchaseAmount) {
         int ticketCount= purchaseAmount/LOTTO_PRICE;
-        System.out.println(ticketCount+"개 를 구매했습니다");
+        System.out.println(ticketCount+"개를 구매했습니다");
         purchasedTickets=new LottoTickets(ticketCount);
         purchasedTickets.printTickets();
     }
