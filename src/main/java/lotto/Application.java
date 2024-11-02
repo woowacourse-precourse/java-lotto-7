@@ -12,7 +12,8 @@ public class Application {
         int money = Input.validate(Input::parseMoney);
         System.out.println();
 
-        int N = money / 1000;
+        int lottoPrice = 1000;
+        int N = money / lottoPrice;
 
         List<Lotto> lottoes = new ArrayList<>();
 

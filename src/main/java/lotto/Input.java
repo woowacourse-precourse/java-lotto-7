@@ -11,9 +11,10 @@ public class Input {
         if (!input.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
         }
+        int lottoPrice = 1000;
         int money = Integer.parseInt(input);
-        if (money % 1000 != 0 || money <= 0) {
-            throw new IllegalArgumentException("[ERROR] 1000의 양의 배수만 입력하세요");
+        if (money % lottoPrice != 0 || money <= 0) {
+            throw new IllegalArgumentException("[ERROR] " + lottoPrice + "의 양의 배수만 입력하세요");
         }
 
         return money;
