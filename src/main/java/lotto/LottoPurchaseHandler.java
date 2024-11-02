@@ -1,19 +1,25 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.Comparator;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class LottoPurchaseHandler {
     private static final int SINGLE_LOTTO_PRICE = 1000;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int NUMBERS_PER_LOTTO = 6;
 
     public static int getValidatedPaymentAmount() {
-        printRequestingMoneyInput();
-
         String moneyInput = InputHandler.getUserInput();
 
-        return Validator.validateMoneyInput(moneyInput);
+        try {
+            return Validator.validateMoneyInput(moneyInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+            return getValidatedPaymentAmount();
+        }
     }
 
     public static int getLottoPurchaseCount(int money) {
@@ -22,6 +28,8 @@ public class LottoPurchaseHandler {
 
     public static void getRandomLottoBundle(int lottoPurchaseCount,
                                             List<List<Integer>> randomLottoBundle) {
+        printConfirmPurchase(lottoPurchaseCount);
+
         for (int n = 0; n< lottoPurchaseCount; n++) {
             List<Integer> randomLotto = getOneRandomLotto();
             randomLotto.sort(Comparator.naturalOrder());
@@ -33,7 +41,7 @@ public class LottoPurchaseHandler {
         System.out.println();
     }
 
-    private static void printRequestingMoneyInput() {
+    public static void printRequestingMoneyInput() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
 
@@ -42,6 +50,6 @@ public class LottoPurchaseHandler {
     }
 
     private static List<Integer> getOneRandomLotto() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, NUMBERS_PER_LOTTO);
     }
 }
