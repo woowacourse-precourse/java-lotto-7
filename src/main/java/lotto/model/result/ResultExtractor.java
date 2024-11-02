@@ -25,4 +25,9 @@ public class ResultExtractor {
         }
         return lottoResult.getResult();
     }
+
+    public double calculateProfitRate(final int originalMoney) {
+        final long winningMoney = lottoResult.calculateWinningMoney();
+        return ((double) winningMoney / originalMoney) * 100;
+    }
 }

@@ -20,4 +20,11 @@ public class LottoResult {
     public Map<Rank, Integer> getResult() {
         return Collections.unmodifiableMap(result);
     }
+
+    protected long calculateWinningMoney() {
+        return result.entrySet().stream()
+                .filter(entry -> entry.getValue() > 0)
+                .mapToLong(entry -> entry.getKey().getWinningMoney())
+                .sum();
+    }
 }

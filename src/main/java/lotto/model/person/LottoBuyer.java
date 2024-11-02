@@ -1,5 +1,7 @@
 package lotto.model.person;
 
+import static lotto.model.person.LottoSeller.LOTTO_UNIT_AMOUNT;
+
 import java.util.Map;
 import lotto.model.lotto.Lottos;
 import lotto.model.lotto.WinningLotto;
@@ -25,5 +27,15 @@ public class LottoBuyer {
     public Map<Rank, Integer> checkWinningDegree(final WinningLotto winningLotto) {
         resultExtractor = new ResultExtractor(winningLotto, lottos);
         return resultExtractor.extract();
+    }
+
+    public double checkProfitRate() {
+        int originalMoney = calculatePrincipal();
+        return resultExtractor.calculateProfitRate(originalMoney);
+    }
+
+    private int calculatePrincipal() {
+        int totalLottoCount = lottos.calculateLottoCount();
+        return LOTTO_UNIT_AMOUNT * totalLottoCount;
     }
 }

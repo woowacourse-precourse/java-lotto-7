@@ -78,13 +78,19 @@ public class LottoController {
         return new BonusNumber(inputView.inputBonusNumber());
     }
 
-    public void printResult(final WinningLotto winningLotto) {
+    private void printResult(final WinningLotto winningLotto) {
         printStatistics(winningLotto);
+        printProfitRate();
     }
 
     private void printStatistics(final WinningLotto winningLotto) {
         final Map<Rank, Integer> result = lottoBuyer.checkWinningDegree(winningLotto);
         ResultStatistics resultStatistics = new ResultStatistics(result);
         outputView.printLottoResult(resultStatistics);
+    }
+
+    private void printProfitRate() {
+        double profit = lottoBuyer.checkProfitRate();
+        outputView.printProfit(profit);
     }
 }
