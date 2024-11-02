@@ -14,6 +14,7 @@ public class Lotto {
   public Lotto(List<Integer> numbers) {
     validateNumberSize(numbers);
     validateDuplicatedNumbers(numbers);
+    validateNumberRange(numbers);
     this.numbers = numbers;
   }
 
@@ -39,16 +40,16 @@ public class Lotto {
     }
   }
 
+  private void validateNumberRange(List<Integer> numbers) {
+    if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
+      throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이여야 합니다.");
+    }
+  }
+
   private void validateDuplicateWinningNumbers(List<Integer> winningNumbers) {
     Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);
     if (winningNumberSet.size() != winningNumbers.size()) {
       throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
-    }
-  }
-
-  private void validateNumberRange(List<Integer> numbers) {
-    if (numbers.stream().anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)) {
-      throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다.");
     }
   }
 
@@ -66,5 +67,9 @@ public class Lotto {
 
   public List<Integer> getNumbers() {
     return numbers;
+  }
+
+  public boolean containsWinningNumber(int number) {
+    return numbers.contains(number);
   }
 }
