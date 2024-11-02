@@ -5,6 +5,6 @@ import lotto.domain.Lotto;
 
 public record IssuedLottoDto(List<Integer> lottoNumber) {
     public static IssuedLottoDto from(Lotto lotto) {
-        return null;
+        return new IssuedLottoDto(List.copyOf(lotto.getNumbers()));
     }
 }
