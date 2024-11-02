@@ -1,71 +1,98 @@
 package lotto.validator;
 
+import static lotto.validator.ErrorMessage.DUPLICATE_NUMBER_ERROR;
+import static lotto.validator.ErrorMessage.EMPTY_INPUT_ERROR;
+import static lotto.validator.ErrorMessage.INVALID_UNIT_ERROR;
+import static lotto.validator.ErrorMessage.NUMBER_FORMAT_ERROR;
+import static lotto.validator.ErrorMessage.NUMBER_SIZE_ERROR;
+import static lotto.validator.ErrorMessage.OUT_OF_RANGE_ERROR;
+
 import java.util.HashSet;
 import java.util.List;
 import lotto.utils.InputUtils;
+import org.junit.platform.commons.util.StringUtils;
 
 public class InputValidator {
 
-    private static final int UNIT = 1000;
-    private static final int REMAINDER = 0;
+    private static final int UNIT = 1_000;
+    private static final int LIMIT_VALUE = 0;
     private static final int SIZE = 6;
     private static final int MIN_VALUE = 1;
     private static final int MAX_VALUE = 45;
 
-    private static final String INVALID_UNIT_ERROR = "[ERROR] 금액은 1000원 단위로 입력해주세요.";
-    private static final String NUMBER_SIZE_ERROR = "[ERROR] 6개의 숫자를 입력해주세요.";
-    private static final String OUT_OF_RANGE_ERROR = "[ERROR] 1에서 45 사이의 숫자로 입력해주세요.";
-    private static final String DUPLICATE_NUMBER_ERROR = "[ERROR] 중복되지 않는 숫자로 입력해주세요.";
-
     public static void validateAmount(String amount) {
-        int parsedAmount = InputUtils.parseInt(amount);
-        validateUnit(parsedAmount);
+        validateBlank(amount);
+        int parsedAmount = InputUtils.convertToInt(amount);
+        validatePositiveNumber(parsedAmount);
+        validateDivisibleByUnit(parsedAmount);
     }
 
-    public static void validateLottoNumbers(List<String> lottoNumbers) {
-        List<Integer> parsedNumbers = InputUtils.parseIntList(lottoNumbers);
+    public static void validateWinningNumbers(List<String> winningNumbers) {
+        validateBlank(winningNumbers);
+        winningNumbers.forEach(number -> validatePositiveNumber(InputUtils.convertToInt(number)));
+        List<Integer> parsedNumbers = InputUtils.convertToIntList(winningNumbers);
         validateLength(parsedNumbers);
         validateRange(parsedNumbers);
-        validateDuplication(parsedNumbers);
+        validateDuplicates(parsedNumbers);
     }
 
-    public static void validateBonusNumber(String bonusNumber, List<Integer> lottoNumbers) {
-        int parsedBonus = InputUtils.parseInt(bonusNumber);
+    public static void validateBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+        validateBlank(bonusNumber);
+        int parsedBonus = InputUtils.convertToInt(bonusNumber);
+        validatePositiveNumber(parsedBonus);
         validateRange(List.of(parsedBonus));
-        validateBonusDuplication(parsedBonus, lottoNumbers);
+        validateDuplicateInList(parsedBonus, winningNumbers);
     }
 
-    private static void validateUnit(int parseAmount) {
-        if ((parseAmount % UNIT) != REMAINDER) {
-            throw new IllegalArgumentException(INVALID_UNIT_ERROR);
+    private static void validateBlank(String input) {
+        if (StringUtils.isBlank(input)) {
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
         }
     }
 
-    private static void validateLength(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != SIZE) {
-            throw new IllegalArgumentException(NUMBER_SIZE_ERROR);
+    private static void validateBlank(List<String> inputs) {
+        if (inputs.stream().allMatch(StringUtils::isBlank)) {
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
+        }
+    }
+
+    private static void validatePositiveNumber(int input) {
+        if (input <= LIMIT_VALUE) {
+            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR.getMessage());
+        }
+    }
+
+    private static void validateDivisibleByUnit(int amount) {
+        if ((amount % UNIT) != LIMIT_VALUE) {
+            throw new IllegalArgumentException(INVALID_UNIT_ERROR.getMessage());
+        }
+    }
+
+    private static void validateLength(List<Integer> numbers) {
+        if (numbers.size() != SIZE) {
+            throw new IllegalArgumentException(NUMBER_SIZE_ERROR.getMessage());
         }
     }
 
     private static void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < MIN_VALUE || num > MAX_VALUE)) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR);
+            throw new IllegalArgumentException(OUT_OF_RANGE_ERROR.getMessage());
         }
     }
 
-    private static void validateDuplication(List<Integer> numbers) {
-        if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+    private static void validateDuplicates(List<Integer> numbers) {
+        if (hasDuplicates(numbers)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
-    private static boolean hasDuplicate(List<Integer> numbers) {
+    private static boolean hasDuplicates(List<Integer> numbers) {
         return numbers.size() != new HashSet<>(numbers).size();
     }
 
-    private static void validateBonusDuplication(int parseBonus, List<Integer> lottoNumbers) {
-        if (lottoNumbers.contains(parseBonus)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR);
+    private static void validateDuplicateInList(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
