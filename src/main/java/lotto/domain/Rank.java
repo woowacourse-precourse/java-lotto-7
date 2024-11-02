@@ -9,7 +9,7 @@ public enum Rank {
     FOUR_MATCHES("4개 일치 (50,000원) - %d개\n", 4, 50_000),
     FIVE_MATCHES("5개 일치 (1,500,000원) - %d개\n", 5, 1_500_000),
     FIVE_MATCHES_AND_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", 5, 3_000_000),
-    SIX_MATCHES("6개 일치 (2,000,000,000원\n", 6, 2_000_000_000);
+    SIX_MATCHES("6개 일치 (2,000,000,000원) - %d개\n", 6, 2_000_000_000);
 
     private final String lotteryStatistics;
     private final int matchingCount;
