@@ -1,6 +1,5 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +10,11 @@ public class LottoGame {
         try {
             int lottoCount = getValidatedLottoCount();
             List<Lotto> purchasedLottos = generateLottos(lottoCount);
-            List<Integer> winningNumbers = LottoInputHandler.getWinningNumbers();
-            int bonusNumber = LottoInputHandler.getBonusNumber(winningNumbers);
-
-            Map<String, Integer> resultCounts = LottoResultCalculator.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
+            printPurchasedLottos(purchasedLottos);
+            Map<String, Integer> resultCounts = getResultCounts(purchasedLottos);
             LottoResultPrinter.printResults(resultCounts);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            printErrorMessage(e);
         }
     }
 
@@ -50,6 +47,12 @@ public class LottoGame {
         for (Lotto lotto : purchasedLottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    private Map<String, Integer> getResultCounts(List<Lotto> purchasedLottos) {
+        List<Integer> winningNumbers = LottoInputHandler.getWinningNumbers();
+        int bonusNumber = LottoInputHandler.getBonusNumber(winningNumbers);
+        return LottoResultCalculator.calculateResults(purchasedLottos, winningNumbers, bonusNumber);
     }
 
     private static void printErrorMessage(IllegalArgumentException e) {
