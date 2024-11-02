@@ -17,23 +17,11 @@ import static lotto.validate.Validator.*;
 public class InputView {
     public Amount getAmount(){
         println("구입금액을 입력해 주세요.");
-        String amount = validateAmount(Console.readLine());
-        return new Amount(Integer.parseInt(amount));
+        return new Amount(Console.readLine());
     }
     public Lotto getWinning(){
         println("당첨 번호를 입력해 주세요.");
-        String line = validateWinning(Console.readLine());
-        List<Integer> numbers = lineToNumbers(line);
-        return new Lotto(numbers);
-    }
-
-    private static List<Integer> lineToNumbers(String line) {
-        String[] splitLine = line.split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String num : splitLine) {
-            numbers.add(Integer.parseInt(num));
-        }
-        return numbers;
+        return new Lotto(Console.readLine());
     }
 
 }

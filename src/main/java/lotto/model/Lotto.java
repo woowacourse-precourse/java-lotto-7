@@ -1,10 +1,14 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.ExceptionMessage;
 import lotto.exception.InputException;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import static lotto.validate.Validator.validateWinning;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,6 +16,11 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public Lotto(String line){
+        validateWinning(line);
+        this.numbers = lineToNumbers(line);
     }
 
     private void validate(List<Integer> numbers) {
@@ -40,6 +49,17 @@ public class Lotto {
             }
         }
     }
+
+
+    private static List<Integer> lineToNumbers(String line) {
+        String[] splitLine = line.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String num : splitLine) {
+            numbers.add(Integer.parseInt(num));
+        }
+        return numbers;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

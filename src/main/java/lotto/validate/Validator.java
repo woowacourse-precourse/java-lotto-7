@@ -6,18 +6,16 @@ import lotto.exception.InputException;
 import java.util.regex.Pattern;
 
 public class Validator{
-    public static String validateWinning(String input){
+    public static void validateWinning(String input){
         String[] splitNumber = input.split(",");
         for (String number : splitNumber) {
             isNotNumeric(number);
         }
-        return input;
     }
-    public static String validateAmount(String input){
+    public static void validateAmount(String input){
         isNotNumeric(input);
         isMinus(input);
         isBlank(input);
-        return input;
     }
 
     private static void isBlank(String input){
