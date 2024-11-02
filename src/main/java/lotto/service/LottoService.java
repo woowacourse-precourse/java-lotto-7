@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -74,10 +75,37 @@ public class LottoService {
         return lottos;
     }
 
-    // split 전에 초기 문자열이 비어있는지, 콤마(,)와 숫자로만 이루어져있는지 검증
+    // split 전, 모든 문자열이 비어있는지 콤마(,)와 숫자로만 이루어져있는지 검증
     public void validateInputWinNumber(String winningNumber) {
         Validator.isBlank(winningNumber);
         Validator.isValidNumberAndDelimiter(winningNumber);
     }
+
+    public String[] splitWinningNumber(String winningNumber) {
+        String[] splitWinningNumber = winningNumber.split(FIXED_DELIMITER);
+        return splitWinningNumber;
+    }
+
+    /* split 후, 검증
+     * 숫자가 비어있는지x
+     * 1~45 사이의 숫자로만 되어있는지x
+     * 6개의 숫자인지
+     * 중복된 숫자가 있는지 확인*/
+    public List<Integer> validateSplitWinNumber(String[] splitWinningNumber) {
+        List<Integer> validWinNumbers = new ArrayList<>();
+
+        Validator.isNumberSixSize(splitWinningNumber);
+
+        for (String winningNumber : splitWinningNumber) {
+            Validator.isBlank(winningNumber);
+            int parsedWinNumber = parseStringToInt(winningNumber);
+            Validator.isBetweenOneAndFortyFive(parsedWinNumber);
+            Validator.isDuplicateNumber(parsedWinNumber);
+
+            validWinNumbers.add(parsedWinNumber);
+        }
+        return validWinNumbers;
+    }
+
 
 }
