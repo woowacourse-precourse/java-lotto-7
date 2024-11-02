@@ -6,6 +6,7 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private static final int LOTTO_PRICE = 1000;
     private final OutputView outputView;
     private final InputView inputView;
     private final LottoValidation lottoValidation;
@@ -19,6 +20,8 @@ public class LottoController {
     public void run() {
         outputView.askPurchasePrice();
         int purchasePrice = getValidPurchasePrice();
+
+        int lottoCount = getLottoCount(purchasePrice);
     }
 
     private int getValidPurchasePrice() {
@@ -36,5 +39,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private int getLottoCount(int purchasePrice) {
+        return purchasePrice / LOTTO_PRICE;
     }
 }
