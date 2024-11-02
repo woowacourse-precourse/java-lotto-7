@@ -16,6 +16,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateWinningNumber(String input) {
+        if (input.indexOf(",") == 0 || input.lastIndexOf(",") == input.length() - 1) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력이 잘못되었습니다.");
+        }
+    }
+
     public static void checkBonusNumberDuplicates(List<Integer> winningNumbers ,int bonus) {
         for (Integer number : winningNumbers) {
             if (number == bonus) {
