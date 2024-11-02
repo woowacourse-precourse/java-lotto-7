@@ -3,6 +3,8 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.message.InteractionMessage;
 
+import java.util.List;
+
 import static lotto.view.message.InteractionMessage.ENTER_MONEY;
 import static lotto.view.message.InteractionMessage.ENTER_WINNING_NUMBER;
 import static lotto.view.message.InteractionMessage.ENTER_BONUS_NUMBER;
@@ -34,6 +36,13 @@ public class InputView {
     private static String readAndPrint(InteractionMessage message) {
         System.out.println(message.getMessage());
         String inputValue = Console.readLine();
+        validate(inputValue);
         return inputValue;
+    }
+
+    private static void validate(String inputValue) throws IllegalArgumentException { // TODO: 적절한 Exception로 수정
+        if (inputValue == null || inputValue.isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT.getMessage());
+        }
     }
 }
