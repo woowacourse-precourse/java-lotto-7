@@ -9,7 +9,7 @@ public class Lotto {
 
     private final static Integer LOTTO_START_NUMBER = 1;
     private final static Integer LOTTO_END_NUMBER = 45;
-    private final static Integer LOTTO_MAX_LENGTH = 6;
+    private final static Integer LOTTO_LENGTH = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        checkLottoSize(numbers, LOTTO_MAX_LENGTH);
+        checkLottoSize(numbers, LOTTO_LENGTH);
         checkLottoDuplicate(numbers);
         checkLottoNumberRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, numbers);
     }
