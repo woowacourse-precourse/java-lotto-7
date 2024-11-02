@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +11,11 @@ public class InputParser {
     public int parsePurchaseAmount(String input) {
         try {
             InputValidator.validateNonEmpty(input);
+
             int purchaseAmount = Integer.parseInt(input);
             InputValidator.validateNonNegativeAmount(purchaseAmount);
             InputValidator.validateAmountUnit(purchaseAmount);
+
             return divideByThousand(purchaseAmount);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR);
@@ -22,8 +23,8 @@ public class InputParser {
     }
 
     public Lotto parseWinningNumbers(String input) {
-        InputValidator.validateNonEmpty(input);
         InputValidator.validateNoSpaces(input);
+
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
             .map(this::parseNumber)
             .collect(Collectors.toList());
@@ -31,17 +32,26 @@ public class InputParser {
         return new Lotto(winningNumbers);
     }
 
-    public int parseNumber(String number) {
-        try {
-            int winningNumber = Integer.parseInt(number);
-            InputValidator.validateNumberRange(winningNumber);
-            return winningNumber;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR);
-        }
+    public int parseBonusNumber(Lotto winningNumbers, String input) {
+        int bonusNumber = parseNumber(input);
+        InputValidator.validateUniqueBonus(winningNumbers, bonusNumber);
+        return bonusNumber;
     }
 
     private int divideByThousand(int purchaseAmount) {
         return purchaseAmount / 1000;
+    }
+
+    private int parseNumber(String input) {
+        try {
+            InputValidator.validateNonEmpty(input);
+
+            int number = Integer.parseInt(input);
+            InputValidator.validateNumberRange(number);
+
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR);
+        }
     }
 }
