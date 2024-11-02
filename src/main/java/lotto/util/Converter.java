@@ -16,7 +16,7 @@ public class Converter {
     }
 
     public static int toLottoNumber(String number) {
-        int lottoNumber = parseInt(number);
+        final int lottoNumber = parseInt(number);
 
         if (outOfRange(lottoNumber)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());

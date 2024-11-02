@@ -38,7 +38,7 @@ class LottoTest {
         @ParameterizedTest
         @DisplayName("숫자를 가지고 있는지")
         @MethodSource("validateContains")
-        void 로또_번호가_중복됨(List<Integer> numbers, int toCheck, boolean result) {
+        void 로또_번호가_중복됨(List<Integer> numbers, final int toCheck, final boolean result) {
             Lotto lotto = new Lotto(numbers);
 
             assertThat(lotto.contains(toCheck)).isEqualTo(result);
