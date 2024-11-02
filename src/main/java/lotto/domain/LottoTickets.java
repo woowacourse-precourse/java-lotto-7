@@ -6,18 +6,12 @@ import java.util.List;
 public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
-    public LottoTickets(List<Lotto> lottoTickets) {
+    private LottoTickets(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
 
-    public static LottoTickets generateLottoTickets(int count){
-        List<Lotto> tickets = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            tickets.add(Lotto.generateLotto());
-        }
-
-        return new LottoTickets(tickets);
+    public static LottoTickets from(List<Lotto> lottoTickets) {
+        return new LottoTickets(lottoTickets);
     }
 
     public List<List<Integer>> getLottoTickets() {
