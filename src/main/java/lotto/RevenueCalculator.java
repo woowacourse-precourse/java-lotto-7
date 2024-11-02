@@ -6,7 +6,7 @@ public class RevenueCalculator {
 
     private static final int PERCENT = 100;
 
-    public static double calculateRevenue(int purchaseAmount) {
+    public static double calculateRevenue(PurchaseAmount purchaseAmount) {
         return expressDecimal(revenueRate(purchaseAmount));
     }
 
@@ -14,8 +14,8 @@ public class RevenueCalculator {
         return Math.round(revenue * 100) / 100.0;
     }
 
-    private static double revenueRate(int purchaseAmount) {
-        return (double) totalRevenue() / purchaseAmount * PERCENT;
+    private static double revenueRate(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.revenueRatio(totalRevenue()) * PERCENT;
     }
 
     private static int totalRevenue() {

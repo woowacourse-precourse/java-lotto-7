@@ -37,6 +37,10 @@ public class PurchaseAmount {
         return money / LOTTO_PRICE;
     }
 
+    public double revenueRatio(int totalRevenue) {
+        return (double) totalRevenue / money;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) {

@@ -27,4 +27,10 @@ public class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.UNDIVIDED_THOUSAND);
     }
+
+    @Test
+    void 수익_비율_계산() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount("1000");
+        assertThat(purchaseAmount.revenueRatio(5000)).isEqualTo(5.0);
+    }
 }

@@ -43,7 +43,7 @@ public class LottoController {
         lottos.compare(winningLotto);
 
         // 수익률 계산
-        double revenueRate = RevenueCalculator.calculateRevenue(purchaseAmount.getMoney());
+        double revenueRate = RevenueCalculator.calculateRevenue(purchaseAmount);
 
         // 당첨 통계
         output.showWinningStatistics(revenueRate);
