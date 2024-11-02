@@ -9,7 +9,6 @@ import java.io.PrintStream;
 import lotto.domain.LottoBuyer;
 import lotto.domain.LottoDrawer;
 import lotto.domain.LottoProcessor;
-import lotto.domain.calculator.Calculator;
 import lotto.domain.calculator.PurchaseCalculator;
 import lotto.domain.lottoGeneratir.RandomLottoGenerator;
 import lotto.utils.LottoMessages;

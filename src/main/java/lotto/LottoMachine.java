@@ -16,16 +16,6 @@ public class LottoMachine {
     private LottoCenter lottoCenter;
 
     public LottoMachine(LottoProcessor lottoProcessor, LottoBuyer lottoBuyer, Calculator calculator,
-                        LottoGenerator lottoGenerator, LottoDrawer lottoDrawer, LottoCenter lottoCenter) {
-        this.lottoProcessor = lottoProcessor;
-        this.lottoBuyer = lottoBuyer;
-        this.calculator = calculator;
-        this.lottoGenerator = lottoGenerator;
-        this.lottoDrawer = lottoDrawer;
-        this.lottoCenter = lottoCenter;
-    }
-
-    public LottoMachine(LottoProcessor lottoProcessor, LottoBuyer lottoBuyer, Calculator calculator,
                         LottoGenerator lottoGenerator, LottoDrawer lottoDrawer) {
         this.lottoProcessor = lottoProcessor;
         this.lottoBuyer = lottoBuyer;
