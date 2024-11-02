@@ -40,7 +40,7 @@ public class LottoController {
     private  Lotto inputLotto(){
         View.promptForWinningLotto();
         List<Integer> mainWinningNumbers  = View.inputWinningLotto();
-
+        return new Lotto(mainWinningNumbers);
     }
 
 
