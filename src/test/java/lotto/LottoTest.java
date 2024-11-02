@@ -1,12 +1,13 @@
 package lotto;
 
+import java.util.Arrays;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @Test
@@ -20,5 +21,14 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 숫자 정렬 테스트")
+    @Test
+    void 로또_숫자_정렬_테스트() {
+        List<Integer> numbers = Arrays.asList(6, 5, 4, 3, 2, 1);
+
+        Lotto lotto = new Lotto(numbers);
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }
