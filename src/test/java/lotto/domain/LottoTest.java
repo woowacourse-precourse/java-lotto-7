@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,8 +23,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+    @Test
+    void 로또_번호_리스트는_정상적으로_비교_되어야_한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto compareLotto =  new Lotto(List.of(1, 2, 3, 10, 5, 8));
+        int expected = 4;
+
+        Assertions.assertEquals(expected, lotto.compareLottoNumber(compareLotto.getNumbers()));
+    }
 
     @Test
+    void 로또_번호가_정상적으로_저장되어야_한다() {
+        List<Integer> lottoList = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoList);
+
+        Assertions.assertEquals(lottoList, lotto.getNumbers());
+    }
+
 
 }
