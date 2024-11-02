@@ -52,14 +52,14 @@ public class WinningNumberValidator {
         }
     }
 
-    private static void validateDuplication(List<Integer> input) throws IllegalArgumentException {
+    public static void validateDuplication(List<Integer> input) throws IllegalArgumentException {
         Set<Integer> deduplication = new HashSet<>(input);
         if (deduplication.size() != input.size()) {
             throw new IllegalArgumentException(WinningNumberRule.DUPLICATION.getMessage());
         }
     }
 
-    private static void validateCount(List<String> input){
+    private static void validateCount(List<String> input) throws IllegalArgumentException {
         if(input.size() != CompareInteger.LOTTO_NUMBER_COUNT.getNumber()){
             throw new IllegalArgumentException(WinningNumberRule.COUNT.getMessage());
         }
