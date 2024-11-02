@@ -22,6 +22,12 @@ public class Validator {
         }
     }
 
+    public static void validateLottoNumbers(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != 6) {
+            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER);
+        }
+    }
+
     public static void validateWinningLotto(List<Integer> winningLotto) {
         for (int lottoNumber : winningLotto) {
             if (lottoNumber < 1 || lottoNumber > 45) {

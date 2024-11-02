@@ -4,22 +4,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import lotto.constant.ErrorMessage;
-import lotto.constant.LottoGameIllegalArgumentException;
 import lotto.constant.Rank;
+import lotto.util.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        Validator.validateLottoNumbers(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new LottoGameIllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER);
-        }
     }
 
     public void display() {
