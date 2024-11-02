@@ -5,14 +5,12 @@ import lotto.Lotto;
 import lotto.WinningNumber;
 import lotto.constant.CompareInteger;
 import lotto.constant.PriceRule;
-import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
 import lotto.validator.PriceValidator;
 import lotto.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +23,9 @@ public class LottoController {
         OutputView.printPriceGuide();
         Consumer consumer = new Consumer(getLottoPrice());
         printLottoTicket(consumer);
-        WinningNumber winningNumber = new WinningNumber(getWinningNumber());
+        List<Integer> mainNumber = getWinningNumber();
+        Integer bonusNumber = getBonusNumber(mainNumber);
+        WinningNumber winningNumber = new WinningNumber(mainNumber, bonusNumber);
     }
 
     private int getLottoPrice() {
@@ -64,10 +64,19 @@ public class LottoController {
         try {
             WinningNumberValidator.validateInputComma(input);
             List<String> inputWinningNumber = Arrays.asList(input.split(","));
-            return WinningNumberValidator.validateInputNumber(inputWinningNumber);
+            return WinningNumberValidator.validateInputWinningNumber(inputWinningNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumber();
         }
+    }
+
+    private Integer getBonusNumber(List<Integer> mainNumber) {
+        OutputView.printBonusNumberGuide();
+        String inputBonus = InputView.readInput();
+        Integer bonusNumber = WinningNumberValidator.getValidatedNumber(inputBonus);
+        mainNumber.add(bonusNumber);
+        WinningNumberValidator.validateDuplication(mainNumber);
+        return bonusNumber;
     }
 }
