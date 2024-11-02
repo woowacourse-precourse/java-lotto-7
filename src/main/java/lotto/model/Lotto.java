@@ -25,6 +25,9 @@ public class Lotto {
 
     public void addBonusNumber(int boundNumber) {
         this.numbers.add(boundNumber);
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복됩니다.");
+        }
     }
 
     public List<Integer> getNumbers() {
