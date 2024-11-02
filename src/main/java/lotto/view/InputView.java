@@ -3,7 +3,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
 
-    // TODO: 로또 구입 금액 입력받기
     public int getMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         return Integer.parseInt(readLine());
