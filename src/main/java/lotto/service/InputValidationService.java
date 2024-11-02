@@ -42,7 +42,7 @@ public class InputValidationService {
 
     private void hasBlankElement(String separableInput, String delimiter) {
         if (separableInput.startsWith(delimiter) || separableInput.endsWith(delimiter)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ValidationFailMessage.EMPTY_INPUT.getMessage());
         }
         List<String> elements = List.of(separableInput.split(delimiter));
         for (String element : elements) {
@@ -60,7 +60,7 @@ public class InputValidationService {
     private void existOutOfParseRangeElement(String separableInput, String delimiter) {
         List<String> elements = List.of(separableInput.split(delimiter));
         for (String element : elements) {
-            isNonNumeric(element);
+            isOutOfParseRange(element);
         }
     }
 }
