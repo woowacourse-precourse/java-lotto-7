@@ -5,13 +5,13 @@ import java.math.RoundingMode;
 import java.util.Map;
 import lotto.enums.Prize;
 
-public class CalculatePrize {
+public class PrizeCalculator {
     private static final String OVER_FLOW_ERROR_MESSAGE = "오버플로우가 발생했습니다.";
     private final Map<Prize, Integer> prizeIntegerMap;
     long totalPrize = 0L;
     long money;
 
-    public CalculatePrize(Map<Prize, Integer> prizeIntegerMap, Long money) {
+    public PrizeCalculator(Map<Prize, Integer> prizeIntegerMap, Long money) {
         this.prizeIntegerMap = prizeIntegerMap;
         this.money = money;
         calculateAllPrize();
