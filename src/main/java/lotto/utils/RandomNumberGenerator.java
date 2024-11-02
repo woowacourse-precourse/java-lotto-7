@@ -6,7 +6,7 @@ public class RandomNumberGenerator {
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
 
-    private int getRandomNumber() {
+    public int getRandomNumber() {
         int randomnumber = Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE);
         return randomnumber;
     }

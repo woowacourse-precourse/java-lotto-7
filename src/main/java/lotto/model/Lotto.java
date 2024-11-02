@@ -1,8 +1,12 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.dto.LottoDTO;
 import lotto.utils.Message;
+import lotto.utils.RandomNumberGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,6 +14,18 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto generateRandomLotto() {
+        RandomNumberGenerator generator = new RandomNumberGenerator();
+        Set<Integer> uniqueNumbers = new HashSet<>();
+
+        while (uniqueNumbers.size() < 6) {
+            uniqueNumbers.add(generator.getRandomNumber());
+        }
+
+        List<Integer> lottoNumbers = uniqueNumbers.stream().sorted().collect(Collectors.toList());
+        return new Lotto(lottoNumbers);
     }
 
     private void validate(List<Integer> numbers) {
