@@ -14,7 +14,7 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    private int validateNumber(String input) {
+    public static int validateNumber(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
