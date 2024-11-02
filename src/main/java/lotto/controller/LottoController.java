@@ -3,7 +3,6 @@ package lotto.controller;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -27,22 +26,18 @@ public class LottoController {
         this.lottoValidator = lottoValidator;
     }
 
-
     public void startLottoProcess() {
         int purchaseAmount = getPurchaseAmount();
         int lottoAmount = getLottoTicketAmount(purchaseAmount);
-        List<Lotto> purchasedLottos = lottoService.generateLottoTickets(lottoAmount);
-        outputView.printGeneratedLottoTickets(lottoAmount, purchasedLottos);
+        List<Lotto> purchasedLottos = generateAndPrintLottoTickets(lottoAmount);
 
         Lotto winningLotto = getWinningLotto();
-        int bonusNumber = getBonusNumber(); //DTO 만들기
+        int bonusNumber = getBonusNumber();
         List<Prize> prizes = lottoService.calculateLottoResult(purchasedLottos, winningLotto, bonusNumber);
         Map<Prize, Integer> totalPrizeCount = lottoService.totalPrizeResult(prizes);
-
         outputView.printTotalLottoResult(totalPrizeCount);
 
-        BigDecimal bigDecimal = lottoService.calculateProfit(purchaseAmount, prizes);
-        outputView.printTotalProfit(bigDecimal);
+        printTotalProfit(purchaseAmount, prizes);
     }
 
     private int getPurchaseAmount() {
@@ -82,4 +77,14 @@ public class LottoController {
         }
     }
 
+    private List<Lotto> generateAndPrintLottoTickets(int lottoAmount) {
+        List<Lotto> purchasedLottos = lottoService.generateLottoTickets(lottoAmount);
+        outputView.printGeneratedLottoTickets(lottoAmount, purchasedLottos);
+        return purchasedLottos;
+    }
+
+    private void printTotalProfit(int purchaseAmount, List<Prize> prizes) {
+        BigDecimal bigDecimal = lottoService.calculateProfit(purchaseAmount, prizes);
+        outputView.printTotalProfit(bigDecimal);
+    }
 }
