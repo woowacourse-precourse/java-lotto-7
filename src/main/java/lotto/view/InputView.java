@@ -8,8 +8,8 @@ import lotto.Lotto;
 
 
 public class InputView {
-    private Lotto prizeNum;
-    private int bonusNum;
+    public Lotto prizeNum;
+    public int bonusNum;
     public static int inputAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return parseInt(Console.readLine());
