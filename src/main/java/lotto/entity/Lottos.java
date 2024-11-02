@@ -21,7 +21,7 @@ public class Lottos {
     public List<Prize> calculateResults(WinningNumbers winningNumbers) {
         return lottos.stream()
                 .map(lotto -> {
-                    int matchCount = lotto.countMatchingNumbers(winningNumbers.getNumbers());
+                    int matchCount = lotto.countMatchingNumbers(winningNumbers.getMainNumbers());
                     boolean bonusMatch = lotto.hasBonusNumber(winningNumbers.getBonusNumber());
                     return Prize.valueOf(matchCount, bonusMatch);
                 })
