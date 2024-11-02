@@ -19,6 +19,7 @@ public class Lotto {
 
     public String formattedNumbers() {
         return numbers.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
