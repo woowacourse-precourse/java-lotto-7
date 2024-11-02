@@ -41,6 +41,6 @@ class WinningNumbersValidatorTest {
 
     assertThatThrownBy(() -> WinningNumbersValidator.mainValidator(duplicateNumbers))
         .isInstanceOf(IllegalArgumentException.class)
-        .hasMessage(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
+        .hasMessage(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
   }
 }

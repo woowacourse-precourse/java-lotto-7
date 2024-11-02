@@ -30,7 +30,7 @@ public class WinningNumbersValidator {
     HashSet<Integer> uniqueNumbers = new HashSet<>();
     for (Integer number : winningAndBonusNumbers) {
       if (!uniqueNumbers.add(number)) {
-        throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
+        throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage());
       }
     }
   }

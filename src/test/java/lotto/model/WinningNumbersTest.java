@@ -13,7 +13,7 @@ public class WinningNumbersTest {
 
   @Test
   void 비정성적인_당첨_보너스_번호가_들어오면_예외가_발생한다() {
-    assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,7", "7"))
+    assertThatThrownBy(() -> new WinningNumbers("1,2,3,4,5,99", "7"))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBER.getMessage());
   }
