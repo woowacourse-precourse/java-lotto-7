@@ -6,9 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static lotto.LottoShop.*;
-
 public class Reader {
+
+    private static final int PRICE = 1000;
+    private static final int START = 1;
+    private static final int END = 45;
+    private static final int COUNT = 6;
+
     public int readMoney() {
         while (true) {
             try {

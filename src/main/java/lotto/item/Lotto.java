@@ -1,8 +1,8 @@
-package lotto;
+package lotto.item;
 
 import java.util.List;
 
-public class Lotto {
+public class Lotto implements Item {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,7 +11,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() > 6
+        if (numbers.size() != 6
                 || numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException();
         }

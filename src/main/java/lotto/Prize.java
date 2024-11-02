@@ -1,6 +1,10 @@
 package lotto;
 
+import lotto.item.Lotto;
+import lotto.item.WinningLotto;
+
 public enum Prize {
+    DRAW(0, 0),
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
     THIRD(5, 1_500_000, false),
@@ -35,7 +39,7 @@ public enum Prize {
 
     public static Prize getPrize(Lotto lotto, WinningLotto winningLotto) {
         int matchResult = lotto.match(winningLotto);
-        if (matchResult == 5 && lotto.getNumbers().contains(winningLotto.getBonusNum())) {
+        if (matchResult == SECOND.matchedCount && lotto.getNumbers().contains(winningLotto.getBonusNum())) {
             return SECOND;
         }
         for (Prize value : Prize.values()) {
@@ -43,7 +47,7 @@ public enum Prize {
                 return value;
             }
         }
-        return null;
+        return DRAW;
     }
 
 
