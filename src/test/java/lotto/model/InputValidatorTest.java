@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.message.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -23,7 +24,7 @@ class InputValidatorTest {
     void emptyAmountTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputValidator.EMPTY_INPUT_EXCEPTION);
+                .hasMessage(ExceptionMessage.EMPTY_INPUT_EXCEPTION);
     }
 
     @DisplayName("숫자 외 문자 입력 테스트(구입 금액)")
@@ -32,7 +33,7 @@ class InputValidatorTest {
     void invalidCharacterTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputValidator.INVALID_CHARACTER_INPUT_EXCEPTION);
+                .hasMessage(ExceptionMessage.INVALID_CHARACTER_INPUT_EXCEPTION);
     }
 
     @DisplayName("최대 범위 초과 입력 테스트(구입 금액)")
@@ -41,7 +42,7 @@ class InputValidatorTest {
     void exceedMaxAreaTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputValidator.EXCEED_MAX_AREA_EXCEPTION);
+                .hasMessage(ExceptionMessage.EXCEED_MAX_AREA_EXCEPTION);
     }
 
     @DisplayName("최소 금액 미만 입력 테스트(구입 금액)")
@@ -50,7 +51,7 @@ class InputValidatorTest {
     void minAmountTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputValidator.UNDER_MIN_AMOUNT_INPUT_EXCEPTION);
+                .hasMessage(ExceptionMessage.UNDER_MIN_AMOUNT_INPUT_EXCEPTION);
     }
 
     @DisplayName("1000원 단위 입력 테스트(구입 금액)")
@@ -59,7 +60,7 @@ class InputValidatorTest {
     void amountUnitTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputValidator.INVALID_AMOUNT_UNIT_EXCEPTION);
+                .hasMessage(ExceptionMessage.INVALID_AMOUNT_UNIT_EXCEPTION);
     }
 
     @DisplayName("구입 금액 정상 입력 테스트(구입 금액)")
@@ -76,7 +77,7 @@ class InputValidatorTest {
     void emptyWinningNumberTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(InputValidator.EMPTY_INPUT_EXCEPTION);
+                .hasMessage(ExceptionMessage.EMPTY_INPUT_EXCEPTION);
     }
 
 
@@ -86,8 +87,7 @@ class InputValidatorTest {
     void invalidWinningNumberCharacterTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
-                        + " 당첨 번호 입력은 숫자와 구분자(,)로만 이루어져야 합니다.");
+                .hasMessage(ExceptionMessage.INVALID_WINNING_NUMBER_CHARACTER_INPUT_EXCEPTION);
     }
 
     @DisplayName("빈 구분된 값 테스트(당첨 번호)")
@@ -96,8 +96,7 @@ class InputValidatorTest {
     void invalidSeparatedNumberTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
-                        + " 구분자 사이에 반드시 숫자가 존재해야 합니다.");
+                .hasMessage(ExceptionMessage.INVALID_SEPARATOR_NUMBER_EXCEPTION);
     }
 
     @DisplayName("포맷(시작,끝 구분자) 테스트(당첨 번호)")
@@ -106,8 +105,7 @@ class InputValidatorTest {
     void validateFormatTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
-                        + " 당첨 번호 입력의 시작과 끝은 숫자로 이루어져야 합니다.");
+                .hasMessage(ExceptionMessage.INVALID_WINNING_NUMBER_FORMAT_EXCEPTION);
     }
 
     @DisplayName("번호 범위 테스트(당첨 번호)")
@@ -116,8 +114,7 @@ class InputValidatorTest {
     void validateNumberAreaTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
-                        + " 당첨 번호는 1~45까지의 숫자만 가능합니다.");
+                .hasMessage(ExceptionMessage.NUMBER_AREA_EXCEPTION);
     }
 
     @DisplayName("중복 번호 테스트(당첨 번호)")
@@ -126,8 +123,7 @@ class InputValidatorTest {
     void validateNumberDuplicationTest(String input) {
         assertThatThrownBy(() -> inputValidator.validateInputWinningNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
-                        + " 당첨 번호는 중복 될 수 없습니다.");
+                .hasMessage(ExceptionMessage.NUMBER_DUPLICATION_EXCEPTION);
     }
 
     @DisplayName("당첨 번호 정상 입력 테스트(당첨 번호)")
