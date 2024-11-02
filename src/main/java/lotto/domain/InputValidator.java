@@ -18,6 +18,7 @@ public class InputValidator {
             isValidUnit(purchaseMoney);
             return purchaseMoney;
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getValidPurchaseMoney();
         }
     }
@@ -55,6 +56,7 @@ public class InputValidator {
 
             return prizeNumbers;
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getValidPrizeNumber();
         }
     }
@@ -111,6 +113,7 @@ public class InputValidator {
 
             return bonusNumber;
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getValidBonusNumber(prizeNumbers);
         }
     }
