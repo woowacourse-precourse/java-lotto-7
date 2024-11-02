@@ -74,12 +74,12 @@ public class LottoController {
             try {
                 String input = inputView.inputWinningNumber();
                 lottoValidation.validateBlank(input);
-                List<String> winningNumbers = List.of(input.split(","));
-                lottoValidation.validateSize(winningNumbers);
+                List<String> splitNumber = List.of(input.split(","));
+                lottoValidation.validateSize(splitNumber);
+                List<Integer> winningNumbers = lottoValidation.validateParsing(splitNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
-
 }

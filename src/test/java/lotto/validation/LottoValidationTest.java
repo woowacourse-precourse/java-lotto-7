@@ -43,4 +43,11 @@ class LottoValidationTest {
         assertThatThrownBy(()->lottoValidation.validateSize(input2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void Integer로_변환이_불가능한_당첨_번호가_있을_경우_예외가_발생한다(){
+        List<String> input = List.of("1","2","","4","5","6");
+        assertThatThrownBy(()->lottoValidation.validateParsing(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoValidation {
@@ -16,6 +17,18 @@ public class LottoValidation {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] Integer로 변환이 불가능합니다.");
+        }
+    }
+
+    public List<Integer> validateParsing(List<String> input){
+        try{
+            List<Integer> winningNumber = new ArrayList<>();
+            for (String number : input){
+                winningNumber.add(Integer.parseInt(number));
+            }
+            return winningNumber;
+        }catch(IllegalArgumentException e){
             throw new IllegalArgumentException("[ERROR] Integer로 변환이 불가능합니다.");
         }
     }
