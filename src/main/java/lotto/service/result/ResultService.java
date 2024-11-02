@@ -1,23 +1,22 @@
 package lotto.service.result;
 
 import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
 import lotto.domain.User;
-import lotto.utils.Parser;
-import lotto.utils.ProfitCalculator;
-import lotto.utils.StatisticCalculator;
+import lotto.domain.WinningNumber;
+import lotto.utils.Calculator.ProfitCalculator;
+import lotto.utils.Calculator.StatisticCalculator;
+import lotto.utils.parser.Parser;
 
 public class ResultService {
 
-    public List<String> resultProcess(User user, Lotto winningLotto, BonusNumber bonusNumber) {
-        List<Integer> result = statisticsCalculator(user, winningLotto, bonusNumber);
+    public List<String> resultProcess(User user, WinningNumber winningNumber) {
+        List<Integer> result = statisticsCalculator(user, winningNumber);
         double profit = profitCalculator(user, result);
         return Parser.parsingResult(result, profit);
     }
 
-    private List<Integer> statisticsCalculator(User user, Lotto winningLotto, BonusNumber bonusNumber) {
-        return StatisticCalculator.calculateStatistics(user, winningLotto, bonusNumber);
+    private List<Integer> statisticsCalculator(User user, WinningNumber winningNumber) {
+        return StatisticCalculator.calculateStatistics(user, winningNumber);
     }
 
     private double profitCalculator(User user, List<Integer> result) {

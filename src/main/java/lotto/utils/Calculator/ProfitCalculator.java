@@ -1,11 +1,14 @@
-package lotto.utils;
+package lotto.utils.Calculator;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.Constants;
 import lotto.domain.User;
 
 public class ProfitCalculator {
-    private static final List<Integer> winnings = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
+    private static final List<Integer> winnings = Arrays.asList(Constants.FIVE_THOUSAND.getValue(),
+            Constants.FIFTY_THOUSAND.getValue(), Constants.ONE_MILLION_FIVE_HUNDRED_THOUSAND.getValue(),
+            Constants.THIRTY_MILLION.getValue(), Constants.TWO_BILLION.getValue());
 
     public static double calculateProfit(User user, List<Integer> result) {
         int totalWinnings = totalWinningCalculate(result);
