@@ -28,10 +28,6 @@ public class FilterConfig {
         return INSTANCE;
     }
 
-    public static FilterConfig getINSTANCE() {
-        return INSTANCE;
-    }
-
     public FilterChain getPositiveIntegerFilterChain() {
         return positiveIntegerFilterChain;
     }

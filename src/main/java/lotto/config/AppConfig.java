@@ -29,19 +29,7 @@ public class AppConfig {
         return INSTANCE;
     }
 
-    public OutputView getOutputView() {
-        return outputView;
-    }
-
-    public LottoService getLottoService() {
-        return lottoService;
-    }
-
     public LottoController getLottoController() {
         return lottoController;
-    }
-
-    public LottoMachine getLottoMachine() {
-        return lottoMachine;
     }
 }
