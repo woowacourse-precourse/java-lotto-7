@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
+    private static final String LOTTO_SIZE_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
+    private static final String LOTTO_DUPLICATE_ERROR = "[ERROR] 로또번호는 중복될 수 없습니다.";
 
     private final List<LottoNumber> numbers;
 
@@ -20,7 +22,7 @@ public class Lotto {
 
     private void validate(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR);
         }
     }
 
@@ -32,7 +34,7 @@ public class Lotto {
 
     private void validateDuplicated(List<LottoNumber> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 로또번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LOTTO_DUPLICATE_ERROR);
         }
     }
 
