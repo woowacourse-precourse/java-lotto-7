@@ -38,7 +38,7 @@ public class OutputView {
     public List<Integer> sortAscending(List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
-        return numbers;
+        return sortedNumbers;
     }
 
     public void printWinningStatistics(Map<LottoRank, Integer> lottoRankCount) {
