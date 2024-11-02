@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.category.Rank;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.WinningLotto;
 import lotto.model.util.TestRandomUtil;
@@ -97,5 +98,30 @@ class LottoServiceTest {
         assertThat(lottoTickets).hasSize(10);
         assertThat(lottoTickets.get(0).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
         assertThat(lottoTickets.get(9).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
+    }
+
+    @Test
+    @DisplayName("당첨 결과가 RankCounter에 정확히 반영되는지 확인")
+    void determineWinning() {
+        // given
+        WinningLotto winningTicket = lottoService.createWinningTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        List<Lotto> lottoTickets = Arrays.asList(
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 5, 8)), // 2등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 7, 8)), // 3등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 8, 9)), // 4등
+                Lotto.of(Arrays.asList(1, 2, 3, 8, 9, 10)) // 5등
+        );
+
+        // when
+        RankCounter rankCounter = lottoService.determineWinning(winningTicket, lottoTickets);
+        ;
+
+        // then
+        assertThat(rankCounter.getRankCount(Rank.FIRST_PLACE)).isEqualTo(1);
+        assertThat(rankCounter.getRankCount(Rank.SECOND_PLACE)).isEqualTo(1);
+        assertThat(rankCounter.getRankCount(Rank.THIRD_PLACE)).isEqualTo(1);
+        assertThat(rankCounter.getRankCount(Rank.FOURTH_PLACE)).isEqualTo(1);
+        assertThat(rankCounter.getRankCount(Rank.FIFTH_PLACE)).isEqualTo(1);
     }
 }
