@@ -9,14 +9,14 @@ public enum LottoRank {
 
     private final int rank;
     private final int matchingCount;
-    private final boolean requiresBonus;
+    private final boolean matchingBonus;
     private final String prizeNotice;
     private final int prize;
 
-    LottoRank(int rank, int matchingCount, boolean requiresBonus,String prizeNotice,int prize) { // private 추가
+    LottoRank(int rank, int matchingCount, boolean matchingBonus,String prizeNotice,int prize) {
         this.rank = rank;
         this.matchingCount = matchingCount;
-        this.requiresBonus = requiresBonus;
+        this.matchingBonus = matchingBonus;
         this.prizeNotice = prizeNotice;
         this.prize = prize;
     }
@@ -29,8 +29,8 @@ public enum LottoRank {
         return matchingCount;
     }
 
-    public boolean requiresBonus() {
-        return requiresBonus;
+    public boolean getMatchingBonus() {
+        return matchingBonus;
     }
 
     public String getPrize() {
