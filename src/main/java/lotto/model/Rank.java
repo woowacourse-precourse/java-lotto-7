@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum Rank {
     FIRST(6, 2000000000),
     SECOND(5, 30000000),
@@ -13,5 +15,16 @@ public enum Rank {
     Rank(int sameCount, int reward) {
         this.sameCount = sameCount;
         this.reward = reward;
+    }
+
+    public static Rank getRank(int sameCount, boolean isBonusNumberWinning) {
+        Rank rank = Arrays.stream(values())
+                .filter(value -> value.sameCount == sameCount)
+                .findAny()
+                .orElse(null);
+        if (rank == SECOND && !isBonusNumberWinning) {
+            rank = THIRD;
+        }
+        return rank;
     }
 }
