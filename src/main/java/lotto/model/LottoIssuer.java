@@ -12,7 +12,7 @@ public class LottoIssuer {
     }
 
     private void createLottoOnRandom(Integer purchaseAmount, List<Lotto> issuedLotto) {
-        int purchaseCount = purchaseAmount / 10;
+        int purchaseCount = purchaseAmount / 1000;
         while (purchaseCount > 0){
             List<Integer> randomLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             issuedLotto.add(new Lotto(randomLottoNumbers));
