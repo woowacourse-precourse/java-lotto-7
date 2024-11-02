@@ -101,13 +101,18 @@ public class LottoController {
             try {
                 int bonusNumber = inputView.inputBonusNumber();
                 validateBonusNumber(bonusNumber, winningNumbers);
+                checkBonusNumRange(bonusNumber);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 outputView.printError(e.getMessage());
             }
         }
     }
-
+    private void checkBonusNumRange(int bonusNumber){
+        if(1>bonusNumber||bonusNumber>45){
+            throw new IllegalArgumentException("보너스 번호의 범위는 1~45까지 입니다.");
+        }
+    }
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
