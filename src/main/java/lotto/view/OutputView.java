@@ -1,12 +1,17 @@
 package lotto.view;
 
+import lotto.enums.LottoRank;
 import lotto.enums.Message;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
+
+    private static final String LABEL_WINNING_STATISTICS = "당첨 통계";
+    private static final String SYMBOL_SEPARATOR_LINE = "---";
 
     public void printPurchaseAmountInputMessage() {
         System.out.println(Message.INPUT_PURCHASE_AMOUNT.getMessage());
@@ -34,5 +39,17 @@ public class OutputView {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         return numbers;
+    }
+
+    public void printWinningStatistics(Map<LottoRank, Integer> lottoRankCount) {
+        System.out.println(LABEL_WINNING_STATISTICS);
+        System.out.println(SYMBOL_SEPARATOR_LINE);
+
+        Map<LottoRank, String> rankInfo = LottoRank.getRankInfo();
+
+        for (LottoRank rank : rankInfo.keySet()) {
+            int count = lottoRankCount.getOrDefault(rank, 0);
+            System.out.printf("%s - %d개%n", rankInfo.get(rank), count);
+        }
     }
 }
