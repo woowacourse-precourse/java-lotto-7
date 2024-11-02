@@ -11,12 +11,10 @@ import java.util.*;
 public class LottoMainService {
 
     private LottoDAO lottoDAO;
-    private HitLottoDAO hitLottoDAO;
     private StatisticsLottoDAO statisticsDAO;
 
     public LottoMainService() {
         this.lottoDAO = new LottoDAO();
-        this.hitLottoDAO = new HitLottoDAO();
         this.statisticsDAO = new StatisticsLottoDAO();
     }
 
