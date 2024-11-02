@@ -22,19 +22,15 @@ public enum LottoRank {
 
     public static LottoRank findByMatchCountAndBonus(int matchCount, boolean isBonus) {
         for (LottoRank value : LottoRank.values()) {
-            if (value.matchCount == matchCount && value.bonusMatch == isBonus) {
+            if (value.isMatchCountAndBonus(matchCount, isBonus)) {
                 return value;
             }
         }
         return OTHER;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isBonusMatch() {
-        return bonusMatch;
+    private boolean isMatchCountAndBonus(int matchCount, boolean isBonus) {
+        return this.matchCount == matchCount && this.bonusMatch == isBonus;
     }
 
     public int getPrizeAmount() {
