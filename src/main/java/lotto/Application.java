@@ -20,5 +20,18 @@ public class Application {
         input = readLine();
         int bonusNum = Integer.parseInt(input);
         WinningNumbers winningNumbers = new WinningNumbers(numbers, bonusNum);
+
+        // 로또 구입 금액 입력받기
+        input = readLine();
+        buyLotto(Integer.parseInt(input));
+
+    }
+
+    static public void buyLotto(int amount) {
+        if (amount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 금액은 1000으로 나눠떨어져야 합니다.");
+        }
+
+        int numberOfLottos = amount / 1000; // 로또 개수 계산
     }
 }
