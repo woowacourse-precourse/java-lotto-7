@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.InputMoneyValidator;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -8,23 +9,16 @@ import java.util.TreeSet;
 public class InputView {
 
     private static final int LOTTO_PRICE = 1000;
+    private static final InputMoneyValidator inputMoneyValidator = new InputMoneyValidator();
 
     public static long inputPurchaseMoney() {
 
         System.out.println("구입금액을 입력해 주세요.");
-        String inputPrice = Console.readLine();
-
-        if (!isNumeric(inputPrice)) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 양수로 입력해 주세요.");
-        }
-
-        long userPrice = Integer.parseInt(inputPrice);
-        if (userPrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "단위로 입력해 주세요.");
-        }
+        String inputPurchaseMoney = Console.readLine();
+        inputMoneyValidator.validatePurchaseMoney(inputPurchaseMoney);
         System.out.println();
 
-        return userPrice;
+        return Long.parseLong(inputPurchaseMoney);
     }
 
     public static Set<Integer> inputWinningNumbers() {
