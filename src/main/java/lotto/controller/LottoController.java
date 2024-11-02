@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.domain.constant.Ranking;
 import lotto.dto.response.LottosResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -7,8 +9,8 @@ import lotto.view.OutputView;
 import lotto.view.util.NumberParser;
 import lotto.view.util.WinningNumberSplitter;
 
+import java.util.EnumMap;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class LottoController {
 
@@ -29,25 +31,8 @@ public class LottoController {
     public void run() {
         LottosResponse lottosResponse = getPurchasedLottos();
         outputView.printPurchasedLottos(lottosResponse);
-        List<Integer> winningNumber = getWinningNumber();
-        Integer bonusNumber = getBonusNumber();
-    }
-
-    public List<Integer> getWinningNumber() {
-        try {
-            String input = inputView.readWinningNumber();
-            List<String> winningNumber = winningNumberSplitter.splitWinningNumber(input);
-            return winningNumber.stream()
-                    .map(numberParser::parseToInt)
-                    .toList();
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return getWinningNumber();
-        }
-    }
-
-    public Integer getBonusNumber() {
-        return getValidatedInput(inputView::readBonusNumber);
+        EnumMap<Ranking, Integer> drawResult = getDrawResult();
+        outputView.printDrawResult(drawResult);
     }
 
     private LottosResponse getPurchasedLottos() {
@@ -61,13 +46,36 @@ public class LottoController {
         }
     }
 
-    private Integer getValidatedInput(Supplier<String> inputReader) {
+    private EnumMap<Ranking, Integer> getDrawResult() {
+        Lotto winningNumber = getWinningNumber();
+        return getBonusNumberAndDraw(winningNumber);
+    }
+
+    private EnumMap<Ranking, Integer> getBonusNumberAndDraw(Lotto winningNumber) {
         try {
-            String input = inputReader.get();
-            return numberParser.parseToInt(input);
+            Integer bonusNumber = getBonusNumberAndDraw();
+            return lottoService.drawResult(winningNumber, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return getValidatedInput(inputReader);
+            return getBonusNumberAndDraw(winningNumber);
         }
+    }
+
+    private Lotto getWinningNumber() {
+        try {
+            String input = inputView.readWinningNumber();
+            List<String> winningNumber = winningNumberSplitter.splitWinningNumber(input);
+            return new Lotto(winningNumber.stream()
+                    .map(numberParser::parseToInt)
+                    .toList());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return getWinningNumber();
+        }
+    }
+
+    private Integer getBonusNumberAndDraw() {
+        String input = inputView.readBonusNumber();
+        return numberParser.parseToInt(input);
     }
 }

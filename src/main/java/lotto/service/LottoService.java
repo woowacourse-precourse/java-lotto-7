@@ -31,7 +31,7 @@ public class LottoService {
         );
     }
 
-    public EnumMap<Ranking, Integer> drawResult(List<Integer> winningNumber, Integer bonusNumber) {
+    public EnumMap<Ranking, Integer> drawResult(Lotto winningNumber, Integer bonusNumber) {
         WinningNumbers winningNumbers = WinningNumbers.from(winningNumber, bonusNumber);
         return lottoMachine.draw(purchasedLottos, winningNumbers);
     }
