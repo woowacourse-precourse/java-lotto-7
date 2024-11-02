@@ -2,7 +2,6 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -49,8 +48,9 @@ public class LottoService {
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(
                 Constant.MIN_LOTTO_NUMBER, Constant.MAX_LOTTO_NUMBER, Constant.LOTTO_NUMBER_COUNT
         );
-        Collections.sort(lotto);
-        return new Lotto(lotto);
+        return new Lotto(lotto.stream()
+                .sorted()
+                .collect(Collectors.toList()));
     }
 
     private boolean isBonusMatch(Lotto issuedLotto, Bonus bonusNumber) {

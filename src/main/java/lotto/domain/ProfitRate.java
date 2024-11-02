@@ -8,7 +8,7 @@ public class ProfitRate {
     }
 
     public static ProfitRate of(double purchaseAmount, double totalProfit) {
-        return new ProfitRate(Math.round(totalProfit / purchaseAmount * 100.0));
+        return new ProfitRate(totalProfit / purchaseAmount * 100.0);
     }
 
     public double getProfitRate() {

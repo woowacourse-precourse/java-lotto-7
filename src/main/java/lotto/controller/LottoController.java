@@ -31,6 +31,8 @@ public class LottoController {
 
         WinningCount winningCount = lottoService.getWinningCount(issuedLottos, winningLotto, bonusNumber);
         ProfitRate profitRate = lottoService.getProfitRate(amount, winningCount);
+
+        outputView.displayResult(winningCount.getWinningCount(), profitRate.getProfitRate());
     }
 
     private Amount getPurchaseAmount() {
