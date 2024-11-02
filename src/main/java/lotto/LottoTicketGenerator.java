@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-
+//ticket generator-> 6 numbers
 public class LottoTicketGenerator {
     private static final int LOTTO_NUMBERS_COUNT = 6;
 
