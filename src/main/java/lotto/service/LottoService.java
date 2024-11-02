@@ -27,4 +27,8 @@ public class LottoService {
             results.put(rank, results.getOrDefault(rank, 0) + 1);
         });
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }
