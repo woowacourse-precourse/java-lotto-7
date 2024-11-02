@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +51,55 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("입력 금액 테스트")
+    void validPurchaseAmountTest() {
+        assertSimpleTest(() -> {
+            runException("500"); // 금액이 너무 작을 때
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("1500"); // 금액이 1000원 단위가 아닐 때
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("abc"); // 숫자가 아닐 때
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 테스트")
+    void validWinNumbersTest() {
+        assertSimpleTest(() -> {
+            runException("1,1,3,4,5,6"); // 중복된 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("1,2,3,4,5"); // 번호 개수 부족
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("1,2,3,4,5,abc"); // 숫자가 아닌 입력
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("0,2,3,4,5,46"); // 범위를 벗어난 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 테스트")
+    void validBonusNumberTest() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7"); // 당첨 번호 입력 시
+            runException("1"); // 보너스 번호가 당첨 번호와 중복
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("46"); // 범위를 벗어난 보너스 번호
+            assertThat(output()).contains(ERROR_MESSAGE);
+
+            runException("abc"); // 숫자가 아닌 입력
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
