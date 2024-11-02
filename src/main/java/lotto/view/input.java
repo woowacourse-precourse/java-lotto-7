@@ -5,7 +5,6 @@ import static lotto.controller.lottoController.checkTotalAmountIfValid;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.constants.Request_Messages;
-import lotto.model.Lotto;
 
 public class input {
     public static void printWhiteSpace(){
@@ -38,16 +37,13 @@ public class input {
 
     public static List<String> readWinningNumbers(){
         printInputWinningNumbers();
-        List<String> number = List.of(Console.readLine().split(","));
-        printWhiteSpace();
-        return number;
+        return List.of(Console.readLine().split(","));
     }
 
     public static int readBonusNumber(){
         printInputBonusNumber();
         int bonusNumber = Integer.parseInt(Console.readLine());
         printWhiteSpace();
-        return Lotto.numberValid(bonusNumber);
+        return bonusNumber;
     }
-
 }
