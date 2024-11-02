@@ -69,7 +69,9 @@
 
 ### 2. lottos - 발행한 로또 출력 뷰
 
-### 3. winningStatistics - 당첨통계 출력 뷰
+### 3. winningResult - 당첨 결과 출력 뷰
+
+### 3. winningStatistics - 수익률 출력 뷰
 
 ### 4. error - 예외 상황 시 에러 문구 출력 뷰 
 

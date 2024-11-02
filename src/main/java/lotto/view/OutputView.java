@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.domain.AutoLotto;
-import lotto.domain.rule.LottoRules;
 import lotto.domain.rule.WinningRules;
 
 import java.text.DecimalFormat;
@@ -25,7 +24,7 @@ public class OutputView {
         System.out.println(error + " 다시 입력하세요.");
     }
 
-    public void winningStatistics(Map<WinningRules, Long> results) {
+    public void winningResult(Map<WinningRules, Long> results) {
         DecimalFormat currencyFormat = new DecimalFormat("#,###");
         winningStatisticsStart();
         for (WinningRules rank : WinningRules.values()) {
