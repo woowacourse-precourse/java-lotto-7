@@ -3,34 +3,32 @@ package lotto.model.evaluate;
 import java.util.List;
 import lotto.dto.MatchInfo;
 import lotto.dto.WinningResult;
-import lotto.model.match.MatchCountAlgorithm;
-import lotto.model.match.SetBasedMatchCountAlgorithm;
 import lotto.model.ticket.LottoTickets;
 
 public class LottoResultEvaluator {
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
-    private final MatchCountAlgorithm<Integer> matchCountAlgorithm;
-    private final LottoResultCounter lottoResultCounter;
+    private final LottoNumbersMatchCounter lottoNumbersMatchCounter;
+    private final LottoResultCollector lottoResultCollector;
 
     public LottoResultEvaluator(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        this.matchCountAlgorithm = new SetBasedMatchCountAlgorithm<>();
-        this.lottoResultCounter = new LottoResultCounter();
+        this.lottoNumbersMatchCounter = new LottoNumbersMatchCounter();
+        this.lottoResultCollector = new LottoResultCollector();
     }
 
     public WinningResult evaluate(LottoTickets lottoTickets) {
         for (List<Integer> lottoNumbers : lottoTickets.getAllNumbers()) {
             MatchInfo matchInfo = evaluateMatch(lottoNumbers);
-            lottoResultCounter.increment(matchInfo);
+            lottoResultCollector.increment(matchInfo);
         }
-        return lottoResultCounter.createWinningResult(lottoTickets.getCount());
+        return lottoResultCollector.createWinningResult(lottoTickets.getCount());
     }
 
     private MatchInfo evaluateMatch(List<Integer> lottoNumbers) {
-        int matchesCount = matchCountAlgorithm.countMatches(winningNumbers, lottoNumbers);
+        int matchesCount = lottoNumbersMatchCounter.countMatches(winningNumbers, lottoNumbers);
         boolean bonusMatch = isBonusNumberMatched(lottoNumbers, matchesCount);
         return new MatchInfo(matchesCount, bonusMatch);
     }

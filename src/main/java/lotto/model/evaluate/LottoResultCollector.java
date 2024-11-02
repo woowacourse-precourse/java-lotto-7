@@ -5,7 +5,7 @@ import lotto.dto.WinningResult;
 import lotto.rule.LottoRule;
 import lotto.rule.Prize;
 
-public class LottoResultCounter {
+public class LottoResultCollector {
 
     private int threeMatchesCount = 0;
     private int fourMatchesCount = 0;

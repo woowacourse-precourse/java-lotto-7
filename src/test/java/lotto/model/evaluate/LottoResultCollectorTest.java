@@ -10,17 +10,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 @DisplayName("로또 번호 매치 결과 카운터 객체 테스트")
-class LottoResultCounterTest {
+class LottoResultCollectorTest {
 
     @DisplayName("6개 번호가 모두 일치하는 경우")
     @Test
     void whenAllMatch() {
         MatchInfo matchInfo = new MatchInfo(6, false);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 0);
         assertEquals(winningResult.fourMatchesCount(), 0);
@@ -34,10 +34,10 @@ class LottoResultCounterTest {
     void when5MatchAndBonusMatch() {
         MatchInfo matchInfo = new MatchInfo(5, true);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 0);
         assertEquals(winningResult.fourMatchesCount(), 0);
@@ -51,10 +51,10 @@ class LottoResultCounterTest {
     void when5Match() {
         MatchInfo matchInfo = new MatchInfo(5, false);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 0);
         assertEquals(winningResult.fourMatchesCount(), 0);
@@ -68,10 +68,10 @@ class LottoResultCounterTest {
     void when4Match() {
         MatchInfo matchInfo = new MatchInfo(4, false);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 0);
         assertEquals(winningResult.fourMatchesCount(), 1);
@@ -85,10 +85,10 @@ class LottoResultCounterTest {
     void when3Match() {
         MatchInfo matchInfo = new MatchInfo(3, false);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 1);
         assertEquals(winningResult.fourMatchesCount(), 0);
@@ -102,10 +102,10 @@ class LottoResultCounterTest {
     void whenNotMatch() {
         MatchInfo matchInfo = new MatchInfo(0, false);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 0);
         assertEquals(winningResult.fourMatchesCount(), 0);
@@ -127,10 +127,10 @@ class LottoResultCounterTest {
     void shouldReturnNotMatch_whenInvalidMatchInfo(int matchesCount, boolean isBonusNumberMatch) {
         MatchInfo matchInfo = new MatchInfo(matchesCount, isBonusNumberMatch);
 
-        LottoResultCounter lottoResultCounter = new LottoResultCounter();
-        lottoResultCounter.increment(matchInfo);
+        LottoResultCollector lottoResultCollector = new LottoResultCollector();
+        lottoResultCollector.increment(matchInfo);
 
-        WinningResult winningResult = lottoResultCounter.createWinningResult(1);
+        WinningResult winningResult = lottoResultCollector.createWinningResult(1);
 
         assertEquals(winningResult.threeMatchesCount(), 0);
         assertEquals(winningResult.fourMatchesCount(), 0);
