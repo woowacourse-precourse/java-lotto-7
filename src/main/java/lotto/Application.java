@@ -38,12 +38,15 @@ public class Application {
         String inputBonusNumber = Console.readLine();
         int bonusNumber = Integer.parseInt(inputBonusNumber);
 
-        calculateStatisticsLottoResult(lottos, winningNumbersInteger, bonusNumber);
+        Map<LottoResult, Integer> lottoResultCount = calculateStatisticsLottoResult(lottos, winningNumbersInteger,
+                bonusNumber);
+        printStatistics(lottoResultCount);
 
     }
 
-    public static void calculateStatisticsLottoResult(List<Lotto> lottos, List<Integer> winningNumbers,
-                                                      int bonusNumber) {
+    public static Map<LottoResult, Integer> calculateStatisticsLottoResult(List<Lotto> lottos,
+                                                                           List<Integer> winningNumbers,
+                                                                           int bonusNumber) {
         Map<LottoResult, Integer> lottoResultCount = new HashMap<>();
 
         for (LottoResult lottoResult : LottoResult.values()) {
@@ -60,7 +63,7 @@ public class Application {
             }
         }
 
-        printStatistics(lottoResultCount);
+        return lottoResultCount;
     }
 
     public static void printStatistics(Map<LottoResult, Integer> lottoResultCount) {
