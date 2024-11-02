@@ -15,5 +15,11 @@ public class LottoTicket {
         return Collections.unmodifiableList(lottos);
     }
 
+   public void showLottoTicket(){
+       System.out.println(lottos.size() + "개를 구매했습니다.");
+       for (Lotto lotto : lottos) {
+           System.out.println(lotto);
+       }
+   }
 
 }
