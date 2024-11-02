@@ -56,10 +56,10 @@ public class LottoService {
     }
 
     private Lotto createLottoTicket() {
-        List<Integer> numbers = randomUtil.issueLottoTicket(
+        List<Integer> numbers = new ArrayList<>(randomUtil.issueLottoTicket(
                 MIN_LOTTO_NUMBER.getIntegerValue(),
                 MAX_LOTTO_NUMBER.getIntegerValue(),
-                LOTTO_NUMBER_COUNT.getIntegerValue());
+                LOTTO_NUMBER_COUNT.getIntegerValue()));
         sortNumbersAscending(numbers);
         return Lotto.of(numbers);
     }
