@@ -238,7 +238,7 @@ More : [Commit Message convention](https://gist.github.com/9941e89d80e2bc58a153.
 
 - 예외 처리
    - [ ] 예외 발생 시 `IllegalArgumentException`을 발생시킨다.
-   - [ ] 예외를 발생시킨 후 해당 값을 다시 입력받는다.
+   - [x] 예외를 발생시킨 후 해당 값을 다시 입력받는다.
 
 ### 입출력 구현 리스트
 
