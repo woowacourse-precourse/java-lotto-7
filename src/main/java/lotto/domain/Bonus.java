@@ -8,6 +8,7 @@ public class Bonus {
     private final Integer bonus;
 
     public Bonus(Integer bonus) {
+        validateRange(bonus);
         this.bonus = bonus;
     }
 
