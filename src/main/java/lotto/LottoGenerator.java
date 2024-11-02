@@ -61,7 +61,7 @@ public class LottoGenerator {
     }
 
     private void isMultipleOfAThousand(int inputValue){
-        if(inputValue % 1000 > 0){
+        if(inputValue == 0 || inputValue % 1000 > 0){
             throw new IllegalArgumentException("[ERROR] 1000원 단위의 금액을 입력해주세요.");
         }
     }
