@@ -2,7 +2,6 @@ package lotto.domain.lottomachine;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.domain.constant.LottoRule.*;
@@ -16,7 +15,8 @@ public class AutoNumberGenerator implements NumberGenerator {
                 MAX_NUMBER.getNumber(),
                 LOTTO_SIZE.getNumber()
         );
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        return lottoNumbers.stream()
+                .sorted()
+                .toList();
     }
 }
