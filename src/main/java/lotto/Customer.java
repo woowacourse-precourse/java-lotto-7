@@ -1,10 +1,23 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Customer {
-    private final int money;
+    private int money;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public Customer(int money) {
         this.money = money;
     }
 
+    public void buyLottoFrom(LottoStore lottoStore) {
+        int availableBuyCount = lottoStore.calculateLottoCount(money);
+        lottos.addAll(lottoStore.sell(availableBuyCount));
+        money -= availableBuyCount * LottoStore.LOTTO_PRICE;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }
