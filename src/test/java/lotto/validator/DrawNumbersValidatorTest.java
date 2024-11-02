@@ -8,10 +8,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class WinningNumbersValidatorTest {
+class DrawNumbersValidatorTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"12, 13","12.","13a,14,15,16,17,18,19"})
+    @ValueSource(strings = {"-12, 13","12.","13a,14,15,16,17,18,19"})
     void 쉼표와_숫자_이외의_다른_문자를_입력하면_예외_발생(String input){
         assertThatThrownBy(() -> WinningNumbersValidator.validateWinningNumbers(input)).
                 isInstanceOf(IllegalArgumentException.class).
