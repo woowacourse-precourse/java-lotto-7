@@ -1,10 +1,10 @@
 package lotto.validator;
 
-public class AmountValidator implements Validator<String> {
+public class AmountValidator implements Validator {
 
     @Override
-    public void validate(String value) {
-        int number = isNumber(value);
+    public void validate(String input) {
+        int number = isNumber(input);
         if (isNotPositiveNumber(number)) {
             throw new IllegalArgumentException("[ERROR] 양수만 입력 가능합니다.");
         }
@@ -13,9 +13,9 @@ public class AmountValidator implements Validator<String> {
         }
     }
 
-    private int isNumber(String value) {
+    private int isNumber(String input) {
         try {
-            return Integer.parseInt(value);
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
         }

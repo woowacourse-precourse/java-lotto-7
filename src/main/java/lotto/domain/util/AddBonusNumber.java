@@ -17,7 +17,7 @@ public class AddBonusNumber {
     }
 
     private static void validate(String input) {
-        Validator<String> validator = new NumberValidator();
+        Validator validator = new NumberValidator();
         validator.validate(input);
     }
 }

@@ -37,7 +37,7 @@ public class Model {
     }
 
     private void validate(String amount) {
-        Validator<String> validator = new AmountValidator();
+        Validator validator = new AmountValidator();
         validator.validate(amount);
     }
 

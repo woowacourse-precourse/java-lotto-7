@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NumberValidator implements Validator<String> {
+public class NumberValidator implements Validator {
 
     private static final String DELIMITER = ",";
     private static final int LOTTO_NUMBER_RANGE_MIN = 1;
@@ -12,24 +12,24 @@ public class NumberValidator implements Validator<String> {
     private static final int LOTTO_NUMBER_COUNTING = 6;
 
     @Override
-    public void validate(String value) {
-        if (isWinningNumbers(value)) {
-            String[] values = value.split(DELIMITER);
+    public void validate(String input) {
+        if (isWinningNumbers(input)) {
+            String[] values = input.split(DELIMITER);
             if (values.length != LOTTO_NUMBER_COUNTING) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 입니다.");
             }
             if (duplication(values)) {
                 throw new IllegalArgumentException();
             }
-            for (String input : values) {
-                int number = isNumber(input.trim());
+            for (String value : values) {
+                int number = isNumber(value.trim());
                 oneBetweenFortyFive(number);
             }
             return;
         }
         // BonusNumber Check
-        isNumber(value);
-        oneBetweenFortyFive(Integer.parseInt(value));
+        isNumber(input);
+        oneBetweenFortyFive(Integer.parseInt(input));
     }
 
     private static void oneBetweenFortyFive(int number) {

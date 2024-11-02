@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public interface Validator <T>{
+public interface Validator{
 
-    void validate(T value);
+    void validate(String input);
 }

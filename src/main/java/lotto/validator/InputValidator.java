@@ -1,6 +1,6 @@
 package lotto.validator;
 
-public class InputValidator implements Validator<String> {
+public class InputValidator implements Validator {
 
     @Override
     public void validate(String input) {
