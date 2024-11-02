@@ -4,12 +4,14 @@ import static lotto.ErrorCode.CONTIGIOUS_COMMA;
 import static lotto.ErrorCode.INVALID_INPUT_FORMAT;
 import static lotto.ErrorCode.INVALID_PURCHASE_AMOUNT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PublishCount;
+import lotto.domain.PublishLotto;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
@@ -26,12 +28,14 @@ public class LottoController {
     private PublishCount publishCount;
     private Lotto lotto;
     private BonusNumber bonusNumber;
+    private List<PublishLotto> publishLottos;
 
     public LottoController(LottoValidator lottoValidator, BonusNumberValidator bonusNumberValidator,
         InputView inputView) {
         this.lottoValidator = lottoValidator;
         this.bonusNumberValidator = bonusNumberValidator;
         this.inputView = inputView;
+        publishLottos = new ArrayList<>();
     }
 
     public void setUp() {
@@ -53,6 +57,17 @@ public class LottoController {
     public void bonusNumberSetUp() {
         int parsedBonusNumber = getParsedBonusNumber();
         bonusNumber = createBonusNumber(parsedBonusNumber);
+    }
+
+    public void publishLottoSetup() {
+        createPublishLottos();
+    }
+
+    private void createPublishLottos() {
+        for (int i = 0; i < publishCount.getPublishCount(); i++) {
+            PublishLotto publishLotto = PublishLotto.from(lottoValidator);
+            publishLottos.add(publishLotto); // 생성한 객체를 리스트에 추가
+        }
     }
 
     public void validatePurchaseAmount(final int purchaseAmount) {
@@ -111,5 +126,9 @@ public class LottoController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage());
         }
+    }
+
+    public List<PublishLotto> getPublishLottos() {
+        return publishLottos;
     }
 }
