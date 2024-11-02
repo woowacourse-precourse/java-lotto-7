@@ -39,7 +39,7 @@ public class MoneyValidator extends Validator {
     @VisibleForTesting
     void validateWholeNumber() {
         if (!Pattern.matches("-?\\d+", money)) {
-            throw new IllegalArgumentException(MessageParser.combineMessages(Errors.NOT_A_NATURAL_NUMBER.getMessage()));
+            throw new IllegalArgumentException(MessageParser.combineMessages(Errors.NOT_A_WHOLE_NUMBER.getMessage()));
         }
     }
 
