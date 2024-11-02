@@ -31,9 +31,8 @@ public class InputValidator {
     }
 
     public void validateNumbersForm(String lottoWinningNumbers) {
-        if(lottoWinningNumbers.startsWith(",") && lottoWinningNumbers.endsWith(",")){
+        if(!lottoWinningNumbers.matches(Constants.VALID_INPUT_PATTERN)){
             throw new IllegalArgumentException("[ERROR] 입력받은 당첨번호의 문자열 형식이 불일치합니다.");
-            // 쉼표가 연달아 있을 경우에는?
         }
     }
 }
