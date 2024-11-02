@@ -1,12 +1,18 @@
 package lotto.controller;
 
 import lotto.Consumer;
+import lotto.Lotto;
 import lotto.constant.CompareInteger;
 import lotto.constant.PriceRule;
+import lotto.constant.WinningNumberRule;
 import lotto.validator.NumberValidator;
 import lotto.validator.PriceValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static lotto.constant.CompareInteger.PRICE_MAXIMUM;
 import static lotto.constant.CompareInteger.PRICE_MINIMUM;
@@ -16,7 +22,7 @@ public class LottoController {
     public void run() {
         OutputView.printPriceGuide();
         Consumer consumer = new Consumer(getLottoPrice());
-        OutputView.printPurchaseCount(consumer.getLottoTicket().size());
+        printLottoTicket(consumer);
     }
 
     private int getLottoPrice() {
@@ -39,5 +45,26 @@ public class LottoController {
     private void validatePrice(int price) {
         NumberValidator.validateScope(PRICE_MINIMUM.getNumber(), PRICE_MAXIMUM.getNumber(), price, SCOPE.getMessage());
         PriceValidator.validatePriceUnit(price);
+    }
+
+    private void printLottoTicket(Consumer consumer){
+        OutputView.changeLine();
+        OutputView.printPurchaseCount(consumer.getLottoTicket().size());
+        for (Lotto lotto : consumer.getLottoTicket()){
+            OutputView.printLottoTicket(lotto.getNumbers());
+        }
+    }
+
+    private void getWinningNumber(){
+        OutputView.printWinningNumberGuide();
+        List<String> inputWinningNumber = Arrays.asList(InputView.readInput().split(","));
+        validateWinningNumber(inputWinningNumber);
+    }
+
+    private void validateWinningNumber(List<String> inputWinningNumber){
+        for(String inputNumber : inputWinningNumber){
+            NumberValidator.validateOnlyInteger(inputNumber, WinningNumberRule.ONLY_COMMA_INTEGER.getMessage());
+            Integer number = inputToInt(inputNumber);
+        }
     }
 }
