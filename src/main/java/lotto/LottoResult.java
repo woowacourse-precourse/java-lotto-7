@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.constant.WinningCondition;
+import java.util.List;
 
-public record LottoResult(WinningCondition winningCondition, int conditionCount) {
+public record LottoResult(List<MatchingCountResult> matchingCountResults, int rate) {
 }
