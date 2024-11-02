@@ -24,10 +24,8 @@ public class LottoResult {
     }
 
     private int calculateTotalPrize() {
-        int totalPrize = 0;
-        for (LottoReward lottoReward : lottoResult.keySet()) {
-            totalPrize += lottoReward.getPrize() * lottoResult.get(lottoReward);
-        }
-        return totalPrize;
+        return lottoResult.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 }
