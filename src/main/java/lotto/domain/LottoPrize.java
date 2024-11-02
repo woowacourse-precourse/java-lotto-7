@@ -1,11 +1,11 @@
 package lotto.domain;
 
 public enum LottoPrize {
-    FIRST_PRIZE(2000000000, "6개 일치"),
-    SECOND_PRIZE(30000000, "5개 일치, 보너스 볼 일치"),
-    THIRD_PRIZE(1500000, "5개 일치"),
-    FOURTH_PRIZE(50000, "4개 일치"),
-    FIFTH_PRIZE(5000, "3개 일치");
+    FIRST_PRIZE(2000000000, "6개 일치 (2,000,000,000원)"),
+    SECOND_PRIZE(30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    THIRD_PRIZE(1500000, "5개 일치 (1,500,000원)"),
+    FOURTH_PRIZE(50000, "4개 일치 (50,000원)"),
+    FIFTH_PRIZE(5000, "3개 일치 (5,000원)");
 
     private final int prizeAmount;
     private final String description;
