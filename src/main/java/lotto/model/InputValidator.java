@@ -1,5 +1,9 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class InputValidator {
@@ -53,5 +57,36 @@ public class InputValidator {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT_EXCEPTION);
         }
+    }
+
+    public List<Integer> validateInputWinningNumber(String input) {
+        validateEmptyOf(input);
+        if (!Pattern.matches("^[0-9,]+$", input)) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
+                    + " 당첨 번호 입력은 숫자와 구분자(,)로만 이루어져야 합니다.");
+        }
+        if (input.endsWith(",") || input.startsWith(",")) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
+                    + " 당첨 번호 입력의 시작과 끝은 숫자로 이루어져야 합니다.");
+        }
+        if (input.contains(",,")) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
+                    + " 구분자 사이에 반드시 숫자가 존재해야 합니다.");
+        }
+        List<Integer> numbers = new ArrayList<>();
+        Set<Integer> forValidateDuplication = new HashSet<>();
+        for (String separatedInput : input.split(",")) {
+            int number = Integer.parseInt(separatedInput);
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
+                        + " 당첨 번호는 1~45까지의 숫자만 가능합니다.");
+            }
+            if (!forValidateDuplication.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 잘못된 당첨 번호를 입력하셨습니다."
+                        + " 당첨 번호는 중복 될 수 없습니다.");
+            }
+            numbers.add(number);
+        }
+        return numbers;
     }
 }
