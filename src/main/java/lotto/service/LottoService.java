@@ -4,6 +4,8 @@ import static java.util.stream.Collectors.toList;
 import static lotto.CommonSymbols.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -80,5 +82,16 @@ public class LottoService {
         if (matchCount >= 3) {
             matchCounts.put(matchCount, matchCounts.get(matchCount) + 1);
         }
+    }
+
+    public double calculateYield(Map<Integer, Integer> matchCounts, int purchaseAmount) {
+        int totalPrize = (matchCounts.get(3) * 5000) + (matchCounts.get(4) * 50000)
+                + (matchCounts.get(5) * 1500000) + (matchCounts.get(-5) * 30000000)
+                + (matchCounts.get(6) * 2000000000);
+
+        double rawYield = (double) totalPrize / purchaseAmount * 100;
+        BigDecimal roundedYield = BigDecimal.valueOf(rawYield).setScale(2, RoundingMode.HALF_UP);
+
+        return roundedYield.doubleValue();
     }
 }
