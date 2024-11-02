@@ -16,4 +16,10 @@ public class LottoUtilityTest {
         assertThatThrownBy(() -> LottoUtility.validatePurchaseAmount("10500"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력한_당첨번호가_숫자가_아니면_예외가_발생한다() {
+        assertThatThrownBy(() -> LottoUtility.stringToWinningNumbers("이,삼,사,오,육"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
