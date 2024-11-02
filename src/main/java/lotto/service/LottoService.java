@@ -18,19 +18,19 @@ public class LottoService {
 
     public void winningCount(List<Integer> winningNumber, int index, int[] winningCount, int bonusNumber) {
         int total = 0;
-        for (Integer winVal : winningNumber) {
-            if (lottoModel.getLottoNumbers(index).contains(winVal)) total++;
-        }
+        List<Integer> lottoNumbers = lottoModel.getLottoNumbers(index);
 
+        for (Integer winVal : winningNumber) {
+            if (lottoNumbers.contains(winVal)) total++;
+        }
+        updateWinningCount(winningCount, bonusNumber, total, lottoNumbers);
+    }
+
+    private static void updateWinningCount(int[] winningCount, int bonusNumber, int total, List<Integer> lottoNumbers) {
         if (total == 3) winningCount[Constant.WIN_THREE]++;
         if (total == 4) winningCount[Constant.WIN_FOUR]++;
-        if (total == 5) {
-            if (lottoModel.getLottoNumbers(index).contains(bonusNumber)) {
-                winningCount[Constant.WIN_FIVE_BONUS]++;
-                return;
-            }
-            winningCount[Constant.WIN_FIVE]++;
-        }
+        if (total == 5 && lottoNumbers.contains(bonusNumber)) winningCount[Constant.WIN_FIVE_BONUS]++;
+        if (total == 5) winningCount[Constant.WIN_FIVE]++;
         if (total == 6) winningCount[Constant.WIN_SIX]++;
     }
 
