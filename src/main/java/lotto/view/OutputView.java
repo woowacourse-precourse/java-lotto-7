@@ -1,23 +1,20 @@
 package lotto.view;
 
 import lotto.LottoResult;
-import lotto.controller.LottoPurchaseController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 
 public class OutputView {
 
-    public static void showPurchasedLottoCount(long purchasedLottoCount) {
-        System.out.println(purchasedLottoCount + "개를 구매했습니다.");
-    }
-
     public static void showPurchasedLottos(Lottos lottos) {
 
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(lottos.getSize()).append("개를 구매했습니다.").append("\n");
+
         for (Lotto lotto : lottos.getLottos()) {
             String printLotto = lotto.printLotto();
-            stringBuilder.append(printLotto + "\n");
+            stringBuilder.append(printLotto).append("\n");
         }
         System.out.println(stringBuilder);
     }

@@ -13,9 +13,7 @@ public class Application {
     public static void main(String[] args) {
 
         long userPurchaseMoney = InputView.inputPurchaseMoney();
-        long purchasedLottoCount = lottoPurchaseController.purchaseLottoCount(userPurchaseMoney);
-        OutputView.showPurchasedLottoCount(purchasedLottoCount);
-        Lottos lottos = lottoPurchaseController.purchaseLottos(purchasedLottoCount);
+        Lottos lottos = lottoPurchaseController.purchaseLottos(userPurchaseMoney);
         OutputView.showPurchasedLottos(lottos);
 
         LottoWinningNumbers lottoWinningNumbers = InputView.inputWinningNumbers();

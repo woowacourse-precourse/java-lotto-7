@@ -12,11 +12,9 @@ public class LottoPurchaseController {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public long purchaseLottoCount(long userPurchaseMoney) {
-        return userPurchaseMoney / LOTTO_PRICE;
-    }
+    public Lottos purchaseLottos(long userPurchaseMoney) {
 
-    public Lottos purchaseLottos(long purchasedLottoCount) {
+        long purchasedLottoCount = userPurchaseMoney / LOTTO_PRICE;
 
         Lottos lottos = Lottos.createLottos(new ArrayList<>());
         for (int count = 0; count < purchasedLottoCount; count++) {
