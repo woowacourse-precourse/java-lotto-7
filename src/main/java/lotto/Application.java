@@ -21,7 +21,37 @@ public class Application {
         // 당첨번호 입력기능
         Lotto lotto = inputWinningNumbers();
 
-        
+        // 보너스 번호 입력 기능
+        int bonusNumber = inputBonusNumber(lotto.getLotto());
+
+
+    }
+
+    private static int inputBonusNumber(List<Integer> winningNumber) {
+        try {
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+            return validateBonusNumber(winningNumber, input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber(winningNumber);
+        }
+    }
+
+    private static int validateBonusNumber(List<Integer> winningNumber, String input) {
+        try {
+            int bonusNumber = Integer.parseInt(input.trim());
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+
+            if (winningNumber.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력하세요.");
+        }
     }
 
     private static Lotto inputWinningNumbers() {
