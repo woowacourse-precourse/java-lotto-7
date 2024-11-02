@@ -24,4 +24,10 @@ public class Bonus {
         }
     }
 
+    private void validateNumbersRange(Integer bonusNumber) {
+        if(bonusNumber < 1 || bonusNumber > 46){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1에서 45 사이의 숫자를 입력해야 합니다.");
+        }
+    }
+
 }
