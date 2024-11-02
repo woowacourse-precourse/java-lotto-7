@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.dto.LottoControllerInputDto;
 import lotto.dto.ProfitStatisticsDto;
+import lotto.entity.Lotto;
 import lotto.entity.LottoMachine;
 import lotto.entity.ProfitReport;
 import lotto.validator.LottoValidator;
@@ -21,9 +23,40 @@ public class LottoController {
 
 
     public void run() {
+        // input
+        LottoControllerInputDto inputDto = getUserInputs();
+
+        // business logic
+        LottoMachine lottoMachine = new LottoMachine(
+                inputDto.getPaymentAmount(), inputDto.getWinnerNumbers(), inputDto.getBonusNumber());
+        ProfitReport profitReport = new ProfitReport(
+                lottoMachine.getPurchasedLottos(), lottoMachine.getWinningNumbers());
+
+        // output
+        ProfitStatisticsDto statisticsDto = new ProfitStatisticsDto(
+                profitReport.calculateWinningCountsByRank(), profitReport.calculateProfitRate());
+        displayLottoResults(lottoMachine.getPurchasedLottos(), statisticsDto);
+    }
+
+    private void displayLottoResults(List<Lotto> purchaseLottos, ProfitStatisticsDto dto) {
+        consoleOutput.printPurchasedLottos(purchaseLottos);
+        consoleOutput.printProfitStatistics(dto);
+    }
+
+    private LottoControllerInputDto getUserInputs() {
+        int purchaseAmount = getPurchaseAmount();
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+
+        return new LottoControllerInputDto.Builder()
+                .paymentAmount(purchaseAmount)
+                .winnerNumbers(winningNumbers)
+                .bonusNumber(bonusNumber)
+                .build();
+    }
+
+    private int getPurchaseAmount() {
         int paymentAmount;
-        List<Integer> numbers;
-        int bonusNumber;
 
         while (true) {
             try {
@@ -35,6 +68,11 @@ public class LottoController {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+        return paymentAmount;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        List<Integer> numbers;
 
         while (true) {
             try {
@@ -46,27 +84,23 @@ public class LottoController {
                 System.err.println("[ERROR] " + e.getMessage());
             }
         }
+        return numbers;
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
 
         while (true) {
             try {
                 String input = consoleInput.getBonusNumber();
                 bonusNumber = InputParser.parseInteger(input);
-                WinningNumbersValidator.bonusNumber(numbers, bonusNumber);
+                WinningNumbersValidator.bonusNumber(winningNumbers, bonusNumber);
                 break;
             } catch (Exception e) {
                 System.err.println("[ERROR] " + e.getMessage());
             }
         }
-
-        LottoMachine lottoMachine = new LottoMachine(paymentAmount, numbers, bonusNumber);
-        ProfitReport profitReport = new ProfitReport(lottoMachine.getPurchasedLottos(),
-                lottoMachine.getWinningNumbers());
-
-        consoleOutput.printPurchasedLottos(lottoMachine.getPurchasedLottos());
-
-        ProfitStatisticsDto dto = new ProfitStatisticsDto(
-                profitReport.calculateWinningCountsByRank(), profitReport.calculateProfitRate()
-        );
-        consoleOutput.printProfitStatistics(dto);
+        return bonusNumber;
     }
+
 }
