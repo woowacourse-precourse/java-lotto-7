@@ -3,6 +3,9 @@ package lotto.model;
 import static lotto.constants.ErrorMessage.DUPLICATE_NUMBER_MESSAGE;
 import static lotto.constants.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.constants.ErrorMessage.INPUT_LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.constants.LottoConstant.LOTTO_COUNT;
+import static lotto.constants.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constants.LottoConstant.MIN_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,14 +30,14 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (!(1 <= number && number <= 45)) {
+            if (!(MIN_LOTTO_NUMBER <= number && number <= MAX_LOTTO_NUMBER)) {
                 throw new IllegalArgumentException(INPUT_LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
