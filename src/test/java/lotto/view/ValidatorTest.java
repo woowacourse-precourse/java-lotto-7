@@ -14,6 +14,8 @@ class ValidatorTest {
             "[ERROR] 당첨 번호는 중복되지 않은 서로 다른 6개의 숫자가 입력 되어야 합니다.";
     private static final String ERROR_OUT_OF_RANGE_BONUS_NUMBER_MESSAGE =
             "[ERROR] 보너스 번호는 1에서 45 사이의 숫자로 이루어져 있어야 합니다.";
+    private static final String ERROR_DUPLICATE_WINNING_NUMBER_AND_BONUS_NUMBER_MESSAGE =
+            "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않은 숫자가 입력 되어야 합니다.";
 
     @Test
     public void 구입_금액이_1000으로_나누어_떨어지지_않으면_예외_발생() {
@@ -69,5 +71,17 @@ class ValidatorTest {
         Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_OUT_OF_RANGE_BONUS_NUMBER_MESSAGE);
+    }
+
+    @Test
+    public void 당첨_번호와_보너스_번호에_중복된_숫자가_존재하면_예외_발생() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 45);
+        int bonusNumber = 1;
+
+        // when & then
+        Assertions.assertThatThrownBy(() -> Validator.validateDuplicateWith(winningNumbers, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ERROR_DUPLICATE_WINNING_NUMBER_AND_BONUS_NUMBER_MESSAGE);
     }
 }
