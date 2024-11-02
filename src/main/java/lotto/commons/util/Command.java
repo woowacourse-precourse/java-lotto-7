@@ -5,6 +5,8 @@ import lotto.commons.lang.ProgramExitException;
 
 public class Command {
 
+    private static final String EXIT = "exit";
+
     public static String read() {
         String read = Console.readLine();
         handleCommands(read);
@@ -12,7 +14,7 @@ public class Command {
     }
 
     private static void handleCommands(String read) {
-        if ("exit".equals(read)) {
+        if (EXIT.equals(read)) {
             Command.close();
             throw new ProgramExitException();
         }
