@@ -19,6 +19,7 @@ public class OutputView {
     private static final String MATCH_6_MESSAGE = "6개 일치 (2,000,000,000원) - ";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String DIVIDER = "---";
+    private static final String YIELD_MESSAGE = "총 수익률은 %s%%입니다.";
 
     public static void displayPrompt(Prompt prompt) {
         if (prompt.equals(PURCHASE_AMOUNT)) {
@@ -77,4 +78,9 @@ public class OutputView {
         );
     }
 
+    public static void displayYield(double yield) {
+        String result = String.format(YIELD_MESSAGE, yield);
+
+        System.out.println(result);
+    }
 }

@@ -35,5 +35,6 @@ public class LottoController {
         OutputView.displayWinningResult(matchCounts);
 
         double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
+        OutputView.displayYield(yield);
     }
 }
