@@ -10,10 +10,9 @@ import java.util.List;
 public class InputView {
     public int payAmount() {
         String purchasePrice = Console.readLine();
-        int priceValue = Integer.parseInt(purchasePrice);
-        validatePurchasePrice(priceValue);
+        validatePurchasePrice(purchasePrice);
 
-        return priceValue;
+        return Integer.parseInt(purchasePrice);
     }
 
     public List<Integer> prizeNumbers() {
@@ -40,9 +39,15 @@ public class InputView {
         return winningNumberValues;
     }
 
-    public void validatePurchasePrice(int purchasePrice) {
-        if (purchasePrice % LottoValue.AMOUNT_UNIT != 0) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_PRICE);
+    public void validatePurchasePrice(String purchasePrice) {
+        try {
+            Integer.parseInt(purchasePrice);
+            int price = Integer.parseInt(purchasePrice);
+            if (price % LottoValue.AMOUNT_UNIT != 0) {
+                throw new IllegalArgumentException();
+            }
+        }catch (NumberFormatException e){
+            System.out.println(ErrorMessage.PURCHASE_PRICE);
         }
     }
 
