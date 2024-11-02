@@ -33,8 +33,19 @@ public class LottoTransactionController {
     return lottos;
   }
 
-  public void compareWinningNumbers() {
+  public void compareWinningNumbers(List<Integer> winningNumbers) {
 
+    Set<Integer> _winningNumbers = new HashSet<>(winningNumbers);
+    List<Lotto> lotttos = lottoTransaction.getPurchasedLottos();
+
+    System.out.println("당첨 번호:" + winningNumbers); // TODO test용 삭제 예정
+
+    for (Lotto lotto : lotttos) {
+      List<Integer> numbers = lotto.getNumbers();
+      Set<Integer> _numbers = new HashSet<>(numbers);
+      _numbers.retainAll(_winningNumbers);
+      System.out.println(numbers + "\t일치 갯수:" + _numbers.size()); // TODO test용 삭제 예정
+    }
   }
 
   private Lotto produceLotto() {
