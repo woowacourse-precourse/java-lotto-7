@@ -29,13 +29,12 @@ public class LottoController {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
 
-        //당첨 로직 구현
-        int[] ans = new int[5];
+        int[] winningCount = new int[5];
         for (int i = 0; i < lottoCount; i++) {
-            lottoService.winningCount(winningNumber, i, ans, bonusNumber);
+            lottoService.winningCount(winningNumber, i, winningCount, bonusNumber);
         }
 
-        lottoView.output.winningResult(ans, lottoService.getRate(lottoCount, ans));
+        lottoView.output.winningResult(winningCount, lottoService.getRate(lottoCount, winningCount));
     }
 
     int getLottoCount() {
