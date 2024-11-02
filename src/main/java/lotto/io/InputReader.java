@@ -30,6 +30,17 @@ public class InputReader {
         }
     }
 
+    public int readBonusNumber(List<Integer> winningNumbers) {
+        try {
+            String input = readInput();
+            int bonusNumber = inputParser.convertStringToInt(input);
+            Validator.validateBonusNumber(bonusNumber, winningNumbers);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return readBonusNumber(winningNumbers);
+        }
+    }
+
     private String readInput() {
         return Console.readLine();
     }

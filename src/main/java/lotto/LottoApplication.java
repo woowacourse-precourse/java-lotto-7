@@ -20,6 +20,7 @@ public class LottoApplication {
     public void run() {
         List<Lotto> lottos = purchaseLotto();
         List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
     }
 
     private List<Lotto> purchaseLotto() {
@@ -36,4 +37,8 @@ public class LottoApplication {
         return inputReader.readWinningNumbers();
     }
 
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        InputMessage.bonusNumber();
+        return inputReader.readBonusNumber(winningNumbers);
+    }
 }

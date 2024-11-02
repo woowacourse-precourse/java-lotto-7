@@ -24,6 +24,13 @@ public class Validator {
         drawNumbers.forEach(Validator::validateNumberRange);
     }
 
+    public static void validateBonusNumber(int drawNumber, List<Integer> winningNumbers) {
+        validateNumberRange(drawNumber);
+        if (winningNumbers.contains(drawNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨번호와 중복되지 않아야 합니다.");
+        }
+    }
+
     public static void validateNumberRange(int drawNumber) {
         if (drawNumber >= MIN_VALUE && drawNumber <= MAX_VALUE) {
             return;
