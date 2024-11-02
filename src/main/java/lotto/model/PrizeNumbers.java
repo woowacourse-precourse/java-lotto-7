@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class PrizeNumbers {
+
     private List<Integer> prizeNumberList;
 
     private Integer bonusPrizeNumber;
@@ -46,7 +47,6 @@ public class PrizeNumbers {
 
     /**
      * 당첨번호와 보너스 번호를 통합해서 같은번호가 존재하는지
-     *
      */
     private void hasSameNumberCheckPrizeAndBonus() {
         if (prizeNumberList.stream().distinct().count() != prizeNumberList.size()) {
@@ -95,11 +95,21 @@ public class PrizeNumbers {
     }
 
     private void settingToInstance(String prizeNumbersInput, String bonusPrizeNumber) {
-            this.prizeNumberList = Arrays.stream(prizeNumbersInput.split(","))
-                    .mapToInt(prizeNum -> {return Integer.parseInt(prizeNum.trim());})
-                    .boxed()
-                    .toList();
+        this.prizeNumberList = Arrays.stream(prizeNumbersInput.split(","))
+                .mapToInt(prizeNum -> {
+                    return Integer.parseInt(prizeNum.trim());
+                })
+                .boxed()
+                .toList();
 
         this.bonusPrizeNumber = Integer.parseInt(bonusPrizeNumber.replaceAll("\\s", ""));
+    }
+
+    public List<Integer> getPrizeNumberList() {
+        return prizeNumberList;
+    }
+
+    public Integer getBonusPrizeNumber() {
+        return bonusPrizeNumber;
     }
 }
