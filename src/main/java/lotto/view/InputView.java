@@ -1,13 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.view.message.InteractionMessage;
+import lotto.view.message.InputMessage;
 
-import java.util.List;
-
-import static lotto.view.message.InteractionMessage.ENTER_MONEY;
-import static lotto.view.message.InteractionMessage.ENTER_WINNING_NUMBER;
-import static lotto.view.message.InteractionMessage.ENTER_BONUS_NUMBER;
+import static lotto.view.message.InputMessage.*;
 import static lotto.common.ErrorMessage.EMPTY_INPUT;
 
 public class InputView {
@@ -23,7 +19,7 @@ public class InputView {
         return handleInput(ENTER_BONUS_NUMBER);
     }
 
-    private static String handleInput(InteractionMessage message) {
+    private static String handleInput(InputMessage message) {
         while (true) { // TODO: 반복 재귀 이외 방법으로 구현할 수 있는지?
             try {
                 return readAndPrint(message);
@@ -33,7 +29,7 @@ public class InputView {
         }
     }
 
-    private static String readAndPrint(InteractionMessage message) {
+    private static String readAndPrint(InputMessage message) {
         System.out.println(message.getMessage());
         String inputValue = Console.readLine();
         validate(inputValue);
