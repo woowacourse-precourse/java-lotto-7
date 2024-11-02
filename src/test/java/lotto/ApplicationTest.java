@@ -74,6 +74,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 가격입력_비정상_1000원단위(){
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

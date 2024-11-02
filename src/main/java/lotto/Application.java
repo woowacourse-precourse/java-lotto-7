@@ -26,7 +26,7 @@ public class Application {
 
     public static int getPrice(String priceInput) throws IllegalArgumentException{
         int price=0;
-        String ERRORMESSAGE="[ERROR] 가격은 양의 정수여야 합니다.";
+        String ERRORMESSAGE="[ERROR] 가격은 양의 정수이고 1000으로 나눠떨어져야 합니다.";
 
         try{
             price=Integer.parseInt(priceInput);
