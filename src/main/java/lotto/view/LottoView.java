@@ -1,9 +1,6 @@
 package lotto.view;
 
-import lotto.domain.CorrectDTO;
-import lotto.domain.Lotto;
-import lotto.domain.LottoDTO;
-import lotto.domain.MoneyDTO;
+import lotto.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +31,25 @@ public class LottoView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 "+rateOfReturn+"%입니다.");
+    //전체적으로 통계가 어떻게 나왔는지 출력
+    public void printRateOfReturn(RateOfReturnDTO returnDTO) {
+        System.out.println("총 수익률은 "+returnDTO.getRateOfReturn()+"%입니다.");
     }
 
-    //전체적으로 통계가 어떻게 나왔는지 출력
-    //그런 출력들을 모아서 출력하게끔 하는 함수 생성
+
+
+    public void printLottoResult() {
+        System.out.println("당첨 통계\n---");
+        for (LottoRank lottoRank : LottoRank.values()) {
+            System.out.println(lottoRank.getFormattedOutput());
+        }
+    }
+
+    public void printResult(RateOfReturnDTO returnDTO){
+        printLottoResult();
+        printRateOfReturn(returnDTO);
+    }
+
 
     public MoneyDTO getMoneyInput() {
         //제대로 된 값이 입력받을 때까지 반복
