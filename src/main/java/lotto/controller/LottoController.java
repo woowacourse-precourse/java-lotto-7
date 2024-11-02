@@ -37,7 +37,7 @@ public class LottoController {
     public void play() {
         buy();
         assign();
-        showResult();
+        printFinalStatistics();
     }
 
     private void buy() {
@@ -49,10 +49,6 @@ public class LottoController {
     private void assign() {
         assignWinningNumbers();
         assignBonusNumber();
-    }
-
-    private void showResult() {
-        printFinalStatistics();
     }
 
     private void inputPurchaseAmount() {
