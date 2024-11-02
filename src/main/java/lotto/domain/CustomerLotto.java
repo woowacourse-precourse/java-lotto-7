@@ -6,8 +6,12 @@ import lotto.dto.LottoResult;
 public class CustomerLotto {
     private final List<Lotto> tickets;
 
-    public CustomerLotto(List<Lotto> tickets) {
+    private CustomerLotto(List<Lotto> tickets) {
         this.tickets = tickets;
+    }
+
+    public static CustomerLotto of(List<Lotto> tickets) {
+        return new CustomerLotto(tickets);
     }
 
     public List<LottoResult> compareWinningLotto(WinningLotto winningLotto) {
