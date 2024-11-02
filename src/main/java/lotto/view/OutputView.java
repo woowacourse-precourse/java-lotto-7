@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.message.MessageConstants.OUTPUT_PURCHASE_COUNT_MESSAGE;
+import static lotto.message.MessageConstants.OUTPUT_RETURN_RATE_MESSAGE;
 import static lotto.message.MessageConstants.OUTPUT_WINNING_STATISTICS_HEADER;
 
 import java.text.NumberFormat;
@@ -29,7 +30,7 @@ public class OutputView {
     }
 
     public void printReturnRate(double returnRate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
+        System.out.printf(OUTPUT_RETURN_RATE_MESSAGE, returnRate);
     }
 
 }
