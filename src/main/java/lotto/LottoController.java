@@ -33,6 +33,8 @@ public class LottoController {
         output.printBonusNumber();
         inputProcessor.processBonusNumber(input.readLine());
         VictoryInfoDTO victoryInfoDTO = inputVictoryNumber();
+        output.printResult(lottoManager.match(victoryInfoDTO));
+        output.printRevenue(lottoManager.revenue(tryCountDTO));
     }
 
     private VictoryInfoDTO inputVictoryNumber() {
@@ -41,6 +43,6 @@ public class LottoController {
 
     private TryCountDTO inputCount() {
         inputProcessor.processPrice(input.readLine());
-        return new TryCountDTO(inputProcessor.getTryCount());
+        return new TryCountDTO(inputProcessor.getTryCount(), inputProcessor.getBuyPrice());
     }
 }

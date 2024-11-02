@@ -9,6 +9,7 @@ public class InputProcessor {
     private int tryCount;
     private List<Integer> victoryNumbers;
     private int bonusNumber;
+    private int buyPrice;
 
     public InputProcessor() {
         this.tryCount = 0;
@@ -22,6 +23,7 @@ public class InputProcessor {
         }
         int tmpPrice = Integer.parseInt(readLine.trim());
         validatePrice(tmpPrice);
+        this.buyPrice = tmpPrice;
         this.tryCount = tmpPrice / 1000;
     }
 
@@ -124,6 +126,10 @@ public class InputProcessor {
 
     public List<Integer> getVictoryNumbers() {
         return new ArrayList<>(victoryNumbers);
+    }
+
+    public int getBuyPrice() {
+        return buyPrice;
     }
 
     public int getBonusNumber() {
