@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,9 +15,18 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (hasDuplicate(numbers)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+        }
     }
+
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private boolean hasDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = Set.copyOf(numbers);
+        return uniqueNumbers.size() != numbers.size();
     }
 }
