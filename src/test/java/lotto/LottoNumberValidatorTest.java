@@ -11,6 +11,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottoNumberValidatorTest {
 
+    @Test
+    void 로또_번호의_개수가_6개가_아니면_IllegalArgumentException_예외가_발생한다() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> LottoNumberValidator.validateNumbersRequired(numbers));
+
+    }
+
     private static Stream<Arguments> generateInvalidateLotto() {
         return Stream.of(
                 Arguments.of(List.of(1, 2, 3, 4, 45, 46)),
