@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoProfitRate;
+import lotto.domain.LottoResultDetails;
 import lotto.domain.Lottos;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLottoNumber;
@@ -20,6 +22,9 @@ public class LottoSystem {
         OutputView.displayPurchasedLottoNumbers(lottos);
 
         WinningLottoNumber winningLottoNumber = inputWinningLottoNumber();
+        LottoResultDetails.count(lottos,winningLottoNumber);
+        LottoProfitRate lottoProfitRate = new LottoProfitRate(purchasePrice);
+        OutputView.printLottoDetails(lottoProfitRate);
     }
 
     private static PurchasePrice inputPurchasePrice() {
