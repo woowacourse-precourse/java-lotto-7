@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class Statistics {
 
+    private static final int lottoPrice = 1000;
+
     private List<Lotto> lottoList;
     private Lotto winNumbers;
     private int bonusNumber;
@@ -42,6 +44,27 @@ public class Statistics {
         }
 
         return rankCount;
+    }
+
+    private int calculateTotalPrize() {
+
+        int totalPrize = 0;
+
+        for (Map.Entry<Rank, Integer> entry : rankCount.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += count * rank.getPrize();
+        }
+
+        return totalPrize;
+    }
+
+    public double calculateProfitRate() {
+
+        int totalCost = lottoList.size() * lottoPrice;
+        int totalPrize = calculateTotalPrize();
+
+        return ((double) totalPrize  / totalCost) * 100;
     }
 
     public Statistics(List<Lotto> lottoList, Lotto winNumbers, int bonusNumber) {
