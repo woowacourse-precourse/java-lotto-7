@@ -74,6 +74,7 @@ public class LottoController {
             try {
                 String input = inputView.inputWinningNumber();
                 lottoValidation.validateBlank(input);
+                List<String> winningNumbers = List.of(input.split(","));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
