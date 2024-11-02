@@ -2,9 +2,10 @@ package lotto;
 
 import java.util.List;
 import model.Lotto;
+import model.LottoChecker;
 import model.LottoMaker;
 import view.InputView;
-import view.OutpuView;
+import view.Outputview;
 
 public class Application {
     public static void main(String[] args) {
@@ -22,8 +23,8 @@ public class Application {
         List<Lotto> lottos = lottoMaker.getLottos();
 
         // 4. 발행한 로또 출력
-        OutpuView outpuView = new OutpuView();
-        outpuView.showLottos(lottos);
+        Outputview outputview = new Outputview();
+        outputview.showLottos(lottos);
 
         // 5. 당첨 번호 입력
         List<Integer> inputNumber = inputView.getInputNumber();
@@ -32,6 +33,8 @@ public class Application {
         int bonusNumber = inputView.getInputBonus();
 
         // 7. 당첨된 로또 확인
+        LottoChecker lottoChecker = new LottoChecker(inputNumber, bonusNumber);
+        int[] matchNumberCount = lottoChecker.checkLottos(lottos);
 
         // 8. 당첨 통계
 
