@@ -19,10 +19,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-    public int countCollect(List<Integer> numbers, List<Integer> winningNumbers) {
+    public int countCollect(List<Integer> winningNumbers) {
         int collect = 0;
-        for (int i = 0 ; i < 6; i++) {
-            if (numbers.contains(winningNumbers.get(i))) collect++;
+        for (Integer number : getNumbers()) {
+            if (winningNumbers.contains(number)) {
+                collect++;
+            }
         }
         return collect;
     }

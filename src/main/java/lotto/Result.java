@@ -35,5 +35,4 @@ public enum Result {
             sixCnt++;
         }
     }
-
 }
