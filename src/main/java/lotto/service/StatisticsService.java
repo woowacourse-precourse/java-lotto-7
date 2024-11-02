@@ -64,13 +64,5 @@ public class StatisticsService {
         }
     }
 
-    private static class Check{
-        public int cnt;
-        public boolean bonusNumberCheck;
-
-        public Check(int cnt, boolean bonusNumberCheck) {
-            this.cnt = cnt;
-            this.bonusNumberCheck = bonusNumberCheck;
-        }
-    }
+    private record Check(int cnt, boolean bonusNumberCheck){}
 }

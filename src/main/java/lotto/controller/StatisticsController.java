@@ -10,6 +10,5 @@ public class StatisticsController {
     public void getStatistic() {
         OutputView.printStatistics();
         statisticsService.start();
-
     }
 }
