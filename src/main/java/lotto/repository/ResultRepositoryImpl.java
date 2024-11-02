@@ -27,10 +27,6 @@ public class ResultRepositoryImpl implements ResultRepository{
         return result;
     }
 
-    @Override
-    public int getCountByRank(Rank rank) {
-        return result.get(rank);
-    }
 
     @Override
     public double calculate(Money money) {
