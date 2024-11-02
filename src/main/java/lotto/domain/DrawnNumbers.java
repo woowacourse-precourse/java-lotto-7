@@ -11,4 +11,12 @@ public class DrawnNumbers {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
+
+    public WinningNumbers getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }
