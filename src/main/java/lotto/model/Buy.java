@@ -13,6 +13,10 @@ public class Buy {
         return money;
     }
 
+    private Integer getUserPurchaseCount(Integer userMoney){
+        return userMoney / moneyUnit;
+    }
+
     private void validateUserMoneyUnit(Integer userMoney){
         if(userMoney % moneyUnit != 0){
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액 단위는 1000원 단위 입니다.");
