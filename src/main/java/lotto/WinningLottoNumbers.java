@@ -14,11 +14,15 @@ public class WinningLottoNumbers {
 
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
+        validateNumbersRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
         }
+    }
+
+    private void validateNumbersRange(List<Integer> numbers) {
     }
 }

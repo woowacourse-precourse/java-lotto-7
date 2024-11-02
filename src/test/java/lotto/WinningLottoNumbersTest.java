@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class WinningLottoNumbersTest {
 
     @Test
-    @DisplayName("당첨 번호는 6개의 숫자여야 한다")
+    @DisplayName("당첨 번호는 6개의 숫자여야 한다.")
     void 실패_당첨번호생성_5개() {
         // given
         List<Integer> invalidNumbers = List.of(1, 2, 3, 4, 5);
@@ -19,5 +19,17 @@ public class WinningLottoNumbersTest {
         assertThatThrownBy(() -> new WinningLottoNumbers(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호는 6개여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호는 1부터 45 사이의 숫자여야 한다.")
+    void 실패_당첨번호_범위초과() {
+        // given
+        List<Integer> invalidNumbers = List.of(0, 1, 2, 3, 4, 46);
+
+        // when & then
+        assertThatThrownBy(() -> new WinningLottoNumbers(invalidNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 }
