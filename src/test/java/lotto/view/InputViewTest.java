@@ -1,62 +1,53 @@
 package lotto.view;
 
-import java.io.ByteArrayInputStream;
+import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+import lotto.domain.Lotto;
 import lotto.exception.ExceptionMessage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputViewTest {
-
-    private final InputView inputView = new InputView();
-
     @Test
-    public void 구입_금액_입력_통과() {
-        System.setIn(new ByteArrayInputStream("2000\n".getBytes()));
-        int result = inputView.totalCostInput();
-        assertEquals(2, result);
+    void inputToParsed_정수입력() {
+        String input = "1000";
+        setInputStream(input);
+
+        InputView inputView = new InputView();
+        int result = inputView.inputToParsed();
+
+        assertThat(result).isEqualTo(1000);
     }
 
     @Test
-    public void 구입_금액_단위에_맞지않는_입력() {
-        System.setIn(new ByteArrayInputStream("1500\n".getBytes()));
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
-            inputView.totalCostInput();
-        });
-        assertEquals(ExceptionMessage.ERROR_NOT_DIVISIBLE_BY_1000.getMessage(), thrown.getMessage());
+    void setWinningNumber_예외발생() {
+        String input = "1, 2, 3, 4, 5, 5";
+        setInputStream(input);
+
+        InputView inputView = new InputView();
+
+        assertThatThrownBy(inputView::setWinningNumber)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_DUPLICATE_NUMBER.getMessage());
     }
 
     @Test
-    public void 보너스_번호_통과() {
-        System.setIn(new ByteArrayInputStream("7\n".getBytes()));
-        int result = inputView.setBonusNumber();
-        assertEquals(7, result);
+    void setWinningNumber_정상입력() {
+        String input = "1, 2, 3, 4, 5, 6";
+        setInputStream(input);
+
+        InputView inputView = new InputView();
+        Lotto lotto = inputView.setWinningNumber();
+
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
-    @Test
-    public void 번호_범위에_불일치() {
-        System.setIn(new ByteArrayInputStream("50\n".getBytes()));
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
-            inputView.setBonusNumber();
-        });
-        assertEquals(ExceptionMessage.ERROR_NOT_IN_LOTTO_NUMBER_RANGE.getMessage(), thrown.getMessage());
-    }
-
-    @Test
-    public void 당첨_값_통과() {
-        System.setIn(new ByteArrayInputStream("1, 2, 3, 4, 5, 6\n".getBytes()));
-        assertDoesNotThrow(() -> {
-            inputView.setWinningNumber();
-        });
-    }
-
-    @Test
-    public void 당첨_값_불일치() {
-        System.setIn(new ByteArrayInputStream("1, 2, 3\n".getBytes()));
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
-            inputView.setWinningNumber();
-        });
-        assertEquals(ExceptionMessage.ERROR_LOTTO_SIZE_NOT_MATCHED.getMessage(), thrown.getMessage());
+    private void setInputStream(String input) {
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        Console.close();
     }
 }
