@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class WinningNumValidatorTest extends NsTest {
-    
+class WinningNumValidatorTest extends NsTest {
+
     @ParameterizedTest
     @CsvSource({"1,2,3,4,5,6:", "1,2,3,4,5 6"})
     @DisplayName("당첨 번호는 숫자 및 구분자인 , 외의 문자를 포함할 수 없다.")

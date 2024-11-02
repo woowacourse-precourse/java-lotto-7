@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class PurchasePriceValidatorTest extends NsTest {
+class PurchasePriceValidatorTest extends NsTest {
 
     @Test
     @DisplayName("로또 구입 금액은 숫자 외의 문자를 포함할 수 없다.")
