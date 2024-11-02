@@ -1,30 +1,35 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.common.message.InputMessage;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
 
-    public int getCost() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String cost = Console.readLine(); // todo : 예외 처리
-        return Integer.parseInt(cost); // todo : 예외 처리
+//  기능 담당을 분리하는 것도 중요하지만,
+//  너무 작은 단위로 모듈화하면,
+//  오히려 복잡성이 증가한다고 생각한다.
+
+
+    public int getPurchaseAmount() {
+        System.out.println(InputMessage.PURCHASE_AMOUNT_MESSAGE.getMessage());
+        String cost = Console.readLine();
+
+        return InputValidator.validateInteger(cost);
     }
 
     public List<Integer> getWinningNums() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(InputMessage.WINNER_NUMBERS_MESSAGE.getMessage());
+        String winningNums = Console.readLine();
 
-        String winningNums = Console.readLine(); // todo : 예외 처리
-        return Arrays.stream(winningNums.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt).toList(); // todo : 예외 처리
+        return InputValidator.validateWinningNumbers(winningNums);
     }
 
     public int getBonusNum() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNum = Console.readLine(); // todo : 예외 처리
-        return Integer.parseInt(bonusNum); // todo : 예외 처리
+        System.out.println(InputMessage.BONUS_NUMBER_MESSAGE.getMessage());
+        String bonusNum = Console.readLine();
+
+        return InputValidator.validateInteger(bonusNum);
     }
 }
