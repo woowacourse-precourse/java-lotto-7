@@ -19,6 +19,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int countMatchingNumbersWith(Lotto other) {
+        return (int) other.numbers.stream()
+                .filter(this::contains)
+                .count();
+    }
+
+    private boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
     private void validateSizeOf(List<Integer> numbers) {
         if (numbers.size() != COUNT_OF_LOTTO_NUMBERS) {
             throw new IllegalArgumentException(COUNT_OF_LOTTO_NUMBERS_ERROR);

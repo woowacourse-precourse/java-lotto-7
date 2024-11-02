@@ -1,10 +1,13 @@
 package lotto.domain;
 
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static lotto.MessageContainer.COUNT_OF_LOTTO_NUMBERS_ERROR;
@@ -76,5 +79,25 @@ class LottoTest {
                 .isInstanceOf(Lotto.class)
                 .isNotNull()
                 .hasNoNullFieldsOrProperties();
+    }
+
+    @DisplayName("다른 로또와 일치하는 번호의 개수를 반환한다.")
+    @ParameterizedTest
+    @MethodSource
+    void countMatchingNumbersWith(List<Integer> numbers, int expected) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto otherLotto = new Lotto(numbers);
+
+        int actual = lotto.countMatchingNumbersWith(otherLotto);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> countMatchingNumbersWith() {
+        return Stream.of(
+                Arguments.of(List.of(7, 8, 9, 10, 11, 12), 0),
+                Arguments.of(List.of(13, 14, 15, 6, 17, 18), 1),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 6)
+        );
     }
 }
