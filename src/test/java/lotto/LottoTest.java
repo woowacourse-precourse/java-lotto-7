@@ -38,6 +38,4 @@ class LottoTest {
                 List.of(1, 2, 3, 4, 5, 6)
         );
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
