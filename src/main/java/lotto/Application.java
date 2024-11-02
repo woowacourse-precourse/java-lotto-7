@@ -45,15 +45,15 @@ public class Application {
         try {
             int bonusNumber = Integer.parseInt(input.trim());
             if (bonusNumber < 1 || bonusNumber > 45) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
             }
 
             if (winningNumber.contains(bonusNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_WITH_WINNING_NUMBER.getMessage());
             }
             return bonusNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력하세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class Application {
                     .map(number -> Integer.parseInt(number.trim()))
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력하세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
 }

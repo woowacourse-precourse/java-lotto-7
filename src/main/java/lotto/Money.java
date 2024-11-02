@@ -18,12 +18,12 @@ public class Money {
     public static int validate(String inputNumber) {
         try {
             int money = Integer.parseInt(inputNumber);
-            if (money % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 1,000원으로 나누어 떨어지게 입력하세요");
+            if (money % LottoInformation.LOTTO_PRICE_UNIT.getValue() != 0) {
+                throw new IllegalArgumentException(ErrorMessage.DIVISIBLE_BY_THOUSAND.getMessage());
             }
             return money;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력하세요");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.getMessage());
         }
     }
 }

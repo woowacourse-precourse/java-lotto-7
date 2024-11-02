@@ -16,7 +16,8 @@ public class BuyLotto {
 
     private void buyLotto(int numberOfLotto) {
         lottoList = IntStream.range(0, numberOfLotto)
-                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                .mapToObj(i -> Randoms.pickUniqueNumbersInRange(LottoInformation.LOTTO_MIN_NUMBER.getValue(),
+                                LottoInformation.LOTTO_MAX_NUMBER.getValue(), LottoInformation.LOTTO_BALLS_NUMBER.getValue())
                         .stream()
                         .sorted()
                         .collect(Collectors.toList()))
