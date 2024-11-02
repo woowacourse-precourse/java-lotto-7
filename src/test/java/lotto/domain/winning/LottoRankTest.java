@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class RankTest {
+class LottoRankTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 2, 7})
@@ -17,10 +17,10 @@ class RankTest {
         boolean bonus = false;
 
         // when
-        Rank result = Rank.of(matchCount, bonus);
+        LottoRank result = LottoRank.of(matchCount, bonus);
 
         // then
-        assertThat(result).isEqualTo(Rank.LAST);
+        assertThat(result).isEqualTo(LottoRank.NONE);
     }
 
     @ParameterizedTest
@@ -31,10 +31,10 @@ class RankTest {
         int matchCount = 6;
 
         // when
-        Rank result = Rank.of(matchCount, bonus);
+        LottoRank result = LottoRank.of(matchCount, bonus);
 
         // then
-        assertThat(result).isEqualTo(Rank.FIRST);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_FIRST);
     }
 
     @Test
@@ -45,10 +45,10 @@ class RankTest {
         boolean bonusNumberMatch = true;
 
         // when
-        Rank result = Rank.of(matchCount, bonusNumberMatch);
+        LottoRank result = LottoRank.of(matchCount, bonusNumberMatch);
 
         // then
-        assertThat(result).isEqualTo(Rank.SECOND);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_SECOND);
     }
 
     @Test
@@ -59,10 +59,10 @@ class RankTest {
         boolean bonusNumberMatch = false;
 
         // when
-        Rank result = Rank.of(matchCount, bonusNumberMatch);
+        LottoRank result = LottoRank.of(matchCount, bonusNumberMatch);
 
         // then
-        assertThat(result).isEqualTo(Rank.THIRD);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_THIRD);
     }
 
 
@@ -74,10 +74,10 @@ class RankTest {
         int matchCount = 4;
 
         // when
-        Rank result = Rank.of(matchCount, bonus);
+        LottoRank result = LottoRank.of(matchCount, bonus);
 
         // then
-        assertThat(result).isEqualTo(Rank.FOURTH);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_FOURTH);
     }
 
     @ParameterizedTest
@@ -88,10 +88,10 @@ class RankTest {
         int matchCount = 3;
 
         // when
-        Rank result = Rank.of(matchCount, bonus);
+        LottoRank result = LottoRank.of(matchCount, bonus);
 
         // then
-        assertThat(result).isEqualTo(Rank.FIFTH);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_FIFTH);
     }
 
 }

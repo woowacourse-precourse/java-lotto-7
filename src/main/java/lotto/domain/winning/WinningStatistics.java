@@ -6,33 +6,33 @@ import java.util.Map;
 
 public class WinningStatistics {
 
-    private final Map<Rank, Integer> result = new HashMap<>();
+    private final Map<LottoRank, Integer> result = new HashMap<>();
 
     public WinningStatistics() {
-        for (Rank rank : Rank.values()) {
-            result.put(rank, 0);
+        for (LottoRank lottoRank : LottoRank.values()) {
+            result.put(lottoRank, 0);
         }
     }
 
-    public void addWinCountByRank(Rank rank) {
-        result.put(rank, result.get(rank) + 1);
+    public void addWinCountByRank(LottoRank lottoRank) {
+        result.put(lottoRank, result.get(lottoRank) + 1);
     }
 
-    public int getCountByRank(Rank rank) {
-        return result.get(rank);
+    public int getWinningCountByRank(LottoRank lottoRank) {
+        return result.get(lottoRank);
     }
 
     public BigDecimal getTotalPrize() {
         BigDecimal total = BigDecimal.ZERO;
-        for (Rank rank : result.keySet()) {
-            total = total.add(calculateTotalPrizeByRank(rank));
+        for (LottoRank lottoRank : result.keySet()) {
+            total = total.add(calculateTotalPrizeByRank(lottoRank));
         }
         return total;
     }
 
-    private BigDecimal calculateTotalPrizeByRank(Rank rank) {
-        return BigDecimal.valueOf(rank.getPrizeMoney())
-                .multiply(BigDecimal.valueOf(getCountByRank(rank)));
+    private BigDecimal calculateTotalPrizeByRank(LottoRank lottoRank) {
+        return BigDecimal.valueOf(lottoRank.getPrizeMoney())
+                .multiply(BigDecimal.valueOf(getWinningCountByRank(lottoRank)));
     }
 
 }

@@ -34,8 +34,8 @@ public class WinningNumber {
         }
     }
 
-    public Rank match(Lotto lotto) {
-        return Rank.of(
+    public LottoRank match(Lotto lotto) {
+        return LottoRank.of(
                 winningLotto.match(lotto),
                 lotto.contains(bonusNumber)
         );

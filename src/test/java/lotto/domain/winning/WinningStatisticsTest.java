@@ -11,29 +11,29 @@ import org.junit.jupiter.params.provider.EnumSource;
 class WinningStatisticsTest {
 
     @ParameterizedTest
-    @EnumSource(Rank.class)
+    @EnumSource(LottoRank.class)
     @DisplayName("맨 처음 통계 상태는 모두 0원이다.")
-    void givenCreatedStatistics_whenGetCountByRank_thenAllZero(Rank rank) {
+    void givenCreatedStatistics_whenGetWinningCountByRank_thenAllZero(LottoRank lottoRank) {
         // given
         WinningStatistics winningStatistics = new WinningStatistics();
         // when
-        int result = winningStatistics.getCountByRank(rank);
+        int result = winningStatistics.getWinningCountByRank(lottoRank);
         // then
         assertThat(result).isZero();
     }
 
     @ParameterizedTest
-    @EnumSource(Rank.class)
+    @EnumSource(LottoRank.class)
     @DisplayName("등수 별 당첨 수가 증가된다.")
-    void givenCreatedStatistics_whenAddWinCountByRank_thenIncrementedCountByRank(Rank rank) {
+    void givenCreatedStatistics_whenAddWinCountByRank_thenIncrementedCountByRank(LottoRank lottoRank) {
         // given
         WinningStatistics winningStatistics = new WinningStatistics();
 
         // when
-        winningStatistics.addWinCountByRank(rank);
+        winningStatistics.addWinCountByRank(lottoRank);
 
         // then
-        assertThat(winningStatistics.getCountByRank(rank)).isOne();
+        assertThat(winningStatistics.getWinningCountByRank(lottoRank)).isOne();
     }
 
     @Test
@@ -42,9 +42,9 @@ class WinningStatisticsTest {
         // given
         WinningStatistics winningStatistics = new WinningStatistics();
         int sumOfAllRankPrize = 0;
-        for (Rank rank : Rank.values()) {
-            winningStatistics.addWinCountByRank(rank);
-            sumOfAllRankPrize += rank.getPrizeMoney();
+        for (LottoRank lottoRank : LottoRank.values()) {
+            winningStatistics.addWinCountByRank(lottoRank);
+            sumOfAllRankPrize += lottoRank.getPrizeMoney();
         }
 
         // when
@@ -59,8 +59,8 @@ class WinningStatisticsTest {
     void givenAddWinTwoCountOfFirstRank_whenGetTotalPrize_thenReturnExpected(){
         // given
         WinningStatistics winningStatistics = new WinningStatistics();
-        winningStatistics.addWinCountByRank(Rank.FIRST);
-        winningStatistics.addWinCountByRank(Rank.FIRST);
+        winningStatistics.addWinCountByRank(LottoRank.PRIZE_FIRST);
+        winningStatistics.addWinCountByRank(LottoRank.PRIZE_FIRST);
 
         // when
         BigDecimal result = winningStatistics.getTotalPrize();

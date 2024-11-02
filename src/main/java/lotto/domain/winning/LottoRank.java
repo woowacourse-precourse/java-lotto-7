@@ -2,42 +2,44 @@ package lotto.domain.winning;
 
 import java.util.Arrays;
 
-public enum Rank {
+public enum LottoRank {
 
-    LAST(0, 0),
-    FIFTH(3, 5000),
-    FOURTH(4, 50000),
-    THIRD(5, 1500000),
-    SECOND(5, 30000000),
-    FIRST(6, 2000000000);
+    PRIZE_FIRST(1, 6, 2000000000),
+    PRIZE_SECOND(2, 5, 30000000),
+    PRIZE_THIRD(3, 5, 1500000),
+    PRIZE_FOURTH(4, 4, 50000),
+    PRIZE_FIFTH(5, 3, 5000),
+    NONE(6, 0, 0);
 
+    private final int rank;
     private final int matchCount;
     private final int prizeMoney;
 
-    Rank(int matchCount, int prizeMoney) {
+    LottoRank(int rank, int matchCount, int prizeMoney) {
+        this.rank = rank;
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
     }
 
-    public static Rank of(int matchCount, boolean bonusNumberMatch) {
+    public static LottoRank of(int matchCount, boolean bonusNumberMatch) {
         if (matchCount == 5) {
             return getRankForFiveMatch(bonusNumberMatch);
         }
         return findRankByMatchCount(matchCount);
     }
 
-    private static Rank getRankForFiveMatch(boolean bonusNumberMatch) {
+    private static LottoRank getRankForFiveMatch(boolean bonusNumberMatch) {
         if (bonusNumberMatch) {
-            return SECOND;
+            return PRIZE_SECOND;
         }
-        return THIRD;
+        return PRIZE_THIRD;
     }
 
-    private static Rank findRankByMatchCount(int matchCount) {
+    private static LottoRank findRankByMatchCount(int matchCount) {
         return Arrays.stream(values())
                 .filter(rank -> rank.isMatch(matchCount))
                 .findFirst()
-                .orElse(LAST);
+                .orElse(NONE);
     }
 
     private boolean isMatch(int matchCount) {
@@ -50,6 +52,14 @@ public enum Rank {
 
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public boolean isWinning() {
+        return this != NONE;
     }
 
 }

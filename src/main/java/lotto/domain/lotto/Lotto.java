@@ -7,6 +7,7 @@ import static lotto.exception.message.LottoExceptionMessage.INVALID_NUMBER_RANGE
 import java.util.HashSet;
 import java.util.List;
 import lotto.exception.LottoException;
+import lotto.ui.dto.LottoNumbersResponse;
 
 public class Lotto {
 
@@ -64,10 +65,8 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    @Override
-    public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                '}';
+    public LottoNumbersResponse toResponse() {
+        return LottoNumbersResponse.from(this.numbers);
     }
+
 }

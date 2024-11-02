@@ -57,10 +57,10 @@ class WinningNumberTest {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        Rank result = winningNumber.match(lotto);
+        LottoRank result = winningNumber.match(lotto);
 
         // then
-        assertThat(result).isEqualTo(Rank.FIRST);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_FIRST);
     }
 
     @Test
@@ -70,10 +70,10 @@ class WinningNumberTest {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 7));
 
         // when
-        Rank result = winningNumber.match(lotto);
+        LottoRank result = winningNumber.match(lotto);
 
         // then
-        assertThat(result).isEqualTo(Rank.SECOND);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_SECOND);
     }
 
     @Test
@@ -83,10 +83,10 @@ class WinningNumberTest {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 8));
 
         // when
-        Rank result = winningNumber.match(lotto);
+        LottoRank result = winningNumber.match(lotto);
 
         // then
-        assertThat(result).isEqualTo(Rank.THIRD);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_THIRD);
     }
 
     @Test
@@ -96,10 +96,10 @@ class WinningNumberTest {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 7, 8));
 
         // when
-        Rank result = winningNumber.match(lotto);
+        LottoRank result = winningNumber.match(lotto);
 
         // then
-        assertThat(result).isEqualTo(Rank.FOURTH);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_FOURTH);
     }
 
     @Test
@@ -109,23 +109,23 @@ class WinningNumberTest {
         Lotto lotto = Lotto.from(List.of(1, 2, 3, 9, 7, 8));
 
         // when
-        Rank result = winningNumber.match(lotto);
+        LottoRank result = winningNumber.match(lotto);
 
         // then
-        assertThat(result).isEqualTo(Rank.FIFTH);
+        assertThat(result).isEqualTo(LottoRank.PRIZE_FIFTH);
     }
 
     @Test
     @DisplayName("2개부터는 꼴등이다.")
     void givenLottoWithThreeMatchingNumbers_whenMatch_thenReturnLastRank() {
         // given
-        Lotto lotto = Lotto.from(List.of(1, 2, 3, 9, 7, 8));
+        Lotto lotto = Lotto.from(List.of(1, 2, 10, 9, 7, 8));
 
         // when
-        Rank result = winningNumber.match(lotto);
+        LottoRank result = winningNumber.match(lotto);
 
         // then
-        assertThat(result).isEqualTo(Rank.LAST);
+        assertThat(result).isEqualTo(LottoRank.NONE);
     }
 
 }
