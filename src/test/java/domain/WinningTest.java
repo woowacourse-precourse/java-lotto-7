@@ -21,7 +21,7 @@ public class WinningTest {
 
         //when, then
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Winning winning = new Winning(numbers, bonusNumber);
+            Winning winning = Winning.of(numbers, bonusNumber);
         });
         assertThat(exception.getMessage()).isEqualTo(
                 LOTTO_NUMBER_CONTAINS_BONUS_NUMBER.getMessage());
@@ -35,7 +35,7 @@ public class WinningTest {
         int bonusNumber = 7;
 
         //when, then
-        Winning winning = new Winning(numbers, bonusNumber);
+        Winning winning = Winning.of(numbers, bonusNumber);
     }
 
     @DisplayName("당첨번호가 1<=x<=45 범위가 아닐 경우, 예외가 발생한다")
@@ -46,7 +46,7 @@ public class WinningTest {
         int bonusNumber = 6;
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Winning winning = new Winning(numbers, bonusNumber);
+            Winning winning = Winning.of(numbers, bonusNumber);
         });
         assertThat(exception.getMessage()).isEqualTo(NUMBER_RANGE_ERROR.getMessage());
     }
@@ -59,7 +59,7 @@ public class WinningTest {
         int bonusNumber = 46;
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Winning winning = new Winning(numbers, bonusNumber);
+            Winning winning = Winning.of(numbers, bonusNumber);
         });
         assertThat(exception.getMessage()).isEqualTo(NUMBER_RANGE_ERROR.getMessage());
     }
@@ -72,7 +72,7 @@ public class WinningTest {
         int bonusNumber = 10;
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Winning winning = new Winning(numbers, bonusNumber);
+            Winning winning = Winning.of(numbers, bonusNumber);
         });
         assertThat(exception.getMessage()).isEqualTo(NUMBER_SIZE_ERROR.getMessage());
     }

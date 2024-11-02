@@ -17,7 +17,7 @@ public class TicketTest {
     void buy_ticket_test() {
         int purchaseAmount = 10_000;
 
-        Ticket ticket = new Ticket(purchaseAmount);
+        Ticket ticket = Ticket.from(purchaseAmount);
         assertThat(ticket.getQuantity()).isEqualTo(10);
     }
 
@@ -26,7 +26,7 @@ public class TicketTest {
     void buy_ticket_1000_test() {
         int purchaseAmount = 1000;
 
-        Ticket ticket = new Ticket(purchaseAmount);
+        Ticket ticket = Ticket.from(purchaseAmount);
         assertThat(ticket.getQuantity()).isEqualTo(1);
     }
 
@@ -35,7 +35,7 @@ public class TicketTest {
     @DisplayName("천 단위로 나누어지지 않을 경우, 예외가 발생한다")
     void buy_ticket_not_divide_1000(int purchaseAmount) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Ticket ticket = new Ticket(purchaseAmount);
+            Ticket ticket = Ticket.from(purchaseAmount);
         });
         assertThat(exception.getMessage()).isEqualTo(PURCHASE_PRICE_DIVIDE_ERROR.getMessage());
     }
@@ -45,7 +45,7 @@ public class TicketTest {
     @DisplayName("티켓을 한 장도 살 수 없는 경우, 예외가 발생한다")
     void cannot_buy_ticket(int purchaseAmount) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Ticket ticket = new Ticket(purchaseAmount);
+            Ticket ticket = Ticket.from(purchaseAmount);
         });
         assertThat(exception.getMessage()).isEqualTo(MINIMUM_TICKET_PURCHASE_ERROR.getMessage());
     }
