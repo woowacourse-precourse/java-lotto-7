@@ -38,7 +38,7 @@ public class OutputView {
         if (matchCount == 0) {
             return;
         }
-        boolean isBonusMatch = lottoScoreResponse.isBonusMatch();
+        boolean isBonusMatch = lottoScoreResponse.containsBonus();
         int prize = lottoScoreResponse.getPrize();
 
         String result = String.format(MATCH_RESULT_FORMAT,
