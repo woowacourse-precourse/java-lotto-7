@@ -18,10 +18,14 @@ public class RandomLottos {
         List<Rank> ranksResult = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
+            System.out.println(lotto.toString());
             int mainLottoMatchedCount = userLotto.getMainLottoMatchedCount(lotto);
             boolean isMatchedBonus = userLotto.isContainBonusLotto(lotto);
             Rank rank = Rank.findRank(mainLottoMatchedCount, isMatchedBonus);
 
+            if (rank.equals(Rank.NOTHING)) {
+                continue;
+            }
             ranksResult.add(rank);
         }
         return ranksResult;

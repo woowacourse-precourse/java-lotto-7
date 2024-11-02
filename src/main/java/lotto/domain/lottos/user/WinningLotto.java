@@ -3,7 +3,6 @@ package lotto.domain.lottos.user;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.LottoMatchedResult;
 import lotto.domain.Rank;
 
 public class WinningLotto {
@@ -13,18 +12,10 @@ public class WinningLotto {
         initRanks();
     }
 
-    public void addMatchedResultAsRank(List<LottoMatchedResult> matchedResults) {
-        for (LottoMatchedResult result : matchedResults) {
-            int matchCount = result.getSixLottoMatchedCount();
-            boolean isMatchedBonus = result.isMatchedBonusLotto();
-            Rank rank = Rank.findRank(matchCount, isMatchedBonus);
-
-            addRank(rank);
+    public void addAllMatchedRank(List<Rank> matchedResults) {
+        for (Rank rank : matchedResults) {
+            ranks.merge(rank, 1, Integer::sum);
         }
-    }
-
-    private void addRank(Rank rank) {
-        ranks.merge(rank, 1, Integer::sum);
     }
 
     public long getFinalPrizeAmount() {
