@@ -8,12 +8,12 @@ public interface InputProcessor<T> {
 
     T putValue();
 
-    default Integer changeInteger(String input){
+    default Integer changeInteger(String input) {
         try {
             Integer number = Integer.parseInt(input);
             return number;
-        }catch (NumberFormatException e){
-            throw new NumberFormatException(ErrorMessage.NOT_NUMBER_CHANGE.show());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_CHANGE.show());
         }
     }
 

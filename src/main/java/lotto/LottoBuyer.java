@@ -1,19 +1,19 @@
 package lotto;
 
-import input.Input;
-import input.LottoPurchaseAmountInput;
+import input.InputProcessor;
+import input.LottoPurchaseAmountInputProcessor;
 import java.util.ArrayList;
 
 public class LottoBuyer {
 
-    private final Input<Integer> lottoPurchaseAmountInput;
+    private final InputProcessor<Integer> lottoPurchaseAmountInputProcessor;
     private final LottoVendingMachine lottoVendingMachine;
     private Integer lottoPurchaseAmount;
     private ArrayList<Lotto> lottoTickets;
 
-    LottoBuyer(LottoPurchaseAmountInput lottoPurchaseAmountInput,
+    LottoBuyer(LottoPurchaseAmountInputProcessor lottoPurchaseAmountInput,
             LottoVendingMachine lottoVendingMachine) {
-        this.lottoPurchaseAmountInput = lottoPurchaseAmountInput;
+        this.lottoPurchaseAmountInputProcessor = lottoPurchaseAmountInput;
         this.lottoVendingMachine = lottoVendingMachine;
     }
 
@@ -24,7 +24,7 @@ public class LottoBuyer {
     }
 
     public void insertCoin() {
-        lottoPurchaseAmount = lottoPurchaseAmountInput.putValue();
+        lottoPurchaseAmount = lottoPurchaseAmountInputProcessor.putValue();
     }
 
     public void printOwnLottoTickets() {
