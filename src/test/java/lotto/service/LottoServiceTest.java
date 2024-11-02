@@ -65,7 +65,7 @@ public class LottoServiceTest {
 
         // when
         Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
-        int purchaseAmount = 4000;
+        String purchaseAmount = "4000";
         double calculatedYield = lottoService.calculateYield(matchCounts, purchaseAmount);
 
         // then

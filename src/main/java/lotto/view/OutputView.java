@@ -41,11 +41,11 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void displayWinningResult(Map<Integer, Integer> winningResult) {
+    public static void displayWinningResult(Map<Integer, Integer> matchCounts) {
         StringBuilder result = new StringBuilder();
 
         appendHeader(result);
-        appendWinningMessages(result, winningResult);
+        appendWinningMessages(result, matchCounts);
 
         System.out.println(result);
     }
@@ -58,11 +58,11 @@ public class OutputView {
                 .append(NEW_LINE.getSymbol());
     }
 
-    private static void appendWinningMessages(StringBuilder result, Map<Integer, Integer> winningResult) {
+    private static void appendWinningMessages(StringBuilder result, Map<Integer, Integer> matchCounts) {
         Map<Integer, String> messages = prepareMessages();
         messages.forEach((key, message) -> {
             result.append(message)
-                    .append(winningResult.get(key))
+                    .append(matchCounts.get(key))
                     .append(NEW_LINE.getSymbol());
         });
     }

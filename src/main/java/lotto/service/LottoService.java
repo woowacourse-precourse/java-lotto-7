@@ -84,12 +84,13 @@ public class LottoService {
         }
     }
 
-    public double calculateYield(Map<Integer, Integer> matchCounts, int purchaseAmount) {
+    public double calculateYield(Map<Integer, Integer> matchCounts, String purchaseAmount) {
+        int parsedPurchaseAmount = Integer.parseInt(purchaseAmount);
         int totalPrize = (matchCounts.get(3) * 5000) + (matchCounts.get(4) * 50000)
                 + (matchCounts.get(5) * 1500000) + (matchCounts.get(-5) * 30000000)
                 + (matchCounts.get(6) * 2000000000);
 
-        double rawYield = (double) totalPrize / purchaseAmount * 100;
+        double rawYield = (double) totalPrize / parsedPurchaseAmount * 100;
         BigDecimal roundedYield = BigDecimal.valueOf(rawYield).setScale(2, RoundingMode.HALF_UP);
 
         return roundedYield.doubleValue();

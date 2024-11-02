@@ -31,7 +31,9 @@ public class LottoController {
         OutputView.displayPrompt(BONUS_NUMBER);
         String bonusNumber = InputView.getInput();
 
-        Map<Integer, Integer> winningResult = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
-        OutputView.displayWinningResult(winningResult);
+        Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
+        OutputView.displayWinningResult(matchCounts);
+
+        double yield = lottoService.calculateYield(matchCounts, purchaseAmount);
     }
 }
