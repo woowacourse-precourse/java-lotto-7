@@ -9,9 +9,9 @@ import java.util.Set;
 
 public class Lotto {
 
-    private static final int MIN_NUMBER = LottoRule.MIN_NUMBER.getValue();
-    private static final int MAX_NUMBER = LottoRule.MAX_NUMBER.getValue();
-    private static final int NUMBER_COUNT = LottoRule.NUMBER_COUNT.getValue();
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private static final int NUMBER_COUNT = 6;
 
     private final List<Integer> numbers;
 
