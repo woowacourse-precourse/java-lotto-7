@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class LottoResult {
     private final HashMap<LottoGrade, Integer> grades = new HashMap<>();
 
-    LottoResult() {
+    public LottoResult() {
         grades.put(LottoGrade.FIRST_GRADE, 0);
         grades.put(LottoGrade.SECOND_GRADE, 0);
         grades.put(LottoGrade.THIRD_GRADE, 0);
