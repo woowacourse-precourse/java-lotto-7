@@ -30,7 +30,7 @@ public class Utils {
         return Arrays.stream(numbers.split(",")).map(Integer::parseInt).toList();
     }
 
-    public Map<Rank, Integer> utils(Lotto winningNumber, int bonusNumber, List<Lotto> lottos) {
+    public Map<Rank, Integer> evaluateLottoRanks(Lotto winningNumber, int bonusNumber, List<Lotto> lottos) {
         Map<Rank, Integer> map = new HashMap<>();
         for (Lotto lotto : lottos) {
             matchLottoNumber(map, winningNumber, bonusNumber, lotto);
