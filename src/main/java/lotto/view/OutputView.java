@@ -54,4 +54,8 @@ public class OutputView {
         System.out.println("총 수익률은 "+ formatter.format(moneyRate) + "%입니다.");
     }
 
+    public static void displayErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        System.out.println();
+    }
 }

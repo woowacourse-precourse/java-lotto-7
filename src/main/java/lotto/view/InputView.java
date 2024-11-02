@@ -1,40 +1,26 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.MoneyValidator;
-import lotto.validator.NumberValidator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputView {
 
     public static String getMoney() {
         OutputView.displayMoney();
-        String inputMoney = Console.readLine().trim();
-
-        getCount(inputMoney);
-        return inputMoney;
+        return Console.readLine().trim();
     }
 
-    public static void getCount(String inputMoney) {
-        int money = Integer.parseInt(inputMoney);
+    public static void getCount(int money) {
         int count = money / 1000;
         OutputView.displayCount(count);
     }
 
-    public static List<Integer> getWinningNumbers() {
+    public static String getWinningNumbers() {
         OutputView.displayWinningNumbers();
-        String[] inputWinningNumbers = Console.readLine().trim().split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (int i = 0; i < inputWinningNumbers.length; i++) {
-            winningNumbers.add(Integer.parseInt(inputWinningNumbers[i]));
-        }
-        return winningNumbers;
+        return Console.readLine();
     }
 
-    public static int getBonusNumber() {
+    public static String getBonusNumber() {
         OutputView.displayBonusNumber();
-        return Integer.parseInt(Console.readLine());
+        return Console.readLine();
     }
 }

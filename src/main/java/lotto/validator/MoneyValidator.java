@@ -15,7 +15,7 @@ public class MoneyValidator {
 
     public static void validatePurchaseAmount(int money) {
         if (money%1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원단위로 입력하셔야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하셔야 합니다.");
         }
     }
 
