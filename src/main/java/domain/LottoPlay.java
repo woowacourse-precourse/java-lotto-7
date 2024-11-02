@@ -17,14 +17,16 @@ public class LottoPlay {
         List<Integer> winningNumbers = this.lottoMachine.getWinningNumbers();
         int bonusNumber = this.lottoMachine.getBonusNumber();
 
-        for (Lotto lotto : this.user.getLottos()) {
-            long matchCount = matchWinningNumberCount(lotto, winningNumbers);
+        processLottos(winningNumbers, bonusNumber);
+        generateRankResult(this.user);
+    }
 
-            Rank rank = determineRank(matchCount, lotto, bonusNumber);
+    private void processLottos(List<Integer> winningNumbers, int bonusNumber) {
+        for (Lotto lotto : this.user.getLottos()) {
+            long matchingCount = matchWinningNumberCount(lotto, winningNumbers);
+            Rank rank = determineRank(matchingCount, lotto, bonusNumber);
             this.user.addRank(rank);
         }
-
-        determineRankResult(this.user);
     }
 
     private long matchWinningNumberCount(Lotto lotto, List<Integer> winningNumbers) {
@@ -33,25 +35,25 @@ public class LottoPlay {
                 .count();
     }
 
-    private Rank determineRank(long matchCount, Lotto lotto, int bonusNumber) {
-        if (matchCount == 5) {
+    private Rank determineRank(long matchingCount, Lotto lotto, int bonusNumber) {
+        if (matchingCount == 5) {
             return drawBonus(lotto, bonusNumber);
         }
-        return Rank.of(matchCount);
+        return Rank.of(matchingCount);
     }
 
     private Rank drawBonus(Lotto lotto, int bonusNumber) {
-        if (isHasBonus(lotto, bonusNumber)) {
+        if (hasBonus(lotto, bonusNumber)) {
             return Rank.SECOND;
         }
         return Rank.THIRD;
     }
 
-    private boolean isHasBonus(Lotto lotto, int bonusNumber) {
+    private boolean hasBonus(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void determineRankResult(User user) {
+    private void generateRankResult(User user) {
         this.rankResult = new RankResult(user.getRanks());
     }
 
