@@ -1,16 +1,19 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
-import lotto.service.LottoService;
+import lotto.service.LottoResultService;
+import lotto.service.LottoSalesService;
 
 public class AppConfig {
-    private final LottoService lottoService;
+    private final LottoSalesService lottoSalesService;
+    private final LottoResultService lottoResultService;
 
-    public AppConfig(LottoService lottoService) {
-        this.lottoService = lottoService;
+    public AppConfig(LottoSalesService lottoSalesService, LottoResultService lottoResultService) {
+        this.lottoSalesService = lottoSalesService;
+        this.lottoResultService = lottoResultService;
     }
 
     public LottoController lottoController() {
-        return new LottoController(lottoService);
+        return new LottoController(lottoSalesService, lottoResultService);
     }
 }

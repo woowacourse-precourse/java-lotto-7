@@ -8,15 +8,18 @@ import lotto.model.dto.LottoDto;
 import lotto.model.dto.ResultDto;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningLotto;
-import lotto.service.LottoService;
+import lotto.service.LottoResultService;
+import lotto.service.LottoSalesService;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final LottoService lottoService;
+    private final LottoSalesService lottoSalesService;
+    private final LottoResultService lottoResultService;
 
-    public LottoController(LottoService lottoService) {
-        this.lottoService = lottoService;
+    public LottoController(LottoSalesService lottoSalesService, LottoResultService lottoResultService) {
+        this.lottoSalesService = lottoSalesService;
+        this.lottoResultService = lottoResultService;
     }
 
     public void run() {
@@ -25,17 +28,17 @@ public class LottoController {
 
         WinningLotto winningLotto = retryOnInvalidInput(this::createWinningLotto);
 
-        lottoService.determineRanks(customer, winningLotto);
+        lottoResultService.determineRanks(customer, winningLotto);
         displayResult(customer);
     }
 
     private Customer sellLottoToNewCustomer() {
         int paidAmount = InputHandler.getPaidAmount();
-        return lottoService.sellLottoToNewCustomer(paidAmount);
+        return lottoSalesService.sellLottoToNewCustomer(paidAmount);
     }
 
     private void displayLottoTicketsOf(Customer customer) {
-        List<LottoDto> lottoNumbersOfCustomer = lottoService.getIssuedLottoNumbersOf(customer);
+        List<LottoDto> lottoNumbersOfCustomer = lottoSalesService.getIssuedLottoNumbersOf(customer);
         OutputView.displayLottoNumbers(lottoNumbersOfCustomer);
     }
 
@@ -43,11 +46,11 @@ public class LottoController {
         Lotto lotto = new Lotto(InputHandler.getWinningNumbers());
         int bonusNumber = InputHandler.getBonusNumber();
 
-        return lottoService.registerWinningNumbers(lotto, bonusNumber);
+        return lottoResultService.registerWinningNumbers(lotto, bonusNumber);
     }
 
     private void displayResult(Customer customer) {
-        ResultDto result = lottoService.getResult(customer);
+        ResultDto result = lottoResultService.getResult(customer);
         OutputView.displayResult(result);
     }
 

@@ -7,15 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoServiceTest {
+public class LottoSalesServiceTest {
 
     private static final int PRICE_OF_LOTTO_TICKET = 1000;
 
-    private LottoService lottoService;
+    private LottoSalesService lottoSalesService;
 
     @BeforeEach
     void setUp() {
-        this.lottoService = new LottoService();
+        this.lottoSalesService = new LottoSalesService();
     }
 
     @Test
@@ -25,7 +25,7 @@ public class LottoServiceTest {
         int invalidUnitInput = PRICE_OF_LOTTO_TICKET + 1;
 
         // when & then
-        assertThatThrownBy(() -> lottoService.sellLottoToNewCustomer(invalidUnitInput))
+        assertThatThrownBy(() -> lottoSalesService.sellLottoToNewCustomer(invalidUnitInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.INVALID_UNIT_OF_PAID_AMOUNT);
     }
