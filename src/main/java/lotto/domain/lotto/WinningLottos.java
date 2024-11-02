@@ -24,7 +24,7 @@ public class WinningLottos {
         return purchasedLottos.getPurchasedLottos()
                 .stream()
                 .map(lotto -> WinningLotto.createWinningLotto(lotto, winningNumbers, bonusNumber))
-                .filter(winningLotto -> winningLotto.rank() != LottoRank.NONE)
+                .filter(winningLotto -> winningLotto.getRank() != LottoRank.NONE)
                 .toList();
     }
 
