@@ -37,10 +37,17 @@ public class LottoGame {
     }
 
     private void purchaseLotto() {
-        int money = inputView.getLottoAmount();
-        int lottoCount = money / MONEY_UNIT;
-        outputView.printLottoCount(lottoCount);
-        makeLottos(lottoCount);
+        while (true) {
+            try {
+                int money = inputView.getLottoAmount();
+                int lottoCount = money / MONEY_UNIT;
+                outputView.printLottoCount(lottoCount);
+                makeLottos(lottoCount);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void makeLottos(int lottoCount) {
@@ -61,9 +68,24 @@ public class LottoGame {
     }
 
     private void makeWinningNumber() {
-        List<Integer> winningLottoNumbers = inputView.getWinningLottoNumber();
-        int bonusNumber = inputView.getBonusNumber();
-        winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+        List<Integer> winningLottoNumbers;
+        while (true) {
+            try {
+                winningLottoNumbers = inputView.getWinningLottoNumber();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (true) {
+            try {
+                int bonusNumber = inputView.getBonusNumber();
+                winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void makeRankResult() {
