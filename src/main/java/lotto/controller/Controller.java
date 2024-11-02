@@ -7,42 +7,43 @@ import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Result;
 import lotto.model.WinningLotto;
-import lotto.utils.InputConvertor;
+import lotto.utils.InputHandler;
 import lotto.utils.LottoMachine;
+import lotto.utils.OutputHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
 
     public void run() {
-        Money money = generateUntilSuccess(this::convertToMoney);
-        Lottos lottos = generateUntilSuccess(() -> convertToLottos(money));
-        OutputView.printPurchaseLottos(lottos);
-        WinningLotto winningLotto = generateUntilSuccess(this::convertToWinningLotto);
+        Money money = generateUntilSuccess(this::toMoney);
+        Lottos lottos = generateUntilSuccess(() -> toLottos(money));
+        OutputView.printPurchaseInfo(OutputHandler.getCount(lottos), OutputHandler.formatLottos(lottos));
+        WinningLotto winningLotto = generateUntilSuccess(this::toWinningLotto);
         Result result = new Result(money, lottos, winningLotto);
-        OutputView.printResult(result);
+        OutputView.printResult(OutputHandler.formatStatistics(result), OutputHandler.getRateOfReturn(result));
     }
 
-    private Money convertToMoney() {
-        return new Money(InputConvertor.convertMoneyInput(InputView.readMoney()));
+    private Money toMoney() {
+        return new Money(InputHandler.toMoneyValue(InputView.readMoney()));
     }
 
-    private Lottos convertToLottos(Money money) {
+    private Lottos toLottos(Money money) {
         return new Lottos(LottoMachine.purchaseLottos(money));
     }
 
-    private WinningLotto convertToWinningLotto() {
-        Lotto winningNumbers = generateUntilSuccess(this::convertToWinningNumbers);
-        BonusNumber bonusNumber = generateUntilSuccess(this::convertToBonusNumber);
+    private WinningLotto toWinningLotto() {
+        Lotto winningNumbers = generateUntilSuccess(this::toWinningNumbers);
+        BonusNumber bonusNumber = generateUntilSuccess(this::toBonusNumber);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private Lotto convertToWinningNumbers() {
-        return new Lotto(InputConvertor.convertWinningNumbersInput(InputView.readWinningNumbers()));
+    private Lotto toWinningNumbers() {
+        return new Lotto(InputHandler.toWinningNumbersValue(InputView.readWinningNumbers()));
     }
 
-    private BonusNumber convertToBonusNumber() {
-        return new BonusNumber(InputConvertor.convertBonusNumberInput(InputView.readBonusNumber()));
+    private BonusNumber toBonusNumber() {
+        return new BonusNumber(InputHandler.toBonusNumberValue(InputView.readBonusNumber()));
     }
 
     private <T> T generateUntilSuccess(Supplier<T> supplier) {
@@ -50,7 +51,7 @@ public class Controller {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
+                OutputView.printExceptionMessage(e);
             }
         }
     }

@@ -14,13 +14,14 @@ public enum Rank {
     SECOND(5, true, 30_000_000),
     FIRST(6, false, 2_000_000_000);
 
-    private final int matchingNumbersCount;
-    private final boolean hasBonusNumber;
+
+    private final int matchingNumber;
+    private final boolean bonusNumber;
     private final int prize;
 
-    Rank(int matchingNumbersCount, boolean hasBonusNumber, int prize) {
-        this.matchingNumbersCount = matchingNumbersCount;
-        this.hasBonusNumber = hasBonusNumber;
+    Rank(int matchingNumber, boolean bonusNumber, int prize) {
+        this.matchingNumber = matchingNumber;
+        this.bonusNumber = bonusNumber;
         this.prize = prize;
     }
 
@@ -38,22 +39,22 @@ public enum Rank {
 
     public boolean matches(WinningLotto winningLotto, Lotto lotto) {
         if (this == THIRD) {
-            return winningLotto.countMatchingNumbers(lotto) == matchingNumbersCount &&
+            return winningLotto.countMatchingNumbers(lotto) == matchingNumber &&
                     !winningLotto.hasBonusNumber(lotto);
         }
         if (this == SECOND) {
-            return winningLotto.countMatchingNumbers(lotto) == matchingNumbersCount &&
+            return winningLotto.countMatchingNumbers(lotto) == matchingNumber &&
                     winningLotto.hasBonusNumber(lotto);
         }
-        return winningLotto.countMatchingNumbers(lotto) == matchingNumbersCount;
+        return winningLotto.countMatchingNumbers(lotto) == matchingNumber;
     }
 
-    public int getMatchingNumbersCount() {
-        return matchingNumbersCount;
+    public int getMatchingNumber() {
+        return matchingNumber;
     }
 
-    public boolean getHasBonusNumber() {
-        return hasBonusNumber;
+    public boolean hasBonusNumber() {
+        return bonusNumber;
     }
 
     public int getPrize() {

@@ -14,7 +14,7 @@ public class Lottos {
         return (int) lottos.stream().filter(lotto -> rank.matches(winningLotto, lotto)).count();
     }
 
-    public int getTicketCount() {
+    public int size() {
         return lottos.size();
     }
 
