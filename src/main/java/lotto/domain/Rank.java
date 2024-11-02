@@ -40,6 +40,10 @@ public enum Rank {
         return count == this.correctCount;
     }
 
+    public long calculatePrize(int count) {
+        return (long) prize * count;
+    }
+
     public int getCorrectCount() {
         return correctCount;
     }
