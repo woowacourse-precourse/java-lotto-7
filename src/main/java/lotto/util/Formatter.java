@@ -7,7 +7,11 @@ public class Formatter {
     private Formatter() {
     }
 
-    public static String formatToCurrency(Integer amount) {
+    public static String formatToCurrency(Long amount) {
         return new DecimalFormat("###,###").format(amount);
+    }
+
+    public static String formatToErrorMessage(String message) {
+        return String.format("[ERROR] %s", message);
     }
 }

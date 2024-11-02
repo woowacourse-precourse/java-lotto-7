@@ -20,7 +20,7 @@ public class Parser {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 입력되어야 합니다.");
+            throw new IllegalArgumentException("유효한 숫자가 입력되어야 합니다.");
         }
     }
 
@@ -28,7 +28,7 @@ public class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자가 입력되어야 합니다.");
+            throw new IllegalArgumentException("유효한 숫자가 입력되어야 합니다.");
         }
     }
 }
