@@ -20,4 +20,13 @@ public class Validator {
         int castedValue = Integer.parseInt(value);
         return castedValue > 0;
     }
+
+    public static boolean areAllNumbersInRange1To45(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
