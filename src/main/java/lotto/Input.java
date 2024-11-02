@@ -17,10 +17,14 @@ public class Input {
 
     }
 
+    public String getUserInput() {
+        return  Console.readLine();
+    }
+
     public void setPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        int inputData=Integer.parseInt(Console.readLine());
+        int inputData=Integer.parseInt(getUserInput());
         validatePurchaseAmount(inputData);
         this.PurchaseAmount= inputData;
 
@@ -34,7 +38,7 @@ public class Input {
 
     public void setLottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String inputData=Console.readLine();
+        String inputData=getUserInput();
 
         this.LottoWinningNumbers=convertLottoWinningNumbers(inputData);
 
@@ -74,13 +78,21 @@ public class Input {
 
     public void setBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String inputData=Console.readLine();
+        String inputData=getUserInput();
 
         int tmp=Integer.parseInt(inputData);
         validateBonusNumberScope(tmp);
-
+        validateBonusNumDuplication(tmp);
         this.bonusNumber= Integer.parseInt(inputData);
 
+    }
+
+    void validateBonusNumDuplication(int bonusNum) {
+        for( int num : LottoWinningNumbers) {
+            if(bonusNum == num) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다");
+            }
+        }
     }
 
     void validateBonusNumberScope(int inputData) {
