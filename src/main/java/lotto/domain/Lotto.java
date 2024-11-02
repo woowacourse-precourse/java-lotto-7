@@ -19,25 +19,21 @@ public class Lotto {
         System.out.println(this.numbers);
     }
 
-    public Optional<Rank> match(List<Integer> winningLotto, int bonusNumber) {
+    public Optional<Rank> calculateRank(List<Integer> winningLotto, int bonusNumber) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         numbersSet.retainAll(winningLotto);
         int matchCount = numbersSet.size();
 
-        if (matchCount == 3) {
-            return Optional.of(Rank.FIFTH);
-        }
-        if (matchCount == 4) {
-            return Optional.of(Rank.FOURTH);
-        }
+        return convertMatchCountAtRank(matchCount, bonusNumber);
+    }
+
+    private Optional<Rank> convertMatchCountAtRank(int matchCount, int bonusNumber) {
         if (matchCount == 5 && numbers.contains(bonusNumber)) {
             return Optional.of(Rank.SECOND);
         }
-        if (matchCount == 5) {
-            return Optional.of(Rank.THIRD);
-        }
-        if (matchCount == 6) {
-            return Optional.of(Rank.FIRST);
+
+        if (matchCount >= 3 && matchCount <= 6) {
+            return Optional.of(Rank.getRankByMatchCount(matchCount));
         }
 
         return Optional.empty();

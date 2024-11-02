@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 public enum Rank {
@@ -9,6 +11,15 @@ public enum Rank {
     SECOND(5, 30_000_000, Rank::getBonusMessage),
     FIRST(6, 2_000_000_000, Rank::getNormalMessage);
 
+    private static final int MIN_MATCH_COUNT = 3;
+    private static final int MAX_MATCH_COUNT = 6;
+    private static final Map<Integer, Rank> rankMap = Map.of(
+            3, FIFTH,
+            4, FOURTH,
+            5, THIRD,
+            6, FIRST
+    );;
+
     private final int matchCount;
     private final int prizeMoney;
     private final Function<Rank, String> messageFunction;
@@ -17,6 +28,10 @@ public enum Rank {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
         this.messageFunction = messageFunction;
+    }
+
+    public static Rank getRankByMatchCount(int matchCount) {
+        return rankMap.get(matchCount);
     }
 
     public int getPrizeMoney() {

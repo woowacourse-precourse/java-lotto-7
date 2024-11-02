@@ -17,12 +17,8 @@ public class LottoGame {
         int bonusNumber = InputHandler.handleBonusNumberInput();
         WinnerResult winnerResult = new WinnerResult(amount);
         for (Lotto eachLotto : lottoArray) {
-            Optional<Rank> rank = eachLotto.match(winningLotto, bonusNumber);
-            if (rank.isEmpty()) {
-                continue;
-            }
-
-            winnerResult.add(rank.get());
+            Optional<Rank> optionalRank = eachLotto.calculateRank(winningLotto, bonusNumber);
+            optionalRank.ifPresent(winnerResult::add);
         }
 
         winnerResult.display();
