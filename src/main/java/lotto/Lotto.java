@@ -38,6 +38,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // 두 로또 번호 간의 일치하는 숫자 개수를 세는 메서드
     private int countMatchingNumbers(List<Integer> winningNumbers) {
         int matchCount = 0;

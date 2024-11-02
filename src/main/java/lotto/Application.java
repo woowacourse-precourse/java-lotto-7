@@ -16,6 +16,8 @@ public class Application {
         int purchaseAmount = readPurchaseAmount();
         List<Lotto> purchasedLottos = generateLottos(purchaseAmount);
 
+        printPurchasedLottos(purchasedLottos);
+
 
     }
 
@@ -38,8 +40,16 @@ public class Application {
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)
                         .stream().sorted().collect(Collectors.toList())))
                 .collect(Collectors.toList());
-
     }
+
+    private static void printPurchasedLottos(List<Lotto> purchasedLottos) {
+        System.out.println(purchasedLottos.size() + "개를 구매했습니다.");
+        for(Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
+
 }
 
 
