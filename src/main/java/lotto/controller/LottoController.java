@@ -29,6 +29,7 @@ public class LottoController {
                 lottoValidation.validateBlank(input);
                 int purchasePrice = lottoValidation.validateParsing(input);
                 lottoValidation.validatePositive(purchasePrice);
+                lottoValidation.validateDivisible(purchasePrice);
 
                 return purchasePrice;
             } catch (IllegalArgumentException e) {

@@ -15,14 +15,20 @@ class LottoValidationTest {
     }
 
     @Test
-    void Integer로_변환이_불가능할_경우_예외가_발생한다(){
-        assertThatThrownBy(()->lottoValidation.validateParsing("일억"))
+    void Integer로_변환이_불가능할_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> lottoValidation.validateParsing("일억"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 입력_금액이_양수가_아닐_경우_예외가_발생한다(){
-        assertThatThrownBy(()->lottoValidation.validatePositive(-5))
+    void 입력_금액이_양수가_아닐_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> lottoValidation.validatePositive(-5))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 천원으로_나누어_떨어지지_않을_경우_예외가_발생한다() {
+        assertThatThrownBy(() -> lottoValidation.validateDivisible(8500))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
