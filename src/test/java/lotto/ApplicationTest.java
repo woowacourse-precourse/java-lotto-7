@@ -54,6 +54,18 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 가격입력_정상(){
+        assertSimpleTest(
+                ()
+                        ->
+                {
+                    run("10000");
+                    assertThat(output()).contains("price: 10000");
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
