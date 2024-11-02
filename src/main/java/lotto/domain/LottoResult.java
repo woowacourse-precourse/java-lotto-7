@@ -1,34 +1,34 @@
 package lotto.domain;
 
-public enum LottoResult {
+import java.util.EnumMap;
+import java.util.Map;
 
-    FIRST_PRIZE("6개 일치 (2,000,000,000원)", 2_000_000_000, 1),
-    SECOND_PRIZE("5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000, 2),
-    THIRD_PRIZE("5개 일치 (1,500,000원)", 1_500_000, 3),
-    FOURTH_PRIZE("4개 일치 (50,000원)", 50_000, 4),
-    FIFTH_PRIZE("3개 일치 (5,000원)", 5_000, 5),
-    NO_PRIZE("0개 일치", 0, 6);
+public class LottoResult {
 
+    private final Map<LottoPrize, Long> prizeCounts = new EnumMap<>(LottoPrize.class);
+    private long totalProfit;
 
-    private String description;
-    private long price;
-    private int rank;
-
-    LottoResult(String description, long price, int rank) {
-        this.description = description;
-        this.price = price;
-        this.rank = rank;
+    private LottoResult() {
+        for (LottoPrize prize : LottoPrize.values()) {
+            prizeCounts.put(prize, 0L);
+        }
+        this.totalProfit = 0;
     }
 
-    public String getDescription() {
-        return description;
+    public static LottoResult createLottoResult() {
+        return new LottoResult();
     }
 
-    public long getPrice() {
-        return price;
+    public void addPrize(LottoPrize prize) {
+        prizeCounts.put(prize, prizeCounts.get(prize) + 1);
+        totalProfit += prize.getPrice();
     }
 
-    public int getRank() {
-        return rank;
+    public long getLottoPrizeCounts(LottoPrize lottoPrize) {
+        return prizeCounts.get(lottoPrize);
+    }
+
+    public long getTotalProfit() {
+        return totalProfit;
     }
 }
