@@ -25,16 +25,16 @@ public class LottoPrizeService {
         int bonusNumber = lottoCollection.getBonusNumber();
 
         for (Lotto lotto : totalLotto) {
-            checkEachLottoPrize(winnerLotto, bonusNumber, lotto, lottoResult);
+            LottoPrize prize = checkEachLottoPrize(winnerLotto, bonusNumber, lotto);
+            lottoResult.incrementPrizeCount(prize);
         }
     }
 
-    private static void checkEachLottoPrize(Lotto winnerLotto, int bonusNumber, Lotto targetLotto, LottoResult lottoResult) {
+    private static LottoPrize checkEachLottoPrize(Lotto winnerLotto, int bonusNumber, Lotto targetLotto) {
         int matchCount = calculateMatchCount(winnerLotto, targetLotto);
         boolean hasBonusNumber = checkBonusNumber(bonusNumber, targetLotto);
 
-        LottoPrize prize = determinePrize(matchCount, hasBonusNumber);
-        lottoResult.incrementPrizeCount(prize);
+        return determinePrize(matchCount, hasBonusNumber);
     }
 
     private static int calculateMatchCount(Lotto winnerLotto, Lotto targetLotto) {
