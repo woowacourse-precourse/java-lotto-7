@@ -28,11 +28,20 @@ public class Application {
 
         validateWinningLottoInput(winningLottoInput);
         int[] winningLotto = convertWinningLottoInputToIntArray(winningLottoInput);
+        validateWinningLotto(winningLotto);
     }
 
     private static void validateWinningLottoInput(String[] winningLottoInput) {
         if (winningLottoInput.length != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+    }
+
+    private static void validateWinningLotto(int[] winningLotto) {
+        for (int lottoNumber : winningLotto) {
+            if (lottoNumber < 1 || lottoNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45사이여야 합니다.");
+            }
         }
     }
 
