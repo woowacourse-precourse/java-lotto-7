@@ -16,6 +16,7 @@ public class LottoController {
 
     public void start() {
         Lottos lottos = winningService.generateLottoNumber(InputView.purchasePriceInput());
+        OutputView.printTicketQuantity(winningService.getTicketQuantity());
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
         }

@@ -13,16 +13,21 @@ import utils.WinningCalculator;
 
 public class WinningService {
 
+    private Ticket ticket;
     private Lottos lottos = new Lottos();
     private LottoResult lottoResult = LottoResult.create();
 
     public Lottos generateLottoNumber(int purchaseAmount) {
-        Ticket ticket = Ticket.from(purchaseAmount);
+        ticket = Ticket.from(purchaseAmount);
         for(int i=0; i<ticket.getQuantity(); i++) {
             Lotto lotto = Lotto.from(RandomNumber.create());
             lottos.addLotto(lotto);
         }
         return lottos;
+    }
+
+    public int getTicketQuantity() {
+        return ticket.getQuantity();
     }
 
     public void winningStatistics(List<Integer> winningNumbers, List<Integer> lottoNumbers, int bonusNumber) {
