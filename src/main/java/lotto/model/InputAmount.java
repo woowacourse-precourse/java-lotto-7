@@ -11,6 +11,11 @@ public class InputAmount {
     private int inputAmount;
 
     public InputAmount(String inputAmount) {
+        validate(inputAmount);
+        this.inputAmount = Integer.parseInt(inputAmount);
+    }
+
+    private void validate(String inputAmount){
         validateIsBlank(inputAmount);
         validateHasCharacter(inputAmount);
         validateIsZero(inputAmount);
