@@ -1,17 +1,10 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Wallet;
+import lotto.controller.MainController;
 
 
 public class Application {
-    
-
     public static void main(String[] args) {
-        
+        MainController.run();
     }
-
-    
-
-    
 }
