@@ -13,7 +13,7 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 기능_테스트() {
+    void 로또_구매_및_결과_출력_기능__테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -46,10 +46,36 @@ class ApplicationTest extends NsTest {
         );
     }
 
+
     @Test
-    void 예외_테스트() {
+    void 구입_금액에_문자가_들어올_경우_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액에_따른_로또_구매_매수_기능_테스트(){
+        int purchaseAmount = 5000;
+        int lottoPrice=1000;
+        int expectedLottoCount = purchaseAmount/lottoPrice;
+        int LottoCount = Application.calculateLottoCount(purchaseAmount);
+
+        assertThat(LottoCount).isEqualTo(expectedLottoCount);
+    }
+
+    @Test
+    void 구입_금액이_로또_가격보다_낮은_경우_예외_테스트(){
+        assertSimpleTest(()->{
+            runException("500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 구입_금액이_정수가_아닌_경우_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000.5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
