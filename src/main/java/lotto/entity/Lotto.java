@@ -1,5 +1,6 @@
 package lotto.entity;
 
+import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoConstants;
 
@@ -88,5 +89,18 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    /**
+     * 로또 번호를 오름차순으로 정렬하여 문자열로 반환합니다.
+     *
+     * @return 정렬된 로또 번호의 문자열 표현
+     */
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList())
+                .toString();
     }
 }
