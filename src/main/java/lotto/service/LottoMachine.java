@@ -2,10 +2,8 @@ package lotto.service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Set;
 import lotto.enums.ErrorMessage;
 import lotto.model.Lotto;
 import lotto.utils.Utils;
