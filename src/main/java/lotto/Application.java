@@ -32,6 +32,9 @@ public class Application {
 
         // 3. 로또 당첨 번호를 입력 받는다.
         Lotto lottoWinningNumbers = UserInputConsole.readLottoWinningNumber();
+
+        // 4. 보너스 번호를 입력 받는다.
+        int bonusNumber = UserInputConsole.readBonusNumber(lottoWinningNumbers);
     }
 
     private static List<Integer> generateUniqueNumbers() {

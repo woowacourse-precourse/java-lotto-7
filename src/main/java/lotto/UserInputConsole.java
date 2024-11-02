@@ -38,4 +38,21 @@ public class UserInputConsole {
         }
         return new Lotto(winningNumbers);
     }
+
+    public static int readBonusNumber(Lotto lotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        try {
+            int bonusNumber = Integer.parseInt(input);
+
+            if (lotto.getNumbers().contains(bonusNumber)) {
+                throw new IllegalArgumentException("보너스 번호는 기존 로또 번호와 중복될 수 없습니다.");
+            }
+
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            return readBonusNumber(lotto);
+        }
+    }
 }
