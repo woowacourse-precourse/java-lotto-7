@@ -20,7 +20,7 @@ public class LottoGame {
     }
 
     private boolean isWinningNumbersContainBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber){
-        return winningNumbers.getWinningNumbers().contains(bonusNumber);
+        return winningNumbers.getWinningNumbers().contains(bonusNumber.getBonusNumber());
     }
 
     public List<Integer> getWinningNumbers(){
