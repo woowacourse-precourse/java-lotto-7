@@ -94,6 +94,8 @@ IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자를 입�
 IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안 됩니다.");를 터트리고 당첨 번호 입력을 다시 받는다.
 ### - 로또 번호 입력 시 공백을 입력한 겨우
 IllegalArgumentException("[ERROR] 로또 번호를 입력해주세요.");를 터트리고 당첨 번호 입력을 다시 받는다.
+### - 로또 번호 입력 시 숫자가 아닌 문자를 입력한 겨우
+NumberFormatException을 터트린 후 "[ERROR] 로또 번호는 숫자만 입력할 수 있습니다." 라는 메시지를 출력하고 당첨 번호 입력을 다시 받는다.
 
 
 ### - 보너스 번호 입력 시 숫자가 아닌 문자를 입력한 경우
