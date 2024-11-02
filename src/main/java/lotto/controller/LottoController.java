@@ -72,7 +72,7 @@ public class LottoController {
     }
 
     private BonusNumber createBonusNumber(int parsedBonusNumber) {
-        return new BonusNumber(parsedBonusNumber, lotto, bonusNumberValidator);
+        return  BonusNumber.getInstance(parsedBonusNumber, lotto, bonusNumberValidator);
     }
 
     private int getParsedBonusNumber() {

@@ -19,13 +19,13 @@ public class BonusNumberTest {
 
     @Test
     void 보너스_번호가_정상_범위_밖이면_예외를_발생() {
-        assertThatThrownBy(() -> new BonusNumber(60, lotto, bonusValidator))
+        assertThatThrownBy(() -> BonusNumber.getInstance(60, lotto, bonusValidator))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 보너스_번호가_당첨_번호와_중복되면_예외를_발생() {
-        assertThatThrownBy(() -> new BonusNumber(5, lotto, bonusValidator))
+        assertThatThrownBy(() -> BonusNumber.getInstance(5, lotto, bonusValidator))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }
