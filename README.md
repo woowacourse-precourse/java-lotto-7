@@ -97,6 +97,6 @@
     - [x] 각 랭크별 당첨 횟수는 0으로 초기화한다.
     - [x] 각 랭크별 당첨 횟수를 증가한다.
 
-- [ ] WinningStatisticsCalculatorTest.java
-    - [ ] 당첨 통계를 계산한다.
-    - [ ] 수익률을 계산한다.
+- [x] WinningStatisticsCalculatorTest.java
+    - [x] 당첨 통계를 계산한다.
+    - [x] 수익률을 계산한다.
