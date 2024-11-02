@@ -3,6 +3,7 @@ package lotto;
 import static lotto.global.constant.Config.LOTTO_PRICE;
 
 import java.util.Arrays;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,10 +16,10 @@ class LottoShopTest {
         int price = 3 * LOTTO_PRICE;
 
         //when
-        LottoSet lottoSet = lottoShop.buyLotto(price, () -> lotto);
+        List<Lotto> lottos = lottoShop.buyLotto(price, () -> lotto);
 
         //then
-        Assertions.assertThat(lottoSet.getNumberOfLottoSet()).isEqualTo(price / LOTTO_PRICE);
+        Assertions.assertThat(lottos.size()).isEqualTo(price / LOTTO_PRICE);
     }
 
     @Test
@@ -29,9 +30,9 @@ class LottoShopTest {
         int price = 3 * LOTTO_PRICE;
 
         //when
-        LottoSet lottoSet = lottoShop.buyLotto(price, generator);
+        List<Lotto> lottoSet = lottoShop.buyLotto(price, generator);
 
         //then
-        Assertions.assertThat(lottoSet.getNumberOfLottoSet()).isEqualTo(price / LOTTO_PRICE);
+        Assertions.assertThat(lottoSet.size()).isEqualTo(price / LOTTO_PRICE);
     }
 }
