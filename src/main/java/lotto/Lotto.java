@@ -19,6 +19,7 @@ public class Lotto {
     }
 
     public static List<Lotto> generateLottos(long purchaseCount) {
+        Validator.checkPositiveNumber(purchaseCount);
         List<Lotto> generatedLottos = new ArrayList<>();
 
         for (int i = 0; i < purchaseCount; i++) {
