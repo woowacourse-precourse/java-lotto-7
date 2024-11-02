@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Parser {
     private static final String WINNING_NUMBER_OPERATOR = ",";
@@ -9,10 +11,10 @@ public class Parser {
         return Integer.parseInt(purchaseInput);
     }
 
-    int[] winningNumbers(String winningNumbers) {
-        return Arrays
-            .stream(winningNumbers.split(WINNING_NUMBER_OPERATOR))
-            .mapToInt(Integer::parseInt).toArray();
+    List<Integer> winningNumbers(String winningNumbers) {
+        return Arrays.stream(winningNumbers.split(WINNING_NUMBER_OPERATOR))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     int bonusNumber(String bonusNumberInput) {
