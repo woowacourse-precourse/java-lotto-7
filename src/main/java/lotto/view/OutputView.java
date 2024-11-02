@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.enums.OutputMessage;
 
 public class OutputView {
@@ -13,6 +15,12 @@ public class OutputView {
 
     public void printLottoCountMessage(String lottoCountMessage) {
         System.out.println(lottoCountMessage);
+    }
+
+    public void printLottoNumbers(List<Lotto> lottoNumbers) {
+        for (Lotto lottoNumber : lottoNumbers) {
+            System.out.println(lottoNumber.getNumbers());
+        }
     }
 
 }

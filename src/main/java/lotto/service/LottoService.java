@@ -2,6 +2,8 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoCollection;
+import lotto.factory.LottoFactory;
 import lotto.utility.Divider;
 import lotto.utility.Parser;
 import lotto.utility.RandomGenerator;
@@ -37,15 +39,30 @@ public class LottoService {
         return Divider.divideInputByLottoPrice(parsedPurchaseAmount);
     }
 
-    public void generateLottosObject(int purchasedLottoCount) {
+    public LottoCollection generateLottoCollection(int purchasedLottoCount) {
+        LottoCollection lottoCollection = generateLottoCollection();
+
         for (int i = 0; i < purchasedLottoCount; i++) {
-            List<Integer> randomNumbers = generateOneSetRandomNumber();
-            Lotto lotto = new Lotto(randomNumbers);
+            Lotto oneLotto = generateOneLottoObject();
+            lottoCollection.addLotto(oneLotto);
         }
+        return lottoCollection;
     }
 
     public List<Integer> generateOneSetRandomNumber() {
         return RandomGenerator.makeRandomNumber();
     }
 
+    public Lotto generateOneLottoObject() {
+        List<Integer> randomNumber = generateOneSetRandomNumber();
+        return LottoFactory.createLotto(randomNumber);
+    }
+
+    public LottoCollection generateLottoCollection() {
+        return LottoFactory.createLottoCollection();
+    }
+
+    public List<Lotto> prepareCollectionForPrint(LottoCollection lottoCollection) {
+        return lottoCollection.getAllLotto();
+    }
 }
