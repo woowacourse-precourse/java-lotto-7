@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.domain.Lotto;
+import lotto.constants.LottoConstants;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class LottoGeneratorTest {
         List<Integer> numbers = LottoGenerator.generateLottoNumbers();
 
         // when
-        int numberOfLotto = Lotto.NUMBER_OF_LOTTO;
+        int numberOfLotto = LottoConstants.NUMBER_OF_LOTTO;
 
         // then
         assertEquals(numberOfLotto, numbers.size());
