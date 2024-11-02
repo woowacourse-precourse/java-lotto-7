@@ -30,11 +30,13 @@ public enum LottoError {
         this.message = message;
     }
 
+    public static String getErrorMessageFormat() {
+        return ERROR_MESSAGE_FORMAT;
+    }
+
     public String getMessage() {
         return String.format(ERROR_MESSAGE_FORMAT, message);
     }
 
-    public String getErrorMessageFormat() {
-        return ERROR_MESSAGE_FORMAT;
-    }
+
 }
