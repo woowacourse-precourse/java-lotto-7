@@ -70,4 +70,9 @@ public class LottoCollection {
         }
         return totalWinnings;
     }
+
+    public double getPurchaseAmount() {
+        int size = lottoList.size();
+        return size * Constant.UNIT;
+    }
 }

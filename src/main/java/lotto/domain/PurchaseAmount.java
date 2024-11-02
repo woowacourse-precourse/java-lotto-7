@@ -36,8 +36,4 @@ public class PurchaseAmount {
     public int getNumberOfLotto() {
         return (int) (purchaseAmount / Constant.UNIT);
     }
-
-    public double getPurchaseAmount() {
-        return purchaseAmount;
-    }
 }

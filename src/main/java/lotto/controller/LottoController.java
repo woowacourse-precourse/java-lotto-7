@@ -11,10 +11,7 @@ package lotto.controller;
 
 import lotto.constant.Constant;
 import lotto.constant.ErrorMessage;
-import lotto.domain.Bonus;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningLotto;
-import lotto.domain.WinningNumber;
+import lotto.domain.*;
 import lotto.model.LottoCollection;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -42,8 +39,7 @@ public class LottoController {
         lottoCollection = getLottoCollection1(purchaseAmount);
         winningNumber = getNumber();
         winningLotto = getLotto(winningNumber);
-
-        lottoService = new LottoService(purchaseAmount, lottoCollection, winningLotto);
+        lottoService = new LottoService(lottoCollection, winningLotto);
         judgeLotto();
         printWinningResult();
     }

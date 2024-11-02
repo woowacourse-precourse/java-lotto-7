@@ -25,7 +25,7 @@ class LottoServiceTest {
             WinningNumber winningNumber = new WinningNumber(numbers);
             Bonus bonus = new Bonus("7");
             WinningLotto winningLotto = new WinningLotto(winningNumber,bonus);
-            LottoService lottoService = new LottoService(purchaseAmount,lottoCollection,winningLotto);
+            LottoService lottoService = new LottoService(lottoCollection,winningLotto);
             lottoService.judgeLotto();
 
             //when

@@ -15,12 +15,10 @@ import lotto.domain.WinningLotto;
 import lotto.model.LottoCollection;
 
 public class LottoService {
-    private final PurchaseAmount purchaseAmount;
     private final LottoCollection lottoCollection;
     private final WinningLotto winningLotto;
 
-    public LottoService(PurchaseAmount purchaseAmount, LottoCollection lottoCollection,WinningLotto winningLotto) {
-        this.purchaseAmount = purchaseAmount;
+    public LottoService(LottoCollection lottoCollection, WinningLotto winningLotto) {
         this.lottoCollection = lottoCollection;
         this.winningLotto = winningLotto;
     }
@@ -35,7 +33,7 @@ public class LottoService {
 
     public double getRateOfReturn() {
         int totalWinnings = lottoCollection.getTotalWinnings();
-        double purchaseAmount1 = purchaseAmount.getPurchaseAmount();
+        double purchaseAmount1 = lottoCollection.getPurchaseAmount();
         double result = totalWinnings / purchaseAmount1;
         return result * Constant.PERCENTAGE;
     }
