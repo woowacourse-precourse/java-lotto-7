@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.utils.ExceptionUtils;
+import lotto.utils.LottoException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,13 +18,13 @@ public class LottoValidator {
 
     private static void checkNumberCount(final List<Integer> numbers) {
         if(numbers.size() != LOTTO_NUMBER_COUNT.getValue()){
-            ExceptionUtils.throwIllegalArgument(ERROR_LOTTO_COUNT.getMessage());
+            throw new LottoException(ERROR_LOTTO_COUNT);
         }
     }
 
     private static void checkNumberDuplicate(final List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
-            ExceptionUtils.throwIllegalArgument(ERROR_LOTTO_NUMBER_DUPLICATE.getMessage());
+            throw new LottoException(ERROR_LOTTO_NUMBER_DUPLICATE);
         }
     }
 }

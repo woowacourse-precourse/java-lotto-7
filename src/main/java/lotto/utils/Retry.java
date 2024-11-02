@@ -11,7 +11,6 @@ public class Retry {
         try {
             return operation.get();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
             return retryOnException(operation);
         }
     }

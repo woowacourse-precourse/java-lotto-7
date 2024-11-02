@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.utils.ExceptionUtils;
+import lotto.utils.LottoException;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -36,25 +36,25 @@ public class InputValidator {
 
     private static void checkEmptyInput(final String input) {
         if (input.isBlank()) {
-            ExceptionUtils.throwIllegalArgument(ERROR_EMPTY_INPUT.getMessage());
+            throw new LottoException(ERROR_EMPTY_INPUT);
         }
     }
 
     private static void checkPositiveNumber(final String input) {
         if (!POSITIVE_NUMBER_PATTERN.matcher(input).matches() || Integer.parseInt(input) <= ZERO) {
-            ExceptionUtils.throwIllegalArgument(ERROR_NOT_POSITIVE_NUMBER.getMessage());
+            throw new LottoException(ERROR_NOT_POSITIVE_NUMBER);
         }
     }
 
     private static void checkTrailingComma(final String input) {
         if (TRAILING_DELIMITER_PATTERN.matcher(input).matches()) {
-            ExceptionUtils.throwIllegalArgument(ERROR_TRAILING_COMMA.getMessage());
+            throw new LottoException(ERROR_TRAILING_COMMA);
         }
     }
 
     private static void checkSeparatedNumbers(final String input) {
         if (!DELIMITER_PATTERN.matcher(input).matches()) {
-            ExceptionUtils.throwIllegalArgument(ERROR_INVALID_WIN_NUMBERS.getMessage());
+            throw new LottoException(ERROR_INVALID_WIN_NUMBERS);
         }
     }
 

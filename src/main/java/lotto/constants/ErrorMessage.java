@@ -11,8 +11,7 @@ public enum ErrorMessage {
     ERROR_LOTTO_NUMBER_DUPLICATE("로또 번호는 중복을 허용하지 않습니다."),
     ERROR_BONUS_NUMBER_DUPLICATE("이미 당첨 번호에 포함되어 있는 번호 입니다.");
 
-
-
+    private static final String PREFIX = "[ERROR] ";
     private final String message;
 
     ErrorMessage(String message) {
@@ -20,6 +19,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return message;
+        return PREFIX + message;
     }
 }
