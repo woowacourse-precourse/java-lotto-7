@@ -8,7 +8,8 @@ public enum WinningNumberRule {
     COUNT("[ERROR] 6개의 숫자를 입력해야 합니다."),
     SCOPE("[ERROR] 당첨 번호는 1 이상, 45 이하의 숫자만 가능합니다."),
     DUPLICATION("[ERROR] 당첨 번호는 중복된 숫자가 포함될 수 없습니다."),
-    COMMA(",");
+    COMMA(","),
+    MATCH_NUMBER("^[0-9]+$");
 
     private final String message;
 
