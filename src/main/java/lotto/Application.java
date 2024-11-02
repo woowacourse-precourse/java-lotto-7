@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,6 +20,8 @@ public class Application {
 
         Set<Integer> winningNumbers = readWinningNumbers();
         int bonusNumber = readBonusNumber(winningNumbers);
+
+        Map<LottoRank, Integer> result = calculateResult(purchasedLottos, winningNumbers, bonusNumber);
 
 
     }
@@ -81,6 +81,17 @@ public class Application {
         if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 범위 내의 당첨 번호와 중복되지 않는 숫자여야 합니다.");
         }
+    }
+
+    private static Map<LottoRank, Integer> calculateResult(List<Lotto> purchasedLottos, Set<Integer> winningNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> result = new HashMap<>();
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = lotto.countMatchingNumbers(winningNumbers);
+            boolean matchBonus = lotto.contains(bonusNumber);
+            LottoRank rank = LottoRank.getRank(matchCount, matchBonus);
+            result.put(rank, result.getOrDefault(rank, 0) + 1)
+        }
+        return result;
     }
 }
 

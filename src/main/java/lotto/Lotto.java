@@ -11,7 +11,6 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        countMatchingNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -42,8 +41,8 @@ public class Lotto {
         return numbers;
     }
 
-    // 두 로또 번호 간의 일치하는 숫자 개수를 세는 메서드
-    private int countMatchingNumbers(List<Integer> winningNumbers) {
+    // 두 로또 번호 간의 일치하는 숫자 개수를 세고 반환하는 메서드
+    public int countMatchingNumbers(Set<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : numbers) {
             if (winningNumbers.contains(number)) {
@@ -53,5 +52,7 @@ public class Lotto {
         return matchCount;
     }
 
-
+    public boolean contains(int number){
+        return numbers.contains(number);
+    }
 }
