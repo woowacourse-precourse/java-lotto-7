@@ -17,6 +17,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS = "\n당첨 통계\n---";
     private static final String MATCH_EXCEPT_SECOND_FORMAT = "%d개 일치, (%s원) - %d개\n";
     private static final String MATCH_SECOND_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String PROFIT_FORMAT = "총 수익률은 %.1f%% 입니다.";
 
     public static void printInputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -40,6 +41,10 @@ public class OutputView {
 
     public static void printStatistics() {
         System.out.println(WINNING_STATISTICS);
+    }
+
+    public static void printProfit(final float profit) {
+        System.out.println(String.format(PROFIT_FORMAT,profit));
     }
 
     public static void printNotSecondPrize(WinningStatistics statistics) {

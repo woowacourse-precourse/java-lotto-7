@@ -6,6 +6,7 @@ import lotto.domain.WinningNumbers;
 import lotto.domain.WinningStatistics;
 import lotto.repository.BonusNumberRepository;
 import lotto.repository.LottoRepository;
+import lotto.repository.PurchaseAmountRepository;
 import lotto.repository.WinningNumbersRepository;
 import lotto.view.OutputView;
 
@@ -15,9 +16,12 @@ import static lotto.domain.WinningStatistics.*;
 
 public class StatisticsService {
 
+    private static final int PROFIT_PERCENT = 100;
+
     private final WinningNumbersRepository winningNumbersRepository = WinningNumbersRepository.getInstance();
     private final BonusNumberRepository bonusNumberRepository = BonusNumberRepository.getInstance();
     private final LottoRepository lottoRepository = LottoRepository.getInstance();
+    private final PurchaseAmountRepository purchaseAmountRepository = PurchaseAmountRepository.getInstance();
 
     public void start() {
         List<Lotto> lottos = lottoRepository.findAll();
@@ -25,6 +29,7 @@ public class StatisticsService {
         BonusNumber bonusNumber = bonusNumberRepository.find();
         findMatchingNumber(lottos, winningNumbers, bonusNumber);
         showStatistics();
+        showProfit();
     }
 
     private void findMatchingNumber(final List<Lotto> lottos, final WinningNumbers winningNumbers,
@@ -62,6 +67,18 @@ public class StatisticsService {
 
             OutputView.printNotSecondPrize(statistics);
         }
+    }
+
+    private void showProfit() {
+        long winningProfit = 0L;
+
+        WinningStatistics[] winningStatistics = WinningStatistics.values();
+        for(WinningStatistics winningStatistic: winningStatistics) {
+            winningProfit += winningStatistic.getPrice() * winningStatistic.getCount();
+        }
+
+        int purchaseAmount = purchaseAmountRepository.find().getValue();
+        OutputView.printProfit(winningProfit / purchaseAmount * PROFIT_PERCENT);
     }
 
     private record Check(int cnt, boolean bonusNumberCheck){}
