@@ -39,6 +39,7 @@ public class LottoController {
         outputView.printLottoWinningResult(winningResult.getLottoWinningResult());
 
         double rateOfReturn = winningResult.calculateRateOfReturn(purchaseAmount);
+        outputView.printRateOrReturn(rateOfReturn);
     }
 
     private LottoWinningResult getLottoWinningResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
