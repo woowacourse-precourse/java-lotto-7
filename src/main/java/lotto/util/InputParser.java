@@ -1,12 +1,20 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class InputParser {
+
+    public static String getComma(long number) {
+        return String.format("%,d", number);
+    }
 
     public static long parseLong(String input) {
         return Long.parseLong(input);
     }
 
-    public static String getComma(long number) {
-        return String.format("%,d", number);
+    public static List<Integer> parseList(String input, String regex) {
+        return Arrays.stream(input.split(regex)).map(Integer::parseInt).toList();
     }
+
 }

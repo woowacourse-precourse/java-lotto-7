@@ -6,6 +6,7 @@ import lotto.model.Money;
 import lotto.model.Ticket;
 import lotto.service.TicketGenerator;
 import lotto.util.InputParser;
+import lotto.validator.LottoValidator;
 import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -26,8 +27,9 @@ public class LottoController {
 
         generator.setMoney(money.getAmount());
         List<Ticket> tickets = generator.getTickets();
-
         outputView.printTicketNumbers(tickets);
+
+        System.out.println(getLotto());
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {
@@ -48,5 +50,12 @@ public class LottoController {
         return InputParser.parseLong(validator.getMoney());
     }
 
+    private List<Integer> getLotto() {
+        outputView.printLottoRequest();
+        String lotto = inputView.getUserInput();
+        LottoValidator validator = new LottoValidator(lotto);
+        validator.validate();
 
+        return InputParser.parseList(lotto, ",");
+    }
 }

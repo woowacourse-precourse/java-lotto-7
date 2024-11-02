@@ -16,10 +16,14 @@ public class OutputView {
 
     public void printTicketNumbers(List<Ticket> tickets) {
         System.out.println();
-        System.out.println(InputParser.getComma(tickets.size()) + Outputs.LOTTO_BOUGHT.getMessage());
+        System.out.println(InputParser.getComma(tickets.size()) + Outputs.TICKETS_BOUGHT.getMessage());
 
         for (Ticket ticket : tickets) {
             System.out.println(ticket.getNumbers());
         }
+    }
+
+    public void printLottoRequest() {
+        System.out.println(Outputs.LOTTO_REQUEST.getMessage());
     }
 }

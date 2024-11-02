@@ -2,9 +2,8 @@ package lotto.validator;
 
 import java.util.regex.Pattern;
 import lotto.util.Constants;
-import lotto.view.Outputs;
 
-public class MoneyValidator {
+public class MoneyValidator extends Validator {
     private final String money;
 
     public MoneyValidator(String money) {
@@ -22,13 +21,6 @@ public class MoneyValidator {
         validateLong();
         validateRange();
         validateNoRemainder();
-    }
-
-    private String combineMessages(String message) {
-        return String.join(Outputs.SPACE.getMessage(),
-                Errors.ERROR.getMessage(),
-                message,
-                Errors.NUMBER_REQUEST.getMessage());
     }
 
     protected void validateNotNull() {
