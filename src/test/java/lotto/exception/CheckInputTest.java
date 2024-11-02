@@ -2,6 +2,7 @@ package lotto.exception;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.enums.ErrorType;
 import org.junit.jupiter.api.Test;
 
 class CheckInputTest {
@@ -11,7 +12,7 @@ class CheckInputTest {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class, () -> CheckInput.checkInputMoney(500)
         );
-        assertEquals("[ERROR] 구입금액은 1000원 이상이어야 합니다.", exception.getMessage());
+        assertEquals(ErrorType.INVALID_PURCHASE_RANGE.getErrorMessage(), exception.getMessage());
     }
 
     @Test
@@ -19,7 +20,7 @@ class CheckInputTest {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class, () -> CheckInput.checkInputMoney(1234)
         );
-        assertEquals("[ERROR] 구입금액은 1000원단위어야 합니다.", exception.getMessage());
+        assertEquals(ErrorType.INVALID_PURCHASE_UNIT.getErrorMessage(), exception.getMessage());
     }
 
     @Test
