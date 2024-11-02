@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.HashSet;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,5 +41,21 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(30, 20, 21, 2, 45, 44));
 
         assertThat(lotto.getNumbers()).isEqualTo(List.of(2, 20, 21, 30, 44, 45));
+    }
+
+    @DisplayName("로또 번호는 중복이 아닌 1에서 45까지의 숫자 6개가 생성되어야한다.")
+    @Test
+    void 로또_번호_생성_테스트() {
+        LottoGenerator lottoGenerator = new LottoGenerator(5);
+
+        List<Lotto> tickets = lottoGenerator.getTickets();
+
+        for (Lotto lotto : tickets) {
+            List<Integer> numbers = lotto.getNumbers();
+
+            assertThat(numbers).hasSize(6);
+            assertThat(numbers).allMatch(num -> num >= 1 && num <= 45);
+            assertThat(new HashSet<>(numbers)).hasSize(6);
+        }
     }
 }
