@@ -15,12 +15,14 @@ public class WinningLotto {
     }
 
     public int findMatchNumbers(Lotto lotto) {
-        return lotto.getNumbers().stream()
+        return lotto.getNumbers()
+                .stream()
                 .filter(number -> winningLotto.getNumbers().contains(number))
-                .toList().size();
+                .toList()
+                .size();
     }
 
-    public boolean matchBonusNumber(Lotto lotto) {
+    public boolean hasBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 

@@ -41,7 +41,7 @@ public class LottoService {
     public void checkLottoResult() {
         for (Lotto lotto : purchasedLotto.getPurchasedLotto()) {
             int matchNumbers = winningLotto.findMatchNumbers(lotto);
-            LottoRank.checkLottoPrize(matchNumbers, winningLotto.matchBonusNumber(lotto));
+            LottoRank.checkLottoPrize(matchNumbers, winningLotto.hasBonusNumber(lotto));
         }
     }
 
