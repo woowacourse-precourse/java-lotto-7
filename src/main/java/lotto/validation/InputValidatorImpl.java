@@ -1,12 +1,13 @@
 package lotto.validation;
 
-public class InputValidatorImpl {
+public class InputValidatorImpl implements InputValidator {
     private static final String ERROR_INVALID_AMOUNT = "[ERROR] 구매 금액은 1,000원 단위로 입력해야 합니다.";
     private static final String ERROR_NON_POSITIVE_AMOUNT = "[ERROR] 구매 금액은 0보다 커야 합니다.";
     private static final String ERROR_NOT_NUMERIC = "[ERROR] 구매 금액은 숫자여야 합니다.";
     private static final int LOTTO_TICKET_PRICE = 1000;
     private static final int ZERO = 0;
 
+    @Override
     public int validate(String input) {
         int amount = parseInput(input);
         if (amount <= ZERO) {
