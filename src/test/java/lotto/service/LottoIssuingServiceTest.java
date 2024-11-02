@@ -19,7 +19,7 @@ class LottoIssuingServiceTest {
         PurchaseAmount amount = PurchaseAmount.from(12000);
 
         // when
-        List<Lotto> lottoTickets = lottoService.issue(amount);
+        List<Lotto> lottoTickets = lottoService.issueForAmount(amount);
 
         // then
         assertThat(lottoTickets).hasSize(12);

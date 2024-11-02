@@ -14,7 +14,7 @@ public class LottoIssuingService {
         this.lottoIssuer = lottoIssuer;
     }
 
-    public List<Lotto> issue(PurchaseAmount purchaseAmount) {
+    public List<Lotto> issueForAmount(PurchaseAmount purchaseAmount) {
         int purchaseQuantity = purchaseAmount.getPurchaseQuantity();
         return IntStream.range(0, purchaseQuantity)
                 .mapToObj(ignored -> lottoIssuer.issue())
