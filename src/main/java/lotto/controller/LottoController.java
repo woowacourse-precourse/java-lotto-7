@@ -3,9 +3,9 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
+import static lotto.domain.LottoConstants.LOTTO_PRICE;
 
 public class LottoController {
 
@@ -15,10 +15,12 @@ public class LottoController {
         try {
             PurchasedPrice purchasedPrice = new PurchasedPrice(InputView.readNumber());
 
+            Lottos purchasedLottos = generate(purchasedPrice);
+            OutputView.printPurchasedLottos(purchasedLottos);
+
             Lotto winningNumbers = new Lotto(InputView.readWinningNumbers());
             BonusNumber bonusNumber = new BonusNumber(InputView.readNumber());
 
-            Lottos purchasedLottos = generate(purchasedPrice);
 
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -27,7 +29,7 @@ public class LottoController {
     }
 
     private Lottos generate(PurchasedPrice purchasedPrice) {
-        LottoCount lottoCount = new LottoCount(purchasedPrice.getPurchasedPrice());
+        int lottoCount = purchasedPrice.getPurchasedPrice() / LOTTO_PRICE;
         return lottoService.generateLottos(lottoCount);
     }
 }

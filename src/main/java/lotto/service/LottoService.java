@@ -1,10 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoConstants;
-import lotto.domain.LottoCount;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 
 import static lotto.domain.LottoConstants.MIN_LOTTO_NUMBER;
 import static lotto.domain.LottoConstants.MAX_LOTTO_NUMBER;
@@ -15,13 +12,13 @@ import java.util.List;
 
 public class LottoService {
 
-    public Lottos generateLottos(LottoCount lottoCount) {
+    public Lottos generateLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<Lotto>();
 
-        for(int i = 0; i < lottoCount.getLottoCount(); i++) {
+        for(int i = 0; i < lottoCount; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE));
             lottos.add(lotto);
         }
-        return new Lottos(lottos);
+        return new Lottos(lottos, lottoCount);
     }
 }
