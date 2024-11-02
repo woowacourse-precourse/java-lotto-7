@@ -18,5 +18,11 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 구입금액은 최소 1000원부터 최대 10만원입니다.");
         }
 
+        if (account % 1_000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력하세요.");
+        }
+
+
+
     }
 }
