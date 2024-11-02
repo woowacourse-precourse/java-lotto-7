@@ -13,24 +13,24 @@ public class InputValidator {
             + " 구매 금액은 1000원 단위로 입력하셔야 합니다. (1000으로 나누어 떨어지도록)";
     public static final String EXCEED_MAX_AREA_EXCEPTION = "[ERROR] 잘못된 구입 금액을 입력하셨습니다."
             + " 구매 금액이 최대 범위를 초과하였습니다.";
-    private static final String ATTEMPTS_PATTERN_REGEX = "^[0-9]+$";
+    private static final String AMOUNT_PATTERN_REGEX = "^[0-9]+$";
 
     public void validateInputAmount(String input) {
-        validateEmptyAmount(input);
+        validateEmptyOf(input);
         validateInvalidCharacter(input);
         int amount = validateExceedMaxArea(input);
         validateMinAmount(amount);
         validateAmountUnit(amount);
     }
 
-    private void validateEmptyAmount(String input) {
+    private void validateEmptyOf(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(EMPTY_INPUT_EXCEPTION);
         }
     }
 
     private void validateInvalidCharacter(String input) {
-        if (!Pattern.matches(ATTEMPTS_PATTERN_REGEX, input)) {
+        if (!Pattern.matches(AMOUNT_PATTERN_REGEX, input)) {
             throw new IllegalArgumentException(INVALID_CHARACTER_INPUT_EXCEPTION);
         }
     }
