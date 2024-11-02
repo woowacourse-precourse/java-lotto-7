@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
+    private static final String TO_STRING_PREFIX = "[";
+    private static final String TO_STRING_DELIMITER = ", ";
+    private static final String TO_STRING_SUFFIX = "]";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,10 +28,10 @@ public class Lotto {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        numbers.forEach(number -> sb.append(number).append(", "));
+        sb.append(TO_STRING_PREFIX);
+        numbers.forEach(number -> sb.append(number).append(TO_STRING_DELIMITER));
         sb.delete(sb.length() - 2, sb.length());
-        sb.append("]");
+        sb.append(TO_STRING_SUFFIX);
         return sb.toString();
     }
 

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static java.math.RoundingMode.HALF_UP;
 import static lotto.model.Winning.FIVE;
 import static lotto.model.Winning.FIVE_BONUS;
 import static lotto.model.Winning.NONE;
@@ -8,7 +9,6 @@ import static lotto.model.Winning.values;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,7 +17,10 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
 public class Lottos {
-    private Map<Lotto, Winning> lottos = new LinkedHashMap<>();
+    public static int WINING_RATE_DECIMAL_PLACE = 1;
+    private static int WINNING_RATE_DECIMAL_LIMIT = 10;
+    private static int WINNING_RATE_MULTIPLIER = 100;
+    private final Map<Lotto, Winning> lottos = new LinkedHashMap<>();
 
     public void allocateLottosByRandomNumber(int lottoCount) {
         IntStream.range(0, lottoCount)
@@ -56,9 +59,9 @@ public class Lottos {
                     totalWinningPrice.updateAndGet(p -> p.add(winning.multiplyCount()));
                 });
         return totalWinningPrice.get()
-                .divide(lottoPrice, 10, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(100))
-                .setScale(1, RoundingMode.HALF_UP)
+                .divide(lottoPrice, WINNING_RATE_DECIMAL_LIMIT, HALF_UP)
+                .multiply(BigDecimal.valueOf(WINNING_RATE_MULTIPLIER))
+                .setScale(WINING_RATE_DECIMAL_PLACE, HALF_UP)
                 .stripTrailingZeros();
     }
 }

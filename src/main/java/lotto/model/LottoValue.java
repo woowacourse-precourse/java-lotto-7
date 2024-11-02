@@ -1,15 +1,18 @@
 package lotto.model;
 
+import static java.math.RoundingMode.HALF_UP;
+import static lotto.model.Lottos.WINING_RATE_DECIMAL_PLACE;
+
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class LottoValue {
+    public static final int LOTTO_PRICE_DIVISOR = 1000;
     private final BigDecimal lottoPrice;
     private final int lottoCount;
 
     public LottoValue(BigDecimal lottoPrice) {
         this.lottoPrice = lottoPrice;
-        this.lottoCount = lottoPrice.divide(BigDecimal.valueOf(1000), 2, RoundingMode.HALF_UP)
+    this.lottoCount = lottoPrice.divide(BigDecimal.valueOf(LOTTO_PRICE_DIVISOR), WINING_RATE_DECIMAL_PLACE, HALF_UP)
                 .intValue();
     }
 

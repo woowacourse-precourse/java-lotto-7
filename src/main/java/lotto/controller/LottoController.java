@@ -8,6 +8,7 @@ import lotto.model.Lottos;
 import lotto.view.LottoView;
 
 public class LottoController {
+    private static final String WINNING_DELIMITER = ",";
     private final Lottos lottos;
     private final LottoView view;
     private final LottoValue lottoValue;
@@ -43,7 +44,7 @@ public class LottoController {
 
     private List<Integer> inputWinningNumber() {
         String winningNumber = view.inputWinningNumber();
-        return Arrays.stream(winningNumber.split(","))
+        return Arrays.stream(winningNumber.split(WINNING_DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
     }
