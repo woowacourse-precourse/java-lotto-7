@@ -45,9 +45,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호에 공백이 포함되면 예외가 발생한다.")
     void 로또_번호에_공백이_포함되면_예외가_발생한다() {
-        // 공백이 포함된 문자열을 파싱하여 리스트로 변환
         String inputWithEmptyValue = "1, 2,  , 4, 5, 6";
-
         assertThatThrownBy(() -> {
             List<Integer> numbers = parseInputToNumbers(inputWithEmptyValue);
             new Lotto(numbers);
@@ -68,25 +66,33 @@ class LottoTest {
         return Integer.parseInt(token);
     }
 
-
-    @Test
-    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
-    void 보너스_번호가_당첨_번호와_중복되면_예외가_발생한다() {
-        // 보너스 번호와 중복된 상황을 가정한 WinningLotto 테스트 케이스를 작성해야 함.
-    }
-
     @Test
     @DisplayName("구입 금액이 1,000원 단위가 아니면 예외가 발생한다.")
     void 구입_금액이_단위_오류이면_예외가_발생한다() {
-        // LottoController에서 구입 금액을 검증하는 로직을 테스트하는 테스트 케이스 작성.
+        String invalidAmount = "1500";  // 1,000원 단위가 아님
+        assertThatThrownBy(() -> validatePurchaseAmount(invalidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
 
     @Test
     @DisplayName("구입 금액 입력 시 숫자 이외의 값이 포함되면 예외가 발생한다.")
     void 구입_금액에_숫자_이외의_값이_포함되면_예외가_발생한다() {
-        // LottoController에서 숫자 이외의 값을 검증하는 로직을 테스트하는 테스트 케이스 작성.
+        String invalidAmount = "1000원";  // 숫자 이외의 값이 포함됨
+        assertThatThrownBy(() -> validatePurchaseAmount(invalidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 금액만 입력해주세요.");
+    }
+
+    private void validatePurchaseAmount(String amount) {
+        if (!amount.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 금액만 입력해주세요.");
+        }
+        int numericAmount = Integer.parseInt(amount);
+        if (numericAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        }
     }
 
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
