@@ -49,7 +49,7 @@ public class PlayController {
     }
 
     public void showResult() {
-        OutputView.printSuccessResult();
+        OutputView.printWinningStatistics();
         OutputView.printResult(resultSet);
         OutputView.printRevenueRate(EarningRate.returnEarningRate(gameNumber, resultSet));
     }

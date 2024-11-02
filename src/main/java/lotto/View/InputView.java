@@ -13,7 +13,7 @@ public class InputView {
 
 
     //사용자에게 구입금액 입력받는 메소드
-    public int inputPurchasePrice() {
+    public int setPurchasePrice() {
         System.out.println("구입 금액을 입력해 주세요");
         while (true){
             try{

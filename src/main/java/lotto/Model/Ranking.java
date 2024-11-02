@@ -36,11 +36,11 @@ public enum Ranking {
                 return rank;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 매칭 수 또는 보너스 조건입니다.");
+        throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_CONDITION.getMessage());
     }
 
     private boolean isMatchingRank(int countOfMatch, boolean matchBonus) {
-        return this.matchingCount == countOfMatch && (this.bonusState || matchBonus == this.bonusState);
+        return this.matchingCount == countOfMatch && (this.bonusState == matchBonus);
     }
 
     public String getMessage() {

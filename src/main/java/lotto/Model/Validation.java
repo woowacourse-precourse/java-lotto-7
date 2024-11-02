@@ -1,5 +1,7 @@
 package lotto.Model;
 
+import static lotto.constants.Constants.*;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.Set;
 public class Validation {
     //로또 구매로직 검증기
     public void purchaseValidator(int input) {
-        if (input < 1000 || input % 1000 != 0) {
+        if (input < LOTTO_PRICE || input % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT.getMessage());
         }
 
@@ -27,7 +29,7 @@ public class Validation {
 
     //로또 번호가 6자리인지 검증하는 매소드
     private void validateNumberCount(String[] setNumber) {
-        if (setNumber.length != 6) {
+        if (setNumber.length != LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }

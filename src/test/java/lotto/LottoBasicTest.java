@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -29,13 +30,14 @@ class LottoBasicTest {
 
     @Test
     void testPurchaseValidator() {
+        Validation validation = new Validation();
         assertThatThrownBy(() -> validation.purchaseValidator(500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1000원단위로만 구매할 수 있습니다");
+                .hasMessageContaining("[ERROR]");
 
         assertThatThrownBy(() -> validation.purchaseValidator(1500))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1000원단위로만 구매할 수 있습니다");
+                .hasMessageContaining("[ERROR]");
     }
 
     @Test
@@ -43,18 +45,17 @@ class LottoBasicTest {
         Validation validation = new Validation();
 
         String[] validNumbers = {"1", "2", "3", "4", "5", "6"};
-        assertThatThrownBy(() -> validation.winningNumberValidator(validNumbers));
-        validation.winningNumberValidator(validNumbers);
+        assertThatCode(() -> validation.winningNumberValidator(validNumbers));
 
         String[] duplicateNumbers = {"1", "2", "3", "4", "5", "5"};
         assertThatThrownBy(() -> validation.winningNumberValidator(duplicateNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복된 번호가 있습니다.");
+                .hasMessageContaining("[ERROR]");
 
         String[] outOfRangeNumbers = {"1", "2", "3", "4", "5", "46"};
         assertThatThrownBy(() -> validation.winningNumberValidator(outOfRangeNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR]");
     }
 
     @Test

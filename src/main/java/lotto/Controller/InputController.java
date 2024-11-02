@@ -2,7 +2,6 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import lotto.Model.Validation;
 import lotto.View.InputView;
 
 public class InputController {
@@ -12,7 +11,7 @@ public class InputController {
 
     //복권 구매가격 받아오기
     public int setPurchasePrice() {
-        return inputView.inputPurchasePrice()/LOTTO_PRICE;
+        return inputView.setPurchasePrice()/LOTTO_PRICE;
     }
     //복권 당첨숫자 받아오기
     public ArrayList<Integer> setWinningNumber() {

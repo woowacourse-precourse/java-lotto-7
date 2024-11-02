@@ -6,18 +6,16 @@ import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 
+import static lotto.constants.Constants.*;
+
 public class LottoNumbers {
 
     public LottoNumbers() {
     }
 
-    private static final int CNT_LOTTO_NUMBER = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-
     //로또의 랜덤 숫자를 만드는 로직
     public static List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, CNT_LOTTO_NUMBER));
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_VALUE, LOTTO_MAX_VALUE, LOTTO_NUMBER_LENGTH));
         Collections.sort(lottoNumbers);
         return lottoNumbers;
     }

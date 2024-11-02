@@ -6,7 +6,7 @@ import lotto.Model.Ranking;
 public class OutputView{
 
 
-    public static void printSuccessResult(){
+    public static void printWinningStatistics(){
         System.out.println("당첨 통계");
         System.out.println("---");
     }
