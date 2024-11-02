@@ -1,0 +1,63 @@
+[33mcommit 3bd99007d53879eac6ac6069ed95fd78d60b3917[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mchuka9809[m[33m)[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Sat Nov 2 19:06:45 2024 +0900
+
+    feat: 로또번호 발행 메소드 생성
+
+[33mcommit e15dacdf95a5825d741c6a3fa4cefb235ff12cbc[m[33m ([m[1;31morigin/chuka9809[m[33m)[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 19:04:12 2024 +0900
+
+    docs: 예외 목록에 대한 채크 박스 생성
+
+[33mcommit f01f165f0098c709e6bdc1cd1685908efd0ed192[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 19:01:39 2024 +0900
+
+    docs: 예외 목록 작성
+    
+     구입금액 입력에 대한 예외 목록
+
+[33mcommit 9e1724a838a9a7ec454aaf5d8b59261a2f94bd04[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 18:57:42 2024 +0900
+
+    feat: 구매한 로또 개수 출력
+
+[33mcommit 16fe6558e4ef6132bd616bdc47a1df52dc465699[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 18:05:09 2024 +0900
+
+    feat: 올바른 입력이 아닐 경우 에러 메세지 출력 후 다시 입력 받기
+
+[33mcommit 7df41b60eb21ac26cd7c9cc332c0b648427bfc9a[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 17:49:41 2024 +0900
+
+    fix: 접근 제어자 수정
+
+[33mcommit 15204f4ae9f05ed84f3385dd6cee9c509f225f4d[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 17:46:17 2024 +0900
+
+    test: 로또 구입금액이 1000단위가 아닐 경우 예외 테스트
+
+[33mcommit 9c9a4e5b0ee005613ed8301290d5512183cb6af3[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 17:19:47 2024 +0900
+
+    feat: 구입금액 입력 받기
+    
+    입력값이 1000단위가 아닐시 예외 발생
+
+[33mcommit 24a9d19294e3360317221b47ddfdecc09f848935[m
+Author: Jungwoo Chu <cjw980930@gmail.com>
+Date:   Fri Nov 1 16:06:11 2024 +0900
+
+    docs: 기능목록 작성
+
+[33mcommit 99b196479883400e460aec0c89ca28e4cdd34549[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: jaeyeonling <jaeyeonling@gmail.com>
+Date:   Tue Oct 29 14:56:48 2024 +0900
+
+    feat: setup project
