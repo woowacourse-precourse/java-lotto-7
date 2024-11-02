@@ -9,15 +9,19 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers.stream()
-            .sorted()
-            .map(LottoNumber::valueOf).toList();
+        this.numbers = toLottoNumberList(numbers);
     }
 
     public String represent() {
         return numbers.stream()
             .map(LottoNumber::toString)
             .collect(Collectors.joining(", ", "[", "]"));
+    }
+
+    private static List<LottoNumber> toLottoNumberList(List<Integer> numbers) {
+        return numbers.stream()
+            .sorted()
+            .map(LottoNumber::valueOf).toList();
     }
 
     public List<Integer> getNumbers() {
