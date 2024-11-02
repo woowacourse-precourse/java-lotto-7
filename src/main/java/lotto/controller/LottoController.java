@@ -1,8 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.PurchasedLottos;
+import lotto.domain.WinningNumbers;
 import lotto.domain.constant.Ranking;
-import lotto.dto.response.LottosResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,6 +12,7 @@ import lotto.view.util.WinningNumberSplitter;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class LottoController {
 
@@ -29,54 +31,50 @@ public class LottoController {
     }
 
     public void run() {
-        LottosResponse lottosResponse = getPurchasedLottos();
-        outputView.printPurchasedLottos(lottosResponse);
-        EnumMap<Ranking, Integer> statistics = getStatistics();
-        double earningRate = lottoService.calculateEarningRate(statistics);
+        PurchasedLottos purchasedLottos = retryOnInvalidInput(this::getPurchasedLottos);
+        outputView.printPurchasedLottos(purchasedLottos);
+        EnumMap<Ranking, Integer> statistics = getStatistics(purchasedLottos);
+        double earningRate = lottoService.calculateEarningRate(purchasedLottos, statistics);
         outputView.printDrawResult(statistics, earningRate);
     }
 
-    private LottosResponse getPurchasedLottos() {
-        try {
-            String input = inputView.readPurchaseAmount();
-            Integer purchaseAmount = numberParser.parseToInt(input);
-            return lottoService.purchaseLottos(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return getPurchasedLottos();
-        }
+    private PurchasedLottos getPurchasedLottos() {
+        String input = inputView.readPurchaseAmount();
+        Integer purchaseAmount = numberParser.parseToInt(input);
+        return lottoService.purchaseLottos(purchaseAmount);
     }
 
-    private EnumMap<Ranking, Integer> getStatistics() {
-        Lotto winningNumber = getWinningNumber();
-        return getBonusNumberAndDraw(winningNumber);
+    private EnumMap<Ranking, Integer> getStatistics(PurchasedLottos purchasedLottos) {
+        Lotto winningNumber = retryOnInvalidInput(this::getWinningNumber);
+        WinningNumbers winningNumbers = retryOnInvalidInput(() -> getWinningNumbers(winningNumber));
+        return lottoService.drawResult(purchasedLottos, winningNumbers);
     }
 
-    private EnumMap<Ranking, Integer> getBonusNumberAndDraw(Lotto winningNumber) {
-        try {
-            Integer bonusNumber = getBonusNumberAndDraw();
-            return lottoService.drawResult(winningNumber, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return getBonusNumberAndDraw(winningNumber);
-        }
+    private WinningNumbers getWinningNumbers(Lotto winningNumber) {
+        Integer bonusNumber = retryOnInvalidInput(this::getBonusNumber);
+        return WinningNumbers.from(winningNumber, bonusNumber);
     }
 
     private Lotto getWinningNumber() {
-        try {
-            String input = inputView.readWinningNumber();
-            List<String> winningNumber = winningNumberSplitter.splitWinningNumber(input);
-            return new Lotto(winningNumber.stream()
-                    .map(numberParser::parseToInt)
-                    .toList());
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            return getWinningNumber();
-        }
+        String input = inputView.readWinningNumber();
+        List<String> winningNumber = winningNumberSplitter.splitWinningNumber(input);
+        return new Lotto(winningNumber.stream()
+                .map(numberParser::parseToInt)
+                .toList());
     }
 
-    private Integer getBonusNumberAndDraw() {
+    private Integer getBonusNumber() {
         String input = inputView.readBonusNumber();
         return numberParser.parseToInt(input);
+    }
+
+    private <T> T retryOnInvalidInput(Supplier<T> input) {
+        while (true) {
+            try {
+                return input.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e.getMessage());
+            }
+        }
     }
 }

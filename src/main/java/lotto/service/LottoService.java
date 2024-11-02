@@ -4,7 +4,6 @@ import lotto.domain.*;
 import lotto.domain.constant.Ranking;
 import lotto.domain.lottomachine.AutoNumberGenerator;
 import lotto.domain.lottomachine.LottoMachine;
-import lotto.dto.response.LottosResponse;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -12,31 +11,24 @@ import java.util.Map;
 public class LottoService {
 
     private final LottoMachine lottoMachine;
-    private PurchasedLottos purchasedLottos;
 
     public LottoService(LottoMachine lottoMachine) {
         this.lottoMachine = lottoMachine;
     }
 
-    public LottosResponse purchaseLottos(Integer purchaseAmount) {
+    public PurchasedLottos purchaseLottos(Integer purchaseAmount) {
         Money money = Money.from(purchaseAmount);
         LottoStore lottoStore = new LottoStore();
 
         int quantity = lottoStore.calculateLottoQuantity(money);
-        this.purchasedLottos = lottoMachine.issueTickets(new AutoNumberGenerator(), quantity);
-
-        return LottosResponse.of(
-                quantity,
-                purchasedLottos
-        );
+        return lottoMachine.issueTickets(new AutoNumberGenerator(), quantity);
     }
 
-    public EnumMap<Ranking, Integer> drawResult(Lotto winningNumber, Integer bonusNumber) {
-        WinningNumbers winningNumbers = WinningNumbers.from(winningNumber, bonusNumber);
+    public EnumMap<Ranking, Integer> drawResult(PurchasedLottos purchasedLottos, WinningNumbers winningNumbers) {
         return lottoMachine.draw(purchasedLottos, winningNumbers);
     }
 
-    public double calculateEarningRate(EnumMap<Ranking, Integer> statistics) {
+    public double calculateEarningRate(PurchasedLottos purchasedLottos, EnumMap<Ranking, Integer> statistics) {
         Money totalPrize = Money.ZERO;
         for (Map.Entry<Ranking, Integer> rank : statistics.entrySet()) {
             int amount = rank.getKey().getPrize() * rank.getValue();

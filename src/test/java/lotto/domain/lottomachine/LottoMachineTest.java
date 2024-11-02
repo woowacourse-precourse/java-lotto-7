@@ -1,13 +1,13 @@
 package lotto.domain.lottomachine;
 
 import lotto.domain.PurchasedLottos;
-import lotto.dto.response.LottoResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoMachineTest {
 
@@ -29,11 +29,10 @@ class LottoMachineTest {
         //when
         PurchasedLottos purchasedLottos = lottoMachine.issueTickets(new ManualLottoGenerator(lottos), 3);
         //then
-        List<LottoResponse> lottoResponses = purchasedLottos.toLottoResponses();
-        assertThat(lottoResponses.size()).isEqualTo(3);
-        assertThat(lottoResponses.get(0).lotto()).containsExactlyElementsOf(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(lottoResponses.get(1).lotto()).containsExactlyElementsOf(List.of(7, 8, 9, 10, 11, 12));
-        assertThat(lottoResponses.get(2).lotto()).containsExactlyElementsOf(List.of(13, 14, 15, 16, 17, 18));
+        assertThat(purchasedLottos.getLottos().size()).isEqualTo(3);
+        assertThat(purchasedLottos.getLottos().getFirst().getNumbers()).containsExactlyElementsOf(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(purchasedLottos.getLottos().get(1).getNumbers()).containsExactlyElementsOf(List.of(7, 8, 9, 10, 11, 12));
+        assertThat(purchasedLottos.getLottos().get(2).getNumbers()).containsExactlyElementsOf(List.of(13, 14, 15, 16, 17, 18));
     }
 
     @Test

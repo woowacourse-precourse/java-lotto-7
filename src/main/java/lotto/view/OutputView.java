@@ -1,7 +1,7 @@
 package lotto.view;
 
+import lotto.domain.PurchasedLottos;
 import lotto.domain.constant.Ranking;
-import lotto.dto.response.LottosResponse;
 
 import java.util.EnumMap;
 
@@ -11,6 +11,7 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
     public static final String QUANTITY_OUTPUT_MESSAGE = "개를 구매했습니다.";
     public static final String STATISTIC_OUTPUT_MESSAGE = """
+            
             당첨 통계
             ---
             3개 일치 (5,000원) - %d개
@@ -21,9 +22,9 @@ public class OutputView {
             총 수익률은 %,.1f%%입니다.
             """;
 
-    public void printPurchasedLottos(LottosResponse response) {
-        addLottoQuantityToBuffer(response);
-        addLottosToBuffer(response);
+    public void printPurchasedLottos(PurchasedLottos purchasedLottos) {
+        addLottoQuantityToBuffer(purchasedLottos);
+        addLottosToBuffer(purchasedLottos);
         bufferClear();
     }
 
@@ -31,16 +32,16 @@ public class OutputView {
         System.out.println(error);
     }
 
-    private void addLottoQuantityToBuffer(LottosResponse response) {
+    private void addLottoQuantityToBuffer(PurchasedLottos purchasedLottos) {
         BUFFER.append(NEW_LINE)
-                .append(response.quantity())
+                .append(purchasedLottos.getLottos().size())
                 .append(QUANTITY_OUTPUT_MESSAGE)
                 .append(NEW_LINE);
     }
 
-    private void addLottosToBuffer(LottosResponse response) {
-        response.lottos().forEach(lotto ->
-                BUFFER.append(lotto.lotto())
+    private void addLottosToBuffer(PurchasedLottos purchasedLottos) {
+        purchasedLottos.getLottos().forEach(lotto ->
+                BUFFER.append(lotto.getNumbers())
                         .append(NEW_LINE));
     }
 

@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.dto.response.LottoResponse;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,8 +31,13 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public LottoResponse toLottoResponse() {
-        return new LottoResponse(numbers);
+//    public LottoResponse toLottoResponse() {
+//        return new LottoResponse(numbers);
+//    }
+
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validateSize(List<Integer> numbers) {
