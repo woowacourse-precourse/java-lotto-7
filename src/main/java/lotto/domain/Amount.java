@@ -61,4 +61,8 @@ public class Amount {
             throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_UNIT_PURCHASE_AMOUNT.getMessage());
         }
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
