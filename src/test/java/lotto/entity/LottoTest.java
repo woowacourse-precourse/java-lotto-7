@@ -1,12 +1,16 @@
-package lotto;
+package lotto.entity;
 
-import lotto.entity.Lotto;
+import lotto.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LottoTest {
     @Test
@@ -22,5 +26,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+
+    @Test
+    @DisplayName("정상적인 로또 번호 리스트 생성 테스트")
+    void shouldCreateLottoWithValidNumbers() {
+        // Given
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // When
+        Lotto lotto = new Lotto(validNumbers);
+
+        // Then
+        assertEquals(validNumbers, lotto.getNumbers());
+    }
 }
