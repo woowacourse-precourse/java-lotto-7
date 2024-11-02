@@ -25,7 +25,7 @@ public class Parser {
 
     private List<String> splitByComma(String input) {
             if (input.isEmpty()) {
-                return List.of();
+                throw new IllegalArgumentException(ExceptionMessage.NO_SUCH_ELEMENT.getMessage());
             }
             return Arrays.asList(input.trim().split(","));
     }
