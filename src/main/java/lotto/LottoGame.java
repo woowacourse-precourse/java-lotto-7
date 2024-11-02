@@ -9,13 +9,17 @@ import java.util.List;
 public class LottoGame {
 
     public void start(){
-        int purchaseAmount = getPurchaseAmount();
-        List<Lotto> lottos = generateLottos(purchaseAmount);
-        Lotto winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers.getNumbers());
-        LottoComparator result = new LottoComparator(lottos, winningNumbers, bonusNumber);
-        result.calculateResult();
-        result.printResult();
+        try {
+            int purchaseAmount = getPurchaseAmount();
+            List<Lotto> lottos = generateLottos(purchaseAmount);
+            Lotto winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber(winningNumbers.getNumbers());
+            LottoComparator result = new LottoComparator(lottos, winningNumbers, bonusNumber);
+            result.calculateResult();
+            result.printResult();
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public int getPurchaseAmount(){
