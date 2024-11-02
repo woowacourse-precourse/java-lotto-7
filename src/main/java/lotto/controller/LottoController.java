@@ -33,23 +33,37 @@ public class LottoController {
     }
 
     public List<Lotto> purchaseLotto() {
-        List<Lotto> lottoBundle = lottoService.createLottoBundle(promptPurchaseCount());
-        outputView.printLottoBundle(lottoBundle);
+        try {
+            List<Lotto> lottoBundle = lottoService.createLottoBundle(promptPurchaseCount());
+            outputView.printLottoBundle(lottoBundle);
 
-        return lottoBundle;
+            return lottoBundle;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return this.purchaseLotto();
+        }
     }
 
     public LottoDrawResult drawLotto() {
-        Lotto drewLotto = getDrewLotto();
-        return getLottoDrawResult(drewLotto);
+        try {
+            Lotto drewLotto = getDrewLotto();
+            return getLottoDrawResult(drewLotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return this.drawLotto();
+        }
     }
 
     public LottoStats getLottoStats(List<Lotto> lottoBundle, LottoDrawResult drawResult) {
-
-        List<LottoPrize> lottoPrizes = lottoPrizeService.getLottoPrizes(lottoBundle, drawResult);
-        LottoStats lottoStats = lottoStatService.getLottoStats(lottoPrizes, lottoBundle.size() * 1000);
-        outputView.printLottoStats(lottoStats);
-        return lottoStats;
+        try {
+            List<LottoPrize> lottoPrizes = lottoPrizeService.getLottoPrizes(lottoBundle, drawResult);
+            LottoStats lottoStats = lottoStatService.getLottoStats(lottoPrizes, lottoBundle.size() * 1000);
+            outputView.printLottoStats(lottoStats);
+            return lottoStats;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return this.getLottoStats(lottoBundle, drawResult);
+        }
     }
 
     private LottoDrawResult getLottoDrawResult(Lotto drewLotto) {

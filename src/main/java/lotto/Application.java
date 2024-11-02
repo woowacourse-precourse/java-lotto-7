@@ -3,7 +3,6 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
-import lotto.domain.LottoStats;
 import lotto.service.draw.LottoDrawService;
 import lotto.service.draw.impl.LottoDrawServiceImpl;
 import lotto.service.lotto.LottoService;
@@ -21,11 +20,11 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
+
         LottoController controller = init();
         List<Lotto> lottoBundle = controller.purchaseLotto();
         LottoDrawResult drawResult = controller.drawLotto();
         controller.getLottoStats(lottoBundle, drawResult);
-
     }
 
     public static LottoController init() {
