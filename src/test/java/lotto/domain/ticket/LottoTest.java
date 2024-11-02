@@ -28,14 +28,16 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호가 정상 범위면 생성 성공")
     void 로또_번호가_정상_범위면_생성_성공() {
+
         // expect
         Assertions.assertThatCode(() -> Lotto.of(List.of(1, 2, 3, 4, 5, 45)))
                 .doesNotThrowAnyException();
     }
-    
+
     @Test
     @DisplayName("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다")
     void 로또_번호가_최소값보다_작으면_예외발생() {
+
         // expect
         Assertions.assertThatThrownBy(() -> Lotto.of(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -55,6 +57,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 번호가 6개가 아니면 예외가 발생한다")
     void 로또_번호_개수가_6개가_아니면_예외발생() {
+
         // expect
         Assertions.assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)

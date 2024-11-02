@@ -4,7 +4,6 @@ import java.util.stream.IntStream;
 import lotto.domain.payment.LottoQuantity;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.Lottos;
-import lotto.domain.ticket.NumberGenerator;
 
 public class LottoService {
     private final int ZERO = 0;
