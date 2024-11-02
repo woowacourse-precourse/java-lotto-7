@@ -20,6 +20,14 @@ public class LottoGame {
 
     }
 
+    private void inputWinningNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String numbersInput=Console.readLine();
+        System.out.println("\n보너스 번호를 입력해 주세요");
+        String bonusInput=Console.readLine();
+        winningLotto=new WinningLotto(numbersInput,bonusInput);
+    }
+
     private void generateLottoTickets(int purchaseAmount) {
         int ticketCount= purchaseAmount/LOTTO_PRICE;
         System.out.println(ticketCount+"개 를 구매했습니다");
