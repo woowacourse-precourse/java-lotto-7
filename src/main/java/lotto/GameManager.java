@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.io.InputView;
@@ -19,9 +18,11 @@ public class GameManager {
         LottoShop lottoShop = new LottoShop();
         LottoJudge lottoJudge = new LottoJudge();
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
+        YieldCalculator yieldCalculator = new YieldCalculator();
         List<Lotto> lottos = lottoShop.buyLotto(price, randomLottoGenerator);
         LottoWinningSet lottoWinningSet = readWinningLottoSet();
-        Map<Prize, Integer> LottoScore = new HashMap<>();
+        Map<Prize, Integer> lottoScore = lottoJudge.calculateLottoScore(lottos, lottoWinningSet);
+        int prizeMoney = yieldCalculator.calculatePrizeMoney(lottoScore);
     }
 
     private int readPrice() {
