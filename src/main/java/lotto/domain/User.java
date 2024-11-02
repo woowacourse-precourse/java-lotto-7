@@ -36,7 +36,7 @@ public class User {
         winningPrice += price;
     }
 
-    public double getProfit() {
-        return Math.round((double) winningPrice / buyingPrice * 1000) / 10.0;
+    public String getProfit() {
+        return String.format("%,.1f", Math.round((double) winningPrice / buyingPrice * 1000) / 10.0);
     }
 }
