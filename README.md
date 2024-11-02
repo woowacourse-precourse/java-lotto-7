@@ -178,8 +178,8 @@ View
                 <td rowspan="1">refactor-output</tr><tr> 
     <td rowspan="1">로또 컨트롤러</td>
             <td rowspan="1"><b><em>LottoController</em></b></td>
-                <td>⬜로직 조합</td> 
-                    <td rowspan="1">feat/controller</tr><tr> 
+                <td>✅로직 조합</td> 
+                    <td rowspan="1">dev/controller</tr><tr> 
     <td rowspan="1">의존성 주입</td>
         <td rowspan="1"><b><em>DependencyInjectionContainer</em></b></td>
             <td>⬜컴포넌트 의존성 주입</td> 
