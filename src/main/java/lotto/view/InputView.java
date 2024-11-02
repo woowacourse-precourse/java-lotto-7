@@ -11,7 +11,22 @@ public class InputView {
 
     public static int readUserMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String userInput = Console.readLine();
+        return validateUserMoney(userInput);
+    }
+
+    private static int validateUserMoney(String userInput) {
+        int userMoney;
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                userMoney = Integer.parseInt(userInput);
+                break;
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닙니다.");
+            }
+        }
+        return userMoney;
     }
 
     public static List<Integer> readWinningLotto() {

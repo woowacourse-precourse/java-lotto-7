@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.application.LottoTicketsDto;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
+import lotto.view.InputView;
 
 import java.util.List;
 
@@ -21,5 +22,18 @@ public class LottoController {
         printUserRanks(userRanks);
 
         printRateOfReturn(lottoService.calculateRateOfReturn(userMoney, userRanks));
+    }
+
+    private int readUserMoney() {
+        int userMoney = 0;
+        while (true) {
+            try {
+                userMoney = InputView.readUserMoney();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return userMoney;
     }
 }
