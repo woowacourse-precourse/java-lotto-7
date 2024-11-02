@@ -8,7 +8,9 @@ public enum ErrorMessage {
 
     NOT_DUPLICATE_NUMBER("[ERROR] 로또 번호는 중복될 수 없습니다."),
 
-    NOT_FIT_LOTTO_NUMBER_SCOPE("[ERROR] 로또 번호 범위에 맞지 않습니다.");
+    NOT_FIT_LOTTO_NUMBER_SCOPE("[ERROR] 로또 번호 범위에 맞지 않습니다."),
+
+    NOT_DUPLICATED_BONUS_NUMBER("[ERROR] 보너스 번호가 로또 번호와 중복됩니다.");
 
     private final String errorMessage;
 
