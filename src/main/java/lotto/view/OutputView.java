@@ -18,6 +18,7 @@ public class OutputView {
             5개 일치 (1,500,000원) - %d개
             5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
             6개 일치 (2,000,000,000원) - %d개
+            총 수익률은 %,.1f%%입니다.
             """;
 
     public void printPurchasedLottos(LottosResponse response) {
@@ -48,13 +49,14 @@ public class OutputView {
         BUFFER.setLength(0);
     }
 
-    public void printDrawResult(EnumMap<Ranking, Integer> drawResult) {
-        System.out.printf(NEW_LINE+ STATISTIC_OUTPUT_MESSAGE,
+    public void printDrawResult(EnumMap<Ranking, Integer> drawResult, double earningRate) {
+        System.out.printf(STATISTIC_OUTPUT_MESSAGE,
                 drawResult.get(Ranking.FIFTH),
                 drawResult.get(Ranking.FOURTH),
                 drawResult.get(Ranking.THIRD),
                 drawResult.get(Ranking.SECOND),
-                drawResult.get(Ranking.FIRST)
+                drawResult.get(Ranking.FIRST),
+                earningRate
         );
     }
 }
