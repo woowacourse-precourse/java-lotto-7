@@ -27,11 +27,11 @@ public class Machine {
         return tickets;
     }
 
-    private int countTickets(int money) {
+    int countTickets(int money) {
         return money / 1000;
     }
 
-    private List<Lotto> makeTickets() {
+    List<Lotto> makeTickets() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             lottos.add(new Lotto(generateNumbers()));
@@ -91,7 +91,7 @@ public class Machine {
         return "no prize";
     }
 
-    private int checkPrizeNumberMatch(Lotto ticket, Lotto prizeNumber) {
+    int checkPrizeNumberMatch(Lotto ticket, Lotto prizeNumber) {
         List<Integer> matches = ticket.getNumbers()
                 .stream()
                 .filter(num -> prizeNumber.getNumbers().contains(num))
@@ -100,7 +100,7 @@ public class Machine {
         return matches.size();
     }
 
-    private boolean checkBonusNumberMatch(int bonusNumber, Lotto prizeNumber) {
+    boolean checkBonusNumberMatch(int bonusNumber, Lotto prizeNumber) {
         for (int num : prizeNumber.getNumbers()) {
             if (num == bonusNumber) {
                 return true;
