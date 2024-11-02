@@ -44,7 +44,7 @@ public class InputView {
     }
 
     private static boolean validateBuyAmountNotPer1000(Integer buyAmount) {
-        if (buyAmount % 1000 == 0) {
+        if (buyAmount % 1000 == 0 && buyAmount != 0) {
             return false;
         }
         return true;
