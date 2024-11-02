@@ -86,9 +86,11 @@
     - `당첨 통계, 수익률 출력`
 
 ## 프로젝트 구조
-### controller.LottoController
+### controller
+#### controller.LottoController
 - 사용자 입출력을 담당하고, 적절한 서비스 메소드를 호출한다.
-### service.LottoService
+### service
+#### service.LottoService
 - 모델과의 상호작용을 통해 비즈니스 로직을 수행한다.
 ### models
 #### models.Lotto
@@ -97,8 +99,10 @@
 - 보너스 번호를 관리한다.
 #### models.Issue
 - 로또 발행을 관리한다.
+#### modesl.LottoMatch
+- 로또 매치(통계)를 관리한다.
 #### models.LottoResultManager
-- 로또 통계와 수익률 계산을 담당한다. 
+- 수익률 계산을 담당한다. 
 ### views
 #### views.InputView
 - 사용자 입력과 입력 시 프롬프트를 관리한다.
