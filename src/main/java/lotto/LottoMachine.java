@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class LottoMachine {
 
@@ -32,8 +33,8 @@ public class LottoMachine {
             long matchCount = lotto.getMatchCount(winningNumbers.lotto());
             boolean isBonusBallMatched = lotto.contains(winningNumbers.bonusBall());
 
-            LottoPrize prize = LottoPrize.of(matchCount, isBonusBallMatched);
-            prizes.add(prize);
+            Optional<LottoPrize> prize = LottoPrize.of(matchCount, isBonusBallMatched);
+            prize.ifPresent(prizes::add);
         }
         return new LottoResult(prizes);
     }

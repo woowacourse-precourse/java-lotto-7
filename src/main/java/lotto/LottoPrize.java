@@ -1,23 +1,23 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum LottoPrize {
-    JACKPOT(6, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, 1_500_000),
+    FIFTH(3, 5_000),
     FOURTH(4, 50_000),
-    FIFTH(3, 5_000);
+    THIRD(5, 1_500_000),
+    SECOND(5, true, 30_000_000),
+    JACKPOT(6, 2_000_000_000);
 
     private final int matchCount;
     private final boolean isBonusBallMatched;
     private final int money;
 
-    public static LottoPrize of(long matchCount, boolean isBonusBallMatched) {
+    public static Optional<LottoPrize> of(long matchCount, boolean isBonusBallMatched) {
         return Arrays.stream(values())
                 .filter(prize -> prize.isMatched(matchCount, isBonusBallMatched))
-                .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 일치하는 상금이 없습니다."));
+                .findAny();
     }
 
     LottoPrize(int matchCount, int money) {
@@ -28,6 +28,14 @@ public enum LottoPrize {
         this.matchCount = matchCount;
         this.isBonusBallMatched = isBonusBallMatched;
         this.money = money;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusBallMatched() {
+        return isBonusBallMatched;
     }
 
     public int getMoney() {

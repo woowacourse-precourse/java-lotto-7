@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -29,6 +30,23 @@ public class Application {
         Lotto lotto = new Lotto(InputHandler.toNumbers(numbersInput));
         int bonusBall = InputHandler.toInt(bonusBallInput);
 
-        LottoMachine.match(new WinningNumbers(lotto, bonusBall), lottos);
+        LottoResult result = LottoMachine.match(new WinningNumbers(lotto, bonusBall), lottos);
+
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Arrays.stream(LottoPrize.values())
+                .forEach(prize -> {
+                    List<LottoPrize> prizes = result.getPrizeFor(prize);
+
+                    System.out.print(prize.getMatchCount() + "개 일치");
+
+                    if (prize.isBonusBallMatched()) {
+                        System.out.print(", 보너스 볼 일치 ");
+                    }
+                    String money = String.format("%,d", prize.getMoney());
+                    System.out.println(" (" + money + "원) - " + prizes.size() + "개");
+                });
     }
 }

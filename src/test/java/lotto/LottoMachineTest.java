@@ -83,4 +83,16 @@ public class LottoMachineTest {
         assertThat(prize).hasSize(1);
         assertThat(prize.getFirst().getMoney()).isEqualTo(2_000_000_000);
     }
+
+    @DisplayName("아무 번호도 일치하지 않으면 당첨금은 없다.")
+    @Test
+    void noPrizeForNoMatch() {
+        WinningNumbers winningNumbers = new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 10);
+        Lotto lotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+
+        LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
+        List<LottoPrize> prize = result.getPrizes();
+
+        assertThat(prize).isEmpty();
+    }
 }
