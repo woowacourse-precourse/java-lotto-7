@@ -9,6 +9,7 @@ public enum ExceptionMessage {
     NOT_DIVIDED_BY_UNIT_AMOUNT("구입 금액은 단위 금액인 " + UNIT_PURCHASE_AMOUNT + "으로 나누어 떨어져야 합니다."),
     EXCEEDS_MAX_PURCHASE_AMOUNT("구입 금액은 최대 구매가능 금액인 " + MAX_PURCHASE_AMOUNT + "을 넘지 못합니다.");
 
+    private static final String PREFIX = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {
@@ -16,6 +17,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return message;
+        return PREFIX + message;
     }
 }
