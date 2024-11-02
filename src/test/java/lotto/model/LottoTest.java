@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.constant.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR_MESSAGE;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +31,7 @@ class LottoTest {
     void 로또_번호가_범위를_벗어나면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 48)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1부터 45사이어야 합니다.");
+                .hasMessage(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
     }
 
     @DisplayName("로또 번호를 알려준다.")

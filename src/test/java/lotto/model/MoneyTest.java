@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.constant.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,7 +17,7 @@ class MoneyTest {
     void 로또_구입_금액이_1000원이하면_예외가_발생한다(final Integer money) {
         assertThatThrownBy(() -> new Money(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 최소 구입 금액 1000원 입니다.");
+                .hasMessage(MINIMUM_PURCHASE_AMOUNT_ERROR_MESSAGE);
     }
 
     @DisplayName("로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
@@ -25,7 +26,7 @@ class MoneyTest {
     void 로또_구입_금액이_1000으로_나누어_떨어지지_않으면_예외가_발생한다(final Integer money) {
         assertThatThrownBy(() -> new Money(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
+                .hasMessage(PURCHASE_AMOUNT_DIVISIBILITY_ERROR_MESSAGE);
     }
 
     @DisplayName("로또 구입 금액을 알려준다.")

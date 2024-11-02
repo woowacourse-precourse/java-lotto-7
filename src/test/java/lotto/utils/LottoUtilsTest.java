@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static lotto.constant.ErrorMessage.WINNING_NUMBER_FORMAT_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +46,7 @@ class LottoUtilsTest {
     void 숫자_변경_실패_에러_발생(final String userInput) {
         assertThatThrownBy(() -> LottoUtils.generateWinningNumber(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 숫자만 가능합니다. 입력 형식을 확인해 주세요");
+                .hasMessage(WINNING_NUMBER_FORMAT_ERROR_MESSAGE);
     }
 
 }
