@@ -8,4 +8,6 @@ public class Consts {
     public static final String INPUT_MUST_BE_NUMBER = "금액은 숫자로 입력해야 합니다.";
     public static final String PURCHASE_AMOUNT_1000_UNIT = String.format("금액은 %d원 단위로 입력해 주세요.", LOTTO_PRICE);
     public static final String INPUT_MUST_BE_POSITIVE_NUMBER = "금액은 음수일 수 없습니다.";
+
+    public static final String INPUT_MESSAGE_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
 }
