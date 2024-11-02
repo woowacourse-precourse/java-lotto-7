@@ -17,13 +17,18 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public WinningNumbers(String inputNumbers) {
+    private final BonusNumber bonusNumber;
+
+    public WinningNumbers(String inputNumbers, BonusNumber bonusNumber) {
         List<String> numbersInString = parse(inputNumbers);
         this.numbers = validateInteger(numbersInString);
         validateSixNumbers();
         validateRange();
         validateDuplicated();
         sortNumbers();
+
+        this.bonusNumber = bonusNumber;
+        validateBonusDuplicated();
     }
 
     private List<String> parse(String inputNumbers) {
@@ -73,6 +78,13 @@ public class WinningNumbers {
     private void sortNumbers() {
         Collections.sort(numbers);
     }
+
+    private void validateBonusDuplicated() {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
