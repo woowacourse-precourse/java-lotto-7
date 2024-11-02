@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.Factory.BonusGeneratorFactory;
 import lotto.domain.Lotto;
 import lotto.service.BonusGenerator;
