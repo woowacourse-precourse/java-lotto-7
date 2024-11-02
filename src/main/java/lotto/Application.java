@@ -14,12 +14,8 @@ public class Application {
         int purchaseAmount = calculatePurchaseAmount(scanPurchasePrice());
         Lotto winningNumbersLotto;
 
-        System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
-        List<Lotto> myLottos = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount; i++) {
-            myLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-        printLottos(myLottos);
+        List<Lotto> myLottos = generateLottos(purchaseAmount);
+        printLottos(purchaseAmount, myLottos);
 
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -98,7 +94,16 @@ public class Application {
         }
     }
 
-    static void printLottos(List<Lotto> lottos) {
+    public static List<Lotto> generateLottos(int purchaseAmount) {
+        List<Lotto> myLottos = new ArrayList<>();
+        for (int i = 0; i < purchaseAmount; i++) {
+            myLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return myLottos;
+    }
+
+    public static void printLottos(int purchaseAmount, List<Lotto> lottos) {
+        System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             lotto.printLotto();
         }
