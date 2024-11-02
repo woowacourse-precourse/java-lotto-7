@@ -43,7 +43,8 @@ public class LottoStore {
             Rank.SECOND, new PrizeInfo(5, true, 30000000),
             Rank.THIRD, new PrizeInfo(5, false, 1500000),
             Rank.FOURTH, new PrizeInfo(4, false, 50000),
-            Rank.FIFTH, new PrizeInfo(3, false, 5000)
+            Rank.FIFTH, new PrizeInfo(3, false, 5000),
+            Rank.NONE, new PrizeInfo(0, false, 0)
         );
     }
 
