@@ -58,5 +58,9 @@ public class LottoController {
                     results.getOrDefault(rank, 0)
             );
         }
+
+        long winningAmount = lottoService.calculateWinningAmount();
+        double profitRate = lottoService.calculateProfitRate(winningAmount, Long.parseLong(purchaseAmount));
+        outputView.printProfitRate(profitRate);
     }
 }

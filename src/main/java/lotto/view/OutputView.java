@@ -23,4 +23,8 @@ public class OutputView {
     public void printMatchWithBonusResult(int matchCount, int winningAmount, int winningCount) {
         System.out.println(matchCount + "개 일치, 보너스 볼 일치 (" + winningAmount + "원) - " + winningCount + "개");
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
 }
