@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.Lotto;
 
-public class LottoMachine {
+public class LottoController {
 
     private Lotto lotto;
     private int cost;
