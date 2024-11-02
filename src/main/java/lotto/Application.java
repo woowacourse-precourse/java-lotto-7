@@ -27,11 +27,14 @@ public class Application {
 		OutputInterface.printNewLine();
 
 		List<Integer> winningNumbers = drawWinningNumbers(inputInterface, lottoService);
-		int bonusNumber = drawBonusNumber(inputInterface);
-
-		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumber);
 		OutputInterface.printNewLine();
 
+		int bonusNumber = drawBonusNumber(inputInterface);
+		OutputInterface.printNewLine();
+
+		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumber);
+
+		OutputInterface.printMessage(OutputInterface.WINNING_STATISTICS_INFORMATION);
 	}
 
 	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
