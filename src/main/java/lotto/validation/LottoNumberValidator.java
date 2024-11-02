@@ -5,12 +5,16 @@ import lotto.view.input.InputError;
 import lotto.view.input.InvalidInputException;
 
 public class LottoNumberValidator {
-    public static void validate(String input) {
+    public static void validateWinningNumbers(String input) {
         validateNotNullOrEmpty(input);
         validateHasComma(input);
         validateCommaSeparator(input);
-        validateIsInteger(input);
-        validatePositiveNumber(input);
+        validateIsPositiveNumber(input);
+    }
+
+    public static void validateBonusNumber(String input) {
+        validateNotNullOrEmpty(input);
+        validateIsNumber(input);
     }
 
     private static void validateNotNullOrEmpty(String input) {
@@ -33,8 +37,13 @@ public class LottoNumberValidator {
         }
     }
 
-    private static void validateIsInteger(String input) {
+    private static void validateIsPositiveNumber(String input) {
         String[] inputs = input.split(",");
+        validateIsNumber(inputs);
+        validatePositiveNumber(inputs);
+    }
+
+    private static void validateIsNumber(String[] inputs) {
         Arrays.stream(inputs).forEach(string -> {
             try {
                 Integer.parseInt(string);
@@ -44,8 +53,7 @@ public class LottoNumberValidator {
         });
     }
 
-    private static void validatePositiveNumber(String input) {
-        String[] inputs = input.split(",");
+    private static void validatePositiveNumber(String[] inputs) {
         boolean allPositive = Arrays.stream(inputs)
                 .map(Integer::parseInt)
                 .allMatch(number -> number > 0);
@@ -54,5 +62,10 @@ public class LottoNumberValidator {
         }
     }
 
+    private static void validateIsNumber(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new InvalidInputException(InputError.LOTTO_NUMBER_SEPARATOR_MUST_BE_COMMA);
+        }
+    }
 
 }
