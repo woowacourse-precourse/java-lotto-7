@@ -17,6 +17,7 @@ public class LottoMachine {
         lottoGen();
         inputNum();
         inputBonus();
+        calculate();
     }
 
     public void inputMoney() {
@@ -68,5 +69,26 @@ public class LottoMachine {
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
         Output.purchase(lottos);
+    }
+
+    public void calculate() {
+        long[] count = new long[5];
+        long total = 0;
+
+        for(Lotto l : lottos) {
+            count[l.compare(win, bonus)]++;
+        }
+        total = sum(count);
+        Output.statistic(count, "15");
+    }
+
+    public long sum(long[] count) {
+        long total = 0;
+        total += count[0]*5000;
+        total += count[1]*50000;
+        total += count[2]*1500000;
+        total += count[3]*30000000;
+        total += count[4]*2000000000;
+        return total;
     }
 }
