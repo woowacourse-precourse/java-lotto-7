@@ -16,17 +16,17 @@ import lotto.core.view.MatchWinningLottoView;
 
 public class StartLottoGameController implements Controller<LottoTicketDto, Class<Void>> {
 
-    private InputWinningLottoView inputWinningLottoView;
+    private final InputWinningLottoView inputWinningLottoView;
 
-    private InputBonusLottoNumberView inputBonusLottoNumberView;
+    private final InputBonusLottoNumberView inputBonusLottoNumberView;
 
-    private MatchWinningLottoView matchWinningLottoView;
+    private final MatchWinningLottoView matchWinningLottoView;
 
-    private CreateWinningLottoService createWinningLottoService;
+    private final CreateWinningLottoService createWinningLottoService;
 
-    private CreateBonusLottoNumberService createBonusLottoNumberService;
+    private final CreateBonusLottoNumberService createBonusLottoNumberService;
 
-    private MatchWinningLottoService matchWinningLottoService;
+    private final MatchWinningLottoService matchWinningLottoService;
 
     public StartLottoGameController(InputWinningLottoView inputWinningLottoView,
                                     InputBonusLottoNumberView inputBonusLottoNumberView,
