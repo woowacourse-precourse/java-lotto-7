@@ -32,6 +32,14 @@ public enum Rank {
                 .orElse(NONE);
     }
 
+    public int count() {
+        return count;
+    }
+
+    public int price() {
+        return price;
+    }
+
     private enum BonusMatcher {
         NONE {
             @Override

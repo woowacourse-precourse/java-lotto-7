@@ -24,5 +24,7 @@ public class LottoController {
         Lotto lotto = Lotto.fromString(InputView.readWinningNumbers());
         int bonus = InputView.readBonusNumber();
         WinningLotto winningLotto = new WinningLotto(lotto, bonus);
+
+        OutputView.renderStatistics(lottoPaper, lottoPaper.match(winningLotto));
     }
 }
