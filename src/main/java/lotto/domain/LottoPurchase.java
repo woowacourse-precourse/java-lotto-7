@@ -13,6 +13,8 @@ public class LottoPurchase {
     private int amount;
 
     public LottoPurchase(int purchase) {
+        validate(purchase);
+
         this.purchase = purchase;
         this.amount = purchase / LOTTO_PRICE;
     }
@@ -35,12 +37,11 @@ public class LottoPurchase {
 
     public static LottoPurchase to(String request) {
         int purchase = LottoUtils.parseInt(request);
-        validation(purchase);
 
         return new LottoPurchase(purchase);
     }
 
-    private static void validation(int input) {
+    private static void validate(int input) {
         LottoException.throwIllegalArgumentException(
             ExceptionMessage.NOT_GREATER_THEN_MAX_PRICE, isGreaterThenMaxPrice(input)
         );

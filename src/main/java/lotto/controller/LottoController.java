@@ -25,7 +25,12 @@ public class LottoController {
 
     public void saveLottoAmountInput() {
         String input = Console.readLine();
-        LottoException.throwIllegalArgumentException(ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(input));
+
+        LottoException.throwIllegalArgumentException(
+            ExceptionMessage.NOT_EMPTY_STRINGS, LottoUtils.isBlank(input)
+        );
+
         lottoService.saveLottoPurchase(input);
+        lottoService.createLottoNumbers();
     }
 }
