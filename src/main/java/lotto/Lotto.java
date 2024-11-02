@@ -16,5 +16,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString(); // numbers 리스트를 문자열로 변환하여 반환
+    }
 }
