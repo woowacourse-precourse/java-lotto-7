@@ -21,7 +21,7 @@ public class LottoPlay {
             long matchCount = matchWinningNumberCount(lotto, winningNumbers);
 
             WinningLotto rank = determineRank(matchCount, lotto, bonusNumber);
-            user.addWinning(rank);
+            this.user.addWinning(rank);
         }
 
         determineRankResult(this.user);
@@ -41,8 +41,7 @@ public class LottoPlay {
     }
 
     private WinningLotto drawBonus(Lotto lotto, int bonusNumber) {
-        boolean hasBonus = isHasBonus(lotto, bonusNumber);
-        if (hasBonus) {
+        if (isHasBonus(lotto, bonusNumber)) {
             return WinningLotto.SECOND;
         }
         return WinningLotto.THIRD;
