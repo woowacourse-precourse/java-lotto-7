@@ -12,7 +12,7 @@ public class OutputView {
     public static final String NUMBER_OF_MATCHED_MESSAGE = " - %d개\n";
 
     public void printGeneratedTickets(GeneratedTickets generatedTicket) {
-        System.out.printf((PURCHASED_TICKET_MESSAGE), generatedTicket.ticketCount());
+        System.out.printf((PURCHASED_TICKET_MESSAGE), generatedTicket.getTicketCount());
         generatedTicket.getTickets().forEach(System.out::println);
     }
 
