@@ -1,18 +1,18 @@
-package lotto.model;
+package lotto.model.user;
+
+import static lotto.util.LottoConstant.COST_UNIT;
+import static lotto.util.LottoConstant.MAX_LOTTERY_COUNT;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Set;
 import lotto.exception.user.LottoMaximumExceededException;
 import lotto.exception.user.NotEnoughMoneyException;
-import lotto.exception.NotNumberException;
 import lotto.exception.user.NotThousandUnitException;
 import lotto.util.ValidateUtil;
 
 public class LotteryMachine {
-
-    private static final int COST_UNIT = 1000;
-    private static final int MAX_LOTTERY_COUNT = 100;
 
     private final List<LottoNumbers> lottoNumbersList;
     private final int lotteryCount;
@@ -22,8 +22,8 @@ public class LotteryMachine {
         lottoNumbersList = createLotteryNumbersList();
     }
 
-    public List<String> getLottoResult() {
-        return lottoNumbersList.stream().map(LottoNumbers::toPrettyString).toList();
+    public List<Set<Integer>> getLottoResults() {
+        return lottoNumbersList.stream().map(LottoNumbers::getLotteryNumbers).toList();
     }
 
     public int getLotteryCount() {
@@ -44,7 +44,7 @@ public class LotteryMachine {
         validateMaxLotteryCount(funds);
         validateCostUnit(funds);
 
-        return funds / COST_UNIT;
+        return funds / COST_UNIT.getNumber();
     }
 
     private int parseToInt(final String insertedMoney) {
@@ -56,17 +56,17 @@ public class LotteryMachine {
     }
 
     private void validateMaxLotteryCount(final int funds) {
-        if(funds > MAX_LOTTERY_COUNT * COST_UNIT) {
+        if(funds > MAX_LOTTERY_COUNT.getNumber() * COST_UNIT.getNumber()) {
             throw new LottoMaximumExceededException();
         }
     }
 
     private void validateCostUnit(final int funds) {
-        if(funds < COST_UNIT) {
+        if(funds < COST_UNIT.getNumber()) {
             throw new NotEnoughMoneyException();
         }
 
-        if(funds % COST_UNIT != 0) {
+        if(funds % COST_UNIT.getNumber() != 0) {
             throw new NotThousandUnitException();
         }
     }

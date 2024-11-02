@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.administrator.WinningLottoNumbersDto;
+import lotto.model.statistic.LottoStatisticsDto;
 import lotto.model.user.LottoResultDto;
 import lotto.service.LottoAdministratorService;
 import lotto.service.LottoUserService;
@@ -10,7 +11,10 @@ public class LottoController {
     private final LottoUserService userService;
     private final LottoAdministratorService administratorService;
 
-    public LottoController(LottoUserService userService, LottoAdministratorService administratorService) {
+    public LottoController(
+            LottoUserService userService,
+            LottoAdministratorService administratorService
+    ) {
         this.userService = userService;
         this.administratorService = administratorService;
     }
@@ -21,5 +25,10 @@ public class LottoController {
 
     public WinningLottoNumbersDto setWinningNumbers(String winningNumbers, String bonusNumber) {
         return administratorService.setUpWinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    public LottoStatisticsDto getStatistics(LottoResultDto lottoResultDto,
+                                            WinningLottoNumbersDto winningLottoNumbersDto) {
+        return userService.fetchStatistics(lottoResultDto, winningLottoNumbersDto);
     }
 }

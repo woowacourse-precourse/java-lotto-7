@@ -6,12 +6,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.exception.EmptyInputException;
 import lotto.exception.user.LottoMaximumExceededException;
 import lotto.exception.user.NotEnoughMoneyException;
 import lotto.exception.user.NotThousandUnitException;
-import lotto.model.dto.LottoResultDto;
+import lotto.model.user.LottoResultDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -97,11 +99,10 @@ class LottoUserServiceTest {
     @Test
     void 로또_번호_자동_추첨_테스트() {
         assertRandomUniqueNumbersInRangeTest(() -> {
-            LottoResultDto lottoResult = service.createLottoResult("1000");
-            System.out.println(lottoResult.toString());
-            List<String> comparableObject = new ArrayList<>();
-            comparableObject.add("[1, 2, 3, 4, 5, 6]");
-            assertEquals(lottoResult.lottoResult(), comparableObject);
+            LottoResultDto lottoResultDto = service.createLottoResult("1000");
+            List<Set<Integer>> comparableObject = new ArrayList<>();
+            comparableObject.add(new HashSet<>(createNumbers()));
+            assertEquals(lottoResultDto.lottoResults(), comparableObject);
         }, createNumbers());
     }
 }
