@@ -11,18 +11,13 @@ public class WinningNumber extends Lotto {
 
     public WinningNumber(List<Integer> numbers, int bonusNumber) {
         super(numbers);
-        validateWinningNumber(numbers);
         validateBonusNumber(BigDecimal.valueOf(bonusNumber));
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateWinningNumber(List<Integer> numbers) {
-
-    }
-
     private void validateBonusNumber(BigDecimal bonusNumber) {
-        if (!Utils.isInRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getRange()),
-                new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getRange()), bonusNumber)) {
+        if (!Utils.isInRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
+                new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()), bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
         }
     }

@@ -78,5 +78,9 @@ public class InputView {
         if (Utils.isNumberInList(winningNumberData, count.intValue())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage() + " : " + userInput);
         }
+        if (!Utils.isInRange(new BigDecimal(LottoEnum.MIN_LOTTO_RANGE.getNumber()),
+                new BigDecimal(LottoEnum.MAX_LOTTO_RANGE.getNumber()), count)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
+        }
     }
 }
