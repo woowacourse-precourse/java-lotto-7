@@ -3,8 +3,8 @@ package lotto.custom.view;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.custom.constants.NumberConstants;
 import lotto.custom.model.Lotto;
+import lotto.custom.model.LottoPrize;
 import lotto.custom.model.Lottos;
 
 public class OutputView {
@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println(PromptMessages.DISPLAY_LOTTO_RESULT_PROMPT);
         System.out.println(PromptMessages.SEPARATOR);
         int index = 0;
-        for (NumberConstants.Prize prize : NumberConstants.Prize.values()) {
+        for (LottoPrize prize : LottoPrize.values()) {
             String PrizeMoney = String.format("%,d", prize.getPrizeMoney());
 
             System.out.println(prize.getPrizeDescription() +
