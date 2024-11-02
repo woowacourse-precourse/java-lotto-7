@@ -18,6 +18,6 @@ public class WinningLottoNumbersTest {
         // when & then
         assertThatThrownBy(() -> new WinningLottoNumbers(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 6개여야 합니다.");
+                .hasMessage("당첨 번호는 6개여야 합니다.");
     }
 }
