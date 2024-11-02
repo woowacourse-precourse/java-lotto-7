@@ -22,6 +22,18 @@ class ValidatorTest {
     }
 
     @Test
+    @DisplayName("로또 구입 금액 유효성 검사: 음수 - 예외 테스트")
+    void validateLottoPurchaseAmount_nonNegative() {
+        // given
+        Integer lottoPurchaseAmount = -1000;
+
+        // when & then
+        assertThatThrownBy(() -> Validator.validateLottoPurchaseAmount(lottoPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @Test
     @DisplayName("로또 구입 금액 유효성 검사: 배수 아님 - 예외 테스트")
     void validateLottoPurchaseAmount_notMultiple() {
         // given
