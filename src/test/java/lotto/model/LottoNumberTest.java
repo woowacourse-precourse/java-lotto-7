@@ -27,7 +27,7 @@ class LottoNumberTest {
 	}
 
 	@ParameterizedTest
-	@DisplayName("1 미만이거나 45 초과인 수로 로또 번호 객체를 생성한다면 에러를 발생시킨다.")
+	@DisplayName("1 미만이거나 45 초과인 수로 로또 번호 객체 캐시를 반환받는다면 에러를 발생시킨다.")
 	@ValueSource(ints = {0, 46})
 	void 로또_번호의_값이_1_미만이거나_45_초과라면_예외가_발생한다(int number) {
 		// when, then
