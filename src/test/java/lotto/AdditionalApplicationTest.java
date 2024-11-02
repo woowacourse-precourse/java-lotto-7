@@ -32,62 +32,7 @@ public class AdditionalApplicationTest {
 //    }
 
 //
-//    @ParameterizedTest
-//    @CsvSource(value = {"0:1", "1:2", "2:3", "3:4", "4:5", "5:6"}, delimiter = ':')
-//    void 당첨번호를_split해_순서대로_저장한다_1(int lottoNumbersIndex, int lottoNumber) {
-//        String testNumber = "1,2,3,4,5,6";
-//        Lotto lotto = Application.registerWinningNumbers(testNumber);
 //
-//        assertThat(lotto.getNumbers().get(lottoNumbersIndex)).isEqualTo(lottoNumber);
-//    }
-//
-//    @ParameterizedTest
-//    @ValueSource(strings = {"5 5", "55$5", "$5 5", "5$5 ", "5 $ 5"})
-//    void 하나의_번호_중간에_다른_문자가_있으면_예외(String testNumber) {
-//        assertThatIllegalArgumentException().isThrownBy(
-//                        () -> Application.registerWinningNumbers(testNumber))
-//                .withMessage("[ERROR] 숫자값만 입력해주세요.");
-//    }
-//
-//    @ParameterizedTest
-//    @ValueSource(strings = {" 45", "45 ", "    45", "45   "})
-//    void 번호와_번호_사이_띄어쓰기는_허용(String testNumber) {
-//        String defaultNumbers = "1,2,3,4,5,";
-//        assertThatCode(() -> Application.registerWinningNumbers(defaultNumbers + testNumber))
-//                .doesNotThrowAnyException();
-//    }
-//
-//    @ParameterizedTest
-//    @MethodSource("invalidLottoNumbersAmountProvider")
-//    void 당첨번호가_6개가_아니면_예외(List<Integer> testNumbers) {
-//        assertThatIllegalArgumentException().isThrownBy(
-//                        () -> new Lotto(testNumbers))
-//                .withMessage("[ERROR] 로또 번호는 6개여야 합니다.");
-//    }
-//
-//    static Stream<List<Integer>> invalidLottoNumbersAmountProvider() {
-//        return Stream.of(
-//                Arrays.asList(1, 2, 3, 4, 5),
-//                Arrays.asList(1, 2, 3, 4, 5, 6, 7)
-//        );
-//    }
-//
-//    @ParameterizedTest
-//    @ValueSource(ints = {-1, 0, 46})
-//    void 당첨번호가_1이상_45이하가_아니면_예외(int testNumber) {
-//        List<Integer> numbersIncludingInvalidRange = new ArrayList<>(Arrays.asList(testNumber, 1, 2, 3, 4, 5));
-//        assertThatIllegalArgumentException().isThrownBy(
-//                        () -> new Lotto(numbersIncludingInvalidRange))
-//                .withMessage("[ERROR] 1 이상 45 이하의 정수를 입력해주세요.");
-//    }
-//
-//    @Test
-//    void 당첨번호가_중복되면_예외() {
-//        List<Integer> numbersIncludingDuplication = new ArrayList<>(Arrays.asList(5, 1, 2, 3, 4, 5));
-//        assertThatIllegalArgumentException().isThrownBy(
-//                        () -> new Lotto(numbersIncludingDuplication))
-//                .withMessage("[ERROR] 중복되지 않은 숫자를 입력해주세요.");
-//    }
 //
 //    @Test
 //    void 보너스번호_null일시_예외() {

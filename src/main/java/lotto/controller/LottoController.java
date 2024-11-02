@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import lotto.WinningRank;
 import lotto.model.LottoAmount;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;
+import lotto.model.WinningNumberGenerator;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,7 +24,7 @@ public class LottoController {
         LottoAmount lottoAmount = purchaseLottos();
         Lottos lottos = lottoMachine.issueLottos(lottoAmount);
         outputView.outputIssuedLottos(lottos);
-        String winningNumberInput = inputView.inputWinningNumber();
+        WinningNumber winningNumber = pickWinningNumber();
     }
 
     private LottoAmount purchaseLottos() {
@@ -32,6 +34,16 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             outputView.outputExceptionMessage(e.getMessage());
             return purchaseLottos();
+        }
+    }
+
+    private WinningNumber pickWinningNumber() {
+        try {
+            String winningNumberInput = inputView.inputWinningNumber();
+            return WinningNumberGenerator.registerWinningNumber(winningNumberInput);
+        } catch (IllegalArgumentException e) {
+            outputView.outputExceptionMessage(e.getMessage());
+            return pickWinningNumber();
         }
     }
 }
