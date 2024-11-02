@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.constant.LottoConstants.NUMBER_COUNT;
+
+import java.util.Objects;
 import lotto.exception.DuplicateLottoNumberException;
 
 public class WinningLotto {
@@ -28,5 +31,23 @@ public class WinningLotto {
 
     public BonusNumber getBonusNumber() {
         return bonusNumber;
+    }
+
+    public Rank calculateRank(Lotto lotto) {
+        return Rank.of(matchCount(lotto), containsBonusNumber(lotto));
+    }
+
+    private int matchCount(Lotto lotto) {
+        int matchCount = 0;
+        for (int i = 0; i < NUMBER_COUNT; i++) {
+            if (Objects.equals(this.lotto.getNumber(i), lotto.getNumber(i))) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private boolean containsBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber.getNumber());
     }
 }

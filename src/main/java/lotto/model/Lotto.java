@@ -56,4 +56,8 @@ public class Lotto {
     private long countDistinctUniqueNumbers(List<Integer> numbers) {
         return numbers.stream().distinct().count();
     }
+
+    public Integer getNumber(int index) {
+        return numbers.get(index);
+    }
 }
