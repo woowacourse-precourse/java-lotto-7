@@ -24,6 +24,9 @@ public class LottoController {
         User user = purchaseLotto();
         Lotto winningLotto = inputWinningNumbers();
         WinningNumber winningNumber = inputBonusNumber(winningLotto);
+
+        inputView.consoleClose();
+
         outputResult(user, winningNumber);
     }
 

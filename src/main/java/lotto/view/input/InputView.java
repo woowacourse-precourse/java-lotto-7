@@ -18,4 +18,8 @@ public class InputView {
         System.out.println(InputMessage.INPUT_BONUS_NUMBER.getInputMessage());
         return Console.readLine();
     }
+
+    public void consoleClose() {
+        Console.close();
+    }
 }
