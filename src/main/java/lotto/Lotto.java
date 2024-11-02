@@ -1,13 +1,12 @@
 package lotto;
 
+import constants.Constants;
 import constants.ErrorMessage;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
 public class Lotto {
-
-    private static final int LOTTO_SIZE = 6;
 
     private final List<LottoNumber> numbers;
 
@@ -22,7 +21,7 @@ public class Lotto {
     }
 
     private void validateSize(List<LottoNumber> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
         }
     }
@@ -33,7 +32,7 @@ public class Lotto {
         }
     }
 
-    public Long matchNumbers(WinningLotto winningLotto) {
+    public int matchNumbers(WinningLotto winningLotto) {
         return winningLotto.countWinnings(numbers);
     }
 

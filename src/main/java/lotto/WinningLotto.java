@@ -1,13 +1,12 @@
 package lotto;
 
+import constants.Constants;
 import constants.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class WinningLotto {
-
-    private static final int LOTTO_SIZE = 6;
 
     private static final String SEPARATOR = ",";
 
@@ -46,13 +45,13 @@ public class WinningLotto {
     }
 
     private void validateSize(List<LottoNumber> lottoNumbers) {
-        if (lottoNumbers.size() != LOTTO_SIZE) {
+        if (lottoNumbers.size() != Constants.LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MATCH_LOTTO_SIZE);
         }
     }
 
-    public Long countWinnings(List<LottoNumber> numbers) {
-        return winningNumbers.stream().filter(numbers::contains).count();
+    public int countWinnings(List<LottoNumber> numbers) {
+        return (int) winningNumbers.stream().filter(numbers::contains).count();
     }
 
     public boolean containsBonus(List<LottoNumber> numbers) {
