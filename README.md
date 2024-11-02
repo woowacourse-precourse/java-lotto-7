@@ -124,7 +124,7 @@
         - `UserLotto` : 로또 매칭시 자신의 매칭 결과를 반환한다.
         - `RandomLottos` : 자신과 사용자의 로또를 매칭한다.
         - `WinningRank` : 매칭 결과를 당첨 통계로 저장한다.
-    - `YieldCalculateService` : **총 상금액을 받아와 수익률 계산을 한다.**
+    - `YieldCalculateService` : **총 상금액을 받아와 수익률 계산을 요청한다.**
         - `YieldCalculator` : 수익률을 계산한다.
         - `Wallet` : 구매 금액 데이터를 제공하고 수익률을 저장 및 반환한다.
         - `WinningRank` : 당첨 통계 결과로 최종 상금을 계산하여 반환한다.
