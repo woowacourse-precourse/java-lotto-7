@@ -22,13 +22,17 @@ public class LottoInputView
     public static List<Integer> lottoWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine().trim();
-        List<Integer> finalwinningNumbers = splitWinningNumbers(numbers);
+        List<Integer> finalwinningNumbers = tempWinningNumbers(numbers);
 
         return finalwinningNumbers;
     }
 
-    public static List<Integer> splitWinningNumbers(String numbers) {
+    public static List<Integer> tempWinningNumbers(String numbers) {
+        String[] splitNumbers = splitWinningNumbers(numbers);
+    }
 
+    public static String[] splitWinningNumbers(String numbers) {
+        return numbers.split(",");
     }
 
 
