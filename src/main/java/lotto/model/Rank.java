@@ -20,14 +20,6 @@ public enum Rank {
         this.displayName = displayName;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isMatchBonus() {
-        return matchBonus;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
     }

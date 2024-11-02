@@ -26,11 +26,6 @@ public class LottoResult {
                 .sum();
     }
 
-    // 총 상금 반환
-    public int getTotalPrize() {
-        return calculateTotalPrize();
-    }
-
     // 당첨 결과 출력
     public void printResult() {
         System.out.println("당첨 통계");

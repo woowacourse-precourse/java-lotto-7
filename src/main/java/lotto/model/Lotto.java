@@ -13,11 +13,23 @@ public class Lotto {  //개수, 범위, 중복 유효성 검사
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidator.validateNumberCount(numbers);
-        LottoValidator.validateNumberRange(numbers);
-        LottoValidator.validateUniqueNumbers(numbers);
+        validateNumberCount(numbers);
+        validateNumberRange(numbers);
+        validateUniqueNumbers(numbers);
         // 숫자 형식 검증
         //LottoValidator.validateNumberIsNumeric(numbers);
+    }
+
+    private void validateNumberCount(List<Integer> numbers) {
+        LottoValidator.validateNumberCount(numbers);
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        LottoValidator.validateNumberRange(numbers);
+    }
+
+    private void validateUniqueNumbers(List<Integer> numbers) {
+        LottoValidator.validateUniqueNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
