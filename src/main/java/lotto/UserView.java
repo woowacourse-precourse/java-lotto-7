@@ -1,7 +1,8 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.List;
-
+import java.util.Map;
 
 public class UserView {
 
@@ -24,6 +25,25 @@ public class UserView {
     public void displayLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.toString());
+        }
+    }
+
+    public void displayStatisticsMessage() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+    }
+
+    public void displayStatistics(Map<Rank, Integer> results) {
+        DecimalFormat df = new DecimalFormat("###,###");
+
+        for(Rank rank : Rank.values()) {
+            int count = results.getOrDefault(rank, 0);
+
+            if (rank == Rank.SECOND) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개%n", rank.getBalls(), df.format(rank.getWinningPrize()), count);
+                continue;
+            }
+            System.out.printf("%d개 일치 (%s원) - %d개%n", rank.getBalls(), df.format(rank.getWinningPrize()), count);
         }
     }
 
