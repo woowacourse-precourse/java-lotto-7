@@ -1,6 +1,5 @@
 package lotto.model.domain;
 
-import java.util.Objects;
 import lotto.model.ErrorMessage;
 
 public class LottoNumber {
@@ -33,10 +32,5 @@ public class LottoNumber {
 
         LottoNumber other = (LottoNumber) obj;
         return this.number == other.number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
     }
 }
