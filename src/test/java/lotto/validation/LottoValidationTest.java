@@ -2,6 +2,8 @@ package lotto.validation;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoValidationTest {
@@ -29,6 +31,16 @@ class LottoValidationTest {
     @Test
     void 천원으로_나누어_떨어지지_않을_경우_예외가_발생한다() {
         assertThatThrownBy(() -> lottoValidation.validateDivisible(8500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 당첨_번호가_6개가_아닐_경우_예외가_발생한다(){
+        List<String> input1 = List.of("1","2","3","4","5","6","7");
+        assertThatThrownBy(()->lottoValidation.validateSize(input1))
+                .isInstanceOf(IllegalArgumentException.class);
+        List<String> input2 = List.of("1","2","3","4","5");
+        assertThatThrownBy(()->lottoValidation.validateSize(input2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
