@@ -6,22 +6,22 @@ import java.util.stream.Collectors;
 
 public class LottoHandler {
 
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lottos> lottos = new ArrayList<>();
 
     public void buyLottos(int lottoTickets) {
         for(int num = 0; num < lottoTickets; num++) {
-            Lotto lotto = Lotto.generateLottoNumbers();
-            lottos.add(lotto);
+            Lottos lottoNumbers= Lottos.generateLottoNumbers();
+            lottos.add(lottoNumbers);
         }
     }
 
     public String getLottoList() {
         return getLottos().stream()
-                .map(lotto -> lotto.getNumbers().toString())
+                .map(lottos -> lottos.getLottoNumbers().toString())
                 .collect(Collectors.joining("\n"));
     }
 
-    public List<Lotto> getLottos() {
+    public List<Lottos> getLottos() {
         return lottos;
     }
 }

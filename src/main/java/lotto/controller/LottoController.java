@@ -29,7 +29,5 @@ public class LottoController {
         lottoHandler.buyLottos(customer.getLottoTickets());
         System.out.println(lottoHandler.getLottoList());
 
-
-
     }
 }
