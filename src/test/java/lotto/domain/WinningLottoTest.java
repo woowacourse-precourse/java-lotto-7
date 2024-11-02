@@ -17,7 +17,7 @@ public class WinningLottoTest {
 
         assertThatThrownBy(() -> WinningLotto.ofNumbersAndConfig(numbers, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoError.LOTTO_WINNING_NUMBERS_COUNT.getMessage())
+                .hasMessageContaining(LottoError.LOTTO_NUMBERS_COUNT.getMessage())
                 .hasMessageStartingWith(ERROR_PREFIX);
     }
 
@@ -47,7 +47,7 @@ public class WinningLottoTest {
 
         assertThatThrownBy(() -> WinningLotto.ofNumbersAndConfig(numbers, CONFIG))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LottoError.LOTTO_WINNING_NUMBERS_DUPLICATION.getMessage())
+                .hasMessageContaining(LottoError.LOTTO_NUMBERS_DUPLICATION.getMessage())
                 .hasMessageStartingWith(ERROR_PREFIX);
     }
 }
