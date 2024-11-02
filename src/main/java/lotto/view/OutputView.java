@@ -46,4 +46,8 @@ public class OutputView {
     private void printResult(String format, int numberOfMatch, long money, int count) {
         System.out.printf(format, numberOfMatch, money, count);
     }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    }
 }
