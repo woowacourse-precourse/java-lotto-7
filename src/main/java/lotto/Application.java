@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -38,7 +40,12 @@ public class Application {
         }
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        String numbersInput = Console.readLine();
+        String[] numbersInputs = Console.readLine().split(",");
+        List<String> inputs = Arrays.stream(numbersInputs)
+                .map(String::trim)
+                .filter(x -> !x.isEmpty())
+                .toList();
+
 
     }
 }
