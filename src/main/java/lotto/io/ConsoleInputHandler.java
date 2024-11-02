@@ -1,6 +1,7 @@
 package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.lotto.LottoAmount;
 import lotto.lotto.LottoNumber;
 import lotto.lotto.WiningNumbers;
 
@@ -11,9 +12,9 @@ public class ConsoleInputHandler implements InputHandler {
     private final InputConverter inputConverter = new InputConverter();
 
     @Override
-    public int inputPurchaseAmount() {
+    public LottoAmount inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return inputConverter.convertToLottoAmount(Console.readLine());
     }
 
     @Override

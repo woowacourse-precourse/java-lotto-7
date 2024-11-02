@@ -1,11 +1,12 @@
 package lotto.io;
 
+import lotto.lotto.LottoAmount;
 import lotto.lotto.LottoNumber;
 import lotto.lotto.WiningNumbers;
 
 public interface InputHandler {
 
-    int inputPurchaseAmount();
+    LottoAmount inputPurchaseAmount();
 
     WiningNumbers inputWiningNumbers();
 
