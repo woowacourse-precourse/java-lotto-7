@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ValidatorTest {
 
@@ -17,4 +18,11 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"12test", "test", "123123abc"})
+    @DisplayName("입력이 숫자가 아닌 문자로 구성되어 있는 확인")
+    public void isDigitStringExceptionTest(String input) {
+        assertThatThrownBy(() -> Validator.isDigitString(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
