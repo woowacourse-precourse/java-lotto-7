@@ -12,12 +12,12 @@ public class LottoGenerator {
         this.numberGeneratorStrategy = numberGeneratorStrategy;
     }
 
-    public List<Lotto> issues(int quantity) {
+    public Lottos issues(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             lottos.add(issue());
         }
-        return lottos;
+        return new Lottos(lottos);
     }
 
     private Lotto issue() {

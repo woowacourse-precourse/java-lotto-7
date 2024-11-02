@@ -18,7 +18,7 @@ class LottoGeneratorTest {
         LottoGenerator lottoGenerator = new LottoGenerator(() -> lottoNumbers);
 
         //when
-        List<Lotto> result = lottoGenerator.issues(quantity);
+        Lottos result = lottoGenerator.issues(quantity);
 
         //then
         List<Lotto> compareLotto = List.of(
@@ -30,6 +30,6 @@ class LottoGeneratorTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6))
         );
 
-        assertThat(result).hasSize(6).isEqualTo(compareLotto);
+        assertThat(result.getLottos()).hasSize(6).isEqualTo(compareLotto);
     }
 }

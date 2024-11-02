@@ -1,10 +1,9 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-import lotto.model.Lotto;
 import lotto.model.LottoRank;
+import lotto.model.Lottos;
 
 public class OutputView {
 
@@ -23,10 +22,8 @@ public class OutputView {
         System.out.println(NEXT_LINE + quantity + "개를 구매했습니다.");
     }
 
-    public void printLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
+    public void printLottos(Lottos lottos) {
+        System.out.println(lottos.toString());
     }
 
     public void printWinningNumbersMessage() {

@@ -28,7 +28,7 @@ public class LottoController {
 
         LottoGenerator lottoGenerator = new LottoGenerator(new LottoNumbersStrategy());
         int quantity = purchaseAmount.calculateQuantity();
-        List<Lotto> lottos = lottoGenerator.issues(quantity);
+        Lottos lottos = lottoGenerator.issues(quantity);
 
         outputView.printQuantity(quantity);
         outputView.printLottos(lottos);
@@ -42,9 +42,9 @@ public class LottoController {
         outputView.printRateOrReturn(rateOfReturn);
     }
 
-    private LottoWinningResult getLottoWinningResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    private LottoWinningResult getLottoWinningResult(Lottos lottos, WinningNumbers winningNumbers) {
         LottoWinningCalculator winningCalculator = new LottoWinningCalculator(new LottoWinningStrategy());
-        return winningCalculator.calculateWinningResult(new Lottos(lottos), winningNumbers);
+        return winningCalculator.calculateWinningResult(lottos, winningNumbers);
     }
 
     private WinningNumbers issueWinningNumbers() {

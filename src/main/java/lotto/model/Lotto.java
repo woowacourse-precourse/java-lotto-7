@@ -77,6 +77,11 @@ public class Lotto {
         return Objects.hashCode(numbers);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
