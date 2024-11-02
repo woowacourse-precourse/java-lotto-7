@@ -25,10 +25,7 @@ public class AmountValidator {
         if (lottoAmount < 0) {
             throw new IllegalArgumentException(NEGATIVE_AMOUNT_ERROR);
         }
-        if (lottoAmount == 0) {
-            throw new IllegalArgumentException(MINIMUM_AMOUNT_ERROR);
-        }
-        if (lottoAmount < 1000) {
+        if (lottoAmount <= 1000) {
             throw new IllegalArgumentException(MINIMUM_AMOUNT_ERROR);
         }
         if (lottoAmount % 1000 != 0) {
