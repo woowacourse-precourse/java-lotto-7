@@ -3,6 +3,7 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Price;
 import lotto.domain.WinningNumbers;
 
@@ -37,6 +38,19 @@ public class InputHandler {
         } catch (IllegalArgumentException exception) {
             printExceptionReason(exception.getMessage());
             return getWinningNumbersFromUser();
+        }
+    }
+
+    public BonusNumber getBonusNumberFromUser() {
+        try {
+            String bonusNumberString = Console.readLine();
+            validateEmptyOrBlank(bonusNumberString);
+            int bonusNumber = parseAsInteger(bonusNumberString);
+
+            return new BonusNumber(bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            printExceptionReason(exception.getMessage());
+            return getBonusNumberFromUser();
         }
     }
 

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Price;
 import lotto.domain.WinningNumbers;
@@ -23,5 +24,6 @@ public class LottoController {
         WinningNumbers winningNumbers = inputHandler.getWinningNumbersFromUser();
 
         outputHandler.showBonusNumberNavigateMessage();
+        BonusNumber bonusNumber = inputHandler.getBonusNumberFromUser();
     }
 }
