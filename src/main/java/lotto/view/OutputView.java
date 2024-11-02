@@ -17,7 +17,10 @@ public class OutputView {
         List<LottoDto> lottoTickets = lottoTicketsDto.getLottoTickets();
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         for (LottoDto lottoTicket : lottoTickets) {
-            System.out.println(lottoTicket.getLotto());
+            System.out.println(lottoTicket.getLotto()
+                    .stream()
+                    .sorted()
+                    .toList());
         }
     }
 
@@ -30,6 +33,7 @@ public class OutputView {
             }
             if (rank.equals(Rank.SECOND)) {
                 System.out.println(rank.getBasicCount() + "개 일치, 보너스 볼 일치 " + "(" + formatRankPrize(rank.getPrize()) + "원)" + " - " + calculateNumberOfRanks(rank, userRanks) + "개");
+                continue;
             }
             System.out.println(rank.getBasicCount() + "개 일치 " + "(" + formatRankPrize(rank.getPrize()) + "원)" + " - " + calculateNumberOfRanks(rank, userRanks) + "개");
         }
