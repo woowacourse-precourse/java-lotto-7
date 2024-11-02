@@ -30,8 +30,8 @@ public class LottoController {
         responseLottoTickets(lottoTickets);
 
         WinningNumbers winningNumbers = requestWinningNumbers();
-
         Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
+
         double rateOfReturn = calculateRateOfReturn(result, purchasePrice.value());
         outputView.displayWinningResult(result, rateOfReturn);
     }
@@ -49,15 +49,10 @@ public class LottoController {
         List<Lotto> lottoTickets = new ArrayList<>();
         int quantity = purchasePrice.calculateQuantity();
         for (int count = 0; count < quantity; count++) {
-            lottoTickets.add(generateLotto());
+            lottoTickets.add(Lotto.generateRandomly());
         }
 
         return new LottoTickets(lottoTickets);
-    }
-
-    private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto((numbers));
     }
 
     private void responseLottoTickets(LottoTickets lottoTickets) {
