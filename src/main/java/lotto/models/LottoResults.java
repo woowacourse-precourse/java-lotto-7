@@ -9,14 +9,6 @@ public class LottoResults {
     private final static int DEFAULT_MATCH_VALUE = 0;
     private final Map<RewardTable, Integer> matches = new HashMap<>();
 
-    public void recordResult(int matchingNumbers) {
-        if (matchingNumbers < 3) {
-            return;
-        }
-        RewardTable matchTier = getMatchKey(matchingNumbers);
-        matches.put(matchTier, this.matches.getOrDefault(matchTier, 0) + 1);
-    }
-
     private RewardTable getMatchKey(int matchingNumbers) {
         RewardTable[] rewardTableKeys = RewardTable.values();
         for (RewardTable key : rewardTableKeys) {
@@ -25,6 +17,14 @@ public class LottoResults {
             }
         }
         return null;
+    }
+
+    public void recordResult(int matchingNumbers) {
+        if (matchingNumbers < 3) {
+            return;
+        }
+        RewardTable matchTier = getMatchKey(matchingNumbers);
+        this.matches.put(matchTier, this.matches.getOrDefault(matchTier, 0) + 1);
     }
 
     public long calculateRewards() {
@@ -39,8 +39,8 @@ public class LottoResults {
     }
 
     public int getMatchValue(RewardTable key) {
-        if (matches.containsKey(key)) {
-            return matches.get(key);
+        if (this.matches.containsKey(key)) {
+            return this.matches.get(key);
         }
         return DEFAULT_MATCH_VALUE;
     }

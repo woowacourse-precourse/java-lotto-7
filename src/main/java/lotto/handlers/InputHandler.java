@@ -11,34 +11,6 @@ import java.util.stream.Stream;
 public class InputHandler {
     private final InputView inputView;
 
-    public InputHandler(InputView inputView) {
-        this.inputView = inputView;
-    }
-
-    public void handlePurchaseAmountInput(LottoHandler lottoHandler, ResultHandler resultHandler) {
-        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
-        String input;
-
-        inputView.printPurchasePrompt();
-        do {
-            input = Console.readLine().strip();
-        } while (!purchaseAmountValidator.isValid(input));
-
-        int purchaseAmount = Integer.parseInt(input);
-        lottoHandler.generateTickets(purchaseAmount);
-        resultHandler.setPurchaseAmount(purchaseAmount);
-    }
-
-    public void handleWinningTicketInput(ResultHandler resultHandler) {
-        inputView.printLottoNumberPrompt();
-        String winningNumbers = getLottoNumberInput();
-
-        inputView.printBonusNumberPrompt();
-        String bonusNumber = getBonusNumberInput(winningNumbers);
-
-        resultHandler.setWinningTicket(winningNumbers, bonusNumber);
-    }
-
     private String getLottoNumberInput() {
         String input = "";
         boolean isValidInput = false;
@@ -67,5 +39,33 @@ public class InputHandler {
             }
         } while (!isValidInput);
         return input;
+    }
+
+    public InputHandler(InputView inputView) {
+        this.inputView = inputView;
+    }
+
+    public void handlePurchaseAmountInput(LottoHandler lottoHandler, ResultHandler resultHandler) {
+        PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
+        String input;
+
+        inputView.printPurchasePrompt();
+        do {
+            input = Console.readLine().strip();
+        } while (!purchaseAmountValidator.isValid(input));
+
+        int purchaseAmount = Integer.parseInt(input);
+        lottoHandler.generateTickets(purchaseAmount);
+        resultHandler.setPurchaseAmount(purchaseAmount);
+    }
+
+    public void handleWinningTicketInput(ResultHandler resultHandler) {
+        inputView.printLottoNumberPrompt();
+        String winningNumbers = getLottoNumberInput();
+
+        inputView.printBonusNumberPrompt();
+        String bonusNumber = getBonusNumberInput(winningNumbers);
+
+        resultHandler.setWinningTicket(winningNumbers, bonusNumber);
     }
 }
