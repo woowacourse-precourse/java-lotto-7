@@ -14,7 +14,7 @@ public class WinningNumbers {
 
     private static final int NUMBERS_RANGE_END = 45;
 
-    public final List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public WinningNumbers(String inputNumbers) {
         List<String> numbersInString = parse(inputNumbers);
@@ -66,5 +66,9 @@ public class WinningNumbers {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }
