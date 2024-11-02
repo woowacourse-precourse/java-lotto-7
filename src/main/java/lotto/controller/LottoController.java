@@ -37,9 +37,9 @@ public class LottoController {
         List<Lotto> lottoIns = lottoService.lottoIssuance(money);
         outputHandler.printLottoS(lottoIns);
 
-        String[] result = inputHandle();
-        List<Integer> numbers = inputParser.parseNumbers(result[0]);
-        int bonusNum = inputParser.parseBonus(result[1]);
+        List<Integer> numbers = inputParser.parseNumbers(inputHandler.getInputNums());
+        Lotto lotto = new Lotto(numbers);
+        int bonusNum = inputParser.parseBonus(inputHandler.getInputBonusNums());
 
         if (!validateService.validateBonus(bonusNum)) { return; }
 
@@ -56,13 +56,6 @@ public class LottoController {
             return money;
         }
         return 0;
-    }
-
-    public String[] inputHandle() {
-        String[] result = new String[2];
-        result[0] = inputHandler.getInputNums();
-        result[1] = inputHandler.getInputBonusNums();
-        return result;
     }
 
     public void outputHandle(Map<PrizeAmount, Integer> prizeAmounts, Double rate) {
