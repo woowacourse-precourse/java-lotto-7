@@ -21,17 +21,21 @@ public class WinningNumberInputHandler extends InputHandler{
         }
     }
 
+    public List<Integer> getWinningNumber() {
+        return stringInputParseInteger(winningNumber);
+    }
+
     @Override
     public void validateInput() {
         throwExceptionWhenInputIsInvalid();
         throwExceptionWhenInputIsNotInRange1To45();
     }
 
-    public String[] splitNumbers(String input) {
+    private String[] splitNumbers(String input) {
         return input.split(",");
     }
 
-    public List<Integer> stringInputParseInteger(String input) {
+    private List<Integer> stringInputParseInteger(String input) {
         String[] numbers = splitNumbers(input);
         List<Integer> lottoWinningNumbers = new ArrayList<>();
         for(String number:numbers) {
