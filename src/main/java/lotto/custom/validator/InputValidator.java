@@ -1,9 +1,17 @@
 package lotto.custom.validator;
 
+import static lotto.custom.constants.NumberConstants.LOTTO_NUMBERS_PER_TICKET;
+import static lotto.custom.constants.NumberConstants.LOTTO_NUMBER_RANGE_END;
+import static lotto.custom.constants.NumberConstants.LOTTO_NUMBER_RANGE_START;
 import static lotto.custom.constants.NumberConstants.LOTTO_PRICE;
+import static lotto.custom.constants.RegexConstants.DIGITS_SPACE_ONLY_REGEX;
+import static lotto.custom.constants.RegexConstants.DIGIT_COMMA_SPACE_ONLY_REGEX;
+import static lotto.custom.constants.RegexConstants.DIGIT_ONLY_REGEX;
+import static lotto.custom.constants.RegexConstants.DIGIT_SPACE_DIGIT_REGEX;
 
 import java.util.List;
 import lotto.custom.common.Exceptions;
+
 
 public class InputValidator {
     private final Exceptions exceptions;
@@ -14,7 +22,7 @@ public class InputValidator {
 
     public void validatePurchaseAmountInput(String input) {
         exceptions.emptyInput(input);
-        exceptions.invalidCharacters(input, "[0-9]+");
+        exceptions.invalidCharacters(input, DIGIT_ONLY_REGEX);
         exceptions.integerOverflow(input);
         validateAmountDivisibilityByLOTTOPRICE(input);
     }
@@ -27,8 +35,8 @@ public class InputValidator {
 
     public void validateWinningNumbersInput(String input) {
         exceptions.emptyInput(input);
-        exceptions.invalidCharacters(input, "^[0-9,\\s]*$");
-        if (input.matches(".*\\d+\\s+\\d+.*")) {
+        exceptions.invalidCharacters(input, DIGIT_COMMA_SPACE_ONLY_REGEX);
+        if (input.matches(DIGIT_SPACE_DIGIT_REGEX)) {
             throw new IllegalArgumentException(CustomErrorMessages.SPACE_BETWEEN_NUMBERS);
         }
     }
@@ -41,8 +49,8 @@ public class InputValidator {
 
     public void validateBonusNumberInput(String input) {
         exceptions.emptyInput(input);
-        exceptions.invalidCharacters(input, "^[0-9\\s]*$");
-        if (input.matches(".*\\d+\\s+\\d+.*")) {
+        exceptions.invalidCharacters(input, DIGITS_SPACE_ONLY_REGEX);
+        if (input.matches(DIGIT_SPACE_DIGIT_REGEX)) {
             throw new IllegalArgumentException(CustomErrorMessages.SPACE_BETWEEN_NUMBERS);
         }
     }
@@ -53,26 +61,26 @@ public class InputValidator {
             throw new IllegalArgumentException(CustomErrorMessages.BONUS_NUMBER_DUPLICATE);
         }
 
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < LOTTO_NUMBER_RANGE_START || bonusNumber > LOTTO_NUMBER_RANGE_END) {
             throw new IllegalArgumentException(CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 
     public void validateLottoNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_PER_TICKET) {
             throw new IllegalArgumentException(CustomErrorMessages.LOTTO_NUMBER_COUNT);
         }
     }
 
     public void validateUniqueNumbers(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_NUMBERS_PER_TICKET) {
             throw new IllegalArgumentException(CustomErrorMessages.LOTTO_NUMBERS_MUST_BE_UNIQUE);
         }
     }
 
     public void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_NUMBER_RANGE_START || number > LOTTO_NUMBER_RANGE_END) {
                 throw new IllegalArgumentException(CustomErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE);
             }
         }

@@ -1,5 +1,10 @@
 package lotto.custom.service;
 
+import static lotto.custom.constants.RegexConstants.CONSECUTIVE_COMMAS_REGEX;
+import static lotto.custom.constants.RegexConstants.EMPTY_STRING;
+import static lotto.custom.constants.RegexConstants.LEADING_TRAILING_COMMA_REGEX;
+import static lotto.custom.constants.RegexConstants.SINGLE_COMMA;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +12,6 @@ import lotto.custom.validator.InputValidator;
 
 public class WinningNumberService {
     private final InputValidator inputValidator;
-    private static final String COMMA = ",";
 
     public WinningNumberService() {
         this.inputValidator = new InputValidator();
@@ -22,11 +26,12 @@ public class WinningNumberService {
     }
 
     public String cleanConsecutiveCommas(String input) {
-        return input.replaceAll(",+", COMMA).replaceAll("^" + COMMA + "|" + COMMA + "$", "");
+        return input.replaceAll(CONSECUTIVE_COMMAS_REGEX, SINGLE_COMMA)
+                .replaceAll(LEADING_TRAILING_COMMA_REGEX, EMPTY_STRING);
     }
 
     public List<String> splitByComma(String input) {
-        return Arrays.asList(input.split(COMMA)); // 쉼표로 분리한 후 리스트로 반환
+        return Arrays.asList(input.split(SINGLE_COMMA)); // 쉼표로 분리한 후 리스트로 반환
     }
 
     public List<Integer> trimWinningNumbers(List<String> input) {

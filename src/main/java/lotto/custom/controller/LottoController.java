@@ -11,24 +11,26 @@ import lotto.custom.view.InputView;
 import lotto.custom.view.OutputView;
 
 public class LottoController {
-    private final LottoPurchaseService lottoPurchaseService;
-    private final WinningNumberService winningNumberService;
-    private final BonusNumberService bonusNumberService;
-    private final LottoResultCheckerService lottoResultCheckerService;
-    private final CalculateYieldService calculateYieldService;
-
     private final InputView inputView;
     private final OutputView outputView;
 
+    private final LottoPurchaseService lottoPurchaseService;
+    private final WinningNumberService winningNumberService;
+    private final BonusNumberService bonusNumberService;
+
+    private final LottoResultCheckerService lottoResultCheckerService;
+    private final CalculateYieldService calculateYieldService;
+
     public LottoController() {
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
+        
         this.lottoPurchaseService = new LottoPurchaseService();
         this.winningNumberService = new WinningNumberService();
         this.bonusNumberService = new BonusNumberService();
+
         this.lottoResultCheckerService = new LottoResultCheckerService();
         this.calculateYieldService = new CalculateYieldService();
-
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
     }
 
     public void run() {
