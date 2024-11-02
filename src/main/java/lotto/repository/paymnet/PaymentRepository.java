@@ -1,4 +1,4 @@
-package lotto.repository;
+package lotto.repository.paymnet;
 
 import java.util.concurrent.ConcurrentHashMap;
 import lotto.domain.payment.Payment;
@@ -6,7 +6,7 @@ import lotto.domain.payment.Payment;
 public class PaymentRepository {
     private final ConcurrentHashMap repository = new ConcurrentHashMap<Long, Payment>();
 
-    private PaymentRepository() {
+    public PaymentRepository() {
     }
 
     public Long save(Payment payment) {
