@@ -30,7 +30,7 @@ public class Lotto {
 
     public int getMatches(List<Integer> winningNumbers, int bonusNumber) {
         List<Integer> matchingNumbers = winningNumbers.stream().filter(this.numbers::contains).toList();
-        if (matchingNumbers.size() == 6 || matchingNumbers.size() == 5 && winningNumbers.contains(bonusNumber)) {
+        if (matchingNumbers.size() == 6 || matchingNumbers.size() == 5 && this.numbers.contains(bonusNumber)) {
             return matchingNumbers.size() + 1;
         }
         return matchingNumbers.size();
