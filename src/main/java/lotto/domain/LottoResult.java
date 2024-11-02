@@ -22,18 +22,13 @@ public class LottoResult {
     }
 
     private void calculateLottoRanks(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        for (Lotto lotto : lottos) {
-            calculateRankForLotto(lotto.getNumbers(), winningNumbers, bonusNumber);
-        }
+        lottos.forEach(lotto -> calculateRankForLotto(lotto.getNumbers(), winningNumbers, bonusNumber));
     }
 
     private void calculateRankForLotto(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
-        int matchCount = 0;
-        for (Integer lottoNumber : lottoNumbers) {
-            if (winningNumbers.contains(lottoNumber)) {
-                matchCount++;
-            }
-        }
+        int matchCount = (int) lottoNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
         boolean hasBonusNumber = containsBonusNumber(lottoNumbers, bonusNumber);
         lottoRankTypes.add(LottoRankType.of(matchCount, hasBonusNumber));
     }
