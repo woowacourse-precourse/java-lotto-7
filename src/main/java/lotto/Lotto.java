@@ -29,12 +29,8 @@ public class Lotto {
             }
         }
 
-        if (count == Constant.LOTTO_BONUS_APPLY + 1) {
-            // 6개 당첨 시
-            count++;
-        } else if (count == Constant.LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
-            // Enum - 5개 hit, 보너스볼 hit (+1)
-            count++;
+        if (count == Constant.LOTTO_BONUS_APPLY && numbers.contains(bonus)) {
+            count = Constant.LOTTO_BONUS_CORRECT;
         }
 
         LottoEnum.increaseWinnerCount(count);
