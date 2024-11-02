@@ -27,7 +27,7 @@ public class LottoController {
         }
 
         OutputView.printResult(winningService.getLottoResult());
-
-        System.out.println(winningService.getProfit(purchaseAmount));
+        double profit = winningService.getProfit(purchaseAmount);
+        OutputView.printProfit(profit);
     }
 }

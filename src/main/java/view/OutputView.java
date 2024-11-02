@@ -11,6 +11,7 @@ public class OutputView {
     private static int BOUNDARY_REPEAT_COUNT = 3;
     private static String MATCH_COUNT = "%s개";
     private static String BLANK_BOUNDARY = " - ";
+    private static String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
 
 
     private OutputView() {
@@ -27,6 +28,10 @@ public class OutputView {
         printWinningStatisticMessage();
         printBoundary();
         printStatistics(lottoResult);
+    }
+
+    public static void printProfit(double profit) {
+        System.out.printf(PROFIT_MESSAGE, profit);
     }
 
     private static void printStatistics(Map<WinningPrice, Integer> lottoResult) {
