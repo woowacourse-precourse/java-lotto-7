@@ -44,21 +44,6 @@ public class GameTest {
     }
 
     @Test
-    void 당첨_결과_확인_() {
-        // given & when
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 1; i < 6; i++) {
-            List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 5+i);
-            lottos.add(new Lotto(numbers));
-        }
-
-        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Game game = new Game(lottos);
-        game.compareNumbers(winningNumbers);
-    }
-
-    @Test
     void 당첨_결과_확인() {
         // given
         List<Lotto> lottos = List.of(
@@ -80,24 +65,14 @@ public class GameTest {
         assertArrayEquals(new int[]{1, 1, 1, 1, 1}, results);
     }
 
-
-    @Test
-    void 당첨_결과_확인_5개_일치() {
-
-    }
-
-    @Test
-    void 당첨_결과_확인_6개_일치() {
-
-    }
-
-    @Test
-    void 당첨_결과_확인_5개_보너스번호_일치() {
-
-    }
-
     @Test
     void 수익률_계산_테스트() {
+        // given
 
+
+        // when
+
+
+        // then
     }
 }
