@@ -20,8 +20,7 @@ public class LottoController {
             System.out.println(lotto.getNumbers());
         }
         List<Integer> winningNumbers = InputView.winningNumberInput();
-        int bonusNumber = Integer.parseInt(Console.readLine());
-
+        int bonusNumber = InputView.bonusNumberInput();
 
         for (Lotto lotto : lottos.getLottos()) {
             winningService.winningStatistics(winningNumbers, lotto.getNumbers(), bonusNumber);
