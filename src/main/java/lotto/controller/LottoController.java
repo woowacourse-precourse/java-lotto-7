@@ -31,6 +31,7 @@ public class LottoController {
 
     public void run() {
         List<Lotto> boughtLottoList = attempt(this::buyLottoByPrice);
+        outputView.printBoughtLottoList(boughtLottoList);
 
         WinningLotto winningLotto = attempt(this::generateWinningLotto);
         LottoStatistic lottoStatistic = lottoMachine.generateLottoStatistic(winningLotto, boughtLottoList);
@@ -39,10 +40,8 @@ public class LottoController {
 
     private List<Lotto> buyLottoByPrice() {
         Integer money = inputMoney();
-        List<Lotto> lottoList = lottoMachine.buyLottoByPrice(money);
-        outputView.printBoughtLottoList(lottoList);
 
-        return lottoList;
+        return lottoMachine.buyLottoByPrice(money);
     }
 
     private Integer inputMoney() {
