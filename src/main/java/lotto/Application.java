@@ -62,14 +62,43 @@ public class Application {
         //당첨번호 테스트용 코드
         System.out.println("golden Numbers: "+goldenNumbers.getNumbers());
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusInput=Console.readLine();
-        int bonus=Integer.parseInt(bonusInput);
+        int bonus=0;
+        while (bonus<1 || bonus>46) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String bonusInput = Console.readLine();
+            try {
+                bonus = getBonus(bonusInput);
+                checkBonus(bonus, goldenNumbers);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         //보너스 테스트용 코드
         System.out.println("bonus: "+bonus);
 
 
+    }
+
+    public static int getBonus(String bonusInput) throws IllegalArgumentException{
+        int bonus=0;
+
+        try{
+            bonus=Integer.parseInt(bonusInput);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이 정수여야 합니다.");
+        }
+
+        return bonus;
+
+    }
+
+    public static void checkBonus(int bonus, Lotto golden) throws IllegalArgumentException{
+        for (Integer i : golden.getNumbers()) {
+            if(bonus==i){
+              throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호는 중복될 수 없습니다.");
+            }
+        }
     }
 
     public static int getPrice(String priceInput) throws IllegalArgumentException{
@@ -91,9 +120,8 @@ public class Application {
     }
 
     public static List<Integer> getNumbers(String numbersInput) throws IllegalArgumentException {
-        String[] splitted = numbersInput.split(",");
         List<Integer> numbers = new ArrayList<>();
-        for (String s : splitted) {
+        for (String s : numbersInput.split(",")) {
             int number = 0;
 
             try {
