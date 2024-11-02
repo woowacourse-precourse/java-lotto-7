@@ -27,5 +27,9 @@ public class Lotto {
     boolean contains(LottoNumber number) {
         return numbers.contains(number);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream().map(LottoNumber::getNumber).sorted().toList();
+    }
 }
 
