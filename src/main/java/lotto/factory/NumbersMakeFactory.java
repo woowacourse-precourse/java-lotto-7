@@ -31,7 +31,7 @@ public class NumbersMakeFactory {
     public static int getBonusNumber(String bonusNumber) {
         try {
             return Validator.validateInteger(bonusNumber);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return getBonusNumber(InputView.getBonusNumber());
         }
