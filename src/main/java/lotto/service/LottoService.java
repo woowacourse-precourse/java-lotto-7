@@ -18,4 +18,13 @@ public class LottoService {
 
         return rankResult;
     }
+
+    public Double calculateRateOfReturn(int userMoney, List<Rank> ranks) {
+        double prizeSum = 0;
+        for (Rank rank : ranks) {
+            prizeSum += rank.getPrize();
+        }
+
+        return (prizeSum / userMoney) * 100;
+    }
 }

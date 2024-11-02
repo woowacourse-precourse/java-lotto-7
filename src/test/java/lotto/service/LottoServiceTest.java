@@ -35,4 +35,22 @@ class LottoServiceTest {
                         List.of(Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH, Rank.NONE, Rank.FIRST))
         );
     }
+
+    @DisplayName("당첨 여부를 바탕으로 수익룰을 계산한다.")
+    @ParameterizedTest
+    @MethodSource("provideUserMoneyAndRanks")
+    void 당첨_여부를_바탕으로_수익률을_계산(int userMoney, List<Rank> ranks, double expectedReturnOfRate) {
+        LottoService lottoService = new LottoService();
+        Double returnOfRate = lottoService.calculateRateOfReturn(userMoney, ranks);
+
+        assertThat(returnOfRate).isEqualTo(expectedReturnOfRate);
+    }
+
+    static Stream<Arguments> provideUserMoneyAndRanks() {
+        return Stream.of(
+                Arguments.of(8000, List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / 8000) * 100),
+                Arguments.of(10000, List.of(Rank.FIRST, Rank.SECOND), ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize()) / 10000) * 100)
+        );
+    }
+
 }

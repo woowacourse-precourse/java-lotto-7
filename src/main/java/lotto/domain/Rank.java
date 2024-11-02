@@ -38,6 +38,10 @@ public enum Rank {
         return NONE;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     public int getBasicCount() {
         return basicCount;
     }
