@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.enums;
 
 public enum LottoRank {
     FIFTH(3, 5_000),
