@@ -9,5 +9,9 @@ public class Application {
 
         String account = Console.readLine();
 
+        if (!account.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자만 입력하세요.");
+        }
+
     }
 }
