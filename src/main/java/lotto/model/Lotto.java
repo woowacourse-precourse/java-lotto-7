@@ -46,4 +46,17 @@ public class Lotto {
         }
     }
 
+    public int countSameNumber(Lotto lotto) {
+        int result = 0;
+        for (Integer number : numbers) {
+            if(lotto.getNumbers().contains(number)) {
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
