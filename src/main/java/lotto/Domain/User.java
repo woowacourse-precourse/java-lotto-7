@@ -1,8 +1,8 @@
 package lotto.Domain;
 
 public class User {
-    private final int payment;
-    private final int lottoNumbers;
+    private final int payment;  // 지불한 금액
+    private final int lottoNumbers; // 로또의 개수
     final int WON = 1000;
 
     public User(int payment) {
