@@ -10,4 +10,5 @@ public class Money {
     public int getValue() {
         return value;
     }
+
 }
