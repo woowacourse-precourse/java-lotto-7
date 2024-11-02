@@ -6,43 +6,70 @@ import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
 public class OutputView {
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String PURCHASE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String WINNING_STATISTICS = "당첨 통계";
+    private static final String STATISTICS_DELIMITER = "---";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String WINNING_DETAIL_FORMAT = "%s (%,d원) - %d개%n";
 
-    public void outputPurchaseAmount(int count) {
-        System.out.println();
-        System.out.printf(count + "개를 구매했습니다.");
+    public void printPurchaseAmount(int count) {
+        println();
+        printf(PURCHASE_MESSAGE, count);
+        println();
     }
 
     public void printLottos(List<Lotto> lottos) {
-        System.out.println();
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-        System.out.println();
+        lottos.forEach(this::printLotto);
+        println();
+    }
+
+    private void printLotto(Lotto lotto) {
+        println(lotto.getNumbers().toString());
     }
 
     public void printWinningResult(LottoResult result) {
-        System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        printWinningStatisticsHeader();
         printWinningDetail(result);
         printProfitRate(result);
     }
 
+    private void printWinningStatisticsHeader() {
+        println();
+        println(WINNING_STATISTICS);
+        println(STATISTICS_DELIMITER);
+    }
+
     private void printWinningDetail(LottoResult result) {
-        result.getRankCounts().forEach((rank, count) -> {
-            if (rank != LottoRank.NONE) {
-                System.out.printf("%s (%,d원) - %d개%n",
-                        rank.getDescription(),
-                        rank.getAmount(),
-                        count);
-            }
-        });
+        result.getRankCounts().forEach(this::printRankResult);
+    }
+
+    private void printRankResult(LottoRank rank, Integer count) {
+        if (rank != LottoRank.NONE) {
+            printf(WINNING_DETAIL_FORMAT,
+                    rank.getDescription(),
+                    rank.getAmount(),
+                    count);
+        }
     }
 
     private void printProfitRate(LottoResult result) {
-        System.out.printf(PROFIT_RATE_MESSAGE + "%n", result.calculateProfitRate());
+        printf(PROFIT_RATE_MESSAGE + NEW_LINE, result.calculateProfitRate());
     }
 
     public void printError(String message) {
+        println(message);
+    }
+
+    private void println() {
+        System.out.println();
+    }
+
+    private void println(String message) {
         System.out.println(message);
+    }
+
+    private void printf(String format, Object... args) {
+        System.out.printf(format, args);
     }
 }
