@@ -1,12 +1,8 @@
-package lotto.model;
+package lotto.common.factory;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.common.random.NumberGenerator;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.model.random.NumberGenerator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LottoFactory {
     private final NumberGenerator numberGenerator;
