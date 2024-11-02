@@ -16,24 +16,28 @@ public class InputAmountTest {
 
     @DisplayName("입력값이 빈 값이면 예외를 발생시킨다.")
     @ParameterizedTest
-    @NullAndEmptySource
+    @NullAndEmptySource // given
     public void ThrowExceptionIfInputAmountBlank(String inputAmount) {
+        // when
         Throwable thrown = catchThrowable(() -> {
             this.inputAmount = new InputAmount(inputAmount);
         });
 
+        // then
         assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INPUT_CAN_NOT_BE_BLANK.get());
     }
 
     @DisplayName("숫자 이외의 문자를 포함하면 예외를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3", "1,000", "abc", "한글"})
+    @ValueSource(strings = {"1,2,3", "1,000", "abc", "한글"}) // given
     public void ThrowExceptionIfInputAmountHasCharacter(String inputAmount) {
+        // when
         Throwable thrown = catchThrowable(() -> {
             this.inputAmount = new InputAmount(inputAmount);
         });
 
+        // then
         assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.AMOUNT_CAN_NOT_HAVE_CHARACTER.get());
     }
