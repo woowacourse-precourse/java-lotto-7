@@ -23,4 +23,7 @@ public class Lotto {
         }
     }
 
+    public void addBonusNumber(int boundNumber) {
+        this.numbers.add(boundNumber);
+    }
 }
