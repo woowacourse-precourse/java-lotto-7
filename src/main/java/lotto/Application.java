@@ -30,6 +30,10 @@ public class Application {
         List<String> winningNumbers = List.of(inputWinningNumbers.split(","));
         List<Integer> winningNumbersInteger = stringListToIntegerList(winningNumbers);
 
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String inputBonusNumber = Console.readLine();
+
+
     }
 
     public static List<Integer> stringListToIntegerList(List<String> stringList) {
