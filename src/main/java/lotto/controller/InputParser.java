@@ -1,7 +1,11 @@
 package lotto.controller;
 
+import static lotto.exception.InputParserExceptionMessage.AT_LEAST_ONE_NUMBER;
+import static lotto.exception.InputParserExceptionMessage.NUMBER_ONLY;
+
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.ExceptionUtils;
 
 public class InputParser {
 
@@ -11,12 +15,12 @@ public class InputParser {
         List<Integer> integers = null;
         try {
             integers = Arrays.stream(split).map(String::strip).map(Integer::parseInt).toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.", e);
+        } catch (NumberFormatException error) {
+            throw ExceptionUtils.IllegalArgumentWithCause(NUMBER_ONLY, error);
         }
 
         if (integers.isEmpty()) {
-            throw new IllegalArgumentException("최소 하나의 숫자는 입력해야 합니다.");
+            throw ExceptionUtils.IllegalArgument(AT_LEAST_ONE_NUMBER);
         }
 
         return integers;
@@ -27,8 +31,8 @@ public class InputParser {
 
         try {
             integer = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.", e);
+        } catch (NumberFormatException error) {
+            throw ExceptionUtils.IllegalArgumentWithCause(NUMBER_ONLY, error);
         }
 
         return integer;
