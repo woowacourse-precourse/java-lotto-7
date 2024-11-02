@@ -8,10 +8,10 @@ public class WinningNumberInputValidator {
 
     public static void validateWinningNumberInput(String input) {
         CommonInputValidator.validateCommonInput(input);
-        validateIsPositiveNumberList(input);
+        validateIsNumericList(input);
     }
 
-    private static void validateIsPositiveNumberList(String input) {
+    private static void validateIsNumericList(String input) {
         String[] splitInput = input.split(COMMA);
         for (String s : splitInput) {
             if (isNotNumeric(s)) {
