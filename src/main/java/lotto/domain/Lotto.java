@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ErrorMessages;
+import lotto.constants.LottoConstants;
 
 public class Lotto {
     private final List<Integer> numbers;

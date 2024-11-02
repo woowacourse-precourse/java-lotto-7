@@ -3,6 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.LottoConstants;
+import lotto.constants.LottoMachineConstants;
+import lotto.domain.Lotto;
 
 public class LottoMachine {
     private static final int LOTTO_PRICE = LottoMachineConstants.LOTTO_PRICE;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constants;
 
 public class ErrorMessages {
     private static final String ERROR_SIGN = "[ERROR] ";

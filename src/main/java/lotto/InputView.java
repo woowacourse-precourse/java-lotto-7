@@ -1,13 +1,14 @@
 package lotto;
 
-import static lotto.LottoConstants.LOTTO_MAX_NUMBER;
-import static lotto.LottoConstants.LOTTO_MIN_NUMBER;
-import static lotto.LottoConstants.LOTTO_NUMBER_COUNT;
-import static lotto.LottoMachineConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.LottoMachineConstants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Set;
+import lotto.constants.ErrorMessages;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";

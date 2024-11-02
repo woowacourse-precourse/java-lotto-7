@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.Result;
+
 public class LottoGame {
     private final InputView inputView;
     private final LottoMachine lottoMachine;
