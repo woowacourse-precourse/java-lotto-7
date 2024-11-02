@@ -15,6 +15,15 @@ public class Lotto {
     private void validate(final List<Integer> numbers) {
         checkSize(numbers);
         checkDuplicated(numbers);
+        checkValidRange(numbers);
+    }
+
+    private static void checkValidRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 45 이하 양수여야 합니다.");
+            }
+        }
     }
 
     private static void checkSize(List<Integer> numbers) {
@@ -24,7 +33,7 @@ public class Lotto {
     }
 
     private static void checkDuplicated(List<Integer> numbers) {
-        Set<Integer> distinctNumbers = new HashSet<>();
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
         }
