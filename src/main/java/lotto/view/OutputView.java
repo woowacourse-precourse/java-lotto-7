@@ -13,10 +13,12 @@ public class OutputView {
     }
 
     public void showLottoWinningNumbersInputComments() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public void showLottoBonusNumberInputComments() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
@@ -24,9 +26,7 @@ public class OutputView {
         System.out.println();
         System.out.printf("%d개를 구매했습니다.\n", purchasedCount);
         List<Lotto> lottos = purchasedLottos.getLottos();
-
         lottos.forEach(System.out::println);
-        System.out.println();
     }
 
     public void showLottoResult(Map<LottoRank, Integer> lottoResult) {
