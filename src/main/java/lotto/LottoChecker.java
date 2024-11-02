@@ -1,6 +1,4 @@
 package lotto;
+public class LottoChecker {
 
-public enum LottoChecker {
-    WIN, LOSE, DRAW
 }
-

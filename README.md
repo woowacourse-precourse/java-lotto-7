@@ -14,8 +14,6 @@
 로또 1장의 가격은 1,000원이다.
 당첨 번호와 보너스 번호를 입력받는다.
 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
-사용자가 잘못된 값을 입력할 경우 IllegalArgumentException을 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 기능순서
 1. 금액입력(예외처리 : 양의 자연수가 아닐때, 1000원으로 나누어 떨어지지 않을때)
@@ -33,12 +31,10 @@ Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같�
 4. 수익률계산클래스(ProfitCalc) : 수익률(당첨금액/지불한금액) round(x, 2)로 계산하는 클래스
 5. 로또당첨순위클래스(LottoRank) : Java Enum을 사용하여 번호일치 순으로 3등~6등 정의하는 클래스
 
-[else]사용 금지
-[switch-case]사용 금지
-indent 3 이상 금지
 Java Enum 적용하기
 단위테스트 작성하기
 
+Java Enum으로 변수를 선언하는게 과제인데 어떤 부분에서 enum을 사용하면 좋을까
 
 입출력 요구 사항
 입력
