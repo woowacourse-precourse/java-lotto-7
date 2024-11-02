@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -23,16 +24,10 @@ public enum Prize {
     }
 
     public static Optional<Prize> findPrize(int equalLottoCount, boolean isMatchBonus) {
-        for (Prize prize : Prize.values()) {
-            if (prize.equalLottoCount != equalLottoCount) {
-                continue;
-            }
-            if (equalLottoCount == 5 && prize.isMatchBonus != isMatchBonus) {
-                continue;
-            }
-            return Optional.of(prize);
-        }
-        return Optional.empty();
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.equalLottoCount == equalLottoCount)
+                .filter(prize -> equalLottoCount != 5 || prize.isMatchBonus == isMatchBonus)
+                .findFirst();
     }
 
     public long getMoney() {
