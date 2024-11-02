@@ -14,10 +14,6 @@ public class WinningBalls {
        return lottoNumbers.hasNumber(number);
     }
 
-    protected List<Integer> getNumbers() {
-        return this.lottoNumbers.getNumbers();
-    }
-
     public LottoNumbers getLottoNumbers() {
         return this.lottoNumbers;
     }

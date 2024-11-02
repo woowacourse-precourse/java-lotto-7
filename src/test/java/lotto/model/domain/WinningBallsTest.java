@@ -14,7 +14,7 @@ class WinningBallsTest {
     void test1() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         WinningBalls winningBalls = new WinningBalls(numbers);
-        assertEquals(numbers, winningBalls.getNumbers());
+        assertEquals(numbers, winningBalls.getLottoNumbers().getNumbers());
     }
 
     @DisplayName("당첨 번호가 겹칠시 예외를 반환한다.")
