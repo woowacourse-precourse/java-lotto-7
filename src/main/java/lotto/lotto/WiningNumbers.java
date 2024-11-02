@@ -18,6 +18,10 @@ public class WiningNumbers {
                 .toList();
     }
 
+    public boolean contains(LottoNumber bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != MAX_WINNING_NUMBERS) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호의 개수는 " + MAX_WINNING_NUMBERS + "개여야 합니다.");
