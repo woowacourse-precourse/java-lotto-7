@@ -44,4 +44,12 @@ public class Correct {
             correctDetail[4]++;
         }
     }
+
+    public static double profit() {
+        double sum = 0;
+        for (int p=0;p<5;p++) {
+            sum+=(double) correctDetail[p]*reward[p];
+        }
+        return sum;
+    }
 }
