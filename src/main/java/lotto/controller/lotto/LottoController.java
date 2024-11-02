@@ -1,5 +1,7 @@
 package lotto.controller.lotto;
 
+import java.util.List;
+import lotto.domain.lotto.Lotto;
 import lotto.io.lotto.LottoInputView;
 import lotto.io.lotto.LottoOutputView;
 import lotto.service.lotto.LottoService;
@@ -25,6 +27,7 @@ public class LottoController {
         String inputPurchaseAmount = lottoInputView.inputPurchaseAmount();
         lottoValidator.validatePurchaseAmount(inputPurchaseAmount);
 
-        //DTO로 변환하기
+        List<Lotto> lottoes = lottoService.createLottoes(Integer.parseInt(inputPurchaseAmount));
+        lottoOutputView.printPurchaseResult(lottoes);
     }
 }
