@@ -21,18 +21,13 @@ public class InputParser {
     }
 
     public List<Integer> parseWinningNumbers(String numbers) {
-        List<Integer> splitNumbers = Arrays
+        return Arrays
                 .stream(numbers.split(delimiter))
                 .map(Integer::parseInt)
                 .toList();
-
-        validator.validateWinningNumbers(splitNumbers);
-        return splitNumbers;
     }
 
     public Integer parseBonusNumber(String number) {
-        Integer parsedNumber = Integer.parseInt(number);
-        validator.validateBonusNumber(parsedNumber);
-        return parsedNumber;
+        return Integer.parseInt(number);
     }
 }

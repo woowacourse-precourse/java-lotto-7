@@ -14,14 +14,14 @@ public class InputView {
 
     }
 
-    public Integer getPurchaseAmount() {
+    public int getPurchaseAmount() {
         while (true) {
             try {
                 String amount = Console.readLine();
                 return parser.parsePurchaseAmount(amount);
 
             } catch (NumberFormatException numberFormatException) {
-                printer.printError(InputError.IS_NOT_NUMBER.getMessage());
+                printer.printError(InputError.IS_NOT_NUMBER);
 
             } catch (IllegalArgumentException illegalArgumentException) {
                 printer.printError(illegalArgumentException.getMessage());
@@ -36,7 +36,7 @@ public class InputView {
                 return parser.parseWinningNumbers(winningNumbers);
 
             } catch (NumberFormatException numberFormatException) {
-                printer.printError(InputError.IS_NOT_NUMBER.getMessage());
+                printer.printError(InputError.IS_NOT_NUMBER);
 
             } catch (IllegalArgumentException illegalArgumentException) {
                 printer.printError(illegalArgumentException.getMessage());
@@ -45,14 +45,14 @@ public class InputView {
 
     }
 
-    public Integer getBonusNumber() {
+    public int getBonusNumber() {
         while (true) {
             try {
                 String bonusNumber = Console.readLine();
                 return parser.parseBonusNumber(bonusNumber);
 
             } catch (NumberFormatException numberFormatException) {
-                printer.printError(InputError.IS_NOT_NUMBER.getMessage());
+                printer.printError(InputError.IS_NOT_NUMBER);
 
             } catch (IllegalArgumentException illegalArgumentException) {
                 printer.printError(illegalArgumentException.getMessage());
