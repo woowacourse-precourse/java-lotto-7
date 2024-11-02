@@ -5,6 +5,6 @@ import lotto.domain.LottoNumber;
 import java.util.Set;
 
 @FunctionalInterface
-public class LottoNumbersGenerator {
+public interface LottoNumbersGenerator {
     Set<LottoNumber> generate(int size);
 }

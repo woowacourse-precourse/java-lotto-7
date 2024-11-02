@@ -18,4 +18,10 @@ public class Tickets {
         this.tickets.add(ticket);
     }
 
+    public int getManualTicketCount() {
+        return (int)tickets.stream()
+                .filter(Predicate.not(Ticket::isAuto))
+                .count();
+    }
+
 }
