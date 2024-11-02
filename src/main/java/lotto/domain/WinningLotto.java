@@ -17,4 +17,14 @@ public class WinningLotto {
     private void validateBonusNumber(int number) {
         LottoNumberValidator.validateNumberInRange(number);
     }
+
+    public int countMatchNumbers(Lotto userLotto) {
+        return (int) userLotto.getNumbers().stream()
+                .filter(number -> lotto.getNumbers().contains(number))
+                .count();
+    }
+
+    public boolean matchBonusNumber(Lotto userLotto) {
+        return userLotto.getNumbers().contains(bonusNumber);
+    }
 }
