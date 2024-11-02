@@ -53,11 +53,10 @@ public class WinningCalculator {
         return userLottoNumbers.contains(bonusNumber);
     }
 
-        public int calculateTotalPrizeMoney(LottoStore lottoStore, Map<Rank, Integer> winningCountsByRank) {
+    private int calculateTotalPrizeMoney(Map<Rank, PrizeInfo> rankInfo, Map<Rank, Integer> winningCountsByRank) {
         int totalPrizeMoney = 0;
 
         Set<Rank> ranks = winningCountsByRank.keySet();
-        Map<Rank, PrizeInfo> rankInfo = lottoStore.getRankInfo();
         for (Rank rank : ranks) {
             PrizeInfo prizeInfo = rankInfo.get(rank);
             totalPrizeMoney += prizeInfo.getPrize() * winningCountsByRank.get(rank);
@@ -66,9 +65,9 @@ public class WinningCalculator {
         return totalPrizeMoney;
     }
 
-    // 수익률 게산
-    public double calculateProfitRate(int purchasedMoney, int totalPrizeMoney) {
-        double result = (double)totalPrizeMoney / purchasedMoney;
+    public double calculateProfitRate(LottoStore lottoStore, Map<Rank, Integer> winningCountsByRank, int purchasedMoney) {
+        int totalPrizeMoney = calculateTotalPrizeMoney(lottoStore.getRankInfo(), winningCountsByRank);
+        double result = (double) totalPrizeMoney / purchasedMoney;
         return roundToTwoDecimalPlaces(result);
     }
 
