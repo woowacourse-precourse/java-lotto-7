@@ -44,15 +44,18 @@ public class LottoController {
 
     private long getMoney() {
         outputView.printMoneyRequest();
-        MoneyValidator validator = new MoneyValidator(inputView.getUserInput());
+        String money = inputView.getUserInput();
+
+        MoneyValidator validator = new MoneyValidator(money);
         validator.validate();
 
-        return InputParser.parseLong(validator.getMoney());
+        return InputParser.parseLong(money);
     }
 
     private List<Integer> getLotto() {
         outputView.printLottoRequest();
         String lotto = inputView.getUserInput();
+
         LottoValidator validator = new LottoValidator(lotto);
         validator.validate();
 
