@@ -2,20 +2,22 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import lotto.dto.LottoInputDTO;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.dto.LottoRequestDTO;
 import lotto.utils.Validator;
 
 public class InputView {
     private final OutputView outputView = new OutputView();
 
-    public LottoInputDTO inputLottoData() {
+    public LottoRequestDTO inputLottoData() {
         int parsedPurchaseAmount = parsePurchaseAmount(inputPurchaseAmount());
         String[] winningNumbers = inputWinningLotto();
-        int[] parsedWinningNumbers = parseWinningNumbers(winningNumbers);
+        List<Integer> parsedWinningNumbers = parseWinningNumbers(winningNumbers);
         int parsedBonusNumber = parseBonusNumber(inputBonusNumber(winningNumbers));
 
         // 모든 입력 값을 담아 DTO로 생성
-        return new LottoInputDTO(parsedPurchaseAmount, parsedWinningNumbers, parsedBonusNumber);
+        return new LottoRequestDTO(parsedPurchaseAmount, parsedWinningNumbers, parsedBonusNumber);
     }
 
     public String inputPurchaseAmount() {
@@ -66,10 +68,11 @@ public class InputView {
         return Integer.parseInt(purchaseAmount);
     }
 
-    private int[] parseWinningNumbers(String[] winningNumbers) {
+    private List<Integer> parseWinningNumbers(String[] winningNumbers) {
         return Arrays.stream(winningNumbers)
                 .mapToInt(Integer::parseInt)
-                .toArray();
+                .boxed()
+                .collect(Collectors.toList());
     }
 
     private int parseBonusNumber(String bonusNumber) {

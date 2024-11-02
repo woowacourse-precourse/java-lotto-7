@@ -1,11 +1,13 @@
 package lotto.dto;
 
+import java.util.List;
+
 public class LottoRequestDTO {
     private int purchaseAmount; // 로또 구입 금액
-    private int[] winningNumbers; // 당첨 번호
+    private List<Integer> winningNumbers; // 당첨 번호
     private int bonusNumber; // 보너스 번호
 
-    public LottoRequestDTO(int purchaseAmount, int[] winningNumbers, int bonusNumber) {
+    public LottoRequestDTO(int purchaseAmount, List<Integer> winningNumbers, int bonusNumber) {
         this.purchaseAmount = purchaseAmount;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -16,7 +18,7 @@ public class LottoRequestDTO {
         return purchaseAmount;
     }
 
-    public int[] getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
