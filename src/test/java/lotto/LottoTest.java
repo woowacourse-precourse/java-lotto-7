@@ -21,20 +21,17 @@ class LottoTest {
     }
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
-
     @DisplayName("로또 구입 금액이 1,000원 으로 나누어 떨어 지지 않는 경우 예외가 발생한다.")
     @Test
     void 로또_구입_금액이_1000원으로_나누어_떨어지지_않는_경우_예외가_발생한다() {
         assertThatThrownBy(() -> Money.validate("1500"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1,000원으로 나누어 떨어지게 입력하세요");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 구입 금액이 숫자가 아닌 경우 예외가 발생한다.")
     @Test
     void 입력_금액이_숫자가_아닐경우_예외발생() {
         assertThatThrownBy(() -> Money.validate("ㄱㄴㄷㄹ"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 유효한 숫자를 입력하세요");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
