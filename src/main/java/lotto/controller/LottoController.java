@@ -31,7 +31,12 @@ public class LottoController {
 
     private Integer getLottoCount() {
         outputView.printMessage(INPUT_PRICE);
-        return inputView.inputPrice();
+        try {
+            return inputView.inputPrice();
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            return getLottoCount();
+        }
     }
 
     private List<Lotto> createRandomLottosAndPrint(Integer lottoCount) {
@@ -60,11 +65,21 @@ public class LottoController {
 
     private List<Integer> getWinningNumbers() {
         outputView.printMessage(WINNING_NUMBRES);
-        return inputView.inputWinningNumbers();
+        try {
+            return inputView.inputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            return getWinningNumbers();
+        }
     }
 
     private Integer getBonusNumber() {
         outputView.printMessage(BONUS_NUMBER);
-        return inputView.inputBonusNumber();
+        try {
+            return inputView.inputBonusNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.printMessage(e.getMessage());
+            return getBonusNumber();
+        }
     }
 }
