@@ -8,11 +8,11 @@ public class Cost {
         this.cost = cost;
     }
 
-    public static Cost from(int cost){
+    public static Cost from(int cost) {
         return new Cost(cost);
     }
 
-    private void validateCost(int cost){
+    private void validateCost(int cost) {
         isValidUnitCost(cost);
 
         isCostNegative(cost);

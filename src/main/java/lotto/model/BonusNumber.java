@@ -9,7 +9,7 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public static BonusNumber of(int bonusNumber, Lotto lotto){
+    public static BonusNumber of(int bonusNumber, Lotto lotto) {
         return new BonusNumber(bonusNumber, lotto);
     }
 
