@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
+import lotto.enums.InputMessage;
 import lotto.enums.OutputMessage;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -35,7 +36,7 @@ public class LottoController {
         String inputCost;
 
         do {
-            outputView.printMessage(OutputMessage.INPUT_PURCHASE_AMOUNT);
+            inputView.printMessage(InputMessage.INPUT_PURCHASE_AMOUNT);
             inputCost = inputView.inputPurchaseAmount();
 
             try {

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
@@ -63,6 +64,10 @@ public class LottoService {
     }
 
     public List<Lotto> prepareCollectionForPrint(LottoCollection lottoCollection) {
-        return lottoCollection.getAllLotto();
+        List<Lotto> lottos = lottoCollection.getAllLotto();
+        for (Lotto lotto : lottos) {
+            Collections.sort(lotto.getNumbers());
+        }
+        return lottos;
     }
 }
