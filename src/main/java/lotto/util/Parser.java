@@ -40,6 +40,9 @@ public class Parser {
     }
 
     private static Integer convertStringToInteger(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException(INVALID_NULL.getMessage());
+        }
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
