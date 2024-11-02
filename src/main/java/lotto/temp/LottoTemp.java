@@ -21,6 +21,8 @@ public class LottoTemp {
         return io.convertStringToInt(input);
     }
 
-
+    public int convertMoneyToTicket(int amount){
+        return amount / 1000;
+    }
 
 }
