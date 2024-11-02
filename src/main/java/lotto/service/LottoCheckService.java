@@ -24,17 +24,6 @@ public class LottoCheckService {
         return new LottoOutputDto(rateOfReturn, lottoResult);
     }
 
-    public double calculateRateOfReturn(final long purchaseAmount, final LottoResult lottoResult) {
-        Map<Ranking, Integer> results = lottoResult.getLottoResult();
-
-        long sumOfRevenue = 0;
-        for (Ranking ranking : results.keySet()) {
-            sumOfRevenue += (long) ranking.getWinningPrize() * results.get(ranking);
-        }
-
-        return Math.round((double) sumOfRevenue / purchaseAmount * 1000) / 10.0;
-    }
-
     private void checkLotto(final LottoWinningNumbers lottoWinningNumbers, final Lotto lotto,
                             final LottoResult lottoResult) {
         Set<Integer> winningNumberChecker = new HashSet<>(lottoWinningNumbers.getWinningNumber());
@@ -60,5 +49,16 @@ public class LottoCheckService {
 
     private boolean checkBonusNumber(final int bonusNumber, final Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private double calculateRateOfReturn(final long purchaseAmount, final LottoResult lottoResult) {
+        Map<Ranking, Integer> results = lottoResult.getLottoResult();
+
+        long sumOfRevenue = 0;
+        for (Ranking ranking : results.keySet()) {
+            sumOfRevenue += (long) ranking.getWinningPrize() * results.get(ranking);
+        }
+
+        return Math.round((double) sumOfRevenue / purchaseAmount * 1000) / 10.0;
     }
 }
