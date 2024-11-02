@@ -82,17 +82,21 @@ class HandlerTest {
     // 로또 번호, 당첨 번호, 보너스 번호 조회
     // 실제 일치성 횟수 계산 결과 조회
     // 예시와 실제값 일치 여부 검증
-
-
-
   }
 
   @DisplayName("비교한 결과를 토대로 총 수익률 계산한다")
   @Test
   void calculateRevenueTest() {
     // 총 수익률 예시
+    double given = 62.5;
+    String expect = "총 수익률은 62.5%입니다.";
+
+    // 수익률 계산
+    double revenue = handler.calculateRevenue();
     // 일치성 횟수 계산 결과 조회
-    //
+    String actual = handler.getResult(handler.calculateRevenue());
+    // 검증
+    assertEquals(expect, actual);
   }
 
 
