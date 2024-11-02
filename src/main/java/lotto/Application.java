@@ -11,6 +11,6 @@ public class Application {
     WinnerInputHandler winnerInputHandler = new WinnerInputHandler();
 
     purchasedLottoList = lottoQuickPick.quickPick();
-    winnerNumber = winnerInputHandler.getWinningNumber();
+    winnerNumber = winnerInputHandler.getWinnerNumberAll();
   }
 }

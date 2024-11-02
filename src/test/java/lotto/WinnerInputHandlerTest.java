@@ -57,6 +57,38 @@ class WinnerInputHandlerTest extends NsTest {
     });
   }
 
+  @Test
+  void 보너스번호가_당첨번호중_겹치는게_존재하면_에러가_발생한다() {
+    assertSimpleTest(() -> {
+      runException("7000", "1,2,3,4,5,6", "6");
+      assertThat(output()).contains(ERROR_MESSAGE);
+    });
+  }
+
+  @Test
+  void 보너스번호가_숫자가_아니면_에러가_발생한다() {
+    assertSimpleTest(() -> {
+      runException("8000", "1,2,3,4,5,6", "숫자아님ㅎ");
+      assertThat(output()).contains(ERROR_MESSAGE);
+    });
+  }
+
+  @Test
+  void 보너스번호의_범위가_초과하면_에러가_발생한다() {
+    assertSimpleTest(() -> {
+      runException("9000", "11,22,33,44,45,6", "46");
+      assertThat(output()).contains(ERROR_MESSAGE);
+    });
+  }
+
+  @Test
+  void 보너스번호가_1보다_작으면_에러가_발생한다() {
+    assertSimpleTest(() -> {
+      runException("10000", "1,2,3,4,5,6", "-1");
+      assertThat(output()).contains(ERROR_MESSAGE);
+    });
+  }
+
   @Override
   protected void runMain() {
     Application.main(new String[]{});
