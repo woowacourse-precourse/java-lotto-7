@@ -10,7 +10,7 @@ import lotto.exception.CustomIllegalArgumentException;
 import static lotto.exception.ErrorMessage.NOT_INTEGER;
 import static org.assertj.core.api.Assertions.*;
 
-public class PurchaseAmountParserTest {
+public class PurchaseTotalPriceParserTest {
 
     @Nested
     @DisplayName("성공 케이스")

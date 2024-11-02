@@ -5,14 +5,14 @@ import static lotto.exception.ErrorMessage.*;
 import lotto.exception.CustomIllegalArgumentException;
 import lotto.utils.PurchaseAmountParser;
 
-public record PurchaseAmount(int amount) {
+public record PurchaseTotalPrice(int amount) {
     private static final int MAX_LIMIT = 100_000_000;
     private static final int UNIT_PRICE = 1000;
 
-    public static PurchaseAmount from(String input) {
+    public static PurchaseTotalPrice from(String input) {
         int parsedAmount = PurchaseAmountParser.parseAmountFromString(input);
         validate(parsedAmount);
-        return new PurchaseAmount(parsedAmount);
+        return new PurchaseTotalPrice(parsedAmount);
     }
 
     private static void validate(int amount) {

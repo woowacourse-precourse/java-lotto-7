@@ -19,9 +19,9 @@ public class LottoTicketCalculatorTest {
         @Test
         @DisplayName("구입 금액이 1000원일 때 1개의 티켓을 구매할 수 있다.")
         public void 티켓이_하나인_경우() {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
+            PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(1000);
 
-            int ticketCount = calculator.getTicketCount(purchaseAmount);
+            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
 
             assertThat(ticketCount).isEqualTo(1);
         }
@@ -29,9 +29,9 @@ public class LottoTicketCalculatorTest {
         @Test
         @DisplayName("구입 금액이 15000원일 때 15개의 티켓을 구매할 수 있다.")
         public void 티켓이_열다섯인_경우() {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(15000);
+            PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(15000);
 
-            int ticketCount = calculator.getTicketCount(purchaseAmount);
+            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
 
             assertThat(ticketCount).isEqualTo(15);
         }
@@ -39,9 +39,9 @@ public class LottoTicketCalculatorTest {
         @Test
         @DisplayName("구입 금액이 777000원일 때 777개의 티켓을 구매할 수 있다.")
         public void 티켓이_칠백칠십칠인_경우() {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(777000);
+            PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(777000);
 
-            int ticketCount = calculator.getTicketCount(purchaseAmount);
+            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
 
             assertThat(ticketCount).isEqualTo(777);
         }
@@ -54,9 +54,9 @@ public class LottoTicketCalculatorTest {
         @Test
         @DisplayName("구입 금액이 1000원이지만 계산된 티켓 수가 1이 아닐 경우 예외 발생")
         public void 티켓_수가_하나가_아닌_경우() {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
+            PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(1000);
 
-            int ticketCount = calculator.getTicketCount(purchaseAmount);
+            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
 
             if (ticketCount != 1) {
                 throw CustomIllegalArgumentException.from(INVALID_TICKET_COUNT);
@@ -66,9 +66,9 @@ public class LottoTicketCalculatorTest {
         @Test
         @DisplayName("구입 금액이 4000원이지만 계산된 티켓 수가 4이 아닐 경우 예외 발생")
         public void 구입_금액이_사천원이지만_예외_발생하는_경우() {
-            PurchaseAmount purchaseAmount = new PurchaseAmount(4000);
+            PurchaseTotalPrice purchaseTotalPrice = new PurchaseTotalPrice(4000);
 
-            int ticketCount = calculator.getTicketCount(purchaseAmount);
+            int ticketCount = calculator.getTicketCount(purchaseTotalPrice);
 
             if (ticketCount != 4) {
                 throw CustomIllegalArgumentException.from(INVALID_TICKET_COUNT);

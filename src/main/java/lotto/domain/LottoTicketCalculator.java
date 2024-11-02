@@ -6,8 +6,8 @@ import lotto.exception.CustomIllegalArgumentException;
 public class LottoTicketCalculator {
     private static final int TICKET_PRICE = 1000;
 
-    public int getTicketCount(PurchaseAmount purchaseAmount) {
-        int totalAmount = purchaseAmount.amount();
+    public int getTicketCount(PurchaseTotalPrice purchaseTotalPrice) {
+        int totalAmount = purchaseTotalPrice.amount();
         int ticketCount = calculateTickets(totalAmount);
         validateTicketCount(ticketCount, totalAmount);
         return ticketCount;
