@@ -12,10 +12,10 @@ public class LottoController {
     public void start() {
         Budget budget = setUpBudget();
         WinningNumber winningNumber = setUpWinningNumber();
-        List<Lotto> lottos = generateLotto(budget);
-        LottoRankSummary lottoRankSummary = calculateLottoRank(lottos, winningNumber);
+        List<Lotto> lottoTickets = buyLotto(budget);
+        LottoRankSummary lottoRankSummary = calculateLottoRank(lottoTickets, winningNumber);
         double rateOfReturn = lottoRankSummary.calculateRateOfReturn(budget);
-        OutputView.printResult(lottos, rateOfReturn, lottoRankSummary);
+        OutputView.printResult(lottoTickets, rateOfReturn, lottoRankSummary);
     }
 
     private Budget setUpBudget() {
@@ -38,7 +38,7 @@ public class LottoController {
         }
     }
 
-    private List<Lotto> generateLotto(Budget budget) {
+    private List<Lotto> buyLotto(Budget budget) {
         return LottoGenerator.generateLotto(budget, new RandomLottoCreateStrategy());
     }
 
