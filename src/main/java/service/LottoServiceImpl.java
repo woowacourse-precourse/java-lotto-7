@@ -62,9 +62,66 @@ public class LottoServiceImpl implements LottoService {
 
     // TODO: 로또 결과를 도출하는 메서드 : 필요한건 당첨 및 보너스 번호
     @Override
-    public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers, List<Lotto> issuedLotto) {
+    public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers,
+                                                   List<Lotto> issuedLotto) {
 
-        return null;
+        List<Integer> lottoResult = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        for (Lotto lotto : issuedLotto) {
+            int lottoRank = getRank(lottoWinningNumbers, lotto);
+            if (lottoRank == 1) {
+                lottoResult.set(0, lottoResult.get(0) + 1); // 1등 자리에 +1
+            }
+            if (lottoRank == 2) {
+                lottoResult.set(1, lottoResult.get(1) + 1); // 1등 자리에 +1
+            }
+            if (lottoRank == 3) {
+                lottoResult.set(2, lottoResult.get(2) + 1); // 1등 자리에 +1
+            }
+            if (lottoRank == 4) {
+                lottoResult.set(3, lottoResult.get(3) + 1); // 1등 자리에 +1
+            }
+            if (lottoRank == 5) {
+                lottoResult.set(4, lottoResult.get(4) + 1); // 1등 자리에 +1
+            }
+        }
+
+        return new LottoWinningResult(lottoResult.get(0), lottoResult.get(1), lottoResult.get(2), lottoResult.get(3),
+                lottoResult.get(4));
+    }
+
+    public int getRank(LottoWinningNumbers lottoWinningNumbers, Lotto lotto) {
+        Lotto winningLotto = lottoWinningNumbers.winningLotto();
+
+        int result = 0;
+        for (Integer number : winningLotto.getNumbers()) {
+            if (lotto.getNumbers().contains(number)) {
+                result++;
+            }
+        }
+
+        if (result == 6) {
+            return 1;
+        }
+
+        if (lotto.getNumbers().contains(lottoWinningNumbers.bonusNumber())) {
+            if (result == 5) {
+                return 2;
+            }
+        }
+
+        if (!lotto.getNumbers().contains(lottoWinningNumbers.bonusNumber()) && result == 5) {
+            return 3;
+        }
+
+        if (result == 4) {
+            return 4;
+        }
+
+        if (result == 3) {
+            return 5;
+        }
+
+        return 0;
     }
 
     // TODO: 로또 결과의 수익률을 도출하는 메서드 : 필요한건 당첨 결과
