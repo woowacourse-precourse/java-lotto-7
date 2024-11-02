@@ -22,7 +22,8 @@ public class ApplicationController {
             Lotto lotto = new Lotto(lottoNumber);
             lotto.printLottoNumbers(lottoNumber);
         }
-
+        viewInput.receiveWinningNumber();
+        viewInput.receiveLuckyNumber();
     }
 
 
