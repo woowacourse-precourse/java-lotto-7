@@ -16,6 +16,24 @@ public class Lotto {
         Collections.sort(this.numbers);
     }
 
+    public int compareWinningNumbers(WinningNumbers winningNumbers) {
+        int sameNumberCount = 0;
+        for (int winningNumber : winningNumbers.loadWinningNumbers()) {
+            if (numbers.contains(winningNumber)) {
+                sameNumberCount++;
+            }
+        }
+
+        return sameNumberCount;
+    }
+
+    public int compareBonusNumber(BonusNumber bonusNumber) {
+        if (numbers.contains(bonusNumber.loadBonusNumber())) {
+            return 1;
+        }
+        return 0;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(NOT_SIX_WINNING_NUMBER.getMessage());

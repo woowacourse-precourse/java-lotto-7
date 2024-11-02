@@ -19,6 +19,10 @@ public class WinningNumbers {
         return winningNumbers.contains(bonusNumber);
     }
 
+    public List<Integer> loadWinningNumbers() {
+        return winningNumbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(NOT_SIX_WINNING_NUMBER.getMessage());
