@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     // todo : 당첨 통계와 수익률을 포함한 전체 결과 출력
-    public void printResult( List<Integer> result, int profitRate){
+    public void printResult( List<Integer> result, double profitRate){
         System.out.println("당첨 통계");
         System.out.println("---");
 
