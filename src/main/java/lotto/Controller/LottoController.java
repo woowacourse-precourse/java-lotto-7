@@ -28,7 +28,8 @@ public class LottoController {
         LottoStatistics statistics = new LottoStatistics(price);
         statistics.processTickets(allLottos, winningLotto);
 
-
+        OutputView.showStatistics(statistics);
+        OutputView.showProfitRate(statistics);
     }
 }
 
