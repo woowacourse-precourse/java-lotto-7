@@ -10,7 +10,6 @@ public class LottoController {
     private final InputView input;
     private final InputProcessor inputProcessor;
     private LottoManager lottoManager;
-    private boolean flag;
 
     public LottoController() {
         this.input = new InputView();
@@ -18,20 +17,15 @@ public class LottoController {
         this.inputProcessor = new InputProcessor();
     }
 
-    public boolean isFlag() {
-        return flag;
-    }
-
     public void run() {
-        flag = false;
         output.printStartMessage();
         TryCountDTO tryCountDTO = inputCount();
         lottoManager = new LottoManager(tryCountDTO);
         output.printTicket(inputProcessor.getTryCount(), lottoManager.getLottoTicket());
         output.printVictoryNumber();
-        inputProcessor.processVictoryNumber(input.readLine());
+        readVictoryNumber();
         output.printBonusNumber();
-        inputProcessor.processBonusNumber(input.readLine());
+        readBonusNumber();
         VictoryInfoDTO victoryInfoDTO = inputVictoryNumber();
         output.printResult(lottoManager.match(victoryInfoDTO));
         output.printRevenue(lottoManager.revenue(tryCountDTO));
@@ -41,8 +35,36 @@ public class LottoController {
         return new VictoryInfoDTO(inputProcessor.getVictoryNumbers(), inputProcessor.getBonusNumber());
     }
 
+    private void readBonusNumber() {
+        while (true) {
+            try {
+                inputProcessor.processBonusNumber(input.readLine());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void readVictoryNumber() {
+        while (true) {
+            try {
+                inputProcessor.processVictoryNumber(input.readLine());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private TryCountDTO inputCount() {
-        inputProcessor.processPrice(input.readLine());
-        return new TryCountDTO(inputProcessor.getTryCount(), inputProcessor.getBuyPrice());
+        while (true) {
+            try {
+                inputProcessor.processPrice(input.readLine());
+                return new TryCountDTO(inputProcessor.getTryCount(), inputProcessor.getBuyPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
