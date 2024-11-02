@@ -1,5 +1,8 @@
 package lotto.model;
 
+/*
+로또 구입금액
+*/
 public class Money {
     private final long amount;
 

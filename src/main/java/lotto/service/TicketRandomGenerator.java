@@ -4,10 +4,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.model.Ticket;
 import lotto.util.Constants;
 
-public class LottoRandomGenerator implements LottoGenerator {
+public class TicketRandomGenerator implements TicketGenerator {
 
     private long money;
 
@@ -15,22 +15,22 @@ public class LottoRandomGenerator implements LottoGenerator {
         this.money = money;
     }
 
-    public List<Lotto> getLottos() {
-        List<Lotto> lottos = new ArrayList<>();
+    public List<Ticket> getTickets() {
+        List<Ticket> tickets = new ArrayList<>();
 
         long ticket_count = money / Constants.LOTTO_PRICE.getLong();
 
         for (int i = 0; i < ticket_count; i++) {
-            lottos.add(getLotto());
+            tickets.add(getTicket());
         }
 
-        return lottos;
+        return tickets;
     }
 
-    public Lotto getLotto() {
+    public Ticket getTicket() {
         List<Integer> numbers = generateRandomNumbers();
         Collections.sort(numbers);
-        return new Lotto(numbers);
+        return new Ticket(numbers);
     }
 
     protected List<Integer> generateRandomNumbers() {

@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.model.Ticket;
 import lotto.util.InputParser;
 
 public class OutputView {
@@ -14,12 +14,12 @@ public class OutputView {
         System.out.println(Outputs.MONEY_REQUEST.getMessage());
     }
 
-    public void printLottoBought(List<Lotto> lottos) {
+    public void printTicketNumbers(List<Ticket> tickets) {
         System.out.println();
-        System.out.println(InputParser.getComma(lottos.size()) + Outputs.LOTTO_BOUGHT.getMessage());
+        System.out.println(InputParser.getComma(tickets.size()) + Outputs.LOTTO_BOUGHT.getMessage());
 
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+        for (Ticket ticket : tickets) {
+            System.out.println(ticket.getNumbers());
         }
     }
 }

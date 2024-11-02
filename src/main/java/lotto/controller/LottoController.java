@@ -2,9 +2,9 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
-import lotto.model.Lotto;
 import lotto.model.Money;
-import lotto.service.LottoGenerator;
+import lotto.model.Ticket;
+import lotto.service.TicketGenerator;
 import lotto.util.InputParser;
 import lotto.validator.MoneyValidator;
 import lotto.view.InputView;
@@ -13,9 +13,9 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoGenerator generator;
+    private final TicketGenerator generator;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoGenerator generator) {
+    public LottoController(InputView inputView, OutputView outputView, TicketGenerator generator) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.generator = generator;
@@ -25,9 +25,9 @@ public class LottoController {
         Money money = new Money(tryUntilSuccess(this::getMoney));
 
         generator.setMoney(money.getAmount());
-        List<Lotto> lottos = generator.getLottos();
+        List<Ticket> tickets = generator.getTickets();
 
-        outputView.printLottoBought(lottos);
+        outputView.printTicketNumbers(tickets);
     }
 
     private <T> T tryUntilSuccess(Supplier<T> function) {
