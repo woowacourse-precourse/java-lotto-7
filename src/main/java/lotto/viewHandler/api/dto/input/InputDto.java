@@ -1,4 +1,4 @@
-package lotto.viewHandler.api.dto;
+package lotto.viewHandler.api.dto.input;
 
 public class InputDto {
     private final MoneyDto moneyDto;

@@ -6,8 +6,8 @@ import lotto.dto.LottoGameDto;
 import lotto.service.LottoGameService;
 import lotto.viewHandler.ViewHandler;
 import lotto.viewHandler.api.Api;
-import lotto.viewHandler.api.dto.InputDto;
-import lotto.viewHandler.api.dto.MoneyDto;
+import lotto.viewHandler.api.dto.input.InputDto;
+import lotto.viewHandler.api.dto.input.MoneyDto;
 
 import java.util.List;
 

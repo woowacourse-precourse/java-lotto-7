@@ -8,6 +8,9 @@ import static lotto.view.ViewUtil.GET_WIN_LOTTO_NUMBER;
 
 
 public class Input {
+    public Input() {
+    }
+
     public String getPurchaseMoney() {
         System.out.println(GET_PURCHASE_MONEY);
 

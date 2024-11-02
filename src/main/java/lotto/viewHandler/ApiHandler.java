@@ -2,9 +2,9 @@ package lotto.viewHandler;
 
 import lotto.viewHandler.api.Api;
 import lotto.viewHandler.api.message.ServerMessage;
-import lotto.viewHandler.api.dto.BonusNumberDto;
-import lotto.viewHandler.api.dto.MoneyDto;
-import lotto.viewHandler.api.dto.WinningLottoNumbersDto;
+import lotto.viewHandler.api.dto.input.BonusNumberDto;
+import lotto.viewHandler.api.dto.input.MoneyDto;
+import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 
 public class ApiHandler {
     private final ValidatorImpl validator;

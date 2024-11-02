@@ -193,3 +193,13 @@
   - closeInput : 입력 콘솔 닫기
 - Output
 
+내가 그린 구조
+- Controller
+  - viewHandler
+    - InputView
+    - OutputView
+    - ApiHandler
+  - Service
+  - Domain
+  
+- 

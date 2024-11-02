@@ -1,9 +1,9 @@
 package lotto.viewHandler;
 
 import lotto.viewHandler.api.Api;
-import lotto.viewHandler.api.dto.BonusNumberDto;
-import lotto.viewHandler.api.dto.MoneyDto;
-import lotto.viewHandler.api.dto.WinningLottoNumbersDto;
+import lotto.viewHandler.api.dto.input.BonusNumberDto;
+import lotto.viewHandler.api.dto.input.MoneyDto;
+import lotto.viewHandler.api.dto.input.WinningLottoNumbersDto;
 import lotto.viewHandler.api.message.ServerMessage;
 import lotto.viewHandler.validator.LottoNumberRangeValidator;
 import lotto.viewHandler.validator.LottoNumberSplit;
@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ApiHandlerTest {
     private final ApiHandler apiHandler;

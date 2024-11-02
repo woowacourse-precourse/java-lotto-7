@@ -1,4 +1,4 @@
-package lotto.viewHandler.api.dto;
+package lotto.viewHandler.api.dto.input;
 
 import java.util.List;
 
