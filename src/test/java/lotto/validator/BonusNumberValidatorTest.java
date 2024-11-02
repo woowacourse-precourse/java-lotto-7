@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import static lotto.exception.Exception.BONUS_NUMBER_DUPLICATED;
 import static lotto.exception.Exception.BONUS_NUMBER_OUT_OF_RANGE;
 import static lotto.validator.BonusNumberValidator.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,5 +28,16 @@ class BonusNumberValidatorTest {
         assertThatThrownBy(() -> validate(bonusNumber, numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(BONUS_NUMBER_OUT_OF_RANGE.getMessage());
+    }
+
+    @DisplayName("보너스 숫자가 당첨 숫자와 중복일 때 예외 테스트")
+    @Test
+    void validateLottoNumberDuplicates_fail() {
+        int bonusNumber = 6;
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> validate(bonusNumber, numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUMBER_DUPLICATED.getMessage());
     }
 }
