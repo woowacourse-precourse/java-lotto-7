@@ -14,8 +14,15 @@ public class LottoCreateService {
     private static final int LOTTO_PRICE = 1000;
 
     public Lottos createLottosWithMoney(int money) {
+        validateMoney(money);
         int lottoCount = money / LOTTO_PRICE;
         return createLottos(lottoCount);
+    }
+
+    public void validateMoney(int money) {
+        if (money % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
+        }
     }
 
     public Lottos createLottos(int lottoCount) {
