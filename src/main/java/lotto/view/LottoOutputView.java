@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
-import lotto.domain.LottoPurchasePrice;
 import lotto.enums.LottoRank;
 import lotto.domain.LottoResult;
 

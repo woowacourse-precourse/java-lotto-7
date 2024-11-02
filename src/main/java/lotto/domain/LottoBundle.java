@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lotto.enums.LottoError;
@@ -32,16 +34,29 @@ public class LottoBundle {
 
     public LottoResult makeLottoResult(WinningLotto winningLotto, BonusNumber bonusNumber) {
         List<LottoRank> lottoRanks = checkLottoRank(winningLotto, bonusNumber);
+        Map<LottoRank, Integer> lottoRankCount = calculateLottoRankCount(lottoRanks);
         double totalPrizeMoney = sumLottoPrizeMoney(lottoRanks);
         double lottoProfitRate = lottoPurchasePrice.calculateProfit(totalPrizeMoney);
 
-        return LottoResult.ofRanksAndProfitRate(lottoRanks, lottoProfitRate);
+        return LottoResult.ofRankCountAndProfitRate(lottoRankCount, lottoProfitRate);
     }
 
     private List<LottoRank> checkLottoRank(WinningLotto winningLotto, BonusNumber bonusNumber) {
         return lottos.stream()
                 .map(lotto -> LottoRank.ofLottoAndWinningLottoAndBonusNumber(lotto, winningLotto, bonusNumber))
                 .collect(Collectors.toList());
+    }
+
+    private Map<LottoRank, Integer> calculateLottoRankCount(List<LottoRank> lottoRanks) {
+        Map<LottoRank, Integer> lottoRankCount = initLottoRankCount();
+        lottoRanks.stream()
+                .forEach(lottoRank -> lottoRankCount.put(lottoRank, lottoRankCount.get(lottoRank) + 1));
+        return lottoRankCount;
+    }
+
+    private Map<LottoRank, Integer> initLottoRankCount() {
+        return Arrays.stream(LottoRank.values())
+                .collect(Collectors.toMap(lottoRank -> lottoRank, lottoRank -> 0));
     }
 
     private double sumLottoPrizeMoney(List<LottoRank> lottoRanks) {
