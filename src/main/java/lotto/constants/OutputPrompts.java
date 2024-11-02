@@ -1,7 +1,7 @@
 package lotto.constants;
 
 public enum OutputPrompts {
-    PURCHASE_RESULT("\n구매 결과: %d개를 구매했습니다."),
+    PURCHASE_RESULT("\n%d개를 구매했습니다."),
     WINNING_STATISTICS_HEADER("당첨 통계\n---"),
     MATCHED_THREE("3개 일치 (5,000원) - %d개\n"),
     MATCHED_FOUR("4개 일치 (50,000원) - %d개\n"),
@@ -16,7 +16,7 @@ public enum OutputPrompts {
         this.message = message;
     }
 
-    public String getMessage(Object... args) {
-        return String.format(message, args);
+    public String getMessage() {
+        return message;
     }
 }
