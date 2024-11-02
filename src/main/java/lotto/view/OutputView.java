@@ -5,6 +5,8 @@ import static lotto.view.Prompt.BONUS_NUMBER;
 import static lotto.view.Prompt.PURCHASE_AMOUNT;
 import static lotto.view.Prompt.WINNING_NUMBERS;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class OutputView {
@@ -32,7 +34,7 @@ public class OutputView {
         }
 
         if (prompt.equals(BONUS_NUMBER)) {
-            System.out.println(BONUS_NUMBER_PROMPT);
+            System.out.println(NEW_LINE.getSymbol() + BONUS_NUMBER_PROMPT);
         }
     }
 
@@ -66,27 +68,35 @@ public class OutputView {
 
     private static void appendWinningMessages(StringBuilder result, Map<Integer, Integer> matchCounts) {
         Map<Integer, String> messages = prepareMessages();
-        messages.forEach((key, message) -> {
+        ArrayList<Integer> keys = new ArrayList<>(messages.keySet());
+
+        for (int i = 0; i < keys.size(); i++) {
+            Integer key = keys.get(i);
+            String message = messages.get(key);
             result.append(message)
                     .append(matchCounts.get(key))
-                    .append(COUNT_SUFFIX)
-                    .append(NEW_LINE.getSymbol());
-        });
+                    .append(COUNT_SUFFIX);
+
+            if (i < keys.size() - 1) {
+                result.append(NEW_LINE.getSymbol());
+            }
+        }
     }
 
     private static Map<Integer, String> prepareMessages() {
-        return Map.of(
-                3, MATCH_3_MESSAGE,
-                4, MATCH_4_MESSAGE,
-                5, MATCH_5_MESSAGE,
-                -5, MATCH_5_BONUS_MESSAGE,
-                6, MATCH_6_MESSAGE
-        );
+        Map<Integer, String> messages = new LinkedHashMap<>();
+        messages.put(3, MATCH_3_MESSAGE);
+        messages.put(4, MATCH_4_MESSAGE);
+        messages.put(5, MATCH_5_MESSAGE);
+        messages.put(-5, MATCH_5_BONUS_MESSAGE);
+        messages.put(6, MATCH_6_MESSAGE);
+
+        return messages;
     }
 
     public static void displayYield(double yield) {
         String result = String.format(YIELD_MESSAGE, yield);
 
-        System.out.println(result);
+        System.out.print(result);
     }
 }
