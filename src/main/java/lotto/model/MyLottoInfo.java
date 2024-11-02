@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.dto.PurchaseAmountDto;
+import lotto.utils.CheckLotto;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.properties.LottoProperties.LOTTO_PRICE;
+import static lotto.properties.LottoProperties.LOTTO_REVENUE_PERCENTAGE;
 
 public class MyLottoInfo {
 
@@ -15,7 +17,8 @@ public class MyLottoInfo {
     private final int purchaseAmount;
     private final int purchaseLottoCount;
     private final Map<Rank, Integer> myResult;
-    private final int revenue;
+    private int revenue;
+    private double revenuePercentage;
 
     public MyLottoInfo(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
@@ -53,8 +56,21 @@ public class MyLottoInfo {
         return lottos;
     }
 
-    public void lottoResult(int count, boolean isBonusNumberMatch){
-        Rank rank = Rank.findRank(count, isBonusNumberMatch);
+    public void lottoResult(int count, boolean isBonusNumberMatch) {
+        Rank rank = determineRank(count, isBonusNumberMatch);
+        updateRevenue(rank);
+        updateResult(rank);
+    }
+
+    private Rank determineRank(int count, boolean isBonusNumberMatch) {
+        return Rank.findRank(count, isBonusNumberMatch);
+    }
+
+    private void updateRevenue(Rank rank) {
+        revenue += rank.getWinningPrice();
+    }
+
+    private void updateResult(Rank rank) {
         myResult.put(rank, myResult.get(rank) + 1);
     }
 
@@ -62,12 +78,12 @@ public class MyLottoInfo {
         return myLotteries;
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
-
     public int getPurchaseLottoCount() {
         return purchaseLottoCount;
+    }
+    public double getRevenuePercentage() {
+        revenuePercentage = ((double) revenue / purchaseAmount) * LOTTO_REVENUE_PERCENTAGE;
+        return revenuePercentage;
     }
 
     public Map<Rank, Integer> getMyResult() {
