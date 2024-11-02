@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.SequencedMap;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -20,6 +21,16 @@ public class LottoResults {
         for (Rank rank : Rank.values()) {
             lottoResults.put(rank,0);
         }
+    }
+
+    public long calculateTotalEarnings(){
+        long totalEarnings = 0;
+        for (Entry<Rank, Integer> entry : lottoResults.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalEarnings += rank.getPrize() * count;
+        }
+        return totalEarnings;
     }
 
     public void calculateResults(LottoTickets lottoTickets , WinningNumbers winningNumbers , BonusNumber bonusNumber){
