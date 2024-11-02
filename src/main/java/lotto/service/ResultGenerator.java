@@ -7,7 +7,7 @@ import lotto.domain.Lotto;
 
 public class ResultGenerator {
 
-    private final List<Long> winningResult = new ArrayList<>();
+    private final List<Integer> winningResult = new ArrayList<>();
     private final List<Integer> bonusResult = new ArrayList<>();
 
     public ResultGenerator(List<Lotto> lottoTicket, Lotto winning, Bonus bonus) {
@@ -20,7 +20,7 @@ public class ResultGenerator {
     }
 
     private void countWinning(Lotto lotto, Lotto winning) {
-        winningResult.add(lotto.getNumbers().stream()
+        winningResult.add((int) lotto.getNumbers().stream()
                 .filter(number -> winning.getNumbers().contains(number))
                 .count());
     }
@@ -37,7 +37,7 @@ public class ResultGenerator {
         bonusResult.add(0);
     }
 
-    public List<Long> getWinningResult() {
+    public List<Integer> getWinningResult() {
         return winningResult;
     }
 
