@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,11 +47,68 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    //에러메시지 상수로 만들어서 제대로 테스트
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_구매금액_문자() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ErrorMessage.PURCHASE_TYPE_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_구매금액_음수() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ErrorMessage.PURCHASE_RANGE_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_구매금액_단위() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ErrorMessage.PURCHASE_UNIT_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_타입() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,k,6");
+            assertThat(output()).contains(ErrorMessage.LOTTO_TYPE_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_공백() {
+        assertSimpleTest(() -> {
+            runException("2000", "1, ,2,3,4,5,6");
+            assertThat(output()).contains(ErrorMessage.LOTTO_TYPE_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_중복() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,2,3,4,5");
+            assertThat(output()).contains(ErrorMessage.LOTTO_DUPLICATE_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_범위_45초과() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,55");
+            assertThat(output()).contains(ErrorMessage.LOTTO_RANGE_EXCEPTION);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨번호_범위_1미만() {
+        assertSimpleTest(() -> {
+            runException("2000", "1,2,3,4,5,-2");
+            assertThat(output()).contains(ErrorMessage.LOTTO_RANGE_EXCEPTION);
         });
     }
 
