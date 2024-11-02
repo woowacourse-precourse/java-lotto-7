@@ -32,6 +32,13 @@ public class WinningNumber {
         }
     }
 
+    public boolean isDuplicateWith(int number) {
+        if (numbers.contains(number)) {
+            return true;
+        }
+        return false;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
