@@ -1,8 +1,10 @@
 package lotto;
 
 import java.util.List;
+import lotto.exception.BusinessException;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,8 +22,8 @@ public class Lotto {
         return numbers.contains(num);
     }
 
-    public int getCnt(Lotto lotto) {
-        return (int) numbers.stream().filter(lotto::contains).count();
+    public int getMatchCnt(Lotto lotto) {
+        return (int) numbers.stream ().filter(lotto::contains).count();
     }
 
     @Override
