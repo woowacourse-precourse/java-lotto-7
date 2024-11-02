@@ -13,7 +13,9 @@ public class InputView {
             try {
                 System.out.println(NotificationMessage.PURCHASE_AMOUNT.getMessage());
 
-                int purchaseAmount = Integer.parseInt(Console.readLine().trim());
+                String purchaseInput = Console.readLine().trim();
+                validatePositiveInteger(purchaseInput);
+                int purchaseAmount = Integer.parseInt(purchaseInput);
 
                 validatePurchaseAmount(purchaseAmount);
 
@@ -26,8 +28,30 @@ public class InputView {
     }
 
     private static void validatePurchaseAmount(int amount) {
-        if (amount % LottoConstants.LOTTO_PRICE.getValue() != 0 || amount < LottoConstants.LOTTO_PRICE.getValue()) {
+        validateOverPrice(amount);
+        validateDivisibleByPrice(amount);
+    }
+
+    private static void validateDivisibleByPrice(int amount) {
+        if (amount % LottoConstants.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
+        }
+    }
+
+    private static void validateOverPrice(int amount) {
+        if (amount < LottoConstants.LOTTO_PRICE.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());
+        }
+    }
+
+    private static void validatePositiveInteger(String input) {
+        try {
+            int number = Integer.parseInt(input);
+            if (number < 0) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INTEGER.getMessage());
         }
     }
 
