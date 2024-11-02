@@ -54,6 +54,22 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void divideByThousandExceptionTest() {
+        assertSimpleTest(() -> {
+            runException("10005");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void lessThanZeroExceptionTest() {
+        assertSimpleTest(() -> {
+            runException("-1000");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
