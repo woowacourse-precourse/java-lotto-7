@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class LottoService {
 
     private List<Lotto> lottoList;
+    private Map<LottoRank, Integer> lottoResults;
     private InputValidator inputValidator;
     private LottoWinningNumbers lottoWinning;
     private int lottoNum;
@@ -76,20 +77,33 @@ public class LottoService {
     }
 
     public Map<LottoRank, Integer> resultWinningLotto() {
-        LottoResult lottoResult = new LottoResult();
         for(int i=0; i<lottoNum; i++){
-            int count = compareWinningLotto();
-            lottoResult.getRankByMatchCount(count);
+            int count = compareWinningLotto(i);
+            LottoRank rankByMatchCount = LottoRank.getRankByMatchCount(count);
+            // lottoRank를 가지고 있는 (키) list를 찾아서 count를 한다
+            lottoResults.put(rankByMatchCount, lottoResults.getOrDefault(rankByMatchCount, 0) + 1);
         }
+
+        return lottoResults;
     }
 
-    private int compareWinningLotto() {
-        Set<Integer> set1 = new HashSet<>(lottoList.get(i));
+    private int compareWinningLotto(int i) {
+        Set<Integer> set1 = new HashSet<>(lottoList.get(i).getNumbers());
         Set<Integer> set2 = new HashSet<>(lottoWinning.getLottoWinningNumbers());
 
         set1.retainAll(set2);
         int count = set1.size();
 
         return count;
+    }
+
+    public int resultRate() {
+        // 일치한 것에 대한 돈을 다 더한다
+        // 해당 돈 / 구입 금액 * 100
+        // 소수점 둘째자리까지 표현한다
+        int amount = 0;
+        for(LottoRank lottoRank: lottoResults.keySet()){
+            amount = lottoRank.getPrice() * lottoResults.get(lottoRank)
+        }
     }
 }

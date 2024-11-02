@@ -39,6 +39,6 @@ public class LottoController {
         Map<LottoRank, Integer> lottoResult = lottoService.resultWinningLotto();
         int rate = lottoService.resultRate();
 
-        outputView(lottoResult, rate);
+        outputView.totalLotto(lottoResult, rate);
     }
 }
