@@ -14,6 +14,12 @@ public class ApplicationController {
     private final ViewInput viewInput;
     private final ViewOutput viewOutput;
     private final Lotto lotto;
+    private final List<List<Integer>> lottoNumber = new ArrayList<>();
+    private int countFirst = 0;
+    private int countSecond = 0;
+    private int countThird = 0;
+    private int countFourth = 0;
+    private int countFifth = 0;
 
     public ApplicationController(ViewInput viewInput, ViewOutput viewOutput, Lotto lotto) {
         this.viewInput = viewInput;
@@ -21,46 +27,44 @@ public class ApplicationController {
         this.lotto = lotto;
     }
 
-
     public void run() {
         int purchaseAmount = viewInput.receivePurchaseAmount();
-        int countFirst = 0;
-        int countSecond = 0;
-        int countThird = 0;
-        int countFourth = 0;
-        int countFifth = 0;
 
-        List<List<Integer>> lottoNumber = new ArrayList<>();
+        lottoNumberGenerator(purchaseAmount);
+
+        List<Integer> winningNumber = viewInput.receiveWinningNumber();
+        int luckyNumber = viewInput.receiveLuckyNumber();
+
+        countWinningStatics(winningNumber, luckyNumber);
+
+        viewOutput.printResult(countFirst, countSecond, countThird, countFourth, countFifth);
+        viewOutput.printEarningRateResult(lotto.calculateEarningRate(purchaseAmount, countFirst, countSecond,countThird, countFourth, countFifth));
+    }
+
+    private void lottoNumberGenerator(int purchaseAmount){
         List<Integer> lottoNumberList = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
             lottoNumberList =  Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoNumber.add(lottoNumberList);
             lotto.printLottoNumbers(lottoNumberList);
         }
+    }
 
-
-        List<Integer> winningNumber = viewInput.receiveWinningNumber();
-        int luckyNumber = viewInput.receiveLuckyNumber();
-
+    private void countWinningStatics(List<Integer> winningNumber, int luckyNumber) {
         for (List<Integer> subList : lottoNumber) {
-            if (lotto.judgeWinning(subList, winningNumber, luckyNumber).equals(LottoPrizeMoney.FIRST)) {
+            LottoPrizeMoney result = lotto.judgeWinning(subList, winningNumber, luckyNumber);
+            if (result.equals(LottoPrizeMoney.FIRST)) {
                 countFirst++;
-            }
-            if(lotto.judgeWinning(subList, winningNumber, luckyNumber).equals(LottoPrizeMoney.SECOND)) {
+            } else if (result.equals(LottoPrizeMoney.SECOND)) {
                 countSecond++;
-            }
-            if(lotto.judgeWinning(subList, winningNumber, luckyNumber).equals(LottoPrizeMoney.THIRD)) {
+            } else if (result.equals(LottoPrizeMoney.THIRD)) {
                 countThird++;
-            }
-            if(lotto.judgeWinning(subList, winningNumber, luckyNumber).equals(LottoPrizeMoney.FOURTH)) {
+            } else if (result.equals(LottoPrizeMoney.FOURTH)) {
                 countFourth++;
-            }
-            if(lotto.judgeWinning(subList, winningNumber, luckyNumber).equals(LottoPrizeMoney.FIFTH)) {
+            } else if (result.equals(LottoPrizeMoney.FIFTH)) {
                 countFifth++;
             }
         }
-        viewOutput.printResult(countFirst, countSecond, countThird, countFourth, countFifth);
-        viewOutput.printEarningRateResult(lotto.calculateEarningRate(purchaseAmount, countFirst, countSecond,countThird, countFourth, countFifth));
-
     }
+
 }

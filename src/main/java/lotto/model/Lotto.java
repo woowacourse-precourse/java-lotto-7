@@ -59,7 +59,12 @@ public class Lotto {
     }
 
     public double calculateEarningRate(int purchaseAmount, int countFirst, int countSecond, int countThird, int countFourth, int countFifth){
-        return (double) (2000000000*countFirst + 30000000*countSecond + 1500000*countThird + 50000*countFourth + 5000*countFifth) / (purchaseAmount*10);
+        return (double) (LottoPrizeMoney.FIRST.getPrizeMoney()*countFirst
+                + LottoPrizeMoney.SECOND.getPrizeMoney()*countSecond
+                + LottoPrizeMoney.THIRD.getPrizeMoney()*countThird
+                + LottoPrizeMoney.FOURTH.getPrizeMoney()*countFourth
+                + LottoPrizeMoney.FIRST.getPrizeMoney()*countFifth)
+                / (purchaseAmount*10);
     }
 
 
