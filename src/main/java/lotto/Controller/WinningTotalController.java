@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import lotto.Enum.WinningPrize;
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
 import lotto.View.OutputWinningTotalView;
@@ -32,23 +33,19 @@ public class WinningTotalController {
     }
 
     private void addResultMap(Set<Integer> comparingSet, Map<String, Integer> resultMap, int matchSize, int bonusNumber) {
-        List<String> prizeNames = new ArrayList<>(List.of("FIRST", "SECOND", "FOURTH", "FIFTH"));
+        String prizeName = WinningPrize.getNameByMatchNumber(matchSize);
         if (matchSize == 1 && comparingSet.add(bonusNumber)) {
-            resultMap.put("THIRD", resultMap.get("THIRD") + 1);
+            String thirdPrize = WinningPrize.getNameByMatchNumber(13);
+            resultMap.put(thirdPrize, resultMap.get(thirdPrize + 1));
         }
-        resultMap.put(prizeNames.get(matchSize), resultMap.get(prizeNames.get(matchSize)) + 1);
+        resultMap.put(prizeName, resultMap.get(prizeName) + 1);
     }
 
     private Map<String, Integer> makeResultMap() {
-        Map<String, Integer> resultMap = new HashMap<>(
-                Map.of(
-                        "FIRST", 0,
-                        "SECOND", 0,
-                        "THIRD", 0,
-                        "FOURTH", 0,
-                        "FIFTH", 0
-                )
-        );
+        Map<String, Integer> resultMap = new HashMap<>();
+        for (WinningPrize prize : WinningPrize.values()) {
+            resultMap.put(prize.toString(),0);
+        }
         return resultMap;
     }
 }
