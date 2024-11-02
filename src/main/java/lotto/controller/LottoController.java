@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.model.Lotto;
@@ -24,8 +23,7 @@ public class LottoController {
         int money = getMoney();
         int purchaseCount = money / 1000;
 
-        Lottos purchasedLottos = purchaseLottos(purchaseCount);
-
+        Lottos purchasedLottos = Lottos.purchase(purchaseCount);
         outputView.showPurchasedLottos(purchaseCount, purchasedLottos);
 
         Lotto lottoWinningNumbers = getLottoWinningNumbers();
@@ -33,22 +31,6 @@ public class LottoController {
 
         WinningLottoNumbers winningLottoNumbers = createWinningLottoNumbers(lottoWinningNumbers, lottoBonusNumber);
 
-    }
-
-    private Lottos purchaseLottos(int purchaseCount) {
-        List<Lotto> purchasedLottos = getPurchasedLottos(purchaseCount);
-        return Lottos.of(purchasedLottos);
-    }
-
-    private List<Lotto> getPurchasedLottos(int purchaseCount) {
-        return IntStream.range(0, purchaseCount)
-                .mapToObj(lotto -> purchaseLotto())
-                .toList();
-    }
-
-    private Lotto purchaseLotto() {
-        RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
-        return lottoGenerator.generateLotto();
     }
 
     private int getMoney() {
