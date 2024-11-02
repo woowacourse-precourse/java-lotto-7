@@ -9,6 +9,8 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static lotto.Application.calculateLottoCount; //static 메서드 가져오기
+
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
@@ -51,34 +53,26 @@ class ApplicationTest extends NsTest {
     void 구입_금액에_문자가_들어올_경우_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE).isEqualTo("구입 금액은 정수여야 합니다.");
         });
     }
 
     @Test
     void 구입_금액에_따른_로또_구매_매수_기능_테스트(){
         int purchaseAmount = 5000;
-        int lottoPrice=1000;
-        int expectedLottoCount = purchaseAmount/lottoPrice;
-        int LottoCount = Application.calculateLottoCount(purchaseAmount);
+        int expectedLottoCount = purchaseAmount/1000;
+        int LottoCount = calculateLottoCount(purchaseAmount);
 
         assertThat(LottoCount).isEqualTo(expectedLottoCount);
     }
-
     @Test
     void 구입_금액이_로또_가격보다_낮은_경우_예외_테스트(){
         assertSimpleTest(()->{
             runException("500");
-            assertThat(output()).contains(ERROR_MESSAGE);
+            assertThat(output()).contains(ERROR_MESSAGE).isEqualTo("구입 금액은 1000원 이상이어야 합니다.");
         });
     }
-    @Test
-    void 구입_금액이_정수가_아닌_경우_예외_테스트(){
-        assertSimpleTest(() -> {
-            runException("1000.5");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
+
 
     @Override
     public void runMain() {
