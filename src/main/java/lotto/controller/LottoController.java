@@ -1,8 +1,11 @@
 package lotto.controller;
 
+import lotto.service.LottoService;
 import lotto.validation.LottoValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
 
@@ -10,11 +13,13 @@ public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
     private final LottoValidation lottoValidation;
+    private final LottoService lottoService;
 
-    public LottoController(OutputView outputView, InputView inputVIew, LottoValidation lottoValidation) {
+    public LottoController(OutputView outputView, InputView inputVIew, LottoValidation lottoValidation, LottoService lottoService) {
         this.outputView = outputView;
         this.inputView = inputVIew;
         this.lottoValidation = lottoValidation;
+        this.lottoService = lottoService;
     }
 
     public void run() {
@@ -22,18 +27,18 @@ public class LottoController {
         int purchasePrice = getValidPurchasePrice();
 
         int lottoCount = getLottoCount(purchasePrice);
+        outputView.lottoPurchasedCount(lottoCount);
+        List<List<Integer>> lottos = lottoService.buyLotto(lottoCount);
     }
 
     private int getValidPurchasePrice() {
         while (true) {
             try {
                 String input = inputView.inputPurchasePrice();
-
                 lottoValidation.validateBlank(input);
                 int purchasePrice = lottoValidation.validateParsing(input);
                 lottoValidation.validatePositive(purchasePrice);
                 lottoValidation.validateDivisible(purchasePrice);
-
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
