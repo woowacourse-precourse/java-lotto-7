@@ -30,7 +30,11 @@ public class Lottos {
         return Collections.unmodifiableList(lottos);
     }
 
-    public List<LottoReward> compareLottos(WinningNumber winningNumber) {
+    public LottoResult calculateLottoResult(WinningNumber winningNumber) {
+        return new LottoResult(compareLottos(winningNumber));
+    }
+
+    private List<LottoReward> compareLottos(WinningNumber winningNumber) {
         return lottos.stream()
                 .map(winningNumber::findReward)
                 .toList();

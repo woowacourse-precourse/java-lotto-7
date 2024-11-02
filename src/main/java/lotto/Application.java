@@ -14,7 +14,7 @@ public class Application {
         OutputView.printPurchasedLottos(lottos);
 
         final WinningNumber winningNumber = createWinningNumber();
-        final LottoResult lottoResult = new LottoResult(lottos.compareLottos(winningNumber));
+        final LottoResult lottoResult = lottos.calculateLottoResult(winningNumber);
         OutputView.printLottoStatistics(lottoResult, purchasePrice);
     }
 
