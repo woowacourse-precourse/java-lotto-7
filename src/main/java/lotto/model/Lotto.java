@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.constants.GlobalLottoConst.MAX_LOTTO_NUMBER;
+import static lotto.constants.GlobalLottoConst.MAX_LOTTO_NUMBERS_COUNT;
+import static lotto.constants.GlobalLottoConst.MIN_LOTTO_NUMBER;
 import static lotto.message.ErrorMessage.DUPLICATED_NUMBER_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.INVALID_NUMBER_COUNT_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.INVALID_NUMBER_RANGE_ERROR_MESSAGE;
@@ -10,10 +13,6 @@ import java.util.stream.Collectors;
 import lotto.dto.LottoStatus;
 
 public class Lotto {
-
-    private final static int MAX_LOTTO_NUMBER_COUNT = 6;
-    private final static int MIN_LOTTO_NUMBER = 1;
-    private final static int MAX_LOTTO_NUMBER = 45;
 
     private final List<Integer> numbers;
 
@@ -30,7 +29,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != MAX_LOTTO_NUMBER_COUNT) {
+        if (numbers.size() != MAX_LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT_ERROR_MESSAGE.getContent());
         }
     }

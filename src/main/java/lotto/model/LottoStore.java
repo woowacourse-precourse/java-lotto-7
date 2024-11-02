@@ -1,12 +1,12 @@
 package lotto.model;
 
+import static lotto.constants.GlobalLottoConst.UNIT;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.util.random.RandomNumberUtils;
 
 public class LottoStore {
-
-    private static final int UNIT = 1000;
 
     public static LottoTicket purchaseLottoTicket(int purchaseAmount) {
 

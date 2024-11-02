@@ -2,7 +2,6 @@ package lotto.view;
 
 import static lotto.model.Rank.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.dto.LottoStatus;

@@ -1,14 +1,13 @@
 package lotto.util.validator;
 
+import static lotto.constants.GlobalLottoConst.MAX_PURCHASE_AMOUNT;
+import static lotto.constants.GlobalLottoConst.UNIT;
 import static lotto.message.ErrorMessage.INVALID_UNIT_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.NOT_POSITIVE_INTEGER_INPUT_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.UPPER_LIMIT_EXCEEDED_ERROR_MESSAGE;
 
 
 public class PurchaseAmountValidator {
-
-    private static final int MAX_PURCHASE_AMOUNT = 100_000;
-    private static final int UNIT = 1000;
 
     public static void validate(int purchaseAmount) {
         validatePositiveNumber(purchaseAmount);

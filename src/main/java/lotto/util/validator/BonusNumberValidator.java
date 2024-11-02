@@ -1,5 +1,7 @@
 package lotto.util.validator;
 
+import static lotto.constants.GlobalLottoConst.MAX_LOTTO_NUMBER;
+import static lotto.constants.GlobalLottoConst.MIN_LOTTO_NUMBER;
 import static lotto.message.ErrorMessage.DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE;
 import static lotto.message.ErrorMessage.INVALID_RANGE_BONUS_NUMBER_ERROR_MESSAGE;
 
@@ -8,9 +10,6 @@ import lotto.dto.LottoStatus;
 import lotto.model.Lotto;
 
 public class BonusNumberValidator {
-
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
 
     public static void validate(Lotto winningLotto, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);
@@ -24,7 +23,7 @@ public class BonusNumberValidator {
     }
 
     private static boolean isValidRange(int bonusNumber) {
-        return LOTTO_MIN_NUMBER <= bonusNumber && bonusNumber <= LOTTO_MAX_NUMBER;
+        return MIN_LOTTO_NUMBER <= bonusNumber && bonusNumber <= MAX_LOTTO_NUMBER;
     }
 
     private static void validateDuplication(Lotto winningLotto, int bonusNumber) {
