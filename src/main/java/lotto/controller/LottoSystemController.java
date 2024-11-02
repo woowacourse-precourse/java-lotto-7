@@ -21,12 +21,12 @@ public class LottoSystemController {
         while (user == null) {
             try {
                 user = new User(inputView.inputAmount());
-                user.moneyToTicket(user.getMoney());
+                user.publishLotto(user.getMoney());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        outputView.outputPurchaseLottoNumber(user.getMoney() / 1000, user.getLotteryTickets());
+        outputView.outputPurchaseLottoNumber(user.getMoney(), user.getLotteryTickets());
 
         Lotto lotto = null;
         while (lotto == null) {

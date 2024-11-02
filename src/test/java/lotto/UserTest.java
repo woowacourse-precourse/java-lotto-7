@@ -16,7 +16,7 @@ public class UserTest {
     @Test
     void 발행_횟수_만큼_로또_발행_되는지_테스트() {
         User user = new User("8000");
-        user.moneyToTicket(user.getMoney());
+        user.publishLotto(user.getMoney());
 
         int actual = user.getLotteryTickets().size();
 

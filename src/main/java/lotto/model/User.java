@@ -34,13 +34,9 @@ public class User {
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    public void moneyToTicket(int money) {
-        publishLotto(money / 1000);
-    }
-
     public void publishLotto(int count) {
         lotteryTickets = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count / 1000; i++) {
             lotteryTickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         }
     }
