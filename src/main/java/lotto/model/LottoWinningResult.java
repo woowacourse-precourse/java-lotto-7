@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -32,6 +33,6 @@ public class LottoWinningResult {
     }
 
     public Map<LottoRank, Integer> getLottoWinningResult() {
-        return lottoWinningResult;
+        return Collections.unmodifiableMap(lottoWinningResult);
     }
 }
