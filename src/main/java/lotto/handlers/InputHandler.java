@@ -1,20 +1,21 @@
 package lotto.handlers;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.models.Lotto;
 import lotto.ui.InputView;
 import lotto.validators.BonusNumberValidator;
-import lotto.validators.LottoNumberValidator;
 import lotto.validators.PurchaseAmountValidator;
+
+import java.util.stream.Stream;
 
 public class InputHandler {
     private final InputView inputView;
-    private String lottoNumbers;
 
     public InputHandler(InputView inputView) {
         this.inputView = inputView;
     }
 
-    public void handlePurchaseAmountInput(LottoHandler lottoHandler,  ResultHandler resultHandler) {
+    public void handlePurchaseAmountInput(LottoHandler lottoHandler, ResultHandler resultHandler) {
         PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
         String input;
 
@@ -28,27 +29,43 @@ public class InputHandler {
         resultHandler.setPurchaseAmount(purchaseAmount);
     }
 
-    public void handleLottoNumberInput() {
-        LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
-        String input;
-
+    public void handleWinningTicketInput(ResultHandler resultHandler) {
         inputView.printLottoNumberPrompt();
-        do {
-            input = Console.readLine().strip();
-        } while (!lottoNumberValidator.isValid(input));
-
-        this.lottoNumbers = input;
-    }
-
-    public void handleBonusNumberInput(ResultHandler resultHandler) {
-        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
-        String input;
+        String winningNumbers = getLottoNumberInput();
 
         inputView.printBonusNumberPrompt();
-        do {
-            input = Console.readLine().strip();
-        } while (!bonusNumberValidator.isValid(input + ":" + this.lottoNumbers));
+        String bonusNumber = getBonusNumberInput(winningNumbers);
 
-        resultHandler.setWinningTicket(this.lottoNumbers, input);
+        resultHandler.setWinningTicket(winningNumbers, bonusNumber);
+    }
+
+    private String getLottoNumberInput() {
+        String input = "";
+        boolean isValidInput = false;
+        do {
+            try {
+                input = Console.readLine().strip();
+                new Lotto(Stream.of(input.split(",")).map(Integer::parseInt).toList());
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isValidInput);
+        return input;
+    }
+
+    private String getBonusNumberInput(String winningNumbers) {
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+        String input = "";
+        boolean isValidInput = false;
+        do {
+            try {
+                input = Console.readLine().strip();
+                isValidInput = bonusNumberValidator.isValid(winningNumbers, input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!isValidInput);
+        return input;
     }
 }

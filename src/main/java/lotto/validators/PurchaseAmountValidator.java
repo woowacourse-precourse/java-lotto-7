@@ -4,7 +4,6 @@ import lotto.models.constants.LottoValues;
 import lotto.validators.constants.ErrorMessages;
 
 public class PurchaseAmountValidator implements NumberInputValidator {
-    @Override
     public boolean isValid(String input) {
         try {
             checkInputType(input);
