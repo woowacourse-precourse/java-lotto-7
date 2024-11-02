@@ -76,14 +76,10 @@ public class LottoController {
     private PurchaseLottoResponse getPurchaseLottoResponse(Lottos lottos) {
 
         List<LottoNumberResponse> lottoNumberResponses = lottos.getAllLottoNumbers().stream()
-                .map(this::getLottoNumberResponse)
+                .map(LottoNumberResponse::from)
                 .toList();
 
         return PurchaseLottoResponse.from(lottoNumberResponses);
-    }
-
-    private LottoNumberResponse getLottoNumberResponse(LottoNumbers lottoNumbers) {
-        return LottoNumberResponse.from(lottoNumbers.mapToInt());
     }
 
     private LottoScoreResponses getLottoScoreResponses(List<Score> scores) {
