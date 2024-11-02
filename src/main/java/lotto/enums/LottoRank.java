@@ -47,7 +47,7 @@ public enum LottoRank {
                 .filter(lottoRank -> lottoRank != NO_REWARD)
                 .collect(Collectors.toMap(
                         lottoRank -> lottoRank,
-                        lottoRank -> String.format("%s개 일치 (%s원)", lottoRank.getMatchCount(), formatPrizeMoney(lottoRank.getMoney())),
+                        LottoRank::generateRankMessage,
                         (oldValue, newValue) -> oldValue,
                         LinkedHashMap::new
                 ));
@@ -56,5 +56,12 @@ public enum LottoRank {
     private static String formatPrizeMoney(long prizeMoney) {
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
         return numberFormat.format(prizeMoney);
+    }
+
+    private String generateRankMessage() {
+        if (this == LottoRank.SECOND) {
+            return String.format("%s개 일치, 보너스 볼 일치 (%s원)", getMatchCount(), formatPrizeMoney(getMoney()));
+        }
+        return String.format("%s개 일치 (%s원)", getMatchCount(), formatPrizeMoney(getMoney()));
     }
 }
