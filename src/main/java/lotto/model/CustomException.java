@@ -16,14 +16,20 @@ public class CustomException extends Exception {
     public static CustomException getInstance() {
         return instance;
     }
+
+    public void purchaseAmountInputCheck(String purchase){
+        int amount = purchaseOnlyIntCheck(purchase);
+        purchaseAmountCheck(amount);
+    }
+
     public void winningNumberInputCheck(String inputWinningNumbers){
         String[] winningNumbers = winningNumberCountCheck(inputWinningNumbers);
         winningNumberRuleCheck(winningNumbers);
     }
 
-    public void purchaseAmountInputCheck(String purchase){
-        int amount = purchaseOnlyIntCheck(purchase);
-        purchaseAmountCheck(amount);
+    public void bonusNumberInputCheck(String inputBonusNumber){
+        int bonusNumber = bonusNumberOnlyIntCheck(inputBonusNumber);
+        bonusNumberRangeCheck(bonusNumber);
     }
 
     private int purchaseOnlyIntCheck(String purchase){
@@ -54,17 +60,28 @@ public class CustomException extends Exception {
         try {
             for (String numberString : winningNumbers) {
                 int number = Integer.parseInt(numberString.trim());
-
                 if (number < MIN || number > MAX) {
                     throw new IllegalArgumentException("각 번호는 " + MIN + "부터 " + MAX + " 사이의 숫자여야 합니다.");
                 }
-
                 if (!winningNumberSet.add(number)) {
                     throw new IllegalArgumentException("각 번호는 중복될 수 없습니다.");
                 }
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("번호는 숫자만 입력해야 합니다.");
+        }
+    }
+    private int bonusNumberOnlyIntCheck(String inputBonusNumber){
+        try{
+            return Integer.parseInt(inputBonusNumber);
+        }catch(NumberFormatException e){
+            System.out.println("당첨 보너스 번호는 숫자 1개만 입력 가능합니다.");
+        }
+        return 0;
+    }
+    private void bonusNumberRangeCheck(int bounsNumber){
+        if(bounsNumber < MIN || bounsNumber > MAX){
+            throw new IllegalArgumentException("당첨 보너스 번호는 "+MIN+"이상 "+MAX+"이하 의 숫자만 가능합니다");
         }
     }
 }

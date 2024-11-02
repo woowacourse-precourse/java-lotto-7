@@ -33,4 +33,10 @@ public class InputView {
         customException.winningNumberInputCheck(winningNumber);
         return Arrays.stream(winningNumber.split(",")).mapToInt(Integer::parseInt).toArray();
     }
+    public int inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_GUIDE_MESSAGE);
+        String bonusNumber = Console.readLine();
+        customException.bonusNumberInputCheck(bonusNumber);
+        return Integer.parseInt(bonusNumber);
+    }
 }
