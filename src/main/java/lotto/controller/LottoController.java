@@ -16,7 +16,6 @@ public class LottoController {
     }
 
     private int splitNumber(String userInput) {
-        System.out.println("userInput = " + userInput);
         try {
             return Integer.parseInt(userInput);
         }catch (NumberFormatException e) {
