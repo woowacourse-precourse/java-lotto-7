@@ -1,9 +1,6 @@
 package lotto.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import lotto.utilities.Random;
 
 public class Lottos {
   private final List<Lotto> lottos;
@@ -13,11 +10,7 @@ public class Lottos {
   }
 
   public static Lottos createLottos(int quantityOfLottos) {
-    List<Lotto> lottos =
-        IntStream.range(0, quantityOfLottos)
-            .mapToObj(i -> new Lotto(Random.lottoGenerator()))
-            .collect(Collectors.toList());
-    return new Lottos(lottos);
+    return new Lottos(LottoFactory.createLottos(quantityOfLottos));
   }
 
   public String allLottosToString() {
