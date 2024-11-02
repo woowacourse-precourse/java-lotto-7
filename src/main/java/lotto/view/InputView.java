@@ -11,4 +11,8 @@ public class InputView {
             throw new IllegalArgumentException(ONLY_NUMERIC_INPUT_FOR_PURCHASE_AMOUNT.getMessage());
         }
     }
+
+    private static String removeAllSpaces(String input) {
+        return input.replace(" ", "");
+    }
 }
