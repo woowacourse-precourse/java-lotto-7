@@ -6,5 +6,6 @@ public class Application {
         // TODO: 프로그램 구현
         LottoMachine lottoMachine = new LottoMachine(Integer.parseInt(Console.readLine()));
         lottoMachine.makeLottos();
+        lottoMachine.printLottos();
     }
 }
