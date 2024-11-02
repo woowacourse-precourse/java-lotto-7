@@ -39,4 +39,12 @@ public class LottoTest {
                 {List.of(12,23,34,48,11,25)}
         };
     }
+
+    @ParameterizedTest
+    @MethodSource("validLottoNumberProvider")
+    @DisplayName("로또 객체 getter 테스트")
+    public void lottoConstructorTest(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        assertThat(lotto.getNumbers()).isEqualTo(numbers);
+    }
 }
