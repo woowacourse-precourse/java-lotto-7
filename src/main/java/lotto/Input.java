@@ -10,12 +10,20 @@ public class Input {
         this.inputValidator = inputValidator;
     }
 
-    public String input() {
-        return Console.readLine();
+    public Integer getAmountWithMessage() {
+        while (true) {
+            try {
+                return getValidatedAmount();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    public String getAmountWithMessage() {
+    private Integer getValidatedAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
-        return input();
+        Integer amount = Parser.toInteger(Console.readLine());
+        inputValidator.validateAmount(amount);
+        return amount;
     }
 }
