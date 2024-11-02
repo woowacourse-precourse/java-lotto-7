@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        // TODO : main 메서드도 나중에 분리해서 적어야 함
         System.out.println("구입금액을 입력해 주세요.");
         int budget = Integer.parseInt(Console.readLine());
 
@@ -14,6 +15,7 @@ public class Application {
         int lottoCount = lottoGenerator.getLottoCount(budget);
         System.out.println(lottoCount + "개를 구매했습니다.");
 
+        // TODO : 생성된 Lotto 객체를 어디에 저장해두어야 함
         for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = lottoGenerator.generateLotto();
             System.out.println(lotto.getSortedLottoNumbers());
