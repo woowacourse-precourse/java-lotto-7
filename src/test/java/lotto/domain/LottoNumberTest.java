@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,5 +14,11 @@ public class LottoNumberTest {
     void 로또_번호가_1부터_45_가_아니면_예외가_발생한다(int number) {
         assertThatThrownBy(() -> LottoNumber.valueOf(number))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void test(){
+        LottoNumber lottoNumber = LottoNumber.valueOf(10);
+        System.out.println(lottoNumber.getNumber());
     }
 }
