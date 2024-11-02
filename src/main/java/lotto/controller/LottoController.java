@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.exception.InvalidBonusNumberException;
+import lotto.exception.InvalidPurchaseAmountException;
+import lotto.exception.InvalidWinningNumbersException;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PublishLotteries;
@@ -14,7 +16,6 @@ import lotto.model.Rank;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.common.RepeatInputUntilSuccess.repeatInputUntilSuccess;
 import static lotto.exception.ErrorMessage.ALREADY_EXIST_IN_WINNING_NUMBERS;
 
 public class LottoController {
@@ -54,7 +55,15 @@ public class LottoController {
     }
 
     private void inputPurchaseAmount() {
-        purchase = repeatInputUntilSuccess(() -> new Purchase(inputView.getPurchaseAmount()));
+        while (true) {
+            try {
+                int amount = inputView.getPurchaseAmount();
+                purchase = new Purchase(amount);
+                break;
+            } catch (InvalidPurchaseAmountException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void publishLotto() {
@@ -66,15 +75,28 @@ public class LottoController {
     }
 
     private void assignWinningNumbers() {
-        winningNumber = repeatInputUntilSuccess(() -> new WinningNumber(inputView.getWinningString()));
+        while (true) {
+            try {
+                String winningString = inputView.getWinningString();
+                winningNumber = new WinningNumber(winningString);
+                break;
+            } catch (InvalidWinningNumbersException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void assignBonusNumber() {
-        bonusNumber = repeatInputUntilSuccess(() -> {
-            int number = inputView.getBonusNumber();
-            checkBonusNumberDuplicate(number);
-            return new BonusNumber(number);
-        });
+        while (true) {
+            try {
+                int number = inputView.getBonusNumber();
+                checkBonusNumberDuplicate(number);
+                bonusNumber = new BonusNumber(number);
+                break;
+            } catch (InvalidBonusNumberException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void checkBonusNumberDuplicate(int number) {
