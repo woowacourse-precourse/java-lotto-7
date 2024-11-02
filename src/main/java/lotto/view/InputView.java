@@ -16,21 +16,21 @@ public class InputView {
 
     public static int inputPurchaseAmount() {
         System.out.println(INPUT_BUY_MONEY_MESSAGE);
-        String input = Console.readLine();
+        String input = Converter.trimInput(Console.readLine());
         InputValidator.validatePurchaseAmount(input);
         return Converter.convertToNumber(input);
     }
 
     public static List<Integer> inputWinNumbers() {
         System.out.println(INPUT_WIN_NUMBERS_MESSAGE);
-        String input = Console.readLine();
+        String input = Converter.trimInput(Console.readLine());
         InputValidator.validateWinNumbers(input);
         return Converter.convertNumbers(input);
     }
 
     public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        String input = Console.readLine();
+        String input = Converter.trimInput(Console.readLine());
         InputValidator.validateBonusNumber(input);
         return Converter.convertToNumber(input);
     }
