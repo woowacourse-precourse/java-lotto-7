@@ -165,4 +165,4 @@
 - [ ] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 - [x] else 예약어를 쓰지 않는다.
 - [x] Java Enum을 적용하여 프로그램을 구현한다.
-- [ ] 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] 구현한 기능에 대한 단위 테스트를 작성한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
