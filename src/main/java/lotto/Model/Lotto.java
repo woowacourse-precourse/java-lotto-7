@@ -53,10 +53,29 @@ public class Lotto {
         return publicationNumbers;
     }
 
+    private int findLottoRank(long matchingCount, int bonusNumber) {
+        boolean hasBonusMatch = numbers.contains(bonusNumber);
+
+        if (matchingCount == 6) {
+            return 1;
+        } else if (matchingCount == 5 && hasBonusMatch) {
+            return 2;
+        } else if (matchingCount == 5) {
+            return 3;
+        } else if (matchingCount == 4) {
+            return 4;
+        } else if (matchingCount == 3) {
+            return 5;
+        } else {
+            return 0;
+        }
+    }
+
     public List<Integer> findMatchNumber() {
         int PRICE = 1000;
         int lottoPurchase = convertStringToInt(InputView.lottoPurchase());
         int count = theNumberOfLotto(lottoPurchase, PRICE);
+        int bonusNumber = convertStringToInt(InputView.bonusNumber());
         List<List<Integer>> lotto = totalLotto(count);
         List<Integer> duplicateCountList = new ArrayList<>();
 
@@ -67,17 +86,16 @@ public class Lotto {
                     .filter(set::contains)
                     .count();
 
-            duplicateCountList.add((int) duplicateCount);
+            duplicateCountList.add(findLottoRank(duplicateCount, bonusNumber));
         }
 
         return duplicateCountList;
     }
 
     public List<Integer> findMatchNumberCount(List<Integer> duplicateCountList) {
-        // 0부터 5까지의 인덱스를 가진 리스트를 초기화 (모든 값은 0)
-        List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0));
 
-        // 각 숫자의 개수를 계산하여 해당 인덱스에 저장
+        List<Integer> result = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0));
+
         for (int number : duplicateCountList) {
             result.set(number, result.get(number) + 1);
         }
@@ -89,6 +107,7 @@ public class Lotto {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
 
-        lotto.findMatchNumberCount(lotto.findMatchNumber());
+        List<Integer> p = lotto.findMatchNumberCount(lotto.findMatchNumber());
+        System.out.println(p);
     }
 }
