@@ -23,7 +23,14 @@ public class LottoController {
         this.outputView = outputView;
     }
 
-    public void startPurchaseAmountInput() {
+    public void startLottoSales() {
+        inputPurchaseAmount();
+        printNumberOfPurchaseLotto();
+        generateLottosByRandomNumber();
+        printAllLottoNumbers();
+    }
+
+    public void inputPurchaseAmount() {
         boolean isValidNumber = false;
         String inputCost;
 
@@ -51,7 +58,7 @@ public class LottoController {
         this.lottoCollection = lottoService.generateLottoCollection(purchasedLottoCount);
     }
 
-    public void printLottoNumbers() {
+    public void printAllLottoNumbers() {
         List<Lotto> lottoNumbers = lottoService.prepareCollectionForPrint(lottoCollection);
         outputView.printLottoNumbers(lottoNumbers);
 
