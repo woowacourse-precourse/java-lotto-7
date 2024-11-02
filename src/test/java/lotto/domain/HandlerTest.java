@@ -73,14 +73,26 @@ class HandlerTest {
 
   @DisplayName("내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다")
   @Test
-  void compareNumbersTeset() {
+  void compareNumbersTest() {
+    // given : 일치성 횟수 계산 결과 예시
+    // 구매 금액 만큼의 로또 수 조회
+    // 로또 수 만큼 로또 발행 후 전달
+    // 전달된 로또 결과 조회
+    // 당첨 번호와 보너스 번호 조회
+    // 로또 번호, 당첨 번호, 보너스 번호 조회
+    // 실제 일치성 횟수 계산 결과 조회
+    // 예시와 실제값 일치 여부 검증
+
+
 
   }
 
   @DisplayName("비교한 결과를 토대로 총 수익률 계산한다")
   @Test
   void calculateRevenueTest() {
-
+    // 총 수익률 예시
+    // 일치성 횟수 계산 결과 조회
+    //
   }
 
 
