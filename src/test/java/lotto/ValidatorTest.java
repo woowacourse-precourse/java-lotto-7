@@ -35,4 +35,11 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAmountInput(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호가_6개_보다_적은_경우_예외가_발생한다() {
+        String[] winningLottoInput = new String[]{ "1", "2", "3", "4", "5" };
+        assertThatThrownBy(() -> Validator.validateWinningLottoInputLength(winningLottoInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
