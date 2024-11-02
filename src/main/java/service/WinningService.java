@@ -2,13 +2,19 @@ package service;
 
 
 import domain.Lotto;
+import domain.LottoResult;
 import domain.Lottos;
 import domain.Ticket;
+import domain.WinningPrice;
+import java.util.List;
+import java.util.Map;
 import utils.RandomNumber;
+import utils.WinningCalculator;
 
 public class WinningService {
 
     private Lottos lottos = new Lottos();
+    private LottoResult lottoResult = LottoResult.create();
 
     public Lottos generateLottoNumber(int purchaseAmount) {
         Ticket ticket = Ticket.from(purchaseAmount);
@@ -17,6 +23,19 @@ public class WinningService {
             lottos.addLotto(lotto);
         }
         return lottos;
-
     }
+
+    public void winningStatistics(List<Integer> winningNumbers, List<Integer> lottoNumbers, int bonusNumber) {
+        int matchCount = WinningCalculator.countMatchingNumber(winningNumbers, lottoNumbers);
+        boolean bonusNumberMatched = WinningCalculator.isBonusNumberMatched(winningNumbers,
+                bonusNumber);
+        WinningPrice winningPrice = WinningPrice.of(matchCount, bonusNumberMatched);
+        lottoResult.countWinningPrice(winningPrice);
+    }
+
+    public Map<WinningPrice, Integer> getLottoResult() {
+        return lottoResult.getResult();
+    }
+
+
 }
