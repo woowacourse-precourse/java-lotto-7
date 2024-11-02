@@ -49,7 +49,7 @@ public class Lotto {
         }
 
         if (countSameNumbers == 6) {
-            
+            countSameNumbers++;
         }
         return countSameNumbers;
     }
