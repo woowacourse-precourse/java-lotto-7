@@ -6,10 +6,17 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Rank;
+import lotto.domain.calculators.FinalPrizeCalculator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
-    final WinningLotto winningLotto = new WinningLotto();
+    private WinningLotto winningLotto;
+
+    @BeforeEach
+    void setUp() {
+        winningLotto = new WinningLotto(new FinalPrizeCalculator());
+    }
 
     @Test
     void 매칭_결과_랭크_업데이트_확인() {
