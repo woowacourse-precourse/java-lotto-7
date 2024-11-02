@@ -30,8 +30,7 @@ public class LottoTransform {
 
     public int getLottoCount(String input) {
         int lottoPrice = Integer.parseInt(input);
-        //검증 추가 필요
-        return lottoPrice/LOTTO_PRICE;
+        return lottoPrice / LOTTO_PRICE;
     }
 
     public void createLottoNumbers(int lottoCount) {
@@ -41,12 +40,7 @@ public class LottoTransform {
         }
     }
 
-
-
     public List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().toList();
     }
-
-
-
 }

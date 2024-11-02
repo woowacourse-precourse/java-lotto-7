@@ -30,7 +30,7 @@ public class LottoValidation {
             return 0;
         }
         int totalWinningAmount = calculateTotalWinningAmount();
-        return 100 + ((double)(totalWinningAmount - purchaseAmount) / purchaseAmount * 100);
+        return 100 + ((double) (totalWinningAmount - purchaseAmount) / purchaseAmount * 100);
     }
 
     private int isMatchWinningNumbers(List<Integer> lottoNumber) {
