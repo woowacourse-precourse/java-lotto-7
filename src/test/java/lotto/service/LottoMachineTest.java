@@ -34,19 +34,19 @@ class LottoMachineTest {
                 () -> lottoMachine.issueLotto(money));
 
         // then
-        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.MONEY_IS_NOT_MOD_PRICE.getMsg());
+        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.MONEY_NOT_MODED_PRICE.getMsg());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, -30, -1000, -1500, -2000})
-    void 돈_0_이하_입력(int money) {
+    @ValueSource(ints = {0, -30, -1000, -1500, -2000, 989, 853, 500})
+    void 돈_1000원_이하_입력(int money) {
         // given
         // when
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
                 () -> lottoMachine.issueLotto(money));
 
         // then
-        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.NOT_NUMBER.getMsg());
+        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.MONEY_LESS_THEN_MINIMUM.getMsg());
     }
 
     @ParameterizedTest
@@ -58,7 +58,7 @@ class LottoMachineTest {
                 () -> lottoMachine.issueLotto(money));
 
         // then
-        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.MONEY_IS_MORE_THEN_MAX.getMsg());
+        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.MONEY_MORE_THEN_MAXIMUM.getMsg());
     }
 
 

@@ -36,7 +36,7 @@ public class Lotto {
 
     private void validateLottoNumberSizeIn(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_IS_NOT_FIT_SIZE.getMsg());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_OUT_OF_RANGE.getMsg());
         }
     }
 
@@ -54,7 +54,7 @@ public class Lotto {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_IS_NOT_NUM.getMsg());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_NOT_NUMBER.getMsg());
         }
     }
 

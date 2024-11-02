@@ -45,19 +45,19 @@ public class LottoMachine {
 
     private void validateMoneyModLottoPrice(int money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_NOT_MOD_PRICE.getMsg());
+            throw new IllegalArgumentException(ErrorMessage.MONEY_NOT_MODED_PRICE.getMsg());
         }
     }
 
     private void validateMoneyLessThenZero(int money) {
-        if (money <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMsg());
+        if (money < LOTTO_PRICE) {
+            throw new IllegalArgumentException(ErrorMessage.MONEY_LESS_THEN_MINIMUM.getMsg());
         }
     }
 
     private void validateMoneyLessThenMax(int money) {
         if (money > MONEY_MAX) {
-            throw new IllegalArgumentException(ErrorMessage.MONEY_IS_MORE_THEN_MAX.getMsg());
+            throw new IllegalArgumentException(ErrorMessage.MONEY_MORE_THEN_MAXIMUM.getMsg());
         }
     }
 

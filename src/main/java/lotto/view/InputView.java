@@ -34,7 +34,7 @@ public class InputView {
         try {
             Integer.parseInt(rawValue);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMsg());
+            throw new IllegalArgumentException(ErrorMessage.MONEY_NOT_NUMBER.getMsg());
         }
     }
 }
