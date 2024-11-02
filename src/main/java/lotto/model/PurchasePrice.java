@@ -1,11 +1,12 @@
 package lotto.model;
 
+import lotto.constant.LottoConfiguration;
+
 public class PurchasePrice {
 
-    public static final int ONE_LOTTO_PURCHASE_PRICE = 1000;
     public static final String NOT_POSITIVE_PRICE_EXCEPTION_MESSAGE = "0이하의 금액은 허용하지 않습니다.";
     public static final String EXIST_CHANGE_EXCEPTION_MESSAGE =
-            String.format("거스름돈이 남는 금액은 허용하지 않습니다. (로또 금액 : %d)", ONE_LOTTO_PURCHASE_PRICE);
+            String.format("거스름돈이 남는 금액은 허용하지 않습니다. (로또 금액 : %d)", LottoConfiguration.LOTTO_PRICE);
 
     private int price;
 
@@ -22,7 +23,7 @@ public class PurchasePrice {
     }
 
     private void validateNoChange(int price) {
-        if (price % 1000 != 0) {
+        if (price % LottoConfiguration.LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(EXIST_CHANGE_EXCEPTION_MESSAGE);
         }
     }

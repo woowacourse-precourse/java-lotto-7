@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.stream.Stream;
+import lotto.constant.LottoConfiguration;
 import lotto.constant.ValidationFailMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,7 +25,7 @@ class InputValidationServiceTest {
     @DisplayName("올바른 구매 금액의 입력을 검증")
     @Test
     void 올바른_구매_금액의_입력을_검증() {
-        String rawPurchasePrice = "14000";
+        String rawPurchasePrice = String.valueOf(LottoConfiguration.LOTTO_PRICE * 15);
         assertThatCode(() -> inputValidationService.validatePurchasePrice(rawPurchasePrice))
                 .doesNotThrowAnyException();
     }
