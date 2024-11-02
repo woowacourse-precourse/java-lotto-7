@@ -13,8 +13,16 @@ class BonusNumberValidatorTest {
     @ValueSource(strings = {"", "  "})
     void validateNull(String input) {
         assertThrows(IllegalArgumentException.class, () -> {
-            BonusNumberValidator.validateWinningNumber(input);
+            BonusNumberValidator.validateBonusNumber(input);
         });
     }
 
+    @DisplayName("숫자가 0으로 시작되면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"045", "0", "04"})
+    void validateStartWithZero(String input) {
+        assertThrows(IllegalArgumentException.class, () -> {
+            BonusNumberValidator.validateBonusNumber(input);
+        });
+    }
 }
