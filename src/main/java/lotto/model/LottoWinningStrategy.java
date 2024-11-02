@@ -3,6 +3,10 @@ package lotto.model;
 public interface LottoWinningStrategy {
     boolean isWinning(WinningLotto winningLotto, Lotto myLotto, BonusNumber bonusNumber);
 
+    int getConditionOfMatchCount();
+
+    boolean isBonusNumberRequired();
+
     default int getMatchCount(WinningLotto winningLotto, Lotto myLotto) {
         int count = 0;
         for (int i = 0; i < winningLotto.getSize(); i++) {
