@@ -3,13 +3,13 @@ package lotto.Controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
-import lotto.View.OutputLottoView;
+import lotto.View.OutputIssuedTicketView;
 
 import java.util.List;
 
 public class IssueTicketController {
     MyLottos myLottos = new MyLottos();
-    OutputLottoView outputLottoView = new OutputLottoView();
+    OutputIssuedTicketView outputLottoView = new OutputIssuedTicketView();
 
     public MyLottos issueTickets(int numberOfTicket) {
         myLottos = new MyLottos();

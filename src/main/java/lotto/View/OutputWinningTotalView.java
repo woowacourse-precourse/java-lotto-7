@@ -1,9 +1,11 @@
 package lotto.View;
 
-import lotto.Enum.PrintConstants;
 import lotto.Enum.WinningPrize;
 
 import java.util.Map;
+
+import static lotto.Utils.PrintConstants.ALERT_WINNING_TOTAL;
+import static lotto.Utils.PrintConstants.SEPARATE_LINE;
 
 public class OutputWinningTotalView {
     private final Map<String, Integer> resultMap;
@@ -14,14 +16,14 @@ public class OutputWinningTotalView {
 
     public void printWinningTotal() {
         System.out.println("\n");
-        System.out.println(PrintConstants.ALERT_WINNING_TOTAL.getMessage());
-        System.out.println(PrintConstants.SEPARATE_LINE.getMessage());
+        System.out.println(ALERT_WINNING_TOTAL);
+        System.out.println(SEPARATE_LINE);
 
         for (WinningPrize prize : WinningPrize.values()) {
             System.out.println(String.format(prize.getMessage(), resultMap.get(prize.toString())));
         }
 
-        System.out.println(PrintConstants.SEPARATE_LINE.getMessage());
+        System.out.println(SEPARATE_LINE);
 
     }
 }

@@ -1,9 +1,10 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Enum.PrintConstants;
 import lotto.Model.Lotto;
 import lotto.Utils.Validator;
+
+import static lotto.Utils.PrintConstants.*;
 
 
 public class InputLottoView {
@@ -12,7 +13,7 @@ public class InputLottoView {
     public int inputPrice() {
         int price = 0;
         while (true) {
-            System.out.println(PrintConstants.INPUT_PRICE.getMessage());
+            System.out.println(INPUT_PRICE);
             String priceInput = Console.readLine();
             try {
                 validator.validateEmptyInput(priceInput);
@@ -29,7 +30,7 @@ public class InputLottoView {
     public Lotto inputWinningNumbers() {
         Lotto winningLotto;
         while (true) {
-            System.out.println(PrintConstants.INPUT_WINNING_NUMBERS.getMessage());
+            System.out.println(INPUT_WINNING_NUMBERS);
             String lottoInput = Console.readLine();
             try {
                 validator.validateEmptyInput(lottoInput);
@@ -45,7 +46,7 @@ public class InputLottoView {
     public int inputBonusNumber() {
         int bonusNumber = 0;
         while (true) {
-            System.out.println(PrintConstants.INPUT_BONUS_NUMBER.getMessage());
+            System.out.println(INPUT_BONUS_NUMBER);
             String bonusInput = Console.readLine();
             try {
                 validator.validateEmptyInput(bonusInput);
