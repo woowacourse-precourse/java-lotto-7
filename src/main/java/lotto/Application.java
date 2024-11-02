@@ -16,14 +16,14 @@ public class Application {
         List<Lotto> lottos = generateLottos(purchaseAmount);
         printLottos(purchaseAmount, lottos);
 
-        Lotto winningNumbersLotto = scanWinningNumbers();
+        Lotto winningNumbers = scanWinningNumbers();
 
         int bonusNumber;
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String bonusNumberInput = Console.readLine();
             try{
-                bonusNumber = Validator.validateBonusNumber(bonusNumberInput, winningNumbersLotto);
+                bonusNumber = Validator.validateBonusNumber(bonusNumberInput, winningNumbers);
 
                 break;
             } catch (IllegalArgumentException e) {
@@ -38,7 +38,7 @@ public class Application {
         }
 
         for (Lotto lotto : lottos) {
-            int matchCount = lotto.getMatchCount(winningNumbersLotto);
+            int matchCount = lotto.getMatchCount(winningNumbers);
             boolean isBonusMatch = lotto.isBonusMatch(bonusNumber);
             PrizeRank prizeRank = PrizeRank.getPrizeRank(matchCount, isBonusMatch);
             prizeRankCounts.put(prizeRank, prizeRankCounts.get(prizeRank) + 1);
