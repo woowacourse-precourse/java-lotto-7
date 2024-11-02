@@ -22,4 +22,10 @@ public class Money {
             throw InputException.from(ErrorMessage.MONEY_HAS_CHARACTER);
         }
     }
+
+    private static void validateNegativeNumber(int money) {
+        if (money < 0) {
+            throw InputException.from(ErrorMessage.MONEY_IS_NEGATIVE_NUMBER);
+        }
+    }
 }
