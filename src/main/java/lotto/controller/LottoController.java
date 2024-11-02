@@ -23,7 +23,7 @@ public class LottoController {
     }
 
     public void play() {
-        Money money = new Money(tryUntilSuccess(this::getMoney));
+        Money money = tryUntilSuccess(() -> new Money(getMoney()));
 
         generator.setMoney(money.getAmount());
         List<Ticket> tickets = generator.getTickets();
