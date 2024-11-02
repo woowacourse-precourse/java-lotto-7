@@ -1,26 +1,27 @@
 package lotto;
 
+import lotto.command.output.LottoProfitCommand;
+import lotto.command.validate.BonusCommand;
 import lotto.command.validate.LottoCommand;
 import lotto.command.validate.PurchaseAmountCommand;
+import lotto.container.DependencyInjectionContainer;
+import lotto.controller.LottoController;
+import lotto.dto.BonusUserInput;
+import lotto.dto.MatchResults;
 import lotto.dto.PurchaseAmountUserInput;
 import lotto.dto.WinningLottoUserInput;
+import lotto.model.amount.ProfitRate;
+import lotto.model.amount.PurchaseAmount;
+import lotto.model.lotto.PurchasedLottos;
+import lotto.model.lotto.WinningLotto;
 import lotto.service.amount.AmountService;
 import lotto.service.lotto.LottoService;
 import lotto.view.ConsoleView;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        PurchaseAmountCommand purchaseAmountCommand = new PurchaseAmountCommand();
-        AmountService amountService = new AmountService(purchaseAmountCommand);
-        ConsoleView view = new ConsoleView();
-        PurchaseAmountUserInput userInput = (PurchaseAmountUserInput) view.promptInput(amountService.getValidateCommand());
-
-        LottoCommand lottoCommand = new LottoCommand();
-        LottoService lottoService = new LottoService(lottoCommand);
-        WinningLottoUserInput winningLottoUserInput = (WinningLottoUserInput) view.promptInput(lottoService.getLottoCommand());
-
-        int a = 0;
-
+        DependencyInjectionContainer container = new DependencyInjectionContainer();
+        LottoController lottoController = container.get(LottoController.class);
+        lottoController.purchaseLotto();
     }
 }
