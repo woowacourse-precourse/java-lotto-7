@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import lotto.Model.Lotto;
 import lotto.Model.LottoGenerator;
+import lotto.Model.LottoStatistics;
 import lotto.Model.WinningLotto;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -23,6 +24,10 @@ public class LottoController {
         int bonus = InputView.bonusInput(winNumbers);
 
         WinningLotto winningLotto = new WinningLotto(winNumbers, bonus);
+
+        LottoStatistics statistics = new LottoStatistics(price);
+        statistics.processTickets(allLottos, winningLotto);
+
 
     }
 }
