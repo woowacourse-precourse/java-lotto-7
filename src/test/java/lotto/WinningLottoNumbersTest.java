@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
@@ -43,5 +44,16 @@ public class WinningLottoNumbersTest {
         assertThatThrownBy(() -> new WinningLottoNumbers(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨 번호는 중복될 수 없습니다.");
+    }
+
+    @Test
+    @DisplayName("유효한 당첨 번호가 입력되면 객체가 생성된다.")
+    void 성공_당첨번호_유효한파라미터() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when & then
+        assertThatCode(() -> new WinningLottoNumbers(numbers))
+                .doesNotThrowAnyException();
     }
 }
