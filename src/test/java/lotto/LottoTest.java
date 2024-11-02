@@ -100,4 +100,12 @@ class LottoTest {
         assertThatThrownBy(() -> lotto.setBonusNumber(6))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("수익률이 천단위 , 찍기와 소숫점 2번째자리에서 반올림을 테스트한다.")
+    @Test
+    void 수익률_계산_테스트() {
+        User user = new User(1000);
+        user.addWinningPrice(30000);
+        assertThat(user.getProfit()).isEqualTo("3,000.0");
+    }
 }
