@@ -6,11 +6,14 @@ import static lotto.LottoConstants.LOTTO_SIZE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE_ERROR;
 
 public class Lotto {
+    private final String INFO_START = "[";
+    private final String INFO_END = "]";
+    private final String DELIMITER = ", ";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -19,5 +22,8 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString(){
+        return String.join(DELIMITER, numbers.toString());
+    }
 }

@@ -4,6 +4,7 @@ import lotto.domain.LottoMachine;
 import lotto.domain.Lottos;
 import lotto.handler.MoneyInputHandler;
 
+import static lotto.view.OutputView.showLottosInfo;
 import static lotto.view.RequestView.getMoney;
 
 public class Application {
@@ -13,5 +14,6 @@ public class Application {
 
         LottoMachine lottoMachine = new LottoMachine();
         Lottos lottos = lottoMachine.issue(lottoCount);
+        showLottosInfo(lottos);
     }
 }

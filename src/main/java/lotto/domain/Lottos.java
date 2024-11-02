@@ -18,4 +18,7 @@ public class Lottos {
         return lottos.size();
     }
 
+    public void showInfo(){
+        lottos.stream().map(Lotto::toString).forEach(System.out::println);
+    }
 }

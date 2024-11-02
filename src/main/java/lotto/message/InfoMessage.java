@@ -1,8 +1,8 @@
 package lotto.message;
 
 public enum InfoMessage {
-    LOTTO_COUNT_INFO("{}개를 구매했습니다."),
-    WINNING_STATS_LABEL("당첨 통계\n---"),
+    LOTTO_COUNT_INFO("\n{}개를 구매했습니다."),
+    WINNING_STATS_LABEL("\n당첨 통계\n---"),
     THREE_NUMBERS_MATCH("3개 일치 (5,000원) - {}개"),
     FOUR_NUMBERS_MATCH("4개 일치 (50,000원) - {}개"),
     FIVE_NUMBERS_MATCH("5개 일치 (1,500,000원) - {}개"),
@@ -25,7 +25,7 @@ public enum InfoMessage {
         return message.replace("{}", roundedProfit);
     }
 
-    public String formatNumber(int num){
+    public String formatNumber(long num){
         return message.replace("{}", String.valueOf(num));
     }
 }
