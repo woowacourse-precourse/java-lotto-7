@@ -1,10 +1,13 @@
 package lotto.model;
 
-import static lotto.model.constant.LottoConstants.*;
+import static lotto.constant.LottoConstants.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.LottoNumberCountException;
+import lotto.exception.LottoNumberOutOfRangeException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,18 +24,18 @@ public class Lotto {
     }
 
     public static Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT));
     }
 
     private void validateLottoNumberCount(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new LottoNumberCountException();
         }
     }
 
     private void validateDuplicateLottoNumber(List<Integer> numbers) {
         if (countDistinctUniqueNumbers(numbers) != NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new DuplicateLottoNumberException();
         }
     }
 
@@ -42,7 +45,7 @@ public class Lotto {
 
     private void validateLottoNumberRange(Integer number) {
         if (!isLottoNumberRange(number)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45사이의 숫자 입니다.");
+            throw new LottoNumberOutOfRangeException();
         }
     }
 
