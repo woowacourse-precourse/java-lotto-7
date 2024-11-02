@@ -1,5 +1,7 @@
 package lotto;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import lotto.controller.LottoController;
@@ -7,7 +9,6 @@ import lotto.validator.BonusNumberValidator;
 import lotto.validator.DefaultDuplicateValidator;
 import lotto.validator.DefaultRangeValidator;
 import lotto.validator.LottoValidator;
-import lotto.validator.RangeValidator;
 import lotto.view.InputView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -80,4 +81,20 @@ public class LottoControllerTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("입력 형식이 올바르지 않습니다.");
     }
+
+    @Test
+    void 구매_금액에_맞게_로또_발행하는지_확인() {
+        // Given
+        InputStream input = System.in;
+        ByteArrayInputStream in = new ByteArrayInputStream("3000\n1,2,3,4,5,6\n7\n".getBytes());
+        System.setIn(in);
+
+        //when
+        lottoController.setUp();
+        lottoController.publishLottoSetup();
+
+        //then
+        assertEquals(lottoController.getCountOfPublish(3000), lottoController.getPublishLottos().size());
+    }
+
 }
