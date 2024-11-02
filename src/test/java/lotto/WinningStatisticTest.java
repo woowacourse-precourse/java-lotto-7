@@ -33,4 +33,13 @@ public class WinningStatisticTest {
         assertThat(statistic.get(Prize.FIFTH)).isEqualTo(0);
     }
 
+    @Test
+    void 수익률_계산() {
+        int buyingAmount = 8000;
+        Map<Prize, Integer> statistic2 = resultController.makeWinningStatistic(
+                Stream.of(Prize.FIFTH)
+                        .collect(Collectors.toCollection(ArrayList::new)));
+        assertThat(resultController.calculateEarningRatio(statistic2, buyingAmount)).isEqualTo("62.5");
+    }
+
 }

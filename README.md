@@ -22,7 +22,6 @@
 
 ## 기능 목록
 ### Purchase
-
 - [x] **public void checkEachLottosResult()** \: 구매한 각 로또들의 당첨 결과를 조회하는 기능
   - [x] boughtLottos의 각 Lotto 객체마다 `Lotto.getResult()`를 호출해 당첨 결과 조회 
 
@@ -65,8 +64,10 @@
     - [x] 당첨된 로또에 대해 해당 등수의 당첨 횟수를 1 증가 (미당첨인 경우 증가하지 않음)
   - [x] 등수별 당첨 횟수가 저장된 map 반환
 
-
-- [ ]  수익률 연산하는 기능
+- [x] **public String calculateEarningRatio(Map\<Prize, Integer> statistic, int buyingAmount)** \: 수익률 연산하는 기능
+    - [x] (각 등수별 수익 * 등수별 당첨 횟수) 연산 결과를 sum에 누적해 총 수익 연산
+    - [x] sum / buyingAmount * 100을 연산해 수익률 도출
+    - [x] 수익률을 소수 둘째자리에서 반올림해 반환
 
 ### BuyingAmountValidator
 - [x] **public int validateBuyingAmount(String input)** \: 구입 금액 입력 검증 기능 
