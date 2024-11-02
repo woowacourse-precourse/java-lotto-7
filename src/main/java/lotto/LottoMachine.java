@@ -28,9 +28,17 @@ public class LottoMachine {
     }
 
     private static void validate(int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != 0) {
+        if (isNotPositive(purchaseAmount) || isNot1000Unit(purchaseAmount)) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 천 원 단위여야 합니다.");
         }
+    }
+
+    private static boolean isNot1000Unit(int purchaseAmount) {
+        return purchaseAmount % LOTTO_PRICE != 0;
+    }
+
+    private static boolean isNotPositive(int purchaseAmount) {
+        return purchaseAmount <= 0;
     }
 
     public static LottoResult match(WinningNumbers winningNumbers, List<Lotto> lottos) {

@@ -103,4 +103,12 @@ public class LottoMachineTest {
         assertThatThrownBy(() -> LottoMachine.generateLotto(1001))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 구입 금액이 양수가 아닌 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1000})
+    void throwException_when_purchaseAmountIsNotPositive(int purchaseAmount) {
+        assertThatThrownBy(() -> LottoMachine.generateLotto(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
