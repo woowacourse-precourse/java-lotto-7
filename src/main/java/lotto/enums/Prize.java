@@ -3,33 +3,37 @@ package lotto.enums;
 import java.util.Arrays;
 
 public enum Prize {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
-    FOURTH(4, false, 50_000),
-    FIFTH(3, false, 5_000),
-    NONE(0, false, 0);
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000, true),  // 보너스 번호 일치 필요
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
+    NONE(0, 0);
 
-    private final int matchCount;        // 당첨 번호와 일치하는 숫자 개수
-    private final boolean bonusMatch;    // 보너스 번호 일치 여부
-    private final int prizeMoney;        // 상금
+    private final int matchCount;     // 당첨 번호와 일치하는 숫자 개수
+    private final int prizeMoney;     // 상금
+    private final boolean requiresBonus;  // 보너스 번호 일치가 필요한지 여부
 
-    Prize(int matchCount, boolean bonusMatch, int prizeMoney) {
+    Prize(int matchCount, int prizeMoney) {
+        this(matchCount, prizeMoney, false);  // 보너스 번호 불필요
+    }
+
+    Prize(int matchCount, int prizeMoney, boolean requiresBonus) {
         this.matchCount = matchCount;
-        this.bonusMatch = bonusMatch;
         this.prizeMoney = prizeMoney;
+        this.requiresBonus = requiresBonus;
     }
 
     public int getMatchCount() {
         return matchCount;
     }
 
-    public boolean isBonusMatch() {
-        return bonusMatch;
-    }
-
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public boolean requiresBonus() {
+        return requiresBonus;
     }
 
     /**
@@ -41,9 +45,8 @@ public enum Prize {
      */
     public static Prize valueOf(int matchCount, boolean bonusMatch) {
         return Arrays.stream(values())
-                .filter(prize -> prize.matchCount == matchCount && prize.bonusMatch == bonusMatch)
+                .filter(prize -> prize.matchCount == matchCount && (!prize.requiresBonus || bonusMatch))
                 .findFirst()
                 .orElse(NONE);
     }
-
 }
