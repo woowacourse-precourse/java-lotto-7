@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_MIN_NUMBER;
+
 import lotto.constants.ErrorMessages;
-import lotto.constants.LottoConstants;
 
 public class BonusNumber {
     private final int bonusNumber;
@@ -12,7 +14,7 @@ public class BonusNumber {
     }
 
     private void validateBonusNumber(int bonusNumber, WinningNumbers winningNumbers) {
-        if (bonusNumber < LottoConstants.LOTTO_MIN_NUMBER || bonusNumber > LottoConstants.LOTTO_MAX_NUMBER) {
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_NUMBER_RANGE);
         }
         if (winningNumbers.getNumbers().contains(bonusNumber)) {

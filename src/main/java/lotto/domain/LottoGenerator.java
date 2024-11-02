@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import static lotto.constants.LottoConstants.LOTTO_MAX_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_MIN_NUMBER;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_COUNT;
+import static lotto.constants.LottoGeneratorConstants.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.LottoConstants;
-import lotto.constants.LottoGeneratorConstants;
 
 public class LottoGenerator {
-    private static final int LOTTO_PRICE = LottoGeneratorConstants.LOTTO_PRICE;
-
     private final List<Lotto> lottos = new ArrayList<>();
 
     public void purchaseLottos(int purchaseAmount) {
@@ -20,9 +21,9 @@ public class LottoGenerator {
 
     private Lotto generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LottoConstants.LOTTO_MIN_NUMBER,
-                LottoConstants.LOTTO_MAX_NUMBER,
-                LottoConstants.LOTTO_NUMBER_COUNT
+                LOTTO_MIN_NUMBER,
+                LOTTO_MAX_NUMBER,
+                LOTTO_NUMBER_COUNT
         );
         return new Lotto(numbers);
     }

@@ -7,6 +7,8 @@ import java.util.Set;
 import lotto.constants.OutputMessages;
 
 public class Result {
+    public static final int PERCENTAGE_FACTOR = 100;
+    
     private final Map<PrizeLevel, Integer> resultMap = new EnumMap<>(PrizeLevel.class);
     private final List<Lotto> lottos;
     private final Set<Integer> winningNumbers;
@@ -50,9 +52,12 @@ public class Result {
         System.out.println();
         System.out.println(OutputMessages.WINNING_STATISTICS_TITLE);
         System.out.println(OutputMessages.SEPARATOR_LINE);
+
         long totalPrize = calculateTotalPrize();
+
         printResultCounts();
-        double rateOfReturn = (double) totalPrize / purchaseAmount * 100;
+
+        double rateOfReturn = (double) totalPrize / purchaseAmount * PERCENTAGE_FACTOR;
         System.out.printf((OutputMessages.TOTAL_RATE_OF_RETURN) + "%n", String.format("%.1f", rateOfReturn));
     }
 
@@ -61,6 +66,7 @@ public class Result {
         for (Map.Entry<PrizeLevel, Integer> entry : resultMap.entrySet()) {
             PrizeLevel level = entry.getKey();
             int count = entry.getValue();
+
             totalPrize += level.getPrizeMoney() * count;
         }
         return totalPrize;
@@ -69,6 +75,7 @@ public class Result {
     private void printResultCounts() {
         for (PrizeLevel level : PrizeLevel.values()) {
             int count = resultMap.get(level);
+
             System.out.printf((OutputMessages.PRIZE_COUNT_FORMAT) + "%n", level.getDisplayName(), count);
         }
     }
