@@ -24,11 +24,10 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         LottoCompany lottoCompany = new LottoCompany(winningLotto, money);
 
-        // 당첨 결과와 수익률 파악 및 출력
+        // 당첨 결과 파악 및 수익률 출력
         PrizeResult prizeResult = lottoCompany.getWinningResults(lottos.getLottos());
         printResult(prizeResult);
-        double rateOfReturn = calculateRateOfReturn(money.getEarnedMoney(), money.getSpentMoney());
-        printRateOfReturn(rateOfReturn);
+        printRateOfReturn(money.getRateOfReturn());
     }
 
     private Money getMoney() {
@@ -47,11 +46,6 @@ public class LottoController {
         List<Integer> winningLottoNumbers = inputHandler.getInputForWinningNumber();
         Integer bonusNumber = inputHandler.getInputForBonusNumber();
         return new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
-    }
-
-    private double calculateRateOfReturn(long earnedMoney, long spentMoney) {
-        double rateOfReturn = ((float) earnedMoney / spentMoney) * 100;
-        return Math.round(rateOfReturn * 10) / 10.0;
     }
 
     private void printLottoStatus(Lottos lottos) {
