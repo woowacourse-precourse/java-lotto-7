@@ -13,7 +13,7 @@ import view.InputView;
 import view.OutputView;
 
 public class LottoController {
-    
+
     private final InputView inputView = new InputView(new InputConvertor());
     private final OutputView outputView = new OutputView();
     private LottoPlay lottoPlay;
@@ -48,7 +48,7 @@ public class LottoController {
 
     private LottoMachine initLottoMachine() {
         List<Integer> winningNumbers = Task.reTryTaskUntilSuccessful(() -> inputView.inputWinningNumbers());
-        int bonusNumber = Task.reTryTaskUntilSuccessful(() -> inputView.inputBonusNumber());
+        int bonusNumber = Task.reTryTaskUntilSuccessful(() -> inputView.inputBonusNumber(winningNumbers));
         return new LottoMachine(winningNumbers, bonusNumber);
     }
 }
