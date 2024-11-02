@@ -10,6 +10,7 @@ public class LottoAmountValidator {
         validateNumber(price);
         validateAmount();
         validateDivisibleAmount();
+        calculateLottoCount();
         return amount;
     }
 
@@ -33,7 +34,7 @@ public class LottoAmountValidator {
         }
     }
 
-    public int calculateLottoCount() {
-        return amount / LOTTO_PRICE;
+    public void calculateLottoCount() {
+        amount /= LOTTO_PRICE;
     }
 }
