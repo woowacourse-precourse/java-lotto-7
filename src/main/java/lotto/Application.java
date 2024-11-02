@@ -42,6 +42,16 @@ public class Application {
                 bonusNumber);
         printStatistics(lottoResultCount);
 
+        int prizeMoneyAmount = calculateTotalPrizeMoney(lottoResultCount);
+        double rateEarning = (double) prizeMoneyAmount / purchaseAmountInt * 100;
+    }
+
+    public static int calculateTotalPrizeMoney(Map<LottoResult, Integer> lottoResultCount) {
+        int prizeMoneyAmount = 0;
+        for (LottoResult lottoResult : LottoResult.values()) {
+            prizeMoneyAmount += lottoResult.getPrizeMoney() * lottoResultCount.get(lottoResult);
+        }
+        return prizeMoneyAmount;
     }
 
     public static Map<LottoResult, Integer> calculateStatisticsLottoResult(List<Lotto> lottos,
