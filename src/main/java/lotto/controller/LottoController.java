@@ -1,12 +1,17 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.domain.Lotto;
 import lotto.enums.Constants;
+import lotto.service.LottoService;
 import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    LottoService service = new LottoService();
     InputView inputView;
     OutputView outputView;
 
@@ -18,6 +23,8 @@ public class LottoController {
     public void run() {
         int money = getMoney();
         int lottoAmount = buyLotto(money);
+        List<Lotto> lottos = makeLottos(lottoAmount);
+        printLottos(lottos);
     }
 
     private int buyLotto(int money) {
@@ -35,5 +42,18 @@ public class LottoController {
             outputView.printErrorMessage(error.getMessage());
         }
         return getMoney();
+    }
+
+    private List<Lotto> makeLottos(int lottoAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        while (lottoAmount-- > 0) {
+            List<Integer> numbers = service.getLottoNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
+    private void printLottos(List<Lotto> lottos) {
+        outputView.printLottos(lottos);
     }
 }
