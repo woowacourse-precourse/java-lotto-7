@@ -29,4 +29,17 @@ public class LottoNumberService {
     public Set<Integer> drawWinningNumbers() {
         return new HashSet<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
+
+    public int compareWithAllNumbers(InputDTO inputDTO, LottoDTO lottoDTO) {
+        List<Integer> allNumbers = inputDTO.getAllNumbers();
+        Set<Integer> lottoNumbers = lottoDTO.getLottoNumbers();
+        int count = 0;
+
+        for (Integer number : allNumbers) {
+            if (lottoNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
