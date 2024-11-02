@@ -37,26 +37,70 @@ public class Lotto {
         System.out.println(numbers.toString());
     }
     
-    public void checkWinningLotto(List<Lotto> generatedLottos, Integer bonusLottoNumber) {
+    public void checkWinningLotto(List<Lotto> generatedLottos, Integer bonusLottoNumber, Integer purchaseMoney) {
+        Map<Rank, Integer> rankCount = initializeRankCount();
+        Integer totalWinningMoney = calculateTotalWinningMoney(generatedLottos, bonusLottoNumber, rankCount);
+        printWinningStatistics(rankCount, purchaseMoney, totalWinningMoney);
+    }
+    
+    private Map<Rank, Integer> initializeRankCount() {
         Map<Rank, Integer> rankCount = new EnumMap<>(Rank.class);
-        
         Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.NONE)
                 .forEach(rank -> rankCount.put(rank, 0));
+        return rankCount;
+    }
+    
+    private Integer calculateTotalWinningMoney(List<Lotto> generatedLottos, Integer bonusLottoNumber,
+            Map<Rank, Integer> rankCount) {
+        Integer totalWinningMoney = 0;
         
         for (Lotto lotto : generatedLottos) {
-            List<Integer> userLotto = lotto.getNumbers();
-            int matchCount = (int) userLotto.stream()
-                    .filter(userNumber -> numbers.contains(userNumber))
-                    .count();
-            
-            boolean matchBonus = userLotto.contains(bonusLottoNumber);
-            
-            Rank rank = Rank.valueOf(matchCount, matchBonus);
-            
-            if (rank != Rank.NONE) {
-                rankCount.put(rank, rankCount.get(rank) + 1);
-            }
+            Rank rank = calculateRank(lotto, bonusLottoNumber);
+            totalWinningMoney += addWinningResult(rank, rankCount);
         }
+        
+        return totalWinningMoney;
+    }
+    
+    private Rank calculateRank(Lotto lotto, Integer bonusLottoNumber) {
+        List<Integer> userLotto = lotto.getNumbers();
+        int matchCount = calculateMatchCount(userLotto);
+        boolean matchBonus = userLotto.contains(bonusLottoNumber);
+        
+        return Rank.valueOf(matchCount, matchBonus);
+    }
+    
+    private int calculateMatchCount(List<Integer> userLotto) {
+        return (int) userLotto.stream()
+                .filter(userNumber -> numbers.contains(userNumber))
+                .count();
+    }
+    
+    private int addWinningResult(Rank rank, Map<Rank, Integer> rankCount) {
+        if (rank == Rank.NONE) {
+            return 0;
+        }
+        rankCount.put(rank, rankCount.get(rank) + 1);
+        return rank.getPrizeMoney();
+    }
+    
+    private void printWinningStatistics(Map<Rank, Integer> rankCount, Integer purchaseMoney, Integer totalWinningMoney) {
+        printWinningResults(rankCount);
+        printProfitRate(purchaseMoney, totalWinningMoney);
+    }
+    
+    private void printWinningResults(Map<Rank, Integer> rankCount) {
+        rankCount.forEach((rank, count) ->
+                System.out.printf("%s (%,d원) - %d개\n", rank.getDescription(), rank.getPrizeMoney(), count));
+    }
+    
+    private void printProfitRate(Integer purchaseMoney, Integer totalWinningMoney) {
+        double profitRate = calculateProfitRate(purchaseMoney, totalWinningMoney);
+        System.out.printf("총 수익률은 %,.1f%%입니다.\n", profitRate);
+    }
+    
+    private double calculateProfitRate(Integer purchaseMoney, Integer totalWinningMoney) {
+        return (totalWinningMoney / (double) purchaseMoney) * 100;
     }
 }

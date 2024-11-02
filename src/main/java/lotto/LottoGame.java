@@ -23,15 +23,16 @@ public class LottoGame {
         Integer bonusLottoNumber = generateBonusLottoNumber(winningLotto);
         
         // 당첨 확인하기
-        checkWinningResult(generatedLottos, winningLotto, bonusLottoNumber);
+        checkWinningResult(generatedLottos, winningLotto, bonusLottoNumber, money);
     }
     
-    private void checkWinningResult(List<Lotto> generatedLottos, Lotto winningLotto, Integer bonusLottoNumber) {
+    private void checkWinningResult(List<Lotto> generatedLottos, Lotto winningLotto, Integer bonusLottoNumber,
+            Integer purchaseMoney) {
         
         System.out.println();
         System.out.println("당첨 통계\n---");
         
-        winningLotto.checkWinningLotto(generatedLottos, bonusLottoNumber);
+        winningLotto.checkWinningLotto(generatedLottos, bonusLottoNumber, purchaseMoney);
     
     }
     
