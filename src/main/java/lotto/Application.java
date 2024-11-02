@@ -68,7 +68,7 @@ public class Application {
         }
 
         System.out.println("보너스 번호를 입력해 주세요.");
-
+        String bonusNumber = Console.readLine();
 
     }
 }
