@@ -1,11 +1,8 @@
 package lotto;
 
-public class PurchaseAmount {
-    private final int amount;
-
-    public PurchaseAmount(int amount) {
+public record PurchaseAmount(int amount) {
+    public PurchaseAmount {
         validate(amount);
-        this.amount = amount;
     }
 
     private void validate(int amount) {
@@ -15,9 +12,5 @@ public class PurchaseAmount {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

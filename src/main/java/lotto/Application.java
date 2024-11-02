@@ -19,7 +19,7 @@ public class Application {
     public static void lottoProcess() {
         // 1. 로또 구입금액을 입력받고 예외처리한다
         PurchaseAmount amount = UserInputConsole.readPurchaseAmount();
-        int purchasedLottoCnt = amount.getAmount() / 1000;
+        int purchasedLottoCnt = amount.amount() / 1000;
 
         // 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다.
         System.out.println(purchasedLottoCnt + "개를 구매했습니다.");
@@ -42,7 +42,7 @@ public class Application {
         Set<Integer> uniqueSet = new HashSet<>(numbers);
 
         while (uniqueSet.size() < 6) {
-            int newNumber = Randoms.pickUniqueNumbersInRange(1, 45, 1).get(0);
+            int newNumber = Randoms.pickUniqueNumbersInRange(1, 45, 1).getFirst();
             uniqueSet.add(newNumber);
         }
 
