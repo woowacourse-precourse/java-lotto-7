@@ -20,6 +20,12 @@ public class LottoGame {
 
     }
 
+    private void displayResult(int purchaseAmount) {
+        LottoResult result=new LottoResult(purchasedTickets,winningLotto);
+        result.printResult();
+        result.printProfitRate(purchaseAmount);
+    }
+
     private void inputWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String numbersInput=Console.readLine();
