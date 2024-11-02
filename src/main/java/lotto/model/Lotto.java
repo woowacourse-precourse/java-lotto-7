@@ -1,8 +1,9 @@
 package lotto.model;
 
-import static lotto.constant.LottoConstants.*;
+import static lotto.constant.LottoConstants.MAX_NUMBER;
+import static lotto.constant.LottoConstants.MIN_NUMBER;
+import static lotto.constant.LottoConstants.NUMBER_COUNT;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.DuplicateLottoNumberException;
@@ -21,10 +22,6 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
-    }
-
-    public static Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT));
     }
 
     private void validateLottoNumberCount(List<Integer> numbers) {
