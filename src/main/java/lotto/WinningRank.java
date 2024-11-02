@@ -2,10 +2,10 @@ package lotto;
 
 public enum WinningRank {
     FIRST(6, false,"2,000,000,000"),
-    SECOND(5, true,"30,000,000원"),
-    THIRD(5, false,"1,500,000원"),
-    FOURTH(4, false,"50,000원"),
-    FIFTH(3, false, "5,000원"),
+    SECOND(5, true,"30,000,000"),
+    THIRD(5, false,"1,500,000"),
+    FOURTH(4, false,"50,000"),
+    FIFTH(3, false, "5,000"),
     ;
 
     private final Integer correct;
