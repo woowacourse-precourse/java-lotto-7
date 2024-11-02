@@ -4,14 +4,14 @@ import static lotto.common.AppConstant.LOTTO_END_RANGE;
 import static lotto.common.AppConstant.LOTTO_START_RANGE;
 import static lotto.common.AppConstant.LOTTO_UNIT_PRICE;
 import static lotto.common.AppConstant.SPLIT_DELIMITER;
-import static lotto.common.AppErrorType.DIVIDED_BY_PRICE_ERROR;
-import static lotto.common.AppErrorType.NEGATIVE_NUMBER_ERROR;
-import static lotto.common.AppErrorType.NUMBER_RANGE_ERROR;
-import static lotto.common.AppErrorType.PARSE_NUMBER_ERROR;
+import static lotto.common.error.AppErrorType.DIVIDED_BY_PRICE_ERROR;
+import static lotto.common.error.AppErrorType.NEGATIVE_NUMBER_ERROR;
+import static lotto.common.error.AppErrorType.NUMBER_RANGE_ERROR;
+import static lotto.common.error.AppErrorType.PARSE_NUMBER_ERROR;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.common.error.InputException;
+import lotto.common.error.AppException;
 
 public class InputValidator {
     public void validateInputMoney(String input) {
@@ -40,7 +40,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (Exception exception) {
-            throw new InputException(PARSE_NUMBER_ERROR);
+            throw new AppException(PARSE_NUMBER_ERROR);
         }
     }
 
@@ -48,7 +48,7 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput <= 0) {
-            throw new InputException(NEGATIVE_NUMBER_ERROR);
+            throw new AppException(NEGATIVE_NUMBER_ERROR);
         }
     }
 
@@ -56,7 +56,7 @@ public class InputValidator {
         int parsedInput = Integer.parseInt(input);
 
         if (parsedInput % LOTTO_UNIT_PRICE != 0) {
-            throw new InputException(DIVIDED_BY_PRICE_ERROR);
+            throw new AppException(DIVIDED_BY_PRICE_ERROR);
         }
     }
 
@@ -64,7 +64,7 @@ public class InputValidator {
         int parsedInt = Integer.parseInt(input);
 
         if (LOTTO_START_RANGE > parsedInt || parsedInt > LOTTO_END_RANGE) {
-            throw new InputException(NUMBER_RANGE_ERROR);
+            throw new AppException(NUMBER_RANGE_ERROR);
         }
     }
 }
