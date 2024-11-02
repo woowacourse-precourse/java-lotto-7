@@ -16,6 +16,9 @@ public class WinningNumbersService {
     public void inputWinningNumbers() {
         List<Integer> numbers = inputView.getWinningNumbers();
         winningNumbers.setWinningNumbers(numbers);
+
+        int bounsNumber = inputView.getBonusNumber();
+        winningNumbers.setBonusNumber(bounsNumber);
     }
 
     public WinningNumbers getWinningNumbers() {
