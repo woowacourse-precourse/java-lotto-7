@@ -5,7 +5,7 @@ import lotto.util.Extractor;
 public class PaymentExtractor implements Extractor<Integer> {
 
     private static final String NUMBER_REGULAR_EXPRESSION = "\\d+";
-    private static final String PAYMENT_RULE_REGULAR_EXPRESSION = "000$";
+    private static final String PAYMENT_RULE_REGULAR_EXPRESSION = "^(\\d+)(000)$";
 
     @Override
     public Integer extract(String input) {
@@ -30,7 +30,7 @@ public class PaymentExtractor implements Extractor<Integer> {
 
     private void checkRemainder(String input) {
         if (!input.matches(PAYMENT_RULE_REGULAR_EXPRESSION)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
 
