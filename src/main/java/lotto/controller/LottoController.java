@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.service.LottoService;
@@ -25,6 +26,7 @@ public class LottoController {
         LottoView.printLottos(lottos);
 
         Lotto winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
         InputView.closeStream();
     }
 
@@ -46,6 +48,18 @@ public class LottoController {
                 String winningNumber = InputView.inputWinningNumbers();
 
                 return lottoService.parseWinningNumberForLotto(winningNumber);
+            } catch (IllegalArgumentException e) {
+                ErrorView.printError(e);
+            }
+        }
+    }
+
+    private BonusNumber getBonusNumber(Lotto winningNumber) {
+        while (true) {
+            try {
+                String bonusNumber = InputView.inputBonusNumber();
+
+                return lottoService.createBonusNumber(bonusNumber, winningNumber);
             } catch (IllegalArgumentException e) {
                 ErrorView.printError(e);
             }
