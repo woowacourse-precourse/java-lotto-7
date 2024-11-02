@@ -6,6 +6,7 @@ import lotto.controller.WinnerNumberController;
 import lotto.model.LotteryMachineModel;
 import lotto.parse.InputParser;
 import lotto.service.BonusNumberService;
+import lotto.service.LotteryMachineService;
 import lotto.service.PurchaseAmountService;
 import lotto.service.WinnerNumberService;
 import lotto.validation.InputValidator;
@@ -21,7 +22,7 @@ public class ObjectFactory {
     private final LotteryMachineModel lotteryMachineModel = new LotteryMachineModel();
 
     public final PurchaseAmountController purchaseAmountController() {
-        return new PurchaseAmountController(inputView, outputView, purchaseAmountService());
+        return new PurchaseAmountController(inputView, outputView, purchaseAmountService(), lotteryMachineService());
     }
 
     public final WinnerNumberController winnerNumberController() {
@@ -42,5 +43,9 @@ public class ObjectFactory {
 
     public final BonusNumberService bonusNumberService() {
         return new BonusNumberService(inputValidator, inputParser, lotteryMachineModel);
+    }
+
+    public final LotteryMachineService lotteryMachineService() {
+        return new LotteryMachineService(lotteryMachineModel);
     }
 }
