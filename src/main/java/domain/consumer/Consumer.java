@@ -5,6 +5,8 @@ import domain.lotto.Lotto;
 import domain.lotto.LottoMachin;
 import domain.lotto.LottoPrice;
 import domain.rank.MatchCount;
+import domain.rank.MatchCountCondition;
+import io.Output;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +24,12 @@ public class Consumer {
         this.purchasedLottos = generatedLotto;
     }
 
-    public List<Lotto> getPurchasedLottos() {
-        return purchasedLottos;
+    public int getPurchasedLottoCount() {
+        return purchasedLottos.size();
+    }
+
+    public void printPurchasedLottos() {
+        purchasedLottos.forEach(Output::println);
     }
 
     public void selectWinnerNumbers(Lotto selectedWinnersNumbers) {
@@ -33,16 +39,6 @@ public class Consumer {
     public void selectBonusNumber(int bonusNumber) {
         validateBonusNumberNotInWinningNumbers(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    public boolean selectedWinnerNumberIsEqualsTo(Lotto expectedLotto) {
-        return selectWinnerLotto
-                .getNumbers()
-                .equals(expectedLotto.getNumbers());
-    }
-
-    public boolean selectedBonusNumberIsEqualsTo(int expectedBonusNumber) {
-        return bonusNumber == expectedBonusNumber;
     }
 
     public Map<MatchCount, Integer> getCheckLottoResultBy(LottoMachin lottoMachin) {
@@ -60,14 +56,27 @@ public class Consumer {
 
     private Map<MatchCount, Integer> initLottoResult() {
         Map<MatchCount, Integer> resultMatchCount = new LinkedHashMap<>();
-        for (MatchCount matchCount :MatchCount.values()) {
+        for (MatchCount matchCount : MatchCount.values()) {
             resultMatchCount.put(matchCount, 0);
         }
         return resultMatchCount;
     }
 
+    // test용
+    public boolean selectedWinnerNumberIsEqualsTo(Lotto expectedLotto) {
+        return selectWinnerLotto
+                .getNumbers()
+                .equals(expectedLotto.getNumbers());
+    }
+
+    // test용
+    public boolean selectedBonusNumberIsEqualsTo(int expectedBonusNumber) {
+        return bonusNumber == expectedBonusNumber;
+    }
+
     private boolean isWithinValidRange(int matchCount) {
-        return matchCount >= 3 && matchCount <= 7;
+        return matchCount >= MatchCountCondition.START_MATCH_COUNT_CONDITION.getCondition() &&
+                matchCount <= MatchCountCondition.END_MATCH_COUNT_CONDITION.getCondition();
     }
 
     private void validateBonusNumberNotInWinningNumbers(int bonusNumber) {
