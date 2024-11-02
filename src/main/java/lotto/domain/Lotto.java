@@ -2,7 +2,9 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.exception.ErrorMessages.DUPLICATE_LOTTO_NUMBER_ERROR;
 import static lotto.exception.ErrorMessages.LOTTO_NUMBER_LENGTH_ERROR;
+import static lotto.util.Validator.isDuplicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,14 +15,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (isSizeSix(numbers.size())) {
+        if (!isSizeSix(numbers.size())) {
             throw new IllegalArgumentException(LOTTO_NUMBER_LENGTH_ERROR);
+        }
+
+        if (isDuplicate(numbers)){
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER_ERROR);
         }
     }
 
     private boolean isSizeSix(int size){
-        return numbers.size() == 6;
+        return size == 6;
     }
-
-    // TODO: 추가 기능 구현
 }
