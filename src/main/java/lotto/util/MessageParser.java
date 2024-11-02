@@ -4,10 +4,16 @@ import lotto.view.Outputs;
 
 public class MessageParser {
 
-    public static String combineMessages(String message) {
+    public static String getMoneyErrorMessage(String message) {
         return String.join(Outputs.SPACE.getMessage(),
                 Errors.ERROR.getMessage(),
                 message,
-                Errors.NUMBER_REQUEST.getMessage());
+                Errors.MONEY_REQUEST.getMessage());
+    }
+
+    public static String getLottoErrorMessage(String message) {
+        return String.join(Outputs.SPACE.getMessage(),
+                Errors.ERROR.getMessage(),
+                message);
     }
 }
