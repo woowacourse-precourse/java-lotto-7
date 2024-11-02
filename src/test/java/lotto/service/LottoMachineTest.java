@@ -61,7 +61,7 @@ class LottoMachineTest {
 
         // then
         for (Lotto lotto : lottos) {
-            Assertions.assertThat(lotto.lottoNums()).isEqualTo(expect);
+            Assertions.assertThat(lotto.numbers()).isEqualTo(expect);
         }
     }
 

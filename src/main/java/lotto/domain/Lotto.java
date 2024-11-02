@@ -17,7 +17,9 @@ public class Lotto {
     }
 
     public Lotto(String[] rawNumbers) {
-        this.numbers = convertToIntegerList(rawNumbers);
+        List<Integer> numbers = convertToIntegerList(rawNumbers);
+        validate(numbers);
+        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -56,7 +58,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> lottoNums() {
+    public List<Integer> numbers() {
         return Collections.unmodifiableList(numbers);
     }
 }

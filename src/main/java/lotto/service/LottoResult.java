@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +35,8 @@ public class LottoResult {
         sum = (sum / money) * 100.0;
         return sum;
     }
-    
-    public Map<Rank, Integer> getResult() {
-        return Collections.unmodifiableMap(result);
+
+    public int countOf(Rank rank) {
+        return result.get(rank);
     }
 }

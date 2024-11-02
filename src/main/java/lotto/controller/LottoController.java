@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import lotto.service.LottoResult;
 import lotto.util.ErrorMessage;
@@ -78,7 +76,7 @@ public class LottoController {
     }
 
     private void validateBonusNumberDuplication(Lotto lotto, BonusBall bonus) {
-        Set<Integer> duplication = new HashSet<>(lotto.lottoNums());
+        Set<Integer> duplication = new HashSet<>(lotto.numbers());
         duplication.add(bonus.getNum());
         if (duplication.size() != 7) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMS_DUPLICATION.getMsg());

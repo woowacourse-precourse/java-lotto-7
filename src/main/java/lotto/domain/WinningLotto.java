@@ -13,7 +13,7 @@ public class WinningLotto {
     }
 
     public List<Integer> lottoNums() {
-        return lotto.lottoNums();
+        return lotto.numbers();
     }
 
     public BonusBall bonusBall() {

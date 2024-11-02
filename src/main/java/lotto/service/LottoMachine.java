@@ -57,7 +57,7 @@ public class LottoMachine {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto lotto : purchasedLotto.getLottos()) {
             boolean bonus = false;
-            List<Integer> lottoNums = lotto.lottoNums();
+            List<Integer> lottoNums = lotto.numbers();
 
             long count = sameNumberCountOf(winningLotto, lottoNums);
             if (lottoNums.contains(winningLotto.bonusBall().getNum())) {
