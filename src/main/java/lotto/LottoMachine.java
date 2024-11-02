@@ -18,7 +18,6 @@ public class LottoMachine {
             List<Lotto> purchasedTickets = ticketGenerator.generateTickets(ticketCount);
 
             System.out.printf("%d개를 구매했습니다.\n", ticketCount);
-            purchasedTickets.forEach(ticket -> System.out.println(ticket.getNumbers()));
 
             // 추가 로직: 당첨 번호와 보너스 번호 입력 및 당첨 결과 출력
 
