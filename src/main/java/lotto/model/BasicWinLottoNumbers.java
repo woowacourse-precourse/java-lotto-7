@@ -1,33 +1,85 @@
 package lotto.model;
 
+import lotto.utils.Constants;
+import lotto.utils.ExceptionMessage;
+
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static lotto.utils.StringValidator.hasBlank;
+import static lotto.utils.StringValidator.isEmpty;
+import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
+
 public class BasicWinLottoNumbers {
-    
+
+    private static final String EXCEPTION_MESSAGE_WRONG_LOTTO_NUMBER_COUNT =
+                    Constants.EXCEPTION_MESSAGE_PREFIX +
+                    " 로또 숫자는 " + Constants.COUNT_LOTTO_NUMBERS +
+                    "개로 이루어져야 합니다.";
+
+    private static final String EXCEPTION_MESSAGE_WRONG_FORMAT =
+                    Constants.EXCEPTION_MESSAGE_PREFIX +
+                    " 올바른 기본 당첨 숫자 형식이 아닙니다.";
+
     private static final String NUMBER_IN_RANGE = "([1-9]|[1-3][0-9]|4[0-5])";
     
-    private static final String REGEX_FORMAT = "^(" + NUMBER_IN_RANGE + ",){5}" + NUMBER_IN_RANGE + "$";
+    private static final String REGEX_FORMAT =
+            "^(" + NUMBER_IN_RANGE + ",){5}" + NUMBER_IN_RANGE + "$";
     
     private static final Pattern PATTERN = Pattern.compile(REGEX_FORMAT);
     
     private final Set<Integer> numbers;
     
     public BasicWinLottoNumbers(String numbersToValidate) {
-        validateFormat(numbersToValidate);
+        validateInput(numbersToValidate);
+
         String[] numbers = numbersToValidate.split(",");
         this.numbers = Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toUnmodifiableSet());
     }
-    
-    private void validateFormat(String numbersToValidate) {
-        Matcher matcher = PATTERN.matcher(numbersToValidate);
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+
+    private void validateInput(String numbersToValidate) {
+        if (isEmpty(numbersToValidate)) {
+            throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());
         }
+        if (hasBlank(numbersToValidate)) {
+            throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
+        }
+        if (isIncorrectNumberCount(numbersToValidate)) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_WRONG_LOTTO_NUMBER_COUNT);
+        }
+        if (isOutOfRangeNumbers(numbersToValidate)) {
+            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_LOTTO_NUMBER_RANGE.toString());
+        }
+        if (isIncorrectFormat(numbersToValidate)) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_WRONG_FORMAT);
+        }
+    }
+
+    private boolean isIncorrectNumberCount(String numbersToValidate) {
+        int count = (int) numbersToValidate.chars()
+                .mapToObj(c -> (char) c)
+                .filter(c -> (c == ','))
+                .count();
+        return count != Constants.COUNT_LOTTO_NUMBERS - 1;
+    }
+
+    private boolean isOutOfRangeNumbers(String numbersToValidate) {
+        String[] numbers = numbersToValidate.split(",");
+        for (String number : numbers) {
+            if (isOutOfRangeLottoNumber(number)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isIncorrectFormat(String numbersToValidate) {
+        Matcher matcher = PATTERN.matcher(numbersToValidate);
+        return !matcher.matches();
     }
     
     public boolean contains(int number) {

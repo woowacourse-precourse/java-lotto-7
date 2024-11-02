@@ -1,44 +1,68 @@
 package lotto.model;
 
 import lotto.utils.Constants;
+import lotto.utils.ExceptionMessage;
 
-import static lotto.utils.StringValidator.validateOnlyDigits;
-import static lotto.utils.StringValidator.validateEmpty;
-import static lotto.utils.StringValidator.validateHasBlank;
+import static lotto.utils.StringValidator.hasNotDigits;
+import static lotto.utils.StringValidator.isEmpty;
+import static lotto.utils.StringValidator.hasBlank;
 
 public class SpendingMoney {
     
-    private static final String EXCEPTION_MESSAGE_OUT_OF_LONG = "2의 63 제곱보다 작은 값을 입력하세요.";
+    private static final String EXCEPTION_MESSAGE_OUT_OF_LONG =
+            Constants.EXCEPTION_MESSAGE_PREFIX + "2의 63 제곱보다 작은 값을 입력하세요.";
     
-    private static final String EXCEPTION_MESSAGE_MOD_THOUSAND_NOT_ZERO =
-            "구매 금액은 1,000원으로 나누어 떨어져야 합니다.";
+    private static final String EXCEPTION_MESSAGE_SMALL_CHANGE_NOT_ZERO =
+            Constants.EXCEPTION_MESSAGE_PREFIX +
+                    "구매 금액은 " + Constants.LOTTO_TICKET_PRICE +
+                    "원으로 나누어 떨어져야 합니다.";
+
+    protected static final String EXCEPTION_MESSAGE_UNDER_MIN_NUMBER =
+            Constants.EXCEPTION_MESSAGE_PREFIX +
+                    "구매 금액은 " + Constants.LOTTO_TICKET_PRICE + "보다 커야 합니다.";
     
     private final long money;
     
     public SpendingMoney(String numberToValidate) {
-        validateEmpty(numberToValidate);
-        validateHasBlank(numberToValidate);
-        validateOnlyDigits(numberToValidate);
-        validateLongRange(numberToValidate);
-        validateModThousand(numberToValidate);
+        if (isEmpty(numberToValidate)) {
+            throw new IllegalArgumentException(ExceptionMessage.EMPTY_INPUT.toString());
+        }
+        if (hasBlank(numberToValidate)) {
+            throw new IllegalArgumentException(ExceptionMessage.BLANK_INPUT.toString());
+        }
+        if (hasNotDigits(numberToValidate)) {
+            throw new IllegalArgumentException(ExceptionMessage.NO_DIGIT_INPUT.toString());
+        }
+        if (isNotLongRange(numberToValidate)) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_OUT_OF_LONG);
+        }
+        if (underTicketPrice(numberToValidate)) {
+            throw new IllegalArgumentException(EXCEPTION_MESSAGE_UNDER_MIN_NUMBER);
+        }
+        if (isNotModTicketPriceZero(numberToValidate)) {
+           throw new IllegalArgumentException(EXCEPTION_MESSAGE_SMALL_CHANGE_NOT_ZERO);
+        }
+
         this.money = Long.parseLong(numberToValidate);
     }
-    
-    private void validateLongRange(String numberToValidate) {
+
+    private boolean isNotLongRange(String numberToValidate) {
         try {
             Long.parseLong(numberToValidate);
+            return false;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Constants.EXCEPTION_MESSAGE_PREFIX +
-                    EXCEPTION_MESSAGE_OUT_OF_LONG);
+            return true;
         }
     }
+
+    private boolean underTicketPrice(String numberToValidate) {
+        return Long.parseLong(numberToValidate) < Constants.LOTTO_TICKET_PRICE;
+    }
     
-    private void validateModThousand(String numberToValidate) {
-        long number = Long.parseLong(numberToValidate);
-        if (number % 1_000L != 0L) {
-            throw new IllegalArgumentException(Constants.EXCEPTION_MESSAGE_PREFIX +
-                    EXCEPTION_MESSAGE_MOD_THOUSAND_NOT_ZERO);
-        }
+    private boolean isNotModTicketPriceZero(String numberToValidate) {
+        long smallChange =
+                Long.parseLong(numberToValidate) % Constants.LOTTO_TICKET_PRICE;
+        return smallChange != 0L;
     }
     
     public long get() {

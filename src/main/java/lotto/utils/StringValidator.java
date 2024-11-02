@@ -4,31 +4,29 @@ public final class StringValidator {
     
     private StringValidator() {}
     
-    public static final String EXCEPTION_MESSAGE_EMPTY =
-            Constants.EXCEPTION_MESSAGE_PREFIX + " 빈칸입니다. 숫자를 입력하세요.";
-    
-    public static final String EXCEPTION_MESSAGE_BLANK =
-            Constants.EXCEPTION_MESSAGE_PREFIX + " 공백(띄어쓰기) 없이 입력하세요.";
-    
-    public static final String EXCEPTION_MESSAGE_NO_DIGIT =
-            Constants.EXCEPTION_MESSAGE_PREFIX + " 숫자를 입력하세요.";
-    
-    public static void validateEmpty(String lineToValidate) {
-        if (lineToValidate.isEmpty()) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_EMPTY);
-        }
+    public static boolean isEmpty(String lineToValidate) {
+        return lineToValidate.isEmpty();
     }
     
-    public static void validateHasBlank(String lineToValidate) {
-        if (lineToValidate.contains(" ")) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_BLANK);
-        }
+    public static boolean hasBlank(String lineToValidate) {
+        return lineToValidate.contains(" ");
     }
     
-    public static void validateOnlyDigits(String lineToValidate) {
-        if (!lineToValidate.matches("^[0-9]*$")) {
-            throw new IllegalArgumentException(EXCEPTION_MESSAGE_NO_DIGIT);
+    public static boolean hasNotDigits(String lineToValidate) {
+        return !lineToValidate.matches("^[0-9]*$");
+    }
+
+    public static boolean isOutOfRangeLottoNumber(String lineToValidate) {
+        int numberToValidate;
+        try {
+            numberToValidate = Integer.parseInt(lineToValidate);
+            return (numberToValidate < Constants.MIN_LOTTO_NUMBER
+                    || numberToValidate > Constants.MAX_LOTTO_NUMBER);
+        } catch (NumberFormatException e) {
+            return true;
         }
     }
+
+
     
 }

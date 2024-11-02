@@ -11,5 +11,7 @@ public final class Constants {
     public static final int MAX_LOTTO_NUMBER = 45;
     
     public static final int COUNT_LOTTO_NUMBERS = 6;
-    
+
+    public static final long LOTTO_TICKET_PRICE = 1000L;
+
 }
