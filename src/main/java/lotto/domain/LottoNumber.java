@@ -9,7 +9,7 @@ public class LottoNumber {
     private final int number;
 
     public LottoNumber(int number) {
-        if (inRange(number)) {
+        if (outOfRange(number)) {
             throw new IllegalArgumentException("로또의 숫자는 1~45사이의 숫자이여야 합니다.");
         }
         this.number = number;
@@ -27,7 +27,7 @@ public class LottoNumber {
         }
     }
 
-    private static boolean inRange(int number) {
+    private static boolean outOfRange(int number) {
         return number < LottoSettings.MIN_NUMBER.value() || LottoSettings.MAX_NUMBER.value() < number;
     }
 

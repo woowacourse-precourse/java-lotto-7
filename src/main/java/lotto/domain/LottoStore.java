@@ -19,8 +19,8 @@ public class LottoStore {
         return new LottoPaper(fee, createLottos((int) fee.divide(BASE_AMOUNT)));
     }
 
-    private void validateMinimumAmount(Won won) {
-        if (BASE_AMOUNT.isLessThan(won)) {
+    private void validateMinimumAmount(Won fee) {
+        if (BASE_AMOUNT.isLessThan(fee)) {
             throw new IllegalArgumentException(String.format("금액이 %s보다 낮을 수 없습니다.", BASE_AMOUNT));
         }
     }

@@ -22,10 +22,6 @@ public class Lotto {
         validDuplicate(numbers);
     }
 
-    public Lotto(LottoNumbersConverter converter) {
-        this(converter.convert());
-    }
-
     private static Set<LottoNumber> toSet(List<LottoNumber> numbers) {
         return new HashSet<>(numbers);
     }
@@ -40,6 +36,10 @@ public class Lotto {
         if (inputNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("로또 번호는 중복되어서는 안됩니다.");
         }
+    }
+
+    public Lotto(LottoNumbersConverter converter) {
+        this(converter.convert());
     }
 
     public static Lotto fromString(String value) {
