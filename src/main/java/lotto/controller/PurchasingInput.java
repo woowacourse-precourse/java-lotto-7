@@ -16,7 +16,6 @@ public class PurchasingInput {
         if (cost % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력하세요");
         }
-
         return cost;
     }
 
