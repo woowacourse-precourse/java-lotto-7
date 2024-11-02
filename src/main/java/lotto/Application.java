@@ -1,10 +1,9 @@
 package lotto;
 
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.Set;
 
 public class Application {
 
@@ -14,9 +13,10 @@ public class Application {
 
         Lottos lottos = OutputView.showPurchasedLottos(userPurchaseMoney);
 
-        Set<Integer> winningNumbers = InputView.inputWinningNumbers();
-        int bonusNumber = InputView.inputBonusWinningNumber(winningNumbers);
+        LottoWinningNumbers lottoWinningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusWinningNumber();
+        lottoWinningNumbers.addBonusWinningNumber(bonusNumber);
 
-        OutputView.showPurchasedLottosStatus(lottos, winningNumbers, bonusNumber, userPurchaseMoney);
+        OutputView.showPurchasedLottosStatus(lottoWinningNumbers, lottos, userPurchaseMoney);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoWinningNumbers;
 import lotto.validator.BonusWinningNumberValidator;
 import lotto.validator.InputMoneyValidator;
 import lotto.validator.WinningNumbersValidator;
@@ -24,20 +25,21 @@ public class InputView {
         return Long.parseLong(inputPurchaseMoney);
     }
 
-    public static Set<Integer> inputWinningNumbers() {
+    public static LottoWinningNumbers inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbersInput = Console.readLine().trim();
 
         Set<Integer> winningNumbers = winningNumbersValidator.validateWinningNumbers(winningNumbersInput);
         System.out.println();
 
-        return winningNumbers;
+        LottoWinningNumbers lottoWinningNumbers = LottoWinningNumbers.createLottoWinningNumbers(winningNumbers);
+        return lottoWinningNumbers;
     }
 
-    public static int inputBonusWinningNumber(Set<Integer> winningNumbers) {
+    public static int inputBonusWinningNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
-        int bonusNumber = bonusWinningNumberValidator.validateBonusWinningNumber(winningNumbers, inputBonusNumber);
+        int bonusNumber = bonusWinningNumberValidator.validateBonusWinningNumber(inputBonusNumber);
         System.out.println();
         return bonusNumber;
     }

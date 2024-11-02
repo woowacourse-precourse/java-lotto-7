@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.LottoResult;
 
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,14 +24,14 @@ public class Lotto {
         return "[" + joinNumbers + "]";
     }
 
-    public LottoResult calculatePrize(Set<Integer> winningNumbers, int bonusNumber) {
+    public LottoResult calculatePrize(LottoWinningNumbers lottoWinningNumbers) {
         int winningCount = 0;
         int bonusCount = 0;
         for (Integer number : numbers) {
-            if (winningNumbers.contains(number)) {
+            if (lottoWinningNumbers.getWinningNumbers().contains(number)) {
                 winningCount++;
             }
-            if (number == bonusNumber) {
+            if (number == lottoWinningNumbers.getBonusWinningNumber()) {
                 bonusCount++;
             }
         }

@@ -3,12 +3,12 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoResult;
 import lotto.domain.Lotto;
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class OutputView {
 
@@ -32,16 +32,16 @@ public class OutputView {
         return lottos;
     }
 
-    public static void showPurchasedLottosStatus(Lottos lottos, Set<Integer> winningNumbers, int bonusNumber, long userPurchaseMoney) {
+    public static void showPurchasedLottosStatus(LottoWinningNumbers lottoWinningNumbers, Lottos lottos, long userPurchaseMoney) {
+
         System.out.println("당첨 통계");
         String hyphen = "-";
         System.out.println(hyphen.repeat(3));
-        winningNumbers.remove(bonusNumber);
 
         long profit = 0;
         int[] lottoResultCounts = new int[7];
         for (Lotto lotto : lottos.getLottos()) {
-            LottoResult lottoResult = lotto.calculatePrize(winningNumbers, bonusNumber);
+            LottoResult lottoResult = lotto.calculatePrize(lottoWinningNumbers);
             profit += lottoResult.getPrice();
             lottoResultCounts[lottoResult.getRank()]++;
         }
