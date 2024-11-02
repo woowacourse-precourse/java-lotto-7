@@ -2,6 +2,7 @@ package lotto.view;
 
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.function.Supplier;
 
 public class InputView {
     public static int readFee() {
@@ -20,11 +21,21 @@ public class InputView {
     }
 
     private static int readInt() {
-        return Integer.parseInt(read());
+        return getInputWithSpace(() -> Integer.parseInt(Console.readLine()));
     }
 
     private static String read() {
-        return Console.readLine();
+        return getInputWithSpace(Console::readLine);
+    }
+
+    private static <T> T getInputWithSpace(Supplier<T> supplier) {
+        T input = supplier.get();
+        printEmptySpace();
+        return input;
+    }
+
+    private static void printEmptySpace() {
+        System.out.println();
     }
 
 }

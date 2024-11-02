@@ -75,6 +75,7 @@ public class OutputView {
 
     public static void renderError(String message) {
         System.out.printf("[ERROR] %s\n", message);
+        printEmptySpace();
     }
 
     private static void printEmptySpace() {
