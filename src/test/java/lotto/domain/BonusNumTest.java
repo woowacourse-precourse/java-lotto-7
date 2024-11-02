@@ -29,12 +29,12 @@ class BonusNumTest {
     @Test
     void 주어진_로또에_보너스번호_있음() {
         BonusNum bonusNum = new BonusNum(7, lotto.getNumbers());
-        Assertions.assertTrue(bonusNum.isContained(List.of(1, 2, 4, 5, 6, 7)));
+        Assertions.assertTrue(bonusNum.isContained(new Lotto(List.of(1, 2, 4, 5, 6, 7))));
     }
 
     @Test
     void 주어진_로또에_보너스번호_없음() {
         BonusNum bonusNum = new BonusNum(7, lotto.getNumbers());
-        Assertions.assertFalse(bonusNum.isContained(List.of(1, 2, 3, 4, 5, 6)));
+        Assertions.assertFalse(bonusNum.isContained(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
     }
 }

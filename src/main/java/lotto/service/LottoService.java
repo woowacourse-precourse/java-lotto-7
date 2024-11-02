@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
+    private final LottoResultCalculator lottoResultCalculator;
 
     private final LottoNumGenerator lottoNumGenerator;
 
-    public LottoService(LottoNumGenerator lottoNumGenerator) {
+    public LottoService(final LottoResultCalculator lottoResultCalculator, final LottoNumGenerator lottoNumGenerator) {
+        this.lottoResultCalculator = lottoResultCalculator;
         this.lottoNumGenerator = lottoNumGenerator;
     }
 
@@ -22,7 +24,7 @@ public class LottoService {
     }
 
     public LottoResult checkLottoResult(final List<Lotto> purchasedLotto, final WinningLotto winningLotto) {
-        return new LottoResult(purchasedLotto, winningLotto);
+        return new LottoResult(lottoResultCalculator, purchasedLotto, winningLotto);
     }
 
     public double calcRate(final int purchasePrice, final LottoResult lottoResult) {

@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class WinningLotto {
@@ -14,11 +12,12 @@ public class WinningLotto {
         this.bonusNum = bonusNum;
     }
 
-    public boolean containsBonusNum(List<Integer> lottoNumbers) {
-        return bonusNum.isContained(lottoNumbers);
+    public int countMatches(Lotto lotto) {
+        return lotto.countMatchingNumbers(winningLottoNumbers);
     }
 
-    public Set<Integer> getWinningLottoNumbers() {
-        return Collections.unmodifiableSet(winningLottoNumbers);
+    public boolean containsBonusNum(Lotto lotto) {
+        return bonusNum.isContained(lotto);
     }
+
 }

@@ -28,10 +28,14 @@ public class Lotto {
         numbers = generateLottoNumbers(lottoNumGenerator);
     }
 
-    public int countMatchingLottoNumber(Set<Integer> winningLottoNumbers) {
+    public int countMatchingNumbers(Set<Integer> winningNumbers) {
         Set<Integer> purchasedNumbers = new HashSet<>(numbers);
-        purchasedNumbers.retainAll(winningLottoNumbers);
+        purchasedNumbers.retainAll(winningNumbers);
         return purchasedNumbers.size();
+    }
+
+    public boolean containsBonus(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
     public List<Integer> getNumbers() {

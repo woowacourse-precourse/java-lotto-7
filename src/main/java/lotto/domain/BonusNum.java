@@ -19,8 +19,8 @@ public class BonusNum {
         this.bonusNum = bonusNum;
     }
 
-    public boolean isContained(List<Integer> lottoNumbers) {
-        return lottoNumbers.contains(bonusNum);
+    public boolean isContained(Lotto lotto) {
+        return lotto.containsBonus(bonusNum);
     }
 
     private void validateBonusNum(final int bonusNum, final List<Integer> winningLottoNumbers) {

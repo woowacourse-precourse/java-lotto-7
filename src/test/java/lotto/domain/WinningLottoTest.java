@@ -17,12 +17,12 @@ class WinningLottoTest {
 
     @Test
     void 주어진로또에_보너스숫자가_포함되어있음() {
-        assertTrue(winningLotto.containsBonusNum(List.of(1, 2, 3, 4, 5, 7)));
+        assertTrue(winningLotto.containsBonusNum(new Lotto(List.of(1, 2, 3, 4, 5, 7))));
     }
 
     @Test
     void 주어진로또에_보너스숫자가_포함X() {
-        assertFalse(winningLotto.containsBonusNum(List.of(1, 2, 3, 4, 5, 6)));
+        assertFalse(winningLotto.containsBonusNum(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
     }
 
 }
