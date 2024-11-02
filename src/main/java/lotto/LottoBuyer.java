@@ -22,9 +22,6 @@ public class LottoBuyer {
     }
 
     public void setWinningLottoAndBonusNumber(Lotto winningLotto, int bonusLottoNumber) {
-        if (winningLotto.isNumberInLottoResult(bonusLottoNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호에 포함이 안된 숫자여야 합니다");
-        }
         this.winningLotto = winningLotto;
         this.bonusLottoNumber = bonusLottoNumber;
     }

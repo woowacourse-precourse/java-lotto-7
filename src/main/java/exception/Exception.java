@@ -1,6 +1,6 @@
 package exception;
 
-public class Exception {
+public class Exception extends Throwable {
 
     public void throwException(String errorMessage) {
         throw new IllegalArgumentException("[ERROR] " + errorMessage);
