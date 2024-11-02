@@ -1,13 +1,14 @@
 package lotto.store;
 
 import lotto.basic.NumbersGenerator;
+import lotto.money.Money;
+import lotto.money.ProductPrice;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class LottoStore {
-    private static final int LOTTO_PRICE = 1_000;
-    private static final int MINIMUM_MONEY = 0;
+    private static final ProductPrice lottoPrice = new ProductPrice(1_000);
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
@@ -18,21 +19,18 @@ public class LottoStore {
         this.numbersGenerator = numbersGenerator;
     }
 
-    public List<Lotto> sale(final int money) {
-        if(isNotPositiveMoney(money))
-            throw new IllegalArgumentException("돈은 양수만 가능합니다.");
-        if(hasChange(money))
+    public List<Lotto> sale(Money money) {
+        if(lottoPrice.hasChange(money))
             throw new IllegalArgumentException("거스름돈이 발생합니다.");
 
+        return createLotto(lottoPrice.countPurchasableProduct(money));
+    }
+
+    private List<Lotto> createLotto(final int purchasableProduct) {
         List<Lotto> result = new LinkedList<>();
-
-        // TODO: lottoCount -> 좀 더 좋은 이름 ?
-        int lottoCount = money / LOTTO_PRICE;
-        for (int i = 0; i < lottoCount ; i++) {
-            List<Integer> numbers = generateLottoNumbers();
-            result.add(new Lotto(toLottoNumbers(numbers)));
+        for (int i = 0; i < purchasableProduct ; i++) {
+            result.add(new Lotto(toLottoNumbers(generateLottoNumbers())));
         }
-
         return result;
     }
 
@@ -44,13 +42,5 @@ public class LottoStore {
         return numbersGenerator.random(
                 MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE
         );
-    }
-
-    private boolean isNotPositiveMoney(int money) {
-        return money <= MINIMUM_MONEY;
-    }
-
-    private static boolean hasChange(int money) {
-        return money % LOTTO_PRICE != 0;
     }
 }

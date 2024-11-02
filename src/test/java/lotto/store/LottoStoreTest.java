@@ -1,6 +1,7 @@
 package lotto.store;
 
 import lotto.basic.NumbersGeneratorStub;
+import lotto.money.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ class LottoStoreTest {
     @Test
     @DisplayName("1000원 단위로 로또를 판매")
     void test1() {
-        List<Lotto> result = lottoStore.sale(5000);
+        List<Lotto> result = lottoStore.sale(toMoney(5000));
 
         assertEquals(result.size(), 5);
     }
@@ -34,13 +35,12 @@ class LottoStoreTest {
     @Test
     @DisplayName("거스름돈이 생긴다면 판매하지 않음")
     void test2() {
-        assertThrows(IllegalArgumentException.class, () -> lottoStore.sale(1234));
+        assertThrows(IllegalArgumentException.class, () -> lottoStore.sale(toMoney(1234)));
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, -1234, -1})
-    @DisplayName("돈은 양수만 가능함")
-    void test3(int money) {
-        assertThrows(IllegalArgumentException.class, () -> lottoStore.sale(money));
+
+
+    private static Money toMoney(int amount) {
+        return new Money(amount);
     }
 }
