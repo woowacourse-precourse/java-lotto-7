@@ -22,7 +22,7 @@ public class Wallet {
         if (money % 1000 != 0) {
             throw new IllegalArgumentException(CHANGE_EXSIT_EXCEPTION_MESSAGE);
         }
-        if (money <= 1000 || money > 1_000_000) {
+        if (money < 1000 || money > 1_000_000) {
             throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
         }
     }
