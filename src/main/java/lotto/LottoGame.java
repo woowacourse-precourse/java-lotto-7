@@ -16,15 +16,58 @@ public class LottoGame {
         // 구매 금액에 맞는 수량의 로또 발행
         List<Lotto> generatedLottos = generateLottos(money);
         
-        // 당첨 로또 번호 입력 받기
+        // 당첨 로또 번호 입력 받고 생성하기
         Lotto winningLotto = generateWinningLotto();
         
+        // 보너스 번호 입력 받기
+        Integer bonusLottoNumber = generateBonusLottoNumber(winningLotto);
+    }
+    
+    public Integer generateBonusLottoNumber(Lotto winningLotto) {
+        
+        System.out.println();
+        
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputBonusNumber = Console.readLine();
+                return validateBonusLottoNumber(inputBonusNumber, winningLotto.getNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해 주세요.");
+            }
+        }
+    }
+    
+    private Integer validateBonusLottoNumber(String inputBonusNumber, List<Integer> numbers) {
+        Integer bonusNumber;
+        
+        if (inputBonusNumber == null || inputBonusNumber.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 비어있습니다.");
+        }
+        try {
+            bonusNumber  = Integer.parseInt(inputBonusNumber);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("[ERROR] 입력받은 문자를 숫자로 변환할 수 없습니다.");
+        }
+        
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        
+        for (Integer number : numbers) {
+            if (number.equals(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호에는 중복된 번호가 없어야 합니다.");
+            }
+        }
+        
+        return bonusNumber;
     }
     
     public Lotto generateWinningLotto() {
         List<Integer> winningLottoNumbers = new ArrayList<>();
         
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println();
         
         while (winningLottoNumbers.size() != 6) {
             try {
@@ -57,7 +100,7 @@ public class LottoGame {
         
         // 로또의 validate를 통해 검증, 여기서 에러가 안나면 통과 한다는 뜻
         Lotto validateCheckLotto = new Lotto(splits);
-
+        
         return validateCheckLotto.getNumbers();
     }
     
@@ -65,7 +108,8 @@ public class LottoGame {
         
         List<Lotto> generatedLottos = new ArrayList<>();
         
-        System.out.println((money/1000) + "개를 구매했습니다.");
+        System.out.println();
+        System.out.println((money / 1000) + "개를 구매했습니다.");
         
         for (int i = money; i > 0; i = i - 1000) {
             
@@ -106,6 +150,7 @@ public class LottoGame {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 System.out.println("다시 입력해 주세요.");
+                System.out.println();
             }
         }
         
