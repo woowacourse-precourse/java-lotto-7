@@ -22,24 +22,25 @@ public class LottoController {
     }
 
     public void run() {
+        PurchasePrice purchasePrice = requestPurchasePrice();
+        responsePurchaseQuantity(purchasePrice);
 
-        PurchasePrice purchase = requestPurchase();
-        List<Lotto> lottoTickets = generateLottoTickets(purchase.calculateQuantity());
+        List<Lotto> lottoTickets = generateLottoTickets(purchasePrice.calculateQuantity());
         WinningNumbers winningNumbers = requestWinningNumbers();
         LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
-        double rateOfReturn = calculateRateOfReturn(result, purchase.value());
+        double rateOfReturn = calculateRateOfReturn(result, purchasePrice.value());
         outputView.displayWinningResult(result, rateOfReturn);
     }
 
-    private PurchasePrice requestPurchase() {
+    private PurchasePrice requestPurchasePrice() {
         outputView.displayPurchasePriceRequest();
-        int purchasePrice = inputView.getInteger();
-        PurchasePrice purchase = new PurchasePrice(purchasePrice);
+        int priceInput = inputView.getInteger();
+        return PurchasePrice.from(priceInput);
+    }
 
-        int purchaseQuantity = purchase.calculateQuantity();
-        outputView.displayPurchaseQuantity(purchaseQuantity);
-
-        return purchase;
+    private void responsePurchaseQuantity(PurchasePrice purchasePrice) {
+        int quantity = purchasePrice.calculateQuantity();
+        outputView.displayPurchaseQuantity(quantity);
     }
 
     private List<Lotto> generateLottoTickets(int quantity) {
