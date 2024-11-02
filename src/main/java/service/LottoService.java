@@ -21,47 +21,40 @@ public class LottoService {
     private Lotto winnerLottoNumber;
     private int bonusNumber;
 
-    public int getLottoPurchaseAmount() {
-        return inputView.inputLottoPurchaseAmount();
+
+    public void initializeLottoPurchaseAmount() {
+        this.lottoPurchaseAmount = inputView.inputLottoPurchaseAmount();
+        this.lottoScoreboard = new LottoScoreboard(lottoPurchaseAmount, 0);
     }
 
-    public int getLottoDrawCount(int lottoPurchaseAmount) {
+    public void initializeLottoDrawCount() {
         InputValidator.isDivisibleByThousand(lottoPurchaseAmount);
-        return lottoPurchaseAmount / 1000;
+        this.lottoDrawCount = lottoPurchaseAmount / LottoConstants.TICKET_PRICE.getValue();
     }
 
 
-    public Lotto getWinnerLottoNumbers() {
-
-        List<Integer> lottoList = inputView.inputWinnerLottoNumbers();
-        Lotto LottoWinnerNumber = new Lotto(lottoList);
-
-        return LottoWinnerNumber;
+    public void initializeWinnerLottoNumbers() {
+        List<Integer> winnerNumbers = inputView.inputWinnerLottoNumbers();
+        this.winnerLottoNumber = new Lotto(winnerNumbers);
     }
 
-    public List<Lotto> generateRandomLottoNumbers(int lottoDrawCount) {
-        List<Lotto> lottoNumbers = new ArrayList<>();
-
+    public void generateRandomLottoNumbers() {
         for (int i = 0; i < lottoDrawCount; i++) {
-            lottoNumbers.add(makeLotto());
+            this.lottoList.add(makeLotto());
         }
-
-        return lottoNumbers;
     }
 
     public Lotto makeLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < 6) {
-            numbers.add(Randoms.pickNumberInRange(1, 45));
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                LottoConstants.MAX_LOTTO_NUMBER.getValue(), LottoConstants.LOTTO_NUMBER_COUNT.getValue());
         return new Lotto(numbers);
     }
 
-    public void printLottoNumbers(List<Lotto> lottoList) {
-        outputView.outputLottoNumbers(lottoList);
+    public void printLottoNumbers() {
+        outputView.outputLottoNumbers(this.lottoList);
     }
 
-    public int getBonusNumber() {
-        return inputView.inputBonusNumber();
+    public void initializeBonusNumber() {
+        this.bonusNumber = inputView.inputBonusNumber();
     }
 }
