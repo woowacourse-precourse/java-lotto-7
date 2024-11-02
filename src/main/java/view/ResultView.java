@@ -11,7 +11,7 @@ public class ResultView {
         System.out.println(purchaseCount + PURCHASE_COMPLETE_PROMPT);
     }
 
-    public static void showCreatedLotto(Lottos lottos) {
+    public static void showCreatedLottos(Lottos lottos) {
         System.out.println(lottos);
     }
 
