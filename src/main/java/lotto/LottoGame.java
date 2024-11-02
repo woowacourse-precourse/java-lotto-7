@@ -91,7 +91,7 @@ public class LottoGame {
     }
 
     // 보너스 번호가 로또 번호와 중복되는 숫자가 있는지 검증하는 메서드
-    private void checkBonusNumberRedundancy(int number) {
+    public void checkBonusNumberRedundancy(int number) {
         for (Integer lottoNumber : lotto.getNumbers()) {
             if (lottoNumber == number) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
@@ -100,7 +100,7 @@ public class LottoGame {
     }
 
     // 보너스 번호가 로또 번호의 최솟값과 최댓값을 벗어났는지 검증하는 메서드
-    private void checkBonusNumberRange(int number) {
+    public void checkBonusNumberRange(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다.");
         }
