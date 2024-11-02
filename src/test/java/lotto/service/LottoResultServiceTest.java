@@ -4,7 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import lotto.common.Winning;
+import lotto.config.AppConfig;
+import lotto.domain.Winning;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,8 @@ class LottoResultServiceTest {
 
     @BeforeEach
     void init() {
-        lottoResultService = new LottoResultService();
+        AppConfig appConfig = AppConfig.getAppConfig();
+        lottoResultService = appConfig.lottoResultService();
     }
 
     @Test

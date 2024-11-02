@@ -1,4 +1,4 @@
-package lotto.common.constants;
+package lotto.common;
 
 public class LottoConstants {
     public static final int NUMBER_START = 1;

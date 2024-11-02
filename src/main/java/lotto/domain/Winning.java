@@ -1,4 +1,4 @@
-package lotto.common;
+package lotto.domain;
 
 public enum Winning {
     THREE(3, 5000, "3개 일치 (5,000원) - %d개\n"),

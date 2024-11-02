@@ -2,19 +2,25 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.common.Winning;
+import lotto.domain.Winning;
 import lotto.domain.Lotto;
+import lotto.dto.LottoDto;
 import lotto.service.LottoResultService;
 import lotto.view.OutputView;
 
 public class LottoResultController {
     private final LottoResultService lottoResultService;
-
     private final OutputView outputView;
 
-    public LottoResultController() {
-        this.lottoResultService = new LottoResultService();
-        this.outputView = new OutputView();
+    public LottoResultController(LottoResultService lottoResultService, OutputView outputView) {
+        this.lottoResultService = lottoResultService;
+        this.outputView = outputView;
+    }
+
+    public void run(LottoDto dto) {
+        Map<Winning, Integer> result = getWinnings(dto.getLottos(), dto.getWinningNumbers(), dto.getBonus());
+        double yield = getYield(result, dto.getPayment());
+        printResult(result, yield);
     }
 
     public Map<Winning, Integer> getWinnings(List<Lotto> lottos, List<Integer> winningNumbers, int bonus) {

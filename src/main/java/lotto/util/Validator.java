@@ -1,8 +1,8 @@
-package lotto.validator;
+package lotto.util;
 
 import java.util.List;
-import lotto.common.constants.ErrorMessages;
-import lotto.common.constants.LottoConstants;
+import lotto.common.ErrorMessages;
+import lotto.common.LottoConstants;
 
 public class Validator {
     public void validatePayment(int value) {

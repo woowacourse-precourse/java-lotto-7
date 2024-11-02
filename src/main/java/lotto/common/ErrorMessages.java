@@ -1,4 +1,4 @@
-package lotto.common.constants;
+package lotto.common;
 
 public class ErrorMessages {
     public static final String INVALID_NUMERIC_FORMAT = "[ERROR] 유효한 숫자를 입력해주십시오.";

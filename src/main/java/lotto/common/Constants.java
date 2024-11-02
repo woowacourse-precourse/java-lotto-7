@@ -1,4 +1,4 @@
-package lotto.common.constants;
+package lotto.common;
 
 public class Constants {
     public static final String DELIMITER = ",";

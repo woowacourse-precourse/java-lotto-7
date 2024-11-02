@@ -1,27 +1,17 @@
 package lotto;
 
-import java.util.List;
-import java.util.Map;
-import lotto.common.Winning;
+import lotto.config.AppConfig;
 import lotto.controller.LottoController;
 import lotto.controller.LottoResultController;
-import lotto.domain.Lotto;
+import lotto.dto.LottoDto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
-        LottoController lottoController = new LottoController();
-        LottoResultController lottoResultController = new LottoResultController();
+        AppConfig appConfig = AppConfig.getAppConfig();
+        LottoController lottoController = appConfig.lottoController();
+        LottoResultController lottoResultController = appConfig.lottoResultController();
 
-        int payment = lottoController.pay();
-        List<Lotto> lottos = lottoController.buyLottos(payment);
-
-        List<Integer> winningNumbers = lottoController.postWinningNumbers();
-        int bonus = lottoController.postBonus();
-
-        Map<Winning, Integer> result = lottoResultController.getWinnings(lottos, winningNumbers, bonus);
-        double yield = lottoResultController.getYield(result, payment);
-
-        lottoResultController.printResult(result, yield);
+        LottoDto dto = lottoController.run();
+        lottoResultController.run(dto);
     }
 }

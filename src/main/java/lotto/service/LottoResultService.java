@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.common.Winning;
-import lotto.common.constants.Constants;
+import lotto.domain.Winning;
+import lotto.common.Constants;
 import lotto.domain.Lotto;
 
 public class LottoResultService {

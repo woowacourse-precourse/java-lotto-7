@@ -2,15 +2,14 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.common.constants.Constants;
-import lotto.common.constants.ErrorMessages;
-import lotto.validator.Validator;
+import lotto.common.Constants;
+import lotto.common.ErrorMessages;
 
 public class Parser {
-    Validator validator;
+    private final Validator validator;
 
-    public Parser() {
-        validator = new Validator();
+    public Parser(Validator validator) {
+        this.validator = validator;
     }
 
     public int parsePayment(String input) {

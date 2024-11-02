@@ -2,20 +2,29 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.dto.LottoDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final LottoService lottoService;
-
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController() {
-        this.lottoService = new LottoService();
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+        this.lottoService = lottoService;
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
+    public LottoDto run() {
+        int payment = pay();
+        List<Lotto> lottos = buyLottos(payment);
+        List<Integer> winningNumbers = postWinningNumbers();
+        int bonus = postBonus();
+
+        return new LottoDto(payment, lottos, winningNumbers, bonus);
     }
 
     public int pay() {

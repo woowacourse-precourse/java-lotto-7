@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.common.constants.LottoConstants;
+import lotto.common.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.Parser;
@@ -10,9 +10,9 @@ public class LottoService {
     private final LottoNumberGenerator lottoNumberGenerator;
     private final Parser parser;
 
-    public LottoService() {
-        this.lottoNumberGenerator = new LottoNumberGenerator();
-        this.parser = new Parser();
+    public LottoService(LottoNumberGenerator lottoNumberGenerator, Parser parser) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
+        this.parser = parser;
     }
 
     public int parsePayment(String input) {

@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.common.Winning;
+import lotto.domain.Winning;
 
 public class OutputView {
     private final static String RESULT_TITLE = "\n당첨 통계";

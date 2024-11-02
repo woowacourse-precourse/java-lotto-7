@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.config.AppConfig;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +17,8 @@ class LottoServiceTest {
 
     @BeforeEach
     void init() {
-        lottoService = new LottoService();
+        AppConfig appConfig = AppConfig.getAppConfig();
+        lottoService = appConfig.lottoService();
     }
 
     @DisplayName("지불액 입력 시, 빈칸이 포함되어 입력되는 경우")
