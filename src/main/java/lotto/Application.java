@@ -12,7 +12,7 @@ public class Application {
     public static void main(String[] args) {
         List<Lotto> lottos = new ArrayList<>();
         int inputPrice = 0;
-        int turn;
+        int turn, bonusNumber;
 
         // 로또 구입금액 입력 받기
         System.out.println("구입금액을 입력해 주세요.");
@@ -35,5 +35,17 @@ public class Application {
             lottos.add(new Lotto(tempLotto));
             System.out.println(tempLotto.toString());
         }
+
+        // 당첨 번호를 입력받기
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] inputNumbers = Console.readLine().split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String inputNumber : inputNumbers) {
+            winningNumbers.add(Integer.parseInt(inputNumber));
+        }
+
+        // 보너스 번호를 입력받기
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonusNumber = Integer.parseInt(Console.readLine());
     }
 }
