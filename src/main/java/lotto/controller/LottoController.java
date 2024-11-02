@@ -5,8 +5,6 @@ import lotto.validation.LottoValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
@@ -23,13 +21,25 @@ public class LottoController {
     }
 
     public void run() {
+        // 로또 구입 금액 입력
         outputView.askPurchasePrice();
         int purchasePrice = getValidPurchasePrice();
 
+        //로또 번호 구매
         int lottoCount = getLottoCount(purchasePrice);
         outputView.lottoPurchasedCount(lottoCount);
         String lottos = lottoService.buyLotto(lottoCount);
+
+        //구매한 로또 번호 출력
         printLottoPurchasedDetail(lottos);
+
+        //당첨 번호 입력
+
+        //보너스 번호 입력
+
+        //당첨 결과 처리
+
+        //결과 출력
     }
 
     private int getValidPurchasePrice() {
