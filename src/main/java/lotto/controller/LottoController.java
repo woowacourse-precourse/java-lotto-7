@@ -44,7 +44,7 @@ public class LottoController {
                 return inputView.getMoneyFromUser();
 
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.showExceptionMessage(e);
             }
         }
     }
@@ -59,7 +59,7 @@ public class LottoController {
                 outputView.showLottoWinningNumbersInputComments();
                 return inputView.getLottoWinningNumbersFromUser();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.showExceptionMessage(e);
             }
         }
     }
@@ -70,7 +70,7 @@ public class LottoController {
                 outputView.showLottoBonusNumberInputComments();
                 return inputView.getLottoBonusNumberFromUser();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.showExceptionMessage(e);
             }
         }
     }
@@ -81,7 +81,7 @@ public class LottoController {
             try {
                 return new WinningLotto(lottoWinningNumbers, lottoBonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.showExceptionMessage(e);
                 lottoBonusNumber = getLottoBonusNumber();
             }
         }

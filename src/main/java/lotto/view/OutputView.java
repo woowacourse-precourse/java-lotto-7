@@ -45,4 +45,8 @@ public class OutputView {
     public void showLottoRevenue(double revenue) {
         System.out.printf("총 수익률은 %.1f%%입니다.", revenue);
     }
+
+    public void showExceptionMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }
