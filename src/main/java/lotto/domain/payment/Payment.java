@@ -44,6 +44,7 @@ public class Payment {
     private PaymentResult createPaymentResult() {
         int count = lottoPrice.calculateLottoCount(money);
         Payment completedPayment = new Payment(id, money, lottoPrice, COMPLETED);
+
         return new PaymentResult(completedPayment, LottoQuantity.of(count));
     }
 
