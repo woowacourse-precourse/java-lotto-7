@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.constant.Constant;
 import lotto.exception.ErrorMessage;
@@ -11,6 +12,33 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto of(String input) {
+        validateBlank(input);
+        String[] numbers = getNumbers(input);
+        Arrays.stream(numbers).forEach(Lotto::validateNumeric);
+        return new Lotto(Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .toList());
+    }
+
+    private static void validateBlank(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.BLANK_WINNING_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateNumeric(String input) {
+        if (!input.matches(Constant.NUMERIC_PATTERN)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_LOTTO_NUMBER.getMessage());
+        }
+    }
+
+    private static String[] getNumbers(String input) {
+        return Arrays.stream(input.split(Constant.DELIMITER))
+                .map(String::strip)
+                .toArray(String[]::new);
     }
 
     private void validate(List<Integer> numbers) {
