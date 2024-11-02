@@ -28,8 +28,9 @@ public class InputView {
 		return input;
 	}
 
-	public String readWinningNumbersInput() {
+	public String readBonusNumberInput() {
 		String input = Console.readLine();
+		validateBonusNumberInput(input);
 
 		return input;
 	}
@@ -42,6 +43,12 @@ public class InputView {
 
 	private void validateLottoNumbers(String input) {
 		validateNotBlank(input);
+	}
+
+	private void validateBonusNumberInput(String input) {
+		validateNotBlank(input);
+		validateDigit(input);
+		validatePositive(input);
 	}
 
 	private void validateNotBlank(String input) {
