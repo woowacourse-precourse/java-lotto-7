@@ -4,7 +4,9 @@ import java.util.List;
 import lotto.validator.NumberValidator;
 import lotto.validator.Validator;
 
-public final class AddBonusNumber {
+public class AddBonusNumber {
+
+    private AddBonusNumber() {}
 
     public static List<Integer> create(List<Integer> winningNumbers, String input) {
         validate(input);

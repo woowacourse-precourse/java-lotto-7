@@ -6,9 +6,11 @@ import lotto.domain.Lotto;
 
 public class CreateLottoList {
 
-    public static List<Lotto> create(int amount) {
+    private CreateLottoList() {}
+
+    public static List<Lotto> create(int count) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < amount / 1000; i++) {
+        for (int i = 0; i < count; i++) {
             List<Integer> lottoNumbers = CreateLotto.lotto();
             lottos.add(new Lotto(lottoNumbers));
         }

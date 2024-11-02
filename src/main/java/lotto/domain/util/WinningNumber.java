@@ -5,9 +5,11 @@ import java.util.List;
 import lotto.validator.NumberValidator;
 import lotto.validator.Validator;
 
-public final class WinningNumber {
+public class WinningNumber {
 
     private final static String DELIMITER = ",";
+
+    private WinningNumber() {}
 
     public static List<Integer> create(String input) {
         validate(input);
