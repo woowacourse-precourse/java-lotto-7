@@ -14,6 +14,7 @@ public class LottoPurchaseAmountValidator {
         try {
             int parseValue = Integer.parseInt(lottoPurchaseAmount);
             checkThousandWonUnit(parseValue);
+            checkLottoPurchaseAmountRange(parseValue);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("로또 구입 금액의 값이 자료형의 범위를 넘어갔습니다");
         }
@@ -28,6 +29,12 @@ public class LottoPurchaseAmountValidator {
     private static void checkThousandWonUnit(int lottoPurchaseAmount) {
         if (lottoPurchaseAmount % LOTTO_PURCHASE_AMOUNT_UNIT != REMAINDER) {
             throw new IllegalArgumentException(String.format("로또 구입 금액은 %d단위 입니다", LOTTO_PURCHASE_AMOUNT_UNIT));
+        }
+    }
+
+    private static void checkLottoPurchaseAmountRange(int lottoPurchaseAmount) {
+        if (lottoPurchaseAmount <= 0) {
+            throw new IllegalArgumentException("로또 구입 금액은 양수로 입력해야 합니다.");
         }
     }
 }
