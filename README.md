@@ -18,6 +18,7 @@
 ### model package
 - LottoTransform class
     + [0] 입력된 당첨 번호를 List로 변환하는 기능 - inputToWinningNumbers
+    + [0] 입력된 보너스 번호를 int로 변환하는 기능 - inputToBonusNumber
     + [0] 로또 구매 금액을 입력받아 로또 개수를 반환하는 기능 - getLottoCount
     + [0] 입력된 로또 반복 횟수 만큼 로또 생성 - createLotto
     + [0] 랜덤한 6개 숫자를 생성하는 기능 - createRandomNumbers
@@ -33,13 +34,16 @@
 
 ### service package
 - LottoMaker class : model 기능을 통해 로또 로직 구현, 자료구조 저장 위치
-    + [] 생성 로또, 당첨 번호 저장 공간
-    + [] 생성한 로또 번호 반환 
-    + [] 당첨 등수 반환  - getWinningResults
-    + [] 수익률 반환 
+    + [0] 생성 로또, 당첨 번호 저장 공간
+    + [0] 금액에 따라 구입 가능 로또 개수 반환 - getLottoCount
+    + [0] 로또 구매 개수에 따라 로또 생성 - createLotto
+    + [0] 당첨 번호 저장 - setWinningNumbers
+    + [0] 보너스 번호 저장 - setBonusNumber
+    + [0] 전체 로또에 대한 당첨 결과 생성 - createWinningResults
+    + [0] 당첨 결과에 대한 수익률 반환 - getProfitRate
 
 ### controller package
-- LottoManager class
+- LottoManager class - 예외 발생시 재입력 위한 메서드 구현 필요
     + [] 로또 진행 기능 - 
 
 ### utils package

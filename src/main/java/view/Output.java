@@ -5,7 +5,7 @@ import utils.WinningLotto;
 
 public class Output {
     private static final String PURCHASE_AMOUNT_FORMAT = "%d개를 구매했습니다.\n";
-    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.2f입니다.\n";
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %.2f%%입니다.\n";
     private static final String WINNING_RESULT_FORMAT = "당첨 통계\n---------\n";
 
     public void printPurchaseAmount(int purchaseAmount) {

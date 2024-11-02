@@ -23,6 +23,10 @@ public class LottoTransform {
         winningNumbers.addAll(sortedWinningNumbers);
     }
 
+    public int inputToBonusNumber(String input) {
+        return Integer.parseInt(input);
+    }
+
     public int getLottoCount(String input) {
         int lottoPrice = Integer.parseInt(input);
         //검증 추가 필요
@@ -35,6 +39,8 @@ public class LottoTransform {
             lottoNumbers.add(createRandomNumbers());
         }
     }
+
+
 
     public List<Integer> createRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().toList();
