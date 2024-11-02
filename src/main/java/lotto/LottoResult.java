@@ -5,18 +5,13 @@ import java.util.Map;
 
 public class LottoResult {
     private Integer totalBenefit;
-    private final Lotto winningNumber;
-    private final Integer bonusNumber;
     private final HashMap<WinningInfo, Integer> result = new HashMap<>();
 
-    public LottoResult(Lotto winningNumber, Integer bonusNumber) {
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+    public LottoResult() {
         initResult();
     }
 
     private void initResult() {
-        this.totalBenefit = 0;
         result.put(WinningInfo.FIRST_WINNER, 0);
         result.put(WinningInfo.SECOND_WINNER, 0);
         result.put(WinningInfo.THIRD_WINNER, 0);
@@ -24,25 +19,12 @@ public class LottoResult {
         result.put(WinningInfo.FIFTH_WINNER, 0);
     }
 
-    public void calculate(Lottos lottos) {
-        for (Lotto lotto : lottos.getLottos()) {
-            Integer count = lotto.howManyMatches(winningNumber);
-            if (count.equals(6)) {
-                result.put(WinningInfo.FIRST_WINNER, result.get(WinningInfo.FIRST_WINNER) + 1);
-            }
-            if (count.equals(5) && lotto.contains(bonusNumber)) {
-                result.put(WinningInfo.SECOND_WINNER, result.get(WinningInfo.SECOND_WINNER) + 1);
-            }
-            if (count.equals(5) && !lotto.contains(bonusNumber)) {
-                result.put(WinningInfo.THIRD_WINNER, result.get(WinningInfo.THIRD_WINNER) + 1);
-            }
-            if (count.equals(4)) {
-                result.put(WinningInfo.FOURTH_WINNER, result.get(WinningInfo.FOURTH_WINNER) + 1);
-            }
-            if (count.equals(3)) {
-                result.put(WinningInfo.FIFTH_WINNER, result.get(WinningInfo.FIFTH_WINNER) + 1);
-            }
-        }
+    public void updateResult(WinningInfo winningInfo) {
+        result.put(winningInfo, result.get(winningInfo) + 1);
+    }
+
+    public HashMap<WinningInfo, Integer> getResult() {
+        return result;
     }
 
     public void calculateTotalBenefit() {

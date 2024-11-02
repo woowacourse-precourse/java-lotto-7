@@ -20,8 +20,9 @@ public class Application {
         LottoGenerator lottoGenerator = new LottoGenerator();
         Lottos lottos = new Lottos(lottoGenerator.generateLottos(price));
 
-        LottoResult lottoResult = new LottoResult(winningNumber, bonusNumber);
-        lottoResult.calculate(lottos);
+        LottoResult lottoResult = new LottoResult();
+        WinningChecker winningChecker = new WinningChecker(winningNumber, bonusNumber, lottoResult);
+        winningChecker.calculate(lottos);
         lottoResult.calculateTotalBenefit();
 
         printResults(lottos, lottoResult);
