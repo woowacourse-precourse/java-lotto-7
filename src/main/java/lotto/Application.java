@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -34,7 +36,29 @@ public class Application {
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String inputBonusNumber = Console.readLine();
-        
+        int BonusNumber = Integer.parseInt(inputBonusNumber);
+
+        calculateStatisticsLottoResult(lottos, winningNumbersInteger, BonusNumber);
+
+    }
+
+    public static void calculateStatisticsLottoResult(List<Lotto> lottos, List<Integer> winningNumbers,
+                                                      int bonusNumber) {
+        Map<LottoResult, Integer> lottoResultCount = new HashMap<>();
+
+        for (LottoResult lottoResult : LottoResult.values()) {
+            lottoResultCount.put(lottoResult, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            int matchCount = countMatches(lotto, winningNumbers);
+            boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
+            LottoResult lottoResult = LottoResult.getLottoResult(matchCount, hasBonus);
+
+            if (lottoResult != null) {
+                lottoResultCount.put(lottoResult, lottoResultCount.get(lottoResult) + 1);
+            }
+        }
     }
 
     public static int countMatches(Lotto lotto, List<Integer> winningNumbers) {
