@@ -45,4 +45,11 @@ public class LottoGame {
     public Map<PrizeType, Integer> getPrizeStates(){
         return prizeStates;
     }
+
+    public double calculateTotalProfitRate(Map<PrizeType, Integer>prizeStates, int purchaseAmount){
+        double totalRevenue=prizeStates.entrySet().stream()
+                .mapToDouble(entry->entry.getKey().getReward()* entry.getValue())
+                .sum();
+        return (totalRevenue/(double)purchaseAmount)*100;
+    }
 }

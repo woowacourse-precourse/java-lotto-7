@@ -27,7 +27,8 @@ public class LottoController {
         lottoGame.calculateLotto(winningNumbers,bonusNumber);
         outputView.printPrizeStates(lottoGame.getPrizeStates());
 
-
+        double totalProfitRate=lottoGame.calculateTotalProfitRate(lottoGame.getPrizeStates(),purchaseAmount);
+        outputView.printTotalProfitRate(totalProfitRate);
     }
     private int getPurchaseAmount(){
         while(true){

@@ -19,6 +19,9 @@ public class OutputView {
             System.out.println(prize.getDescription() + " - " + prizeStates.get(prize) + "개");
         }
     }
+    public void printTotalProfitRate(double totalProfitRate){
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalProfitRate);
+    }
     public void printError(String message){
         System.out.println("[ERROR] "+message);
     }
