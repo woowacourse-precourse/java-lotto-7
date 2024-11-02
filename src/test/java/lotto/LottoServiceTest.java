@@ -1,7 +1,10 @@
 package lotto;
 
 import lotto.domain.Lotto;
-import lotto.model.LottoModel;
+import lotto.service.LottoEarningService;
+import lotto.service.LottoIssueService;
+import lotto.service.LottoRankService;
+import lotto.service.LottoSortService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +13,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-class LottoModelTest {
+class LottoServiceTest {
 
-    private final LottoModel lottoModel = new LottoModel();
+    private final LottoIssueService lottoIssueService = new LottoIssueService();
+    private final LottoSortService lottoSortService = new LottoSortService();
+    private final LottoEarningService lottoEarningService = new LottoEarningService();
+    private final LottoRankService lottoRankService = new LottoRankService();
 
     @DisplayName("지정된 수의 로또 발행 테스트")
     @Test
@@ -21,7 +27,7 @@ class LottoModelTest {
         int issueNumber = 5;
 
         // when : 로또 발행
-        List<Lotto> lottos = lottoModel.issueLottos(issueNumber);
+        List<Lotto> lottos = lottoIssueService.issueLottos(issueNumber);
 
         // then : 발행된 로또의 개수가 issueNumber와 일치하는지 확인
         assertThat(lottos).hasSize(issueNumber);
@@ -37,7 +43,7 @@ class LottoModelTest {
         );
 
         // when : 각 로또의 번호를 정렬하여 반환
-        List<List<Integer>> sortedLottos = lottoModel.sortLottos(lottos);
+        List<List<Integer>> sortedLottos = lottoSortService.sortLottos(lottos);
 
         // then : 각 로또의 번호가 오름차순으로 정렬되었는지 확인
         assertThat(sortedLottos.get(0)).containsExactly(1, 2, 3, 4, 5, 6);
@@ -59,7 +65,7 @@ class LottoModelTest {
         );
 
         // when : 각 로또별 당첨 횟수 계산
-        int[] countRank = lottoModel.countRank(lottos, winningNumbers, bonusNumber);
+        int[] countRank = lottoRankService.countRank(lottos, winningNumbers, bonusNumber);
 
         // then : 등수별 당첨 횟수가 예상대로인지 확인
         assertThat(countRank[1]).isEqualTo(1);
@@ -74,7 +80,7 @@ class LottoModelTest {
         int[] countRank = {0, 1, 1, 0, 0, 0};
 
         // when : 수익률 계산
-        double earningRate = lottoModel.calculateEarningRate(countRank);
+        double earningRate = lottoEarningService.calculateEarningRate(countRank);
 
         // then : 수익률이 예상되는 값인지 확인
         double expectedProfit = 2000000000 + 30000000;
