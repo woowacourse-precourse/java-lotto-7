@@ -32,6 +32,9 @@ public class LottoInputView
     public static List<Integer> tempWinningNumbers(String numbers) {
         String[] splitNumbers = splitWinningNumbers(numbers);
         List<String> trimNumbers = trimWinningNumbers(splitNumbers);
+        List<Integer> finalNums = convertIntegerList(trimNumbers);
+
+        return finalNums;
     }
 
     public static String[] splitWinningNumbers(String numbers) {
@@ -44,7 +47,11 @@ public class LottoInputView
                 .collect(Collectors.toList());
     }
 
-
+    public static List<Integer> convertIntegerList(List<String> trimNumbers){
+        return trimNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 
     private static void validatePurchaseLotto(int amount) {
         if (amount <= 0 || amount % 1000 != 0) {
