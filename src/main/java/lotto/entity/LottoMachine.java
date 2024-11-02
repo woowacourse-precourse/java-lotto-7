@@ -22,6 +22,14 @@ public class LottoMachine {
         return purchase.getPaymentAmount();
     }
 
+    public List<Lotto> getPurchasedLottos() {
+        return purchasedLottos;
+    }
+
+    public WinningNumbers getWinningNumbers() {
+        return winningNumbers;
+    }
+
     private List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchase.calculateTicketCount(); i++) {
