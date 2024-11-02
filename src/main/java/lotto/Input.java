@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Input {
 
@@ -13,7 +11,7 @@ public class Input {
         return Console.readLine();
     }
 
-    public static String getWinningNumber(){
+    public static String getWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
@@ -21,12 +19,6 @@ public class Input {
     public static String getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
-    }
-
-    public static void validateBonusNumberNotDuplicate(List<Integer> winningNumber, int bonusNumber) {
-        if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복 될 수 없습니다.");
-        }
     }
 
     public static String[] split(String input) {
@@ -48,21 +40,6 @@ public class Input {
         List<Integer> integers = new ArrayList<>();
         for (String string : strings) {
             integers.add(Integer.parseInt(string));
-        }
-        return integers;
-    }
-
-    public static List<Integer> validateCount(List<Integer> integers) {
-        if (integers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-        }
-        return integers;
-    }
-
-    public static List<Integer> validateNotDuplicate(List<Integer> integers) {
-        Set<Integer> set = new HashSet<>(integers);
-        if (set.size() != integers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안됩니다.");
         }
         return integers;
     }
