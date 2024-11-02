@@ -1,9 +1,8 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // Lotto에 numbers 이외의 필드를 추가할 수 없다.
 // numbers의 접근제어자 변경 불가
@@ -31,5 +30,13 @@ public class Lotto {
 
     public void sortNumbers() {
         Collections.sort(numbers);
+    }
+
+    public String toFormattedString() {
+        String lottoNumber = "[" + numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(","))
+                + "]";
+        return lottoNumber;
     }
 }

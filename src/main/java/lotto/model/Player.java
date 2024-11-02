@@ -23,4 +23,12 @@ public class Player {
     public void addLotto(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public List<String> getLottoNumbers() {
+        List<String> LottoNumbers = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            LottoNumbers.add(lotto.toFormattedString());
+        }
+        return LottoNumbers;
+    }
 }

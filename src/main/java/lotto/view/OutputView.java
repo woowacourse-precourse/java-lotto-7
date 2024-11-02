@@ -14,6 +14,12 @@ public class OutputView {
         System.out.println(ticketCount + "개를 구매했습니다.");
     }
 
+    public void printLottoNumbers(List<String> lottoNumbers) {
+        for (String lotterNumber: lottoNumbers) {
+            System.out.println(lotterNumber);
+        }
+    }
+
     public void enterWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
