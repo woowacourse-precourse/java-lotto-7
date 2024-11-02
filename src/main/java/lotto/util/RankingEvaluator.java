@@ -4,17 +4,16 @@ import lotto.domain.JackpotNumbers;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class RankingEvaluator {
 
     public static Map<Ranking, Integer> evaluateAll(List<Lotto> purchasedLottos, JackpotNumbers jackpotNumbers) {
         Map<Ranking, Integer> rankingCounts = new LinkedHashMap<>();
-        for (Ranking ranking : Ranking.values()) {
-            rankingCounts.put(ranking, 0);
-        }
+
+        Arrays.stream(Ranking.values())
+                        .sorted(Collections.reverseOrder())
+                                .forEach(ranking -> rankingCounts.put(ranking, 0));
 
         purchasedLottos.stream()
                 .map(lotto -> evaluateRank(lotto, jackpotNumbers))

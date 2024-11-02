@@ -20,9 +20,12 @@ public abstract class OutputView {
         System.out.println("---");
         rankingMap.forEach((ranking, count) -> {
             if (ranking.isRequiresBonus()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
             }
-            System.out.printf("%d개 일치 (%d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
+            if (ranking.equals(Ranking.NONE)) {
+                return;
+            }
+            System.out.printf("%d개 일치 (%,d원) - %d개\n", ranking.getMatchingCount(), ranking.getPrize(), count);
         });
     }
 }
