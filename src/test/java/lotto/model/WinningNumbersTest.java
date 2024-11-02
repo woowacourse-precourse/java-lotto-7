@@ -22,7 +22,7 @@ class WinningNumbersTest {
     @Test
     void setBonusNumber_throwsException() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> winningNumbers.setBonus(6));
+                () -> winningNumbers.setBonusNumber(6));
         assertEquals(ExceptionMessage.INVALID_BONUS_NUMBER.getMessage(), exception.getMessage());
     }
 

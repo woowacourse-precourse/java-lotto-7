@@ -4,15 +4,15 @@ import lotto.enums.ExceptionMessage;
 
 public class WinningNumbers {
     private final Lotto winningNumbers;
-    private  int bonus;
+    private int bonusNumber;
 
     public WinningNumbers(Lotto winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
 
-    public void setBonus(int bonus) {
-        validate(bonus);
-        this.bonus = bonus;
+    public void setBonusNumber(int bonusNumber) {
+        validate(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     private void validate(int bonus){
@@ -25,7 +25,7 @@ public class WinningNumbers {
         return winningNumbers;
     }
 
-    public int getBonus() {
-        return bonus;
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }
