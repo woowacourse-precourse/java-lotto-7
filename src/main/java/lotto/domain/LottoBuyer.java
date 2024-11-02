@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.math.BigInteger;
 import java.util.List;
-import lotto.WinningLotto;
 
 public class LottoBuyer {
     private final BigInteger purchaseAmount;
@@ -13,7 +12,12 @@ public class LottoBuyer {
         this.purchasedTicket = purchasedTicket;
     }
 
-    public List<Integer> compareTo(WinningLotto winningLotto) {
+    public List<Winning> checkWinningsBy(WinningLotto winningLotto) {
+        List<Integer> totalMatchingNumbers = compareTo(winningLotto);
+        return Winning.tellWinningBy(totalMatchingNumbers);
+    }
+
+    private List<Integer> compareTo(WinningLotto winningLotto) {
         return purchasedTicket.lottos().stream()
                 .map(winningLotto::countMatchingNumbersWith)
                 .toList();
