@@ -4,6 +4,7 @@ import static lotto.view.OutputMessage.*;
 
 import java.util.List;
 
+import lotto.domain.dto.WinningDetail;
 import lotto.domain.entity.Lotto;
 import lotto.domain.factory.LottoFactory;
 import lotto.domain.vo.WinningLotto;
@@ -26,6 +27,7 @@ public class LottoController {
         Wallet wallet = purchaseLotto(amount);
         printLottoNumbers(wallet);
         WinningLotto winningLotto = inputWinningLotto();
+        WinningDetail detail = wallet.winningDetail(winningLotto);
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -77,4 +79,5 @@ public class LottoController {
             return inputWinningLottoBonusNumber(lotto);
         }
     }
+
 }

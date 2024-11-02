@@ -1,8 +1,12 @@
 package lotto.domain.vo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
+import lotto.domain.dto.WinningDetail;
 import lotto.domain.entity.Lotto;
 import lotto.domain.factory.LottoFactory;
 
@@ -36,5 +40,16 @@ public record Wallet(PurchaseAmount amount, List<Lotto> lottos) {
         return Stream.generate(LottoFactory::createAutoLotto)
             .limit(amount.calculateRemainder())
             .toList();
+    }
+
+    public WinningDetail winningDetail(WinningLotto winningLotto) {
+        LottoNumbers winningNumbers = winningLotto.lotto().createLottoNumbers();
+        WinningDetail winningDetail = WinningDetail.create();
+        for (Lotto lotto : lottos) {
+            LottoNumbers lottoNumbers = lotto.createLottoNumbers();
+            WinningRank rank = lottoNumbers.match(winningNumbers, winningLotto.bonus());
+            winningDetail.updateScore(rank);
+        }
+        return winningDetail;
     }
 }
