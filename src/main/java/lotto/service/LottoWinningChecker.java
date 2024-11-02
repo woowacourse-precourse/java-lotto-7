@@ -41,7 +41,7 @@ public class LottoWinningChecker {
     public int changeStringToNum(String inputString) {
         int returnNum;
         try {
-            returnNum = Integer.parseInt(inputString);
+            returnNum = Integer.parseInt(inputString.trim());
         } catch (NumberFormatException e) {
             throw new NumberFormatException("[Error] 숫자를 입력해주세요");
         }
