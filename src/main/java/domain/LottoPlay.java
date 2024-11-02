@@ -21,7 +21,7 @@ public class LottoPlay {
             long matchCount = matchWinningNumberCount(lotto, winningNumbers);
 
             Rank rank = determineRank(matchCount, lotto, bonusNumber);
-            this.user.addWinning(rank);
+            this.user.addRank(rank);
         }
 
         determineRankResult(this.user);
@@ -52,7 +52,7 @@ public class LottoPlay {
     }
 
     private void determineRankResult(User user) {
-        this.rankResult = new RankResult(user.getWinningLottos());
+        this.rankResult = new RankResult(user.getRanks());
     }
 
     public RankResult getRankResult() {

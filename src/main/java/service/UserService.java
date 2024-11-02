@@ -35,7 +35,7 @@ public class UserService {
     }
 
     private int calculateTotalPrizeMoney(User user) {
-        return user.getWinningLottos().stream()
+        return user.getRanks().stream()
                 .mapToInt(Rank::getPrizeMoney)
                 .sum();
     }
