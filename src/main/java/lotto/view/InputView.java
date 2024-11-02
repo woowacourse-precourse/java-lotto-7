@@ -18,7 +18,7 @@ public class InputView {
         return money;
     }
 
-    public Lotto getLottoWinningNumberFromUser() {
+    public Lotto getLottoWinningNumbersFromUser() {
         String input = Console.readLine();
 
         WinningNumberInputValidator.validateWinningNumberInput(input);
