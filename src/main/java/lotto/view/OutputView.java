@@ -27,7 +27,7 @@ public class OutputView {
         System.out.println(count + "" + Description.LOTTO_COUNT);
     }
 
-    public void lottoPurchasedDetail(List<Integer> lottos){
+    public void lottoPurchasedDetail(String lottos){
         System.out.println(lottos);
     }
 }

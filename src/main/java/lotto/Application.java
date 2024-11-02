@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.model.SoldLotto;
 import lotto.service.LottoService;
 import lotto.validation.LottoValidation;
 import lotto.view.InputView;
@@ -13,7 +14,9 @@ public class Application {
 
         LottoValidation lottoValidation = new LottoValidation();
 
-        LottoService lottoService = new LottoService();
+        SoldLotto soldLotto = new SoldLotto();
+
+        LottoService lottoService = new LottoService(soldLotto);
 
         LottoController lottoController = new LottoController(outputView, inputView, lottoValidation, lottoService);
         lottoController.run();
