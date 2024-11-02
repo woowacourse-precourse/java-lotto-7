@@ -62,25 +62,25 @@ public class InputView {
     }
 
     //inputBonusNumber 구현
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber(List<Integer> winningNumberData) {
         OutputView.printPrompt(OutputViewEnum.BONUS_NUMBER_INPUT.getMessage());
         String userInput = Console.readLine();
-        validateBonusNumberInput(userInput);
+        validateBonusNumberInput(userInput, winningNumberData);
         return Integer.parseInt(userInput);
     }
 
-    private static void validateBonusNumberInput(String userInput) {
+    private static void validateBonusNumberInput(String userInput, List<Integer> winningNumberData) {
         if (userInput.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage() + " : " + userInput);
         }
         if (!Utils.isDigitOnly(userInput)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage() + " : " + userInput);
         }
+//        if (!Utils.isInRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), count)) {
+//            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage() + " : " + userInput);
+//        }
         BigDecimal count = Utils.stringToNumber(userInput);
-        if (!Utils.isInRange(new BigDecimal(MIN_LOTTO_RANGE), new BigDecimal(MAX_LOTTO_RANGE), count)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage() + " : " + userInput);
-        }
-        if (Utils.isNumberInList(winningNumber, count.intValue())) {
+        if (Utils.isNumberInList(winningNumberData, count.intValue())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER.getMessage() + " : " + userInput);
         }
     }

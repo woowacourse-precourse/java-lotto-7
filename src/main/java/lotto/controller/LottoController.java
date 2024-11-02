@@ -17,7 +17,7 @@ public class LottoController {
         List<Lotto> tickets = buyLotto();
         OutputView.printTickets(tickets);
         List<Integer> winningNumberData = getWinningNumber();
-        int bonusNum = getBonusNumber();
+        int bonusNum = getBonusNumber(winningNumberData);
         WinningNumber winningNumber = new WinningNumber(winningNumberData, bonusNum);
         WinningResult winningResult = getWinningResult(tickets, winningNumber);
     }
@@ -54,19 +54,19 @@ public class LottoController {
         }
     }
 
-    private int getBonusNumber() {
+    // Bonus_number객체 만들기
+    private int getBonusNumber(List<Integer> winningNumberData) {
         while (true) {
             try {
                 int bonus_number;
 
-                bonus_number = InputView.inputBonusNumber();
+                bonus_number = InputView.inputBonusNumber(winningNumberData);
                 return bonus_number;
             } catch (NumberFormatException e) {
                 OutputView.errorPrint(e.getMessage());
             } catch (IllegalArgumentException e) {
                 OutputView.errorPrint(e.getMessage());
             }
-            return 0;
         }
     }
 
