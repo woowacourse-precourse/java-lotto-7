@@ -26,8 +26,8 @@ public class RecoveryRatio {
     public static RecoveryRatio of(final BigDecimal totalPrizeAmount, final BigDecimal purchasedAmount) {
         BigDecimal recoveryRatio = totalPrizeAmount.divide(purchasedAmount, MAX_DECIMAL_POINT_POLICY, HALF_UP);
         BigDecimal recoveryPercentage = recoveryRatio.multiply(ONE_HUNDRED);
-        BigDecimal rescaledPercentage = recoveryPercentage.setScale(DECIMAL_POINT_POLICY, HALF_UP);
-        return RecoveryRatio.from(rescaledPercentage);
+        BigDecimal reScaledPercentage = recoveryPercentage.setScale(DECIMAL_POINT_POLICY, HALF_UP);
+        return RecoveryRatio.from(reScaledPercentage);
     }
 
     @Override

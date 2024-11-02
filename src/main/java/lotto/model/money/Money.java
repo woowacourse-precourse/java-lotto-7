@@ -66,6 +66,10 @@ public class Money implements Comparable<Money> {
         return this.value % LOTTO_PRICE.value != 0;
     }
 
+    public BigDecimal toBigDecimal() {
+        return BigDecimal.valueOf(this.value);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -92,10 +96,6 @@ public class Money implements Comparable<Money> {
     @Override
     public int compareTo(final Money that) {
         return Long.compare(this.value, that.value);
-    }
-
-    public BigDecimal toBigDecimal() {
-        return BigDecimal.valueOf(this.value);
     }
 
     private void validateRemainder() {

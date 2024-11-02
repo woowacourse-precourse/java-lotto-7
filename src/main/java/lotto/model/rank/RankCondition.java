@@ -1,5 +1,6 @@
 package lotto.model.rank;
 
+import static java.util.Comparator.comparing;
 import static lotto.model.money.Money.FIFTH_RANK_PRIZE;
 import static lotto.model.money.Money.FIRST_RANK_PRIZE;
 import static lotto.model.money.Money.FOURTH_RANK_PRIZE;
@@ -8,7 +9,6 @@ import static lotto.model.money.Money.THIRD_RANK_PRIZE;
 import static lotto.model.money.Money.ZERO;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiPredicate;
 import lotto.model.money.Money;
@@ -45,21 +45,13 @@ public enum RankCondition {
 
     public static List<RankCondition> sortedValuesExceptNone() {
         return Arrays.stream(RankCondition.values())
-                .filter(RankCondition::exceptNone)
-                .sorted(Comparator.comparing(RankCondition::getPrizeAmount))
+                .filter(condition -> condition != NONE)
+                .sorted(comparing(condition -> condition.prizeAmount))
                 .toList();
     }
 
     public Money calculateReceivableTotalPrizeAmountBy(int prizeCount) {
         return prizeAmount.multiply(prizeCount);
-    }
-
-    private Money getPrizeAmount() {
-        return this.prizeAmount;
-    }
-
-    private static boolean exceptNone(RankCondition rankCondition) {
-        return rankCondition != NONE;
     }
 
     public String toStringMessage() {
