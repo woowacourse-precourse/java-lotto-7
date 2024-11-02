@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
+import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,15 +22,18 @@ public class LottoController {
     public void run() {
         OutputView.displayPrompt(PURCHASE_AMOUNT);
         String purchaseAmount = InputView.getInput();
+        InputValidator.validatePurchaseAmount(purchaseAmount);
         List<Lotto> lottos = lottoService.generateLottos(purchaseAmount);
         String formattedLottoNumbers = lottoService.getFormattedLottoNumbers(lottos);
         OutputView.displayLottoNumber(lottos.size(), formattedLottoNumbers);
 
         OutputView.displayPrompt(WINNING_NUMBERS);
         String winningNumbers = InputView.getInput();
+        InputValidator.validateWinningNumbers(winningNumbers);
 
         OutputView.displayPrompt(BONUS_NUMBER);
         String bonusNumber = InputView.getInput();
+        InputValidator.validateBonusNumber(winningNumbers, bonusNumber);
 
         Map<Integer, Integer> matchCounts = lottoService.winningDetermination(winningNumbers, bonusNumber, lottos);
         OutputView.displayWinningResult(matchCounts);
