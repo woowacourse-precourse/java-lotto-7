@@ -32,11 +32,10 @@ public class LottoValidator {
     static void validateLottoNumberIsDuplicate(List<Integer> numbers){
         HashMap<Integer, Integer> hashNumber = new HashMap<>();
         for (int number : numbers) {
-            if(!hashNumber.containsKey(number)){
-                hashNumber.put(number, 0);
-            }else{
+            if(hashNumber.containsKey(number)){
                 throw new IllegalArgumentException(ERR_MSG_WRONG_WINNER_NUMBERS);
             }
+            hashNumber.put(number, 0);
         }
     }
 }
