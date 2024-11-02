@@ -12,7 +12,5 @@ public interface ResultRepository {
 
     Map<Rank, Integer> getResult();
 
-    int getCountByRank(Rank rank);
-
     double calculate(Money money);
 }
