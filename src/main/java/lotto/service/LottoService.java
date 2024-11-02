@@ -53,14 +53,8 @@ public class LottoService {
     public getLottoResultResponse getLottoResult() {
         Map<LottoRank, Integer> result = lottoManager.drawResult(lottoRepository.getLottos(), winLottoRepository.getWinLotto());
         MoneyManager moneyManager = moneyManagerRepository.getMoneyManger();
-        moneyManager.setPrizeMoney(calculatePrizeMoney(result));
+        moneyManager.setPrizeMoney(LottoRank.calculatePrize(result));
 
         return getLottoResultResponse.of(result, moneyManager.getReturnRate());
-    }
-
-    private Long calculatePrizeMoney(Map<LottoRank, Integer> result) {
-        return result.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getValue() * entry.getKey().getPrize())
-                .sum();
     }
 }
