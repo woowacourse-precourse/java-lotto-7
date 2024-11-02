@@ -21,4 +21,19 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int countMatchNumberWithWinningNumber(WinningNumbers winningNumbers) {
+        List<Integer> winningNumber = winningNumbers.getWinningNumbers();
+        int count = 0;
+        for (int number : numbers) {
+            if(winningNumber.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean isBonusNumberIncludeInWinningNumbers(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

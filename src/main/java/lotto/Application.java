@@ -10,7 +10,7 @@ public class Application {
         final UserController userController = UserController.getInstance();
         final LottoController lottoController = LottoController.getInstance();
 
-        // 구입금액 입력
+        // 구입 금액 입력
         int userId = userController.getUserIdByInputPurchasePrice();
 
         // 로또 구매
@@ -21,6 +21,9 @@ public class Application {
 
         // 보너스 번호 입력
         LottoResult lottoResult = lottoController.getBonusNumbers(winningNumbers);
+
+        // 당첨 통계 출력
+        userController.getWinningResult(lottoResult,userId);
 
 
     }

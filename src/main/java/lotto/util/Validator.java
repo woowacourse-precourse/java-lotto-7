@@ -16,7 +16,6 @@ public class Validator {
     private static void validatePurchasePrice(String value) {
         ValidatorException.throwIfValueIsNotNumber(value);
         ValidatorException.throwIfPurchasePriceNotMatchToUnit(value);
-        ValidatorException.throwIfValueIsOutOfRange(value);
     }
 
     // 로또 검사
@@ -24,9 +23,10 @@ public class Validator {
         validateLottoTickets(lottoTickets);
     }
 
-    private static void validateLottoTickets(List<Integer> lottoTickets) {
-        ValidatorException.throwIfValuesIsMismatch(lottoTickets);
-        ValidatorException.throwIfValuesIsDuplicate(lottoTickets);
+    private static void validateLottoTickets(List<Integer> numbers) {
+        ValidatorException.throwIfValuesIsMismatch(numbers);
+        ValidatorException.throwIfValuesIsDuplicate(numbers);
+        ValidatorException.throwIfNumbersAreOutOfRange(numbers);
     }
 
     // 당첨 번호 검사

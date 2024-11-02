@@ -51,6 +51,16 @@ public class ValidatorException {
         }
     }
 
+    // 로또 번호
+    public static void throwIfNumbersAreOutOfRange(List<Integer> values) {
+        for (Integer value : values) {
+            if (value < LottoConstant.START_INCLUSIVE.getValue() ||
+                    value > LottoConstant.END_INCLUSIVE.getValue()) {
+                throw new IllegalArgumentException(ErrorCause.OUT_OF_RANGE.getMessage());
+            }
+        }
+    }
+
     // 보너스 번호 예외처리
     public static void throwIfBonusNumberIsDuplicate(WinningNumbers winningNumbers, String bonusNumber) {
         final HashSet<Integer> duplicationCheckSet = new HashSet<>(winningNumbers.getWinningNumbers());
