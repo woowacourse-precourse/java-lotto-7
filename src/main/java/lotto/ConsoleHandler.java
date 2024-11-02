@@ -14,7 +14,7 @@ public class ConsoleHandler {
     }
 
     private int invertNumber(String number) {
-        try{
+        try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
