@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.global.contents.LottoDetail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class ResultTest {
     @DisplayName("수익률 계산 기능")
     @Test
     void 수익률_계산_테스트() {
-        Payment payment = Payment.of(3_000);
+        Payment payment = Payment.of(3_000, LottoDetail.PRICE);
 
         double expected = payment.divide(calculateTotal()) * 100;
 

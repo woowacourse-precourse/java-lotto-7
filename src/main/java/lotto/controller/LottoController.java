@@ -7,6 +7,7 @@ import lotto.domain.Payment;
 import lotto.domain.Result;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lotto.Lottos;
+import lotto.global.contents.LottoDetail;
 import lotto.global.util.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -31,7 +32,7 @@ public class LottoController {
     private Lottos purchase(Payment payment) {
         Lottos lottos = Lottos.from(
                 LottoMachine.generate(
-                        payment.calculateCount())
+                        payment.calculateCount(LottoDetail.PRICE))
         );
         outputView.printLottos(lottos);
         return lottos;

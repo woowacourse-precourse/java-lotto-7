@@ -1,25 +1,24 @@
 package lotto.domain;
 
+import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
 public class Payment {
 
-    private static final int PRICE = 1000;
-
     private final int payment;
 
-    private Payment(int payment) {
-        Validator.validateDivisibleByPrice(payment);
+    private Payment(int payment, LottoDetail price) {
+        Validator.validateDivisibleByPrice(payment, price);
         this.payment = payment;
     }
 
-    public static Payment of(int payment) {
-        return new Payment(payment);
+    public static Payment of(int payment, LottoDetail price) {
+        return new Payment(payment, price);
     }
 
-    public int calculateCount() {
-        return payment / PRICE;
+    public int calculateCount(LottoDetail price) {
+        return payment / price.getValue();
     }
 
     public double divide(long profit) {
@@ -31,14 +30,14 @@ public class Payment {
     }
 
     private static class Validator {
-        private static void validateDivisibleByPrice(int money) {
-            if (isNotDivisibleByPrice(money)) {
+        private static void validateDivisibleByPrice(int money, LottoDetail price) {
+            if (isNotDivisibleByPrice(money, price)) {
                 throw new LottoException(ErrorMessage.INVALID_PAYMENT_FORMAT);
             }
         }
 
-        private static boolean isNotDivisibleByPrice(int money) {
-            return money % PRICE != 0;
+        private static boolean isNotDivisibleByPrice(int money, LottoDetail price) {
+            return money % price.getValue() != 0;
         }
     }
 }

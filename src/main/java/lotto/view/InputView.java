@@ -6,6 +6,7 @@ import lotto.domain.Number;
 import lotto.domain.Payment;
 import lotto.domain.WinningNumbers;
 import lotto.domain.lotto.Lotto;
+import lotto.global.contents.LottoDetail;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 import lotto.view.console.Reader;
@@ -20,7 +21,10 @@ public class InputView {
 
     public Payment readPrice() {
         Writer.println(QUESTION_PURCHASE_AMOUNT);
-        return Payment.of(Validator.validatePrice(Reader.read()));
+        return Payment.of(
+                Validator.validatePrice(Reader.read()),
+                LottoDetail.PRICE
+        );
     }
 
     public WinningNumbers readWinningNumbers() {
