@@ -38,26 +38,55 @@ public class LottoController {
     }
 
     private static int getPurchaseAmount() {
-        String inputAmount = InputView.getPurchaseAmount();
-        return validateAndParsePurchaseAmount(inputAmount);
+        while (true) {
+            try {
+                String inputAmount = InputView.getPurchaseAmount();
+                return validateAndParsePurchaseAmount(inputAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static WinningLotto getWinningLotto() {
-        String inputWinningNumbers = InputView.getWinningNumbers();
-        List<Integer> winningNumbers = convertWinningNumbers(inputWinningNumbers);
-        Integer bonus = convertBonusNumber(InputView.getBonusNumber());
+        List<Integer> winningNumbers = null;
+        Integer bonus = null;
+
+        while (winningNumbers == null) {
+            try {
+                String inputWinningNumbers = InputView.getWinningNumbers();
+                winningNumbers = convertWinningNumbers(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (bonus == null) {
+            try {
+                String inputBonusNumber = InputView.getBonusNumber();
+                bonus = convertBonusNumber(inputBonusNumber);
+                if (winningNumbers.contains(bonus)) {
+                    System.out.println("[ERROR] 보너스 번호는 당첨 번호에 포함되지 않아야 합니다.");
+                    bonus = null;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         return new WinningLotto(winningNumbers, bonus);
     }
 
     static Integer convertBonusNumber(String inputBonusNumber) {
         try {
-            Integer bonus = Integer.parseInt(inputBonusNumber);
+            int bonus = Integer.parseInt(inputBonusNumber);
             if (bonus < 1 || bonus > 45) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자만 가능합니다.");
             }
             return bonus;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+            return null;
         }
     }
 
@@ -66,16 +95,23 @@ public class LottoController {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String number : inputNumbers) {
-            int parsedNumber = parseWinningNumber(number.trim());
-            if (winningNumbers.contains(parsedNumber)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            try {
+                int parsedNumber = Integer.parseInt(number.trim());
+                if (parsedNumber < 1 || parsedNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 숫자만 가능합니다.");
+                }
+                if (winningNumbers.contains(parsedNumber)) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                }
+                winningNumbers.add(parsedNumber);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
             }
-            winningNumbers.add(parsedNumber);
         }
-
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+
         return winningNumbers;
     }
 
@@ -119,10 +155,10 @@ public class LottoController {
 
     private static void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.\n");
         }
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.\n");
         }
     }
 
