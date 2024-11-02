@@ -3,7 +3,7 @@ package lotto.domain;
 public class PurchaseAmount {
     private static final int UNIT = 1000;
     private final int amountNum;
-
+    private static final String ERROR_MESSAGE = "[ERROR]";
     public PurchaseAmount(String amountStr){
         int amount=checkText(amountStr);
         validate(amount);
@@ -13,15 +13,15 @@ public class PurchaseAmount {
         checkNegative(amount);
         checkUnit(amount);
     }
-    private int checkText(String amountStr) {
+    private static int checkText(String amountStr) {
         amountStr=amountStr.trim();
         if (amountStr.isBlank()) {
             throw new IllegalArgumentException();
         }
         try {
             return Integer.parseInt(amountStr.trim());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("문자는 안돼요");
         }
     }
     private void checkNegative(int amount) {

@@ -1,4 +1,6 @@
 package lotto.domain;
 
-public class RateofReturn {
+public class RateOfReturn {
+    public RateOfReturn(){
+    }
 }

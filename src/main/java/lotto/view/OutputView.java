@@ -6,7 +6,7 @@ public class OutputView {
     private static final int TREEE_CORRECT = 3;
     private static final int FOUR_CORRECT = 4;
     private static final int FIVE_CORRECT = 5;
-    private static final int FIVE_AND_BONUS_CORRECT = 2;
+    private static final int FIVE_AND_BONUS_CORRECT = 7;
     private static final int SIX_CORRECT = 6;
 
     public static void printLottoList(List<Integer> randomLottoNumber){

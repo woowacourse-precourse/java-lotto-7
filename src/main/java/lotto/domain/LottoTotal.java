@@ -7,7 +7,7 @@ public class LottoTotal {
     }
     public static int[] winningLotto(List<Integer> randomLottoNumber,List<Integer> winsNumber) {
         int batchSize = 6;
-        int[] count=new int[7];
+        int[] count=new int[8];
         for (int i = 0; i <= randomLottoNumber.size() - batchSize; i += batchSize) {
             List<Integer> currentLottoSet = randomLottoNumber.subList(i, i + batchSize);
             int matchCount = countMatches(currentLottoSet, winsNumber);
@@ -35,7 +35,7 @@ public class LottoTotal {
         for (int i = 0; i <= randomLottoNumber.size() - batchSize; i += batchSize) {
             List<Integer> currentLottoSet = randomLottoNumber.subList(i, i + batchSize);
             if (currentLottoSet.contains(bonusNum)&&(count[5]!=0)) {
-                count[2]++;
+                count[7]++;
             }
         }
         return count;

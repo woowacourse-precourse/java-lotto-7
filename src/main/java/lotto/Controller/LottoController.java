@@ -5,7 +5,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -14,6 +13,7 @@ public class LottoController {
     private static List<Integer> lotto = new ArrayList<>();
     private static List<Integer> lottoNumber =new ArrayList<>();
     private static List<Integer> lottoList=new ArrayList<>();
+    private static int[] count=new int[8];
     public LottoController(){
     }
 
@@ -61,7 +61,7 @@ public class LottoController {
         CompareLotto();
     }
     public void CompareLotto(){
-        int[] count=LottoTotal.winningLotto(lottoList,lottoNumber);
+        count=LottoTotal.winningLotto(lottoList,lottoNumber);
         int bonus_num=bonusNumber.getBonusNum();
         count=LottoTotal.bonusMatches(bonus_num,lottoList,count);
         OutputView.printCorrect(count);
