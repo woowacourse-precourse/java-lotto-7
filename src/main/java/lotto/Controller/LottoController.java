@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import lotto.Model.Lotto;
 import lotto.Model.LottoGenerator;
+import lotto.Model.WinningLotto;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 
@@ -20,6 +21,8 @@ public class LottoController {
         List<Integer> winNumbers = InputView.winInput();
 
         int bonus = InputView.bonusInput(winNumbers);
+
+        WinningLotto winningLotto = new WinningLotto(winNumbers, bonus);
 
     }
 }
