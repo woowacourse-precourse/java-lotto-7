@@ -32,12 +32,11 @@ public class ResultController {
         return result;
     }
 
-    public String calculateEarningRatio(Map<Prize, Integer> statistic, int buyingAmount) {
+    public float calculateEarningRatio(Map<Prize, Integer> statistic, int buyingAmount) {
         float sum = 0f;
         for (Prize prize : statistic.keySet()) {
             sum += statistic.get(prize) * prize.getAmount();
         }
-        float ratio = sum / buyingAmount * PERCENTAGE;
-        return String.format(ROUNDING_OFF_FORMAT, ratio);
+        return sum / buyingAmount * PERCENTAGE;
     }
 }
