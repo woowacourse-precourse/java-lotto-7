@@ -11,7 +11,7 @@ public class Customer {
         this.money = money;
     }
 
-    public void buyLottoFrom(LottoStore lottoStore) {
+    public void purchaseLottoFrom(LottoStore lottoStore) {
         int availableBuyCount = lottoStore.calculateLottoCount(money);
         lottos.addAll(lottoStore.sell(availableBuyCount));
         money -= availableBuyCount * LottoStore.LOTTO_PRICE;
