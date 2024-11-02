@@ -2,14 +2,16 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class ConsoleHandler {
 
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         String money = Console.readLine();
+        System.out.println();
         return invertNumber(money);
     }
-
 
     private int invertNumber(String number) {
         try{
