@@ -1,15 +1,19 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.BonusNumber;
 import lotto.domain.Money;
-import lotto.io.view.InputView;
+import lotto.domain.WinningInfo;
+import lotto.service.LotteryService;
+import lotto.util.InputProcessor;
+import lotto.view.OutputView;
 
 public class LotteryController {
+
+    private final InputProcessor inputProcessor = new InputProcessor();
+    private final OutputView outputView = new OutputView();
+
     public void run() {
-        InputView inputView = new InputView();
-        Money amountOfMoney = inputView.getAmountOfMoney();
-        Lotto winningNumbers = inputView.getWinningNumbers();
-        BonusNumber bonusNumber = inputView.getBonusNumber();
+        Money money = inputProcessor.createMoney();
+        WinningInfo winningInfo = inputProcessor.getWinningInfo();
+        LotteryService service = new LotteryService(money, winningInfo);
     }
 }

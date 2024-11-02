@@ -1,11 +1,6 @@
-package lotto.io;
+package lotto.validate;
 
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.Money;
 import lotto.exception.ExceptionMessages;
 
 public class InputValidator {
@@ -13,31 +8,22 @@ public class InputValidator {
     private static final String DIGIT_REGEX = "^-?[0-9]*$";
     private static final String INPUT_DELIM = ",";
 
-    public Money validateAmountOfMoney(String input) {
+    public void validateAmountOfMoney(String input) {
         validateWhiteSpace(input);
         validateNonDigitInput(input);
         validateOutOfRangeAmount(input);
-        int amountOfMoney = Integer.parseInt(input);
-
-        return new Money(amountOfMoney);
     }
 
-    public Lotto validateWinningNumbers(String input) {
+    public void validateWinningNumbers(String input) {
         validateWhiteSpace(input);
         validateEmptyElemFromInput(input);
         validateEndsWithComma(input);
         validateExistNotDigitElems(input);
-
-        List<Integer> numbers = convertStringToList(input);
-        return new Lotto(numbers);
     }
 
-    public BonusNumber validateBonusNumber(String input) {
+    public void validateBonusNumber(String input) {
         validateWhiteSpace(input);
         validateNonDigitInput(input);
-
-        int number = Integer.parseInt(input);
-        return new BonusNumber(number);
     }
 
     private void validateWhiteSpace(String input) {
@@ -77,13 +63,5 @@ public class InputValidator {
     private void validateExistNotDigitElems(String input) {
         String[] elems = input.split(INPUT_DELIM);
         Arrays.stream(elems).forEach(this::validateNonDigitInput);
-    }
-
-    private List<Integer> convertStringToList(String input) {
-        String[] numbers = input.split(INPUT_DELIM);
-        return Arrays.stream(numbers)
-                .map(number -> Integer.parseInt(number.strip()))
-                .sorted(Comparator.naturalOrder())
-                .toList();
     }
 }
