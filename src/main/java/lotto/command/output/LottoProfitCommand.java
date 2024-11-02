@@ -12,7 +12,7 @@ import lotto.service.lotto.constant.MatchBonusEnum;
  * @since : 24. 11. 2.
  */
 public class LottoProfitCommand implements OutputCommand {
-  private static final String WINNG_RESULT = "당첨 통계\n---\n";
+  private static final String WINNG_RESULT = "\n당첨 통계\n---\n";
   private final MatchResults matchResults;
   private final ProfitRate profitRate;
 
