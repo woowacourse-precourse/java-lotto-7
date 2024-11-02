@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.model.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.WinningLotto;
 import lotto.validation.WinningNumberValidation;
 
 
@@ -20,9 +21,7 @@ public class LottoController {
         int attemptCount = getAttemptCount();
         printPurchaseLottoCount(attemptCount);
         generateLotto(attemptCount);
-        List<Integer> winningNumber = getWinningNumber();
-        int bonusNumber = getBonusNumber();
-
+        WinningLotto winningLotto = new WinningLotto(getWinningNumber(),getBonusNumber());
     }
 
     private int getBonusNumber() {

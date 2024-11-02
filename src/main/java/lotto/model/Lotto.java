@@ -18,7 +18,6 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkDuplicates(numbers);
-
     }
 
     private void checkDuplicates(List<Integer> numbers) {
