@@ -4,45 +4,47 @@ import static lotto.resources.Constants.LOTTO_TOTAL_NUMBERS;
 import static lotto.resources.ErrorMessages.DUPLICATE_LOTTO_NUMBER;
 import static lotto.resources.ErrorMessages.INVALID_LOTTO_TOTAL_NUMBER;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import lotto.domain.number.Number;
+import lotto.domain.number.Numbers;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final Numbers numbers;
 
-    Lotto(final List<Integer> numbers) {
+    Lotto(final Numbers numbers) {
         validate(numbers);
         this.numbers = sortAscendingLotto(numbers);
     }
 
-    private void validate(final List<Integer> numbers) {
+    private void validate(final Numbers numbers) {
         validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
     }
 
-    private void validateNumbersSize(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_TOTAL_NUMBERS) {
+    private void validateNumbersSize(final Numbers numbers) {
+        if (numbers.getNumbers().size() != LOTTO_TOTAL_NUMBERS) {
             throw new IllegalArgumentException(INVALID_LOTTO_TOTAL_NUMBER.getMessage());
         }
     }
 
-    private void validateDuplicateNumbers(final List<Integer> numbers) {
-        long sizeWithOutDuplicate = numbers.stream()
+    private void validateDuplicateNumbers(final Numbers numbers) {
+        long sizeWithOutDuplicate = numbers.getNumbers().stream()
                 .distinct()
                 .count();
 
-        if (numbers.size() != sizeWithOutDuplicate) {
+        if (numbers.getNumbers().size() != sizeWithOutDuplicate) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
-    private List<Integer> sortAscendingLotto(final List<Integer> numbers) {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
+    private Numbers sortAscendingLotto(final Numbers numbers) {
+        List<Integer> sortedNumbers = numbers.getNumbers().stream()
+                .map(Number::getNumber)
+                .sorted()
+                .toList();
 
-        return sortedNumbers;
+        return Numbers.of(sortedNumbers);
     }
 
     @Override
@@ -64,6 +66,11 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString() + "\n";
+        String numbers = this.numbers.getNumbers().stream().
+                map(Number::getNumber)
+                .toList().
+                toString();
+        
+        return numbers + "\n";
     }
 }
