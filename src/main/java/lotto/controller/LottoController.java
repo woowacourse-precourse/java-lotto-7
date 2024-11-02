@@ -17,8 +17,6 @@ import lotto.model.Rank;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.exception.ErrorMessage.ALREADY_EXIST_IN_WINNING_NUMBERS;
-
 public class LottoController {
     private Purchase purchase;
     private WinningNumber winningNumber;
