@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import lotto.domain.buyer.PurchaseCount;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -14,6 +15,16 @@ public class Lottos {
 
     public static Lottos of(final List<Lotto> lottos) {
         return new Lottos(lottos);
+    }
+
+    public static Lottos generateRandomLottos(final PurchaseCount purchaseCount) {
+        final List<Lotto> lottos = new ArrayList<>();
+
+        for (int idx = 0; idx < purchaseCount.getPurchaseCount(); idx++) {
+            lottos.add(LottoFactory.createRandomLotto());
+        }
+
+        return Lottos.of(lottos);
     }
 
     public List<Lotto> getLottos() {
