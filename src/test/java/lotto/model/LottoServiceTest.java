@@ -124,4 +124,24 @@ class LottoServiceTest {
         assertThat(rankCounter.getRankCount(Rank.FOURTH_PLACE)).isEqualTo(1);
         assertThat(rankCounter.getRankCount(Rank.FIFTH_PLACE)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("수익률 계산 확인")
+    void calculateEarningRate() {
+        // given
+        WinningLotto winningTicket = lottoService.createWinningTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+        List<Lotto> lottoTickets = Arrays.asList(
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 7, 8)), // 3등
+                Lotto.of(Arrays.asList(1, 2, 3, 4, 8, 9)), // 4등
+                Lotto.of(Arrays.asList(1, 2, 3, 8, 9, 10)) // 5등
+        );
+        RankCounter rankCounter = lottoService.determineWinning(winningTicket, lottoTickets);
+        int lottoPurchaseAmount = lottoTickets.size() * 1000;
+
+        // when
+        double earningRate = lottoService.calculateEarningRate(rankCounter, lottoPurchaseAmount);
+
+        // then
+        assertThat(earningRate).isEqualTo(518.3);
+    }
 }
