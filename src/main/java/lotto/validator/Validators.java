@@ -20,8 +20,8 @@ public class Validators {
     }
 
     public void validateBonusNotInWinningNumbers(Lotto lotto, int bonusNumber) {
-        if(lotto.matchNumber(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 일치합니다.")
+        if (lotto.matchNumber(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 일치합니다.");
         }
     }
 }
