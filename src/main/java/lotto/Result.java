@@ -8,49 +8,47 @@ public class Result {
     private static int five = 0;
     private static int four = 0;
     private static int three = 0;
-    private int amount = 0; // 구입 금액
+    private int amount = 0;
 
-    // 상금 금액 상수
     private static final int FIRST_PLACE_AMOUNT = 2_000_000_000;
     private static final int SECOND_PLACE_AMOUNT = 30_000_000;
     private static final int THIRD_PLACE_AMOUNT = 1_500_000;
     private static final int FOURTH_PLACE_AMOUNT = 50_000;
     private static final int FIFTH_PLACE_AMOUNT = 5_000;
 
-    // 생성자에서 구입 금액을 초기화
     public Result(int amount) {
         this.amount = amount;
     }
 
-    // 로또 번호 비교 및 결과 업데이트 메서드
     public static void compareLottoNumber(List<List<Integer>> lottoList, List<Integer> winningNumbers,
                                           int bonusNumber) {
         for (List<Integer> lotto : lottoList) {
             long matchCount = lotto.stream()
                     .filter(winningNumbers::contains)
                     .count();
-
             boolean isBonusMatch = lotto.contains(bonusNumber);
             updateResults(matchCount, isBonusMatch);
         }
     }
 
-    // 당첨 결과 업데이트 메서드
     private static void updateResults(long matchCount, boolean isBonusMatch) {
         if (matchCount == 6) {
             six++;
-        } else if (matchCount == 5 && isBonusMatch) {
+        }
+        if (matchCount == 5 && isBonusMatch) {
             fiveAndBonus++;
-        } else if (matchCount == 5) {
+        }
+        if (matchCount == 5) {
             five++;
-        } else if (matchCount == 4) {
+        }
+        if (matchCount == 4) {
             four++;
-        } else if (matchCount == 3) {
+        }
+        if (matchCount == 3) {
             three++;
         }
     }
 
-    // 당첨 결과 출력 메서드
     public static void printResults() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
