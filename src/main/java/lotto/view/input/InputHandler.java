@@ -7,36 +7,38 @@ import lotto.exception.lotto.LottoErrorMessages;
 import lotto.exception.winningNumbers.WinningNumbersErrorMessages;
 import lotto.service.lotto.LottoServiceImpl;
 
+import java.util.function.Supplier;
+
 public class InputHandler {
-   public static int getValidatedAmount() {
-        while (true) {
-            try {
-                String input = InputView.getAmount();
-                new LottoServiceImpl().validateAmount(input);
-                return Integer.parseInt(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
-            }
-        }
+
+    public static int getValidatedAmount() {
+        return handleInput(() -> {
+            String input = InputView.getAmount();
+            new LottoServiceImpl().validateAmount(input);
+            return Integer.parseInt(input);
+        }, LottoErrorMessages.INVALID_AMOUNT_NON_NUMERIC.getMessage());
     }
+
     public WinningNumbers getValidatedWinningNumbers() {
-        while (true) {
-            try {
-                String winningNumbersInput = InputView.getWinningNumbers();
-                return new WinningNumbers(winningNumbersInput);
-            } catch (IllegalArgumentException e) {
-                System.out.println(WinningNumbersErrorMessages.INVALID_SIZE.getMessage());
-            }
-        }
+        return handleInput(() -> {
+            String winningNumbersInput = InputView.getWinningNumbers();
+            return new WinningNumbers(winningNumbersInput);
+        }, WinningNumbersErrorMessages.INVALID_SIZE.getMessage());
     }
 
     public BonusNumber getValidatedBonusNumber(WinningNumbers winningNumbers) {
+        return handleInput(() -> {
+            String bonusNumberInput = InputView.getBonusNumber();
+            return new BonusNumber(bonusNumberInput, winningNumbers.getNumbers());
+        }, BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
+    }
+
+    private static <T> T handleInput(Supplier<T> inputSupplier, String errorMessage) {
         while (true) {
             try {
-                String bonusNumberInput = InputView.getBonusNumber();
-                return new BonusNumber(bonusNumberInput, winningNumbers.getNumbers());
+                return inputSupplier.get();
             } catch (IllegalArgumentException e) {
-                System.out.println(BonusErrorMessages.INVALID_NUMBER_FORMAT.getMessage());
+                System.out.println(errorMessage);
             }
         }
     }
