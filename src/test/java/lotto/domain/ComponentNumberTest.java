@@ -15,11 +15,13 @@ class ComponentNumberTest {
     @DisplayName("ComponentNumber는 지정된 범위를 벗어나면 에러가 난다")
     void testNumberRangerValidation() {
 
+        //최대를 벗어난 경우
         assertThatThrownBy(() -> {
                     new ComponentNumber(LottoRule.MAXIMUM_NUMBER_RANGE.getInstance() + 1);
                 }
         ).hasMessageContaining(RangeError.NUMBER.getInstance());
 
+        //최소를 벗어난 경우
         assertThatThrownBy(() -> {
                     new ComponentNumber(LottoRule.MINIMUM_NUMBER_RANGE.getInstance() - 1);
                 }
