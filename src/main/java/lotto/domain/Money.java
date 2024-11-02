@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.exception.ErrorMessage;
 import lotto.exception.InputException;
+import lotto.util.ConvertInput;
 
 public class Money {
     private static final int UNIT_PRICE = 1_000;
@@ -12,17 +13,9 @@ public class Money {
     }
 
     public static Money from(String input) {
-        int money = stringToInt(input);
+        int money = ConvertInput.makeMoneyToInt(input);
         validate(money);
         return new Money(money);
-    }
-
-    private static int stringToInt(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException exception) {
-            throw InputException.from(ErrorMessage.MONEY_HAS_CHARACTER);
-        }
     }
 
     private static void validate(int money) {
