@@ -16,7 +16,7 @@ public class YieldCalculateService {
     }
 
     public void calculateRateOfReturn() {
-        long prizeAmount = winningLotto.getFinalPrizeAmount();
+        long prizeAmount = winningLotto.calculateTotalPrizeAmount();
         wallet.calculateRateOfReturn(yieldCalculator, prizeAmount);
     }
 

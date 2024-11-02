@@ -21,13 +21,8 @@ public class WinningLotto {
         }
     }
 
-    private long calculateTotalPrizeAmount() {
+    public long calculateTotalPrizeAmount() {
         return finalPrizeCalculator.calculate(ranks);
-    }
-
-
-    public long getFinalPrizeAmount() {
-        return calculateTotalPrizeAmount();
     }
 
     public EnumMap<Rank, Integer> getWinningStatistics() {
