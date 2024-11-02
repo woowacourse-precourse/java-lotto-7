@@ -37,4 +37,14 @@ class LottoNumbersValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
     }
+
+    @DisplayName("로또 숫자가 중복일 때 예외 테스트")
+    @Test
+    void validateLottoNumberDuplicates_fail() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+
+        assertThatThrownBy(() -> validate(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_DUPLICATED.getMessage());
+    }
 }
