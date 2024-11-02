@@ -5,6 +5,8 @@ import lotto.enums.WinningStatistics;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,8 +72,20 @@ public class LottoService {
         System.out.println(OutputMessage.WINNING_STATISTICS_MESSAGE.getMessage());
         for (int i = WinningStatistics.values().length - 1; i >= 0; i--) {
             WinningStatistics stat = WinningStatistics.values()[i];
-            String formattedPrize = NumberFormat.getNumberInstance(Locale.US).format(stat.getPrize());
+            String formattedPrize = NumberFormat.getNumberInstance(Locale.KOREA).format(stat.getPrize());
             System.out.println(stat.getMatchCount() + "개 일치 (" + formattedPrize + "원) - " + stat.getCount() + "개");
         }
+    }
+
+    public double calculateProfitRate(Money money) {
+        int totalPrize = 0;
+        for (WinningStatistics stat : WinningStatistics.values()) {
+            totalPrize += stat.getPrize() * stat.getCount();
+        }
+        return (double) totalPrize / money.getPurchaseAmount() * 100;
+    }
+
+    public void showProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 }
