@@ -1,12 +1,15 @@
 package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class SetTest {
     private Set<Integer> numbers;
@@ -27,5 +30,15 @@ public class SetTest {
     @DisplayName("Set의 크기 확인")
     void Set의_크기_확인() {
         assertThat(numbers).size().isEqualTo(3);
+    }
+
+    /**
+     * 요구사항 2
+     */
+    @ParameterizedTest
+    @DisplayName("Set에 값이 들어갔는지 확인")
+    @ValueSource(ints = {1, 2, 3})
+    void Set에_값이_들어갔는지_확인(int input) {
+        assertTrue(numbers.contains(input));
     }
 }
