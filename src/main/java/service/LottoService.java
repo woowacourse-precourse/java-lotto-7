@@ -1,9 +1,11 @@
 package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import common.LottoConstants;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.LottoScoreboard;
 import validator.InputValidator;
 import view.InputView;
 import view.OutputView;
@@ -12,6 +14,12 @@ public class LottoService {
 
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private LottoScoreboard lottoScoreboard;
+    private final List<Lotto> lottoList = new ArrayList<>();
+    private int lottoPurchaseAmount;
+    private int lottoDrawCount;
+    private Lotto winnerLottoNumber;
+    private int bonusNumber;
 
     public int getLottoPurchaseAmount() {
         return inputView.inputLottoPurchaseAmount();
