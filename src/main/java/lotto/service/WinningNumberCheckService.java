@@ -10,9 +10,9 @@ import lotto.model.LottoResult;
 
 public class WinningNumberCheckService {
     public static LottoResult checkWinningNumber(Lotto randomLotto, Lotto winningNumber, int bonusNumber) {
-        Set<Integer> winningNumberSet = new HashSet<>(winningNumber.getNumbers());
-        long matchCount = randomLotto.getNumbers().stream().filter(winningNumberSet::contains).count();
-        boolean hasBonus = randomLotto.getNumbers().contains(bonusNumber);
+        List<Integer> winningNumbers = winningNumber.getNumbers();
+        long matchCount = randomLotto.getNumbers().stream().filter(winningNumbers::contains).count();
+        boolean hasBonus = randomLotto.getNumbers().stream().anyMatch(number -> number == bonusNumber);
         return new LottoResult(matchCount, hasBonus);
     }
 
