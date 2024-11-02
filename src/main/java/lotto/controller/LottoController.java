@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -38,7 +39,7 @@ public class LottoController {
 
     private  Lotto inputLotto(){
         View.promptForWinningLotto();
-        String lottoNumberString = View.inputWinningLotto();
+        List<Integer> mainWinningNumbers  = View.inputWinningLotto();
 
     }
 

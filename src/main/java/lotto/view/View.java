@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
@@ -22,13 +23,48 @@ public class View {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static String inputWinningLotto() {
+    public static List<Integer> inputWinningLotto() {
         String winningLottoInput = Console.readLine();
-
-
-
-        return winningLottoInput;
+        validateEmpty(winningLottoInput);
+        validateCommaFormat(winningLottoInput);
+        return convertToNumbers(winningLottoInput);
     }
+
+
+    private static void validateCommaFormat(String input) {
+        List<String> numbers = splitInputByComma(input);
+        validateNumberFormat(numbers);
+    }
+
+    private static List<String> splitInputByComma(String input) {
+        return Arrays.asList(input.split(","));
+    }
+
+    private static void validateNumberFormat(List<String> numbers) {
+        for (String number : numbers) {
+            validateNumber(number.trim());
+        }
+    }
+
+    private static void validateNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 쉼표(,)로 구분된 숫자만 입력 가능합니다.");
+        }
+    }
+
+    private static List<Integer> convertToNumbers(String input) {
+        List<String> numberStrings = splitInputByComma(input);
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String numberStr : numberStrings) {
+            numbers.add(Integer.parseInt(numberStr.trim()));
+        }
+
+        return numbers;
+    }
+
 
 
 
