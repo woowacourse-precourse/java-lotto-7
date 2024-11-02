@@ -1,9 +1,9 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.random.CreateRandomNumbers;
+import lotto.domain.lotto.random.CreateRandomNumbers;
 
 public class Lottos {
 

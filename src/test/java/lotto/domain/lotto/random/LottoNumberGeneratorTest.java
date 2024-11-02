@@ -1,4 +1,4 @@
-package lotto.domain.random;
+package lotto.domain.lotto.random;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
