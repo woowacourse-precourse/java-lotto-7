@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +17,22 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 말아야 합니다.");
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean isNumbersContains(int otherNumber) {
+        return numbers.contains(otherNumber);
+    }
+
+    public List<Integer> getAscendingSortNumbers() {
+        List<Integer> ascendingSortNumbers = new ArrayList<>(numbers);
+        ascendingSortNumbers.sort(Comparator.naturalOrder());
+        return ascendingSortNumbers;
+    }
+
+    public List<Integer> getMatchedNumbers(List<Integer> compareNumbers) {
+        return numbers.stream().filter(number -> compareNumbers.stream().anyMatch(Predicate.isEqual(number))).toList();
+    }
 }
