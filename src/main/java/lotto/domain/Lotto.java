@@ -10,6 +10,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public int getIndex(int numbers) {
+        return this.numbers.indexOf(numbers);
+    }
+
     public boolean matchNumber(int number) {
         return numbers.contains(number);
     }
