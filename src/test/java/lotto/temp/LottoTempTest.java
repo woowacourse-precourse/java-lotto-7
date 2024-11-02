@@ -70,4 +70,14 @@ class LottoTempTest {
         assertThat(lottoTemp.checkBonusNumber(new Lotto(List.of(1,2,3,4,5,6)),7)).isFalse();
     }
 
+    @Test
+    @DisplayName("일치하는 개수에 따라 올바른 등수를 나타내는지 확인하는 테스트")
+    void confirmLottoRank(){
+        assertThat(lottoTemp.determineRank(2,true)).isEqualTo("꽝");
+        assertThat(lottoTemp.determineRank(3,true)).isEqualTo("5등");
+        assertThat(lottoTemp.determineRank(4,true)).isEqualTo("4등");
+        assertThat(lottoTemp.determineRank(5,false)).isEqualTo("3등");
+        assertThat(lottoTemp.determineRank(5,true)).isEqualTo("2등");
+        assertThat(lottoTemp.determineRank(6,true)).isEqualTo("1등");
+    }
 }

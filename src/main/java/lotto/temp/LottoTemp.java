@@ -102,6 +102,32 @@ public class LottoTemp {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
+    // TODO : 반환형 수정 필요할 수 있음
+    public String determineRank(int matchCount, boolean isBonusContain) {
+        String rank = "";
+
+        if (matchCount < 3) {
+            return "꽝";
+        }
+        if (matchCount == 3){
+            return "5등";
+        }
+        if (matchCount == 4){
+            return "4등";
+        }
+        if (matchCount == 5 && !isBonusContain){
+            return "3등";
+        }
+        if (matchCount == 5 && isBonusContain){
+            return "2등";
+        }
+        if (matchCount == 6){
+            return "1등";
+        }
+
+        return rank;
+    }
+
     public void printProfit(int profit) {
         io.printMessage("총 수익률은 " + profit + "%입니다.");
     }
