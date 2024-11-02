@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class LottoNumber {
@@ -35,5 +36,20 @@ public class LottoNumber {
 		if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
 			throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하이어야 합니다.");
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		LottoNumber that = (LottoNumber)o;
+		return number == that.number;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(number);
 	}
 }
