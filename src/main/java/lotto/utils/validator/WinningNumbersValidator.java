@@ -1,4 +1,4 @@
-package lotto.validator;
+package lotto.utils.validator;
 
 import static lotto.constants.ErrorMessage.EMPTY_LOTTO_WINNING_NUMBERS;
 import static lotto.constants.ErrorMessage.HAS_CONSECUTIVE_COMMA;
@@ -6,29 +6,29 @@ import static lotto.constants.ErrorMessage.ONLY_DIGITS_AND_COMMAS_ALLOWED;
 
 public class WinningNumbersValidator {
 
-    public void validateNumbers(String winningNumbers) {
+    public static void validateNumbers(String winningNumbers) {
         checkEmptyNumbers(winningNumbers);
         checkUnCorrectForm(winningNumbers);
     }
 
-    private void checkEmptyNumbers(String winningNumbers) {
+    private static void checkEmptyNumbers(String winningNumbers) {
         if (winningNumbers.isBlank()) {
             throw new IllegalArgumentException(EMPTY_LOTTO_WINNING_NUMBERS.getMessage());
         }
     }
 
-    private void checkUnCorrectForm(String winningNumbers) {
+    private static void checkUnCorrectForm(String winningNumbers) {
         hasConsecutiveComma(winningNumbers);
         hasInvalidNumberCommaFormat(winningNumbers);
     }
 
-    private void hasConsecutiveComma(String winningNumbers) {
+    private static void hasConsecutiveComma(String winningNumbers) {
         if (winningNumbers.contains(",,")) {
             throw new IllegalArgumentException(HAS_CONSECUTIVE_COMMA.getMessage());
         }
     }
 
-    private void hasInvalidNumberCommaFormat(String winningNumbers) {
+    private static void hasInvalidNumberCommaFormat(String winningNumbers) {
         for (int i = 0; i < winningNumbers.length(); i++){
             if (!Character.isDigit(winningNumbers.charAt(i)) && !isComma(winningNumbers.charAt(i))){
                 throw new IllegalArgumentException(ONLY_DIGITS_AND_COMMAS_ALLOWED.getMessage());
@@ -36,7 +36,7 @@ public class WinningNumbersValidator {
         }
     }
 
-    private boolean isComma(char input) {
+    private static boolean isComma(char input) {
         return input == ',';
     }
 }
