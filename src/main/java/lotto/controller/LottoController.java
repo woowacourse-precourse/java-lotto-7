@@ -44,7 +44,6 @@ public class LottoController {
     }
 
     private WinningLotto createWinningLotto() {
-
         outputView.printWinningNumbersMessage();
         List<Integer> winningNumbers = inputView.readWinningNumbers();
 
