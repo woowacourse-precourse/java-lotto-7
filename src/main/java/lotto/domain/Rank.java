@@ -18,21 +18,15 @@ public enum Rank {
         this.bonusCount = bonusCount;
     }
 
+    private static boolean matchRank(int basicCount, int bonusCount, Rank rank) {
+        return basicCount == rank.basicCount && bonusCount == rank.bonusCount;
+    }
+
     public static Rank calculateRank(int basicCount, int bonusCount) {
-        if (basicCount == FIRST.basicCount) {
-            return FIRST;
-        }
-        if (basicCount == SECOND.basicCount && bonusCount == SECOND.bonusCount) {
-            return SECOND;
-        }
-        if (basicCount == THIRD.basicCount && bonusCount == THIRD.bonusCount) {
-            return THIRD;
-        }
-        if (basicCount == FOURTH.basicCount) {
-            return FOURTH;
-        }
-        if (basicCount == FIFTH.basicCount) {
-            return FIFTH;
+        for (Rank rank : Rank.values()) {
+            if (matchRank(basicCount, bonusCount, rank)) {
+                return rank;
+            }
         }
 
         return NONE;
