@@ -11,4 +11,10 @@ public class ValidatorTest {
         assertThatThrownBy(() -> Validator.validateAmountInput("1000j"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 천_단위_이하의_숫자가_포함된_구입_금액을_입력_받으면_예외가_발생한다() {
+        assertThatThrownBy(() -> Validator.validateAmountInput("1001"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
