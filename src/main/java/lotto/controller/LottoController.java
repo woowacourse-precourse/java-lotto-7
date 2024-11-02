@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.constant.Prize;
-import lotto.model.Purchase;
+import lotto.model.PurchasePrice;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,20 +22,21 @@ public class LottoController {
     }
 
     public void run() {
-        Purchase purchase = requestPurchase();
-        List<Lotto> lottoTickets = generateLottoTickets(purchase.getQuantity());
+
+        PurchasePrice purchase = requestPurchase();
+        List<Lotto> lottoTickets = generateLottoTickets(purchase.calculateQuantity());
         WinningNumbers winningNumbers = requestWinningNumbers();
         LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
-        double rateOfReturn = calculateRateOfReturn(result, purchase.getPrice());
+        double rateOfReturn = calculateRateOfReturn(result, purchase.value());
         outputView.displayWinningResult(result, rateOfReturn);
     }
 
-    private Purchase requestPurchase() {
+    private PurchasePrice requestPurchase() {
         outputView.displayPurchasePriceRequest();
         int purchasePrice = inputView.getInteger();
-        Purchase purchase = new Purchase(purchasePrice);
+        PurchasePrice purchase = new PurchasePrice(purchasePrice);
 
-        int purchaseQuantity = purchase.getQuantity();
+        int purchaseQuantity = purchase.calculateQuantity();
         outputView.displayPurchaseQuantity(purchaseQuantity);
 
         return purchase;
