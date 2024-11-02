@@ -8,7 +8,7 @@ public class LottoStatistics {
     private final SequencedMap<Rank, Integer> results;
 
     public LottoStatistics() {
-        results = new LinkedHashMap<>();
+        this.results = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
             results.put(rank, 0);
         }
