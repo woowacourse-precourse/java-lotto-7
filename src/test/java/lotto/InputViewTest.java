@@ -8,27 +8,22 @@ import lotto.View.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class InputViewTest extends NsTest {
     @Test
-    @DisplayName("readPurchaseAmount 정상 작동 Test")
-    void testReadPurchaseAmount() {
+    @DisplayName("parseInt 정상 작동 테스트")
+    void parseIntTest(){
         InputView inputView = new InputView();
-        System.setIn(new ByteArrayInputStream("10000".getBytes()));
-        int actual = inputView.readPurchaseAmount();
-        assertThat(actual).isEqualTo(10000);
+        int actual = inputView.parseInt("123");
+        assertThat(actual).isEqualTo(123);
     }
 
     @Test
-    @DisplayName("readPurchaseAmount 숫자가 아닌 경우")
-    void testReadPurchaseAmount1000() {
+    @DisplayName("parseInt 숫자가 아닌 것 테스트")
+    void parseIntErrorTest(){
         InputView inputView = new InputView();
-        System.setIn(new ByteArrayInputStream("1000a".getBytes()));
-        assertThatThrownBy(() -> InputView.readPurchaseAmount())
+        assertThatThrownBy(() -> inputView.parseInt("123a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ONLY_NUMBER.getError());
     }
