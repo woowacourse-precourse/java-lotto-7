@@ -19,13 +19,15 @@ public class OutputView {
     }
 
     public void lottosPrint() {
-        System.out.println(toString());
-    }
-
-    @Override
-    public String toString() {
-        return "OutputView{" +
-                "lotto=" + lotto +
-                '}';
+        for (List<Integer> lottoList : lotto) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            for (Integer value : lottoList) {
+                sb.append(value + ", ");
+            }
+            sb.setLength(sb.length() - 2);
+            sb.append("]");
+            System.out.println(sb.toString());
+        }
     }
 }

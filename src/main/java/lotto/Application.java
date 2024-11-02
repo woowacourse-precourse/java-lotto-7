@@ -1,6 +1,9 @@
 package lotto;
 
+import lotto.service.LottoMatch;
 import lotto.service.Lottos;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,9 +20,11 @@ public class Application {
         outputView.buyCountPrint();
         outputView.lottosPrint();
 
-        inputView.winNumber();
-        inputView.bonus();
+        List<Integer> winLotto = inputView.winNumber();
+        int bonusNumber = inputView.bonus();
 
+        LottoMatch lottoMatch = new LottoMatch(inputView.count, lottos.lotto, winLotto, bonusNumber);
+        lottoMatch.match();
 
     }
 }

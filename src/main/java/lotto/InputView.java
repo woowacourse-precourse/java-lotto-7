@@ -13,7 +13,6 @@ public class InputView {
     int money;
     int count;
     Lotto winLotto = null;
-    ArrayList<List<Integer>> lotto = new ArrayList<>();
 
     public void buyMoney() {
         int m = -1;
@@ -36,7 +35,7 @@ public class InputView {
         this.count = m / 1000;
     }
 
-    public Lotto winNumber() {
+    public List<Integer> winNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
         List<Integer> numbers = new ArrayList<>();
@@ -50,7 +49,7 @@ public class InputView {
             winNumber();
         }
 
-        return winLotto;
+        return numbers;
     }
 
     public int bonus() {
