@@ -13,25 +13,36 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private static void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateIsDuplicated(numbers);
+        validateRange(numbers);
     }
 
-    private static void validateSize(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
 
-    private static void validateIsDuplicated(List<Integer> numbers) {
+    private void validateIsDuplicated(List<Integer> numbers) {
         HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static void sort(List<Integer> numbers) {
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(this::isInvalidRange)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isInvalidRange(int number) {
+        return number < 1 || number > 45;
+    }
+
+    private void sort(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
     }
 
