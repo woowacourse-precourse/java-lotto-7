@@ -18,7 +18,7 @@ public class WinningNumberInput {
                 winningNumbers = parseWinningNumbers(input);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -33,7 +33,7 @@ public class WinningNumberInput {
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력 가능합니다.");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -50,7 +50,7 @@ public class WinningNumberInput {
                 .collect(Collectors.toList());
 
         if (numbers.size() != 6 || !isUniqueAndInRange(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1에서 45 사이의 중복되지 않는 숫자 6개여야 합니다.");
+            throw new IllegalArgumentException("번호는 1에서 45 사이의 중복되지 않는 숫자 6개여야 합니다.");
         }
         return numbers;
     }
@@ -67,10 +67,10 @@ public class WinningNumberInput {
 
     private void validateBonusNumber(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
         }
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         }
     }
 
