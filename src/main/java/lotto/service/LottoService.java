@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
-    private final List<SystemLotto> purchasedLotto = new ArrayList<>();
+    private final List<String> purchasedLotto = new ArrayList<>();
 
     public int calculateLottoCount(String purchaseAmount) {
         try {
@@ -23,14 +23,12 @@ public class LottoService {
         }
     }
 
-    public void purchaseLotto(int lottoCount) {
+    public List<String> purchaseLotto(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
-            purchasedLotto.add(new SystemLotto());
+            SystemLotto newLotto = new SystemLotto();
+            purchasedLotto.add(newLotto.getSortedNumbers());
         }
-    }
 
-    public List<SystemLotto> getPurchasedLotto() {
         return purchasedLotto;
     }
 }
-

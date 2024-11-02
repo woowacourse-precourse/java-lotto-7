@@ -3,6 +3,9 @@ package lotto.controller;
 import lotto.model.UserLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     LottoService lottoService = new LottoService();
@@ -11,7 +14,8 @@ public class LottoController {
     public void run() {
         String purchaseAmount = InputView.readPurchaseAmount();
         int lottoCount = lottoService.calculateLottoCount(purchaseAmount);
-        lottoService.purchaseLotto(lottoCount);
+        List<String> purchasedLottoNumber = lottoService.purchaseLotto(lottoCount);
+        OutputView.printPurchasedLotto(lottoCount, purchasedLottoNumber);
 
         String userNumber = InputView.readUserNumber();
         userLotto.setNumbers(userNumber);
