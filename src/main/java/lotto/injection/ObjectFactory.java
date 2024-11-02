@@ -1,9 +1,11 @@
 package lotto.injection;
 
 import lotto.controller.BonusNumberController;
+import lotto.controller.LotteryMachineController;
 import lotto.controller.PurchaseAmountController;
 import lotto.controller.WinnerNumberController;
 import lotto.model.LotteryMachineModel;
+import lotto.model.StatisticModel;
 import lotto.parse.InputParser;
 import lotto.service.BonusNumberService;
 import lotto.service.LotteryMachineService;
@@ -20,6 +22,7 @@ public class ObjectFactory {
     private final InputValidator inputValidator = new InputValidator();
     private final InputParser inputParser = new InputParser();
     private final LotteryMachineModel lotteryMachineModel = new LotteryMachineModel();
+    private final StatisticModel statisticModel = new StatisticModel();
 
     public final PurchaseAmountController purchaseAmountController() {
         return new PurchaseAmountController(inputView, outputView, purchaseAmountService(), lotteryMachineService());
@@ -31,6 +34,10 @@ public class ObjectFactory {
 
     public final BonusNumberController bonusNumberController() {
         return new BonusNumberController(inputView, outputView, bonusNumberService());
+    }
+
+    public final LotteryMachineController lotteryMachineController() {
+        return new LotteryMachineController(lotteryMachineService());
     }
 
     public final PurchaseAmountService purchaseAmountService() {
@@ -46,6 +53,6 @@ public class ObjectFactory {
     }
 
     public final LotteryMachineService lotteryMachineService() {
-        return new LotteryMachineService(lotteryMachineModel);
+        return new LotteryMachineService(lotteryMachineModel, statisticModel);
     }
 }

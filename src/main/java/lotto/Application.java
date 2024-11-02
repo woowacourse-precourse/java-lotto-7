@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.BonusNumberController;
+import lotto.controller.LotteryMachineController;
 import lotto.controller.PurchaseAmountController;
 import lotto.controller.WinnerNumberController;
 import lotto.injection.ObjectFactory;
@@ -17,5 +18,8 @@ public class Application {
 
         BonusNumberController bonusNumberController = objectFactory.bonusNumberController();
         bonusNumberController.run();
+
+        LotteryMachineController lotteryMachineController = objectFactory.lotteryMachineController();
+        lotteryMachineController.run();
     }
 }

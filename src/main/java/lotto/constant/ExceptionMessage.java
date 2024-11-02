@@ -17,6 +17,7 @@ public class ExceptionMessage {
     public static final String PURCHASE_AMOUNT_LOTTO_PRICE_DIVISIBILITY = "구입 금액은 " + LOTTO_PRICE + "으로 나누어떨어져야 합니다.";
     public static final String PURCHASE_AMOUNT_NOT_NEGATIVE = "구입 금액은 음수가 될 수 없습니다.";
     public static final String PURCHASE_AMOUNT_IS_POSITIVE = "구입 금액은 양수여야 합니다.";
+    public static final String PURCHASE_AMOUNT_NOT_SETTING = "구입금액을 먼저 설정해주세요.";
     public static final String WINNER_NUMBER_INPUT_INVALID_CHARACTER = "당첨 숫자 입력은 숫자와 쉼표로만 이루어져야 합니다.";
     public static final String WINNER_NUMBER_INVALID_COMMA_POSITION = "당첨 숫자의 콤마(,) 앞 뒤에는 숫자가 있어야 합니다.";
     public static final String BONUS_NUMBER_MUST_INTEGER = "보너스 번호는 Integer 타입이여야 합니다.";
