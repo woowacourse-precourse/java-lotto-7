@@ -1,9 +1,9 @@
 package lotto.model;
 
-import lotto.constant.LottoConstant;
+import lotto.common.LottoConstant;
 
 public enum LottoPrize {
-    
+
     FIFTH(LottoConstant.THREE_COUNT, LottoConstant.FIFTH_PRICE, false),
     FOURTH(LottoConstant.FOUR_COUNT, LottoConstant.FOURTH_PRICE, false),
     THIRD(LottoConstant.FIVE_COUNT, LottoConstant.THIRD_PRICE, false),

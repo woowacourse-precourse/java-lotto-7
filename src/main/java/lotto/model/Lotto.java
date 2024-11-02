@@ -1,7 +1,7 @@
 package lotto.model;
 
-import lotto.constant.ExceptionConstant;
-import lotto.constant.LottoConstant;
+import lotto.common.ExceptionConstant;
+import lotto.common.LottoConstant;
 
 import java.util.ArrayList;
 import java.util.List;
