@@ -15,4 +15,10 @@ public class VendingMachineController {
         vendingMachineService.recordLottos(lottos);
     }
 
+    public List<Lotto> getIssuedLottoTickets() {
+        List<Lotto> lottos = vendingMachineService.getIssuedLottoTickets();
+
+        return lottos;
+    }
+
 }
