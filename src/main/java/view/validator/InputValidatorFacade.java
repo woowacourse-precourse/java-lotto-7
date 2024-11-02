@@ -2,6 +2,11 @@ package view.validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.lotto.Lotto;
+import view.validator.bonus.BonusDuplicateValidator;
+import view.validator.bonus.BonusNullValidator;
+import view.validator.bonus.BonusNumberFormatValidator;
+import view.validator.bonus.BonusRangeValidator;
 import view.validator.money.MoneyNullValidator;
 import view.validator.money.MoneyNumberFormatValidator;
 import view.validator.money.MoneyUnitValidator;
@@ -35,6 +40,18 @@ public class InputValidatorFacade {
         validators.add(WinningNumCountValidator.initiate());
         validators.add(WinningNumRangeValidator.initiate());
         validators.add(WinningNumDuplicateValidator.initiate());
+
+        validateAll(validators, input);
+    }
+
+    public static void bonusValidators(final String input, final Lotto lotto) {
+
+        List<InputValidator> validators = new ArrayList<>();
+
+        validators.add(BonusNullValidator.initiate());
+        validators.add(BonusNumberFormatValidator.initiate());
+        validators.add(BonusRangeValidator.initiate());
+        validators.add(BonusDuplicateValidator.initiate(lotto));
 
         validateAll(validators, input);
     }

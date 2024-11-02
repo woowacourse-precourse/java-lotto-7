@@ -14,7 +14,7 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    public boolean isDuplicateBonus(Integer number) {
+        return numbers.contains(number);
     }
 }

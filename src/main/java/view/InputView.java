@@ -53,9 +53,15 @@ public class InputView {
         }
     }
 
-    public Integer readBonus() {
-        writer.printSout(ASK_BONUS_NUMBER);
-        String input = reader.readInput();
-        return PreProcessor.stringToInteger(input);
+    public Integer readBonus(Lotto lotto) {
+        try {
+            writer.printSout(ASK_BONUS_NUMBER);
+            String input = reader.readInput();
+            InputValidatorFacade.bonusValidators(input, lotto);
+            return PreProcessor.stringToInteger(input);
+        } catch (IllegalArgumentException e) {
+            writer.printErrorMessage(e.getMessage());
+            return readBonus(lotto);
+        }
     }
 }
