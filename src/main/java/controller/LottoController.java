@@ -24,31 +24,38 @@ public class LottoController {
     public void run() {
         initLottoPlay();
         playLotto();
+        winningResultView();
     }
 
     private void initLottoPlay() {
         User user = initUser();
+        initUserLottos(user);
         LottoMachine lottoMachine = initLottoMachine();
         this.lottoPlay = new LottoPlay(user, lottoMachine);
     }
 
-    private void playLotto() {
-        lottoPlay.drawLottos();
-        userService.updateRateOfReturn(lottoPlay.getUser());
-        outputView.outputWinningStatistics(lottoPlay.getRankResult().getRankResult());
-        outputView.outputRateOfReturn(lottoPlay.getUser().getRateOfReturn());
+    private User initUser() {
+        return Task.reTryTaskUntilSuccessful(() -> new User(inputView.inputPurchaseAmount()));
     }
 
-    private User initUser() {
-        User user = Task.reTryTaskUntilSuccessful(() -> new User(inputView.inputPurchaseAmount()));
+    private void initUserLottos(User user) {
         userService.issueLotto(user);
         outputView.outputPurchaseLottoAmount(user.getLottos());
-        return user;
     }
 
     private LottoMachine initLottoMachine() {
         List<Integer> winningNumbers = Task.reTryTaskUntilSuccessful(() -> inputView.inputWinningNumbers());
         int bonusNumber = Task.reTryTaskUntilSuccessful(() -> inputView.inputBonusNumber(winningNumbers));
         return new LottoMachine(winningNumbers, bonusNumber);
+    }
+
+    private void playLotto() {
+        lottoPlay.drawLottos();
+        userService.updateRateOfReturn(lottoPlay.getUser());
+    }
+
+    private void winningResultView() {
+        outputView.outputWinningStatistics(lottoPlay.getRankResult().getRankResult());
+        outputView.outputRateOfReturn(lottoPlay.getUser().getRateOfReturn());
     }
 }
