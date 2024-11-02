@@ -32,7 +32,7 @@ public class LottoController {
     public void run() {
         List<Lotto> boughtLottoList = attempt(this::buyLottoByPrice);
 
-        WinningLotto winningLotto = inputWinningLotto();
+        WinningLotto winningLotto = attempt(this::generateWinningLotto);
         LottoStatistic lottoStatistic = lottoMachine.generateLottoStatistic(winningLotto, boughtLottoList);
         outputView.printLottoStatistic(lottoStatistic);
     }
@@ -52,40 +52,27 @@ public class LottoController {
         return Integer.parseInt(rawMoney);
     }
 
-    private WinningLotto inputWinningLotto() {
-        List<Integer> winningNumberList = attemptWinningNumber();
-        Integer winningBonusNumber = attemptWinningBonusNumberExcluding(winningNumberList);
+    private WinningLotto generateWinningLotto() {
+        Lotto lotto = attempt(this::generateLotto);
+        Integer bonusNumber = attempt(this::inputWinningBonusNumber);
 
-        return lottoMachine.generateWinningLotto(winningNumberList, winningBonusNumber);
+        return lottoMachine.generateWinningLotto(lotto.getNumbers(), bonusNumber);
     }
 
-    private List<Integer> attemptWinningNumber() {
-        try {
-            String rawWinningNumber = inputView.inputWinningNumber();
-            inputValidator.validateInputWinningNumber(rawWinningNumber);
-            String[] splitWinningNumber = rawWinningNumber.split(SPLIT_DELIMITER);
+    private Lotto generateLotto() {
+        String rawWinningNumber = inputView.inputWinningNumber();
+        inputValidator.validateInputWinningNumber(rawWinningNumber);
+        String[] splitWinningNumber = rawWinningNumber.split(SPLIT_DELIMITER);
+        List<Integer> numberList = Arrays.stream(splitWinningNumber).map(Integer::parseInt).toList();
 
-            return Arrays.stream(splitWinningNumber).map(Integer::parseInt).toList();
-        } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
-
-            return attemptWinningNumber();
-        }
+        return new Lotto(numberList);
     }
 
-    private Integer attemptWinningBonusNumberExcluding(List<Integer> numberList) {
-        try {
-            String rawWinningBonusNumber = inputView.inputWinningBonusNumber();
-            inputValidator.validateInputBonusNumber(rawWinningBonusNumber);
-            int bonusNumber = Integer.parseInt(rawWinningBonusNumber);
-            inputValidator.validateBonusNumberExcluding(bonusNumber, numberList);
+    private Integer inputWinningBonusNumber() {
+        String rawWinningBonusNumber = inputView.inputWinningBonusNumber();
+        inputValidator.validateInputBonusNumber(rawWinningBonusNumber);
 
-            return bonusNumber;
-        } catch (IllegalArgumentException exception) {
-            outputView.printException(exception.getMessage());
-
-            return attemptWinningBonusNumberExcluding(numberList);
-        }
+        return Integer.parseInt(rawWinningBonusNumber);
     }
 
     private <T> T attempt(Supplier<T> supplier) {
