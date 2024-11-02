@@ -1,12 +1,21 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 public class BonusNumberInputHandler {
 
     private BonusNumberInputHandler() {}
 
-    public static void validateBonusNumber(String input) {
+    public static int promptGetBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return validateBonusNumber(input);
+    }
+
+    public static int validateBonusNumber(String input) {
         int bonusNumber = validateBonusNumberIsInteger(input);
         validateBonusNumberRange(bonusNumber);
+        return bonusNumber;
     }
 
     public static int validateBonusNumberIsInteger(String input) {
@@ -15,7 +24,7 @@ public class BonusNumberInputHandler {
         }
         try {
             return Integer.parseInt(input);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(("[ERROR] 보너스 숫자는 정수여야 합니다."));
         }
     }

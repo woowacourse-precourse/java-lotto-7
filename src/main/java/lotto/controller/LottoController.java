@@ -5,6 +5,7 @@ import lotto.service.LottoService;
 import lotto.view.LottoStaticsOutputHandler;
 import lotto.view.NumberOfLottoOutputHandler;
 import lotto.view.PurchaseAmountInputHandler;
+import lotto.view.WinningNumbersInputHandler;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class LottoController {
         int purchaseAmount = Integer.parseInt(purchaseAmountInput);
         numberOfLottoOutputHandler.displayNumberOfLottos(purchaseAmount);
         List<Lotto> lottos = lottoService.issueLottos(purchaseAmount);
+        List<Integer> winningNumbers = WinningNumbersInputHandler.promptGetWinningNumbers();
 
     }
 }
