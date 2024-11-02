@@ -7,7 +7,7 @@ public class Application {
 
         Integer money = Input.inputMoney();
         List <Integer> winNumbers = Input.inputWinNumbers();
-        Integer bonusNumber = Input.inputBonusNumber();
+        Integer bonusNumber = Input.inputBonusNumber(winNumbers);
 
         System.out.println(money + " " + winNumbers+" "+bonusNumber);
     }

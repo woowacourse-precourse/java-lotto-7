@@ -9,7 +9,8 @@ public class Input {
 
     public static Integer inputMoney(){
         System.out.println("구입금액을 입력해 주세요.");
-        Integer money = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        Integer money = FindError.moneyError(input);
         return money;
     }
 
@@ -28,12 +29,16 @@ public class Input {
             numbers.add(Integer.parseInt(token.trim()));
         }// 문자열을 정수로 변환 후 리스트에 추가
 
-        return numbers;
+        // 유효성 검사를 위해 Lotto 객체 생성
+        Lotto lotto = new Lotto(numbers);
+
+        return lotto.getNumbers();
     }
 
-    public static Integer inputBonusNumber(){
+    public static Integer inputBonusNumber(List<Integer> winNumbers){
         System.out.println("보너스 번호를 입력해 주세요.");
         Integer bonusNumber = Integer.parseInt(Console.readLine());
+        FindError.validateBonusNumber(bonusNumber, winNumbers);
         return bonusNumber;
     }
 }
