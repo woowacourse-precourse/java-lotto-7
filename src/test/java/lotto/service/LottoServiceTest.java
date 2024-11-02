@@ -55,7 +55,7 @@ public class LottoServiceTest {
         List<Rank> expected = new ArrayList<>(List.of(Rank.FIRST, Rank.SECOND));
 
         // when
-        List<Rank> result = lottoService.getRanks(lottos);
+        List<Rank> result = lottoService.getRanks(lottos, winningNubmers, bonusNumber);
 
         // then
         assertThat(result).isEqualTo(expected);

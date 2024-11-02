@@ -52,6 +52,15 @@ public class LottoService {
         return arr;
     }
 
+    public List<Rank> getRanks(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.getRank(winningNumbers, bonusNumber);
+            ranks.add(rank);
+        }
+        return ranks;
+    }
+
     public Map<Rank, Integer> matchingWinningNumbers(List<Rank> ranks) {
         Map<Rank, Integer> result = new HashMap<>();
         for (Rank rank : Rank.values()) {
