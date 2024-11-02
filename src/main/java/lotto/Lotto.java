@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private static final Integer lowerBound = 1;
-    private static final Integer upperBound = 45;
+    protected static final Integer lowerBound = 1;
+    protected static final Integer upperBound = 45;
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
