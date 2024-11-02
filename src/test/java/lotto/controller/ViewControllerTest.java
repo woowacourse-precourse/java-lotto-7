@@ -8,11 +8,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ViewControllerTest {
-    ViewController viewController;
+    ViewControllerImpl viewController;
 
     @BeforeEach
     void setUp() {
-
+        viewController = ViewControllerImpl.getInstance();
     }
 
     @Test

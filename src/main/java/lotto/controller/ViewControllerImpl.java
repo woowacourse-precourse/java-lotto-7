@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.util.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,7 +20,9 @@ public class ViewControllerImpl implements ViewController {
 
     @Override
     public void validateMoney(int money) {
-
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_NUMBER_ERROR);
+        }
     }
 
     @Override
@@ -28,6 +31,8 @@ public class ViewControllerImpl implements ViewController {
     }
     public String getMoney(){
         outputView.printGuide();
-        return inputView.readLine();
+        String money =  inputView.readLine();
+        this.validateMoney(Integer.parseInt(money));
+        return money;
     }
 }

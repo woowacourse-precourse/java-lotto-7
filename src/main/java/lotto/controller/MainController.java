@@ -5,6 +5,5 @@ public class MainController {
 
     public static void run(){
         String money = viewController.getMoney();
-        System.out.println(money);
     }
 }
