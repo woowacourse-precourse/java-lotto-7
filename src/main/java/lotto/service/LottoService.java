@@ -21,6 +21,16 @@ public class LottoService {
         return winning;
     }
 
+    public double calculateRateOfReturn(LottoTickets lottoTickets, Winning winning) {
+        long totalPrize = 0L;
+        for (Rank rank : winning.getAllRanks()) {
+            totalPrize += winning.getPrizeOfRank(rank);
+        }
+
+        double rateOfReturn = (double) totalPrize / lottoTickets.getMoney() * 100;
+        return Math.round(rateOfReturn * 100.0) / 100.0;
+    }
+
     private int countMatchNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         Set<Integer> matchNumbers = new HashSet<>(lottoNumbers);
         Set<Integer> parsedWinningNumbers = new HashSet<>(winningNumbers);
