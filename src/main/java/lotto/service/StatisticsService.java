@@ -17,6 +17,7 @@ import static lotto.domain.WinningStatistics.*;
 public class StatisticsService {
 
     private static final int PROFIT_PERCENT = 100;
+    private static final int THOUSAND_VALUE = 1000;
 
     private final WinningNumbersRepository winningNumbersRepository = WinningNumbersRepository.getInstance();
     private final BonusNumberRepository bonusNumberRepository = BonusNumberRepository.getInstance();
@@ -70,7 +71,7 @@ public class StatisticsService {
     }
 
     private void showProfit() {
-        long winningProfit = 0L;
+        float winningProfit = 0;
 
         WinningStatistics[] winningStatistics = WinningStatistics.values();
         for(WinningStatistics winningStatistic: winningStatistics) {
@@ -78,7 +79,8 @@ public class StatisticsService {
         }
 
         int purchaseAmount = purchaseAmountRepository.find().getValue();
-        OutputView.printProfit(winningProfit / purchaseAmount * PROFIT_PERCENT);
+        int price = purchaseAmount * THOUSAND_VALUE;
+        OutputView.printProfit(winningProfit / price  * PROFIT_PERCENT);
     }
 
     private record Check(int cnt, boolean bonusNumberCheck){}
