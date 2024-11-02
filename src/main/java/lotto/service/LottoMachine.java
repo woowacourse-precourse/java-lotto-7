@@ -58,13 +58,13 @@ public class LottoMachine {
         for (Lotto lotto : purchasedLotto.getLottos()) {
             boolean bonus = false;
             List<Integer> lottoNums = lotto.lottoNums();
+
             long count = sameNumberCountOf(winningLotto, lottoNums);
             if (lottoNums.contains(winningLotto.bonusBall().getNum())) {
                 bonus = true;
             }
             ranks.add(calculateRank(count, bonus));
         }
-
         return LottoResult.from(ranks);
     }
 
