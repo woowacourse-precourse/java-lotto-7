@@ -143,56 +143,39 @@
 
 # 기능 목록
 
-### Entities (TDD)
-
-- [x] Lotto 클래스 TDD 작성
-    - 로또 번호를 나타내며, 중복되지 않는 6개의 번호가 1~45 범위 내에 있는지 검증.
-- [x] WinningNumbers 클래스 TDD 작성
-    - 당첨 번호(6개)와 보너스 번호(1개)를 관리하며, 유효한 값인지 검증.
-- [x] Purchase 클래스 TDD 작성
-    - 구입 금액을 입력 받아 유효한 값인지 검증.
-    - 구매하는 로또의 개수를 계산.
-- [x] LottoMachine TDD 작성
-    - WinningNumbers, Purchase 를 주입 받음.
-    - 구입 금액에 따라 로또를 발급.
-        - 로또 발급 상태 확인.
-    - 결과 확인 가능.
-- [x] ProfitReport 클래스 TDD 작성
-    - 당첨 번호와 로또 번호를 비교하여 당첨 통계를 출력.
-    - 수익률을 계산하여 출력.
-
 ### Entities
 
-- [x] Lotto 클래스 구현
-- [x] WinningNumbers 클래스 구현
-- [x] Purchase 클래스 구현
-- [x] LottoMachine 클래스 구현
-- [x] ProfitReport 클래스 구현
-
-### Parser
-
-- [x] InputParser 클래스 구현
-    - [x] 여러 숫자를 파싱하는 기능.
-    - [x] 숫자를 파싱하는 기능.
+- Lotto 클래스 구현
+- WinningNumbers 클래스 구현
+- Purchase 클래스 구현
+- LottoMachine 클래스 구현
+- ProfitReport 클래스 구현
 
 ### View
 
-- [x] ConsoleInputView 클래스 구현
-    - [x] 구입 금액을 입력 받는 기능.
-    - [x] 당첨 번호를 입력 받는 기능.
-    - [x] 보너스 번호를 입력 받는 기능.
-- [x] ConsoleOutputView 클래스 구현
-    - [x] 당첨 통계를 출력하는 기능.
-    - [x] 발급한 로또를 출력하는 기능.
+- ConsoleInputView 클래스 구현
+    - 구입 금액을 입력 받는 기능.
+    - 당첨 번호를 입력 받는 기능.
+    - 보너스 번호를 입력 받는 기능.
+- ConsoleOutputView 클래스 구현
+    - 당첨 통계를 출력하는 기능.
+    - 발급한 로또를 출력하는 기능.
 
 ### Controller
 
-- [ ] LottoController 클래스 구현
-    - [ ] ConsoleInputView, ConsoleOutputView을 주입 받음.
-    - [ ] 입력을 처리함.
-    - [ ] LottoMachine 을 생성.
-    - [ ] ProfitReport 를 생성.
-    - [ ] 결과를 출력.
+- LottoController 클래스 구현
+    - ConsoleInputView, ConsoleOutputView을 주입 받음.
+    - 입력을 처리함.
+    - LottoMachine 을 생성.
+    - ProfitReport 를 생성.
+    - 결과를 출력.
 
+### ETC
 
+- InputParser 클래스 구현
+    - 여러 숫자를 파싱하는 기능.
+    - 숫자를 파싱하는 기능.
+- Exception
+- DTO
+- Configuration
 
