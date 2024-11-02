@@ -33,7 +33,7 @@ class LottoInputValidatorTest {
 
     @ParameterizedTest
     @DisplayName("올바른 구입 금액을 검증할 수 있다.")
-    @ValueSource(strings = {"1000", "3000", "100000"})
+    @ValueSource(strings = {"1000", "3000", "50000"})
     void 구입_금액_입력_검증(String costInput) {
         // given
         // when
