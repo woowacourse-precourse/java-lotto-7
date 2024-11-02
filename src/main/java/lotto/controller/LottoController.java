@@ -5,16 +5,18 @@ import java.util.List;
 
 public class LottoController {
 
-    private List<Integer> getUserNumbers(String userInput) {
+    public List<Integer> getUserNumbers(String userInput) {
         List<Integer> userNumbers = new ArrayList<>();
         String [] splitResult = userInput.split(",");
         for (String number : splitResult) {
+            number = number.trim();
             userNumbers.add(splitNumber(number));
         }
         return userNumbers;
     }
 
     private int splitNumber(String userInput) {
+        System.out.println("userInput = " + userInput);
         try {
             return Integer.parseInt(userInput);
         }catch (NumberFormatException e) {
