@@ -7,8 +7,9 @@ import lotto.message.ExceptionMessage;
 
 public class Lotto {
 
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int LOTTO_LENGTH = 6;
 
     private final List<Integer> numbers;
 
@@ -27,7 +28,7 @@ public class Lotto {
     }
 
     private void validateNumbersLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_LENGTH_EXCEPTION);
         }
     }
