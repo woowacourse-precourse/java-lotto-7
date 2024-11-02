@@ -452,7 +452,7 @@ Process finished with exit code 0
       </details>
 
 ---
-# ✅ 체크 사항
+# ✅ 프로젝트 체크 사항
 
 ## 1. 공통 피드백
 <details>
@@ -530,7 +530,7 @@ README.me
 
 </details>
 
-### 3. 2024 우아콘 피드백
+## 3. 2024 우아콘 피드백
 <details>
 <summary>BE 세션</summary>
 
