@@ -1,9 +1,12 @@
 package lotto.view.input;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class PurchaseAmount {
 
-    public void input() {
-
+    public int input() {
+        InputMessageEnum.PURCHASE_AMOUNT.printMessage();
+        String purchaseAmount = readLine();
+        return Integer.parseInt(purchaseAmount);
     }
-    // 구입금액에 대한 예외처리 구현
 }
