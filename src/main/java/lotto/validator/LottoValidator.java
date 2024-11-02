@@ -19,7 +19,7 @@ public class LottoValidator extends Validator {
         validateNotNull();
         validateNotEmpty();
         validateWholeNumber();
-        validateList();
+        validateListOfInteger();
     }
 
     @VisibleForTesting
@@ -45,9 +45,9 @@ public class LottoValidator extends Validator {
     }
 
     @VisibleForTesting
-    void validateList() {
+    void validateListOfInteger() {
         try {
-            InputParser.parseList(lotto);
+            InputParser.parseListOfInteger(lotto);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(MessageParser.combineMessages(Errors.NOT_A_LONG.getMessage()));
         }
