@@ -16,8 +16,7 @@ public class LottoGame {
     }
 
     public void start() {
-        int purchaseAmount = inputView.inputPurchaseAmount();
-        lottoGenerator.purchaseLottos(purchaseAmount);
+        int purchaseAmount = getPurchaseAmount();
         lottoGenerator.printLottos();
 
         WinningNumbers winningNumbers = inputView.inputWinningNumbers();
@@ -30,5 +29,19 @@ public class LottoGame {
         );
         result.calculate();
         result.printResult(purchaseAmount);
+    }
+
+    private int getPurchaseAmount() {
+        int purchaseAmount;
+        while (true) {
+            try {
+                purchaseAmount = inputView.inputPurchaseAmount();
+                lottoGenerator.purchaseLottos(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchaseAmount;
     }
 }

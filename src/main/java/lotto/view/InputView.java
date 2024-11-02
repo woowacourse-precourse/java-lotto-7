@@ -1,7 +1,5 @@
 package lotto.view;
 
-import static lotto.constants.LottoGeneratorConstants.LOTTO_PRICE;
-
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.ErrorMessages;
 import lotto.constants.InputMessages;
@@ -14,20 +12,10 @@ public class InputView {
             try {
                 System.out.println(InputMessages.PURCHASE_AMOUNT_PROMPT);
                 String inputAmount = Console.readLine();
-                int purchaseAmount = Integer.parseInt(inputAmount);
-                validatePurchaseAmount(purchaseAmount);
-                return purchaseAmount;
+                return Integer.parseInt(inputAmount);
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessages.PURCHASE_AMOUNT_NOT_NUMBER);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private void validatePurchaseAmount(int amount) {
-        if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT);
         }
     }
 

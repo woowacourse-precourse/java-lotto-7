@@ -8,14 +8,22 @@ import static lotto.constants.LottoGeneratorConstants.LOTTO_PRICE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constants.ErrorMessages;
 
 public class LottoGenerator {
     private final List<Lotto> lottos = new ArrayList<>();
 
     public void purchaseLottos(int purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
         int count = purchaseAmount / LOTTO_PRICE;
         for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
+        }
+    }
+
+    private void validatePurchaseAmount(int amount) {
+        if (amount < LOTTO_PRICE || amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_PURCHASE_AMOUNT);
         }
     }
 
