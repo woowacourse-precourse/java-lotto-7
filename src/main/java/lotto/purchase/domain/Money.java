@@ -20,7 +20,7 @@ public class Money {
     }
 
     public double calculateRateOfIncome(long amount) {
-        return ((double) moneyValue / amount) * 100;
+        return ((double) amount / moneyValue) * 100;
     }
 
     private static void validateMoney(long moneyValue) {
