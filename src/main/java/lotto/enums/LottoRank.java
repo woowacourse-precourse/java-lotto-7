@@ -2,17 +2,18 @@ package lotto.enums;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum LottoRank {
-    FIRST(6, 2_000_000_000L),
-    SECOND(5, 30_000_000L),
-    THIRD(5, 1_500_000L),
-    FOURTH(4, 50_000L),
+    NO_REWARD(0, 0L),
     FIFTH(3, 5_000L),
-    NO_REWARD(0, 0L);
+    FOURTH(4, 50_000L),
+    THIRD(5, 1_500_000L),
+    SECOND(5, 30_000_000L),
+    FIRST(6, 2_000_000_000L);
 
     private final int matchCount;
     private final long prizeMoney;
@@ -46,7 +47,9 @@ public enum LottoRank {
                 .filter(lottoRank -> lottoRank != NO_REWARD)
                 .collect(Collectors.toMap(
                         lottoRank -> lottoRank,
-                        lottoRank -> String.format("%s개 일치 (%s원)", lottoRank.getMatchCount(), formatPrizeMoney(lottoRank.getMoney()))
+                        lottoRank -> String.format("%s개 일치 (%s원)", lottoRank.getMatchCount(), formatPrizeMoney(lottoRank.getMoney())),
+                        (oldValue, newValue) -> oldValue,
+                        LinkedHashMap::new
                 ));
     }
 
