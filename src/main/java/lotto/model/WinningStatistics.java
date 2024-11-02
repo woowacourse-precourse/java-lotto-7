@@ -65,4 +65,8 @@ public class WinningStatistics {
     public double getRateOfReturn(Money money) {
         return ((double) getTotalPrize() / money.getMoney()) * PERCENTAGE_MULTIPLIER;
     }
+
+    public Map<Rank, Integer> getWinningStatistics() {
+        return winningStatistics;
+    }
 }
