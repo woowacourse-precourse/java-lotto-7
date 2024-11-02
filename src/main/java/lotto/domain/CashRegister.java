@@ -3,16 +3,15 @@ package lotto.domain;
 import static lotto.domain.constant.ErrorMessage.PRICE_UNMATCHED;
 
 public class CashRegister {
-    private int money;
     private final int SINGLE_LOTTO_PRICE = 1000;
+    private int money;
 
     public CashRegister(int money) {
         validate(money);
         this.money = money;
     }
-
-
-    private int calculateLottoCount() {
+    
+    public int calculateLottoCount() {
         return this.money / SINGLE_LOTTO_PRICE;
     }
 
