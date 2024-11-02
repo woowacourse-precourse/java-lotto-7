@@ -22,5 +22,5 @@ public class ErrorMessage {
             .formatted(PREFIX_ERROR_MESSAGE, LOTTO_PICK_COUNT);
 
     public static final String LOTTO_NUMBER_OUT_OF_BOUND = "%s 로또 번호는 %d부터 %d 사이의 숫자여야 합니다."
-            .formatted(PREFIX_ERROR_MESSAGE, LOTTO_LOWER_BOUND, LOTTO_UPPER_BOUND);
+            .formatted(PREFIX_ERROR_MESSAGE, LOTTO_LOWER_BOUNDARY, LOTTO_UPPER_BOUNDARY);
 }

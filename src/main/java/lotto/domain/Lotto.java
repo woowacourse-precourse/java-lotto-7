@@ -1,23 +1,76 @@
 package lotto.domain;
 
-import static lotto.constant.ErrorMessage.INVALID_PICK_COUNT;
-import static lotto.constant.LottoSystemConstant.LOTTO_PICK_COUNT;
-
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static lotto.constant.ErrorMessage.INVALID_PICK_COUNT;
+import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_BOUND;
+import static lotto.constant.LottoSystemConstant.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        Collections.sort(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
+        validatePickCount(numbers);
+        validateBoundary(numbers);
+        validateNonDuplicate(numbers);
+    }
+
+    private void validatePickCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_PICK_COUNT) {
             throw new IllegalArgumentException(INVALID_PICK_COUNT);
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateBoundary(List<Integer> numbers) {
+        for (int number: numbers) {
+            if(number < LOTTO_LOWER_BOUNDARY || number > LOTTO_UPPER_BOUNDARY) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_BOUND);
+            }
+        }
+    }
+
+    private void validateNonDuplicate(List<Integer> numbers) {
+        for (int i = 1; i < numbers.size(); i++) {
+            if(numbers.get(i) == numbers.get(i - 1)) {
+                throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_BOUND);
+            }
+        }
+    }
+
+    public String getNumbersToString() {
+        return numbers.toString();
+    }
+
+    public Rank checkRank(Lotto winningLotto, int bonusNumber) {
+        int matchingNumbers = countMatchNumbers(winningLotto);
+        boolean hasBonus = checkMatchNumber(bonusNumber);
+
+        return Rank.valueOfLotto(matchingNumbers, hasBonus);
+    }
+
+    private int countMatchNumbers(Lotto lotto) {
+        Set<Integer> checkingNumbers = new HashSet<>(numbers);
+        checkingNumbers.retainAll(lotto.numbers);
+
+        return checkingNumbers.size();
+    }
+
+    public boolean checkMatchNumber(int target) {
+        for (int number: numbers) {
+            if(number == target) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
