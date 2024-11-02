@@ -38,8 +38,8 @@ public class LottoController {
         while (!validInput) {
             try {
                 String input = inputView.readInput(Amount.getRequestMessage());
-                validInput = isValidAmountInput(input);
-                amount = new Amount(TypeConverter.ToNumber(input));
+                isValidAmountInput(input);
+                amount = new Amount(TypeConverter.ToNumber(input)); //1000으로 나누어떨어지는 지 확인 후 생성
                 return amount.getAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -50,8 +50,7 @@ public class LottoController {
 
     public boolean isValidAmountInput(String input) {
         validationManager.isNotEmptyInput(input);
-        validationManager.isNumber(input);
-        return validationManager.isDivideByThousand(input);
+        return validationManager.isNumber(input);
     }
 
     public List<Integer> handleLottoNumberInputError() {
