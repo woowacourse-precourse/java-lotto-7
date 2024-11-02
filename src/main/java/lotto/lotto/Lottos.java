@@ -21,6 +21,12 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
+    public List<List<Integer>> getLottoValues() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
+
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lottos);
     }
