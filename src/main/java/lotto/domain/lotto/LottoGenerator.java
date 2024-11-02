@@ -15,7 +15,7 @@ public class LottoGenerator {
 
     public LottoGenerator(int numOfLotto) {
         for (int i = 0; i < numOfLotto; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(INTEGER_UNDER_BOUND,INTEGER_UPPER_BOUND,NUMBER_COUNT);
             Lotto lotto = new Lotto(numbers);
             Lottos.add(lotto.getNumbers());
         }
