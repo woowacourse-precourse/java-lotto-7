@@ -4,6 +4,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
+import lotto.domain.WinningLotto;
+import lotto.exception.ErrorCode;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,70 +21,60 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            List<Lotto> purchasedLottos = purchaseAndShowLottos();
-            LottoResult result = calculateAndShowResult(purchasedLottos);
-            outputView.printWinningResult(result);
-        } catch (IllegalArgumentException e) {
-            outputView.printError(e.getMessage());
-            run();
-        }
+        List<Lotto> purchasedLottos = purchaseLottos();
+        WinningLotto winningLotto = processWinningLotto();
+        LottoResult result = checkLottoResult(purchasedLottos, winningLotto);
+        outputView.printWinningResult(result);
     }
 
-    private List<Lotto> purchaseAndShowLottos() {
-        int amount = purchaseLotto();
+    private List<Lotto> purchaseLottos() {
         try {
+            int amount = inputView.inputPurchaseAmount();
             List<Lotto> lottos = lottoMachine.purchase(amount);
-            outputView.outputPurchaseAmount(lottos.size());
+            outputView.printPurchaseAmount(lottos.size());
             outputView.printLottos(lottos);
             return lottos;
         } catch (IllegalArgumentException e) {
             outputView.printError(e.getMessage());
-            return purchaseAndShowLottos();
+            return purchaseLottos();
         }
     }
 
-    private int purchaseLotto() {
-        while (true) {
-            try {
-                return inputView.inputPurchaseAmount();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+    private WinningLotto processWinningLotto() {
+        List<Integer> winningNumbers = inputWinningNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        try {
+            return inputView.inputWinningNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return inputWinningNumbers();
         }
     }
 
-    private LottoResult calculateAndShowResult(List<Lotto> purchasedLottos) {
-        Lotto winningLotto = getWinningLotto();
-        int bonusNumber = getBonusNumber();
-        return createLottoResult(purchasedLottos, winningLotto, bonusNumber);
-    }
-
-    private Lotto getWinningLotto() {
-        while (true) {
-            try {
-                return new Lotto(inputView.inputWinningNumber());
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+    private int inputBonusNumber(List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = inputView.inputBonusNumber();
+            validateBonusNumber(winningNumbers, bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            return inputBonusNumber(winningNumbers);
         }
     }
 
-    private int getBonusNumber() {
-        while (true) {
-            try {
-                return inputView.inputBonusNumber();
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw ErrorCode.DUPLICATE_BONUS_NUMBER.throwError();
         }
     }
 
-    private LottoResult createLottoResult(List<Lotto> purchasedLottos, Lotto winningLotto, int bonusNumber) {
+    private LottoResult checkLottoResult(List<Lotto> purchasedLottos, WinningLotto winningLotto) {
         LottoResult result = new LottoResult(purchasedLottos.size() * 1000);
-        for (Lotto lotto : purchasedLottos) {
-            result.addWinningResult(lotto, winningLotto, bonusNumber);
-        }
+        purchasedLottos.forEach(lotto -> result.addWinningResult(lotto, winningLotto));
         return result;
     }
 }
