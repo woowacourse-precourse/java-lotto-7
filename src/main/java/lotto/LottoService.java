@@ -1,9 +1,11 @@
 package lotto;
 
 import lotto.enums.OutputMessage;
+import lotto.enums.WinningStatistics;
 import lotto.model.Lotto;
 import lotto.model.Money;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,6 +30,37 @@ public class LottoService {
     public void showLottoNumbers(Lotto[] issuedLottos) {
         for (Lotto lotto : issuedLottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    public void countMatchingNumbers(Lotto[] issuedLottos, Lotto winningLotto) {
+        for (Lotto lotto : issuedLottos) {
+            List<Integer> matchingNumbers = new ArrayList<>(lotto.getNumbers());
+            matchingNumbers.retainAll(winningLotto.getNumbers());
+            int matchCount = matchingNumbers.size();
+
+            if (matchCount == 5) {
+                checkBonusNumber(lotto, winningLotto);
+                return;
+            }
+            updateWinningStatistics(matchCount);
+        }
+    }
+
+    private void checkBonusNumber(Lotto lotto, Lotto winningLotto) {
+        if (lotto.getNumbers().contains(winningLotto.getNumbers().get(6))) {
+            WinningStatistics.SECOND.setCount(WinningStatistics.SECOND.getCount() + 1);
+            return;
+        }
+
+        WinningStatistics.THIRD.setCount(WinningStatistics.THIRD.getCount() + 1);
+    }
+
+    private void updateWinningStatistics(int matchCount) {
+        for (WinningStatistics stat : WinningStatistics.values()) {
+            if (stat.getMatchCount() == matchCount) {
+                stat.setCount(stat.getCount() + 1);
+            }
         }
     }
 }
