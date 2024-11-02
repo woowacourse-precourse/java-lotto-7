@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain.calculator;
+
+import lotto.domain.calculator.Calculator;
 
 public class PurchaseCalculator implements Calculator {
     private static final int LOTTO_PRICE = 1000;

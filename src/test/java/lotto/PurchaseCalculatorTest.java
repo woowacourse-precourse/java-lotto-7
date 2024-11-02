@@ -3,11 +3,13 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.domain.calculator.Calculator;
+import lotto.domain.calculator.PurchaseCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class PurchaseCalculatorTest {
-    public static Calculator calculator;
+    private Calculator calculator;
     @BeforeEach
     void beforeEach() {
         //given
