@@ -14,10 +14,11 @@ public class InputView {
         return instance;
     }
 
-    public int inputPrice(){
+    public int inputPurchaseAmount(){
         System.out.println(inputPurchaseAmountGuideMessage);
         String price = Console.readLine();
         customException.purchaseInputCheck(price);
         return Integer.parseInt(price);
     }
+
 }
