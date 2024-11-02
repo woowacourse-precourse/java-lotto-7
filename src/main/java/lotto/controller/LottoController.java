@@ -1,58 +1,114 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoCollection;
+import lotto.domain.LottoResult;
+import lotto.service.LottoPrizeService;
+import lotto.service.LottoService;
+import lotto.util.constant.LottoConstants;
+import lotto.util.validator.BonusNumbersValidator;
 import lotto.util.validator.PurchaseMoneyValidator;
+import lotto.util.validator.WinnerNumbersValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static lotto.util.constant.LottoConstants.*;
 
 public class LottoController {
 
     // 로또 내부 메인 실행 흐름
-    public static void startLotto(){
-
-        // 1. 로또 구입 금액 입력 및 유효성 검증
-        long validatedPurchaseMoney = getValidatedPurchaseAmountFromUser();
-
-        // 2. 로또 구입 금액에 따라 새로운 로또 번호를 생성
-        generateNewLottoNumbers();
-
-        // 3. 로또 당첨 번호 입력 및 유효성 검증
-        getValidatedWinningNumbersFromUser();
-
-        // 4. 로또 당첨 보너스 번호 입력 및 유효성 검증
-        getValidatedBonusNumberFromUser();
-
-        // 5. 최종 당첨 확인
-        checkTotalWinningStatus();
-
-        // 6. 최종 당첨 통계 출력
-        displayTotalWinningStatistics();
+    public static void startLotto() throws IllegalArgumentException{
+        LottoCollection lotto = initializeLottoCollection();
+        generateAndDisplayLottoNumbers(lotto);
+        setWinningNumbers(lotto);
+        calculateAndDisplayWinningStatistics(lotto);
     }
 
-    static long getValidatedPurchaseAmountFromUser() {
-        // 로또 구입 금액 입력 및 유효성 검증 코드
-        OutputView.printPurchaseAmountPrompt();
-        String purchaseMoneyInput = InputView.getUserInput();
-        PurchaseMoneyValidator.validatePurchaseMoney(purchaseMoneyInput);
+    // 1. LottoCollection 생성
+    private static LottoCollection initializeLottoCollection() throws IllegalArgumentException {
+        long purchaseAmount = getValidatedPurchaseAmountFromUser();
+        return new LottoCollection(purchaseAmount);
+    }
+
+    // 1-1. 로또 구입 금액 입력 및 유효성 검증
+    private static long getValidatedPurchaseAmountFromUser() throws IllegalArgumentException {
+        boolean validInput = true;
+        String purchaseMoneyInput = "";
+        while(validInput){
+            try {
+                OutputView.printPurchaseAmountPrompt();
+                purchaseMoneyInput = InputView.getUserInput();
+                PurchaseMoneyValidator.validatePurchaseMoney(purchaseMoneyInput);
+                validInput = false;
+            } catch (IllegalArgumentException exception) {
+                OutputView.printErrorMessage(exception);
+            }
+        }
         return Long.parseLong(purchaseMoneyInput);
     }
 
-    static void generateNewLottoNumbers() {
-        // 로또 번호 생성 코드
+    // 2. 로또 번호 생성 및 출력
+    private static void generateAndDisplayLottoNumbers(LottoCollection lotto) {
+        ArrayList<Lotto> newLotto = LottoService.generateNewLottoNumbers(lotto.getNumOfLotto());
+        lotto.setLotto(newLotto);
+        OutputView.printNewLotto(lotto.getLotto());
     }
 
-    static void getValidatedWinningNumbersFromUser() {
-        // 당첨 번호 입력 및 유효성 검증 코드
+    // 3. 당첨 번호 및 보너스 번호 설정
+    private static void setWinningNumbers(LottoCollection lotto) {
+        Lotto winnerLotto = getValidatedWinningNumbersFromUser();
+        int bonusNumber = getValidatedBonusNumberFromUser(winnerLotto.getNumbers());
+        lotto.setWinnerLottoAndBonusNumber(winnerLotto, bonusNumber);
     }
 
-    static void getValidatedBonusNumberFromUser() {
-        // 보너스 번호 입력 및 유효성 검증 코드
+    // 3-1. 당첨 번호의 입력 및 유효성 검증
+    private static Lotto getValidatedWinningNumbersFromUser() {
+        boolean validInput = true;
+        Lotto winnerLotto = null;
+        while (validInput) {
+            try {
+                OutputView.printWinnerNumbersPrompt();
+                String winnerLottoInput = InputView.getUserInput();
+                WinnerNumbersValidator.validateWinnerNumber(winnerLottoInput);
+                winnerLotto = new Lotto(LottoService.generateWinnerLotto(winnerLottoInput));
+                validInput = false;
+            } catch (IllegalArgumentException exception) {
+                OutputView.printErrorMessage(exception);
+            }
+        }
+        return winnerLotto;
     }
 
-    static void checkTotalWinningStatus() {
-        // 당첨 확인 코드
+    // 3-2. 보너스 번호의 입력 및 유효성 검증
+    private static int getValidatedBonusNumberFromUser(List<Integer> winnerNumbers) {
+        boolean validInput = true;
+        int bonusNumber = 0;
+        while (validInput) {
+            try {
+                OutputView.printBonusNumbersPrompt();
+                String bonusNumberInput = InputView.getUserInput();
+                BonusNumbersValidator.validateBonusNumber(bonusNumberInput, winnerNumbers);
+                bonusNumber = Integer.parseInt(bonusNumberInput);
+                validInput = false;
+            } catch (IllegalArgumentException exception) {
+                OutputView.printErrorMessage(exception);
+            }
+        }
+        return bonusNumber;
     }
 
-    static void displayTotalWinningStatistics() {
-        // 당첨 통계 출력 코드
+    // 4. 당첨 확인 및 통계 출력
+    private static void calculateAndDisplayWinningStatistics(LottoCollection lotto) {
+        LottoResult lottoResult = new LottoResult();
+
+        LottoPrizeService.checkPrizeOfLotto(lotto, lottoResult);
+        OutputView.printWinningStatus(lottoResult);
+
+        LottoPrizeService.calculateProfit(lotto.getPurchaseMoney(), lottoResult);
+        OutputView.printTotalProfit(LottoResult.getProfit());
     }
+
 }
