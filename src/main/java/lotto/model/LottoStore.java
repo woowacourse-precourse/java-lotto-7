@@ -43,7 +43,7 @@ public class LottoStore {
     }
 
     private static List<Integer> makeRandomNumber() {
-        List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM, 6);
+        List<Integer> randomNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM, 6));
         Collections.sort(randomNumber);
         return randomNumber;
     }
