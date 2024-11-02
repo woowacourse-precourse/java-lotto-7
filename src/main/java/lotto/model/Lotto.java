@@ -1,8 +1,10 @@
 package lotto.model;
 
 import static lotto.common.AppConstant.LOTTO_NUMBER_COUNT;
+import static lotto.common.AppErrorType.NUMBER_DUPLICATE_ERROR;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -10,12 +12,21 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers.stream().sorted(Comparator.naturalOrder()).toList();
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalStateException("[ERROR] 로또 번호는 "+ LOTTO_NUMBER_COUNT + "개여야 합니다.");
+        }
+    }
+    
+    private void validateDuplicate(List<Integer> numbers) {
+        HashSet<Integer> deDuplicatedNumbers = new HashSet<>(numbers);
+
+        if (deDuplicatedNumbers.size() != numbers.size()) {
+            throw new IllegalStateException(NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
