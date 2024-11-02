@@ -43,4 +43,12 @@ public class WinningLottoTest {
         assertThat(winningLotto.getBonusNum()).isEqualTo(Integer.parseInt(bonusNum));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "0", "46", "abc"})
+    @DisplayName("유효하지 않은 보너스 번호 추가 시 예외 테스트")
+    void addBonusNumberExceptionTest(String bonusNum) {
+        assertThatThrownBy(() -> winningLotto.addBonusNumber(bonusNum))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
