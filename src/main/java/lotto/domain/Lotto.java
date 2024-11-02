@@ -52,8 +52,7 @@ public class Lotto {
     @Override
     public String toString() {
         List<Integer> sortedNumbers = numbers.stream().sorted().toList();
-        return LOTTO_MESSAGE_PREFIX + String.join(COMMA, sortedNumbers
-                .stream()
+        return LOTTO_MESSAGE_PREFIX + String.join(COMMA, sortedNumbers.stream()
                 .map(Object::toString)
                 .toList()) + LOTTO_MESSAGE_SUFFIX;
     }
