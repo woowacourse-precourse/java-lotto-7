@@ -58,7 +58,10 @@ class ApplicationTest extends NsTest {
     void 모든_번호_불일치_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("5000", "1,2,3,4,5,6", "7"); // 당첨 없는 로또 구매로 수익률이 0%에 가까운 경우
+                    // given : 5개의 로또 번호 설정
+                    // when : 모든 번호가 불일치하는 경우
+                    run("5000", "1,2,3,4,5,6", "7");
+                    // then : 수익률 0.0% 확인
                     assertThat(output()).contains("총 수익률은 0.0%");
                 },
                 List.of(8, 9, 10, 11, 12, 13),
@@ -73,7 +76,10 @@ class ApplicationTest extends NsTest {
     void 모든_번호_일치_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("1000", "1,2,3,4,5,6", "7"); // 6개 일치로 1등 당첨
+                    // given : 로또 번호 1,2,3,4,5,6으로 설정
+                    // when : 6개 일치로 1등 당첨
+                    run("1000", "1,2,3,4,5,6", "7");
+                    // then : 1등 당첨 확인
                     assertThat(output()).contains("6개 일치 (2,000,000,000원) - 1개");
                 },
                 List.of(1, 2, 3, 4, 5, 6)
