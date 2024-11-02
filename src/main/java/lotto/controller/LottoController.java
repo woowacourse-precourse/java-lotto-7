@@ -24,6 +24,8 @@ public class LottoController {
         int amount = inputView.readPurchaseAmount();
 
         List<Lotto> lottos = createLottos(amount);
+        outputView.printPurchaseCount(lottos.size());
+        outputView.printLottos(lottos);
     }
 
     private List<Lotto> createLottos(int amount) {
