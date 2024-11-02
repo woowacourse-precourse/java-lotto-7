@@ -9,6 +9,7 @@ import lotto.strategy.FirstPlace;
 import lotto.strategy.FourthPlace;
 import lotto.strategy.PlaceAuction;
 import lotto.strategy.SecondPlace;
+import lotto.view.PrintMessage;
 
 public class ResultCalculator {
 
@@ -44,6 +45,20 @@ public class ResultCalculator {
             PlaceAuction placeAuction = placeAuctionMap.get(winning);
             placeAuction.add(count);
         }
+    }
+
+    private String setDetail(PrintMessage printMessage, Integer place) {
+        return String.format(printMessage.getMessage(), placeMap.get(place));
+    }
+
+    public List<String> getDetail() {
+        List<String> printResult = new ArrayList<>();
+        printResult.add(setDetail(PrintMessage.LOTTO_FIFTH_PLACE_WINNING, 5));
+        printResult.add(setDetail(PrintMessage.LOTTO_FOURTH_PLACE_WINNING, 4));
+        printResult.add(setDetail(PrintMessage.LOTTO_THIRD_PLACE_WINNING, 3));
+        printResult.add(setDetail(PrintMessage.LOTTO_SECOND_PLACE_WINNING, 2));
+        printResult.add(setDetail(PrintMessage.LOTTO_FIRST_PLACE_WINNING, 1));
+        return printResult;
     }
 
     public Integer getPrizeMoney() {
