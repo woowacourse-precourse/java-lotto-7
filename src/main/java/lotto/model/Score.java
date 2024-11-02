@@ -1,9 +1,9 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public enum Score {
 
@@ -36,12 +36,16 @@ public enum Score {
     }
 
     public static Map<Score, Integer> aggregate(List<Score> scores) {
-        return scores.stream()
-                .collect(Collectors.toMap(
-                        score -> score,
-                        score -> 1,
-                        Integer::sum
-                ));
+        Map<Score, Integer> scoreCounts = new HashMap<>();
+
+        for (Score score : scores) {
+            scoreCounts.put(score, scoreCounts.getOrDefault(score, 0) + 1);
+        }
+
+        Arrays.stream(values())
+                .forEach(score -> scoreCounts.putIfAbsent(score, 0));
+
+        return scoreCounts;
     }
 
 
