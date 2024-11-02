@@ -46,7 +46,6 @@ public class LottoService {
     public Map<Prize, Integer> totalPrizeResult(List<Prize> prizes) {
         Map<Prize, Integer> totalPrizeCount = initPrizeCount();
         for (Prize prize : prizes) {
-            String prizeName = prize.name();
             totalPrizeCount.put(prize, totalPrizeCount.get(prize) + 1);
         }
         return totalPrizeCount;
@@ -70,19 +69,13 @@ public class LottoService {
     private LottoMatchResult matchLottoNums(Lotto lottoTicket, Lotto winningLotto, int bonusNumber) {
         List<Integer> lottoNums = lottoTicket.getNumbers();
         List<Integer> winningNums = winningLotto.getNumbers();
-
         int matchCount = 0;
         for (Integer lottoNum : lottoNums) {
             if(winningNums.contains(lottoNum)) {
                 matchCount++;
             }
         }
-
-        Boolean bounsMatch = false;
-        if(matchCount == BONUS_NUMBER_CHECK_CRITERIA && lottoNums.contains(bonusNumber)) {
-            bounsMatch = true;
-        }
-
+        boolean bounsMatch = matchCount == BONUS_NUMBER_CHECK_CRITERIA && lottoNums.contains(bonusNumber);
         return new LottoMatchResult(matchCount, bounsMatch);
     }
 
