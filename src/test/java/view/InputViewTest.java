@@ -97,4 +97,23 @@ class InputViewTest {
             System.out.println(numbers);
         }
     }
+
+    @Nested
+    class 보너스번호_입력_테스트 extends NsTest {
+        @DisplayName("보너스번호 입력 성공 테스트")
+        @Test
+        void inputBonusNumber_success() {
+            assertSimpleTest(() -> {
+                run("7");
+                assertThat(output()).isEqualTo("7");
+            });
+
+        }
+
+        @Override
+        protected void runMain() {
+            int bonusNumber = InputView.inputBonusNumber(List.of(1, 2, 3, 4, 5, 6));
+            System.out.println(bonusNumber);
+        }
+    }
 }
