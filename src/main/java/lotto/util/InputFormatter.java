@@ -9,30 +9,29 @@ public class InputFormatter {
     private static final String DELIMITER = ",";
 
     public int formatMoneyInput(String moneyInput) {
-        validateMoneyInput(moneyInput);
+        validateMoneyFormat(moneyInput);
         return Integer.parseInt(moneyInput);
     }
 
     public List<Integer> formatWinningNumbersInput(String winningNumbersInput) {
-        validateWinningNumbersInput(winningNumbersInput);
+        validateWinningNumbersFormat(winningNumbersInput);
         return formatWinningNumbers(winningNumbersInput);
     }
 
     public int formatBonusNumberInput(String bonusNumberInput) {
-        validateBonusNumberInput(bonusNumberInput);
+        validateBonusNumberFormat(bonusNumberInput);
         return Integer.parseInt(bonusNumberInput);
     }
 
-    private void validateMoneyInput(String moneyInput) {
+    private void validateMoneyFormat(String moneyInput) {
         try {
             Integer.parseInt(moneyInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.MONEY_FORMAT_WRONG.toString());
         }
-
     }
 
-    private void validateWinningNumbersInput(String winningNumbersInput) {
+    private void validateWinningNumbersFormat(String winningNumbersInput) {
         try {
             formatWinningNumbers(winningNumbersInput);
         } catch (NumberFormatException e) {
@@ -40,7 +39,7 @@ public class InputFormatter {
         }
     }
 
-    private void validateBonusNumberInput(String bonusNumberInput) {
+    private void validateBonusNumberFormat(String bonusNumberInput) {
         try {
             Integer.parseInt(bonusNumberInput);
         } catch (NumberFormatException e) {
