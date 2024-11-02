@@ -22,6 +22,21 @@ public enum Rank {
         return prize;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public String getDisplayText() {
+        if (this == NONE) return "";  // NONE은 출력하지 않음
+        String bonusText = matchBonus ? ", 보너스 볼 일치" : "";
+        return String.format("%d개 일치%s (%s원)", matchCount, bonusText, formatPrize(prize));
+    }
+
+    private static String formatPrize(int prize) {
+        return String.format("%,d", prize);
+    }
+
+
     public static Rank getRank(final int matchCount, final boolean matchBonus) {
         for (final Rank rank : values()) {
             if (rank.matchCount == matchCount && rank.matchBonus == matchBonus) {

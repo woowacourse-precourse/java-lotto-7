@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,10 @@ public class Application {
         System.out.println(lottoCount+"개를 구매했습니다.");
 
         List<Lotto> lottoTickets = purchaseLottos(lottoCount);
-        lottoTickets.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        lottoTickets.forEach(lotto -> {
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            System.out.println(sortedNumbers);
+        });
         System.out.println();
 
         List<Integer> winningNumbers = getWinningNumbers();
@@ -31,7 +35,10 @@ public class Application {
 
         Map<Rank, Integer> statistics = calculateStatistics(lottoTickets, winningNumbers, bonusNumber);
 
+        printStatistics(statistics);
 
+        double yield = calculateYield(statistics, purchaseAmount);
+        System.out.print("총 수익률은 " + yield + "%입니다.");
     }
 
     private static int getPurchaseAmount() {
@@ -114,4 +121,29 @@ public class Application {
 
         return statistics;
     }
+
+    static double calculateYield(Map<Rank, Integer> statistics, int purchaseAmount) {
+        int totalPrize = 0;
+        for (Map.Entry<Rank, Integer> entry : statistics.entrySet()) {
+            Rank rank = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += rank.getPrize() * count;
+        }
+        double yield = (double) totalPrize / purchaseAmount * 100;
+
+        return Math.round(yield * 10) / 10.0;
+    }
+
+    private static void printStatistics(Map<Rank, Integer> statistics) {
+        System.out.println("당첨 통계\n---");
+
+        List<Rank> sortedRanks = List.of(Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
+        for (Rank rank : sortedRanks) {
+            int count = statistics.getOrDefault(rank, 0);
+            if (!rank.getDisplayText().isEmpty()) {
+                System.out.printf("%s - %d개\n", rank.getDisplayText(), count);
+            }
+        }
+    }
+
 }

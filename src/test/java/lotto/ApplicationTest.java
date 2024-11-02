@@ -167,6 +167,60 @@ class ApplicationTest extends NsTest {
         assertThat(statistics).isEqualTo(expectedStatistics);
     }
 
+    @Test
+    @DisplayName("당첨 통계가 있는 경우 수익률을 올바르게 계산")
+    public void 수익률_계산_테스트_당첨_있는_경우() {
+        Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
+        statistics.put(Rank.FIFTH, 1);  // 3개 일치 (5,000원) - 1개
+        statistics.put(Rank.FOURTH, 0);
+        statistics.put(Rank.THIRD, 0);
+        statistics.put(Rank.SECOND, 0);
+        statistics.put(Rank.FIRST, 0);
+
+        int purchaseAmount = 8000;
+
+        double expectedYield = 62.5;
+
+        double actualYield = Application.calculateYield(statistics, purchaseAmount);
+        assertThat(actualYield).isEqualTo(expectedYield);
+    }
+
+    @Test
+    @DisplayName("당첨 통계가 없는 경우 수익률을 올바르게 계산")
+    public void 수익률_계산_테스트_당첨_없는_경우() {
+        Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
+        statistics.put(Rank.FIFTH, 0);
+        statistics.put(Rank.FOURTH, 0);
+        statistics.put(Rank.THIRD, 0);
+        statistics.put(Rank.SECOND, 0);
+        statistics.put(Rank.FIRST, 0);
+
+        int purchaseAmount = 8000;
+
+        double expectedYield = 0.0;
+
+        double actualYield = Application.calculateYield(statistics, purchaseAmount);
+        assertThat(actualYield).isEqualTo(expectedYield);
+    }
+
+    @Test
+    @DisplayName("여러 등수에서 당첨된 경우 수익률을 올바르게 계산")
+    public void 수익률_계산_테스트_여러_등수_당첨_경우() {
+        Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
+        statistics.put(Rank.FIFTH, 2);
+        statistics.put(Rank.FOURTH, 1);
+        statistics.put(Rank.THIRD, 0);
+        statistics.put(Rank.SECOND, 0);
+        statistics.put(Rank.FIRST, 0);
+
+        int purchaseAmount = 10000;
+
+        double expectedYield = 600.0;
+
+        double actualYield = Application.calculateYield(statistics, purchaseAmount);
+        assertThat(actualYield).isEqualTo(expectedYield);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
