@@ -2,6 +2,11 @@ package lotto.domain;
 
 import static lotto.validator.LottoAmountValidator.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import lotto.Lotto;
+
 public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
     private final int purchaseAmount;
@@ -15,5 +20,11 @@ public class LottoMachine {
     private int calculateLottoAmount() {
         validate(purchaseAmount, LOTTO_PRICE);
         return purchaseAmount / LOTTO_PRICE;
+    }
+
+    private List<Lotto> issueLottos(int lottoAmount) {
+        return Stream.generate(() -> new Lotto(lottoNumberGenerator.generate()))
+                .limit(lottoAmount)
+                .collect(Collectors.toList());
     }
 }
