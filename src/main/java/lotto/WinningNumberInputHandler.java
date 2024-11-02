@@ -10,7 +10,7 @@ public class WinningNumberInputHandler extends InputHandler{
         boolean isValid = false;
 
         while(!isValid){
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println("\n당첨 번호를 입력해 주세요.");
             this.winningNumber = camp.nextstep.edu.missionutils.Console.readLine();
             try{
                 validateInput();
