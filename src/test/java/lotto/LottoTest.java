@@ -34,13 +34,19 @@ class LottoTest {
 
     @Test
     void 로또_번호의_입력_값_숫자가_아닌_입력값이_있으면_예외가_발생한다(){
-
         String userInput = "1,e,f";
         LottoController lottoController = new LottoController();
 
         assertThatThrownBy(() -> lottoController.getUserNumbers(userInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 숫자여야 합니다.");
+    }
+
+    @Test
+    void 로또_번호의_입력_값_중복_이씨으면_예외가_발생한다(){
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 중복되지 않는 숫자를 입력해야 합니다.");
     }
 
 }
