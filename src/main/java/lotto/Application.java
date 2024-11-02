@@ -39,14 +39,24 @@ public class Application {
         }
 
         Lotto goldenNumbers=null;
+        while (goldenNumbers==null) {
 
-        System.out.println("당첨 번호를 입력해주세요.");
-        String numbersInput = Console.readLine();
+            System.out.println("당첨 번호를 입력해주세요.");
+            String numbersInput = Console.readLine();
 
-        List<Integer> numbers = null;
-        numbers = getNumbers(numbersInput);
+            List<Integer> numbers = null;
+            try {
+                numbers = getNumbers(numbersInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
 
-        goldenNumbers = new Lotto(numbers);
+            try {
+                goldenNumbers = new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         //당첨번호 테스트용 코드
         System.out.println("golden Numbers: "+goldenNumbers.getNumbers());
@@ -78,7 +88,14 @@ public class Application {
         for (String s : splitted) {
             int number = 0;
 
-            number = Integer.parseInt(s);
+            try {
+                number = Integer.parseInt(s);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 1~45 사이 정수만 써주십시오.");
+            }
+
+            if (number < 1 || number > 45)
+                throw new IllegalArgumentException("[ERROR] 1~45 사이 정수만 써주십시오.");
 
             numbers.add(number);
         }
