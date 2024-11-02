@@ -1,14 +1,15 @@
 package lotto.controller;
 
 import lotto.domain.User;
-import lotto.view.InputView;
+import lotto.service.InputService;
 
 public class LottoMachineController {
-    User user = new User();
-    InputView inputView = new InputView(user);
+
+    private final User user = new User();
+
+    InputService inputService = new InputService(user);
 
     public void run() {
-        // 로또 발매기 실행 구현하기
-        inputView.run();
+        inputService.run();
     }
 }
