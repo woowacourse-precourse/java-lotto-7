@@ -70,7 +70,7 @@ class ValidatorTest {
     @DisplayName("보너스 번호에 정수형 이외의 타입이 입력되면 예외가 발생한다.")
     @Test
     void 보너스_번호에_정수형_이외의_타입이_입력되면_예외가_발생한다() {
-        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6, 7),"str"))
+        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6),"str"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_INPUT.getMessage());
     }
@@ -78,7 +78,7 @@ class ValidatorTest {
     @DisplayName("보너스 번호는 1과 45 사이 외 입력되면 예외가 발생한다.")
     @Test
     void 보너스_번호는_1과_45_사이_외_입력되면_예외가_발생한다() {
-        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6, 7),"48"))
+        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6),"48"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.OUT_OF_RANGE.getMessage());
     }
@@ -86,7 +86,7 @@ class ValidatorTest {
     @DisplayName("보너스 번호는 당첨 번호와 중복되면 안된다.")
     @Test
     void 보너스_번호는_당첨_번호와_중복되면_안된다() {
-        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6, 7),"4"))
+        Assertions.assertThatThrownBy(() -> Validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6),"4"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.DUPLICATE_WITH_WIN_NUMBER.getMessage());
     }
