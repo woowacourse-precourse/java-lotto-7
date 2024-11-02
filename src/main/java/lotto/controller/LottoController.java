@@ -25,15 +25,16 @@ public class LottoController {
     }
 
     public void play() {
-        int validAmount = handleAmountInputError();
+        Amount validAmount = handleAmountInputError();
         List<Integer> validLottoNumbers = handleLottoNumberInputError();
-//        LottoPublisher lottoPublisher = new LottoPublisher();
-//        outputView.printPublishedLotto(lottoPublisher.getPublishedLotto());
+        LottoPublisher lottoPublisher = new LottoPublisher(validAmount.getPublishCount());
+        List<List<Integer>> publishedLotto = lottoPublisher.getPublishedLotto();
+        outputView.printPublishedLotto(publishedLotto);
         int validBonusNumber = handleBonusInputError();
 
     }
 
-    public int handleAmountInputError() { //얘네들이 15줄을 넘는 이유는 기능이 3가지임 인풋 아웃풋 컨트롤 , 타당성 체크, 형변환
+    public Amount handleAmountInputError() { //얘네들이 15줄을 넘는 이유는 기능이 3가지임 인풋 아웃풋 컨트롤 , 타당성 체크, 형변환
         boolean validInput = false;
         Amount amount ;
 
@@ -42,12 +43,12 @@ public class LottoController {
                 String input = inputView.readInput(Amount.getRequestMessage());
                 isValidAmountInput(input);
                 amount = new Amount(TypeConverter.ToNumber(input)); //1000으로 나누어떨어지는 지 확인 후 생성
-                return amount.getAmount();
+                return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return 0;
+        return null;
     }
 
     public boolean isValidAmountInput(String input) {
