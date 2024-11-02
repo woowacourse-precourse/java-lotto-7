@@ -46,4 +46,15 @@ public enum Rank {
     public long getPrizeMoney() {
         return prizeMoney;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%d개 일치", matchingNumber));
+        if (isMatchingBonusNumber) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(String.format("(%,d원)", prizeMoney));
+        return sb.toString();
+    }
 }
