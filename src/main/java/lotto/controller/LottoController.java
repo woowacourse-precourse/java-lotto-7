@@ -16,9 +16,8 @@ public class LottoController {
 
     public void start(){
         lottoPrice = InputView.inputPrice();
-        OutputView.printLottoCount(lottoPrice);
-
         lottoCount = makeLottoCount(lottoPrice);
+        OutputView.printLottoCount(lottoCount);
         lottoList = makeLottoList(lottoCount);
     }
 
