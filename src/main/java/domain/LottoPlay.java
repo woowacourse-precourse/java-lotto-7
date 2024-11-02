@@ -8,6 +8,7 @@ public class LottoPlay {
 
     private final User user;
     private final LottoMachine lottoMachine;
+    private RankResult rankResult;
 
     public LottoPlay(User user, LottoMachine lottoMachine) {
         this.user = user;
@@ -60,5 +61,9 @@ public class LottoPlay {
 
     private boolean isHasBonus(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public void determineRankResult(User user) {
+        this.rankResult = new RankResult(user.getWinningLottos());
     }
 }
