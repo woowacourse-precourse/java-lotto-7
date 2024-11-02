@@ -29,5 +29,11 @@ public class Lotto {
         if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
+
+        for (int number : numbers) {
+            if (number < LottoConstants.MIN_LOTTO_NUMBER.getValue() || number > LottoConstants.MAX_LOTTO_NUMBER.getValue()) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage());
+            }
+        }
     }
 }
