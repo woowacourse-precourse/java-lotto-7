@@ -18,6 +18,11 @@ public class OutputView {
 		stringBuilder.append(count);
 		stringBuilder.append("개를 구매했습니다.");
 		stringBuilder.append("\n");
+		for (List<String> lotto : purchaseLottoResult) {
+			stringBuilder.append(getPurchaseLottoResult(lotto));
+			stringBuilder.append("\n");
+		}
+		stringBuilder.append("\n");
 		System.out.println(stringBuilder);
 	}
 
