@@ -12,7 +12,7 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("구입금액이 1000원 단위가 아닌경우")
-    public void Not1000PerBuyAmount(){
+    public void Not1000PerBuyAmount() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1200"))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -22,7 +22,7 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("구입금액이 정수가 아닌경우")
-    public void NotNumberBuyAmount(){
+    public void NotNumberBuyAmount() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("k"))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -44,7 +44,7 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("입력된 당첨번호의 구분자가 , 가 아닌경우")
-    public void NotDelimiterWinnumber(){
+    public void NotDelimiterWinnumber() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1000", "1|2|3|4|5|6"))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -54,9 +54,9 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("입력된 당첨번호가 숫자가 아닌경우")
-    public void NotNumberWinnumber(){
+    public void NotNumberWinnumber() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1000", "1,2,3,4,a,6","1"))
+                assertThatThrownBy(() -> runException("1000", "1,2,3,4,a,6", "1"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(ErrorMessage.NOTNUMBERWINNUMBERS.getMessage())
         );
@@ -64,9 +64,9 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("입력된 보너스번호가 정수가 아닌경우")
-    public void NotNumberBonusnumber(){
+    public void NotNumberBonusnumber() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6","a"))
+                assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6", "a"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(ErrorMessage.NOTNUMBERBONUSNUMBER.getMessage())
         );
@@ -74,14 +74,13 @@ public class InputViewTest extends NsTest {
 
     @Test
     @DisplayName("입력된 보너스번호가 범위를 벗어나는경우")
-    public void OutofRangeBonusNumber(){
+    public void OutofRangeBonusNumber() {
         assertSimpleTest(() ->
-                assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6","46"))
+                assertThatThrownBy(() -> runException("1000", "1,2,3,4,5,6", "46"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessage(ErrorMessage.OUTOFRANGEBONUSNUMBER.getMessage())
         );
     }
-
 
 
     @Override

@@ -29,16 +29,14 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 번호 발행기능 테스트")
-    public void createLotto(){
+    public void createLotto() {
 
-        Lottos lottos = new Lottos(List.of("1","2","3","4","5","6"),2000,1);
+        Lottos lottos = new Lottos(List.of("1", "2", "3", "4", "5", "6"), 2000, 1);
 
         lottos.generateLotto();
 
         assertThat(lottos.getLottos().size()).isEqualTo(2);
     }
-
-
 
     // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 public class CalculatorProfit {
 
 
-    public static double calProfitRate(Map<String,Integer> status, int buyAmount) {
+    public static double calProfitRate(Map<String, Integer> status, int buyAmount) {
 
         double profitRate = 0.0;
 

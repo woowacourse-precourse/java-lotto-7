@@ -1,7 +1,6 @@
 package lotto.model.lotto;
 
 
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class Lotto {
         }
     }
 
-    protected void numbersSort(){
+    protected void numbersSort() {
         numbers.stream().sorted();
     }
 

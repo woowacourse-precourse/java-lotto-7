@@ -38,7 +38,7 @@ public class OutView {
             System.out.println(
                     toStringWinstatus(key,
                             Mapping.mappingKeyToMoneyString(key),
-                            status.getOrDefault(key,0) ) );
+                            status.getOrDefault(key, 0)));
         }
 
 

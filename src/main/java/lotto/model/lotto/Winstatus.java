@@ -57,9 +57,6 @@ public class Winstatus {
     }
 
 
-
-
-
     public Map<String, Integer> getStatus() {
         return status;
     }
