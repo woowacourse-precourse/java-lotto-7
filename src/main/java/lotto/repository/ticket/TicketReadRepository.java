@@ -14,6 +14,6 @@ public class TicketReadRepository {
     }
 
     public Optional<Ticket> findById(Long ticketId) {
-        return Optional.of((Ticket) repository.get(ticketId));
+        return Optional.ofNullable((Ticket) repository.get(ticketId));
     }
 }
