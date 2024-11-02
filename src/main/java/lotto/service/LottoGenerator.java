@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.io.OutputHandler;
 import lotto.util.StringUtil;
 
 public class LottoGenerator {
@@ -15,14 +14,14 @@ public class LottoGenerator {
     private static final int LOTTO_PRICE = 1000;
 
     private Lotto[] lotto;
-    private int numberOfLottoTickets;
+    private int purchaseAmount;
 
     // 사용자가 구매 금액을 입력하면 그 금액에 맞게 로또를 발행 (1000원당 1개의 로또)
-    public void generate(String amount){
-        Integer purchaseAmount = StringUtil.parseToPositiveInt(amount);
+    public Lotto[] generate(String amount){
+        purchaseAmount = StringUtil.parseToPositiveInt(amount);
 
         validatePurchaseAmount(purchaseAmount);
-        calculateNumberOfLottoTickets(purchaseAmount);
+        int numberOfLottoTickets = calculateNumberOfLottoTickets(purchaseAmount);
         lotto = new Lotto[numberOfLottoTickets];
 
         for (int i = 0; i < numberOfLottoTickets; i++) {
@@ -31,6 +30,8 @@ public class LottoGenerator {
 
             lotto[i] = new Lotto(randomNumbers);
         }
+
+        return lotto;
     }
 
     // 입력된 구매 금액이 1000원 단위로 입력되었는지 확인하는 메서드
@@ -41,11 +42,15 @@ public class LottoGenerator {
     }
 
     // 총 발행할 로또의 수를 계산하는 메서드
-    private void calculateNumberOfLottoTickets(int purchaseAmount) {
-        numberOfLottoTickets = purchaseAmount / LOTTO_PRICE;
+    public int calculateNumberOfLottoTickets(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     public Lotto[] getLotto() {
         return lotto;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }
