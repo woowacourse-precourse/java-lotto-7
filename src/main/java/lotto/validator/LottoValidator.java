@@ -7,7 +7,7 @@ import java.util.Set;
 public class LottoValidator implements Validator<List<Integer>> {
 
     @Override
-    public void validate(List<Integer> value) {
+    public boolean validate(List<Integer> value) {
         if (value.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -26,5 +26,6 @@ public class LottoValidator implements Validator<List<Integer>> {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
+        return true;
     }
 }
