@@ -4,12 +4,23 @@ import java.util.List;
 import lotto.domain.exception.InvalidBonusNumberException;
 
 public class Answer {
-    private final Lotto lottoNumbers;
-    private final LottoNumber bonusNumber;
+    private Lotto lottoNumbers;
+    private LottoNumber bonusNumber;
+
+    public Answer() {
+    }
 
     public Answer(List<Integer> numbers, int bonus) {
-        validate(numbers, bonus);
+        setNumbers(numbers);
+        setBonusNumber(bonus);
+    }
+
+    public void setNumbers(List<Integer> numbers) {
         this.lottoNumbers = new Lotto(numbers);
+    }
+
+    public void setBonusNumber(int bonus) {
+        validate(this.lottoNumbers.getNumbers(), bonus);
         this.bonusNumber = new LottoNumber(bonus);
     }
 
