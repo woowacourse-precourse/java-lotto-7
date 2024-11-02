@@ -18,14 +18,6 @@ public class Lotto {
         }
     }
 
-    public static int getMatchCount(List<Integer> winningNumbers) {
-        Set<Integer> myLotto = new HashSet<>(numbers);
-        Set<Integer> answer = new HashSet<>(winningNumbers);
-
-        myLotto.retainAll(answer);
-        return myLotto.size();
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }

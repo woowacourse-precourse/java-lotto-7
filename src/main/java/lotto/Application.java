@@ -85,12 +85,12 @@ public class Application {
         }
 
         for (Lotto lotto : lottos) {  // `lottos`는 구입한 로또 목록
-            int matchCount = Lotto.getMatchCount(winningNumbers);
+            int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
             boolean bonusMatch = lotto.getNumbers().contains(bonusNumber);
 
             if (matchCount == 6) {
                 lottoResult.put(WinningKind.MATCH_6, lottoResult.get(WinningKind.MATCH_6) + 1);
-            } else if (matchCount == 5 && bonusMatch) {
+            } else if (matchCount == 4 && bonusMatch) {
                 lottoResult.put(WinningKind.MATCH_5_BONUS, lottoResult.get(WinningKind.MATCH_5_BONUS) + 1);
             } else if (matchCount == 5) {
                 lottoResult.put(WinningKind.MATCH_5, lottoResult.get(WinningKind.MATCH_5) + 1);
@@ -101,5 +101,30 @@ public class Application {
             }
         }
 
+        System.out.println("당첨 통계\n---");
+
+        int totalPrize = 0;
+        for (WinningKind kind : WinningKind.values()) {
+            int count = lottoResult.get(kind);
+            int prize = kind.getPrize();
+            totalPrize += count * prize;
+            if (kind == WinningKind.MATCH_5_BONUS) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%d원) - %d개\n",
+                        kind.getMatchCount(), prize, count);
+            } else {
+                System.out.printf("%d개 일치 (%d원) - %d개\n",
+                        kind.getMatchCount(), prize, count);
+            }
+        }
+
     }
+
+    public static int getMatchCount(List<Integer> numbers, List<Integer> winningNumbers) {
+        Set<Integer> myLotto = new HashSet<>(numbers);
+        Set<Integer> answer = new HashSet<>(winningNumbers);
+
+        myLotto.retainAll(answer);
+        return myLotto.size();
+    }
+
 }
