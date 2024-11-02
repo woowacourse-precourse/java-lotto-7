@@ -20,11 +20,6 @@ public class PrizeSystem {
         this.bonusNumber = bonusNumber;
 
         prizeCount = new PrizeCount();
-        prizeCount.firstPrizeCount = 0;
-        prizeCount.secondPrizeCount = 0;
-        prizeCount.thirdPrizeCount = 0;
-        prizeCount.fourthPrizeCount = 0;
-        prizeCount.fifthPrizeCount = 0;
     }
 
     /**
@@ -56,16 +51,16 @@ public class PrizeSystem {
      */
     public void updatePrizeCount(List<Integer> lottoNumbers, int matchCount) {
         if (matchCount == MATCH_FIRST) {
-            prizeCount.firstPrizeCount += 1;
+            prizeCount.addOneFirstPrizeCount();
         }
         if (matchCount == MATCH_SECOND_THIRD) {
             bonusCase(lottoNumbers);
         }
         if (matchCount == MATCH_FOURTH) {
-            prizeCount.fourthPrizeCount += 1;
+            prizeCount.addOneFourthPrizeCount();
         }
         if (matchCount == MATCH_FIFTH) {
-            prizeCount.fifthPrizeCount += 1;
+            prizeCount.addOneFifthPrizeCount();
         }
     }
 
@@ -74,21 +69,21 @@ public class PrizeSystem {
      */
     public void bonusCase(List<Integer> lottoNumbers) {
         if (lottoNumbers.contains(bonusNumber)) {
-            prizeCount.secondPrizeCount += 1;
+            prizeCount.addOneSecondPrizeCount();
             return;
         }
-        prizeCount.thirdPrizeCount += 1;
+        prizeCount.addOneThirdPrizeCount();
     }
 
     /**
      * 총 당첨 금액 계산
      */
     public int getPrizeMoney() {
-        int prizeMoney = PrizeMoney.PRIZE_FIRST.getPrizeMoney() * prizeCount.firstPrizeCount +
-                PrizeMoney.PRIZE_SECOND.getPrizeMoney() * prizeCount.secondPrizeCount +
-                PrizeMoney.PRIZE_THIRD.getPrizeMoney() * prizeCount.thirdPrizeCount +
-                PrizeMoney.PRIZE_FOURTH.getPrizeMoney() * prizeCount.fourthPrizeCount +
-                PrizeMoney.PRIZE_FIFTH.getPrizeMoney() * prizeCount.fifthPrizeCount;
+        int prizeMoney = PrizeMoney.PRIZE_FIRST.getPrizeMoney() * prizeCount.getFirstPrizeCount() +
+                PrizeMoney.PRIZE_SECOND.getPrizeMoney() * prizeCount.getSecondPrizeCount() +
+                PrizeMoney.PRIZE_THIRD.getPrizeMoney() * prizeCount.getThirdPrizeCount() +
+                PrizeMoney.PRIZE_FOURTH.getPrizeMoney() * prizeCount.getFourthPrizeCount() +
+                PrizeMoney.PRIZE_FIFTH.getPrizeMoney() * prizeCount.getFifthPrizeCount();
         return prizeMoney;
     }
 
@@ -97,19 +92,8 @@ public class PrizeSystem {
      */
     public double getProfit(int purchaseMoney) {
         int prizeMoney = getPrizeMoney();
-        double profit = prizeMoney / purchaseMoney * 100;
+        double profit = (double) prizeMoney / purchaseMoney * 100;
         return profit;
-    }
-
-    /**
-     * 당첨 통계 이너 클래스
-     */
-    class PrizeCount {
-        private int firstPrizeCount;
-        private int secondPrizeCount;
-        private int thirdPrizeCount;
-        private int fourthPrizeCount;
-        private int fifthPrizeCount;
     }
 
     /**
