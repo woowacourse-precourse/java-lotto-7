@@ -43,7 +43,7 @@ public class InputAmountTest {
                 .hasMessageContaining(ErrorMessage.AMOUNT_CAN_NOT_HAVE_CHARACTER.get());
     }
 
-    @DisplayName("구매 금액이 0이면 예외를 발생시킨다.")
+    @DisplayName("구입 금액이 0이면 예외를 발생시킨다.")
     @Test
     public void ThrowExceptionIfInputAmountZero() {
         // given
@@ -57,5 +57,19 @@ public class InputAmountTest {
         // then
         assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.AMOUNT_CAN_NOT_BE_ZERO.get());
+    }
+
+    @DisplayName("구입 금액이 1,000으로 나누어 떨어지지 않으면 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1234", "2500", "900", "10001"}) // given
+    public void ThrowExceptionIfAmountNotDividedByThousand(String inputAmount) {
+        // when
+        Throwable thrown = catchThrowable(() -> {
+            this.inputAmount = new InputAmount(inputAmount);
+        });
+
+        // then
+        assertThat(thrown).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.AMOUNT_SHOULD_BE_DIVIDED_BY_THOUSAND.get());
     }
 }
