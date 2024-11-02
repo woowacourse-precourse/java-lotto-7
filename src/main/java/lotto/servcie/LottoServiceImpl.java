@@ -24,7 +24,13 @@ public class LottoServiceImpl implements LottoService {
     
     @Override
     public void createWinStatistics(BoughtLottos boughtLottos, WinLotto winLotto) {
-        LottoResult result = LottoResult.getInstance(winLotto, boughtLottos);
+        CountByPrizeGrade countByPrizeGrade =
+                CountByPrizeGrade.getOfBoughtAndWinLotto(boughtLottos, winLotto);
+        LottoBenefitRate rate =
+                LottoBenefitRate.getOfCountByGradeAndSpendMoney(countByPrizeGrade,
+                        boughtLottos.getSpendMoney());
+        LottoResult result =
+                LottoResult.getOfCountGradeAndBenefitRate(countByPrizeGrade, rate);
         repository.saveResult(result);
     }
     

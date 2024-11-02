@@ -8,7 +8,6 @@ import static lotto.utils.StringValidator.isEmpty;
 import static lotto.utils.StringValidator.hasBlank;
 import static lotto.utils.StringValidator.isOutOfRangeLottoNumber;
 
-
 public class BonusWinLottoNumber {
     
     private static final String EXCEPTION_MESSAGE_DUPLICATE =

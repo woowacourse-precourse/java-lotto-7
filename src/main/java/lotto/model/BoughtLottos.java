@@ -6,9 +6,7 @@ import lotto.utils.Constants;
 import java.util.*;
 
 public class BoughtLottos implements Iterable<Lotto> {
-    
-    private static final long LOTTO_PRICE = 1000;
-    
+
     private final List<Lotto> lottos;
     
     private BoughtLottos(List<Lotto> lottos) {
@@ -16,12 +14,12 @@ public class BoughtLottos implements Iterable<Lotto> {
     }
     
     public static BoughtLottos getInstance(SpendingMoney money) {
-        long lottoTicketCount = money.get() / 1000L;
+        long lottoTicketCount = money.get() / Constants.LOTTO_TICKET_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for (long i = 0; i < lottoTicketCount; i++) {
             List<Integer> lottoNumbers =
                     Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER,
-                            Constants.MAX_LOTTO_NUMBER, Constants.CONSIST_NUMBER_OF_LOTTO);
+                            Constants.MAX_LOTTO_NUMBER, Constants.COUNT_LOTTO_NUMBERS);
             Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
         }
@@ -44,7 +42,7 @@ public class BoughtLottos implements Iterable<Lotto> {
     }
     
     public long getSpendMoney() {
-        return lottos.size() * LOTTO_PRICE;
+        return lottos.size() * Constants.LOTTO_TICKET_PRICE;
     }
     
     public long getSize() {
