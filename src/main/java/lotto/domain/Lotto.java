@@ -33,4 +33,8 @@ public class Lotto {
         boolean containsBonusNumber = containsBonusNumber(bonusNumber);
         return new MatchCondition(matchCount, containsBonusNumber);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }
