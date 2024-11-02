@@ -7,15 +7,27 @@ import lotto.Result;
 
 public class User {
 
-    public int money;
-
-    public int bonusNumber;
-
-    public List<List<Integer>> lotteryTickets = new ArrayList<>();
-
     public User(String money) {
         validate(money);
         this.money = Integer.parseInt(money);
+    }
+
+    private final int money;
+
+    private int bonusNumber;
+
+    private List<List<Integer>> lotteryTickets;
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<List<Integer>> getLotteryTickets() {
+        return lotteryTickets;
     }
 
     private void validate(String money) {
@@ -63,6 +75,7 @@ public class User {
     }
 
     public void publishLotto(int count) {
+        lotteryTickets = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             lotteryTickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         }

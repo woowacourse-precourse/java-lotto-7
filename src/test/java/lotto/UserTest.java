@@ -15,9 +15,9 @@ public class UserTest {
     @Test
     void 발행_횟수_만큼_로또_발행_되는지_테스트() {
         User user = new User("8000");
-        user.moneyToTicket(user.money);
+        user.moneyToTicket(user.getMoney());
 
-        int actual = user.lotteryTickets.size();
+        int actual = user.getLotteryTickets().size();
 
         Assertions.assertThat(actual).isEqualTo(8);
     }
@@ -42,20 +42,20 @@ public class UserTest {
     @Test
     void 수익률() {
         User user = new User("8000"); // 8장 발행 한다고 치고
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(8, 9, 10, 11, 12, 13));
-        user.lotteryTickets.add(List.of(1, 2, 3, 11, 12, 13));      //이거 5등 당첨 = 5000원
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
+        user.getLotteryTickets().add(List.of(1, 2, 3, 11, 12, 13));      //이거 5등 당첨 = 5000원
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        user.bonusNumber = 7;
+        user.specifyBonusNumber("7", lotto.getNumbers());
 
         // 일치 확인
-        lotto.matcheNumber(user.lotteryTickets, user.bonusNumber);
+        lotto.matcheNumber(user.getLotteryTickets(), user.getBonusNumber());
         double expected = 62.5;
 
         Assertions.assertThat(user.lateOfReturn()).isEqualTo(expected);

@@ -21,12 +21,12 @@ public class LottoSystemController {
         while (user == null) {
             try {
                 user = new User(inputView.inputAmount());
-                user.moneyToTicket(user.money);
+                user.moneyToTicket(user.getMoney());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        outputView.outputPurchaseLottoNumber(user.money / 1000, user.lotteryTickets);
+        outputView.outputPurchaseLottoNumber(user.getMoney() / 1000, user.getLotteryTickets());
 
         Lotto lotto = null;
         while (lotto == null) {
@@ -53,7 +53,7 @@ public class LottoSystemController {
             }
         }
 
-        lotto.matcheNumber(user.lotteryTickets, user.bonusNumber);
+        lotto.matcheNumber(user.getLotteryTickets(), user.getBonusNumber());
 
         outputView.outputLottoWinningStatistics();
         outputView.outputLateOfReturn(user.lateOfReturn());
