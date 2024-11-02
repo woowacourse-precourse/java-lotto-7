@@ -1,24 +1,41 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
-    public static void lottoNumberValidate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+    public static void lottoNumberValidate(String numbers) {
+        List<String> checkNumbers = Arrays.stream(numbers.split(","))
+                .toList();
+
+        if (checkNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "당첨 번호는 공백 없이 "
+                    + "쉼표(,) 기준으로 구분해 "
+                    + "1 ~ 45인 숫자를 중복 없이 입력해야 합니다. "
+                    + "ex)1,2,3,4,5,6");
         }
 
-        for (int n : numbers) {
-            if (!(n >= 1 && n <= 45)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 인 정수를 입력 해야 합니다.");
+        for (String number : checkNumbers) {
+            if (!number.matches("^(?:[1-9]|[1-3][0-9]|4[0-5])$")) {
+                throw new IllegalArgumentException("[ERROR] "
+                        + "당첨 번호는 공백 없이 "
+                        + "쉼표(,) 기준으로 구분해 "
+                        + "1 ~ 45인 숫자를 중복 없이 입력해야 합니다. "
+                        + "ex)1,2,3,4,5,6");
             }
         }
 
-        List<Integer> distinctList = numbers.stream()
+        List<String> distinctList = checkNumbers.stream()
                 .distinct()
                 .toList();
-        if (numbers.size() != distinctList.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복이 되는 로또 번호가 없어야 합니다.");
+
+        if (checkNumbers.size() != distinctList.size()) {
+            throw new IllegalArgumentException("[ERROR] "
+                    + "당첨 번호는 공백 없이 "
+                    + "쉼표(,) 기준으로 구분해 "
+                    + "1 ~ 45인 숫자를 중복 없이 입력해야 합니다. "
+                    + "ex)1,2,3,4,5,6");
         }
     }
 

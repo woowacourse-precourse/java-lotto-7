@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.view.InputView;
@@ -32,11 +30,7 @@ public class LottoSystemController {
         while (lotto == null) {
             try {
                 String input = inputView.inputLottoWinningNumber();
-                List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                        .map(String::trim)         // 앞뒤 공백 제거
-                        .map(Integer::parseInt)    // Integer로 변환
-                        .toList();
-                lotto = new Lotto(winningNumbers);
+                lotto = new Lotto(input);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

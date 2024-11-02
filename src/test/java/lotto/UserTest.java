@@ -60,7 +60,7 @@ public class UserTest {
         user.getLotteryTickets().add(List.of(8, 9, 10, 11, 12, 13));
         user.getLotteryTickets().add(List.of(1, 2, 3, 11, 12, 13));      //이거 5등 당첨 = 5000원
 
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
         user.specifyBonusNumber("7", lotto.getNumbers());
 
         // 일치 확인

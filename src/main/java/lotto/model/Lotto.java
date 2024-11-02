@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lotto.Result;
 
@@ -11,9 +12,16 @@ public class Lotto {
         return numbers;
     }
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(String numbers) {
         Validator.lottoNumberValidate(numbers);
-        this.numbers = numbers;
+        this.numbers = stringToList(numbers);
+    }
+
+    private List<Integer> stringToList(String numbers) {
+        return Arrays.stream(numbers.split(","))
+                .map(String::trim)      // 앞 뒤 공백 제거
+                .map(Integer::parseInt) // 정수로 변환
+                .toList();
     }
 
     // 당첨 결과 계산 기능
