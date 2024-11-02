@@ -8,8 +8,10 @@ import lotto.model.Lotto;
 import lotto.model.constant.LottoRank;
 import lotto.parser.IntegerListParser;
 import lotto.service.FirstRankLottoService;
+import lotto.service.LottoRateOfReturnService;
 import lotto.service.LottoService;
 import lotto.service.LottoStatisticsService;
+import lotto.view.LottoRateOfReturnView;
 import lotto.view.LottoStatisticsView;
 
 public class Application {
@@ -19,16 +21,20 @@ public class Application {
     private final LottoService lottoService;
     private final FirstRankLottoService firstRankLottoService;
     private final LottoStatisticsService lottoStatisticsService;
+    private final LottoRateOfReturnService lottoRateOfReturnService;
     private final IntegerListParser integerListParser;
     private final LottoStatisticsView lottoStatisticsView;
+    private final LottoRateOfReturnView lottoRateOfReturnView;
 
     public Application() {
         this.client = new Client();
         this.lottoService = new LottoService();
         this.firstRankLottoService = new FirstRankLottoService();
         this.lottoStatisticsService = new LottoStatisticsService();
+        this.lottoRateOfReturnService = new LottoRateOfReturnService();
         this.integerListParser = new IntegerListParser();
         this.lottoStatisticsView = new LottoStatisticsView();
+        this.lottoRateOfReturnView = new LottoRateOfReturnView();
     }
 
     public static void main(String[] args) {
@@ -41,6 +47,7 @@ public class Application {
         buyLotto();
         FirstRankLotto firstRankLotto = generateFirstRankLotto();
         annouceLottoStatistics(firstRankLotto);
+        annouceLottoRateOfReturn(firstRankLotto);
     }
 
     private void buyLotto() {
@@ -70,10 +77,22 @@ public class Application {
         lottoStatisticsView.announce(lottoStatistics);
     }
 
+    private void annouceLottoRateOfReturn(FirstRankLotto firstRankLotto) {
+        double rateOfReturn = getLottoRateOfReturn(firstRankLotto);
+
+        lottoRateOfReturnView.announce(rateOfReturn);
+    }
+
     private Map<LottoRank, Integer> getLottoStatistics(FirstRankLotto firstRankLotto) {
         List<Lotto> lottos = client.getLottos();
 
         return lottoStatisticsService.getStatistics(lottos, firstRankLotto);
+    }
+
+    private double getLottoRateOfReturn(FirstRankLotto firstRankLotto) {
+        List<Lotto> lottos = client.getLottos();
+
+        return lottoRateOfReturnService.getRateOfReturn(lottos, firstRankLotto);
     }
 
     private List<Integer> generateFirstRankLottoNumbers() {
