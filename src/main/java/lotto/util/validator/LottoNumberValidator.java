@@ -11,15 +11,16 @@ import static lotto.util.message.ExceptionMessage.ILLEGAL_DELIMITER_USE;
 import static lotto.util.message.ExceptionMessage.LOTTO_NUMBER_COUNT_NOT_SIX;
 import static lotto.util.message.ExceptionMessage.WINNING_NUMBER_NOT_IN_RANGE;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 
 public class LottoNumberValidator extends InputValidator {
 
-    public static String validateInputString(String input) {
+    public static List<String> validateInputString(String input) {
         validateBlank(input);
         validateDelimiter(input);
-        return input;
+        return Arrays.stream(input.split(INPUT_DELIMITER)).toList();
     }
 
     private static void validateDelimiter(String input) {
@@ -31,7 +32,7 @@ public class LottoNumberValidator extends InputValidator {
     }
 
     public static Long validateNumberInRange(String numberToken) {
-        Long number = validateInteger(numberToken);
+        Long number = validateLongInt(numberToken);
         if (number < LOTTO_NUMBER_START || number > LOTTO_NUMBER_END) {
             throw new IllegalArgumentException(WINNING_NUMBER_NOT_IN_RANGE.toString());
         }

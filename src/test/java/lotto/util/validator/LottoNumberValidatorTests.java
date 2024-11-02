@@ -6,6 +6,7 @@ import static lotto.util.validator.LottoNumberValidator.validateInputString;
 import static lotto.util.validator.LottoNumberValidator.validateNumberCount;
 import static lotto.util.validator.LottoNumberValidator.validateNumberInRange;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -13,6 +14,7 @@ import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -37,12 +39,26 @@ class LottoNumberValidatorTests {
     }
 
     @ParameterizedTest
-    @DisplayName("입력한 로또 당첨 번호를 1~45 사이의 정수로 변환할 수 없으면 예외 발생")
-    @ValueSource(strings = {"0", "46", "1.0"})
+    @DisplayName("입력한 로또 당첨 번호가 1~45 사이의 정수가 아니면 예외 발생")
+    @ValueSource(strings = {"0", "46"})
     void validateNumberInRangeExceptionTest(String input) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> validateNumberInRange(input))
                 .withMessageStartingWith(ERROR_MESSAGE);
+    }
+
+    @ParameterizedTest
+    @DisplayName("입력한 로또 당첨 번호가 1~45 사이 정수이면 정수형으로 변환")
+    @MethodSource("provideInputAndExpectedNumber")
+    void validateNumberInRangeTest(String input, Long expectedLottoNumber) {
+        assertEquals(validateNumberInRange(input), expectedLottoNumber);
+    }
+
+    private static Stream<Arguments> provideInputAndExpectedNumber() {
+        return Stream.of(
+                Arguments.of("1", 1L),
+                Arguments.of("45", 45L)
+        );
     }
 
     @ParameterizedTest

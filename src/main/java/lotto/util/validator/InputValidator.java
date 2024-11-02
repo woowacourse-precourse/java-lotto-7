@@ -13,7 +13,7 @@ public class InputValidator {
         return input;
     }
 
-    public static Long validateInteger(String input) {
+    public static Long validateLongInt(String input) {
         try {
             return validatePositive(Long.parseLong(input));
         } catch (NumberFormatException e) {

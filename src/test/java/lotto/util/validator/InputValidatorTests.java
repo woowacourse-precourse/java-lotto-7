@@ -2,7 +2,7 @@ package lotto.util.validator;
 
 import static lotto.util.message.OutputMessage.ERROR_MESSAGE;
 import static lotto.util.validator.InputValidator.validateBlank;
-import static lotto.util.validator.InputValidator.validateInteger;
+import static lotto.util.validator.InputValidator.validateLongInt;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import org.junit.jupiter.api.DisplayName;
@@ -23,9 +23,9 @@ class InputValidatorTests {
     @ParameterizedTest
     @DisplayName("숫자 이외의 문자 포함 시 예외 발생")
     @ValueSource(strings = {"1e9", "1000E", "e", "2.0"})
-    void validateIntegerExceptionTest(String input) {
+    void validateLongIntExceptionTest(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> validateInteger(input))
+                .isThrownBy(() -> validateLongInt(input))
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
 
@@ -34,7 +34,7 @@ class InputValidatorTests {
     @ValueSource(strings = {"-1", "0"})
     void validatePositiveIntegerExceptionTest(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> validateInteger(input))
+                .isThrownBy(() -> validateLongInt(input))
                 .withMessageStartingWith(ERROR_MESSAGE);
     }
 }
