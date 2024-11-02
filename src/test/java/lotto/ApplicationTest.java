@@ -1,16 +1,17 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import java.util.Arrays;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -70,7 +71,7 @@ class ApplicationTest extends NsTest {
                 IllegalArgumentException.class,
                 () -> Application.validatePurchaseAmount("abcd")
         );
-        assertEquals("[ERROR] 구입금액은 정수여야합니다",exception.getMessage());
+        assertEquals("[ERROR] 구입금액은 정수여야합니다", exception.getMessage());
     }
 
     @Test
@@ -106,9 +107,20 @@ class ApplicationTest extends NsTest {
         intNumbers = Application.sortAscendingInteger(intNumbers);
 
         for (int i = 0; i < intNumbers.size() - 1; i++) {
-            assertTrue(intNumbers.get(i) <= intNumbers.get(i+1), "숫자들이 오름차순으로 정렬되어야 합니다.");
+            assertTrue(intNumbers.get(i) <= intNumbers.get(i + 1), "숫자들이 오름차순으로 정렬되어야 합니다.");
         }
 
+    }
+
+    @Test
+    @DisplayName("문자열 리스트가 정수형 리스트로 변환이 되었는지 테스트")
+    void testStringListToIntegerList() {
+        List<String> stringNumbers = Arrays.asList("1", "2", "3", "4", "5", "6");
+        List<Integer> expectedIntegers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        List<Integer> result = Application.stringListToIntegerList(stringNumbers);
+
+        assertEquals(expectedIntegers, result, "정수 리스트 변환이 예상과 다릅니다.");
     }
 
     @Override
