@@ -55,7 +55,7 @@ public class LottoCommand implements ValidateCommand {
         .distinct()
         .count();
     if (distinctCount != lottoNumbers.size()) {
-      throw new InputException(ExceptionEnum.IVALID_INPUT);
+      throw new InputException(ExceptionEnum.LOTTO_NUMBER_NOT_DISTINCT);
     }
   }
 
