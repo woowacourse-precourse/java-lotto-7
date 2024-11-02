@@ -1,7 +1,9 @@
 package lotto;
 
 import lotto.controller.LottoPurchaseController;
+import lotto.controller.LottoStatisticsController;
 import lotto.controller.LottoWinningNumbersController;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
@@ -13,6 +15,7 @@ public class Application {
 
     private static final LottoPurchaseController lottoPurchaseController = new LottoPurchaseController();
     private static final LottoWinningNumbersController lottoWinningNumbersController = new LottoWinningNumbersController();
+    private static final LottoStatisticsController lottoStatisticsController = new LottoStatisticsController();
 
     public static void main(String[] args) {
 
@@ -24,6 +27,7 @@ public class Application {
         int bonusNumber = InputView.inputBonusWinningNumber();
         LottoWinningNumbers lottoWinningNumbers = lottoWinningNumbersController.determineLottoWinningNumbers(winningNumbers, bonusNumber);
 
-        OutputView.showPurchasedLottosStatus(lottoWinningNumbers, lottos, userPurchaseMoney);
+        LottoResult lottoResult = lottoStatisticsController.calculateLottoPrizes(lottos, lottoWinningNumbers, userPurchaseMoney);
+        OutputView.showPurchasedLottosStatus(lottoResult);
     }
 }

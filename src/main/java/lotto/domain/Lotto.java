@@ -22,7 +22,7 @@ public class Lotto {
         return "[" + joinNumbers + "]";
     }
 
-    public LottoResult calculatePrize(LottoWinningNumbers lottoWinningNumbers) {
+    public LottoPrize calculatePrize(LottoWinningNumbers lottoWinningNumbers) {
         int winningCount = 0;
         int bonusCount = 0;
         for (Integer number : numbers) {
@@ -36,13 +36,13 @@ public class Lotto {
         return matchPrize(winningCount, bonusCount);
     }
 
-    private static LottoResult matchPrize(int winningCount, int bonusCount) {
-        if (winningCount == 6) return LottoResult.FIRST_PRIZE;
-        if (winningCount == 5 && bonusCount == 1) return LottoResult.SECOND_PRIZE;
-        if (winningCount == 5) return LottoResult.THIRD_PRIZE;
-        if (winningCount == 4) return LottoResult.FOURTH_PRIZE;
-        if (winningCount == 3) return LottoResult.FIFTH_PRIZE;
-        return LottoResult.NO_PRIZE;
+    private LottoPrize matchPrize(int winningCount, int bonusCount) {
+        if (winningCount == 6) return LottoPrize.FIRST_PRIZE;
+        if (winningCount == 5 && bonusCount == 1) return LottoPrize.SECOND_PRIZE;
+        if (winningCount == 5) return LottoPrize.THIRD_PRIZE;
+        if (winningCount == 4) return LottoPrize.FOURTH_PRIZE;
+        if (winningCount == 3) return LottoPrize.FIFTH_PRIZE;
+        return LottoPrize.NO_PRIZE;
     }
 
 
