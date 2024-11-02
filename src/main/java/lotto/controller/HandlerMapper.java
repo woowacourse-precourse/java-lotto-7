@@ -1,4 +1,4 @@
-package lotto.mvc;
+package lotto.controller;
 
 import static lotto.constant.RequestUrl.CALCULATE_RESULT;
 import static lotto.constant.RequestUrl.INIT_WINNING_LOTTO;
@@ -7,10 +7,6 @@ import static lotto.constant.RequestUrl.PURCHASE_RANDOM_LOTTO;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.constant.RequestUrl;
-import lotto.controller.Controller;
-import lotto.controller.LottoResultController;
-import lotto.controller.RandomLottoPurchaseController;
-import lotto.controller.WinningLottoController;
 import lotto.service.RandomLottoIssueService;
 import lotto.service.WinningLottoIssueService;
 

@@ -1,4 +1,4 @@
-package lotto.mvc;
+package lotto.model;
 
 import lotto.constant.RequestUrl;
 

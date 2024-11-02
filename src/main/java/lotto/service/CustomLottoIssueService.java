@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
-import lotto.db.LottoRepository;
+import lotto.model.db.LottoRepository;
 import lotto.exception.BusinessException;
 import lotto.util.ConsoleInput;
 

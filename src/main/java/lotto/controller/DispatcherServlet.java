@@ -1,7 +1,6 @@
 package lotto.controller;
 
-import lotto.mvc.HandlerMapper;
-import lotto.mvc.Request;
+import lotto.model.Request;
 import lotto.view.View;
 import lotto.view.VoidView;
 

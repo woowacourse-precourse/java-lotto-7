@@ -1,4 +1,4 @@
-package lotto.db;
+package lotto.model.db;
 
 import java.util.List;
 import lotto.Lotto;

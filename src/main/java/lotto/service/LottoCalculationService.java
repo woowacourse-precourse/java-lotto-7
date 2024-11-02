@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
-import lotto.db.LottoRepository;
+import lotto.model.db.LottoRepository;
 
 public class LottoCalculationService {
 

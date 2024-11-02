@@ -3,7 +3,7 @@ package lotto;
 import static lotto.constant.RequestUrl.*;
 
 import lotto.controller.DispatcherServlet;
-import lotto.mvc.Request;
+import lotto.model.Request;
 
 public class Application {
     public static void main(String[] args) {
