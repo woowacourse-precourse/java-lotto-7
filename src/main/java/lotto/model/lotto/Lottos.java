@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.common.LottoConst;
 import lotto.error.ErrorMessage;
 import lotto.model.parseLotto.ParseLotto;
+import lotto.model.util.CalculatorProfit;
 import lotto.model.util.GeneraterLotto;
 
 public class Lottos {
@@ -18,20 +19,29 @@ public class Lottos {
 
     private Winstatus winstatus;
 
+    private double profitRate;
+
+    private int buyAmount;
+
     public Lottos(List<String> winNumbersStr, int buyAmount,int bonusNumber) {
         if (validateWinNumberNotNumber(winNumbersStr)) {
             throw new IllegalArgumentException(ErrorMessage.NOTNUMBERWINNUMBERS.getMessage());
         }
 
+        this.buyAmount = buyAmount;
         winNumbers = ParseLotto.winNumberStrToInteger(winNumbersStr);
         lottos = new ArrayList<>();
         lottosCount = buyAmount / LottoConst.LOTTOPERAMOUNT.getLottoConst();
-        bonusNumber = bonusNumber;
+        this.bonusNumber = bonusNumber;
         winstatus = new Winstatus();
     }
 
     public void generateLotto() {
         GeneraterLotto.generateLotto(lottos, lottosCount);
+    }
+
+    public double calculateProfitRate() {
+        return profitRate = CalculatorProfit.calProfitRate(winstatus.getStatus(),buyAmount);
     }
 
     public void addLotto(Lotto lotto) {

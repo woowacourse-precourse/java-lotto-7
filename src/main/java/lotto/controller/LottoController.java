@@ -33,6 +33,9 @@ public class LottoController {
         lottos.getWinstatus().checkWin(lottos);
 
         OutView.winStatusPrint(lottos);
+
+        lottos.calculateProfitRate();
+
     }
 
 }
