@@ -25,13 +25,13 @@ public class LottoGenerator {
         return new Lotto(numbers);
     }
 
-    public List<Lotto> generateLottos(Integer price) {
+    public Lottos generateLottos(Integer price) {
         List<Lotto> lottos = new ArrayList<>();
         int count = price / 1000;
         for (int i = 0; i < count; i++) {
             lottos.add(generateLotto());
         }
-        return lottos;
+        return new Lottos(lottos);
     }
 
 }

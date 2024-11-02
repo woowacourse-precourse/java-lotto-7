@@ -24,7 +24,7 @@ public class Application {
         Application app = new Application();
 
         LottoGenerator lottoGenerator = new LottoGenerator();
-        Lottos lottos = new Lottos(lottoGenerator.generateLottos(app.getPrice()));
+        Lottos lottos = lottoGenerator.generateLottos(app.getPrice());
 
         LottoResult lottoResult = new LottoResult();
         WinningChecker winningChecker = new WinningChecker(app.getWinningNumber(), app.getBonusNumber(), lottoResult);
