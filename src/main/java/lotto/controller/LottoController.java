@@ -28,7 +28,7 @@ public class LottoController {
         printLottoNumbers(wallet);
         WinningLotto winningLotto = inputWinningLotto();
         WinningDetail detail = wallet.winningDetail(winningLotto);
-        printWinningDetail(detail);
+        printWinningDetail(wallet, detail);
     }
 
     private PurchaseAmount inputPurchaseAmount() {
@@ -81,9 +81,12 @@ public class LottoController {
         }
     }
 
-    private void printWinningDetail(WinningDetail detail) {
+    private void printWinningDetail(Wallet wallet, WinningDetail detail) {
         outputView.print(RESULT_HEADER);
         String statistics = detail.generateWinningStatistics();
-        outputView.print(statistics);
+        long totalPrizeMonoy = detail.calculateTotalPrizeMoney();
+        double returnRate = wallet.calculateReturnRate(totalPrizeMonoy);
+        String result = String.format(TOTAL_PROFIT_RATE.getMessage(), returnRate);
+        outputView.print(statistics + result);
     }
 }
