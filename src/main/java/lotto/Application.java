@@ -16,6 +16,8 @@ public class Application {
         List<Lotto> lottos = createLottos(lottoPurchaseQuantity);
         print(lottos);
         List<Integer> lottoWinningNumbers = createWinningLottoNumber(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+
     }
 
     private static List<Integer> createWinningLottoNumber(String inputString) {
