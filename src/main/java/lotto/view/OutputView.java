@@ -25,17 +25,17 @@ public class OutputView {
         System.out.println("당첨 통계");
         List<Rank> ranks = new ArrayList<>(Arrays.asList(Rank.values())).reversed();
         for (Rank rank : ranks) {
-            if(rank.equals(Rank.NONE)){
+            if (rank.equals(Rank.NONE)) {
                 continue;
             }
-            if(rank.equals(Rank.SECOND)){
+            if (rank.equals(Rank.SECOND)) {
                 System.out.println(rank.getBasicCount() + "개 일치, 보너스 볼 일치 " + "(" + formatRankPrize(rank.getPrize()) + "원)" + " - " + calculateNumberOfRanks(rank, userRanks) + "개");
             }
             System.out.println(rank.getBasicCount() + "개 일치 " + "(" + formatRankPrize(rank.getPrize()) + "원)" + " - " + calculateNumberOfRanks(rank, userRanks) + "개");
         }
     }
 
-    private static String formatRankPrize(int rankPrize){
+    private static String formatRankPrize(int rankPrize) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
         return decimalFormat.format(rankPrize);
@@ -47,7 +47,7 @@ public class OutputView {
                 .count();
     }
 
-    public static void printRateOfReturn(Double returnOfRate){
-        System.out.println("총 수익률은 "+returnOfRate+"%입니다.");
+    public static void printRateOfReturn(Double returnOfRate) {
+        System.out.println("총 수익률은 " + returnOfRate + "%입니다.");
     }
 }

@@ -13,7 +13,7 @@ public class WinningLotto {
     public WinningLotto() {
         List<Integer> randoms = Randoms.pickUniqueNumbersInRange(1, 45, 7);
         this.numbers = randoms.subList(0, 6);
-        this.bonusNumber  = randoms.get(6);
+        this.bonusNumber = randoms.get(6);
     }
 
     public List<Integer> getNumbers() {
