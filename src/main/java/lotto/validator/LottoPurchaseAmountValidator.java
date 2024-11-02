@@ -9,13 +9,12 @@ public class LottoPurchaseAmountValidator {
     }
 
     public static void validateLottoPurchaseAmount(String lottoPurchaseAmount) {
-        checkIncludeSpecialCharacters(lottoPurchaseAmount);
-
         try {
             int parseValue = Integer.parseInt(lottoPurchaseAmount);
             checkThousandWonUnit(parseValue);
             checkLottoPurchaseAmountRange(parseValue);
         } catch (NumberFormatException e) {
+            checkIncludeSpecialCharacters(lottoPurchaseAmount);
             throw new IllegalArgumentException("로또 구입 금액의 값이 자료형의 범위를 넘어갔습니다");
         }
     }
