@@ -25,4 +25,12 @@ public class ConvertInput {
             throw InputException.from(ErrorMessage.LOTTO_NUMBER_HAS_CHARACTER);
         }
     }
+
+    public static int makeBonusNumberToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException exception) {
+            throw InputException.from(ErrorMessage.BONUS_NUMBER_HAS_CHARACTER);
+        }
+    }
 }
