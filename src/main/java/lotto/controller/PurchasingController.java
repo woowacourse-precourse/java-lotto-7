@@ -6,18 +6,18 @@ import lotto.view.InputPaymentView;
 
 public class PurchasingController {
     private final InputPaymentView inputPaymentView;
-    private final PaymentValidator validator;
+    private final PaymentValidator paymentValidator;
 
     public PurchasingController(InputPaymentView inputPaymentView, PaymentValidator validator) {
         this.inputPaymentView = inputPaymentView;
-        this.validator = validator;
+        this.paymentValidator = validator;
     }
 
     public void purchaseLottoTickets() {
         String inputPayment = inputPaymentView.getPayment();
-        int payment = validator.validPayment(inputPayment);
-        PurchasingService purchasingService = new PurchasingService();
-        purchasingService.purchaseTickets(payment);
+        paymentValidator.validPayment(inputPayment);
+        PurchasingService purchasing = new PurchasingService();
+        purchasing.purchaseTickets(inputPayment);
     }
 
 }
