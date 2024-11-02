@@ -20,7 +20,6 @@ public enum LottoRank {
         this.isBonusNumber = isBonusNumber;
     }
 
-
     public static LottoRank matchNumbers(Lotto lotto, List<Integer> winNumbers, int bonusNumber) {
         Integer matchingCount = lotto.getMatchNumberCount(winNumbers);
 
