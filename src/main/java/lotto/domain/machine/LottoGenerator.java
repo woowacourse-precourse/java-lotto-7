@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 
-public class LottoMachine {
+public class LottoGenerator {
 
     private final NumberGenerator numberGenerator;
 
-    public LottoMachine(NumberGenerator numberGenerator) {
+    public LottoGenerator(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 

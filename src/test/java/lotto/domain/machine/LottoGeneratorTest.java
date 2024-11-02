@@ -11,15 +11,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class LottoMachineTest {
+class LottoGeneratorTest {
 
-    LottoMachine lottoMachine;
+    LottoGenerator lottoGenerator;
 
     @BeforeEach
     void setUp() {
         FakeRandomNumberGenerator fakeNumberGenerator = new FakeRandomNumberGenerator();
         fakeNumberGenerator.numbers = List.of(1, 2, 3, 4, 5, 6);
-        lottoMachine = new LottoMachine(fakeNumberGenerator);
+        lottoGenerator = new LottoGenerator(fakeNumberGenerator);
     }
 
     @Test
@@ -29,7 +29,7 @@ class LottoMachineTest {
         int count = 1;
 
         // when
-        List<Lotto> lottos = lottoMachine.issueLottos(count);
+        List<Lotto> lottos = lottoGenerator.issueLottos(count);
 
         // then
         assertThat(lottos.size()).isOne();
@@ -41,7 +41,7 @@ class LottoMachineTest {
     void givenNegativeCount_whenIssueLottos_thenEmptyList(int count) {
         // given
         // when
-        List<Lotto> lottos = lottoMachine.issueLottos(count);
+        List<Lotto> lottos = lottoGenerator.issueLottos(count);
 
         // then
         assertThat(lottos).isEmpty();
@@ -54,7 +54,7 @@ class LottoMachineTest {
         int count = 5;
 
         // when
-        List<Lotto> lottos = lottoMachine.issueLottos(count);
+        List<Lotto> lottos = lottoGenerator.issueLottos(count);
 
         // then
         assertThat(lottos).hasSize(count);

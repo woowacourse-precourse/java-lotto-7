@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public enum LottoRank {
 
-    PRIZE_FIRST(1, 6, 2000000000),
-    PRIZE_SECOND(2, 5, 30000000),
-    PRIZE_THIRD(3, 5, 1500000),
-    PRIZE_FOURTH(4, 4, 50000),
-    PRIZE_FIFTH(5, 3, 5000),
+    PRIZE_FIRST(1, 6, 2_000_000_000),
+    PRIZE_SECOND(2, 5, 30_000_000),
+    PRIZE_THIRD(3, 5, 1_500_000),
+    PRIZE_FOURTH(4, 4, 50_000),
+    PRIZE_FIFTH(5, 3, 5_000),
     NONE(6, 0, 0);
 
     private final int rank;

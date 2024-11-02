@@ -1,9 +1,11 @@
 package lotto.ui;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import lotto.exception.InputException;
 import lotto.exception.message.InputExceptionMessage;
+import lotto.ui.prompt.Prompt;
 
 public class InputView {
 
@@ -17,27 +19,27 @@ public class InputView {
         this.prompt = prompt;
     }
 
-    public int displayReadPurchaseAmount() {
+    public BigDecimal displayReadPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
-        return parseInt();
+        try {
+            return new BigDecimal(prompt.input());
+        } catch (NumberFormatException e) {
+            throw new InputException(InputExceptionMessage.INVALID_BIG_DECIMAL_FORMAT);
+        }
     }
 
     public List<Integer> displayReadWinningNumbers() {
         System.out.println(REQUEST_WINNING_NUMBERS_MESSAGE);
-        return Arrays.stream(this.prompt.input().split(","))
+        return Arrays.stream(prompt.input().split(","))
                 .map(number -> Integer.parseInt(number.trim())).toList();
     }
 
     public int displayReadBonusNumber() {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
-        return parseInt();
-    }
-
-    private int parseInt() {
         try {
-            return Integer.parseInt(this.prompt.input());
+            return Integer.parseInt(prompt.input());
         } catch (NumberFormatException e) {
-            throw new InputException(InputExceptionMessage.INVALID_NUMBER_FORMAT);
+            throw new InputException(InputExceptionMessage.INVALID_INTEGER_FORMAT);
         }
     }
 
