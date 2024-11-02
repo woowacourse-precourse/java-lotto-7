@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.PurchasePrice.LOTTO_UNIT;
+
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
@@ -17,5 +19,17 @@ public class LottoResult {
 
     public Map<LottoReward, Integer> getLottoResult() {
         return Collections.unmodifiableMap(lottoResult);
+    }
+
+    public double calculateProfit(PurchasePrice purchasePrice) {
+        return (double) (calculateTotalPrize() - purchasePrice.getMoney()) / purchasePrice.getMoney() * 100 + 100;
+    }
+
+    private int calculateTotalPrize() {
+        int totalPrize = 0;
+        for (LottoReward lottoReward : lottoResult.keySet()) {
+            totalPrize += lottoReward.getPrize() * lottoResult.get(lottoReward);
+        }
+        return totalPrize;
     }
 }

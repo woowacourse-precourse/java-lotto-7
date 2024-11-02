@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class PurchasePrice {
-    private static final int LOTTO_UNIT = 1000;
+    public static final int LOTTO_UNIT = 1000;
     private static final int ZERO = 0;
 
     private final int money;
@@ -26,5 +26,9 @@ public class PurchasePrice {
 
     public int calculateLottoCount() {
         return money / LOTTO_UNIT;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }
