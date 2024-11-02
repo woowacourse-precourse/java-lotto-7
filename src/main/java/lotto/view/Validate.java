@@ -3,7 +3,7 @@ package view;
 public class Validate {
 
     private static final String NUMERIC_REGEX = "^[0-9]+$";
-    
+
     public int validateBonusNumber(String bonusNumber){
         checkNumber(bonusNumber);
         if(Integer.parseInt(bonusNumber)>45) throw new IllegalArgumentException("[ERROR] 보너스 번호는 45 이하여야 합니다.");
