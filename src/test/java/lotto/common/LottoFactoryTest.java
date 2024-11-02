@@ -1,15 +1,11 @@
-package lotto.model;
+package lotto.common;
 
+import lotto.common.factory.LottoFactory;
 import lotto.domain.Lottos;
-import lotto.model.random.FixedNumberGenerator;
-import lotto.model.random.RandomNumberGenerator;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import lotto.common.random.RandomNumberGenerator;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoFactoryTest {
     LottoFactory lottoFactory;
