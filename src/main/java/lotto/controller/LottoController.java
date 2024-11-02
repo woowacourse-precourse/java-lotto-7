@@ -32,8 +32,7 @@ public class LottoController {
 
         OutputView.printIssuedLottoNumber(randomLotto, quantity);
 
-        String inputWinningNumber = InputView.inputWinningNumber();
-        winningLotto = ParsingWinningNumberService.parseWinningNumbers(inputWinningNumber);
+        winningLotto = InputView.inputWinningNumber();
 
         int bonusNumber = InputView.inputBonusNumber();
 
