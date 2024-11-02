@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ public class ResultCalculator {
 
     private final Map<Integer, Integer> placeMap = new HashMap<>();
     private final Map<Integer, PlaceAuction> placeAuctionMap = new HashMap<>();
+    private final List<Integer> prize = List.of(2_000_000_000, 30_000_000, 1_500_000, 50_000, 5_000);
 
     public ResultCalculator(List<Integer> winningResult, List<Integer> bonusResult) {
         init(bonusResult);
@@ -42,5 +44,13 @@ public class ResultCalculator {
             PlaceAuction placeAuction = placeAuctionMap.get(winning);
             placeAuction.add(count);
         }
+    }
+
+    public Integer getPrizeMoney() {
+        int prizeMoney = 0;
+        for (int place = 1; place <= 5; place++) {
+            prizeMoney += placeMap.get(place) * prize.get(place - 1);
+        }
+        return prizeMoney;
     }
 }
