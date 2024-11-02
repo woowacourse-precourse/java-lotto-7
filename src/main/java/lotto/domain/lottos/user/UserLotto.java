@@ -21,6 +21,7 @@ public class UserLotto {
         return bonusLotto.isContainedMainLotto(randomLotto);
     }
 
+
     @Override
     public String toString() {
         StringBuilder printout = new StringBuilder();
