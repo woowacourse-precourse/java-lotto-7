@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.model.InputParser;
 import org.junit.jupiter.api.AfterEach;
@@ -60,6 +61,28 @@ public class LottoControllerTest {
 
         Lotto winningNumbers = lottoController.getWinningNumbers(inputParser);
         assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), winningNumbers.getNumbers());
+    }
+
+    // 보너스 번호 테스트 -----------
+
+    @Test
+    public void 한번에_정상적인_보너스_번호가_들어온_경우() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        provideInput("15\n");
+
+        int bonusNumber = lottoController.getBonusNumber(winningNumbers, inputParser);
+        assertEquals(3, bonusNumber);
+    }
+
+    @Test
+    public void 비정상적인_보너스_번호_이후_정상적인_보너스_번호가_들어욘_경우() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        provideInput("a\n46\n15");
+
+        int bonusNumber = lottoController.getBonusNumber(winningNumbers, inputParser);
+        assertEquals(6, bonusNumber);
     }
 
     @AfterEach

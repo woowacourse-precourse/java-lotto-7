@@ -136,4 +136,68 @@ public class InputParserTest {
         );
         assertEquals(ErrorMessage.DUPLICATE_NUMBER_ERROR, exception.getMessage());
     }
+
+    // 보너스 번호 테스트 -----------
+
+    @Test
+    public void 정상적인_보너스_번호가_들어온_경우_예외_발생_안함() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        String validInput = "8";
+
+        int bonusNumber = inputParser.parseBonusNumber(winningNumbers, validInput);
+        assertEquals(8, bonusNumber);
+    }
+
+    @Test
+    public void 보너스_번호로_빈_문자열이_들어온_경우_예외_발생() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        String invalidInput = "";
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> inputParser.parseBonusNumber(winningNumbers, invalidInput)
+        );
+        assertEquals(ErrorMessage.EMPTY_INPUT_ERROR, exception.getMessage());
+    }
+
+    @Test
+    public void 보너스_번호로_문자가_들어온_경우_예외_발생() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        String invalidInput = "a";
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> inputParser.parseBonusNumber(winningNumbers, invalidInput)
+        );
+        assertEquals(ErrorMessage.NUMBER_FORMAT_ERROR, exception.getMessage());
+    }
+
+    @Test
+    public void 보너스_번호로_허용된_범위외의_숫자가_들어온_경우_예외_발생() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        String invalidInput = "46";
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> inputParser.parseBonusNumber(winningNumbers, invalidInput)
+        );
+        assertEquals(ErrorMessage.NUMBER_RANGE_ERROR, exception.getMessage());
+    }
+
+    @Test
+    public void 보너스_번호로_당첨_번호와_중복되는_번호가_들어오는_경우_예외_발생() {
+        List<Integer> winningNumbersList = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(winningNumbersList);
+        String invalidInput = "6";
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> inputParser.parseBonusNumber(winningNumbers, invalidInput)
+        );
+        assertEquals(ErrorMessage.DUPLICATE_BONUS_ERROR, exception.getMessage());
+    }
 }
