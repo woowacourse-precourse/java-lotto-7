@@ -49,6 +49,18 @@ class LottoMachineTest {
         Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.NOT_NUMBER.getMsg());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {10000000, 1000001, 1100000})
+    void 돈_100만원_이상_입력(int money) {
+        // given
+        // when
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
+                () -> lottoMachine.issueLotto(money));
+
+        // then
+        Assertions.assertThat(e.getMessage()).isEqualTo(ErrorMessage.MONEY_IS_MORE_THEN_MAX.getMsg());
+    }
+
 
     @Test
     void 랜덤_값_테스트() {
