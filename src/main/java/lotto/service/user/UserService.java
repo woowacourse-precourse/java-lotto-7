@@ -3,9 +3,9 @@ package lotto.service.user;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.User;
-import lotto.utils.LottoGenerator;
-import lotto.utils.Parser;
-import lotto.utils.PurchaseCalculator;
+import lotto.utils.Calculator.PurchaseCalculator;
+import lotto.utils.generator.LottoGenerator;
+import lotto.utils.parser.Parser;
 
 public class UserService {
 
