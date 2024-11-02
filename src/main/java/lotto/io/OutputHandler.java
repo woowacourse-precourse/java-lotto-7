@@ -30,4 +30,8 @@ public enum OutputHandler {
     public static void printTotalYield(double yield){
         System.out.println("총 수익률은 " + yield + "입니다.");
     }
+
+    public static void print(OutputHandler handlerMessage) {
+        System.out.println(handlerMessage);
+    }
 }
