@@ -31,6 +31,7 @@ public class LottoMachine {
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
 
         checkWinningResult(winningNumbers, bonusNumber);
+        double earningRate = calculateEarningRate(budget);
 
     }
 
@@ -86,4 +87,12 @@ public class LottoMachine {
         }
     }
 
+    private double calculateEarningRate(Budget budget) {
+        int amount = budget.getAmount();
+        int earnings = 0;
+        for (WinningInfo info : WinningInfo.values()) {
+            earnings += info.getPrizeMoney() * info.getWinningTicketCount();
+        }
+        return (double) earnings / amount * 100;
+    }
 }
