@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.exception.InvalidPriceException;
 import lotto.domain.utils.RandomNumbersGenerator;
 
 public class LottoSeller {
@@ -20,7 +21,7 @@ public class LottoSeller {
 
     private void validatePrice(int price) {
         if (price == 0 || price % Lotto.PRICE != 0) {
-            throw new IllegalArgumentException("올바르지않은 구입금액");
+            throw new InvalidPriceException("올바르지않은 구입금액");
         }
     }
 

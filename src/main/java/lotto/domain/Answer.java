@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.domain.exception.InvalidBonusNumberException;
 
 public class Answer {
     private final Lotto lottoNumbers;
@@ -25,7 +26,7 @@ public class Answer {
 
     private void validate(List<Integer> numbers, int bonus) {
         if (numbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 정답 번호와 중복될 수 없습니다.");
+            throw new InvalidBonusNumberException("보너스 번호는 정답 번호와 중복될 수 없습니다.");
         }
     }
 }

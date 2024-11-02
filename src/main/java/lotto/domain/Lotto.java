@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
+import lotto.domain.exception.InvalidLottoNumberException;
 
 public class Lotto {
     private static final int NUMBERS_SIZE = 6;
@@ -16,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.size() != NUMBERS_SIZE || new HashSet<Integer>(numbers).size() != NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new InvalidLottoNumberException("로또 번호는 6개여야 합니다.");
         }
     }
 

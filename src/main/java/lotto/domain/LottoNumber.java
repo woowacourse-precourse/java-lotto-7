@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.domain.exception.InvalidLottoNumberException;
 
 class LottoNumber {
     private static final int MIN = 1;
@@ -19,7 +20,7 @@ class LottoNumber {
     private void validate(int number) {
         if (number < MIN || number > MAX) {
             String message = String.format("숫자는 %d ~ %d 사이만 올 수 있습니다.", MIN, MAX);
-            throw new IllegalArgumentException(message);
+            throw new InvalidLottoNumberException(message);
         }
     }
 
