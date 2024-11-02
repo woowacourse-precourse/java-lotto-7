@@ -25,7 +25,7 @@ public enum WinningLotto {
     public static WinningLotto from(long input) {
         return Arrays.stream(values())
                 .filter(correctCount -> correctCount.isEqual(input))
-                .findAny()
+                .findFirst()
                 .orElse(NO_RANK);
     }
 
