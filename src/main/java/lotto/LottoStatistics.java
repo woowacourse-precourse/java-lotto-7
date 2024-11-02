@@ -37,11 +37,11 @@ public class LottoStatistics {
     }
 
     public void printStatistics() {
-        System.out.println("3개 일치 (" + 5000 + "원) - " + matchCounts.get("3_MATCH") + "개");
-        System.out.println("4개 일치 (" + 50000 + "원) - " + matchCounts.get("4_MATCH") + "개");
-        System.out.println("5개 일치 (" + 1500000 + "원) - " + matchCounts.get("5_MATCH") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (" + 30000000 + "원) - " + matchCounts.get("5_MATCH_BONUS") + "개");
-        System.out.println("6개 일치 (" + 2000000000 + "원) - " + matchCounts.get("6_MATCH") + "개");
+        System.out.println("3개 일치 (5,000원) - " + matchCounts.get("3_MATCH") + "개");
+        System.out.println("4개 일치 (50,000원) - " + matchCounts.get("4_MATCH") + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + matchCounts.get("5_MATCH") + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCounts.get("5_MATCH_BONUS") + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + matchCounts.get("6_MATCH") + "개");
     }
 
 }
