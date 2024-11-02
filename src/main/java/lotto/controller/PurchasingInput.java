@@ -28,5 +28,4 @@ public class PurchasingInput {
             return 1;
         }
     }
-
 }
