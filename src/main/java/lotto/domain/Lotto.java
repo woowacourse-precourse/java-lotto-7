@@ -28,4 +28,10 @@ public class Lotto {
     private boolean containsDuplicates(List<Integer> lottoNumbers) {
         return new HashSet<>(lottoNumbers).size() != lottoNumbers.size();
     }
+
+    public List<Integer> getLottoNumbers() {
+        return lottoNumbers.stream()
+            .map(LottoNumber::getNumber)
+            .toList();
+    }
 }
