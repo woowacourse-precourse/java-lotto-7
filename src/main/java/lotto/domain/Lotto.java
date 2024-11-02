@@ -76,7 +76,7 @@ public class Lotto {
 
         Set<LottoNum> numSet = new HashSet<>(numbers);
         if (numSet.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호는 허용하지 않습니다.");
+            throw new IllegalArgumentException("중복된 로또 번호는 허용하지 않습니다.");
         }
     }
 

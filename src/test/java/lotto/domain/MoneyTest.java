@@ -93,7 +93,7 @@ class MoneyTest {
 
     @Test
     @DisplayName("최대 테스트 : Long Max Value")
-    void test9(){
+    void test9() {
         // given
         String maxProfit = String.valueOf(Long.MAX_VALUE);
         Money money = Money.create("1000");
@@ -105,6 +105,23 @@ class MoneyTest {
 
         // then
         assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("최대 테스트 : Bigger than Long Max Value")
+    void test10() {
+        assertThatThrownBy(() -> new Money("10000000000000000000000000000000000000"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_MONEY_INPUT.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("돈에 소수점은 허용하지 않는다.")
+    @ValueSource(strings = {"1000.00", "2000.0"})
+    void test11(String input) {
+        assertThatThrownBy(() -> new Money(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_MONEY_INPUT.getMessage());
     }
 
     private BigDecimal sumPercentage(String sum) {

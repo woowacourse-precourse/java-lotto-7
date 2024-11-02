@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.Constants.ENTER;
+
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -39,7 +41,7 @@ public class WinnerStatus {
     }
 
     private String createMessage() {
-        StringJoiner joiner = new StringJoiner(System.lineSeparator());
+        StringJoiner joiner = new StringJoiner(ENTER);
 
         for (Map.Entry<Integer, Integer> entry : rewardMap.entrySet()) {
             Integer key = entry.getKey();

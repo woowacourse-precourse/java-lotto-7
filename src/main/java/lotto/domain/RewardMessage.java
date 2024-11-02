@@ -6,15 +6,15 @@ import static lotto.utils.Reward.FOURTH;
 import static lotto.utils.Reward.SECOND;
 import static lotto.utils.Reward.THIRD;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class RewardMessage {
 
     private final Map<Integer, String> message;
 
     public RewardMessage() {
-        this.message = new HashMap<>();
+        this.message = new TreeMap<>();
         init();
     }
 

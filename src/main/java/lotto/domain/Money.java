@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.utils.ErrorMessage.INVALID_MONEY_INPUT;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.Objects;
 import lotto.dto.MoneyDto;
@@ -34,16 +35,30 @@ public class Money {
         return sumPercentage.divide(BigDecimal.valueOf(amount), SCALE, RoundingMode.HALF_UP).toString();
     }
 
-    private Long parseMoney(String money) {
-        if (money == null || money.isBlank()) {
-            throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
-        }
+    private Long parseMoney(String input) {
+        validateInput(input);
 
         try {
-            return Long.valueOf(money);
+            BigInteger bigInteger = new BigInteger(input);
+            validateMaxMoney(bigInteger);
+
+            return bigInteger.longValue();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
         }
+    }
+
+    private void validateMaxMoney(BigInteger value) {
+        if (value.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0) {
+            throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
+        }
+    }
+
+    private void validateInput(String input) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException(INVALID_MONEY_INPUT.getMessage());
+        }
+
     }
 
     private Long validateMoney(Long amount) {

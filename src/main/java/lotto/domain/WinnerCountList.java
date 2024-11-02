@@ -14,15 +14,22 @@ import java.util.TreeMap;
 
 public class WinnerCountList {
     private final List<WinnerCount> winnerCounts;
-    private final TreeMap<Integer, Integer> rewardMap;
+    private final Map<Integer, Integer> rewardMap;
 
-    public WinnerCountList() {
-        this.winnerCounts = new ArrayList<>();
-        this.rewardMap = init();
+    private WinnerCountList(List<WinnerCount> winnerCounts) {
+        this.winnerCounts = winnerCounts;
+        this.rewardMap = initializeRewardMap();
     }
 
     public static WinnerCountList of(LottoList lottoList, WinnerLotto winnerLotto) {
-        return lottoList.countWinnerMatches(winnerLotto);
+        List<WinnerCount> counts = calculateWinnerCounts(lottoList, winnerLotto);
+        return new WinnerCountList(counts);
+    }
+
+    private static List<WinnerCount> calculateWinnerCounts(LottoList lottoList, WinnerLotto winnerLotto) {
+        List<WinnerCount> counts = new ArrayList<>();
+        lottoList.forEach(lotto -> counts.add(winnerLotto.countWinnerMatch(lotto)));
+        return counts;
     }
 
     public void add(WinnerCount winnerCount) {
@@ -38,10 +45,10 @@ public class WinnerCountList {
         return new TreeMap<>(this.rewardMap);
     }
 
-    private TreeMap<Integer, Integer> init() {
+    private Map<Integer, Integer> initializeRewardMap() {
         List<Integer> reward = List.of(FIRST.getPrize(), SECOND.getPrize(), THIRD.getPrize(), FOURTH.getPrize(),
                 FIFTH.getPrize());
-        TreeMap<Integer, Integer> rewardMap = new TreeMap<>();
+        Map<Integer, Integer> rewardMap = new TreeMap<>();
         for (Integer amount : reward) {
             rewardMap.put(amount, 0);
         }

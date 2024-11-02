@@ -43,11 +43,6 @@ public enum Reward {
             return true;
         }
 
-        if (matchCount <= 4 && hasBonus) {
-            matchCount += 1;
-            hasBonus = false;
-        }
-
         return this.matchCount == matchCount && this.hasBonus == hasBonus;
     }
 }

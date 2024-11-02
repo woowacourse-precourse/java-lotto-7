@@ -4,7 +4,6 @@ import static lotto.utils.Reward.FIFTH;
 import static lotto.utils.Reward.FIRST;
 import static lotto.utils.Reward.FOURTH;
 import static lotto.utils.Reward.NO_REWARD;
-import static lotto.utils.Reward.SECOND;
 import static lotto.utils.Reward.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,21 +44,6 @@ class WinnerCountTest {
             Reward result = Reward.getReward(correct, false);
 
             assertThat(result).isEqualTo(NO_REWARD);
-        }
-    }
-
-    @Test
-    @DisplayName("상금 반환 테스트 + 보너스 당첨")
-    void test5() {
-        // given
-        List<Reward> rewards = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST, FIRST);
-
-        for (int correct = 0; correct <= 5; correct++) {
-            // when
-            Reward result = Reward.getReward(correct + 2, true);
-
-            // then
-            assertThat(result).isEqualTo(rewards.get(correct));
         }
     }
 

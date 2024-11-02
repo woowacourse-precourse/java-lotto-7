@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 import lotto.dto.LottoListDto;
 import lotto.utils.DtoMapper;
 
@@ -32,15 +33,8 @@ public class LottoList {
         return DtoMapper.toLottoListDto(this.toString());
     }
 
-    public WinnerCountList countWinnerMatches(WinnerLotto winnerLotto) {
-        WinnerCountList countDtoList = new WinnerCountList();
-
-        for (Lotto lotto : lottoCollection) {
-            WinnerCount countDto = winnerLotto.countWinnerMatch(lotto);
-            countDtoList.add(countDto);
-        }
-
-        return countDtoList;
+    protected void forEach(Consumer<Lotto> lotto){
+        lottoCollection.forEach(lotto);
     }
 
     protected void add(Lotto lotto) {
