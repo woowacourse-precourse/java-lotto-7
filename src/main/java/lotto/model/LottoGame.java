@@ -8,19 +8,19 @@ public class LottoGame {
     private BonusNumber bonusNumber;
 
     public LottoGame(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        validateLottoGame(winningNumbers, bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+        validateLottoGame();
     }
 
-    private void validateLottoGame(WinningNumbers winningNumbers, BonusNumber bonusNumber){
-        if (isWinningNumbersContainBonusNumber(winningNumbers, bonusNumber)) {
+    private void validateLottoGame(){
+        if (isWinningNumbersContainBonusNumber()) {
             throw new IllegalArgumentException(WINNING_NUMBERS_CONTAIN_BONUS_NUMBER.getMessage());
         }
     }
 
-    private boolean isWinningNumbersContainBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber){
-        return winningNumbers.getWinningNumbers().contains(bonusNumber.getBonusNumber());
+    private boolean isWinningNumbersContainBonusNumber(){
+        return getWinningNumbers().contains(getBonusNumber());
     }
 
     public List<Integer> getWinningNumbers(){

@@ -5,7 +5,8 @@ public enum OutputMessage {
     OUTPUT_WINNING_STATISTIC_GUIDE("당첨 통계"),
     OUTPUT_DIVIDER_LINE("---"),
     OUTPUT_WINNING_STATISTIC("%d개 일치 (%,d원) - %d개"),
-    OUTPUT_WINNING_STATISTIC_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개");
+    OUTPUT_WINNING_STATISTIC_BONUS("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
+    OUTPUT_RETURN_RATE("총 수익률은 %.2f%%입니다.");
     private String message;
 
     OutputMessage(String message) {
@@ -14,6 +15,10 @@ public enum OutputMessage {
 
     public String getMessage(){
         return String.format(message);
+    }
+
+    public String getFormatReturnRateMessage(double returnRate){
+        return String.format(message, returnRate);
     }
 
     public String getFormatBuyLottosMessage(int formatInteger){

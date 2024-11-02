@@ -61,4 +61,17 @@ public class LottoService {
         return  0;
     }
 
+    public double getReturnRate(User user, LottoResult lottoResult){
+        return (double) user.getBuyAmount() / getTotalPrize(lottoResult);
+    }
+
+    private int getTotalPrize(LottoResult lottoResult) {
+        int totalPrize = 0;
+        for(Rank rank : Rank.values()){
+            totalPrize += rank.getPrize() * lottoResult.getLottoResultMap().get(rank);
+        }
+
+        return totalPrize;
+    }
+
 }

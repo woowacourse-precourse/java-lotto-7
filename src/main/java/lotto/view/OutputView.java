@@ -12,8 +12,7 @@ import static lotto.message.OutputMessage.*;
 public class OutputView {
 
     public static void printBuyLottos(User user){
-        print(NEW_LINE);
-        print(OUTPUT_BUY_LOTTOS.getFormatBuyLottosMessage(user.getBuyLottoCount()));
+        print(NEW_LINE + OUTPUT_BUY_LOTTOS.getFormatBuyLottosMessage(user.getBuyLottoCount()));
         for(Lotto lotto : user.getLottos()){
             print(lotto.getNumbers().toString());
         }
@@ -35,7 +34,7 @@ public class OutputView {
         return OUTPUT_WINNING_STATISTIC;
     }
 
-    public static void printReturnRate(LottoResult lottoResult) {
-
+    public static void printReturnRate(double returnRate) {
+        print(OUTPUT_RETURN_RATE.getFormatReturnRateMessage(returnRate));
     }
 }

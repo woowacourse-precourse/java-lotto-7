@@ -50,7 +50,7 @@ public class LottoController {
 
     private void afterLotto(){
         OutputView.printLottoResult(lottoResult);
-        OutputView.printReturnRate(lottoResult);
+        OutputView.printReturnRate(lottoService.getReturnRate(user, lottoResult));
     }
 
 }

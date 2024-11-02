@@ -20,6 +20,10 @@ public class User {
         return buyAmount/BUY_AMOUNT_UNIT;
     }
 
+    public int getBuyAmount() {
+        return buyAmount;
+    }
+
     public void buyLotto(Lotto lotto){
         lottos.add(lotto);
     }

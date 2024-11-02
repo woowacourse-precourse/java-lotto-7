@@ -16,12 +16,12 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers(){
-        print(INPUT_WINNING_NUMBERS.getMessage());
+        print(NEW_LINE + INPUT_WINNING_NUMBERS.getMessage());
         return Utils.parseAndconvertToIntegerList(readLine(), DELIMITER);
     }
 
     public static int inputBonusNumber(){
-        print(INPUT_BONUS_NUMBER.getMessage());
+        print(NEW_LINE + INPUT_BONUS_NUMBER.getMessage());
         return Utils.stringToInteger(readLine());
     }
 
