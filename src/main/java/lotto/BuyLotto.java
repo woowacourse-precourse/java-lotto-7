@@ -26,4 +26,8 @@ public class BuyLotto {
             System.out.println(integers);
         }
     }
+
+    public List<List<Integer>> getLottoList() {
+        return lottoList;
+    }
 }

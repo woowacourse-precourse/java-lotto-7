@@ -30,6 +30,7 @@ public class Lotto {
         }
     }
 
+
     public List<Integer> getLotto() {
         return numbers.stream()
                 .sorted()
