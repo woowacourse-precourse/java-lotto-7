@@ -11,8 +11,8 @@ public class Application {
         InputValidator inputValidator = new InputValidator();
         InputView inputView = new InputView(inputValidator);
         OutputView outputView = new OutputView();
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        LottoService lottoService = new LottoService(lottoGenerator);
+        LottoNumberGenerator lottoNumberGenerator = new RandomLottoGenerator();
+        LottoService lottoService = new LottoService(lottoNumberGenerator);
 
         LottoController lottoController = new LottoController(inputView,outputView,lottoService);
         lottoController.run();

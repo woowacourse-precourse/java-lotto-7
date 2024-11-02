@@ -1,7 +1,7 @@
 package lotto.Output;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class OutputView {
     public void printLottos(List<Lotto> lottos) {

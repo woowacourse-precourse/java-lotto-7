@@ -1,17 +1,17 @@
 package lotto.Service;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoGenerator;
+import lotto.LottoNumberGenerator;
+import lotto.domain.Lotto;
 
 public class LottoService {
-    private final LottoGenerator lottoGenerator;
+    private final LottoNumberGenerator lottoNumberGenerator;
 
-    public LottoService(LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
+    public LottoService(LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
     public List<Lotto> purchaseLottos(int amount) {
-        return lottoGenerator.generate(amount);
+        return lottoNumberGenerator.generate(amount);
     }
 }
