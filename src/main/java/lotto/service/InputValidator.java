@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 public class InputValidator {
     private static final String ERROR_NOT_POSITIVE_NUMBER = "[ERROR] 입력 값은 양수여야 합니다.";
     private static final String ERROR_NOT_DIVISIBLE_BY_LOTTO_PRICE = "[ERROR] 입력 값이 로또 가격으로 나누어지지 않습니다.";
-    private static final String ERROR_NUMBER_OUT_OF_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_BONUS_NUMBER_OUT_OF_RANGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨번호와 중복되지 않는 숫자여야 합니다.";
     private static final String ERROR_NOT_POSITIVE_NUMBER_OR_COMMA = "[ERROR] 당첨 번호는 숫자와 쉼표만 포함해야 합니다.";
 
@@ -27,7 +27,7 @@ public class InputValidator {
 
     public void validateBonusNumber(String bonusNumber, Lotto winningNumbers) {
         validatePositiveNumber(bonusNumber);
-        validateNumberInRange(bonusNumber);
+        validateBonusNumberInRange(bonusNumber);
         validateBonusNumberDuplicate(bonusNumber, winningNumbers);
     }
 
@@ -50,10 +50,10 @@ public class InputValidator {
         }
     }
 
-    private void validateNumberInRange(String bonusNumber) {
+    private void validateBonusNumberInRange(String bonusNumber) {
         int parsedBonusNumber = Integer.parseInt(bonusNumber);
         if (parsedBonusNumber < LOTTO_NUMBER_MIN || parsedBonusNumber > LOTTO_NUMBER_MAX) {
-            throw new IllegalArgumentException(ERROR_NUMBER_OUT_OF_RANGE);
+            throw new IllegalArgumentException(ERROR_BONUS_NUMBER_OUT_OF_RANGE);
         }
     }
 

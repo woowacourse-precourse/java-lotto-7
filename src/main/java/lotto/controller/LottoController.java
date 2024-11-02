@@ -29,7 +29,7 @@ public class LottoController {
         int bonusNumber = inputProcessor.getBonusNumber(winningNumbers);
 
         Map<LottoRank, Integer> lottoStats = lottoService.calculateLottoStats(lottoTickets, winningNumbers, bonusNumber);
-        OutputView.displayWinningStatistics(lottoStats);
+        OutputView.displayLottoStats(lottoStats);
 
         long totalWinningAmount = lottoService.calculateTotalWinningAmount(lottoStats);
         double profitRate = lottoService.calculateProfitRate(totalWinningAmount, totalPurchaseAmount);
