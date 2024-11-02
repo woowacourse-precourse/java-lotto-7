@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import lotto.Lotto;
+import lotto.InputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,10 +16,11 @@ public class Application {
         int inputPrice = 0;
         int turn, bonusNumber;
 
+        InputView inputView = new InputView();
+
         // 로또 구입금액 입력 받기
-        System.out.println("구입금액을 입력해 주세요.");
         try {
-            inputPrice = Integer.parseInt(Console.readLine());
+            inputPrice = inputView.getPurchaseAmount();
         }catch(IllegalArgumentException e) {
             System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
         }
@@ -39,16 +41,14 @@ public class Application {
         }
 
         // 당첨 번호를 입력받기
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String[] inputNumbers = Console.readLine().split(",");
+        String[] inputNumbers = inputView.getWinningNumbers().split(",");
         List<Integer> winningNumbers = new ArrayList<>();
         for (String inputNumber : inputNumbers) {
             winningNumbers.add(Integer.parseInt(inputNumber));
         }
 
         // 보너스 번호를 입력받기
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        bonusNumber = Integer.parseInt(Console.readLine());
+        bonusNumber = inputView.getBonusNumber();
 
         // 당첨 통계 구하기
         System.out.println("\n당첨 통계\n---");
