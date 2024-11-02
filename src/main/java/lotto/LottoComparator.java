@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.InputValidator.LOTTO_PRICE_UNIT;
+
 public class LottoComparator {
 
     private final List<Lotto> customerTickets;
@@ -26,7 +28,7 @@ public class LottoComparator {
                 System.out.println(lottoRank.getMessage() + " - " + rankCount[lottoRank.ordinal()] + "개");
             }
         }
-        double profitRate = ((double) totalPrize / (customerTickets.size() * 1000)) * 100;
+        double profitRate = ((double) totalPrize / (customerTickets.size() * LOTTO_PRICE_UNIT)) * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
