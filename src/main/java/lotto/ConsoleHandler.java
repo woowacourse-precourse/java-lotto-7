@@ -22,4 +22,21 @@ public class ConsoleHandler {
     public void printLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
+
+    public void printPurchasedLotto(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            printLotto(lotto);
+        }
+    }
+
+    private void printLotto(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        sortLottoNumbers(numbers);
+        System.out.println(numbers);
+    }
+
+    private void sortLottoNumbers(List<Integer> numbers) {
+        numbers.sort(Integer::compareTo);
+    }
+
 }
