@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import lotto.Lotto;
 import lotto.InputView;
+import lotto.LottoController;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,19 +18,14 @@ public class Application {
         int turn, bonusNumber;
 
         InputView inputView = new InputView();
+        LottoController lottoController = new LottoController();
 
+        lottoController.play();
         // 로또 구입금액 입력 받기
-        try {
-            inputPrice = inputView.getPurchaseAmount();
-        }catch(IllegalArgumentException e) {
-            System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
-        }
+        inputPrice = lottoController.purchaseAmount;
 
         // 구매 금액에서 로또 개수 세기
-        if ((inputPrice % 1000) != 0) {
-            System.out.println("[ERROR] 구입금액은 1000의 배수여야 합니다.");
-        }
-        turn = inputPrice / 1000;
+        turn = lottoController.lottoCount;
         System.out.println(turn + "개를 구매했습니다.");
 
         // 구매 금액만큼 로또 생성
@@ -48,7 +44,7 @@ public class Application {
         }
 
         // 보너스 번호를 입력받기
-        bonusNumber = inputView.getBonusNumber();
+        bonusNumber = Integer.parseInt(inputView.getBonusNumber());
 
         // 당첨 통계 구하기
         System.out.println("\n당첨 통계\n---");
