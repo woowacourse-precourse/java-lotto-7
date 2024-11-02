@@ -22,12 +22,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringBuilder lotto = new StringBuilder();
-        lotto.append("[");
-        for (Integer number : numbers) {
-            lotto.append(number).append(" ");
-        }
-        lotto.append("]");
-        return lotto.toString();
+        return numbers.toString();
     }
 }
