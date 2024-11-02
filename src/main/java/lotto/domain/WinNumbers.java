@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Validator;
-import lotto.exception.ExceptionMessage;
 import lotto.exception.IllegalDuplicateException;
 import lotto.exception.IllegalLottoNumberException;
 import lotto.exception.IllegalRangeException;

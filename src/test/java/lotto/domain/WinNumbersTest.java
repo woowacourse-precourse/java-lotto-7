@@ -4,11 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.stream.Stream;
+import lotto.exception.IllegalDuplicateException;
+import lotto.exception.IllegalLottoNumberException;
+import lotto.exception.IllegalNumberCountException;
+import lotto.exception.IllegalRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class WinNumbersTest {
 
@@ -28,13 +33,18 @@ class WinNumbersTest {
 
     @ParameterizedTest
     @DisplayName("당첨 번호의 예외를 확인한다.")
-    @CsvSource(value = {"1,j,3,4,5,6:로또 번호는 숫자여야 합니다.", "1,1,2,3,4,5:이미 존재하는 로또 번호 입니다."
-            , "1,2,3,4,5:로또 번호는 6개여야 합니다.", "1,2,3,4,5,77:로또 번호는 1 이상 45 이하 이어야 합니다."}, delimiter = ':')
-//    @ValueSource(strings = {"1,j,3,4,5,6", "1,1,2,3,4,5", "1,2,3,4,5", "1,2,3,4,5,77"})
-    void validateWinNumbersException(String winNumbers, String exceptionMessage) {
-        assertThatThrownBy(() -> WinNumbers.winNumbersFrom(winNumbers))
-                .isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] " + exceptionMessage)
-                .hasMessageContaining("[ERROR]").hasMessageContaining(exceptionMessage);
+    @MethodSource("provideWinNumbers")
+    void validateWinNumbersException(String winNumbers, IllegalArgumentException exception) {
+        assertThatThrownBy(() -> WinNumbers.winNumbersFrom(winNumbers)).isInstanceOf(exception.getClass());
+    }
+
+    private static Stream<Arguments> provideWinNumbers() {
+        return Stream.of(
+                Arguments.of("1,j,3,4,5,6", new IllegalLottoNumberException()),
+                Arguments.of("1,1,2,3,4,5", new IllegalDuplicateException()),
+                Arguments.of("1,2,3,4,5", new IllegalNumberCountException()),
+                Arguments.of("1,2,3,4,5,77", new IllegalRangeException())
+        );
     }
 
     @Test
@@ -54,13 +64,21 @@ class WinNumbersTest {
 
     @ParameterizedTest
     @DisplayName("보너스 숫자의 예외를 확인한다.")
-    @ValueSource(strings = {"6", "j", "99"})
-    void validateBonusNumberException(String bonusNumber) {
+    @MethodSource("provideBonusNumber")
+    void validateBonusNumberException(String bonusNumber, IllegalArgumentException exception) {
         //given
         WinNumbers winNumbers = new WinNumbers(List.of(1, 2, 3, 4, 5, 6), null);
 
         //when-then
-        assertThatThrownBy(() -> winNumbers.bonusNumberFrom(bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> winNumbers.bonusNumberFrom(bonusNumber)).isInstanceOf(exception.getClass());
+    }
+
+
+    private static Stream<Arguments> provideBonusNumber() {
+        return Stream.of(
+                Arguments.of("6", new IllegalDuplicateException()),
+                Arguments.of("j", new IllegalLottoNumberException()),
+                Arguments.of("99", new IllegalRangeException())
+        );
     }
 }
