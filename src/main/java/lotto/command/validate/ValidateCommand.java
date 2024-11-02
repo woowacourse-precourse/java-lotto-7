@@ -68,7 +68,6 @@ public abstract interface ValidateCommand extends Command<UserInput, String> {
   default void validateLongRange(String input) {
     try {
       long value = Long.parseLong(input);
-      // Long.parseLong이 성공하면 자동으로 범위 내에 있는 것입니다.
     } catch (NumberFormatException e) {
       throw new InputException(ExceptionEnum.INVALID_LONG_RANGE);
     }
