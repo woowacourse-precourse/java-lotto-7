@@ -8,9 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class LottoTicketCalculatorTest {
+public class TicketCountCalculatorTest {
 
-    private final LottoTicketCalculator calculator = new LottoTicketCalculator();
+    private final TicketCountCalculator calculator = new TicketCountCalculator();
 
     @Nested
     @DisplayName("성공 케이스")

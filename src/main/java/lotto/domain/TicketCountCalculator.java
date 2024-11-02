@@ -3,7 +3,7 @@ package lotto.domain;
 import static lotto.exception.ErrorMessage.*;
 import lotto.exception.CustomIllegalArgumentException;
 
-public class LottoTicketCalculator {
+public class TicketCountCalculator {
     private static final int TICKET_PRICE = 1000;
 
     public int getTicketCount(PurchaseTotalPrice purchaseTotalPrice) {
