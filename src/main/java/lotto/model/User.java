@@ -51,6 +51,6 @@ public class User {
             returnMoney += result.getMoney() * result.getCount();
         }
         double result = returnMoney / money * 100;
-        return (double) Math.round(result * 100) / 100.0;
+        return (double) Math.round(result * 10) / 10.0;
     }
 }
