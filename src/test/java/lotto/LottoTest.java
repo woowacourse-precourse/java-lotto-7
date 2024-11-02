@@ -27,4 +27,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(3, 2, 1, 6, 5, 4));
         assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @DisplayName("로또 번호가 1부터 45까지의 숫자가 아닌 경우 예외 발생")
+    @Test
+    void throwException_when_lottoNumberIsNotBetween1And45() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
