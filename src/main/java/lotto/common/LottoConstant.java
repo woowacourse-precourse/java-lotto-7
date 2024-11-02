@@ -15,4 +15,7 @@ public class LottoConstant {
     public static final int FOUR_COUNT = 4;
     public static final int FIVE_COUNT = 5;
     public static final int SIX_COUNT = 6;
+
+    public static final int LOTTO_PRICE = 1000;
+    public static final int MIN_LOTTO_PRICE = 0;
 }
