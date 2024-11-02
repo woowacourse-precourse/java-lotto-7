@@ -29,4 +29,8 @@ public class Lotto {
     private boolean isOutOfBounds(List<Integer> numbers) {
         return !numbers.stream().allMatch(number -> number >= 1 && number <= 45);
     }
+
+    public List<Integer> getSortedNumbers() {
+        return numbers.stream().sorted().toList();
+    }
 }
