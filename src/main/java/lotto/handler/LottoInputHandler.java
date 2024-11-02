@@ -11,7 +11,6 @@ import lotto.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-// 사용자로부터 로또 관련 입력을 처리하고 검증하는 클래스
 public class LottoInputHandler {
     private final InputView inputView;
     private final OutputView outputView;
@@ -41,10 +40,7 @@ public class LottoInputHandler {
         return getValidatedInput(
                 inputView::inputBonusNumber,
                 ParsingUtils::parseStringToInteger,
-                bonusNumber -> {
-                    LottoValidator.validateBonusNumberRange(bonusNumber);
-                    LottoValidator.validateBonusNumberDuplication(bonusNumber, winningNumbers);
-                }
+                bonusNumber -> validateBonusNumber(bonusNumber, winningNumbers)
         );
     }
 
@@ -53,10 +49,9 @@ public class LottoInputHandler {
                                     Consumer<T> validationFunction) {
         while (true) {
             try {
-                String input = inputSupplier.get();
-                InputValidator.validateNotEmpty(input);
-                T parsedInput = parseFunction.apply(input);
-                validationFunction.accept(parsedInput);
+                String input = getInputAndValidate(inputSupplier);
+                T parsedInput = parseInput(input, parseFunction);
+                validateInput(parsedInput, validationFunction);
                 return parsedInput;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -64,12 +59,35 @@ public class LottoInputHandler {
         }
     }
 
+    private String getInputAndValidate(Supplier<String> inputSupplier) {
+        String input = inputSupplier.get();
+        validateInputNotEmpty(input);
+        return input;
+    }
+
+    private <T> T parseInput(String input, Function<String, T> parseFunction) {
+        return parseFunction.apply(input);
+    }
+
+    private <T> void validateInput(T parsedInput, Consumer<T> validationFunction) {
+        validationFunction.accept(parsedInput);
+    }
+
+    private void validateInputNotEmpty(String input) {
+        InputValidator.validateNotEmpty(input);
+    }
+
     private void validateLottoNumbers(List<Integer> numbers) {
         new Lotto(numbers); // Lotto 생성자를 통한 검증 수행
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        LottoValidator.validateBonusNumberRange(bonusNumber);
+        LottoValidator.validateBonusNumberDuplication(bonusNumber, winningNumbers);
     }
 
     public void close() {
         inputView.close();
     }
-
+    
 }
