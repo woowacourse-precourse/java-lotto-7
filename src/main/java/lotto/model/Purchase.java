@@ -16,7 +16,7 @@ public class Purchase {
     public Purchase(int purchasePrice) {
         validate(purchasePrice);
         this.purchasePrice = purchasePrice;
-        this.purchaseCount = purchasePrice / 1000;
+        this.purchaseCount = purchasePrice / ONE_TICKET_PRICE;
     }
 
     public int getPurchasePrice() {
