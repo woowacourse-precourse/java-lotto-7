@@ -6,6 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class OutputView {
+    private final static String NEW_LINE = System.getProperty("line.separator");
     private final static String LOTTO_COUNT_STRING = "개를 구매했습니다.";
     private final static String WINNING_STATISTIC_STRING = "당첨 통계\n---";
     private final static String FIFTH_RANK = "3개 일치 (5,000원) - ";
@@ -18,7 +19,7 @@ public class OutputView {
     private final static String RETURN_RATE_END_STRING = "%입니다.";
 
     public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount + LOTTO_COUNT_STRING);
+        System.out.println(NEW_LINE+ lottoCount + LOTTO_COUNT_STRING);
     }
 
     public void printLottoNumbers(List<Lotto> lottos) {
@@ -32,7 +33,7 @@ public class OutputView {
     }
 
     public void printResult(Map<Rank, Integer> rankResult, double rateOfReturn) {
-        System.out.println(WINNING_STATISTIC_STRING);
+        System.out.println(NEW_LINE + WINNING_STATISTIC_STRING);
         System.out.println(FIFTH_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
         System.out.println(FOURTH_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
         System.out.println(THIRD_RANK + rankResult.get(Rank.FIFTH) + COUNT_STRING);
