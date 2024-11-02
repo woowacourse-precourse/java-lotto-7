@@ -87,19 +87,16 @@ class HandlerTest {
     // 로또 수 만큼 로또 발행 후 전달
     List<Integer> generated = handler.generateLotto(lottoCounts);
     // 전달된 로또 결과 조회
-
+    Lotto<Integer> actualLotto = new Lotto(generated);
     // 당첨 번호와 보너스 번호 조회
     List<Integer> winning = handler.getWinning();
     int bonus = handler.getBonus();
-    // 로또 번호, 당첨 번호, 보너스 번호 조회
-    Lotto<Integer> actualLotto = new Lotto(generated);
-
     // 실제 일치성 횟수 계산 결과 조회
-    String actual = handler.compareNumbersResult(actualLotto, winning, bonus);
+    String actualResult = handler.compareNumbersResult(actualLotto, winning, bonus);
     // 예시와 실제값 일치 여부 검증
 
 
-    assertEquals(given, actual);
+    assertEquals(given, actualResult);
   }
 
   @DisplayName("비교한 결과를 토대로 총 수익률 계산한다")
@@ -111,7 +108,7 @@ class HandlerTest {
 
     // 수익률 계산
     double revenue = handler.calculateRevenue();
-    // 일치성 횟수 계산 결과 조회
+    // 수익률 계산 결과 조회
     String actual = handler.getResult(handler.calculateRevenue());
     // 검증
     assertEquals(expect, actual);

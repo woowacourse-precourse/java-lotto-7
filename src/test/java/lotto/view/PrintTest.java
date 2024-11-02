@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
+import lotto.Lotto;
 import lotto.domain.Handler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,9 +49,12 @@ class PrintTest {
     int amount = input.readAmount();
     int lottoCounts = input.getLottoCounts(amount);
     // 입력 값에 기반하여 요청을 전달하고
-    handler.generateLotto(lottoCounts);
+    List<Integer> generated = handler.generateLotto(lottoCounts);
     // 요청받은만큼 로또를 발행한다
+    Lotto<Integer> lotto = new Lotto(generated);
     // 로또 발행 결과를 전달함으로써 요청값에 응답한다
+    handler.getWinning();
+    handler.getBonus();
     // 응답 내용을 출력한다
     // 실제 출력값
     // 예시와 실제값 검증

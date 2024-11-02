@@ -5,7 +5,9 @@ import static lotto.domain.MAGIC_NUMBER.START;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.view.Input;
 
@@ -35,19 +37,38 @@ public class Handler {
     // 당천 번호 입력 문자열을 읽으면
     for (int i = 0; i < winning.length(); i++) {
       // 쉼표와 공백 구분자를 제외하고 각 정수를 하나씩 리스트에 추가한다
-//      winningNumbers.add(index);
+      winningNumbers = Arrays.stream(winning.split("\\s,"))
+          .map(Integer::parseInt)
+          .collect(Collectors.toList()); // NumberFormatException
     }
     return winningNumbers;
   }
 
-  // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
-  private void compareNumbers(List<Integer> winningNumbers, int bonus) {
+  // 전달된 로또 결과 조회
 
+  // 당첨 번호 조회
+  public List<Integer> getWinning(){
+    return List.of(1,2,3,4,5,6);
   }
+  // 보너스 번호 조회
+  public int getBonus() {
+    return 0;
+  }
+  // 5. 내부적으로 구매 금액만큼의 로또를 발행하여 당첨 번호와 보너스 번호를 적절히 비교한다
+  public String compareNumbersResult(Lotto<Integer> actualLotto, List<Integer> winningNumbers, int bonus) {
+    return "";
+  }
+
+
 
   // 6. 비교한 결과를 토대로 총 수익률 계산한다
   // 형식) x개 일치 - y개,  수익률 z%
   private void calculateRevenue(List<Integer> bonusN) {
 
+  }
+
+  public String getResult(double revenue) {
+    String.format("총 수익률은 revenue%입니다.", %d)
+    return "총 수익률은 62.5%입니다.";
   }
 }
