@@ -6,7 +6,7 @@ import java.util.List;
 public class OutputView {
     // TODO: 발행된 로또 번호 출력
     public void printGeneratedNum(List<List<Integer>> lottos){
-        System.out.printf("\n%d개를 구매했습니다.\n",lottos.size());
+        System.out.printf("\n%d개를 구매했습니다.",lottos.size());
         for(List<Integer> lotto : lottos){
             Collections.sort(lotto);
             System.out.println(lotto);
