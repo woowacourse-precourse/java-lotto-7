@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Application {
+    public static final int LOTTO_UNIT_PRICE = 1000;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int purchaseAmount = scanPurchasePrice() / 1000;
+        int purchaseAmount = calculatePurchaseAmount(scanPurchasePrice());
         Lotto winningNumbersLotto;
 
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
@@ -79,6 +80,10 @@ public class Application {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + prizeRankCounts.get(PrizeRank.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + prizeRankCounts.get(PrizeRank.FIRST) + "개");
         System.out.println("총 수익률은 "+ String.format("%.1f", rateOfReturn) +"%입니다.");
+    }
+
+    public static int calculatePurchaseAmount(int purchasePrice) {
+        return purchasePrice / LOTTO_UNIT_PRICE;
     }
 
     public static int scanPurchasePrice() {
