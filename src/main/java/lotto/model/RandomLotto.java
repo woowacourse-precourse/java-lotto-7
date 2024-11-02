@@ -14,6 +14,8 @@ public class RandomLotto {
 
     public List<Integer> getRandNumbers() {
         List<Integer> randNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, CNT_NUMBER);
-        return new ArrayList<>(randNumbers);
+        List<Integer> sortedNumbers = new ArrayList<>(randNumbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }
