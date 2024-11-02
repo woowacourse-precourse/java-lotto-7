@@ -2,51 +2,85 @@ package lotto.study;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.HashSet;
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomsTest {
+
     @Test
-    @DisplayName("pickNumberInRange는 지정된 범위 내의 난수를 생성한다")
-    void pickNumberInRangeShouldGenerateNumberWithinRange() {
-        int MIN_RANGE = -10;
-        int MAX_RANGE = 10;
-        for (int i = 0; i < 100; i++) {
-            int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
-            assertThat(number).isGreaterThanOrEqualTo(MIN_RANGE)
-                .isLessThanOrEqualTo(MAX_RANGE);
-        }
+    @DisplayName("범위 내의 중복되지 않는 랜덤 숫자를 지정된 개수만큼 반환한다")
+    void pickUniqueNumbersBasicTest() {
+        // given
+        int min = 1;
+        int max = 45;
+        int count = 6;
+
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(min, max, count);
+
+        assertThat(numbers).hasSize(count);
+        assertThat(numbers).allMatch(n -> n >= min && n <= max);
+        assertThat(new HashSet<>(numbers)).hasSize(count); // 중복 검사
     }
 
     @Test
-    @DisplayName("pickNumberInRange는 최솟값과 최댓값을 포함한다")
-    void pickNumberInRangeShouldIncludeMaxOrMinNumber() {
-        int MIN_RANGE = 0;
-        int MAX_RANGE = 1;
-        for (int i = 0; i < 10; i++) {
-            int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
-            assertThat(number).isGreaterThanOrEqualTo(MIN_RANGE)
-                .isLessThanOrEqualTo(MAX_RANGE);
-        }
+    @DisplayName("최소값과 최대값이 같으면 해당 숫자 하나만 반환한다")
+    void pickUniqueNumbersWithSameMinMax() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(5, 5, 1);
+
+        assertThat(numbers).containsExactly(5);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "1, 10, 5",
+        "1, 45, 6",
+        "-10, 10, 8",
+        "0, 99, 10"
+    })
+    @DisplayName("다양한 범위와 개수에 대해 정상 동작한다")
+    void pickUniqueNumbersWithVariousRanges(int min, int max, int count) {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(min, max, count);
+
+        assertThat(numbers).hasSize(count);
+        assertThat(numbers).allMatch(n -> n >= min && n <= max);
+        assertThat(new HashSet<>(numbers)).hasSize(count);
     }
 
     @Test
-    @DisplayName("pickNumberInRange는 최솟값과 최댓값을 같아도 작동한다")
-    void pickNumberInRangeShouldWorkEqualMaxAndMinNumber() {
-        int MIN_RANGE = 0;
-        int MAX_RANGE = 0;
-        int number = Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
-        assertThat(number).isEqualTo(0);
+    @DisplayName("요청한 개수가 범위보다 크면 IllegalArgumentException이 발생한다")
+    void throwsExceptionWhenCountExceedsRange() {
+        int min = 1;
+        int max = 3;
+        int count = 5;
+
+        assertThatThrownBy(() -> Randoms.pickUniqueNumbersInRange(min, max, count))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("pickNumberInRange는 범위 지정이 잘못되면 예외가 발생한다")
-    void pickNumberInRangeShouldExcpetWrongRange() {
-        int MIN_RANGE = 100;
-        int MAX_RANGE = 0;
-        assertThatThrownBy(() -> Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE))
+    @DisplayName("최소값이 최대값보다 크면 IllegalArgumentException이 발생한다")
+    void throwsExceptionWhenMinGreaterThanMax() {
+        int min = 10;
+        int max = 1;
+        int count = 5;
+
+        assertThatThrownBy(() -> Randoms.pickUniqueNumbersInRange(min, max, count))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, -5})
+    @DisplayName("요청한 개수가 음수이면 IllegalArgumentException이 발생한다")
+    void throwsExceptionWhenCountIsZeroOrNegative(int count) {
+        assertThatThrownBy(() -> Randoms.pickUniqueNumbersInRange(1, 45, count))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

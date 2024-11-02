@@ -1,12 +1,13 @@
 package lotto.common.util;
 
+import static lotto.common.constant.LottoConstant.*;
+
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomsWrapper {
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
-
-    public static int getInt() {
-        return Randoms.pickNumberInRange(MIN_RANGE, MAX_RANGE);
+    public static List<Integer> getInt() {
+        return Randoms.pickUniqueNumbersInRange(MIN_RANGE.getValue(), MAX_RANGE.getValue(), LENGTH.getValue());
     }
 }

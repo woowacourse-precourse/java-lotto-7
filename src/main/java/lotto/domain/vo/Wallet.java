@@ -3,9 +3,10 @@ package lotto.domain.vo;
 import java.util.List;
 import java.util.stream.Stream;
 
-import lotto.domain.dto.WinningDetail;
+import lotto.domain.entity.WinningDetail;
 import lotto.domain.entity.Lotto;
 import lotto.domain.factory.LottoFactory;
+import lotto.domain.factory.WinningDetailFactory;
 
 /**
  * 구매한 로또들과 구매 금액을 관리하는 불변 객체(VO)입니다.
@@ -42,7 +43,7 @@ public record Wallet(PurchaseAmount amount, List<Lotto> lottos) {
 
     public WinningDetail winningDetail(WinningLotto winningLotto) {
         LottoNumbers winningNumbers = winningLotto.lotto().createLottoNumbers();
-        WinningDetail winningDetail = WinningDetail.create();
+        WinningDetail winningDetail = WinningDetailFactory.create();
         for (Lotto lotto : lottos) {
             LottoNumbers lottoNumbers = lotto.createLottoNumbers();
             WinningRank rank = lottoNumbers.match(winningNumbers, winningLotto.bonus());

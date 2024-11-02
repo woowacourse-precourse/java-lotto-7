@@ -4,7 +4,7 @@ import static lotto.view.OutputMessage.*;
 
 import java.util.List;
 
-import lotto.domain.dto.WinningDetail;
+import lotto.domain.entity.WinningDetail;
 import lotto.domain.entity.Lotto;
 import lotto.domain.factory.LottoFactory;
 import lotto.domain.vo.WinningLotto;

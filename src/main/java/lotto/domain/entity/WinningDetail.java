@@ -1,4 +1,4 @@
-package lotto.domain.dto;
+package lotto.domain.entity;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -11,20 +11,8 @@ public class WinningDetail {
 
     private final Map<WinningRank, Integer> winningDetail;
 
-    private WinningDetail(Map<WinningRank, Integer> winningDetail) {
+    public WinningDetail(Map<WinningRank, Integer> winningDetail) {
         this.winningDetail = winningDetail;
-    }
-
-    public static WinningDetail create() {
-        Map<WinningRank, Integer> detail = new EnumMap<>(WinningRank.class);
-        for (WinningRank rank : WinningRank.values()) {
-            detail.put(rank, 0);
-        }
-        return new WinningDetail(detail);
-    }
-
-    public Map<WinningRank, Integer> getWinningDetail() {
-        return winningDetail;
     }
 
     public void updateScore(WinningRank rank) {
@@ -49,4 +37,5 @@ public class WinningDetail {
                 (long)entry.getKey().getPrizeMoney() * entry.getValue())
             .sum();
     }
+    
 }

@@ -59,7 +59,7 @@
 - [x] | `당첨 내역` 출력
 - [x] | `당첨 내역`으로부터 수익률 계산
 - [x] | 수익률 출력
-- [ ] | 당첨 결과 처리 테스트 코드 추가
+- [x] | 당첨 결과 처리 테스트 코드 추가
 
 ### ⚠️ 예외 처리 상세
 
@@ -133,6 +133,8 @@
 
 ## 🧪 단위 테스트
 
+- 총 51개이다.
+
 ### 📂 common/exception/
 
 - **ErrorMessagesTest**
@@ -143,7 +145,7 @@
 
 - **RandomsWrapperTest**
 
-- [x] | RandomsWrapper.getInt는 1~45내 숫자를 반환한다
+- [x] | 1~45 내 중복되지 않는 무작위 숫자 6개를 반환한다
 
 ### 📂 controller/
 
@@ -165,12 +167,25 @@
 - [x] | 로또 번호에 중복된 숫자가 있는 경우 예외가 발생한다
 - [x] | 로또 번호에 공백이 있는 경우 예외가 발생한다
 
+
+- **WinningDetailTest**
+
+- [x] | 당첨 횟수를 업데이트한다
+- [x] | 당첨 통계를 생성한다
+- [x] | 총 상금을 계산한다
+- [x] | 당첨 내역이 없으면 총 상금은 0이다
+- [x] | 같은 등수에 대해 당첨 횟수를 누적한다
+
 ### 📂 domain/factory
 
 - **LottoFactoryTest**
 
 - [x] | 로또 번호들을 자동으로 생성할 수 있다
 - [x] | 문자열로 로또를 생성한다
+
+
+- **WinningDetailFactoryTest**
+- [x] | WinningDetail 생성 시 새로운 객체가 정상적으로 생성되어야 한다
 
 ### 📂 domain/validator
 
@@ -236,6 +251,13 @@
 - [x] | WinningLotto 선언은 입력값 마지막에 쉼표(,)가 오는 지 검증을 포함한다
 - [x] | 당첨 번호와 보너스 번호의 중복 검증한다
 
+
+- **WinningRankTest**
+
+- [x] | 당첨 번호 개수와 보너스 번호 일치 여부에 따라 알맞은 등수를 반환한다
+- [x] | 당첨금 정보를 정확히 반환한다
+- [x] | 당첨 메시지를 형식에 맞게 반환한다
+
 ## 학습 테스트 📚
 
 ### 📗 ParseIntTest
@@ -248,16 +270,34 @@
 - [x] | Record는 getter 메서드를 자동으로 생성한다
 - [x] | Record는 equals와 hashCode를 자동으로 구현한다
 
-### 📙 StreamTest
+### 📙 StreamMethodTest
 
-- [x] | Stream의 sorted()로 리스트의 정수를 정렬할 수 있다
+- [x] | sorted()로 리스트의 정수를 정렬할 수 있다
+- [x] | distinct()는 중복된 요소를 제거한다
+- [x] | forEach()는 각 요소에 대해 주어진 동작을 수행한다
+- [x] | peek()은 요소를 확인하면서 중간 연산을 수행할 수 있다
+- [x] | map()은 각 요소를 변환한다
+- [x] | generate()는 무한 스트림을 생성할 수 있다
+- [x] | generate()로 생성한 스트림은 limit()을 사용하지 않으면 무한하다
 
 ### 📗 RandomsTest
 
-- [x] | pickNumberInRange는 지정된 범위 내의 난수를 생성한다
-- [x] | pickNumberInRange는 최솟값과 최댓값을 포함한다
-- [x] | pickNumberInRange는 최솟값과 최댓값을 같아도 작동한다
-- [x] | pickNumberInRange는 범위 지정이 잘못되면 예외가 발생한다
+*과제 중 사용 되는 Randoms.pickUniqueNumbersInRange 으로만 테스트를 진행했다.*
+
+- [x] | 범위 내의 중복되지 않는 랜덤 숫자를 지정된 개수만큼 반환한다
+- [x] | 최소값과 최대값이 같으면 해당 숫자 하나만 반환한다
+- [x] | 다양한 범위와 개수에 대해 정상 동작한다
+- [x] | 요청한 개수가 범위보다 크면 IllegalArgumentException이 발생한다
+- [x] | 최소값이 최대값보다 크면 IllegalArgumentException이 발생한다
+- [x] | 요청한 개수가 음수이면 IllegalArgumentException이 발생한다
+
+### 📘 EnumMapTest
+
+- [x] | EnumMap 기본 동작 테스트
+- [x] | EnumMap은 null 키를 허용하지 않는다
+- [x] | EnumMap의 키 순서는 Enum 선언 순서와 동일하다
+- [x] | EnumMap의 값 변경과 제거
+- [x] | EnumMap을 사용한 실제 비즈니스 로직 예제
 
 ---
 
