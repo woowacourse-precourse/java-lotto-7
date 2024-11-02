@@ -46,7 +46,7 @@
 - Exception이 아닌 ```IllegalArgumentException```, ```IllegalStateException``` 등과 같은 명확한 유형을 처리한다.
 
 ## 기능 목록
-1. [ ] 구매 금액 입력
+1. [X] 구매 금액 입력
    - 예외 상황
      - [ ] 숫자가 아닌 값이 포함된 상황
      - [ ] 비어있는 입력인 상황
