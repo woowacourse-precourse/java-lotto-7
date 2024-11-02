@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.common.LottoConfig;
 
 public class Lotto {
     private final Set<Integer> numbers;
@@ -17,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConfig.LOTTO_PICK_COUNT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         if (!isValidLottoNumberRange(numbers)) {
@@ -30,11 +31,12 @@ public class Lotto {
 
     private boolean isValidLottoNumberRange(List<Integer> numbers) {
         return numbers.stream().filter(lottoNumber ->
-                lottoNumber >= 1 && lottoNumber <= 45
+                lottoNumber >= LottoConfig.LOTTO_MIN_NUMBER.getValue()
+                        && lottoNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue()
         ).collect(Collectors.toList()).size() == numbers.size();
     }
 
     private boolean isLottoNumberNotDuplicated(List<Integer> numbers) {
-        return Set.copyOf(numbers).size() == 6;
+        return Set.copyOf(numbers).size() == LottoConfig.LOTTO_PICK_COUNT.getValue();
     }
 }

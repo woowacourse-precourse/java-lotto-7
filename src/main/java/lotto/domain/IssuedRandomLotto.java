@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.common.LottoConfig;
 import lotto.common.RandomNumberGenerator;
 
 public class IssuedRandomLotto implements IssuedLotto {
@@ -30,7 +31,7 @@ public class IssuedRandomLotto implements IssuedLotto {
     }
 
     private int calculateQuantity() {
-        return lottoPurchaseAmount / 1000;
+        return lottoPurchaseAmount / LottoConfig.LOTTO_PRICE.getValue();
     }
 
     private List<Integer> generateRandomLottoNumbers() {
@@ -38,10 +39,10 @@ public class IssuedRandomLotto implements IssuedLotto {
     }
 
     private void validate(int lottoPurchaseAmount) {
-        if (lottoPurchaseAmount % 1000 != 0) {
+        if (lottoPurchaseAmount % LottoConfig.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요.");
         }
-        if (lottoPurchaseAmount > 10000) {
+        if (lottoPurchaseAmount > LottoConfig.LOTTO_PURCHASE_LIMIT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 10,000원 이하로 입력해주세요.");
         }
     }

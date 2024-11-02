@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Set;
+import lotto.common.LottoConfig;
 
 public class LottoResult {
     private final Lotto winningNumbers;
@@ -14,7 +15,8 @@ public class LottoResult {
     }
 
     private void bonusNumberValidate(int bonusNumber) {
-        if (!(bonusNumber >= 1 && bonusNumber <= 45)) {
+        if (!(bonusNumber >= LottoConfig.LOTTO_MIN_NUMBER.getValue()
+                && bonusNumber <= LottoConfig.LOTTO_MAX_NUMBER.getValue())) {
             throw new IllegalArgumentException("[ERROR] 보너스넘버는 1~45 사이의 정수여야 합니다.");
         }
         if (isLottoNumberDuplicated(bonusNumber)) {
@@ -26,5 +28,4 @@ public class LottoResult {
         Set<Integer> winningNumbersCopy = winningNumbers.getNumbers();
         return winningNumbersCopy.contains(bonusNumber);
     }
-
 }

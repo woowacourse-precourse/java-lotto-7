@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.common.LottoConfig;
 import lotto.common.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,6 @@ public class IssuedRandomLottoTest {
         // then
         assertThat(issuedLotto.getIssuedLottos().size()).isEqualTo(2);
         assertThat(issuedLotto.getIssuedLottos().get(0).getNumbers().size())
-                .isEqualTo(6);
+                .isEqualTo(LottoConfig.LOTTO_PICK_COUNT.getValue());
     }
 }
