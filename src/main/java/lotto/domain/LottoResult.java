@@ -46,4 +46,8 @@ public class LottoResult {
     public int getCountByRank(Rank rank) {
         return rankCount.get(rank);
     }
+
+    public double getReturnRate() {
+        return returnRate;
+    }
 }
