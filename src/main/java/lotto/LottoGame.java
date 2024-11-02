@@ -10,6 +10,13 @@ import java.util.Map;
 public class LottoGame {
     private final List<Lotto> lottos = new ArrayList<>();
     private Map<String, Integer> winnings = new HashMap<>();
+    private static final Map<String, Integer> prizeAmounts = Map.of(
+            "6개 일치", 2_000_000_000,
+            "5개 일치, 보너스 볼 일치", 30_000_000,
+            "5개 일치", 1_500_000,
+            "4개 일치", 50_000,
+            "3개 일치", 5_000
+    );
 
     public void BuyLotto (int amount) {
         if (amount % 1000 != 0){
@@ -46,12 +53,20 @@ public class LottoGame {
         }
     }
 
-    public void PrintWinnings (){
+    public void PrintWinnings(){
         System.out.println("당첨 통계\n---");
         System.out.printf("3개 일치 (5,000원) - %d개%n", winnings.getOrDefault("3개 일치", 0));
         System.out.printf("4개 일치 (50,000원) - %d개%n", winnings.getOrDefault("4개 일치", 0));
         System.out.printf("5개 일치 (1,500,000원) - %d개%n", winnings.getOrDefault("5개 일치", 0));
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", winnings.getOrDefault("5개 일치, 보너스 볼 일치", 0));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", winnings.getOrDefault("6개 일치", 0));
+    }
+
+    public void CalculateEarningsRate(int purchaseAmount) {
+        int totalPrize = winnings.entrySet().stream()
+                .mapToInt(entry -> prizeAmounts.getOrDefault(entry.getKey(),0) * entry.getValue())
+                .sum();
+        double earningsRate = ((double) totalPrize / purchaseAmount) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(earningsRate * 10) / 10.0);
     }
 }

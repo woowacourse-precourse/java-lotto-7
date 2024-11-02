@@ -25,5 +25,6 @@ public class Application {
 
         game.UpdateWinnings(winningNumbers, bonusNumbers);
         game.PrintWinnings();
+        game.CalculateEarningsRate(amount);
     }
 }
