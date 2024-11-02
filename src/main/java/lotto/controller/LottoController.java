@@ -17,6 +17,7 @@ public class LottoController {
     private int parsedCostToInt;
     private int purchasedLottoCount;
     private LottoCollection lottoCollection;
+    private String winningNumber;
 
     public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
         this.lottoService = lottoService;
@@ -27,8 +28,11 @@ public class LottoController {
     public void startLottoSales() {
         inputPurchaseAmount();
         printNumberOfPurchaseLotto();
+
         generateLottosByRandomNumber();
         printAllLottoNumbers();
+
+        inputWinningNumber();
     }
 
     public void inputPurchaseAmount() {
@@ -62,8 +66,10 @@ public class LottoController {
     public void printAllLottoNumbers() {
         List<Lotto> lottoNumbers = lottoService.prepareCollectionForPrint(lottoCollection);
         outputView.printLottoNumbers(lottoNumbers);
-
     }
 
-
+    public void inputWinningNumber() {
+        inputView.printMessage(InputMessage.INPUT_WINNING_NUMBER);
+        winningNumber = inputView.inputWinningNumber();
+    }
 }
