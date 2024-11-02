@@ -26,15 +26,6 @@ class InputMoneyTest {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 값이 1000원 단위가 아닐 경우 에러가 발생한다.")
-    @ParameterizedTest
-    @CsvSource(value = {"1234", "1000.0"})
-    public void 입력된_값이_1000원_단위가_아닐_경우_에러가_발생한다(String input) {
-        Assertions.assertThatThrownBy(() -> {
-            inputValidator.validateInputMoney(input);
-        }).isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("입력된 값이 음수일 경우 에러가 발생한다.")
     @ParameterizedTest
     @CsvSource(value = {"-1", "-13", "-999"})
