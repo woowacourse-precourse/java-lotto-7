@@ -27,4 +27,13 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }
