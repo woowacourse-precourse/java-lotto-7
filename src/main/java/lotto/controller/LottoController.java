@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.InputValidator;
-import lotto.domain.Lotto;
-import lotto.domain.PrizeSystem;
+import lotto.domain.input.InputValidator;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.prize.PrizeSystem;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;

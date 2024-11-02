@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.prize;
 
 public class PrizeCount {
     private int firstPrizeCount;
