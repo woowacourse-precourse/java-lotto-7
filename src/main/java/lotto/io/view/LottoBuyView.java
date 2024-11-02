@@ -12,7 +12,7 @@ public class LottoBuyView {
     private static final String PURCHASE_COUNT_SUFFIX = "개를 구매했습니다.\n";
     private static final String LOTTO_SUFFIX = "]\n";
     private static final String LOTTO_PREFIX = "[";
-    private static final String LOTTO_DELIMITER = ",";
+    private static final String LOTTO_DELIMITER = ", ";
 
     public static LottoBuyView getInstance() {
         return INSTANCE;
@@ -23,7 +23,7 @@ public class LottoBuyView {
         List<LottoDto> lottos = lottoBuyDto.lottoNumberValues();
         String purchaseMessage = generatePurchaseCount(totalPurchase);
         String lottoInfo = generateLottoInfoFrom(lottos);
-        System.out.println(purchaseMessage + lottoInfo);
+        System.out.print(purchaseMessage + lottoInfo);
     }
 
     private String generatePurchaseCount(int size) {

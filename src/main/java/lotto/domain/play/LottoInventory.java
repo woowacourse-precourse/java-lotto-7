@@ -33,4 +33,8 @@ public class LottoInventory {
     private void addCount(PrizeRank prizeRank, Map<PrizeRank, Integer> prizeRanks) {
         prizeRanks.compute(prizeRank, (key, val) -> val + 1);
     }
+
+    public List<Lotto> getAll() {
+        return List.copyOf(lottos);
+    }
 }

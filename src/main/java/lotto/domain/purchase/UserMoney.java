@@ -1,10 +1,23 @@
 package lotto.domain.purchase;
 
 public class UserMoney {
+    private static final int LOTTO_PRICE = 1000;
     private final int money;
 
     public UserMoney(int money) {
         this.money = money;
+    }
+
+    public UserMoney(LottoMoney lottoMoney) {
+        this.money = lottoMoney.getValue();
+    }
+
+    public int calculateAvailableLottoCount() {
+        return money / LOTTO_PRICE;
+    }
+
+    public UserMoney getMaxSpendAvailable() {
+        return new UserMoney(calculateAvailableLottoCount() * LOTTO_PRICE);
     }
 
     public UserMoney spend(int spendMoney) {

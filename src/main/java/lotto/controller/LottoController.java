@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.play.RandomLottoGenerator;
+import lotto.domain.purchase.LottoInventoryGenerator;
 import lotto.domain.play.Result;
 import lotto.domain.purchase.LottoMoney;
-import lotto.domain.purchase.LottoShop;
 import lotto.domain.play.WinCriteria;
 import lotto.domain.purchase.UserMoney;
 import lotto.domain.rule.PrizeRank;
@@ -16,6 +15,7 @@ import lotto.dto.PrizeRankInfoDto;
 import lotto.dto.ResultDto;
 import lotto.io.InputReader;
 import lotto.io.view.View;
+import lotto.utils.IllegalArgumentHandler;
 import lotto.utils.NumberInputConverter;
 
 import java.util.HashMap;
@@ -33,24 +33,20 @@ public class LottoController {
     }
 
     public void run() {
-        LottoShop lottoShop = new LottoShop(RandomLottoGenerator.getInstance());
-        LottoMoney money = requestMoney();
-        UserMoney userMoney = new UserMoney(money.getValue());
-        List<Lotto> lottos = lottoShop.purchaseLottoWith(money);
-        LottoInventory lottoInventory = new LottoInventory(lottos);
-        showPurchaseInfo(lottos);
-
-        List<Integer> userInputWinningNumbers = requestWinningNumbers();
-        Lotto winLotto = new Lotto(userInputWinningNumbers);
-
-        int bonusNumberValue = requestBonusNumber();
-        LottoNumber bonus = LottoNumber.of(bonusNumberValue);
-        WinCriteria winCriteria = new WinCriteria(winLotto, bonus);
-
+        UserMoney initMoney = requestMoney();
+        LottoInventory lottoInventory = LottoInventoryGenerator.generateFrom(initMoney);
+        showPurchaseInfo(lottoInventory.getAll());
+        Lotto winLotto = requestWinLotto();
+        WinCriteria winCriteria = requestBonusNumberAndGenerateFrom(winLotto);
         Result result = lottoInventory.calculateResult(winCriteria);
-        UserMoney profit = new UserMoney(result.calculateTotalProfit());
-        float ratio = userMoney.calculateRatioTo(profit);
+        float ratio = calculateProfitRatioBasedOn(initMoney, result);
         showResult(result, ratio);
+    }
+
+    private static float calculateProfitRatioBasedOn(UserMoney firstMoney, Result result) {
+        UserMoney spendMoney = firstMoney.getMaxSpendAvailable();
+        UserMoney profitMoney = new UserMoney(result.calculateTotalProfit());
+        return spendMoney.calculateRatioTo(profitMoney);
     }
 
     private void showResult(Result result, float ratio) {
@@ -63,20 +59,35 @@ public class LottoController {
         view.getLottoBuyView().showBuyInfo(lottosDto);
     }
 
-    private int requestBonusNumber() {
-        view.getInputView().showBonusNumberExplanation();
-        return numberInputConverter.toInt(reader.read());
+    private WinCriteria requestBonusNumberAndGenerateFrom(Lotto winLotto) {
+        return new IllegalArgumentHandler<WinCriteria>().doUntilNoOccur(() -> {
+            view.getInputView().showBonusNumberExplanation();
+            int bonusNumberValue = numberInputConverter.toInt(reader.read());
+            return new WinCriteria(winLotto, LottoNumber.of(bonusNumberValue)) ;
+        });
     }
 
-    private List<Integer> requestWinningNumbers() {
-        view.getInputView().showWinningNumberExplanation();
-        return numberInputConverter.toList(reader.read());
+    private Lotto requestWinLotto() {
+        return new IllegalArgumentHandler<Lotto>().doUntilNoOccur(() -> {
+            view.getInputView().requestWinLottoExplanation();
+            return new Lotto(numberInputConverter.toList(reader.read()));
+        });
     }
 
-    private LottoMoney requestMoney() {
-        view.getInputView().showMoneyInputExplanation();
-        int userInputMoney = numberInputConverter.toInt(reader.read());
-        return LottoMoney.of(userInputMoney);
+    private UserMoney requestMoney() {
+        return new IllegalArgumentHandler<UserMoney>().doUntilNoOccur(() -> {
+            view.getInputView().showMoneyInputExplanation();
+            int userInputMoney = numberInputConverter.toInt(reader.read());
+            return new UserMoney(LottoMoney.of(userInputMoney));
+        });
+//        try{
+//            view.getInputView().showMoneyInputExplanation();
+//            int userInputMoney = numberInputConverter.toInt(reader.read());
+//            return new UserMoney(LottoMoney.of(userInputMoney));
+//        } catch (IllegalArgumentException e){
+//            System.out.print(e.getMessage());
+//        }
+//        return new UserMoney(1000);
     }
 
     private LottosDto toLottosDto(List<Lotto> lottos) {

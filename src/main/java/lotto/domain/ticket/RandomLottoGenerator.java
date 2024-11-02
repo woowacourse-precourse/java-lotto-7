@@ -1,7 +1,5 @@
-package lotto.domain.play;
+package lotto.domain.ticket;
 
-import lotto.domain.ticket.Lotto;
-import lotto.domain.ticket.LottoNumber;
 import lotto.utils.UniqueNumberGenerator;
 
 public class RandomLottoGenerator implements LottoGenerator {

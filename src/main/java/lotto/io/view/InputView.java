@@ -8,10 +8,10 @@ public class InputView {
     }
 
     public void showMoneyInputExplanation() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.print("구입금액을 입력해 주세요.\n");
     }
 
-    public void showWinningNumberExplanation() {
+    public void requestWinLottoExplanation() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 

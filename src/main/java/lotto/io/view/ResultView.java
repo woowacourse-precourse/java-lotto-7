@@ -28,7 +28,7 @@ public class ResultView {
         Map<PrizeRankInfoDto, Integer> prizeRankCounts = resultDto.prizeRankCounts();
         String statisticMessage = generateStatisticMessage(prizeRankCounts);
         String profitMessage = String.format(PROFIT_FORMAT, resultDto.profitRatio() * 100);
-        System.out.println(START + statisticMessage + profitMessage);
+        System.out.print(START + statisticMessage + profitMessage);
     }
 
     private String generateStatisticMessage(Map<PrizeRankInfoDto, Integer> prizeRankCounts) {
@@ -36,7 +36,7 @@ public class ResultView {
                 .stream()
                 .filter(entry -> entry.getKey().prize() > 0)
                 .sorted(Comparator.comparing((Map.Entry<PrizeRankInfoDto, Integer> entry) -> entry.getKey().prize()).reversed())
-                .map(entry -> generateDisplayMessage(entry))
+                .map(this::generateDisplayMessage)
                 .collect(Collectors.joining("\n"));
     }
 
