@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.constant.Prompt;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
@@ -14,6 +15,7 @@ public class LottoController {
     private Lottos lottos;
     private Money money;
     private int count;
+    private BonusNumber bonusNumber;
 
     public LottoController() {
         this.lottoService = new LottoService();
@@ -28,5 +30,8 @@ public class LottoController {
 
         this.lottos = new Lottos(count);
         OutputView.printBoughtLottos(lottos);
+
+        this.winningLotto = lottoService.getWinningNumbers();
+        this.bonusNumber = lottoService.getBonusNumber();
     }
 }
