@@ -46,10 +46,7 @@ public class LottoResult {
         System.out.println("\n당첨 통계\n---");
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NONE) continue;
-            String message = rank.getMatchCount() + "개 일치";
-            if (rank == Rank.SECOND) {
-                message += ", 보너스 볼 일치";
-            }
+            String message = rank.getMatchCount();
             message += " (" + rank.getPrize() + "원) - " + resultMap.get(rank) + "개";
             System.out.println(message);
         }
@@ -62,8 +59,9 @@ public class LottoResult {
         }
         double profitRate = (totalPrize / purchaseAmount) * 100;
         profitRate = Math.round(profitRate * 10) / 10.0;
-        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
     }
+
     public double calculateProfitRate(int purchaseAmount) {
         double totalPrize = 0;
         for (Rank rank : Rank.values()) {
