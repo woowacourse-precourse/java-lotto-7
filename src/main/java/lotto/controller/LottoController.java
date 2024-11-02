@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
+import lotto.model.WinningCriteria;
 import lotto.service.InputParsingService;
 import lotto.service.InputValidationService;
 import lotto.service.LottoIssueService;
@@ -35,7 +37,7 @@ public class LottoController {
         PurchasePrice purchasePrice = inputPurchasePrice();
         List<Lotto> issuedLotto = lottoIssueService.issueLotto(purchasePrice);
         printIssuedLotto(issuedLotto);
-        Lotto winningLotto = inputWinningLotto();
+        WinningCriteria winningCriteria = inputWinningCriteria();
     }
 
     private PurchasePrice inputPurchasePrice() {
@@ -50,10 +52,23 @@ public class LottoController {
         outputView.printIssuedLotto(issuedLotto);
     }
 
+    private WinningCriteria inputWinningCriteria() {
+        Lotto winningLotto = inputWinningLotto();
+        BonusNumber bonusNumber = inputBonusNumber(winningLotto.getNumbers());
+        return new WinningCriteria(winningLotto, bonusNumber);
+    }
+
     private Lotto inputWinningLotto() {
         outputView.printWinningNumberInputMessage();
         String rawWinningNumber = inputView.inputContent();
         inputValidationService.validateWinningNumber(rawWinningNumber);
         return inputParsingService.parseWinningLotto(rawWinningNumber);
+    }
+
+    private BonusNumber inputBonusNumber(List<Integer> banNumbers) {
+        outputView.printBonusNumberInputMessage();
+        String rawBonusNumber = inputView.inputContent();
+        inputValidationService.validateBonusNumber(rawBonusNumber);
+        return inputParsingService.parseBonusNumber(rawBonusNumber, banNumbers);
     }
 }

@@ -3,9 +3,9 @@ package lotto.model;
 public class WinningCriteria {
 
     private final Lotto lotto;
-    private final int bonusNumber;
+    private final BonusNumber bonusNumber;
 
-    public WinningCriteria(Lotto lotto, int bonusNumber) {
+    public WinningCriteria(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
@@ -14,7 +14,7 @@ public class WinningCriteria {
         return lotto;
     }
 
-    public int getBonusNumber() {
+    public BonusNumber getBonusNumber() {
         return bonusNumber;
     }
 }

@@ -63,4 +63,10 @@ public class InputValidationService {
             isOutOfParseRange(element);
         }
     }
+
+    public void validateBonusNumber(String rawBonusNumber) {
+        isBlank(rawBonusNumber);
+        isNonNumeric(rawBonusNumber);
+        isOutOfParseRange(rawBonusNumber);
+    }
 }
