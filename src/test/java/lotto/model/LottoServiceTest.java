@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.model.domain.Lotto;
 import lotto.model.domain.WinningLotto;
 import lotto.model.util.TestRandomUtil;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,5 +64,20 @@ class LottoServiceTest {
         assertThat(winningTicket).isNotNull();
         assertThat(winningTicket.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
         assertThat(winningTicket.getBonusNumber()).isEqualTo(7);
+    }
+
+    @Test
+    @DisplayName("여러 장의 로또 티켓 생성 확인")
+    void createLottoTickets() {
+        // given
+        Integer lottoCount = 10;
+
+        // when
+        List<Lotto> lottoTickets = lottoService.createLottoTickets(lottoCount);
+
+        // then
+        assertThat(lottoTickets).hasSize(10);
+        assertThat(lottoTickets.get(0).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
+        assertThat(lottoTickets.get(9).getNumbers()).containsExactly(7, 8, 9, 10, 11, 12);
     }
 }
