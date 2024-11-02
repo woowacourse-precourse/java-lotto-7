@@ -19,4 +19,8 @@ public class Lottos {
         }
         return new Lottos(lottos);
     }
+
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
+    }
 }
