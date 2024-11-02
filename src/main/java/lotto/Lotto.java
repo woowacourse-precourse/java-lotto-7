@@ -14,15 +14,23 @@ public class Lotto {
     }
 
     public static Lotto create() {
-        while (true) {
-            try {
-                List<Integer> numbers = getLottoNumber();
-                numbers.sort(Integer::compareTo);
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        List<Integer> numbers = getLottoNumber();
+        numbers.sort(Integer::compareTo);
+        return new Lotto(numbers);
+    }
+
+    public static Lotto WinningLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
+    public List<Integer> add(int number) {
+        List<Integer> newNumbers = new ArrayList<>(numbers);
+        newNumbers.add(number);
+        return newNumbers;
+    }
+
+    public static List<Integer> setBonusNumber(Lotto winningLotto, int number) {
+        return winningLotto.add(number);
     }
 
     private void validateNumbers(List<Integer> numbers) {
