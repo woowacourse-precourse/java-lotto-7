@@ -233,6 +233,7 @@ class ApplicationTest extends NsTest {
                     .hasMessageContaining(ERROR_MESSAGE);
         });
     }
+
     @Test
     void 예외_테스트_로또_구입_금액_개행_문자() {
         assertSimpleTest(() -> {

@@ -55,7 +55,8 @@ public class Validator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT.getIntegerValue()) {
-            throw new IllegalArgumentException(INVALID_WINNING_NUMBER_COUNT.getMessage(LOTTO_NUMBER_COUNT.getIntegerValue()));
+            throw new IllegalArgumentException(
+                    INVALID_WINNING_NUMBER_COUNT.getMessage(LOTTO_NUMBER_COUNT.getIntegerValue()));
         }
     }
 }

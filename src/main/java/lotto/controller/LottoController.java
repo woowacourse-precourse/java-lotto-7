@@ -63,7 +63,8 @@ public class LottoController {
         return bonusNumber;
     }
 
-    private RankCounter getWinningStatistics(List<Integer> winningNumbers, Integer bonusNumber, List<Lotto> lottoTickets) {
+    private RankCounter getWinningStatistics(
+            List<Integer> winningNumbers, Integer bonusNumber, List<Lotto> lottoTickets) {
         WinningLotto winningLotto = lottoService.createWinningTicket(winningNumbers, bonusNumber);
         RankCounter rankCounter = lottoService.determineWinning(winningLotto, lottoTickets);
         OutputView.printWinningStatistics(rankCounter);
