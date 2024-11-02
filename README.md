@@ -64,7 +64,7 @@
     - [x] 당첨된 로또에 대해 해당 등수의 당첨 횟수를 1 증가 (미당첨인 경우 증가하지 않음)
   - [x] 등수별 당첨 횟수가 저장된 map 반환
 
-- [x] **public String calculateEarningRatio(Map\<Prize, Integer> statistic, int buyingAmount)** \: 수익률 연산하는 기능
+- [x] **public float calculateEarningRatio(Map\<Prize, Integer> statistic, int buyingAmount)** \: 수익률 연산하는 기능
     - [x] (각 등수별 수익 * 등수별 당첨 횟수) 연산 결과를 sum에 누적해 총 수익 연산
     - [x] sum / buyingAmount * 100을 연산해 수익률 도출
     - [x] 수익률을 소수 둘째자리에서 반올림해 반환
@@ -125,8 +125,4 @@
 
 ### OutputView
 - [x] **public void printBoughtLottoNumbers(List<List\<Integer>> lottos)** \: 구매한 로또 번호를 출력하는 기능
-    - [x] `N개를 구매했습니다.` 출력
-    - [x] 생성된 로또 번호 출력
-
-
-- [ ]  당첨 통계를 출력하는 기능
+- [x] **public void printWinningStatistic(Map<Prize, Integer> matchCounts, String earningRatio)** \: 당첨 통계를 출력하는 기능

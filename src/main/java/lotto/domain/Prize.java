@@ -26,6 +26,10 @@ public enum Prize {
         return standard;
     }
 
+    public boolean isBonusNumMatch() {
+        return bonusNumMatch;
+    }
+
     public int getAmount() {
         return amount;
     }
