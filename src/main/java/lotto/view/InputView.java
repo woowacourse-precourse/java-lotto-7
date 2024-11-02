@@ -18,7 +18,7 @@ public class InputView {
     }
 
     private boolean isNumber(String input) {
-        return input.matches("^[0~9]+$");
+        return input.matches("^[0-9]+$");
     }
 
 }
