@@ -3,7 +3,8 @@ package lotto.service;
 import lotto.global.util.RandomGenerator;
 import lotto.model.Game;
 import lotto.model.Lotto;
-import lotto.model.WinningCountDTO;
+import lotto.model.WinningCount;
+import lotto.model.WinningNumbers;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -23,26 +24,27 @@ public class LottoService {
     }
 
     public void run(Game game) {
-        WinningCountDTO winningCountDTO = countWinningLottos(game);
-        outputView.printWinningResult(winningCountDTO);
-        calculateRateOfReturn(winningCountDTO);
+        countWinningLottos(game);
+        WinningCount winningCount = game.getWinningCount();
+        outputView.printWinningResult(winningCount);
+        float rateOfReturn = calculateRateOfReturn(game.getWinningAmount(), winningCount);
+        outputView.printRateOfReturn(rateOfReturn);
     }
 
-    private WinningCountDTO countWinningLottos(Game game) {
-        WinningCountDTO winningCountDTO = new WinningCountDTO();
+    private void countWinningLottos(Game game) {
+        WinningCount winningCount = game.getWinningCount();
         game.getLottos().getLottos().forEach(
                 lotto -> {
-                    Integer index = checkWinnigLotto(lotto, game);
-                    winningCountDTO.increaseWinningCount(index);
+                    Integer index = findWinnigLotto(lotto, game.getWinningNumbers());
+                    winningCount.increaseWinningCount(index);
                 });
-        return winningCountDTO;
     }
 
-    private Integer checkWinnigLotto(Lotto lotto, Game game) {
+    private Integer findWinnigLotto(Lotto lotto, WinningNumbers winningNumbers) {
         List<Integer> numbers = lotto.getNumbers();
-        int count = (int) numbers.stream().filter(game.getWinningNumbers()::contains)
+        int count = (int) numbers.stream().filter(winningNumbers.getWinningNumber()::contains)
                 .count();
-        boolean hasBonus = numbers.contains(game.getBonusNumber());
+        boolean hasBonus = numbers.contains(winningNumbers.getBonusNumber());
         if (count == 6) {
             return 5;
         }
@@ -55,11 +57,18 @@ public class LottoService {
         return count - 2;
     }
 
-    public void calculateRateOfReturn(WinningCountDTO winningCountDTO) {
-        List<Integer> winningCounts = winningCountDTO.getWinningCount();
+    public float calculateRateOfReturn(List<Integer> winningAmount, WinningCount count) {
+        List<Integer> winningCounts = count.getWinningCount();
         float size = winningCounts.stream().mapToInt(i -> i).sum();
-        float profit = winningCounts.get(1) * 5 + winningCounts.get(2) * 50 + winningCounts.get(3) * 1500 + winningCounts.get(4) * 30000 + winningCounts.get(5) * 2000000;
-        double rateOfReturn = Math.round(profit / size * 100);
-        outputView.printRateOfReturn(rateOfReturn);
+        float profit = calculateProfit(winningAmount, winningCounts);
+        return Math.round(profit / size * 100);
+    }
+
+    public float calculateProfit(List<Integer> winningAmount, List<Integer> winningCounts) {
+        int sum = 0;
+        for (int i = 0; i < 6; i++) {
+            sum += winningAmount.get(i) * winningCounts.get(i);
+        }
+        return sum;
     }
 }

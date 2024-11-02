@@ -3,15 +3,15 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningCountDTO {
-    public List<Integer> getWinningCount() {
-        return winningCount;
-    }
-
+public class WinningCount {
     List<Integer> winningCount;
 
-    public WinningCountDTO() {
+    public WinningCount() {
         winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
+    }
+
+    public List<Integer> getWinningCount() {
+        return winningCount;
     }
 
     public void increaseWinningCount(int index) {

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Game;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -41,22 +42,22 @@ public class LottoController {
 
     private List<Lotto> createRandomLottosAndPrint(Integer lottoCount) {
         outputView.printMessage(outputView.formattingMessage(LOTTO_COUNT, lottoCount));
-        List<Lotto> createdLottos = createLotto(lottoCount);
-        createdLottos.forEach(outputView::printLottoNumbers);
-        return createdLottos;
+        return createLotto(lottoCount);
     }
 
     private List<Lotto> createLotto(Integer lottoCount) {
         return Stream.generate(lottoService::createLotto)
                 .limit(lottoCount)
+                .peek(outputView::printLottoNumbers)
                 .toList();
     }
 
     private Game createGame(Lottos lottos) {
-        List<Integer> winningNumbers = getWinningNumbers();
+        List<Integer> winningNumber = getWinningNumbers();
         Integer bonusNumbers = getBonusNumber();
         try {
-            return new Game(lottos, winningNumbers, bonusNumbers);
+            WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumbers);
+            return new Game(lottos, winningNumbers);
         } catch (IllegalArgumentException e) {
             outputView.printMessage(e.getMessage());
             return createGame(lottos);

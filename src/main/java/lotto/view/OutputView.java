@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.global.enums.PrintMessage;
 import lotto.model.Lotto;
-import lotto.model.WinningCountDTO;
+import lotto.model.WinningCount;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -39,8 +39,8 @@ public class OutputView {
         return MessageFormat.format(printMessage.getMessage(), objects);
     }
 
-    public void printWinningResult(WinningCountDTO winningCountDTO) {
-        List<Integer> winningCount = winningCountDTO.getWinningCount();
+    public void printWinningResult(WinningCount count) {
+        List<Integer> winningCount = count.getWinningCount();
         String message = formattingMessage(PrintMessage.WINNING_RESULT, winningCount.subList(START_INDEX, END_INDEX).toArray());
         printMessage(message);
     }
