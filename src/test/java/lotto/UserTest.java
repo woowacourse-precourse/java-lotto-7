@@ -31,7 +31,7 @@ public class UserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-7", "50", " ", "칠", " 50 ", "4"})
+    @ValueSource(strings = {"-7", "50", " ", "칠", " 50 "})
     void 공백없이_1부터_45까지의_숫자가_아니라면_예외가_발생한다(String value) {
         User user = new User("1000");
         assertThatThrownBy(() -> user
@@ -39,6 +39,13 @@ public class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 당첨_번호와_중복_되는_보너스_번호일_경우_예외가_발생한다() {
+        User user = new User("1000");
+        assertThatThrownBy(() -> user
+                .specifyBonusNumber("4", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void 수익률() {

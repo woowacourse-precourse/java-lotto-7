@@ -53,15 +53,4 @@ class LottoTest {
 
         Assertions.assertThat(actual).isEqualTo(expect);
     }
-
-    @Test
-    void 당첨_번호와_중복_되는_보너스_번호일_경우_예외가_발생한다() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<List<Integer>> lotteryTickets = new ArrayList<>();
-        lotteryTickets.add(List.of(1, 2, 3, 4, 5, 6));      // 1등
-
-        int bonusNumber = 5;
-        assertThatThrownBy(() -> lotto.matcheNumber(lotteryTickets, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }
