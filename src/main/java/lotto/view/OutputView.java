@@ -5,7 +5,8 @@ public class OutputView {
         System.out.println("총 수익률은 " + formatEarningRatio + "%입니다.");
     }
 
-    public void showWinningResult(int threeMatched, int fourMatched, int fiveMatched, int bonusMatched, int allMatched) {
+    public void showWinningResult(int threeMatched, int fourMatched, int fiveMatched, int bonusMatched,
+                                  int allMatched) {
         System.out.println("3개 일치 (5,000원) - " + threeMatched + "개");
         System.out.println("4개 일치 (50,000원) - " + fourMatched + "개");
         System.out.println("5개 일치 (1,500,000원) - " + fiveMatched + "개");

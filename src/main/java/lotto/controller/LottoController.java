@@ -1,26 +1,25 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.model.BonusNumber;
-import lotto.model.Cost;
 import lotto.model.Lotto;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
     private final List<List<Integer>> lottoNumbers = new ArrayList<>();
     private final OutputView outputView;
+    private final InputView inputView;
     private Lotto lotto;
     private int cost;
     private int bonusNumber;
 
-    public LottoController(OutputView outputView) {
+    public LottoController(OutputView outputView, InputView inputView) {
         this.outputView = outputView;
+        this.inputView = inputView;
     }
 
     public void run() {
@@ -106,25 +105,22 @@ public class LottoController {
 
     }
 
-    private int requestBonusNumberInput(Lotto lotto) {
+    private int requestCostInput() {
         try {
-            return BonusNumber.of(Integer.parseInt(Console.readLine().trim()), lotto).getBonusNumber();
-
+            return inputView.getCost();
         } catch (NumberFormatException e) {
-            outputView.showBonusNumberErrorMessage();
-            return requestBonusNumberInput(lotto);
+            outputView.showCostErrorMessage();
+            return requestCostInput();
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
-            return requestBonusNumberInput(lotto);
+            return requestCostInput();
         }
     }
 
     private Lotto requestLottoNumberInput() {
         try {
-            return new Lotto(Arrays.stream(Console.readLine().trim().split(","))
-                    .map(Integer::parseInt)
-                    .toList());
-        }catch (NumberFormatException e){
+            return inputView.getLottoNumber();
+        } catch (NumberFormatException e) {
             outputView.showLottoNumberErrorMessage();
             return requestLottoNumberInput();
         } catch (IllegalArgumentException e) {
@@ -133,16 +129,15 @@ public class LottoController {
         }
     }
 
-    private int requestCostInput() {
+    private int requestBonusNumberInput(Lotto lotto) {
         try {
-            return Cost.from(Integer.parseInt(Console.readLine().trim())).getCost();
-
+            return inputView.getBonusNumber(lotto);
         } catch (NumberFormatException e) {
-            outputView.showCostErrorMessage();
-            return requestCostInput();
+            outputView.showBonusNumberErrorMessage();
+            return requestBonusNumberInput(lotto);
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e);
-            return requestCostInput();
+            return requestBonusNumberInput(lotto);
         }
     }
 }
