@@ -73,6 +73,7 @@ public class LottoController {
         while (true) {
             try {
                 String input = inputView.inputWinningNumber();
+                lottoValidation.validateBlank(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
