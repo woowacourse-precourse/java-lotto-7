@@ -75,6 +75,16 @@ public class LottoMachine {
         return ((double) totalPrize / totalSpent) * 100;
     }
 
-
+    public static void run() {
+        try {
+            List<Lotto> lottos = makeLotto();
+            WinningLotto winningLotto = makeWinningLotto();
+            Map<Lotto, Prize> lottoPrizeMap = compareWin2Lotto(lottos, winningLotto);
+            Map<Prize, Integer> prizeCountMap = calculatePrizeCounts(lottoPrizeMap);
+            OutputView.printResult(prizeCountMap,calculateTotalReturnRate(prizeCountMap));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
