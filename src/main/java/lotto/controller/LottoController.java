@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.Cost;
 import lotto.model.Lotto;
 
 public class LottoController {
@@ -18,7 +19,7 @@ public class LottoController {
     public void run() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        requestCostInput();
+        cost = requestCostInput();
 
         int purchaseCount = cost / 1000;
 
@@ -144,28 +145,16 @@ public class LottoController {
         }
     }
 
-    private void requestCostInput() {
+    private int requestCostInput() {
         try {
-            cost = Integer.parseInt(Console.readLine().trim());
-
-            if (cost % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요.");
-            }
-
-            if (cost < 0) {
-                throw new IllegalArgumentException("[ERROR] 금액은 음수를 입력할 수 없습니다.");
-            }
-
-            if (cost == 0 || String.valueOf(cost).isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 금액을 입력해주세요.");
-            }
+            return Cost.from(Integer.parseInt(Console.readLine().trim())).getCost();
 
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 금액은 숫자만 입력할 수 있습니다.");
-            requestCostInput();
+            return requestCostInput();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            requestCostInput();
+            return requestCostInput();
         }
     }
 }
