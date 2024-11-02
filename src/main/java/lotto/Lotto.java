@@ -1,7 +1,9 @@
 package lotto;
 
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.List;
+import lotto.LottoRegulation;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,8 +23,10 @@ public class Lotto {
         if (numbers == null) {
             throw new IllegalStateException("[ERROR] 번호 리스트가 유효하지 않습니다.");
         }
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoRegulation.LOTTO_NUMBERS_COUNT) {
+            throw new IllegalArgumentException(
+                    MessageFormat.format("[ERROR] 로또 번호는 {0}개여야 합니다.", LottoRegulation.LOTTO_NUMBERS_COUNT)
+            );
         }
     }
 
@@ -32,7 +36,10 @@ public class Lotto {
                 throw new NullPointerException("[ERROR] 번호가 유효하지 않습니다.");
             }
             if (!inRange(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.");
+                throw new IllegalArgumentException(
+                        MessageFormat.format("[ERROR] 로또 번호는 {0} 이상 {1} 이하의 정수여야 합니다.",
+                                LottoRegulation.LOTTO_NUMBER_MIN, LottoRegulation.LOTTO_NUMBER_MAX)
+                );
             }
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
@@ -41,6 +48,7 @@ public class Lotto {
     }
 
     private boolean inRange(int number) {
-        return (number <= 45 && number >= 1);
+        return (number >= LottoRegulation.LOTTO_NUMBER_MIN &&
+                number <= LottoRegulation.LOTTO_NUMBER_MAX);
     }
 }
