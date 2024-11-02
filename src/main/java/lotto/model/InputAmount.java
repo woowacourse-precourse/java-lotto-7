@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
 import lotto.constants.ErrorMessage;
 
@@ -44,5 +45,26 @@ public class InputAmount {
         if (Integer.parseInt(inputAmount) % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.AMOUNT_SHOULD_BE_DIVIDED_BY_THOUSAND.get());
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        InputAmount comparingInputAmount = (InputAmount) obj;
+        return Objects.equals(inputAmount, comparingInputAmount.inputAmount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(inputAmount);
+    }
+
+    public int get() {
+        return inputAmount;
     }
 }
