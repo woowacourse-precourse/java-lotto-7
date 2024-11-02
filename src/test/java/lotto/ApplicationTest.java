@@ -54,6 +54,13 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 입력_테스트() {
+        assertSimpleTest(() -> {
+            run("3000","1,2,3,4,5,6","12");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

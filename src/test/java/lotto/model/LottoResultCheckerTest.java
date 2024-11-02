@@ -63,7 +63,7 @@ class LottoResultCheckerTest {
         prizeNumbers.add(4, 11);
         prizeNumbers.add(5, 12);
 
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(purchaseLottoList, prizeNumbers, 34);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(purchaseLottoList, prizeNumbers, 34,1000);
 
         return Stream.of(
                 Arguments.of(lottoResultChecker)
@@ -92,7 +92,7 @@ class LottoResultCheckerTest {
         prizeNumbers.add(4, 11);
         prizeNumbers.add(5, 12);
 
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(purchaseLottoList, prizeNumbers, 34);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(purchaseLottoList, prizeNumbers, 34,1000);
 
         return Stream.of(
                 Arguments.of(lottoResultChecker)
@@ -132,7 +132,7 @@ class LottoResultCheckerTest {
         prizeNumbers.add(4, 11);
         prizeNumbers.add(5, 12);
 
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(purchaseLottoList, prizeNumbers, 34);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(purchaseLottoList, prizeNumbers, 34,1000);
 
         return Stream.of(
                 Arguments.of(lottoResultChecker)
