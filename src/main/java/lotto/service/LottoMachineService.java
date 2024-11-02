@@ -7,7 +7,6 @@ import lotto.model.enums.ErrorMessage;
 import lotto.model.enums.LottoConstants;
 import lotto.view.LottoMachineView;
 
-import java.util.Collections;
 import java.util.List;
 
 public class LottoMachineService {
@@ -21,7 +20,14 @@ public class LottoMachineService {
     }
 
     public void purchaseLotto() {
-        makeLotto(readPurchaseLotto());
+        while ( true ) {
+            try {
+                makeLotto(readPurchaseLotto());
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
         LottoMachineView.printPurchasedLottosView(purchasedLottos);
     }
 
@@ -46,18 +52,25 @@ public class LottoMachineService {
 
     private void makeLotto(int purchaseAmount) {
         for ( int i = 0; i < purchaseAmount; i++ ) {
-            Lotto lotto = new Lotto(
+            List<Integer> numbers =
                     Randoms.pickUniqueNumbersInRange(
                             LottoConstants.LOTTO_BEGIN_NUMBER.getValue(),
                             LottoConstants.LOTTO_END_NUMBER.getValue(),
-                            LottoConstants.LOTTO_NUMBERS_SIZE.getValue()));
-            Collections.sort(lotto.getNumbers());
-            purchasedLottos.add(lotto);
+                            LottoConstants.LOTTO_NUMBERS_SIZE.getValue());
+
+            purchasedLottos.add(new Lotto(numbers));
         }
     }
 
     public void enterWinningNumbers() {
-        winningLotto = readEnterWinningNumbers();
+        while ( true ) {
+            try {
+                winningLotto = readEnterWinningNumbers();
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private WinningLotto readEnterWinningNumbers() {

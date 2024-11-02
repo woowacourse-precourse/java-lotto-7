@@ -8,7 +8,8 @@ public enum ErrorMessage {
     WITHIN_NUMBERS_RANGE("[ERROR] 1부터 45 사이의 자연수만 입력할 수 있습니다"),
     SIX_NUMBERS_ONLY("[ERROR] 6개의 번호를 입력해야 합니다"),
     MUST_BUY_ONE_MORE("[ERROR] 한 장 이상 구매해야 합니다"),
-    THOUSAND_UNIT_ONLY("[ERROR] 천원 단위로만 구매할 수 있습니다");
+    THOUSAND_UNIT_ONLY("[ERROR] 천원 단위로만 구매할 수 있습니다"),
+    NO_INPUT("[ERROR] 값을 입력해야 합니다");
 
     private final String message;
 

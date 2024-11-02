@@ -31,9 +31,8 @@ public class Statistics {
                     multiply(BigDecimal.valueOf(lottoPrizeCount[i]));
             total = total.add(prizeAmount);
         }
-        System.out.println(total);
         String purchasedAmount = String.valueOf(tickets*
-                LottoConstants.LOTTO_TICKET_PRICE.getValue());
+                LottoConstants.LOTTO_TICKET_PRICE.getValue()/100);
 
         return total.divide(new BigDecimal(purchasedAmount),
                 LottoConstants.HALF_UP_ROUNDING_POSITION.getValue(),
