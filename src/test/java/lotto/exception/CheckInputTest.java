@@ -52,4 +52,12 @@ class CheckInputTest {
         assertEquals("[ERROR] 로또 번호는 6개여야 합니다.", exception.getMessage());
     }
 
+    @Test
+    void 로또_보너스번호_범위가_잘못되었을때_예외가_발생한다(){
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class, () -> CheckInput.checkBonusNumber(48)
+        );
+        assertEquals(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage(), exception.getMessage());
+    }
+
 }

@@ -2,7 +2,6 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.CheckInput;
 
@@ -28,6 +27,11 @@ public class InputConsole {
         String winningLottoNum = readLine();
 
         Lotto winningLottoNumbers = CheckInput.checkLottoNumbers(winningLottoNum);
+
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        int bonusNum = Integer.parseInt(readLine());
+
+        CheckInput.checkBonusNumber(bonusNum);
 
     }
 

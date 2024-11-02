@@ -3,7 +3,6 @@ package lotto.exception;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.InputConsole;
 import lotto.Lotto;
 import lotto.enums.ErrorType;
 
@@ -41,6 +40,12 @@ public class CheckInput {
         Lotto tmpLotto = new Lotto(tmpLottoNumber);
 
         return tmpLotto;
+    }
+
+    public static void checkBonusNumber(int bonusNum){
+        if(bonusNum < 1 || bonusNum > 45){
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER_RANGE.getErrorMessage());
+        }
     }
 
 }
