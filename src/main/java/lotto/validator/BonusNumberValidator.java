@@ -13,7 +13,7 @@ import static lotto.validator.InputValidator.*;
 public class BonusNumberValidator {
     List<String> winningNumbers;
 
-    BonusNumberValidator(WinningNumbersValidator winningNumbersValidator) {
+    public BonusNumberValidator(WinningNumbersValidator winningNumbersValidator) {
         this.winningNumbers = winningNumbersValidator.getWinningNumbers();
     }
 

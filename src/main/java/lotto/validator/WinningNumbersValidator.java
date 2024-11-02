@@ -16,7 +16,11 @@ import static lotto.validator.InputValidator.nonEmpty;
 
 
 public class WinningNumbersValidator {
-    private List<String> winningNumbers = new LinkedList<>();
+    private List<String> winningNumbers;
+
+    public WinningNumbersValidator() {
+        winningNumbers = new LinkedList<>();
+    }
 
     public List<String> getWinningNumbers() {
         return winningNumbers;
@@ -61,6 +65,7 @@ public class WinningNumbersValidator {
     }
 
     private List<String> divideString(String input) {
+
         return Arrays.asList(input.split(","));
     }
 
