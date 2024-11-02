@@ -62,6 +62,13 @@ public class Application {
         //당첨번호 테스트용 코드
         System.out.println("golden Numbers: "+goldenNumbers.getNumbers());
 
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusInput=Console.readLine();
+        int bonus=Integer.parseInt(bonusInput);
+
+        //보너스 테스트용 코드
+        System.out.println("bonus: "+bonus);
+
 
     }
 
