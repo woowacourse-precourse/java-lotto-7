@@ -29,9 +29,8 @@ public class Application {
     }
 
     private static void printResults(Lottos lottos,LottoResult lottoResult) {
-        View view = new View();
-        view.printLotto(lottos.getLottoCount(), lottos.toString());
-        view.printWinningResult(lottoResult.toString());
-        view.printProfit(lottoResult.getProfitRate(lottos));
+        View.printLotto(lottos.getLottoCount(), lottos.toString());
+        View.printWinningResult(lottoResult.toString());
+        View.printProfit(lottoResult.getProfitRate(lottos));
     }
 }
