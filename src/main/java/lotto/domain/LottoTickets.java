@@ -25,7 +25,7 @@ public class LottoTickets {
         for (Lotto lotto : lottoTickets) {
             lottoNumbers.add(lotto.getNumbers());
         }
-        return lottoNumbers;
+        return List.copyOf(lottoNumbers);
     }
 
 }
