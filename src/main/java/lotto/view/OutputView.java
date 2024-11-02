@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String AMOUNT_PURCHASE = "개를 구입했습니다.";
+    private static final String AMOUNT_PURCHASE = "개를 구매했습니다.";
     private static final String WINNING_STATICS = "당첨 통계";
     private static final String DASH_LINE = "---";
     private static final String EARNING_RATIO = "총 수익률은 %.1f%%입니다.";
