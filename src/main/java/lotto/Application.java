@@ -3,9 +3,14 @@ package lotto;
 import lotto.commons.lang.ProgramExitException;
 import lotto.commons.logger.Logger;
 import lotto.core.controller.PurchaseLottoController;
+import lotto.core.controller.StartLottoGameController;
+import lotto.core.service.CreateBonusLottoNumberService;
 import lotto.core.service.CreateLottoPurchaseAmountService;
+import lotto.core.service.CreateWinningLottoService;
 import lotto.core.service.PublishLottoTicketService;
+import lotto.core.view.InputBonusLottoNumberView;
 import lotto.core.view.InputLottoPurchaseAmountView;
+import lotto.core.view.InputWinningLottoView;
 import lotto.core.view.PublishLottoTicketView;
 
 public class Application {
@@ -18,6 +23,14 @@ public class Application {
                     new PublishLottoTicketService()
             );
             var lottoTicket = purchaseLottoController.request(null);
+
+            var startLottoGameController = new StartLottoGameController(
+                    new InputWinningLottoView(),
+                    new InputBonusLottoNumberView(),
+                    new CreateWinningLottoService(),
+                    new CreateBonusLottoNumberService()
+            );
+            startLottoGameController.request(lottoTicket);
         });
     }
 
