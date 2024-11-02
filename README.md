@@ -24,3 +24,5 @@
 
 ### 5. `LottoRank` ENUM 
 enum 타입으로 로또 당첨 순위
+
+

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
-    public static int purchase() {
-        System.out.println("구입금액을 입력해 주세요.\n");
+    public static int purchasePrice() {
+        System.out.println("구입금액을 입력해 주세요.");
         String text = Console.readLine();
         return getNumber(text);
     }
 
-    public static List<Integer> inputNumber(){
-        System.out.println("당첨 번호를 입력해 주세요,\n");
+    public static List<Integer> winNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
         String text = Console.readLine();
         List<Integer> numbers = new ArrayList<>();
         for (String s : text.split(",")) {
@@ -24,7 +24,7 @@ public class Input {
     }
 
     public static int inputBonus(){
-        System.out.println("보너스 번호를 입력해 주세요.\n");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String text = Console.readLine();
         return getNumber(text);
     }

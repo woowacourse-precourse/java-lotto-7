@@ -13,7 +13,7 @@ class InputTest {
     public void 구매_테스트(){
         String input = "3000";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        int amount = Input.purchase();
+        int amount = Input.purchasePrice();
         assertEquals(amount,3000);
     }
 
@@ -22,7 +22,7 @@ class InputTest {
         String input = "3000,";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         assertThrows(IllegalArgumentException.class,()->{
-            int amount = Input.purchase();
+            int amount = Input.purchasePrice();
         });
     }
 
@@ -30,7 +30,7 @@ class InputTest {
     public void 로또번호_테스트() {
         String input = "1,2,3,4,5,6";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        List<Integer> integers = Input.inputNumber();
+        List<Integer> integers = Input.winNumber();
         assertEquals(integers.size(),6);
     }
 
@@ -39,7 +39,7 @@ class InputTest {
         String input = "1,2.3,4,5,6";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         assertThrows(IllegalArgumentException.class , ()->{
-            Input.inputNumber();
+            Input.winNumber();
         });
     }
 

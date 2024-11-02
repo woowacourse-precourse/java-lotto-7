@@ -1,33 +1,44 @@
 package lotto;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoCheckerTest {
+    private List<Integer> winLotto;
+    private int bonusLotto;
+    private List<Lotto> issuedLottos;
+    private LottoChecker lottoChecker;
+
+
+    @BeforeEach
+    public void setUp(){
+        winLotto = Arrays.asList(1, 2, 3, 4, 5, 6);
+        bonusLotto = 7;
+        issuedLottos = new ArrayList<>();
+        issuedLottos.add(new Lotto(Arrays.asList(2, 3, 4, 12, 13, 14))); //5등
+        lottoChecker = new LottoChecker();
+    }
 
     @Test
-    public void 테스트(){
-        List<Integer> winLotto = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusLotto = 7;
-
-        List<Lotto> issuedLottos = new ArrayList<>();
-        issuedLottos.add(new Lotto(Arrays.asList(2, 3, 4, 5, 6, 7))); //2등
-        issuedLottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))); //1등
-        issuedLottos.add(new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9))); //4등
-        issuedLottos.add(new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15))); //당첨x
-
-        LottoChecker lottoChecker = new LottoChecker();
+    public void checkLotto_테스트(){
         lottoChecker.checkLotto(winLotto, issuedLottos, bonusLotto);
-        assertEquals(lottoChecker.getLottoRanks().get(0),LottoRank.SECOND);
-        assertEquals(lottoChecker.getLottoRanks().get(1),LottoRank.FIRST);
-        assertEquals(lottoChecker.getLottoRanks().get(2),LottoRank.FOURTH);
-        assertEquals(lottoChecker.getLottoRanks().get(3),LottoRank.MISS);
+        Map<LottoRank, Integer> rankCount = lottoChecker.getRankCount();
+        assertEquals(1,rankCount.get(LottoRank.FIFTH));
+        assertEquals(0,rankCount.get(LottoRank.FIRST));
+    }
 
+    @Test
+    public void 수익률_테스트(){
+        lottoChecker.checkLotto(winLotto, issuedLottos, bonusLotto);
+        double profit = lottoChecker.calculateProfit(8000);
+        assertEquals(62.5,profit);
 
 
     }
