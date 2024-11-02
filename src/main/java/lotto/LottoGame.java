@@ -147,7 +147,8 @@ public class LottoGame {
         
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         
-        lottoNumbers.sort(Integer::compareTo); // sort() 메서드로 정렬
+        List<Integer> sortedNumbers = new ArrayList<>(lottoNumbers);
+        sortedNumbers.sort(Integer::compareTo); // sort() 메서드로 정렬
         
         return new Lotto(lottoNumbers);
     }
