@@ -34,6 +34,11 @@ public class GameManager {
         outputView.printWinningStatisticMessage();
         printLottoScore(lottoScore);
         int prizeMoney = yieldCalculator.calculatePrizeMoney(lottoScore);
+        printReturnRate(yieldCalculator.calculateRateOfReturn(price, prizeMoney));
+    }
+
+    private void printReturnRate(String returnRate) {
+        outputView.printReturnRate(returnRate);
     }
 
     private void printLottoScore(Map<Prize, Integer> lottoScore) {
