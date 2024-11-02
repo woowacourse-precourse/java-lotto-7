@@ -59,8 +59,6 @@ public class LottoServiceImpl implements LottoService {
         return inputView.inputLottoWinningResult();
     }
 
-
-    // TODO: 로또 결과를 도출하는 메서드 : 필요한건 당첨 및 보너스 번호
     @Override
     public LottoWinningResult analyzeWinningResult(LottoWinningNumbers lottoWinningNumbers,
                                                    List<Lotto> issuedLotto) {
@@ -124,15 +122,19 @@ public class LottoServiceImpl implements LottoService {
         return 0;
     }
 
-    // TODO: 로또 결과의 수익률을 도출하는 메서드 : 필요한건 당첨 결과
-    public double analyzeLottoRateOfReturn(LottoWinningResult lottoWinningResult) {
+    public double analyzeLottoRateOfReturn(LottoWinningResult lottoWinningResult, int lottoCount) {
+        double money = lottoCount * 1000;
+        double lottoWinningAmount
+                = lottoWinningResult.firstPlaceNumber() * 2000000000 + lottoWinningResult.secondPlaceNumber() * 30000000
+                + lottoWinningResult.thirdPlaceNumber() * 1500000 + lottoWinningResult.fourthPlaceNumber() * 50000
+                + lottoWinningResult.fifthPlaceNumber() * 5000;
 
-        return 0;
+        return lottoWinningAmount / money * 100;
     }
 
 
     @Override
     public void printAnalyzedLottoStatus(LottoWinningResultResponse lottoWinningResultResponse) {
-
+        
     }
 }
