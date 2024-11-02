@@ -2,8 +2,8 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.constant.Prize;
 import lotto.model.LottoTickets;
@@ -31,7 +31,7 @@ public class LottoController {
 
         WinningNumbers winningNumbers = requestWinningNumbers();
 
-        LinkedHashMap<Prize, Integer> result = calculateResult(lottoTickets.getTickets(), winningNumbers);
+        Map<Prize, Integer> result = calculateResult(lottoTickets, winningNumbers);
         double rateOfReturn = calculateRateOfReturn(result, purchasePrice.value());
         outputView.displayWinningResult(result, rateOfReturn);
     }
@@ -61,7 +61,7 @@ public class LottoController {
     }
 
     private void responseLottoTickets(LottoTickets lottoTickets) {
-        outputView.displayLottoNumbers(lottoTickets.getTickets());
+        outputView.displayLottoNumbers(lottoTickets.tickets());
     }
 
     private WinningNumbers requestWinningNumbers() {
@@ -83,25 +83,11 @@ public class LottoController {
                 .toList();
     }
 
-    private LinkedHashMap<Prize, Integer> calculateResult(List<Lotto> lottoTickets, WinningNumbers winningNumbers) {
-        LinkedHashMap<Prize, Integer> result = new LinkedHashMap<>() {{
-            put(Prize.FIFTH, 0);
-            put(Prize.FOURTH, 0);
-            put(Prize.THIRD, 0);
-            put(Prize.SECOND, 0);
-            put(Prize.FIRST, 0);
-        }};
-        for (Lotto lotto : lottoTickets) {
-            Prize prize = winningNumbers.checkPrize(lotto);
-            if (prize != Prize.NON) {
-                result.replace(prize, result.get(prize) + 1);
-            }
-        }
-
-        return result;
+    private Map<Prize, Integer> calculateResult(LottoTickets lottoTickets, WinningNumbers winningNumbers) {
+        return lottoTickets.aggregateWinningResult(winningNumbers);
     }
 
-    private double calculateRateOfReturn(LinkedHashMap<Prize, Integer> result, int purchasePrice) {
+    private double calculateRateOfReturn(Map<Prize, Integer> result, int purchasePrice) {
         int totalPrizeMoney = result.entrySet().stream()
                 .mapToInt(entry -> entry.getValue() * entry.getKey().getPrizeMoney())
                 .sum();

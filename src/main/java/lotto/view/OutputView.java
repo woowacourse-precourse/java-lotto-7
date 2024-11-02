@@ -1,11 +1,10 @@
 package lotto.view;
 
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.constant.Prize;
-import lotto.model.LottoTickets;
 
 public class OutputView {
     public void displayPurchasePriceRequest() {
@@ -33,7 +32,7 @@ public class OutputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
 
-    public void displayWinningResult(LinkedHashMap<Prize, Integer> result, double rateOfReturn) {
+    public void displayWinningResult(Map<Prize, Integer> result, double rateOfReturn) {
         System.out.println("\n당첨 통계\n---");
         String resultMessage = result.entrySet().stream()
                 .map(entry -> String.format(entry.getKey().getResultMessage(), entry.getValue()))
