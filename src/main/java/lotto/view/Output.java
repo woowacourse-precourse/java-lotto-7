@@ -4,7 +4,7 @@ import static lotto.view.InstructionMessages.NUMBER_OF_PURCHASE;
 import static lotto.view.InstructionMessages.WINNING_STATISTICS;
 
 import java.util.List;
-import java.util.Set;
+import lotto.domain.Lotto;
 
 public class Output {
     private static final String DIVIDER = "---";
@@ -13,9 +13,9 @@ public class Output {
     private static final String UNIT = "개";
     private static final String CURRENCY = "원";
 
-    public static void printLottoNumbers(List<Set<Integer>> lottoNumbers, int amount) {
-        printMessage(amount + NUMBER_OF_PURCHASE.getMessage());
-        for (Set<Integer> lottoNumber : lottoNumbers) {
+    public static void printLottoNumbers(List<Lotto> lottoNumbers) {
+        printMessage(lottoNumbers.size() + NUMBER_OF_PURCHASE.getMessage());
+        for (Lotto lottoNumber : lottoNumbers) {
 //            printMessage(String.valueOf(lottoNumber));
             printMessage(lottoNumber.toString());
         }

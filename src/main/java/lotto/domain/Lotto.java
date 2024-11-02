@@ -22,4 +22,9 @@ public class Lotto {
     private boolean isDuplicated(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size(); // TODO 6으로 바꿀까?
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
