@@ -23,10 +23,6 @@ public class LottoResult {
         result.put(winningInfo, result.get(winningInfo) + 1);
     }
 
-    public HashMap<WinningInfo, Integer> getResult() {
-        return result;
-    }
-
     public void calculateTotalBenefit() {
         for (Map.Entry<WinningInfo, Integer> entry : result.entrySet()) {
             totalBenefit += entry.getKey().getWinningAmount() * entry.getValue();
