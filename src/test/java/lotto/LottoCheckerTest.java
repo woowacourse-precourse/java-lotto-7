@@ -24,7 +24,8 @@ class LottoCheckerTest {
     @Test
     void 발행_번호와_보너스_번호를_비교해_일치하는지_테스트한다() {
         Lotto issuedLotto = new Lotto(List.of(1, 2, 11, 12, 13, 6));
-        boolean result = LottoChecker.isMatchedBonus(issuedLotto, new LottoBonus(1));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        boolean result = LottoChecker.isMatchedBonus(issuedLotto, new LottoBonus(11, winningLotto));
 
         assertTrue(result);
     }

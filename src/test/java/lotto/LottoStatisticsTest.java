@@ -20,7 +20,7 @@ class LottoStatisticsTest {
         lottoStatistics = new LottoStatistics();
         issuedLottoTickets = new ArrayList<>();
         winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lottoBonus = new LottoBonus(7);
+        lottoBonus = new LottoBonus(7, winningLotto);
     }
 
     @Test
