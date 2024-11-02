@@ -22,7 +22,7 @@ public class OutputView {
 
     public void showPurchasedLottos(int purchasedCount, Lottos purchasedLottos) {
         System.out.println();
-        System.out.printf("%d개를 구매했습니다\n", purchasedCount);
+        System.out.printf("%d개를 구매했습니다.\n", purchasedCount);
         List<Lotto> lottos = purchasedLottos.getLottos();
 
         lottos.forEach(System.out::println);
