@@ -16,7 +16,7 @@ public class LottoController {
         outputView.showTicket(money.getTicket());
 
         List<Lotto> lottos = getLottos(money);
-//        outputView.showLottos(lottos);
+        outputView.showLottos(lottos);
     }
 
     private Money getMoney() {
