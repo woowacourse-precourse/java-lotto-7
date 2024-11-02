@@ -38,4 +38,18 @@ public class Lottos {
                 .map(Object::toString)
                 .collect(Collectors.joining("\n"));
     }
+
+    public void compare(WinningLotto winningLotto) {
+        for (Lotto lotto : lottoGroup) {
+            WinningRank.match(calculateWinnings(lotto, winningLotto), hasBonus(lotto, winningLotto));
+        }
+    }
+
+    public int calculateWinnings(Lotto lotto, WinningLotto winningLotto) {
+        return lotto.matchNumbers(winningLotto);
+    }
+
+    public boolean hasBonus(Lotto lotto, WinningLotto winningLotto) {
+        return lotto.matchBonus(winningLotto);
+    }
 }
