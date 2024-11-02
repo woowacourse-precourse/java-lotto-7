@@ -21,6 +21,11 @@ public class InputView {
         return inputNumbers();
     }
 
+    private static int inputBonusNumber() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        return inputNumber();
+    }
+
     private static int inputNumber() {
         return parseInt(Console.readLine());
     }
