@@ -19,12 +19,6 @@ public class Lotto {
         }
     }
 
-    public static Lotto generateLotto(){
-        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
-        lottoNumbers.sort(Comparator.naturalOrder());
-        return new Lotto(lottoNumbers);
-    }
-
     public List<Integer> getNumbers() {
         return List.copyOf(numbers);
     }
