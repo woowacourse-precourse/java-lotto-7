@@ -12,8 +12,8 @@ public class LottoService {
         Winning winning = new Winning();
 
         for (Lotto lotto : lottoTickets.getLottos()) {
-            int matchCount = countMatchNumbers(lotto.getNumbers(), ballNumber.getWinningNumbers());
-            boolean matchBonus = isMatchBonus(lotto.getNumbers(), ballNumber.getBonusNumber());
+            int matchCount = countMatchNumbers(lotto.getNumbers(), ballNumber.winningNumbers());
+            boolean matchBonus = isMatchBonus(lotto.getNumbers(), ballNumber.bonusNumber());
             Rank rank = calculateRank(matchCount, matchBonus);
             winning.increaseWinningCount(rank);
         }

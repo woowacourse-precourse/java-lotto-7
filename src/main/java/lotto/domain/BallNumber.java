@@ -6,35 +6,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class BallNumber {
+public record BallNumber(List<Integer> winningNumbers, int bonusNumber) {
 
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
-
-    public BallNumber(List<Integer> winningNumbers, int bonusNumber) {
+    public BallNumber {
         validateWinningNumbers(winningNumbers);
         validateBonusNumbers((bonusNumber));
-
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
-
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
+        // 당첨 번호 숫자가 6개인지 검사
         if (winningNumbers.size() != 6) {
-            throw ErrorCode.INVALID_LOTTO_NUMBER_COUNT.exception();
+            throw ErrorCode.INVALID_WINNING_NUMBER_COUNT.exception();
         }
 
+        // 당첨 번호 중 중복이 없는지 검사
         Set<Integer> nonDuplicateNumbers = new HashSet<>(winningNumbers);
         if (winningNumbers.size() > nonDuplicateNumbers.size()) {
-            throw ErrorCode.DUPLICATE_LOTTO_NUMBER.exception();
+            throw ErrorCode.DUPLICATE_WINNING_NUMBER.exception();
         }
     }
 
