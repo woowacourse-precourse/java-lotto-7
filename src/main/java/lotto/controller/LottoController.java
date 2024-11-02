@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Money;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +18,9 @@ public class LottoController {
 
         List<Lotto> lottos = getLottos(money);
         outputView.showLottos(lottos);
+
+        WinningLotto winningLotto = getWinningLotto();
+
     }
 
     private Money getMoney() {
@@ -42,4 +46,16 @@ public class LottoController {
         }
     }
 
+    public WinningLotto getWinningLotto() {
+        while (true) {
+            List<Integer> winningNumbers = inputView.inputWinningNumber();
+            int bonusNumber = inputView.inputBonusNumber();
+
+            try {
+                return new WinningLotto(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
