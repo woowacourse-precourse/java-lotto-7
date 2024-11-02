@@ -1,6 +1,7 @@
 package lotto.core.model;
 
 import java.util.List;
+import lotto.commons.numbers.Integers;
 import lotto.core.dto.LottoPurchaseAmountDto;
 
 public class LottoPurchaseAmount {
@@ -34,11 +35,7 @@ public class LottoPurchaseAmount {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException("로또 구입 금액을 입력해주세요.");
         }
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 구입 금액은 숫자만 입력해주세요.");
-        }
+        return Integers.parseIntOrThrow(value, "로또 구입 금액은 숫자만 입력해주세요.");
     }
 
     private void validate(Integer value) {

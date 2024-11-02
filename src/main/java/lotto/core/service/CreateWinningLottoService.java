@@ -3,6 +3,7 @@ package lotto.core.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import lotto.commons.numbers.Integers;
 import lotto.core.dto.LottoDto;
 import lotto.core.model.Lotto;
 
@@ -28,16 +29,8 @@ public class CreateWinningLottoService {
         List<Integer> numbers = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer(value, ",");
         while (tokenizer.hasMoreTokens()) {
-            numbers.add(this.parseInt(tokenizer.nextToken()));
+            numbers.add(Integers.parseIntOrThrow(tokenizer.nextToken(), "당첨 번호는 숫자만 입력해주세요."));
         }
         return numbers;
-    }
-
-    private Integer parseInt(String value) {
-        try {
-            return Integer.parseInt(value.trim());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("당첨 번호는 숫자만 입력해주세요.");
-        }
     }
 }
