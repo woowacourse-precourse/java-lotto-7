@@ -91,7 +91,7 @@ public class LottoMachineTest {
         Lotto lotto = new Lotto(List.of(7, 8, 9, 10, 11, 12));
 
         LottoResult result = LottoMachine.match(winningNumbers, List.of(lotto));
-        List<LottoPrize> prize = result.getPrizes();
+        List<LottoPrize> prize = result.prizes();
 
         assertThat(prize).isEmpty();
     }

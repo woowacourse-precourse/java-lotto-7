@@ -43,10 +43,11 @@ public class Application {
                     System.out.print(prize.getMatchCount() + "개 일치");
 
                     if (prize.isBonusBallMatched()) {
-                        System.out.print(", 보너스 볼 일치 ");
+                        System.out.print(", 보너스 볼 일치");
                     }
                     String money = String.format("%,d", prize.getMoney());
                     System.out.println(" (" + money + "원) - " + prizes.size() + "개");
                 });
+        System.out.println("총 수익률은 " + result.rateOfReturn(budget) + "%입니다.");
     }
 }

@@ -2,15 +2,10 @@ package lotto;
 
 import java.util.List;
 
-public class LottoResult {
+public record LottoResult(List<LottoPrize> prizes) {
 
-    private final List<LottoPrize> prizes;
-
-    public LottoResult(List<LottoPrize> prizes) {
-        this.prizes = prizes;
-    }
-
-    public List<LottoPrize> getPrizes() {
+    @Override
+    public List<LottoPrize> prizes() {
         return List.copyOf(prizes);
     }
 
@@ -28,5 +23,15 @@ public class LottoResult {
         return prizes.stream()
                 .filter(prize::equals)
                 .toList();
+    }
+
+    public double rateOfReturn(int cost) {
+        return (revenue() / cost) * 100;
+    }
+
+    private double revenue() {
+        return prizes.stream()
+                .mapToDouble(LottoPrize::getMoney)
+                .sum();
     }
 }
