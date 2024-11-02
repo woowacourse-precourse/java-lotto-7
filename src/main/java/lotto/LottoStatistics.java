@@ -47,7 +47,7 @@ public class LottoStatistics {
     }
 
     private double calculateRateReturn(int amount, int prize) {
-        return Math.round(((double) prize / amount) * 100 * 100) / 100.0;
+        return Math.round(((double) prize / amount) * 100 * 1000) / 1000.0;
     }
 
 }
