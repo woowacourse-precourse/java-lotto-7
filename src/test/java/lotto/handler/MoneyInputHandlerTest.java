@@ -18,7 +18,8 @@ public class MoneyInputHandlerTest {
         String inputNum = "5238000";
 
         // when
-        long lottoCount = moneyInputHandler.getLottoCount(inputNum);
+        long rawMoney = moneyInputHandler.convertToLong(inputNum);
+        long lottoCount = moneyInputHandler.validateMoney(rawMoney);
 
         // then
         assertThat(lottoCount).isEqualTo(5238L);
@@ -31,7 +32,8 @@ public class MoneyInputHandlerTest {
         String zero = "0";
 
         // when
-        long lottoCount = moneyInputHandler.getLottoCount(zero);
+        long rawMoney = moneyInputHandler.convertToLong(zero);
+        long lottoCount = moneyInputHandler.validateMoney(rawMoney);
 
         // then
         assertThat(lottoCount).isEqualTo(0);

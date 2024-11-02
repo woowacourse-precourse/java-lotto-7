@@ -1,11 +1,13 @@
 package lotto.handler;
 
 import static lotto.message.ErrorMessage.*;
+import static lotto.view.RequestView.getMoney;
 
 public class MoneyInputHandler {
-    public long getLottoCount(String inputNum) {
+    public long getLottoCount() {
         while (true) {
             try {
+                String inputNum = getMoney();
                 long rawMoney = convertToLong(inputNum);
                 return validateMoney(rawMoney);
             } catch (IllegalArgumentException e) {
