@@ -28,7 +28,7 @@
 
 - [ ] 구입 금액에 해당하는 만큼 로또 발행
     - [ ] 로또 발행 수 = 구입 금액 / 로또 1장 가격(`1,000원`)
-- [ ] 로또 1개 : 1 ~ 45 사이의 중복되지 않은 정수 6개 반환
+- [x] 로또 1개 : 1 ~ 45 사이의 중복되지 않은 정수 6개 반환
 
 ```java
 //camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange() 활용
