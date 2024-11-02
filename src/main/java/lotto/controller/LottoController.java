@@ -2,8 +2,12 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawResult;
+import lotto.domain.LottoPrize;
+import lotto.domain.LottoStats;
 import lotto.service.draw.LottoDrawService;
 import lotto.service.lotto.LottoService;
+import lotto.service.prize.LottoPrizeService;
+import lotto.service.statistic.LottoStatService;
 import lotto.view.input.LottoInputView;
 import lotto.view.output.LottoOutputView;
 
@@ -15,13 +19,17 @@ public class LottoController {
     private final LottoOutputView outputView;
     private final LottoService lottoService;
     private final LottoDrawService lottoDrawService;
+    private final LottoPrizeService lottoPrizeService;
+    private final LottoStatService lottoStatService;
 
-    public LottoController(LottoInputView inputView, LottoOutputView outputView,
-                           LottoService lottoService, LottoDrawService lottoDrawService) {
+    public LottoController(LottoInputView inputView, LottoOutputView outputView, LottoService lottoService,
+                           LottoDrawService drawService, LottoPrizeService lottoPrizeService, LottoStatService statService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
-        this.lottoDrawService = lottoDrawService;
+        this.lottoDrawService = drawService;
+        this.lottoPrizeService = lottoPrizeService;
+        this.lottoStatService = statService;
     }
 
     public List<Lotto> purchaseLotto() {
@@ -34,6 +42,14 @@ public class LottoController {
     public LottoDrawResult drawLotto() {
         Lotto drewLotto = getDrewLotto();
         return getLottoDrawResult(drewLotto);
+    }
+
+    public LottoStats getLottoStats(List<Lotto> lottoBundle, LottoDrawResult drawResult) {
+
+        List<LottoPrize> lottoPrizes = lottoPrizeService.getLottoPrizes(lottoBundle, drawResult);
+        LottoStats lottoStats = lottoStatService.getLottoStats(lottoPrizes, lottoBundle.size() * 1000);
+        outputView.printLottoStats(lottoStats);
+        return lottoStats;
     }
 
     private LottoDrawResult getLottoDrawResult(Lotto drewLotto) {

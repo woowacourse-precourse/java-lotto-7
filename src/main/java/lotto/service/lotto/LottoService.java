@@ -13,4 +13,5 @@ public interface LottoService {
     List<Lotto> createLottoBundle(int purchaseCount);
     Lotto createLotto(List<Integer> numbers);
 
+
 }
