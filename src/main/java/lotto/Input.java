@@ -18,6 +18,17 @@ public class Input {
         return Console.readLine();
     }
 
+    public static String getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public static void validateBonusNumberNotDuplicate(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복 될 수 없습니다.");
+        }
+    }
+
     public static String[] split(String input) {
         return input.split(",");
     }
