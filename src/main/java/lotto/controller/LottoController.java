@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.dto.LottoNumbers;
-import lotto.dto.WinningStatistics;
+import lotto.model.dto.LottoNumbers;
+import lotto.model.dto.WinningStatistics;
 import lotto.model.LottoResult;
 import lotto.model.Money;
 import lotto.model.Rank;

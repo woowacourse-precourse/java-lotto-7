@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.model.dto;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

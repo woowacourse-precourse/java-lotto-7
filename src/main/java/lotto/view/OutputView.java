@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.dto.LottoNumbers;
-import lotto.dto.WinningStatistics;
+import lotto.model.dto.LottoNumbers;
+import lotto.model.dto.WinningStatistics;
 
 public class OutputView {
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
