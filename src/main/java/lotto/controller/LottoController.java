@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.dto.BonusLottoNumber;
 import lotto.dto.LottoPurchaseAmount;
 import lotto.dto.WinningLottoNumbers;
 import lotto.service.LottoService;
@@ -22,6 +23,7 @@ public class LottoController {
         LottoPurchaseAmount lottoPurchaseAmount = inputLottoPurchaseAmount();
         Lottos lottos = buyLottos(lottoPurchaseAmount);
         WinningLottoNumbers winningLottoNumbers = makeWinningLottoNumbers();
+        BonusLottoNumber bonusLottoNumber = makeBonusLottoNumber(winningLottoNumbers);
     }
 
     private LottoPurchaseAmount inputLottoPurchaseAmount() {
@@ -39,5 +41,10 @@ public class LottoController {
     private WinningLottoNumbers makeWinningLottoNumbers() {
         outputView.printInputLottoWinningNumbersMessage();
         return WinningLottoNumbers.from(inputView.InputLottoWinningNumbers());
+    }
+
+    private BonusLottoNumber makeBonusLottoNumber(WinningLottoNumbers winningLottoNumbers) {
+        outputView.printInputLottoBonusNumberMessage();
+        return BonusLottoNumber.from(inputView.InputLottoBonusNumber(), winningLottoNumbers);
     }
 }
