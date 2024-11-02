@@ -13,7 +13,7 @@ public final class StringValidator {
     }
     
     public static boolean hasNotDigits(String lineToValidate) {
-        return !lineToValidate.matches("^[0-9]*$");
+        return !lineToValidate.matches("^[0-9]+$");
     }
 
     public static boolean isOutOfRangeLottoNumber(String lineToValidate) {
