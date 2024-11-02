@@ -16,4 +16,13 @@ public class LottoResult {
         }
     }
 
+    public void displayWinningStatistics() {
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                System.out.println(rank);
+            }
+        }
+    }
+
 }

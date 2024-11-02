@@ -40,4 +40,13 @@ public enum Rank {
         }
         return NONE;
     }
+
+    @Override
+    public String toString() {
+        if (matchBonus) {
+            return matchCount + "개 일치, 보너스 볼 일치 (" + String.format("%,d",prize) + "원) - " + count + "개";
+        }
+        return matchCount + "개 일치 (" + String.format("%,d",prize) + "원) - " + count + "개";
+    }
+
 }
