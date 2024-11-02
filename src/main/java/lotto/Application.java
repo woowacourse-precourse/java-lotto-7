@@ -9,16 +9,13 @@ import java.util.stream.Collectors;
 public class Application {
     public static void main(String[] args) {
         int purchaseAmount = readValidPurchaseAmount();
-        System.out.println("Final purchase amount: " + purchaseAmount);
-
         List<Integer> winningNumbers = inputWinningNumbers();
-        System.out.println("Winning numbers: " + winningNumbers);
-
         int bonusNumber = inputBonusNumber(winningNumbers);
-        System.out.println("Bonus number: " + bonusNumber);
-
         List<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
         printLottoTickets(lottoTickets);
+
+        Map<Rank, Integer> result = calculateResults(lottoTickets, winningNumbers, bonusNumber);
+        printResults(result);
     }
 
     private static int readValidPurchaseAmount() {
@@ -110,12 +107,6 @@ public class Application {
         return lottoTickets;
     }
 
-    private static List<Integer> generateSingleLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lottoNumbers);  // 오름차순 정렬
-        return lottoNumbers;
-    }
-
     private static void printLottoTickets(List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + " tickets purchased.");
         for (Lotto ticket : lottoTickets) {
@@ -128,5 +119,42 @@ public class Application {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    private static Map<Rank, Integer> calculateResults(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Rank, Integer> resultMap = new HashMap<>();
+
+        for (Lotto ticket : lottoTickets) {
+            int matchCount = getMatchCount(ticket, winningNumbers);
+            boolean matchBonus = ticket.getNumbers().contains(bonusNumber);
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+
+            resultMap.put(rank, resultMap.getOrDefault(rank, 0) + 1);
+        }
+        return resultMap;
+    }
+
+    private static int getMatchCount(Lotto ticket, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : ticket.getNumbers()) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private static void printResults(Map<Rank, Integer> results) {
+        System.out.println("Winning Results:");
+        System.out.println("----------------");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.MISS) {
+                System.out.printf("%d개 일치%s (%d원) - %d개%n",
+                        rank.ordinal() + 3,
+                        (rank == Rank.SECOND ? ", 보너스 볼 일치" : ""),
+                        rank.getPrize(),
+                        results.getOrDefault(rank, 0));
+            }
+        }
     }
 }
