@@ -1,19 +1,17 @@
 package lotto;
 
-import java.util.List;
-
 public enum Rank {
-    FIFTH(3, false, "5,000원"),                 // 3개 일치
-    FOURTH(4, false, "50,000원"),               // 4개 일치
-    THIRD(5, false,  "1,500,000원"),             // 5개 일치
-    SECOND(5, true, "30,000,000원"),           // 5개 일치 + 보너스 번호
-    FIRST(6, false, "2,000,000,000원");         // 6개 일치
+    FIFTH(3, false, 5_000),                 // 3개 일치
+    FOURTH(4, false, 50_000),               // 4개 일치
+    THIRD(5, false,  1_500_000),             // 5개 일치
+    SECOND(5, true, 30_000_000),           // 5개 일치 + 보너스 번호
+    FIRST(6, false, 2_000_000_000);         // 6개 일치
 
     int balls;
-    String winningPrize;
+    int winningPrize;
     boolean bonus;
 
-    Rank(int balls, boolean bonus, String winningPrize) {
+    Rank(int balls, boolean bonus, int winningPrize) {
         this.balls = balls;
         this.bonus = bonus;
         this.winningPrize = winningPrize;
@@ -23,11 +21,7 @@ public enum Rank {
         return balls;
     }
 
-    boolean getBonus() {
-        return bonus;
-    }
-
-    String getWinningPrize() {
+    int getWinningPrize() {
         return winningPrize;
     }
 }
