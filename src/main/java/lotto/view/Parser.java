@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Parser {
 
-    private final static String ERROR_NON_NUMERIC_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 숫자로 이루어져 있어야 합니다.";
-    private final static String ERROR_NON_NUMERIC_BONUS_NUMBER_MESSAGE = "[ERROR] 보너스 번호는 숫자로 이루어져 있어야 합니다.";
+    private static final String ERROR_NON_NUMERIC_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 숫자로 이루어져 있어야 합니다.";
+    private static final String ERROR_NON_NUMERIC_BONUS_NUMBER_MESSAGE = "[ERROR] 보너스 번호는 숫자로 이루어져 있어야 합니다.";
 
-    private final static String DELIMITER_COMMA = ",";
+    private static final String DELIMITER_COMMA = ",";
 
     public static int parsePurchaseAmount(String input) {
         int purchaseAmount = Integer.parseInt(input);

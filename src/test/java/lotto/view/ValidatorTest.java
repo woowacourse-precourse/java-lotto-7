@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
 
-    private final static String ERROR_NOT_DIVISIBLE_BY_1000 = "[ERROR] 구입 금액은 1,000으로 나누어 떨어져야 합니다.";
-    private final static String ERROR_COUNT_IS_NOT_6_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 총 6개 입력되어야 합니다.";
-    private final static String ERROR_OUT_OF_RANGE_WINNING_NUMBER_MESSAGE =
+    private static final String ERROR_NOT_DIVISIBLE_BY_1000 = "[ERROR] 구입 금액은 1,000으로 나누어 떨어져야 합니다.";
+    private static final String ERROR_COUNT_IS_NOT_6_WINNING_NUMBER_MESSAGE = "[ERROR] 당첨 번호는 총 6개 입력되어야 합니다.";
+    private static final String ERROR_OUT_OF_RANGE_WINNING_NUMBER_MESSAGE =
             "[ERROR] 당첨 번호는 1에서 45 사이의 숫자로 이루어져 있어야 합니다.";
-    private final static String ERROR_DUPLICATE_WINNING_NUMBER_MESSAGE =
+    private static final String ERROR_DUPLICATE_WINNING_NUMBER_MESSAGE =
             "[ERROR] 당첨 번호는 중복되지 않은 서로 다른 6개의 숫자가 입력 되어야 합니다.";
     private static final String ERROR_OUT_OF_RANGE_BONUS_NUMBER_MESSAGE =
             "[ERROR] 보너스 번호는 1에서 45 사이의 숫자로 이루어져 있어야 합니다.";
