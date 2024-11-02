@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -23,8 +24,9 @@ class LottoTest {
     }
 
     @Test
-    void Lotto_객체의_로또_번호를_오름차순으로_출력하는지_확인한다() {
+    void Lotto_객체의_로또_번호를_오름차순으로_정렬한다() {
         Lotto lotto = new Lotto(Arrays.asList(4, 9, 44, 32, 29, 1));
-        lotto.printLottoNumbers();
+        List<Integer> expected = Arrays.asList(1, 4, 9, 29, 32, 44);
+        assertEquals(lotto.getSortedLottoNumbers(), expected);
     }
 }
