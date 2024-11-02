@@ -11,10 +11,6 @@ public class ViewOutput {
     private static final String COUNT_FIFTH_MESSAGE = "3개 일치 (5,000원) -  %d개%n";
     private static final String TOTAL_EARNING_RATE = "총 수익률은 %.2f%%입니다.%n";
 
-    public void result(int result){
-        System.out.println(result);
-    }
-
     public void printResult(int countFist, int countSecond, int countThird, int countFourth, int countFifth){
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println("---");

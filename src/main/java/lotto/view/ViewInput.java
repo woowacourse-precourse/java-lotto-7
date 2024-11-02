@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ViewInput {
     public static final String INITIAL_MESSAGE = "구입금액을 입력해 주세요.";
-    public static final String PURCHASE_AMOUNT_COUNT_MESSAGE = "개를 구매했습니다.";
+    public static final String PURCHASE_AMOUNT_COUNT_MESSAGE = "%d개를 구매했습니다.";
     public static final String RECEIVE_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해주세요";
     public static final String RECEIVE_LUCKY_NUMBER_MESSAGE = "보너스 번호를 입력해주세요";
     public static final String INPUT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1000으로 나누어 떨어져야 합니다.";
@@ -47,7 +47,7 @@ public class ViewInput {
 
     private void printPurchaseAmount(int purchaseAmount){
         int purchaseAmountCount = purchaseAmount / 1000;
-        System.out.println(purchaseAmountCount + PURCHASE_AMOUNT_COUNT_MESSAGE);
+        System.out.printf(PURCHASE_AMOUNT_COUNT_MESSAGE, purchaseAmountCount);
     }
 
     private void validatorPurchaseAmount(int purchaseAmount){

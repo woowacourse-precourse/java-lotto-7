@@ -49,13 +49,9 @@ public class Lotto {
     }
 
     private int countCorrect(List<Integer> numbers, List<Integer> winningNumber) {
-        int correct = 0;
-        for (Integer number : numbers) {
-            if (winningNumber.contains(number)) {
-                correct++;
-            }
-        }
-        return correct;
+        List<Integer> tmpNumbers = new ArrayList<>(numbers);
+        tmpNumbers.retainAll(winningNumber);
+        return tmpNumbers.size();
     }
 
     public double calculateEarningRate(int purchaseAmount, int countFirst, int countSecond, int countThird, int countFourth, int countFifth){
