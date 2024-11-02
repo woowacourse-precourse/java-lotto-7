@@ -13,7 +13,11 @@ public class Lottos {
 
     private int lottosCount;
 
-    public Lottos(List<String> winNumbersStr, int buyAmount) {
+    private int bonusNumber;
+
+    private Winstatus winstatus;
+
+    public Lottos(List<String> winNumbersStr, int buyAmount,int bonusNumber) {
         if (validateWinNumberNotNumber(winNumbersStr)) {
             throw new IllegalArgumentException(ErrorMessage.NOTNUMBERWINNUMBERS.getMessage());
         }
@@ -21,7 +25,8 @@ public class Lottos {
         winNumbers = ParseLotto.winNumberStrToInteger(winNumbersStr);
         lottos = new ArrayList<>();
         lottosCount = buyAmount / LottoConst.LOTTOPERAMOUNT.getLottoConst();
-
+        bonusNumber = bonusNumber;
+        winstatus = new Winstatus();
     }
 
     public void generateLotto() {
@@ -54,6 +59,18 @@ public class Lottos {
 
     public int getLottosCount() {
         return lottosCount;
+    }
+
+    public List<Integer> getWinNumbers() {
+        return winNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public Winstatus getWinstatus() {
+        return winstatus;
     }
 
 }

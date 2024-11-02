@@ -14,7 +14,7 @@ public class LottoController {
     private List<String> winNumbers;
     private Integer bonusNumber;
 
-    public void run(){
+    public void run() {
 
         //입출력 로직
         buyAmount = InputView.inputBuyAmount();
@@ -23,12 +23,16 @@ public class LottoController {
         winNumbers = ParseLotto.splitWinNumber(winNumbersStr);
 
         //로또 발행
-        Lottos lottos = new Lottos(winNumbers, buyAmount);
+        Lottos lottos = new Lottos(winNumbers, buyAmount, bonusNumber);
         lottos.generateLotto();
         lottos.lottosSort();
 
         //발행한 로또 출력
         OutView.generatedLottoPrint(lottos.getLottosCount(), lottos);
+
+        lottos.getWinstatus().checkWin(lottos);
+
+        OutView.winStatusPrint(lottos);
     }
 
 }

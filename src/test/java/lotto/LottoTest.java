@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.error.ErrorMessage;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.Lottos;
+import lotto.model.lotto.Winstatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,7 @@ class LottoTest {
     @DisplayName("로또 번호 발행기능 테스트")
     public void createLotto(){
 
-        Lottos lottos = new Lottos(List.of("1","2","3","4","5","6"),2000);
+        Lottos lottos = new Lottos(List.of("1","2","3","4","5","6"),2000,1);
 
         lottos.generateLotto();
 
