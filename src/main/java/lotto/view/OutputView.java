@@ -12,6 +12,8 @@ public class OutputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
+    private static final String DIVIDING_MESSAGE = "---";
     private static final String PURCHASE_COUNT_FORMAT = "%d개를 구매했습니다.";
     private static final String WINNING_RANK_FORMAT = "%s (%,d원) - %d개";
     private static final String RETURN_RATE_FORMAT = "총 수익률은 %,.1f%%입니다.";
@@ -28,8 +30,8 @@ public class OutputView {
 
     public void printResult(LottoResult lottoResult) {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_STATISTICS_MESSAGE);
+        System.out.println(DIVIDING_MESSAGE);
 
         Arrays.stream(Rank.values())
                 .forEach(rank -> printRankCount(rank, lottoResult.getCountByRank(rank)));
