@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.Lotto;
+import lotto.util.ErrorMessage;
 import lotto.util.InputValidator;
 import lotto.util.Separator;
 import lotto.view.InputView;
@@ -18,30 +20,33 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
+        Lotto lotto = createLotto();
+        int bonusNumber = getValidatedBonusNumber();
     }
 
     private int getPurchaseAmount() {
-        int purchaseAmount = InputView.getPurchaseAmount();
+        int purchaseAmount = parseInt(InputView.getPurchaseAmount());
         inputValidator.validatePurchaseAmount(purchaseAmount, LOTTO_PRICE);
         return purchaseAmount;
     }
 
-    private List<Integer> getWinningNumbers() {
+    private Lotto createLotto() {
         List<Integer> winningNumbers = Separator.splitWithCommaToInteger(InputView.getWinningNumbers());
-        inputValidator.validateWinningNumbers(winningNumbers);
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
-    private int getBonusNumber() {
-        int bonusNumber = toInt(InputView.getBonusNumber());
+    private int getValidatedBonusNumber() {
+        int bonusNumber = parseInt(InputView.getBonusNumber());
         inputValidator.validateBonusNumber(bonusNumber);
         return bonusNumber;
     }
 
-    private int toInt(String input) {
-        return Integer.parseInt(input);
+    private int parseInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_TYPE_INT.getMessage());
+        }
     }
 
 }
