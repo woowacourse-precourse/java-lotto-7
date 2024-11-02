@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningLotto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +15,21 @@ public class WinningLottoTest {
     private static final int VALID_SIZE = 6;
     private static final int START_INCLUSIVE = 1;
 
+    private WinningLotto winningLotto;
+    private List<Integer> numbers;
+    private int bonusNumber;
+
+    @BeforeEach
+    void setUp() {
+        numbers = createValidNumbers(START_INCLUSIVE);
+        bonusNumber = numbers.get(VALID_SIZE - 1) + 1;
+        winningLotto = new WinningLotto(new Lotto(numbers), bonusNumber);
+    }
+
     @Test
     @DisplayName("중복되는 숫자의 개수를 올바르게 반환한다.")
     void returnValidMatchingNumber() {
         // given
-        List<Integer> numbers = createValidNumbers();
-        int bonusNumber = numbers.getLast() + 1;
-        WinningLotto winningLotto = new WinningLotto(new Lotto(numbers), bonusNumber);
-
         List<Integer> comparedNumbers = numbers;
 
         // when
@@ -31,10 +39,23 @@ public class WinningLottoTest {
         assertThat(matchingNumber).isEqualTo(numbers.size());
     }
 
-    private List<Integer> createValidNumbers() {
+    @Test
+    @DisplayName("보너스 숫자와의 일치 여부를 올바르게 반환한다.")
+    void shouldReturnCorrectBonusMatchStatus() {
+        // given
+        List<Integer> comparedNumbers = createValidNumbers(bonusNumber);
+
+        // when
+        boolean bonusNumberMatched = winningLotto.isBonusNumberMatchedWith(comparedNumbers);
+
+        // then
+        assertThat(bonusNumberMatched).isTrue();
+    }
+
+    private List<Integer> createValidNumbers(int startInclusive) {
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < VALID_SIZE; i++) {
-            numbers.add(START_INCLUSIVE + i);
+            numbers.add(startInclusive + i);
         }
         return numbers;
     }
