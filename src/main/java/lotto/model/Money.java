@@ -6,6 +6,10 @@ public record Money (int amount) {
         validate(amount);
     }
 
+    public int getLottoTicket() {
+        return amount / 1000;
+    }
+
     private void validate(int input) {
         validateIsDivisible(input);
         validateBelowMinimum(input);

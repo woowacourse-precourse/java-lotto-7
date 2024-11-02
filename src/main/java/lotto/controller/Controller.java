@@ -16,6 +16,9 @@ public class Controller {
         System.out.println("받은 돈: " + money);
         Lotto testLotto = LottoGenerator.createLotto();
 
+        // 구입 금액에 따른 로또 개수 테스트
+        System.out.println("로또 개수: " + money.getLottoTicket());
+
         // 로또 생성 테스트
         System.out.println(testLotto.getLottoNumbers());
     }
