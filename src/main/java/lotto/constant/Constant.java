@@ -8,4 +8,9 @@ public class Constant {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final String DELIMITER = ",";
+    public static final int THREE_MATCHES_PROFIT = 5000;
+    public static final int FOUR_MATCHES_PROFIT = 50000;
+    public static final int FIVE_MATCHES_PROFIT = 1500000;
+    public static final int FIVE_MATCHES_BONUS_MATCH_PROFIT = 30000000;
+    public static final int SIX_MATCHES_PROFIT = 2000000000;
 }

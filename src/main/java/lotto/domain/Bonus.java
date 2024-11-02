@@ -56,4 +56,8 @@ public class Bonus {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
+
+    public int getNumber() {
+        return number;
+    }
 }
