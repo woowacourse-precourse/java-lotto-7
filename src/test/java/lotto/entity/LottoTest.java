@@ -103,4 +103,19 @@ class LottoTest {
         // Then
         assertTrue(bonusMatch);
     }
+
+    @Test
+    @DisplayName("보너스 번호와 일치하지 않을 경우 false 반환")
+    void shouldReturnFalseWhenBonusNumberDoesNotMatch() {
+        // Given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        int bonusNumber = 7;
+
+        // When
+        boolean bonusMatch = lotto.hasBonusNumber(bonusNumber);
+
+        // Then
+        assertFalse(bonusMatch);
+    }
 }
