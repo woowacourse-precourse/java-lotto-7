@@ -20,7 +20,6 @@ public class LottoService {
         this.prizeCalculator = prizeCalculator;
     }
 
-    // 티켓 생성
     public void generateLottoTickets(int purchaseAmount) {
         this.lottoTickets = ticketGenerator.createTickets(purchaseAmount);
     }
@@ -31,18 +30,29 @@ public class LottoService {
         this.bonusNumber = bonusNumber;
     }
 
-
-    // 당첨 결과 계산 및 집계
+    // 당첨 결과 집계
     public Map<PrizeTier, Long> calculateResults() {
-        List<PrizeTier> prizeResults = prizeCalculator.calculateResults(lottoTickets, winningTicket, bonusNumber);
+        List<PrizeTier> prizeResults = calculatePrizeResults();
         return prizeResults.stream()
                 .collect(Collectors.groupingBy(tier -> tier, Collectors.counting()));
     }
 
     // 수익률 계산
     public double calculateProfitRate(int purchaseAmount) {
-        List<PrizeTier> prizeResults = prizeCalculator.calculateResults(lottoTickets, winningTicket, bonusNumber);
-        int totalPrize = prizeCalculator.calculateTotalPrize(prizeResults);
+        int totalPrize = calculateTotalPrize();
+        return calculateProfitRate(totalPrize, purchaseAmount);
+    }
+
+    private List<PrizeTier> calculatePrizeResults() {
+        return prizeCalculator.calculateResults(lottoTickets, winningTicket, bonusNumber);
+    }
+
+    private int calculateTotalPrize() {
+        List<PrizeTier> prizeResults = calculatePrizeResults();
+        return prizeCalculator.calculateTotalPrize(prizeResults);
+    }
+
+    private double calculateProfitRate(int totalPrize, int purchaseAmount) {
         return prizeCalculator.calculateProfitRate(totalPrize, purchaseAmount);
     }
 

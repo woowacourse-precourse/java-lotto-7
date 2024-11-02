@@ -6,14 +6,6 @@ import lotto.model.PrizeTier;
 
 public class PrizeCalculator {
 
-
-    private PrizeTier determinePrize(Lotto ticket, Lotto winningLotto, int bonusNumber) {
-        int matchCount = ticket.getMatchCount(winningLotto.getNumbers());
-        boolean bonusMatch = ticket.containsBonus(bonusNumber);
-        return PrizeTier.findPrize(matchCount, bonusMatch);
-    }
-
-
     public List<PrizeTier> calculateResults(List<Lotto> tickets, Lotto winningLotto, int bonusNumber) {
         return tickets.stream()
                 .map(ticket -> determinePrize(ticket, winningLotto, bonusNumber))
@@ -27,12 +19,31 @@ public class PrizeCalculator {
     }
 
     public double calculateProfitRate(int totalPrize, int purchaseAmount) {
-        double profitRate = (double) totalPrize / purchaseAmount * 100;
+        double profitRate = computeProfitRate(totalPrize, purchaseAmount);
         return roundToTwoDecimalPlaces(profitRate);
     }
 
+    private PrizeTier determinePrize(Lotto ticket, Lotto winningLotto, int bonusNumber) {
+        int matchCount = calculateMatchCount(ticket, winningLotto);
+        boolean bonusMatch = isBonusMatch(ticket, bonusNumber);
+        return PrizeTier.findPrize(matchCount, bonusMatch);
+    }
+
+    private int calculateMatchCount(Lotto ticket, Lotto winningLotto) {
+        return ticket.getMatchCount(winningLotto.getNumbers());
+    }
+
+    private boolean isBonusMatch(Lotto ticket, int bonusNumber) {
+        return ticket.containsBonus(bonusNumber);
+    }
+
+    private double computeProfitRate(int totalPrize, int purchaseAmount) {
+        return (double) totalPrize / purchaseAmount * 100;
+    }
 
     private double roundToTwoDecimalPlaces(double value) {
         return Math.round(value * 100.0) / 100.0;
     }
+
 }
+
