@@ -6,13 +6,13 @@ import static lotto.exception.ErrorMessage.MONEY_NOT_DIVISIBLE;
 import static lotto.exception.ErrorMessage.MONEY_OUT_OF_RANGE;
 
 import lotto.exception.LottoException;
-import lotto.utils.Parser;
+import lotto.utils.InputParser;
 
 public class Money {
     private final int price;
 
     public Money(final String input) {
-        int price = Parser.parsePrice(input);
+        int price = InputParser.parsePrice(input);
         validate(price);
         this.price = price;
     }

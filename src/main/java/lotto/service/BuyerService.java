@@ -5,7 +5,7 @@ import static lotto.constant.LottoGameRule.LOTTO_COST;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
-import lotto.utils.Parser;
+import lotto.utils.InputParser;
 
 public class BuyerService {
     public int calculateLottoQuantity(String input) {
@@ -16,7 +16,7 @@ public class BuyerService {
     }
 
     public Lotto createWinningLotto(String input) {
-        return new Lotto(Parser.parseNumbers(input));
+        return new Lotto(InputParser.parseNumbers(input));
     }
 
     public BonusNumber createBonusNumber(Lotto winningLotto, String input) {

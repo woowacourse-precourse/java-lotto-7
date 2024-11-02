@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.exception.LottoException;
 
-public class Parser {
+public class InputParser {
     private final static String DELIMITER = ",";
 
     public static int parsePrice(final String input) {
@@ -30,7 +30,7 @@ public class Parser {
         inputValidate(input);
 
         return splitByDelimiter(input).stream()
-                .map(Parser::convertToInt)
+                .map(InputParser::convertToInt)
                 .toList();
     }
 

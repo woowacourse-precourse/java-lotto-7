@@ -7,13 +7,13 @@ import static lotto.exception.ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE;
 
 import java.util.List;
 import lotto.exception.LottoException;
-import lotto.utils.Parser;
+import lotto.utils.InputParser;
 
 public class BonusNumber {
     private final int number;
 
     public BonusNumber(Lotto winningLotto, String input) {
-        int number = Parser.parseBonusNumber(input);
+        int number = InputParser.parseBonusNumber(input);
         validate(winningLotto, number);
         this.number = number;
     }
