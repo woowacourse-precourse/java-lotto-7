@@ -50,4 +50,27 @@ public class LottoPurchasePrice {
         return (totalPrizeMoney / purchasePrice) * PERCENTAGE;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LottoPurchasePrice that = (LottoPurchasePrice) o;
+
+        if (purchasePrice != that.purchasePrice) {
+            return false;
+        }
+        return lottoCount == that.lottoCount;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = purchasePrice;
+        result = 31 * result + lottoCount;
+        return result;
+    }
 }

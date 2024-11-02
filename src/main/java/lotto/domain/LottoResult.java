@@ -12,7 +12,7 @@ public class LottoResult {
 
     private LottoResult(List<LottoRank> lottoRanks, double lottoProfitRate) {
         this.rankCount = new HashMap<>();
-        this.lottoProfitRate=lottoProfitRate;
+        this.lottoProfitRate = lottoProfitRate;
         initRankCount();
         makeRankCount(lottoRanks);
     }
@@ -39,4 +39,30 @@ public class LottoResult {
         return lottoProfitRate;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LottoResult that = (LottoResult) o;
+
+        if (Double.compare(that.lottoProfitRate, lottoProfitRate) != 0) {
+            return false;
+        }
+        return rankCount.equals(that.rankCount);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = rankCount.hashCode();
+        temp = Double.doubleToLongBits(lottoProfitRate);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lotto.enums.LottoError;
 import lotto.enums.LottoRank;
@@ -48,4 +49,27 @@ public class LottoBundle {
                 .mapToDouble(LottoRank::getPrizeMoney)
                 .sum();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LottoBundle that = (LottoBundle) o;
+
+        if (!Objects.equals(lottos, that.lottos)) {
+            return false;
+        }
+        return Objects.equals(lottoPurchasePrice, that.lottoPurchasePrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottos, lottoPurchasePrice);
+    }
+
 }

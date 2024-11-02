@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Objects;
 import lotto.enums.LottoConfig;
 import lotto.enums.LottoError;
 
@@ -52,5 +53,24 @@ public class WinningLotto {
 
     public boolean isContains(int number) {
         return numbers.contains(number);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        WinningLotto that = (WinningLotto) o;
+
+        return Objects.equals(numbers, that.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return numbers != null ? numbers.hashCode() : 0;
     }
 }
