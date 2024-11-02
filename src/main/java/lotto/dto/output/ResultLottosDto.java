@@ -10,11 +10,11 @@ import static lotto.domain.Lotto.LOTTO_BONUS_COUNT;
 import static lotto.domain.Lotto.LOTTO_BONUS_RANK_COUNT;
 
 public class ResultLottosDto {
-    private final String LOTTO_AMOUNT_START = "(";
-    private final String LOTTO_AMOUNT_END = "원) - ";
-    private final String COUNT = "개";
-    private final String BONUS_VIEW = "개 일치, 보너스 볼 일치 ";
-    private final String LOTTO_COUNT = "개 일치 ";
+    private static final String LOTTO_AMOUNT_START = "(";
+    private static final String LOTTO_AMOUNT_END = "원) - ";
+    private static final String COUNT = "개";
+    private static final String BONUS_VIEW = "개 일치, 보너스 볼 일치 ";
+    private static final String LOTTO_COUNT = "개 일치 ";
 
     private final List<String> results;
 
@@ -29,7 +29,7 @@ public class ResultLottosDto {
     private String transformDto(ResultLotto resultLotto) {
         return transformWinLottoRank(resultLotto) +
                 LOTTO_AMOUNT_START +
-                resultLotto.getLottoAmount() +
+                formatWithCommas(resultLotto.getLottoAmount()) +
                 LOTTO_AMOUNT_END +
                 resultLotto.getCount() +
                 COUNT;
@@ -41,5 +41,9 @@ public class ResultLottosDto {
             return resultLotto.getWinLottoNumberCount() + BONUS_VIEW;
         }
         return resultLotto.getWinLottoNumberCount() + LOTTO_COUNT;
+    }
+
+    private String formatWithCommas(int number) {
+        return String.format("%,d", number);
     }
 }

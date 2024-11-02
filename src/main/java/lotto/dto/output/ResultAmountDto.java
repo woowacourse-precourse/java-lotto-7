@@ -7,8 +7,8 @@ import java.util.Arrays;
 import static lotto.viewHandler.exception.MyExceptionConstant.ZERO;
 
 public class ResultAmountDto {
-    private final Double FIRST_DECIMAL_PLACE = 10.0;
-    private final Integer ROUND_NUMBER = 1_000;
+    private static final Double FIRST_DECIMAL_PLACE = 10.0;
+    private static final Integer ROUND_NUMBER = 1_000;
 
     private final Double amount;
 
