@@ -53,4 +53,8 @@ public class LottoTemp {
     public void printPurchaseLottoNumbers(List<Lotto> lottos){
         lottos.forEach(lotto -> io.printMessage(lotto.toString()));
     }
+
+    public void printRequestWinningNumbers(){
+        io.printMessage("당첨 번호를 입력해 주세요.");
+    }
 }
