@@ -24,6 +24,7 @@ public class BonusNumber {
     private static class Validator {
 
         private static final String BONUS_NUMBER_NUMERIC_REGEX = "-?\\d+";
+
         private static int validateBonusNumber(List<Integer> winningNumber, String bonusNumber) {
             validateWinningNumbersIsNotEmpty(bonusNumber);
             int numericBonusNumber = validateBonusNumberIsNumeric(bonusNumber);
