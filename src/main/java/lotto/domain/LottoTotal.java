@@ -35,6 +35,7 @@ public class LottoTotal {
         for (int i = 0; i <= randomLottoNumber.size() - batchSize; i += batchSize) {
             List<Integer> currentLottoSet = randomLottoNumber.subList(i, i + batchSize);
             if (currentLottoSet.contains(bonusNum)&&(count[5]!=0)) {
+                count[5]--;
                 count[7]++;
             }
         }
