@@ -5,6 +5,7 @@ import static lotto.message.ErrorMessage.INVALID_NUMBER_ERROR;
 import static lotto.message.ErrorMessage.PARSE_INT_ERROR;
 
 import java.util.Set;
+import lotto.domain.Lotto;
 
 public class BonusNumberValidator {
     private int bonusNumber = 0;
@@ -31,7 +32,7 @@ public class BonusNumberValidator {
 
     private boolean isInvalidNumber(int bonusNumber) {
         try {
-            if (bonusNumber < 1 || 45 < bonusNumber) {
+            if (bonusNumber < Lotto.LOTTO_NUMBER_MIN || Lotto.LOTTO_NUMBER_MAX < bonusNumber) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

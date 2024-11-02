@@ -16,7 +16,7 @@ public class LottoMachine {
     }
 
     private int getQuantity(int purchaseAmount) {
-        return purchaseAmount / 1000;
+        return purchaseAmount / Lotto.LOTTO_UNIT_PRICE;
     }
 
     private LottoTickets generateLottoTickets(int quantity) {

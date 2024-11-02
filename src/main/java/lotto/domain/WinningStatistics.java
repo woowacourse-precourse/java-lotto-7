@@ -11,6 +11,8 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class WinningStatistics {
+    private static final int PERCENTAGE_MULTIPLIER = 100;
+
     private final Map<Rank, Integer> statistics;
 
     private WinningStatistics(Map<Rank, Integer> statistics) {
@@ -29,10 +31,6 @@ public class WinningStatistics {
         return new WinningStatistics(enumMap);
     }
 
-    private static double getReturnPercentage(double winningPrice, int purchaseAmount) {
-        return winningPrice / purchaseAmount * 100;
-    }
-
     public void saveWinningResult(Rank rank) {
         statistics.put(rank, statistics.get(rank) + 1);
     }
@@ -46,5 +44,9 @@ public class WinningStatistics {
                 .mapToLong(entry -> entry.getKey().getPrice() * entry.getValue())
                 .sum();
         return getReturnPercentage(winningPrice, purchaseAmount);
+    }
+
+    private double getReturnPercentage(double winningPrice, int purchaseAmount) {
+        return winningPrice / purchaseAmount * PERCENTAGE_MULTIPLIER;
     }
 }

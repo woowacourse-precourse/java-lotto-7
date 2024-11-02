@@ -3,8 +3,9 @@ package lotto.validator;
 import static lotto.message.ErrorMessage.CAN_NOT_PURCHASE;
 import static lotto.message.ErrorMessage.PARSE_INT_ERROR;
 
-public class PurchaseAmountValidator {
+import lotto.domain.Lotto;
 
+public class PurchaseAmountValidator {
     private int purchaseAmount = 0;
 
     public boolean isNotValidPurchaseAmount(String userInput) {
@@ -26,7 +27,7 @@ public class PurchaseAmountValidator {
 
     private boolean canNotPurchase(int purchaseAmount) {
         try {
-            if (purchaseAmount < 1000 || (purchaseAmount % 1000) != 0) {
+            if (purchaseAmount < Lotto.LOTTO_UNIT_PRICE || (purchaseAmount % Lotto.LOTTO_UNIT_PRICE) != 0) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

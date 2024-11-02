@@ -6,6 +6,7 @@ import static lotto.message.ErrorMessage.PARSE_INT_NUMBERS_ERROR;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class WinningNumbersValidator {
     private List<Integer> numbers;
@@ -35,7 +36,7 @@ public class WinningNumbersValidator {
     private boolean hasInvalidNumber(List<Integer> numbers) {
         try {
             numbers.forEach(number -> {
-                if (number < 1 || 45 < number) {
+                if (number < Lotto.LOTTO_NUMBER_MIN || Lotto.LOTTO_NUMBER_MAX < number) {
                     throw new IllegalArgumentException();
                 }
             });
@@ -48,7 +49,7 @@ public class WinningNumbersValidator {
 
     private boolean isInValidNumberSize(List<Integer> numbers) {
         try {
-            if (numbers.size() != 6) {
+            if (numbers.size() != Lotto.LOTTO_SIZE) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {

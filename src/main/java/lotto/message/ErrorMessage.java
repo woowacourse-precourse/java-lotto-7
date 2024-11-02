@@ -1,7 +1,6 @@
 package lotto.message;
 
 public enum ErrorMessage {
-
     PARSE_INT_ERROR("[ERROR] 올바른 숫자형식을 입력해 주세요."),
     CAN_NOT_PURCHASE("[ERROR] 로또는 1000원 부터 1000원 단위로 구매 가능합니다."),
     PARSE_INT_NUMBERS_ERROR("[ERROR] 올바른 숫자형식을 입력해 주세요."),
