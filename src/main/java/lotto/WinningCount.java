@@ -28,4 +28,19 @@ public enum WinningCount {
     public int getAmountToWin() {
         return amountToWin;
     }
+
+    public static WinningCount from(int countOfWinningNumber, boolean isBonusMatched){
+        if(countOfWinningNumber == 5){
+            if(isBonusMatched) return FIVE_AND_BONUS;
+            return FIVE;
+        }
+
+        for(WinningCount winningCount: WinningCount.values()){
+            if(winningCount.getCountOfWinningNumber() == countOfWinningNumber){
+                return winningCount;
+            }
+        }
+
+        throw new IllegalArgumentException("[ERROR] 당첨 번호와 일치하는 개수는 3 이상 6이하의 숫자여야 합니다.");
+    }
 }

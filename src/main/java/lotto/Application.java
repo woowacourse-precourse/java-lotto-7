@@ -4,10 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import net.bytebuddy.implementation.bytecode.assign.primitive.VoidAwareAssigner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     private static int amountToPurchase;
@@ -15,8 +12,19 @@ public class Application {
     private static List<Lotto> lottos;
     private static List<Integer> winningNumbers;
     private static int bonusNumber;
+    private static Map<WinningCount, Integer>  lottoCountByWinning;
     public static void main(String[] args) {
         readUserInput();
+
+        for (int i = 0; i < numOfLotto; i++) {
+            Lotto lotto = lottos.get(i);
+
+            int numberOfWinningNumber = lotto.countWinningNumber(winningNumbers);
+            boolean isBonusMatched = lotto.checkBonusNumberMatch(bonusNumber);
+
+            WinningCount winningCount = WinningCount.from(numberOfWinningNumber, isBonusMatched);
+            lottoCountByWinning.put(winningCount, lottoCountByWinning.get(winningCount) + 1);
+        }
     }
 
     public static void readUserInput(){
@@ -99,6 +107,14 @@ public class Application {
     private static void validateLottoNumber(int num){
         if (num < 1 || num > 45){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private static void initLottoCountByWinning(){
+        lottoCountByWinning = new HashMap<>();
+
+        for(WinningCount winningCount : WinningCount.values()){
+            lottoCountByWinning.put(winningCount, 0);
         }
     }
 
