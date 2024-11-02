@@ -29,5 +29,9 @@ public class InputView {
     }
 
     public String inputLottoBonusNumber() {
+        System.out.println(Constants.BONUS_NUMBER_INPUT);
+        String BonusNumber = Console.readLine();
+
+        return BonusNumber;
     }
 }

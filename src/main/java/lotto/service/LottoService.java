@@ -3,9 +3,13 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Constants;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.domain.LottoWinningNumbers;
 import lotto.validator.InputValidator;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
@@ -49,7 +53,27 @@ public class LottoService {
         inputValidator.validateNumber(lottoBonusNumber);
     }
 
-    public void winningLotto(String lottoWinningNumbers, String lottoBonusNumber) {
+    public List<Integer> splitLottoWinningNumbers(String lottoWinningNumbers) {
+        String[] lottoArray = lottoWinningNumbers.split(Constants.SEPARATOR);
+        lottoTrim(lottoArray); // 함수 이름 바꾸기
 
+        List<String> lottoWinningNumbersList = Arrays.asList(lottoArray);
+        List<Integer> lottoWinningNumbersIntList = lottoWinningNumbersList.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return lottoWinningNumbersIntList;
+    }
+
+    private void lottoTrim(String[] lottoArray) {
+        for (int i = 0; i < lottoArray.length; i++) {
+            lottoArray[i] = lottoArray[i].trim();
+        }
+    }
+
+    public void winningLotto(String lottoWinningNumbers, String lottoBonusNumber) {
+        List<Integer> winNumbers = splitLottoWinningNumbers(lottoWinningNumbers);
+        int bonusNumber = Integer.parseInt(lottoBonusNumber); // 따로 빼기
+        LottoWinningNumbers lottoWinning = new LottoWinningNumbers(winNumbers, bonusNumber);
     }
 }
