@@ -1,21 +1,12 @@
-package lotto.Controller;
+package lotto.Service;
 
 import lotto.Enum.WinningPrize;
 import lotto.Model.Lotto;
 import lotto.Model.MyLottos;
-import lotto.View.OutputWinningTotalView;
 
 import java.util.*;
 
-public class WinningTotalController {
-    public Map<String, Integer> winningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
-        Map<String, Integer> resultMap = calculateWinningTotal(mylottos, winningLotto, bonusNumber);
-        OutputWinningTotalView outputWinningTotalView = new OutputWinningTotalView(resultMap);
-        outputWinningTotalView.printWinningTotal();
-
-        return resultMap;
-    }
-
+public class WinningTotalService {
     public Map<String, Integer> calculateWinningTotal(MyLottos mylottos, Lotto winningLotto, int bonusNumber) {
         Set<Integer> comparingSet;
         Map<String, Integer> resultMap = makeResultMap();
@@ -44,7 +35,7 @@ public class WinningTotalController {
     private Map<String, Integer> makeResultMap() {
         Map<String, Integer> resultMap = new HashMap<>();
         for (WinningPrize prize : WinningPrize.values()) {
-            resultMap.put(prize.toString(),0);
+            resultMap.put(prize.toString(), 0);
         }
         return resultMap;
     }

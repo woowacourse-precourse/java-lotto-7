@@ -1,18 +1,11 @@
-package lotto.Controller;
+package lotto.Service;
 
 import lotto.Enum.WinningPrize;
-import lotto.View.OutputEarningRateView;
 
 import java.util.Map;
 
-public class EarningRateController {
+public class EarningRateService {
     private Map<String, Integer> resultMap;
-
-    public void earningRate(int price, Map<String, Integer> resultMap) {
-        OutputEarningRateView outputEarningRateView = new OutputEarningRateView();
-        double earningRate = calculateEarningRate(price, resultMap);
-        outputEarningRateView.printEarningRate(earningRate);
-    }
 
     public double calculateEarningRate(int price, Map<String, Integer> resultMap) {
         this.resultMap = resultMap;
