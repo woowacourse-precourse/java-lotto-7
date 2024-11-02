@@ -187,3 +187,5 @@ import camp.nextstep.edu.missionutils.Randoms;
 pickNumberInRange();
 ```
 # 오류
+## 11-02
+단위 테스트 실패 원인은 모름

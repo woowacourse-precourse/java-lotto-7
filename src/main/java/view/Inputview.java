@@ -9,31 +9,45 @@ import java.util.NoSuchElementException;
 
 
 public class Inputview {
-    public int Purchase()
+    private final int purchaseNumber;
+    private final Lotto lottoNumbers;
+    private final int bonus;
+
+    public Inputview()
     {
-        int number=stringToInt(safeReadLine());
+        this.purchaseNumber = Purchase(safeReadLine());
+        this.lottoNumbers = winningNumbr(safeReadLine());
+        this.bonus = bonusNumber(safeReadLine());
+    }
+
+    public int Purchase(String num)
+    {
+        int number=stringToInt(num);
         if(number<1000)
             throw new IllegalArgumentException("[ERROR] 입력한 금액이 작습니다.");
 
         return number;
     }
-    
-    public Lotto winningNumbr()
+
+    public Lotto winningNumbr(String num)
     {
-        String[] splitedNumber = splitByComma(safeReadLine());
+        String[] splitedNumber = splitByComma(num);
         List<Integer> numbers = new ArrayList<>();
 
-        for(String num : splitedNumber)
-            numbers.add(stringToInt(num));
+        for(String nums : splitedNumber)
+            numbers.add(stringToInt(nums));
 
         return new Lotto(numbers);
     }
 
-    //todo 당첨 번호와 비교
-    public int bonusNumber()
+
+    public int bonusNumber(String num)
     {
-        int number=stringToInt(safeReadLine());
+        int number=stringToInt(num);
         validateNumberInRange(number);
+
+        if(lottoNumbers.getNumbers().contains(number))
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복됩니다.");
         return number;
     }
 
