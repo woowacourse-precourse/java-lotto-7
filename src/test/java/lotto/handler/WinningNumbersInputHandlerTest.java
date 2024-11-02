@@ -4,8 +4,7 @@ import lotto.domain.lottoForm.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.message.ErrorMessage.LOTTO_SCOPE_ERROR;
-import static lotto.message.ErrorMessage.NON_INTEGER_PURCHASE_AMOUNT;
+import static lotto.message.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class WinningNumbersInputHandlerTest {
@@ -47,5 +46,18 @@ public class WinningNumbersInputHandlerTest {
         assertThatCode(() -> numbersInputHandler.validateScope(nonValidScope))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_SCOPE_ERROR.getMessage());
+    }
+
+    @DisplayName("당첨 번호와 중복되는 보너스 번호가 입력되면 예외가 발생한다")
+    @Test
+    void duplicateExceptionTest() {
+        // given
+        WinningNumbers winningNumbers = new WinningNumbers("1,2,4,7,9,10");
+        int bonusNumber = 4;
+
+        // when & then
+        assertThatCode(() -> winningNumbers.validateDuplicate(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BONUS_NUMBER_DUPLICATE.getMessage());
     }
 }
