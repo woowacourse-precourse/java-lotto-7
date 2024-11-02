@@ -27,14 +27,25 @@ public class Application {
 		OutputInterface.printNewLine();
 
 		List<Integer> winningNumbers = drawWinningNumbers(inputInterface, lottoService);
-		int bonusNumber = drawBonusNumber(inputInterface, lottoService);
+		int bonusNumber = drawBonusNumber(inputInterface);
 
 		LottoPrizeNumbers lottoPrizeNumbers = LottoPrizeNumbers.of(winningNumbers, bonusNumber);
+		OutputInterface.printNewLine();
 
 	}
 
-	private static int drawBonusNumber(InputInterface inputInterface, LottoService lottoService) {
+	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
+		while (true) {
+			try {
+				OutputInterface.printMessage(OutputInterface.ENTER_PURCHASE_PRICE);
+				String price = inputInterface.readLine();
+				OutputInterface.printNewLine();
 
+				return Customer.from(TypeConverter.convertStringToInteger(price));
+			} catch (IllegalArgumentException exception) {
+				processException(exception);
+			}
+		}
 	}
 
 	private static List<Integer> drawWinningNumbers(InputInterface inputInterface, LottoService lottoService) {
@@ -50,14 +61,13 @@ public class Application {
 		}
 	}
 
-	private static Customer purchaseLottoTickets(InputInterface inputInterface) {
+	private static int drawBonusNumber(InputInterface inputInterface) {
 		while (true) {
 			try {
-				OutputInterface.printMessage(OutputInterface.ENTER_PURCHASE_PRICE);
-				String price = inputInterface.readLine();
-				OutputInterface.printNewLine();
+				OutputInterface.printMessage(OutputInterface.ENTER_BONUS_NUMBER);
+				String bonusNumber = inputInterface.readLine();
 
-				return Customer.from(TypeConverter.convertStringToInteger(price));
+				return TypeConverter.convertStringToInteger(bonusNumber);
 			} catch (IllegalArgumentException exception) {
 				processException(exception);
 			}
