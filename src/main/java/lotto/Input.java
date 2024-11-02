@@ -43,7 +43,7 @@ public class Input {
 
     public static List<Integer> validateCount(List<Integer> integers) {
         if (integers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
         }
         return integers;
     }
@@ -51,7 +51,7 @@ public class Input {
     public static List<Integer> validateNotDuplicate(List<Integer> integers) {
         Set<Integer> set = new HashSet<>(integers);
         if (set.size() != integers.size()) {
-            throw new IllegalArgumentException("당첨 번호는 중복되면 안됩니다.");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안됩니다.");
         }
         return integers;
     }
