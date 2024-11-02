@@ -9,10 +9,10 @@ import lotto.entity.WinnerNumber;
 
 public class LotteryMachineModel {
 
-    PurchaseAmount purchaseAmount;
-    WinnerNumber winnerNumber;
-    BonusNumber bonusNumber;
-    IssuedLotto issuedLotto;
+    private PurchaseAmount purchaseAmount;
+    private WinnerNumber winnerNumber;
+    private BonusNumber bonusNumber;
+    private IssuedLotto issuedLotto;
 
     public LotteryMachineModel() {
         this.purchaseAmount = new PurchaseAmount(0L);
