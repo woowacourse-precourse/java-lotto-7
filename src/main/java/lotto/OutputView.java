@@ -23,9 +23,13 @@ public class OutputView {
         List<List<Integer>> lottos = new ArrayList<>();
         for(int i = 0 ; i < lottoCount ; i++) {
             List<Integer> lottoNumbers = randomNumber();
+            lottoNumbers.sort(Integer::compareTo);
             lottos.add(lottoNumbers);
         }
         this.boughtLottoNumbers = lottos;
     }
 
+    public List<List<Integer>> getBoughtLottoNumbers() {
+        return boughtLottoNumbers;
+    }
 }
