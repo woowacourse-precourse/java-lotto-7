@@ -6,7 +6,6 @@ import dto.lottoDto.LottoResponse;
 import dto.lottoWinningResultDto.LottoWinningResult;
 import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,21 +32,19 @@ public class LottoServiceImpl implements LottoService {
     }
 
     @Override
-    public BigInteger calculatePurchasableLottoCount(Money _money) {
+    public int calculatePurchasableLottoCount(Money _money) {
 
-        BigInteger money = new BigInteger(_money.getMoney());
+        int money = Integer.parseInt(_money.getMoney());
 
-        return money.divide(new BigInteger("1000"));
+        return money / 1000;
     }
 
     @Override
-    public List<Lotto> issueLotto(BigInteger purchasableLottoCount) {
+    public List<Lotto> issueLotto(int purchasableLottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        BigInteger i = new BigInteger("0");
-        while (purchasableLottoCount.compareTo(i) > 0) {
+        for (int i = 0; i < purchasableLottoCount; i++) {
             lottos.add(issueOneLotto());
-            i = i.add(new BigInteger("1"));
         }
 
         return lottos;
@@ -61,10 +58,7 @@ public class LottoServiceImpl implements LottoService {
 
     @Override
     public void printIssuedLotto(LottoResponse lottoResponse) {
-        System.out.println(lottoResponse.lottoCount() + "개를 구매했습니다.");
-        for (Lotto lotto : lottoResponse.issuedLotto()) {
-            System.out.println(lotto.toString());
-        }
+        outputView.printIssuedLotto(lottoResponse);
     }
 
 

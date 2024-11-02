@@ -5,7 +5,6 @@ import dto.lottoDto.LottoResponse;
 import dto.lottoWinningResultDto.LottoWinningResult;
 import dto.lottoWinningResultDto.LottoWinningResultRequest;
 import dto.lottoWinningResultDto.LottoWinningResultResponse;
-import java.math.BigInteger;
 import java.util.List;
 import lotto.Lotto;
 import model.Money;
@@ -15,9 +14,9 @@ public interface LottoService {
     // About Issue Lotto
     public Money inputLottoMoney();
 
-    public BigInteger calculatePurchasableLottoCount(Money money);
+    public int calculatePurchasableLottoCount(Money money);
 
-    public List<Lotto> issueLotto(BigInteger money);
+    public List<Lotto> issueLotto(int purchasableLottoCount);
 
     public void printIssuedLotto(LottoResponse lottoResponse);
 
