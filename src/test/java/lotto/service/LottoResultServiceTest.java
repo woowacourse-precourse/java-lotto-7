@@ -29,10 +29,10 @@ class LottoResultServiceTest {
         List<MatchingCountResult> matchingCountResults = lottoResultService.getWinningCount();
 
         assertEquals(2, matchingCountResults.size());
-        assertEquals(5, matchingCountResults.get(0).winningCondition().getMatchCount());
-        assertTrue(matchingCountResults.get(0).winningCondition().isBonusMatch());
+        assertEquals(5, matchingCountResults.get(0).getWinningCondition().getMatchCount());
+        assertTrue(matchingCountResults.get(0).getWinningCondition().isBonusMatch());
 
-        assertEquals(5, matchingCountResults.get(0).winningCondition().getMatchCount());
-        assertFalse(matchingCountResults.get(1).winningCondition().isBonusMatch());
+        assertEquals(5, matchingCountResults.get(0).getWinningCondition().getMatchCount());
+        assertFalse(matchingCountResults.get(1).getWinningCondition().isBonusMatch());
     }
 }
