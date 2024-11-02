@@ -21,18 +21,20 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public void printLottoNumbers(List<Integer> numbers){
-        Collections.sort(numbers);
+    public void printLottoNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
         StringBuilder sb = new StringBuilder("[");
-        for(int i  =0; i < numbers.size(); i++){
-            sb.append(numbers.get(i));
-            if(i != numbers.size() - 1){
+        for (int i = 0; i < sortedNumbers.size(); i++) {
+            sb.append(sortedNumbers.get(i));
+            if (i != sortedNumbers.size() - 1) {
                 sb.append(", ");
             }
         }
         sb.append("]");
         System.out.println(sb);
     }
+
 
     public LottoPrizeMoney judgeWinning(List<Integer> numbers, List<Integer> winningNumber, int luckyNumber) {
         int correct = countCorrect(numbers, winningNumber);
@@ -54,14 +56,12 @@ public class Lotto {
         return tmpNumbers.size();
     }
 
-    public double calculateEarningRate(int purchaseAmount, int countFirst, int countSecond, int countThird, int countFourth, int countFifth){
-        return (double) (LottoPrizeMoney.FIRST.getPrizeMoney()*countFirst
-                + LottoPrizeMoney.SECOND.getPrizeMoney()*countSecond
-                + LottoPrizeMoney.THIRD.getPrizeMoney()*countThird
-                + LottoPrizeMoney.FOURTH.getPrizeMoney()*countFourth
-                + LottoPrizeMoney.FIRST.getPrizeMoney()*countFifth)
-                / (purchaseAmount*10);
+    public float calculateEarningRate(int purchaseAmount, int countFirst, int countSecond, int countThird, int countFourth, int countFifth) {
+        int totalPrize = LottoPrizeMoney.FIRST.getPrizeMoney() * countFirst
+                + LottoPrizeMoney.SECOND.getPrizeMoney() * countSecond
+                + LottoPrizeMoney.THIRD.getPrizeMoney() * countThird
+                + LottoPrizeMoney.FOURTH.getPrizeMoney() * countFourth
+                + LottoPrizeMoney.FIFTH.getPrizeMoney() * countFifth;
+        return (float) totalPrize / (purchaseAmount * 1000) * 100;
     }
-
-
 }
