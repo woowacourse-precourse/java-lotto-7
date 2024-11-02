@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.validation.Validation;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.validation.Validation.*;
@@ -13,19 +12,27 @@ public class LottoPrize {
     private final static Integer LOTTO_MAX_LENGTH = 6;
 
     private final List<Integer> lottoPrizeNumbers;
+    private final Integer bonusNumber;
 
-    public LottoPrize(List<Integer> lottoPrizeNumbers) {
-        validate(lottoPrizeNumbers);
+    private LottoPrize(List<Integer> lottoPrizeNumbers, Integer bonusNumber) {
         this.lottoPrizeNumbers = lottoPrizeNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Integer> lottoPrizeNumbers) {
+
+    public static LottoPrize createLottoPrize(List<Integer> lottoPrizeNumbers) {
+        validatePrizeNumbers(lottoPrizeNumbers);
+        return new LottoPrize(lottoPrizeNumbers, null);
+    }
+
+    private static void validatePrizeNumbers(List<Integer> lottoPrizeNumbers) {
         checkLottoSize(lottoPrizeNumbers, LOTTO_MAX_LENGTH);
-        checkLottoDuplicate(lottoPrizeNumbers);
         checkLottoNumberRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, lottoPrizeNumbers);
+        checkLottoDuplicate(lottoPrizeNumbers);
     }
 
     public List<Integer> getLottoPrizeNumbers() {
         return lottoPrizeNumbers;
     }
+
 }
