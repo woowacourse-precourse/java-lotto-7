@@ -17,6 +17,7 @@ import java.util.stream.IntStream;
 import lotto.model.Lotto;
 import lotto.model.MatchingRecord;
 import lotto.model.Rank;
+import lotto.model.WinningNumbers;
 
 public class LottoController {
     private static final int PURCHASE_UNIT = 1000;
@@ -25,7 +26,7 @@ public class LottoController {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottos = issueLottos(purchaseAmount);
         printPurchasedLottos(lottos);
-        List<Integer> winningNumbers = getWinningNumbers();
+        WinningNumbers winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
         List<MatchingRecord> matchingRecords = stream(Rank.values()).map(MatchingRecord::new).toList();
         getStatistics(matchingRecords, lottos, winningNumbers, bonusNumber);
@@ -45,10 +46,11 @@ public class LottoController {
         }
     }
 
-    private List<Integer> getWinningNumbers() {
+    private WinningNumbers getWinningNumbers() {
         while (true) {
             try {
-                List<Integer> winningNumbers = parseWinningNumbers(askWinningNumbers());
+                List<Integer> winningNumbersUnvalidated = parseWinningNumbers(askWinningNumbers());
+                WinningNumbers winningNumbers = new WinningNumbers(winningNumbersUnvalidated);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -82,11 +84,11 @@ public class LottoController {
         return wholeCashPrize;
     }
 
-    private void getStatistics(List<MatchingRecord> matchingRecords, List<Lotto> lottos, List<Integer> winningNumbers,
+    private void getStatistics(List<MatchingRecord> matchingRecords, List<Lotto> lottos, WinningNumbers winningNumbers,
                                int bonusNumber) {
-        // lotto 배열을 순회하면서 일치하는 숫자 검증하고, bonus 숫자 매칭 확인하고 MatchingRecord의 lottoQuantity 증가시키기
         for (Lotto lotto : lottos) {
-            Integer count = (int) lotto.getNumbers().stream().filter(winningNumbers::contains).count();
+            Integer count = (int) lotto.getNumbers().stream()
+                    .filter(i -> winningNumbers.getWinningNumbers().contains(i)).count();
             if (count.equals(6)) {
                 matchingRecords.get(4).increaseLottoQuantity();
             } else if (count.equals(5) && lotto.getNumbers().contains(bonusNumber)) {
